@@ -1,0 +1,595 @@
+{
+  "ok": true,
+  "mode": "audit",
+  "executed_at_utc": "2026-09-14T09:24:23.4201775Z",
+  "target_category": {
+    "id": 743,
+    "name": "درپوش انتهایی پلی اتیلن",
+    "slug": "polyethylene-end-cap"
+  },
+  "pipe_category": {
+    "id": 754,
+    "name": "لوله پلی اتیلن",
+    "slug": "polyethylene-pipe"
+  },
+  "published_product_count": 653,
+  "target_count": 10,
+  "unparsed_target_count": 0,
+  "missing_same_size_pipe_count": 2,
+  "empty_recommendation_count": 0,
+  "rules": {
+    "pipe": "product must belong to live WooCommerce polyethylene-pipe category",
+    "mixed_sizes": "reducers and mixed nominal sizes are excluded",
+    "related": "up to two exact same-size PE pipes, then one exact same-size item per useful fitting family",
+    "copy": "human-written Persian copy specific to the exact nominal size",
+    "mutation": "description only",
+    "protected": "price, regular/sale price, stock, SKU, identity, short description, taxonomy, images, attributes, upsells and cross-sells are readback-protected"
+  },
+  "unparsed_targets": [],
+  "missing_pipe_targets": [
+    {
+      "id": 135163,
+      "name": "درپوش انتهایی پیچی 40 میلیمتر پلی اتیلن",
+      "size_mm": 40
+    },
+    {
+      "id": 135171,
+      "name": "درپوش انتهایی پیچی آبلوله 40 میلیمتر پلی اتیلن",
+      "size_mm": 40
+    }
+  ],
+  "pipe_catalog": [
+    {
+      "id": 135211,
+      "name": "لوله پلی‌اتیلن ۱۶ میلی‌متر استاندارد ۲۰۰ متری",
+      "size_mm": 16,
+      "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-16-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%88%db%8c%d8%a7-%d8%b4%db%8c%d8%b1%d8%a7%d8%b2/",
+      "stock_status": "instock"
+    },
+    {
+      "id": 141356,
+      "name": "لوله پلی‌اتیلن ۲۰ میلی‌متر ۱۲.۵ اتمسفر استاندارد ۲۰۰ متری",
+      "size_mm": 20,
+      "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-20-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-12-5-%d8%a7%d8%aa%d9%85%d8%b3%d9%81%d8%b1-%d8%a7%d8%b3%d8%aa%d8%a7%d9%86%d8%af/",
+      "stock_status": "instock"
+    },
+    {
+      "id": 135205,
+      "name": "لوله پلی‌اتیلن ۲۵ میلی‌متر ۱۰ اتمسفر استاندارد ۲۰۰ متری",
+      "size_mm": 25,
+      "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-25-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-10-%d8%a7%d8%aa%d9%85%d8%b3%d9%81%d8%b1/",
+      "stock_status": "instock"
+    },
+    {
+      "id": 135221,
+      "name": "لوله پلی اتیلن ۳۲ میلیمتر ۸ اتمسفر استاندارد ۲۰۰ متری",
+      "size_mm": 32,
+      "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-8-%d8%a7%d8%aa%d9%85%d8%b3%d9%81%d8%b1-%d8%a7%d8%b3%d8%aa%d8%a7%d9%86%d8%af/",
+      "stock_status": "instock"
+    },
+    {
+      "id": 135215,
+      "name": "لوله پلی‌اتیلن ۵۰ میلی‌متر ۶ اتمسفر استاندارد ۱۰۰ متری",
+      "size_mm": 50,
+      "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-50-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%db%b6-%d8%a7%d8%aa%d9%85%d8%b3%d9%81%d8%b1/",
+      "stock_status": "instock"
+    },
+    {
+      "id": 135217,
+      "name": "لوله پلی‌اتیلن ۶۳ میلی‌متر ۶ اتمسفر استاندارد ۱۰۰ متری",
+      "size_mm": 63,
+      "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-63-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%db%b6-%d8%a7%d8%aa%d9%85%d8%b3%d9%81%d8%b1-%d8%a7%d8%b3%d8%aa%d8%a7%d9%86/",
+      "stock_status": "instock"
+    },
+    {
+      "id": 135219,
+      "name": "لوله پلی‌اتیلن ۷۵ میلی‌متر ۶ اتمسفر استاندارد ۱۰۰ متری",
+      "size_mm": 75,
+      "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%db%b6-%d8%a7%d8%aa%d9%85%d8%b3%d9%81%d8%b1-%d8%a7%d8%b3%d8%aa%d8%a7%d9%86/",
+      "stock_status": "instock"
+    },
+    {
+      "id": 135209,
+      "name": "لوله پلی‌اتیلن ۹۰ میلی‌متر ۸ اتمسفر استاندارد ۱۰۰ متری",
+      "size_mm": 90,
+      "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-90-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-8-%d8%a7%d8%aa%d9%85%d8%b3%d9%81%d8%b1/",
+      "stock_status": "instock"
+    },
+    {
+      "id": 135213,
+      "name": "لوله پلی‌اتیلن ۱۱۰ میلی‌متر ۸ اتمسفر استاندارد ۱۰۰ متری",
+      "size_mm": 110,
+      "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%db%b6-%d8%a7%d8%aa%d9%85%d8%b3%d9%81%d8%b1/",
+      "stock_status": "instock"
+    }
+  ],
+  "targets": [
+    {
+      "id": 135147,
+      "name": "درپوش انتهایی پیچی آبلوله 50 میلیمتر پلی اتیلن",
+      "size_mm": 50,
+      "existing_recommendation_block": true,
+      "same_size_pipe_count": 1,
+      "proposed_products": [
+        {
+          "id": 135215,
+          "name": "لوله پلی‌اتیلن ۵۰ میلی‌متر ۶ اتمسفر استاندارد ۱۰۰ متری",
+          "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-50-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%db%b6-%d8%a7%d8%aa%d9%85%d8%b3%d9%81%d8%b1/",
+          "family": "pipe",
+          "reason": "same_size_50mm"
+        },
+        {
+          "id": 135177,
+          "name": "رابط مساوی  1.1/2 اینچ (50 میلیمتر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-50-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "family": "coupling",
+          "reason": "same_size_50mm"
+        },
+        {
+          "id": 135529,
+          "name": "اتصال زانو مساوی پلی اتیلن 50 میلیمتر (1.1/2 اینچ)",
+          "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d8%b2%d8%a7%d9%86%d9%88-%d9%85%d8%b3%d8%a7%d9%88%db%8c-90-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-50/",
+          "family": "elbow",
+          "reason": "same_size_50mm"
+        },
+        {
+          "id": 135006,
+          "name": "سه راه ماده مساوی آبلوله 50 میلیمتر پلی اتیلن",
+          "permalink": "https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%85%d8%a7%d8%af%d9%87-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-50-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c__trashed/",
+          "family": "tee",
+          "reason": "same_size_50mm"
+        },
+        {
+          "id": 135327,
+          "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ و ۱/۲ اینچ (۵۰ میلی‌متر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-1-1-2-%d8%a7%db%8c%d9%86/",
+          "family": "valve",
+          "reason": "same_size_50mm"
+        },
+        {
+          "id": 140376,
+          "name": "اتصال ماده 50 میلیمتر",
+          "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-50-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "family": "fitting",
+          "reason": "same_size_50mm"
+        }
+      ]
+    },
+    {
+      "id": 135149,
+      "name": "درپوش انتهایی پیچی آبلوله 63میلیمتر پلی اتیلن",
+      "size_mm": 63,
+      "existing_recommendation_block": true,
+      "same_size_pipe_count": 1,
+      "proposed_products": [
+        {
+          "id": 135217,
+          "name": "لوله پلی‌اتیلن ۶۳ میلی‌متر ۶ اتمسفر استاندارد ۱۰۰ متری",
+          "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-63-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%db%b6-%d8%a7%d8%aa%d9%85%d8%b3%d9%81%d8%b1-%d8%a7%d8%b3%d8%aa%d8%a7%d9%86/",
+          "family": "pipe",
+          "reason": "same_size_63mm"
+        },
+        {
+          "id": 135387,
+          "name": "رابط مساوی آبلوله 2 اینچ (63 میلیمتر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-63-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-2/",
+          "family": "coupling",
+          "reason": "same_size_63mm"
+        },
+        {
+          "id": 135531,
+          "name": "اتصال زانو مساوی آبلوله پلی اتیلن 63 میلیمتر (2 اینچ)",
+          "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d8%b2%d8%a7%d9%86%d9%88-%d9%85%d8%b3%d8%a7%d9%88%db%8c-90-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-63/",
+          "family": "elbow",
+          "reason": "same_size_63mm"
+        },
+        {
+          "id": 135008,
+          "name": "سه راه ماده مساوی آبلوله 63 میلیمتر پلی اتیلن",
+          "permalink": "https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%85%d8%a7%d8%af%d9%87-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-63-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c__trashed/",
+          "family": "tee",
+          "reason": "same_size_63mm"
+        },
+        {
+          "id": 135253,
+          "name": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۲ اینچ (۶۳ میلی‌متر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d8%aa%d9%88%d9%be%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85%db%8c%d9%84/",
+          "family": "valve",
+          "reason": "same_size_63mm"
+        },
+        {
+          "id": 135481,
+          "name": "اتصال ماده آبلوله 63 میلیمتر",
+          "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-63-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "family": "fitting",
+          "reason": "same_size_63mm"
+        }
+      ]
+    },
+    {
+      "id": 135151,
+      "name": "درپوش انتهایی پیچی 75 میلیمتر پلی اتیلن",
+      "size_mm": 75,
+      "existing_recommendation_block": true,
+      "same_size_pipe_count": 1,
+      "proposed_products": [
+        {
+          "id": 135219,
+          "name": "لوله پلی‌اتیلن ۷۵ میلی‌متر ۶ اتمسفر استاندارد ۱۰۰ متری",
+          "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%db%b6-%d8%a7%d8%aa%d9%85%d8%b3%d9%81%d8%b1-%d8%a7%d8%b3%d8%aa%d8%a7%d9%86/",
+          "family": "pipe",
+          "reason": "same_size_75mm"
+        },
+        {
+          "id": 135179,
+          "name": "رابط مساوی 2.1/2 اینچ (75میلیمتر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "family": "coupling",
+          "reason": "same_size_75mm"
+        },
+        {
+          "id": 140008,
+          "name": "زانو پلیمری دوسر ماده پایا 2.1/2 اینچ ۷۵ میلیمتر",
+          "permalink": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%af%d9%88%d8%b3%d8%b1-%d9%85%d8%a7%d8%af%d9%87-%d9%be%d8%a7%db%8c%d8%a7-2-1-2-%d8%a7%db%8c%d9%86%da%86-%db%b7%db%b5-%d9%85%db%8c%d9%84/",
+          "family": "elbow",
+          "reason": "same_size_75mm"
+        },
+        {
+          "id": 135589,
+          "name": "سه راه مساوی آبلوله 75 میلیمتر پلی اتیلن (2.1/2 اینچ)",
+          "permalink": "https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86/",
+          "family": "tee",
+          "reason": "same_size_75mm"
+        },
+        {
+          "id": 135331,
+          "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۲ و ۱/۲ اینچ (۷۵ میلی‌متر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-2-1-2-%d8%a7%db%8c%d9%86/",
+          "family": "valve",
+          "reason": "same_size_75mm"
+        },
+        {
+          "id": 134982,
+          "name": "اتصال ماده آبلوله 75 میلیمتر",
+          "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "family": "fitting",
+          "reason": "same_size_75mm"
+        }
+      ]
+    },
+    {
+      "id": 135157,
+      "name": "درپوش انتهایی پیچی آبلوله 20 میلیمتر پلی اتیلن",
+      "size_mm": 20,
+      "existing_recommendation_block": true,
+      "same_size_pipe_count": 1,
+      "proposed_products": [
+        {
+          "id": 141356,
+          "name": "لوله پلی‌اتیلن ۲۰ میلی‌متر ۱۲.۵ اتمسفر استاندارد ۲۰۰ متری",
+          "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-20-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-12-5-%d8%a7%d8%aa%d9%85%d8%b3%d9%81%d8%b1-%d8%a7%d8%b3%d8%aa%d8%a7%d9%86%d8%af/",
+          "family": "pipe",
+          "reason": "same_size_20mm"
+        },
+        {
+          "id": 140462,
+          "name": "رابط مساوی 1/2 اینچ (20 میلیمتر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-20-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "family": "coupling",
+          "reason": "same_size_20mm"
+        },
+        {
+          "id": 135523,
+          "name": "اتصال زانو مساوی آبلوله پلی اتیلن 20 میلیمتر (1/2 اینچ)",
+          "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d8%b2%d8%a7%d9%86%d9%88-%d9%85%d8%b3%d8%a7%d9%88%db%8c-90-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-20/",
+          "family": "elbow",
+          "reason": "same_size_20mm"
+        },
+        {
+          "id": 135597,
+          "name": "سه راه مساوی 20 میلیمتر پلی اتیلن (1/2 اینچ)",
+          "permalink": "https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-20-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86/",
+          "family": "tee",
+          "reason": "same_size_20mm"
+        },
+        {
+          "id": 140556,
+          "name": "شیر خودکار پلیمری ویسپار 1.1/2 اینچ",
+          "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d8%ae%d9%88%d8%af%da%a9%d8%a7%d8%b1-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-1-2-%d8%a7%db%8c%d9%86%da%86/",
+          "family": "valve",
+          "reason": "same_size_20mm"
+        },
+        {
+          "id": 135479,
+          "name": "اتصال ماده  آبلوله 20 میلیمتر",
+          "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-40-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "family": "fitting",
+          "reason": "same_size_20mm"
+        }
+      ]
+    },
+    {
+      "id": 135159,
+      "name": "درپوش انتهایی پیچی 25 میلیمتر پلی اتیلن",
+      "size_mm": 25,
+      "existing_recommendation_block": true,
+      "same_size_pipe_count": 1,
+      "proposed_products": [
+        {
+          "id": 135205,
+          "name": "لوله پلی‌اتیلن ۲۵ میلی‌متر ۱۰ اتمسفر استاندارد ۲۰۰ متری",
+          "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-25-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-10-%d8%a7%d8%aa%d9%85%d8%b3%d9%81%d8%b1/",
+          "family": "pipe",
+          "reason": "same_size_25mm"
+        },
+        {
+          "id": 140463,
+          "name": "رابط مساوی 3/4 اینچ (25 میلیمتر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-25-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "family": "coupling",
+          "reason": "same_size_25mm"
+        },
+        {
+          "id": 135525,
+          "name": "اتصال زانو مساوی آبلوله پلی اتیلن 25 میلیمتر (3/4 اینچ)",
+          "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d8%b2%d8%a7%d9%86%d9%88-%d9%85%d8%b3%d8%a7%d9%88%db%8c-90-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-25/",
+          "family": "elbow",
+          "reason": "same_size_25mm"
+        },
+        {
+          "id": 135002,
+          "name": "سه راه ماده مساوی آبلوله 25 میلیمتر پلی اتیلن",
+          "permalink": "https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%85%d8%a7%d8%af%d9%87-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-25-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c__trashed/",
+          "family": "tee",
+          "reason": "same_size_25mm"
+        },
+        {
+          "id": 140654,
+          "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۳/۴ اینچ (۲۵ میلی‌متر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-3-4-%d8%a7%db%8c%d9%86%da%86-25/",
+          "family": "valve",
+          "reason": "same_size_25mm"
+        },
+        {
+          "id": 135483,
+          "name": "اتصال ماده آبلوله 25 میلیمتر",
+          "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-25-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-2/",
+          "family": "fitting",
+          "reason": "same_size_25mm"
+        }
+      ]
+    },
+    {
+      "id": 135163,
+      "name": "درپوش انتهایی پیچی 40 میلیمتر پلی اتیلن",
+      "size_mm": 40,
+      "existing_recommendation_block": true,
+      "same_size_pipe_count": 0,
+      "proposed_products": [
+        {
+          "id": 140465,
+          "name": "رابط مساوی 1.1/4 اینچ (40 میلیمتر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-40-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "family": "coupling",
+          "reason": "same_size_40mm"
+        },
+        {
+          "id": 135559,
+          "name": "زانو پلی اتیلن یکسر نر پلی رود 40 میلیمتر",
+          "permalink": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%db%8c%da%a9%d8%b3%d8%b1-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-40-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "family": "elbow",
+          "reason": "same_size_40mm"
+        },
+        {
+          "id": 140532,
+          "name": "سه راه مساوی 40 میلیمتر پلی اتیلن",
+          "permalink": "https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-40-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86/",
+          "family": "tee",
+          "reason": "same_size_40mm"
+        },
+        {
+          "id": 135325,
+          "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ و ۱/۴ اینچ (۴۰ میلی‌متر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-1-1-4-%d8%a7%db%8c%d9%86/",
+          "family": "valve",
+          "reason": "same_size_40mm"
+        }
+      ]
+    },
+    {
+      "id": 135167,
+      "name": "درپوش انتهایی پیچی 63 میلیمتر پلی اتیلن",
+      "size_mm": 63,
+      "existing_recommendation_block": true,
+      "same_size_pipe_count": 1,
+      "proposed_products": [
+        {
+          "id": 135217,
+          "name": "لوله پلی‌اتیلن ۶۳ میلی‌متر ۶ اتمسفر استاندارد ۱۰۰ متری",
+          "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-63-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%db%b6-%d8%a7%d8%aa%d9%85%d8%b3%d9%81%d8%b1-%d8%a7%d8%b3%d8%aa%d8%a7%d9%86/",
+          "family": "pipe",
+          "reason": "same_size_63mm"
+        },
+        {
+          "id": 135387,
+          "name": "رابط مساوی آبلوله 2 اینچ (63 میلیمتر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-63-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-2/",
+          "family": "coupling",
+          "reason": "same_size_63mm"
+        },
+        {
+          "id": 135531,
+          "name": "اتصال زانو مساوی آبلوله پلی اتیلن 63 میلیمتر (2 اینچ)",
+          "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d8%b2%d8%a7%d9%86%d9%88-%d9%85%d8%b3%d8%a7%d9%88%db%8c-90-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-63/",
+          "family": "elbow",
+          "reason": "same_size_63mm"
+        },
+        {
+          "id": 135008,
+          "name": "سه راه ماده مساوی آبلوله 63 میلیمتر پلی اتیلن",
+          "permalink": "https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%85%d8%a7%d8%af%d9%87-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-63-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c__trashed/",
+          "family": "tee",
+          "reason": "same_size_63mm"
+        },
+        {
+          "id": 135253,
+          "name": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۲ اینچ (۶۳ میلی‌متر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d8%aa%d9%88%d9%be%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85%db%8c%d9%84/",
+          "family": "valve",
+          "reason": "same_size_63mm"
+        },
+        {
+          "id": 135481,
+          "name": "اتصال ماده آبلوله 63 میلیمتر",
+          "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-63-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "family": "fitting",
+          "reason": "same_size_63mm"
+        }
+      ]
+    },
+    {
+      "id": 135171,
+      "name": "درپوش انتهایی پیچی آبلوله 40 میلیمتر پلی اتیلن",
+      "size_mm": 40,
+      "existing_recommendation_block": true,
+      "same_size_pipe_count": 0,
+      "proposed_products": [
+        {
+          "id": 140465,
+          "name": "رابط مساوی 1.1/4 اینچ (40 میلیمتر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-40-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "family": "coupling",
+          "reason": "same_size_40mm"
+        },
+        {
+          "id": 135559,
+          "name": "زانو پلی اتیلن یکسر نر پلی رود 40 میلیمتر",
+          "permalink": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%db%8c%da%a9%d8%b3%d8%b1-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-40-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "family": "elbow",
+          "reason": "same_size_40mm"
+        },
+        {
+          "id": 140532,
+          "name": "سه راه مساوی 40 میلیمتر پلی اتیلن",
+          "permalink": "https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-40-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86/",
+          "family": "tee",
+          "reason": "same_size_40mm"
+        },
+        {
+          "id": 135325,
+          "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ و ۱/۴ اینچ (۴۰ میلی‌متر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-1-1-4-%d8%a7%db%8c%d9%86/",
+          "family": "valve",
+          "reason": "same_size_40mm"
+        }
+      ]
+    },
+    {
+      "id": 135519,
+      "name": "درپوش انتهایی پیچی آبلوله 25 میلیمتر پلی اتیلن",
+      "size_mm": 25,
+      "existing_recommendation_block": true,
+      "same_size_pipe_count": 1,
+      "proposed_products": [
+        {
+          "id": 135205,
+          "name": "لوله پلی‌اتیلن ۲۵ میلی‌متر ۱۰ اتمسفر استاندارد ۲۰۰ متری",
+          "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-25-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-10-%d8%a7%d8%aa%d9%85%d8%b3%d9%81%d8%b1/",
+          "family": "pipe",
+          "reason": "same_size_25mm"
+        },
+        {
+          "id": 140463,
+          "name": "رابط مساوی 3/4 اینچ (25 میلیمتر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-25-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "family": "coupling",
+          "reason": "same_size_25mm"
+        },
+        {
+          "id": 135525,
+          "name": "اتصال زانو مساوی آبلوله پلی اتیلن 25 میلیمتر (3/4 اینچ)",
+          "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d8%b2%d8%a7%d9%86%d9%88-%d9%85%d8%b3%d8%a7%d9%88%db%8c-90-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-25/",
+          "family": "elbow",
+          "reason": "same_size_25mm"
+        },
+        {
+          "id": 135002,
+          "name": "سه راه ماده مساوی آبلوله 25 میلیمتر پلی اتیلن",
+          "permalink": "https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%85%d8%a7%d8%af%d9%87-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-25-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c__trashed/",
+          "family": "tee",
+          "reason": "same_size_25mm"
+        },
+        {
+          "id": 140654,
+          "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۳/۴ اینچ (۲۵ میلی‌متر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-3-4-%d8%a7%db%8c%d9%86%da%86-25/",
+          "family": "valve",
+          "reason": "same_size_25mm"
+        },
+        {
+          "id": 135483,
+          "name": "اتصال ماده آبلوله 25 میلیمتر",
+          "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-25-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-2/",
+          "family": "fitting",
+          "reason": "same_size_25mm"
+        }
+      ]
+    },
+    {
+      "id": 135521,
+      "name": "درپوش انتهایی پلی اتیلن پیچی آبلوله 32 میلیمتر (1 اینچ)",
+      "size_mm": 32,
+      "existing_recommendation_block": true,
+      "same_size_pipe_count": 1,
+      "proposed_products": [
+        {
+          "id": 135221,
+          "name": "لوله پلی اتیلن ۳۲ میلیمتر ۸ اتمسفر استاندارد ۲۰۰ متری",
+          "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-8-%d8%a7%d8%aa%d9%85%d8%b3%d9%81%d8%b1-%d8%a7%d8%b3%d8%aa%d8%a7%d9%86%d8%af/",
+          "family": "pipe",
+          "reason": "same_size_32mm"
+        },
+        {
+          "id": 135391,
+          "name": "رابط مساوی آبلوله 1 اینچ (32 میلیمتر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-2/",
+          "family": "coupling",
+          "reason": "same_size_32mm"
+        },
+        {
+          "id": 135527,
+          "name": "اتصال زانو مساوی پلی اتیلن سایز 32 میلیمتر (1 اینچ)",
+          "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d8%b2%d8%a7%d9%86%d9%88-%d9%85%d8%b3%d8%a7%d9%88%db%8c-90-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32/",
+          "family": "elbow",
+          "reason": "same_size_32mm"
+        },
+        {
+          "id": 135004,
+          "name": "سه راه ماده مساوی آبلوله 32 میلیمتر پلی اتیلن",
+          "permalink": "https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%85%d8%a7%d8%af%d9%87-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c__trashed/",
+          "family": "tee",
+          "reason": "same_size_32mm"
+        },
+        {
+          "id": 135323,
+          "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ اینچ (۳۲ میلی‌متر)",
+          "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-1-%d8%a7%db%8c%d9%86%da%86/",
+          "family": "valve",
+          "reason": "same_size_32mm"
+        },
+        {
+          "id": 134980,
+          "name": "اتصال ماده  آبلوله 32 میلیمتر",
+          "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "family": "fitting",
+          "reason": "same_size_32mm"
+        }
+      ]
+    }
+  ],
+  "changes": [],
+  "changed_count": 0,
+  "semantic_verified_count": 0,
+  "integrity_verified_count": 0,
+  "outside_text_verified_count": 0
+}
