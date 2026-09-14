@@ -52,7 +52,7 @@ jobs:
             $name=[IO.Path]::GetFileNameWithoutExtension($requestPath)
             $localOutput=Join-Path $env:RUNNER_TEMP "$name.result.json"
             try {
-              & ./scripts/Invoke-K20EndCapRecommendationsV3.ps1 -RequestPath $requestPath -OutputPath $localOutput
+              & ./scripts/Invoke-K20EndCapRecommendationsV4.ps1 -RequestPath $requestPath -OutputPath $localOutput
             } catch {
               Write-Host 'K20_END_CAP_ERROR_POSITION_BEGIN'
               Write-Host $_.InvocationInfo.PositionMessage
