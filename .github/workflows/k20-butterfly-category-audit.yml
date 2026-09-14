@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: k20-butterfly-category-audit
+  group: k20-butterfly-category-audit-${{ github.sha }}
   cancel-in-progress: false
 
 jobs:
