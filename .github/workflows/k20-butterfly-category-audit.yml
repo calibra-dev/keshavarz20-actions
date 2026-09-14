@@ -1,0 +1,56 @@
+name: Keshavarz20 Butterfly Category Audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'butterfly-category-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-butterfly-category-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Execute butterfly category audit
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          foreach($n in 'WP_BASE_URL','WP_USERNAME','WP_APP_PASSWORD'){if([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($n))){throw "Missing required repository secret: $n"}}
+          $before='${{ github.event.before }}';$current='${{ github.sha }}';$zero='0000000000000000000000000000000000000000'
+          if($before-and$before-ne$zero){$changed=@(git diff --name-only $before $current -- 'butterfly-category-ops/*.json')}else{$changed=@(git show --pretty='' --name-only $current -- 'butterfly-category-ops/*.json')}
+          $changed=@($changed|Where-Object{$_ -match '^butterfly-category-ops/.+\.json$'}|Sort-Object -Unique)
+          if($changed.Count-eq0){throw 'No butterfly audit request JSON found.'}
+          foreach($requestPath in $changed){
+            $name=[IO.Path]::GetFileNameWithoutExtension($requestPath)
+            $out=Join-Path $env:RUNNER_TEMP "$name.result.json"
+            & ./scripts/Invoke-K20CategoryInventoryAudit.ps1 -RequestPath $requestPath -OutputPath $out
+            if(-not(Test-Path $out)){throw "Result missing: $requestPath"}
+            New-Item -ItemType Directory -Force 'results'|Out-Null
+            Copy-Item $out "results/butterfly-category-$name.json" -Force
+          }
+      - name: Commit sanitized result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/butterfly-category-*.json || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "ops: record butterfly category audit"
+          git pull --rebase origin main
+          git push origin main
