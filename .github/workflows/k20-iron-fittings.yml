@@ -21,6 +21,7 @@ jobs:
       WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
       WP_USERNAME: ${{ secrets.WP_USERNAME }}
       WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      K20_HTTP_TIMEOUT_SEC: '600'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
