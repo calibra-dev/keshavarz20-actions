@@ -51,7 +51,7 @@ jobs:
           foreach ($requestPath in $changed) {
             $name=[IO.Path]::GetFileNameWithoutExtension($requestPath)
             $localOutput=Join-Path $env:RUNNER_TEMP "$name.result.json"
-            & ./scripts/Invoke-K20EndCapRecommendations.ps1 -RequestPath $requestPath -OutputPath $localOutput
+            & ./scripts/Invoke-K20EndCapRecommendationsV3.ps1 -RequestPath $requestPath -OutputPath $localOutput
             if (-not (Test-Path -LiteralPath $localOutput)) { throw "Result file missing for $requestPath" }
             New-Item -ItemType Directory -Force 'results' | Out-Null
             Copy-Item -LiteralPath $localOutput -Destination "results/end-cap-recommendation-$name.json" -Force
