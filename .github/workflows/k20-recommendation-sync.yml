@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: k20-recommendation-sync
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   execute:
