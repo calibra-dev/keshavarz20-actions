@@ -19,7 +19,7 @@ $base = $base.TrimEnd('/')
 
 $request = Get-Content -Raw -LiteralPath $RequestPath | ConvertFrom-Json -Depth 100
 $mode = if ($request.mode) { [string]$request.mode } else { 'audit' }
-if ($mode -notin @('audit','apply')) { Fail "Unsupported mode: $mode" }
+if ($mode -notin @('audit','apply_description')) { Fail "Unsupported mode: $mode" }
 
 $authText = "$user`:$pass"
 $authValue = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($authText))
@@ -53,46 +53,25 @@ function Normalize-Digits([string]$Text) {
   $from = @('۰','۱','۲','۳','۴','۵','۶','۷','۸','۹','٠','١','٢','٣','٤','٥','٦','٧','٨','٩')
   $to   = @('0','1','2','3','4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9')
   for ($i = 0; $i -lt $from.Count; $i++) { $s = $s.Replace($from[$i], $to[$i]) }
-  $s = $s.Replace('٫','.').Replace('٬',',').Replace('‌',' ')
-  return $s
+  return $s.Replace('٫','.').Replace('٬',',').Replace('‌',' ')
 }
 
 function Normalize-InchText([string]$Text) {
   $s = Normalize-Digits $Text
   $s = $s.Replace('½',' 1/2').Replace('¼',' 1/4').Replace('¾',' 3/4')
-
-  $s = [regex]::Replace($s, '(?<!\d)(?<w>\d+)\s*[\. ]\s*1\s*/\s*2(?!\d)', {
-    param($m)
-    $w = [double]::Parse($m.Groups['w'].Value, [Globalization.CultureInfo]::InvariantCulture)
-    return (($w + 0.5).ToString('0.##', [Globalization.CultureInfo]::InvariantCulture))
-  })
-  $s = [regex]::Replace($s, '(?<!\d)(?<w>\d+)\s*[\. ]\s*1\s*/\s*4(?!\d)', {
-    param($m)
-    $w = [double]::Parse($m.Groups['w'].Value, [Globalization.CultureInfo]::InvariantCulture)
-    return (($w + 0.25).ToString('0.##', [Globalization.CultureInfo]::InvariantCulture))
-  })
-  $s = [regex]::Replace($s, '(?<!\d)(?<w>\d+)\s*[\. ]\s*3\s*/\s*4(?!\d)', {
-    param($m)
-    $w = [double]::Parse($m.Groups['w'].Value, [Globalization.CultureInfo]::InvariantCulture)
-    return (($w + 0.75).ToString('0.##', [Globalization.CultureInfo]::InvariantCulture))
-  })
-
-  $s = [regex]::Replace($s, '(?<!\d)(?<w>\d+)\s*و\s*1\s*/\s*2(?!\d)', {
-    param($m)
-    $w = [double]::Parse($m.Groups['w'].Value, [Globalization.CultureInfo]::InvariantCulture)
-    return (($w + 0.5).ToString('0.##', [Globalization.CultureInfo]::InvariantCulture))
-  })
-  $s = [regex]::Replace($s, '(?<!\d)(?<w>\d+)\s*و\s*1\s*/\s*4(?!\d)', {
-    param($m)
-    $w = [double]::Parse($m.Groups['w'].Value, [Globalization.CultureInfo]::InvariantCulture)
-    return (($w + 0.25).ToString('0.##', [Globalization.CultureInfo]::InvariantCulture))
-  })
-  $s = [regex]::Replace($s, '(?<!\d)(?<w>\d+)\s*و\s*3\s*/\s*4(?!\d)', {
-    param($m)
-    $w = [double]::Parse($m.Groups['w'].Value, [Globalization.CultureInfo]::InvariantCulture)
-    return (($w + 0.75).ToString('0.##', [Globalization.CultureInfo]::InvariantCulture))
-  })
-
+  $patterns = @(
+    @{ p='(?<!\d)(?<w>\d+)\s*(?:و|\.|\s)\s*1\s*/\s*2(?!\d)'; add=0.5 },
+    @{ p='(?<!\d)(?<w>\d+)\s*(?:و|\.|\s)\s*1\s*/\s*4(?!\d)'; add=0.25 },
+    @{ p='(?<!\d)(?<w>\d+)\s*(?:و|\.|\s)\s*3\s*/\s*4(?!\d)'; add=0.75 }
+  )
+  foreach ($rule in $patterns) {
+    $add = [double]$rule.add
+    $s = [regex]::Replace($s, $rule.p, {
+      param($m)
+      $w = [double]::Parse($m.Groups['w'].Value, [Globalization.CultureInfo]::InvariantCulture)
+      return (($w + $add).ToString('0.##', [Globalization.CultureInfo]::InvariantCulture))
+    })
+  }
   $s = [regex]::Replace($s, '(?<!\d)3\s*/\s*4(?!\d)', '0.75')
   $s = [regex]::Replace($s, '(?<!\d)1\s*/\s*2(?!\d)', '0.5')
   $s = [regex]::Replace($s, '(?<!\d)1\s*/\s*4(?!\d)', '0.25')
@@ -101,6 +80,10 @@ function Normalize-InchText([string]$Text) {
 
 function Format-Size([double]$Value) {
   return $Value.ToString('0.##', [Globalization.CultureInfo]::InvariantCulture)
+}
+
+$mmToInch = @{
+  20='0.5'; 25='0.75'; 32='1'; 40='1.25'; 50='1.5'; 63='2'; 75='2.5'; 90='3'; 110='4'; 125='4.5'
 }
 
 function Get-ExplicitInchSize([string]$Name) {
@@ -119,34 +102,29 @@ function Get-ClampOutletSize([string]$Name) {
     $a = [double]::Parse($m.Groups['a'].Value, [Globalization.CultureInfo]::InvariantCulture)
     $b = [double]::Parse($m.Groups['b'].Value, [Globalization.CultureInfo]::InvariantCulture)
     $small = [Math]::Min($a, $b)
-    if ($small -ge 0.25 -and $small -le 6) { return (Format-Size $small) }
+    if ($small -le 6) { return (Format-Size $small) }
+    $smallMm = [int][Math]::Round($small)
+    if ($mmToInch.ContainsKey($smallMm)) { return [string]$mmToInch[$smallMm] }
   }
   return (Get-ExplicitInchSize $Name)
 }
 
-function Get-BallValveSize([string]$Name) {
-  return (Get-ExplicitInchSize $Name)
-}
-
-function Get-ProductSize([string]$Name) {
-  return (Get-ExplicitInchSize $Name)
-}
+function Get-BallValveSize([string]$Name) { return (Get-ExplicitInchSize $Name) }
+function Get-ProductSize([string]$Name) { return (Get-ExplicitInchSize $Name) }
 
 function Is-ClampTarget($Product, [hashtable]$CategoryNames) {
-  $name = [string]$Product.name
-  if ($name -match 'کمربند') { return $true }
+  if ([string]$Product.name -match 'کمربند') { return $true }
   foreach ($c in @($Product.categories)) {
-    $cid = [int]($c.id)
+    $cid = [int]$c.id
     if ($CategoryNames.ContainsKey($cid) -and $CategoryNames[$cid] -match 'کمربند') { return $true }
   }
   return $false
 }
 
 function Is-BallValveTarget($Product, [hashtable]$CategoryNames) {
-  $name = [string]$Product.name
-  if ($name -match 'شیر\s*توپی') { return $true }
+  if ([string]$Product.name -match 'شیر\s*توپی') { return $true }
   foreach ($c in @($Product.categories)) {
-    $cid = [int]($c.id)
+    $cid = [int]$c.id
     if ($CategoryNames.ContainsKey($cid) -and $CategoryNames[$cid] -match 'شیر\s*توپی') { return $true }
   }
   return $false
@@ -163,166 +141,214 @@ function Is-ThreadedHose([string]$Name) {
   return ((Normalize-Digits $Name) -match 'لوله\s*نخدار')
 }
 
-function Get-RecommendationDescriptionInfo([string]$Html) {
-  if ([string]::IsNullOrWhiteSpace($Html)) {
-    return [pscustomobject][ordered]@{ found=$false; marker=$null; snippet=$null }
-  }
-  $markers = @(
-    'محصولات پیشنهادی','محصولات مرتبط','محصولات مکمل','پیشنهادهای مرتبط','پیشنهاد خرید',
-    'پیشنهاد می‌کنیم','پیشنهاد می کنیم','محصول مکمل','برای تکمیل خرید','همراه این محصول','خرید همزمان'
-  )
+function Get-RecommendationBounds([string]$Html) {
+  if ([string]::IsNullOrWhiteSpace($Html)) { return $null }
+  $markers = @('محصولات مرتبط','محصولات پیشنهادی','محصولات مکمل','پیشنهادهای مرتبط','پیشنهاد خرید','برای تکمیل خرید','همراه این محصول','خرید همزمان')
+  $bestIdx = -1
+  $bestMarker = $null
   foreach ($marker in $markers) {
     $idx = $Html.IndexOf($marker, [StringComparison]::OrdinalIgnoreCase)
+    if ($idx -ge 0 -and ($bestIdx -lt 0 -or $idx -lt $bestIdx)) { $bestIdx = $idx; $bestMarker = $marker }
+  }
+  if ($bestIdx -lt 0) { return $null }
+  $start = $Html.LastIndexOf('<h2', $bestIdx, [StringComparison]::OrdinalIgnoreCase)
+  if ($start -lt 0) { return $null }
+  $next = $Html.IndexOf('<h2', $bestIdx + $bestMarker.Length, [StringComparison]::OrdinalIgnoreCase)
+  if ($next -lt 0) { $next = $Html.Length }
+  return [pscustomobject][ordered]@{ start=$start; end=$next; marker=$bestMarker }
+}
+
+function Build-RecommendationBlock($Target) {
+  $size = [System.Net.WebUtility]::HtmlEncode([string]$Target.output_size_inch)
+  $lines = @()
+  foreach ($r in @($Target.proposed_products)) {
+    $name = [System.Net.WebUtility]::HtmlEncode([string]$r.name)
+    $url = [System.Net.WebUtility]::HtmlEncode([string]$r.permalink)
+    $lines += "<li><a style=\"color:#176b3a;font-weight:700\" href=\"$url\">$name</a></li>"
+  }
+  $list = $lines -join "`n"
+  return @"
+<h2 style="font-size:24px;line-height:1.8;color:#176b3a;margin:34px 0 14px;border-right:5px solid #5d9a68;padding-right:12px">محصولات مرتبط برای تکمیل انتخاب</h2>
+<div style="background:#f7fbf8;border:1px solid #dbe8df;border-radius:16px;padding:17px;margin:15px 0">
+<p>این پیشنهادها بر اساس سایز خروجی $size اینچ این محصول انتخاب شده‌اند؛ اتصالات و تجهیزات هم‌سایز هستند و لوله نخدار، در صورت وجود در فروشگاه، نیم‌سایز بزرگ‌تر پیشنهاد شده است.</p>
+<ul style="padding-right:22px">
+$list
+</ul>
+</div>
+"@
+}
+
+function Set-RecommendationBlock([string]$Html, [string]$Block) {
+  if ($null -eq $Html) { $Html = '' }
+  $bounds = Get-RecommendationBounds $Html
+  if ($null -ne $bounds) {
+    return $Html.Substring(0, [int]$bounds.start) + $Block + $Html.Substring([int]$bounds.end)
+  }
+  $faqMarkers = @('پرسش‌های پرتکرار','پرسش های پرتکرار','سوالات متداول','سؤالات متداول')
+  foreach ($marker in $faqMarkers) {
+    $idx = $Html.IndexOf($marker, [StringComparison]::OrdinalIgnoreCase)
     if ($idx -ge 0) {
-      $start = [Math]::Max(0, $idx - 400)
-      $len = [Math]::Min(2600, $Html.Length - $start)
-      return [pscustomobject][ordered]@{
-        found = $true
-        marker = $marker
-        snippet = $Html.Substring($start, $len)
-      }
+      $h2 = $Html.LastIndexOf('<h2', $idx, [StringComparison]::OrdinalIgnoreCase)
+      if ($h2 -ge 0) { return $Html.Insert($h2, $Block) }
     }
   }
-  return [pscustomobject][ordered]@{ found=$false; marker=$null; snippet=$null }
+  return ($Html.TrimEnd() + "`n" + $Block)
+}
+
+function Get-Hash([string]$Text) {
+  if ($null -eq $Text) { $Text = '' }
+  $sha = [Security.Cryptography.SHA256]::Create()
+  try {
+    $bytes = [Text.Encoding]::UTF8.GetBytes($Text)
+    return ([BitConverter]::ToString($sha.ComputeHash($bytes))).Replace('-','').ToLowerInvariant()
+  } finally { $sha.Dispose() }
+}
+
+function Get-IntegritySnapshot($p) {
+  $o = [ordered]@{
+    id=[int]$p.id; name=[string]$p.name; slug=[string]$p.slug; status=[string]$p.status; sku=[string]$p.sku;
+    price=[string]$p.price; regular_price=[string]$p.regular_price; sale_price=[string]$p.sale_price;
+    manage_stock=[bool]$p.manage_stock; stock_quantity=$p.stock_quantity; stock_status=[string]$p.stock_status;
+    categories=@($p.categories | ForEach-Object { [int]$_.id } | Sort-Object);
+    tags=@($p.tags | ForEach-Object { [int]$_.id } | Sort-Object);
+    images=@($p.images | ForEach-Object { [int]$_.id } | Sort-Object)
+  }
+  return (Get-Hash (($o | ConvertTo-Json -Depth 20 -Compress)))
 }
 
 $products = @(Get-AllProducts)
 if ($products.Count -eq 0) { Fail 'No published WooCommerce products were returned.' }
 
 $categoryNames = @{}
-foreach ($p in $products) {
-  foreach ($c in @($p.categories)) { $categoryNames[[int]($c.id)] = [string]($c.name) }
-}
-
+foreach ($p in $products) { foreach ($c in @($p.categories)) { $categoryNames[[int]$c.id] = [string]$c.name } }
 $byId = @{}
-foreach ($p in $products) { $byId[[int]($p.id)] = $p }
+foreach ($p in $products) { $byId[[int]$p.id] = $p }
 
 $targets = @()
 foreach ($p in $products) {
   $kind = $null
   $size = $null
-  if (Is-ClampTarget $p $categoryNames) {
-    $kind = 'clamp'
-    $size = Get-ClampOutletSize ([string]$p.name)
-  } elseif (Is-BallValveTarget $p $categoryNames) {
-    $kind = 'ball_valve'
-    $size = Get-BallValveSize ([string]$p.name)
-  }
+  if (Is-ClampTarget $p $categoryNames) { $kind='clamp'; $size=Get-ClampOutletSize ([string]$p.name) }
+  elseif (Is-BallValveTarget $p $categoryNames) { $kind='ball_valve'; $size=Get-BallValveSize ([string]$p.name) }
   if (-not $kind) { continue }
 
-  $currentUpsellNames = @()
-  foreach ($id in @($p.upsell_ids)) {
-    $iid = [int]$id
-    if ($byId.ContainsKey($iid)) { $currentUpsellNames += [string]($byId[$iid].name) }
-  }
-  $currentCrossNames = @()
-  foreach ($id in @($p.cross_sell_ids)) {
-    $iid = [int]$id
-    if ($byId.ContainsKey($iid)) { $currentCrossNames += [string]($byId[$iid].name) }
-  }
-
   $proposed = @()
-  $reasonRows = @()
   if ($size) {
     foreach ($candidate in $products) {
-      if ([int]($candidate.id) -eq [int]($p.id)) { continue }
-      if ([string]$candidate.catalog_visibility -eq 'hidden') { continue }
-      if ([string]$candidate.stock_status -eq 'outofstock') { continue }
+      if ([int]$candidate.id -eq [int]$p.id) { continue }
+      if ([string]$candidate.catalog_visibility -eq 'hidden' -or [string]$candidate.stock_status -eq 'outofstock') { continue }
       $candidateSize = Get-ProductSize ([string]$candidate.name)
       if ($candidateSize -and $candidateSize -eq $size -and (Is-CompatibleAccessory ([string]$candidate.name))) {
-        $cid = [int]($candidate.id)
-        $proposed += $cid
-        $reasonRows += [pscustomobject][ordered]@{ id=$cid; name=[string]$candidate.name; reason="same_output_$size" }
+        $proposed += [pscustomobject][ordered]@{
+          id=[int]$candidate.id; name=[string]$candidate.name; permalink=[string]$candidate.permalink; reason="same_output_$size"
+        }
       }
     }
-
     $hoseSize = Format-Size(([double]::Parse($size, [Globalization.CultureInfo]::InvariantCulture)) + 0.5)
     foreach ($candidate in $products) {
-      if ([int]($candidate.id) -eq [int]($p.id)) { continue }
-      if ([string]$candidate.catalog_visibility -eq 'hidden') { continue }
-      if ([string]$candidate.stock_status -eq 'outofstock') { continue }
+      if ([int]$candidate.id -eq [int]$p.id) { continue }
+      if ([string]$candidate.catalog_visibility -eq 'hidden' -or [string]$candidate.stock_status -eq 'outofstock') { continue }
       if (-not (Is-ThreadedHose ([string]$candidate.name))) { continue }
       $candidateSize = Get-ProductSize ([string]$candidate.name)
       if ($candidateSize -and $candidateSize -eq $hoseSize) {
-        $cid = [int]($candidate.id)
-        $proposed += $cid
-        $reasonRows += [pscustomobject][ordered]@{ id=$cid; name=[string]$candidate.name; reason="threaded_hose_plus_0.5_$hoseSize" }
+        $proposed += [pscustomobject][ordered]@{
+          id=[int]$candidate.id; name=[string]$candidate.name; permalink=[string]$candidate.permalink; reason="threaded_hose_plus_0.5_$hoseSize"
+        }
       }
     }
   }
-  $proposed = @($proposed | Sort-Object -Unique)
-  $reasonRows = @($reasonRows | Sort-Object -Property id -Unique)
-  $descInfo = Get-RecommendationDescriptionInfo ([string]$p.description)
-
+  $proposed = @($proposed | Sort-Object id -Unique)
+  $bounds = Get-RecommendationBounds ([string]$p.description)
   $targets += [pscustomobject][ordered]@{
-    id = [int]($p.id)
-    name = [string]$p.name
-    kind = $kind
-    output_size_inch = $size
-    categories = @($p.categories | ForEach-Object { [pscustomobject][ordered]@{ id=[int]($_.id); name=[string]$_.name } })
-    current_upsell_ids = @($p.upsell_ids | ForEach-Object { [int]$_ })
-    current_upsell_names = @($currentUpsellNames)
-    current_cross_sell_ids = @($p.cross_sell_ids | ForEach-Object { [int]$_ })
-    current_cross_sell_names = @($currentCrossNames)
-    description_recommendation_found = [bool]$descInfo.found
-    description_recommendation_marker = $descInfo.marker
-    description_recommendation_snippet = $descInfo.snippet
-    proposed_upsell_ids = @($proposed)
-    proposed_products = @($reasonRows)
+    id=[int]$p.id; name=[string]$p.name; kind=$kind; output_size_inch=$size;
+    existing_recommendation_block=($null -ne $bounds);
+    existing_marker=if ($bounds) { [string]$bounds.marker } else { $null };
+    proposed_products=@($proposed)
   }
 }
 
 $unparsed = @($targets | Where-Object { [string]::IsNullOrWhiteSpace([string]$_.output_size_inch) })
-$descriptionTargets = @($targets | Where-Object { $_.description_recommendation_found })
-
-if ($mode -eq 'apply' -and $unparsed.Count -gt 0) {
-  $ids = ($unparsed | ForEach-Object { $_.id }) -join ','
-  Fail "Refusing apply because output size could not be parsed for target IDs: $ids"
+$emptyCandidates = @($targets | Where-Object { @($_.proposed_products).Count -eq 0 })
+if ($mode -eq 'apply_description' -and $unparsed.Count -gt 0) {
+  Fail "Refusing apply: unparsed target IDs $((@($unparsed.id) -join ','))"
+}
+if ($mode -eq 'apply_description' -and $emptyCandidates.Count -gt 0) {
+  Fail "Refusing apply: no compatible recommendation candidates for target IDs $((@($emptyCandidates.id) -join ','))"
 }
 
 $changes = @()
-if ($mode -eq 'apply') {
+if ($mode -eq 'apply_description') {
   foreach ($t in $targets) {
-    $id = [int]($t.id)
-    $desired = @($t.proposed_upsell_ids | ForEach-Object { [int]$_ })
-    $before = @($t.current_upsell_ids | ForEach-Object { [int]$_ })
-    $same = (($before -join ',') -eq ($desired -join ','))
-    if ($same) {
-      $changes += [pscustomobject][ordered]@{ id=$id; name=$t.name; changed=$false; verified=$true; before=$before; after=$before }
+    $id = [int]$t.id
+    $before = $byId[$id]
+    $beforeIntegrity = Get-IntegritySnapshot $before
+    $beforeDescription = [string]$before.description
+    $desiredDescription = Set-RecommendationBlock $beforeDescription (Build-RecommendationBlock $t)
+    $beforeHash = Get-Hash $beforeDescription
+    $desiredHash = Get-Hash $desiredDescription
+
+    if ($beforeHash -eq $desiredHash) {
+      $changes += [pscustomobject][ordered]@{
+        id=$id; name=$t.name; changed=$false; verified=$true; integrity_unchanged=$true;
+        before_description_sha256=$beforeHash; after_description_sha256=$beforeHash; recommendation_count=@($t.proposed_products).Count
+      }
       continue
     }
 
-    $body = [ordered]@{ upsell_ids = $desired }
-    $null = Invoke-K20 'PUT' "wp-json/wc/v3/products/$id" $body
-    $readback = Invoke-K20 'GET' "wp-json/wc/v3/products/$id"
-    $after = @($readback.upsell_ids | ForEach-Object { [int]$_ })
-    $verified = (($after -join ',') -eq ($desired -join ','))
-    if (-not $verified) { Fail "Upsell readback mismatch for product $id" }
-    $changes += [pscustomobject][ordered]@{ id=$id; name=$t.name; changed=$true; verified=$verified; before=$before; after=$after }
+    $null = Invoke-K20 'PUT' "wp-json/wc/v3/products/$id" ([ordered]@{ description=$desiredDescription })
+    $after = Invoke-K20 'GET' "wp-json/wc/v3/products/$id"
+    $afterDescription = [string]$after.description
+    $afterHash = Get-Hash $afterDescription
+    $verified = ($afterDescription -ceq $desiredDescription)
+    $integrityUnchanged = ((Get-IntegritySnapshot $after) -eq $beforeIntegrity)
+    if (-not $verified) { Fail "Description readback mismatch for product $id" }
+    if (-not $integrityUnchanged) { Fail "Non-description integrity mismatch for product $id" }
+
+    $changes += [pscustomobject][ordered]@{
+      id=$id; name=$t.name; changed=$true; verified=$verified; integrity_unchanged=$integrityUnchanged;
+      before_description_sha256=$beforeHash; after_description_sha256=$afterHash; recommendation_count=@($t.proposed_products).Count
+    }
+  }
+}
+
+$sizeGroups = @()
+foreach ($size in @($targets.output_size_inch | Where-Object { $_ } | Sort-Object -Unique)) {
+  $sample = @($targets | Where-Object { $_.output_size_inch -eq $size } | Select-Object -First 1)
+  if ($sample.Count -gt 0) {
+    $sizeGroups += [pscustomobject][ordered]@{
+      output_size_inch=$size;
+      candidate_count=@($sample[0].proposed_products).Count;
+      candidates=@($sample[0].proposed_products)
+    }
   }
 }
 
 $record = [ordered]@{
-  ok = $true
-  mode = $mode
-  executed_at_utc = [DateTime]::UtcNow.ToString('o')
-  published_product_count = $products.Count
-  target_count = $targets.Count
-  unparsed_target_count = $unparsed.Count
-  description_recommendation_target_count = $descriptionTargets.Count
-  unparsed_targets = @($unparsed | ForEach-Object { [pscustomobject][ordered]@{ id=$_.id; name=$_.name; kind=$_.kind } })
-  target_rules = [ordered]@{
-    clamp = 'smaller number in clamp size is treated as outlet inch size; explicit inch size is fallback when no multiplication pair exists'
-    ball_valve = 'normalized explicit inch size in product name is treated as outlet size, including mixed fractions'
-    same_size = 'published visible in-stock irrigation accessories with the same outlet size'
-    threaded_hose = 'threaded hose is recommended at outlet size + 0.5 inch'
-    write_field = 'upsell_ids only in apply mode; descriptions are audited but not changed by this script version'
-  }
-  targets = @($targets)
-  changes = @($changes)
+  ok=$true; mode=$mode; executed_at_utc=[DateTime]::UtcNow.ToString('o');
+  published_product_count=$products.Count; target_count=$targets.Count;
+  clamp_count=@($targets | Where-Object kind -eq 'clamp').Count;
+  ball_valve_count=@($targets | Where-Object kind -eq 'ball_valve').Count;
+  unparsed_target_count=$unparsed.Count; empty_candidate_target_count=$emptyCandidates.Count;
+  existing_recommendation_block_count=@($targets | Where-Object existing_recommendation_block).Count;
+  rules=[ordered]@{
+    clamp='smaller stated clamp size is outlet; millimetre-only outlets use validated PE nominal mapping';
+    ball_valve='explicit normalized inch size is outlet, including mixed fractions';
+    same_size='only published visible in-stock compatible accessories with exact outlet size';
+    threaded_hose='published visible in-stock threaded hose at outlet + 0.5 inch';
+    mutation='description field only';
+    protected='price, regular_price, sale_price, stock, SKU, name, slug, categories, tags and images are readback-protected and never sent in the write payload'
+  };
+  unparsed_targets=@($unparsed | Select-Object id,name,kind);
+  empty_candidate_targets=@($emptyCandidates | Select-Object id,name,kind,output_size_inch);
+  size_groups=@($sizeGroups);
+  targets=@($targets);
+  changes=@($changes);
+  changed_count=@($changes | Where-Object changed).Count;
+  verified_count=@($changes | Where-Object verified).Count;
+  integrity_verified_count=@($changes | Where-Object integrity_unchanged).Count
 }
 
 $dir = Split-Path -Parent $OutputPath
 if ($dir -and -not (Test-Path $dir)) { New-Item -ItemType Directory -Path $dir -Force | Out-Null }
 $record | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $OutputPath -Encoding utf8
-Write-Host "K20_RECOMMENDATION_SYNC_OK mode=$mode targets=$($targets.Count) unparsed=$($unparsed.Count) descriptionTargets=$($descriptionTargets.Count) output=$OutputPath"
+Write-Host "K20_RECOMMENDATION_SYNC_OK mode=$mode targets=$($targets.Count) unparsed=$($unparsed.Count) empty=$($emptyCandidates.Count) changed=$(@($changes | Where-Object changed).Count) output=$OutputPath"
