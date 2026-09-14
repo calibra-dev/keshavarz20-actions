@@ -1,0 +1,14 @@
+function Get-RecommendationBounds([string]$Html){
+  if([string]::IsNullOrWhiteSpace($Html)){return $null}
+  $marks=@('قطعات پیشنهادی برای تکمیل خط پلی‌اتیلن','قطعات پیشنهادی برای تکمیل خط پلی اتیلن','محصولات مرتبط','محصولات پیشنهادی','محصولات مکمل','پیشنهادهای مرتبط','پیشنهاد خرید','برای تکمیل خرید','همراه این محصول','خرید همزمان')
+  $idx=-1;$mk=$null;foreach($m in $marks){$x=$Html.IndexOf($m,[StringComparison]::OrdinalIgnoreCase);if($x-ge0-and($idx-lt0-or$x-lt$idx)){$idx=$x;$mk=$m}}
+  if($idx-lt0){return $null};$st=$Html.LastIndexOf('<h2',$idx,[StringComparison]::OrdinalIgnoreCase);if($st-lt0){return $null};$en=$Html.IndexOf('<h2',$idx+$mk.Length,[StringComparison]::OrdinalIgnoreCase);if($en-lt0){$en=$Html.Length};return[pscustomobject]@{start=$st;end=$en;marker=$mk}
+}
+function Remove-RecommendationBlock([string]$Html){if($null-eq$Html){return ''};$b=Get-RecommendationBounds $Html;if($null-eq$b){return $Html};return $Html.Substring(0,[int]$b.start)+$Html.Substring([int]$b.end)}
+function Get-PlainText([string]$Html){if($null-eq$Html){return ''};$x=[regex]::Replace($Html,'<[^>]+>',' ');$x=[Net.WebUtility]::HtmlDecode($x);return([regex]::Replace($x,'\s+',' ')).Trim()}
+function Set-RecommendationBlock([string]$Html,[string]$Block){
+  if($null-eq$Html){$Html=''};$b=Get-RecommendationBounds $Html;if($null-ne$b){return $Html.Substring(0,[int]$b.start)+$Block+$Html.Substring([int]$b.end)}
+  foreach($m in @('پرسش‌های پرتکرار','پرسش های پرتکرار','سوالات متداول','سؤالات متداول')){$i=$Html.IndexOf($m,[StringComparison]::OrdinalIgnoreCase);if($i-ge0){$h=$Html.LastIndexOf('<h2',$i,[StringComparison]::OrdinalIgnoreCase);if($h-ge0){return $Html.Insert($h,$Block)}}};return $Html.TrimEnd()+"`n"+$Block
+}
+function Get-Hash([string]$Text){if($null-eq$Text){$Text=''};$sha=[Security.Cryptography.SHA256]::Create();try{return([BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($Text)))).Replace('-','').ToLowerInvariant()}finally{$sha.Dispose()}}
+function Get-IntegritySnapshot($p){$o=[ordered]@{id=[int]$p.id;name=[string]$p.name;slug=[string]$p.slug;status=[string]$p.status;type=[string]$p.type;sku=[string]$p.sku;price=[string]$p.price;regular_price=[string]$p.regular_price;sale_price=[string]$p.sale_price;manage_stock=[bool]$p.manage_stock;stock_quantity=$p.stock_quantity;stock_status=[string]$p.stock_status;backorders=[string]$p.backorders;short_description_sha256=Get-Hash([string]$p.short_description);categories=@($p.categories|ForEach-Object{[int]$_.id}|Sort-Object);tags=@($p.tags|ForEach-Object{[int]$_.id}|Sort-Object);images=@($p.images|ForEach-Object{[int]$_.id}|Sort-Object);upsell_ids=@($p.upsell_ids|ForEach-Object{[int]$_}|Sort-Object);cross_sell_ids=@($p.cross_sell_ids|ForEach-Object{[int]$_}|Sort-Object);attributes_json=($p.attributes|ConvertTo-Json -Depth 30 -Compress)};return Get-Hash($o|ConvertTo-Json -Depth 50 -Compress)}
