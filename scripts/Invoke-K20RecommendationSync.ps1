@@ -138,7 +138,7 @@ function Build-RecommendationBlock($Target) {
   foreach ($r in @($Target.proposed_products)) {
     $name=[System.Net.WebUtility]::HtmlEncode([string]$r.name)
     $url=[System.Net.WebUtility]::HtmlEncode([string]$r.permalink)
-    $lines += ('<li><a style="color:#176b3a;font-weight:700" href="{0}">{1}</a></li>' -f $url,$name)
+    $lines += ('<li><a style="color:#176b3a;font-weight:700" href="{0}">{1}</a></li>' -f $url,$name).Replace('\"','"')
   }
   $list=$lines -join "`n"
   return @"
