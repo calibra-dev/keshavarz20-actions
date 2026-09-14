@@ -13,11 +13,17 @@ function Is-StaleProduct($Product) {
   return ([string]$Product.permalink -match '__trashed|_trashed' -or [string]$Product.slug -match '__trashed|_trashed')
 }
 
+$targetIsElbowCategory = ((Normalize-Digits ([string]$targetCategory.name)) -match 'زانو')
+
 function Get-CouplingFamily($Product,[int]$TargetCategoryId,[int]$PipeCategoryId) {
   if (Test-CategoryId $Product $PipeCategoryId) { return 'pipe' }
   $name = Normalize-Digits ([string]$Product.name)
   if ($name -match 'تبدیل') { return $null }
-  if (Test-CategoryId $Product $TargetCategoryId) { return 'coupling' }
+  if ($name -match 'رابط' -and $name -match 'پلی\s*اتیلن') { return 'coupling' }
+  if (Test-CategoryId $Product $TargetCategoryId) {
+    if ($targetIsElbowCategory) { return 'target_elbow' }
+    return 'coupling'
+  }
   if ($name -match 'درپوش') { return 'endcap' }
   if ($name -match 'زانویی|زانو') { return 'elbow' }
   if ($name -match 'سه\s*راه|سه‌راه') { return 'tee' }
@@ -79,8 +85,20 @@ foreach ($product in $products) {
     continue
   }
 
-  $kind = if ($sizes.Count -eq 2 -or [string]$product.name -match 'تبدیل') { 'reducer' } else { 'equal' }
+  $normalizedName = Normalize-Digits ([string]$product.name)
+  if ($targetIsElbowCategory -and $normalizedName -match 'یک\s*سر\s*نر|یکسر\s*نر') {
+    $kind = 'male_thread'
+  } elseif ($targetIsElbowCategory -and $normalizedName -match 'یک\s*سر\s*ماده|یکسر\s*ماده') {
+    $kind = 'female_thread'
+  } else {
+    $kind = if ($sizes.Count -eq 2 -or $normalizedName -match 'تبدیل') { 'reducer' } else { 'equal' }
+  }
+
   if ($kind -eq 'reducer' -and $sizes.Count -ne 2) {
+    $ambiguous += [pscustomobject][ordered]@{id=[int]$product.id;name=[string]$product.name;sizes_mm=@($sizes)}
+    continue
+  }
+  if ($kind -in @('male_thread','female_thread') -and $sizes.Count -ne 1) {
     $ambiguous += [pscustomobject][ordered]@{id=[int]$product.id;name=[string]$product.name;sizes_mm=@($sizes)}
     continue
   }
@@ -96,7 +114,15 @@ foreach ($product in $products) {
 
   if ($kind -eq 'equal') {
     $size = [int]$sizes[0]
-    foreach ($family in @('endcap','elbow','tee','valve')) {
+    $families = if ($targetIsElbowCategory) { @('coupling','endcap','tee','valve') } else { @('endcap','elbow','tee','valve') }
+    foreach ($family in $families) {
+      if ($selected.Count -ge $maxRelated) { break }
+      $candidate = Pick-Candidate $products $size $family $targetCategoryId $pipeCategoryId ([int]$product.id)
+      if ($null -ne $candidate) { $selected += To-RelatedRow $candidate $family $size }
+    }
+  } elseif ($kind -in @('male_thread','female_thread')) {
+    $size = [int]$sizes[0]
+    foreach ($family in @('coupling','endcap','tee')) {
       if ($selected.Count -ge $maxRelated) { break }
       $candidate = Pick-Candidate $products $size $family $targetCategoryId $pipeCategoryId ([int]$product.id)
       if ($null -ne $candidate) { $selected += To-RelatedRow $candidate $family $size }
