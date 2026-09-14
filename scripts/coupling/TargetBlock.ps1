@@ -4,6 +4,22 @@ function Get-CouplingSizes([string]$Name) {
   if ($pair.Success) {
     return @([int]$pair.Groups['a'].Value,[int]$pair.Groups['b'].Value)
   }
+
+  # Adapter/flange names commonly use an explicit mixed notation such as
+  # 2 x 75 or 1/2 x 32: one side is a thread/flange size and the other is
+  # the PE pipe size. Only accept this when exactly one side is a known PE
+  # nominal size and the other side is smaller than the PE range.
+  $mixed = [regex]::Match($s,'(?<!\d)(?<a>\d+(?:\.\d+)?)\s*(?:x|X|×|\*)\s*(?<b>\d+(?:\.\d+)?)(?!\d)')
+  if ($mixed.Success) {
+    $a = [double]$mixed.Groups['a'].Value
+    $b = [double]$mixed.Groups['b'].Value
+    $peSizes = @(16,20,25,32,40,50,63,75,90,110,125,160,200)
+    $aIsPe = (($a -eq [Math]::Round($a)) -and ($peSizes -contains [int]$a))
+    $bIsPe = (($b -eq [Math]::Round($b)) -and ($peSizes -contains [int]$b))
+    if ($aIsPe -and -not $bIsPe -and $b -lt 16) { return @([int]$a) }
+    if ($bIsPe -and -not $aIsPe -and $a -lt 16) { return @([int]$b) }
+  }
+
   $one = Get-NominalSizeMm $Name
   if ($null -ne $one) { return @([int]$one) }
   return @()
@@ -14,6 +30,8 @@ function Is-StaleProduct($Product) {
 }
 
 $targetIsElbowCategory = ((Normalize-Digits ([string]$targetCategory.name)) -match 'زانو')
+$targetIsOtherFittingsCategory = ([string]$targetCategory.slug -eq 'other-polyethylene-compression-fittings')
+$targetNeedsPeFamilyOnly = ($targetIsElbowCategory -or $targetIsOtherFittingsCategory)
 
 function Get-CouplingFamily($Product,[int]$TargetCategoryId,[int]$PipeCategoryId) {
   if (Test-CategoryId $Product $PipeCategoryId) { return 'pipe' }
@@ -22,6 +40,7 @@ function Get-CouplingFamily($Product,[int]$TargetCategoryId,[int]$PipeCategoryId
   if ($name -match 'رابط' -and $name -match 'پلی\s*اتیلن') { return 'coupling' }
   if (Test-CategoryId $Product $TargetCategoryId) {
     if ($targetIsElbowCategory) { return 'target_elbow' }
+    if ($targetIsOtherFittingsCategory) { return 'target_other' }
     return 'coupling'
   }
   if ($name -match 'درپوش') { return 'endcap' }
@@ -37,11 +56,12 @@ function Pick-Candidate($Products,[int]$Size,[string]$Family,[int]$TargetCategor
     if ([int]$candidate.id -eq $ExcludeId) { continue }
     if ([string]$candidate.catalog_visibility -eq 'hidden') { continue }
     if (Is-StaleProduct $candidate) { continue }
+    if ($targetIsOtherFittingsCategory -and $Family -ne 'pipe' -and [string]$candidate.stock_status -ne 'instock') { continue }
     $candidateSize = Get-NominalSizeMm ([string]$candidate.name)
     if ($null -eq $candidateSize -or [int]$candidateSize -ne $Size) { continue }
     $candidateFamily = Get-CouplingFamily $candidate $TargetCategoryId $PipeCategoryId
     if ($candidateFamily -ne $Family) { continue }
-    if ($targetIsElbowCategory -and $Family -in @('coupling','endcap','tee')) {
+    if ($targetNeedsPeFamilyOnly -and $Family -in @('coupling','endcap','elbow','tee')) {
       $candidateName = Normalize-Digits ([string]$candidate.name)
       if ($candidateName -notmatch 'پلی\s*اتیلن') { continue }
     }
@@ -90,7 +110,13 @@ foreach ($product in $products) {
   }
 
   $normalizedName = Normalize-Digits ([string]$product.name)
-  if ($targetIsElbowCategory -and $normalizedName -match 'یک\s*سر\s*نر|یکسر\s*نر') {
+  if ($targetIsOtherFittingsCategory -and $normalizedName -match 'فلنچ|فلنج') {
+    $kind = 'flanged_adapter'
+  } elseif ($targetIsOtherFittingsCategory -and $normalizedName -match 'اتصال\s*نر') {
+    $kind = 'male_adapter'
+  } elseif ($targetIsOtherFittingsCategory -and $normalizedName -match 'اتصال\s*ماده') {
+    $kind = 'female_adapter'
+  } elseif ($targetIsElbowCategory -and $normalizedName -match 'یک\s*سر\s*نر|یکسر\s*نر') {
     $kind = 'male_thread'
   } elseif ($targetIsElbowCategory -and $normalizedName -match 'یک\s*سر\s*ماده|یکسر\s*ماده') {
     $kind = 'female_thread'
@@ -102,7 +128,7 @@ foreach ($product in $products) {
     $ambiguous += [pscustomobject][ordered]@{id=[int]$product.id;name=[string]$product.name;sizes_mm=@($sizes)}
     continue
   }
-  if ($kind -in @('male_thread','female_thread') -and $sizes.Count -ne 1) {
+  if ($kind -in @('male_thread','female_thread','male_adapter','female_adapter','flanged_adapter') -and $sizes.Count -ne 1) {
     $ambiguous += [pscustomobject][ordered]@{id=[int]$product.id;name=[string]$product.name;sizes_mm=@($sizes)}
     continue
   }
@@ -127,6 +153,13 @@ foreach ($product in $products) {
   } elseif ($kind -in @('male_thread','female_thread')) {
     $size = [int]$sizes[0]
     foreach ($family in @('coupling','endcap','tee')) {
+      if ($selected.Count -ge $maxRelated) { break }
+      $candidate = Pick-Candidate $products $size $family $targetCategoryId $pipeCategoryId ([int]$product.id)
+      if ($null -ne $candidate) { $selected += To-RelatedRow $candidate $family $size }
+    }
+  } elseif ($kind -in @('male_adapter','female_adapter','flanged_adapter')) {
+    $size = [int]$sizes[0]
+    foreach ($family in @('coupling','endcap','elbow','tee','valve')) {
       if ($selected.Count -ge $maxRelated) { break }
       $candidate = Pick-Candidate $products $size $family $targetCategoryId $pipeCategoryId ([int]$product.id)
       if ($null -ne $candidate) { $selected += To-RelatedRow $candidate $family $size }
