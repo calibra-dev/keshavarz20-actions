@@ -32,6 +32,7 @@ function Is-StaleProduct($Product) {
 $targetIsElbowCategory = ((Normalize-Digits ([string]$targetCategory.name)) -match 'زانو')
 $targetIsOtherFittingsCategory = ([string]$targetCategory.slug -eq 'other-polyethylene-compression-fittings')
 $targetNeedsPeFamilyOnly = ($targetIsElbowCategory -or $targetIsOtherFittingsCategory)
+$targetProfile = if ($targetIsElbowCategory) { 'elbow' } elseif ($targetIsOtherFittingsCategory) { 'other_fittings' } else { 'coupling' }
 
 function Get-CouplingFamily($Product,[int]$TargetCategoryId,[int]$PipeCategoryId) {
   if (Test-CategoryId $Product $PipeCategoryId) { return 'pipe' }
@@ -64,6 +65,10 @@ function Pick-Candidate($Products,[int]$Size,[string]$Family,[int]$TargetCategor
     if ($targetNeedsPeFamilyOnly -and $Family -in @('coupling','endcap','elbow','tee')) {
       $candidateName = Normalize-Digits ([string]$candidate.name)
       if ($candidateName -notmatch 'پلی\s*اتیلن') { continue }
+    }
+    if ($targetIsOtherFittingsCategory -and $Family -eq 'valve') {
+      $candidateName = Normalize-Digits ([string]$candidate.name)
+      if ($candidateName -notmatch 'پلی\s*اتیلن|پلیمری') { continue }
     }
     $rows += $candidate
   }
@@ -186,6 +191,7 @@ foreach ($product in $products) {
   $targets += [pscustomobject][ordered]@{
     id = [int]$product.id
     name = [string]$product.name
+    profile = $targetProfile
     kind = $kind
     sizes_mm = @($sizes)
     size_mm = [int]$sizes[0]
