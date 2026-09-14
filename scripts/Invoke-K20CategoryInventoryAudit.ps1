@@ -17,12 +17,13 @@ function Get-All([string]$Route){
   $all=@()
   $sep=if($Route.Contains('?')){'&'}else{'?'}
   for($page=1;$page -le 100;$page++){
-    $items=@(Invoke-K20 ("$Route${sep}per_page=100&page=$page"))
+    $response=Invoke-K20 ("$Route${sep}per_page=100&page=$page")
+    $items=@($response | ForEach-Object { $_ })
     if($items.Count-eq0){break}
-    $all+=$items
+    foreach($item in $items){$all+=$item}
     if($items.Count-lt100){break}
   }
-  return $all
+  return @($all | ForEach-Object { $_ })
 }
 function Norm([string]$s){
   if($null-eq$s){return ''}
@@ -33,7 +34,7 @@ function Norm([string]$s){
 $needle=Norm $query
 $categories=@(Get-All 'wp-json/wc/v3/products/categories?hide_empty=false')
 $matchedCats=@($categories|Where-Object{(Norm([string]$_.name)).Contains($needle)-or(Norm([string]$_.slug)).Contains($needle)})
-$matchedCatIds=@($matchedCats|ForEach-Object{[int]$_.id})
+$matchedCatIds=@();foreach($c in $matchedCats){$matchedCatIds+=[int]$c.id}
 $products=@(Get-All 'wp-json/wc/v3/products?status=publish&orderby=id&order=asc')
 $matchedProducts=@()
 foreach($p in $products){
@@ -52,10 +53,11 @@ foreach($p in $products){
     images=@($p.images|ForEach-Object{[ordered]@{id=[int]$_.id;src=[string]$_.src;alt=[string]$_.alt}})
   }
 }
+$catRows=@();foreach($c in $matchedCats){$catRows+=[ordered]@{id=[int]$c.id;name=[string]$c.name;slug=[string]$c.slug;parent=[int]$c.parent;count=[int]$c.count;description=[string]$c.description}}
 $record=[ordered]@{
   ok=$true;query=$query;executed_at_utc=[DateTime]::UtcNow.ToString('o');
   category_count=$matchedCats.Count;product_count=$matchedProducts.Count;
-  matching_categories=@($matchedCats|ForEach-Object{[ordered]@{id=[int]$_.id;name=[string]$_.name;slug=[string]$_.slug;parent=[int]$_.parent;count=[int]$_.count;description=[string]$_.description}});
+  matching_categories=@($catRows);
   matching_products=@($matchedProducts)
 }
 $dir=Split-Path -Parent $OutputPath;if($dir-and-not(Test-Path $dir)){New-Item -ItemType Directory -Path $dir -Force|Out-Null}
