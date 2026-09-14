@@ -41,6 +41,10 @@ function Pick-Candidate($Products,[int]$Size,[string]$Family,[int]$TargetCategor
     if ($null -eq $candidateSize -or [int]$candidateSize -ne $Size) { continue }
     $candidateFamily = Get-CouplingFamily $candidate $TargetCategoryId $PipeCategoryId
     if ($candidateFamily -ne $Family) { continue }
+    if ($targetIsElbowCategory -and $Family -in @('coupling','endcap','tee')) {
+      $candidateName = Normalize-Digits ([string]$candidate.name)
+      if ($candidateName -notmatch 'پلی\s*اتیلن') { continue }
+    }
     $rows += $candidate
   }
   $rows = @($rows | Sort-Object @{Expression={if ([string]$_.stock_status -eq 'instock') {0} else {1}}},id)
