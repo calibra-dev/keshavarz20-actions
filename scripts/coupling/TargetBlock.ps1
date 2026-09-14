@@ -5,7 +5,7 @@ function Get-CouplingSizes([string]$Name) {
     return @([int]$pair.Groups['a'].Value,[int]$pair.Groups['b'].Value)
   }
 
-  # Adapter/flange names commonly use an explicit mixed notation such as
+  # Adapter/flange/threaded names commonly use an explicit mixed notation such as
   # 2 x 75 or 1/2 x 32: one side is a thread/flange size and the other is
   # the PE pipe size. Only accept this when exactly one side is a known PE
   # nominal size and the other side is smaller than the PE range.
@@ -31,8 +31,9 @@ function Is-StaleProduct($Product) {
 
 $targetIsElbowCategory = ((Normalize-Digits ([string]$targetCategory.name)) -match 'زانو')
 $targetIsOtherFittingsCategory = ([string]$targetCategory.slug -eq 'other-polyethylene-compression-fittings')
-$targetNeedsPeFamilyOnly = ($targetIsElbowCategory -or $targetIsOtherFittingsCategory)
-$targetProfile = if ($targetIsElbowCategory) { 'elbow' } elseif ($targetIsOtherFittingsCategory) { 'other_fittings' } else { 'coupling' }
+$targetIsTeeCategory = ([string]$targetCategory.slug -eq 'polyethylene-branch-tee')
+$targetNeedsPeFamilyOnly = ($targetIsElbowCategory -or $targetIsOtherFittingsCategory -or $targetIsTeeCategory)
+$targetProfile = if ($targetIsElbowCategory) { 'elbow' } elseif ($targetIsOtherFittingsCategory) { 'other_fittings' } elseif ($targetIsTeeCategory) { 'tee' } else { 'coupling' }
 
 function Get-CouplingFamily($Product,[int]$TargetCategoryId,[int]$PipeCategoryId) {
   if (Test-CategoryId $Product $PipeCategoryId) { return 'pipe' }
@@ -42,6 +43,7 @@ function Get-CouplingFamily($Product,[int]$TargetCategoryId,[int]$PipeCategoryId
   if (Test-CategoryId $Product $TargetCategoryId) {
     if ($targetIsElbowCategory) { return 'target_elbow' }
     if ($targetIsOtherFittingsCategory) { return 'target_other' }
+    if ($targetIsTeeCategory) { return 'target_tee' }
     return 'coupling'
   }
   if ($name -match 'درپوش') { return 'endcap' }
@@ -57,7 +59,7 @@ function Pick-Candidate($Products,[int]$Size,[string]$Family,[int]$TargetCategor
     if ([int]$candidate.id -eq $ExcludeId) { continue }
     if ([string]$candidate.catalog_visibility -eq 'hidden') { continue }
     if (Is-StaleProduct $candidate) { continue }
-    if ($targetIsOtherFittingsCategory -and $Family -ne 'pipe' -and [string]$candidate.stock_status -ne 'instock') { continue }
+    if (($targetIsOtherFittingsCategory -or $targetIsTeeCategory) -and $Family -ne 'pipe' -and [string]$candidate.stock_status -ne 'instock') { continue }
     $candidateSize = Get-NominalSizeMm ([string]$candidate.name)
     if ($null -eq $candidateSize -or [int]$candidateSize -ne $Size) { continue }
     $candidateFamily = Get-CouplingFamily $candidate $TargetCategoryId $PipeCategoryId
@@ -66,7 +68,7 @@ function Pick-Candidate($Products,[int]$Size,[string]$Family,[int]$TargetCategor
       $candidateName = Normalize-Digits ([string]$candidate.name)
       if ($candidateName -notmatch 'پلی\s*اتیلن') { continue }
     }
-    if ($targetIsOtherFittingsCategory -and $Family -eq 'valve') {
+    if (($targetIsOtherFittingsCategory -or $targetIsTeeCategory) -and $Family -eq 'valve') {
       $candidateName = Normalize-Digits ([string]$candidate.name)
       if ($candidateName -notmatch 'پلی\s*اتیلن|پلیمری') { continue }
     }
@@ -115,7 +117,17 @@ foreach ($product in $products) {
   }
 
   $normalizedName = Normalize-Digits ([string]$product.name)
-  if ($targetIsOtherFittingsCategory -and $normalizedName -match 'فلنچ|فلنج') {
+  if ($targetIsTeeCategory -and $normalizedName -match 'سه\s*راه|سه‌راه') {
+    if ($normalizedName -match 'ماده') {
+      $kind = 'female_tee'
+    } elseif ($normalizedName -match 'نر') {
+      $kind = 'male_tee'
+    } elseif ($sizes.Count -eq 2 -or $normalizedName -match 'تبدیل') {
+      $kind = 'reducer_tee'
+    } else {
+      $kind = 'equal_tee'
+    }
+  } elseif ($targetIsOtherFittingsCategory -and $normalizedName -match 'فلنچ|فلنج') {
     $kind = 'flanged_adapter'
   } elseif ($targetIsOtherFittingsCategory -and $normalizedName -match 'اتصال\s*نر') {
     $kind = 'male_adapter'
@@ -129,11 +141,11 @@ foreach ($product in $products) {
     $kind = if ($sizes.Count -eq 2 -or $normalizedName -match 'تبدیل') { 'reducer' } else { 'equal' }
   }
 
-  if ($kind -eq 'reducer' -and $sizes.Count -ne 2) {
+  if ($kind -in @('reducer','reducer_tee') -and $sizes.Count -ne 2) {
     $ambiguous += [pscustomobject][ordered]@{id=[int]$product.id;name=[string]$product.name;sizes_mm=@($sizes)}
     continue
   }
-  if ($kind -in @('male_thread','female_thread','male_adapter','female_adapter','flanged_adapter') -and $sizes.Count -ne 1) {
+  if ($kind -in @('male_thread','female_thread','male_adapter','female_adapter','flanged_adapter','male_tee','female_tee','equal_tee') -and $sizes.Count -ne 1) {
     $ambiguous += [pscustomobject][ordered]@{id=[int]$product.id;name=[string]$product.name;sizes_mm=@($sizes)}
     continue
   }
@@ -147,7 +159,34 @@ foreach ($product in $products) {
     else { $missingPipeSizes += $size }
   }
 
-  if ($kind -eq 'equal') {
+  if ($kind -eq 'equal_tee') {
+    $size = [int]$sizes[0]
+    foreach ($family in @('coupling','elbow','endcap','valve')) {
+      if ($selected.Count -ge $maxRelated) { break }
+      $candidate = Pick-Candidate $products $size $family $targetCategoryId $pipeCategoryId ([int]$product.id)
+      if ($null -ne $candidate) { $selected += To-RelatedRow $candidate $family $size }
+    }
+  } elseif ($kind -in @('female_tee','male_tee')) {
+    $size = [int]$sizes[0]
+    foreach ($family in @('coupling','elbow','endcap')) {
+      if ($selected.Count -ge $maxRelated) { break }
+      $candidate = Pick-Candidate $products $size $family $targetCategoryId $pipeCategoryId ([int]$product.id)
+      if ($null -ne $candidate) { $selected += To-RelatedRow $candidate $family $size }
+    }
+  } elseif ($kind -eq 'reducer_tee') {
+    foreach ($sizeValue in $sizes) {
+      if ($selected.Count -ge $maxRelated) { break }
+      $size = [int]$sizeValue
+      $candidate = Pick-Candidate $products $size 'coupling' $targetCategoryId $pipeCategoryId ([int]$product.id)
+      if ($null -ne $candidate) { $selected += To-RelatedRow $candidate 'coupling' $size }
+    }
+    foreach ($sizeValue in $sizes) {
+      if ($selected.Count -ge $maxRelated) { break }
+      $size = [int]$sizeValue
+      $candidate = Pick-Candidate $products $size 'endcap' $targetCategoryId $pipeCategoryId ([int]$product.id)
+      if ($null -ne $candidate) { $selected += To-RelatedRow $candidate 'endcap' $size }
+    }
+  } elseif ($kind -eq 'equal') {
     $size = [int]$sizes[0]
     $families = if ($targetIsElbowCategory) { @('coupling','endcap','tee','valve') } else { @('endcap','elbow','tee','valve') }
     foreach ($family in $families) {
