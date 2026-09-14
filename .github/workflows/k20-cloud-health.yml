@@ -1,0 +1,51 @@
+name: Keshavarz20 Cloud Health
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - name: Verify runtime tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v pwsh
+          command -v git
+          command -v curl
+          command -v jq
+
+      - name: Authenticated WooCommerce read check
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+
+          foreach ($name in 'WP_BASE_URL','WP_USERNAME','WP_APP_PASSWORD') {
+            if ([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($name))) {
+              throw "Missing required repository secret: $name"
+            }
+          }
+
+          $base = $env:WP_BASE_URL.TrimEnd('/')
+          $authText = "$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"
+          $auth = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($authText))
+          $headers = @{ Authorization = "Basic $auth"; Accept = 'application/json' }
+
+          $uri = "$base/wp-json/wc/v3/products?per_page=1&status=any"
+          $response = Invoke-RestMethod -Uri $uri -Method Get -Headers $headers -TimeoutSec 60
+
+          if ($null -eq $response) {
+            throw 'WooCommerce authenticated read returned no response.'
+          }
+
+          Write-Host 'CLOUD_HEALTH_OK'
+          Write-Host 'GitHub-hosted runner -> WooCommerce authenticated read: VERIFIED'
