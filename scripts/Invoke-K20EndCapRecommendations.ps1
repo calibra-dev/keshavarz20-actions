@@ -344,7 +344,7 @@ foreach ($p in $products) {
     existing_recommendation_block=($null -ne $bounds);
     existing_marker=if ($bounds) { [string]$bounds.marker } else { $null };
     same_size_pipe_count=$pipeCandidates.Count;
-    proposed_products=@($selected | ForEach-Object { [pscustomobject][ordered]@{ id=$_.id; name=$_.name; permalink=$_.permalink; family=$_.family; reason="same_size_$size`mm" } })
+    proposed_products=@($selected | ForEach-Object { [pscustomobject][ordered]@{ id=$_.id; name=$_.name; permalink=$_.permalink; family=$_.family; reason="same_size_${size}mm" } })
   }
 }
 
@@ -383,7 +383,7 @@ if ($mode -eq 'apply_description') {
     $afterOutsideText=Get-PlainText (Remove-RecommendationBlock ([string]$after.description))
     $outsideTextUnchanged=($afterOutsideText -ceq $beforeOutsideText)
 
-    if (-not $readback.ok) { Fail "Recommendation readback failed for product $id: $($readback.reason)" }
+    if (-not $readback.ok) { Fail "Recommendation readback failed for product ${id}: $($readback.reason)" }
     if (-not $integrityUnchanged) { Fail "Non-description integrity mismatch for product $id" }
     if (-not $outsideTextUnchanged) { Fail "Non-recommendation text changed for product $id" }
 
