@@ -15,8 +15,9 @@ $headers=@{Authorization="Basic $auth";Accept='application/json'}
 function Invoke-K20([string]$Path){Invoke-RestMethod -Uri ($base+'/'+$Path.TrimStart('/')) -Method GET -Headers $headers -TimeoutSec 180}
 function Get-All([string]$Route){
   $all=@()
+  $sep=if($Route.Contains('?')){'&'}else{'?'}
   for($page=1;$page -le 100;$page++){
-    $items=@(Invoke-K20 ("$Route"+(if($Route.Contains('?')){'&'}else{'?'})+"per_page=100&page=$page"))
+    $items=@(Invoke-K20 ("$Route${sep}per_page=100&page=$page"))
     if($items.Count-eq0){break}
     $all+=$items
     if($items.Count-lt100){break}
@@ -31,8 +32,8 @@ function Norm([string]$s){
 }
 $needle=Norm $query
 $categories=@(Get-All 'wp-json/wc/v3/products/categories?hide_empty=false')
-$catById=@{};foreach($c in $categories){$catById[[int]$c.id]=$c}
 $matchedCats=@($categories|Where-Object{(Norm([string]$_.name)).Contains($needle)-or(Norm([string]$_.slug)).Contains($needle)})
+$matchedCatIds=@($matchedCats|ForEach-Object{[int]$_.id})
 $products=@(Get-All 'wp-json/wc/v3/products?status=publish&orderby=id&order=asc')
 $matchedProducts=@()
 foreach($p in $products){
@@ -40,7 +41,7 @@ foreach($p in $products){
   $nameHit=(Norm([string]$p.name)).Contains($needle)
   $catHit=@($catNames|Where-Object{(Norm $_).Contains($needle)}).Count -gt 0
   $matchedIdHit=$false
-  foreach($pc in @($p.categories)){if(@($matchedCats.id)-contains [int]$pc.id){$matchedIdHit=$true;break}}
+  foreach($pc in @($p.categories)){if($matchedCatIds -contains [int]$pc.id){$matchedIdHit=$true;break}}
   if(-not($nameHit-or$catHit-or$matchedIdHit)){continue}
   $matchedProducts+=[pscustomobject][ordered]@{
     id=[int]$p.id;name=[string]$p.name;slug=[string]$p.slug;status=[string]$p.status;permalink=[string]$p.permalink;
