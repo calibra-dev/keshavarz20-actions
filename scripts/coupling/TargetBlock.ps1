@@ -1,0 +1,59 @@
+function Get-CouplingSizes([string]$Name){
+  $s=Normalize-InchText $Name
+  $m=[regex]::Match($s,'(?<!\d)(?<a>16|20|25|32|40|50|63|75|90|110|125|160|200)\s*(?:x|X|×|\*)\s*(?<b>16|20|25|32|40|50|63|75|90|110|125|160|200)(?!\d)')
+  if($m.Success){return @([int]$m.Groups['a'].Value,[int]$m.Groups['b'].Value)}
+  $one=Get-NominalSizeMm $Name;if($null-ne$one){return @([int]$one)};return @()
+}
+function Is-StaleProduct($p){return ([string]$p.permalink-match'__trashed|_trashed'-or[string]$p.slug-match'__trashed|_trashed')}
+function Get-CouplingFamily($p,[int]$TargetCategoryId,[int]$PipeCategoryId){
+  if(Test-CategoryId $p $PipeCategoryId){return 'pipe'}
+  $n=Normalize-Digits([string]$p.name)
+  if($n-match'تبدیل'){return $null}
+  if(Test-CategoryId $p $TargetCategoryId){return 'coupling'}
+  if($n-match'درپوش'){return 'endcap'}
+  if($n-match'زانویی|زانو'){return 'elbow'}
+  if($n-match'سه\s*راه|سه‌راه'){return 'tee'}
+  if($n-match'شیر'){return 'valve'}
+  return $null
+}
+function Pick-Candidate($Products,[int]$Size,[string]$Family,[int]$TargetCategoryId,[int]$PipeCategoryId,[int]$ExcludeId){
+  $rows=@()
+  foreach($c in $Products){
+    if([int]$c.id-eq$ExcludeId-or[string]$c.catalog_visibility-eq'hidden'-or(Is-StaleProduct $c)){continue}
+    $cs=Get-NominalSizeMm([string]$c.name);if($null-eq$cs-or[int]$cs-ne$Size){continue}
+    $f=Get-CouplingFamily $c $TargetCategoryId $PipeCategoryId;if($f-ne$Family){continue}
+    $rows+=$c
+  }
+  $rows=@($rows|Sort-Object @{Expression={if([string]$_.stock_status-eq'instock'){0}else{1}}},id)
+  if($rows.Count){return $rows[0]};return $null
+}
+function To-Rel($p,[string]$Family,[int]$Side){if($null-eq$p){return $null};return[pscustomobject][ordered]@{id=[int]$p.id;name=[string]$p.name;permalink=[string]$p.permalink;family=$Family;side_mm=$Side;stock_status=[string]$p.stock_status}}
+
+$pipeCatalog=@()
+foreach($p in $products){if(Test-CategoryId $p $pipeCategoryId){$pipeCatalog+=[pscustomobject][ordered]@{id=[int]$p.id;name=[string]$p.name;size_mm=Get-NominalSizeMm([string]$p.name);permalink=[string]$p.permalink;stock_status=[string]$p.stock_status}}}
+
+$targets=@();$ambiguous=@()
+foreach($p in $products){
+  if(-not(Test-CategoryId $p $targetCategoryId)){continue}
+  $sizes=@(Get-CouplingSizes([string]$p.name));$sizes=@($sizes|Select-Object -Unique)
+  if($sizes.Count-lt1-or$sizes.Count-gt2){$ambiguous+=[pscustomobject]@{id=[int]$p.id;name=[string]$p.name;sizes_mm=@($sizes)};continue}
+  $kind=if($sizes.Count-eq2-or[string]$p.name-match'تبدیل'){'reducer'}else{'equal'}
+  if($kind-eq'reducer'-and$sizes.Count-ne2){$ambiguous+=[pscustomobject]@{id=[int]$p.id;name=[string]$p.name;sizes_mm=@($sizes)};continue}
+  $selected=@();$missing=@()
+  foreach($s0 in $sizes){$s=[int]$s0;$q=Pick-Candidate $products $s 'pipe' $targetCategoryId $pipeCategoryId ([int]$p.id);if($null-ne$q){$selected+=To-Rel $q 'pipe' $s}else{$missing+=$s}}
+  if($kind-eq'equal'){
+    $s=[int]$sizes[0]
+    foreach($f in @('endcap','elbow','tee','valve')){if($selected.Count-ge$maxRelated){break};$q=Pick-Candidate $products $s $f $targetCategoryId $pipeCategoryId ([int]$p.id);if($null-ne$q){$selected+=To-Rel $q $f $s}}
+  } else {
+    foreach($s0 in $sizes){if($selected.Count-ge$maxRelated){break};$s=[int]$s0;$q=Pick-Candidate $products $s 'coupling' $targetCategoryId $pipeCategoryId ([int]$p.id);if($null-ne$q){$selected+=To-Rel $q 'coupling' $s}}
+    foreach($f in @('endcap','elbow')){foreach($s0 in $sizes){if($selected.Count-ge$maxRelated){break};$s=[int]$s0;$q=Pick-Candidate $products $s $f $targetCategoryId $pipeCategoryId ([int]$p.id);if($null-ne$q){$selected+=To-Rel $q $f $s}}}
+  }
+  $selected=@($selected|Where-Object{$null-ne$_}|Select-Object -First $maxRelated)
+  $bounds=Get-RecommendationBounds([string]$p.description)
+  $targets+=[pscustomobject][ordered]@{id=[int]$p.id;name=[string]$p.name;kind=$kind;sizes_mm=@($sizes);size_mm=[int]$sizes[0];existing_recommendation_block=($null-ne$bounds);same_size_pipe_count=@($selected|Where-Object{$_.family-eq'pipe'}).Count;missing_pipe_sizes=@($missing);proposed_products=@($selected)}
+}
+$unparsed=@($ambiguous)
+$missingPipe=@($targets|Where-Object{@($_.missing_pipe_sizes).Count-gt0})
+$empty=@($targets|Where-Object{@($_.proposed_products).Count-lt1})
+if($mode-eq'apply_description'-and$unparsed.Count){Fail "Refusing apply: ambiguous IDs $((@($unparsed.id)-join','))"}
+if($mode-eq'apply_description'-and$empty.Count){Fail "Refusing apply: empty recommendations for IDs $((@($empty.id)-join','))"}
