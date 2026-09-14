@@ -29,6 +29,11 @@ function Get-AllProducts() {
 '@
 
 $patched = $source.Substring(0,$start) + $fixedFunction + $source.Substring($end)
+$needle = "      if ([string]`$candidate.catalog_visibility -eq 'hidden') { continue }"
+$replacement = $needle + "`n      if ([string]`$candidate.permalink -match '__trashed') { continue }"
+if (-not $patched.Contains($needle)) { throw 'Could not locate candidate visibility guard.' }
+$patched = $patched.Replace($needle,$replacement)
+
 $tempScript = Join-Path $env:RUNNER_TEMP 'Invoke-K20EndCapRecommendationsV4.runtime.ps1'
 Set-Content -LiteralPath $tempScript -Value $patched -Encoding utf8
 & $tempScript -RequestPath $RequestPath -OutputPath $OutputPath
