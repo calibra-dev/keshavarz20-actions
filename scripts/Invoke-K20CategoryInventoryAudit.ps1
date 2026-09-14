@@ -39,10 +39,7 @@ if($req.wp_core_probe){
     try{
       $o=Invoke-K20 ("wp-json/wp/v2/product_cat/"+[int]$c.id+"?context=edit")
       $raw=$null;$rendered=$null
-      if($null-ne$o.description){
-        if($o.description -is [string]){$raw=[string]$o.description;$rendered=[string]$o.description}
-        else{$raw=[string]$o.description.raw;$rendered=[string]$o.description.rendered}
-      }
+      if($null-ne$o.description){if($o.description-is[string]){$raw=[string]$o.description;$rendered=[string]$o.description}else{$raw=[string]$o.description.raw;$rendered=[string]$o.description.rendered}}
       $coreProbe+=[ordered]@{id=[int]$c.id;ok=$true;name=[string]$o.name;slug=[string]$o.slug;parent=[int]$o.parent;description_raw=$raw;description_rendered=$rendered}
     }catch{
       $status=0;if($_.Exception.Response){try{$status=[int]$_.Exception.Response.StatusCode}catch{$status=0}}
@@ -50,11 +47,25 @@ if($req.wp_core_probe){
     }
   }
 }
-$productsById=@{}
-foreach($c in $matchedCats){
-  $rows=@(Get-Paged ("wp-json/wc/v3/products?status=publish&orderby=id&order=asc&category="+[int]$c.id))
-  foreach($p in $rows){$productsById[[int]$p.id]=$p}
+$bridgeRoutes=@()
+if($req.bridge_probe){
+  try{
+    $root=Invoke-K20 'wp-json'
+    foreach($prop in $root.routes.PSObject.Properties){
+      if($prop.Name -notmatch 'keshavarz20-ops/v2'){continue}
+      $endpoints=@()
+      foreach($ep in @($prop.Value.endpoints)){
+        $argNames=@();if($ep.args){$argNames=@($ep.args.PSObject.Properties|ForEach-Object{$_.Name}|Sort-Object -Unique)}
+        $endpoints+=[ordered]@{methods=@($ep.methods);arg_names=@($argNames)}
+      }
+      $bridgeRoutes+=[ordered]@{route=$prop.Name;methods=@($prop.Value.methods);endpoints=@($endpoints)}
+    }
+  }catch{
+    $bridgeRoutes+=[ordered]@{route='probe_error';methods=@();endpoints=@();message=$_.Exception.Message}
+  }
 }
+$productsById=@{}
+foreach($c in $matchedCats){$rows=@(Get-Paged ("wp-json/wc/v3/products?status=publish&orderby=id&order=asc&category="+[int]$c.id));foreach($p in $rows){$productsById[[int]$p.id]=$p}}
 $titleRows=@(Get-Paged "wp-json/wc/v3/products?status=publish&orderby=id&order=asc&search=$encoded")
 foreach($p in $titleRows){if((Norm([string]$p.name)).Contains($needle)){$productsById[[int]$p.id]=$p}}
 $matchedProducts=@()
@@ -69,7 +80,7 @@ foreach($p in @($productsById.Values|Sort-Object id)){
   }
 }
 $catRows=@();foreach($c in $matchedCats){$catRows+=[ordered]@{id=[int]$c.id;name=[string]$c.name;slug=[string]$c.slug;parent=[int]$c.parent;count=[int]$c.count;description=[string]$c.description}}
-$record=[ordered]@{ok=$true;query=$query;executed_at_utc=[DateTime]::UtcNow.ToString('o');category_count=$matchedCats.Count;product_count=$matchedProducts.Count;matching_categories=@($catRows);wp_core_probe=@($coreProbe);matching_products=@($matchedProducts)}
+$record=[ordered]@{ok=$true;query=$query;executed_at_utc=[DateTime]::UtcNow.ToString('o');category_count=$matchedCats.Count;product_count=$matchedProducts.Count;matching_categories=@($catRows);wp_core_probe=@($coreProbe);bridge_routes=@($bridgeRoutes);matching_products=@($matchedProducts)}
 $dir=Split-Path -Parent $OutputPath;if($dir-and-not(Test-Path $dir)){New-Item -ItemType Directory -Path $dir -Force|Out-Null}
 $record|ConvertTo-Json -Depth 100|Set-Content -LiteralPath $OutputPath -Encoding utf8
-Write-Host "CATEGORY_INVENTORY_OK query=$query categories=$($matchedCats.Count) products=$($matchedProducts.Count) core_probe=$($coreProbe.Count)"
+Write-Host "CATEGORY_INVENTORY_OK query=$query categories=$($matchedCats.Count) products=$($matchedProducts.Count) core_probe=$($coreProbe.Count) bridge_routes=$($bridgeRoutes.Count)"
