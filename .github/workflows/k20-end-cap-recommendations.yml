@@ -1,0 +1,75 @@
+name: K20 End Cap Recommendations
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'end-cap-recommendation-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-end-cap-recommendations
+  cancel-in-progress: false
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Execute end-cap recommendation requests
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          foreach ($name in 'WP_BASE_URL','WP_USERNAME','WP_APP_PASSWORD') {
+            if ([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($name))) {
+              throw "Missing required repository secret: $name"
+            }
+          }
+
+          $before='${{ github.event.before }}'
+          $current='${{ github.sha }}'
+          $zero='0000000000000000000000000000000000000000'
+          if ($before -and $before -ne $zero) {
+            $changed=@(git diff --name-only $before $current -- 'end-cap-recommendation-ops/*.json')
+          } else {
+            $changed=@(git show --pretty='' --name-only $current -- 'end-cap-recommendation-ops/*.json')
+          }
+          $changed=@($changed | Where-Object { $_ -match '^end-cap-recommendation-ops/.+\.json$' } | Sort-Object -Unique)
+          if ($changed.Count -eq 0) { throw 'No end-cap recommendation request JSON found in triggering commit.' }
+
+          foreach ($requestPath in $changed) {
+            $name=[IO.Path]::GetFileNameWithoutExtension($requestPath)
+            $localOutput=Join-Path $env:RUNNER_TEMP "$name.result.json"
+            & ./scripts/Invoke-K20EndCapRecommendations.ps1 -RequestPath $requestPath -OutputPath $localOutput
+            if (-not (Test-Path -LiteralPath $localOutput)) { throw "Result file missing for $requestPath" }
+            New-Item -ItemType Directory -Force 'results' | Out-Null
+            Copy-Item -LiteralPath $localOutput -Destination "results/end-cap-recommendation-$name.json" -Force
+          }
+
+      - name: Commit sanitized end-cap results
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "$(find results -maxdepth 1 -type f -name 'end-cap-recommendation-*.json' -print -quit 2>/dev/null)" ]; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/end-cap-recommendation-*.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "ops: record end-cap recommendation result"
+          git pull --rebase origin main
+          git push origin main
