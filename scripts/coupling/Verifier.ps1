@@ -1,0 +1,13 @@
+function Test-RecommendationReadback([string]$Html,$Target) {
+  $bounds=Get-RecommendationBounds $Html
+  if($null-eq$bounds){return[pscustomobject]@{ok=$false;reason='block_missing'}}
+  $block=$Html.Substring([int]$bounds.start,[int]$bounds.end-[int]$bounds.start)
+  foreach($r in @($Target.proposed_products)){
+    if($block.IndexOf([string]$r.permalink,[StringComparison]::OrdinalIgnoreCase)-lt0){return[pscustomobject]@{ok=$false;reason="missing_link_$([int]$r.id)"}}
+  }
+  if($block-match'__trashed|_trashed'){return[pscustomobject]@{ok=$false;reason='stale_link'}}
+  $links=@([regex]::Matches($block,'<a\b[^>]*href=["''][^"'']+["''][^>]*>',[Text.RegularExpressions.RegexOptions]::IgnoreCase))
+  if($links.Count-ne@($Target.proposed_products).Count){return[pscustomobject]@{ok=$false;reason='link_count_mismatch'}}
+  foreach($s in @($Target.sizes_mm)){$fa=Convert-ToPersianDigits([string]$s);if($block.IndexOf($fa,[StringComparison]::OrdinalIgnoreCase)-lt0){return[pscustomobject]@{ok=$false;reason="size_copy_missing_$s"}}}
+  return[pscustomobject]@{ok=$true;reason='ok'}
+}
