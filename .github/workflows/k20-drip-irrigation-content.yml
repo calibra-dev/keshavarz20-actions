@@ -34,6 +34,9 @@ jobs:
           foreach ($n in 'WP_BASE_URL','WP_USERNAME','WP_APP_PASSWORD') {
             if ([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($n))) { throw "Missing required repository secret: $n" }
           }
+          # PowerShell exposes H as an alias for Get-History. The content script intentionally
+          # defines a local H() HTML encoder, so remove the inherited alias before invocation.
+          Remove-Item Alias:H -ErrorAction SilentlyContinue
           $before = '${{ github.event.before }}'
           $current = '${{ github.sha }}'
           $zero = '0000000000000000000000000000000000000000'
