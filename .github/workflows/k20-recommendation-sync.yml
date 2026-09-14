@@ -59,22 +59,23 @@ jobs:
             & ./scripts/Invoke-K20RecommendationSync.ps1 -RequestPath $requestPath -OutputPath $localOutput
             if ($LASTEXITCODE -ne 0) { throw "Recommendation sync failed for $requestPath" }
 
-            New-Item -ItemType Directory -Force 'recommendation-results' | Out-Null
-            Copy-Item -LiteralPath $localOutput -Destination "recommendation-results/$name.json" -Force
+            New-Item -ItemType Directory -Force 'results' | Out-Null
+            Copy-Item -LiteralPath $localOutput -Destination "results/recommendation-$name.json" -Force
           }
 
       - name: Commit sanitized recommendation results
         shell: bash
         run: |
           set -euo pipefail
-          if [ ! -d recommendation-results ] || [ -z "$(find recommendation-results -type f -name '*.json' -print -quit)" ]; then
+          if [ -z "$(find results -maxdepth 1 -type f -name 'recommendation-*.json' -print -quit 2>/dev/null)" ]; then
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add recommendation-results/*.json
+          git add results/recommendation-*.json
           if git diff --cached --quiet; then
             exit 0
           fi
           git commit -m "ops: record recommendation sync result"
-          git push
+          git pull --rebase origin main
+          git push origin main
