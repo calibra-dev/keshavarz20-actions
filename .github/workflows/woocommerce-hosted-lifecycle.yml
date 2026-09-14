@@ -1,0 +1,152 @@
+name: WooCommerce Hosted Lifecycle Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lifecycle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+
+    steps:
+      - name: Create readback delete verify
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+
+          $base = $env:WP_BASE_URL.TrimEnd('/')
+          $user = $env:WP_USERNAME
+          $pass = $env:WP_APP_PASSWORD
+
+          $auth = [Convert]::ToBase64String(
+            [Text.Encoding]::UTF8.GetBytes("$user`:$pass")
+          )
+
+          $headers = @{
+            Authorization = "Basic $auth"
+            Accept = 'application/json'
+            'Content-Type' = 'application/json; charset=utf-8'
+          }
+
+          $products = "$base/wp-json/wc/v3/products"
+          $createdId = $null
+          $deleted = $false
+
+          try {
+            Write-Host "=== CREATE ==="
+
+            $name = "Keshavarz20 Hosted Test " + (Get-Date -Format "yyyyMMdd-HHmmss")
+
+            $body = @{
+              name = $name
+              type = "simple"
+              status = "draft"
+              catalog_visibility = "hidden"
+              description = "Temporary hosted runner connectivity test"
+            } | ConvertTo-Json
+
+            $created = Invoke-RestMethod `
+              -Uri $products `
+              -Method Post `
+              -Headers $headers `
+              -Body $body `
+              -TimeoutSec 120
+
+            $createdId = [int]$created.id
+
+            if (-not $createdId) {
+              throw "Create failed"
+            }
+
+            Write-Host "CREATED ID: $createdId"
+
+            Write-Host "=== READBACK ==="
+
+            $readUri = "{0}/{1}" -f $products, $createdId
+
+            $read = Invoke-RestMethod `
+              -Uri $readUri `
+              -Method Get `
+              -Headers $headers `
+              -TimeoutSec 120
+
+            if ([int]$read.id -ne $createdId) {
+              throw "Readback ID mismatch"
+            }
+
+            if ($read.name -ne $name) {
+              throw "Readback name mismatch"
+            }
+
+            Write-Host "READBACK VERIFIED"
+
+            Write-Host "=== DELETE ==="
+
+            $deleteUri = "{0}/{1}?force=true" -f $products, $createdId
+
+            $null = Invoke-RestMethod `
+              -Uri $deleteUri `
+              -Method Delete `
+              -Headers $headers `
+              -TimeoutSec 120
+
+            $deleted = $true
+
+            Write-Host "DELETE VERIFIED"
+
+            Write-Host "=== VERIFY 404 ==="
+
+            $got404 = $false
+
+            try {
+              $null = Invoke-RestMethod `
+                -Uri $readUri `
+                -Method Get `
+                -Headers $headers `
+                -TimeoutSec 60
+            }
+            catch {
+              if (
+                $_.Exception.Response -and
+                [int]$_.Exception.Response.StatusCode -eq 404
+              ) {
+                $got404 = $true
+              }
+              else {
+                throw
+              }
+            }
+
+            if (-not $got404) {
+              throw "Product still exists"
+            }
+
+            Write-Host "COMPLETE VERIFIED"
+            Write-Host "CREATE -> READBACK -> DELETE -> 404"
+          }
+          finally {
+            if ($createdId -and -not $deleted) {
+              try {
+                $cleanupUri = "{0}/{1}?force=true" -f $products, $createdId
+
+                $null = Invoke-RestMethod `
+                  -Uri $cleanupUri `
+                  -Method Delete `
+                  -Headers $headers `
+                  -TimeoutSec 120
+
+                Write-Host "FAILSAFE CLEANUP OK"
+              }
+              catch {
+                Write-Warning "Cleanup failed for ID $createdId"
+              }
+            }
+          }
