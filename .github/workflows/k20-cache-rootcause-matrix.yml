@@ -1,0 +1,52 @@
+name: Keshavarz20 Cache Root-Cause Matrix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/cache-rootcause/*.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: k20-cache-rootcause-matrix
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe public cache matrix
+        shell: bash
+        run: |
+          set -euo pipefail
+          request="$(ls -1t diagnostics/cache-rootcause/*.json | head -n 1)"
+          out="$RUNNER_TEMP/k20-cache-rootcause"
+          mkdir -p "$out"
+          echo "REQUEST=$request"
+          jq -c '.targets[]' "$request" | while read -r target; do
+            name="$(jq -r '.name' <<<"$target")"
+            url="$(jq -r '.url' <<<"$target")"
+            echo "=== TARGET $name $url ==="
+            for seq in 1 2 3; do
+              h="$out/${name}-${seq}.headers.txt"
+              timing="$(curl -L -sS --max-time 45 -A 'K20-Cache-Probe/2026-09-14' -H 'Cookie:' -H 'Accept-Encoding: gzip, br' -D "$h" -o /dev/null -w '%{http_code}|%{http_version}|%{remote_ip}|%{time_starttransfer}|%{time_total}|%{size_download}|%{num_redirects}' "$url")"
+              cache="$(grep -i '^x-litespeed-cache:' "$h" | tail -n 1 | tr -d '\r' | cut -d: -f2- | xargs || true)"
+              cachectl="$(grep -i '^x-litespeed-cache-control:' "$h" | tail -n 1 | tr -d '\r' | cut -d: -f2- | xargs || true)"
+              httpcache="$(grep -i '^cache-control:' "$h" | tail -n 1 | tr -d '\r' | cut -d: -f2- | xargs || true)"
+              setcookie="$(grep -i '^set-cookie:' "$h" | tail -n 1 | tr -d '\r' | cut -d: -f2- | xargs || true)"
+              vary="$(grep -i '^vary:' "$h" | tail -n 1 | tr -d '\r' | cut -d: -f2- | xargs || true)"
+              printf 'K20MATRIX name=%s seq=%s timing=%s ls_cache=%q ls_ctl=%q cache_control=%q set_cookie=%q vary=%q\n' "$name" "$seq" "$timing" "$cache" "$cachectl" "$httpcache" "$setcookie" "$vary"
+            done
+          done
+      - name: Upload raw headers
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-cache-rootcause-matrix
+          path: ${{ runner.temp }}/k20-cache-rootcause/
+          if-no-files-found: warn
+          retention-days: 14
