@@ -1,0 +1,66 @@
+name: K20 Drip Irrigation Content
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'drip-irrigation-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-drip-irrigation-content
+  cancel-in-progress: false
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Execute drip irrigation content request
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          foreach ($n in 'WP_BASE_URL','WP_USERNAME','WP_APP_PASSWORD') {
+            if ([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($n))) { throw "Missing required repository secret: $n" }
+          }
+          $before = '${{ github.event.before }}'
+          $current = '${{ github.sha }}'
+          $zero = '0000000000000000000000000000000000000000'
+          if ($before -and $before -ne $zero) {
+            $changed = @(git diff --name-only $before $current -- 'drip-irrigation-ops/*.json')
+          } else {
+            $changed = @(git show --pretty='' --name-only $current -- 'drip-irrigation-ops/*.json')
+          }
+          $changed = @($changed | Where-Object { $_ -match '^drip-irrigation-ops/.+\.json$' } | Sort-Object -Unique)
+          if ($changed.Count -eq 0) { throw 'No drip irrigation request JSON found.' }
+          foreach ($requestPath in $changed) {
+            $name = [IO.Path]::GetFileNameWithoutExtension($requestPath)
+            $out = Join-Path $env:RUNNER_TEMP "$name.result.json"
+            & ./scripts/Invoke-K20DripIrrigationContentV1.ps1 -RequestPath $requestPath -OutputPath $out
+            if (-not (Test-Path $out)) { throw "Result missing: $requestPath" }
+            New-Item -ItemType Directory -Force 'results' | Out-Null
+            Copy-Item $out "results/drip-irrigation-$name.json" -Force
+          }
+
+      - name: Commit sanitized results
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/drip-irrigation-*.json || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "ops: record drip irrigation content result"
+          git pull --rebase origin main
+          git push origin main
