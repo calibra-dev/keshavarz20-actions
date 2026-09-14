@@ -73,7 +73,8 @@ jobs:
 
             $existingSha = $null
             try {
-              $existing = Invoke-RestMethod -Method Get -Uri "$api?ref=main" -Headers $headers -TimeoutSec 60
+              $lookupUri = "${api}?ref=main"
+              $existing = Invoke-RestMethod -Method Get -Uri $lookupUri -Headers $headers -TimeoutSec 60
               $existingSha = $existing.sha
             } catch {
               if (-not ($_.Exception.Response -and [int]$_.Exception.Response.StatusCode -eq 404)) { throw }
