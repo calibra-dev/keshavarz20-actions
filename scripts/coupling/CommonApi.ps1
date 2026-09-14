@@ -9,9 +9,14 @@ if ([string]::IsNullOrWhiteSpace($base) -or [string]::IsNullOrWhiteSpace($user) 
 $base = $base.TrimEnd('/')
 $auth = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("$user`:$pass"))
 $headers = @{ Authorization = "Basic $auth"; Accept = 'application/json' }
+$k20TimeoutSec = 180
+if ($env:K20_HTTP_TIMEOUT_SEC -match '^\d+$') {
+  $candidateTimeout = [int]$env:K20_HTTP_TIMEOUT_SEC
+  if ($candidateTimeout -ge 30 -and $candidateTimeout -le 900) { $k20TimeoutSec = $candidateTimeout }
+}
 
 function Invoke-K20([string]$Method,[string]$Path,$Body=$null) {
-  $args = @{ Uri = $base + '/' + $Path.TrimStart('/'); Method = $Method; Headers = $headers; TimeoutSec = 180 }
+  $args = @{ Uri = $base + '/' + $Path.TrimStart('/'); Method = $Method; Headers = $headers; TimeoutSec = $k20TimeoutSec }
   if ($null -ne $Body) {
     $args.ContentType = 'application/json; charset=utf-8'
     $args.Body = ($Body | ConvertTo-Json -Depth 100 -Compress)
