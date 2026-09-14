@@ -38,12 +38,13 @@ function Invoke-K20([string]$Method, [string]$Path, $Body = $null) {
 function Get-AllProducts() {
   $all = @()
   for ($page = 1; $page -le 100; $page++) {
-    $items = @(Invoke-K20 'GET' "wp-json/wc/v3/products?per_page=100&page=$page&status=publish&orderby=id&order=asc")
+    $response = Invoke-K20 'GET' "wp-json/wc/v3/products?per_page=100&page=$page&status=publish&orderby=id&order=asc"
+    $items = @($response | ForEach-Object { $_ })
     if ($items.Count -eq 0) { break }
-    $all += $items
+    foreach ($item in $items) { $all += $item }
     if ($items.Count -lt 100) { break }
   }
-  return @($all)
+  return $all
 }
 
 function Normalize-Digits([string]$Text) {
@@ -96,7 +97,8 @@ function Is-ClampTarget($Product, [hashtable]$CategoryNames) {
   $name = [string]$Product.name
   if ($name -match 'کمربند') { return $true }
   foreach ($c in @($Product.categories)) {
-    if ($CategoryNames.ContainsKey([int]$c.id) -and $CategoryNames[[int]$c.id] -match 'کمربند') { return $true }
+    $cid = [int]($c.id)
+    if ($CategoryNames.ContainsKey($cid) -and $CategoryNames[$cid] -match 'کمربند') { return $true }
   }
   return $false
 }
@@ -105,7 +107,8 @@ function Is-BallValveTarget($Product, [hashtable]$CategoryNames) {
   $name = [string]$Product.name
   if ($name -match 'شیر\s*توپی') { return $true }
   foreach ($c in @($Product.categories)) {
-    if ($CategoryNames.ContainsKey([int]$c.id) -and $CategoryNames[[int]$c.id] -match 'شیر\s*توپی') { return $true }
+    $cid = [int]($c.id)
+    if ($CategoryNames.ContainsKey($cid) -and $CategoryNames[$cid] -match 'شیر\s*توپی') { return $true }
   }
   return $false
 }
@@ -127,12 +130,12 @@ if ($products.Count -eq 0) { Fail 'No published WooCommerce products were return
 $categoryNames = @{}
 foreach ($p in $products) {
   foreach ($c in @($p.categories)) {
-    $categoryNames[[int]$c.id] = [string]$c.name
+    $categoryNames[[int]($c.id)] = [string]($c.name)
   }
 }
 
 $byId = @{}
-foreach ($p in $products) { $byId[[int]$p.id] = $p }
+foreach ($p in $products) { $byId[[int]($p.id)] = $p }
 
 $targets = @()
 foreach ($p in $products) {
@@ -149,49 +152,51 @@ foreach ($p in $products) {
 
   $currentUpsellNames = @()
   foreach ($id in @($p.upsell_ids)) {
-    if ($byId.ContainsKey([int]$id)) { $currentUpsellNames += [string]$byId[[int]$id].name }
+    $iid = [int]$id
+    if ($byId.ContainsKey($iid)) { $currentUpsellNames += [string]($byId[$iid].name) }
   }
   $currentCrossNames = @()
   foreach ($id in @($p.cross_sell_ids)) {
-    if ($byId.ContainsKey([int]$id)) { $currentCrossNames += [string]$byId[[int]$id].name }
+    $iid = [int]$id
+    if ($byId.ContainsKey($iid)) { $currentCrossNames += [string]($byId[$iid].name) }
   }
 
   $proposed = @()
   $reasonRows = @()
   if ($size) {
     foreach ($candidate in $products) {
-      if ([int]$candidate.id -eq [int]$p.id) { continue }
+      if ([int]($candidate.id) -eq [int]($p.id)) { continue }
       if ([string]$candidate.catalog_visibility -eq 'hidden') { continue }
       if ([string]$candidate.stock_status -eq 'outofstock') { continue }
       $candidateSize = Get-ProductSize ([string]$candidate.name)
       if ($candidateSize -and $candidateSize -eq $size -and (Is-CompatibleAccessory ([string]$candidate.name))) {
-        $proposed += [int]$candidate.id
-        $reasonRows += [ordered]@{ id=[int]$candidate.id; name=[string]$candidate.name; reason="same_output_$size" }
+        $proposed += [int]($candidate.id)
+        $reasonRows += [ordered]@{ id=[int]($candidate.id); name=[string]$candidate.name; reason="same_output_$size" }
       }
     }
 
     $hoseSize = Format-Size(([double]::Parse($size, [Globalization.CultureInfo]::InvariantCulture)) + 0.5)
     foreach ($candidate in $products) {
-      if ([int]$candidate.id -eq [int]$p.id) { continue }
+      if ([int]($candidate.id) -eq [int]($p.id)) { continue }
       if ([string]$candidate.catalog_visibility -eq 'hidden') { continue }
       if ([string]$candidate.stock_status -eq 'outofstock') { continue }
       if (-not (Is-ThreadedHose ([string]$candidate.name))) { continue }
       $candidateSize = Get-ProductSize ([string]$candidate.name)
       if ($candidateSize -and $candidateSize -eq $hoseSize) {
-        $proposed += [int]$candidate.id
-        $reasonRows += [ordered]@{ id=[int]$candidate.id; name=[string]$candidate.name; reason="threaded_hose_plus_0.5_$hoseSize" }
+        $proposed += [int]($candidate.id)
+        $reasonRows += [ordered]@{ id=[int]($candidate.id); name=[string]$candidate.name; reason="threaded_hose_plus_0.5_$hoseSize" }
       }
     }
   }
   $proposed = @($proposed | Sort-Object -Unique)
-  $reasonRows = @($reasonRows | Sort-Object id -Unique)
+  $reasonRows = @($reasonRows | Sort-Object -Property id -Unique)
 
   $targets += [ordered]@{
-    id = [int]$p.id
+    id = [int]($p.id)
     name = [string]$p.name
     kind = $kind
     output_size_inch = $size
-    categories = @($p.categories | ForEach-Object { [ordered]@{ id=[int]$_.id; name=[string]$_.name } })
+    categories = @($p.categories | ForEach-Object { [ordered]@{ id=[int]($_.id); name=[string]$_.name } })
     current_upsell_ids = @($p.upsell_ids | ForEach-Object { [int]$_ })
     current_upsell_names = @($currentUpsellNames)
     current_cross_sell_ids = @($p.cross_sell_ids | ForEach-Object { [int]$_ })
@@ -210,7 +215,7 @@ if ($mode -eq 'apply' -and $unparsed.Count -gt 0) {
 $changes = @()
 if ($mode -eq 'apply') {
   foreach ($t in $targets) {
-    $id = [int]$t.id
+    $id = [int]($t.id)
     $desired = @($t.proposed_upsell_ids | ForEach-Object { [int]$_ })
     $before = @($t.current_upsell_ids | ForEach-Object { [int]$_ })
     $same = (($before -join ',') -eq ($desired -join ','))
