@@ -38,7 +38,7 @@ jobs:
           foreach($requestPath in $changed){
             $name=[IO.Path]::GetFileNameWithoutExtension($requestPath)
             $out=Join-Path $env:RUNNER_TEMP "$name.result.json"
-            & ./scripts/Invoke-K20IronFittingsV1.ps1 -RequestPath $requestPath -OutputPath $out
+            & ./scripts/Invoke-K20IronFittingsV2.ps1 -RequestPath $requestPath -OutputPath $out
             if(-not(Test-Path $out)){throw "Result missing: $requestPath"}
             New-Item -ItemType Directory -Force 'results'|Out-Null
             Copy-Item $out "results/iron-fittings-$name.json" -Force
