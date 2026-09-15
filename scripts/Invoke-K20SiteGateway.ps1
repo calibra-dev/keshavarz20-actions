@@ -27,7 +27,7 @@ $allowedActions = @(
   'product.read', 'product.update', 'product.create_draft', 'product.stock', 'product.content',
   'post.read', 'post.update', 'post.create_draft',
   'page.read', 'page.update', 'page.create_draft',
-  'media.read', 'media.update',
+  'media.read', 'media.update', 'media.webp_validate',
   'taxonomy.read', 'taxonomy.create', 'taxonomy.update',
   'bridge.health'
 )
@@ -76,6 +76,21 @@ function Invoke-K20([string]$Method, [string]$Uri, $Body = $null) {
     $args.Body = ($Body | ConvertTo-Json -Depth 100 -Compress)
   }
   return Invoke-RestMethod @args
+}
+
+function Invoke-MediaHead([string]$Uri, [bool]$PreferWebp = $false) {
+  $h = @{}
+  if ($PreferWebp) { $h['Accept'] = 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8' }
+  try {
+    $r = Invoke-WebRequest -Uri $Uri -Method Head -Headers $h -MaximumRedirection 5 -TimeoutSec 60 -SkipHttpErrorCheck
+    $ct = [string]$r.Headers['Content-Type']
+    $clRaw = [string]$r.Headers['Content-Length']
+    $cl = 0L
+    if (-not [string]::IsNullOrWhiteSpace($clRaw)) { [void][long]::TryParse($clRaw, [ref]$cl) }
+    return [ordered]@{ ok=([int]$r.StatusCode -ge 200 -and [int]$r.StatusCode -lt 400); status=[int]$r.StatusCode; content_type=$ct; content_length=$cl }
+  } catch {
+    return [ordered]@{ ok=$false; status=0; content_type=''; content_length=0; error=$_.Exception.Message }
+  }
 }
 
 function Require-Id() {
@@ -194,6 +209,55 @@ switch ($action) {
     $target = "$base/wp-json/wp/v2/media/$id"; $method = 'POST'
     $m = Invoke-K20 'POST' $target $body
     $result = [ordered]@{ id=$m.id; slug=$m.slug; source_url=$m.source_url; alt_text=$m.alt_text; modified_gmt=$m.modified_gmt }
+  }
+  'media.webp_validate' {
+    $ids = @($payload.ids | ForEach-Object { [int]$_ } | Where-Object { $_ -gt 0 } | Select-Object -Unique)
+    if ($ids.Count -lt 1) { Fail 'payload.ids must contain at least one positive media id.' }
+    if ($ids.Count -gt 500) { Fail 'media.webp_validate is capped at 500 ids per request.' }
+
+    $items = New-Object System.Collections.Generic.List[object]
+    foreach ($id in $ids) {
+      try {
+        $m = Invoke-K20 'GET' "$base/wp-json/wp/v2/media/$id?context=edit&_fields=id,source_url,mime_type,media_details,parent"
+      } catch {
+        $items.Add([pscustomobject][ordered]@{ id=$id; media_read_ok=$false; error=$_.Exception.Message })
+        continue
+      }
+      $source = [string]$m.source_url
+      $webpUrl = "$source.webp"
+      $orig = Invoke-MediaHead $source $false
+      $webp = Invoke-MediaHead $webpUrl $false
+      $negotiated = Invoke-MediaHead $source $true
+      $origBytes = [long]$orig.content_length
+      $webpBytes = [long]$webp.content_length
+      $savingPct = $null
+      if ($origBytes -gt 0 -and $webpBytes -gt 0) { $savingPct = [math]::Round((1.0 - ($webpBytes / [double]$origBytes)) * 100.0, 2) }
+      $webpExists = ($webp.ok -and ([string]$webp.content_type).ToLowerInvariant().Contains('image/webp'))
+      $webpSmaller = ($webpExists -and $origBytes -gt 0 -and $webpBytes -gt 0 -and $webpBytes -lt $origBytes)
+      $servedWebp = ($negotiated.ok -and ([string]$negotiated.content_type).ToLowerInvariant().Contains('image/webp'))
+      $items.Add([pscustomobject][ordered]@{
+        id=$id; media_read_ok=$true; mime_type=[string]$m.mime_type; parent=[int]$m.parent;
+        width=$m.media_details.width; height=$m.media_details.height; source_url=$source;
+        original_ok=[bool]$orig.ok; original_status=[int]$orig.status; original_bytes=$origBytes;
+        webp_url=$webpUrl; webp_status=[int]$webp.status; webp_bytes=$webpBytes; webp_exists=[bool]$webpExists;
+        webp_smaller=[bool]$webpSmaller; saving_pct=$savingPct; served_webp_with_accept=[bool]$servedWebp
+      })
+    }
+    $good = @($items | Where-Object { $_.media_read_ok })
+    $webpGood = @($good | Where-Object { $_.webp_exists })
+    $smallerGood = @($good | Where-Object { $_.webp_smaller })
+    $servedGood = @($good | Where-Object { $_.served_webp_with_accept })
+    $origGood = @($good | Where-Object { $_.original_ok })
+    $savings = @($good | Where-Object { $null -ne $_.saving_pct } | ForEach-Object { [double]$_.saving_pct })
+    $avgSaving = $null
+    if ($savings.Count -gt 0) { $avgSaving = [math]::Round(($savings | Measure-Object -Average).Average, 2) }
+    $result = [ordered]@{
+      requested=$ids.Count; media_reads_ok=$good.Count; originals_reachable=$origGood.Count;
+      webp_exists=$webpGood.Count; webp_smaller=$smallerGood.Count; served_webp_with_accept=$servedGood.Count;
+      average_saving_pct=$avgSaving; originals_deleted=$false;
+      originals_policy='Keep originals for WordPress metadata, fallback, direct URLs, gallery/zoom, and rollback.';
+      items=$items
+    }
   }
   { $_ -in @('taxonomy.read','taxonomy.create','taxonomy.update') } {
     $tax = [string]$request.taxonomy
