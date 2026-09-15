@@ -1,0 +1,87 @@
+name: Keshavarz20 Customer Question Engine
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'question-engine-ops/*.json'
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'status | dry_run | submit_one'
+        required: false
+        default: 'status'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-customer-question-engine
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Resolve action
+        id: resolve
+        shell: python
+        run: |
+          import json, os, pathlib, subprocess
+          event=os.environ.get('GITHUB_EVENT_NAME','')
+          action='scheduled' if event=='schedule' else '${{ inputs.action }}'.strip() or 'status'
+          op=''
+          if event=='push':
+              cmds=[['git','diff','--name-only','HEAD^','HEAD','--','question-engine-ops/*.json'],['git','show','--pretty=','--name-only','HEAD','--','question-engine-ops/*.json']]
+              files=[]
+              for cmd in cmds:
+                  try: files=[x for x in subprocess.check_output(cmd,text=True).splitlines() if x.startswith('question-engine-ops/') and x.endswith('.json')]
+                  except Exception: files=[]
+                  if files: break
+              if not files: raise SystemExit('No question-engine op file found')
+              op=sorted(files)[-1]
+              obj=json.loads(pathlib.Path(op).read_text(encoding='utf-8'))
+              action=str(obj.get('action','')).strip()
+              if action not in {'status','dry_run','submit_one'}: raise SystemExit('Unsupported op action')
+          with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as f:
+              f.write(f'action={action}\n')
+              f.write(f'op={op}\n')
+
+      - name: Run engine
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p question-engine-results
+          stamp="$(date -u +%Y%m%dT%H%M%SZ)"
+          out="question-engine-results/${stamp}-${{ steps.resolve.outputs.action }}.json"
+          python question-engine/engine.py --action '${{ steps.resolve.outputs.action }}' --result "$out"
+          echo "RESULT_PATH=$out" >> "$GITHUB_ENV"
+
+      - name: Validate engine tests
+        if: github.event_name != 'schedule'
+        shell: bash
+        run: python question-engine/test_engine.py
+
+      - name: Commit manual-run result
+        if: github.event_name != 'schedule'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f "$RESULT_PATH"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "questions: record ${{ steps.resolve.outputs.action }} result"
+          git pull --rebase origin main
+          git push origin HEAD:main
