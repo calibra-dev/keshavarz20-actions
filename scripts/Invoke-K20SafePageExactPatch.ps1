@@ -12,7 +12,7 @@ $replacements=@($req.replacements)
 if($replacements.Count-lt1-or$replacements.Count-gt10){throw 'replacements must contain 1..10 exact replacements.'}
 $base=$env:WP_BASE_URL.TrimEnd('/');$user=$env:WP_USERNAME;$pass=$env:WP_APP_PASSWORD
 $auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("$user`:$pass"));$headers=@{Authorization="Basic $auth";Accept='application/json'}
-function Get-Page(){Invoke-RestMethod -Uri "$base/wp-json/wp/v2/pages/$id?context=edit" -Method GET -Headers $headers -TimeoutSec 180}
+function Get-Page(){Invoke-RestMethod -Uri "$base/wp-json/wp/v2/pages/${id}?context=edit" -Method GET -Headers $headers -TimeoutSec 180}
 function Count-Exact([string]$Text,[string]$Needle){if([string]::IsNullOrEmpty($Needle)){throw 'Replacement old value cannot be empty.'};$count=0;$pos=0;while(($i=$Text.IndexOf($Needle,$pos,[StringComparison]::Ordinal))-ge0){$count++;$pos=$i+$Needle.Length};return $count}
 function Sha256([string]$Text){$sha=[Security.Cryptography.SHA256]::Create();try{return ([BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($Text))).Replace('-','').ToLowerInvariant())}finally{$sha.Dispose()}}
 $page=Get-Page
