@@ -1,0 +1,766 @@
+{
+  "action": "media.autopilot.cycle",
+  "run_id": "35032911629",
+  "executed_at_utc": "2026-09-15T23:00:29Z",
+  "config": {
+    "batch_size": 20,
+    "max_attempts": 3,
+    "quality": 88,
+    "min_psnr": 40.0,
+    "min_saving_lossy_pct": 15.0,
+    "min_saving_lossless_pct": 5.0
+  },
+  "inventory_before": {
+    "products_read": 653,
+    "jpeg_png_refs": 647,
+    "primary_refs": 585,
+    "distinct_attachment_ids": 601
+  },
+  "items": [
+    {
+      "product_id": 135205,
+      "old_attachment_id": 141643,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/loule-poli-25-inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 287236,
+      "webp_bytes_local": 68170,
+      "saving_pct": 76.27,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.26,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 68170,
+          "psnr": 41.26,
+          "saving_pct": 76.27
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "نمای محصول لوله پلی‌اتیلن ۲۵ میلی‌متر ۱۰ اتمسفر استاندارد ۲۰۰ متری",
+      "new_attachment_id": 144370,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135205-a141643-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 68170,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144370,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135205-a141643-webp.webp",
+      "alt_after": "نمای محصول لوله پلی‌اتیلن ۲۵ میلی‌متر ۱۰ اتمسفر استاندارد ۲۰۰ متری",
+      "stage": "verified"
+    },
+    {
+      "product_id": 135211,
+      "old_attachment_id": 141641,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/loule-poli-16-inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 285334,
+      "webp_bytes_local": 67638,
+      "saving_pct": 76.3,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.29,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 67638,
+          "psnr": 41.29,
+          "saving_pct": 76.3
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "نمای محصول لوله پلی‌اتیلن ۱۶ میلی‌متر استاندارد ۲۰۰ متری",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 135215,
+      "old_attachment_id": 141647,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/loule-poli50-inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 358239,
+      "webp_bytes_local": 79662,
+      "saving_pct": 77.76,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.06,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 79662,
+          "psnr": 40.06,
+          "saving_pct": 77.76
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "نمای محصول لوله پلی‌اتیلن ۵۰ میلی‌متر ۶ اتمسفر استاندارد ۱۰۰ متری",
+      "new_attachment_id": 144371,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135215-a141647-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 79662,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144371,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135215-a141647-webp.webp",
+      "alt_after": "نمای محصول لوله پلی‌اتیلن ۵۰ میلی‌متر ۶ اتمسفر استاندارد ۱۰۰ متری",
+      "stage": "verified"
+    },
+    {
+      "product_id": 135219,
+      "old_attachment_id": 141649,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/loule-poli-75inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 357596,
+      "webp_bytes_local": 79550,
+      "saving_pct": 77.75,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.07,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 79550,
+          "psnr": 40.07,
+          "saving_pct": 77.75
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "نمای محصول لوله پلی‌اتیلن ۷۵ میلی‌متر ۶ اتمسفر استاندارد ۱۰۰ متری",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 135221,
+      "old_attachment_id": 141645,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/loule-poli-32-inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 357806,
+      "webp_bytes_local": 79630,
+      "saving_pct": 77.74,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.06,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 79630,
+          "psnr": 40.06,
+          "saving_pct": 77.74
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "نمای محصول لوله پلی اتیلن ۳۲ میلیمتر ۸ اتمسفر استاندارد ۲۰۰ متری",
+      "new_attachment_id": 144372,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135221-a141645-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 79630,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144372,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135221-a141645-webp.webp",
+      "alt_after": "نمای محصول لوله پلی اتیلن ۳۲ میلیمتر ۸ اتمسفر استاندارد ۲۰۰ متری",
+      "stage": "verified"
+    },
+    {
+      "product_id": 135233,
+      "old_attachment_id": 144137,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-product-135233-p258-featured.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 301356,
+      "webp_bytes_local": 85324,
+      "saving_pct": 71.69,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.33,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 85324,
+          "psnr": 41.33,
+          "saving_pct": 71.69
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول نوار تیپ آبیاری قطره‌ای ۲۰ سانتی‌متری مخصوص کشت باز",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 135235,
+      "old_attachment_id": 141680,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/navar-teyp-polimer-20-cm.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 301356,
+      "webp_bytes_local": 85324,
+      "saving_pct": 71.69,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.33,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 85324,
+          "psnr": 41.33,
+          "saving_pct": 71.69
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "نمای محصول نوار تیپ پلاک‌دار ۲۰ سانتی‌متری ۲۰۰۰ متری مناسب گلخانه",
+      "new_attachment_id": 144373,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135235-a141680-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 85324,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144373,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135235-a141680-webp.webp",
+      "alt_after": "نمای محصول نوار تیپ پلاک‌دار ۲۰ سانتی‌متری ۲۰۰۰ متری مناسب گلخانه",
+      "stage": "verified"
+    },
+    {
+      "product_id": 135249,
+      "old_attachment_id": 139311,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/300603-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 109867,
+      "webp_bytes_local": 33880,
+      "saving_pct": 69.16,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.35,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 33880,
+          "psnr": 42.35,
+          "saving_pct": 69.16
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول شیر توپی دو سر نر آبافرین 2 اینچ (63 میلیمتر)",
+      "new_attachment_id": 144374,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135249-a139311-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 33880,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144374,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135249-a139311-webp.webp",
+      "alt_after": "تصویر محصول شیر توپی دو سر نر آبافرین 2 اینچ (63 میلیمتر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 135253,
+      "old_attachment_id": 139777,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/300566-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 88187,
+      "webp_bytes_local": 23850,
+      "saving_pct": 72.96,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 43.26,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 23850,
+          "psnr": 43.26,
+          "saving_pct": 72.96
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۲ اینچ",
+      "new_attachment_id": 144375,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135253-a139777-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 23850,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144375,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135253-a139777-webp.webp",
+      "alt_after": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۲ اینچ",
+      "stage": "verified"
+    },
+    {
+      "product_id": 135255,
+      "old_attachment_id": 139778,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/300568-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 88187,
+      "webp_bytes_local": 23850,
+      "saving_pct": 72.96,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 43.26,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 23850,
+          "psnr": 43.26,
+          "saving_pct": 72.96
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۳ اینچ",
+      "new_attachment_id": 144376,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135255-a139778-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 23850,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144376,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135255-a139778-webp.webp",
+      "alt_after": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۳ اینچ",
+      "stage": "verified"
+    },
+    {
+      "product_id": 135261,
+      "old_attachment_id": 139774,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/300585-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 108471,
+      "webp_bytes_local": 31798,
+      "saving_pct": 70.69,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.19,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 31798,
+          "psnr": 42.19,
+          "saving_pct": 70.69
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "شیر توپی یکسر نر یکسر ماده آبافرین دسته پلیمری ۲ اینچ",
+      "new_attachment_id": 144377,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135261-a139774-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 31798,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144377,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135261-a139774-webp.webp",
+      "alt_after": "شیر توپی یکسر نر یکسر ماده آبافرین دسته پلیمری ۲ اینچ",
+      "stage": "verified"
+    },
+    {
+      "product_id": 135309,
+      "old_attachment_id": 140679,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/asayesh-2.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 295152,
+      "webp_bytes_local": 78038,
+      "saving_pct": 73.56,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.77,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 78038,
+          "psnr": 40.77,
+          "saving_pct": 73.56
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول لوله نخدار ۲ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 135311,
+      "old_attachment_id": 140680,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/asayesh-2.5.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 298100,
+      "webp_bytes_local": 78776,
+      "saving_pct": 73.57,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.64,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 78776,
+          "psnr": 40.64,
+          "saving_pct": 73.57
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول لوله نخدار ۲.۵ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "new_attachment_id": 144378,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135311-a140680-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 78776,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144378,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135311-a140680-webp.webp",
+      "alt_after": "تصویر محصول لوله نخدار ۲.۵ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "stage": "verified"
+    },
+    {
+      "product_id": 135313,
+      "old_attachment_id": 140682,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/asayesh-3.5.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 298182,
+      "webp_bytes_local": 78848,
+      "saving_pct": 73.56,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.63,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 78848,
+          "psnr": 40.63,
+          "saving_pct": 73.56
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول لوله نخدار ۳.۵ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 135315,
+      "old_attachment_id": 140683,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/asayesh4.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 294414,
+      "webp_bytes_local": 78056,
+      "saving_pct": 73.49,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.79,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 78056,
+          "psnr": 40.79,
+          "saving_pct": 73.49
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول لوله نخدار ۴ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "new_attachment_id": 144379,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135315-a140683-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 78056,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144379,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135315-a140683-webp.webp",
+      "alt_after": "تصویر محصول لوله نخدار ۴ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "stage": "verified"
+    },
+    {
+      "product_id": 135317,
+      "old_attachment_id": 140684,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/asayesh-4.5.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 297534,
+      "webp_bytes_local": 78698,
+      "saving_pct": 73.55,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.65,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 78698,
+          "psnr": 40.65,
+          "saving_pct": 73.55
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "لوله نخدار ۴.۵ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 135319,
+      "old_attachment_id": 140686,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/asayesh5.5.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 297782,
+      "webp_bytes_local": 78796,
+      "saving_pct": 73.54,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.64,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 78796,
+          "psnr": 40.64,
+          "saving_pct": 73.54
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول لوله نخدار ۵.۵ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "new_attachment_id": 144380,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135319-a140686-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 78796,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144380,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135319-a140686-webp.webp",
+      "alt_after": "تصویر محصول لوله نخدار ۵.۵ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "stage": "verified"
+    },
+    {
+      "product_id": 135321,
+      "old_attachment_id": 140687,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/asayesh-6.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 295090,
+      "webp_bytes_local": 78144,
+      "saving_pct": 73.52,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.78,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 78144,
+          "psnr": 40.78,
+          "saving_pct": 73.52
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول لوله نخدار ۶ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 135323,
+      "old_attachment_id": 141091,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/شیر-توپی-1-ویسپار،کشاورز20،keshavarz20-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 221225,
+      "webp_bytes_local": 40736,
+      "saving_pct": 81.59,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.09,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 40736,
+          "psnr": 42.09,
+          "saving_pct": 81.59
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ اینچ",
+      "new_attachment_id": 144381,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135323-a141091-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 40736,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144381,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135323-a141091-webp.webp",
+      "alt_after": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ اینچ",
+      "stage": "verified"
+    },
+    {
+      "product_id": 135325,
+      "old_attachment_id": 141090,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/شیر-توپی-114-ویسپار،کشاورز20،keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 223123,
+      "webp_bytes_local": 41480,
+      "saving_pct": 81.41,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.0,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 41480,
+          "psnr": 42.0,
+          "saving_pct": 81.41
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ و ۱/۴ اینچ (۴۰ میلی‌متر)",
+      "new_attachment_id": 144382,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135325-a141090-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 41480,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144382,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135325-a141090-webp.webp",
+      "alt_after": "تصویر محصول شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ و ۱/۴ اینچ (۴۰ میلی‌متر)",
+      "stage": "verified"
+    }
+  ],
+  "inventory_after": {
+    "products_read": 653,
+    "jpeg_png_refs": 634,
+    "primary_refs": 572,
+    "distinct_attachment_ids": 588
+  },
+  "state_status": "running",
+  "total_successful_migrations": 49,
+  "total_terminal_skips": 0
+}
