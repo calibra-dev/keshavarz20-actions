@@ -1,0 +1,102 @@
+{
+  "action": "product.webp_migrate",
+  "executed_at_utc": "2026-09-15T20:09:02Z",
+  "quality": 88,
+  "min_psnr": 36.0,
+  "min_saving_pct": 20.0,
+  "replace": true,
+  "items": [
+    {
+      "product_id": 144248,
+      "old_attachment_id": 144271,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/145c69b2-3a97-4c81-8bca-6f6418fe1059.png",
+      "source_mime": "image/png",
+      "width": 1254,
+      "height": 1254,
+      "original_bytes": 2600602,
+      "webp_bytes_local": 315270,
+      "saving_pct": 87.88,
+      "psnr_db": 36.04,
+      "encoder_mode": "lossy-q88",
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 315270,
+          "psnr": 36.04
+        }
+      ],
+      "product_image_index": 1,
+      "new_attachment_id": 144297,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/loole-nakhdar-moj-4-5-inch-144271.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 315270,
+        "content_type": "image/webp"
+      },
+      "stage": "error",
+      "error": "product readback did not confirm new WebP attachment",
+      "rollback_product_http": 200,
+      "cleanup_uploaded_webp": true
+    },
+    {
+      "product_id": 144249,
+      "old_attachment_id": 144277,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/ChatGPT-Image-Sep-8-2026-02_31_50-PM-2.png",
+      "source_mime": "image/png",
+      "width": 1254,
+      "height": 1254,
+      "original_bytes": 1995785,
+      "webp_bytes_local": 202974,
+      "saving_pct": 89.83,
+      "psnr_db": 36.73,
+      "encoder_mode": "lossy-q88",
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 202974,
+          "psnr": 36.73
+        }
+      ],
+      "product_image_index": 1,
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2417)"
+    },
+    {
+      "product_id": 144249,
+      "old_attachment_id": 144278,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/ChatGPT-Image-Sep-8-2026-02_31_51-PM-3.png",
+      "source_mime": "image/png",
+      "width": 1254,
+      "height": 1254,
+      "original_bytes": 2021244,
+      "webp_bytes_local": 184774,
+      "saving_pct": 90.86,
+      "psnr_db": 37.09,
+      "encoder_mode": "lossy-q88",
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 184774,
+          "psnr": 37.09
+        }
+      ],
+      "product_image_index": 2,
+      "new_attachment_id": 144298,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/moj-rain-misting-hose-2-inch-100m-144278.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 184774,
+        "content_type": "image/webp"
+      },
+      "stage": "error",
+      "error": "product readback did not confirm new WebP attachment",
+      "rollback_product_http": 200,
+      "cleanup_uploaded_webp": true
+    }
+  ],
+  "success_count": 0,
+  "all_success": false
+}
