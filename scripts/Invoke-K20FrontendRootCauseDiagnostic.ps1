@@ -17,7 +17,7 @@ $headers=@{Authorization="Basic $auth";Accept='application/json'}
 function Invoke-JsonGet([string]$Path){Invoke-RestMethod -Uri ($base+'/'+$Path.TrimStart('/')) -Method GET -Headers $headers -TimeoutSec 180}
 function TextOnly([string]$Html){if([string]::IsNullOrWhiteSpace($Html)){return ''};$x=[regex]::Replace($Html,'<script\b[^>]*>.*?</script>',' ','IgnoreCase,Singleline');$x=[regex]::Replace($x,'<style\b[^>]*>.*?</style>',' ','IgnoreCase,Singleline');$x=[regex]::Replace($x,'<[^>]+>',' ');$x=[Net.WebUtility]::HtmlDecode($x);return [regex]::Replace($x,'\s+',' ').Trim()}
 function Snippet([string]$Text,[string]$Needle){$i=$Text.IndexOf($Needle,[StringComparison]::OrdinalIgnoreCase);if($i-lt0){return ''};$start=[Math]::Max(0,$i-180);$len=[Math]::Min(520,$Text.Length-$start);return $Text.Substring($start,$len)}
-function Get-Attr([string]$Tag,[string]$Name){$m=[regex]::Match($Tag,"(?is)\\b$([regex]::Escape($Name))\\s*=\\s*(['\"])(.*?)\\1");if($m.Success){return [Net.WebUtility]::HtmlDecode($m.Groups[2].Value)};return ''}
+function Get-Attr([string]$Tag,[string]$Name){$pattern='(?is)\b'+[regex]::Escape($Name)+'\s*=\s*["'']([^"'']*)["'']';$m=[regex]::Match($Tag,$pattern);if($m.Success){return [Net.WebUtility]::HtmlDecode($m.Groups[1].Value)};return ''}
 function Walk-Json($Node,[System.Collections.Generic.List[object]]$Organizations){
   if($null-eq$Node){return}
   if($Node-is[pscustomobject]){
@@ -69,7 +69,8 @@ foreach($url in $urls){
     foreach($m in [regex]::Matches($html,'(?is)<script\b[^>]*type\s*=\s*(["'']?)application/ld\+json\1[^>]*>(.*?)</script>')){
       try{$json=$m.Groups[2].Value|ConvertFrom-Json -Depth 100;Walk-Json $json $orgs}catch{}
     }
-    $phraseHits=@();foreach($phrase in $phrases){$phraseHits+=[ordered]@{phrase=$phrase;present=$html.Contains($phrase);snippet=Snippet (TextOnly $html) $phrase}}
+    $plainHtml=TextOnly $html
+    $phraseHits=@();foreach($phrase in $phrases){$phraseHits+=[ordered]@{phrase=$phrase;present=$html.Contains($phrase);snippet=Snippet $plainHtml $phrase}}
     $frontends.Add([pscustomobject][ordered]@{url=$url;http_status=[int]$resp.StatusCode;final_url=[string]$resp.BaseResponse.RequestMessage.RequestUri;html_bytes=[Text.Encoding]::UTF8.GetByteCount($html);h1_count=$h1s.Count;h1s=$h1s;phrase_hits=$phraseHits;missing_alt_count=$missingAlt.Count;missing_alt_images=@($missingAlt);organization_nodes=@($orgs);organization_count=$orgs.Count})
   }catch{$frontends.Add([pscustomobject][ordered]@{url=$url;error=$_.Exception.Message})}
 }
