@@ -1,0 +1,78 @@
+{
+  "action": "product.webp_migrate",
+  "executed_at_utc": "2026-09-15T20:10:50Z",
+  "quality": 88,
+  "min_psnr": 36.0,
+  "min_saving_pct": 20.0,
+  "replace": true,
+  "items": [
+    {
+      "product_id": 134992,
+      "old_attachment_id": 139855,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/03/10405003200-1.jpg",
+      "source_mime": "image/jpeg",
+      "width": 600,
+      "height": 600,
+      "original_bytes": 73547,
+      "webp_bytes_local": 24882,
+      "saving_pct": 66.17,
+      "psnr_db": 43.76,
+      "encoder_mode": "lossy-q88",
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 24882,
+          "psnr": 43.76
+        }
+      ],
+      "product_image_index": 0,
+      "new_attachment_id": 144299,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/d8b1d8a7d8a8d8b7-d8aad8a8d8afdb8cd984-d8a2d8a8d984d988d984d987-32-50-139855.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 24882,
+        "content_type": "image/webp"
+      },
+      "stage": "error",
+      "error": "product readback did not confirm new WebP attachment",
+      "rollback_product_http": 200,
+      "cleanup_uploaded_webp": true
+    },
+    {
+      "product_id": 134996,
+      "old_attachment_id": 139853,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/03/10406304000-1.jpg",
+      "source_mime": "image/jpeg",
+      "width": 600,
+      "height": 600,
+      "original_bytes": 73547,
+      "webp_bytes_local": 24882,
+      "saving_pct": 66.17,
+      "psnr_db": 43.76,
+      "encoder_mode": "lossy-q88",
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 24882,
+          "psnr": 43.76
+        }
+      ],
+      "product_image_index": 0,
+      "new_attachment_id": 144300,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/d8b1d8a7d8a8d8b7-d8aad8a8d8afdb8cd984-d8a2d8a8d984d988d984d987-40-63-139853.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 24882,
+        "content_type": "image/webp"
+      },
+      "stage": "error",
+      "error": "product readback did not confirm new WebP attachment",
+      "rollback_product_http": 200,
+      "cleanup_uploaded_webp": true
+    }
+  ],
+  "success_count": 0,
+  "all_success": false
+}
