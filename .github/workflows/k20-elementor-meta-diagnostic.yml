@@ -1,0 +1,46 @@
+name: K20 Elementor Meta Diagnostic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/elementor-meta/*.json'
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Inspect Elementor meta read-only
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $before='${{ github.event.before }}';$current='${{ github.sha }}';$zero='0000000000000000000000000000000000000000'
+          if($before -and $before-ne$zero){$changed=@(git diff --name-only $before $current -- 'diagnostics/elementor-meta/*.json')}else{$changed=@(git show --pretty='' --name-only $current -- 'diagnostics/elementor-meta/*.json')}
+          $changed=@($changed|Where-Object{$_ -match '^diagnostics/elementor-meta/.+\.json$'}|Sort-Object -Unique)
+          if($changed.Count-eq0){throw 'No Elementor meta diagnostic request found.'}
+          foreach($path in $changed){
+            $name=[IO.Path]::GetFileNameWithoutExtension($path)
+            & ./scripts/Invoke-K20ElementorMetaDiagnostic.ps1 -RequestPath $path -OutputPath "results/elementor-meta-$name.json"
+          }
+      - name: Commit diagnostic result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/elementor-meta-*.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "ops: record Elementor meta diagnostic"
+          git pull --rebase origin main
+          git push origin main
