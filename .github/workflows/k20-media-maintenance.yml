@@ -21,7 +21,6 @@ jobs:
       WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
       WP_USERNAME: ${{ secrets.WP_USERNAME }}
       WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
-      GH_TOKEN: ${{ github.token }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,12 +37,10 @@ jobs:
             }
           }
 
-          $event = Get-Content -Raw -LiteralPath $env:GITHUB_EVENT_PATH | ConvertFrom-Json
-          $requests = @(
-            $event.commits | ForEach-Object { @($_.added) + @($_.modified) } |
-            Where-Object { $_ -and $_.StartsWith('media-maintenance-ops/') -and $_.EndsWith('.json') } |
-            Sort-Object -Unique
-          )
+          $requests = @(git diff --name-only HEAD^ HEAD -- 'media-maintenance-ops/*.json' | Where-Object { $_ -and $_.StartsWith('media-maintenance-ops/') -and $_.EndsWith('.json') } | Sort-Object -Unique)
+          if ($requests.Count -eq 0) {
+            $requests = @(git show --pretty='' --name-only HEAD -- 'media-maintenance-ops/*.json' | Where-Object { $_ -and $_.StartsWith('media-maintenance-ops/') -and $_.EndsWith('.json') } | Sort-Object -Unique)
+          }
           if ($requests.Count -eq 0) { throw 'No media maintenance request JSON found.' }
 
           $base = $env:WP_BASE_URL.TrimEnd('/')
