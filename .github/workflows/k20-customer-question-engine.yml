@@ -16,6 +16,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: k20-customer-question-engine
@@ -29,6 +30,7 @@ jobs:
       WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
       WP_USERNAME: ${{ secrets.WP_USERNAME }}
       WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -65,13 +67,15 @@ jobs:
           mkdir -p question-engine-results
           stamp="$(date -u +%Y%m%dT%H%M%SZ)"
           out="question-engine-results/${stamp}-${{ steps.resolve.outputs.action }}.json"
-          python question-engine/engine.py --action '${{ steps.resolve.outputs.action }}' --result "$out"
+          python question-engine/engine_v2.py --action '${{ steps.resolve.outputs.action }}' --result "$out"
           echo "RESULT_PATH=$out" >> "$GITHUB_ENV"
 
       - name: Validate engine tests
         if: github.event_name != 'schedule'
         shell: bash
-        run: python question-engine/test_engine.py
+        run: |
+          python question-engine/test_engine.py
+          python question-engine/test_engine_v2.py
 
       - name: Commit manual-run result
         if: github.event_name != 'schedule'
