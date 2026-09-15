@@ -1,0 +1,173 @@
+name: Keshavarz20 Media Maintenance
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'media-maintenance-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-media-maintenance
+  cancel-in-progress: false
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Execute narrow media maintenance operations
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          foreach ($name in 'WP_BASE_URL','WP_USERNAME','WP_APP_PASSWORD') {
+            if ([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($name))) {
+              throw "Missing required repository secret: $name"
+            }
+          }
+
+          $event = Get-Content -Raw -LiteralPath $env:GITHUB_EVENT_PATH | ConvertFrom-Json
+          $requests = @(
+            $event.commits | ForEach-Object { @($_.added) + @($_.modified) } |
+            Where-Object { $_ -and $_.StartsWith('media-maintenance-ops/') -and $_.EndsWith('.json') } |
+            Sort-Object -Unique
+          )
+          if ($requests.Count -eq 0) { throw 'No media maintenance request JSON found.' }
+
+          $base = $env:WP_BASE_URL.TrimEnd('/')
+          $bridgeEndpoint = "$base/wp-json/keshavarz20-ops/v2/execute"
+          $authText = "$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"
+          $authValue = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($authText))
+          $authHeaders = @{ Authorization = "Basic $authValue"; Accept = 'application/json' }
+          New-Item -ItemType Directory -Force 'media-maintenance-results' | Out-Null
+
+          function Invoke-Bridge([hashtable]$Payload) {
+            $body = $Payload | ConvertTo-Json -Depth 20 -Compress
+            try {
+              $r = Invoke-WebRequest -Uri $bridgeEndpoint -Method Post -Headers $authHeaders -ContentType 'application/json; charset=utf-8' -Body ([Text.Encoding]::UTF8.GetBytes($body)) -TimeoutSec 180 -SkipHttpErrorCheck
+              $text = [string]$r.Content
+              try { $parsed = $text | ConvertFrom-Json -Depth 50 } catch { $parsed = [pscustomobject]@{ raw = $text } }
+              return [pscustomobject]@{ status = [int]$r.StatusCode; body = $parsed }
+            } catch {
+              return [pscustomobject]@{ status = 0; body = [pscustomobject]@{ code = 'transport_error'; message = $_.Exception.Message } }
+            }
+          }
+
+          function Invoke-Head([string]$Uri) {
+            try {
+              $r = Invoke-WebRequest -Uri $Uri -Method Head -MaximumRedirection 5 -TimeoutSec 60 -SkipHttpErrorCheck
+              $ct = [string]$r.Headers['Content-Type']
+              $cl = 0L
+              $raw = [string]$r.Headers['Content-Length']
+              if (-not [string]::IsNullOrWhiteSpace($raw)) { [void][long]::TryParse($raw, [ref]$cl) }
+              return [pscustomobject]@{ status = [int]$r.StatusCode; content_type = $ct; bytes = $cl; ok = ([int]$r.StatusCode -ge 200 -and [int]$r.StatusCode -lt 400) }
+            } catch {
+              return [pscustomobject]@{ status = 0; content_type = ''; bytes = 0L; ok = $false }
+            }
+          }
+
+          foreach ($requestPath in $requests) {
+            $name = [IO.Path]::GetFileNameWithoutExtension($requestPath)
+            $request = Get-Content -Raw -LiteralPath $requestPath | ConvertFrom-Json -Depth 20
+            $action = [string]$request.action
+            $result = [ordered]@{ action = $action; executed_at_utc = [DateTime]::UtcNow.ToString('o') }
+
+            if ($action -eq 'webp.cycle') {
+              $ids = @($request.ids | ForEach-Object { [int]$_ } | Where-Object { $_ -gt 0 } | Select-Object -Unique)
+              if ($ids.Count -lt 1 -or $ids.Count -gt 25) { throw 'webp.cycle requires 1..25 positive attachment ids.' }
+              $ticks = 3
+              if ($null -ne $request.cron_ticks) { $ticks = [Math]::Max(1, [Math]::Min(6, [int]$request.cron_ticks)) }
+              $cron = New-Object System.Collections.Generic.List[object]
+              for ($i = 0; $i -lt $ticks; $i++) {
+                $stamp = [DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()
+                $u = "$base/wp-cron.php?doing_wp_cron=$stamp"
+                try {
+                  $r = Invoke-WebRequest -Uri $u -Method Get -MaximumRedirection 5 -TimeoutSec 180 -SkipHttpErrorCheck
+                  $cron.Add([pscustomobject]@{ tick = $i + 1; status = [int]$r.StatusCode })
+                } catch {
+                  $cron.Add([pscustomobject]@{ tick = $i + 1; status = 0 })
+                }
+                if ($i -lt ($ticks - 1)) { Start-Sleep -Seconds 4 }
+              }
+              Start-Sleep -Seconds 8
+
+              $items = New-Object System.Collections.Generic.List[object]
+              foreach ($id in $ids) {
+                $inspect = Invoke-Bridge @{ mode = 'inspect'; resource = 'attachment'; id = $id; changes = @{} }
+                if ($inspect.status -lt 200 -or $inspect.status -ge 300 -or -not $inspect.body.ok) {
+                  $items.Add([pscustomobject]@{ id = $id; inspect_ok = $false; http_code = $inspect.status; code = [string]$inspect.body.code })
+                  continue
+                }
+                $before = $inspect.body.before
+                $source = [string]$before.url
+                $orig = Invoke-Head $source
+                $webpUrl = "$source.webp"
+                $webp = Invoke-Head $webpUrl
+                $isWebp = ($webp.ok -and ([string]$webp.content_type).ToLowerInvariant().Contains('image/webp'))
+                $saving = $null
+                if ($orig.bytes -gt 0 -and $webp.bytes -gt 0) { $saving = [Math]::Round((1.0 - ($webp.bytes / [double]$orig.bytes)) * 100.0, 2) }
+                $items.Add([pscustomobject][ordered]@{
+                  id = $id; inspect_ok = $true; mime_type = [string]$before.mime_type; parent = [int]$before.parent;
+                  width = [int]$before.width; height = [int]$before.height; source_url = $source;
+                  original_status = $orig.status; original_bytes = $orig.bytes;
+                  webp_url = $webpUrl; webp_status = $webp.status; webp_bytes = $webp.bytes; webp_exists = $isWebp; saving_pct = $saving
+                })
+              }
+              $result.cron_ticks = $cron
+              $result.items = $items
+              $result.webp_found = @($items | Where-Object { $_.webp_exists }).Count
+            }
+            elseif ($action -eq 'attachment.delete_probe') {
+              $probeId = 2147483647
+              $probe = Invoke-Bridge @{ mode = 'delete'; resource = 'attachment'; id = $probeId; changes = @{} }
+              $result.probe_id = $probeId
+              $result.http_code = $probe.status
+              $result.response_code = [string]$probe.body.code
+              $result.response_message = [string]$probe.body.message
+              $result.ok = [bool]$probe.body.ok
+            }
+            elseif ($action -eq 'attachment.inspect') {
+              $id = [int]$request.id
+              if ($id -lt 1) { throw 'attachment.inspect requires a positive id.' }
+              $inspect = Invoke-Bridge @{ mode = 'inspect'; resource = 'attachment'; id = $id; changes = @{} }
+              $result.http_code = $inspect.status
+              $result.ok = [bool]$inspect.body.ok
+              if ($inspect.body.before) {
+                $b = $inspect.body.before
+                $result.attachment = [ordered]@{ id = [int]$b.id; url = [string]$b.url; mime_type = [string]$b.mime_type; parent = [int]$b.parent; width = [int]$b.width; height = [int]$b.height }
+              } else {
+                $result.response_code = [string]$inspect.body.code
+                $result.response_message = [string]$inspect.body.message
+              }
+            }
+            else {
+              throw "Unsupported media maintenance action: $action"
+            }
+
+            $outPath = "media-maintenance-results/$name.json"
+            $result | ConvertTo-Json -Depth 50 | Set-Content -LiteralPath $outPath -Encoding utf8
+            Write-Host "Recorded $outPath"
+          }
+
+      - name: Commit sanitized results
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add media-maintenance-results/*.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "media: record maintenance result"
+          git push
