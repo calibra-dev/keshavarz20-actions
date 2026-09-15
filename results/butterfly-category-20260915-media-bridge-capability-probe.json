@@ -1,0 +1,74 @@
+{
+  "ok": true,
+  "query": "zz-k20-media-probe-20260915",
+  "executed_at_utc": "2026-09-15T14:24:48.8625742Z",
+  "category_count": 0,
+  "product_count": 0,
+  "matching_categories": [],
+  "wp_core_probe": [],
+  "bridge_routes": [
+    {
+      "route": "/keshavarz20-ops/v2",
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "arg_names": [
+            "context",
+            "namespace"
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/keshavarz20-ops/v2/health",
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "arg_names": []
+        }
+      ]
+    },
+    {
+      "route": "/keshavarz20-ops/v2/execute",
+      "methods": [
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "arg_names": []
+        }
+      ]
+    }
+  ],
+  "bridge_info": {
+    "ok": true,
+    "top_level_keys": [
+      "_links",
+      "namespace",
+      "routes"
+    ],
+    "status": "",
+    "plugin": "",
+    "version": "",
+    "capabilities": [
+      null
+    ],
+    "actions": [
+      null
+    ]
+  },
+  "matching_products": []
+}
