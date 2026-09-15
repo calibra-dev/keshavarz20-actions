@@ -22,9 +22,9 @@ CLOSE_GUIDE={
  "technical":[" ممنون میشم راهنمایی بفرمایید."," سپاسگزار می‌شم نظرتون رو بفرمایید."]}
 CLOSE_THANK={
  "colloquial":[" ممنون."," مرسی."],
- "conversational":[" ممنون از راهنماییتون."," پیشاپیش ممنون."," سپاسگزارم."],
- "experienced":[" ممنون از راهنماییتون."," پیشاپیش ممنون."],
- "technical":[" سپاسگزارم."," پیشاپیش از راهنمایی شما ممنونم."]}
+ "conversational":[" ممنون."," پیشاپیش ممنون."," سپاسگزارم."],
+ "experienced":[" ممنون."," پیشاپیش ممنون."," سپاسگزارم."],
+ "technical":[" سپاسگزارم."," پیشاپیش ممنون."]}
 
 def wrap_v6(core,polite,style,rng):
     core=core.strip().rstrip(" .")
@@ -38,7 +38,6 @@ def wrap_v6(core,polite,style,rng):
         if rng.random()<.25:return rng.choice(OPEN_GUIDE[style])+core
         return rng.choice(GREET_ONLY[style])+core
     if mode=="close":return core+rng.choice(CLOSE_GUIDE[style])
-    # When both are used, never ask for guidance twice.
     if rng.random()<.5:return rng.choice(GREET_ONLY[style])+core+rng.choice(CLOSE_GUIDE[style])
     return rng.choice(OPEN_GUIDE[style])+core+rng.choice(CLOSE_THANK[style])
 
