@@ -1,0 +1,165 @@
+name: Keshavarz20 Local WebP Lossless Fallback
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'local-webp-lossless-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-local-webp-lossless
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Install Pillow
+        run: python -m pip install --disable-pip-version-check --quiet pillow
+
+      - name: Lossless convert, upload, verify, and replace
+        shell: python
+        run: |
+          import base64, io, json, os, pathlib, subprocess, time, urllib.error, urllib.parse, urllib.request, xmlrpc.client
+          from PIL import Image, ImageChops, ImageOps
+
+          for key in ('WP_BASE_URL','WP_USERNAME','WP_APP_PASSWORD'):
+              if not os.environ.get(key, '').strip():
+                  raise SystemExit(f'Missing required repository secret: {key}')
+
+          def changed_requests():
+              for cmd in (["git","diff","--name-only","HEAD^","HEAD","--","local-webp-lossless-ops/*.json"], ["git","show","--pretty=","--name-only","HEAD","--","local-webp-lossless-ops/*.json"]):
+                  paths = sorted({p.strip() for p in subprocess.check_output(cmd,text=True).splitlines() if p.strip().startswith('local-webp-lossless-ops/') and p.strip().endswith('.json')})
+                  if paths: return paths
+              return []
+
+          requests = changed_requests()
+          if not requests: raise SystemExit('No lossless WebP request JSON found')
+          base = os.environ['WP_BASE_URL'].rstrip('/')
+          username = os.environ['WP_USERNAME']; password = os.environ['WP_APP_PASSWORD']
+          auth = base64.b64encode(f'{username}:{password}'.encode()).decode()
+          bridge = base + '/wp-json/keshavarz20-ops/v2/execute'
+          server = xmlrpc.client.ServerProxy(base + '/xmlrpc.php', allow_none=True, use_builtin_types=True)
+          outdir = pathlib.Path('local-webp-results'); outdir.mkdir(parents=True, exist_ok=True)
+
+          def qurl(url):
+              p=urllib.parse.urlsplit(url); path=urllib.parse.quote(urllib.parse.unquote(p.path),safe='/%')
+              return urllib.parse.urlunsplit((p.scheme,p.netloc,path,p.query,p.fragment))
+
+          def api(method,url,body=None):
+              headers={'Authorization':'Basic '+auth,'Accept':'application/json','User-Agent':'K20-WebP-Lossless/1.0'}; data=None
+              if body is not None:
+                  data=json.dumps(body,ensure_ascii=False,separators=(',',':')).encode(); headers['Content-Type']='application/json; charset=utf-8'
+              req=urllib.request.Request(qurl(url),data=data,method=method,headers=headers)
+              try:
+                  with urllib.request.urlopen(req,timeout=180) as r: return int(r.status),json.loads(r.read().decode('utf-8','replace'))
+              except urllib.error.HTTPError as e:
+                  raw=e.read().decode('utf-8','replace')
+                  try: obj=json.loads(raw)
+                  except Exception: obj={'raw':raw[:1000]}
+                  return int(e.code),obj
+
+          def inspect(aid):
+              data=json.dumps({'mode':'inspect','resource':'attachment','id':int(aid),'changes':{}},separators=(',',':')).encode()
+              req=urllib.request.Request(bridge,data=data,method='POST',headers={'Authorization':'Basic '+auth,'Content-Type':'application/json','Accept':'application/json'})
+              try:
+                  with urllib.request.urlopen(req,timeout=120) as r: return int(r.status),json.loads(r.read().decode('utf-8','replace'))
+              except urllib.error.HTTPError as e:
+                  raw=e.read().decode('utf-8','replace')
+                  try: obj=json.loads(raw)
+                  except Exception: obj={'raw':raw[:1000]}
+                  return int(e.code),obj
+
+          def getbytes(url):
+              with urllib.request.urlopen(urllib.request.Request(qurl(url),headers={'User-Agent':'K20-WebP-Lossless/1.0'}),timeout=180) as r: return r.read()
+
+          def head(url):
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(qurl(url),method='HEAD',headers={'User-Agent':'K20-WebP-Lossless/1.0'}),timeout=90) as r:
+                      return {'status':int(r.status),'bytes':int(r.headers.get('Content-Length') or 0),'content_type':str(r.headers.get('Content-Type') or '')}
+              except urllib.error.HTTPError as e: return {'status':int(e.code),'bytes':0,'content_type':str(e.headers.get('Content-Type') or '')}
+              except Exception: return {'status':0,'bytes':0,'content_type':''}
+
+          for rp in requests:
+              req=json.loads(pathlib.Path(rp).read_text(encoding='utf-8'))
+              if req.get('action')!='product.webp_lossless_migrate': raise SystemExit('Unsupported action')
+              min_saving=max(0.0,min(90.0,float(req.get('min_saving_pct',10.0))))
+              items=req.get('items') or []
+              if not (1 <= len(items) <= 10): raise SystemExit('Requires 1..10 items')
+              result={'action':'product.webp_lossless_migrate','executed_at_utc':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'min_saving_pct':min_saving,'items':[]}
+              for spec in items:
+                  pid=int(spec.get('product_id',0)); old=int(spec.get('attachment_id',0)); row={'product_id':pid,'old_attachment_id':old,'success':False}; result['items'].append(row)
+                  new_id=None; original_images=None
+                  try:
+                      code,obj=inspect(old); b=obj.get('before') if isinstance(obj,dict) else None
+                      if not (200 <= code < 300 and obj.get('ok') is True and isinstance(b,dict)): raise RuntimeError(f'attachment inspect failed http={code}')
+                      mime=str(b.get('mime_type') or '').lower()
+                      if mime not in ('image/png','image/jpeg'): raise RuntimeError(f'unsupported source mime {mime}')
+                      src=str(b.get('url') or ''); raw=getbytes(src)
+                      pc,product=api('GET',f'{base}/wp-json/wc/v3/products/{pid}')
+                      if not (200 <= pc < 300): raise RuntimeError(f'product read failed http={pc}')
+                      original_images=list(product.get('images') or []); matches=[i for i,x in enumerate(original_images) if int(x.get('id') or 0)==old]
+                      if len(matches)!=1: raise RuntimeError(f'source attachment occurrence={len(matches)}')
+                      idx=matches[0]
+                      im=ImageOps.exif_transpose(Image.open(io.BytesIO(raw))); im.load(); w,h=im.size
+                      buf=io.BytesIO(); kwargs={'format':'WEBP','lossless':True,'method':6}
+                      if im.info.get('icc_profile'): kwargs['icc_profile']=im.info['icc_profile']
+                      if im.info.get('exif'): kwargs['exif']=im.info['exif']
+                      im.save(buf,**kwargs); webp=buf.getvalue(); saving=round((1-len(webp)/float(len(raw)))*100,2)
+                      decoded=Image.open(io.BytesIO(webp)); decoded.load(); exact=ImageChops.difference(im.convert('RGBA'),decoded.convert('RGBA')).getbbox() is None
+                      row.update({'source_url':src,'width':w,'height':h,'original_bytes':len(raw),'webp_bytes_local':len(webp),'saving_pct':saving,'pixel_exact':bool(exact),'product_image_index':idx})
+                      if not exact: raise RuntimeError('lossless pixel equality check failed')
+                      if saving < min_saving:
+                          row['stage']='saving_guard'; row['message']=f'Saving {saving}% below minimum {min_saving}%'; continue
+                      slug=str(product.get('slug') or f'product-{pid}'); filename=f'{slug}-{old}-lossless.webp'
+                      upload=server.wp.uploadFile(0,username,password,{'name':filename,'type':'image/webp','bits':xmlrpc.client.Binary(webp),'overwrite':False,'post_id':pid})
+                      new_id=int(upload.get('id') or 0); new_url=str(upload.get('url') or ''); row.update({'new_attachment_id':new_id,'new_url':new_url})
+                      nc,no=inspect(new_id); nb=no.get('before') if isinstance(no,dict) else None
+                      if not (200 <= nc < 300 and no.get('ok') is True and isinstance(nb,dict) and str(nb.get('mime_type') or '').lower()=='image/webp'): raise RuntimeError('new attachment verification failed')
+                      if int(nb.get('width') or 0)!=w or int(nb.get('height') or 0)!=h: raise RuntimeError('dimension mismatch')
+                      hd=head(new_url); row['new_head']=hd
+                      if not (200 <= hd['status'] < 400 and 'image/webp' in hd['content_type'].lower()): raise RuntimeError('public WebP HEAD failed')
+                      replacement=[]
+                      for j,x in enumerate(original_images):
+                          replacement.append({'id':new_id,'alt':str(x.get('alt') or product.get('name') or '')} if j==idx else {'id':int(x.get('id') or 0)})
+                      uc,_=api('PUT',f'{base}/wp-json/wc/v3/products/{pid}',{'images':replacement})
+                      if not (200 <= uc < 300): raise RuntimeError(f'product update failed http={uc}')
+                      rc,rb=api('GET',f'{base}/wp-json/wc/v3/products/{pid}')
+                      imgs=list(rb.get('images') or []) if 200 <= rc < 300 else []
+                      if idx >= len(imgs) or int(imgs[idx].get('id') or 0)!=new_id: raise RuntimeError('readback failed')
+                      row.update({'readback_image_id':new_id,'readback_src':str(imgs[idx].get('src') or ''),'success':True,'stage':'verified'})
+                  except Exception as e:
+                      row['stage']=row.get('stage') or 'error'; row['error']=str(e)
+                      if new_id and original_images:
+                          try: row['rollback_product_http']=api('PUT',f'{base}/wp-json/wc/v3/products/{pid}',{'images':[{'id':int(x.get('id') or 0)} for x in original_images]})[0]
+                          except Exception as re: row['rollback_product_error']=str(re)
+                      if new_id:
+                          try: row['cleanup_uploaded_webp']=bool(server.wp.deleteFile(0,username,password,new_id))
+                          except Exception: row['cleanup_uploaded_webp']=False
+              result['success_count']=sum(1 for x in result['items'] if x.get('success')); result['all_success']=result['success_count']==len(result['items'])
+              out=outdir/(pathlib.Path(rp).stem+'.json'); out.write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8'); print(f'Recorded {out}')
+
+      - name: Commit sanitized result
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f local-webp-results/*.json || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "media: record lossless WebP result"
+          git pull --rebase origin main
+          git push origin HEAD:main
