@@ -1,0 +1,183 @@
+name: Keshavarz20 Primary WebP XML-RPC Fallback
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'local-webp-primary-xmlrpc-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-local-webp-primary-xmlrpc
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Install Pillow
+        run: python -m pip install --disable-pip-version-check --quiet pillow
+
+      - name: Convert and replace featured image through guarded XML-RPC
+        shell: python
+        run: |
+          import base64, io, json, math, os, pathlib, subprocess, time, urllib.error, urllib.parse, urllib.request, xmlrpc.client
+          from PIL import Image, ImageChops, ImageOps
+
+          for key in ('WP_BASE_URL','WP_USERNAME','WP_APP_PASSWORD'):
+              if not os.environ.get(key,'').strip():
+                  raise SystemExit(f'Missing required repository secret: {key}')
+
+          def changed_requests():
+              for cmd in (["git","diff","--name-only","HEAD^","HEAD","--","local-webp-primary-xmlrpc-ops/*.json"], ["git","show","--pretty=","--name-only","HEAD","--","local-webp-primary-xmlrpc-ops/*.json"]):
+                  paths=sorted({p.strip() for p in subprocess.check_output(cmd,text=True).splitlines() if p.strip().startswith('local-webp-primary-xmlrpc-ops/') and p.strip().endswith('.json')})
+                  if paths: return paths
+              return []
+
+          requests=changed_requests()
+          if not requests: raise SystemExit('No primary XML-RPC request JSON found')
+          base=os.environ['WP_BASE_URL'].rstrip('/'); username=os.environ['WP_USERNAME']; password=os.environ['WP_APP_PASSWORD']
+          auth=base64.b64encode(f'{username}:{password}'.encode()).decode()
+          bridge=base+'/wp-json/keshavarz20-ops/v2/execute'
+          server=xmlrpc.client.ServerProxy(base+'/xmlrpc.php',allow_none=True,use_builtin_types=True)
+          outdir=pathlib.Path('local-webp-results'); outdir.mkdir(parents=True,exist_ok=True)
+
+          def qurl(url):
+              p=urllib.parse.urlsplit(url); path=urllib.parse.quote(urllib.parse.unquote(p.path),safe='/%')
+              return urllib.parse.urlunsplit((p.scheme,p.netloc,path,p.query,p.fragment))
+
+          def api(method,url,body=None):
+              headers={'Authorization':'Basic '+auth,'Accept':'application/json','User-Agent':'K20-Primary-WebP-XMLRPC/1.0'}; data=None
+              if body is not None:
+                  data=json.dumps(body,ensure_ascii=False,separators=(',',':')).encode('utf-8'); headers['Content-Type']='application/json; charset=utf-8'
+              req=urllib.request.Request(qurl(url),data=data,method=method,headers=headers)
+              try:
+                  with urllib.request.urlopen(req,timeout=180) as r:
+                      raw=r.read().decode('utf-8','replace'); return int(r.status),json.loads(raw) if raw else {}
+              except urllib.error.HTTPError as e:
+                  raw=e.read().decode('utf-8','replace')
+                  try: obj=json.loads(raw)
+                  except Exception: obj={'raw':raw[:1000]}
+                  return int(e.code),obj
+
+          def inspect(aid):
+              data=json.dumps({'mode':'inspect','resource':'attachment','id':int(aid),'changes':{}},separators=(',',':')).encode('utf-8')
+              req=urllib.request.Request(bridge,data=data,method='POST',headers={'Authorization':'Basic '+auth,'Content-Type':'application/json','Accept':'application/json'})
+              try:
+                  with urllib.request.urlopen(req,timeout=120) as r: return int(r.status),json.loads(r.read().decode('utf-8','replace'))
+              except urllib.error.HTTPError as e:
+                  raw=e.read().decode('utf-8','replace')
+                  try: obj=json.loads(raw)
+                  except Exception: obj={'raw':raw[:1000]}
+                  return int(e.code),obj
+
+          def getbytes(url):
+              with urllib.request.urlopen(urllib.request.Request(qurl(url),headers={'User-Agent':'K20-Primary-WebP-XMLRPC/1.0'}),timeout=180) as r: return r.read()
+
+          def head(url):
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(qurl(url),method='HEAD',headers={'User-Agent':'K20-Primary-WebP-XMLRPC/1.0'}),timeout=90) as r:
+                      return {'status':int(r.status),'bytes':int(r.headers.get('Content-Length') or 0),'content_type':str(r.headers.get('Content-Type') or '')}
+              except urllib.error.HTTPError as e: return {'status':int(e.code),'bytes':0,'content_type':str(e.headers.get('Content-Type') or '')}
+              except Exception: return {'status':0,'bytes':0,'content_type':''}
+
+          def flatten(img):
+              if 'A' in img.getbands():
+                  rgba=img.convert('RGBA'); bg=Image.new('RGBA',rgba.size,(255,255,255,255)); bg.alpha_composite(rgba); return bg.convert('RGB')
+              return img.convert('RGB')
+
+          def psnr(a,b):
+              aa=flatten(a); bb=flatten(b); hist=ImageChops.difference(aa,bb).histogram(); sq=0.0
+              for i,count in enumerate(hist):
+                  v=i%256; sq+=count*(v*v)
+              mse=sq/float(aa.size[0]*aa.size[1]*3)
+              return 99.0 if mse<=0 else 20.0*math.log10(255.0/math.sqrt(mse))
+
+          def encode(raw,quality,min_psnr):
+              src=ImageOps.exif_transpose(Image.open(io.BytesIO(raw))); src.load(); attempts=[]
+              for q in dict.fromkeys([quality,min(92,quality+4),min(95,quality+7)]):
+                  buf=io.BytesIO(); kwargs={'format':'WEBP','method':6,'quality':int(q)}
+                  if src.info.get('icc_profile'): kwargs['icc_profile']=src.info['icc_profile']
+                  if src.info.get('exif'): kwargs['exif']=src.info['exif']
+                  src.save(buf,**kwargs); data=buf.getvalue(); dec=Image.open(io.BytesIO(data)); dec.load(); score=round(psnr(src,dec),2)
+                  attempts.append({'mode':f'lossy-q{q}','bytes':len(data),'psnr':score})
+                  if score>=min_psnr: return src,data,score,f'lossy-q{q}',attempts
+              raise RuntimeError(f'Could not reach minimum PSNR {min_psnr}')
+
+          for rp in requests:
+              req=json.loads(pathlib.Path(rp).read_text(encoding='utf-8'))
+              if req.get('action')!='product.primary_webp_xmlrpc_migrate': raise SystemExit('Unsupported action')
+              quality=max(75,min(95,int(req.get('quality',88)))); min_psnr=max(32.0,min(50.0,float(req.get('min_psnr',36.0)))); min_saving=max(0.0,min(90.0,float(req.get('min_saving_pct',20.0))))
+              items=req.get('items') or []
+              if not (1<=len(items)<=5): raise SystemExit('Requires 1..5 items')
+              result={'action':'product.primary_webp_xmlrpc_migrate','executed_at_utc':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'quality':quality,'min_psnr':min_psnr,'min_saving_pct':min_saving,'items':[]}
+              for spec in items:
+                  pid=int(spec.get('product_id',0)); old=int(spec.get('attachment_id',0)); row={'product_id':pid,'old_attachment_id':old,'success':False}; result['items'].append(row); new_id=None
+                  try:
+                      pc,product=api('GET',f'{base}/wp-json/wc/v3/products/{pid}')
+                      if not (200<=pc<300): raise RuntimeError(f'product read failed http={pc}')
+                      images=list(product.get('images') or [])
+                      if not images or int(images[0].get('id') or 0)!=old: raise RuntimeError('expected attachment is not the current primary image')
+                      if sum(1 for x in images if int(x.get('id') or 0)==old)!=1: raise RuntimeError('expected primary attachment must occur exactly once')
+                      ic,ioobj=inspect(old); before=ioobj.get('before') if isinstance(ioobj,dict) else None
+                      if not (200<=ic<300 and ioobj.get('ok') is True and isinstance(before,dict)): raise RuntimeError('source attachment inspect failed')
+                      mime=str(before.get('mime_type') or '').lower()
+                      if mime not in ('image/jpeg','image/png'): raise RuntimeError(f'unsupported source mime {mime}')
+                      srcurl=str(before.get('url') or ''); raw=getbytes(srcurl); src,webp,score,mode,attempts=encode(raw,quality,min_psnr); w,h=src.size; saving=round((1-len(webp)/float(len(raw)))*100,2)
+                      row.update({'source_url':srcurl,'original_bytes':len(raw),'webp_bytes_local':len(webp),'saving_pct':saving,'psnr_db':score,'encoder_mode':mode,'encoder_attempts':attempts,'width':w,'height':h})
+                      if saving<min_saving:
+                          row.update({'stage':'saving_guard','message':f'Saving {saving}% below minimum {min_saving}%'}); continue
+                      slug=str(product.get('slug') or f'product-{pid}'); filename=f'{slug}-{old}-primary.webp'
+                      up=server.wp.uploadFile(0,username,password,{'name':filename,'type':'image/webp','bits':xmlrpc.client.Binary(webp),'overwrite':False,'post_id':pid}); new_id=int(up.get('id') or 0); new_url=str(up.get('url') or '')
+                      if new_id<=0 or not new_url: raise RuntimeError('upload did not return valid attachment')
+                      row.update({'new_attachment_id':new_id,'new_url':new_url})
+                      nc,no=inspect(new_id); nb=no.get('before') if isinstance(no,dict) else None
+                      if not (200<=nc<300 and no.get('ok') is True and isinstance(nb,dict) and str(nb.get('mime_type') or '').lower()=='image/webp'): raise RuntimeError('new WebP attachment verification failed')
+                      if int(nb.get('width') or 0)!=w or int(nb.get('height') or 0)!=h: raise RuntimeError('dimension mismatch')
+                      hd=head(new_url); row['new_head']=hd
+                      if not (200<=hd['status']<400 and 'image/webp' in hd['content_type'].lower()): raise RuntimeError('public WebP HEAD failed')
+                      edited=bool(server.wp.editPost(0,username,password,pid,{'post_thumbnail':new_id}))
+                      row['xmlrpc_edit_return']=edited
+                      if not edited: raise RuntimeError('wp.editPost returned false')
+                      confirmed=False; rb={}; rc=0
+                      for attempt in range(1,4):
+                          if attempt>1: time.sleep(2)
+                          rc,rb=api('GET',f'{base}/wp-json/wc/v3/products/{pid}')
+                          rbi=list(rb.get('images') or []) if 200<=rc<300 else []
+                          if rbi and int(rbi[0].get('id') or 0)==new_id:
+                              row.update({'readback_attempts':attempt,'readback_http':rc,'readback_image_id':new_id,'readback_src':str(rbi[0].get('src') or '')}); confirmed=True; break
+                      if not confirmed: raise RuntimeError('Woo readback did not confirm XML-RPC featured image')
+                      row.update({'success':True,'stage':'verified'})
+                  except Exception as e:
+                      row.update({'stage':row.get('stage') or 'error','error':str(e)})
+                      if new_id:
+                          try: row['rollback_featured_return']=bool(server.wp.editPost(0,username,password,pid,{'post_thumbnail':old}))
+                          except Exception as re: row['rollback_error']=str(re)
+                          try: row['cleanup_uploaded_webp']=bool(server.wp.deleteFile(0,username,password,new_id))
+                          except Exception: row['cleanup_uploaded_webp']=False
+              result['success_count']=sum(1 for x in result['items'] if x.get('success')); result['all_success']=result['success_count']==len(result['items'])
+              out=outdir/(pathlib.Path(rp).stem+'.json'); out.write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8'); print(f'Recorded {out}')
+
+      - name: Commit sanitized result
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f local-webp-results/*.json || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "media: record XML-RPC primary WebP result"
+          git pull --rebase origin main
+          git push origin HEAD:main
