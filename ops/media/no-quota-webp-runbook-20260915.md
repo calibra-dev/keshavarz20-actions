@@ -10,7 +10,7 @@ WPVibe is not required for this workflow. QUIC.cloud is not required for local W
 
 ## Verified cleanup state
 
-The approved zero-reference manifest contains 111 image attachments. All 111 have now been permanently deleted through the guarded XML-RPC workflow with post-delete Bridge readback / 404 evidence. Attachments with real content, meta, option, or term references were protected.
+The approved zero-reference manifest contains 111 image attachments. All 111 have been permanently deleted through the guarded XML-RPC workflow with post-delete Bridge readback / 404 evidence. Attachments with real content, meta, option, or term references were protected.
 
 Never delete an attachment because `post_parent=0` alone, because the filename looks duplicated, or because a WebP replacement exists.
 
@@ -40,6 +40,23 @@ Use when zero visual/pixel loss is required or the lossy path cannot pass the qu
 - Require `pixel_exact=true` by decoded pixel comparison.
 - Require a real size reduction before replacement.
 - Same upload, dimension, public URL, product position, readback, rollback, and cleanup guards as the lossy path.
+
+### Primary featured-image XML-RPC fallback
+
+Workflow: `.github/workflows/k20-local-webp-primary-xmlrpc.yml`
+
+Use for a current product primary image when a valid WebP is generated but WooCommerce `images[]` reference replacement does not persist reliably.
+
+- Re-read the product before every write.
+- Require the expected attachment to be the current primary image and to occur exactly once.
+- Encode with the same quality/PSNR/saving guards.
+- Upload a new `image/webp` attachment and verify mime, dimensions, public HTTP response, content type, and byte size.
+- Change only WordPress `post_thumbnail` through XML-RPC.
+- Read the product back through WooCommerce up to three times and require the new media ID in primary position.
+- On any failure after upload, restore the old primary attachment ID and remove the temporary WebP.
+- Never modify price, stock, product content, taxonomies, users, settings, or unrelated fields in this workflow.
+
+This fallback was production-verified and is now the preferred primary-image replacement path for legacy products that did not persist Woo `images[]` updates.
 
 ## Verified pilots
 
@@ -80,55 +97,109 @@ Use when zero visual/pixel loss is required or the lossy path cannot pass the qu
 
 All three lossless gallery replacements passed public WebP verification and product readback.
 
-## Verified primary JPEG batch 01
+## Verified primary JPEG migrations
 
-Four products migrated successfully through the lossy quality-guarded path:
+### Original guarded Woo path
+
+Four products migrated successfully before the XML-RPC primary fallback was introduced:
 
 - 134980 / 139862 -> 144291: 75,110 -> 23,780 bytes, 68.34% saving, PSNR 43.93 dB.
 - 134982 / 139863 -> 144292: 75,110 -> 23,780 bytes, 68.34% saving, PSNR 43.93 dB.
 - 134984 / 139857 -> 144293: 74,553 -> 23,438 bytes, 68.56% saving, PSNR 43.79 dB.
 - 134994 / 139856 -> 144295: 73,547 -> 24,882 bytes, 66.17% saving, PSNR 43.76 dB.
 
-Two products repeatedly failed only the product image-reference readback after valid WebP generation and upload:
+### XML-RPC primary fallback pilot and legacy-failure recovery
 
-- 134992 / 139855.
-- 134996 / 139853.
+The new primary fallback succeeded on all 8 targeted legacy/reference-persistence cases:
 
-For both, rollback succeeded and the temporary WebP was removed. Treat these as skip-safe reference-write edge cases for the current workflow; do not repeatedly force them without first diagnosing why WooCommerce does not retain that image-reference update.
+- 135010 / 139796 -> 144310: 69,507 -> 24,060 bytes, 65.38% saving, PSNR 43.93 dB.
+- 134992 / 139855 -> 144311: 73,547 -> 24,882 bytes, 66.17% saving, PSNR 43.76 dB.
+- 134996 / 139853 -> 144312: 73,547 -> 24,882 bytes, 66.17% saving, PSNR 43.76 dB.
+- 135000 / 139292 -> 144313: 62,057 -> 26,194 bytes, 57.79% saving, PSNR 43.94 dB.
+- 135002 / 139293 -> 144314: 62,057 -> 26,194 bytes, 57.79% saving, PSNR 43.94 dB.
+- 135004 / 139291 -> 144315: 62,057 -> 26,194 bytes, 57.79% saving, PSNR 43.94 dB.
+- 135006 / 139297 -> 144316: 62,057 -> 26,194 bytes, 57.79% saving, PSNR 43.94 dB.
+- 135008 / 139294 -> 144317: 62,057 -> 26,194 bytes, 57.79% saving, PSNR 43.94 dB.
+
+All eight returned XML-RPC edit success, public WebP HTTP verification, and WooCommerce primary-image readback; each verified on readback attempt 1.
+
+### XML-RPC primary continuation batches
+
+Batch 03 succeeded 5/5:
+
+- 135020 / 139315 -> 144318: 67.58% saving, PSNR 43.42 dB.
+- 135044 / 139380 -> 144319: 70.62% saving, PSNR 42.34 dB.
+- 135050 / 139377 -> 144320: 70.62% saving, PSNR 42.34 dB.
+- 135056 / 139373 -> 144321: 69.26% saving, PSNR 42.27 dB.
+- 135058 / 139374 -> 144322: 69.26% saving, PSNR 42.27 dB.
+
+Batch 04 succeeded 5/5:
+
+- 135060 / 139372 -> 144323: 69.26% saving, PSNR 42.27 dB.
+- 135064 / 139370 -> 144324: 69.26% saving, PSNR 42.27 dB.
+- 135066 / 139369 -> 144325: 69.26% saving, PSNR 42.27 dB.
+- 135068 / 139368 -> 144326: 69.26% saving, PSNR 42.27 dB.
+- 135092 / 139954 -> 144327: 63.83% saving, PSNR 42.07 dB.
+
+Batch 05 succeeded 5/5:
+
+- 135098 / 144087 -> 144328: 63.83% saving, PSNR 42.07 dB.
+- 135100 / 139325 -> 144329: 67.84% saving, PSNR 42.68 dB.
+- 135102 / 139324 -> 144330: 67.84% saving, PSNR 42.68 dB.
+- 135104 / 144228 -> 144331: 67.84% saving, PSNR 42.68 dB.
+- 135106 / 139322 -> 144332: 68.09% saving, PSNR 42.30 dB.
+
+All 15 continuation items passed public WebP checks and Woo primary-image readback on attempt 1.
 
 ## Product image inventory
 
 Workflow: `.github/workflows/k20-product-image-inventory.yml`
 
-Latest published-product inventory:
+Baseline inventory before the verified migration sequence:
 
 - 653 published products read.
 - 713 JPG/PNG product-image references.
 - 663 distinct JPG/PNG attachment IDs.
 - 648 JPG/PNG primary-image references.
 
-Process primary images first, then gallery images. Work in small guarded batches and verify each batch before expanding.
+Latest verified inventory checkpoint (`20260915-2135-published-products-final-checkpoint.json`):
+
+- 653 published products read.
+- 683 JPG/PNG product-image references.
+- 636 distinct JPG/PNG attachment IDs.
+- 621 JPG/PNG primary-image references.
+
+Verified delta from the baseline inventory:
+
+- JPG/PNG references: 713 -> 683, reduction of 30.
+- Distinct JPG/PNG attachments: 663 -> 636, reduction of 27.
+- JPG/PNG primary references: 648 -> 621, reduction of 27.
+
+The 30-reference reduction matches 27 verified primary migrations plus 3 verified lossless gallery migrations. Do not infer attachment deletion from these counts; original source attachments remain until a separate zero-reference deletion audit proves they are safe to remove.
 
 ## Current execution checkpoint
 
-- Primary batch 02 request: `local-webp-ops/20260915-primary-webp-batch02.json`.
-- GitHub Actions run: `35018181845`.
-- At the last verified checkpoint, this run was still in the conversion/upload/verification step. Before creating any duplicate request for these six items, inspect this run and its matching result file first.
+The first remaining JPG primary in the latest inventory is:
+
+- Product 135108 / attachment 139321 / `2101991094-1-1.jpg`.
+
+Continue from the latest inventory rather than replaying completed products. Process primary JPEGs in small guarded batches, route PNG/transparent/line-art items through the lossless path when appropriate, and refresh inventory periodically.
 
 ## Batch policy
 
 1. Read current product before each image migration.
-2. Confirm the expected source attachment occurs exactly once in that product image array.
-3. For normal JPEG/product photography, try guarded high-quality lossy WebP.
-4. Prefer PSNR >=40 dB; absolute configured floor is 36 dB. Never lower the guard just to force a conversion.
-5. For PNG, transparent assets, line-art, or any image where zero visual change is required, use pixel-exact lossless WebP.
-6. If lossy quality guard fails, route to pixel-exact lossless WebP.
-7. If neither candidate meets quality and size-saving guards, leave the original unchanged.
-8. If a valid WebP upload cannot be confirmed in the product image array, rollback the product to its original image IDs and remove the temporary upload.
-9. If the same image-reference write fails repeatedly on a product, mark it skip-safe and continue with other products instead of forcing it.
-10. Keep the old source attachment until a fresh independent zero-reference audit proves it is safe to delete.
-11. Record exact original bytes, new bytes, saving percentage, PSNR or `pixel_exact`, new media ID, public URL verification, and product readback.
-12. Use small batches (maximum 10 migration items per request) and never duplicate an active batch.
+2. Confirm the expected source attachment occurs exactly once and is in the expected product image position.
+3. For current primary JPEGs, prefer the production-verified XML-RPC primary workflow.
+4. For normal JPEG/product photography, use quality 88 as the starting point.
+5. Prefer PSNR >=40 dB; absolute configured floor is 36 dB. Never lower the guard just to force a conversion.
+6. For PNG, transparent assets, line-art, or any image where zero visual change is required, use pixel-exact lossless WebP.
+7. If lossy quality guard fails, route to pixel-exact lossless WebP.
+8. If neither candidate meets quality and size-saving guards, leave the original unchanged.
+9. If a new WebP cannot be verified in the product primary/gallery position, rollback to the original attachment ID and remove the temporary upload.
+10. If the same reference write fails repeatedly after the appropriate fallback, mark it skip-safe and continue rather than forcing it.
+11. Keep the old source attachment until a fresh independent zero-reference audit proves it is safe to delete.
+12. Record exact original bytes, new bytes, saving percentage, PSNR or `pixel_exact`, new media ID, public URL verification, and product readback.
+13. Use small batches (maximum 10 migration items per request; current primary workflow is intentionally capped at 5) and never duplicate an active batch.
 
 ## Safe deletion policy
 
