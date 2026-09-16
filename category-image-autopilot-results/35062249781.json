@@ -1,0 +1,45 @@
+{
+  "action": "category_image.autopilot_cycle",
+  "run_id": "35062249781",
+  "executed_at_utc": "2026-09-16T06:06:42Z",
+  "selected": 2,
+  "items": [
+    {
+      "old_attachment_id": 140034,
+      "categories": [
+        {
+          "id": 742,
+          "name": "رابط پلی اتیلن پیچی",
+          "slug": "polyethylene-compression-coupling"
+        },
+        {
+          "id": 760,
+          "name": "رابط مساوی پلی اتیلن",
+          "slug": "polyethylene-equal-coupling"
+        }
+      ],
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: no WebP candidate met quality and saving guards",
+      "rollback_ok": true,
+      "cleanup_uploaded_webp": true
+    },
+    {
+      "old_attachment_id": 135222,
+      "categories": [
+        {
+          "id": 754,
+          "name": "لوله پلی اتیلن",
+          "slug": "polyethylene-pipe"
+        }
+      ],
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: PNG lossless guard failed exact=True saving=-227.04",
+      "rollback_ok": true,
+      "cleanup_uploaded_webp": true
+    }
+  ],
+  "success_count": 0,
+  "critical_halt": false
+}

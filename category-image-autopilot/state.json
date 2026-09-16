@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "started_at_utc": "2026-09-16T06:06:37Z",
+  "updated_at_utc": "2026-09-16T06:07:04Z",
+  "status": "running",
+  "cycles": 1,
+  "successful_migrations": 0,
+  "lossy_success": 0,
+  "lossless_success": 0,
+  "processed_source_ids": [],
+  "migrations": {},
+  "retry_counts": {},
+  "terminal_skips": {
+    "140034": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "at_utc": "2026-09-16T06:06:55Z"
+    },
+    "135222": {
+      "reason": "TERMINAL: PNG lossless guard failed exact=True saving=-227.04",
+      "at_utc": "2026-09-16T06:07:03Z"
+    }
+  },
+  "critical_events": [],
+  "last_cycle": {
+    "run_id": "35062249781",
+    "selected": 2,
+    "success": 0,
+    "remaining_live_groups": 50,
+    "at_utc": "2026-09-16T06:07:04Z"
+  }
+}
