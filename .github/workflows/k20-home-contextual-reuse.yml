@@ -1,0 +1,47 @@
+name: Keshavarz20 Home Contextual WebP Reuse
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'home-contextual-reuse-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-home-contextual-reuse
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Validate Python
+        run: python -m py_compile scripts/k20_home_contextual_reuse.py
+      - name: Rewrite product-specific shared image references
+        run: python scripts/k20_home_contextual_reuse.py
+      - name: Commit sanitized contextual reuse evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f home-contextual-reuse-results/*.json 2>/dev/null || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "media: record contextual home WebP reuse"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
