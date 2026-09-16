@@ -1,17 +1,18 @@
 {
   "version": 1,
   "started_at_utc": "2026-09-15T22:25:31Z",
-  "updated_at_utc": "2026-09-16T02:21:12Z",
+  "updated_at_utc": "2026-09-16T02:29:05Z",
   "status": "running",
-  "cycles": 20,
-  "successful_migrations": 359,
-  "lossy_success": 341,
+  "cycles": 21,
+  "successful_migrations": 369,
+  "lossy_success": 351,
   "lossless_success": 18,
   "retry_counts": {
     "135219:141649": 3,
     "135317:140684": 3,
     "136084:139980": 3,
-    "140521:140514": 3
+    "140521:140514": 3,
+    "140742:140747": 1
   },
   "terminal_skips": {
     "135219:141649": {
@@ -29,22 +30,76 @@
     "140521:140514": {
       "reason": "max_attempts_exhausted:3",
       "at_utc": "2026-09-16T02:09:08Z"
+    },
+    "140712:141654": {
+      "reason": "TERMINAL: attachment occurs 2 times in product images",
+      "product_id": 140712,
+      "attachment_id": 141654,
+      "at_utc": "2026-09-16T02:26:12Z"
+    },
+    "140718:140722": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 140718,
+      "attachment_id": 140722,
+      "at_utc": "2026-09-16T02:26:51Z"
+    },
+    "140719:140723": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 140719,
+      "attachment_id": 140723,
+      "at_utc": "2026-09-16T02:26:59Z"
+    },
+    "140720:140724": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 140720,
+      "attachment_id": 140724,
+      "at_utc": "2026-09-16T02:27:08Z"
+    },
+    "140725:140729": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 140725,
+      "attachment_id": 140729,
+      "at_utc": "2026-09-16T02:27:16Z"
+    },
+    "140726:140730": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 140726,
+      "attachment_id": 140730,
+      "at_utc": "2026-09-16T02:27:25Z"
+    },
+    "140734:140738": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 140734,
+      "attachment_id": 140738,
+      "at_utc": "2026-09-16T02:28:07Z"
+    },
+    "140735:140740": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 140735,
+      "attachment_id": 140740,
+      "at_utc": "2026-09-16T02:28:16Z"
+    },
+    "140741:140745": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 140741,
+      "attachment_id": 140745,
+      "at_utc": "2026-09-16T02:28:25Z"
     }
   },
   "critical_events": [],
   "last_inventory": {
     "products_read": 653,
-    "jpeg_png_refs": 324,
-    "primary_refs": 262,
-    "distinct_attachment_ids": 294
+    "jpeg_png_refs": 314,
+    "primary_refs": 252,
+    "distinct_attachment_ids": 284
   },
   "last_cycle": {
-    "run_id": "35046856301",
+    "run_id": "35047649318",
     "selected": 20,
-    "success": 20,
-    "failed_or_skipped": 0,
-    "before_refs": 344,
-    "after_refs": 324,
-    "at_utc": "2026-09-16T02:21:12Z"
+    "success": 10,
+    "failed_or_skipped": 10,
+    "before_refs": 324,
+    "after_refs": 314,
+    "at_utc": "2026-09-16T02:29:05Z"
   }
 }
