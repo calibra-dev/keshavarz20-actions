@@ -1,0 +1,157 @@
+{
+  "action": "category_image.autopilot_cycle",
+  "run_id": "35063068880",
+  "executed_at_utc": "2026-09-16T06:18:01Z",
+  "selected": 5,
+  "items": [
+    {
+      "old_attachment_id": 140036,
+      "categories": [
+        {
+          "id": 794,
+          "name": "ادوات کشاورزی",
+          "slug": "%d8%a7%d8%af%d9%88%d8%a7%d8%aa-%da%a9%d8%b4%d8%a7%d9%88%d8%b1%d8%b2%db%8c"
+        }
+      ],
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: no WebP candidate met quality and saving guards",
+      "rollback_ok": true,
+      "cleanup_uploaded_webp": true
+    },
+    {
+      "old_attachment_id": 140041,
+      "categories": [
+        {
+          "id": 799,
+          "name": "بذرهای کشاورزی",
+          "slug": "%d8%a8%d8%b0%d8%b1%d9%87%d8%a7%db%8c-%da%a9%d8%b4%d8%a7%d9%88%d8%b1%d8%b2%db%8c"
+        }
+      ],
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/keshavarz20.bazr_-scaled.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 353228,
+      "webp_bytes_local": 245008,
+      "saving_pct": 30.64,
+      "encoder_mode": "lossy-q92",
+      "psnr_db": 40.04,
+      "pixel_exact": false,
+      "width": 2560,
+      "height": 1440,
+      "alt_before": "",
+      "new_attachment_id": 144917,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-category-a140041.webp",
+      "upload_http": 201,
+      "alt_after": "",
+      "new_head": {
+        "status": 200,
+        "bytes": 245008,
+        "content_type": "image/webp"
+      },
+      "updates": [
+        {
+          "category_id": 799,
+          "update_http": 200,
+          "response_image_id": 144917,
+          "readback": [
+            {
+              "http": 200,
+              "image_id": 144917
+            }
+          ],
+          "verified": true
+        }
+      ],
+      "stage": "verified",
+      "kept_original_attachment": true
+    },
+    {
+      "old_attachment_id": 140042,
+      "categories": [
+        {
+          "id": 770,
+          "name": "رابط تبدیل پلی اتیلن",
+          "slug": "polyethylene-reducing-coupling"
+        }
+      ],
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: no WebP candidate met quality and saving guards",
+      "rollback_ok": true,
+      "cleanup_uploaded_webp": true
+    },
+    {
+      "old_attachment_id": 140058,
+      "categories": [
+        {
+          "id": 730,
+          "name": "لوازم آبیاری",
+          "slug": "irrigation-equipment"
+        }
+      ],
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/keshavarz20.Irrigation-equipment-scaled.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 360413,
+      "webp_bytes_local": 305678,
+      "saving_pct": 15.19,
+      "encoder_mode": "lossy-q95",
+      "psnr_db": 40.18,
+      "pixel_exact": false,
+      "width": 2560,
+      "height": 1440,
+      "alt_before": "",
+      "new_attachment_id": 144919,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-category-a140058.webp",
+      "upload_http": 201,
+      "alt_after": "",
+      "new_head": {
+        "status": 200,
+        "bytes": 305678,
+        "content_type": "image/webp"
+      },
+      "updates": [
+        {
+          "category_id": 730,
+          "update_http": 200,
+          "response_image_id": 144919,
+          "readback": [
+            {
+              "http": 200,
+              "image_id": 140058
+            },
+            {
+              "http": 200,
+              "image_id": 140058
+            },
+            {
+              "http": 200,
+              "image_id": 144919
+            }
+          ],
+          "verified": true
+        }
+      ],
+      "stage": "verified",
+      "kept_original_attachment": true
+    },
+    {
+      "old_attachment_id": 140059,
+      "categories": [
+        {
+          "id": 727,
+          "name": "لوازم جانبی",
+          "slug": "%d9%84%d9%88%d8%a7%d8%b2%d9%85-%d8%ac%d8%a7%d9%86%d8%a8%db%8c"
+        }
+      ],
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: no WebP candidate met quality and saving guards",
+      "rollback_ok": true,
+      "cleanup_uploaded_webp": true
+    }
+  ],
+  "success_count": 2,
+  "critical_halt": false
+}
