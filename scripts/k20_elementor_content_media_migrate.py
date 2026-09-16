@@ -44,7 +44,7 @@ def api(method,url,body=None,raw=None,extra=None,timeout=180):
 def get_bytes(url):
     with urllib.request.urlopen(urllib.request.Request(qurl(url),headers={'User-Agent':'K20-Elementor-Content-Media/1.0'}),timeout=180) as r:return r.read()
 def public_get(url):
-    req=urllib.request.Request(qurl(url),headers={'User-Agent':'K20-Elementor-Content-Media/1.0','Cache-Control':'no-cache'})
+    req=urllib.request.Request(qurl(url),headers={'User-Agent':'K20-Elementor-Content-Media/1.0','Cache-Control':'no-cache','Pragma':'no-cache'})
     try:
         with urllib.request.urlopen(req,timeout=120) as r:return int(r.status),r.read().decode('utf-8','replace')
     except Exception:return 0,''
@@ -52,6 +52,8 @@ def head(url):
     try:
         with urllib.request.urlopen(urllib.request.Request(qurl(url),method='HEAD',headers={'User-Agent':'K20-Elementor-Content-Media/1.0'}),timeout=90) as r:return {'status':int(r.status),'content_type':str(r.headers.get('Content-Type') or ''),'bytes':int(r.headers.get('Content-Length') or 0)}
     except Exception:return {'status':0,'content_type':'','bytes':0}
+def clear_elementor_cache():
+    return api('DELETE',base+'/wp-json/elementor/v1/cache',timeout=180)
 def flat(im):
     if 'A' in im.getbands():
         rgba=im.convert('RGBA'); bg=Image.new('RGBA',rgba.size,(255,255,255,255)); bg.alpha_composite(rgba); return bg.convert('RGB')
@@ -100,7 +102,7 @@ def find_image_nodes(obj,aid,url,path='$'):
 
 def apply_request(req):
     pid=int(req.get('post_id') or 0); olds=[int(x) for x in (req.get('attachment_ids') or [])]
-    result={'post_id':pid,'attachment_ids':olds,'success':False,'stage':'start','media':[]}; uploaded=[]; wrote=False; original_raw=''; original_elem=''
+    result={'post_id':pid,'attachment_ids':olds,'success':False,'stage':'start','media':[]}; uploaded=[]; wrote=False; cache_cleared=False; original_raw=''; original_elem=''
     try:
         if pid<=0 or not (1<=len(olds)<=3) or len(set(olds))!=len(olds): raise RuntimeError('invalid guarded request')
         pc,post=get_post(pid)
@@ -149,6 +151,10 @@ def apply_request(req):
             if find_image_nodes(rem,old,r['old_url']): raise RuntimeError(f'old Elementor node remained {old}')
             if len(find_image_nodes(rem,r['new_id'],r['new_url']))!=1: raise RuntimeError(f'new Elementor node missing {r["new_id"]}')
             if old==142591 and (r['old_url'] in rr or rr.count(r['new_url'])!=1): raise RuntimeError('raw content readback mismatch')
+        cc,_=clear_elementor_cache(); result['elementor_cache_delete_http']=cc
+        if not 200<=cc<300: raise RuntimeError(f'Elementor cache purge failed http={cc}')
+        cache_cleared=True
+        time.sleep(3)
         link=str(rb.get('link') or post.get('link') or ''); public_ok=False; last={}
         for attempt in range(1,4):
             check=link+('&' if '?' in link else '?')+f'k20_media_verify={int(time.time())}-{attempt}' if link else ''
@@ -167,6 +173,8 @@ def apply_request(req):
         if wrote:
             try:
                 bc,_=api('POST',f'{base}/wp-json/wp/v2/posts/{pid}',{'content':original_raw,'meta':{'_elementor_data':original_elem}}); rollback_ok=200<=bc<300; result['rollback_http']=bc
+                if rollback_ok and cache_cleared:
+                    rcc,_=clear_elementor_cache(); result['rollback_elementor_cache_delete_http']=rcc; rollback_ok=200<=rcc<300
             except Exception as rb_err:
                 rollback_ok=False; result['rollback_error']=str(rb_err)
         result['rollback_ok']=rollback_ok
