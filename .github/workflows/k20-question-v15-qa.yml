@@ -1,0 +1,41 @@
+name: Keshavarz20 Question v15 QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'question-engine-v15-ops/*.json'
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: k20-customer-question-engine
+  cancel-in-progress: false
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run v1-v15 regression suite
+        shell: bash
+        run: |
+          set -euo pipefail
+          for t in question-engine/test_engine.py question-engine/test_engine_v{2..15}.py; do
+            python "$t"
+          done
+      - name: Dry-run v15 on live catalog
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="${RUNNER_TEMP}/k20-question-v15-dry-run.json"
+          python question-engine/engine_v15.py --action dry_run --result "$out"
+          cat "$out"
