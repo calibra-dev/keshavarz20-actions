@@ -44,7 +44,13 @@ jobs:
           $req=Get-Content -Raw -LiteralPath $requests[0]|ConvertFrom-Json
           if([string]$req.action -ne 'probe' -or [int]$req.id -ne 13){throw 'Probe is hard-limited to action=probe and page ID 13.'}
 
-          function HashText([string]$text){$sha=[Security.Cryptography.SHA256]::Create();try{return([BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($text))).Replace('-','').ToLowerInvariant()}finally{$sha.Dispose()}}
+          function HashText([string]$text){
+            $sha=[Security.Cryptography.SHA256]::Create()
+            try{
+              $bytes=$sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($text))
+              return ([BitConverter]::ToString($bytes)).Replace('-','').ToLowerInvariant()
+            }finally{$sha.Dispose()}
+          }
           function CountLiteral([string]$text,[string]$needle){if([string]::IsNullOrEmpty($text)-or[string]::IsNullOrEmpty($needle)){return 0};$c=0;$o=0;while(($i=$text.IndexOf($needle,$o,[StringComparison]::Ordinal))-ge0){$c++;$o=$i+$needle.Length};return $c}
 
           $base=$env:WP_BASE_URL.TrimEnd('/')
@@ -52,13 +58,10 @@ jobs:
           $headers=@{Authorization="Basic $auth";Accept='application/json';'Cache-Control'='no-cache'}
           $uri="$base/wp-json/wp/v2/pages/13?context=edit&_fields=id,slug,status,modified_gmt,meta"
 
-          $status=0
-          try{
-            $r=Invoke-WebRequest -Uri $uri -Headers $headers -Method GET -TimeoutSec 180 -SkipHttpErrorCheck
-            $status=[int]$r.StatusCode
-            if($status -lt 200 -or$status -ge 300){throw "Selective REST meta GET returned HTTP $status"}
-            $page=$r.Content|ConvertFrom-Json -Depth 100
-          }catch{throw}
+          $r=Invoke-WebRequest -Uri $uri -Headers $headers -Method GET -TimeoutSec 180 -SkipHttpErrorCheck
+          $status=[int]$r.StatusCode
+          if($status -lt 200 -or$status -ge 300){throw "Selective REST meta GET returned HTTP $status"}
+          $page=$r.Content|ConvertFrom-Json -Depth 100
 
           $meta=$page.meta
           $keys=@()
