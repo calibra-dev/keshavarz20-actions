@@ -1,0 +1,75 @@
+{
+  "executed_at_utc": "2026-09-16T06:13:02Z",
+  "source_inventory_executed_at_utc": "2026-09-16T04:35:42Z",
+  "source_image_attachments": 3548,
+  "formats": {
+    "jpeg": 2757,
+    "png": 190,
+    "webp": 601
+  },
+  "referenced_formats": {
+    "jpeg": 269,
+    "png": 52,
+    "webp": 520
+  },
+  "reference_kinds": {
+    "featured_image": {
+      "reference_tokens": 37,
+      "distinct_attachments": 37,
+      "distinct_jpeg_png_attachments": 35
+    },
+    "woo_category_image": {
+      "reference_tokens": 59,
+      "distinct_attachments": 58,
+      "distinct_jpeg_png_attachments": 53
+    },
+    "woo_product_image": {
+      "reference_tokens": 780,
+      "distinct_attachments": 749,
+      "distinct_jpeg_png_attachments": 236
+    }
+  },
+  "focus": {
+    "woo_product_image": {
+      "reference_tokens": 780,
+      "distinct_attachments": 749,
+      "distinct_jpeg_png_attachments": 236
+    },
+    "featured_image": {
+      "reference_tokens": 37,
+      "distinct_attachments": 37,
+      "distinct_jpeg_png_attachments": 35
+    },
+    "woo_category_image": {
+      "reference_tokens": 59,
+      "distinct_attachments": 58,
+      "distinct_jpeg_png_attachments": 53
+    },
+    "post_content_raw": {
+      "reference_tokens": 0,
+      "distinct_attachments": 0,
+      "distinct_jpeg_png_attachments": 0
+    },
+    "rest_meta": {
+      "reference_tokens": 0,
+      "distinct_attachments": 0,
+      "distinct_jpeg_png_attachments": 0
+    },
+    "post_content_rendered": {
+      "reference_tokens": 0,
+      "distinct_attachments": 0,
+      "distinct_jpeg_png_attachments": 0
+    },
+    "rendered_page": {
+      "reference_tokens": 0,
+      "distinct_attachments": 0,
+      "distinct_jpeg_png_attachments": 0
+    }
+  },
+  "object_type_breakdown": {
+    "featured_image|post": 37,
+    "woo_category_image|product_cat": 59,
+    "woo_product_image|product": 780
+  },
+  "note": "Read-only summary of the retained inventory snapshot. Rerun after fresh inventory before any content/meta write phase."
+}
