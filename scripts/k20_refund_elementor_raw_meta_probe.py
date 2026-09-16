@@ -4,6 +4,7 @@ import json
 import os
 import pathlib
 import urllib.error
+import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 
@@ -32,7 +33,7 @@ def sha256(text):
     return hashlib.sha256(text.encode('utf-8')).hexdigest()
 
 
-def scalar_fingerprint(path, value, phrase):
+def fingerprint(path, value, phrase, parse_json=False):
     text = str(value or '')
     row = {
         'path': path,
@@ -45,7 +46,7 @@ def scalar_fingerprint(path, value, phrase):
         'css_h1_count': text.count('.k20-hero h1'),
         'css_h2_count': text.count('.k20-hero h2'),
     }
-    if 'elementor_data' in path.lower():
+    if parse_json:
         try:
             parsed = json.loads(text)
             row['json_valid'] = True
@@ -63,42 +64,17 @@ def scalar_fingerprint(path, value, phrase):
     return row
 
 
-def collect_elementor(node, path, phrase, out):
-    if isinstance(node, dict):
-        for key, value in node.items():
-            child = f'{path}.{key}' if path else str(key)
-            if 'elementor' in str(key).lower():
-                if isinstance(value, (str, int, float, bool)) or value is None:
-                    out.append(scalar_fingerprint(child, value, phrase))
-                else:
-                    out.append({
-                        'path': child,
-                        'type': type(value).__name__,
-                        'count': len(value) if isinstance(value, (list, dict)) else None,
-                    })
-            collect_elementor(value, child, phrase, out)
-    elif isinstance(node, list):
-        for i, value in enumerate(node):
-            collect_elementor(value, f'{path}[{i}]', phrase, out)
-
-
-def bridge_inspect(page_id):
-    body = json.dumps(
-        {'mode': 'inspect', 'resource': 'page', 'id': page_id, 'changes': {}},
-        ensure_ascii=False,
-        separators=(',', ':'),
-    ).encode('utf-8')
-    request = urllib.request.Request(
-        bridge,
-        data=body,
-        method='POST',
-        headers={
-            'Authorization': 'Basic ' + auth,
-            'Accept': 'application/json',
-            'Content-Type': 'application/json; charset=utf-8',
-            'User-Agent': 'K20-Refund-Elementor-Raw-Meta-Probe/2.0',
-        },
-    )
+def request_json(method, url, body=None, user_agent='K20-Refund-Elementor-Raw-Meta-Probe/3.0'):
+    headers = {
+        'Authorization': 'Basic ' + auth,
+        'Accept': 'application/json',
+        'User-Agent': user_agent,
+    }
+    data = None
+    if body is not None:
+        data = json.dumps(body, ensure_ascii=False, separators=(',', ':')).encode('utf-8')
+        headers['Content-Type'] = 'application/json; charset=utf-8'
+    request = urllib.request.Request(url, data=data, method=method, headers=headers)
     try:
         with urllib.request.urlopen(request, timeout=180) as response:
             raw = response.read().decode('utf-8', 'replace')
@@ -110,6 +86,16 @@ def bridge_inspect(page_id):
         except Exception:
             parsed = {'error_body_length': len(raw)}
         return int(exc.code), parsed
+
+
+def safe_error(obj):
+    if not isinstance(obj, dict):
+        return {}
+    return {
+        k: obj.get(k)
+        for k in ('code', 'data')
+        if k in obj and isinstance(obj.get(k), (str, int, float, bool, dict, list, type(None)))
+    }
 
 
 requests = sorted(REQ_DIR.glob('*.json'), key=lambda p: p.name, reverse=True)
@@ -124,35 +110,46 @@ if page_id != EXPECTED_ID:
 if phrase != EXPECTED_PHRASE:
     raise SystemExit('Unexpected target phrase.')
 
-http_code, response = bridge_inspect(page_id)
-if http_code < 200 or http_code >= 300:
-    raise SystemExit(f'Bridge inspect failed with HTTP {http_code}.')
-if not isinstance(response, dict):
-    raise SystemExit('Unexpected Bridge response shape.')
+rest_url = (
+    f'{base}/wp-json/wp/v2/pages/{page_id}?context=edit&'
+    + urllib.parse.urlencode({'_fields': 'id,slug,status,modified_gmt,meta'})
+)
+rest_code, rest_obj = request_json('GET', rest_url)
+rest_meta = rest_obj.get('meta') if isinstance(rest_obj, dict) and isinstance(rest_obj.get('meta'), dict) else {}
+rest_elementor = None
+if '_elementor_data' in rest_meta:
+    rest_elementor = fingerprint('rest.meta._elementor_data', rest_meta.get('_elementor_data'), phrase, parse_json=True)
 
-before = response.get('before') if isinstance(response.get('before'), dict) else {}
-candidates = []
-collect_elementor(before, 'before', phrase, candidates)
-
-safe_scalar = {}
-for key, value in before.items():
-    if key in ('id', 'type', 'post_type', 'status', 'slug', 'modified_gmt') and (
-        isinstance(value, (str, int, float, bool)) or value is None
-    ):
-        safe_scalar[key] = value
+bridge_code, bridge_obj = request_json(
+    'POST',
+    bridge,
+    {'mode': 'inspect', 'resource': 'page', 'id': page_id, 'changes': {}},
+)
+bridge_before = bridge_obj.get('before') if isinstance(bridge_obj, dict) and isinstance(bridge_obj.get('before'), dict) else {}
 
 result = {
     'ok': True,
     'action': 'refund.elementor_raw_meta_probe',
-    'source': 'keshavarz20-ops/v2/execute mode=inspect resource=page',
     'read_only': True,
     'page_id': page_id,
-    'bridge_http': http_code,
-    'bridge_ok': response.get('ok') is True,
-    'response_keys': sorted(str(k) for k in response.keys()),
-    'before_keys': sorted(str(k) for k in before.keys()),
-    'before_safe_scalar': safe_scalar,
-    'elementor_candidates': candidates,
+    'rest_narrow': {
+        'http': rest_code,
+        'ok': 200 <= rest_code < 300,
+        'error': safe_error(rest_obj) if not (200 <= rest_code < 300) else {},
+        'meta_keys': sorted(str(k) for k in rest_meta.keys()),
+        'elementor_data': rest_elementor,
+    },
+    'bridge': {
+        'http': bridge_code,
+        'ok': isinstance(bridge_obj, dict) and bridge_obj.get('ok') is True,
+        'response_keys': sorted(str(k) for k in bridge_obj.keys()) if isinstance(bridge_obj, dict) else [],
+        'before_keys': sorted(str(k) for k in bridge_before.keys()),
+        'before_safe_scalar': {
+            k: bridge_before.get(k)
+            for k in ('id', 'post_type', 'slug', 'status', 'modified_gmt')
+            if k in bridge_before and isinstance(bridge_before.get(k), (str, int, float, bool, type(None)))
+        },
+    },
     'raw_elementor_content_persisted': False,
     'executed_at_utc': now(),
 }
@@ -162,8 +159,9 @@ out_path = OUT_DIR / f'refund-elementor-raw-{req_path.stem}.json'
 out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='utf-8')
 print(json.dumps({
     'page_id': page_id,
-    'bridge_http': http_code,
-    'bridge_ok': result['bridge_ok'],
-    'before_keys': len(result['before_keys']),
-    'elementor_candidates': len(candidates),
+    'rest_http': rest_code,
+    'rest_meta_keys': len(result['rest_narrow']['meta_keys']),
+    'rest_elementor_present': rest_elementor is not None,
+    'bridge_http': bridge_code,
+    'bridge_ok': result['bridge']['ok'],
 }, ensure_ascii=False))
