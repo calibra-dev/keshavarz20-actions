@@ -1,13 +1,15 @@
 {
   "version": 2,
   "started_at_utc": "2026-09-16T05:43:43Z",
-  "updated_at_utc": "2026-09-16T05:46:14Z",
+  "updated_at_utc": "2026-09-16T05:52:02Z",
   "status": "running",
-  "cycles": 2,
-  "successful_migrations": 0,
+  "cycles": 3,
+  "successful_migrations": 1,
   "lossy_success": 0,
-  "lossless_success": 0,
-  "processed_attachment_ids": [],
+  "lossless_success": 1,
+  "processed_attachment_ids": [
+    128682
+  ],
   "retry_counts": {
     "135224": 1
   },
@@ -15,14 +17,18 @@
     "140034": {
       "reason": "TERMINAL: no WebP candidate met quality and saving guards",
       "at_utc": "2026-09-16T05:43:53Z"
+    },
+    "142589": {
+      "reason": "TERMINAL: featured image changed from inventory source",
+      "at_utc": "2026-09-16T05:51:30Z"
     }
   },
   "critical_events": [],
   "last_cycle": {
-    "run_id": "35060795536",
-    "selected": 1,
-    "success": 0,
-    "remaining_actionable_from_snapshot": 91,
-    "at_utc": "2026-09-16T05:46:14Z"
+    "run_id": "35061168051",
+    "selected": 2,
+    "success": 1,
+    "remaining_actionable_from_snapshot": 35,
+    "at_utc": "2026-09-16T05:52:02Z"
   }
 }

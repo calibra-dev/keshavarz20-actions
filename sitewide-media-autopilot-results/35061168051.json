@@ -1,0 +1,58 @@
+{
+  "action": "sitewide_media.phase1_cycle_v2",
+  "run_id": "35061168051",
+  "executed_at_utc": "2026-09-16T05:51:08Z",
+  "selected": 2,
+  "items": [
+    {
+      "old_attachment_id": 142589,
+      "success": false,
+      "references_to_update": 1,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/12/e1-45488571708197681c.jpg",
+      "original_bytes": 192279,
+      "webp_bytes_local": 93724,
+      "saving_pct": 51.26,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.37,
+      "pixel_exact": false,
+      "width": 1200,
+      "height": 900,
+      "new_attachment_id": 144820,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-sitewide-a142589-1.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 93724,
+        "content_type": "image/webp"
+      },
+      "stage": "error",
+      "error": "TERMINAL: featured image changed from inventory source",
+      "rollback_ok": true,
+      "cleanup_uploaded_webp": true
+    },
+    {
+      "old_attachment_id": 128682,
+      "success": true,
+      "references_to_update": 1,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/01/2آب-لوله-بسپار.png",
+      "original_bytes": 4880,
+      "webp_bytes_local": 3868,
+      "saving_pct": 20.74,
+      "encoder_mode": "lossless",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "width": 335,
+      "height": 200,
+      "new_attachment_id": 144821,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-sitewide-a128682.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 3868,
+        "content_type": "image/webp"
+      },
+      "stage": "verified",
+      "updated_reference_groups": 1
+    }
+  ],
+  "success_count": 1,
+  "critical_halt": false
+}
