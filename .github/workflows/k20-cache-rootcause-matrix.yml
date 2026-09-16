@@ -19,11 +19,20 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - name: Probe public cache matrix
         shell: bash
         run: |
           set -euo pipefail
-          mapfile -t requests < <(git show --pretty= --name-only HEAD -- 'diagnostics/cache-rootcause/*.json' | sed '/^$/d' | sort -u)
+          before='${{ github.event.before }}'
+          current='${{ github.sha }}'
+          zero='0000000000000000000000000000000000000000'
+          if [ -n "$before" ] && [ "$before" != "$zero" ]; then
+            mapfile -t requests < <(git diff --name-only "$before" "$current" -- 'diagnostics/cache-rootcause/*.json' | sed '/^$/d' | sort -u)
+          else
+            mapfile -t requests < <(git show --pretty= --name-only "$current" -- 'diagnostics/cache-rootcause/*.json' | sed '/^$/d' | sort -u)
+          fi
           if [ "${#requests[@]}" -ne 1 ]; then
             echo "Expected exactly one changed cache-rootcause request, found ${#requests[@]}" >&2
             exit 1
