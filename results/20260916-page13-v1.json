@@ -1,0 +1,142 @@
+{
+  "ok": true,
+  "page_id": 13,
+  "routes": {
+    "/wpvibe/v1/content/edit": {
+      "found": true,
+      "namespace": "wpvibe/v1",
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": {
+            "target_type": {
+              "required": true,
+              "type": "string",
+              "enum": [
+                "post",
+                "meta",
+                "option"
+              ],
+              "default": null
+            },
+            "post_id": {
+              "required": false,
+              "type": "integer",
+              "enum": [],
+              "default": null
+            },
+            "field": {
+              "required": false,
+              "type": "string",
+              "enum": [],
+              "default": null
+            },
+            "meta_key": {
+              "required": false,
+              "type": "string",
+              "enum": [],
+              "default": null
+            },
+            "option_name": {
+              "required": false,
+              "type": "string",
+              "enum": [],
+              "default": null
+            },
+            "old_content": {
+              "required": true,
+              "type": "string",
+              "enum": [],
+              "default": null
+            },
+            "new_content": {
+              "required": true,
+              "type": "string",
+              "enum": [],
+              "default": null
+            },
+            "replace_all": {
+              "required": false,
+              "type": "boolean",
+              "enum": [],
+              "default": false
+            },
+            "whole_word": {
+              "required": false,
+              "type": "boolean",
+              "enum": [],
+              "default": false
+            }
+          }
+        }
+      ]
+    },
+    "/wpvibe/v1/content/search": {
+      "found": true,
+      "namespace": "wpvibe/v1",
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": {
+            "target_type": {
+              "required": true,
+              "type": "string",
+              "enum": [
+                "post",
+                "meta",
+                "option"
+              ],
+              "default": null
+            },
+            "post_id": {
+              "required": false,
+              "type": "integer",
+              "enum": [],
+              "default": null
+            },
+            "field": {
+              "required": false,
+              "type": "string",
+              "enum": [],
+              "default": null
+            },
+            "meta_key": {
+              "required": false,
+              "type": "string",
+              "enum": [],
+              "default": null
+            },
+            "option_name": {
+              "required": false,
+              "type": "string",
+              "enum": [],
+              "default": null
+            },
+            "pattern": {
+              "required": true,
+              "type": "string",
+              "enum": [],
+              "default": null
+            },
+            "case_sensitive": {
+              "required": false,
+              "type": "boolean",
+              "enum": [],
+              "default": null
+            },
+            "max_results": {
+              "required": false,
+              "type": "integer",
+              "enum": [],
+              "default": null
+            }
+          }
+        }
+      ]
+    }
+  }
+}
