@@ -1,18 +1,22 @@
 {
   "version": 1,
   "started_at_utc": "2026-09-15T22:25:31Z",
-  "updated_at_utc": "2026-09-16T01:36:41Z",
+  "updated_at_utc": "2026-09-16T01:46:46Z",
   "status": "running",
-  "cycles": 16,
-  "successful_migrations": 289,
-  "lossy_success": 280,
-  "lossless_success": 9,
+  "cycles": 17,
+  "successful_migrations": 303,
+  "lossy_success": 290,
+  "lossless_success": 13,
   "retry_counts": {
     "135219:141649": 3,
     "135317:140684": 3,
     "136084:139980": 3,
-    "140457:143468": 1,
-    "140489:140492": 1
+    "140489:140492": 2,
+    "140515:140514": 1,
+    "140518:144224": 1,
+    "140521:140514": 1,
+    "140525:144222": 1,
+    "140538:140542": 1
   },
   "terminal_skips": {
     "135219:141649": {
@@ -31,17 +35,17 @@
   "critical_events": [],
   "last_inventory": {
     "products_read": 653,
-    "jpeg_png_refs": 394,
-    "primary_refs": 332,
-    "distinct_attachment_ids": 354
+    "jpeg_png_refs": 380,
+    "primary_refs": 318,
+    "distinct_attachment_ids": 345
   },
   "last_cycle": {
-    "run_id": "35044043682",
+    "run_id": "35044769050",
     "selected": 20,
-    "success": 18,
-    "failed_or_skipped": 2,
-    "before_refs": 412,
-    "after_refs": 394,
-    "at_utc": "2026-09-16T01:36:41Z"
+    "success": 14,
+    "failed_or_skipped": 6,
+    "before_refs": 394,
+    "after_refs": 380,
+    "at_utc": "2026-09-16T01:46:46Z"
   }
 }
