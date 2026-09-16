@@ -15,5 +15,17 @@ def main():
     cs=q.candidates_v6(tee,"fitting","conversational",rng)
     c=[x for x in cs if x.get("key")=="tee:three-branches"][0]
     assert "دو سر پلی‌اتیلن" in c["core"] and "رزوه ماده" in c["core"]
+
+    class FakeWP:
+        base="https://example.test"
+        def _call(self,method,path,body=None):
+            assert method=="POST"
+            assert path=="/wp-json/wp/v2/comments"
+            assert "author" not in body,body
+            assert body["author_name"]=="پرسش پیشنهادی خریداران"
+            assert body["author_email"]=="questions@example.test"
+            return 201,{"id":123},{}
+    obj=q.submit_comment_v6(FakeWP(),1,"سؤال تست",{"author_name":"پرسش پیشنهادی خریداران","author_email":"questions@example.test","comment_status":"hold"})
+    assert obj["id"]==123
     print("PASS v6")
 if __name__=="__main__":main()
