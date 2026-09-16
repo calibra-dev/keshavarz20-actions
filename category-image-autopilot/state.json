@@ -1,12 +1,12 @@
 {
   "version": 1,
   "started_at_utc": "2026-09-16T06:06:37Z",
-  "updated_at_utc": "2026-09-16T06:38:53Z",
-  "status": "running",
-  "cycles": 12,
-  "successful_migrations": 31,
-  "lossy_success": 29,
-  "lossless_success": 2,
+  "updated_at_utc": "2026-09-16T06:40:10Z",
+  "status": "completed",
+  "cycles": 13,
+  "successful_migrations": 33,
+  "lossy_success": 30,
+  "lossless_success": 3,
   "processed_source_ids": [
     135490,
     135522,
@@ -38,7 +38,9 @@
     142530,
     142534,
     142852,
-    142972
+    142972,
+    142982,
+    143045
   ],
   "migrations": {
     "135490": {
@@ -257,11 +259,24 @@
         974
       ],
       "at_utc": "2026-09-16T06:38:06Z"
+    },
+    "142982": {
+      "new_attachment_id": 144972,
+      "category_ids": [
+        1022
+      ],
+      "at_utc": "2026-09-16T06:39:37Z"
+    },
+    "143045": {
+      "new_attachment_id": 144974,
+      "category_ids": [
+        1045
+      ],
+      "at_utc": "2026-09-16T06:40:09Z"
     }
   },
   "retry_counts": {
-    "141562": 2,
-    "142982": 1
+    "141562": 2
   },
   "terminal_skips": {
     "140034": {
@@ -336,10 +351,11 @@
   },
   "critical_events": [],
   "last_cycle": {
-    "run_id": "35064457013",
-    "selected": 5,
-    "success": 3,
-    "remaining_live_groups": 2,
-    "at_utc": "2026-09-16T06:38:53Z"
-  }
+    "run_id": "35064674078",
+    "selected": 2,
+    "success": 2,
+    "remaining_live_groups": 0,
+    "at_utc": "2026-09-16T06:40:10Z"
+  },
+  "completed_at_utc": "2026-09-16T06:40:10Z"
 }
