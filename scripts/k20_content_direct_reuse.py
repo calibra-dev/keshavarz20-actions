@@ -138,7 +138,6 @@ def replace_refs(text, old_id, old_url, new_id, new_url):
         return text, {'url': 0, 'class': 0, 'id': 0}
     counts = {'url': 0, 'class': 0, 'id': 0}
 
-    # Remove stale responsive variants on img tags that reference this source before URL substitution.
     old_canon = canonical_key(old_url)
     img_re = re.compile(r'<img\b[^>]*>', re.I)
     def img_repl(match):
@@ -258,7 +257,6 @@ route = routes.get(object_type)
 if not route:
     raise SystemExit(f'No REST route for {object_type}')
 
-# Every requested mapping must be unique in the retained scope and reference this exact object.
 selected = []
 for aid in attachment_ids:
     item = scope_items.get(aid)
@@ -300,7 +298,6 @@ try:
         meta = {}
     original_meta = dict(meta)
 
-    # Limit writes to content + Elementor meta. Any other direct meta field is an explicit blocker.
     requested_fields = set()
     for aid in attachment_ids:
         for ref in scope_items[aid].get('direct_references') or []:
@@ -350,14 +347,40 @@ try:
             'new_attachment_id': new_id,
             'old_url': old_url,
             'new_url': new_url,
-            'rendered_expected': rendered,
+            'rendered_expected_from_snapshot': rendered,
             'raw_mutations': raw_counts,
             'meta_mutations': meta_counts,
         })
 
+    # Determine public expectations from a live pre-write page read, not from a stale inventory snapshot.
+    if link:
+        pre_url = link + ('&' if '?' in link else '?') + f'k20_direct_reuse_pre={int(time.time())}'
+        pre_http, pre_html = public_get(pre_url)
+        if pre_http != 200:
+            raise RuntimeError(f'public pre-read failed http={pre_http}')
+        required = 0
+        total_old_class_hits = 0
+        total_old_url_hits = 0
+        for mapping in result['mappings']:
+            class_hits = pre_html.count(f"wp-image-{mapping['old_attachment_id']}")
+            url_hits = count_public_old_urls(pre_html, mapping['old_url'])
+            present = class_hits > 0 or url_hits > 0
+            mapping['public_old_class_hits_before'] = class_hits
+            mapping['public_old_url_hits_before'] = url_hits
+            mapping['public_old_present_before'] = present
+            total_old_class_hits += class_hits
+            total_old_url_hits += url_hits
+            if present:
+                required += 1
+        result['public_pre_readback'] = {
+            'http': pre_http,
+            'required_new_mappings': required,
+            'old_class_hits': total_old_class_hits,
+            'old_url_hits': total_old_url_hits,
+        }
+
     body = {'content': new_raw}
     if '_elementor_data' in requested_fields:
-        # Ensure Elementor JSON stays valid before sending it.
         json.loads(new_elem)
         body['meta'] = {'_elementor_data': new_elem}
     uc, _ = api('POST', f'{route}/{object_id}', body)
@@ -396,10 +419,8 @@ try:
             raise RuntimeError(f'Elementor cache purge failed http={cc}')
         cache_cleared = True
 
-    # Public verification is required only for mappings that were observed rendered.
-    # Fail closed on both stale wp-image classes and stale canonical upload URLs.
-    rendered_mappings = [m for m in result['mappings'] if m['rendered_expected']]
-    if rendered_mappings and link:
+    public_required = [m for m in result['mappings'] if m.get('public_old_present_before')]
+    if public_required and link:
         public_ok = False
         last = {}
         for attempt in range(1, 4):
@@ -409,11 +430,12 @@ try:
             old_url_hits = 0
             new_hits = 0
             if hc == 200:
-                for mapping in rendered_mappings:
+                for mapping in result['mappings']:
                     old_id = mapping['old_attachment_id']
-                    new_id = mapping['new_attachment_id']
                     old_class_hits += html.count(f'wp-image-{old_id}')
                     old_url_hits += count_public_old_urls(html, mapping['old_url'])
+                for mapping in public_required:
+                    new_id = mapping['new_attachment_id']
                     if mapping['new_url'] in html or f'wp-image-{new_id}' in html:
                         new_hits += 1
             last = {
@@ -421,15 +443,16 @@ try:
                 'http': hc,
                 'old_class_hits': old_class_hits,
                 'old_url_hits': old_url_hits,
+                'required_new_mappings': len(public_required),
                 'confirmed_new_mappings': new_hits,
             }
-            if hc == 200 and old_class_hits == 0 and old_url_hits == 0 and new_hits == len(rendered_mappings):
+            if hc == 200 and old_class_hits == 0 and old_url_hits == 0 and new_hits == len(public_required):
                 public_ok = True
                 break
             time.sleep(2)
         result['public_readback'] = last
         if not public_ok:
-            raise RuntimeError('public page did not confirm all rendered replacements')
+            raise RuntimeError('public page did not confirm all live pre-write replacements')
 
     result['success'] = True
     result['stage'] = 'verified'
