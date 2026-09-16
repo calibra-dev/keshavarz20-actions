@@ -1,0 +1,892 @@
+{
+  "action": "media.autopilot.cycle",
+  "run_id": "35038224475",
+  "executed_at_utc": "2026-09-16T00:11:52Z",
+  "config": {
+    "batch_size": 20,
+    "max_attempts": 3,
+    "quality": 88,
+    "min_psnr": 40.0,
+    "min_saving_lossy_pct": 15.0,
+    "min_saving_lossless_pct": 5.0
+  },
+  "inventory_before": {
+    "products_read": 653,
+    "jpeg_png_refs": 540,
+    "primary_refs": 478,
+    "distinct_attachment_ids": 496
+  },
+  "items": [
+    {
+      "product_id": 136067,
+      "old_attachment_id": 139988,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2020/02/k20_136067.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 244039,
+      "webp_bytes_local": 140200,
+      "saving_pct": 42.55,
+      "encoder_mode": "lossy-q95",
+      "psnr_db": 41.03,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 96096,
+          "psnr": 38.22,
+          "saving_pct": 60.62
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 119112,
+          "psnr": 39.9,
+          "saving_pct": 51.19
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 140200,
+          "psnr": 41.03,
+          "saving_pct": 42.55
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "نمای محصول کلم گل",
+      "new_attachment_id": 144477,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136067-a139988-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 140200,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144477,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136067-a139988-webp.webp",
+      "alt_after": "نمای محصول کلم گل",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136071,
+      "old_attachment_id": 139986,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2020/02/k20_136071.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 124774,
+      "webp_bytes_local": 80976,
+      "saving_pct": 35.1,
+      "encoder_mode": "lossy-q95",
+      "psnr_db": 40.72,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 63030,
+          "psnr": 37.51,
+          "saving_pct": 49.48
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 72302,
+          "psnr": 39.28,
+          "saving_pct": 42.05
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 80976,
+          "psnr": 40.72,
+          "saving_pct": 35.1
+        }
+      ],
+      "width": 410,
+      "height": 308,
+      "alt_before": "نمای محصول کلم بروکسل",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 136073,
+      "old_attachment_id": 139985,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2020/02/k20_136073.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 68973,
+      "webp_bytes_local": 48564,
+      "saving_pct": 29.59,
+      "encoder_mode": "lossy-q95",
+      "psnr_db": 40.34,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 37940,
+          "psnr": 38.01,
+          "saving_pct": 44.99
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 43826,
+          "psnr": 39.48,
+          "saving_pct": 36.46
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 48564,
+          "psnr": 40.34,
+          "saving_pct": 29.59
+        }
+      ],
+      "width": 300,
+      "height": 300,
+      "alt_before": "کشاورز بیست (keshavarz20.com) - کلم پیچ",
+      "new_attachment_id": 144478,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136073-a139985-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 48564,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144478,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136073-a139985-webp.webp",
+      "alt_after": "کشاورز بیست (keshavarz20.com) - کلم پیچ",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136075,
+      "old_attachment_id": 139984,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2020/02/k20_136075.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 262624,
+      "webp_bytes_local": 158434,
+      "saving_pct": 39.67,
+      "encoder_mode": "lossy-q95",
+      "psnr_db": 41.4,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 109176,
+          "psnr": 38.25,
+          "saving_pct": 58.43
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 134066,
+          "psnr": 39.97,
+          "saving_pct": 48.95
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 158434,
+          "psnr": 41.4,
+          "saving_pct": 39.67
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "نمای محصول فیسالیس",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 136077,
+      "old_attachment_id": 139983,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2020/02/k20_136077.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 262083,
+      "webp_bytes_local": 158008,
+      "saving_pct": 39.71,
+      "encoder_mode": "lossy-q95",
+      "psnr_db": 41.28,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 113300,
+          "psnr": 38.31,
+          "saving_pct": 56.77
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 132556,
+          "psnr": 39.8,
+          "saving_pct": 49.42
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 158008,
+          "psnr": 41.28,
+          "saving_pct": 39.71
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "نمای محصول لبو",
+      "new_attachment_id": 144479,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136077-a139983-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 158008,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144479,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136077-a139983-webp.webp",
+      "alt_after": "نمای محصول لبو",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136079,
+      "old_attachment_id": 139982,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2020/02/k20_136079.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 192438,
+      "webp_bytes_local": 85508,
+      "saving_pct": 55.57,
+      "encoder_mode": "lossy-q92",
+      "psnr_db": 40.82,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 70450,
+          "psnr": 39.55,
+          "saving_pct": 63.39
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 85508,
+          "psnr": 40.82,
+          "saving_pct": 55.57
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "نمای محصول لوبیا",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 136081,
+      "old_attachment_id": 139981,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2020/02/k20_136081.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 260621,
+      "webp_bytes_local": 156068,
+      "saving_pct": 40.12,
+      "encoder_mode": "lossy-q95",
+      "psnr_db": 40.99,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 104988,
+          "psnr": 37.89,
+          "saving_pct": 59.72
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 128986,
+          "psnr": 39.52,
+          "saving_pct": 50.51
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 156068,
+          "psnr": 40.99,
+          "saving_pct": 40.12
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "نمای محصول کاهو فرانسوی",
+      "new_attachment_id": 144480,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136081-a139981-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 156068,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144480,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136081-a139981-webp.webp",
+      "alt_after": "نمای محصول کاهو فرانسوی",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136084,
+      "old_attachment_id": 139980,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2020/02/k20_136084.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 302393,
+      "webp_bytes_local": 190596,
+      "saving_pct": 36.97,
+      "encoder_mode": "lossy-q95",
+      "psnr_db": 41.31,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 137646,
+          "psnr": 37.87,
+          "saving_pct": 54.48
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 167676,
+          "psnr": 39.92,
+          "saving_pct": 44.55
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 190596,
+          "psnr": 41.31,
+          "saving_pct": 36.97
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بابونه",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 136086,
+      "old_attachment_id": 139979,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2020/02/k20_136086.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 171751,
+      "webp_bytes_local": 97880,
+      "saving_pct": 43.01,
+      "encoder_mode": "lossy-q92",
+      "psnr_db": 40.42,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 82934,
+          "psnr": 38.69,
+          "saving_pct": 51.71
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 97880,
+          "psnr": 40.42,
+          "saving_pct": 43.01
+        }
+      ],
+      "width": 546,
+      "height": 480,
+      "alt_before": "نمای محصول چای ترش",
+      "new_attachment_id": 144481,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136086-a139979-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 97880,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144481,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136086-a139979-webp.webp",
+      "alt_after": "نمای محصول چای ترش",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136088,
+      "old_attachment_id": 139978,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2020/02/k20_136088.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 269835,
+      "webp_bytes_local": 132998,
+      "saving_pct": 50.71,
+      "encoder_mode": "lossy-q92",
+      "psnr_db": 40.15,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 110714,
+          "psnr": 38.49,
+          "saving_pct": 58.97
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 132998,
+          "psnr": 40.15,
+          "saving_pct": 50.71
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول ریحان معطر",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 136090,
+      "old_attachment_id": 139977,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2020/02/k20_136090.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 246500,
+      "webp_bytes_local": 121300,
+      "saving_pct": 50.79,
+      "encoder_mode": "lossy-q92",
+      "psnr_db": 40.14,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 96932,
+          "psnr": 38.37,
+          "saving_pct": 60.68
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 121300,
+          "psnr": 40.14,
+          "saving_pct": 50.79
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "نمای محصول کدو",
+      "new_attachment_id": 144482,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136090-a139977-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 121300,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144482,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136090-a139977-webp.webp",
+      "alt_after": "نمای محصول کدو",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136092,
+      "old_attachment_id": 139976,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2020/02/k20_136092.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 199340,
+      "webp_bytes_local": 87946,
+      "saving_pct": 55.88,
+      "encoder_mode": "lossy-q92",
+      "psnr_db": 40.38,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 71588,
+          "psnr": 39.16,
+          "saving_pct": 64.09
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 87946,
+          "psnr": 40.38,
+          "saving_pct": 55.88
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "نمای محصول کلم سر",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 136172,
+      "old_attachment_id": 139739,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030062-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 113560,
+      "webp_bytes_local": 39368,
+      "saving_pct": 65.33,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.6,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 39368,
+          "psnr": 41.6,
+          "saving_pct": 65.33
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بذر گوجه تي دي",
+      "new_attachment_id": 144483,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136172-a139739-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 39368,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144483,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136172-a139739-webp.webp",
+      "alt_after": "تصویر محصول بذر گوجه تي دي",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136176,
+      "old_attachment_id": 139738,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030069-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 159232,
+      "webp_bytes_local": 53740,
+      "saving_pct": 66.25,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.18,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 53740,
+          "psnr": 40.18,
+          "saving_pct": 66.25
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "کشاورز بیست (keshavarz20.com) - بذر گوجه افرا هند",
+      "new_attachment_id": 144484,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136176-a139738-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 53740,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144484,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136176-a139738-webp.webp",
+      "alt_after": "کشاورز بیست (keshavarz20.com) - بذر گوجه افرا هند",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136179,
+      "old_attachment_id": 139737,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030070-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 159232,
+      "webp_bytes_local": 53740,
+      "saving_pct": 66.25,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.18,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 53740,
+          "psnr": 40.18,
+          "saving_pct": 66.25
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بذر گوجه افرا تايلند",
+      "new_attachment_id": 144485,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136179-a139737-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 53740,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144485,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136179-a139737-webp.webp",
+      "alt_after": "تصویر محصول بذر گوجه افرا تايلند",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136182,
+      "old_attachment_id": 139736,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030072-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 159232,
+      "webp_bytes_local": 53740,
+      "saving_pct": 66.25,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.18,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 53740,
+          "psnr": 40.18,
+          "saving_pct": 66.25
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بذر گوجه افرا پرو",
+      "new_attachment_id": 144486,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136182-a139736-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 53740,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144486,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136182-a139736-webp.webp",
+      "alt_after": "تصویر محصول بذر گوجه افرا پرو",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136185,
+      "old_attachment_id": 139735,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030073-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 81110,
+      "webp_bytes_local": 27238,
+      "saving_pct": 66.42,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.74,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 27238,
+          "psnr": 42.74,
+          "saving_pct": 66.42
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بذر گوجه سانسيد 6189",
+      "new_attachment_id": 144487,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136185-a139735-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 27238,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144487,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136185-a139735-webp.webp",
+      "alt_after": "تصویر محصول بذر گوجه سانسيد 6189",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136187,
+      "old_attachment_id": 139734,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030074-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 116106,
+      "webp_bytes_local": 35136,
+      "saving_pct": 69.74,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.79,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 35136,
+          "psnr": 41.79,
+          "saving_pct": 69.74
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بذر گوجه سيمينس برنتا تايلند",
+      "new_attachment_id": 144488,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136187-a139734-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 35136,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144488,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136187-a139734-webp.webp",
+      "alt_after": "تصویر محصول بذر گوجه سيمينس برنتا تايلند",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136206,
+      "old_attachment_id": 139725,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030088-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 121283,
+      "webp_bytes_local": 36700,
+      "saving_pct": 69.74,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.59,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 36700,
+          "psnr": 41.59,
+          "saving_pct": 69.74
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "کشاورز بیست (keshavarz20.com) - بذر گوجه سيمينس باسيمو هند",
+      "new_attachment_id": 144489,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136206-a139725-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 36700,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144489,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136206-a139725-webp.webp",
+      "alt_after": "کشاورز بیست (keshavarz20.com) - بذر گوجه سيمينس باسيمو هند",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136209,
+      "old_attachment_id": 139726,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030089-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 121283,
+      "webp_bytes_local": 36700,
+      "saving_pct": 69.74,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.59,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 36700,
+          "psnr": 41.59,
+          "saving_pct": 69.74
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "کشاورز بیست (keshavarz20.com) - بذر گوجه سيمينس باسيمو تايلند",
+      "new_attachment_id": 144490,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136209-a139726-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 36700,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144490,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136209-a139726-webp.webp",
+      "alt_after": "کشاورز بیست (keshavarz20.com) - بذر گوجه سيمينس باسيمو تايلند",
+      "stage": "verified"
+    }
+  ],
+  "inventory_after": {
+    "products_read": 653,
+    "jpeg_png_refs": 526,
+    "primary_refs": 464,
+    "distinct_attachment_ids": 482
+  },
+  "state_status": "running",
+  "total_successful_migrations": 157,
+  "total_terminal_skips": 2
+}
