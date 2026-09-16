@@ -1,0 +1,840 @@
+{
+  "action": "media.autopilot.cycle",
+  "run_id": "35041500230",
+  "executed_at_utc": "2026-09-16T01:00:35Z",
+  "config": {
+    "batch_size": 20,
+    "max_attempts": 3,
+    "quality": 88,
+    "min_psnr": 40.0,
+    "min_saving_lossy_pct": 15.0,
+    "min_saving_lossless_pct": 5.0
+  },
+  "inventory_before": {
+    "products_read": 653,
+    "jpeg_png_refs": 471,
+    "primary_refs": 409,
+    "distinct_attachment_ids": 428
+  },
+  "items": [
+    {
+      "product_id": 140014,
+      "old_attachment_id": 140688,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/asafelax-2.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 310908,
+      "webp_bytes_local": 86176,
+      "saving_pct": 72.28,
+      "encoder_mode": "lossy-q92",
+      "psnr_db": 40.36,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 70920,
+          "psnr": 39.5,
+          "saving_pct": 77.19
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 86176,
+          "psnr": 40.36,
+          "saving_pct": 72.28
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "لوله بارانی مه‌پاش ۲ اینچ آسایش آذربایجان ۱۰۰ متری",
+      "new_attachment_id": 144546,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140014-a140688-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 86176,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144546,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140014-a140688-webp.webp",
+      "alt_after": "لوله بارانی مه‌پاش ۲ اینچ آسایش آذربایجان ۱۰۰ متری",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140227,
+      "old_attachment_id": 140236,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/Fe-keshavarz20.png",
+      "source_mime": "image/png",
+      "original_bytes": 65472,
+      "webp_bytes_local": 40658,
+      "saving_pct": 37.9,
+      "encoder_mode": "lossless",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossless",
+          "bytes": 40658,
+          "pixel_exact": true
+        }
+      ],
+      "width": 600,
+      "height": 545,
+      "alt_before": "تصویر محصول کود مایع آهن ترینوکس بنیز",
+      "new_attachment_id": 144547,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140227-a140236-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 40658,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144547,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140227-a140236-webp.webp",
+      "alt_after": "تصویر محصول کود مایع آهن ترینوکس بنیز",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140228,
+      "old_attachment_id": 140234,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/ns2-keshavarz20.png",
+      "source_mime": "image/png",
+      "original_bytes": 65128,
+      "webp_bytes_local": 38540,
+      "saving_pct": 40.82,
+      "encoder_mode": "lossless",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossless",
+          "bytes": 38540,
+          "pixel_exact": true
+        }
+      ],
+      "width": 600,
+      "height": 545,
+      "alt_before": "تصویر محصول کود مایع نیتروژن و گوگرد ( ترینوکس اوره سولفات ) بنیز",
+      "new_attachment_id": 144548,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140228-a140234-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 38540,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144548,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140228-a140234-webp.webp",
+      "alt_after": "تصویر محصول کود مایع نیتروژن و گوگرد ( ترینوکس اوره سولفات ) بنیز",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140229,
+      "old_attachment_id": 140232,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/terinox-bor-keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 15275,
+      "webp_bytes_local": 10124,
+      "saving_pct": 33.72,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 47.44,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 10124,
+          "psnr": 47.44,
+          "saving_pct": 33.72
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کود مایع بور ( ترینوکس بور ) بنیز",
+      "new_attachment_id": 144549,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140229-a140232-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 10124,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144549,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140229-a140232-webp.webp",
+      "alt_after": "تصویر محصول کود مایع بور ( ترینوکس بور ) بنیز",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140230,
+      "old_attachment_id": 140231,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/potanova-keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 15289,
+      "webp_bytes_local": 10326,
+      "saving_pct": 32.46,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 47.84,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 10326,
+          "psnr": 47.84,
+          "saving_pct": 32.46
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کود مایع پتاسیم پتانوا (K45) بنیز",
+      "new_attachment_id": 144550,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140230-a140231-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 10326,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144550,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140230-a140231-webp.webp",
+      "alt_after": "تصویر محصول کود مایع پتاسیم پتانوا (K45) بنیز",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140289,
+      "old_attachment_id": 140298,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/fertinox-10-4-44-keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 32859,
+      "webp_bytes_local": 25698,
+      "saving_pct": 21.79,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.0,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 25698,
+          "psnr": 41.0,
+          "saving_pct": 21.79
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کود پودری فرتینوکس 44-04-10 پلاس",
+      "new_attachment_id": 144551,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140289-a140298-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 25698,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144551,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140289-a140298-webp.webp",
+      "alt_after": "تصویر محصول کود پودری فرتینوکس 44-04-10 پلاس",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140290,
+      "old_attachment_id": 140295,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/fertinox-13-40-13-keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 32365,
+      "webp_bytes_local": 25040,
+      "saving_pct": 22.63,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.99,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 25040,
+          "psnr": 40.99,
+          "saving_pct": 22.63
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کود پودری فرتینوکس 13-40-13 پلاس",
+      "new_attachment_id": 144552,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140290-a140295-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 25040,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144552,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140290-a140295-webp.webp",
+      "alt_after": "تصویر محصول کود پودری فرتینوکس 13-40-13 پلاس",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140293,
+      "old_attachment_id": 140299,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/fertinox-5-5-40-keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 33318,
+      "webp_bytes_local": 25876,
+      "saving_pct": 22.34,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.9,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 25876,
+          "psnr": 40.9,
+          "saving_pct": 22.34
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کود فرتینوکس 40-5-5 پلاس",
+      "new_attachment_id": 144553,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140293-a140299-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 25876,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144553,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140293-a140299-webp.webp",
+      "alt_after": "تصویر محصول کود فرتینوکس 40-5-5 پلاس",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140294,
+      "old_attachment_id": 140296,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/fertinox-5-5-8-keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 33973,
+      "webp_bytes_local": 27094,
+      "saving_pct": 20.25,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.89,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 27094,
+          "psnr": 40.89,
+          "saving_pct": 20.25
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "کشاورز بیست (keshavarz20.com) - کود پودری فرتینوکس آمینو اسید",
+      "new_attachment_id": 144554,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140294-a140296-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 27094,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144554,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140294-a140296-webp.webp",
+      "alt_after": "کشاورز بیست (keshavarz20.com) - کود پودری فرتینوکس آمینو اسید",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140300,
+      "old_attachment_id": 140314,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/micronova-keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 15515,
+      "webp_bytes_local": 10374,
+      "saving_pct": 33.14,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 47.79,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 10374,
+          "psnr": 47.79,
+          "saving_pct": 33.14
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کود مایع میکرونوا",
+      "new_attachment_id": 144555,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140300-a140314-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 10374,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144555,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140300-a140314-webp.webp",
+      "alt_after": "تصویر محصول کود مایع میکرونوا",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140301,
+      "old_attachment_id": 140312,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/jolbac-keshavarz20.png",
+      "source_mime": "image/png",
+      "original_bytes": 278368,
+      "webp_bytes_local": 154054,
+      "saving_pct": 44.66,
+      "encoder_mode": "lossless",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossless",
+          "bytes": 154054,
+          "pixel_exact": true
+        }
+      ],
+      "width": 483,
+      "height": 750,
+      "alt_before": "تصویر محصول فرتینوکس جلبک پودری SEAWEED",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 140302,
+      "old_attachment_id": 140310,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/fertinox-0-0-51-keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 33051,
+      "webp_bytes_local": 25500,
+      "saving_pct": 22.85,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.95,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 25500,
+          "psnr": 40.95,
+          "saving_pct": 22.85
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کود پودری فرتینوکس51-0-0 (سولفات پتاسیم)",
+      "new_attachment_id": 144556,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140302-a140310-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 25500,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144556,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140302-a140310-webp.webp",
+      "alt_after": "تصویر محصول کود پودری فرتینوکس51-0-0 (سولفات پتاسیم)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140305,
+      "old_attachment_id": 140307,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/fertinox-12-12-36-keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 32484,
+      "webp_bytes_local": 25336,
+      "saving_pct": 22.0,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.95,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 25336,
+          "psnr": 40.95,
+          "saving_pct": 22.0
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کود پودری فرتینوکس 36-12-12",
+      "new_attachment_id": 144557,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140305-a140307-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 25336,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144557,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140305-a140307-webp.webp",
+      "alt_after": "تصویر محصول کود پودری فرتینوکس 36-12-12",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140306,
+      "old_attachment_id": 140308,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/calbonox-keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 15028,
+      "webp_bytes_local": 9914,
+      "saving_pct": 34.03,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 46.58,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 9914,
+          "psnr": 46.58,
+          "saving_pct": 34.03
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کود مایع کالبونوکس (کلسیم+بور)",
+      "new_attachment_id": 144558,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140306-a140308-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 9914,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144558,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140306-a140308-webp.webp",
+      "alt_after": "تصویر محصول کود مایع کالبونوکس (کلسیم+بور)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140315,
+      "old_attachment_id": 140318,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/megahomat1-keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 15461,
+      "webp_bytes_local": 10256,
+      "saving_pct": 33.67,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 48.71,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 10256,
+          "psnr": 48.71,
+          "saving_pct": 33.67
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول اسید هیومیک مایع مگاهومات بن",
+      "new_attachment_id": 144559,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140315-a140318-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 10256,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144559,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140315-a140318-webp.webp",
+      "alt_after": "تصویر محصول اسید هیومیک مایع مگاهومات بن",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140316,
+      "old_attachment_id": 140317,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/megahomat-keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 31796,
+      "webp_bytes_local": 24316,
+      "saving_pct": 23.52,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.1,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 24316,
+          "psnr": 41.1,
+          "saving_pct": 23.52
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول هیومیک اسید مگاهومات بن پودری (هیومات پتاسیم)",
+      "new_attachment_id": 144560,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140316-a140317-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 24316,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144560,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140316-a140317-webp.webp",
+      "alt_after": "تصویر محصول هیومیک اسید مگاهومات بن پودری (هیومات پتاسیم)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140320,
+      "old_attachment_id": 140323,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/trinox-cal-keshavarz20.png",
+      "source_mime": "image/png",
+      "original_bytes": 63531,
+      "webp_bytes_local": 37396,
+      "saving_pct": 41.14,
+      "encoder_mode": "lossless",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossless",
+          "bytes": 37396,
+          "pixel_exact": true
+        }
+      ],
+      "width": 600,
+      "height": 545,
+      "alt_before": "تصویر محصول کود مایع ترینوکس کلسیم و نیتروژن",
+      "new_attachment_id": 144561,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140320-a140323-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 37396,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144561,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140320-a140323-webp.webp",
+      "alt_after": "تصویر محصول کود مایع ترینوکس کلسیم و نیتروژن",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140321,
+      "old_attachment_id": 140322,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/liqufos-keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 37338,
+      "webp_bytes_local": 27808,
+      "saving_pct": 25.52,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 47.77,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 27808,
+          "psnr": 47.77,
+          "saving_pct": 25.52
+        }
+      ],
+      "width": 1080,
+      "height": 1080,
+      "alt_before": "کشاورز بیست (keshavarz20.com) - کود مایع فسفر و روی لیکوفوس",
+      "new_attachment_id": 144562,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140321-a140322-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 27808,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144562,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140321-a140322-webp.webp",
+      "alt_after": "کشاورز بیست (keshavarz20.com) - کود مایع فسفر و روی لیکوفوس",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140337,
+      "old_attachment_id": 141125,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/Abafarin3.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 231904,
+      "webp_bytes_local": 42014,
+      "saving_pct": 81.88,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.78,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 42014,
+          "psnr": 41.78,
+          "saving_pct": 81.88
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "شیر ویفری پروانه‌ای آبافرین ۳ اینچ 90 میلی‌متر",
+      "new_attachment_id": 144563,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140337-a141125-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 42014,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144563,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140337-a141125-webp.webp",
+      "alt_after": "شیر ویفری پروانه‌ای آبافرین ۳ اینچ 90 میلی‌متر",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140338,
+      "old_attachment_id": 141124,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/Abafarin4.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 229696,
+      "webp_bytes_local": 42532,
+      "saving_pct": 81.48,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.92,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 42532,
+          "psnr": 41.92,
+          "saving_pct": 81.48
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "شیر ویفری پروانه‌ای آبافرین ۴ اینچ 110 میلی‌متر",
+      "new_attachment_id": 144564,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140338-a141124-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 42532,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144564,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140338-a141124-webp.webp",
+      "alt_after": "شیر ویفری پروانه‌ای آبافرین ۴ اینچ 110 میلی‌متر",
+      "stage": "verified"
+    }
+  ],
+  "inventory_after": {
+    "products_read": 653,
+    "jpeg_png_refs": 452,
+    "primary_refs": 390,
+    "distinct_attachment_ids": 409
+  },
+  "state_status": "running",
+  "total_successful_migrations": 231,
+  "total_terminal_skips": 3
+}
