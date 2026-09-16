@@ -40,7 +40,7 @@ def api_get(path, params=None, timeout=90):
     req = urllib.request.Request(qurl(url), headers={
         'Authorization': 'Basic ' + auth,
         'Accept': 'application/json',
-        'User-Agent': 'K20-Sitewide-Media-Inventory/3.0',
+        'User-Agent': 'K20-Sitewide-Media-Inventory/3.1',
     })
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
@@ -62,7 +62,7 @@ def api_get(path, params=None, timeout=90):
 
 
 def request_bytes(url, timeout=25):
-    req = urllib.request.Request(qurl(url), headers={'User-Agent': 'K20-Sitewide-Media-Inventory/3.0'})
+    req = urllib.request.Request(qurl(url), headers={'User-Agent': 'K20-Sitewide-Media-Inventory/3.1'})
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             return int(r.status), r.read(), dict(r.headers)
@@ -179,7 +179,7 @@ def resolve_url(value):
     return int(by_key.get(key) or by_canonical.get(canonical_key(key)) or 0)
 
 
-def scan_text(text, kind, object_id, object_type, field, locator=''):
+def scan_text(text, kind, object_id, object_type, field, locator='', scan_numeric_ids=True):
     if not isinstance(text, str) or not text:
         return
     for match in re.finditer(r'wp-image-(\d+)', text, flags=re.I):
@@ -189,9 +189,23 @@ def scan_text(text, kind, object_id, object_type, field, locator=''):
         aid = resolve_url(match.group(0))
         if aid:
             add_ref(aid, kind, object_id, object_type, field, locator)
-    id_pattern = r'(?i)(?:"|\b)(?:id|image_id|attachment_id|thumbnail_id)(?:"|\b)\s*[:=]\s*["\']?(\d{3,})'
-    for match in re.finditer(id_pattern, text):
-        add_ref(match.group(1), kind, object_id, object_type, field, locator)
+    if scan_numeric_ids:
+        id_pattern = r'(?i)(?:"|\b)(?:id|image_id|attachment_id|thumbnail_id)(?:"|\b)\s*[:=]\s*["\']?(\d{3,})'
+        for match in re.finditer(id_pattern, text):
+            add_ref(match.group(1), kind, object_id, object_type, field, locator)
+
+
+def scan_json_resource(value, kind, object_type, locator=''):
+    if value is None:
+        return
+    try:
+        text = json.dumps(value, ensure_ascii=False, separators=(',', ':'))
+    except Exception:
+        text = str(value)
+    # Nested resource objects use generic IDs for their own records. Only URL/class
+    # image evidence is authoritative here; do not reinterpret arbitrary record IDs
+    # as media attachment IDs.
+    scan_text(text, kind, 0, object_type, 'json', locator, scan_numeric_ids=False)
 
 
 def scan_post(row, type_name):
@@ -258,7 +272,6 @@ def scan_post_type(type_name, route):
         if (total_pages and page >= total_pages) or len(rows) < 100:
             return {'posts_read': seen, 'error': None, 'context': context, 'route': route, 'fallback': False}
 
-    # Fail-safe fallback for heavy collection responses (notably pages with content+meta).
     ids, index_error = enumerate_ids(route, context)
     if index_error:
         return {'posts_read': seen, 'error': bulk_error + ';' + index_error, 'context': context, 'route': route, 'fallback': True}
@@ -284,13 +297,122 @@ def scan_post_type(type_name, route):
     }
 
 
-# 2) All REST-visible post types, with individual fallback on heavy bulk failures.
+def scan_font_faces():
+    context = 'edit'
+    code, families, _ = api_get('/wp-json/wp/v2/font-families', {
+        'per_page': 100,
+        'context': context,
+        '_fields': 'id',
+    })
+    if code in (401, 403):
+        context = 'view'
+        code, families, _ = api_get('/wp-json/wp/v2/font-families', {
+            'per_page': 100,
+            'context': context,
+            '_fields': 'id',
+        })
+    if not (200 <= code < 300) or not isinstance(families, list):
+        return {
+            'posts_read': 0,
+            'error': f'font_family_index_http={code}',
+            'context': context,
+            'route': '/wp-json/wp/v2/font-families/{id}/font-faces',
+            'fallback': False,
+        }
+    seen = 0
+    failures = []
+    for family in families:
+        family_id = norm_id(family.get('id'))
+        if family_id <= 0:
+            continue
+        route = f'/wp-json/wp/v2/font-families/{family_id}/font-faces'
+        code, faces, _ = api_get(route, {'per_page': 100, 'context': context})
+        if not (200 <= code < 300) or not isinstance(faces, list):
+            failures.append({'family_id': family_id, 'http': code})
+            continue
+        for face in faces:
+            seen += 1
+            scan_json_resource(face, 'wp_font_face_resource', 'wp_font_face', route)
+    return {
+        'posts_read': seen,
+        'font_families_read': len(families),
+        'error': None if not failures else f'font_face_failures={len(failures)}',
+        'context': context,
+        'route': '/wp-json/wp/v2/font-families/{id}/font-faces',
+        'fallback': False,
+        'failure_sample': failures[:10],
+    }
+
+
+def scan_global_styles():
+    context = 'edit'
+    code, themes, _ = api_get('/wp-json/wp/v2/themes', {
+        'status': 'active',
+        'context': context,
+        '_fields': 'stylesheet',
+    })
+    if code in (401, 403):
+        context = 'view'
+        code, themes, _ = api_get('/wp-json/wp/v2/themes', {
+            'status': 'active',
+            'context': context,
+            '_fields': 'stylesheet',
+        })
+    if not (200 <= code < 300) or not isinstance(themes, list):
+        return {
+            'posts_read': 0,
+            'error': f'active_theme_index_http={code}',
+            'context': context,
+            'route': '/wp-json/wp/v2/global-styles/themes/{stylesheet}',
+            'fallback': False,
+        }
+    seen = 0
+    failures = []
+    for theme in themes:
+        stylesheet = str(theme.get('stylesheet') or '').strip()
+        if not stylesheet:
+            continue
+        encoded = urllib.parse.quote(stylesheet, safe='/')
+        route = f'/wp-json/wp/v2/global-styles/themes/{encoded}'
+        code, style, _ = api_get(route, {'context': context})
+        if not (200 <= code < 300) or not isinstance(style, dict):
+            failures.append({'stylesheet': stylesheet, 'surface': 'theme', 'http': code})
+            continue
+        seen += 1
+        scan_json_resource(style, 'wp_global_styles_theme', 'wp_global_styles', route)
+        style_id = norm_id(style.get('id'))
+        if style_id > 0:
+            item_route = f'/wp-json/wp/v2/global-styles/{style_id}'
+            item_code, item, _ = api_get(item_route, {'context': context})
+            if 200 <= item_code < 300 and isinstance(item, dict):
+                scan_json_resource(item, 'wp_global_styles_item', 'wp_global_styles', item_route)
+            else:
+                failures.append({'stylesheet': stylesheet, 'surface': 'item', 'id': style_id, 'http': item_code})
+        variations_route = f'/wp-json/wp/v2/global-styles/themes/{encoded}/variations'
+        variations_code, variations, _ = api_get(variations_route, {'context': context})
+        if 200 <= variations_code < 300 and isinstance(variations, list):
+            scan_json_resource(variations, 'wp_global_styles_variations', 'wp_global_styles', variations_route)
+        else:
+            failures.append({'stylesheet': stylesheet, 'surface': 'variations', 'http': variations_code})
+    return {
+        'posts_read': seen,
+        'active_themes_read': len(themes),
+        'error': None if not failures else f'global_styles_failures={len(failures)}',
+        'context': context,
+        'route': '/wp-json/wp/v2/global-styles/themes/{stylesheet}',
+        'fallback': False,
+        'failure_sample': failures[:10],
+    }
+
+
+# 2) All REST-visible post types. Parameterized/nested WordPress resources are
+# scanned through their real routes discovered from the live REST index.
 post_type_stats = {}
 code, types, _ = api_get('/wp-json/wp/v2/types', {'context': 'view'})
 if not (200 <= code < 300) or not isinstance(types, dict):
     raise SystemExit(f'post type discovery failed http={code}')
 for type_name, info in sorted(types.items()):
-    if type_name in {'attachment', 'nav_menu_item', 'wp_block', 'wp_template', 'wp_template_part'}:
+    if type_name in {'attachment', 'nav_menu_item', 'wp_block', 'wp_template', 'wp_template_part', 'wp_font_face', 'wp_global_styles'}:
         continue
     if not isinstance(info, dict):
         continue
@@ -299,6 +421,8 @@ for type_name, info in sorted(types.items()):
     if not rest_base:
         continue
     post_type_stats[type_name] = scan_post_type(type_name, f'/wp-json/{namespace}/{rest_base}')
+post_type_stats['wp_font_face'] = scan_font_faces()
+post_type_stats['wp_global_styles'] = scan_global_styles()
 
 # 3) WooCommerce authoritative product image arrays.
 product_count = 0
