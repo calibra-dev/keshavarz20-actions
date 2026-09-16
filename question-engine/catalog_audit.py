@@ -7,8 +7,9 @@ import json
 import os
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+CLASSIFIER_VERSION = "v12"
 
-spec = importlib.util.spec_from_file_location("qe11", os.path.join(ROOT, "engine_v11.py"))
+spec = importlib.util.spec_from_file_location("qe12", os.path.join(ROOT, "engine_v12.py"))
 engine = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(engine)
 q = engine.q
@@ -55,6 +56,7 @@ def main():
     generic_products.sort(key=lambda x: (x["categories"], x["name"], x["id"]))
     out = {
         "ok": True,
+        "classifier_version": CLASSIFIER_VERSION,
         "generated_at_utc": dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         "catalog_size": len(products),
         "family_counts": dict(sorted(family_counts.items(), key=lambda kv: (-kv[1], kv[0]))),
@@ -72,6 +74,7 @@ def main():
         json.dump(out, f, ensure_ascii=False, indent=2)
     print(json.dumps({
         "ok": True,
+        "classifier_version": CLASSIFIER_VERSION,
         "catalog_size": out["catalog_size"],
         "generic_count": out["generic_count"],
         "family_counts": out["family_counts"],
