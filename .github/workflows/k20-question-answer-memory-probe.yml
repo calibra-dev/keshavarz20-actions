@@ -1,0 +1,63 @@
+name: Keshavarz20 Answer Memory Probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'question-engine-probes/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-question-answer-memory-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Resolve probe
+        id: probe
+        shell: python
+        run: |
+          import json, os, pathlib, subprocess
+          cmds=[['git','diff','--name-only','HEAD^','HEAD','--','question-engine-probes/*.json'],['git','show','--pretty=','--name-only','HEAD','--','question-engine-probes/*.json']]
+          files=[]
+          for cmd in cmds:
+              try: files=[x for x in subprocess.check_output(cmd,text=True).splitlines() if x.startswith('question-engine-probes/') and x.endswith('.json')]
+              except Exception: files=[]
+              if files: break
+          if not files: raise SystemExit('No answer-memory probe file found')
+          obj=json.loads(pathlib.Path(sorted(files)[-1]).read_text(encoding='utf-8'))
+          pid=int(obj.get('product_id') or 0)
+          if pid<=0: raise SystemExit('Missing product_id')
+          with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as f:f.write(f'product_id={pid}\n')
+      - name: Run sanitized probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p question-engine-probe-results
+          out="question-engine-probe-results/answer-memory-${{ steps.probe.outputs.product_id }}.json"
+          python question-engine/probe_answer_memory.py --product-id '${{ steps.probe.outputs.product_id }}' --result "$out"
+          echo "RESULT_PATH=$out" >> "$GITHUB_ENV"
+      - name: Commit sanitized result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f "$RESULT_PATH"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "questions: record sanitized answer memory probe"
+          git pull --rebase origin main
+          git push origin HEAD:main
