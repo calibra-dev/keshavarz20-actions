@@ -1,0 +1,43 @@
+name: K20 REST Route Diagnostic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/rest-routes/*.json'
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Inspect live REST routes read-only
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $before='${{ github.event.before }}';$current='${{ github.sha }}';$zero='0000000000000000000000000000000000000000'
+          if($before -and $before-ne$zero){$changed=@(git diff --name-only $before $current -- 'diagnostics/rest-routes/*.json')}else{$changed=@(git show --pretty='' --name-only $current -- 'diagnostics/rest-routes/*.json')}
+          $changed=@($changed|Where-Object{$_ -match '^diagnostics/rest-routes/.+\.json$'}|Sort-Object -Unique)
+          if($changed.Count-eq0){throw 'No REST route diagnostic request found.'}
+          foreach($path in $changed){$name=[IO.Path]::GetFileNameWithoutExtension($path);& ./scripts/Invoke-K20RestRouteDiagnostic.ps1 -RequestPath $path -OutputPath "results/rest-routes-$name.json"}
+      - name: Commit sanitized diagnostic
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/rest-routes-*.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "ops: record REST route diagnostic"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin main && exit 0 || sleep 2; done
+          exit 1
