@@ -1,7 +1,7 @@
 {
   "status": "running",
-  "cycles": 22,
-  "successful_migrations": 115,
+  "cycles": 23,
+  "successful_migrations": 121,
   "processed": {
     "135219:141649": {
       "new_attachment_id": 144813,
@@ -462,6 +462,30 @@
     "142923:142924": {
       "new_attachment_id": 145059,
       "at_utc": "2026-09-16T07:37:43Z"
+    },
+    "142927:142926": {
+      "new_attachment_id": 145064,
+      "at_utc": "2026-09-16T07:41:28Z"
+    },
+    "142928:142929": {
+      "new_attachment_id": 145065,
+      "at_utc": "2026-09-16T07:42:10Z"
+    },
+    "142931:142932": {
+      "new_attachment_id": 145066,
+      "at_utc": "2026-09-16T07:42:50Z"
+    },
+    "142934:142944": {
+      "new_attachment_id": 145067,
+      "at_utc": "2026-09-16T07:43:31Z"
+    },
+    "142940:142941": {
+      "new_attachment_id": 145068,
+      "at_utc": "2026-09-16T07:44:12Z"
+    },
+    "142945:142946": {
+      "new_attachment_id": 145069,
+      "at_utc": "2026-09-16T07:44:51Z"
     }
   },
   "skipped": {
@@ -539,16 +563,36 @@
       "reason": "product readback did not confirm REST rescue",
       "attempts": 2,
       "at_utc": "2026-09-16T07:32:50Z"
+    },
+    "142817:142824": {
+      "reason": "product readback did not confirm REST rescue",
+      "attempts": 2,
+      "at_utc": "2026-09-16T07:38:45Z"
+    },
+    "142844:142848": {
+      "reason": "product readback did not confirm REST rescue",
+      "attempts": 2,
+      "at_utc": "2026-09-16T07:39:27Z"
+    },
+    "142913:142915": {
+      "reason": "product readback did not confirm REST rescue",
+      "attempts": 2,
+      "at_utc": "2026-09-16T07:40:09Z"
+    },
+    "142919:142921": {
+      "reason": "product readback did not confirm REST rescue",
+      "attempts": 2,
+      "at_utc": "2026-09-16T07:40:49Z"
     }
   },
   "critical_events": [],
-  "updated_at_utc": "2026-09-16T07:37:43Z",
+  "updated_at_utc": "2026-09-16T07:44:51Z",
   "last_cycle": {
-    "run_id": "35068855247",
+    "run_id": "35069502199",
     "selected": 10,
-    "success": 3,
-    "remaining": 32,
-    "at_utc": "2026-09-16T07:37:43Z"
+    "success": 6,
+    "remaining": 22,
+    "at_utc": "2026-09-16T07:44:51Z"
   },
   "attempts": {
     "135309:141617": 1,
@@ -573,9 +617,9 @@
     "142790:142796": 2,
     "142797:142800": 2,
     "142809:142813": 2,
-    "142817:142824": 1,
-    "142844:142848": 1,
-    "142913:142915": 1,
-    "142919:142921": 1
+    "142817:142824": 2,
+    "142844:142848": 2,
+    "142913:142915": 2,
+    "142919:142921": 2
   }
 }
