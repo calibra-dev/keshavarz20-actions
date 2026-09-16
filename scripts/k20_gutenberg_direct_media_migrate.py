@@ -28,7 +28,7 @@ def api(method,url,body=None,auth_header=True):
     req=urllib.request.Request(qurl(url),data=data,method=method,headers=headers)
     try:
         with urllib.request.urlopen(req,timeout=120) as r:
-            raw=r.read().decode('utf-8','replace');
+            raw=r.read().decode('utf-8','replace')
             try:o=json.loads(raw) if raw else {}
             except Exception:o={'raw':raw}
             return int(r.status),o
@@ -113,7 +113,8 @@ def apply_one(spec):
         if wrote and original_raw:
             try:
                 rbcode,_=api('POST',f'{base}/wp-json/wp/v2/posts/{pid}',{'content':original_raw}); row['rollback_http']=rbcode; row['rollback_ok']=200<=rbcode<300
-            except Exception as re: row['rollback_ok']=False; row['rollback_error']=str(re)
+            except Exception as rollback_err:
+                row['rollback_ok']=False; row['rollback_error']=str(rollback_err)
     return row
 
 requests=sorted(OPS.glob('*.json'),key=lambda p:p.stat().st_mtime,reverse=True)
