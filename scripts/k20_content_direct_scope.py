@@ -88,6 +88,7 @@ for directory, label in (
 for directory, label in (
     (ROOT / 'gutenberg-direct-media-results', 'gutenberg_direct_media'),
     (ROOT / 'elementor-content-migrate-results', 'elementor_content_media'),
+    (ROOT / 'content-direct-convert-results', 'content_direct_convert'),
 ):
     if not directory.exists():
         continue
@@ -161,7 +162,11 @@ for item in items:
         bucket['locator'] = locator
         bucket['attachment_ids'].add(aid)
         bucket['fields'].add(field)
-        if rendered:
+        if any(
+            (str(r.get('object_type') or '') == otype and int(r.get('object_id') or 0) == oid)
+            or (locator and str(r.get('locator') or '') == locator)
+            for r in render_refs
+        ):
             bucket['rendered_attachment_ids'].add(aid)
         if mapping_status == 'unique':
             bucket['known_replacement_ids'].add(aid)
@@ -197,6 +202,7 @@ for key, bucket in objects.items():
         'fields': sorted(bucket['fields']),
         'direct_attachment_count': len(attachments),
         'rendered_attachment_count': len(bucket['rendered_attachment_ids']),
+        'rendered_attachment_ids': sorted(bucket['rendered_attachment_ids']),
         'known_replacement_count': len(bucket['known_replacement_ids']),
         'unmapped_count': len(bucket['unmapped_attachment_ids']),
         'terminal_count': len(bucket['terminal_attachment_ids']),
