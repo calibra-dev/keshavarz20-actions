@@ -5,8 +5,31 @@ from urllib import parse
 ROOT=os.path.dirname(os.path.abspath(__file__))
 spec=importlib.util.spec_from_file_location("qe10",os.path.join(ROOT,"engine_v10.py")); v10=importlib.util.module_from_spec(spec); spec.loader.exec_module(v10)
 q=v10.q
-orig_family=q.b.family
 orig_fitting_subtype=q.fitting_subtype
+
+
+def structured_family_v11(p):
+    parts=[]
+    parts.extend(str(x.get("name") or "") for x in (p.get("categories") or []))
+    parts.extend(str(x.get("name") or "") for x in (p.get("tags") or []))
+    for attr in p.get("attributes") or []:
+        parts.append(str(attr.get("name") or ""))
+        parts.extend(str(x) for x in (attr.get("options") or []))
+    text=q.b.norm(" ".join(parts))
+    if not text:return "generic"
+    scores={}
+    for fam,words in q.b.FAMILY_KEYWORDS.items():
+        score=0
+        for word in words:
+            nw=q.b.norm(word)
+            if nw and nw in text:
+                score+=max(1,len(nw.split()))
+                if len(nw)>=7:score+=1
+        scores[fam]=score
+    top=max(scores.values()) if scores else 0
+    if top<=0:return "generic"
+    winners=[fam for fam,score in scores.items() if score==top]
+    return winners[0] if len(winners)==1 else "generic"
 
 
 def family_v11(p):
@@ -29,7 +52,7 @@ def family_v11(p):
     ]
     for fam,words in name_rules:
         if any(q.b.norm(w) in name for w in words):return fam
-    return orig_family(p)
+    return structured_family_v11(p)
 
 
 def fitting_subtype_v11(p):
