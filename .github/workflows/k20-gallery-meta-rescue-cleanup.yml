@@ -1,0 +1,43 @@
+name: Keshavarz20 Gallery Meta Rescue Cleanup
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'gallery-meta-rescue-cleanup-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-gallery-meta-rescue-cleanup
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Validate Python
+        run: python -m py_compile scripts/k20_gallery_meta_rescue_cleanup.py
+      - name: Delete only unattached prepared rescue WebPs
+        run: python scripts/k20_gallery_meta_rescue_cleanup.py
+      - name: Commit sanitized cleanup evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f gallery-meta-rescue/cleanup.json 2>/dev/null || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "media: record gallery meta rescue cleanup"
+          git pull --rebase origin main
+          git push origin HEAD:main
