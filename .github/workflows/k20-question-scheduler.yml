@@ -1,13 +1,16 @@
 name: Keshavarz20 Question Scheduler
 
 on:
+  # Hourly tertiary safety net. The normal path is the self-rearming chain below;
+  # the separate control workflow is a 10-minute watchdog.
   schedule:
-    - cron: '7,17,27,37,47,57 * * * *'
+    - cron: '17 * * * *'
   workflow_dispatch:
 
 permissions:
   contents: read
   issues: write
+  actions: write
 
 concurrency:
   group: k20-customer-question-engine
@@ -16,7 +19,7 @@ concurrency:
 jobs:
   scheduled-question:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 45
     env:
       WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
       WP_USERNAME: ${{ secrets.WP_USERNAME }}
@@ -24,10 +27,75 @@ jobs:
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
-      - name: Run scheduled v16 engine
+
+      - name: Run scheduled v17 engine
+        id: engine
         shell: bash
         run: |
           set -euo pipefail
           out="${RUNNER_TEMP}/k20-question-scheduled.json"
-          python question-engine/engine_v16.py --action scheduled --result "$out"
+          python question-engine/engine_v17.py --action scheduled --result "$out"
           cat "$out"
+
+      - name: Rearm continuous question heartbeat
+        if: always()
+        shell: bash
+        env:
+          ENGINE_OUTCOME: ${{ steps.engine.outcome }}
+        run: |
+          set -u
+          repo="${GITHUB_REPOSITORY}"
+          wf="k20-question-scheduler.yml"
+
+          # Stop the chain only when the engine is explicitly disabled or an
+          # optional campaign end has been reached. campaign_end_utc=null means continuous.
+          active="$(python - <<'PY'
+          import datetime as dt, json
+          cfg=json.load(open('question-engine/config.json',encoding='utf-8'))
+          if not cfg.get('enabled'):
+              print('0'); raise SystemExit
+          end=cfg.get('campaign_end_utc')
+          if end:
+              end_dt=dt.datetime.fromisoformat(str(end).replace('Z','+00:00'))
+              if dt.datetime.now(dt.timezone.utc) >= end_dt:
+                  print('0'); raise SystemExit
+          print('1')
+          PY
+          )"
+          if [[ "$active" != "1" ]]; then
+            echo "continuous-chain=stopped-by-config"
+            exit 0
+          fi
+
+          # Failure recovery defaults to 10 minutes. On success, ask the engine
+          # for its exact randomized next due time and wake inside the lookahead
+          # window; the engine itself still enforces the exact post timestamp.
+          delay=600
+          if [[ "${ENGINE_OUTCOME}" == "success" ]]; then
+            status_file="${RUNNER_TEMP}/k20-question-status.json"
+            if python question-engine/engine_v17.py --action status --result "$status_file" >/dev/null 2>&1; then
+              computed="$(python - "$status_file" <<'PY'
+          import datetime as dt, json, sys
+          status=json.load(open(sys.argv[1],encoding='utf-8'))
+          cfg=json.load(open('question-engine/config.json',encoding='utf-8'))
+          raw=status.get('next_due_utc')
+          if not raw:
+              print(600); raise SystemExit
+          due=dt.datetime.fromisoformat(str(raw).replace('Z','+00:00'))
+          now=dt.datetime.now(dt.timezone.utc)
+          look=max(0,int(cfg.get('scheduler_lookahead_seconds',900)))
+          seconds=int((due-now).total_seconds())-look
+          # Keep a small floor to avoid dispatch storms and a ceiling that is
+          # comfortably below the current 18-26 minute random interval.
+          print(max(30,min(720,seconds)))
+          PY
+              )"
+              if [[ "$computed" =~ ^[0-9]+$ ]]; then delay="$computed"; fi
+            fi
+          fi
+
+          echo "engine_outcome=${ENGINE_OUTCOME}"
+          echo "next-heartbeat-delay-seconds=${delay}"
+          sleep "$delay"
+          gh api --method POST "repos/$repo/actions/workflows/$wf/dispatches" -f ref=main
+          echo "self-dispatch=requested"
