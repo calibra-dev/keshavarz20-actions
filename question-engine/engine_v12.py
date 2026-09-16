@@ -28,13 +28,18 @@ def structured_terms(p):
 
 
 def family_v12(p):
+    name = n(p.get("name"))
+    terms = structured_terms(p)
+
+    # A surfactant/adjuvant can legitimately live under a broad fertilizer/input category.
+    # Its explicit product identity is more specific than that broad taxonomy, so resolve it first.
+    if any(n(word) in name for word in ["سورفکتانت", "ادجوانت", "خیس کننده", "خیس‌کننده"]):
+        return "adjuvant"
+
     # Preserve every family v11 can already identify safely.
     base = orig_family(p)
     if base != "generic":
         return base
-
-    name = n(p.get("name"))
-    terms = structured_terms(p)
 
     # Explicit product-name rules. These precede broad category fallbacks.
     name_rules = [
@@ -44,7 +49,6 @@ def family_v12(p):
         ("riser", ["رایزر"]),
         ("dripper", ["دریپر", "قطره چکان", "قطره‌چکان"]),
         ("hardware", ["پیچ و مهره"]),
-        ("adjuvant", ["سورفکتانت", "ادجوانت", "خیس کننده", "خیس‌کننده"]),
         ("fitting", ["چپقی", "کپ رزوه", "کپ رزوه‌ای", "انشعاب دوشاخه"]),
     ]
     for fam, words in name_rules:
