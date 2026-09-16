@@ -1,13 +1,12 @@
 {
   "enabled": true,
-  "self_chain": false,
+  "self_chain": true,
   "reference_mode": "featured_only",
-  "batch_size": 2,
+  "batch_size": 5,
   "max_attempts": 2,
   "max_cycles": 100,
   "quality": 88,
   "min_psnr": 40.0,
   "min_saving_lossy_pct": 15.0,
-  "min_saving_lossless_pct": 5.0,
-  "pilot_nonce": 4
+  "min_saving_lossless_pct": 5.0
 }
