@@ -5,6 +5,7 @@ import math
 import os
 import pathlib
 import re
+import subprocess
 import time
 import urllib.error
 import urllib.parse
@@ -177,9 +178,21 @@ def apply_request(req):
         result['cleanup']=cleanup
     return result
 
-requests=sorted(OPS.glob('*.json'))
-if not requests: raise SystemExit('No request found')
-req_path=requests[-1]; req=json.loads(req_path.read_text(encoding='utf-8'))
+def changed_request():
+    for cmd in (
+        ['git','diff-tree','--no-commit-id','--name-only','-r','HEAD','--','elementor-content-migrate-ops'],
+        ['git','show','--pretty=','--name-only','HEAD','--','elementor-content-migrate-ops'],
+    ):
+        try:
+            paths=[x.strip() for x in subprocess.check_output(cmd,text=True).splitlines() if x.strip().startswith('elementor-content-migrate-ops/') and x.strip().endswith('.json')]
+        except Exception:
+            paths=[]
+        if paths:
+            if len(paths)!=1: raise SystemExit(f'Expected exactly one changed request, found {len(paths)}')
+            return pathlib.Path(paths[0])
+    raise SystemExit('No changed Elementor migration request found in triggering commit')
+
+req_path=changed_request(); req=json.loads(req_path.read_text(encoding='utf-8'))
 if req.get('action')!='content_media.elementor_pair_migrate': raise SystemExit('Unsupported action')
 result=apply_request(req); wrapper={'executed_at_utc':now(),'action':req.get('action'),'request_file':req_path.name,'result':result}
 OUT.mkdir(parents=True,exist_ok=True); dest=OUT/(req_path.stem+'-migration.json'); dest.write_text(json.dumps(wrapper,ensure_ascii=False,indent=2),encoding='utf-8')
