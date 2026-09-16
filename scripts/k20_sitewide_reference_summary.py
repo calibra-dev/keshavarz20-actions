@@ -4,11 +4,13 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 
 ROOT = pathlib.Path('.')
-SOURCE = ROOT / 'sitewide-media-results' / 'inventory-phase1.json'
+FRESH_SOURCE = ROOT / 'sitewide-media-results' / 'inventory.json'
+LEGACY_SOURCE = ROOT / 'sitewide-media-results' / 'inventory-phase1.json'
+SOURCE = FRESH_SOURCE if FRESH_SOURCE.exists() else LEGACY_SOURCE
 OUT = ROOT / 'sitewide-media-results' / 'reference-summary.json'
 
 if not SOURCE.exists():
-    raise SystemExit('Missing inventory-phase1.json')
+    raise SystemExit('Missing sitewide media inventory')
 obj = json.loads(SOURCE.read_text(encoding='utf-8'))
 items = obj.get('items') or []
 source_summary = obj.get('summary') or {}
