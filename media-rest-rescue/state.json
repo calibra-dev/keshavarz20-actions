@@ -1,7 +1,7 @@
 {
   "status": "running",
-  "cycles": 21,
-  "successful_migrations": 112,
+  "cycles": 22,
+  "successful_migrations": 115,
   "processed": {
     "135219:141649": {
       "new_attachment_id": 144813,
@@ -450,6 +450,18 @@
     "142817:142821": {
       "new_attachment_id": 145049,
       "at_utc": "2026-09-16T07:30:14Z"
+    },
+    "142844:142847": {
+      "new_attachment_id": 145054,
+      "at_utc": "2026-09-16T07:34:15Z"
+    },
+    "142851:142852": {
+      "new_attachment_id": 145056,
+      "at_utc": "2026-09-16T07:35:38Z"
+    },
+    "142923:142924": {
+      "new_attachment_id": 145059,
+      "at_utc": "2026-09-16T07:37:43Z"
     }
   },
   "skipped": {
@@ -512,16 +524,31 @@
       "reason": "product readback did not confirm REST rescue",
       "attempts": 2,
       "at_utc": "2026-09-16T07:24:56Z"
+    },
+    "142790:142796": {
+      "reason": "product readback did not confirm REST rescue",
+      "attempts": 2,
+      "at_utc": "2026-09-16T07:31:19Z"
+    },
+    "142797:142800": {
+      "reason": "product readback did not confirm REST rescue",
+      "attempts": 2,
+      "at_utc": "2026-09-16T07:32:05Z"
+    },
+    "142809:142813": {
+      "reason": "product readback did not confirm REST rescue",
+      "attempts": 2,
+      "at_utc": "2026-09-16T07:32:50Z"
     }
   },
   "critical_events": [],
-  "updated_at_utc": "2026-09-16T07:30:14Z",
+  "updated_at_utc": "2026-09-16T07:37:43Z",
   "last_cycle": {
-    "run_id": "35068269185",
+    "run_id": "35068855247",
     "selected": 10,
-    "success": 5,
-    "remaining": 38,
-    "at_utc": "2026-09-16T07:30:14Z"
+    "success": 3,
+    "remaining": 32,
+    "at_utc": "2026-09-16T07:37:43Z"
   },
   "attempts": {
     "135309:141617": 1,
@@ -543,8 +570,12 @@
     "142204:142208": 2,
     "142781:142783": 2,
     "142787:142789": 2,
-    "142790:142796": 1,
-    "142797:142800": 1,
-    "142809:142813": 1
+    "142790:142796": 2,
+    "142797:142800": 2,
+    "142809:142813": 2,
+    "142817:142824": 1,
+    "142844:142848": 1,
+    "142913:142915": 1,
+    "142919:142921": 1
   }
 }
