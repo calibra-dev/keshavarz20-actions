@@ -1,0 +1,48 @@
+name: Keshavarz20 Content Direct WebP Convert
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content-direct-convert-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-content-direct-convert
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate Python
+        run: python -m py_compile scripts/k20_content_direct_convert.py
+      - name: Install Pillow
+        run: python -m pip install --disable-pip-version-check --quiet pillow
+      - name: Convert and migrate direct references
+        run: python scripts/k20_content_direct_convert.py
+      - name: Commit sanitized conversion evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f content-direct-convert-results/*.json 2>/dev/null || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "media: record direct content WebP conversion"
+          git pull --rebase origin main
+          git push origin HEAD:main
