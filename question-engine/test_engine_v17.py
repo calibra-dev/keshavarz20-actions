@@ -70,4 +70,18 @@ for candidate in matched:
     ok, reason = q.consistency_guard(endcap, candidate, candidate["core"])
     assert ok, (candidate, reason)
 
+# 4) Live catalog pattern: «اتصال نر 63 میلیمتر» is an adapter, not a pipe.
+male = product("اتصال نر 63 میلیمتر")
+assert q.fam_of(male) == "fitting", q.fam_of(male)
+assert q.fitting_subtype(male) == "male_adapter", q.fitting_subtype(male)
+male_candidates = q.guarded_candidates(male, "fitting", "colloquial", random.Random(11))
+male_keys = [str(x.get("key") or "") for x in male_candidates]
+assert not any(x.startswith("installer:existing-line:fitting:") for x in male_keys), male_keys
+assert not any(x.startswith("postinstall:leak:fitting:") for x in male_keys), male_keys
+assert not any("long-run" in x or x.startswith("pipe:") for x in male_keys), male_keys
+
+female = product("اتصال ماده 63 میلیمتر")
+assert q.fam_of(female) == "fitting", q.fam_of(female)
+assert q.fitting_subtype(female) == "female_adapter", q.fitting_subtype(female)
+
 print("PASS v17")
