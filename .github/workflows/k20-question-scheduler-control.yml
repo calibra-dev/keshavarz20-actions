@@ -43,8 +43,11 @@ jobs:
           fi
 
           gh api "repos/$repo/actions/workflows/$wf" --jq '{id,name,path,state,updated_at}'
-          runs="$(gh api "repos/$repo/actions/workflows/$wf/runs?per_page=10")"
-          active="$(jq '[.workflow_runs[] | select(.status != "completed")] | length' <<<"$runs")"
+          runs="$(gh api "repos/$repo/actions/workflows/$wf/runs?per_page=20")"
+          now_epoch="$(date -u +%s)"
+          in_progress="$(jq '[.workflow_runs[] | select(.status == "in_progress")] | length' <<<"$runs")"
+          fresh_queued="$(jq --argjson now "$now_epoch" '[.workflow_runs[] | select(.status == "queued") | select(($now - (.created_at | fromdateiso8601)) < 1200)] | length' <<<"$runs")"
+          stale_queued_ids="$(jq -r --argjson now "$now_epoch" '.workflow_runs[] | select(.status == "queued") | select(($now - (.created_at | fromdateiso8601)) >= 1200) | .id' <<<"$runs")"
           last_created="$(jq -r '.workflow_runs[0].created_at // ""' <<<"$runs")"
           age=999999
           if [[ -n "$last_created" ]]; then
@@ -56,26 +59,47 @@ jobs:
             )"
           fi
 
-          echo "scheduler-active-runs=$active"
+          echo "scheduler-in-progress=$in_progress"
+          echo "scheduler-fresh-queued=$fresh_queued"
           echo "scheduler-last-run-age-seconds=$age"
 
-          if [[ "$force" == "1" ]]; then
-            gh api --method POST "repos/$repo/actions/workflows/$wf/dispatches" -f ref=main
-            echo "watchdog-dispatch=forced-recovery"
+          # A queued run with no job for 20 minutes is not a healthy heartbeat.
+          # Cancel it so it cannot block the concurrency group forever.
+          if [[ -n "$stale_queued_ids" ]]; then
+            while read -r run_id; do
+              [[ -z "$run_id" ]] && continue
+              if gh api --method POST "repos/$repo/actions/runs/$run_id/cancel" >/dev/null 2>&1; then
+                echo "watchdog-cancelled-stale-queued=$run_id"
+              else
+                echo "watchdog-cancel-stale-queued-failed=$run_id"
+              fi
+            done <<<"$stale_queued_ids"
+            sleep 3
+          fi
+
+          # Never fork while a real scheduler job is executing or while a fresh
+          # queued run is still within the normal GitHub start window.
+          if (( in_progress > 0 )); then
+            echo "watchdog-dispatch=skipped-in-progress"
+            exit 0
+          fi
+          if (( fresh_queued > 0 )); then
+            echo "watchdog-dispatch=skipped-fresh-queue"
             exit 0
           fi
 
-          if (( active > 0 )); then
-            echo "watchdog-dispatch=skipped-active-chain"
-            exit 0
-          fi
-
-          # A healthy self-rearming chain should always have an active run or a
-          # recently created run. Only recover when it has been stale for 20m.
-          if (( age < 1200 )); then
+          # On manual/push recovery, dispatch immediately after stale cleanup.
+          # On scheduled watchdog ticks, only recover a chain stale for 20m.
+          if [[ "$force" != "1" ]] && (( age < 1200 )) && [[ -z "$stale_queued_ids" ]]; then
             echo "watchdog-dispatch=skipped-recent-run"
             exit 0
           fi
 
           gh api --method POST "repos/$repo/actions/workflows/$wf/dispatches" -f ref=main
-          echo "watchdog-dispatch=recovered-stale-chain"
+          if [[ -n "$stale_queued_ids" ]]; then
+            echo "watchdog-dispatch=recovered-stale-queue"
+          elif [[ "$force" == "1" ]]; then
+            echo "watchdog-dispatch=forced-recovery"
+          else
+            echo "watchdog-dispatch=recovered-stale-chain"
+          fi
