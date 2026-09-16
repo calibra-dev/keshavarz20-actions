@@ -33,22 +33,17 @@ jobs:
           python-version: '3.12'
 
       - name: Validate Python
-        run: |
-          python -m py_compile scripts/k20_sitewide_media_autopilot.py
-          python -m py_compile scripts/k20_sitewide_phase1_filter.py
+        run: python -m py_compile scripts/k20_sitewide_phase1_autopilot_v2.py
 
       - name: Install WebP encoder
         run: python -m pip install --disable-pip-version-check --quiet pillow
 
-      - name: Restrict runtime inventory to safe phase1 references
-        run: python scripts/k20_sitewide_phase1_filter.py
-
-      - name: Process next guarded non-product image batch
+      - name: Process next guarded sitewide phase1 image batch
         shell: bash
         run: |
           set -euo pipefail
           for attempt in 1 2; do
-            if python scripts/k20_sitewide_media_autopilot.py; then
+            if python scripts/k20_sitewide_phase1_autopilot_v2.py; then
               exit 0
             fi
             if [ "$attempt" -lt 2 ]; then sleep 10; fi
@@ -64,7 +59,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f sitewide-media-autopilot/state.json sitewide-media-autopilot-results/*.json 2>/dev/null || true
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "media: checkpoint sitewide WebP autopilot run ${GITHUB_RUN_ID}"
+          git commit -m "media: checkpoint sitewide phase1 run ${GITHUB_RUN_ID}"
           git pull --rebase origin main
           git push origin HEAD:main
 
@@ -76,9 +71,10 @@ jobs:
         run: |
           set -euo pipefail
           if [ ! -f sitewide-media-autopilot/state.json ]; then exit 0; fi
-          status=$(python -c "import json; print(json.load(open('sitewide-media-autopilot/state.json'))['status'])")
-          echo "Sitewide autopilot status: $status"
-          if [ "$status" != "running" ]; then exit 0; fi
+          status=$(python -c "import json; print(json.load(open('sitewide-media-autopilot/state.json')).get('status',''))")
+          self_chain=$(python -c "import json; print(str(json.load(open('sitewide-media-autopilot/config.json')).get('self_chain', False)).lower())")
+          echo "Sitewide phase1 status: $status self_chain=$self_chain"
+          if [ "$status" != "running" ] || [ "$self_chain" != "true" ]; then exit 0; fi
           code=$(curl -sS -o /tmp/k20-sitewide-dispatch.txt -w "%{http_code}" \
             -X POST \
             -H "Accept: application/vnd.github+json" \
@@ -97,5 +93,5 @@ jobs:
         run: |
           set -euo pipefail
           if [ ! -f sitewide-media-autopilot/state.json ]; then exit 0; fi
-          status=$(python -c "import json; print(json.load(open('sitewide-media-autopilot/state.json'))['status'])")
+          status=$(python -c "import json; print(json.load(open('sitewide-media-autopilot/state.json')).get('status',''))")
           if [ "$status" = "halted" ]; then exit 1; fi
