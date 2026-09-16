@@ -1,5 +1,5 @@
 {
-  "enabled": true,
+  "enabled": false,
   "campaign_start_utc": "2026-09-16T06:24:55Z",
   "campaign_end_utc": "2027-03-16T06:24:55Z",
   "campaign_months": 6,
@@ -17,5 +17,10 @@
   "products_per_page": 100,
   "max_product_pages": 20,
   "quality_threshold": 97,
+  "watchdog_enabled": true,
+  "watchdog_max_pending": 60,
+  "watchdog_max_consecutive_failures": 3,
+  "answer_memory_enabled": true,
+  "answer_memory_max_comments_per_product": 200,
   "allow_product_statuses": ["publish"]
 }
