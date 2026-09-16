@@ -1,0 +1,38 @@
+name: Keshavarz20 Content Direct Media Scope
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content-direct-scope-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-content-direct-scope
+  cancel-in-progress: false
+
+jobs:
+  scope:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Validate Python
+        run: python -m py_compile scripts/k20_content_direct_scope.py
+      - name: Build compact direct JPEG PNG scope
+        run: python scripts/k20_content_direct_scope.py
+      - name: Commit scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f content-media-results/direct-scope.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "media: record direct content JPEG PNG scope"
+          git pull --rebase origin main
+          git push origin HEAD:main
