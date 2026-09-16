@@ -1,11 +1,11 @@
 {
   "version": 1,
   "started_at_utc": "2026-09-15T22:25:31Z",
-  "updated_at_utc": "2026-09-16T02:08:53Z",
+  "updated_at_utc": "2026-09-16T02:21:12Z",
   "status": "running",
-  "cycles": 19,
-  "successful_migrations": 339,
-  "lossy_success": 321,
+  "cycles": 20,
+  "successful_migrations": 359,
+  "lossy_success": 341,
   "lossless_success": 18,
   "retry_counts": {
     "135219:141649": 3,
@@ -25,22 +25,26 @@
     "136084:139980": {
       "reason": "max_attempts_exhausted:3",
       "at_utc": "2026-09-16T00:36:05Z"
+    },
+    "140521:140514": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T02:09:08Z"
     }
   },
   "critical_events": [],
   "last_inventory": {
     "products_read": 653,
-    "jpeg_png_refs": 344,
-    "primary_refs": 282,
-    "distinct_attachment_ids": 312
+    "jpeg_png_refs": 324,
+    "primary_refs": 262,
+    "distinct_attachment_ids": 294
   },
   "last_cycle": {
-    "run_id": "35046095946",
+    "run_id": "35046856301",
     "selected": 20,
-    "success": 19,
-    "failed_or_skipped": 1,
-    "before_refs": 363,
-    "after_refs": 344,
-    "at_utc": "2026-09-16T02:08:53Z"
+    "success": 20,
+    "failed_or_skipped": 0,
+    "before_refs": 344,
+    "after_refs": 324,
+    "at_utc": "2026-09-16T02:21:12Z"
   }
 }
