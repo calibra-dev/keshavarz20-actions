@@ -52,14 +52,26 @@ page_stats = post_types.get('page') or {}
 coverage_errors = []
 if int(site_summary.get('products_read') or 0) <= 0:
     coverage_errors.append('sitewide products_read is zero')
+if site_summary.get('product_error'):
+    coverage_errors.append('sitewide product REST error present')
 if int(site_summary.get('product_categories_read') or 0) <= 0:
     coverage_errors.append('sitewide product_categories_read is zero')
+if site_summary.get('category_error'):
+    coverage_errors.append('sitewide category REST error present')
 if int(site_summary.get('sitemaps_read') or 0) <= 0:
     coverage_errors.append('sitewide sitemaps_read is zero')
+if int(site_summary.get('sitemap_failures') or 0) != 0:
+    coverage_errors.append('sitewide sitemap failures present')
 if int(site_summary.get('public_urls_discovered') or 0) <= 0:
     coverage_errors.append('sitewide public_urls_discovered is zero')
 if int(site_summary.get('rendered_pages_read') or 0) <= 0:
     coverage_errors.append('sitewide rendered_pages_read is zero')
+if int(site_summary.get('rendered_pages_failed') or 0) != 0:
+    coverage_errors.append('sitewide rendered crawl failures present')
+if site_summary.get('crawl_complete') is not True:
+    coverage_errors.append('sitewide crawl is not complete')
+if int(site_summary.get('rendered_pages_read') or 0) != int(site_summary.get('public_urls_discovered') or 0):
+    coverage_errors.append('sitewide rendered coverage count mismatch')
 if int(page_stats.get('posts_read') or 0) <= 0 or page_stats.get('error'):
     coverage_errors.append('sitewide page coverage incomplete')
 for name, info in sorted(post_types.items()):
@@ -202,7 +214,7 @@ plan = {
     'eligible': eligible,
     'blocked': blocked,
     'already_absent': already_absent,
-    'note': 'Read-only plan. No WordPress media was deleted. Eligible means migrated original JPEG/PNG with parent=0, zero references in both fresh inventories, and not protected.'
+    'note': 'Read-only plan. No WordPress media was deleted. Eligible means migrated original JPEG/PNG with parent=0, zero references in both fresh inventories, and not protected. Complete sitewide REST/sitemap/render coverage is required before this plan can be produced.'
 }
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(json.dumps(plan, ensure_ascii=False, indent=2), encoding='utf-8')
