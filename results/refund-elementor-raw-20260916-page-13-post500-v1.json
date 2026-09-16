@@ -1,0 +1,41 @@
+{
+  "ok": true,
+  "action": "refund.elementor_raw_meta_probe",
+  "source": "keshavarz20-ops/v2/execute mode=inspect resource=page",
+  "read_only": true,
+  "page_id": 13,
+  "bridge_http": 200,
+  "bridge_ok": true,
+  "response_keys": [
+    "before",
+    "mode",
+    "ok",
+    "resource"
+  ],
+  "before_keys": [
+    "content",
+    "date_gmt",
+    "excerpt",
+    "featured_media",
+    "id",
+    "modified_gmt",
+    "post_type",
+    "slug",
+    "status",
+    "title",
+    "url",
+    "yoast_focuskw",
+    "yoast_metadesc",
+    "yoast_title"
+  ],
+  "before_safe_scalar": {
+    "id": 13,
+    "post_type": "page",
+    "slug": "refund_returns",
+    "status": "publish",
+    "modified_gmt": "2026-09-16 04:27:02"
+  },
+  "elementor_candidates": [],
+  "raw_elementor_content_persisted": false,
+  "executed_at_utc": "2026-09-16T07:41:23Z"
+}
