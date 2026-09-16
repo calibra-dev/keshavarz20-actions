@@ -1,0 +1,35 @@
+{
+  "action": "sitewide_media.phase1_cycle_v2",
+  "run_id": "35060795536",
+  "executed_at_utc": "2026-09-16T05:45:38Z",
+  "selected": 1,
+  "items": [
+    {
+      "old_attachment_id": 135224,
+      "success": false,
+      "references_to_update": 1,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/8f00dae8dc033df201d465ce9e6aa07b7473db06_1617363255-2-5.jpg",
+      "original_bytes": 1034256,
+      "webp_bytes_local": 123744,
+      "saving_pct": 88.04,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 49.51,
+      "pixel_exact": false,
+      "width": 2500,
+      "height": 2500,
+      "new_attachment_id": 144812,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-sitewide-a135224.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 123744,
+        "content_type": "image/webp"
+      },
+      "stage": "error",
+      "error": "category readback failed",
+      "rollback_ok": true,
+      "cleanup_uploaded_webp": true
+    }
+  ],
+  "success_count": 0,
+  "critical_halt": false
+}

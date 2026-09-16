@@ -1,14 +1,16 @@
 {
   "version": 2,
   "started_at_utc": "2026-09-16T05:43:43Z",
-  "updated_at_utc": "2026-09-16T05:43:53Z",
+  "updated_at_utc": "2026-09-16T05:46:14Z",
   "status": "running",
-  "cycles": 1,
+  "cycles": 2,
   "successful_migrations": 0,
   "lossy_success": 0,
   "lossless_success": 0,
   "processed_attachment_ids": [],
-  "retry_counts": {},
+  "retry_counts": {
+    "135224": 1
+  },
   "terminal_skips": {
     "140034": {
       "reason": "TERMINAL: no WebP candidate met quality and saving guards",
@@ -17,10 +19,10 @@
   },
   "critical_events": [],
   "last_cycle": {
-    "run_id": "35060669759",
+    "run_id": "35060795536",
     "selected": 1,
     "success": 0,
     "remaining_actionable_from_snapshot": 91,
-    "at_utc": "2026-09-16T05:43:53Z"
+    "at_utc": "2026-09-16T05:46:14Z"
   }
 }
