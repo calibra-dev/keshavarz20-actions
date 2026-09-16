@@ -5,8 +5,6 @@ on:
     branches: [main]
     paths:
       - 'question-engine-ops/*.json'
-  schedule:
-    - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
     inputs:
       action:
@@ -67,11 +65,10 @@ jobs:
           mkdir -p question-engine-results
           stamp="$(date -u +%Y%m%dT%H%M%SZ)"
           out="question-engine-results/${stamp}-${{ steps.resolve.outputs.action }}.json"
-          python question-engine/engine_v14.py --action '${{ steps.resolve.outputs.action }}' --result "$out"
+          python question-engine/engine_v15.py --action '${{ steps.resolve.outputs.action }}' --result "$out"
           echo "RESULT_PATH=$out" >> "$GITHUB_ENV"
 
       - name: Validate engine tests
-        if: github.event_name != 'schedule'
         shell: bash
         run: |
           python question-engine/test_engine.py
@@ -88,9 +85,9 @@ jobs:
           python question-engine/test_engine_v12.py
           python question-engine/test_engine_v13.py
           python question-engine/test_engine_v14.py
+          python question-engine/test_engine_v15.py
 
       - name: Commit manual-run result
-        if: github.event_name != 'schedule'
         shell: bash
         run: |
           set -euo pipefail
