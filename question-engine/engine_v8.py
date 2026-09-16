@@ -53,11 +53,16 @@ def candidates_v8(p,fam,style,rng):
             f"کسی از {name} برای مسیر انتقال چندصد متری استفاده کرده؟ در عمل از نظر افت فشار، جمع‌کردن و دوام چه تجربه‌ای داشته")
         add(out,"experience_request","experience:pipe:season",
             f"اگر کسی یک فصل کامل از {name} زیر آفتاب و فضای باز استفاده کرده، ممنون میشم تجربه‌اش از دوام و نگهداری رو بگه")
-    elif fam in {"fitting","valve"}:
-        add(out,"experience_request",f"experience:{fam}:durability",
-            f"کسی مدتی از {name} استفاده کرده؟ از نظر نشتی، باز و بسته شدن و دوام اتصال در استفاده واقعی چه تجربه‌ای داشته")
-        add(out,"experience_request",f"experience:{fam}:install",
-            f"اگر کسی {name} رو خودش یا با نصاب نصب کرده، کدوم نکته نصب بیشترین تاثیر رو روی آب‌بندی و عملکردش داشته")
+    elif fam=="fitting":
+        add(out,"experience_request","experience:fitting:durability",
+            f"کسی مدتی از {name} استفاده کرده؟ از نظر نشتی، لقی، آب‌بندی و دوام اتصال در استفاده واقعی چه تجربه‌ای داشته")
+        add(out,"experience_request","experience:fitting:install",
+            f"اگر کسی {name} رو خودش یا با نصاب نصب کرده، کدوم نکته نصب بیشترین تاثیر رو روی آب‌بندی و محکم موندن اتصال داشته")
+    elif fam=="valve":
+        add(out,"experience_request","experience:valve:durability",
+            f"کسی مدتی از {name} استفاده کرده؟ از نظر نشتی، روان بودن باز و بسته شدن و دوام اتصال در استفاده واقعی چه تجربه‌ای داشته")
+        add(out,"experience_request","experience:valve:install",
+            f"اگر کسی {name} رو خودش یا با نصاب نصب کرده، کدوم نکته نصب بیشترین تاثیر رو روی آب‌بندی و عملکرد شیر داشته")
     elif fam=="filter":
         add(out,"experience_request","experience:filter:well-water",
             f"کسی {name} رو روی آب چاه دارای شن یا رسوب استفاده کرده؟ فاصله شست‌وشو و افت فشارش در عمل چطور بوده")
