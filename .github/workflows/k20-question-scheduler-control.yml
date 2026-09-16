@@ -5,11 +5,17 @@ on:
     branches: [main]
     paths:
       - 'scheduler-control/*.json'
+  schedule:
+    - cron: '2,12,22,32,42,52 * * * *'
   workflow_dispatch:
 
 permissions:
   contents: read
   actions: write
+
+concurrency:
+  group: k20-question-scheduler-control
+  cancel-in-progress: false
 
 jobs:
   control:
@@ -24,10 +30,7 @@ jobs:
           set -euo pipefail
           repo="${GITHUB_REPOSITORY}"
           wf="k20-question-scheduler.yml"
-          echo "=== BEFORE ==="
-          gh api "repos/$repo/actions/workflows/$wf" --jq '{id,name,path,state}'
           gh api --method PUT "repos/$repo/actions/workflows/$wf/enable"
-          echo "=== AFTER ENABLE ==="
           gh api "repos/$repo/actions/workflows/$wf" --jq '{id,name,path,state}'
           gh api --method POST "repos/$repo/actions/workflows/$wf/dispatches" -f ref=main
           echo "dispatch=requested"
