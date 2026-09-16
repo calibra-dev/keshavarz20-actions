@@ -1,0 +1,855 @@
+{
+  "action": "media.autopilot.cycle",
+  "run_id": "35051455971",
+  "executed_at_utc": "2026-09-16T03:32:43Z",
+  "config": {
+    "batch_size": 20,
+    "max_attempts": 3,
+    "quality": 88,
+    "min_psnr": 40.0,
+    "min_saving_lossy_pct": 15.0,
+    "min_saving_lossless_pct": 5.0
+  },
+  "inventory_before": {
+    "products_read": 653,
+    "jpeg_png_refs": 244,
+    "primary_refs": 182,
+    "distinct_attachment_ids": 214
+  },
+  "items": [
+    {
+      "product_id": 141042,
+      "old_attachment_id": 141046,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/SAVANA_Copy_547818134.png",
+      "source_mime": "image/png",
+      "original_bytes": 482116,
+      "webp_bytes_local": 250862,
+      "saving_pct": 47.97,
+      "encoder_mode": "lossless",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossless",
+          "bytes": 250862,
+          "pixel_exact": true
+        }
+      ],
+      "width": 700,
+      "height": 700,
+      "alt_before": "تصویر محصول کود پودری ساوانا 0-0-32 روم هلند 10 کیلویی (Savana Room)",
+      "new_attachment_id": 144773,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141042-a141046-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 250862,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144773,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141042-a141046-webp.webp",
+      "alt_after": "تصویر محصول کود پودری ساوانا 0-0-32 روم هلند 10 کیلویی (Savana Room)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 141217,
+      "old_attachment_id": 141349,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/amnotop-x.green_.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 230903,
+      "webp_bytes_local": 67580,
+      "saving_pct": 70.73,
+      "encoder_mode": "lossy-q95",
+      "psnr_db": 40.27,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 47046,
+          "psnr": 39.4,
+          "saving_pct": 79.63
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 56748,
+          "psnr": 39.91,
+          "saving_pct": 75.42
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 67580,
+          "psnr": 40.27,
+          "saving_pct": 70.73
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول کود آمینوتاپ مایع 1 لیتری ایکس گرین آمریکا (AminoTop XGreen)",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 141221,
+      "old_attachment_id": 141342,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/hyper-hum-x.green_.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 323360,
+      "webp_bytes_local": 294314,
+      "saving_pct": 8.98,
+      "encoder_mode": "lossless-fallback",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 68878,
+          "psnr": 36.97,
+          "saving_pct": 78.7
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 81284,
+          "psnr": 37.36,
+          "saving_pct": 74.86
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 95950,
+          "psnr": 37.67,
+          "saving_pct": 70.33
+        },
+        {
+          "mode": "lossless-fallback",
+          "bytes": 294314,
+          "pixel_exact": true,
+          "saving_pct": 8.98
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول کود هایپرهیوم پودری ایکس گرین آمریکا 1 کیلویی (Hyper Hum XGreen)",
+      "new_attachment_id": 144774,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141221-a141342-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 294314,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144774,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141221-a141342-webp.webp",
+      "alt_after": "تصویر محصول کود هایپرهیوم پودری ایکس گرین آمریکا 1 کیلویی (Hyper Hum XGreen)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 141356,
+      "old_attachment_id": 141642,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/loule-poli-20-inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 286960,
+      "webp_bytes_local": 67842,
+      "saving_pct": 76.36,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.25,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 67842,
+          "psnr": 41.25,
+          "saving_pct": 76.36
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "نمای محصول لوله پلی‌اتیلن ۲۰ میلی‌متر ۱۲.۵ اتمسفر استاندارد ۲۰۰ متری",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 141454,
+      "old_attachment_id": 141456,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/bast-kopeh2inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 238125,
+      "webp_bytes_local": 46736,
+      "saving_pct": 80.37,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.19,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 46736,
+          "psnr": 42.19,
+          "saving_pct": 80.37
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول بست تک کپه سایز 2 اینچ (63 میلیمتر)",
+      "new_attachment_id": 144775,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141454-a141456-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 46736,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144775,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141454-a141456-webp.webp",
+      "alt_after": "تصویر محصول بست تک کپه سایز 2 اینچ (63 میلیمتر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 141455,
+      "old_attachment_id": 141457,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/bast-kopeh2.5inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 248219,
+      "webp_bytes_local": 48516,
+      "saving_pct": 80.45,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.12,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 48516,
+          "psnr": 42.12,
+          "saving_pct": 80.45
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول بست تک کپه سایز 2.1/2 اینچ (75 میلیمتر)",
+      "new_attachment_id": 144776,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141455-a141457-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 48516,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144776,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141455-a141457-webp.webp",
+      "alt_after": "تصویر محصول بست تک کپه سایز 2.1/2 اینچ (75 میلیمتر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 141466,
+      "old_attachment_id": 141472,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/bast-hendeli2inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 207231,
+      "webp_bytes_local": 42536,
+      "saving_pct": 79.47,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.97,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 42536,
+          "psnr": 42.97,
+          "saving_pct": 79.47
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول بست هندلی سایز 2 اینچ (63 میلیمتر)",
+      "new_attachment_id": 144777,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141466-a141472-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 42536,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144777,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141466-a141472-webp.webp",
+      "alt_after": "تصویر محصول بست هندلی سایز 2 اینچ (63 میلیمتر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 141467,
+      "old_attachment_id": 141473,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/bast-hendeli2.5inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 213614,
+      "webp_bytes_local": 44200,
+      "saving_pct": 79.31,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.82,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 44200,
+          "psnr": 42.82,
+          "saving_pct": 79.31
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول بست هندلی سایز 2.1/2 اینچ (75 میلیمتر)",
+      "new_attachment_id": 144778,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141467-a141473-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 44200,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144778,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141467-a141473-webp.webp",
+      "alt_after": "تصویر محصول بست هندلی سایز 2.1/2 اینچ (75 میلیمتر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 141468,
+      "old_attachment_id": 141475,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/bast-hendeli3inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 207543,
+      "webp_bytes_local": 42578,
+      "saving_pct": 79.48,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.97,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 42578,
+          "psnr": 42.97,
+          "saving_pct": 79.48
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول بست هندلی سایز 3 اینچ (90 میلیمتر)",
+      "new_attachment_id": 144779,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141468-a141475-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 42578,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144779,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141468-a141475-webp.webp",
+      "alt_after": "تصویر محصول بست هندلی سایز 3 اینچ (90 میلیمتر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 141469,
+      "old_attachment_id": 141476,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/bast-hendeli4inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 206413,
+      "webp_bytes_local": 42400,
+      "saving_pct": 79.46,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 43.01,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 42400,
+          "psnr": 43.01,
+          "saving_pct": 79.46
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول بست هندلی سایز 4 اینچ (110 میلیمتر)",
+      "new_attachment_id": 144780,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141469-a141476-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 42400,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144780,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141469-a141476-webp.webp",
+      "alt_after": "تصویر محصول بست هندلی سایز 4 اینچ (110 میلیمتر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 141470,
+      "old_attachment_id": 141477,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/bast-hendeli-5inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 207262,
+      "webp_bytes_local": 42544,
+      "saving_pct": 79.47,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.98,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 42544,
+          "psnr": 42.98,
+          "saving_pct": 79.47
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول بست هندلی سایز 5 اینچ (125 میلیمتر)",
+      "new_attachment_id": 144781,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141470-a141477-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 42544,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144781,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141470-a141477-webp.webp",
+      "alt_after": "تصویر محصول بست هندلی سایز 5 اینچ (125 میلیمتر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 141471,
+      "old_attachment_id": 141478,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/bast-hendeli6inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 207377,
+      "webp_bytes_local": 42576,
+      "saving_pct": 79.47,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.99,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 42576,
+          "psnr": 42.99,
+          "saving_pct": 79.47
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول بست هندلی سایز 5.5 اینچ (150 میلیمتر)",
+      "new_attachment_id": 144782,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141471-a141478-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 42576,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144782,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141471-a141478-webp.webp",
+      "alt_after": "تصویر محصول بست هندلی سایز 5.5 اینچ (150 میلیمتر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 141479,
+      "old_attachment_id": 141489,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/bast-2kapeh-2-inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 181165,
+      "webp_bytes_local": 36650,
+      "saving_pct": 79.77,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 43.43,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 36650,
+          "psnr": 43.43,
+          "saving_pct": 79.77
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول بست دو کپه 2 اینچ (63 میلیمتر)",
+      "new_attachment_id": 144783,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141479-a141489-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 36650,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144783,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141479-a141489-webp.webp",
+      "alt_after": "تصویر محصول بست دو کپه 2 اینچ (63 میلیمتر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 141480,
+      "old_attachment_id": 141487,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/bast-2kapeh-3-inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 181473,
+      "webp_bytes_local": 36682,
+      "saving_pct": 79.79,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 43.44,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 36682,
+          "psnr": 43.44,
+          "saving_pct": 79.79
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول بست دو کپه 3 اینچ (90 میلیمتر)",
+      "new_attachment_id": 144784,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141480-a141487-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 36682,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144784,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141480-a141487-webp.webp",
+      "alt_after": "تصویر محصول بست دو کپه 3 اینچ (90 میلیمتر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 141481,
+      "old_attachment_id": 141486,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/bast-2kapeh4-inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 180347,
+      "webp_bytes_local": 36474,
+      "saving_pct": 79.78,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 43.47,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 36474,
+          "psnr": 43.47,
+          "saving_pct": 79.78
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول بست دو کپه 4 اینچ (110 میلیمتر)",
+      "new_attachment_id": 144785,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141481-a141486-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 36474,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144785,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141481-a141486-webp.webp",
+      "alt_after": "تصویر محصول بست دو کپه 4 اینچ (110 میلیمتر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 141482,
+      "old_attachment_id": 141485,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/bast-2kapeh-5-inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 181185,
+      "webp_bytes_local": 36600,
+      "saving_pct": 79.8,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 43.42,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 36600,
+          "psnr": 43.42,
+          "saving_pct": 79.8
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "بست دو کپه سایز ۲.۱/۲ اینچ (۷۵ میلی‌متر)",
+      "new_attachment_id": 144786,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141482-a141485-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 36600,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144786,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141482-a141485-webp.webp",
+      "alt_after": "بست دو کپه سایز ۲.۱/۲ اینچ (۷۵ میلی‌متر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 141483,
+      "old_attachment_id": 141484,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/bast-2kapeh-6-inch.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 181307,
+      "webp_bytes_local": 36640,
+      "saving_pct": 79.79,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 43.46,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 36640,
+          "psnr": 43.46,
+          "saving_pct": 79.79
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول بست دو کپه 6 اینچ (160 میلیمتر)",
+      "new_attachment_id": 144787,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141483-a141484-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 36640,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144787,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141483-a141484-webp.webp",
+      "alt_after": "تصویر محصول بست دو کپه 6 اینچ (160 میلیمتر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 141502,
+      "old_attachment_id": 141509,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/mini-filter-diski-1.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 210705,
+      "webp_bytes_local": 43482,
+      "saving_pct": 79.36,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.33,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 43482,
+          "psnr": 42.33,
+          "saving_pct": 79.36
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "نمای محصول مینی فیلتر دیسکی 1 اینچ فرات پلیمر",
+      "new_attachment_id": 144788,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141502-a141509-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 43482,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144788,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141502-a141509-webp.webp",
+      "alt_after": "نمای محصول مینی فیلتر دیسکی 1 اینچ فرات پلیمر",
+      "stage": "verified"
+    },
+    {
+      "product_id": 141503,
+      "old_attachment_id": 141510,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/mini-filter-diski2.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 211454,
+      "webp_bytes_local": 43906,
+      "saving_pct": 79.24,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.3,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 43906,
+          "psnr": 42.3,
+          "saving_pct": 79.24
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "نمای محصول مینی فیلتر دیسکی 2 اینچ فرات پلیمر",
+      "new_attachment_id": 144789,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141503-a141510-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 43906,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144789,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141503-a141510-webp.webp",
+      "alt_after": "نمای محصول مینی فیلتر دیسکی 2 اینچ فرات پلیمر",
+      "stage": "verified"
+    },
+    {
+      "product_id": 141504,
+      "old_attachment_id": 141511,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/mini-filter-hilix-2.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 224407,
+      "webp_bytes_local": 42176,
+      "saving_pct": 81.21,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.52,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 42176,
+          "psnr": 41.52,
+          "saving_pct": 81.21
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "نمای محصول فیلتر دیسکی پایه بلند هیلیکس 2 اینچ فرات پلیمر",
+      "new_attachment_id": 144790,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141504-a141511-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 42176,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144790,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p141504-a141511-webp.webp",
+      "alt_after": "نمای محصول فیلتر دیسکی پایه بلند هیلیکس 2 اینچ فرات پلیمر",
+      "stage": "verified"
+    }
+  ],
+  "inventory_after": {
+    "products_read": 653,
+    "jpeg_png_refs": 226,
+    "primary_refs": 164,
+    "distinct_attachment_ids": 196
+  },
+  "state_status": "running",
+  "total_successful_migrations": 457,
+  "total_terminal_skips": 29
+}
