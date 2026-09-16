@@ -1,0 +1,822 @@
+{
+  "action": "media.autopilot.cycle",
+  "run_id": "35044043682",
+  "executed_at_utc": "2026-09-16T01:36:41Z",
+  "config": {
+    "batch_size": 20,
+    "max_attempts": 3,
+    "quality": 88,
+    "min_psnr": 40.0,
+    "min_saving_lossy_pct": 15.0,
+    "min_saving_lossless_pct": 5.0
+  },
+  "inventory_before": {
+    "products_read": 653,
+    "jpeg_png_refs": 412,
+    "primary_refs": 350,
+    "distinct_attachment_ids": 370
+  },
+  "items": [
+    {
+      "product_id": 140451,
+      "old_attachment_id": 140452,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/khodshoynde-1-scaled-2560x1683-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 14294,
+      "webp_bytes_local": 5702,
+      "saving_pct": 60.11,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 48.22,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 5702,
+          "psnr": 48.22,
+          "saving_pct": 60.11
+        }
+      ],
+      "width": 600,
+      "height": 394,
+      "alt_before": "تصویر محصول دریپر خود شوینده ۸ لیتری مخصوص آبیاری قطره‌ای",
+      "new_attachment_id": 144605,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140451-a140452-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 5702,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144605,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140451-a140452-webp.webp",
+      "alt_after": "تصویر محصول دریپر خود شوینده ۸ لیتری مخصوص آبیاری قطره‌ای",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140454,
+      "old_attachment_id": 140455,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/دریپر-روی-خط-زیتونی-بهاره-8-نازله-قابل-تنظیم-دبی-بهاران-قطره.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 27413,
+      "webp_bytes_local": 15464,
+      "saving_pct": 43.59,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 43.42,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 15464,
+          "psnr": 43.42,
+          "saving_pct": 43.59
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول دریپر زیتونی بهاره زلال رود",
+      "new_attachment_id": 144606,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140454-a140455-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 15464,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144606,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140454-a140455-webp.webp",
+      "alt_after": "تصویر محصول دریپر زیتونی بهاره زلال رود",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140457,
+      "old_attachment_id": 143468,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/ChatGPT-Image-Jul-5-2026-01_27_52-PM.png",
+      "source_mime": "image/png",
+      "original_bytes": 908715,
+      "webp_bytes_local": 614564,
+      "saving_pct": 32.37,
+      "encoder_mode": "lossless",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossless",
+          "bytes": 614564,
+          "pixel_exact": true
+        }
+      ],
+      "width": 1254,
+      "height": 1254,
+      "alt_before": "تصویر محصول دریپر ۸ لیتری پرسی زلال رود",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 140460,
+      "old_attachment_id": 140461,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/رابط-16.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 27516,
+      "webp_bytes_local": 9496,
+      "saving_pct": 65.49,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 48.52,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 9496,
+          "psnr": 48.52,
+          "saving_pct": 65.49
+        }
+      ],
+      "width": 602,
+      "height": 602,
+      "alt_before": "تصویر محصول رابط ۱۶ میلی‌متر آبیاری قطره‌ای",
+      "new_attachment_id": 144607,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140460-a140461-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 9496,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144607,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140460-a140461-webp.webp",
+      "alt_after": "تصویر محصول رابط ۱۶ میلی‌متر آبیاری قطره‌ای",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140462,
+      "old_attachment_id": 141162,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/rabetAblooleh-20-mm.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 207746,
+      "webp_bytes_local": 44824,
+      "saving_pct": 78.42,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.98,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 44824,
+          "psnr": 42.98,
+          "saving_pct": 78.42
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول رابط مساوی 1/2 اینچ (20 میلیمتر)",
+      "new_attachment_id": 144608,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140462-a141162-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 44824,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144608,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140462-a141162-webp.webp",
+      "alt_after": "تصویر محصول رابط مساوی 1/2 اینچ (20 میلیمتر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140463,
+      "old_attachment_id": 141163,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/rabetAblooleh-25-mm.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 209051,
+      "webp_bytes_local": 44938,
+      "saving_pct": 78.5,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.8,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 44938,
+          "psnr": 42.8,
+          "saving_pct": 78.5
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول رابط مساوی 3/4 اینچ (25 میلیمتر)",
+      "new_attachment_id": 144609,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140463-a141163-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 44938,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144609,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140463-a141163-webp.webp",
+      "alt_after": "تصویر محصول رابط مساوی 3/4 اینچ (25 میلیمتر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140465,
+      "old_attachment_id": 141165,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/rabetAblooleh-40-mm.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 208215,
+      "webp_bytes_local": 44770,
+      "saving_pct": 78.5,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.85,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 44770,
+          "psnr": 42.85,
+          "saving_pct": 78.5
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول رابط مساوی 1.1/4 اینچ (40 میلیمتر)",
+      "new_attachment_id": 144610,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140465-a141165-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 44770,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144610,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140465-a141165-webp.webp",
+      "alt_after": "تصویر محصول رابط مساوی 1.1/4 اینچ (40 میلیمتر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140467,
+      "old_attachment_id": 140468,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/images-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 3074,
+      "webp_bytes_local": 2438,
+      "saving_pct": 20.69,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 45.88,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 2438,
+          "psnr": 45.88,
+          "saving_pct": 20.69
+        }
+      ],
+      "width": 225,
+      "height": 225,
+      "alt_before": "تصویر محصول رابط تیپ به ۱۶ زلال رود",
+      "new_attachment_id": 144611,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140467-a140468-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 2438,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144611,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140467-a140468-webp.webp",
+      "alt_after": "تصویر محصول رابط تیپ به ۱۶ زلال رود",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140470,
+      "old_attachment_id": 140471,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/6-2.png",
+      "source_mime": "image/png",
+      "original_bytes": 50461,
+      "webp_bytes_local": 32454,
+      "saving_pct": 35.68,
+      "encoder_mode": "lossless",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossless",
+          "bytes": 32454,
+          "pixel_exact": true
+        }
+      ],
+      "width": 245,
+      "height": 239,
+      "alt_before": "تصویر محصول رابط تیپ به 16 کشویی زلال رود",
+      "new_attachment_id": 144612,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140470-a140471-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 32454,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144612,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140470-a140471-webp.webp",
+      "alt_after": "تصویر محصول رابط تیپ به 16 کشویی زلال رود",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140472,
+      "old_attachment_id": 140473,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/280x280.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 6134,
+      "webp_bytes_local": 3048,
+      "saving_pct": 50.31,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 45.53,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 3048,
+          "psnr": 45.53,
+          "saving_pct": 50.31
+        }
+      ],
+      "width": 280,
+      "height": 280,
+      "alt_before": "تصویر محصول رابط تیپ به 16 فرات",
+      "new_attachment_id": 144613,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140472-a140473-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 3048,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144613,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140472-a140473-webp.webp",
+      "alt_after": "تصویر محصول رابط تیپ به 16 فرات",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140475,
+      "old_attachment_id": 140476,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/رابط-تیپ-به-تیپ-پیچی-زلال-رود.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 33759,
+      "webp_bytes_local": 14124,
+      "saving_pct": 58.16,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 47.03,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 14124,
+          "psnr": 47.03,
+          "saving_pct": 58.16
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول رابط تیپ به تیپ زلال رود",
+      "new_attachment_id": 144614,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140475-a140476-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 14124,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144614,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140475-a140476-webp.webp",
+      "alt_after": "تصویر محصول رابط تیپ به تیپ زلال رود",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140478,
+      "old_attachment_id": 140479,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/2-300x162-1.png",
+      "source_mime": "image/png",
+      "original_bytes": 75114,
+      "webp_bytes_local": 44298,
+      "saving_pct": 41.03,
+      "encoder_mode": "lossless",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossless",
+          "bytes": 44298,
+          "pixel_exact": true
+        }
+      ],
+      "width": 300,
+      "height": 300,
+      "alt_before": "تصویر محصول رابط تیپ به تیپ کشویی زلال رود",
+      "new_attachment_id": 144615,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140478-a140479-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 44298,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144615,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140478-a140479-webp.webp",
+      "alt_after": "تصویر محصول رابط تیپ به تیپ کشویی زلال رود",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140480,
+      "old_attachment_id": 140481,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/160-37247211662972533c-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 44254,
+      "webp_bytes_local": 12980,
+      "saving_pct": 70.67,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 45.41,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 12980,
+          "psnr": 45.41,
+          "saving_pct": 70.67
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "رابط تیپ به لی فلت واشر دار آبافرین سر تخت برای اتصال نوار تیپ به لوله نخدار",
+      "new_attachment_id": 144616,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140480-a140481-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 12980,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144616,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140480-a140481-webp.webp",
+      "alt_after": "رابط تیپ به لی فلت واشر دار آبافرین سر تخت برای اتصال نوار تیپ به لوله نخدار",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140483,
+      "old_attachment_id": 140484,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/رابط-لی-فلت-در-تیپ-حلزونی-بهاران-قطره.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 34240,
+      "webp_bytes_local": 12614,
+      "saving_pct": 63.16,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 46.13,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 12614,
+          "psnr": 46.13,
+          "saving_pct": 63.16
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "رابط تیپ به لی فلت زلال رود برای اتصال نوار تیپ به لوله نخدار",
+      "new_attachment_id": 144617,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140483-a140484-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 12614,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144617,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140483-a140484-webp.webp",
+      "alt_after": "رابط تیپ به لی فلت زلال رود برای اتصال نوار تیپ به لوله نخدار",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140485,
+      "old_attachment_id": 144218,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-product-140485-p545-featured.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 9384,
+      "webp_bytes_local": 6700,
+      "saving_pct": 28.6,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.11,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 6700,
+          "psnr": 42.11,
+          "saving_pct": 28.6
+        }
+      ],
+      "width": 300,
+      "height": 212,
+      "alt_before": "تصویر محصول رایزر آلمینیومی 1 متری 2 اینچ",
+      "new_attachment_id": 144618,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140485-a144218-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 6700,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144618,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140485-a144218-webp.webp",
+      "alt_after": "تصویر محصول رایزر آلمینیومی 1 متری 2 اینچ",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140486,
+      "old_attachment_id": 144217,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-product-140486-p544-featured.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 9384,
+      "webp_bytes_local": 6700,
+      "saving_pct": 28.6,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.11,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 6700,
+          "psnr": 42.11,
+          "saving_pct": 28.6
+        }
+      ],
+      "width": 300,
+      "height": 212,
+      "alt_before": "تصویر محصول رایزر آلمینیومی 1 متری 1.1/2 اینچ",
+      "new_attachment_id": 144619,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140486-a144217-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 6700,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144619,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140486-a144217-webp.webp",
+      "alt_after": "تصویر محصول رایزر آلمینیومی 1 متری 1.1/2 اینچ",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140489,
+      "old_attachment_id": 140492,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/etesalrezveie-2-550x550-1.png",
+      "source_mime": "image/png",
+      "original_bytes": 140385,
+      "webp_bytes_local": 94362,
+      "saving_pct": 32.78,
+      "encoder_mode": "lossless",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossless",
+          "bytes": 94362,
+          "pixel_exact": true
+        }
+      ],
+      "width": 550,
+      "height": 550,
+      "alt_before": "تصویر محصول زانو دو سر نر پلیمری رزوه ای 2 اینچ (63 میلیمتر) زلال رود",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 140490,
+      "old_attachment_id": 140491,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/زانو-ماده-رزوه-ای-پلی-اتیلن-زلال-رود-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 28814,
+      "webp_bytes_local": 8484,
+      "saving_pct": 70.56,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 47.94,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 8484,
+          "psnr": 47.94,
+          "saving_pct": 70.56
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول زانو ماده پلیمری رزوه ای 2 اینچ (63 میلیمتر) زلال رود",
+      "new_attachment_id": 144620,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140490-a140491-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 8484,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144620,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140490-a140491-webp.webp",
+      "alt_after": "تصویر محصول زانو ماده پلیمری رزوه ای 2 اینچ (63 میلیمتر) زلال رود",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140494,
+      "old_attachment_id": 135664,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/3170401_9-550x550w-10.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 11235,
+      "webp_bytes_local": 3666,
+      "saving_pct": 67.37,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 51.54,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 3666,
+          "psnr": 51.54,
+          "saving_pct": 67.37
+        }
+      ],
+      "width": 550,
+      "height": 550,
+      "alt_before": "زانو پلیمری دوسر ماده پایا",
+      "new_attachment_id": 144621,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140494-a135664-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 3666,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144621,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140494-a135664-webp.webp",
+      "alt_after": "زانو پلیمری دوسر ماده پایا",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140495,
+      "old_attachment_id": 135664,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/3170401_9-550x550w-10.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 11235,
+      "webp_bytes_local": 3666,
+      "saving_pct": 67.37,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 51.54,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 3666,
+          "psnr": 51.54,
+          "saving_pct": 67.37
+        }
+      ],
+      "width": 550,
+      "height": 550,
+      "alt_before": "زانو پلیمری دوسر ماده پایا",
+      "new_attachment_id": 144622,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140495-a135664-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 3666,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144622,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140495-a135664-webp.webp",
+      "alt_after": "زانو پلیمری دوسر ماده پایا",
+      "stage": "verified"
+    }
+  ],
+  "inventory_after": {
+    "products_read": 653,
+    "jpeg_png_refs": 394,
+    "primary_refs": 332,
+    "distinct_attachment_ids": 354
+  },
+  "state_status": "running",
+  "total_successful_migrations": 289,
+  "total_terminal_skips": 3
+}
