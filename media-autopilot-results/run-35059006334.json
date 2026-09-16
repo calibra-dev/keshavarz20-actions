@@ -1,0 +1,587 @@
+{
+  "action": "media.autopilot.cycle",
+  "run_id": "35059006334",
+  "executed_at_utc": "2026-09-16T05:23:24Z",
+  "config": {
+    "batch_size": 20,
+    "max_attempts": 3,
+    "quality": 88,
+    "min_psnr": 40.0,
+    "min_saving_lossy_pct": 15.0,
+    "min_saving_lossless_pct": 5.0
+  },
+  "inventory_before": {
+    "products_read": 653,
+    "jpeg_png_refs": 210,
+    "primary_refs": 148,
+    "distinct_attachment_ids": 180
+  },
+  "items": [
+    {
+      "product_id": 143037,
+      "old_attachment_id": 143038,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2025/05/bidar-roshd-zinc.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 184436,
+      "webp_bytes_local": 42984,
+      "saving_pct": 76.69,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.56,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 42984,
+          "psnr": 40.56,
+          "saving_pct": 76.69
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول کود کلات روی (ZINC) مایع 7% بیدار رشد 1 لیتری",
+      "stage": "error",
+      "error": "<Fault 403: 'نام\\u200cکاربری یا رمز اشتباه است.'>",
+      "terminal": false
+    },
+    {
+      "product_id": 143039,
+      "old_attachment_id": 143040,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2025/05/bidar-roshd-PHOS-K.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 183612,
+      "webp_bytes_local": 43022,
+      "saving_pct": 76.57,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.46,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 43022,
+          "psnr": 40.46,
+          "saving_pct": 76.57
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول کود فوسکا (PHOS K) مایع بیدار رشد 1 لیتری",
+      "stage": "error",
+      "error": "<Fault 403: 'نام\\u200cکاربری یا رمز اشتباه است.'>",
+      "terminal": false
+    },
+    {
+      "product_id": 143041,
+      "old_attachment_id": 143043,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2025/05/bidar-roshd-K50.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 179144,
+      "webp_bytes_local": 41646,
+      "saving_pct": 76.75,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.97,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 41646,
+          "psnr": 40.97,
+          "saving_pct": 76.75
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول کود کا ۵۰ (K50) مایع بیدار رشد 1 لیتری",
+      "stage": "error",
+      "error": "<Fault 403: 'نام\\u200cکاربری یا رمز اشتباه است.'>",
+      "terminal": false
+    },
+    {
+      "product_id": 143044,
+      "old_attachment_id": 143045,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2025/05/bidar-roshd-MAGICIN.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 182739,
+      "webp_bytes_local": 42982,
+      "saving_pct": 76.48,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.12,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 42982,
+          "psnr": 41.12,
+          "saving_pct": 76.48
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول کود مجیشن (MAGICIN) مایع بیدار رشد 1 لیتری",
+      "stage": "error",
+      "error": "<Fault 403: 'نام\\u200cکاربری یا رمز اشتباه است.'>",
+      "terminal": false
+    },
+    {
+      "product_id": 143188,
+      "old_attachment_id": 143189,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2025/09/InShot_۲۰۲۵۰۹۰۲_۱۲۲۳۲۵۷۴۶-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 530630,
+      "webp_bytes_local": 191340,
+      "saving_pct": 63.94,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.73,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 191340,
+          "psnr": 41.73,
+          "saving_pct": 63.94
+        }
+      ],
+      "width": 1920,
+      "height": 1920,
+      "alt_before": "تصویر محصول درایور بردی موتور DC کنترل سرعت و جهت 60 آمپر با نمایشگر دیجیتال",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 144244,
+      "old_attachment_id": 144270,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/ChatGPT-Image-Sep-8-2026-02_25_43-PM-1.png",
+      "source_mime": "image/png",
+      "original_bytes": 1863523,
+      "webp_bytes_local": 1332684,
+      "saving_pct": 28.49,
+      "encoder_mode": "lossless",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossless",
+          "bytes": 1332684,
+          "pixel_exact": true
+        }
+      ],
+      "width": 1254,
+      "height": 1254,
+      "alt_before": "لوله نخدار آبیاری موج 2.5 اینچ",
+      "stage": "error",
+      "error": "<Fault 403: 'نام\\u200cکاربری یا رمز اشتباه است.'>",
+      "terminal": false
+    },
+    {
+      "product_id": 144245,
+      "old_attachment_id": 144272,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/ChatGPT-Image-Sep-8-2026-02_22_54-PM.png",
+      "source_mime": "image/png",
+      "original_bytes": 1701714,
+      "webp_bytes_local": 1202898,
+      "saving_pct": 29.31,
+      "encoder_mode": "lossless",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossless",
+          "bytes": 1202898,
+          "pixel_exact": true
+        }
+      ],
+      "width": 1254,
+      "height": 1254,
+      "alt_before": "لوله نخدار آبیاری موج 3 اینچ",
+      "stage": "error",
+      "error": "<Fault 403: 'نام\\u200cکاربری یا رمز اشتباه است.'>",
+      "terminal": false
+    },
+    {
+      "product_id": 144246,
+      "old_attachment_id": 144273,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/ChatGPT-Image-Sep-8-2026-02_25_44-PM-2.png",
+      "source_mime": "image/png",
+      "original_bytes": 1850362,
+      "webp_bytes_local": 1319126,
+      "saving_pct": 28.71,
+      "encoder_mode": "lossless",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossless",
+          "bytes": 1319126,
+          "pixel_exact": true
+        }
+      ],
+      "width": 1254,
+      "height": 1254,
+      "alt_before": "لوله نخدار آبیاری موج 3.5 اینچ",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 144247,
+      "old_attachment_id": 144274,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/ChatGPT-Image-Sep-8-2026-02_25_45-PM-3.png",
+      "source_mime": "image/png",
+      "original_bytes": 1836672,
+      "webp_bytes_local": 1297866,
+      "saving_pct": 29.34,
+      "encoder_mode": "lossless",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossless",
+          "bytes": 1297866,
+          "pixel_exact": true
+        }
+      ],
+      "width": 1254,
+      "height": 1254,
+      "alt_before": "لوله نخدار آبیاری موج 4 اینچ",
+      "stage": "error",
+      "error": "<Fault 403: 'نام\\u200cکاربری یا رمز اشتباه است.'>",
+      "terminal": false
+    },
+    {
+      "product_id": 135309,
+      "old_attachment_id": 140351,
+      "expected_position": 1,
+      "primary": false,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/4d18e1b8fbff6186fe1228b689b7967d4c9227a8_1643617321.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 56448,
+      "webp_bytes_local": 25642,
+      "saving_pct": 54.57,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.13,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 25642,
+          "psnr": 41.13,
+          "saving_pct": 54.57
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "لوله نخدار ۲ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "stage": "error",
+      "error": "<Fault 403: 'نام\\u200cکاربری یا رمز اشتباه است.'>",
+      "terminal": false
+    },
+    {
+      "product_id": 135309,
+      "old_attachment_id": 141617,
+      "expected_position": 2,
+      "primary": false,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/لوله-آبیاری-نخ-دار-آسایش-آذربایجان-کشاورز-بیست.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 60971,
+      "webp_bytes_local": 31756,
+      "saving_pct": 47.92,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.29,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 31756,
+          "psnr": 41.29,
+          "saving_pct": 47.92
+        }
+      ],
+      "width": 800,
+      "height": 302,
+      "alt_before": "لوله نخدار ۲ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "stage": "error",
+      "error": "<Fault 403: 'نام\\u200cکاربری یا رمز اشتباه است.'>",
+      "terminal": false
+    },
+    {
+      "product_id": 135311,
+      "old_attachment_id": 140351,
+      "expected_position": 1,
+      "primary": false,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/4d18e1b8fbff6186fe1228b689b7967d4c9227a8_1643617321.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 56448,
+      "webp_bytes_local": 25642,
+      "saving_pct": 54.57,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.13,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 25642,
+          "psnr": 41.13,
+          "saving_pct": 54.57
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "لوله نخدار ۲.۵ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "stage": "error",
+      "error": "<Fault 403: 'نام\\u200cکاربری یا رمز اشتباه است.'>",
+      "terminal": false
+    },
+    {
+      "product_id": 135311,
+      "old_attachment_id": 141617,
+      "expected_position": 3,
+      "primary": false,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/لوله-آبیاری-نخ-دار-آسایش-آذربایجان-کشاورز-بیست.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 60971,
+      "webp_bytes_local": 31756,
+      "saving_pct": 47.92,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.29,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 31756,
+          "psnr": 41.29,
+          "saving_pct": 47.92
+        }
+      ],
+      "width": 800,
+      "height": 302,
+      "alt_before": "لوله نخدار ۲.۵ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "stage": "error",
+      "error": "<Fault 403: 'نام\\u200cکاربری یا رمز اشتباه است.'>",
+      "terminal": false
+    },
+    {
+      "product_id": 135313,
+      "old_attachment_id": 140351,
+      "expected_position": 1,
+      "primary": false,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/4d18e1b8fbff6186fe1228b689b7967d4c9227a8_1643617321.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 56448,
+      "webp_bytes_local": 25642,
+      "saving_pct": 54.57,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.13,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 25642,
+          "psnr": 41.13,
+          "saving_pct": 54.57
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "لوله نخدار ۳.۵ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "stage": "error",
+      "error": "<Fault 403: 'نام\\u200cکاربری یا رمز اشتباه است.'>",
+      "terminal": false
+    },
+    {
+      "product_id": 135313,
+      "old_attachment_id": 141617,
+      "expected_position": 2,
+      "primary": false,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/لوله-آبیاری-نخ-دار-آسایش-آذربایجان-کشاورز-بیست.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 60971,
+      "webp_bytes_local": 31756,
+      "saving_pct": 47.92,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.29,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 31756,
+          "psnr": 41.29,
+          "saving_pct": 47.92
+        }
+      ],
+      "width": 800,
+      "height": 302,
+      "alt_before": "لوله نخدار ۳.۵ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "stage": "error",
+      "error": "<Fault 403: 'نام\\u200cکاربری یا رمز اشتباه است.'>",
+      "terminal": false
+    },
+    {
+      "product_id": 135315,
+      "old_attachment_id": 140351,
+      "expected_position": 1,
+      "primary": false,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/4d18e1b8fbff6186fe1228b689b7967d4c9227a8_1643617321.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 56448,
+      "webp_bytes_local": 25642,
+      "saving_pct": 54.57,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.13,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 25642,
+          "psnr": 41.13,
+          "saving_pct": 54.57
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "لوله نخدار ۴ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "stage": "error",
+      "error": "<Fault 403: 'نام\\u200cکاربری یا رمز اشتباه است.'>",
+      "terminal": false
+    },
+    {
+      "product_id": 135315,
+      "old_attachment_id": 141617,
+      "expected_position": 2,
+      "primary": false,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/لوله-آبیاری-نخ-دار-آسایش-آذربایجان-کشاورز-بیست.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 60971,
+      "webp_bytes_local": 31756,
+      "saving_pct": 47.92,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.29,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 31756,
+          "psnr": 41.29,
+          "saving_pct": 47.92
+        }
+      ],
+      "width": 800,
+      "height": 302,
+      "alt_before": "لوله نخدار ۴ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "stage": "error",
+      "error": "<Fault 403: 'نام\\u200cکاربری یا رمز اشتباه است.'>",
+      "terminal": false
+    },
+    {
+      "product_id": 135315,
+      "old_attachment_id": 141607,
+      "expected_position": 3,
+      "primary": false,
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: no WebP candidate met quality and saving guards",
+      "terminal": true
+    },
+    {
+      "product_id": 135317,
+      "old_attachment_id": 140351,
+      "expected_position": 1,
+      "primary": false,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/4d18e1b8fbff6186fe1228b689b7967d4c9227a8_1643617321.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 56448,
+      "webp_bytes_local": 25642,
+      "saving_pct": 54.57,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.13,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 25642,
+          "psnr": 41.13,
+          "saving_pct": 54.57
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "لوله نخدار ۴.۵ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "stage": "error",
+      "error": "<Fault 403: 'نام\\u200cکاربری یا رمز اشتباه است.'>",
+      "terminal": false
+    },
+    {
+      "product_id": 135317,
+      "old_attachment_id": 141617,
+      "expected_position": 2,
+      "primary": false,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/لوله-آبیاری-نخ-دار-آسایش-آذربایجان-کشاورز-بیست.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 60971,
+      "webp_bytes_local": 31756,
+      "saving_pct": 47.92,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.29,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 31756,
+          "psnr": 41.29,
+          "saving_pct": 47.92
+        }
+      ],
+      "width": 800,
+      "height": 302,
+      "alt_before": "لوله نخدار ۴.۵ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "stage": "error",
+      "error": "<Fault 403: 'نام\\u200cکاربری یا رمز اشتباه است.'>",
+      "terminal": false
+    }
+  ],
+  "inventory_after": {
+    "products_read": 653,
+    "jpeg_png_refs": 210,
+    "primary_refs": 148,
+    "distinct_attachment_ids": 180
+  },
+  "state_status": "running",
+  "total_successful_migrations": 473,
+  "total_terminal_skips": 143
+}
