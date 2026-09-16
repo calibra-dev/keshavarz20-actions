@@ -1,14 +1,24 @@
 {
   "version": 1,
   "started_at_utc": "2026-09-16T06:06:37Z",
-  "updated_at_utc": "2026-09-16T06:07:04Z",
+  "updated_at_utc": "2026-09-16T06:08:39Z",
   "status": "running",
-  "cycles": 1,
-  "successful_migrations": 0,
-  "lossy_success": 0,
+  "cycles": 2,
+  "successful_migrations": 1,
+  "lossy_success": 1,
   "lossless_success": 0,
-  "processed_source_ids": [],
-  "migrations": {},
+  "processed_source_ids": [
+    135490
+  ],
+  "migrations": {
+    "135490": {
+      "new_attachment_id": 144873,
+      "category_ids": [
+        756
+      ],
+      "at_utc": "2026-09-16T06:08:30Z"
+    }
+  },
   "retry_counts": {},
   "terminal_skips": {
     "140034": {
@@ -18,14 +28,18 @@
     "135222": {
       "reason": "TERMINAL: PNG lossless guard failed exact=True saving=-227.04",
       "at_utc": "2026-09-16T06:07:03Z"
+    },
+    "135496": {
+      "reason": "TERMINAL: PNG lossless guard failed exact=True saving=-88.31",
+      "at_utc": "2026-09-16T06:08:39Z"
     }
   },
   "critical_events": [],
   "last_cycle": {
-    "run_id": "35062249781",
+    "run_id": "35062333543",
     "selected": 2,
-    "success": 0,
-    "remaining_live_groups": 50,
-    "at_utc": "2026-09-16T06:07:04Z"
+    "success": 1,
+    "remaining_live_groups": 48,
+    "at_utc": "2026-09-16T06:08:39Z"
   }
 }

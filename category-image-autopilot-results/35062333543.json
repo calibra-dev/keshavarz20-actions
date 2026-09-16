@@ -1,0 +1,72 @@
+{
+  "action": "category_image.autopilot_cycle",
+  "run_id": "35062333543",
+  "executed_at_utc": "2026-09-16T06:07:58Z",
+  "selected": 2,
+  "items": [
+    {
+      "old_attachment_id": 135490,
+      "categories": [
+        {
+          "id": 756,
+          "name": "آبیاری قطره‌ای",
+          "slug": "drip-irrigation"
+        }
+      ],
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/b4b2e1c25ed4620cda1e40118a90d90a5bd68b5f_1652529574-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 1045250,
+      "webp_bytes_local": 119324,
+      "saving_pct": 88.58,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 47.94,
+      "pixel_exact": false,
+      "width": 2500,
+      "height": 2500,
+      "alt_before": "شیر انشعاب آبافرین مدل سیناب",
+      "new_attachment_id": 144873,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-category-a135490.webp",
+      "upload_http": 201,
+      "alt_after": "شیر انشعاب آبافرین مدل سیناب",
+      "new_head": {
+        "status": 200,
+        "bytes": 119324,
+        "content_type": "image/webp"
+      },
+      "updates": [
+        {
+          "category_id": 756,
+          "update_http": 200,
+          "response_image_id": 144873,
+          "readback": [
+            {
+              "http": 200,
+              "image_id": 144873
+            }
+          ],
+          "verified": true
+        }
+      ],
+      "stage": "verified",
+      "kept_original_attachment": true
+    },
+    {
+      "old_attachment_id": 135496,
+      "categories": [
+        {
+          "id": 782,
+          "name": "اتصالات فلنچدار",
+          "slug": "flanged-fittings"
+        }
+      ],
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: PNG lossless guard failed exact=True saving=-88.31",
+      "rollback_ok": true,
+      "cleanup_uploaded_webp": true
+    }
+  ],
+  "success_count": 1,
+  "critical_halt": false
+}
