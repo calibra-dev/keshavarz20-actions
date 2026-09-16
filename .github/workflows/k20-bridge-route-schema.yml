@@ -1,0 +1,122 @@
+name: K20 Bridge Route Schema Diagnostic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/bridge-schema/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-bridge-route-schema
+  cancel-in-progress: false
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Inspect route schema read-only
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          foreach ($name in 'WP_BASE_URL','WP_USERNAME','WP_APP_PASSWORD') {
+            if ([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($name))) { throw "Missing required secret: $name" }
+          }
+
+          $event = Get-Content -Raw -LiteralPath $env:GITHUB_EVENT_PATH | ConvertFrom-Json
+          $requests = @()
+          if ($event.commits) {
+            $requests = @($event.commits | ForEach-Object { @($_.added) + @($_.modified) } | Where-Object { $_ -and $_.StartsWith('diagnostics/bridge-schema/') -and $_.EndsWith('.json') } | Sort-Object -Unique)
+          }
+          if ($requests.Count -eq 0) {
+            $requests = @(& git diff --name-only HEAD^ HEAD -- 'diagnostics/bridge-schema/*.json' | Where-Object { $_ })
+          }
+          if ($requests.Count -ne 1) { throw "Expected exactly one bridge-schema request, found $($requests.Count)." }
+
+          $req = Get-Content -Raw -LiteralPath $requests[0] | ConvertFrom-Json
+          if ([string]$req.route -ne '/keshavarz20-ops/v2/execute') { throw 'Diagnostic is hard-limited to /keshavarz20-ops/v2/execute.' }
+
+          $base = $env:WP_BASE_URL.TrimEnd('/')
+          $authText = "$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"
+          $auth = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($authText))
+          $headers = @{ Authorization = "Basic $auth"; Accept = 'application/json' }
+
+          $index = Invoke-RestMethod -Uri "$base/wp-json/" -Headers $headers -Method GET -TimeoutSec 120
+          $routeProp = $index.routes.PSObject.Properties['/keshavarz20-ops/v2/execute']
+          if (-not $routeProp) { throw 'Bridge execute route not found in REST index.' }
+          $route = $routeProp.Value
+
+          $endpoints = @()
+          foreach ($ep in @($route.endpoints)) {
+            $argItems = @()
+            if ($ep.args) {
+              foreach ($p in $ep.args.PSObject.Properties) {
+                $v = $p.Value
+                $enumVals = @()
+                if ($v.enum) { $enumVals = @($v.enum | ForEach-Object { [string]$_ } | Where-Object { $_.Length -le 80 }) }
+                $argItems += [pscustomobject][ordered]@{
+                  name = [string]$p.Name
+                  required = [bool]$v.required
+                  type = [string]$v.type
+                  enum = $enumVals
+                }
+              }
+            }
+            $endpoints += [pscustomobject][ordered]@{
+              methods = @($ep.methods | ForEach-Object { [string]$_ })
+              args = @($argItems | Sort-Object name)
+            }
+          }
+
+          $optionsStatus = 0
+          $allow = ''
+          $optionsKeys = @()
+          try {
+            $opt = Invoke-WebRequest -Uri "$base/wp-json/keshavarz20-ops/v2/execute" -Headers $headers -Method Options -TimeoutSec 120 -SkipHttpErrorCheck
+            $optionsStatus = [int]$opt.StatusCode
+            $allow = [string]$opt.Headers['Allow']
+            if ($opt.Content) {
+              try { $opj = $opt.Content | ConvertFrom-Json; $optionsKeys = @($opj.PSObject.Properties.Name | Sort-Object -Unique) } catch {}
+            }
+          } catch {}
+
+          $result = [ordered]@{
+            ok = $true
+            route = '/keshavarz20-ops/v2/execute'
+            route_namespace = [string]$route.namespace
+            endpoint_count = @($route.endpoints).Count
+            endpoints = $endpoints
+            options_status = $optionsStatus
+            allow_header = $allow
+            options_top_level_keys = $optionsKeys
+            inspected_at_utc = [DateTime]::UtcNow.ToString('o')
+          }
+
+          New-Item -ItemType Directory -Force 'results' | Out-Null
+          $name = [IO.Path]::GetFileNameWithoutExtension($requests[0])
+          $out = "results/$name.json"
+          $result | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath $out -Encoding utf8
+          Write-Host "BRIDGE_SCHEMA_OK route=/keshavarz20-ops/v2/execute endpoints=$(@($route.endpoints).Count) options=$optionsStatus"
+
+      - name: Commit sanitized diagnostic
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/*.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "diag: record sanitized bridge route schema"
+          git push
