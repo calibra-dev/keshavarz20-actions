@@ -1,12 +1,12 @@
 {
   "version": 2,
   "started_at_utc": "2026-09-16T05:43:43Z",
-  "updated_at_utc": "2026-09-16T06:00:10Z",
+  "updated_at_utc": "2026-09-16T06:03:42Z",
   "status": "running",
-  "cycles": 5,
-  "successful_migrations": 11,
+  "cycles": 6,
+  "successful_migrations": 16,
   "lossy_success": 0,
-  "lossless_success": 11,
+  "lossless_success": 16,
   "processed_attachment_ids": [
     128682,
     128685,
@@ -18,7 +18,12 @@
     143689,
     143692,
     143696,
-    143702
+    143702,
+    143704,
+    143706,
+    143780,
+    143783,
+    143791
   ],
   "retry_counts": {
     "135224": 1
@@ -35,10 +40,10 @@
   },
   "critical_events": [],
   "last_cycle": {
-    "run_id": "35061524722",
+    "run_id": "35061787453",
     "selected": 5,
     "success": 5,
-    "remaining_actionable_from_snapshot": 25,
-    "at_utc": "2026-09-16T06:00:10Z"
+    "remaining_actionable_from_snapshot": 20,
+    "at_utc": "2026-09-16T06:03:42Z"
   }
 }
