@@ -8,6 +8,7 @@ CONTENT = ROOT / 'content-media-results' / 'inventory.json'
 REST_STATE = ROOT / 'media-rest-rescue' / 'state.json'
 CATEGORY_STATE = ROOT / 'category-image-autopilot' / 'state.json'
 SITEWIDE_STATE = ROOT / 'sitewide-media-autopilot' / 'state.json'
+GALLERY_VERIFIED = ROOT / 'gallery-meta-rescue' / 'verified.json'
 OPS = ROOT / 'media-cleanup-plan-ops'
 OUT = ROOT / 'media-cleanup-plan' / 'plan.json'
 
@@ -15,6 +16,12 @@ OUT = ROOT / 'media-cleanup-plan' / 'plan.json'
 def load(path):
     if not path.exists():
         raise SystemExit(f'Missing required file: {path}')
+    return json.loads(path.read_text(encoding='utf-8'))
+
+
+def load_optional(path):
+    if not path.exists():
+        return {}
     return json.loads(path.read_text(encoding='utf-8'))
 
 
@@ -41,6 +48,7 @@ content = load(CONTENT)
 rest = load(REST_STATE)
 category = load(CATEGORY_STATE)
 sitewide_state = load(SITEWIDE_STATE)
+gallery_verified = load_optional(GALLERY_VERIFIED)
 request = latest_request()
 
 site_summary = sitewide.get('summary') or {}
@@ -83,18 +91,37 @@ if content_coverage.get('post_errors'):
     coverage_errors.append('content post REST errors present')
 if int(content_coverage.get('products_read') or 0) <= 0:
     coverage_errors.append('content products_read is zero')
+if content_coverage.get('product_error'):
+    coverage_errors.append('content product REST error present')
 if int(content_coverage.get('categories_read') or 0) <= 0:
     coverage_errors.append('content categories_read is zero')
+if content_coverage.get('category_error'):
+    coverage_errors.append('content category REST error present')
 if int(content_coverage.get('public_urls_collected') or 0) <= 0:
     coverage_errors.append('content public_urls_collected is zero')
 if int(content_coverage.get('public_pages_read') or 0) <= 0:
     coverage_errors.append('content public_pages_read is zero')
+
+verified_keys = set()
+for item in (gallery_verified.get('items') or []):
+    key = str(item.get('key') or '')
+    if not key:
+        continue
+    if (
+        item.get('meta_readback_ok') is True
+        and item.get('woo_readback_ok') is True
+        and item.get('old_absent') is True
+        and item.get('new_present') is True
+    ):
+        verified_keys.add(key)
 
 migration_times = [
     parse_iso(rest.get('updated_at_utc')),
     parse_iso(category.get('updated_at_utc')),
     parse_iso(sitewide_state.get('updated_at_utc')),
 ]
+if verified_keys:
+    migration_times.append(parse_iso(gallery_verified.get('executed_at_utc')))
 migration_times = [x for x in migration_times if x]
 latest_migration = max(migration_times) if migration_times else None
 for label, summary in (('sitewide', site_summary), ('content', content_summary)):
@@ -147,12 +174,18 @@ for old in (request.get('extra_candidate_ids') or []):
     sources.setdefault(old_id, set()).add('explicit_verified_migration')
 
 protected = set()
+resolved_skipped_keys = []
 for key in (rest.get('skipped') or {}):
     try:
         _, old = [int(x) for x in str(key).split(':', 1)]
-        protected.add(old)
     except Exception:
-        pass
+        continue
+    if str(key) in verified_keys:
+        candidates.add(old)
+        sources.setdefault(old, set()).add('gallery_meta_rescue')
+        resolved_skipped_keys.append(str(key))
+    else:
+        protected.add(old)
 for old in (request.get('protected_ids') or []):
     try:
         protected.add(int(old))
@@ -206,6 +239,8 @@ plan = {
     'latest_migration_state_utc': latest_migration.isoformat().replace('+00:00', 'Z') if latest_migration else None,
     'sitewide_inventory_executed_at_utc': site_summary.get('executed_at_utc'),
     'content_inventory_executed_at_utc': content_summary.get('executed_at_utc'),
+    'gallery_verified_keys': sorted(verified_keys),
+    'resolved_skipped_keys': sorted(resolved_skipped_keys),
     'candidate_count': len(candidates),
     'protected_count': len(protected),
     'eligible_zero_reference_count': len(eligible),
@@ -214,7 +249,7 @@ plan = {
     'eligible': eligible,
     'blocked': blocked,
     'already_absent': already_absent,
-    'note': 'Read-only plan. No WordPress media was deleted. Eligible means migrated original JPEG/PNG with parent=0, zero references in both fresh inventories, and not protected. Complete sitewide REST/sitemap/render coverage is required before this plan can be produced.'
+    'note': 'Read-only plan. No WordPress media was deleted. A REST-rescue skipped key is resolved only by matching verified gallery evidence. Eligible means migrated original JPEG/PNG with parent=0, zero references in both fresh inventories, and not protected. Complete sitewide REST/sitemap/render coverage is required before this plan can be produced.'
 }
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(json.dumps(plan, ensure_ascii=False, indent=2), encoding='utf-8')
