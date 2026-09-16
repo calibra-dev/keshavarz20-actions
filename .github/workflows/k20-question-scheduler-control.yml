@@ -24,18 +24,58 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
-      - name: Register and dispatch question scheduler
+      - name: Watch and recover continuous question scheduler
         shell: bash
         run: |
           set -euo pipefail
           repo="${GITHUB_REPOSITORY}"
           wf="k20-question-scheduler.yml"
+          force=0
+
+          # Manual/push recovery also re-registers GitHub's schedule metadata.
+          # Scheduled watchdog runs only ensure the workflow remains enabled.
           if [[ "${GITHUB_EVENT_NAME}" != "schedule" ]]; then
+            force=1
             gh api --method PUT "repos/$repo/actions/workflows/$wf/disable"
             gh api --method PUT "repos/$repo/actions/workflows/$wf/enable"
           else
             gh api --method PUT "repos/$repo/actions/workflows/$wf/enable"
           fi
+
           gh api "repos/$repo/actions/workflows/$wf" --jq '{id,name,path,state,updated_at}'
+          runs="$(gh api "repos/$repo/actions/workflows/$wf/runs?per_page=10")"
+          active="$(jq '[.workflow_runs[] | select(.status != "completed")] | length' <<<"$runs")"
+          last_created="$(jq -r '.workflow_runs[0].created_at // ""' <<<"$runs")"
+          age=999999
+          if [[ -n "$last_created" ]]; then
+            age="$(python - "$last_created" <<'PY'
+          import datetime as dt, sys
+          stamp=dt.datetime.fromisoformat(sys.argv[1].replace('Z','+00:00'))
+          print(max(0,int((dt.datetime.now(dt.timezone.utc)-stamp).total_seconds())))
+          PY
+            )"
+          fi
+
+          echo "scheduler-active-runs=$active"
+          echo "scheduler-last-run-age-seconds=$age"
+
+          if [[ "$force" == "1" ]]; then
+            gh api --method POST "repos/$repo/actions/workflows/$wf/dispatches" -f ref=main
+            echo "watchdog-dispatch=forced-recovery"
+            exit 0
+          fi
+
+          if (( active > 0 )); then
+            echo "watchdog-dispatch=skipped-active-chain"
+            exit 0
+          fi
+
+          # A healthy self-rearming chain should always have an active run or a
+          # recently created run. Only recover when it has been stale for 20m.
+          if (( age < 1200 )); then
+            echo "watchdog-dispatch=skipped-recent-run"
+            exit 0
+          fi
+
           gh api --method POST "repos/$repo/actions/workflows/$wf/dispatches" -f ref=main
-          echo "dispatch=requested"
+          echo "watchdog-dispatch=recovered-stale-chain"
