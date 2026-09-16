@@ -362,10 +362,32 @@ def parse_sitemap(url):
         root = ET.fromstring(raw)
     except Exception:
         return False, [], []
-    locs = [(node.text or '').strip() for node in root.iter() if node.tag.lower().endswith('loc') and (node.text or '').strip()]
-    if root.tag.lower().endswith('sitemapindex'):
+
+    def local_name(node):
+        return str(node.tag).rsplit('}', 1)[-1].lower()
+
+    root_kind = local_name(root)
+    if root_kind == 'sitemapindex':
+        locs = []
+        for sitemap in root:
+            if local_name(sitemap) != 'sitemap':
+                continue
+            for node in sitemap:
+                if local_name(node) == 'loc' and (node.text or '').strip():
+                    locs.append((node.text or '').strip())
+                    break
         return True, locs, []
-    return True, [], locs
+    if root_kind == 'urlset':
+        locs = []
+        for entry in root:
+            if local_name(entry) != 'url':
+                continue
+            for node in entry:
+                if local_name(node) == 'loc' and (node.text or '').strip():
+                    locs.append((node.text or '').strip())
+                    break
+        return True, [], locs
+    return False, [], []
 
 sitemap_queue = [base + '/wp-sitemap.xml', base + '/sitemap_index.xml']
 sitemap_seen = set()
