@@ -25,6 +25,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - name: Execute public-safe bridge requests
         shell: pwsh
@@ -46,6 +48,17 @@ jobs:
               Where-Object { $_ -and $_.StartsWith('bridge-cloud-ops/') -and $_.EndsWith('.json') } |
               Sort-Object -Unique
             )
+          }
+
+          if ($requests.Count -eq 0 -and $env:GITHUB_EVENT_NAME -eq 'push') {
+            $changed = @(& git diff --name-only HEAD^ HEAD -- 'bridge-cloud-ops/*.json')
+            if ($LASTEXITCODE -eq 0) {
+              $requests = @(
+                $changed |
+                Where-Object { $_ -and $_.StartsWith('bridge-cloud-ops/') -and $_.EndsWith('.json') } |
+                Sort-Object -Unique
+              )
+            }
           }
 
           if ($requests.Count -eq 0) {
