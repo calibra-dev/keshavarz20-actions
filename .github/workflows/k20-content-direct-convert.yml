@@ -44,5 +44,10 @@ jobs:
           git add -f content-direct-convert-results/*.json 2>/dev/null || true
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "media: record direct content WebP conversion"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          echo 'Failed to push sanitized conversion evidence after 5 attempts.' >&2
+          exit 1
