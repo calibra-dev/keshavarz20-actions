@@ -1,14 +1,19 @@
 {
   "version": 1,
   "started_at_utc": "2026-09-16T06:06:37Z",
-  "updated_at_utc": "2026-09-16T06:08:39Z",
+  "updated_at_utc": "2026-09-16T06:12:30Z",
   "status": "running",
-  "cycles": 2,
-  "successful_migrations": 1,
-  "lossy_success": 1,
+  "cycles": 3,
+  "successful_migrations": 6,
+  "lossy_success": 6,
   "lossless_success": 0,
   "processed_source_ids": [
-    135490
+    135490,
+    135522,
+    135540,
+    135542,
+    135570,
+    135586
   ],
   "migrations": {
     "135490": {
@@ -17,6 +22,41 @@
         756
       ],
       "at_utc": "2026-09-16T06:08:30Z"
+    },
+    "135522": {
+      "new_attachment_id": 144878,
+      "category_ids": [
+        743
+      ],
+      "at_utc": "2026-09-16T06:09:56Z"
+    },
+    "135540": {
+      "new_attachment_id": 144881,
+      "category_ids": [
+        771
+      ],
+      "at_utc": "2026-09-16T06:10:25Z"
+    },
+    "135542": {
+      "new_attachment_id": 144884,
+      "category_ids": [
+        745
+      ],
+      "at_utc": "2026-09-16T06:11:05Z"
+    },
+    "135570": {
+      "new_attachment_id": 144886,
+      "category_ids": [
+        747
+      ],
+      "at_utc": "2026-09-16T06:11:48Z"
+    },
+    "135586": {
+      "new_attachment_id": 144888,
+      "category_ids": [
+        776
+      ],
+      "at_utc": "2026-09-16T06:12:30Z"
     }
   },
   "retry_counts": {},
@@ -36,10 +76,10 @@
   },
   "critical_events": [],
   "last_cycle": {
-    "run_id": "35062333543",
-    "selected": 2,
-    "success": 1,
-    "remaining_live_groups": 48,
-    "at_utc": "2026-09-16T06:08:39Z"
+    "run_id": "35062439222",
+    "selected": 5,
+    "success": 5,
+    "remaining_live_groups": 43,
+    "at_utc": "2026-09-16T06:12:30Z"
   }
 }
