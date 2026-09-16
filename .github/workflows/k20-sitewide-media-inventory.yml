@@ -16,7 +16,7 @@ concurrency:
 jobs:
   inventory:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
     env:
       WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
       WP_USERNAME: ${{ secrets.WP_USERNAME }}
@@ -26,8 +26,11 @@ jobs:
         with:
           fetch-depth: 2
 
+      - name: Validate bounded inventory script
+        run: python -m py_compile scripts/k20_sitewide_media_inventory_v3.py
+
       - name: Build sanitized sitewide image-reference inventory
-        run: python scripts/k20_sitewide_media_inventory_safe.py
+        run: python scripts/k20_sitewide_media_inventory_v3.py
 
       - name: Commit sanitized inventory
         shell: bash
