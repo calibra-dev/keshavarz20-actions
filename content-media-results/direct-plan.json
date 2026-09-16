@@ -1,7 +1,7 @@
 {
   "summary": {
-    "executed_at_utc": "2026-09-16T21:32:12Z",
-    "source_scope_executed_at_utc": "2026-09-16T21:32:11Z",
+    "executed_at_utc": "2026-09-16T21:40:20Z",
+    "source_scope_executed_at_utc": "2026-09-16T21:40:20Z",
     "object_count": 5,
     "reuse_ready_attachments": 0,
     "ambiguous_attachments": 0,
@@ -10,7 +10,12 @@
     "protected_attachment_ids": [
       142597
     ],
-    "distinct_actionable_attachments": 26
+    "distinct_actionable_attachments": 26,
+    "ready_for_conversion_attachments": 0,
+    "terminal_quality_attachments": 19,
+    "terminal_non_rendered_attachments": 5,
+    "blocked_verification_attachments": 2,
+    "legacy_count_note": "needs_conversion and distinct_actionable are unresolved mapping counts, not safe execution queues; consult execution_classification before any write"
   },
   "objects": [
     {
@@ -158,5 +163,41 @@
       ],
       "protected_ids": []
     }
-  ]
+  ],
+  "execution_classification": {
+    "ready_for_conversion_ids": [],
+    "terminal_quality_ids": [
+      141919,
+      142336,
+      142361,
+      142367,
+      142375,
+      142429,
+      142581,
+      142630,
+      142642,
+      142715,
+      142720,
+      142722,
+      142741,
+      142930,
+      143078,
+      143083,
+      143085,
+      143094,
+      143096
+    ],
+    "terminal_non_rendered_ids": [
+      140903,
+      140904,
+      140905,
+      140919,
+      141150
+    ],
+    "blocked_verification_ids": [
+      141437,
+      141441
+    ],
+    "blocked_existing_replacement_ids": []
+  }
 }
