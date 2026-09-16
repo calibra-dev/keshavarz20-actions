@@ -1,0 +1,90 @@
+name: Keshavarz20 Question Heartbeat
+
+on:
+  workflow_run:
+    workflows: ["Keshavarz20 Question Scheduler"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: read
+  actions: write
+
+concurrency:
+  group: k20-question-heartbeat-rearm
+  cancel-in-progress: true
+
+jobs:
+  rearm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rearm after scheduler completion
+        shell: bash
+        run: |
+          set -euo pipefail
+          repo="${GITHUB_REPOSITORY}"
+          wf="k20-question-scheduler.yml"
+
+          active="$(python - <<'PY'
+          import datetime as dt, json
+          cfg=json.load(open('question-engine/config.json',encoding='utf-8'))
+          if not cfg.get('enabled'):
+              print('0'); raise SystemExit
+          end=cfg.get('campaign_end_utc')
+          if end:
+              end_dt=dt.datetime.fromisoformat(str(end).replace('Z','+00:00'))
+              if dt.datetime.now(dt.timezone.utc) >= end_dt:
+                  print('0'); raise SystemExit
+          print('1')
+          PY
+          )"
+          if [[ "$active" != "1" ]]; then
+            echo "heartbeat=stopped-by-config"
+            exit 0
+          fi
+
+          delay=600
+          status_file="${RUNNER_TEMP}/k20-question-status.json"
+          if python question-engine/engine_v17.py --action status --result "$status_file" >/dev/null 2>&1; then
+            computed="$(python - "$status_file" <<'PY'
+          import datetime as dt, json, sys
+          status=json.load(open(sys.argv[1],encoding='utf-8'))
+          cfg=json.load(open('question-engine/config.json',encoding='utf-8'))
+          raw=status.get('next_due_utc')
+          if not raw:
+              print(600); raise SystemExit
+          due=dt.datetime.fromisoformat(str(raw).replace('Z','+00:00'))
+          now=dt.datetime.now(dt.timezone.utc)
+          look=max(0,int(cfg.get('scheduler_lookahead_seconds',900)))
+          seconds=int((due-now).total_seconds())-look
+          print(max(30,min(720,seconds)))
+          PY
+            )"
+            if [[ "$computed" =~ ^[0-9]+$ ]]; then delay="$computed"; fi
+          fi
+
+          echo "next-heartbeat-delay-seconds=$delay"
+          sleep "$delay"
+
+          # Ignore ancient queued runs from the retired concurrency group. Only
+          # a currently executing run or a queue younger than 20 minutes blocks
+          # this heartbeat from dispatching the next scheduler execution.
+          runs="$(gh api "repos/$repo/actions/workflows/$wf/runs?per_page=20")"
+          now_epoch="$(date -u +%s)"
+          active_now="$(jq --argjson now "$now_epoch" '[.workflow_runs[] | select(.status == "in_progress" or (.status == "queued" and ($now - (.created_at | fromdateiso8601)) < 1200))] | length' <<<"$runs")"
+          if (( active_now > 0 )); then
+            echo "heartbeat-dispatch=skipped-active-or-fresh-queue count=$active_now"
+            exit 0
+          fi
+
+          gh api --method POST "repos/$repo/actions/workflows/$wf/dispatches" -f ref=main
+          echo "heartbeat-dispatch=requested"
