@@ -1,9 +1,9 @@
 {
   "version": 1,
   "started_at_utc": "2026-09-15T22:25:31Z",
-  "updated_at_utc": "2026-09-16T04:52:57Z",
+  "updated_at_utc": "2026-09-16T04:58:29Z",
   "status": "running",
-  "cycles": 40,
+  "cycles": 41,
   "successful_migrations": 473,
   "lossy_success": 444,
   "lossless_success": 29,
@@ -91,11 +91,23 @@
     "142767:142769": 3,
     "142787:142788": 3,
     "142790:142795": 3,
-    "142801:142802": 2,
-    "142807:142808": 2,
-    "142809:142812": 1,
-    "142817:142821": 1,
-    "142844:142847": 1
+    "142801:142802": 3,
+    "142807:142808": 3,
+    "142809:142812": 2,
+    "142817:142821": 2,
+    "142844:142847": 2,
+    "142851:142852": 1,
+    "142923:142924": 1,
+    "142927:142926": 1,
+    "142928:142929": 1,
+    "142931:142932": 1,
+    "142934:142944": 1,
+    "142940:142941": 1,
+    "142945:142946": 1,
+    "142960:142961": 1,
+    "142962:142966": 1,
+    "142965:142970": 1,
+    "142971:142972": 1
   },
   "terminal_skips": {
     "135219:141649": {
@@ -537,6 +549,84 @@
     "142199:142201": {
       "reason": "max_attempts_exhausted:3",
       "at_utc": "2026-09-16T04:47:50Z"
+    },
+    "142203:142205": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:53:11Z"
+    },
+    "142204:142207": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:53:11Z"
+    },
+    "142248:142253": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:53:11Z"
+    },
+    "142254:142251": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:53:11Z"
+    },
+    "142255:142247": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:53:11Z"
+    },
+    "142442:142444": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:53:11Z"
+    },
+    "142476:142477": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:53:11Z"
+    },
+    "142480:142482": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:53:11Z"
+    },
+    "142481:142483": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:53:11Z"
+    },
+    "142485:142486": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:53:11Z"
+    },
+    "142726:144140": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:53:11Z"
+    },
+    "142737:140779": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:53:11Z"
+    },
+    "142767:142769": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:53:11Z"
+    },
+    "142787:142788": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:53:11Z"
+    },
+    "142790:142795": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:53:11Z"
+    },
+    "142874:142930": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 142874,
+      "attachment_id": 142930,
+      "at_utc": "2026-09-16T04:55:24Z"
+    },
+    "142913:142914": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 142913,
+      "attachment_id": 142914,
+      "at_utc": "2026-09-16T04:55:34Z"
+    },
+    "142919:142920": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 142919,
+      "attachment_id": 142920,
+      "at_utc": "2026-09-16T04:55:45Z"
     }
   },
   "critical_events": [],
@@ -547,12 +637,12 @@
     "distinct_attachment_ids": 180
   },
   "last_cycle": {
-    "run_id": "35056977543",
+    "run_id": "35057329138",
     "selected": 20,
     "success": 0,
     "failed_or_skipped": 20,
     "before_refs": 210,
     "after_refs": 210,
-    "at_utc": "2026-09-16T04:52:57Z"
+    "at_utc": "2026-09-16T04:58:29Z"
   }
 }
