@@ -54,16 +54,29 @@ if int(site_summary.get('products_read') or 0) <= 0:
     coverage_errors.append('sitewide products_read is zero')
 if int(site_summary.get('product_categories_read') or 0) <= 0:
     coverage_errors.append('sitewide product_categories_read is zero')
+if int(site_summary.get('sitemaps_read') or 0) <= 0:
+    coverage_errors.append('sitewide sitemaps_read is zero')
+if int(site_summary.get('public_urls_discovered') or 0) <= 0:
+    coverage_errors.append('sitewide public_urls_discovered is zero')
+if int(site_summary.get('rendered_pages_read') or 0) <= 0:
+    coverage_errors.append('sitewide rendered_pages_read is zero')
 if int(page_stats.get('posts_read') or 0) <= 0 or page_stats.get('error'):
     coverage_errors.append('sitewide page coverage incomplete')
+for name, info in sorted(post_types.items()):
+    if (info or {}).get('error'):
+        coverage_errors.append(f'sitewide post type error: {name}')
 if int(content_coverage.get('pages_read') or 0) <= 0:
     coverage_errors.append('content pages_read is zero')
-if (content_coverage.get('post_errors') or {}).get('page'):
-    coverage_errors.append('content page REST error present')
+if content_coverage.get('post_errors'):
+    coverage_errors.append('content post REST errors present')
 if int(content_coverage.get('products_read') or 0) <= 0:
     coverage_errors.append('content products_read is zero')
 if int(content_coverage.get('categories_read') or 0) <= 0:
     coverage_errors.append('content categories_read is zero')
+if int(content_coverage.get('public_urls_collected') or 0) <= 0:
+    coverage_errors.append('content public_urls_collected is zero')
+if int(content_coverage.get('public_pages_read') or 0) <= 0:
+    coverage_errors.append('content public_pages_read is zero')
 
 migration_times = [
     parse_iso(rest.get('updated_at_utc')),
