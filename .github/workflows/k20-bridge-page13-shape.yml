@@ -1,0 +1,142 @@
+name: K20 Bridge Page13 Shape Diagnostic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/bridge-page13-shape/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-bridge-page13-shape
+  cancel-in-progress: false
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Inspect Page 13 bridge shape read-only
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          foreach ($name in 'WP_BASE_URL','WP_USERNAME','WP_APP_PASSWORD') {
+            if ([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($name))) { throw "Missing required secret: $name" }
+          }
+          $event = Get-Content -Raw -LiteralPath $env:GITHUB_EVENT_PATH | ConvertFrom-Json
+          $requests = @()
+          if ($event.commits) {
+            $requests = @($event.commits | ForEach-Object { @($_.added) + @($_.modified) } | Where-Object { $_ -and $_.StartsWith('diagnostics/bridge-page13-shape/') -and $_.EndsWith('.json') } | Sort-Object -Unique)
+          }
+          if ($requests.Count -eq 0) { $requests = @(& git diff --name-only HEAD^ HEAD -- 'diagnostics/bridge-page13-shape/*.json' | Where-Object { $_ }) }
+          if ($requests.Count -ne 1) { throw "Expected exactly one request, found $($requests.Count)." }
+          $req = Get-Content -Raw -LiteralPath $requests[0] | ConvertFrom-Json
+          if ([int]$req.id -ne 13) { throw 'Diagnostic is hard-limited to page ID 13.' }
+
+          function HashText([string]$text) {
+            $sha=[Security.Cryptography.SHA256]::Create()
+            try { return ([BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($text)))).Replace('-','').ToLowerInvariant() }
+            finally { $sha.Dispose() }
+          }
+          function TypeName($v) {
+            if ($null -eq $v) { return 'null' }
+            if ($v -is [string]) { return 'string' }
+            if ($v -is [System.Collections.IDictionary]) { return 'object' }
+            if ($v -is [pscustomobject]) { return 'object' }
+            if (($v -is [System.Collections.IEnumerable]) -and -not ($v -is [string])) { return 'array' }
+            return $v.GetType().Name
+          }
+          function CountLiteral([string]$text,[string]$needle) {
+            if ([string]::IsNullOrEmpty($text) -or [string]::IsNullOrEmpty($needle)) { return 0 }
+            $count=0; $offset=0
+            while (($i=$text.IndexOf($needle,$offset,[StringComparison]::Ordinal)) -ge 0) { $count++; $offset=$i+$needle.Length }
+            return $count
+          }
+
+          $base=$env:WP_BASE_URL.TrimEnd('/')
+          $authText="$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"
+          $auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($authText))
+          $headers=@{Authorization="Basic $auth";Accept='application/json'}
+          $body=@{operation='inspect';resource='page';id=13} | ConvertTo-Json -Compress
+          $resp=Invoke-RestMethod -Uri "$base/wp-json/keshavarz20-ops/v2/execute" -Headers $headers -Method POST -ContentType 'application/json; charset=utf-8' -Body $body -TimeoutSec 180
+          if (-not $resp.ok) { throw 'Bridge inspect did not return ok=true.' }
+
+          $before=$resp.before
+          $beforeKeys=@()
+          if ($before -and $before.PSObject) { $beforeKeys=@($before.PSObject.Properties.Name | Sort-Object -Unique) }
+          $meta=$null
+          if ($before -and $before.PSObject.Properties['meta']) { $meta=$before.meta }
+          $metaKeys=@()
+          if ($meta -and $meta.PSObject) { $metaKeys=@($meta.PSObject.Properties.Name | Sort-Object -Unique) }
+
+          $elementor=$null
+          $elementorPath=''
+          if ($before -and $before.PSObject.Properties['_elementor_data']) { $elementor=[string]$before._elementor_data; $elementorPath='before._elementor_data' }
+          elseif ($meta -and $meta.PSObject.Properties['_elementor_data']) { $elementor=[string]$meta._elementor_data; $elementorPath='before.meta._elementor_data' }
+          elseif ($before -and $before.PSObject.Properties['elementor_data']) { $elementor=[string]$before.elementor_data; $elementorPath='before.elementor_data' }
+
+          $elementorInfo=[ordered]@{found=$false;path=$elementorPath;length=0;sha256='';json_valid=$false;root_type='';root_length=0;target_h1=0;target_h2=0;css_h1=0;css_h2=0}
+          $phrase='شرایط مرجوعی، مغایرت کالا و پیگیری بار در کشاورز بیست'
+          if (-not [string]::IsNullOrWhiteSpace($elementor)) {
+            $elementorInfo.found=$true
+            $elementorInfo.length=$elementor.Length
+            $elementorInfo.sha256=HashText $elementor
+            $elementorInfo.target_h1=CountLiteral $elementor "<h1>$phrase</h1>"
+            $elementorInfo.target_h2=CountLiteral $elementor "<h2>$phrase</h2>"
+            $elementorInfo.css_h1=CountLiteral $elementor '.k20-hero h1'
+            $elementorInfo.css_h2=CountLiteral $elementor '.k20-hero h2'
+            try {
+              $decoded = ConvertFrom-Json -InputObject $elementor -Depth 100 -NoEnumerate
+              $elementorInfo.json_valid=$true
+              $trim=$elementor.TrimStart()
+              if ($trim.StartsWith('[')) {
+                $elementorInfo.root_type='array'
+                $elementorInfo.root_length=@($decoded).Count
+              } elseif ($trim.StartsWith('{')) {
+                $elementorInfo.root_type='object'
+                $elementorInfo.root_length=1
+              } else { $elementorInfo.root_type='other' }
+            } catch { $elementorInfo.json_valid=$false }
+          }
+
+          $result=[ordered]@{
+            ok=$true
+            page_id=13
+            response_keys=@($resp.PSObject.Properties.Name | Sort-Object -Unique)
+            before_type=TypeName $before
+            before_keys=$beforeKeys
+            meta_keys=$metaKeys
+            elementor=$elementorInfo
+            inspected_at_utc=[DateTime]::UtcNow.ToString('o')
+          }
+          New-Item -ItemType Directory -Force 'results' | Out-Null
+          $name=[IO.Path]::GetFileNameWithoutExtension($requests[0])
+          $result | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath "results/$name.json" -Encoding utf8
+          Write-Host "PAGE13_SHAPE_OK elementor_found=$($elementorInfo.found) root=$($elementorInfo.root_type) sha=$($elementorInfo.sha256)"
+
+      - name: Commit sanitized diagnostic
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/*.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "diag: record page 13 Elementor shape"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push; then exit 0; fi
+            sleep 2
+          done
+          exit 1
