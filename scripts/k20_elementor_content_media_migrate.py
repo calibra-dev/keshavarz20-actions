@@ -82,10 +82,15 @@ def delete_media(aid):
 def get_post(pid): return api('GET',f'{base}/wp-json/wp/v2/posts/{pid}?context=edit&_fields=id,status,link,featured_media,content,meta')
 def get_media(aid): return api('GET',f'{base}/wp-json/wp/v2/media/{aid}?context=edit&_fields=id,source_url,mime_type,media_details,alt_text')
 
+def numeric_id(value):
+    if isinstance(value,int): return value
+    if isinstance(value,str) and value.isdigit(): return int(value)
+    return 0
+
 def find_image_nodes(obj,aid,url,path='$'):
     hits=[]
     if isinstance(obj,dict):
-        if int(obj.get('id') or 0)==aid and str(obj.get('url') or '')==url:
+        if str(obj.get('url') or '')==url and numeric_id(obj.get('id'))==aid:
             hits.append((path,obj))
         for k,v in obj.items(): hits.extend(find_image_nodes(v,aid,url,f'{path}.{k}'))
     elif isinstance(obj,list):
