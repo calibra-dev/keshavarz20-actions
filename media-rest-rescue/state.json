@@ -1,7 +1,7 @@
 {
   "status": "running",
-  "cycles": 9,
-  "successful_migrations": 23,
+  "cycles": 10,
+  "successful_migrations": 26,
   "processed": {
     "135219:141649": {
       "new_attachment_id": 144813,
@@ -94,6 +94,18 @@
     "136212:136214": {
       "new_attachment_id": 144898,
       "at_utc": "2026-09-16T06:14:35Z"
+    },
+    "136227:136229": {
+      "new_attachment_id": 144908,
+      "at_utc": "2026-09-16T06:16:52Z"
+    },
+    "136258:136260": {
+      "new_attachment_id": 144913,
+      "at_utc": "2026-09-16T06:18:06Z"
+    },
+    "140014:140350": {
+      "new_attachment_id": 144916,
+      "at_utc": "2026-09-16T06:18:41Z"
     }
   },
   "skipped": {
@@ -121,16 +133,21 @@
       "reason": "product readback did not confirm REST rescue",
       "attempts": 2,
       "at_utc": "2026-09-16T06:13:55Z"
+    },
+    "136215:137300": {
+      "reason": "product readback did not confirm REST rescue",
+      "attempts": 2,
+      "at_utc": "2026-09-16T06:16:16Z"
     }
   },
   "critical_events": [],
-  "updated_at_utc": "2026-09-16T06:15:17Z",
+  "updated_at_utc": "2026-09-16T06:18:41Z",
   "last_cycle": {
-    "run_id": "35062624256",
+    "run_id": "35062894269",
     "selected": 5,
-    "success": 2,
-    "remaining": 124,
-    "at_utc": "2026-09-16T06:15:17Z"
+    "success": 3,
+    "remaining": 130,
+    "at_utc": "2026-09-16T06:18:41Z"
   },
   "attempts": {
     "135309:141617": 1,
@@ -145,6 +162,7 @@
     "136206:136208": 2,
     "136209:137298": 2,
     "136212:136214": 1,
-    "136215:137300": 1
+    "136215:137300": 2,
+    "136230:136232": 1
   }
 }
