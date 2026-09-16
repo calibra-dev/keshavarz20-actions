@@ -1,11 +1,11 @@
 {
   "version": 1,
   "started_at_utc": "2026-09-16T06:06:37Z",
-  "updated_at_utc": "2026-09-16T06:12:30Z",
+  "updated_at_utc": "2026-09-16T06:14:43Z",
   "status": "running",
-  "cycles": 3,
-  "successful_migrations": 6,
-  "lossy_success": 6,
+  "cycles": 4,
+  "successful_migrations": 9,
+  "lossy_success": 9,
   "lossless_success": 0,
   "processed_source_ids": [
     135490,
@@ -13,7 +13,10 @@
     135540,
     135542,
     135570,
-    135586
+    135586,
+    135602,
+    135630,
+    135675
   ],
   "migrations": {
     "135490": {
@@ -57,6 +60,27 @@
         776
       ],
       "at_utc": "2026-09-16T06:12:30Z"
+    },
+    "135602": {
+      "new_attachment_id": 144893,
+      "category_ids": [
+        749
+      ],
+      "at_utc": "2026-09-16T06:13:18Z"
+    },
+    "135630": {
+      "new_attachment_id": 144896,
+      "category_ids": [
+        779
+      ],
+      "at_utc": "2026-09-16T06:13:59Z"
+    },
+    "135675": {
+      "new_attachment_id": 144899,
+      "category_ids": [
+        767
+      ],
+      "at_utc": "2026-09-16T06:14:43Z"
     }
   },
   "retry_counts": {},
@@ -72,14 +96,22 @@
     "135496": {
       "reason": "TERMINAL: PNG lossless guard failed exact=True saving=-88.31",
       "at_utc": "2026-09-16T06:08:39Z"
+    },
+    "135626": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "at_utc": "2026-09-16T06:13:27Z"
+    },
+    "135654": {
+      "reason": "TERMINAL: PNG lossless guard failed exact=True saving=-193.17",
+      "at_utc": "2026-09-16T06:14:07Z"
     }
   },
   "critical_events": [],
   "last_cycle": {
-    "run_id": "35062439222",
+    "run_id": "35062686655",
     "selected": 5,
-    "success": 5,
-    "remaining_live_groups": 43,
-    "at_utc": "2026-09-16T06:12:30Z"
+    "success": 3,
+    "remaining_live_groups": 38,
+    "at_utc": "2026-09-16T06:14:43Z"
   }
 }
