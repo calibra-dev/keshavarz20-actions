@@ -27,7 +27,7 @@ jobs:
           fetch-depth: 2
 
       - name: Build sanitized sitewide image-reference inventory
-        run: python scripts/k20_sitewide_media_inventory.py
+        run: python scripts/k20_sitewide_media_inventory_safe.py
 
       - name: Commit sanitized inventory
         shell: bash
