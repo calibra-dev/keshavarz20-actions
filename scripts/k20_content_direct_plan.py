@@ -60,15 +60,21 @@ for obj in objects:
     })
 
 rows.sort(key=lambda x: (x['reuse_ready_count'] == 0, x['reuse_ready_count'], x['direct_attachment_count'], x['object_id']))
+reuse_ids = {aid for x in rows for aid in x['reuse_ready_ids']}
+ambiguous_ids = {aid for x in rows for aid in x['ambiguous_ids']}
+conversion_ids = {aid for x in rows for aid in x['needs_conversion_ids']}
+terminal_ids = {aid for x in rows for aid in x['terminal_unmapped_ids']}
+protected_ids = PROTECTED_IDS & set(by_id)
 summary = {
     'executed_at_utc': now_iso(),
     'source_scope_executed_at_utc': (scope.get('summary') or {}).get('executed_at_utc'),
     'object_count': len(rows),
-    'reuse_ready_attachments': sum(x['reuse_ready_count'] for x in rows),
-    'ambiguous_attachments': sum(x['ambiguous_count'] for x in rows),
-    'needs_conversion_attachments': sum(x['needs_conversion_count'] for x in rows),
-    'terminal_unmapped_attachments': len({aid for x in rows for aid in x['terminal_unmapped_ids']}),
-    'protected_attachment_ids': sorted(PROTECTED_IDS & set(by_id)),
+    'reuse_ready_attachments': len(reuse_ids),
+    'ambiguous_attachments': len(ambiguous_ids),
+    'needs_conversion_attachments': len(conversion_ids),
+    'terminal_unmapped_attachments': len(terminal_ids),
+    'protected_attachment_ids': sorted(protected_ids),
+    'distinct_actionable_attachments': len(reuse_ids | ambiguous_ids | conversion_ids),
 }
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(json.dumps({'summary': summary, 'objects': rows}, ensure_ascii=False, indent=2), encoding='utf-8')
