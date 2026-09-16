@@ -1,0 +1,47 @@
+{
+  "ok": false,
+  "action": "repair_elementor_root_array",
+  "page_id": 13,
+  "request_file": "page13-repair-ops/20260916-page13-elementor-root-repair-v2.json",
+  "prewrite_guard": {
+    "passed": true,
+    "http_status": 200,
+    "slug": "refund_returns",
+    "page_status": "publish",
+    "elementor_length": 28690,
+    "elementor_sha256": "411d1c0bb3ac6038a4effd4758984f99836c72b3864588cd539880d8ff1fb344",
+    "json_valid": true,
+    "root_type": "object",
+    "target_h1": 0,
+    "target_h2": 1,
+    "css_h1": 0,
+    "css_h2": 2
+  },
+  "write": {
+    "attempted": true,
+    "http_status": 500,
+    "before_sha256": "411d1c0bb3ac6038a4effd4758984f99836c72b3864588cd539880d8ff1fb344",
+    "after_sha256": "ad88a9e43d4045e482939e0aa7c32ebc1c7285c5f7e0cc211754a757025e2592",
+    "before_length": 28690,
+    "after_length": 28692,
+    "internal_bytes_preserved": true
+  },
+  "readback": {
+    "passed": false,
+    "http_status": 200,
+    "stored_sha256": "411d1c0bb3ac6038a4effd4758984f99836c72b3864588cd539880d8ff1fb344",
+    "expected_sha256": "ad88a9e43d4045e482939e0aa7c32ebc1c7285c5f7e0cc211754a757025e2592",
+    "root_type": "object",
+    "root_length": 1,
+    "inner_sha256": "",
+    "expected_inner_sha256": "411d1c0bb3ac6038a4effd4758984f99836c72b3864588cd539880d8ff1fb344",
+    "target_h1": 0,
+    "target_h2": 1,
+    "css_h1": 0,
+    "css_h2": 2
+  },
+  "cache": {},
+  "live": {},
+  "product_regression": {},
+  "executed_at_utc": "2026-09-16T08:44:41Z"
+}
