@@ -1,0 +1,868 @@
+{
+  "action": "media.autopilot.cycle",
+  "run_id": "35038970355",
+  "executed_at_utc": "2026-09-16T00:24:08Z",
+  "config": {
+    "batch_size": 20,
+    "max_attempts": 3,
+    "quality": 88,
+    "min_psnr": 40.0,
+    "min_saving_lossy_pct": 15.0,
+    "min_saving_lossless_pct": 5.0
+  },
+  "inventory_before": {
+    "products_read": 653,
+    "jpeg_png_refs": 526,
+    "primary_refs": 464,
+    "distinct_attachment_ids": 482
+  },
+  "items": [
+    {
+      "product_id": 136071,
+      "old_attachment_id": 139986,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2020/02/k20_136071.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 124774,
+      "webp_bytes_local": 80976,
+      "saving_pct": 35.1,
+      "encoder_mode": "lossy-q95",
+      "psnr_db": 40.72,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 63030,
+          "psnr": 37.51,
+          "saving_pct": 49.48
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 72302,
+          "psnr": 39.28,
+          "saving_pct": 42.05
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 80976,
+          "psnr": 40.72,
+          "saving_pct": 35.1
+        }
+      ],
+      "width": 410,
+      "height": 308,
+      "alt_before": "نمای محصول کلم بروکسل",
+      "new_attachment_id": 144491,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136071-a139986-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 80976,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144491,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136071-a139986-webp.webp",
+      "alt_after": "نمای محصول کلم بروکسل",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136075,
+      "old_attachment_id": 139984,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2020/02/k20_136075.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 262624,
+      "webp_bytes_local": 158434,
+      "saving_pct": 39.67,
+      "encoder_mode": "lossy-q95",
+      "psnr_db": 41.4,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 109176,
+          "psnr": 38.25,
+          "saving_pct": 58.43
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 134066,
+          "psnr": 39.97,
+          "saving_pct": 48.95
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 158434,
+          "psnr": 41.4,
+          "saving_pct": 39.67
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "نمای محصول فیسالیس",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 136079,
+      "old_attachment_id": 139982,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2020/02/k20_136079.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 192438,
+      "webp_bytes_local": 85508,
+      "saving_pct": 55.57,
+      "encoder_mode": "lossy-q92",
+      "psnr_db": 40.82,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 70450,
+          "psnr": 39.55,
+          "saving_pct": 63.39
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 85508,
+          "psnr": 40.82,
+          "saving_pct": 55.57
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "نمای محصول لوبیا",
+      "new_attachment_id": 144492,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136079-a139982-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 85508,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144492,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136079-a139982-webp.webp",
+      "alt_after": "نمای محصول لوبیا",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136084,
+      "old_attachment_id": 139980,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2020/02/k20_136084.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 302393,
+      "webp_bytes_local": 190596,
+      "saving_pct": 36.97,
+      "encoder_mode": "lossy-q95",
+      "psnr_db": 41.31,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 137646,
+          "psnr": 37.87,
+          "saving_pct": 54.48
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 167676,
+          "psnr": 39.92,
+          "saving_pct": 44.55
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 190596,
+          "psnr": 41.31,
+          "saving_pct": 36.97
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بابونه",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 136088,
+      "old_attachment_id": 139978,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2020/02/k20_136088.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 269835,
+      "webp_bytes_local": 132998,
+      "saving_pct": 50.71,
+      "encoder_mode": "lossy-q92",
+      "psnr_db": 40.15,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 110714,
+          "psnr": 38.49,
+          "saving_pct": 58.97
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 132998,
+          "psnr": 40.15,
+          "saving_pct": 50.71
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول ریحان معطر",
+      "new_attachment_id": 144493,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136088-a139978-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 132998,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144493,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136088-a139978-webp.webp",
+      "alt_after": "تصویر محصول ریحان معطر",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136092,
+      "old_attachment_id": 139976,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2020/02/k20_136092.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 199340,
+      "webp_bytes_local": 87946,
+      "saving_pct": 55.88,
+      "encoder_mode": "lossy-q92",
+      "psnr_db": 40.38,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 71588,
+          "psnr": 39.16,
+          "saving_pct": 64.09
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 87946,
+          "psnr": 40.38,
+          "saving_pct": 55.88
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "نمای محصول کلم سر",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 136212,
+      "old_attachment_id": 139724,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030090-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 115088,
+      "webp_bytes_local": 37214,
+      "saving_pct": 67.66,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.67,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 37214,
+          "psnr": 41.67,
+          "saving_pct": 67.66
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بذر گوجه سيمينس بدرو هند",
+      "new_attachment_id": 144494,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136212-a139724-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 37214,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144494,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136212-a139724-webp.webp",
+      "alt_after": "تصویر محصول بذر گوجه سيمينس بدرو هند",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136215,
+      "old_attachment_id": 139723,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030091-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 115088,
+      "webp_bytes_local": 37214,
+      "saving_pct": 67.66,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.67,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 37214,
+          "psnr": 41.67,
+          "saving_pct": 67.66
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بذر گوجه سيمينس بدرو تايلند",
+      "new_attachment_id": 144495,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136215-a139723-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 37214,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144495,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136215-a139723-webp.webp",
+      "alt_after": "تصویر محصول بذر گوجه سيمينس بدرو تايلند",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136218,
+      "old_attachment_id": 139722,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030092-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 108998,
+      "webp_bytes_local": 36014,
+      "saving_pct": 66.96,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.09,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 36014,
+          "psnr": 42.09,
+          "saving_pct": 66.96
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بذر گوجه سيمينس بريويو هند",
+      "new_attachment_id": 144496,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136218-a139722-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 36014,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144496,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136218-a139722-webp.webp",
+      "alt_after": "تصویر محصول بذر گوجه سيمينس بريويو هند",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136220,
+      "old_attachment_id": 139721,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030093-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 108998,
+      "webp_bytes_local": 36014,
+      "saving_pct": 66.96,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.09,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 36014,
+          "psnr": 42.09,
+          "saving_pct": 66.96
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بذر گوجه سيمينس بريويو تايلند",
+      "new_attachment_id": 144497,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136220-a139721-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 36014,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144497,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136220-a139721-webp.webp",
+      "alt_after": "تصویر محصول بذر گوجه سيمينس بريويو تايلند",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136225,
+      "old_attachment_id": 139720,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030098-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 96661,
+      "webp_bytes_local": 35542,
+      "saving_pct": 63.23,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.66,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 35542,
+          "psnr": 41.66,
+          "saving_pct": 63.23
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بذر گوجه تيوا",
+      "new_attachment_id": 144498,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136225-a139720-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 35542,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144498,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136225-a139720-webp.webp",
+      "alt_after": "تصویر محصول بذر گوجه تيوا",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136227,
+      "old_attachment_id": 139719,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030100-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 111764,
+      "webp_bytes_local": 33636,
+      "saving_pct": 69.9,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.81,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 33636,
+          "psnr": 41.81,
+          "saving_pct": 69.9
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بذر گوجه سيمينس 8320 پاكت هند",
+      "new_attachment_id": 144499,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136227-a139719-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 33636,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144499,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136227-a139719-webp.webp",
+      "alt_after": "تصویر محصول بذر گوجه سيمينس 8320 پاكت هند",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136230,
+      "old_attachment_id": 139718,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030101-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 75578,
+      "webp_bytes_local": 23840,
+      "saving_pct": 68.46,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 43.42,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 23840,
+          "psnr": 43.42,
+          "saving_pct": 68.46
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بذر گوجه سيمينس 8320 قوطي هند",
+      "new_attachment_id": 144500,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136230-a139718-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 23840,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144500,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136230-a139718-webp.webp",
+      "alt_after": "تصویر محصول بذر گوجه سيمينس 8320 قوطي هند",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136234,
+      "old_attachment_id": 139717,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030112-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 117872,
+      "webp_bytes_local": 35976,
+      "saving_pct": 69.48,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.31,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 35976,
+          "psnr": 41.31,
+          "saving_pct": 69.48
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بذر گوجه سرين دنفلد",
+      "new_attachment_id": 144501,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136234-a139717-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 35976,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144501,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136234-a139717-webp.webp",
+      "alt_after": "تصویر محصول بذر گوجه سرين دنفلد",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136236,
+      "old_attachment_id": 139716,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030113-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 103375,
+      "webp_bytes_local": 32830,
+      "saving_pct": 68.24,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.18,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 32830,
+          "psnr": 42.18,
+          "saving_pct": 68.24
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "کشاورز بیست (keshavarz20.com) - بذر گوجه سما",
+      "new_attachment_id": 144502,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136236-a139716-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 32830,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144502,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136236-a139716-webp.webp",
+      "alt_after": "کشاورز بیست (keshavarz20.com) - بذر گوجه سما",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136258,
+      "old_attachment_id": 139709,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030136-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 117803,
+      "webp_bytes_local": 33934,
+      "saving_pct": 71.19,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.03,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 33934,
+          "psnr": 41.03,
+          "saving_pct": 71.19
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بذر گوجه سرين سينجينتا",
+      "new_attachment_id": 144503,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136258-a139709-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 33934,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144503,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136258-a139709-webp.webp",
+      "alt_after": "تصویر محصول بذر گوجه سرين سينجينتا",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136270,
+      "old_attachment_id": 139706,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030147-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 158468,
+      "webp_bytes_local": 54212,
+      "saving_pct": 65.79,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.03,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 54212,
+          "psnr": 40.03,
+          "saving_pct": 65.79
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "کشاورز بیست (keshavarz20.com) - بذر گوجه متين تايلند",
+      "new_attachment_id": 144504,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136270-a139706-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 54212,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144504,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136270-a139706-webp.webp",
+      "alt_after": "کشاورز بیست (keshavarz20.com) - بذر گوجه متين تايلند",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136278,
+      "old_attachment_id": 139703,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030152-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 95828,
+      "webp_bytes_local": 33296,
+      "saving_pct": 65.25,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.18,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 33296,
+          "psnr": 41.18,
+          "saving_pct": 65.25
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بذر گوجه سهند",
+      "new_attachment_id": 144505,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136278-a139703-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 33296,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144505,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136278-a139703-webp.webp",
+      "alt_after": "تصویر محصول بذر گوجه سهند",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136292,
+      "old_attachment_id": 139697,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030160-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 70957,
+      "webp_bytes_local": 19968,
+      "saving_pct": 71.86,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 43.2,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 19968,
+          "psnr": 43.2,
+          "saving_pct": 71.86
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بذر گوجه فلات واي",
+      "new_attachment_id": 144506,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136292-a139697-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 19968,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144506,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136292-a139697-webp.webp",
+      "alt_after": "تصویر محصول بذر گوجه فلات واي",
+      "stage": "verified"
+    },
+    {
+      "product_id": 136304,
+      "old_attachment_id": 139692,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/12/030168-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 102584,
+      "webp_bytes_local": 31564,
+      "saving_pct": 69.23,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.96,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 31564,
+          "psnr": 41.96,
+          "saving_pct": 69.23
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول بذر گوجه نرو",
+      "new_attachment_id": 144507,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136304-a139692-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 31564,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144507,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p136304-a139692-webp.webp",
+      "alt_after": "تصویر محصول بذر گوجه نرو",
+      "stage": "verified"
+    }
+  ],
+  "inventory_after": {
+    "products_read": 653,
+    "jpeg_png_refs": 509,
+    "primary_refs": 447,
+    "distinct_attachment_ids": 465
+  },
+  "state_status": "running",
+  "total_successful_migrations": 174,
+  "total_terminal_skips": 2
+}
