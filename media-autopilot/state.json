@@ -1,21 +1,20 @@
 {
   "version": 1,
   "started_at_utc": "2026-09-15T22:25:31Z",
-  "updated_at_utc": "2026-09-16T02:47:47Z",
+  "updated_at_utc": "2026-09-16T02:58:44Z",
   "status": "running",
-  "cycles": 23,
-  "successful_migrations": 392,
-  "lossy_success": 371,
-  "lossless_success": 21,
+  "cycles": 24,
+  "successful_migrations": 407,
+  "lossy_success": 385,
+  "lossless_success": 22,
   "retry_counts": {
     "135219:141649": 3,
     "135317:140684": 3,
     "136084:139980": 3,
     "140521:140514": 3,
-    "140813:141943": 1,
-    "140817:141998": 1,
-    "140853:141844": 1,
-    "140856:141852": 1
+    "140817:141998": 2,
+    "140856:141852": 2,
+    "140879:141839": 1
   },
   "terminal_skips": {
     "135219:141649": {
@@ -159,22 +158,34 @@
       "product_id": 140875,
       "attachment_id": 140885,
       "at_utc": "2026-09-16T02:47:12Z"
+    },
+    "140878:140880": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 140878,
+      "attachment_id": 140880,
+      "at_utc": "2026-09-16T02:50:57Z"
+    },
+    "140892:140898": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 140892,
+      "attachment_id": 140898,
+      "at_utc": "2026-09-16T02:51:51Z"
     }
   },
   "critical_events": [],
   "last_inventory": {
     "products_read": 653,
-    "jpeg_png_refs": 291,
-    "primary_refs": 229,
-    "distinct_attachment_ids": 261
+    "jpeg_png_refs": 276,
+    "primary_refs": 214,
+    "distinct_attachment_ids": 246
   },
   "last_cycle": {
-    "run_id": "35048706734",
+    "run_id": "35049358042",
     "selected": 20,
-    "success": 13,
-    "failed_or_skipped": 7,
-    "before_refs": 304,
-    "after_refs": 291,
-    "at_utc": "2026-09-16T02:47:47Z"
+    "success": 15,
+    "failed_or_skipped": 5,
+    "before_refs": 291,
+    "after_refs": 276,
+    "at_utc": "2026-09-16T02:58:44Z"
   }
 }

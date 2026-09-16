@@ -1,0 +1,830 @@
+{
+  "action": "media.autopilot.cycle",
+  "run_id": "35049358042",
+  "executed_at_utc": "2026-09-16T02:58:44Z",
+  "config": {
+    "batch_size": 20,
+    "max_attempts": 3,
+    "quality": 88,
+    "min_psnr": 40.0,
+    "min_saving_lossy_pct": 15.0,
+    "min_saving_lossless_pct": 5.0
+  },
+  "inventory_before": {
+    "products_read": 653,
+    "jpeg_png_refs": 291,
+    "primary_refs": 229,
+    "distinct_attachment_ids": 261
+  },
+  "items": [
+    {
+      "product_id": 140813,
+      "old_attachment_id": 141943,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Foster-Plants-XGreen-5lit-.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 234311,
+      "webp_bytes_local": 76628,
+      "saving_pct": 67.3,
+      "encoder_mode": "lossy-q95",
+      "psnr_db": 40.25,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 55176,
+          "psnr": 39.35,
+          "saving_pct": 76.45
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 64880,
+          "psnr": 39.89,
+          "saving_pct": 72.31
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 76628,
+          "psnr": 40.25,
+          "saving_pct": 67.3
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "گالن پنج لیتری کود استارتر فسفر و گوگرد فوستر برای کودآبیاری",
+      "new_attachment_id": 144726,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140813-a141943-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 76628,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144726,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140813-a141943-webp.webp",
+      "alt_after": "گالن پنج لیتری کود استارتر فسفر و گوگرد فوستر برای کودآبیاری",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140817,
+      "old_attachment_id": 141998,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/alfered-XGreen-1lit.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 197726,
+      "webp_bytes_local": 167288,
+      "saving_pct": 15.39,
+      "encoder_mode": "lossless-fallback",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 40690,
+          "psnr": 38.79,
+          "saving_pct": 79.42
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 47662,
+          "psnr": 39.09,
+          "saving_pct": 75.89
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 58798,
+          "psnr": 39.4,
+          "saving_pct": 70.26
+        },
+        {
+          "mode": "lossless-fallback",
+          "bytes": 167288,
+          "pixel_exact": true,
+          "saving_pct": 15.39
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول کود آهن مایع ۷ درصد آلفرد ایکس گرین ۱ لیتری با نیتروژن (Alfered XGreen)",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 140853,
+      "old_attachment_id": 141844,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Hyper-40-0-1-XGreen-.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 258226,
+      "webp_bytes_local": 240628,
+      "saving_pct": 6.81,
+      "encoder_mode": "lossless-fallback",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 56826,
+          "psnr": 37.98,
+          "saving_pct": 77.99
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 67150,
+          "psnr": 38.38,
+          "saving_pct": 74.0
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 80810,
+          "psnr": 38.68,
+          "saving_pct": 68.71
+        },
+        {
+          "mode": "lossless-fallback",
+          "bytes": 240628,
+          "pixel_exact": true,
+          "saving_pct": 6.81
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "کیسه ۱۰ کیلوگرمی کود نیتروژن بالا هایپر ۴۰-۰-۱ ایکس گرین",
+      "new_attachment_id": 144727,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140853-a141844-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 240628,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144727,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140853-a141844-webp.webp",
+      "alt_after": "کیسه ۱۰ کیلوگرمی کود نیتروژن بالا هایپر ۴۰-۰-۱ ایکس گرین",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140856,
+      "old_attachment_id": 141852,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/K60-XGreen-1kg.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 247761,
+      "webp_bytes_local": 81074,
+      "saving_pct": 67.28,
+      "encoder_mode": "lossy-q95",
+      "psnr_db": 40.02,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 58236,
+          "psnr": 39.01,
+          "saving_pct": 76.5
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 70958,
+          "psnr": 39.65,
+          "saving_pct": 71.36
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 81074,
+          "psnr": 40.02,
+          "saving_pct": 67.28
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "کود K60 ایکس گرین ۱ کیلویی با ۶۰ درصد پتاسیم محلول در آب",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 140877,
+      "old_attachment_id": 141833,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Hyper-8-8-40-XGreen-.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 206432,
+      "webp_bytes_local": 45902,
+      "saving_pct": 77.76,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.11,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 45902,
+          "psnr": 40.11,
+          "saving_pct": 77.76
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول کود کامل NPK پتاس بالا هایپر ۸-۸-۴۰ ایکس گرین ۱۰ کیلوگرمی (Hyper 8-8-40 XGreen)",
+      "new_attachment_id": 144728,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140877-a141833-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 45902,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144728,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140877-a141833-webp.webp",
+      "alt_after": "تصویر محصول کود کامل NPK پتاس بالا هایپر ۸-۸-۴۰ ایکس گرین ۱۰ کیلوگرمی (Hyper 8-8-40 XGreen)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140878,
+      "old_attachment_id": 140880,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: no WebP candidate met quality and saving guards",
+      "terminal": true
+    },
+    {
+      "product_id": 140879,
+      "old_attachment_id": 141839,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Hyper-15-5-30-XGreen.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 259686,
+      "webp_bytes_local": 243392,
+      "saving_pct": 6.27,
+      "encoder_mode": "lossless-fallback",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 57078,
+          "psnr": 37.63,
+          "saving_pct": 78.02
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 68224,
+          "psnr": 38.01,
+          "saving_pct": 73.73
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 81800,
+          "psnr": 38.28,
+          "saving_pct": 68.5
+        },
+        {
+          "mode": "lossless-fallback",
+          "bytes": 243392,
+          "pixel_exact": true,
+          "saving_pct": 6.27
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول کود کامل NPK پتاس بالا هایپر ۱۵-۵-۳۰ ایکس گرین ۱۰ کیلوگرمی (Hyper 15-5-30 XGreen)",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 140891,
+      "old_attachment_id": 141830,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Fix-15-XGreen-20lit.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 225410,
+      "webp_bytes_local": 47736,
+      "saving_pct": 78.82,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.72,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 47736,
+          "psnr": 40.72,
+          "saving_pct": 78.82
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "گالن ۲۰ لیتری اصلاح‌کننده اسیدی خاک و آب فیکس ۱۵ ایکس گرین",
+      "new_attachment_id": 144729,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140891-a141830-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 47736,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144729,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140891-a141830-webp.webp",
+      "alt_after": "گالن ۲۰ لیتری اصلاح‌کننده اسیدی خاک و آب فیکس ۱۵ ایکس گرین",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140892,
+      "old_attachment_id": 140898,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: no WebP candidate met quality and saving guards",
+      "terminal": true
+    },
+    {
+      "product_id": 140933,
+      "old_attachment_id": 140969,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/SiliGuard_Copy_1346920843.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 34926,
+      "webp_bytes_local": 16238,
+      "saving_pct": 53.51,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 46.67,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 16238,
+          "psnr": 46.67,
+          "saving_pct": 53.51
+        }
+      ],
+      "width": 700,
+      "height": 700,
+      "alt_before": "تصویر محصول کود مایع سیلیگارد روم هلند 1 لیتری (SiliGuard Room)",
+      "new_attachment_id": 144730,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140933-a140969-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 16238,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144730,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140933-a140969-webp.webp",
+      "alt_after": "تصویر محصول کود مایع سیلیگارد روم هلند 1 لیتری (SiliGuard Room)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140934,
+      "old_attachment_id": 140967,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Soapotash_Copy_165454787.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 33412,
+      "webp_bytes_local": 12704,
+      "saving_pct": 61.98,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 46.28,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 12704,
+          "psnr": 46.28,
+          "saving_pct": 61.98
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کود مایع صابون پتاسیم روم هلند 1 لیتری (SoaPhotash Room)",
+      "new_attachment_id": 144731,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140934-a140967-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 12704,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144731,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140934-a140967-webp.webp",
+      "alt_after": "تصویر محصول کود مایع صابون پتاسیم روم هلند 1 لیتری (SoaPhotash Room)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140935,
+      "old_attachment_id": 140966,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/UREAS_Copy_1158169810.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 59995,
+      "webp_bytes_local": 25570,
+      "saving_pct": 57.38,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.6,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 25570,
+          "psnr": 42.6,
+          "saving_pct": 57.38
+        }
+      ],
+      "width": 600,
+      "height": 606,
+      "alt_before": "تصویر محصول کود مایع انفوریک اسید اورآز روم سطل 20 لیتری (Ureas Room)",
+      "new_attachment_id": 144732,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140935-a140966-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 25570,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144732,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140935-a140966-webp.webp",
+      "alt_after": "تصویر محصول کود مایع انفوریک اسید اورآز روم سطل 20 لیتری (Ureas Room)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140936,
+      "old_attachment_id": 140959,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/FOS-K_Copy_762072495.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 37172,
+      "webp_bytes_local": 14692,
+      "saving_pct": 60.48,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 45.85,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 14692,
+          "psnr": 45.85,
+          "saving_pct": 60.48
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کود مایع فسفیت پتاسیم روم هلند 1 لیتری (Fos-K Room)",
+      "new_attachment_id": 144733,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140936-a140959-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 14692,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144733,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140936-a140959-webp.webp",
+      "alt_after": "تصویر محصول کود مایع فسفیت پتاسیم روم هلند 1 لیتری (Fos-K Room)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140937,
+      "old_attachment_id": 140955,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Sulfur_80_5L_Copy_1260627184.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 31107,
+      "webp_bytes_local": 11298,
+      "saving_pct": 63.68,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 44.75,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 11298,
+          "psnr": 44.75,
+          "saving_pct": 63.68
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول گوگرد سوسپانسیون 80 Room گالن 5 لیتری",
+      "new_attachment_id": 144734,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140937-a140955-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 11298,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144734,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140937-a140955-webp.webp",
+      "alt_after": "تصویر محصول گوگرد سوسپانسیون 80 Room گالن 5 لیتری",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140938,
+      "old_attachment_id": 140951,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Geel_Copy_1419553503.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 68308,
+      "webp_bytes_local": 36242,
+      "saving_pct": 46.94,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.41,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 36242,
+          "psnr": 41.41,
+          "saving_pct": 46.94
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول گوگرد پودری و گوگرد بنتونیت دار Room کیسه 25 کیلو گرمی",
+      "new_attachment_id": 144735,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140938-a140951-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 36242,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144735,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140938-a140951-webp.webp",
+      "alt_after": "تصویر محصول گوگرد پودری و گوگرد بنتونیت دار Room کیسه 25 کیلو گرمی",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140939,
+      "old_attachment_id": 140946,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/yousoap-5L_Copy_1881769715.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 35192,
+      "webp_bytes_local": 12326,
+      "saving_pct": 64.97,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 45.44,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 12326,
+          "psnr": 45.44,
+          "saving_pct": 64.97
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول صابون محلول پاشی یوساپ روم هلند 5 لیتری (Yousoap Room)",
+      "new_attachment_id": 144736,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140939-a140946-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 12326,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144736,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140939-a140946-webp.webp",
+      "alt_after": "تصویر محصول صابون محلول پاشی یوساپ روم هلند 5 لیتری (Yousoap Room)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140940,
+      "old_attachment_id": 140976,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Fe_8_copy_Copy_1636939366.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 33134,
+      "webp_bytes_local": 12844,
+      "saving_pct": 61.24,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 46.06,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 12844,
+          "psnr": 46.06,
+          "saving_pct": 61.24
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کود مایع کلات آهن اف ای 8 روم هلند 1 لیتری (Fe8 Room)",
+      "new_attachment_id": 144737,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140940-a140976-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 12844,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144737,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140940-a140976-webp.webp",
+      "alt_after": "تصویر محصول کود مایع کلات آهن اف ای 8 روم هلند 1 لیتری (Fe8 Room)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140941,
+      "old_attachment_id": 140975,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Mn_8_Copy_772116104.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 33182,
+      "webp_bytes_local": 12842,
+      "saving_pct": 61.3,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 46.87,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 12842,
+          "psnr": 46.87,
+          "saving_pct": 61.3
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کود مایع کلات منگنز 8 روم هلند 1 لیتری (Mn8 Room)",
+      "new_attachment_id": 144738,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140941-a140975-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 12842,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144738,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140941-a140975-webp.webp",
+      "alt_after": "تصویر محصول کود مایع کلات منگنز 8 روم هلند 1 لیتری (Mn8 Room)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140942,
+      "old_attachment_id": 140974,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Zn_11_Copy_760438213.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 36357,
+      "webp_bytes_local": 13802,
+      "saving_pct": 62.04,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 46.51,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 13802,
+          "psnr": 46.51,
+          "saving_pct": 62.04
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کود مایع کلات روی 11 روم هلند (Zn11 Room)",
+      "new_attachment_id": 144739,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140942-a140974-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 13802,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144739,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140942-a140974-webp.webp",
+      "alt_after": "تصویر محصول کود مایع کلات روی 11 روم هلند (Zn11 Room)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140943,
+      "old_attachment_id": 140972,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/B14_Copy_233188764.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 37637,
+      "webp_bytes_local": 14504,
+      "saving_pct": 61.46,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 44.08,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 14504,
+          "psnr": 44.08,
+          "saving_pct": 61.46
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کود مایع کلات بور 14 روم هلند 1 لیتری (B14 Room)",
+      "new_attachment_id": 144740,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140943-a140972-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 14504,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144740,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140943-a140972-webp.webp",
+      "alt_after": "تصویر محصول کود مایع کلات بور 14 روم هلند 1 لیتری (B14 Room)",
+      "stage": "verified"
+    }
+  ],
+  "inventory_after": {
+    "products_read": 653,
+    "jpeg_png_refs": 276,
+    "primary_refs": 214,
+    "distinct_attachment_ids": 246
+  },
+  "state_status": "running",
+  "total_successful_migrations": 407,
+  "total_terminal_skips": 27
+}
