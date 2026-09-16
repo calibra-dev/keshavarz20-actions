@@ -1,0 +1,835 @@
+{
+  "action": "media.autopilot.cycle",
+  "run_id": "35046095946",
+  "executed_at_utc": "2026-09-16T02:08:53Z",
+  "config": {
+    "batch_size": 20,
+    "max_attempts": 3,
+    "quality": 88,
+    "min_psnr": 40.0,
+    "min_saving_lossy_pct": 15.0,
+    "min_saving_lossless_pct": 5.0
+  },
+  "inventory_before": {
+    "products_read": 653,
+    "jpeg_png_refs": 363,
+    "primary_refs": 301,
+    "distinct_attachment_ids": 330
+  },
+  "items": [
+    {
+      "product_id": 140515,
+      "old_attachment_id": 140514,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/124.png",
+      "source_mime": "image/png",
+      "original_bytes": 232163,
+      "webp_bytes_local": 133834,
+      "saving_pct": 42.35,
+      "encoder_mode": "lossless",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossless",
+          "bytes": 133834,
+          "pixel_exact": true
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "سر شیلنگ پلیمری آبیاری",
+      "new_attachment_id": 144654,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140515-a140514-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 133834,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144654,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140515-a140514-webp.webp",
+      "alt_after": "سر شیلنگ پلیمری آبیاری",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140521,
+      "old_attachment_id": 140514,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/124.png",
+      "source_mime": "image/png",
+      "original_bytes": 232163,
+      "webp_bytes_local": 133834,
+      "saving_pct": 42.35,
+      "encoder_mode": "lossless",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossless",
+          "bytes": 133834,
+          "pixel_exact": true
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "سر شیلنگ پلیمری آبیاری",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 140538,
+      "old_attachment_id": 140542,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/363-1.png",
+      "source_mime": "image/png",
+      "original_bytes": 164559,
+      "webp_bytes_local": 90678,
+      "saving_pct": 44.9,
+      "encoder_mode": "lossless",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossless",
+          "bytes": 90678,
+          "pixel_exact": true
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول سه راه نر پلیمری پایا 2 اینچ",
+      "new_attachment_id": 144655,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140538-a140542-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 90678,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144655,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140538-a140542-webp.webp",
+      "alt_after": "تصویر محصول سه راه نر پلیمری پایا 2 اینچ",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140572,
+      "old_attachment_id": 144161,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-product-140572-p291-featured.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 39089,
+      "webp_bytes_local": 13634,
+      "saving_pct": 65.12,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 46.34,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 13634,
+          "psnr": 46.34,
+          "saving_pct": 65.12
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کپ رزوه ای u-pvc ویسپار سایز 1.1/2 اینچ (50 میلیمتر)",
+      "new_attachment_id": 144656,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140572-a144161-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 13634,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144656,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140572-a144161-webp.webp",
+      "alt_after": "تصویر محصول کپ رزوه ای u-pvc ویسپار سایز 1.1/2 اینچ (50 میلیمتر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140574,
+      "old_attachment_id": 144162,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-product-140574-p292-featured.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 39089,
+      "webp_bytes_local": 13634,
+      "saving_pct": 65.12,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 46.34,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 13634,
+          "psnr": 46.34,
+          "saving_pct": 65.12
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کپ رزوه ای u-pvc ویسپار سایز 2 اینچ (63 میلیمتر)",
+      "new_attachment_id": 144657,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140574-a144162-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 13634,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144657,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140574-a144162-webp.webp",
+      "alt_after": "تصویر محصول کپ رزوه ای u-pvc ویسپار سایز 2 اینچ (63 میلیمتر)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140575,
+      "old_attachment_id": 140576,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/120291991.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 33859,
+      "webp_bytes_local": 13438,
+      "saving_pct": 60.31,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 46.44,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 13438,
+          "psnr": 46.44,
+          "saving_pct": 60.31
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "کلید شیر خودکار ویسپار 1 اینچ برای آبیاری بارانی",
+      "new_attachment_id": 144658,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140575-a140576-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 13438,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144658,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140575-a140576-webp.webp",
+      "alt_after": "کلید شیر خودکار ویسپار 1 اینچ برای آبیاری بارانی",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140578,
+      "old_attachment_id": 139368,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/300235-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 105342,
+      "webp_bytes_local": 32378,
+      "saving_pct": 69.26,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.27,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 32378,
+          "psnr": 42.27,
+          "saving_pct": 69.26
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "کمربند انشعاب پلی‌اتیلن ۱۱۰ میلی‌متر",
+      "new_attachment_id": 144659,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140578-a139368-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 32378,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144659,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140578-a139368-webp.webp",
+      "alt_after": "کمربند انشعاب پلی‌اتیلن ۱۱۰ میلی‌متر",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140579,
+      "old_attachment_id": 144152,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-product-140579-p276-featured.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 105342,
+      "webp_bytes_local": 32378,
+      "saving_pct": 69.26,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.27,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 32378,
+          "psnr": 42.27,
+          "saving_pct": 69.26
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کمربند پلی‌اتیلن ۱۶۰ × ۱ اینچ | انشعاب لوله ۳۲ میلی‌متر",
+      "new_attachment_id": 144660,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140579-a144152-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 32378,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144660,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140579-a144152-webp.webp",
+      "alt_after": "تصویر محصول کمربند پلی‌اتیلن ۱۶۰ × ۱ اینچ | انشعاب لوله ۳۲ میلی‌متر",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140583,
+      "old_attachment_id": 139379,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/04/300203-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 104183,
+      "webp_bytes_local": 30606,
+      "saving_pct": 70.62,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.34,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 30606,
+          "psnr": 42.34,
+          "saving_pct": 70.62
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کمربند پلی‌اتیلن ۵۰ × ۱ اینچ | انشعاب لوله ۳۲ میلی‌متر",
+      "new_attachment_id": 144661,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140583-a139379-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 30606,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144661,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140583-a139379-webp.webp",
+      "alt_after": "تصویر محصول کمربند پلی‌اتیلن ۵۰ × ۱ اینچ | انشعاب لوله ۳۲ میلی‌متر",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140586,
+      "old_attachment_id": 139783,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/04/11412520000-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 95811,
+      "webp_bytes_local": 30840,
+      "saving_pct": 67.81,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 43.35,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 30840,
+          "psnr": 43.35,
+          "saving_pct": 67.81
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "کمربند پلی‌اتیلن ۱۲۵ × ۵۰ میلی‌متر برای انشعاب لوله ۵۰",
+      "new_attachment_id": 144662,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140586-a139783-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 30840,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144662,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140586-a139783-webp.webp",
+      "alt_after": "کمربند پلی‌اتیلن ۱۲۵ × ۵۰ میلی‌متر برای انشعاب لوله ۵۰",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140587,
+      "old_attachment_id": 139788,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/04/11403201200-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 95811,
+      "webp_bytes_local": 30840,
+      "saving_pct": 67.81,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 43.35,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 30840,
+          "psnr": 43.35,
+          "saving_pct": 67.81
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "نمای محصول کمربند پلی‌اتیلن ۲۵ × ۱/۲ اینچ | انشعاب لوله ۲۰ میلی‌متر",
+      "new_attachment_id": 144663,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140587-a139788-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 30840,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144663,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140587-a139788-webp.webp",
+      "alt_after": "نمای محصول کمربند پلی‌اتیلن ۲۵ × ۱/۲ اینچ | انشعاب لوله ۲۰ میلی‌متر",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140589,
+      "old_attachment_id": 144075,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-product-140589-p159-featured-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 104183,
+      "webp_bytes_local": 30606,
+      "saving_pct": 70.62,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.34,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 30606,
+          "psnr": 42.34,
+          "saving_pct": 70.62
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کمربند پلیمری پلی رود “1/2*40mm",
+      "new_attachment_id": 144664,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140589-a144075-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 30606,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144664,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140589-a144075-webp.webp",
+      "alt_after": "تصویر محصول کمربند پلیمری پلی رود “1/2*40mm",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140592,
+      "old_attachment_id": 144143,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-product-140592-p271-featured.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 105342,
+      "webp_bytes_local": 32378,
+      "saving_pct": 69.26,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.27,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 32378,
+          "psnr": 42.27,
+          "saving_pct": 69.26
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کمربند پلیمری 50 × 1/2 اینچ",
+      "new_attachment_id": 144665,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140592-a144143-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 32378,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144665,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140592-a144143-webp.webp",
+      "alt_after": "تصویر محصول کمربند پلیمری 50 × 1/2 اینچ",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140595,
+      "old_attachment_id": 139786,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/04/11406301200-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 95811,
+      "webp_bytes_local": 30840,
+      "saving_pct": 67.81,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 43.35,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 30840,
+          "psnr": 43.35,
+          "saving_pct": 67.81
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "کمربند پلی‌اتیلن ۶۳ × ۱/۲ اینچ برای ایجاد انشعاب لوله ۲۰ میلی‌متر",
+      "new_attachment_id": 144666,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140595-a139786-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 30840,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144666,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140595-a139786-webp.webp",
+      "alt_after": "کمربند پلی‌اتیلن ۶۳ × ۱/۲ اینچ برای ایجاد انشعاب لوله ۲۰ میلی‌متر",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140596,
+      "old_attachment_id": 139792,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/04/11406310000-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 95811,
+      "webp_bytes_local": 30840,
+      "saving_pct": 67.81,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 43.35,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 30840,
+          "psnr": 43.35,
+          "saving_pct": 67.81
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "نمای محصول کمربند انشعاب پلی‌اتیلن 90 × 1/2 اینچ",
+      "new_attachment_id": 144667,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140596-a139792-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 30840,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144667,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140596-a139792-webp.webp",
+      "alt_after": "نمای محصول کمربند انشعاب پلی‌اتیلن 90 × 1/2 اینچ",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140601,
+      "old_attachment_id": 144154,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-product-140601-p279-featured.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 105342,
+      "webp_bytes_local": 32378,
+      "saving_pct": 69.26,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.27,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 32378,
+          "psnr": 42.27,
+          "saving_pct": 69.26
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کمربند پلیمری 110 × 2 اینچ",
+      "new_attachment_id": 144668,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140601-a144154-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 32378,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144668,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140601-a144154-webp.webp",
+      "alt_after": "تصویر محصول کمربند پلیمری 110 × 2 اینچ",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140605,
+      "old_attachment_id": 144149,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-product-140605-p272-featured.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 105342,
+      "webp_bytes_local": 32378,
+      "saving_pct": 69.26,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.27,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 32378,
+          "psnr": 42.27,
+          "saving_pct": 69.26
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کمربند پلیمری 125 × 2 اینچ",
+      "new_attachment_id": 144669,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140605-a144149-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 32378,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144669,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140605-a144149-webp.webp",
+      "alt_after": "تصویر محصول کمربند پلیمری 125 × 2 اینچ",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140607,
+      "old_attachment_id": 144155,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-product-140607-p280-featured.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 105342,
+      "webp_bytes_local": 32378,
+      "saving_pct": 69.26,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.27,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 32378,
+          "psnr": 42.27,
+          "saving_pct": 69.26
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کمربند پلیمری 160 × 2 اینچ",
+      "new_attachment_id": 144670,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140607-a144155-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 32378,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144670,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140607-a144155-webp.webp",
+      "alt_after": "تصویر محصول کمربند پلیمری 160 × 2 اینچ",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140610,
+      "old_attachment_id": 139782,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2023/04/11406320000-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 95811,
+      "webp_bytes_local": 30840,
+      "saving_pct": 67.81,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 43.35,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 30840,
+          "psnr": 43.35,
+          "saving_pct": 67.81
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "نمای محصول کمربند پلی‌اتیلن ۶۳ × ۶۳ میلی‌متر | انشعاب هم‌سایز لوله ۶۳",
+      "new_attachment_id": 144671,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140610-a139782-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 30840,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144671,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140610-a139782-webp.webp",
+      "alt_after": "نمای محصول کمربند پلی‌اتیلن ۶۳ × ۶۳ میلی‌متر | انشعاب هم‌سایز لوله ۶۳",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140612,
+      "old_attachment_id": 144156,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-product-140612-p281-featured.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 105342,
+      "webp_bytes_local": 32378,
+      "saving_pct": 69.26,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 42.27,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 32378,
+          "psnr": 42.27,
+          "saving_pct": 69.26
+        }
+      ],
+      "width": 600,
+      "height": 600,
+      "alt_before": "تصویر محصول کمربند پلیمری 90 × 2 اینچ",
+      "new_attachment_id": 144672,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140612-a144156-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 32378,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144672,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140612-a144156-webp.webp",
+      "alt_after": "تصویر محصول کمربند پلیمری 90 × 2 اینچ",
+      "stage": "verified"
+    }
+  ],
+  "inventory_after": {
+    "products_read": 653,
+    "jpeg_png_refs": 344,
+    "primary_refs": 282,
+    "distinct_attachment_ids": 312
+  },
+  "state_status": "running",
+  "total_successful_migrations": 339,
+  "total_terminal_skips": 3
+}
