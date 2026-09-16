@@ -281,6 +281,15 @@ def has_old_ref(text, old_id, old_url):
     return False
 
 
+def count_public_old_urls(text, old_url):
+    if not isinstance(text, str) or not text:
+        return 0
+    old_canon = canonical_key(old_url)
+    if not old_canon:
+        return 0
+    return sum(1 for match in UPLOAD_RE.finditer(text) if canonical_key(match.group(0)) == old_canon)
+
+
 def get_media(aid):
     return api('GET', f'{base}/wp-json/wp/v2/media/{aid}?context=edit&_fields=id,parent,source_url,mime_type,media_details,alt_text')
 
@@ -491,6 +500,7 @@ for old_id in ids:
             cache_cleared = True
 
         # Public readback for objects where this attachment was observed rendered.
+        # Fail closed on both stale wp-image classes and stale canonical upload URLs.
         for prepared_obj in prepared:
             if not prepared_obj['rendered_expected'] or not prepared_obj['link']:
                 continue
@@ -500,9 +510,16 @@ for old_id in ids:
                 verify_url = prepared_obj['link'] + ('&' if '?' in prepared_obj['link'] else '?') + f'k20_direct_convert={int(time.time())}-{attempt}'
                 hc, html = public_get(verify_url)
                 old_class = html.count(f'wp-image-{old_id}') if hc == 200 else -1
+                old_url_hits = count_public_old_urls(html, old_url) if hc == 200 else -1
                 new_seen = bool(hc == 200 and (new_url in html or f'wp-image-{new_id}' in html))
-                last = {'attempt': attempt, 'http': hc, 'old_class_hits': old_class, 'new_seen': new_seen}
-                if hc == 200 and old_class == 0 and new_seen:
+                last = {
+                    'attempt': attempt,
+                    'http': hc,
+                    'old_class_hits': old_class,
+                    'old_url_hits': old_url_hits,
+                    'new_seen': new_seen,
+                }
+                if hc == 200 and old_class == 0 and old_url_hits == 0 and new_seen:
                     ok = True
                     break
                 time.sleep(2)
