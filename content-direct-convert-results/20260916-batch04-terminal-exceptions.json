@@ -1,0 +1,16 @@
+{
+  "classification": "terminal_non_rendered_stale_reference",
+  "source_run_id": 35138413095,
+  "source_batch": "20260916-2106-batch04",
+  "page_id": 644,
+  "attachment_ids": [140903, 140904, 140905, 140919, 141150],
+  "rendered": false,
+  "rendered_locator_sample_empty": true,
+  "conversion_attempt": {
+    "result": "rolled_back",
+    "common_error": "new reference missing page:644",
+    "rollback_ok": true,
+    "uploaded_webp_cleanup_ok": true
+  },
+  "policy": "Do not force-convert non-rendered stale references. Preserve rollback and exclude from actionable conversion failures unless fresh inventory shows a live rendered reference."
+}
