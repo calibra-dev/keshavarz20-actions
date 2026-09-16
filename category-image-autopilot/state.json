@@ -1,12 +1,12 @@
 {
   "version": 1,
   "started_at_utc": "2026-09-16T06:06:37Z",
-  "updated_at_utc": "2026-09-16T06:26:56Z",
+  "updated_at_utc": "2026-09-16T06:29:56Z",
   "status": "running",
-  "cycles": 8,
-  "successful_migrations": 20,
-  "lossy_success": 19,
-  "lossless_success": 1,
+  "cycles": 9,
+  "successful_migrations": 22,
+  "lossy_success": 20,
+  "lossless_success": 2,
   "processed_source_ids": [
     135490,
     135522,
@@ -27,7 +27,9 @@
     140066,
     140068,
     140074,
-    140120
+    140120,
+    141560,
+    142246
   ],
   "migrations": {
     "135490": {
@@ -169,11 +171,25 @@
         764
       ],
       "at_utc": "2026-09-16T06:25:22Z"
+    },
+    "141560": {
+      "new_attachment_id": 144939,
+      "category_ids": [
+        825
+      ],
+      "at_utc": "2026-09-16T06:27:39Z"
+    },
+    "142246": {
+      "new_attachment_id": 144943,
+      "category_ids": [
+        855
+      ],
+      "at_utc": "2026-09-16T06:29:01Z"
     }
   },
   "retry_counts": {
-    "141560": 1,
-    "141562": 1
+    "141562": 2,
+    "142516": 1
   },
   "terminal_skips": {
     "140034": {
@@ -223,14 +239,23 @@
     "141564": {
       "reason": "TERMINAL: no WebP candidate met quality and saving guards",
       "at_utc": "2026-09-16T06:26:56Z"
+    },
+    "141562": {
+      "reason": "max_attempts_exhausted:2",
+      "last_error": "category 790 readback did not confirm new media id",
+      "at_utc": "2026-09-16T06:28:24Z"
+    },
+    "142518": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "at_utc": "2026-09-16T06:29:55Z"
     }
   },
   "critical_events": [],
   "last_cycle": {
-    "run_id": "35063530798",
+    "run_id": "35063753576",
     "selected": 5,
     "success": 2,
-    "remaining_live_groups": 18,
-    "at_utc": "2026-09-16T06:26:56Z"
+    "remaining_live_groups": 14,
+    "at_utc": "2026-09-16T06:29:56Z"
   }
 }
