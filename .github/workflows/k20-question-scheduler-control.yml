@@ -64,7 +64,8 @@ jobs:
           echo "scheduler-last-run-age-seconds=$age"
 
           # A queued run with no job for 20 minutes is not a healthy heartbeat.
-          # Cancel it so it cannot block the concurrency group forever.
+          # Cancel it when GitHub allows cancellation. Old queued runs from the
+          # retired concurrency group are otherwise harmless after v2 migration.
           if [[ -n "$stale_queued_ids" ]]; then
             while read -r run_id; do
               [[ -z "$run_id" ]] && continue
@@ -77,13 +78,14 @@ jobs:
             sleep 3
           fi
 
-          # Never fork while a real scheduler job is executing or while a fresh
-          # queued run is still within the normal GitHub start window.
+          # Never fork while a real scheduler job is executing. A normal cron
+          # tick also respects fresh queues. A forced recovery may bypass a fresh
+          # queue because it is specifically used after changing concurrency.
           if (( in_progress > 0 )); then
             echo "watchdog-dispatch=skipped-in-progress"
             exit 0
           fi
-          if (( fresh_queued > 0 )); then
+          if [[ "$force" != "1" ]] && (( fresh_queued > 0 )); then
             echo "watchdog-dispatch=skipped-fresh-queue"
             exit 0
           fi
