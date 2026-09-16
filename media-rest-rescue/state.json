@@ -1,7 +1,7 @@
 {
   "status": "running",
-  "cycles": 4,
-  "successful_migrations": 10,
+  "cycles": 5,
+  "successful_migrations": 13,
   "processed": {
     "135219:141649": {
       "new_attachment_id": 144813,
@@ -42,6 +42,18 @@
     "135317:141617": {
       "new_attachment_id": 144837,
       "at_utc": "2026-09-16T05:57:42Z"
+    },
+    "135319:140351": {
+      "new_attachment_id": 144839,
+      "at_utc": "2026-09-16T05:58:26Z"
+    },
+    "135319:141617": {
+      "new_attachment_id": 144841,
+      "at_utc": "2026-09-16T05:58:56Z"
+    },
+    "135321:140351": {
+      "new_attachment_id": 144844,
+      "at_utc": "2026-09-16T05:59:28Z"
     }
   },
   "skipped": {
@@ -57,18 +69,20 @@
     }
   },
   "critical_events": [],
-  "updated_at_utc": "2026-09-16T05:57:42Z",
+  "updated_at_utc": "2026-09-16T06:00:49Z",
   "last_cycle": {
-    "run_id": "35061399493",
+    "run_id": "35061623753",
     "selected": 5,
-    "success": 5,
-    "remaining": 122,
-    "at_utc": "2026-09-16T05:57:42Z"
+    "success": 3,
+    "remaining": 119,
+    "at_utc": "2026-09-16T06:00:49Z"
   },
   "attempts": {
     "135309:141617": 1,
     "135311:140351": 2,
     "135311:141617": 2,
-    "135313:140351": 1
+    "135313:140351": 1,
+    "135321:141617": 1,
+    "135485:141617": 1
   }
 }
