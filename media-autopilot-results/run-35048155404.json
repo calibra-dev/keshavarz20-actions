@@ -1,0 +1,637 @@
+{
+  "action": "media.autopilot.cycle",
+  "run_id": "35048155404",
+  "executed_at_utc": "2026-09-16T02:37:32Z",
+  "config": {
+    "batch_size": 20,
+    "max_attempts": 3,
+    "quality": 88,
+    "min_psnr": 40.0,
+    "min_saving_lossy_pct": 15.0,
+    "min_saving_lossless_pct": 5.0
+  },
+  "inventory_before": {
+    "products_read": 653,
+    "jpeg_png_refs": 314,
+    "primary_refs": 252,
+    "distinct_attachment_ids": 284
+  },
+  "items": [
+    {
+      "product_id": 140742,
+      "old_attachment_id": 140747,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Shali.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 68123,
+      "webp_bytes_local": 64108,
+      "saving_pct": 5.89,
+      "encoder_mode": "lossless-fallback",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 14430,
+          "psnr": 35.99,
+          "saving_pct": 78.82
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 17246,
+          "psnr": 36.19,
+          "saving_pct": 74.68
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 21140,
+          "psnr": 36.38,
+          "saving_pct": 68.97
+        },
+        {
+          "mode": "lossless-fallback",
+          "bytes": 64108,
+          "pixel_exact": true,
+          "saving_pct": 5.89
+        }
+      ],
+      "width": 500,
+      "height": 500,
+      "alt_before": "تصویر محصول شالی ایکس گرین -1-لیتری",
+      "new_attachment_id": 144703,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140742-a140747-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 64108,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144703,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140742-a140747-webp.webp",
+      "alt_after": "تصویر محصول شالی ایکس گرین -1-لیتری",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140748,
+      "old_attachment_id": 140753,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Jet-Gold-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 54616,
+      "webp_bytes_local": 13174,
+      "saving_pct": 75.88,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 41.71,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 13174,
+          "psnr": 41.71,
+          "saving_pct": 75.88
+        }
+      ],
+      "width": 500,
+      "height": 500,
+      "alt_before": "تصویر محصول کود مایع نیتروژن بالا جت گلد ۱ لیتری (Jet Gold XGreen)",
+      "new_attachment_id": 144704,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140748-a140753-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 13174,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144704,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140748-a140753-webp.webp",
+      "alt_after": "تصویر محصول کود مایع نیتروژن بالا جت گلد ۱ لیتری (Jet Gold XGreen)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140750,
+      "old_attachment_id": 140755,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Aminotop-Powder.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 70227,
+      "webp_bytes_local": 14330,
+      "saving_pct": 79.59,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.95,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 14330,
+          "psnr": 40.95,
+          "saving_pct": 79.59
+        }
+      ],
+      "width": 500,
+      "height": 500,
+      "alt_before": "تصویر محصول آمینوتاپ پودری ایکس گرین",
+      "new_attachment_id": 144705,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140750-a140755-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 14330,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144705,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140750-a140755-webp.webp",
+      "alt_after": "تصویر محصول آمینوتاپ پودری ایکس گرین",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140751,
+      "old_attachment_id": 140757,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: no WebP candidate met quality and saving guards",
+      "terminal": true
+    },
+    {
+      "product_id": 140758,
+      "old_attachment_id": 140762,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: no WebP candidate met quality and saving guards",
+      "terminal": true
+    },
+    {
+      "product_id": 140759,
+      "old_attachment_id": 140763,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: no WebP candidate met quality and saving guards",
+      "terminal": true
+    },
+    {
+      "product_id": 140760,
+      "old_attachment_id": 140764,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Mesi.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 64313,
+      "webp_bytes_local": 16688,
+      "saving_pct": 74.05,
+      "encoder_mode": "lossy-q92",
+      "psnr_db": 40.37,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 13568,
+          "psnr": 39.91,
+          "saving_pct": 78.9
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 16688,
+          "psnr": 40.37,
+          "saving_pct": 74.05
+        }
+      ],
+      "width": 500,
+      "height": 500,
+      "alt_before": "بطری یک لیتری کود مایع مس کلاته EDTA و پتاسیم مسی",
+      "new_attachment_id": 144706,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140760-a140764-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 16688,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144706,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140760-a140764-webp.webp",
+      "alt_after": "بطری یک لیتری کود مایع مس کلاته EDTA و پتاسیم مسی",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140766,
+      "old_attachment_id": 140770,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Duel-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 31620,
+      "webp_bytes_local": 7706,
+      "saving_pct": 75.63,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 47.34,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 7706,
+          "psnr": 47.34,
+          "saving_pct": 75.63
+        }
+      ],
+      "width": 500,
+      "height": 500,
+      "alt_before": "تصویر محصول صابون کشاورزی و کمک‌محلول‌پاش دوئل ۲۵۰ سی‌سی (Duel XGreen)",
+      "new_attachment_id": 144707,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140766-a140770-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 7706,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144707,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140766-a140770-webp.webp",
+      "alt_after": "تصویر محصول صابون کشاورزی و کمک‌محلول‌پاش دوئل ۲۵۰ سی‌سی (Duel XGreen)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140767,
+      "old_attachment_id": 140771,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Jet-Gold.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 65125,
+      "webp_bytes_local": 13660,
+      "saving_pct": 79.02,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.53,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 13660,
+          "psnr": 40.53,
+          "saving_pct": 79.02
+        }
+      ],
+      "width": 500,
+      "height": 500,
+      "alt_before": "تصویر محصول فول گلد ایکس گرین",
+      "new_attachment_id": 144708,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140767-a140771-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 13660,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144708,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140767-a140771-webp.webp",
+      "alt_after": "تصویر محصول فول گلد ایکس گرین",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140768,
+      "old_attachment_id": 140772,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: no WebP candidate met quality and saving guards",
+      "terminal": true
+    },
+    {
+      "product_id": 140773,
+      "old_attachment_id": 141246,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/d0b0700ea48a0fdb78d610180e204ebe371c13eb_1638387275.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 105265,
+      "webp_bytes_local": 48972,
+      "saving_pct": 53.48,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 40.69,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 48972,
+          "psnr": 40.69,
+          "saving_pct": 53.48
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول کود مایع هایپر هیوم ایکس گرین آمریکا 5 لیتری (Hyper Hum XGreen)",
+      "new_attachment_id": 144709,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140773-a141246-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 48972,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144709,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140773-a141246-webp.webp",
+      "alt_after": "تصویر محصول کود مایع هایپر هیوم ایکس گرین آمریکا 5 لیتری (Hyper Hum XGreen)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140774,
+      "old_attachment_id": 140778,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: no WebP candidate met quality and saving guards",
+      "terminal": true
+    },
+    {
+      "product_id": 140775,
+      "old_attachment_id": 144163,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-product-140775-p312-featured.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 79940,
+      "webp_bytes_local": 25056,
+      "saving_pct": 68.66,
+      "encoder_mode": "lossy-q95",
+      "psnr_db": 40.03,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 16634,
+          "psnr": 39.17,
+          "saving_pct": 79.19
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 20180,
+          "psnr": 39.61,
+          "saving_pct": 74.76
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 25056,
+          "psnr": 40.03,
+          "saving_pct": 68.66
+        }
+      ],
+      "width": 500,
+      "height": 500,
+      "alt_before": "تصویر محصول کود مایع اَرِنج ایکس گرین آمریکا 1 لیتری (َArrange XGreen)",
+      "new_attachment_id": 144710,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140775-a144163-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 25056,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144710,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140775-a144163-webp.webp",
+      "alt_after": "تصویر محصول کود مایع اَرِنج ایکس گرین آمریکا 1 لیتری (َArrange XGreen)",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140781,
+      "old_attachment_id": 140785,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: no WebP candidate met quality and saving guards",
+      "terminal": true
+    },
+    {
+      "product_id": 140789,
+      "old_attachment_id": 140795,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: no WebP candidate met quality and saving guards",
+      "terminal": true
+    },
+    {
+      "product_id": 140790,
+      "old_attachment_id": 140796,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: no WebP candidate met quality and saving guards",
+      "terminal": true
+    },
+    {
+      "product_id": 140792,
+      "old_attachment_id": 140798,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: no WebP candidate met quality and saving guards",
+      "terminal": true
+    },
+    {
+      "product_id": 140793,
+      "old_attachment_id": 140799,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Gel.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 58478,
+      "webp_bytes_local": 13938,
+      "saving_pct": 76.17,
+      "encoder_mode": "lossy-q92",
+      "psnr_db": 40.03,
+      "pixel_exact": false,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 11174,
+          "psnr": 39.63,
+          "saving_pct": 80.89
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 13938,
+          "psnr": 40.03,
+          "saving_pct": 76.17
+        }
+      ],
+      "width": 500,
+      "height": 500,
+      "alt_before": "بطری یک لیتری کود مایع سیلیسیم و پتاسیم ژل ۸۰",
+      "new_attachment_id": 144711,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140793-a140799-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 13938,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144711,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140793-a140799-webp.webp",
+      "alt_after": "بطری یک لیتری کود مایع سیلیسیم و پتاسیم ژل ۸۰",
+      "stage": "verified"
+    },
+    {
+      "product_id": 140804,
+      "old_attachment_id": 141871,
+      "expected_position": 0,
+      "primary": true,
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Polys-XGreen-1lit.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 197767,
+      "webp_bytes_local": 166616,
+      "saving_pct": 15.75,
+      "encoder_mode": "lossless-fallback",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 42594,
+          "psnr": 38.05,
+          "saving_pct": 78.46
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 49780,
+          "psnr": 38.36,
+          "saving_pct": 74.83
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 58630,
+          "psnr": 38.58,
+          "saving_pct": 70.35
+        },
+        {
+          "mode": "lossless-fallback",
+          "bytes": 166616,
+          "pixel_exact": true,
+          "saving_pct": 15.75
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول محلول پلی‌اس ایکس گرین ۱ لیتری؛ گوگرد چندظرفیتی برای باغ و فضای سبز (Polys XGreen)",
+      "stage": "error",
+      "error": "EOF occurred in violation of protocol (_ssl.c:2427)",
+      "terminal": false
+    },
+    {
+      "product_id": 140805,
+      "old_attachment_id": 141873,
+      "expected_position": 0,
+      "primary": true,
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/06/Harvest-XGreen-1lit.keshavarz20.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 200917,
+      "webp_bytes_local": 162554,
+      "saving_pct": 19.09,
+      "encoder_mode": "lossless-fallback",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "encoder_attempts": [
+        {
+          "mode": "lossy-q88",
+          "bytes": 45376,
+          "psnr": 38.48,
+          "saving_pct": 77.42
+        },
+        {
+          "mode": "lossy-q92",
+          "bytes": 54248,
+          "psnr": 38.82,
+          "saving_pct": 73.0
+        },
+        {
+          "mode": "lossy-q95",
+          "bytes": 62948,
+          "psnr": 39.1,
+          "saving_pct": 68.67
+        },
+        {
+          "mode": "lossless-fallback",
+          "bytes": 162554,
+          "pixel_exact": true,
+          "saving_pct": 19.09
+        }
+      ],
+      "width": 800,
+      "height": 800,
+      "alt_before": "تصویر محصول کود مایع هاروست ۱۰-۲۰-۴۰ ایکس گرین ۱ لیتری؛ درشتی و رنگ‌آوری میوه (Harvest XGreen)",
+      "new_attachment_id": 144712,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140805-a141873-webp.webp",
+      "new_head": {
+        "status": 200,
+        "bytes": 162554,
+        "content_type": "image/webp"
+      },
+      "alt_update_http": 200,
+      "xmlrpc_featured_edit_return": true,
+      "readback_attempts": 1,
+      "readback_http": 200,
+      "readback_image_id": 144712,
+      "readback_src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p140805-a141873-webp.webp",
+      "alt_after": "تصویر محصول کود مایع هاروست ۱۰-۲۰-۴۰ ایکس گرین ۱ لیتری؛ درشتی و رنگ‌آوری میوه (Harvest XGreen)",
+      "stage": "verified"
+    }
+  ],
+  "inventory_after": {
+    "products_read": 653,
+    "jpeg_png_refs": 304,
+    "primary_refs": 242,
+    "distinct_attachment_ids": 274
+  },
+  "state_status": "running",
+  "total_successful_migrations": 379,
+  "total_terminal_skips": 22
+}
