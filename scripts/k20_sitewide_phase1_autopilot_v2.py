@@ -377,7 +377,8 @@ def migrate_one(item):
 eligible = []
 for item in inventory.get('items') or []:
     aid = int(item.get('attachment_id') or 0)
-    if aid <= 0 or str(item.get('format') or '').lower() not in ('jpeg', 'png') or aid in processed:
+    fmt = str(item.get('format') or '').lower()
+    if aid <= 0 or fmt not in ('jpeg', 'png') or aid in processed:
         continue
     if str(aid) in state.get('terminal_skips', {}):
         continue
@@ -427,10 +428,14 @@ state['updated_at_utc'] = now_iso()
 result['success_count'] = sum(1 for x in result['items'] if x.get('success'))
 result['critical_halt'] = critical_halt
 
+# Count remaining with the exact same source-format/actionability guards used by selection.
+# Previously WebP attachments could be counted as remaining even though they were never selectable,
+# producing a false selected=0/remaining>0 self-chain loop.
 remaining = 0
 for item in inventory.get('items') or []:
     aid = int(item.get('attachment_id') or 0)
-    if aid <= 0 or aid in processed or str(aid) in state.get('terminal_skips', {}):
+    fmt = str(item.get('format') or '').lower()
+    if aid <= 0 or fmt not in ('jpeg', 'png') or aid in processed or str(aid) in state.get('terminal_skips', {}):
         continue
     ok, _ = classify(item)
     if ok:
