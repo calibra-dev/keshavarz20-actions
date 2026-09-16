@@ -1,11 +1,11 @@
 {
   "version": 1,
   "started_at_utc": "2026-09-16T06:06:37Z",
-  "updated_at_utc": "2026-09-16T06:33:01Z",
+  "updated_at_utc": "2026-09-16T06:35:59Z",
   "status": "running",
-  "cycles": 10,
-  "successful_migrations": 25,
-  "lossy_success": 23,
+  "cycles": 11,
+  "successful_migrations": 28,
+  "lossy_success": 26,
   "lossless_success": 2,
   "processed_source_ids": [
     135490,
@@ -32,7 +32,10 @@
     142246,
     142516,
     142519,
-    142521
+    142521,
+    142522,
+    142528,
+    142530
   ],
   "migrations": {
     "135490": {
@@ -209,11 +212,32 @@
         827
       ],
       "at_utc": "2026-09-16T06:32:12Z"
+    },
+    "142522": {
+      "new_attachment_id": 144956,
+      "category_ids": [
+        800
+      ],
+      "at_utc": "2026-09-16T06:33:54Z"
+    },
+    "142528": {
+      "new_attachment_id": 144958,
+      "category_ids": [
+        810
+      ],
+      "at_utc": "2026-09-16T06:34:32Z"
+    },
+    "142530": {
+      "new_attachment_id": 144959,
+      "category_ids": [
+        860
+      ],
+      "at_utc": "2026-09-16T06:35:13Z"
     }
   },
   "retry_counts": {
     "141562": 2,
-    "142522": 1
+    "142534": 1
   },
   "terminal_skips": {
     "140034": {
@@ -276,14 +300,18 @@
     "142520": {
       "reason": "TERMINAL: no WebP candidate met quality and saving guards",
       "at_utc": "2026-09-16T06:31:39Z"
+    },
+    "142523": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "at_utc": "2026-09-16T06:34:04Z"
     }
   },
   "critical_events": [],
   "last_cycle": {
-    "run_id": "35063980446",
+    "run_id": "35064224486",
     "selected": 5,
     "success": 3,
-    "remaining_live_groups": 10,
-    "at_utc": "2026-09-16T06:33:01Z"
+    "remaining_live_groups": 6,
+    "at_utc": "2026-09-16T06:35:59Z"
   }
 }
