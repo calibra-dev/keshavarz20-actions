@@ -1,9 +1,9 @@
 {
   "version": 1,
   "started_at_utc": "2026-09-15T22:25:31Z",
-  "updated_at_utc": "2026-09-16T06:04:55Z",
+  "updated_at_utc": "2026-09-16T06:09:17Z",
   "status": "running",
-  "cycles": 52,
+  "cycles": 53,
   "successful_migrations": 473,
   "lossy_success": 444,
   "lossless_success": 29,
@@ -160,19 +160,19 @@
     "142182:142188": 3,
     "142204:142208": 3,
     "142781:142783": 3,
-    "142787:142789": 2,
-    "142790:142796": 2,
-    "142797:142800": 2,
-    "142809:142813": 2,
-    "142817:142824": 2,
-    "142844:142848": 2,
-    "142913:142915": 2,
-    "142919:142921": 2,
-    "143032:143034": 2,
-    "144244:144271": 2,
-    "144245:144271": 1,
-    "144246:144271": 1,
-    "144247:144271": 1
+    "142787:142789": 3,
+    "142790:142796": 3,
+    "142797:142800": 3,
+    "142809:142813": 3,
+    "142817:142824": 3,
+    "142844:142848": 3,
+    "142913:142915": 3,
+    "142919:142921": 3,
+    "143032:143034": 3,
+    "144244:144271": 3,
+    "144245:144271": 2,
+    "144246:144271": 2,
+    "144247:144271": 2
   },
   "terminal_skips": {
     "135219:141649": {
@@ -1022,22 +1022,46 @@
     "140014:140350": {
       "reason": "max_attempts_exhausted:3",
       "at_utc": "2026-09-16T05:58:53Z"
+    },
+    "141585:141617": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T06:05:10Z"
+    },
+    "141597:141617": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T06:05:10Z"
+    },
+    "142182:142187": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T06:05:10Z"
+    },
+    "142182:142188": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T06:05:10Z"
+    },
+    "142204:142208": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T06:05:10Z"
+    },
+    "142781:142783": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T06:05:10Z"
     }
   },
   "critical_events": [],
   "last_inventory": {
     "products_read": 657,
-    "jpeg_png_refs": 194,
-    "primary_refs": 146,
-    "distinct_attachment_ids": 177
+    "jpeg_png_refs": 189,
+    "primary_refs": 145,
+    "distinct_attachment_ids": 172
   },
   "last_cycle": {
-    "run_id": "35061685311",
-    "selected": 19,
+    "run_id": "35062135151",
+    "selected": 13,
     "success": 0,
-    "failed_or_skipped": 19,
-    "before_refs": 198,
-    "after_refs": 194,
-    "at_utc": "2026-09-16T06:04:55Z"
+    "failed_or_skipped": 13,
+    "before_refs": 193,
+    "after_refs": 189,
+    "at_utc": "2026-09-16T06:09:17Z"
   }
 }
