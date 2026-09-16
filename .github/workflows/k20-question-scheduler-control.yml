@@ -1,0 +1,33 @@
+name: Keshavarz20 Question Scheduler Control
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scheduler-control/*.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Enable and dispatch question scheduler
+        shell: bash
+        run: |
+          set -euo pipefail
+          repo="${GITHUB_REPOSITORY}"
+          wf="k20-question-scheduler.yml"
+          echo "=== BEFORE ==="
+          gh api "repos/$repo/actions/workflows/$wf" --jq '{id,name,path,state}'
+          gh api --method PUT "repos/$repo/actions/workflows/$wf/enable"
+          echo "=== AFTER ENABLE ==="
+          gh api "repos/$repo/actions/workflows/$wf" --jq '{id,name,path,state}'
+          gh api --method POST "repos/$repo/actions/workflows/$wf/dispatches" -f ref=main
+          echo "dispatch=requested"
