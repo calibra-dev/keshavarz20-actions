@@ -1,0 +1,279 @@
+{
+  "action": "category_image.autopilot_cycle",
+  "run_id": "35063530798",
+  "executed_at_utc": "2026-09-16T06:24:18Z",
+  "selected": 5,
+  "items": [
+    {
+      "old_attachment_id": 140074,
+      "categories": [
+        {
+          "id": 766,
+          "name": "قطره چکان (دریپر)",
+          "slug": "%d9%82%d8%b7%d8%b1%d9%87-%da%86%da%a9%d8%a7%d9%86-%d8%af%d8%b1%db%8c%d9%be%d8%b1"
+        }
+      ],
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/images.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 8446,
+      "webp_bytes_local": 4636,
+      "saving_pct": 45.11,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 43.41,
+      "pixel_exact": false,
+      "width": 226,
+      "height": 223,
+      "alt_before": "",
+      "new_attachment_id": 144931,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-category-a140074.webp",
+      "upload_http": 201,
+      "alt_after": "",
+      "new_head": {
+        "status": 200,
+        "bytes": 4636,
+        "content_type": "image/webp"
+      },
+      "updates": [
+        {
+          "category_id": 766,
+          "update_http": 200,
+          "response_image_id": 144931,
+          "readback": [
+            {
+              "http": 200,
+              "image_id": 144931
+            }
+          ],
+          "verified": true
+        }
+      ],
+      "stage": "verified",
+      "kept_original_attachment": true
+    },
+    {
+      "old_attachment_id": 140120,
+      "categories": [
+        {
+          "id": 764,
+          "name": "سرشلنگی و رابط‌ها",
+          "slug": "%d8%b3%d8%b1%d8%b4%d9%84%d9%86%da%af%db%8c-%d9%88-%d8%b1%d8%a7%d8%a8%d8%b7-%d9%87%d8%a7"
+        }
+      ],
+      "success": true,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/05/IMG_9866.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 43496,
+      "webp_bytes_local": 19782,
+      "saving_pct": 54.52,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 44.03,
+      "pixel_exact": false,
+      "width": 500,
+      "height": 500,
+      "alt_before": "",
+      "new_attachment_id": 144932,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-category-a140120.webp",
+      "upload_http": 201,
+      "alt_after": "",
+      "new_head": {
+        "status": 200,
+        "bytes": 19782,
+        "content_type": "image/webp"
+      },
+      "updates": [
+        {
+          "category_id": 764,
+          "update_http": 200,
+          "response_image_id": 144932,
+          "readback": [
+            {
+              "http": 200,
+              "image_id": 140120
+            },
+            {
+              "http": 200,
+              "image_id": 140120
+            },
+            {
+              "http": 200,
+              "image_id": 140120
+            },
+            {
+              "http": 200,
+              "image_id": 144932
+            }
+          ],
+          "verified": true
+        }
+      ],
+      "stage": "verified",
+      "kept_original_attachment": true
+    },
+    {
+      "old_attachment_id": 141560,
+      "categories": [
+        {
+          "id": 825,
+          "name": "فیلتر و فیلتراسیون",
+          "slug": "%d9%81%db%8c%d9%84%d8%aa%d8%b1-%d9%88-%d9%81%db%8c%d9%84%d8%aa%d8%b1%d8%a7%d8%b3%db%8c%d9%88%d9%86"
+        }
+      ],
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/water-filter.png",
+      "source_mime": "image/png",
+      "original_bytes": 25286,
+      "webp_bytes_local": 21118,
+      "saving_pct": 16.48,
+      "encoder_mode": "lossless",
+      "psnr_db": 99.0,
+      "pixel_exact": true,
+      "width": 372,
+      "height": 400,
+      "alt_before": "",
+      "new_attachment_id": 144934,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-category-a141560.webp",
+      "upload_http": 201,
+      "alt_after": "",
+      "new_head": {
+        "status": 200,
+        "bytes": 21118,
+        "content_type": "image/webp"
+      },
+      "updates": [
+        {
+          "category_id": 825,
+          "update_http": 200,
+          "response_image_id": 144934,
+          "readback": [
+            {
+              "http": 200,
+              "image_id": 141560
+            },
+            {
+              "http": 200,
+              "image_id": 141560
+            },
+            {
+              "http": 200,
+              "image_id": 141560
+            },
+            {
+              "http": 200,
+              "image_id": 141560
+            }
+          ],
+          "verified": false
+        }
+      ],
+      "stage": "error",
+      "error": "category 825 readback did not confirm new media id",
+      "rollback_ok": true,
+      "rollback_details": [
+        {
+          "category_id": 825,
+          "http": 200,
+          "verified": true,
+          "readback": [
+            {
+              "http": 200,
+              "image_id": 141560
+            }
+          ]
+        }
+      ],
+      "cleanup_uploaded_webp": true
+    },
+    {
+      "old_attachment_id": 141562,
+      "categories": [
+        {
+          "id": 790,
+          "name": "اتصالات پلی اتیلن",
+          "slug": "polyethylene-fittings"
+        }
+      ],
+      "success": false,
+      "source_url": "https://keshavarz20.com/wp-content/uploads/2024/07/03-PP-1024x683-1.jpg",
+      "source_mime": "image/jpeg",
+      "original_bytes": 73018,
+      "webp_bytes_local": 40816,
+      "saving_pct": 44.1,
+      "encoder_mode": "lossy-q88",
+      "psnr_db": 43.13,
+      "pixel_exact": false,
+      "width": 1024,
+      "height": 683,
+      "alt_before": "",
+      "new_attachment_id": 144936,
+      "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-category-a141562.webp",
+      "upload_http": 201,
+      "alt_after": "",
+      "new_head": {
+        "status": 200,
+        "bytes": 40816,
+        "content_type": "image/webp"
+      },
+      "updates": [
+        {
+          "category_id": 790,
+          "update_http": 200,
+          "response_image_id": 144936,
+          "readback": [
+            {
+              "http": 200,
+              "image_id": 141562
+            },
+            {
+              "http": 200,
+              "image_id": 141562
+            },
+            {
+              "http": 200,
+              "image_id": 141562
+            },
+            {
+              "http": 200,
+              "image_id": 141562
+            }
+          ],
+          "verified": false
+        }
+      ],
+      "stage": "error",
+      "error": "category 790 readback did not confirm new media id",
+      "rollback_ok": true,
+      "rollback_details": [
+        {
+          "category_id": 790,
+          "http": 200,
+          "verified": true,
+          "readback": [
+            {
+              "http": 200,
+              "image_id": 141562
+            }
+          ]
+        }
+      ],
+      "cleanup_uploaded_webp": true
+    },
+    {
+      "old_attachment_id": 141564,
+      "categories": [
+        {
+          "id": 792,
+          "name": "اتصالات چدنی و آهنی",
+          "slug": "cast-iron-steel-fittings"
+        }
+      ],
+      "success": false,
+      "stage": "error",
+      "error": "TERMINAL: no WebP candidate met quality and saving guards",
+      "rollback_ok": true,
+      "cleanup_uploaded_webp": true
+    }
+  ],
+  "success_count": 2,
+  "critical_halt": false
+}
