@@ -1,7 +1,7 @@
 {
   "status": "running",
-  "cycles": 20,
-  "successful_migrations": 107,
+  "cycles": 21,
+  "successful_migrations": 112,
   "processed": {
     "135219:141649": {
       "new_attachment_id": 144813,
@@ -430,6 +430,26 @@
     "142787:142788": {
       "new_attachment_id": 145038,
       "at_utc": "2026-09-16T07:22:32Z"
+    },
+    "142790:142795": {
+      "new_attachment_id": 145042,
+      "at_utc": "2026-09-16T07:25:35Z"
+    },
+    "142801:142802": {
+      "new_attachment_id": 145045,
+      "at_utc": "2026-09-16T07:27:39Z"
+    },
+    "142807:142808": {
+      "new_attachment_id": 145046,
+      "at_utc": "2026-09-16T07:28:18Z"
+    },
+    "142809:142812": {
+      "new_attachment_id": 145047,
+      "at_utc": "2026-09-16T07:28:56Z"
+    },
+    "142817:142821": {
+      "new_attachment_id": 145049,
+      "at_utc": "2026-09-16T07:30:14Z"
     }
   },
   "skipped": {
@@ -482,16 +502,26 @@
       "reason": "product readback did not confirm REST rescue",
       "attempts": 2,
       "at_utc": "2026-09-16T07:16:47Z"
+    },
+    "142781:142783": {
+      "reason": "product readback did not confirm REST rescue",
+      "attempts": 2,
+      "at_utc": "2026-09-16T07:24:13Z"
+    },
+    "142787:142789": {
+      "reason": "product readback did not confirm REST rescue",
+      "attempts": 2,
+      "at_utc": "2026-09-16T07:24:56Z"
     }
   },
   "critical_events": [],
-  "updated_at_utc": "2026-09-16T07:23:16Z",
+  "updated_at_utc": "2026-09-16T07:30:14Z",
   "last_cycle": {
-    "run_id": "35067634390",
+    "run_id": "35068269185",
     "selected": 10,
-    "success": 7,
-    "remaining": 45,
-    "at_utc": "2026-09-16T07:23:16Z"
+    "success": 5,
+    "remaining": 38,
+    "at_utc": "2026-09-16T07:30:14Z"
   },
   "attempts": {
     "135309:141617": 1,
@@ -511,7 +541,10 @@
     "142182:142187": 2,
     "142182:142188": 2,
     "142204:142208": 2,
-    "142781:142783": 1,
-    "142787:142789": 1
+    "142781:142783": 2,
+    "142787:142789": 2,
+    "142790:142796": 1,
+    "142797:142800": 1,
+    "142809:142813": 1
   }
 }
