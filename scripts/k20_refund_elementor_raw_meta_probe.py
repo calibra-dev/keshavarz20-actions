@@ -12,6 +12,7 @@ ROOT = pathlib.Path('.')
 REQ_DIR = ROOT / 'diagnostics' / 'refund-elementor-raw'
 OUT_DIR = ROOT / 'results'
 EXPECTED_ID = 13
+EXPECTED_HEALTHY_REVISION = 144349
 EXPECTED_PHRASE = 'شرایط مرجوعی، مغایرت کالا و پیگیری بار در کشاورز بیست'
 
 for key in ('WP_BASE_URL', 'WP_USERNAME', 'WP_APP_PASSWORD'):
@@ -64,7 +65,7 @@ def fingerprint(path, value, phrase, parse_json=False):
     return row
 
 
-def request_json(method, url, body=None, user_agent='K20-Refund-Elementor-Raw-Meta-Probe/3.0'):
+def request_json(method, url, body=None, user_agent='K20-Refund-Elementor-Raw-Meta-Probe/4.0'):
     headers = {
         'Authorization': 'Basic ' + auth,
         'Accept': 'application/json',
@@ -98,6 +99,15 @@ def safe_error(obj):
     }
 
 
+def narrow_meta(url, phrase, path):
+    code, obj = request_json('GET', url)
+    meta = obj.get('meta') if isinstance(obj, dict) and isinstance(obj.get('meta'), dict) else {}
+    elementor = None
+    if '_elementor_data' in meta:
+        elementor = fingerprint(path, meta.get('_elementor_data'), phrase, parse_json=True)
+    return code, obj, meta, elementor
+
+
 requests = sorted(REQ_DIR.glob('*.json'), key=lambda p: p.name, reverse=True)
 if not requests:
     raise SystemExit('No refund Elementor raw-meta diagnostic request found.')
@@ -105,20 +115,25 @@ req_path = requests[0]
 req = json.loads(req_path.read_text(encoding='utf-8'))
 page_id = int(req.get('id') or 0)
 phrase = str(req.get('phrase') or '')
+revision_id = int(req.get('healthy_revision_id') or EXPECTED_HEALTHY_REVISION)
 if page_id != EXPECTED_ID:
     raise SystemExit('Diagnostic is hard-limited to page ID 13.')
 if phrase != EXPECTED_PHRASE:
     raise SystemExit('Unexpected target phrase.')
+if revision_id != EXPECTED_HEALTHY_REVISION:
+    raise SystemExit('Unexpected healthy revision id.')
 
-rest_url = (
-    f'{base}/wp-json/wp/v2/pages/{page_id}?context=edit&'
-    + urllib.parse.urlencode({'_fields': 'id,slug,status,modified_gmt,meta'})
+fields = urllib.parse.urlencode({'_fields': 'id,slug,status,modified_gmt,meta'})
+rest_url = f'{base}/wp-json/wp/v2/pages/{page_id}?context=edit&{fields}'
+rest_code, rest_obj, rest_meta, rest_elementor = narrow_meta(
+    rest_url, phrase, 'rest.meta._elementor_data'
 )
-rest_code, rest_obj = request_json('GET', rest_url)
-rest_meta = rest_obj.get('meta') if isinstance(rest_obj, dict) and isinstance(rest_obj.get('meta'), dict) else {}
-rest_elementor = None
-if '_elementor_data' in rest_meta:
-    rest_elementor = fingerprint('rest.meta._elementor_data', rest_meta.get('_elementor_data'), phrase, parse_json=True)
+
+rev_fields = urllib.parse.urlencode({'_fields': 'id,date_gmt,modified_gmt,meta'})
+rev_url = f'{base}/wp-json/wp/v2/pages/{page_id}/revisions/{revision_id}?context=edit&{rev_fields}'
+rev_code, rev_obj, rev_meta, rev_elementor = narrow_meta(
+    rev_url, phrase, f'revision[{revision_id}].meta._elementor_data'
+)
 
 bridge_code, bridge_obj = request_json(
     'POST',
@@ -138,6 +153,14 @@ result = {
         'error': safe_error(rest_obj) if not (200 <= rest_code < 300) else {},
         'meta_keys': sorted(str(k) for k in rest_meta.keys()),
         'elementor_data': rest_elementor,
+    },
+    'healthy_revision': {
+        'id': revision_id,
+        'http': rev_code,
+        'ok': 200 <= rev_code < 300,
+        'error': safe_error(rev_obj) if not (200 <= rev_code < 300) else {},
+        'meta_keys': sorted(str(k) for k in rev_meta.keys()),
+        'elementor_data': rev_elementor,
     },
     'bridge': {
         'http': bridge_code,
@@ -160,8 +183,8 @@ out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='
 print(json.dumps({
     'page_id': page_id,
     'rest_http': rest_code,
-    'rest_meta_keys': len(result['rest_narrow']['meta_keys']),
-    'rest_elementor_present': rest_elementor is not None,
+    'current_root_type': rest_elementor.get('root_type') if rest_elementor else None,
+    'revision_http': rev_code,
+    'revision_root_type': rev_elementor.get('root_type') if rev_elementor else None,
     'bridge_http': bridge_code,
-    'bridge_ok': result['bridge']['ok'],
 }, ensure_ascii=False))
