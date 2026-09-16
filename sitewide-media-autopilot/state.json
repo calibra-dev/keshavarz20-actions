@@ -1,9 +1,9 @@
 {
   "version": 2,
   "started_at_utc": "2026-09-16T05:43:43Z",
-  "updated_at_utc": "2026-09-16T06:14:35Z",
+  "updated_at_utc": "2026-09-16T06:18:38Z",
   "status": "running",
-  "cycles": 9,
+  "cycles": 10,
   "successful_migrations": 31,
   "lossy_success": 0,
   "lossless_success": 31,
@@ -51,14 +51,26 @@
     "142589": {
       "reason": "TERMINAL: featured image changed from inventory source",
       "at_utc": "2026-09-16T05:51:30Z"
+    },
+    "143872": {
+      "reason": "TERMINAL: featured image changed from inventory source",
+      "at_utc": "2026-09-16T06:17:39Z"
+    },
+    "143873": {
+      "reason": "TERMINAL: featured image changed from inventory source",
+      "at_utc": "2026-09-16T06:18:08Z"
+    },
+    "143874": {
+      "reason": "TERMINAL: featured image changed from inventory source",
+      "at_utc": "2026-09-16T06:18:38Z"
     }
   },
   "critical_events": [],
   "last_cycle": {
-    "run_id": "35062580285",
-    "selected": 5,
-    "success": 5,
-    "remaining_actionable_from_snapshot": 5,
-    "at_utc": "2026-09-16T06:14:35Z"
+    "run_id": "35063012286",
+    "selected": 3,
+    "success": 0,
+    "remaining_actionable_from_snapshot": 2,
+    "at_utc": "2026-09-16T06:18:38Z"
   }
 }
