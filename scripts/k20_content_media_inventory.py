@@ -189,12 +189,33 @@ coverage = {
     'products_read': 0,
     'categories_read': 0,
     'post_errors': {},
+    'post_fallbacks': {},
     'public_urls_collected': 0,
     'public_pages_read': 0,
 }
 public_urls = set()
 
+
+def scan_post_row(row, typ):
+    oid = int(row.get('id') or 0)
+    link = str(row.get('link') or '')
+    if link.startswith(base):
+        public_urls.add(link)
+    content = row.get('content') or {}
+    if isinstance(content, dict):
+        scan_text(str(content.get('raw') or ''), 'post_content_raw', oid, typ, 'content', link)
+        scan_text(str(content.get('rendered') or ''), 'post_content_rendered', oid, typ, 'content', link)
+    meta = row.get('meta') or {}
+    if isinstance(meta, dict):
+        for key, value in meta.items():
+            if isinstance(value, (dict, list)):
+                value = json.dumps(value, ensure_ascii=False, separators=(',', ':'))
+            scan_text(str(value or ''), 'rest_meta', oid, typ, str(key), link)
+
+
 # Posts and pages: raw/rendered content + REST-exposed meta.
+# Some sites return HTTP 500 when all page content+meta is requested in one large bulk response.
+# For pages only, fail closed to a proven lightweight-ID + individual edit-context fallback.
 for typ, route in (('post', '/wp-json/wp/v2/posts'), ('page', '/wp-json/wp/v2/pages')):
     seen = 0
     error = None
@@ -210,25 +231,52 @@ for typ, route in (('post', '/wp-json/wp/v2/posts'), ('page', '/wp-json/wp/v2/pa
         if code == 400 and page > 1:
             break
         if not (200 <= code < 300) or not isinstance(rows, list):
+            if typ == 'page' and page == 1:
+                page_ids = []
+                id_error = None
+                for id_page in range(1, 101):
+                    id_code, id_rows, id_headers = api_get(route, {
+                        'per_page': 100, 'page': id_page, 'context': 'edit', 'status': 'any',
+                        '_fields': 'id',
+                    })
+                    if id_code == 400 and id_page > 1:
+                        break
+                    if not (200 <= id_code < 300) or not isinstance(id_rows, list):
+                        id_error = f'id_list_http={id_code}'
+                        break
+                    page_ids.extend(int(x.get('id') or 0) for x in id_rows if int(x.get('id') or 0) > 0)
+                    id_total_pages = int(id_headers.get('X-WP-TotalPages') or id_headers.get('x-wp-totalpages') or 0)
+                    if (id_total_pages and id_page >= id_total_pages) or len(id_rows) < 100:
+                        break
+                if id_error:
+                    error = f'bulk_http={code}; {id_error}'
+                    break
+                individual_error = None
+                for oid in page_ids:
+                    item_code, item, _ = api_get(f'{route}/{oid}', {
+                        'context': 'edit',
+                        '_fields': 'id,type,status,featured_media,content,meta,link',
+                    })
+                    if not (200 <= item_code < 300) or not isinstance(item, dict):
+                        individual_error = f'individual_id={oid} http={item_code}'
+                        break
+                    scan_post_row(item, typ)
+                    seen += 1
+                if individual_error:
+                    error = f'bulk_http={code}; {individual_error}'
+                else:
+                    coverage['post_fallbacks'][typ] = {
+                        'reason': f'bulk_http={code}',
+                        'mode': 'lightweight_id_list_plus_individual_edit',
+                        'items_read': seen,
+                    }
+                break
             error = f'http={code}'
             break
         if not rows:
             break
         for row in rows:
-            oid = int(row.get('id') or 0)
-            link = str(row.get('link') or '')
-            if link.startswith(base):
-                public_urls.add(link)
-            content = row.get('content') or {}
-            if isinstance(content, dict):
-                scan_text(str(content.get('raw') or ''), 'post_content_raw', oid, typ, 'content', link)
-                scan_text(str(content.get('rendered') or ''), 'post_content_rendered', oid, typ, 'content', link)
-            meta = row.get('meta') or {}
-            if isinstance(meta, dict):
-                for key, value in meta.items():
-                    if isinstance(value, (dict, list)):
-                        value = json.dumps(value, ensure_ascii=False, separators=(',', ':'))
-                    scan_text(str(value or ''), 'rest_meta', oid, typ, str(key), link)
+            scan_post_row(row, typ)
             seen += 1
         total_pages = int(headers.get('X-WP-TotalPages') or headers.get('x-wp-totalpages') or 0)
         if (total_pages and page >= total_pages) or len(rows) < 100:
@@ -286,9 +334,11 @@ for page in range(1, 21):
 # Public render crawl of known post/page/product permalinks; catches Elementor/theme output.
 coverage['public_urls_collected'] = len(public_urls)
 
+
 def crawl(url):
     code, html, _ = public_get(url)
     return url, code, html
+
 
 with ThreadPoolExecutor(max_workers=6) as pool:
     futures = [pool.submit(crawl, url) for url in sorted(public_urls)]
