@@ -53,8 +53,21 @@ def candidates_v6(p,fam,style,rng):
         out.append({"intent":"compatibility","key":"tee:three-branches","core":core})
     return out
 
+def submit_comment_v6(self,product_id,text,cfg):
+    body={
+        "post":int(product_id),
+        "content":text,
+        "author_name":cfg["author_name"],
+        "author_email":cfg["author_email"],
+        "author_url":self.base,
+        "status":cfg.get("comment_status","hold")
+    }
+    _,obj,_=self._call("POST","/wp-json/wp/v2/comments",body)
+    return obj
+
 q.guarded_candidates=candidates_v6
 q.b.wrap=wrap_v6
+q.b.WP.submit_comment=submit_comment_v6
 
 def main():q.main()
 if __name__=="__main__":main()
