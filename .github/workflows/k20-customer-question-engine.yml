@@ -65,7 +65,7 @@ jobs:
           mkdir -p question-engine-results
           stamp="$(date -u +%Y%m%dT%H%M%SZ)"
           out="question-engine-results/${stamp}-${{ steps.resolve.outputs.action }}.json"
-          python question-engine/engine_v15.py --action '${{ steps.resolve.outputs.action }}' --result "$out"
+          python question-engine/engine_v16.py --action '${{ steps.resolve.outputs.action }}' --result "$out"
           echo "RESULT_PATH=$out" >> "$GITHUB_ENV"
 
       - name: Validate engine tests
@@ -86,6 +86,7 @@ jobs:
           python question-engine/test_engine_v13.py
           python question-engine/test_engine_v14.py
           python question-engine/test_engine_v15.py
+          python question-engine/test_engine_v16.py
 
       - name: Commit manual-run result
         shell: bash
