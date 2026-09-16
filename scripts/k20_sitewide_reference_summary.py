@@ -44,24 +44,33 @@ post_types = source_summary.get('post_types') or {}
 post_types_compact = {
     str(name): {
         'posts_read': int((info or {}).get('posts_read') or 0),
+        'expected_posts': int((info or {}).get('expected_posts') or 0),
         'error': (info or {}).get('error'),
         'context': (info or {}).get('context'),
         'route': (info or {}).get('route'),
+        'fallback': bool((info or {}).get('fallback')),
     }
     for name, info in sorted(post_types.items())
 }
 summary = {
     'executed_at_utc': datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00', 'Z'),
     'source_inventory_executed_at_utc': source_summary.get('executed_at_utc'),
+    'source_inventory_version': source_summary.get('version'),
     'source_image_attachments': len(items),
     'formats': dict(sorted(format_counts.items())),
     'referenced_formats': dict(sorted(referenced_formats.items())),
     'coverage': {
         'products_read': int(source_summary.get('products_read') or 0),
+        'product_error': source_summary.get('product_error'),
         'product_categories_read': int(source_summary.get('product_categories_read') or 0),
+        'category_error': source_summary.get('category_error'),
         'sitemaps_read': int(source_summary.get('sitemaps_read') or 0),
+        'sitemap_failures': int(source_summary.get('sitemap_failures') or 0),
         'public_urls_discovered': int(source_summary.get('public_urls_discovered') or 0),
         'rendered_pages_read': int(source_summary.get('rendered_pages_read') or 0),
+        'rendered_pages_failed': int(source_summary.get('rendered_pages_failed') or 0),
+        'crawl_complete': source_summary.get('crawl_complete') is True,
+        'post_type_errors': source_summary.get('post_type_errors') or {},
         'post_types': post_types_compact,
     },
     'reference_kinds': {
