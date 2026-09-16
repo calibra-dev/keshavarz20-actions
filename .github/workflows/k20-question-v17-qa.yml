@@ -1,0 +1,37 @@
+name: Keshavarz20 Question v17 QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'question-engine-v17-qa/*.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run v16-v17 regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          python question-engine/test_engine_v16.py
+          python question-engine/test_engine_v17.py
+      - name: Dry-run v17 on live catalog
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="${RUNNER_TEMP}/k20-question-v17-dry-run.json"
+          python question-engine/engine_v17.py --action dry_run --result "$out"
+          cat "$out"
