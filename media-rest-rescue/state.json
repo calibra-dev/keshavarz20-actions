@@ -1,7 +1,7 @@
 {
   "status": "running",
-  "cycles": 18,
-  "successful_migrations": 93,
+  "cycles": 19,
+  "successful_migrations": 100,
   "processed": {
     "135219:141649": {
       "new_attachment_id": 144813,
@@ -374,6 +374,34 @@
     "142199:142201": {
       "new_attachment_id": 145019,
       "at_utc": "2026-09-16T07:08:46Z"
+    },
+    "142203:142205": {
+      "new_attachment_id": 145022,
+      "at_utc": "2026-09-16T07:11:05Z"
+    },
+    "142204:142207": {
+      "new_attachment_id": 145023,
+      "at_utc": "2026-09-16T07:11:45Z"
+    },
+    "142248:142253": {
+      "new_attachment_id": 145025,
+      "at_utc": "2026-09-16T07:13:00Z"
+    },
+    "142254:142251": {
+      "new_attachment_id": 145026,
+      "at_utc": "2026-09-16T07:13:41Z"
+    },
+    "142255:142247": {
+      "new_attachment_id": 145027,
+      "at_utc": "2026-09-16T07:14:23Z"
+    },
+    "142442:142444": {
+      "new_attachment_id": 145028,
+      "at_utc": "2026-09-16T07:15:03Z"
+    },
+    "142476:142477": {
+      "new_attachment_id": 145029,
+      "at_utc": "2026-09-16T07:15:43Z"
     }
   },
   "skipped": {
@@ -411,16 +439,26 @@
       "reason": "product readback did not confirm REST rescue",
       "attempts": 2,
       "at_utc": "2026-09-16T06:19:37Z"
+    },
+    "142182:142187": {
+      "reason": "product readback did not confirm REST rescue",
+      "attempts": 2,
+      "at_utc": "2026-09-16T07:09:40Z"
+    },
+    "142182:142188": {
+      "reason": "product readback did not confirm REST rescue",
+      "attempts": 2,
+      "at_utc": "2026-09-16T07:10:23Z"
     }
   },
   "critical_events": [],
-  "updated_at_utc": "2026-09-16T07:08:46Z",
+  "updated_at_utc": "2026-09-16T07:15:43Z",
   "last_cycle": {
-    "run_id": "35066501299",
+    "run_id": "35067061067",
     "selected": 10,
-    "success": 8,
-    "remaining": 62,
-    "at_utc": "2026-09-16T07:08:46Z"
+    "success": 7,
+    "remaining": 53,
+    "at_utc": "2026-09-16T07:15:43Z"
   },
   "attempts": {
     "135309:141617": 1,
@@ -437,7 +475,8 @@
     "136212:136214": 1,
     "136215:137300": 2,
     "136230:136232": 2,
-    "142182:142187": 1,
-    "142182:142188": 1
+    "142182:142187": 2,
+    "142182:142188": 2,
+    "142204:142208": 1
   }
 }
