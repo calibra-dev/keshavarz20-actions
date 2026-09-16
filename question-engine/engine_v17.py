@@ -11,6 +11,8 @@ q = v16.q
 
 orig_candidates = q.guarded_candidates
 orig_guard = q.consistency_guard
+orig_family = q.b.family
+orig_fitting_subtype = q.fitting_subtype
 
 _DIGITS = str.maketrans("۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩", "01234567890123456789")
 
@@ -26,6 +28,22 @@ def product_blob(p):
         return canon(q.b.product_text(p))
     except Exception:
         return canon(p.get("name"))
+
+
+def family_v17(p):
+    name = canon(p.get("name"))
+    if "اتصال نر" in name or "اتصال ماده" in name:
+        return "fitting"
+    return orig_family(p)
+
+
+def fitting_subtype_v17(p):
+    name = canon(p.get("name"))
+    if "اتصال نر" in name:
+        return "male_adapter"
+    if "اتصال ماده" in name:
+        return "female_adapter"
+    return orig_fitting_subtype(p)
 
 
 def fertilizer_profile(p):
@@ -196,6 +214,8 @@ def guard_v17(p, candidate, question):
     return True, None
 
 
+q.b.family = family_v17
+q.fitting_subtype = fitting_subtype_v17
 q.guarded_candidates = candidates_v17
 q.consistency_guard = guard_v17
 
