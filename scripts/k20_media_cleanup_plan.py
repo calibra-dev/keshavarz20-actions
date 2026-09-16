@@ -162,9 +162,11 @@ for aid in sorted(candidates):
     site_refs = int(s.get('reference_count') or 0)
     content_refs = int((c or {}).get('reference_count') or 0)
     fmt = str(s.get('format') or '').lower()
+    parent = int(s.get('parent') or 0)
     row = {
         'attachment_id': aid,
         'format': fmt,
+        'parent': parent,
         'url': str(s.get('url') or ''),
         'sitewide_reference_count': site_refs,
         'content_reference_count': content_refs,
@@ -175,6 +177,9 @@ for aid in sorted(candidates):
         blocked.append(row)
     elif fmt not in ('jpeg', 'png'):
         row['reason'] = 'not an original jpeg/png candidate'
+        blocked.append(row)
+    elif parent != 0:
+        row['reason'] = 'attachment parent is nonzero'
         blocked.append(row)
     elif site_refs != 0 or content_refs != 0:
         row['reason'] = 'reference count is not zero'
@@ -197,7 +202,7 @@ plan = {
     'eligible': eligible,
     'blocked': blocked,
     'already_absent': already_absent,
-    'note': 'Read-only plan. No WordPress media was deleted. Eligible means migrated original JPEG/PNG with zero references in both fresh inventories and not protected.'
+    'note': 'Read-only plan. No WordPress media was deleted. Eligible means migrated original JPEG/PNG with parent=0, zero references in both fresh inventories, and not protected.'
 }
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(json.dumps(plan, ensure_ascii=False, indent=2), encoding='utf-8')
