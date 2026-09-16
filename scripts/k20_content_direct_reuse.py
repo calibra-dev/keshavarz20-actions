@@ -188,6 +188,15 @@ def has_old_ref(text, old_id, old_url):
     return False
 
 
+def count_public_old_urls(text, old_url):
+    if not isinstance(text, str) or not text:
+        return 0
+    old_canon = canonical_key(old_url)
+    if not old_canon:
+        return 0
+    return sum(1 for match in UPLOAD_RE.finditer(text) if canonical_key(match.group(0)) == old_canon)
+
+
 def get_media(aid):
     return api('GET', f'{base}/wp-json/wp/v2/media/{aid}?context=edit&_fields=id,parent,source_url,mime_type,media_details,alt_text')
 
@@ -339,6 +348,7 @@ try:
         result['mappings'].append({
             'old_attachment_id': old_id,
             'new_attachment_id': new_id,
+            'old_url': old_url,
             'new_url': new_url,
             'rendered_expected': rendered,
             'raw_mutations': raw_counts,
@@ -372,10 +382,8 @@ try:
     for mapping in result['mappings']:
         old_id = mapping['old_attachment_id']
         new_id = mapping['new_attachment_id']
-        oc, oldm = get_media(old_id)
-        nc, newm = get_media(new_id)
-        old_url = str((oldm or {}).get('source_url') or '')
-        new_url = str((newm or {}).get('source_url') or '')
+        old_url = mapping['old_url']
+        new_url = mapping['new_url']
         if has_old_ref(rr, old_id, old_url) or has_old_ref(rm, old_id, old_url):
             raise RuntimeError(f'old reference remained after readback {old_id}')
         if new_url not in rr and new_url not in rm and f'wp-image-{new_id}' not in rr and f'wp-image-{new_id}' not in rm:
@@ -389,6 +397,7 @@ try:
         cache_cleared = True
 
     # Public verification is required only for mappings that were observed rendered.
+    # Fail closed on both stale wp-image classes and stale canonical upload URLs.
     rendered_mappings = [m for m in result['mappings'] if m['rendered_expected']]
     if rendered_mappings and link:
         public_ok = False
@@ -396,17 +405,25 @@ try:
         for attempt in range(1, 4):
             check_url = link + ('&' if '?' in link else '?') + f'k20_direct_reuse_verify={int(time.time())}-{attempt}'
             hc, html = public_get(check_url)
-            old_hits = 0
+            old_class_hits = 0
+            old_url_hits = 0
             new_hits = 0
             if hc == 200:
                 for mapping in rendered_mappings:
                     old_id = mapping['old_attachment_id']
                     new_id = mapping['new_attachment_id']
-                    old_hits += html.count(f'wp-image-{old_id}')
+                    old_class_hits += html.count(f'wp-image-{old_id}')
+                    old_url_hits += count_public_old_urls(html, mapping['old_url'])
                     if mapping['new_url'] in html or f'wp-image-{new_id}' in html:
                         new_hits += 1
-            last = {'attempt': attempt, 'http': hc, 'old_class_hits': old_hits, 'confirmed_new_mappings': new_hits}
-            if hc == 200 and old_hits == 0 and new_hits == len(rendered_mappings):
+            last = {
+                'attempt': attempt,
+                'http': hc,
+                'old_class_hits': old_class_hits,
+                'old_url_hits': old_url_hits,
+                'confirmed_new_mappings': new_hits,
+            }
+            if hc == 200 and old_class_hits == 0 and old_url_hits == 0 and new_hits == len(rendered_mappings):
                 public_ok = True
                 break
             time.sleep(2)
