@@ -1,0 +1,130 @@
+name: K20 Page13 XML-RPC Meta Probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/page13-xmlrpc/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-page13-xmlrpc-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Probe Page 13 custom fields read-only
+        shell: python
+        run: |
+          import hashlib
+          import json
+          import os
+          import pathlib
+          import subprocess
+          import time
+          import xmlrpc.client
+
+          for key in ("WP_BASE_URL", "WP_USERNAME", "WP_APP_PASSWORD"):
+              if not os.environ.get(key, "").strip():
+                  raise SystemExit(f"Missing required repository secret: {key}")
+
+          def changed_requests():
+              for cmd in (
+                  ["git", "diff", "--name-only", "HEAD^", "HEAD", "--", "diagnostics/page13-xmlrpc/*.json"],
+                  ["git", "show", "--pretty=", "--name-only", "HEAD", "--", "diagnostics/page13-xmlrpc/*.json"],
+              ):
+                  out = subprocess.check_output(cmd, text=True).splitlines()
+                  paths = sorted({p.strip() for p in out if p.strip().startswith("diagnostics/page13-xmlrpc/") and p.strip().endswith(".json")})
+                  if paths:
+                      return paths
+              return []
+
+          requests = changed_requests()
+          if len(requests) != 1:
+              raise SystemExit(f"Expected exactly one request, found {len(requests)}")
+          request = json.loads(pathlib.Path(requests[0]).read_text(encoding="utf-8"))
+          if int(request.get("id", 0)) != 13 or request.get("action") != "probe":
+              raise SystemExit("Probe is hard-limited to action=probe and page ID 13")
+
+          base = os.environ["WP_BASE_URL"].rstrip("/")
+          username = os.environ["WP_USERNAME"]
+          app_password = os.environ["WP_APP_PASSWORD"]
+          server = xmlrpc.client.ServerProxy(base + "/xmlrpc.php", allow_none=True, use_builtin_types=True)
+
+          fields = ["post_id", "post_type", "post_status", "post_title", "post_modified_gmt", "custom_fields"]
+          post = server.wp.getPost(0, username, app_password, 13, fields)
+          if int(post.get("post_id") or 0) != 13:
+              raise SystemExit("XML-RPC readback returned unexpected post ID")
+
+          custom = post.get("custom_fields") or []
+          matches = []
+          for item in custom:
+              if str(item.get("key") or "") == "_elementor_data":
+                  value = str(item.get("value") or "")
+                  trimmed = value.lstrip()
+                  root_type = "array" if trimmed.startswith("[") else "object" if trimmed.startswith("{") else "other"
+                  json_valid = False
+                  root_length = 0
+                  try:
+                      decoded = json.loads(value)
+                      json_valid = True
+                      if isinstance(decoded, list):
+                          root_length = len(decoded)
+                      elif isinstance(decoded, dict):
+                          root_length = 1
+                  except Exception:
+                      pass
+                  matches.append({
+                      "meta_id": int(item.get("id") or 0),
+                      "length": len(value),
+                      "sha256": hashlib.sha256(value.encode("utf-8")).hexdigest(),
+                      "json_valid": json_valid,
+                      "root_type": root_type,
+                      "root_length": root_length,
+                  })
+
+          result = {
+              "ok": True,
+              "page_id": 13,
+              "post_type": str(post.get("post_type") or ""),
+              "post_status": str(post.get("post_status") or ""),
+              "custom_field_count": len(custom),
+              "elementor_match_count": len(matches),
+              "elementor": matches,
+              "probed_at_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+          }
+          outdir = pathlib.Path("results")
+          outdir.mkdir(parents=True, exist_ok=True)
+          out = outdir / (pathlib.Path(requests[0]).stem + ".json")
+          out.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+          print(f"PAGE13_XMLRPC_PROBE_OK custom_fields={len(custom)} elementor_matches={len(matches)}")
+
+      - name: Commit sanitized probe result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/*.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "diag: record Page 13 XML-RPC meta probe"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push; then exit 0; fi
+            sleep 2
+          done
+          exit 1
