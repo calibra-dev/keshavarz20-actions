@@ -30,11 +30,10 @@ def product_blob(p):
 
 def fertilizer_profile(p):
     text = product_blob(p)
-    # Prefer explicit identities. These labels only choose the *question context*;
-    # they never assert that two fertilizers are compatible.
+    # These labels choose a question context only; they never claim compatibility.
     if any(x in text for x in ["کلسیم", "کلسیم نیترات", "نیترات کلسیم"]):
         return "calcium"
-    if any(x in text for x in ["آهن", "کلات آهن", "fe eddha", "fe-edtha", "fe edta"]):
+    if any(x in text for x in ["آهن", "کلات آهن", "fe eddha", "fe edta"]):
         return "iron"
     if any(x in text for x in ["هیومیک", "فولویک"]):
         return "humic"
@@ -46,9 +45,10 @@ def fertilizer_profile(p):
         return "phosphorus"
     if any(x in text for x in ["نیتروژن", "ازت", "اوره", "سولفات آمونیوم", "نیترات آمونیوم"]):
         return "nitrogen"
-    if re.search(r"(?<!\d)10\s*-\s*52\s*-\s*10(?!\d)", text):
+    # canon()/norm() turns separators such as '-' into spaces.
+    if re.search(r"(?<!\d)10\s+52\s+10(?!\d)", text):
         return "phosphorus"
-    if re.search(r"(?<!\d)\d{1,2}\s*-\s*\d{1,2}\s*-\s*\d{1,2}(?!\d)", text) or "npk" in text:
+    if re.search(r"(?<!\d)\d{1,2}\s+\d{1,2}\s+\d{1,2}(?!\d)", text) or "npk" in text:
         return "npk"
     return "generic"
 
@@ -71,9 +71,9 @@ def same_as_product(p, partner):
     pt = canon(partner)
     if pt and pt in text:
         return True
-    if "10 52 10" in pt and re.search(r"(?<!\d)10\s*52\s*10(?!\d)", text):
+    if "10 52 10" in pt and re.search(r"(?<!\d)10\s+52\s+10(?!\d)", text):
         return True
-    if "20 20 20" in pt and re.search(r"(?<!\d)20\s*20\s*20(?!\d)", text):
+    if "20 20 20" in pt and re.search(r"(?<!\d)20\s+20\s+20(?!\d)", text):
         return True
     return False
 
@@ -85,7 +85,9 @@ def _size_mm(p):
 
 
 def fitting_line_context(p):
-    text = product_blob(p)
+    # Use the product title for material identity. Descriptions/categories may
+    # mention related materials and must not silently change the scenario.
+    text = canon(p.get("name"))
     size = _size_mm(p)
     suffix = f" {size} میلی‌متر" if size else ""
     if any(x in text for x in ["لی فلت", "لی‌فلت"]):
@@ -108,8 +110,8 @@ def candidates_v17(p, fam, style, rng):
     name = q.b.ref_name(p)
 
     if fam == "fertilizer":
-        # Remove broad/orphan mix prompts. Every v17 mixing prompt names a concrete
-        # second fertilizer so the user can answer a real compatibility question.
+        # Remove broad/orphan mix prompts. Every v17 mix prompt names a concrete
+        # second fertilizer and keeps the answer open instead of inventing a claim.
         out = [x for x in out if x.get("intent") != "mix"]
         profile = fertilizer_profile(p)
         partners = [x for x in PARTNERS.get(profile, PARTNERS["generic"]) if not same_as_product(p, x)]
@@ -133,8 +135,8 @@ def candidates_v17(p, fam, style, rng):
             )
 
     if fam == "fitting":
-        # v7 intentionally randomized existing-line material. Keep randomness in
-        # wording/intent, but never randomize a material that contradicts the product.
+        # v7 randomized existing-line material. Keep randomness in wording/intent,
+        # but never let it replace the material identity present in the product title.
         out = [
             x for x in out
             if not str(x.get("key") or "").startswith("installer:existing-line:fitting:")
@@ -186,8 +188,8 @@ def guard_v17(p, candidate, question):
         expected = fitting_line_context(p)
         if expected and canon(expected) not in text:
             return False, "matched fitting scenario lost its product line context"
-        ptext = product_blob(p)
-        if any(x in ptext for x in ["پلی اتیلن", "پلی‌اتیلن", "آبلوله"]):
+        title = canon(p.get("name"))
+        if any(x in title for x in ["پلی اتیلن", "پلی‌اتیلن", "آبلوله"]):
             if any(x in text for x in ["پولیکا", "u pvc", "upvc", "لی فلت", "لی‌فلت"]):
                 return False, "PE fitting scenario mentions incompatible random line material"
 
