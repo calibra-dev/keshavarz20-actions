@@ -1,9 +1,9 @@
 {
   "version": 1,
   "started_at_utc": "2026-09-15T22:25:31Z",
-  "updated_at_utc": "2026-09-16T03:59:40Z",
+  "updated_at_utc": "2026-09-16T04:05:52Z",
   "status": "running",
-  "cycles": 31,
+  "cycles": 32,
   "successful_migrations": 473,
   "lossy_success": 444,
   "lossless_success": 29,
@@ -33,10 +33,25 @@
     "141686:141690": 3,
     "141687:141691": 3,
     "141693:141697": 3,
-    "141694:141698": 2,
-    "141695:141699": 1,
-    "141696:141700": 1,
-    "141702:141706": 1
+    "141694:141698": 3,
+    "141695:141699": 2,
+    "141696:141700": 2,
+    "141702:141706": 2,
+    "141703:141707": 1,
+    "141704:141708": 1,
+    "141705:141709": 1,
+    "141710:141717": 1,
+    "141711:141716": 1,
+    "141712:141714": 1,
+    "141713:141715": 1,
+    "141719:141808": 1,
+    "141720:141784": 1,
+    "141723:141733": 1,
+    "141726:141748": 1,
+    "141803:141822": 1,
+    "141804:141346": 1,
+    "141868:141899": 1,
+    "142001:142002": 1
   },
   "terminal_skips": {
     "135219:141649": {
@@ -218,6 +233,76 @@
     "141536:141537": {
       "reason": "max_attempts_exhausted:3",
       "at_utc": "2026-09-16T03:54:26Z"
+    },
+    "141553:141555": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T03:59:52Z"
+    },
+    "141554:141556": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T03:59:52Z"
+    },
+    "141585:141598": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T03:59:52Z"
+    },
+    "141590:141593": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T03:59:52Z"
+    },
+    "141591:141595": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T03:59:52Z"
+    },
+    "141592:141594": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T03:59:52Z"
+    },
+    "141597:141599": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T03:59:52Z"
+    },
+    "141659:141790": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T03:59:52Z"
+    },
+    "141664:141788": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T03:59:52Z"
+    },
+    "141676:144138": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T03:59:52Z"
+    },
+    "141677:141681": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T03:59:52Z"
+    },
+    "141684:141688": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T03:59:52Z"
+    },
+    "141685:141689": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T03:59:52Z"
+    },
+    "141686:141690": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T03:59:52Z"
+    },
+    "141687:141691": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T03:59:52Z"
+    },
+    "141693:141697": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T03:59:52Z"
+    },
+    "142000:142004": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 142000,
+      "attachment_id": 142004,
+      "at_utc": "2026-09-16T04:05:18Z"
     }
   },
   "critical_events": [],
@@ -228,12 +313,12 @@
     "distinct_attachment_ids": 180
   },
   "last_cycle": {
-    "run_id": "35053554137",
+    "run_id": "35053879857",
     "selected": 20,
     "success": 0,
     "failed_or_skipped": 20,
     "before_refs": 210,
     "after_refs": 210,
-    "at_utc": "2026-09-16T03:59:40Z"
+    "at_utc": "2026-09-16T04:05:52Z"
   }
 }
