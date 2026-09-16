@@ -1,0 +1,48 @@
+name: Keshavarz20 Elementor Content Media Migration
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'elementor-content-migrate-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-elementor-content-media-migrate
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Pillow
+        run: python -m pip install --disable-pip-version-check --quiet pillow
+      - name: Validate Python
+        run: python -m py_compile scripts/k20_elementor_content_media_migrate.py
+      - name: Migrate guarded Elementor media references
+        run: python scripts/k20_elementor_content_media_migrate.py
+      - name: Commit sanitized result
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f content-media-results/*-migration.json 2>/dev/null || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "media: record guarded Elementor content migration"
+          git pull --rebase origin main
+          git push origin HEAD:main
