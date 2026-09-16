@@ -1,5 +1,5 @@
 {
-  "executed_at_utc": "2026-09-16T06:52:58Z",
+  "executed_at_utc": "2026-09-16T06:54:48Z",
   "action": "content_media.elementor_pair_migrate",
   "request_file": "20260916-ethephon-142587.json",
   "result": {
@@ -10,9 +10,34 @@
     ],
     "success": false,
     "stage": "error",
-    "media": [],
-    "error": "invalid literal for int() with base 10: 'k20refresh1405'",
+    "media": [
+      {
+        "old_attachment_id": 142591,
+        "new_attachment_id": 144995,
+        "old_url": "https://keshavarz20.com/wp-content/uploads/2024/12/14-12-11-12562011_5_21_13_50_22.jpg",
+        "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-content-p142587-a142591.webp",
+        "original_bytes": 126007,
+        "webp_bytes": 100826,
+        "saving_pct": 19.98,
+        "psnr_db": 40.16,
+        "encoder_mode": "lossy-q92",
+        "pixel_exact": false,
+        "width": 576,
+        "height": 418,
+        "head": {
+          "status": 200,
+          "content_type": "image/webp",
+          "bytes": 100826
+        }
+      }
+    ],
+    "error": "quality guard: no acceptable WebP saving=-455.0",
     "rollback_ok": true,
-    "cleanup": []
+    "cleanup": [
+      {
+        "attachment_id": 144995,
+        "deleted": true
+      }
+    ]
   }
 }
