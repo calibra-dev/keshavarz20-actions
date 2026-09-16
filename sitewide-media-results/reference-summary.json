@@ -1,83 +1,203 @@
 {
-  "executed_at_utc": "2026-09-16T06:16:51Z",
-  "source_inventory_executed_at_utc": "2026-09-16T04:35:42Z",
-  "source_image_attachments": 3548,
+  "executed_at_utc": "2026-09-16T17:30:59Z",
+  "source_inventory_executed_at_utc": "2026-09-16T17:30:15Z",
+  "source_inventory_version": 3,
+  "source_image_attachments": 3768,
   "formats": {
     "jpeg": 2757,
     "png": 190,
-    "webp": 601
+    "webp": 821
   },
   "referenced_formats": {
-    "jpeg": 269,
-    "png": 52,
-    "webp": 520
+    "jpeg": 325,
+    "png": 70,
+    "webp": 740
   },
   "coverage": {
-    "products_read": 711,
+    "products_read": 709,
+    "product_error": null,
     "product_categories_read": 62,
-    "sitemaps_read": 0,
-    "public_urls_discovered": 0,
-    "rendered_pages_read": 0,
-    "post_types": {}
+    "category_error": null,
+    "sitemaps_read": 9,
+    "sitemap_failures": 0,
+    "public_urls_discovered": 1632,
+    "rendered_pages_read": 833,
+    "rendered_pages_failed": 799,
+    "crawl_complete": false,
+    "post_type_errors": {
+      "wp_font_face": "bulk_http=404;index_http=404",
+      "wp_global_styles": "bulk_http=404;index_http=404"
+    },
+    "post_types": {
+      "elementor_library": {
+        "posts_read": 2,
+        "expected_posts": 0,
+        "error": null,
+        "context": "edit",
+        "route": "/wp-json/wp/v2/elementor_library",
+        "fallback": false
+      },
+      "elementor_snippet": {
+        "posts_read": 0,
+        "expected_posts": 0,
+        "error": null,
+        "context": "edit",
+        "route": "/wp-json/wp/v2/elementor_snippet",
+        "fallback": false
+      },
+      "page": {
+        "posts_read": 37,
+        "expected_posts": 37,
+        "error": null,
+        "context": "edit",
+        "route": "/wp-json/wp/v2/pages",
+        "fallback": true
+      },
+      "post": {
+        "posts_read": 38,
+        "expected_posts": 0,
+        "error": null,
+        "context": "edit",
+        "route": "/wp-json/wp/v2/posts",
+        "fallback": false
+      },
+      "product": {
+        "posts_read": 709,
+        "expected_posts": 0,
+        "error": null,
+        "context": "edit",
+        "route": "/wp-json/wp/v2/product",
+        "fallback": false
+      },
+      "whatsapp-accounts": {
+        "posts_read": 3,
+        "expected_posts": 0,
+        "error": null,
+        "context": "edit",
+        "route": "/wp-json/wp/v2/whatsapp-accounts",
+        "fallback": false
+      },
+      "wp_font_face": {
+        "posts_read": 0,
+        "expected_posts": 0,
+        "error": "bulk_http=404;index_http=404",
+        "context": "view",
+        "route": "/wp-json/wp/v2/font-families/(?P<font_family_id>[\\d]+)/font-faces",
+        "fallback": true
+      },
+      "wp_font_family": {
+        "posts_read": 0,
+        "expected_posts": 0,
+        "error": null,
+        "context": "edit",
+        "route": "/wp-json/wp/v2/font-families",
+        "fallback": false
+      },
+      "wp_global_styles": {
+        "posts_read": 0,
+        "expected_posts": 0,
+        "error": "bulk_http=404;index_http=404",
+        "context": "view",
+        "route": "/wp-json/wp/v2/global-styles",
+        "fallback": true
+      },
+      "wp_navigation": {
+        "posts_read": 1,
+        "expected_posts": 0,
+        "error": null,
+        "context": "edit",
+        "route": "/wp-json/wp/v2/navigation",
+        "fallback": false
+      }
+    }
   },
   "reference_kinds": {
     "featured_image": {
-      "reference_tokens": 37,
-      "distinct_attachments": 37,
-      "distinct_jpeg_png_attachments": 35
+      "reference_tokens": 748,
+      "distinct_attachments": 748,
+      "distinct_jpeg_png_attachments": 91
+    },
+    "post_content_raw": {
+      "reference_tokens": 239,
+      "distinct_attachments": 231,
+      "distinct_jpeg_png_attachments": 71
+    },
+    "post_content_rendered": {
+      "reference_tokens": 259,
+      "distinct_attachments": 246,
+      "distinct_jpeg_png_attachments": 71
+    },
+    "rendered_page": {
+      "reference_tokens": 28782,
+      "distinct_attachments": 1038,
+      "distinct_jpeg_png_attachments": 299
+    },
+    "rest_meta": {
+      "reference_tokens": 28,
+      "distinct_attachments": 28,
+      "distinct_jpeg_png_attachments": 27
     },
     "woo_category_image": {
       "reference_tokens": 59,
       "distinct_attachments": 58,
-      "distinct_jpeg_png_attachments": 53
+      "distinct_jpeg_png_attachments": 17
     },
     "woo_product_image": {
-      "reference_tokens": 780,
-      "distinct_attachments": 749,
-      "distinct_jpeg_png_attachments": 236
+      "reference_tokens": 779,
+      "distinct_attachments": 764,
+      "distinct_jpeg_png_attachments": 104
     }
   },
   "focus": {
     "woo_product_image": {
-      "reference_tokens": 780,
-      "distinct_attachments": 749,
-      "distinct_jpeg_png_attachments": 236
+      "reference_tokens": 779,
+      "distinct_attachments": 764,
+      "distinct_jpeg_png_attachments": 104
     },
     "featured_image": {
-      "reference_tokens": 37,
-      "distinct_attachments": 37,
-      "distinct_jpeg_png_attachments": 35
+      "reference_tokens": 748,
+      "distinct_attachments": 748,
+      "distinct_jpeg_png_attachments": 91
     },
     "woo_category_image": {
       "reference_tokens": 59,
       "distinct_attachments": 58,
-      "distinct_jpeg_png_attachments": 53
+      "distinct_jpeg_png_attachments": 17
     },
     "post_content_raw": {
-      "reference_tokens": 0,
-      "distinct_attachments": 0,
-      "distinct_jpeg_png_attachments": 0
+      "reference_tokens": 239,
+      "distinct_attachments": 231,
+      "distinct_jpeg_png_attachments": 71
     },
     "rest_meta": {
-      "reference_tokens": 0,
-      "distinct_attachments": 0,
-      "distinct_jpeg_png_attachments": 0
+      "reference_tokens": 28,
+      "distinct_attachments": 28,
+      "distinct_jpeg_png_attachments": 27
     },
     "post_content_rendered": {
-      "reference_tokens": 0,
-      "distinct_attachments": 0,
-      "distinct_jpeg_png_attachments": 0
+      "reference_tokens": 259,
+      "distinct_attachments": 246,
+      "distinct_jpeg_png_attachments": 71
     },
     "rendered_page": {
-      "reference_tokens": 0,
-      "distinct_attachments": 0,
-      "distinct_jpeg_png_attachments": 0
+      "reference_tokens": 28782,
+      "distinct_attachments": 1038,
+      "distinct_jpeg_png_attachments": 299
     }
   },
   "object_type_breakdown": {
     "featured_image|post": 37,
+    "featured_image|product": 708,
+    "featured_image|whatsapp-accounts": 3,
+    "post_content_raw|page": 236,
+    "post_content_raw|post": 3,
+    "post_content_rendered|page": 256,
+    "post_content_rendered|post": 3,
+    "rendered_page|public_url": 28782,
+    "rest_meta|page": 26,
+    "rest_meta|post": 2,
     "woo_category_image|product_cat": 59,
-    "woo_product_image|product": 780
+    "woo_product_image|product": 779
   },
   "note": "Read-only summary of the retained inventory snapshot. Rerun after fresh inventory before any content/meta write phase."
 }
