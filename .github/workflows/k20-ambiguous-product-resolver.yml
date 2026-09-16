@@ -1,0 +1,46 @@
+name: Keshavarz20 Ambiguous Product Resolver
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ambiguous-product-resolver-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-ambiguous-product-resolver
+  cancel-in-progress: false
+
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Validate Python
+        run: python -m py_compile scripts/k20_ambiguous_product_resolver.py
+      - name: Resolve ambiguous mappings read-only
+        run: python scripts/k20_ambiguous_product_resolver.py
+      - name: Commit resolver evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f content-media-results/ambiguous-product-resolver.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "media: record ambiguous product resolver evidence"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
