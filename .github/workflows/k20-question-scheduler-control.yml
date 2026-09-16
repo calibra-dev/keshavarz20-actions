@@ -24,13 +24,18 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
-      - name: Enable and dispatch question scheduler
+      - name: Register and dispatch question scheduler
         shell: bash
         run: |
           set -euo pipefail
           repo="${GITHUB_REPOSITORY}"
           wf="k20-question-scheduler.yml"
-          gh api --method PUT "repos/$repo/actions/workflows/$wf/enable"
-          gh api "repos/$repo/actions/workflows/$wf" --jq '{id,name,path,state}'
+          if [[ "${GITHUB_EVENT_NAME}" != "schedule" ]]; then
+            gh api --method PUT "repos/$repo/actions/workflows/$wf/disable"
+            gh api --method PUT "repos/$repo/actions/workflows/$wf/enable"
+          else
+            gh api --method PUT "repos/$repo/actions/workflows/$wf/enable"
+          fi
+          gh api "repos/$repo/actions/workflows/$wf" --jq '{id,name,path,state,updated_at}'
           gh api --method POST "repos/$repo/actions/workflows/$wf/dispatches" -f ref=main
           echo "dispatch=requested"
