@@ -1,0 +1,46 @@
+name: K20 Refund SEO Probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/refund-seo/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-refund-seo-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Validate probe
+        run: python -m py_compile scripts/k20_refund_seo_probe.py
+      - name: Read Page 13 SEO meta and live description
+        run: python scripts/k20_refund_seo_probe.py
+      - name: Commit sanitized result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f results/refund-seo-live.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "seo: record refund meta diagnostic"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
