@@ -1,9 +1,9 @@
 {
   "version": 1,
   "started_at_utc": "2026-09-15T22:25:31Z",
-  "updated_at_utc": "2026-09-16T04:18:32Z",
+  "updated_at_utc": "2026-09-16T04:24:15Z",
   "status": "running",
-  "cycles": 34,
+  "cycles": 35,
   "successful_migrations": 473,
   "lossy_success": 444,
   "lossless_success": 29,
@@ -52,10 +52,26 @@
     "141804:141346": 3,
     "141868:141899": 3,
     "142001:142002": 3,
-    "142023:142027": 2,
-    "142029:142028": 2,
-    "142031:142035": 1,
-    "142032:142036": 1
+    "142023:142027": 3,
+    "142029:142028": 3,
+    "142031:142035": 2,
+    "142032:142036": 2,
+    "142037:142038": 1,
+    "142039:142040": 1,
+    "142041:142042": 1,
+    "142043:142044": 1,
+    "142045:142046": 1,
+    "142047:142048": 1,
+    "142049:144216": 1,
+    "142055:144201": 1,
+    "142056:144215": 1,
+    "142073:142074": 1,
+    "142075:142077": 1,
+    "142076:142078": 1,
+    "142182:142186": 1,
+    "142183:142189": 1,
+    "142184:142191": 1,
+    "142185:142190": 1
   },
   "terminal_skips": {
     "135219:141649": {
@@ -329,6 +345,66 @@
       "product_id": 142030,
       "attachment_id": 142033,
       "at_utc": "2026-09-16T04:17:13Z"
+    },
+    "141703:141707": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:18:46Z"
+    },
+    "141704:141708": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:18:46Z"
+    },
+    "141705:141709": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:18:46Z"
+    },
+    "141710:141717": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:18:46Z"
+    },
+    "141711:141716": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:18:46Z"
+    },
+    "141712:141714": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:18:46Z"
+    },
+    "141713:141715": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:18:46Z"
+    },
+    "141719:141808": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:18:46Z"
+    },
+    "141720:141784": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:18:46Z"
+    },
+    "141723:141733": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:18:46Z"
+    },
+    "141726:141748": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:18:46Z"
+    },
+    "141803:141822": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:18:46Z"
+    },
+    "141804:141346": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:18:46Z"
+    },
+    "141868:141899": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:18:46Z"
+    },
+    "142001:142002": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T04:18:46Z"
     }
   },
   "critical_events": [],
@@ -339,12 +415,12 @@
     "distinct_attachment_ids": 180
   },
   "last_cycle": {
-    "run_id": "35054668824",
+    "run_id": "35055095169",
     "selected": 20,
     "success": 0,
     "failed_or_skipped": 20,
     "before_refs": 210,
     "after_refs": 210,
-    "at_utc": "2026-09-16T04:18:32Z"
+    "at_utc": "2026-09-16T04:24:15Z"
   }
 }
