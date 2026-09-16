@@ -1,0 +1,41 @@
+{
+  "executed_at_utc": "2026-09-16T10:41:44Z",
+  "action": "gallery_meta_rescue.woo_apply",
+  "mode": "smoke",
+  "request_file": "20260916-gallery-woo-smoke-136206.json",
+  "items": [
+    {
+      "product_id": 136206,
+      "success": false,
+      "expected_before": [
+        144489,
+        136208
+      ],
+      "expected_after": [
+        144489,
+        145107
+      ],
+      "target_meta": "145107",
+      "pre_http": 200,
+      "live_before": [
+        144489,
+        136208
+      ],
+      "update_http": 200,
+      "readback_http": 200,
+      "readback_attempts": 4,
+      "live_after": [
+        144489,
+        136208
+      ],
+      "stage": "error",
+      "error": "readback did not confirm target gallery: [144489, 136208]",
+      "rollback_http": 200,
+      "rollback_ok": true
+    }
+  ],
+  "success_count": 0,
+  "failed_count": 1,
+  "critical_failure": false,
+  "completed": false
+}
