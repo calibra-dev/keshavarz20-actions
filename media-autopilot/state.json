@@ -1,9 +1,9 @@
 {
   "version": 1,
   "started_at_utc": "2026-09-15T22:25:31Z",
-  "updated_at_utc": "2026-09-16T05:23:24Z",
+  "updated_at_utc": "2026-09-16T05:30:41Z",
   "status": "running",
-  "cycles": 46,
+  "cycles": 47,
   "successful_migrations": 473,
   "lossy_success": 444,
   "lossless_success": 29,
@@ -127,13 +127,21 @@
     "135309:140351": 3,
     "135309:141617": 3,
     "135311:140351": 3,
-    "135311:141617": 2,
-    "135313:140351": 2,
-    "135313:141617": 2,
-    "135315:140351": 2,
-    "135315:141617": 1,
-    "135317:140351": 1,
-    "135317:141617": 1
+    "135311:141617": 3,
+    "135313:140351": 3,
+    "135313:141617": 3,
+    "135315:140351": 3,
+    "135315:141617": 2,
+    "135317:140351": 2,
+    "135317:141617": 2,
+    "135319:140351": 1,
+    "135319:141617": 1,
+    "135321:140351": 1,
+    "135321:141617": 1,
+    "135485:141617": 1,
+    "135487:141617": 1,
+    "135713:135715": 1,
+    "135713:135716": 1
   },
   "terminal_skips": {
     "135219:141649": {
@@ -779,22 +787,100 @@
       "product_id": 135315,
       "attachment_id": 141607,
       "at_utc": "2026-09-16T05:22:55Z"
+    },
+    "143037:143038": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T05:25:50Z"
+    },
+    "143039:143040": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T05:25:50Z"
+    },
+    "143041:143043": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T05:25:50Z"
+    },
+    "143044:143045": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T05:25:50Z"
+    },
+    "143188:143189": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T05:25:50Z"
+    },
+    "144244:144270": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T05:25:50Z"
+    },
+    "144245:144272": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T05:25:50Z"
+    },
+    "144246:144273": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T05:25:50Z"
+    },
+    "144247:144274": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T05:25:50Z"
+    },
+    "135309:140351": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T05:25:50Z"
+    },
+    "135309:141617": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T05:25:50Z"
+    },
+    "135311:140351": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T05:25:50Z"
+    },
+    "135317:141607": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 135317,
+      "attachment_id": 141607,
+      "at_utc": "2026-09-16T05:28:17Z"
+    },
+    "135319:141607": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 135319,
+      "attachment_id": 141607,
+      "at_utc": "2026-09-16T05:28:49Z"
+    },
+    "135321:141607": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 135321,
+      "attachment_id": 141607,
+      "at_utc": "2026-09-16T05:29:22Z"
+    },
+    "135485:141607": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 135485,
+      "attachment_id": 141607,
+      "at_utc": "2026-09-16T05:29:44Z"
+    },
+    "135487:141607": {
+      "reason": "TERMINAL: no WebP candidate met quality and saving guards",
+      "product_id": 135487,
+      "attachment_id": 141607,
+      "at_utc": "2026-09-16T05:30:04Z"
     }
   },
   "critical_events": [],
   "last_inventory": {
-    "products_read": 653,
+    "products_read": 657,
     "jpeg_png_refs": 210,
     "primary_refs": 148,
     "distinct_attachment_ids": 180
   },
   "last_cycle": {
-    "run_id": "35059006334",
+    "run_id": "35059440534",
     "selected": 20,
     "success": 0,
     "failed_or_skipped": 20,
     "before_refs": 210,
     "after_refs": 210,
-    "at_utc": "2026-09-16T05:23:24Z"
+    "at_utc": "2026-09-16T05:30:41Z"
   }
 }
