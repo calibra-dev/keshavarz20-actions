@@ -11,6 +11,7 @@ if not SOURCE.exists():
     raise SystemExit('Missing inventory-phase1.json')
 obj = json.loads(SOURCE.read_text(encoding='utf-8'))
 items = obj.get('items') or []
+source_summary = obj.get('summary') or {}
 
 kind_refs = Counter()
 kind_attachments = defaultdict(set)
@@ -37,12 +38,30 @@ for item in items:
         object_kind_counts[f'{kind}|{otype}'] += 1
 
 focus = ['woo_product_image', 'featured_image', 'woo_category_image', 'post_content_raw', 'rest_meta', 'post_content_rendered', 'rendered_page']
+post_types = source_summary.get('post_types') or {}
+post_types_compact = {
+    str(name): {
+        'posts_read': int((info or {}).get('posts_read') or 0),
+        'error': (info or {}).get('error'),
+        'context': (info or {}).get('context'),
+        'route': (info or {}).get('route'),
+    }
+    for name, info in sorted(post_types.items())
+}
 summary = {
     'executed_at_utc': datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00', 'Z'),
-    'source_inventory_executed_at_utc': (obj.get('summary') or {}).get('executed_at_utc'),
+    'source_inventory_executed_at_utc': source_summary.get('executed_at_utc'),
     'source_image_attachments': len(items),
     'formats': dict(sorted(format_counts.items())),
     'referenced_formats': dict(sorted(referenced_formats.items())),
+    'coverage': {
+        'products_read': int(source_summary.get('products_read') or 0),
+        'product_categories_read': int(source_summary.get('product_categories_read') or 0),
+        'sitemaps_read': int(source_summary.get('sitemaps_read') or 0),
+        'public_urls_discovered': int(source_summary.get('public_urls_discovered') or 0),
+        'rendered_pages_read': int(source_summary.get('rendered_pages_read') or 0),
+        'post_types': post_types_compact,
+    },
     'reference_kinds': {
         kind: {
             'reference_tokens': int(kind_refs[kind]),
@@ -64,4 +83,4 @@ summary = {
 }
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding='utf-8')
-print(json.dumps(summary['focus'], ensure_ascii=False))
+print(json.dumps({'focus': summary['focus'], 'coverage': summary['coverage']}, ensure_ascii=False))
