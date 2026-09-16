@@ -80,6 +80,8 @@ jobs:
 
             $status = 0
             $ok = $false
+            $responseKeys = @()
+            $capabilities = @()
 
             try {
               $response = Invoke-WebRequest `
@@ -92,6 +94,20 @@ jobs:
 
               $status = [int]$response.StatusCode
               $ok = ($status -ge 200 -and $status -lt 300)
+
+              if ($response.Content) {
+                try {
+                  $parsed = $response.Content | ConvertFrom-Json
+                  $responseKeys = @($parsed.PSObject.Properties.Name | Sort-Object -Unique)
+                  foreach ($candidate in 'capabilities','operations','allowed_operations') {
+                    $prop = $parsed.PSObject.Properties[$candidate]
+                    if ($prop -and $prop.Value) {
+                      $capabilities += @($prop.Value | ForEach-Object { [string]$_ })
+                    }
+                  }
+                  $capabilities = @($capabilities | Where-Object { $_ -and $_.Length -le 80 } | Sort-Object -Unique)
+                } catch {}
+              }
             }
             catch {
               if ($_.Exception.Response) {
@@ -105,7 +121,9 @@ jobs:
               request_file = $req
               http_code = $status
               ok = $ok
-            } | ConvertTo-Json
+              response_keys = $responseKeys
+              capabilities = $capabilities
+            } | ConvertTo-Json -Depth 4
 
             Set-Content -LiteralPath "bridge-cloud-results/$name.json" -Value $result -Encoding utf8
 
@@ -125,7 +143,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add bridge-cloud-results/*.json
+          git add -f bridge-cloud-results/*.json
           if git diff --cached --quiet; then
             exit 0
           fi
