@@ -1,11 +1,11 @@
 {
   "version": 1,
   "started_at_utc": "2026-09-15T22:25:31Z",
-  "updated_at_utc": "2026-09-16T03:43:14Z",
+  "updated_at_utc": "2026-09-16T03:48:58Z",
   "status": "running",
-  "cycles": 28,
-  "successful_migrations": 472,
-  "lossy_success": 443,
+  "cycles": 29,
+  "successful_migrations": 473,
+  "lossy_success": 444,
   "lossless_success": 29,
   "retry_counts": {
     "135219:141649": 3,
@@ -14,10 +14,25 @@
     "140521:140514": 3,
     "140856:141852": 3,
     "141356:141642": 3,
-    "141527:141577": 1,
-    "141529:141579": 1,
-    "141532:141540": 1,
-    "141536:141537": 1
+    "141529:141579": 2,
+    "141532:141540": 2,
+    "141536:141537": 2,
+    "141553:141555": 1,
+    "141554:141556": 1,
+    "141585:141598": 1,
+    "141590:141593": 1,
+    "141591:141595": 1,
+    "141592:141594": 1,
+    "141597:141599": 1,
+    "141659:141790": 1,
+    "141664:141788": 1,
+    "141676:144138": 1,
+    "141677:141681": 1,
+    "141684:141688": 1,
+    "141685:141689": 1,
+    "141686:141690": 1,
+    "141687:141691": 1,
+    "141693:141697": 1
   },
   "terminal_skips": {
     "135219:141649": {
@@ -183,22 +198,26 @@
       "product_id": 141367,
       "attachment_id": 142741,
       "at_utc": "2026-09-16T03:18:10Z"
+    },
+    "141356:141642": {
+      "reason": "max_attempts_exhausted:3",
+      "at_utc": "2026-09-16T03:43:27Z"
     }
   },
   "critical_events": [],
   "last_inventory": {
     "products_read": 653,
-    "jpeg_png_refs": 211,
-    "primary_refs": 149,
-    "distinct_attachment_ids": 181
+    "jpeg_png_refs": 210,
+    "primary_refs": 148,
+    "distinct_attachment_ids": 180
   },
   "last_cycle": {
-    "run_id": "35052203758",
+    "run_id": "35052861753",
     "selected": 20,
-    "success": 15,
-    "failed_or_skipped": 5,
-    "before_refs": 226,
-    "after_refs": 211,
-    "at_utc": "2026-09-16T03:43:14Z"
+    "success": 1,
+    "failed_or_skipped": 19,
+    "before_refs": 211,
+    "after_refs": 210,
+    "at_utc": "2026-09-16T03:48:58Z"
   }
 }
