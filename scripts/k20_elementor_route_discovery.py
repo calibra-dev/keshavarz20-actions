@@ -10,6 +10,7 @@ ROOT = pathlib.Path('.')
 REQ_DIR = ROOT / 'diagnostics' / 'wp-routes'
 OUT_DIR = ROOT / 'results'
 EXPECTED_SCOPE = 'elementor'
+ALLOWED_EXACT_ROUTES = {'', '/wpvibe/v1/elementor/save-page'}
 
 for key in ('WP_BASE_URL', 'WP_USERNAME', 'WP_APP_PASSWORD'):
     if not os.environ.get(key, '').strip():
@@ -32,7 +33,7 @@ def get_json(url):
         headers={
             'Authorization': 'Basic ' + auth,
             'Accept': 'application/json',
-            'User-Agent': 'K20-Elementor-Route-Discovery/1.0',
+            'User-Agent': 'K20-Elementor-Route-Discovery/1.1',
         },
     )
     try:
@@ -54,8 +55,11 @@ if not requests:
 req_path = requests[0]
 req = json.loads(req_path.read_text(encoding='utf-8'))
 scope = str(req.get('scope') or '').strip().lower()
+exact_route = str(req.get('exact_route') or '').strip()
 if scope != EXPECTED_SCOPE:
     raise SystemExit('This diagnostic is hard-limited to Elementor routes.')
+if exact_route not in ALLOWED_EXACT_ROUTES:
+    raise SystemExit('Unexpected exact_route.')
 
 code, root = get_json(base + '/wp-json/')
 if code != 200 or not isinstance(root, dict):
@@ -64,6 +68,8 @@ routes = root.get('routes') if isinstance(root.get('routes'), dict) else {}
 rows = []
 for route, spec in sorted(routes.items()):
     if 'elementor' not in str(route).lower():
+        continue
+    if exact_route and str(route) != exact_route:
         continue
     endpoints = spec.get('endpoints') if isinstance(spec, dict) and isinstance(spec.get('endpoints'), list) else []
     safe_endpoints = []
@@ -100,10 +106,13 @@ for route, spec in sorted(routes.items()):
         'endpoints': safe_endpoints,
     })
 
+if exact_route and len(rows) != 1:
+    raise SystemExit(f'Expected exactly one matching route, found {len(rows)}.')
 result = {
     'ok': True,
     'read_only': True,
     'scope': scope,
+    'exact_route': exact_route or None,
     'http': code,
     'route_count': len(rows),
     'routes': rows,
@@ -113,4 +122,4 @@ result = {
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 out_path = OUT_DIR / f'wp-routes-{req_path.stem}.json'
 out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='utf-8')
-print(json.dumps({'http': code, 'elementor_routes': len(rows)}, ensure_ascii=False))
+print(json.dumps({'http': code, 'elementor_routes': len(rows), 'exact_route': exact_route or None}, ensure_ascii=False))
