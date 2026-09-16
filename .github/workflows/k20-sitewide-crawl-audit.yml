@@ -1,0 +1,44 @@
+name: Keshavarz20 Sitewide Crawl Audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sitewide-crawl-audit-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-sitewide-crawl-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Validate Python
+        run: python -m py_compile scripts/k20_sitewide_crawl_audit.py
+      - name: Crawl only real sitemap page URLs
+        run: python scripts/k20_sitewide_crawl_audit.py
+      - name: Commit sanitized crawl audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f sitewide-media-results/crawl-audit.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "media: record corrected sitewide crawl audit"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
