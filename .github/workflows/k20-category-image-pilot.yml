@@ -1,0 +1,67 @@
+name: Keshavarz20 Category Image WebP Pilot
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'category-image-pilot-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-category-image-pilot
+  cancel-in-progress: false
+
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate Python
+        run: python -m py_compile scripts/k20_category_image_pilot.py
+
+      - name: Install Pillow
+        run: python -m pip install --disable-pip-version-check --quiet pillow
+
+      - name: Run guarded category pilot
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/k20_category_image_pilot.py
+
+      - name: Commit sanitized evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f category-image-pilot-results/*.json 2>/dev/null || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "media: record category image pilot ${GITHUB_RUN_ID}"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Fail visibly on critical guard failure
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          latest=$(ls -1 category-image-pilot-results/*.json 2>/dev/null | sort | tail -n 1 || true)
+          if [ -z "$latest" ]; then exit 0; fi
+          critical=$(python -c "import json,sys; print(str(json.load(open(sys.argv[1])).get('critical_halt', False)).lower())" "$latest")
+          if [ "$critical" = "true" ]; then exit 1; fi
