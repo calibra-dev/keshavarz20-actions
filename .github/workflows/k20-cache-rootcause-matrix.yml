@@ -23,7 +23,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          request="$(ls -1t diagnostics/cache-rootcause/*.json | head -n 1)"
+          mapfile -t requests < <(git show --pretty= --name-only HEAD -- 'diagnostics/cache-rootcause/*.json' | sed '/^$/d' | sort -u)
+          if [ "${#requests[@]}" -ne 1 ]; then
+            echo "Expected exactly one changed cache-rootcause request, found ${#requests[@]}" >&2
+            exit 1
+          fi
+          request="${requests[0]}"
           out="$RUNNER_TEMP/k20-cache-rootcause"
           mkdir -p "$out"
           echo "REQUEST=$request"
@@ -33,7 +38,7 @@ jobs:
             echo "=== TARGET $name $url ==="
             for seq in 1 2 3; do
               h="$out/${name}-${seq}.headers.txt"
-              timing="$(curl -L -sS --max-time 45 -A 'K20-Cache-Probe/2026-09-14' -H 'Cookie:' -H 'Accept-Encoding: gzip, br' -D "$h" -o /dev/null -w '%{http_code}|%{http_version}|%{remote_ip}|%{time_starttransfer}|%{time_total}|%{size_download}|%{num_redirects}' "$url")"
+              timing="$(curl -L -sS --max-time 45 -A 'K20-Cache-Probe/2026-09-17' -H 'Cookie:' -H 'Accept-Encoding: gzip, br' -D "$h" -o /dev/null -w '%{http_code}|%{http_version}|%{remote_ip}|%{time_starttransfer}|%{time_total}|%{size_download}|%{num_redirects}' "$url")"
               cache="$(grep -i '^x-litespeed-cache:' "$h" | tail -n 1 | tr -d '\r' | cut -d: -f2- | xargs || true)"
               cachectl="$(grep -i '^x-litespeed-cache-control:' "$h" | tail -n 1 | tr -d '\r' | cut -d: -f2- | xargs || true)"
               httpcache="$(grep -i '^cache-control:' "$h" | tail -n 1 | tr -d '\r' | cut -d: -f2- | xargs || true)"
