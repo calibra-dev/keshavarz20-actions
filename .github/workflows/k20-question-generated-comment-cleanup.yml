@@ -1,0 +1,63 @@
+name: Keshavarz20 Generated Question Cleanup
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'question-engine-cleanups/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-question-generated-comment-cleanup
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Resolve cleanup
+        id: cleanup
+        shell: python
+        run: |
+          import json, os, pathlib, subprocess
+          cmds=[['git','diff','--name-only','HEAD^','HEAD','--','question-engine-cleanups/*.json'],['git','show','--pretty=','--name-only','HEAD','--','question-engine-cleanups/*.json']]
+          files=[]
+          for cmd in cmds:
+              try: files=[x for x in subprocess.check_output(cmd,text=True).splitlines() if x.startswith('question-engine-cleanups/') and x.endswith('.json')]
+              except Exception: files=[]
+              if files: break
+          if not files: raise SystemExit('No cleanup file found')
+          obj=json.loads(pathlib.Path(sorted(files)[-1]).read_text(encoding='utf-8'))
+          cid=int(obj.get('comment_id') or 0); pid=int(obj.get('expected_product_id') or 0)
+          if cid<=0 or pid<=0: raise SystemExit('Missing guarded cleanup identifiers')
+          with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as f:
+              f.write(f'comment_id={cid}\n'); f.write(f'product_id={pid}\n')
+      - name: Guarded delete and 404 readback
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p question-engine-cleanup-results
+          out="question-engine-cleanup-results/comment-${{ steps.cleanup.outputs.comment_id }}.json"
+          python question-engine/cleanup_generated_comment.py --comment-id '${{ steps.cleanup.outputs.comment_id }}' --expected-product-id '${{ steps.cleanup.outputs.product_id }}' --result "$out"
+          echo "RESULT_PATH=$out" >> "$GITHUB_ENV"
+      - name: Commit sanitized cleanup result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f "$RESULT_PATH"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "questions: record guarded cleanup result"
+          git pull --rebase origin main
+          git push origin HEAD:main
