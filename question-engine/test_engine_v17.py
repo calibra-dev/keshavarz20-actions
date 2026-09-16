@@ -41,13 +41,15 @@ for candidate in mix:
     ok, reason = q.consistency_guard(nitrogen, candidate, candidate["core"])
     assert ok, (candidate, reason)
 
-# 2) A 10-52-10 product should not ask whether it can be mixed with itself.
+# 2) A 10-52-10 product should not select 10-52-10 again as the second fertilizer.
+#    The product name itself naturally remains in the question, so inspect the semantic key.
 phosphate = product("کود NPK 10-52-10 فسفر بالا")
 assert m.fertilizer_profile(phosphate) == "phosphorus", m.fertilizer_profile(phosphate)
 ph_mix = [x for x in q.guarded_candidates(phosphate, "fertilizer", "experienced", random.Random(3)) if x.get("intent") == "mix"]
 assert ph_mix, "no specific mix candidates for 10-52-10"
-assert all("10 52 10" not in m.canon(x["core"]) for x in ph_mix), ph_mix
-assert any("اوره" in m.canon(x["core"]) for x in ph_mix), ph_mix
+assert all(":کود-10-52-10:" not in str(x.get("key") or "") for x in ph_mix), ph_mix
+assert any(":اوره:" in str(x.get("key") or "") for x in ph_mix), ph_mix
+assert any("سولفات پتاسیم" in m.canon(x["core"]) for x in ph_mix), ph_mix
 
 # 3) The exact live PE end-cap pattern must never inherit a random PVC/lay-flat line.
 endcap = product("درپوش انتهایی پیچی آبلوله 63میلیمتر پلی اتیلن")
