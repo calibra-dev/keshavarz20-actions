@@ -259,18 +259,18 @@
     {
       "product_id": 140014,
       "name": "لوله بارانی مه‌پاش ۲ اینچ آسایش آذربایجان ۱۰۰ متری",
-      "family": "drip_tape",
+      "family": "layflat_rain",
       "required_fields": [
         "nominal_size",
         "length",
-        "emitter_spacing",
-        "filtration_requirement"
+        "connection_type",
+        "pressure_class"
       ],
       "missing_fields": [
         "nominal_size",
         "length",
-        "emitter_spacing",
-        "filtration_requirement"
+        "connection_type",
+        "pressure_class"
       ]
     },
     {
@@ -436,14 +436,18 @@
     {
       "product_id": 135102,
       "name": "فلنچ پلی‌اتیلن جوشی ۴ اینچ (۱۱۰ میلی‌متر) ۶ اتمسفر آبلوله",
-      "family": "other_irrigation",
+      "family": "fitting",
       "required_fields": [
         "nominal_size",
-        "connection_type"
+        "connection_type",
+        "material",
+        "pressure_class"
       ],
       "missing_fields": [
         "nominal_size",
-        "connection_type"
+        "connection_type",
+        "material",
+        "pressure_class"
       ]
     },
     {

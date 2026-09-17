@@ -2,20 +2,20 @@
   "ok": true,
   "mode": "read-only",
   "version": "phase3-top30-pim-v2",
-  "generated_at_utc": "2026-09-17T22:49:58.675719Z",
+  "generated_at_utc": "2026-09-17T22:55:50.648331Z",
   "selection_rule": "GSC irrigation/fertigation candidate cohort; published Woo products; organic demand dominates priority; in-stock bonus; out-of-stock penalty. This is commercial-priority, not a profit/margin claim.",
   "summary": {
     "selected": 30,
     "mapped_candidates": 46,
     "unmapped_candidates": 0,
-    "average_pim_completeness": 58.33,
+    "average_pim_completeness": 58.5,
     "scores_85_plus": 0,
     "missing_sku": 0,
     "missing_gtin": 30,
     "missing_mpn": 30,
     "missing_brand": 8,
     "compatibility_incomplete": 30,
-    "decision_link_missing": 30,
+    "decision_link_missing": 29,
     "average_product_quality_score": 69.33,
     "product_quality_below_85": 30
   },
@@ -1516,7 +1516,7 @@
       "product_id": 140014,
       "name": "لوله بارانی مه‌پاش ۲ اینچ آسایش آذربایجان ۱۰۰ متری",
       "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d8%a8%d8%a7%d8%b1%d8%a7%d9%86%db%8c-%d9%85%d9%87-%d9%be%d8%a7%d8%b4-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%db%b1%db%b0%db%b0/",
-      "family": "drip_tape",
+      "family": "layflat_rain",
       "stock_status": "instock",
       "gsc": {
         "url": "https://keshavarz20.com/product/%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%A7%D8%B1%D8%A7%D9%86%DB%8C-%D9%85%D9%87-%D9%BE%D8%A7%D8%B4-%D8%A2%D8%B3%D8%A7%DB%8C%D8%B4-%D8%A2%D8%B0%D8%B1%D8%A8%D8%A7%DB%8C%D8%AC%D8%A7%D9%86-%DB%B1%DB%B0%DB%B0/",
@@ -1562,23 +1562,23 @@
       "compatibility_required_fields": [
         "nominal_size",
         "length",
-        "emitter_spacing",
-        "filtration_requirement"
+        "connection_type",
+        "pressure_class"
       ],
       "compatibility_missing_fields": [
         "nominal_size",
         "length",
-        "emitter_spacing",
-        "filtration_requirement"
+        "connection_type",
+        "pressure_class"
       ],
       "decision_links": [
         {
-          "label": "راهنمای خرید نوار تیپ",
-          "url": "https://keshavarz20.com/drip-tape-buying-guide/"
+          "label": "راهنمای سایز لی‌فلت و نخدار",
+          "url": "https://keshavarz20.com/layflat-hose-size-inch-mm-guide/"
         },
         {
-          "label": "محاسبه متراژ نوار تیپ و اتصالات",
-          "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/"
+          "label": "ماشین حساب لی‌فلت و اتصالات",
+          "url": "https://keshavarz20.com/layflat-length-fittings-calculator/"
         }
       ],
       "decision_links_present": false,
@@ -1861,14 +1861,14 @@
           "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
         }
       ],
-      "decision_links_present": false,
+      "decision_links_present": true,
       "content": {
         "short_words": 34,
-        "description_words": 482,
+        "description_words": 627,
         "image_count": 1,
         "all_image_alt_present": false
       },
-      "pim_completeness_score": 55,
+      "pim_completeness_score": 60,
       "product_quality_score": 62,
       "product_quality_gaps": [
         "مشخصات ساختاریافته/کامل",
@@ -1883,8 +1883,7 @@
         "missing_gtin",
         "missing_mpn",
         "compatibility_fields_incomplete",
-        "image_set_incomplete",
-        "decision_link_missing"
+        "image_set_incomplete"
       ]
     },
     {
@@ -2548,7 +2547,7 @@
       "product_id": 135102,
       "name": "فلنچ پلی‌اتیلن جوشی ۴ اینچ (۱۱۰ میلی‌متر) ۶ اتمسفر آبلوله",
       "permalink": "https://keshavarz20.com/product/%d9%81%d9%84%d9%86%da%86-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%d8%ac%d9%88%d8%b4%db%8c-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-      "family": "other_irrigation",
+      "family": "fitting",
       "stock_status": "instock",
       "gsc": {
         "url": "https://keshavarz20.com/product/%D9%81%D9%84%D9%86%DA%86-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%D8%AC%D9%88%D8%B4%DB%8C-4-%D8%A7%DB%8C%D9%86%DA%86-110-%D9%85%DB%8C%D9%84%DB%8C%D9%85%D8%AA%D8%B1/",
@@ -2593,16 +2592,24 @@
       },
       "compatibility_required_fields": [
         "nominal_size",
-        "connection_type"
+        "connection_type",
+        "material",
+        "pressure_class"
       ],
       "compatibility_missing_fields": [
         "nominal_size",
-        "connection_type"
+        "connection_type",
+        "material",
+        "pressure_class"
       ],
       "decision_links": [
         {
-          "label": "راهنمای طراحی و خرید تجهیزات آبیاری قطره‌ای",
-          "url": "https://keshavarz20.com/complete-drip-irrigation-system-guide/"
+          "label": "راهنمای اتصالات پلی‌اتیلن",
+          "url": "https://keshavarz20.com/polyethylene-compression-fittings-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
         }
       ],
       "decision_links_present": false,
