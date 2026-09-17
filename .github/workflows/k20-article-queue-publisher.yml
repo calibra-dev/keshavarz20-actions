@@ -1,0 +1,135 @@
+name: Keshavarz20 ChatGPT Pro Article Queue Publisher
+
+on:
+  push:
+    paths:
+      - 'daily-agri-articles/queue/*.json'
+  pull_request:
+    paths:
+      - '.github/workflows/k20-article-queue-publisher.yml'
+      - 'daily-agri-articles/**'
+  workflow_dispatch:
+    inputs:
+      queue_file:
+        description: 'Path to an article queue JSON file'
+        required: true
+        default: 'daily-agri-articles/queue/manual.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: k20-article-queue-publisher-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  static-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile publisher
+        run: python -m py_compile daily-agri-articles/publish_queue.py
+
+  publish-draft:
+    if: github.event_name != 'pull_request'
+    needs: static-check
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TZ: Asia/Tehran
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: daily-agri-articles/requirements.txt
+
+      - name: Install publisher dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r daily-agri-articles/requirements.txt
+
+      - name: Validate WordPress secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in WP_BASE_URL WP_USERNAME WP_APP_PASSWORD; do
+            if [ -z "${!name:-}" ]; then
+              echo "::error title=Missing repository secret::$name is empty or unavailable"
+              exit 2
+            fi
+          done
+
+      - name: Resolve queue files
+        shell: bash
+        env:
+          MANUAL_FILE: ${{ inputs.queue_file }}
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            printf '%s\n' "$MANUAL_FILE" > /tmp/k20-article-queue-files.txt
+          else
+            git diff-tree --no-commit-id --name-only -r HEAD -- 'daily-agri-articles/queue/*.json' > /tmp/k20-article-queue-files.txt
+          fi
+          if [ ! -s /tmp/k20-article-queue-files.txt ]; then
+            echo 'No article queue JSON file found in this change.'
+            exit 0
+          fi
+          echo 'Article queue files:'
+          cat /tmp/k20-article-queue-files.txt
+
+      - name: Publish queued article drafts
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -s /tmp/k20-article-queue-files.txt ]; then
+            exit 0
+          fi
+          while IFS= read -r file; do
+            [ -n "$file" ] || continue
+            if [ ! -f "$file" ]; then
+              echo "::error::Queue file not found: $file"
+              exit 3
+            fi
+            echo "Publishing article queue: $file"
+            python daily-agri-articles/publish_queue.py "$file"
+          done < /tmp/k20-article-queue-files.txt
+
+      - name: Write job summary
+        if: always()
+        shell: bash
+        run: |
+          if [ -f daily-agri-articles/output/queue-summary.md ]; then
+            cat daily-agri-articles/output/queue-summary.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo '## Keshavarz20 scheduled article publisher' >> "$GITHUB_STEP_SUMMARY"
+            echo 'No publisher summary was produced.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload sanitized result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-article-queue-${{ github.run_id }}
+          if-no-files-found: ignore
+          retention-days: 14
+          path: |
+            daily-agri-articles/output/queue-result.json
+            daily-agri-articles/output/queue-summary.md
+            daily-agri-articles/output/featured-article.webp
