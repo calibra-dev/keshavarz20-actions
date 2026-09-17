@@ -1,0 +1,418 @@
+{
+  "ok": true,
+  "executed_at_utc": "2026-09-17T23:03:13.2015114Z",
+  "mode": "read-only",
+  "phrases": [
+    "canonical",
+    "robots",
+    "noindex",
+    "nofollow"
+  ],
+  "page_search_matches": [],
+  "wp_search_matches": [],
+  "page_slug_reads": [
+    {
+      "id": 144238,
+      "slug": "irrigation-filter-selector",
+      "status": "publish",
+      "link": "https://keshavarz20.com/irrigation-filter-selector/",
+      "parent": 0,
+      "template": "",
+      "title": "انتخاب‌گر فیلتر آبیاری | دبی، میکرون و سایز اتصال",
+      "content_raw_length": 4090,
+      "content_rendered_length": 4136,
+      "content_raw": "<div class=\"keshavarz20-tape-calculator-guide\" dir=\"rtl\"><div class=\"tc-lead\"><strong>فیلتر را با دبی و حساسیت سیستم انتخاب کنید</strong><p>منبع آب، مصرف‌کننده پایین‌دست، دبی، میکرون هدف و سایز اتصال را وارد کنید تا چک‌لیست انتخاب ساخته شود. ابزار مدل یا ظرفیت فنی را حدس نمی‌زند و کنترل نهایی باید با دیتاشیت همان فیلتر انجام شود.</p></div><p>این ابزار برای <strong>ساخت چک‌لیست انتخاب</strong> است. مدل نهایی فیلتر باید با دبی واقعی سیستم، کیفیت آب، حساسیت تجهیزات پایین‌دست و دیتاشیت همان فیلتر تطبیق داده شود.</p><div style=\"border:1px solid #d8e6dd;border-radius:14px;padding:18px;background:#f8fbf9\"><label>منبع آب<br><select id=\"fs_source\" style=\"width:100%;padding:10px\"><option value=\"چاه\">چاه</option><option value=\"استخر یا مخزن روباز\">استخر یا مخزن روباز</option><option value=\"کانال یا آب سطحی\">کانال یا آب سطحی</option><option value=\"شبکه یا مخزن بسته\">شبکه یا مخزن بسته</option></select></label><br><label>مصرف‌کننده پایین‌دست<br><select id=\"fs_use\" style=\"width:100%;padding:10px\"><option value=\"نوار تیپ\">نوار تیپ</option><option value=\"قطره‌چکان یا دریپر\">قطره‌چکان یا دریپر</option><option value=\"آبپاش\">آبپاش</option><option value=\"انتقال آب عمومی\">انتقال آب عمومی</option></select></label><br><label>دبی طراحی/اندازه‌گیری‌شده سیستم (مترمکعب بر ساعت)<br><input id=\"fs_flow\" type=\"number\" min=\"0\" step=\"0.1\" style=\"width:100%;padding:10px\" placeholder=\"اگر مشخص است وارد کنید\"></label><br><label>درجه فیلتراسیون موردنیاز طبق سازنده مصرف‌کننده (میکرون)<br><input id=\"fs_micron\" type=\"number\" min=\"1\" step=\"1\" style=\"width:100%;padding:10px\" placeholder=\"در صورت وجود در دیتاشیت\"></label><br><label>سایز اتصال خط<br><input id=\"fs_conn\" type=\"text\" style=\"width:100%;padding:10px\" placeholder=\"مثلاً 2 اینچ یا 63 میلی‌متر\"></label><br><button type=\"button\" onclick=\"filterSelect()\" style=\"padding:11px 18px;border:0;border-radius:10px;cursor:pointer\">ساخت چک‌لیست انتخاب</button></div><pre id=\"fs_result\" style=\"white-space:pre-wrap;margin-top:18px;border:1px solid #ddd;border-radius:14px;padding:18px;font-family:inherit\">اطلاعات سیستم را وارد کنید.</pre><h2>چه چیزهایی باید با محصول نهایی تطبیق داده شود؟</h2><ul><li>حداکثر دبی مجاز فیلتر باید از دبی واقعی سیستم کمتر نباشد.</li><li>درجه فیلتراسیون باید با حساسیت نوار تیپ، قطره‌چکان یا تجهیزات پایین‌دست هماهنگ باشد.</li><li>نوع دیسکی یا توری را بر اساس ماهیت ذرات و دستور سازنده انتخاب کنید.</li><li>سایز و نوع اتصال باید با خط موجود سازگار باشد؛ صرفاً هم‌اندازه‌بودن قطر اسمی کافی نیست.</li><li>افت فشار مجاز، فشار کاری و شرایط شست‌وشو باید از دیتاشیت همان مدل بررسی شود.</li></ul><h2>نکته مهم</h2><p>برای آب‌های دارای بار ذرات یا مواد آلی بالا، ممکن است یک مرحله پیش‌تصفیه یا آرایش چندمرحله‌ای لازم باشد. این تصمیم باید بر اساس کیفیت آب و طراحی واقعی پروژه انجام شود، نه فقط نام منبع آب.</p><p><a href=\"https://keshavarz20.com/product-category/agricultural-equipment-supplies/%d9%81%db%8c%d9%84%d8%aa%d8%b1-%d9%88-%d9%81%db%8c%d9%84%d8%aa%d8%b1%d8%a7%d8%b3%db%8c%d9%88%d9%86/\">مشاهده فیلتر و فیلتراسیون</a> | <a href=\"https://keshavarz20.com/drip-tape-length-fittings-calculator/\">ماشین حساب نوار تیپ و اتصالات</a></p><script>function filterSelect(){var s=document.getElementById('fs_source').value;var u=document.getElementById('fs_use').value;var f=parseFloat(document.getElementById('fs_flow').value)||0;var m=parseFloat(document.getElementById('fs_micron').value)||0;var c=document.getElementById('fs_conn').value||'وارد نشده';var note='';if(s==='استخر یا مخزن روباز'||s==='کانال یا آب سطحی'){note='بار ذرات و مواد آلی منبع آب را جداگانه بررسی کنید؛ ممکن است پیش‌تصفیه لازم باشد.';}else{note='کیفیت آب را با نمونه‌برداری یا اطلاعات منبع بررسی کنید و فقط از ظاهر آب نتیجه‌گیری نکنید.';}var txt='چک‌لیست انتخاب فیلتر\\n\\nمنبع آب: '+s+'\\nمصرف‌کننده پایین‌دست: '+u+'\\nدبی واردشده: '+(f>0?f+' مترمکعب بر ساعت':'وارد نشده')+'\\nمیکرون هدف: '+(m>0?m+' میکرون':'از دیتاشیت مصرف‌کننده بررسی شود')+'\\nسایز اتصال: '+c+'\\n\\nکنترل نهایی: دبی مجاز فیلتر، درجه فیلتراسیون، نوع اتصال، افت فشار، فشار کاری و روش شست‌وشو را با دیتاشیت همان مدل تطبیق دهید.\\n'+note;document.getElementById('fs_result').textContent=txt;}</script></div>",
+      "content_rendered_phrase_hits": [
+        {
+          "phrase": "canonical",
+          "present": false,
+          "snippet": ""
+        },
+        {
+          "phrase": "robots",
+          "present": false,
+          "snippet": ""
+        },
+        {
+          "phrase": "noindex",
+          "present": false,
+          "snippet": ""
+        },
+        {
+          "phrase": "nofollow",
+          "present": false,
+          "snippet": ""
+        }
+      ],
+      "meta_keys": [
+        "footnotes",
+        "_elementor_edit_mode",
+        "_elementor_template_type",
+        "_elementor_data",
+        "_elementor_page_settings",
+        "_elementor_conditions"
+      ]
+    },
+    {
+      "id": 144239,
+      "slug": "irrigation-fittings-compatibility-selector",
+      "status": "publish",
+      "link": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+      "parent": 0,
+      "template": "",
+      "title": "راهنمای سازگاری و سبد اتصالات آبیاری | کمربند، شیر و لی‌فلت",
+      "content_raw_length": 14155,
+      "content_rendered_length": 14205,
+      "content_raw": "<div class=\"keshavarz20-tape-calculator-guide\" dir=\"rtl\"><div class=\"tc-lead\"><strong>اول سازگاری قطعات، بعد سفارش</strong><p>نوع خط اصلی، سایز و کاری که می‌خواهید انجام دهید را مشخص کنید تا مسیر خرید بین کمربند، شیر، سرشلنگی، لی‌فلت و نوار تیپ روشن شود. ابزار فقط سازگاری‌های ثبت‌شده و قابل‌بررسی را پیشنهاد می‌دهد و هیچ اتصال یا قیمت نامطمئنی را حدس نمی‌زند.</p></div><p>این ابزار کمک می‌کند بین <strong>کمربند انشعاب، شیر پلیمری، سرشلنگی، اتصالات لی‌فلت و نوار تیپ</strong> مسیر درست را پیدا کنید. نتیجه ابزار به معنی تأیید نهایی نصب نیست؛ نوع رزوه، اتصال، فشار و مشخصات هر قطعه باید در صفحه همان محصول و پروژه واقعی کنترل شود.</p><div style=\"border:1px solid #d8e6dd;border-radius:14px;padding:18px;background:#f8fbf9\"><label>نوع خط اصلی<br><select id=\"ic_system\" style=\"width:100%;padding:10px\" onchange=\"icRefresh()\"><option value=\"pe\">لوله پلی‌اتیلن</option><option value=\"layflat\">لوله نخدار / لی‌فلت</option></select></label><br><label>سایز خط اصلی<br><select id=\"ic_size\" style=\"width:100%;padding:10px\"><option value=\"63\">۶۳ میلی‌متر / ۲ اینچ</option><option value=\"75\">۷۵ میلی‌متر / ۲½ اینچ</option><option value=\"90\">۹۰ میلی‌متر / ۳ اینچ</option><option value=\"110\">۱۱۰ میلی‌متر / ۴ اینچ</option></select></label><br><label>چه کاری می‌خواهید انجام دهید؟<br><select id=\"ic_task\" style=\"width:100%;padding:10px\" onchange=\"icRefresh()\"><option value=\"branch\">گرفتن انشعاب از خط اصلی</option><option value=\"valve\">قطع و وصل جریان با شیر</option><option value=\"hose\">اتصال به شلنگ / مسیر انعطاف‌پذیر</option><option value=\"tape\">اتصال لی‌فلت به نوار تیپ</option><option value=\"end\">بستن انتهای لی‌فلت</option></select></label><br><label id=\"ic_out_wrap\">سایز خروجی انشعاب<br><select id=\"ic_out\" style=\"width:100%;padding:10px\"><option value=\"20\">۱/۲ اینچ / ۲۰ میلی‌متر</option><option value=\"25\">۳/۴ اینچ / ۲۵ میلی‌متر</option><option value=\"32\">۱ اینچ / ۳۲ میلی‌متر</option><option value=\"63\">۲ اینچ / ۶۳ میلی‌متر</option><option value=\"75\">۲½ اینچ / ۷۵ میلی‌متر</option><option value=\"same\">هم‌سایز خط اصلی</option></select></label><br><label id=\"ic_valve_wrap\" style=\"display:none\">نوع شیر برای بررسی<br><select id=\"ic_valve\" style=\"width:100%;padding:10px\"><option value=\"ball_poly\">توپی ویسپار، دسته پلیمری</option><option value=\"ball_metal\">توپی ویسپار، دسته فلزی</option><option value=\"butterfly\">پروانه‌ای پلیمری ویسپار</option></select></label><br><button type=\"button\" onclick=\"icGo()\" style=\"padding:11px 18px;border:0;border-radius:10px;cursor:pointer\">نمایش مسیر خرید و قطعات</button></div><div id=\"ic_result\" style=\"margin-top:18px;border:1px solid #ddd;border-radius:14px;padding:18px\">نوع خط، سایز و نیاز پروژه را انتخاب کنید.</div><h2>این ابزار چه مشکلی را حل می‌کند؟</h2><p>عبارت‌هایی مثل «کمربند ۶۳»، «شیر ۶۳»، «شیر ۴ اینچ پلی‌اتیلن» یا «اتصال لی‌فلت» برای خرید کافی نیستند. در یک سایز ممکن است چند نوع خروجی، شیر توپی و <a href=\"https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/\">شیر پروانه‌ای پلیمری</a>، دسته فلزی و پلیمری یا اتصال متفاوت وجود داشته باشد. ابزار فقط محصولاتی را نشان می‌دهد که نام و سایز آن‌ها در فروشگاه ثبت شده است.</p><h2>قانون مهم سازگاری</h2><ul><li><strong>کمربند:</strong> همیشه قطر خط اصلی و سایز خروجی را جداگانه مشخص کنید.</li><li><strong>شیر:</strong> سایز برابر به معنی نوع اتصال یکسان نیست؛ صفحه محصول را بررسی کنید.</li><li><strong>لی‌فلت:</strong> برای انشعاب تیپ، ابزار سوراخ‌کاری، شیر یا رابط و قطعه انتهایی را همراه هم ببینید.</li><li><strong>سرشلنگی:</strong> هم‌سایز بودن به‌تنهایی سازگاری اتصال واسط را تضمین نمی‌کند.</li></ul><h2>ابزارهای تکمیلی</h2><ul><li><a href=\"https://keshavarz20.com/layflat-length-fittings-calculator/\">ماشین حساب لی‌فلت و تعداد اتصالات</a></li><li><a href=\"https://keshavarz20.com/drip-tape-length-fittings-calculator/\">ماشین حساب نوار تیپ و اتصالات</a></li><li><a href=\"https://keshavarz20.com/irrigation-filter-selector/\">انتخاب‌گر فیلتر آبیاری</a></li></ul><script>var IC={saddle:{'63-20':['کمربند پلی‌اتیلن ۶۳ × ۱/۲ اینچ','https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-20-x-63-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87/'],'63-25':['کمربند پلی‌اتیلن ۶۳ × ۳/۴ اینچ','https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-3-463mm/'],'63-32':['کمربند پلی‌اتیلن ۶۳ × ۱ اینچ','https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-163mm/'],'63-same':['کمربند پلی‌اتیلن ۶۳ × ۶۳ میلی‌متر','https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-63-x-63/'],'75-63':['کمربند پلی‌اتیلن ۷۵ × ۲ اینچ','https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-63-x-75-%d8%a7%d8%a8%d9%84%d9%88%d9%84%d9%872/'],'90-32':['کمربند پلی‌اتیلن ۹۰ × ۱ اینچ','https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-190mm/'],'90-75':['کمربند پلی‌اتیلن ۹۰ × ۲½ اینچ','https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-290mm/'],'110-32':['کمربند پلی‌اتیلن ۱۱۰ × ۱ اینچ','https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-1110mm/'],'110-63':['کمربند پلی‌اتیلن ۱۱۰ × ۲ اینچ','https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-2110mm/']},valve:{'63-ball_poly':['شیر توپی ویسپار ۲ اینچ / ۶۳، دسته پلیمری','https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-2-%d8%a7%db%8c%d9%86%da%86/'],'63-ball_metal':['شیر توپی ویسپار ۲ اینچ / ۶۳، دسته فلزی','https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85/'],'75-ball_poly':['شیر توپی ویسپار ۲½ اینچ / ۷۵، دسته پلیمری','https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-2-1-2-%d8%a7%db%8c%d9%86/'],'75-ball_metal':['شیر توپی ویسپار ۲½ اینچ / ۷۵، دسته فلزی','https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-2-1-2-%d8%a7%db%8c%d9%86%da%86-75/'],'90-ball_poly':['شیر توپی ویسپار ۳ اینچ / ۹۰، دسته پلیمری','https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-3-%d8%a7%db%8c%d9%86-2/'],'90-ball_metal':['شیر توپی ویسپار ۳ اینچ / ۹۰، دسته فلزی','https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85/'],'90-butterfly':['شیر پروانه‌ای پلیمری ویسپار ۳ اینچ / ۹۰','https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a8%d8%a7-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7/'],'110-ball_poly':['شیر توپی ویسپار ۴ اینچ / ۱۱۰، دسته پلیمری','https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-4-%d8%a7%db%8c%d9%86-2/'],'110-ball_metal':['شیر توپی ویسپار ۴ اینچ / ۱۱۰، دسته فلزی','https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85/'],'110-butterfly':['شیر پروانه‌ای پلیمری ویسپار ۴ اینچ / ۱۱۰','https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a8%d8%a7-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be-2/']},hose:{'63':['سرشلنگی فلزی ۲ اینچ / ۶۳ میلی‌متر','https://keshavarz20.com/product/%d8%b3%d8%b1-%d8%b4%d9%84%d9%86%da%af%db%8c-%d9%81%d9%84%d8%b2%db%8c-%db%b2%d8%a7%db%8c%d9%86%da%86/'],'75':['سرشلنگی فلزی ۲½ اینچ / ۷۵ میلی‌متر','https://keshavarz20.com/product/%d8%b3%d8%b1-%d8%b4%d9%84%d9%86%da%af%db%8c-%d9%81%d9%84%d8%b2%db%8c-%d8%a2%d9%87%d9%86%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-2-1-2-%d8%a7%db%8c%d9%86%da%86-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/'],'90':['سرشلنگی فلزی ۳ اینچ / ۹۰ میلی‌متر','https://keshavarz20.com/product/%d8%b3%d8%b1-%d8%b4%d9%84%d9%86%da%af%db%8c-%d9%81%d9%84%d8%b2%db%8c-3-%d8%a7%db%8c%d9%86%da%86/'],'110':['سرشلنگی فلزی ۴ اینچ / ۱۱۰ میلی‌متر','https://keshavarz20.com/product/%d8%b3%d8%b1-%d8%b4%d9%84%d9%86%da%af%db%8c-%d9%81%d9%84%d8%b2%db%8c-4-%d8%a7%db%8c%d9%86%da%86/']},layflat:{tape:[['شیر انشعاب لی‌فلت به تیپ فرات پلیمر','https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d9%84%db%8c-%d9%81%d9%84%d8%aa-%d8%a8%d9%87-%d8%aa%db%8c%d9%be/'],['رابط تیپ به لی‌فلت زلال‌رود','https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d8%aa%db%8c%d9%be-%d8%a8%d9%87-%d9%84%db%8c-%d9%81%d9%84%d8%aa-%d8%b2%d9%84%d8%a7%d9%84-%d8%b1%d9%88%d8%af/'],['پانچر لی‌فلت ۱۶','https://keshavarz20.com/product/%d9%be%d8%a7%d9%86%da%86%d8%b1-%d9%84%db%8c-%d9%81%d9%84%d8%aa-16-2/']],end:[['کور کامل لی‌فلت زلال‌رود','https://keshavarz20.com/product/%da%a9%d9%88%d8%b1-%da%a9%d8%a7%d9%85%d9%84-%d9%84%db%8c%d9%81%d9%84%d8%aa-%d8%b2%d9%84%d8%a7%d9%84%d8%b1%d9%88%d8%af-%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d8%a7%d9%86%d8%aa%d9%87%d8%a7/'],['کورکن کامل لی‌فلت فرات پلیمر','https://keshavarz20.com/product/%da%a9%d9%88%d8%b1%da%a9%d9%86-%da%a9%d8%a7%d9%85%d9%84-%d9%84%db%8c-%d9%81%d9%84%d8%aa/']],branch:[['کمربند انشعاب نخ‌دار / لی‌فلت ۲ اینچ','https://keshavarz20.com/product/%d9%83%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%84%d9%8a-%d9%81%d9%84%d8%aa-2-%d8%a7%db%8c%d9%86%da%86/']]}};function icRefresh(){var t=document.getElementById('ic_task').value;document.getElementById('ic_out_wrap').style.display=t==='branch'&&document.getElementById('ic_system').value==='pe'?'block':'none';document.getElementById('ic_valve_wrap').style.display=t==='valve'?'block':'none';}function icLink(box,item){var p=document.createElement('p');var a=document.createElement('a');a.href=item[1];a.textContent=item[0];a.target='_blank';p.appendChild(a);box.appendChild(p);}function icMsg(box,text){var p=document.createElement('p');p.textContent=text;box.appendChild(p);}function icGo(){var sys=document.getElementById('ic_system').value;var size=document.getElementById('ic_size').value;var task=document.getElementById('ic_task').value;var out=document.getElementById('ic_out').value;var box=document.getElementById('ic_result');box.textContent='';var h=document.createElement('strong');h.textContent='مسیر پیشنهادی برای بررسی';box.appendChild(h);if(sys==='pe'){if(task==='branch'){var x=IC.saddle[size+'-'+out];if(x){icLink(box,x);icMsg(box,'قطر خط اصلی و سایز خروجی با عنوان محصول تطبیق داده شده است؛ نوع اتصال قطعه بعدی را نیز بررسی کنید.');}else{icMsg(box,'برای این ترکیب در نقشه فعلی ابزار محصول تأییدشده‌ای تعریف نشده است. از دسته کمربند انشعاب استفاده کنید و قطر خط اصلی و خروجی را جداگانه تطبیق دهید.');icLink(box,['همه کمربندهای انشعاب پلی‌اتیلن','https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-saddle-clamp/']);}}else if(task==='valve'){var v=IC.valve[size+'-'+document.getElementById('ic_valve').value];if(v){icLink(box,v);icMsg(box,'نام و سایز محصول با انتخاب شما تطبیق دارد؛ نوع اتصال و شرایط کاری را در صفحه همان SKU بررسی کنید.');}else{icMsg(box,'برای این سایز و نوع شیر، محصول تأییدشده‌ای در نقشه فعلی ابزار تعریف نشده است.');icLink(box,['همه شیرآلات پلی‌اتیلن','https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/']);}}else if(task==='hose'){var hs=IC.hose[size];if(hs){icLink(box,hs);icMsg(box,'این سرشلنگی هم‌سایز برای بررسی است؛ نوع اتصال واسط، بست و قطر واقعی شلنگ باید جداگانه کنترل شود.');}}else{icMsg(box,'برای لوله پلی‌اتیلن، این کار را از دسته اتصالات پلی‌اتیلن بررسی کنید.');}}else{if(task==='tape'){IC.layflat.tape.forEach(function(i){icLink(box,i);});icMsg(box,'شیر و رابط دو مسیر متفاوت برای اتصال تیپ هستند؛ مدل نهایی را با نوع سوراخ‌کاری و اتصال پروژه تطبیق دهید.');}else if(task==='end'){IC.layflat.end.forEach(function(i){icLink(box,i);});icMsg(box,'قطعه انتهایی را با سری و نوع لی‌فلت پروژه تطبیق دهید.');}else if(task==='branch'){IC.layflat.branch.forEach(function(i){icLink(box,i);});icMsg(box,'این نتیجه فقط برای کمربند لی‌فلت ۲ اینچ ثبت‌شده در فروشگاه است؛ سایز خط و نوع خروجی را قبل از خرید کنترل کنید.');}else if(task==='hose'){var lh=IC.hose[size];if(lh){icLink(box,lh);icMsg(box,'سرشلنگی هم‌سایز برای بررسی است؛ اتصال واسط و بست مناسب باید با لی‌فلت واقعی تطبیق داده شود.');}}else{icMsg(box,'برای کنترل جریان در لی‌فلت، ابتدا نوع اتصال و شیر موردنیاز پروژه را مشخص کنید؛ ابزار شیرهای پلیمری برای لوله پلی‌اتیلن را به‌صورت خودکار معادل لی‌فلت فرض نمی‌کند.');}}var note=document.createElement('p');note.textContent='قیمت و موجودی را در صفحه محصول بررسی کنید؛ ابزار قیمت را ذخیره یا حدس نمی‌زند.';box.appendChild(note);}icRefresh();</script></div>",
+      "content_rendered_phrase_hits": [
+        {
+          "phrase": "canonical",
+          "present": false,
+          "snippet": ""
+        },
+        {
+          "phrase": "robots",
+          "present": false,
+          "snippet": ""
+        },
+        {
+          "phrase": "noindex",
+          "present": false,
+          "snippet": ""
+        },
+        {
+          "phrase": "nofollow",
+          "present": false,
+          "snippet": ""
+        }
+      ],
+      "meta_keys": [
+        "footnotes",
+        "_elementor_edit_mode",
+        "_elementor_template_type",
+        "_elementor_data",
+        "_elementor_page_settings",
+        "_elementor_conditions"
+      ]
+    }
+  ],
+  "frontend_pages": [
+    {
+      "url": "https://keshavarz20.com/irrigation-filter-selector/",
+      "http_status": 200,
+      "html_bytes": 171034,
+      "h1_count": 1,
+      "h1s": [
+        "انتخاب‌گر فیلتر آبیاری | دبی، میکرون و سایز اتصال"
+      ],
+      "h1_details": [
+        {
+          "text": "انتخاب‌گر فیلتر آبیاری | دبی، میکرون و سایز اتصال",
+          "id": "",
+          "class": "post-title",
+          "open_tag": "<h1 class=\"post-title\">",
+          "raw_context": "nu-item menu-item-type-post_type menu-item-object-page menu-item-143730'><a href=\"https://keshavarz20.com/request-quotation/\"    style=\"\"><span class=\"item-icon-title\"><span class=\"title\">🧾 دریافت پیش‌فاکتور</span></span></a></li></ul></li></ul></div></nav><nav id=\"mobile-menu\"></nav><main id=\"main\"><div class=\"container container-single-post\"><nav class=\"breadcrumb\"><nav class=\"woocommerce-breadcrumb breadcrumb\"><a href=\"https://keshavarz20.com\">خانه</a>&nbsp;&#47;&nbsp;انتخاب‌گر فیلتر آبیاری | دبی، میکرون و سایز اتصال</nav></nav><div class=\"row\"><div class=\"col-12  post-main-content\"><article class=\"post-single post-144238 page type-page status-publish hentry\"><header class=\"post-header\"><h1 class=\"post-title\">انتخاب‌گر فیلتر آبیاری | دبی، میکرون و سایز اتصال</h1></h1></header><div class=\"post-content\"><div class=\"keshavarz20-tape-calculator-guide\" dir=\"rtl\"><div class=\"tc-lead\"><strong>فیلتر را با دبی و حساسیت سیستم انتخاب کنید</strong></p><p>منبع آب، مصرف‌کننده پایین‌دست، دبی، میکرون هدف و سایز اتصال را وارد کنید تا چک‌لیست انتخاب ساخته شود. ابزار مدل یا ظرفیت فنی را حدس نمی‌زند و کنترل نهایی باید با دیتاشیت همان فیلتر انجام شود.</p></div><p>این ابزار برای <strong>ساخت چک‌لیست انتخاب</strong> است. مدل نهایی فیلتر باید با دبی واقعی سیستم، کیفیت آب، حساسیت تجهیزات پایین‌دست و دیتاشیت همان فیلتر تطبیق داده شود.</p><div style=\"border:1px solid #d8e6dd;border-radius:14px;padding:18px;background:#f8fbf9\"><label>منبع آب<br /><select id=\"fs_source\" style=\""
+        }
+      ],
+      "phrase_hits": [
+        {
+          "phrase": "canonical",
+          "present": true,
+          "snippet": "",
+          "raw_html_context": " باشد (تنظیمات خاموش است) ولی سرویس‌ورکر ما هنوز در مرورگر هست\n                        if (mySW) {\n                            mySW.unregister().then(() => {\n                                console.log('Zhaket Booster SW Unregistered (Settings off).');\n                                // لود مجدد صفحه برای اطمینان از اینکه درخواست‌ها دیگر از پراکسی رد نمی‌شوند\n                                window.location.reload();\n                            });\n                        }\n                    }\n                });\n            }</script> <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' /><title>انتخاب‌گر فیلتر آبیاری | دبی، میکرون و سایز اتصال - کشاورز بیست</title><meta name=\"description\" content=\"انتخاب فیلتر آبیاری بر اساس منبع آب، دبی، میکرون و سایز اتصال؛ چک‌لیست تصمیم خرید برای مقایسه مدل‌ها بدون حدس مشخصات فنی.\" /><link rel=\"canonical\" href=\"https://keshavarz20.com/irrigation-filter-selector/\" /><meta property=\"og:locale\" content=\"fa_IR\" /><meta property=\"og:type\" content=\"article\" /><meta property=\"og:title\" content=\"انتخاب‌گر فیلتر آبیاری | دبی، میکرون و سایز اتصال\" /><meta property=\"og:description\" content=\"انتخاب فیلتر آبیاری بر اساس منبع آب، دبی، میکرون و سایز اتصال؛ چک‌لیست تصمیم خرید برای مقایسه مدل‌ها بدون حدس مشخصات فنی.\" /><meta property=\"og:url\" content=\"https://keshavarz20.com/irrigation-filter-selector/\" /><meta property=\"og:site_name\" content=\"کشاورز بیست\" /><meta property=\"article:modified_time\" content=\"2026-09-11T19:19:41+00:00\" /><meta property=\"og:image\" content=\"https://keshavarz20.com/wp-content/uploads/2024/08/keshavarz20.jpg\" /><meta property=\"og:image:width\" content=\"1672\" /><meta property=\"og:image:height\" content=\"899\" /><meta property=\"og:image:type\" content=\"image/jpeg\" /><meta name=\"twitt"
+        },
+        {
+          "phrase": "robots",
+          "present": true,
+          "snippet": "",
+          "raw_html_context": "اشد و هیچ سرویس‌ورکری نیست، نصبش کن\n                        else if (!mySW) {\n                            navigator.serviceWorker.register('/zhb-sw.js')\n                                .then(() => console.log('Zhaket Booster SW Registered.'));\n                        }\n                    } else {\n                        // ج: اگر باید غیرفعال باشد (تنظیمات خاموش است) ولی سرویس‌ورکر ما هنوز در مرورگر هست\n                        if (mySW) {\n                            mySW.unregister().then(() => {\n                                console.log('Zhaket Booster SW Unregistered (Settings off).');\n                                // لود مجدد صفحه برای اطمینان از اینکه درخواست‌ها دیگر از پراکسی رد نمی‌شوند\n                                window.location.reload();\n                            });\n                        }\n                    }\n                });\n            }</script> <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' /><title>انتخاب‌گر فیلتر آبیاری | دبی، میکرون و سایز اتصال - کشاورز بیست</title><meta name=\"description\" content=\"انتخاب فیلتر آبیاری بر اساس منبع آب، دبی، میکرون و سایز اتصال؛ چک‌لیست تصمیم خرید برای مقایسه مدل‌ها بدون حدس مشخصات فنی.\" /><link rel=\"canonical\" href=\"https://keshavarz20.com/irrigation-filter-selector/\" /><meta property=\"og:locale\" content=\"fa_IR\" /><meta property=\"og:type\" content=\"article\" /><meta property=\"og:title\" content=\"انتخاب‌گر فیلتر آبیاری | دبی، میکرون و سایز اتصال\" /><meta property=\"og:description\" content=\"انتخاب فیلتر آبیاری بر اساس منبع آب، دبی، میکرون و سایز اتصال؛ چک‌لیست تصمیم خرید برای مقایسه مدل‌ها بدون حدس مشخصات فنی.\" /><meta property=\"og:url\" content=\"https://keshavarz20.com/irrigation-filter-selector/\" /><meta property=\"og:site_name\" content=\"کشاورز بیست\" /><me"
+        },
+        {
+          "phrase": "noindex",
+          "present": false,
+          "snippet": "",
+          "raw_html_context": ""
+        },
+        {
+          "phrase": "nofollow",
+          "present": true,
+          "snippet": "",
+          "raw_html_context": " است پیش‌تصفیه لازم باشد.'}else{note='کیفیت آب را با نمونه‌برداری یا اطلاعات منبع بررسی کنید و فقط از ظاهر آب نتیجه‌گیری نکنید.'}var txt='چک‌لیست انتخاب فیلتر\\n\\nمنبع آب: '+s+'\\nمصرف‌کننده پایین‌دست: '+u+'\\nدبی واردشده: '+(f>0?f+' مترمکعب بر ساعت':'وارد نشده')+'\\nمیکرون هدف: '+(m>0?m+' میکرون':'از دیتاشیت مصرف‌کننده بررسی شود')+'\\nسایز اتصال: '+c+'\\n\\nکنترل نهایی: دبی مجاز فیلتر، درجه فیلتراسیون، نوع اتصال، افت فشار، فشار کاری و روش شست‌وشو را با دیتاشیت همان مدل تطبیق دهید.\\n'+note;document.getElementById('fs_result').textContent=txt}</script></div></div></article></div></div></div></main> <script type=\"speculationrules\">{\"prefetch\":[{\"source\":\"document\",\"where\":{\"and\":[{\"href_matches\":\"/*\"},{\"not\":{\"href_matches\":[\"/wp-*.php\",\"/wp-admin/*\",\"/wp-content/uploads/*\",\"/wp-content/*\",\"/wp-content/plugins/*\",\"/wp-content/themes/irankala/*\",\"/*\\\\?(.+)\"]}},{\"not\":{\"selector_matches\":\"a[rel~=\\\"nofollow\\\"]\"}},{\"not\":{\"selector_matches\":\".no-prefetch, .no-prefetch a\"}}]},\"eagerness\":\"conservative\"}]}</script> <script>jQuery(document).ready(function($){$('#product-filter-form').on('submit',function(e){e.preventDefault();ajaxProductFilter()});function ajaxProductFilter(){var formData=$('#product-filter-form').serialize();var ajaxurl='https://keshavarz20.com/wp-admin/admin-ajax.php';$.ajax({url:ajaxurl,type:'GET',data:formData,success:function(response){$('#product-table-wrapper').html($(response).find('#product-table-wrapper').html());$('#product-pagination').html($(response).find('#product-pagination').html())}})}\n$('#download-pdf').on('click',function(){var tableHTML=$('#product-table').html();generatePDF(tableHTML)});function generatePDF(tableHTML){$.ajax({url:'https://keshavarz20.com/wp-admin/admin-ajax.php',type:'POST',data:{action:'generate_pdf',table_html:tableHTML},success:functio"
+        }
+      ],
+      "missing_alt_count": 1,
+      "missing_alt_images": [
+        {
+          "alt_attribute_present": true,
+          "src": "",
+          "class": "",
+          "width": "",
+          "height": ""
+        }
+      ],
+      "organization_nodes": [
+        {
+          "id": "https://keshavarz20.com/#organization",
+          "name": "فروشگاه اینترنتی کشاورز بیست",
+          "url": "https://keshavarz20.com/",
+          "has_logo": true,
+          "logo": {
+            "@type": "ImageObject",
+            "inLanguage": "fa-IR",
+            "@id": "https://keshavarz20.com/#/schema/logo/image/",
+            "url": "https://keshavarz20.com/wp-content/uploads/2024/05/logo-deks22-keshavarz20.png",
+            "contentUrl": "https://keshavarz20.com/wp-content/uploads/2024/05/logo-deks22-keshavarz20.png",
+            "width": 150,
+            "height": 150,
+            "caption": "فروشگاه اینترنتی کشاورز بیست"
+          }
+        }
+      ],
+      "organization_count": 1
+    },
+    {
+      "url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+      "http_status": 200,
+      "html_bytes": 261639,
+      "h1_count": 1,
+      "h1s": [
+        "راهنمای انتخاب سایز لوله پلی‌اتیلن آبیاری؛ دبی، فشار، طول و افت فشار"
+      ],
+      "h1_details": [
+        {
+          "text": "راهنمای انتخاب سایز لوله پلی‌اتیلن آبیاری؛ دبی، فشار، طول و افت فشار",
+          "id": "",
+          "class": "post-title",
+          "open_tag": "<h1 class=\"post-title\">",
+          "raw_context": "bp 150w, https://keshavarz20.com/wp-content/uploads/2026/09/k20-sitewide-a143853-100x100.webp 100w\" sizes=\"(max-width: 64px) 100vw, 64px\" /></noscript><div><h4 class=\"post-title\" >علت گرفتگی نوار تیپ چیست؟ راهنمای پیشگیری، شست‌وشو و عیب‌یابی</h4>                                    <span class=\"post-date\">1405-05-17</span></div>\n</a></div></div></div></aside><div class=\"col-12 col-lg-9 post-main-content\"><article class=\"post-single post-143869 post type-post status-publish format-standard has-post-thumbnail hentry category-irrigation-equipment-guide category-irrigation-pipe-tape-guide category-knowledge-center tag-2089 tag-2088 tag-2091 tag-2086 tag-2087 tag-2090\"><header class=\"post-header\"><h1 class=\"post-title\">راهنمای انتخاب سایز لوله پلی‌اتیلن آبیاری؛ دبی، فشار، طول و افت فشار</h1></h1></header><div class=\"post-meta\"><div class=\"post-author\">\n<img data-lazyloaded=\"1\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBzdHlsZT0iZmlsbDojY2ZkNGRiO2ZpbGwtb3BhY2l0eTogMC4xOyIvPjwvc3ZnPg==\" alt='' data-src='https://secure.gravatar.com/avatar/ec1c5788928127340fe91decea99ba05855aaf1270ba13f6a503aaea308ba275?s=24&#038;d=mm&#038;r=g' data-srcset='https://secure.gravatar.com/avatar/ec1c5788928127340fe91decea99ba05855aaf1270ba13f6a503aaea308ba275?s=48&#038;d=mm&#038;r=g 2x' class='avatar avatar-24 photo' height='24' width='24' decoding='async'/><nos"
+        }
+      ],
+      "phrase_hits": [
+        {
+          "phrase": "canonical",
+          "present": true,
+          "snippet": "",
+          "raw_html_context": "ت خاموش است) ولی سرویس‌ورکر ما هنوز در مرورگر هست\n                        if (mySW) {\n                            mySW.unregister().then(() => {\n                                console.log('Zhaket Booster SW Unregistered (Settings off).');\n                                // لود مجدد صفحه برای اطمینان از اینکه درخواست‌ها دیگر از پراکسی رد نمی‌شوند\n                                window.location.reload();\n                            });\n                        }\n                    }\n                });\n            }</script> <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' /><title>سایز لوله پلی اتیلن آبیاری | کشاورز بیست</title><meta name=\"description\" content=\"انتخاب قطر لوله را از سایز خروجی پمپ شروع نکنید؛ از دبی موردنیاز و مسیر شروع کنید. طول واقعی، اختلاف ارتفاع، تعداد اتصالات و دبی هم‌زمان زون تعیین می‌کنند چه\" /><link rel=\"canonical\" href=\"https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/\" /><meta property=\"og:locale\" content=\"fa_IR\" /><meta property=\"og:type\" content=\"article\" /><meta property=\"og:title\" content=\"راهنمای انتخاب سایز لوله پلی‌اتیلن آبیاری؛ دبی، فشار، طول و افت فشار\" /><meta property=\"og:description\" content=\"انتخاب قطر لوله را از سایز خروجی پمپ شروع نکنید؛ از دبی موردنیاز و مسیر شروع کنید. طول واقعی، اختلاف ارتفاع، تعداد اتصالات و دبی هم‌زمان زون تعیین می‌کنند چه\" /><meta property=\"og:url\" content=\"https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/\" /><meta property=\"og:site_name\" content=\"کشاورز بیست\" /><meta property=\"article:published_time\" content=\"2026-08-08T11:26:31+00:00\" /><meta property=\"article:modified_time\" content=\"2026-09-16T06:16:41+00:00\" /><meta property=\"og:image\" content=\"https://keshavarz20.com/wp-content/uploads/2026/08/راهنمای-سایز-لوله-پلی‌ا"
+        },
+        {
+          "phrase": "robots",
+          "present": true,
+          "snippet": "",
+          "raw_html_context": "اشد و هیچ سرویس‌ورکری نیست، نصبش کن\n                        else if (!mySW) {\n                            navigator.serviceWorker.register('/zhb-sw.js')\n                                .then(() => console.log('Zhaket Booster SW Registered.'));\n                        }\n                    } else {\n                        // ج: اگر باید غیرفعال باشد (تنظیمات خاموش است) ولی سرویس‌ورکر ما هنوز در مرورگر هست\n                        if (mySW) {\n                            mySW.unregister().then(() => {\n                                console.log('Zhaket Booster SW Unregistered (Settings off).');\n                                // لود مجدد صفحه برای اطمینان از اینکه درخواست‌ها دیگر از پراکسی رد نمی‌شوند\n                                window.location.reload();\n                            });\n                        }\n                    }\n                });\n            }</script> <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' /><title>سایز لوله پلی اتیلن آبیاری | کشاورز بیست</title><meta name=\"description\" content=\"انتخاب قطر لوله را از سایز خروجی پمپ شروع نکنید؛ از دبی موردنیاز و مسیر شروع کنید. طول واقعی، اختلاف ارتفاع، تعداد اتصالات و دبی هم‌زمان زون تعیین می‌کنند چه\" /><link rel=\"canonical\" href=\"https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/\" /><meta property=\"og:locale\" content=\"fa_IR\" /><meta property=\"og:type\" content=\"article\" /><meta property=\"og:title\" content=\"راهنمای انتخاب سایز لوله پلی‌اتیلن آبیاری؛ دبی، فشار، طول و افت فشار\" /><meta property=\"og:description\" content=\"انتخاب قطر لوله را از سایز خروجی پمپ شروع نکنید؛ از دبی موردنیاز و مسیر شروع کنید. طول واقعی، اختلاف ارتفاع، تعداد اتصالات و دبی هم‌زمان زون تعیین می‌کنند چه\" /><meta property=\"og:url\" content=\"https://keshavarz20.com/poly"
+        },
+        {
+          "phrase": "noindex",
+          "present": false,
+          "snippet": "",
+          "raw_html_context": ""
+        },
+        {
+          "phrase": "nofollow",
+          "present": true,
+          "snippet": "",
+          "raw_html_context": "4%db%8c/\">خط نیمه اصلی</a><a href=\"https://keshavarz20.com/tag/%d8%b3%d8%a7%db%8c%d8%b2-%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86/\">سایز لوله پلی اتیلن</a><a href=\"https://keshavarz20.com/tag/%d9%82%d8%b7%d8%b1-%d9%84%d9%88%d9%84%d9%87-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c/\">قطر لوله آبیاری</a><a href=\"https://keshavarz20.com/tag/%d9%84%d9%88%d9%84%d9%87-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c/\">لوله پلی اتیلن آبیاری</a></div></footer></article><div class=\"post-comment\"><header class=\"post-comment-header\">\n<span>دیدگاه‌های نوشته</span></header><div class=\"comment-rules\">دیدگاه های فینگلیش تایید نخواهند شد.<br />\nدیدگاه های نامرتبط به مطلب تایید نخواهد شد.<br />\nاز درج دیدگاه های تکراری پرهیز نمایید.</div><div id=\"respond\" class=\"comment-respond\"><h3 id=\"reply-title\" class=\"comment-reply-title\"> <small><a rel=\"nofollow\" id=\"cancel-comment-reply-link\" href=\"/polyethylene-pipe-size-flow-pressure-guide/#respond\" style=\"display:none;\">لغو پاسخ</a></small></h3><form action=\"https://keshavarz20.com/wp-comments-post.php\" method=\"post\" id=\"commentform\" class=\"\"><div class=\"row\"><div class=\"col-12\"><label for=\"comment\">محتوای دیدگاه<span class=\"required\"> *</span></label><textarea id=\"comment\" name=\"comment\" aria-required=\"true\" rows=\"6\"></textarea></div></div><div class=\"row\"><div class=\"col-12 col-md-6\"><label for=\"author\">نام شما<span class=\"required\"> *</span></label><input type=\"text\" id=\"author\" name=\"author\" value=\"\" aria-required='true' ></div><div class=\"col-12 col-md-6\"><label for=\"email\">ایمیل شما<span class=\"required\"> *</span></label><input type=\"email\" id=\"email\" name=\"email\" value=\"\" aria-required='true' ></div></div><p class=\"comment-form-cookies-consent\"><input id=\"wp-comment-cookies-consent\" "
+        }
+      ],
+      "missing_alt_count": 15,
+      "missing_alt_images": [
+        {
+          "alt_attribute_present": true,
+          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBzdHlsZT0iZmlsbDojY2ZkNGRiO2ZpbGwtb3BhY2l0eTogMC4xOyIvPjwvc3ZnPg==",
+          "class": "post-img wp-post-image",
+          "width": "64",
+          "height": "64"
+        },
+        {
+          "alt_attribute_present": true,
+          "src": "https://keshavarz20.com/wp-content/uploads/2025/05/keshavarz20-news1-64x64.jpg",
+          "class": "post-img wp-post-image",
+          "width": "64",
+          "height": "64"
+        },
+        {
+          "alt_attribute_present": true,
+          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBzdHlsZT0iZmlsbDojY2ZkNGRiO2ZpbGwtb3BhY2l0eTogMC4xOyIvPjwvc3ZnPg==",
+          "class": "post-img wp-post-image",
+          "width": "64",
+          "height": "64"
+        },
+        {
+          "alt_attribute_present": true,
+          "src": "https://keshavarz20.com/wp-content/uploads/2025/05/گوشت-1-64x64.jpg",
+          "class": "post-img wp-post-image",
+          "width": "64",
+          "height": "64"
+        },
+        {
+          "alt_attribute_present": true,
+          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBzdHlsZT0iZmlsbDojY2ZkNGRiO2ZpbGwtb3BhY2l0eTogMC4xOyIvPjwvc3ZnPg==",
+          "class": "post-img wp-post-image",
+          "width": "64",
+          "height": "64"
+        },
+        {
+          "alt_attribute_present": true,
+          "src": "https://keshavarz20.com/wp-content/uploads/2025/05/اخبار-کشاورز20راهکارها،-چالش_ها-و-فرصت_های-رشد-اقتصادی-64x64.jpg",
+          "class": "post-img wp-post-image",
+          "width": "64",
+          "height": "64"
+        },
+        {
+          "alt_attribute_present": true,
+          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBzdHlsZT0iZmlsbDojY2ZkNGRiO2ZpbGwtb3BhY2l0eTogMC4xOyIvPjwvc3ZnPg==",
+          "class": "post-img wp-post-image",
+          "width": "64",
+          "height": "64"
+        },
+        {
+          "alt_attribute_present": true,
+          "src": "https://keshavarz20.com/wp-content/uploads/2025/05/ممنوعیت-واردات-برنج-اخبار-کشاورز20-64x64.jpg",
+          "class": "post-img wp-post-image",
+          "width": "64",
+          "height": "64"
+        },
+        {
+          "alt_attribute_present": true,
+          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBzdHlsZT0iZmlsbDojY2ZkNGRiO2ZpbGwtb3BhY2l0eTogMC4xOyIvPjwvc3ZnPg==",
+          "class": "post-img wp-post-image",
+          "width": "64",
+          "height": "64"
+        },
+        {
+          "alt_attribute_present": true,
+          "src": "https://keshavarz20.com/wp-content/uploads/2025/05/مزرعه-کشاورز20-یک-64x64.jpg",
+          "class": "post-img wp-post-image",
+          "width": "64",
+          "height": "64"
+        },
+        {
+          "alt_attribute_present": true,
+          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBzdHlsZT0iZmlsbDojY2ZkNGRiO2ZpbGwtb3BhY2l0eTogMC4xOyIvPjwvc3ZnPg==",
+          "class": "post-img wp-post-image",
+          "width": "64",
+          "height": "64"
+        },
+        {
+          "alt_attribute_present": true,
+          "src": "https://keshavarz20.com/wp-content/uploads/2025/05/اخبار-کشاورز20-64x64.jpg",
+          "class": "post-img wp-post-image",
+          "width": "64",
+          "height": "64"
+        },
+        {
+          "alt_attribute_present": true,
+          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBzdHlsZT0iZmlsbDojY2ZkNGRiO2ZpbGwtb3BhY2l0eTogMC4xOyIvPjwvc3ZnPg==",
+          "class": "avatar avatar-24 photo",
+          "width": "24",
+          "height": "24"
+        },
+        {
+          "alt_attribute_present": true,
+          "src": "https://secure.gravatar.com/avatar/ec1c5788928127340fe91decea99ba05855aaf1270ba13f6a503aaea308ba275?s=24&d=mm&r=g",
+          "class": "avatar avatar-24 photo",
+          "width": "24",
+          "height": "24"
+        },
+        {
+          "alt_attribute_present": true,
+          "src": "",
+          "class": "",
+          "width": "",
+          "height": ""
+        }
+      ],
+      "organization_nodes": [
+        {
+          "id": "https://keshavarz20.com/#organization",
+          "name": "فروشگاه اینترنتی کشاورز بیست",
+          "url": "https://keshavarz20.com/",
+          "has_logo": true,
+          "logo": {
+            "@type": "ImageObject",
+            "inLanguage": "fa-IR",
+            "@id": "https://keshavarz20.com/#/schema/logo/image/",
+            "url": "https://keshavarz20.com/wp-content/uploads/2024/05/logo-deks22-keshavarz20.png",
+            "contentUrl": "https://keshavarz20.com/wp-content/uploads/2024/05/logo-deks22-keshavarz20.png",
+            "width": 150,
+            "height": 150,
+            "caption": "فروشگاه اینترنتی کشاورز بیست"
+          }
+        }
+      ],
+      "organization_count": 1
+    },
+    {
+      "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+      "http_status": 200,
+      "html_bytes": 183163,
+      "h1_count": 1,
+      "h1s": [
+        "راهنمای سازگاری و سبد اتصالات آبیاری | کمربند، شیر و لی‌فلت"
+      ],
+      "h1_details": [
+        {
+          "text": "راهنمای سازگاری و سبد اتصالات آبیاری | کمربند، شیر و لی‌فلت",
+          "id": "",
+          "class": "post-title",
+          "open_tag": "<h1 class=\"post-title\">",
+          "raw_context": "nu-item-type-post_type menu-item-object-page menu-item-143730'><a href=\"https://keshavarz20.com/request-quotation/\"    style=\"\"><span class=\"item-icon-title\"><span class=\"title\">🧾 دریافت پیش‌فاکتور</span></span></a></li></ul></li></ul></div></nav><nav id=\"mobile-menu\"></nav><main id=\"main\"><div class=\"container container-single-post\"><nav class=\"breadcrumb\"><nav class=\"woocommerce-breadcrumb breadcrumb\"><a href=\"https://keshavarz20.com\">خانه</a>&nbsp;&#47;&nbsp;راهنمای سازگاری و سبد اتصالات آبیاری | کمربند، شیر و لی‌فلت</nav></nav><div class=\"row\"><div class=\"col-12  post-main-content\"><article class=\"post-single post-144239 page type-page status-publish hentry\"><header class=\"post-header\"><h1 class=\"post-title\">راهنمای سازگاری و سبد اتصالات آبیاری | کمربند، شیر و لی‌فلت</h1></h1></header><div class=\"post-content\"><div class=\"keshavarz20-tape-calculator-guide\" dir=\"rtl\"><div class=\"tc-lead\"><strong>اول سازگاری قطعات، بعد سفارش</strong></p><p>نوع خط اصلی، سایز و کاری که می‌خواهید انجام دهید را مشخص کنید تا مسیر خرید بین کمربند، شیر، سرشلنگی، لی‌فلت و نوار تیپ روشن شود. ابزار فقط سازگاری‌های ثبت‌شده و قابل‌بررسی را پیشنهاد می‌دهد و هیچ اتصال یا قیمت نامطمئنی را حدس نمی‌زند.</p></div><p>این ابزار کمک می‌کند بین <strong>کمربند انشعاب، شیر پلیمری، سرشلنگی، اتصالات لی‌فلت و نوار تیپ</strong> مسیر درست را پیدا کنید. نتیجه ابزار به معنی تأیید نهایی نصب نیست؛ نوع رزوه، اتصال، فشار و مشخصات هر قطعه باید در صفحه همان محصول و پروژه واقعی کنترل شود.</p><div style=\"border:1px"
+        }
+      ],
+      "phrase_hits": [
+        {
+          "phrase": "canonical",
+          "present": true,
+          "snippet": "",
+          "raw_html_context": "سرویس‌ورکر ما هنوز در مرورگر هست\n                        if (mySW) {\n                            mySW.unregister().then(() => {\n                                console.log('Zhaket Booster SW Unregistered (Settings off).');\n                                // لود مجدد صفحه برای اطمینان از اینکه درخواست‌ها دیگر از پراکسی رد نمی‌شوند\n                                window.location.reload();\n                            });\n                        }\n                    }\n                });\n            }</script> <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' /><title>راهنمای سازگاری و سبد اتصالات آبیاری | کمربند، شیر و لی‌فلت - کشاورز بیست</title><meta name=\"description\" content=\"انتخاب کمربند انشعاب، شیر پلیمری و اتصالات لی‌فلت بر اساس نوع خط، سایز و نیاز پروژه؛ مسیر محصول واقعی برای تکمیل سبد نصب بدون حدس مشخصات فنی.\" /><link rel=\"canonical\" href=\"https://keshavarz20.com/irrigation-fittings-compatibility-selector/\" /><meta property=\"og:locale\" content=\"fa_IR\" /><meta property=\"og:type\" content=\"article\" /><meta property=\"og:title\" content=\"راهنمای سازگاری و سبد اتصالات آبیاری | کمربند، شیر و لی‌فلت\" /><meta property=\"og:description\" content=\"انتخاب کمربند انشعاب، شیر پلیمری و اتصالات لی‌فلت بر اساس نوع خط، سایز و نیاز پروژه؛ مسیر محصول واقعی برای تکمیل سبد نصب بدون حدس مشخصات فنی.\" /><meta property=\"og:url\" content=\"https://keshavarz20.com/irrigation-fittings-compatibility-selector/\" /><meta property=\"og:site_name\" content=\"کشاورز بیست\" /><meta property=\"article:modified_time\" content=\"2026-09-12T21:47:33+00:00\" /><meta property=\"og:image\" content=\"https://keshavarz20.com/wp-content/uploads/2024/08/keshavarz20.jpg\" /><meta property=\"og:image:width\" content=\"1672\" /><meta property=\"og:image:height\" content=\"899\" /><meta pro"
+        },
+        {
+          "phrase": "robots",
+          "present": true,
+          "snippet": "",
+          "raw_html_context": "اشد و هیچ سرویس‌ورکری نیست، نصبش کن\n                        else if (!mySW) {\n                            navigator.serviceWorker.register('/zhb-sw.js')\n                                .then(() => console.log('Zhaket Booster SW Registered.'));\n                        }\n                    } else {\n                        // ج: اگر باید غیرفعال باشد (تنظیمات خاموش است) ولی سرویس‌ورکر ما هنوز در مرورگر هست\n                        if (mySW) {\n                            mySW.unregister().then(() => {\n                                console.log('Zhaket Booster SW Unregistered (Settings off).');\n                                // لود مجدد صفحه برای اطمینان از اینکه درخواست‌ها دیگر از پراکسی رد نمی‌شوند\n                                window.location.reload();\n                            });\n                        }\n                    }\n                });\n            }</script> <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' /><title>راهنمای سازگاری و سبد اتصالات آبیاری | کمربند، شیر و لی‌فلت - کشاورز بیست</title><meta name=\"description\" content=\"انتخاب کمربند انشعاب، شیر پلیمری و اتصالات لی‌فلت بر اساس نوع خط، سایز و نیاز پروژه؛ مسیر محصول واقعی برای تکمیل سبد نصب بدون حدس مشخصات فنی.\" /><link rel=\"canonical\" href=\"https://keshavarz20.com/irrigation-fittings-compatibility-selector/\" /><meta property=\"og:locale\" content=\"fa_IR\" /><meta property=\"og:type\" content=\"article\" /><meta property=\"og:title\" content=\"راهنمای سازگاری و سبد اتصالات آبیاری | کمربند، شیر و لی‌فلت\" /><meta property=\"og:description\" content=\"انتخاب کمربند انشعاب، شیر پلیمری و اتصالات لی‌فلت بر اساس نوع خط، سایز و نیاز پروژه؛ مسیر محصول واقعی برای تکمیل سبد نصب بدون حدس مشخصات فنی.\" /><meta property=\"og:url\" content=\"https://keshavarz20.com/irrigation-f"
+        },
+        {
+          "phrase": "noindex",
+          "present": false,
+          "snippet": "",
+          "raw_html_context": ""
+        },
+        {
+          "phrase": "nofollow",
+          "present": true,
+          "snippet": "",
+          "raw_html_context": "خرید کنترل کنید.')}else if(task==='hose'){var lh=IC.hose[size];if(lh){icLink(box,lh);icMsg(box,'سرشلنگی هم‌سایز برای بررسی است؛ اتصال واسط و بست مناسب باید با لی‌فلت واقعی تطبیق داده شود.')}}else{icMsg(box,'برای کنترل جریان در لی‌فلت، ابتدا نوع اتصال و شیر موردنیاز پروژه را مشخص کنید؛ ابزار شیرهای پلیمری برای لوله پلی‌اتیلن را به‌صورت خودکار معادل لی‌فلت فرض نمی‌کند.')}}var note=document.createElement('p');note.textContent='قیمت و موجودی را در صفحه محصول بررسی کنید؛ ابزار قیمت را ذخیره یا حدس نمی‌زند.';box.appendChild(note)}icRefresh()</script></div></div></article></div></div></div></main> <script type=\"speculationrules\">{\"prefetch\":[{\"source\":\"document\",\"where\":{\"and\":[{\"href_matches\":\"/*\"},{\"not\":{\"href_matches\":[\"/wp-*.php\",\"/wp-admin/*\",\"/wp-content/uploads/*\",\"/wp-content/*\",\"/wp-content/plugins/*\",\"/wp-content/themes/irankala/*\",\"/*\\\\?(.+)\"]}},{\"not\":{\"selector_matches\":\"a[rel~=\\\"nofollow\\\"]\"}},{\"not\":{\"selector_matches\":\".no-prefetch, .no-prefetch a\"}}]},\"eagerness\":\"conservative\"}]}</script> <script>jQuery(document).ready(function($){$('#product-filter-form').on('submit',function(e){e.preventDefault();ajaxProductFilter()});function ajaxProductFilter(){var formData=$('#product-filter-form').serialize();var ajaxurl='https://keshavarz20.com/wp-admin/admin-ajax.php';$.ajax({url:ajaxurl,type:'GET',data:formData,success:function(response){$('#product-table-wrapper').html($(response).find('#product-table-wrapper').html());$('#product-pagination').html($(response).find('#product-pagination').html())}})}\n$('#download-pdf').on('click',function(){var tableHTML=$('#product-table').html();generatePDF(tableHTML)});function generatePDF(tableHTML){$.ajax({url:'https://keshavarz20.com/wp-admin/admin-ajax.php',type:'POST',data:{action:'generate_pdf',table_html:tableHTML},success:functio"
+        }
+      ],
+      "missing_alt_count": 1,
+      "missing_alt_images": [
+        {
+          "alt_attribute_present": true,
+          "src": "",
+          "class": "",
+          "width": "",
+          "height": ""
+        }
+      ],
+      "organization_nodes": [
+        {
+          "id": "https://keshavarz20.com/#organization",
+          "name": "فروشگاه اینترنتی کشاورز بیست",
+          "url": "https://keshavarz20.com/",
+          "has_logo": true,
+          "logo": {
+            "@type": "ImageObject",
+            "inLanguage": "fa-IR",
+            "@id": "https://keshavarz20.com/#/schema/logo/image/",
+            "url": "https://keshavarz20.com/wp-content/uploads/2024/05/logo-deks22-keshavarz20.png",
+            "contentUrl": "https://keshavarz20.com/wp-content/uploads/2024/05/logo-deks22-keshavarz20.png",
+            "width": 150,
+            "height": 150,
+            "caption": "فروشگاه اینترنتی کشاورز بیست"
+          }
+        }
+      ],
+      "organization_count": 1
+    }
+  ]
+}
