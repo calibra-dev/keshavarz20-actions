@@ -16,7 +16,8 @@ for stem in ("neshaa","loole"):
     for u in urls:
         occurrences.append({"url":u,"count":raw.count(u)})
     families[stem]={"urls":occurrences,"total_url_occurrences":sum(x["count"] for x in occurrences),"stem_text_count":len(re.findall(stem,raw,re.I))}
-lcp_tags=[m.group(0) for m in re.finditer(r"<img\\b[^>]*polyetilenetesal[^>]*>",raw,re.I|re.S)]\nout={"ok":code==200 and page.get("status")=="publish","page_id":644,"status":page.get("status"),"link":page.get("link"),"raw_length":len(raw),"families":families,"lcp_banner":{"count":len(lcp_tags),"tags":lcp_tags[:3]}}
+lcp_tags=[m.group(0) for m in re.finditer(r"<img\\b[^>]*polyetilenetesal[^>]*>",raw,re.I|re.S)]
+out={"ok":code==200 and page.get("status")=="publish","page_id":644,"status":page.get("status"),"link":page.get("link"),"raw_length":len(raw),"families":families,"lcp_banner":{"count":len(lcp_tags),"tags":lcp_tags[:3]}}
 Path("phase7-results").mkdir(exist_ok=True)
 Path("phase7-results/home-heavy-preflight.json").write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
 print(json.dumps(out,ensure_ascii=False))
