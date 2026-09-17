@@ -1,0 +1,272 @@
+name: Keshavarz20 Fail-Closed Media Cleanup Apply
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'media-cleanup-apply-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-media-cleanup-apply
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Apply one frozen cleanup-plan batch
+        shell: python
+        run: |
+          import base64
+          import json
+          import os
+          import pathlib
+          import subprocess
+          import time
+          import urllib.error
+          import urllib.request
+          import xmlrpc.client
+
+          ROOT = pathlib.Path('.')
+          PLAN_PATH = ROOT / 'media-cleanup-plan' / 'plan.json'
+          SITEWIDE_PATH = ROOT / 'sitewide-media-results' / 'inventory.json'
+          CONTENT_PATH = ROOT / 'content-media-results' / 'inventory.json'
+          OUT_DIR = ROOT / 'media-cleanup-apply-results'
+          OUT_DIR.mkdir(parents=True, exist_ok=True)
+
+          for key in ('WP_BASE_URL','WP_USERNAME','WP_APP_PASSWORD'):
+              if not os.environ.get(key, '').strip():
+                  raise SystemExit(f'Missing required repository secret: {key}')
+
+          def changed_request():
+              commands = [
+                  ['git','diff','--name-only','HEAD^','HEAD','--','media-cleanup-apply-ops/*.json'],
+                  ['git','show','--pretty=','--name-only','HEAD','--','media-cleanup-apply-ops/*.json'],
+              ]
+              for cmd in commands:
+                  rows = [x.strip() for x in subprocess.check_output(cmd, text=True).splitlines() if x.strip().startswith('media-cleanup-apply-ops/') and x.strip().endswith('.json')]
+                  rows = sorted(set(rows))
+                  if rows:
+                      if len(rows) != 1:
+                          raise SystemExit(f'Expected exactly one cleanup apply request, found {len(rows)}')
+                      return pathlib.Path(rows[0])
+              raise SystemExit('No cleanup apply request found')
+
+          request_path = changed_request()
+          request = json.loads(request_path.read_text(encoding='utf-8'))
+          if request.get('action') != 'attachment.delete_plan_batch':
+              raise SystemExit('Unsupported cleanup apply action')
+
+          plan_blob_sha = str(request.get('plan_blob_sha') or '').strip()
+          expected_plan_time = str(request.get('plan_executed_at_utc') or '').strip()
+          expected_eligible_count = int(request.get('expected_eligible_count') or 0)
+          batch_index = int(request.get('batch_index') or 0)
+          batch_size = int(request.get('batch_size') or 0)
+          if len(plan_blob_sha) != 40 or not expected_plan_time:
+              raise SystemExit('Frozen plan blob SHA and executed_at are required')
+          if batch_index < 1 or batch_size < 1 or batch_size > 25:
+              raise SystemExit('batch_index must be >=1 and batch_size must be 1..25')
+
+          actual_plan_sha = subprocess.check_output(['git','hash-object',str(PLAN_PATH)], text=True).strip()
+          if actual_plan_sha != plan_blob_sha:
+              raise SystemExit(f'Frozen cleanup plan mismatch: expected {plan_blob_sha}, got {actual_plan_sha}')
+
+          plan = json.loads(PLAN_PATH.read_text(encoding='utf-8'))
+          sitewide = json.loads(SITEWIDE_PATH.read_text(encoding='utf-8'))
+          content = json.loads(CONTENT_PATH.read_text(encoding='utf-8'))
+          ss = sitewide.get('summary') or {}
+          cs = content.get('summary') or {}
+          cc = cs.get('coverage') or {}
+
+          if plan.get('action') != 'media.cleanup_plan' or plan.get('read_only') is not True:
+              raise SystemExit('Plan identity/read_only guard failed')
+          if str(plan.get('executed_at_utc') or '') != expected_plan_time:
+              raise SystemExit('Plan executed_at guard failed')
+          if str(ss.get('executed_at_utc') or '') != str(plan.get('sitewide_inventory_executed_at_utc') or ''):
+              raise SystemExit('Sitewide inventory no longer matches frozen plan')
+          if str(cs.get('executed_at_utc') or '') != str(plan.get('content_inventory_executed_at_utc') or ''):
+              raise SystemExit('Content inventory no longer matches frozen plan')
+          if ss.get('crawl_complete') is not True or int(ss.get('rendered_pages_failed') or 0) != 0:
+              raise SystemExit('Sitewide crawl completeness guard failed')
+          if int(ss.get('rendered_pages_read') or 0) != int(ss.get('public_urls_discovered') or 0):
+              raise SystemExit('Sitewide rendered coverage mismatch')
+          if int(ss.get('sitemap_failures') or 0) != 0 or ss.get('product_error') or ss.get('category_error'):
+              raise SystemExit('Sitewide REST/sitemap guard failed')
+          if cc.get('post_errors') or cc.get('product_error') or cc.get('category_error'):
+              raise SystemExit('Content inventory error guard failed')
+
+          eligible = plan.get('eligible') or []
+          if expected_eligible_count <= 0 or len(eligible) != expected_eligible_count or int(plan.get('eligible_zero_reference_count') or 0) != expected_eligible_count:
+              raise SystemExit('Eligible count guard failed')
+
+          normalized = []
+          seen = set()
+          for row in eligible:
+              aid = int(row.get('attachment_id') or 0)
+              if aid <= 0 or aid in seen:
+                  raise SystemExit('Invalid/duplicate eligible attachment id')
+              seen.add(aid)
+              if str(row.get('format') or '').lower() not in ('jpeg','png'):
+                  raise SystemExit(f'Eligible format guard failed for {aid}')
+              if int(row.get('parent') or 0) != 0:
+                  raise SystemExit(f'Eligible parent guard failed for {aid}')
+              if int(row.get('sitewide_reference_count') or 0) != 0 or int(row.get('content_reference_count') or 0) != 0:
+                  raise SystemExit(f'Eligible reference guard failed for {aid}')
+              normalized.append(row)
+          normalized.sort(key=lambda x: int(x['attachment_id']))
+
+          start = (batch_index - 1) * batch_size
+          selected = normalized[start:start + batch_size]
+          if not selected:
+              raise SystemExit('Selected cleanup batch is empty')
+
+          base = os.environ['WP_BASE_URL'].rstrip('/')
+          username = os.environ['WP_USERNAME']
+          app_password = os.environ['WP_APP_PASSWORD']
+          bridge_url = base + '/wp-json/keshavarz20-ops/v2/execute'
+          xmlrpc_url = base + '/xmlrpc.php'
+          auth = base64.b64encode(f'{username}:{app_password}'.encode()).decode()
+          server = xmlrpc.client.ServerProxy(xmlrpc_url, allow_none=True, use_builtin_types=True)
+
+          def bridge_inspect(aid):
+              payload = json.dumps({'mode':'inspect','resource':'attachment','id':int(aid),'changes':{}}, separators=(',',':')).encode()
+              req = urllib.request.Request(bridge_url, data=payload, method='POST', headers={'Authorization':'Basic '+auth,'Content-Type':'application/json; charset=utf-8','Accept':'application/json'})
+              try:
+                  with urllib.request.urlopen(req, timeout=90) as r:
+                      text = r.read().decode('utf-8','replace')
+                      try: obj = json.loads(text)
+                      except Exception: obj = {'raw':text[:500]}
+                      return int(r.status), obj
+              except urllib.error.HTTPError as e:
+                  text = e.read().decode('utf-8','replace')
+                  try: obj = json.loads(text)
+                  except Exception: obj = {'raw':text[:500]}
+                  return int(e.code), obj
+              except Exception as e:
+                  return 0, {'code':'transport_error','message':str(e)}
+
+          def head_url(url):
+              if not url: return 0
+              try:
+                  req = urllib.request.Request(url, method='HEAD', headers={'User-Agent':'K20-Cleanup-Apply/1.0'})
+                  with urllib.request.urlopen(req, timeout=45) as r: return int(r.status)
+              except urllib.error.HTTPError as e: return int(e.code)
+              except Exception: return 0
+
+          rows = []
+          fatal = None
+          for planned in selected:
+              aid = int(planned['attachment_id'])
+              purl = str(planned.get('url') or '')
+              code, body = bridge_inspect(aid)
+              before = body.get('before') if isinstance(body, dict) else None
+              if not (200 <= code < 300 and isinstance(body, dict) and body.get('ok') is True and isinstance(before, dict)):
+                  fatal = f'preinspect failed for {aid} http={code}'
+                  rows.append({'id':aid,'deleted':False,'stage':'preinspect','http_code':code,'code':body.get('code') if isinstance(body,dict) else ''})
+                  break
+              live_parent = int(before.get('parent') or 0)
+              live_mime = str(before.get('mime_type') or '').lower()
+              live_url = str(before.get('url') or '')
+              if live_parent != 0 or live_mime not in ('image/jpeg','image/png') or (purl and live_url != purl):
+                  fatal = f'live guard failed for {aid}'
+                  rows.append({'id':aid,'deleted':False,'stage':'live_guard','parent':live_parent,'mime_type':live_mime,'url_match':live_url==purl})
+                  break
+
+              try:
+                  item = server.wp.getMediaItem(0, username, app_password, aid)
+              except xmlrpc.client.Fault as fault:
+                  fatal = f'xmlrpc pre-read failed for {aid}'
+                  rows.append({'id':aid,'deleted':False,'stage':'xmlrpc_preread','fault_code':fault.faultCode,'fault':fault.faultString})
+                  break
+              xml_id = int(item.get('attachment_id') or item.get('id') or 0)
+              xml_parent = int(item.get('parent') or 0)
+              xml_type = str(item.get('type') or '').lower()
+              xml_url = str(item.get('link') or item.get('url') or '')
+              if xml_id != aid or xml_parent != 0 or xml_type not in ('image/jpeg','image/png') or (live_url and xml_url and live_url != xml_url):
+                  fatal = f'xmlrpc live guard failed for {aid}'
+                  rows.append({'id':aid,'deleted':False,'stage':'xmlrpc_guard','xml_id':xml_id,'xml_parent':xml_parent,'xml_type':xml_type})
+                  break
+
+              before_head = head_url(live_url)
+              calls = 0
+              try:
+                  delete_return = bool(server.wp.deleteFile(0, username, app_password, aid)); calls += 1
+              except xmlrpc.client.Fault as fault:
+                  fatal = f'delete failed for {aid}'
+                  rows.append({'id':aid,'deleted':False,'stage':'delete','fault_code':fault.faultCode,'fault':fault.faultString})
+                  break
+
+              time.sleep(0.5)
+              acode, abody = bridge_inspect(aid)
+              still_exists = bool(200 <= acode < 300 and isinstance(abody,dict) and abody.get('ok') is True and isinstance(abody.get('before'),dict))
+              if still_exists:
+                  try:
+                      delete_return = bool(server.wp.deleteFile(0, username, app_password, aid)) and delete_return; calls += 1
+                  except xmlrpc.client.Fault as fault:
+                      fatal = f'second delete failed for {aid}'
+                      rows.append({'id':aid,'deleted':False,'stage':'delete_second','fault_code':fault.faultCode,'fault':fault.faultString})
+                      break
+                  time.sleep(0.5)
+                  acode, abody = bridge_inspect(aid)
+                  still_exists = bool(200 <= acode < 300 and isinstance(abody,dict) and abody.get('ok') is True and isinstance(abody.get('before'),dict))
+
+              deleted = bool(delete_return and not still_exists and acode == 404)
+              row = {'id':aid,'deleted':deleted,'delete_calls':calls,'mime_type':live_mime,'source_url':live_url,'source_status_before':before_head,'inspect_http_after':acode,'inspect_code_after':abody.get('code') if isinstance(abody,dict) else '','source_status_after':head_url(live_url)}
+              rows.append(row)
+              if not deleted:
+                  fatal = f'404 readback guard failed for {aid}'
+                  break
+
+          result = {
+              'action':'attachment.delete_plan_batch',
+              'executed_at_utc':time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
+              'request_file':request_path.name,
+              'plan_blob_sha':actual_plan_sha,
+              'plan_executed_at_utc':plan.get('executed_at_utc'),
+              'sitewide_inventory_executed_at_utc':ss.get('executed_at_utc'),
+              'content_inventory_executed_at_utc':cs.get('executed_at_utc'),
+              'eligible_count':len(normalized),
+              'batch_index':batch_index,
+              'batch_size':batch_size,
+              'selected_ids':[int(x['attachment_id']) for x in selected],
+              'attempted_count':len(rows),
+              'deleted_count':sum(1 for x in rows if x.get('deleted')),
+              'all_deleted':fatal is None and len(rows)==len(selected) and all(x.get('deleted') for x in rows),
+              'fatal':fatal,
+              'items':rows,
+          }
+          out = OUT_DIR / (request_path.stem + '.json')
+          out.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='utf-8')
+          print(json.dumps({k:result[k] for k in ('eligible_count','batch_index','attempted_count','deleted_count','all_deleted','fatal')}, ensure_ascii=False))
+          if not result['all_deleted']:
+              raise SystemExit(2)
+
+      - name: Commit sanitized cleanup evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f media-cleanup-apply-results/*.json || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "media: record fail-closed cleanup apply result"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
