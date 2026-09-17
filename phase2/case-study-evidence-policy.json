@@ -1,0 +1,26 @@
+{
+  "version": "phase2-case-study-evidence-v1",
+  "required_cases": 4,
+  "rule": "No case study may be published as a real Keshavarz20/customer project without verifiable evidence and permission.",
+  "required_fields": [
+    "case_id",
+    "status",
+    "system_type",
+    "problem_before",
+    "intervention",
+    "evidence_sources",
+    "measured_outcomes",
+    "measurement_method",
+    "media_provenance",
+    "consent",
+    "privacy_review"
+  ],
+  "publication_gate": {
+    "status_must_equal": "evidence_ready",
+    "evidence_sources_min": 1,
+    "consent_must_be_true": true,
+    "privacy_review_must_equal": "pass",
+    "invented_numbers_forbidden": true,
+    "anonymous_case_allowed": true
+  }
+}
