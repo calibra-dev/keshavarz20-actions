@@ -1,7 +1,7 @@
 {
   "summary": {
-    "executed_at_utc": "2026-09-16T21:53:58Z",
-    "source_scope_executed_at_utc": "2026-09-16T21:53:58Z",
+    "executed_at_utc": "2026-09-17T05:29:42Z",
+    "source_scope_executed_at_utc": "2026-09-17T05:29:42Z",
     "object_count": 5,
     "reuse_ready_attachments": 0,
     "ambiguous_attachments": 0,
@@ -12,9 +12,9 @@
     ],
     "distinct_actionable_attachments": 26,
     "ready_for_conversion_attachments": 0,
-    "terminal_quality_attachments": 19,
+    "terminal_quality_attachments": 21,
     "terminal_non_rendered_attachments": 5,
-    "blocked_verification_attachments": 2,
+    "blocked_verification_attachments": 0,
     "legacy_count_note": "needs_conversion and distinct_actionable are unresolved mapping counts, not safe execution queues; consult execution_classification before any write"
   },
   "objects": [
@@ -167,6 +167,8 @@
   "execution_classification": {
     "ready_for_conversion_ids": [],
     "terminal_quality_ids": [
+      141437,
+      141441,
       141919,
       142336,
       142361,
@@ -194,10 +196,7 @@
       140919,
       141150
     ],
-    "blocked_verification_ids": [
-      141437,
-      141441
-    ],
+    "blocked_verification_ids": [],
     "blocked_existing_replacement_ids": []
   }
 }
