@@ -1,0 +1,120 @@
+name: Keshavarz20 Media Cleanup Live Parent Preflight
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'media-cleanup-preflight-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-media-cleanup-preflight
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Build frozen-plan live-parent manifest
+        shell: python
+        run: |
+          import base64, json, os, pathlib, subprocess, time, urllib.error, urllib.request
+          ROOT = pathlib.Path('.')
+          for key in ('WP_BASE_URL','WP_USERNAME','WP_APP_PASSWORD'):
+              if not os.environ.get(key,'').strip(): raise SystemExit(f'Missing {key}')
+
+          paths=[]
+          for cmd in (["git","diff","--name-only","HEAD^","HEAD","--","media-cleanup-preflight-ops/*.json"],["git","show","--pretty=","--name-only","HEAD","--","media-cleanup-preflight-ops/*.json"]):
+              rows=[x.strip() for x in subprocess.check_output(cmd,text=True).splitlines() if x.strip().startswith('media-cleanup-preflight-ops/') and x.strip().endswith('.json')]
+              if rows: paths=sorted(set(rows)); break
+          if len(paths)!=1: raise SystemExit(f'Expected exactly one preflight request, found {len(paths)}')
+          request=json.loads(pathlib.Path(paths[0]).read_text(encoding='utf-8'))
+          if request.get('action')!='media.cleanup_live_parent_preflight': raise SystemExit('Unsupported action')
+          plan_path=ROOT/'media-cleanup-plan'/'plan.json'
+          expected_sha=str(request.get('plan_blob_sha') or '')
+          actual_sha=subprocess.check_output(['git','hash-object',str(plan_path)],text=True).strip()
+          if actual_sha!=expected_sha: raise SystemExit(f'Plan SHA mismatch expected={expected_sha} actual={actual_sha}')
+          plan=json.loads(plan_path.read_text(encoding='utf-8'))
+          site=json.loads((ROOT/'sitewide-media-results'/'inventory.json').read_text(encoding='utf-8'))
+          content=json.loads((ROOT/'content-media-results'/'inventory.json').read_text(encoding='utf-8'))
+          ss=site.get('summary') or {}; cs=content.get('summary') or {}; cc=cs.get('coverage') or {}
+          if plan.get('action')!='media.cleanup_plan' or plan.get('read_only') is not True: raise SystemExit('Plan identity failed')
+          if str(plan.get('executed_at_utc') or '')!=str(request.get('plan_executed_at_utc') or ''): raise SystemExit('Plan time mismatch')
+          if str(ss.get('executed_at_utc') or '')!=str(plan.get('sitewide_inventory_executed_at_utc') or ''): raise SystemExit('Sitewide inventory changed')
+          if str(cs.get('executed_at_utc') or '')!=str(plan.get('content_inventory_executed_at_utc') or ''): raise SystemExit('Content inventory changed')
+          if ss.get('crawl_complete') is not True or int(ss.get('rendered_pages_failed') or 0)!=0 or int(ss.get('rendered_pages_read') or 0)!=int(ss.get('public_urls_discovered') or 0): raise SystemExit('Sitewide coverage guard failed')
+          if int(ss.get('sitemap_failures') or 0)!=0 or ss.get('product_error') or ss.get('category_error') or cc.get('post_errors') or cc.get('product_error') or cc.get('category_error'): raise SystemExit('Inventory error guard failed')
+
+          base=os.environ['WP_BASE_URL'].rstrip('/'); user=os.environ['WP_USERNAME']; pw=os.environ['WP_APP_PASSWORD']
+          auth=base64.b64encode(f'{user}:{pw}'.encode()).decode(); endpoint=base+'/wp-json/keshavarz20-ops/v2/execute'
+          def inspect(aid):
+              data=json.dumps({'mode':'inspect','resource':'attachment','id':int(aid),'changes':{}},separators=(',',':')).encode()
+              req=urllib.request.Request(endpoint,data=data,method='POST',headers={'Authorization':'Basic '+auth,'Content-Type':'application/json; charset=utf-8','Accept':'application/json'})
+              try:
+                  with urllib.request.urlopen(req,timeout=90) as r:
+                      txt=r.read().decode('utf-8','replace')
+                      try: obj=json.loads(txt)
+                      except Exception: obj={'raw':txt[:500]}
+                      return int(r.status),obj
+              except urllib.error.HTTPError as e:
+                  txt=e.read().decode('utf-8','replace')
+                  try: obj=json.loads(txt)
+                  except Exception: obj={'raw':txt[:500]}
+                  return int(e.code),obj
+              except Exception as e: return 0,{'code':'transport_error','message':str(e)}
+
+          eligible=[]; blocked=[]
+          rows=plan.get('eligible') or []
+          if len(rows)!=int(plan.get('eligible_zero_reference_count') or 0): raise SystemExit('Plan eligible count mismatch')
+          for row in sorted(rows,key=lambda x:int(x.get('attachment_id') or 0)):
+              aid=int(row.get('attachment_id') or 0); fmt=str(row.get('format') or '').lower(); purl=str(row.get('url') or '')
+              if aid<=0 or fmt not in ('jpeg','png') or int(row.get('sitewide_reference_count') or 0)!=0 or int(row.get('content_reference_count') or 0)!=0:
+                  raise SystemExit(f'Frozen eligible row invariant failed for {aid}')
+              code,body=inspect(aid); before=body.get('before') if isinstance(body,dict) else None
+              if not (200<=code<300 and isinstance(body,dict) and body.get('ok') is True and isinstance(before,dict)):
+                  blocked.append({'id':aid,'reason':'live_inspect_failed','http':code,'code':body.get('code') if isinstance(body,dict) else ''}); continue
+              parent=int(before.get('parent') or 0); mime=str(before.get('mime_type') or '').lower(); url=str(before.get('url') or '')
+              ok=(parent==0 and mime in ('image/jpeg','image/png') and (not purl or url==purl))
+              if ok: eligible.append(aid)
+              else: blocked.append({'id':aid,'reason':'live_guard','parent':parent,'mime_type':mime,'url_match':url==purl})
+
+          batch_size=25
+          batches=[eligible[i:i+batch_size] for i in range(0,len(eligible),batch_size)]
+          manifest={
+              'action':'media.cleanup_live_parent0_manifest','generated_at_utc':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),
+              'source_plan_blob_sha':actual_sha,'source_plan_executed_at_utc':plan.get('executed_at_utc'),
+              'sitewide_inventory_executed_at_utc':ss.get('executed_at_utc'),'content_inventory_executed_at_utc':cs.get('executed_at_utc'),
+              'plan_eligible_count':len(rows),'zero_ref_live_parent0_count':len(eligible),'blocked_live_count':len(blocked),
+              'zero_ref_ids':eligible,'batches':batches,'blocked':blocked,
+              'note':'Read-only preflight. zero_ref_ids are a subset of the frozen two-inventory zero-reference plan and additionally passed fresh Bridge parent=0, MIME, and URL checks. No media was deleted.'
+          }
+          out=ROOT/'ops'/'media'/'unused-media-zero-ref-live-parent0-20260917.json'; out.parent.mkdir(parents=True,exist_ok=True); out.write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps({k:manifest[k] for k in ('plan_eligible_count','zero_ref_live_parent0_count','blocked_live_count','batches')},ensure_ascii=False))
+
+      - name: Commit sanitized preflight manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f ops/media/unused-media-zero-ref-live-parent0-20260917.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "media: record live-parent zero-ref cleanup manifest"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
