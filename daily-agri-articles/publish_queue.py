@@ -5,7 +5,6 @@ import json
 import os
 import re
 import sys
-import textwrap
 import xmlrpc.client
 from datetime import datetime
 from pathlib import Path
@@ -120,7 +119,11 @@ def validate_payload(p: dict[str, Any]) -> None:
     if len(str(p["meta_description"]).strip()) < 80 or len(str(p["meta_description"]).strip()) > 185:
         raise QueuePublishError("meta_description must be 80 to 185 characters")
 
-    internal_links = re.findall(r'href=["\'](https?://(?:www\.)?keshavarz20\.com/[^"\']+)["\']', str(p["content_html"]), flags=re.I)
+    internal_links = re.findall(
+        r"href=['\"](https?://(?:www\.)?keshavarz20\.com/[^'\"]+)['\"]",
+        str(p["content_html"]),
+        flags=re.I,
+    )
     if len(set(internal_links)) < 2:
         raise QueuePublishError("Article must contain at least two useful internal Keshavarz20 links")
 
@@ -259,9 +262,13 @@ def make_editorial_cover(source: dict[str, Any], p: dict[str, Any]) -> Path:
         desired = 16 / 9
         current = w / max(h, 1)
         if current > desired:
-            nw = int(h * desired); left = max(0, (w - nw) // 2); im = im.crop((left, 0, left + nw, h))
+            nw = int(h * desired)
+            left = max(0, (w - nw) // 2)
+            im = im.crop((left, 0, left + nw, h))
         else:
-            nh = int(w / desired); top = max(0, (h - nh) // 2); im = im.crop((0, top, w, top + nh))
+            nh = int(w / desired)
+            top = max(0, (h - nh) // 2)
+            im = im.crop((0, top, w, top + nh))
         im = im.resize((1280, 720), Image.Resampling.LANCZOS)
         im = ImageEnhance.Contrast(im).enhance(1.07)
         im = ImageEnhance.Color(im).enhance(1.04)
@@ -277,7 +284,8 @@ def make_editorial_cover(source: dict[str, Any], p: dict[str, Any]) -> Path:
 
         title = str(p.get("image_title") or p["title"]).strip()
         words = title.split()
-        lines, line = [], ""
+        lines: list[str] = []
+        line = ""
         for word in words:
             test = (line + " " + word).strip()
             bbox = od.textbbox((0, 0), rtl(test), font=title_font)
