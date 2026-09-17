@@ -117,7 +117,10 @@ def parse_iso(value):
     if not text:
         return None
     try:
-        return datetime.fromisoformat(text.replace('Z', '+00:00'))
+        dt = datetime.fromisoformat(text.replace('Z', '+00:00'))
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone.utc)
     except Exception:
         return None
 
@@ -219,7 +222,6 @@ def is_recent(value):
     return bool(dt and dt >= baseline)
 
 
-# Current REST-visible post types. This is targeted text/ID matching only; no media inventory is rebuilt.
 code, types, _ = api_get('/wp-json/wp/v2/types', {'context': 'view'})
 if not (200 <= code < 300) or not isinstance(types, dict):
     raise SystemExit(f'post type discovery failed http={code}')
@@ -262,7 +264,6 @@ for type_name, info in sorted(types.items()):
     if error:
         raise SystemExit(f'post type delta scan failed {type_name}: {error}')
 
-# Current Woo product image arrays + text. Full product rows are cheap and avoid modified-filter assumptions.
 for page in range(1, 51):
     code, rows, headers = api_get('/wp-json/wc/v3/products', {
         'per_page': 100, 'page': page, 'status': 'any', 'orderby': 'id', 'order': 'asc',
@@ -291,7 +292,6 @@ for page in range(1, 51):
     if (total_pages and page >= total_pages) or len(rows) < 100:
         break
 
-# Current Woo categories (image + description), always scanned because terms lack reliable modified timestamps.
 for page in range(1, 21):
     code, rows, headers = api_get('/wp-json/wc/v3/products/categories', {
         'per_page': 100, 'page': page, 'orderby': 'id', 'order': 'asc',
@@ -317,7 +317,6 @@ for page in range(1, 21):
     if (total_pages and page >= total_pages) or len(rows) < 100:
         break
 
-# Current font faces and global styles, to catch non-post global references without crawling every page.
 code, families, _ = api_get('/wp-json/wp/v2/font-families', {'per_page': 100, 'context': 'edit'})
 if code in (401, 403):
     code, families, _ = api_get('/wp-json/wp/v2/font-families', {'per_page': 100, 'context': 'view'})
@@ -354,7 +353,7 @@ if 200 <= code < 300 and isinstance(themes, list):
 elif code not in (404,):
     raise SystemExit(f'active theme delta scan failed http={code}')
 
-# Sitemap delta: only public URLs whose lastmod is at/after the accepted complete sitewide snapshot.
+
 def parse_sitemap(url):
     status, raw, _ = request_bytes(url)
     if not (200 <= status < 300) or not raw:
