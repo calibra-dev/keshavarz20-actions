@@ -140,6 +140,10 @@ jobs:
                   if not manifest_file.is_file():
                       raise SystemExit("zero-ref manifest not found")
                   manifest = json.loads(manifest_file.read_text(encoding="utf-8"))
+                  if manifest.get("deletion_authorized") is False:
+                      raise SystemExit("delete_batch refuses a manifest with deletion_authorized=false")
+                  if str(manifest.get("action") or "") != "media.cleanup_live_parent0_manifest":
+                      raise SystemExit("delete_batch requires action=media.cleanup_live_parent0_manifest")
                   approved = {int(x) for x in manifest.get("zero_ref_ids", [])}
                   ids = []
                   for raw in request.get("ids", []):
