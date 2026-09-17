@@ -1,9 +1,9 @@
-name: Keshavarz20 Daily Agriculture News Draft (API mode)
+name: Keshavarz20 Daily Agriculture News Draft (API fallback)
 
 on:
-  # GitHub cron is UTC. Iran is UTC+03:30, so 04:30 UTC = 08:00 Tehran.
-  schedule:
-    - cron: '30 4 * * *'
+  # The primary automatic 08:00 Tehran path is the connected ChatGPT deep-research
+  # task -> daily-agri-news/queue/*.json -> queue publisher. Keep API mode manual
+  # only so two independent schedulers cannot create duplicate daily drafts.
   workflow_dispatch:
     inputs:
       lookback_hours:
@@ -25,9 +25,7 @@ permissions:
   contents: read
 
 concurrency:
-  # Serialize scheduled and manual runs so two executions cannot race into
-  # duplicate WordPress drafts around the 08:00 Tehran window.
-  group: k20-daily-agri-news-api
+  group: k20-daily-agri-news-api-fallback
   cancel-in-progress: false
 
 jobs:
@@ -58,9 +56,7 @@ jobs:
       OPENAI_TEXT_MODEL: ${{ vars.OPENAI_TEXT_MODEL || 'gpt-5.6' }}
       OPENAI_IMAGE_MODEL: ${{ vars.OPENAI_IMAGE_MODEL || 'gpt-image-2' }}
       K20_LOOKBACK_HOURS: ${{ inputs.lookback_hours || '24' }}
-      # Scheduled runs must create the review draft. Manual runs keep their
-      # explicit dry_run input, whose default remains true for safety.
-      K20_DRY_RUN: ${{ github.event_name == 'schedule' && 'false' || inputs.dry_run }}
+      K20_DRY_RUN: ${{ inputs.dry_run }}
       K20_NEWS_CATEGORY_ID: '839'
       K20_NEWS_CATEGORY_NAME: 'کشاورزی'
 
@@ -105,6 +101,6 @@ jobs:
           if [ -f daily-agri-news/output/summary.md ]; then
             cat daily-agri-news/output/summary.md >> "$GITHUB_STEP_SUMMARY"
           else
-            echo '## Keshavarz20 Daily Agriculture News API mode' >> "$GITHUB_STEP_SUMMARY"
+            echo '## Keshavarz20 Daily Agriculture News API fallback' >> "$GITHUB_STEP_SUMMARY"
             echo 'No summary file was produced.' >> "$GITHUB_STEP_SUMMARY"
           fi
