@@ -1,0 +1,37 @@
+name: K20 Phase 3 Product Cache Probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'phase3-cache-ops/*.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: python -m pip install requests
+      - run: python scripts/k20_phase3_product_cache_probe.py
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase3-results/product-cache-probe.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase3: record product cache probe"
+          for attempt in 1 2 3 4; do
+            git pull --rebase origin main
+            if git push origin main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
