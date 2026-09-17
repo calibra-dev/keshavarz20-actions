@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: k20-media-predelete-verify
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   verify:
