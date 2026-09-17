@@ -34,22 +34,33 @@ def clean(x):
 
 now=datetime.now(timezone.utc)
 assets=[]
-for typ,path in [("post","wp-json/wp/v2/posts"),("page","wp-json/wp/v2/pages")]:
-    for o in paged(path,{"status":"publish","context":"view","_fields":"id,slug,status,link,modified_gmt,title,content"}):
-        mod=o.get("modified_gmt")
-        age=None
-        if mod:
-            try: age=(now-datetime.fromisoformat(mod.replace("Z","+00:00"))).days
-            except: pass
-        content=((o.get("content") or {}).get("rendered") or "")
-        plain=clean(content)
-        state=[]; triggers=[]
-        if age is not None and age>=180: state.append("قدیمی"); triggers.append("age>=180d")
-        elif age is not None and age>=90: state.append("نیازمند بررسی"); triggers.append("age>=90d")
-        else: state.append("تازه")
-        if len(plain.split())<250: triggers.append("thin-content-check")
-        if "href=" not in content.lower(): triggers.append("internal-link-review")
-        assets.append({"id":o.get("id"),"type":typ,"title":clean((o.get("title") or {}).get("rendered") or ""),"url":o.get("link"),"modified_gmt":mod,"age_days":age,"state":state,"triggers":triggers})
+def add_content_asset(o, typ):
+    mod=o.get("modified_gmt")
+    age=None
+    if mod:
+        try: age=(now-datetime.fromisoformat(mod.replace("Z","+00:00"))).days
+        except: pass
+    content=((o.get("content") or {}).get("rendered") or "")
+    plain=clean(content)
+    state=[]; triggers=[]
+    if age is not None and age>=180: state.append("قدیمی"); triggers.append("age>=180d")
+    elif age is not None and age>=90: state.append("نیازمند بررسی"); triggers.append("age>=90d")
+    else: state.append("تازه")
+    if len(plain.split())<250: triggers.append("thin-content-check")
+    if "href=" not in content.lower(): triggers.append("internal-link-review")
+    assets.append({"id":o.get("id"),"type":typ,"title":clean((o.get("title") or {}).get("rendered") or ""),"url":o.get("link"),"modified_gmt":mod,"age_days":age,"state":state,"triggers":triggers})
+
+for o in paged("wp-json/wp/v2/posts",{"status":"publish","context":"view","_fields":"id,slug,status,link,modified_gmt,title,content"}):
+    add_content_asset(o,"post")
+
+# Avoid the contaminated /wp/v2/pages collection; enumerate IDs via core search and fetch single items.
+for ref in paged("wp-json/wp/v2/search",{"type":"post","subtype":"page","_fields":"id,title,url,subtype"}):
+    try:
+        r=S.get(urljoin(BASE,f"wp-json/wp/v2/pages/{int(ref['id'])}"),params={"context":"view","_fields":"id,slug,status,link,modified_gmt,title,content"},timeout=120,headers={"Cache-Control":"no-cache"})
+        r.raise_for_status(); o=r.json()
+        add_content_asset(o,"page")
+    except Exception:
+        continue
 
 products=paged("wp-json/wc/v3/products",{"status":"publish","_fields":"id,name,permalink,stock_status,date_modified_gmt,images,description,short_description"})
 for p in products:
