@@ -1,0 +1,31 @@
+{
+  "version": "phase3-product-data-governance-v1",
+  "scope": "Top30 commercial-priority irrigation/fertigation products",
+  "source_precedence": [
+    "WooCommerce explicit product fields and attributes",
+    "manufacturer/supplier datasheet or catalog with identifiable product match",
+    "real product label/packaging/photo with readable identifying data",
+    "existing product title/description as candidate-only evidence",
+    "inference from similar products is forbidden"
+  ],
+  "identifier_policy": {
+    "sku": "Existing non-empty unique Woo SKU is accepted as stable shop identifier.",
+    "gtin": "Never generate or infer. Requires real manufacturer/supplier/packaging evidence.",
+    "mpn": "Never generate or infer. Requires real manufacturer/supplier/packaging evidence.",
+    "brand": "Use explicit Woo brand/attribute or verified supplier/manufacturer evidence only."
+  },
+  "compatibility_policy": {
+    "rule": "Nominal size alone never proves compatibility.",
+    "verified_fields": [
+      "nominal_size",
+      "connection_type",
+      "material_or_standard_if_relevant",
+      "pressure_class_or_working_limit_if_relevant"
+    ],
+    "edge_rule": "A compatibility edge is verified only when explicit evidence supports the required interface fields.",
+    "title_size_tokens": "candidate-only; never published as compatibility proof"
+  },
+  "media_policy": "AI imagery may be illustrative but cannot satisfy the real-product evidence/image requirement.",
+  "decision_template_policy": "Decision links and cautions may be added without inventing specs. Missing technical data must remain visibly unknown.",
+  "acceptance": "Internal Phase 3 implementation can pass while supplier/customer evidence gates remain blocked; external evidence must never be fabricated to force a green score."
+}
