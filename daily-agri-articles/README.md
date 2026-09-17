@@ -1,37 +1,39 @@
 # Keshavarz20 Daily Agriculture Article Engine
 
-This is the **separate long-form “نوشته‌ها” engine** for keshavarz20.com. It intentionally does not share the news queue, news post type, news category 839, or news tags.
+This is the separate long-form «نوشته‌ها» engine for keshavarz20.com. It does not share the news queue, news post type or news category.
 
 ## Architecture
 
-`ChatGPT Scheduled Task (08:20 Asia/Tehran)` → `daily-agri-articles/queue/YYYY-MM-DD.json` → `k20-article-queue-publisher.yml` → `publish_queue.py` → WordPress **post draft**.
+`ChatGPT Scheduled Task (08:20 Asia/Tehran)` → `daily-agri-articles/queue/YYYY-MM-DD.json` → `k20-article-queue-publisher.yml` → `publish_queue_v2.py` → WordPress **post draft**.
 
-GitHub Actions is only the deterministic publisher/validator. Research, topic selection, fact checking, editorial reasoning, Persian writing and SEO planning are performed by the connected ChatGPT Scheduled Task, so this path does **not** require `OPENAI_API_KEY` in GitHub.
+The scheduled research/writing task must read `automation-policy/seo-god-2026.json` and `SCHEDULED_TASK_PROMPT.md`. GitHub Actions is the deterministic validator/publisher; it does not need an OpenAI API key for this queue path.
 
 ## Editorial contract
 
-Each daily run must:
+Each run must:
 
-1. Inspect recent Keshavarz20 normal posts and their visual/editorial patterns before choosing a topic.
-2. Deep-search the current agriculture landscape, prioritizing Iran and adding relevant global evidence where useful.
-3. Rank candidates for freshness/trend, practical importance, search-intent potential, seasonality, Iranian farmer relevance, authority of evidence and novelty versus recent Keshavarz20 posts.
-4. Reject thin, duplicated, sensational or weakly-sourced ideas. Missing a day is preferable to a weak draft.
-5. Fact-check material claims against at least three independent credible sources.
-6. Write original, natural Persian with varied sentence structure; never translate or stitch source text.
-7. Produce a compelling non-clickbait title, strong lead, H2/H3 structure, practical examples, decision guidance and internal links to relevant Keshavarz20 pages/posts.
-8. Include a clear `جمع‌بندی` section.
-9. Include exactly **15 substantive FAQs with answers**, covering buying/usage/cost/risk/maintenance/science/field practice as relevant to the topic.
-10. End with a clearly separated `نظر کارشناسی کشاورز بیست` section. Opinion must not be presented as sourced fact.
-11. Fill SEO title, meta description, focus keyphrase, related keyphrases, English ASCII slug, excerpt, existing category and 4–10 useful tags.
-12. Supply a concise English `image_search_query`, Persian `image_title` and accurate Persian `alt_text`.
-13. Create **draft only**. Never auto-publish.
+1. inspect recent Keshavarz20 normal posts before topic selection;
+2. deep-search current and seasonal farmer decision needs;
+3. optimize for real farmer value, not publishing frequency;
+4. prefer primary/official/university/research evidence;
+5. verify material claims with at least three direct source URLs when available and at least two independent domains;
+6. preserve uncertainty and source disagreements;
+7. reject thin, duplicate, sensational, generic AI or weakly sourced ideas;
+8. write original, natural Persian and useful decision guidance;
+9. connect naturally to water, compatibility, total cost, installation, maintenance or practical risk when relevant;
+10. include `جمع‌بندی` and clearly separated `نظر کارشناسی کشاورز بیست`;
+11. use **adaptive FAQ**: none when unnecessary, otherwise 3–8 substantive visible Q&As;
+12. create draft only, never auto-publish.
+
+Missing a day is better than a weak article.
 
 ## Queue payload
 
-Required fields:
+Core fields:
 
 ```json
 {
+  "generated_at": "2026-09-18T08:20:00+03:30",
   "title": "...",
   "slug": "english-ascii-slug",
   "excerpt": "...",
@@ -43,48 +45,45 @@ Required fields:
   "category_name": "an existing WordPress post category",
   "category_id": 0,
   "tags": ["...", "...", "...", "..."],
-  "source_urls": ["https://...", "https://...", "https://..."],
-  "source_names": ["...", "...", "..."],
-  "research_summary": "Why this topic won today, what was verified, and what uncertainty remains.",
-  "image_search_query": "agriculture topic photorealistic field irrigation",
-  "image_title": "عنوان کوتاه و جذاب برای کاور",
+  "source_urls": ["https://source-one.example/...", "https://source-two.example/...", "https://source-three.example/..."],
+  "source_names": ["Source One", "Source Two", "Source Three"],
+  "research_summary": "Why the topic passed the evidence and farmer-decision gate, including uncertainty.",
+  "image_search_query": "precise factual agriculture editorial photo query",
+  "image_title": "عنوان کوتاه کاور",
   "alt_text": "توضیح دقیق و طبیعی تصویر",
-  "faq_items": [
-    {"question": "سؤال ۱؟", "answer": "پاسخ..."}
-  ],
-  "generated_at": "2026-09-18T08:20:00+03:30"
+  "faq_items": []
 }
 ```
 
-`faq_items` must contain exactly 15 objects. `category_name` must already exist in WordPress; the publisher never creates a new category automatically.
+`faq_items` may be empty. If used, it must contain **3–8** complete Q&A objects and each question must be visibly present in `content_html`. The category must already exist in WordPress; the publisher never creates a new category automatically.
 
 ## Publisher safeguards
 
-- normal WordPress `post` only (the homepage “نوشته‌ها” stream)
-- draft only
-- recent title/slug duplicate and near-duplicate protection
+- normal WordPress `post` only
+- `draft` only
+- duplicate and near-duplicate protection
 - minimum long-form content threshold
-- exactly 15 FAQs required in the payload
-- minimum three research sources
-- Yoast title, description, focus keyphrase and primary category written as custom fields
-- existing category validation before write
-- 4–10 tags
-- free/open-license Wikimedia source image only
-- deterministic branded 1280×720 WebP cover generation
+- at least three direct research URLs and at least two independent domains
+- source_names/source_urls alignment
+- adaptive FAQ instead of quota-driven FAQ
+- at least two useful internal Keshavarz20 links
+- Yoast title/description/focus keyphrase/primary category fields
+- existing category validation
+- 4–10 useful tags
+- open-license Wikimedia source image only
+- branded 1280×720 WebP cover generation
 - image title + ALT metadata
-- post-write verification of draft status, post type, featured image, category and required SEO/audit fields
-- sanitized GitHub artifact output retained for 14 days
+- post-write verification of draft status/type/featured image/category/SEO fields
+- sanitized artifact output only
 
 ## Required GitHub secrets
-
-The publisher reuses the WordPress secrets already used by the news publisher:
 
 - `WP_BASE_URL`
 - `WP_USERNAME`
 - `WP_APP_PASSWORD`
 
-No OpenAI API secret is required by this queue publisher.
+No OpenAI API secret is required by the queue publisher.
 
-## Manual test
+## Safety
 
-Use `Actions -> Keshavarz20 ChatGPT Pro Article Queue Publisher -> Run workflow` and provide a queue file path. The publisher must stop rather than create an incomplete draft when any quality gate fails.
+Never add secrets to queue files. Never invent product specifications, prices, stock, field-test results, authors, customer experiences or citations. Never use FAQ count, keyword repetition or `llms.txt` as a ranking shortcut.
