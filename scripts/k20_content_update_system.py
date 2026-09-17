@@ -11,13 +11,21 @@ S=requests.Session(); S.auth=AUTH; S.headers.update({"Accept":"application/json"
 def paged(path, params=None, cap=50):
     params=dict(params or {}); out=[]
     for page in range(1,cap+1):
-        p=dict(params); p.update({"per_page":100,"page":page})
-        r=S.get(urljoin(BASE,path.lstrip("/")),params=p,timeout=120)
-        if r.status_code==400 and page>1: break
-        r.raise_for_status(); rows=r.json()
-        if not rows: break
+        p=dict(params); p.update({"per_page":50,"page":page})
+        rows=None
+        for attempt in range(3):
+            r=S.get(urljoin(BASE,path.lstrip("/")),params=p,timeout=120,headers={"Cache-Control":"no-cache"})
+            if r.status_code==400 and page>1: return out
+            r.raise_for_status()
+            try:
+                rows=r.json()
+                break
+            except Exception:
+                if attempt==2:
+                    raise RuntimeError(f"Non-JSON response for {path} page={page} status={r.status_code} content_type={r.headers.get('content-type','')} prefix={r.text[:80]!r}")
+        if not isinstance(rows,list) or not rows: break
         out.extend(rows)
-        if len(rows)<100: break
+        if len(rows)<50: break
     return out
 
 def clean(x):
@@ -27,7 +35,7 @@ def clean(x):
 now=datetime.now(timezone.utc)
 assets=[]
 for typ,path in [("post","wp-json/wp/v2/posts"),("page","wp-json/wp/v2/pages")]:
-    for o in paged(path,{"status":"publish","context":"edit","_fields":"id,slug,status,link,modified_gmt,title,content"}):
+    for o in paged(path,{"status":"publish","context":"view","_fields":"id,slug,status,link,modified_gmt,title,content"}):
         mod=o.get("modified_gmt")
         age=None
         if mod:
