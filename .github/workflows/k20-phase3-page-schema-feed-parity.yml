@@ -1,0 +1,43 @@
+name: K20 Phase 3 Page Schema Feed Parity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'phase3-parity-ops/*.json'
+  workflow_dispatch:
+  schedule:
+    - cron: '30 1 * * 1'
+
+permissions:
+  contents: write
+
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: python -m pip install requests
+      - run: python scripts/k20_phase3_page_schema_feed_parity.py
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase3-results/top30-product-feed.json phase3-results/page-schema-feed-parity.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase3: record Top30 page schema feed parity"
+          for attempt in 1 2 3 4; do
+            git pull --rebase origin main
+            if git push origin main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
