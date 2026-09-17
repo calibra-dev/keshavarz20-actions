@@ -92,6 +92,12 @@ REQ={
 }
 
 snap=json.load(open("phase3/gsc-irrigation-product-candidates.json",encoding="utf-8"))
+quality_map={}
+try:
+    q=json.load(open("phase2-results/product-quality-score.json",encoding="utf-8"))
+    quality_map={int(x.get("id")):x for x in q.get("products",[]) if x.get("id")}
+except Exception:
+    quality_map={}
 products=paged("wp-json/wc/v3/products",{"status":"publish"})
 by_url={norm_url(p.get("permalink")):p for p in products}
 
@@ -204,7 +210,10 @@ for rank,x in enumerate(selected,1):
       "compatibility_missing_fields":missing,
       "decision_links":links,"decision_links_present":has_decision_link,
       "content":{"short_words":len(splain.split()),"description_words":len(plain.split()),"image_count":len(imgs),"all_image_alt_present":alt_ok},
-      "pim_completeness_score":score,"gaps":gaps
+      "pim_completeness_score":score,
+      "product_quality_score":(quality_map.get(int(p["id"])) or {}).get("score"),
+      "product_quality_gaps":(quality_map.get(int(p["id"])) or {}).get("gaps",[]),
+      "gaps":gaps
     })
 
 candidate_edges=[]
@@ -225,7 +234,9 @@ summary={
  "missing_mpn":sum(1 for x in pim if "missing_mpn" in x["gaps"]),
  "missing_brand":sum(1 for x in pim if "missing_brand" in x["gaps"]),
  "compatibility_incomplete":sum(1 for x in pim if x["compatibility_missing_fields"]),
- "decision_link_missing":sum(1 for x in pim if "decision_link_missing" in x["gaps"])
+ "decision_link_missing":sum(1 for x in pim if "decision_link_missing" in x["gaps"]),
+ "average_product_quality_score":round(sum(x["product_quality_score"] for x in pim if isinstance(x.get("product_quality_score"),(int,float))) / max(1,sum(1 for x in pim if isinstance(x.get("product_quality_score"),(int,float)))),2),
+ "product_quality_below_85":sum(1 for x in pim if isinstance(x.get("product_quality_score"),(int,float)) and x["product_quality_score"]<85)
 }
 
 owner={
@@ -241,7 +252,7 @@ for x in pim:
                     "write_policy":"Never invent GTIN/MPN/brand/technical specs. SKU may use proposed K20-{id} only after uniqueness check."})
 
 os.makedirs("phase3-results",exist_ok=True)
-json.dump({"ok":True,"mode":"read-only","version":"phase3-top30-pim-v1","generated_at_utc":__import__("datetime").datetime.utcnow().isoformat()+"Z",
+json.dump({"ok":True,"mode":"read-only","version":"phase3-top30-pim-v2","generated_at_utc":__import__("datetime").datetime.utcnow().isoformat()+"Z",
            "selection_rule":"GSC irrigation/fertigation candidate cohort; published Woo products; organic demand dominates priority; in-stock bonus; out-of-stock penalty. This is commercial-priority, not a profit/margin claim.",
            "summary":summary,"products":pim,"unmapped_candidates":unmapped},
           open("phase3-results/top30-pim.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
