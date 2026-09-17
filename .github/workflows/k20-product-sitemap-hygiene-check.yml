@@ -1,0 +1,53 @@
+name: K20 Product Sitemap Hygiene Check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/sitemap-hygiene/*.json'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Fetch live product sitemap and check stale trashed slugs
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/k20-sitemap-hygiene"
+          mkdir -p "$out"
+          body="$out/product-sitemap.xml"
+          headers="$out/headers.txt"
+          code=$(curl -L -sS --compressed --max-time 90 -A 'K20-Sitemap-Hygiene/2026-09-17' -D "$headers" -o "$body" -w '%{http_code}' 'https://keshavarz20.com/product-sitemap.xml')
+          content_type=$(awk 'BEGIN{IGNORECASE=1} /^content-type:/ {sub(/\r$/,""); v=$0} END{sub(/^[^:]+:[[:space:]]*/,"",v); print v}' "$headers")
+          bytes=$(wc -c < "$body" | tr -d ' ')
+          loc_count=$(grep -o '<loc>' "$body" | wc -l | tr -d ' ' || true)
+          trashed_count=$(grep -o '__trashed' "$body" | wc -l | tr -d ' ' || true)
+          sample=$(grep -o 'https://[^<]*__trashed[^<]*' "$body" | head -n 20 || true)
+          jq -n \
+            --arg checked_utc "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --arg url 'https://keshavarz20.com/product-sitemap.xml' \
+            --arg http_code "$code" \
+            --arg content_type "$content_type" \
+            --argjson bytes "$bytes" \
+            --argjson loc_count "$loc_count" \
+            --argjson trashed_count "$trashed_count" \
+            --arg sample "$sample" \
+            '{checked_utc:$checked_utc,url:$url,http_code:$http_code,content_type:$content_type,bytes:$bytes,loc_count:$loc_count,trashed_count:$trashed_count,trashed_sample:$sample}' \
+            | tee "$out/result.json"
+          test "$code" = '200'
+          test "$trashed_count" -eq 0
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-product-sitemap-hygiene
+          path: ${{ runner.temp }}/k20-sitemap-hygiene/
+          retention-days: 14
