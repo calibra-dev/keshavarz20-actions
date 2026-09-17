@@ -1,0 +1,98 @@
+name: K20 Published Trashed Slug Audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/published-trashed-slug/*.json'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Audit published product slugs ending in __trashed
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if ([string]::IsNullOrWhiteSpace($env:WP_BASE_URL) -or [string]::IsNullOrWhiteSpace($env:WP_USERNAME) -or [string]::IsNullOrWhiteSpace($env:WP_APP_PASSWORD)) {
+            throw 'WordPress repository secrets are missing.'
+          }
+
+          $base = $env:WP_BASE_URL.TrimEnd('/')
+          $authText = "$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"
+          $authValue = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($authText))
+          $headers = @{ Authorization = "Basic $authValue"; Accept = 'application/json' }
+
+          function Get-Products([string]$Status) {
+            $items = New-Object System.Collections.Generic.List[object]
+            for ($page = 1; $page -le 100; $page++) {
+              $uri = "$base/wp-json/wc/v3/products?status=$Status&per_page=100&page=$page&_fields=id,name,slug,status,permalink,date_modified_gmt"
+              try {
+                $batch = @(Invoke-RestMethod -Method Get -Uri $uri -Headers $headers -TimeoutSec 120)
+              } catch {
+                if ($_.Exception.Response -and [int]$_.Exception.Response.StatusCode -eq 400) { break }
+                throw
+              }
+              if ($batch.Count -eq 0) { break }
+              foreach ($p in $batch) { $items.Add($p) }
+              if ($batch.Count -lt 100) { break }
+            }
+            return @($items)
+          }
+
+          $published = @(Get-Products 'publish')
+          $all = @(Get-Products 'any')
+          $bad = @($published | Where-Object { ([string]$_.slug).EndsWith('__trashed') })
+          $rows = New-Object System.Collections.Generic.List[object]
+
+          foreach ($p in $bad) {
+            $dirty = [string]$p.slug
+            $clean = $dirty.Substring(0, $dirty.Length - '__trashed'.Length)
+            $collisions = @($all | Where-Object { $_.id -ne $p.id -and [string]$_.slug -eq $clean })
+            $rows.Add([pscustomobject][ordered]@{
+              id = [int]$p.id
+              name = [string]$p.name
+              status = [string]$p.status
+              dirty_slug = $dirty
+              clean_slug = $clean
+              collision_count = $collisions.Count
+              collisions = @($collisions | ForEach-Object { [pscustomobject]@{ id=[int]$_.id; status=[string]$_.status; slug=[string]$_.slug; name=[string]$_.name } })
+              permalink = [string]$p.permalink
+              modified_gmt = [string]$p.date_modified_gmt
+            })
+          }
+
+          $result = [ordered]@{
+            generated_utc = [DateTime]::UtcNow.ToString('o')
+            published_products_scanned = $published.Count
+            all_products_scanned = $all.Count
+            published_trashed_slug_count = $rows.Count
+            collision_free_count = @($rows | Where-Object { $_.collision_count -eq 0 }).Count
+            collision_count = @($rows | Where-Object { $_.collision_count -gt 0 }).Count
+            items = @($rows)
+          }
+
+          $json = $result | ConvertTo-Json -Depth 10
+          Write-Host 'K20_TRASHED_SLUG_AUDIT_BEGIN'
+          Write-Host $json
+          Write-Host 'K20_TRASHED_SLUG_AUDIT_END'
+          $json | Set-Content -LiteralPath "$env:RUNNER_TEMP/k20-published-trashed-slug-audit.json" -Encoding UTF8
+
+      - name: Upload evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-published-trashed-slug-audit
+          path: ${{ runner.temp }}/k20-published-trashed-slug-audit.json
+          retention-days: 14
