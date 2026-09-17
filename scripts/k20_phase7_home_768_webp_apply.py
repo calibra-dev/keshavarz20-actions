@@ -142,18 +142,22 @@ try:
     if not (200<=rc<300 and rr==new_raw): raise RuntimeError("raw readback mismatch")
     for item in result["items"]:
         if rr.count(item["new_url"])!=1: raise RuntimeError(f"{item['stem']} new URL raw count={rr.count(item['new_url'])}")
+    purge_code,purge_resp=api("POST","/wp-json/wpvibe/v1/cli/run",{"command":f"litespeed-purge url {link}","confirm_write":True})
+    result["cache_purge"]={"http":purge_code,"ok":bool(200<=purge_code<300),"stdout":str(purge_resp.get("stdout") or "")[:300] if isinstance(purge_resp,dict) else ""}
+    if not 200<=purge_code<300: raise RuntimeError(f"LiteSpeed URL purge failed http={purge_code}")
+    time.sleep(2)
     public_ok=False; last={}
     for attempt in range(1,5):
-        hc,html,headers=public_get(link+("?k20_phase7_home="+str(int(time.time()))+"-"+str(attempt)))
+        hc,html,headers=public_get(link)
         checks={}
         for item in result["items"]:
             checks[item["stem"]]={"new_present":item["new_url"] in html,"old_768_present":item["source_768"] in html}
-        last={"attempt":attempt,"http":hc,"checks":checks}
+        last={"attempt":attempt,"http":hc,"checks":checks,"litespeed_cache":str(headers.get("x-litespeed-cache") or headers.get("X-LiteSpeed-Cache") or "")}
         if hc==200 and all(v["new_present"] and not v["old_768_present"] for v in checks.values()):
             public_ok=True; break
         time.sleep(2)
     result["public_readback"]=last
-    if not public_ok: raise RuntimeError("public readback failed")
+    if not public_ok: raise RuntimeError("public readback failed after LiteSpeed purge")
     result["ok"]=True
 except Exception as e:
     result["error"]=str(e)
