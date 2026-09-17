@@ -7,8 +7,8 @@ on:
       - 'product-social-engine/**'
   schedule:
     # Tehran is UTC+03:30 year-round.
-    # Prepare 5 minutes before the 23:00 ChatGPT preview.
-    - cron: '25 19 * * *'
+    # Prepare 15 minutes before the 23:00 ChatGPT preview.
+    - cron: '15 19 * * *'
     # Approved morning publication windows.
     - cron: '15 5 * * *'
     - cron: '20 5 * * *'
@@ -110,7 +110,7 @@ jobs:
             action="${MANUAL_ACTION:-status}"
           else
             case "${{ github.event.schedule }}" in
-              '25 19 * * *') action='prepare' ;;
+              '15 19 * * *') action='prepare' ;;
               '15 5 * * *') action='whatsapp' ;;
               '20 5 * * *') action='telegram' ;;
               '25 5 * * *') action='instagram' ;;
