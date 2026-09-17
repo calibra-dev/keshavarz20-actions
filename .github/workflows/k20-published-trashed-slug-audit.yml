@@ -36,7 +36,7 @@ jobs:
           $headers = @{ Authorization = "Basic $authValue"; Accept = 'application/json' }
 
           function Get-Products([string]$Status) {
-            $items = New-Object System.Collections.Generic.List[object]
+            $items = @()
             for ($page = 1; $page -le 100; $page++) {
               $uri = "$base/wp-json/wc/v3/products?status=$Status&per_page=100&page=$page&_fields=id,name,slug,status,permalink,date_modified_gmt"
               try {
@@ -46,22 +46,22 @@ jobs:
                 throw
               }
               if ($batch.Count -eq 0) { break }
-              foreach ($p in $batch) { $items.Add($p) }
+              $items += $batch
               if ($batch.Count -lt 100) { break }
             }
-            return @($items)
+            return $items
           }
 
           $published = @(Get-Products 'publish')
           $all = @(Get-Products 'any')
           $bad = @($published | Where-Object { ([string]$_.slug).EndsWith('__trashed') })
-          $rows = New-Object System.Collections.Generic.List[object]
+          $rows = @()
 
           foreach ($p in $bad) {
             $dirty = [string]$p.slug
             $clean = $dirty.Substring(0, $dirty.Length - '__trashed'.Length)
             $collisions = @($all | Where-Object { $_.id -ne $p.id -and [string]$_.slug -eq $clean })
-            $rows.Add([pscustomobject][ordered]@{
+            $rows += [pscustomobject][ordered]@{
               id = [int]$p.id
               name = [string]$p.name
               status = [string]$p.status
@@ -71,7 +71,7 @@ jobs:
               collisions = @($collisions | ForEach-Object { [pscustomobject]@{ id=[int]$_.id; status=[string]$_.status; slug=[string]$_.slug; name=[string]$_.name } })
               permalink = [string]$p.permalink
               modified_gmt = [string]$p.date_modified_gmt
-            })
+            }
           }
 
           $result = [ordered]@{
