@@ -1,0 +1,66 @@
+name: K20 Phase 3 Home LCP Chain Readonly
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/phase3-lcp-chain/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-phase3-lcp-chain
+  cancel-in-progress: false
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Install Lighthouse
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --global lighthouse
+      - name: Inspect homepage LCP read-only
+        shell: bash
+        run: |
+          set -euo pipefail
+          req="$(git show --pretty= --name-only '${{ github.sha }}' -- 'diagnostics/phase3-lcp-chain/*.json' | sed '/^$/d' | head -n1)"
+          test -n "$req"
+          url="$(jq -r '.url' "$req")"
+          report="$RUNNER_TEMP/lh.json"
+          lighthouse "$url" --quiet --chrome-flags='--headless --no-sandbox --disable-dev-shm-usage' --only-categories=performance --output=json --output-path="$report"
+          mkdir -p results
+          base="$(basename "$req" .json)"
+          jq '{
+            tested_at:.fetchTime,
+            requestedUrl:.requestedUrl,
+            finalUrl:.finalUrl,
+            performance_score:(.categories.performance.score*100),
+            metrics:{
+              fcp_ms:.audits["first-contentful-paint"].numericValue,
+              lcp_ms:.audits["largest-contentful-paint"].numericValue,
+              tbt_ms:.audits["total-blocking-time"].numericValue,
+              cls:.audits["cumulative-layout-shift"].numericValue
+            },
+            lcp_element:(.audits["largest-contentful-paint-element"] // null),
+            lcp_discovery:(.audits["lcp-discovery-insight"] // null),
+            lcp_breakdown:(.audits["lcp-breakdown-insight"] // null),
+            network_dependency_tree:(.audits["network-dependency-tree-insight"] // null),
+            top_image_requests:([.audits["network-requests"].details.items[]? | select((.resourceType|ascii_downcase)=="image") | {url,transferSize,resourceSize,startTime,endTime,priority,mimeType}] | sort_by(.transferSize) | reverse | .[:12])
+          }' "$report" > "results/phase3-lcp-chain-$base.json"
+      - name: Commit sanitized result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f results/phase3-lcp-chain-*.json
+          git commit -m "phase3: record homepage LCP chain" || exit 0
+          git pull --rebase origin main
+          git push origin HEAD:main
