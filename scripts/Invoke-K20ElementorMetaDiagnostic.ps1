@@ -23,6 +23,7 @@ if(-not[string]::IsNullOrWhiteSpace($elementorData)){
     function Walk($node,[string]$path){
       if($null-eq$node){return}
       if($node-is[string]){if($node.IndexOf($phrase,[StringComparison]::OrdinalIgnoreCase)-ge0){$script:decodedHits+=,[pscustomobject][ordered]@{path=$path;snippet=(Clip $node $phrase);target_h1_count=(HeadingCount $node 'h1' $phrase);target_h2_count=(HeadingCount $node 'h2' $phrase)}};return}
+      if(($node-is[int])-or($node-is[long])-or($node-is[double])-or($node-is[decimal])){if(([string]$node)-eq$phrase){$script:decodedHits+=,[pscustomobject][ordered]@{path=$path;snippet=([string]$node);target_h1_count=0;target_h2_count=0}};return}
       if($node-is[pscustomobject]){foreach($prop in $node.PSObject.Properties){Walk $prop.Value ($path+'.'+$prop.Name)};return}
       if(($node-is[System.Collections.IEnumerable])-and-not($node-is[string])){$i=0;foreach($item in $node){Walk $item ($path+'['+$i+']');$i++}}
     }
