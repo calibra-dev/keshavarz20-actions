@@ -2,126 +2,112 @@
 
 Daily editorial automation for the `news` post type on keshavarz20.com.
 
-## What it does
+## Primary automatic architecture
 
-At 08:00 Asia/Tehran every day it:
+`ChatGPT Scheduled Task (08:00 Asia/Tehran)` → live deep research → `daily-agri-news/queue/YYYY-MM-DD.json` → `k20-news-queue-publisher.yml` → `publish_queue_v2.py` → WordPress **news draft**.
 
-1. Searches the previous 24 hours of agriculture news using Google News RSS plus OpenAI web search.
-2. Removes weak/social-only sources and recent duplicates already present in WordPress.
-3. Scores candidates for freshness, agricultural relevance, publisher quality and practical impact on Iranian farmers.
-4. Uses a second model pass to choose one lead story.
-5. Cross-checks dates, numbers, organizations and key claims against web sources.
-6. Rewrites the story in Persian as original editorial copy rather than copying the source.
-7. Adds:
-   - strong news headline
-   - lead
-   - structured H2 sections
-   - `این خبر برای کشاورزان چه معنایی دارد؟`
-   - `جمع‌بندی`
-   - `نظر کارشناسی کشاورز بیست`
-   - source links
-8. Generates a new photorealistic 16:9 featured image with no text/watermark.
-9. Uploads that image to the WordPress media library and sets title + alt text.
-10. Creates **one WordPress draft only** in post type `news`.
-11. Assigns news category `کشاورزی` (`news_cat` term ID 839) and 4–8 relevant `news_tag` terms.
-12. Writes Yoast metadata:
-    - `_yoast_wpseo_title`
-    - `_yoast_wpseo_metadesc`
-    - `_yoast_wpseo_focuskw`
-    - `_yoast_wpseo_focuskeywords`
-    - `_yoast_wpseo_keywordsynonyms`
-    - `_yoast_wpseo_primary_news_cat`
-13. Verifies that the new object is still `draft`, is post type `news`, and contains the required Yoast fields.
-14. Uploads sanitized run artifacts to GitHub Actions for audit/debugging.
+The automatic research task must read `automation-policy/seo-god-2026.json`. The queue publisher is deterministic and does not call an LLM. The old API-mode workflow remains available as a **manual fallback only** and has no daily cron, preventing duplicate daily drafts and avoiding unnecessary API dependence.
 
-The engine never publishes a news item. Human review in wp-admin remains mandatory.
+## Daily research contract
 
-## Schedule
+Each automatic run must:
 
-GitHub Actions uses UTC. Iran is UTC+03:30, so the workflow uses:
+1. research the previous 24 hours using live web search;
+2. treat search snippets, RSS, social posts and AI summaries as discovery only;
+3. verify material claims from direct sources;
+4. use at least two source URLs from at least two independent domains;
+5. prefer official/government/regulator/standards, university/extension/research, primary datasets, recognized agricultural bodies and reputable newswires/publications;
+6. inspect at least the latest 50 Keshavarz20 news items and reject duplicate/near-duplicate stories;
+7. select at most one story using freshness, direct farmer impact, verifiability, seasonality/search interest and practical value;
+8. preserve uncertainty when evidence conflicts;
+9. reject rumor, source-less reposts, advertorials, sensationalism and low-value filler;
+10. create a draft only. Human review remains mandatory.
 
-```cron
-30 4 * * *
-```
+If no story clears the gate, the correct result is to skip that day.
 
-This targets 08:00 Tehran. GitHub scheduled workflows are best-effort and can occasionally start a few minutes late.
+## Article structure
 
-## Required GitHub repository secrets
+The generated news should include, when applicable:
 
-These must exist in `calibra-dev/keshavarz20-actions`:
+- accurate non-clickbait headline
+- concise lead
+- what happened
+- what is confirmed
+- material numbers only when verified
+- what remains uncertain
+- `این خبر برای کشاورزان چه معنایی دارد؟`
+- practical next step/watch-point when justified
+- `جمع‌بندی`
+- clearly separated `نظر کارشناسی کشاورز بیست`
+- `منابع` with direct source links
 
-- `WP_BASE_URL` — normally `https://keshavarz20.com`
-- `WP_USERNAME`
-- `WP_APP_PASSWORD`
-- `OPENAI_API_KEY`
+Sourced facts and editorial interpretation must remain visibly separate. Political/government stories must remain neutral and attribute disputed claims to identified sources.
 
-Do not commit any of those values to the repository.
+## Queue fields
 
-## Optional repository variables
+The scheduled task supplies:
 
-- `OPENAI_TEXT_MODEL` — default: `gpt-5.6`
-- `OPENAI_IMAGE_MODEL` — default: `gpt-image-2`
+- `generated_at`
+- `title`
+- English ASCII `slug`
+- `excerpt`
+- `content_html`
+- `focus_keyphrase`
+- 1–8 `related_keyphrases`
+- `seo_title`
+- accurate `meta_description`
+- 3–10 useful tags
+- `source_urls`
+- matching `source_names`
+- `published_at` when known
+- `image_search_query`
+- `image_title`
+- `alt_text`
+- `selection_reason`
+- `fact_check_notes`
 
-## Manual test
+## Publisher safeguards
 
-Use `Actions -> Keshavarz20 Daily Agriculture News Draft -> Run workflow`.
+`publish_queue_v2.py` adds the SEO-God evidence gate while preserving the original publisher:
 
-Recommended first run:
+- WordPress custom post type `news` only
+- `draft` only
+- category `کشاورزی` / `news_cat` ID 839
+- at least two direct sources from at least two independent domains
+- matching source names
+- duplicate and near-duplicate title/topic protection
+- minimum useful content threshold
+- required `جمع‌بندی`, `نظر کارشناسی کشاورز بیست` and `منابع`
+- open-license Wikimedia image selection and 1280×720 WebP treatment
+- Yoast metadata
+- post-write draft/type/image/SEO verification
+- no credentials in queue or artifacts
+
+## Automatic schedule
+
+The connected ChatGPT task is enabled for **08:00 Asia/Tehran every day**. It writes the queue JSON. GitHub Actions triggers automatically when that queue file is committed.
+
+There is intentionally **no second daily GitHub cron** on the API-mode generator. `k20-daily-agri-news.yml` is manual fallback/testing only.
+
+## Manual API fallback
+
+Use `Actions -> Keshavarz20 Daily Agriculture News Draft (API fallback) -> Run workflow` only when the primary queue automation cannot be used.
+
+Recommended diagnostic run:
 
 - `lookback_hours = 24`
 - `dry_run = true`
 
-A dry run performs research, selection, fact-checking, writing and image generation but does **not** create a WordPress post.
+The fallback requires `OPENAI_API_KEY`; the normal queue publisher does not.
 
-After reviewing the action artifacts, run again with `dry_run = false`. The result should create one draft in:
+## Required WordPress secrets
 
-`wp-admin/edit.php?post_type=news`
+- `WP_BASE_URL`
+- `WP_USERNAME`
+- `WP_APP_PASSWORD`
 
-## Editorial safeguards
-
-- Only stories inside the requested freshness window are eligible.
-- A duplicate guard compares against recent WordPress news titles.
-- Social posts are not accepted as stand-alone evidence.
-- Important factual claims are cross-checked before writing.
-- Unverified claims must not be upgraded into facts.
-- Government/political agriculture stories are written neutrally and descriptively.
-- The expert-opinion block is visibly separated from reported facts.
-- No auto-publish is implemented.
-- Failure to verify required WordPress/Yoast fields makes the workflow fail rather than silently creating an incomplete post.
-
-## Output artifacts
-
-The workflow stores for 14 days:
-
-- `selected-story.json` — chosen story, ranking and verification data
-- `article.json` — generated editorial/SEO fields
-- `result.json` — final draft status / IDs
-- `summary.md` — concise workflow summary
-- `featured-news.webp` — generated 1280×720 WebP image
-
-No WordPress credentials, application passwords or OpenAI keys are written to these files.
-
-## WordPress facts verified during implementation
-
-Current site configuration used by the engine:
-
-- Custom post type: `news`
-- Agricultural news taxonomy: `news_cat`
-- Agricultural term: `کشاورزی`, term ID `839`
-- News tags taxonomy: `news_tag`
-- Yoast SEO Premium is active and existing news posts use the Yoast fields listed above.
+Do not commit secret values.
 
 ## Failure behavior
 
-The engine intentionally stops without creating a draft when:
-
-- there is no credible new story,
-- every candidate duplicates recent site news,
-- fact-checking fails,
-- article structure is incomplete,
-- image generation fails,
-- WordPress credentials are missing,
-- XML-RPC publishing methods are unavailable,
-- or the final draft does not contain the required Yoast metadata.
-
-This is deliberate: a missing daily draft is safer than silently publishing or saving low-quality/unverified content.
+The engine intentionally stops without creating a draft when evidence is insufficient, sources are not independent, the topic duplicates recent news, structure is incomplete, image acquisition fails, WordPress credentials are unavailable, or post-write verification fails. A skipped day is safer than a weak or misleading draft.
