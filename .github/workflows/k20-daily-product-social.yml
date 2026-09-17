@@ -1,0 +1,103 @@
+name: K20 Daily Product Social
+
+on:
+  schedule:
+    # 09:00 Asia/Tehran (Iran is UTC+03:30 year-round)
+    - cron: '30 5 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Generate only or publish to Telegram
+        required: true
+        default: dry_run
+        type: choice
+        options:
+          - dry_run
+          - publish
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-daily-product-social
+  cancel-in-progress: false
+
+env:
+  SITE_BASE_URL: https://keshavarz20.com
+  PYTHONUNBUFFERED: '1'
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: product-social-engine/requirements.txt
+
+      - name: Install dependencies
+        run: python -m pip install -r product-social-engine/requirements.txt
+
+      - name: Regression tests
+        working-directory: product-social-engine
+        run: pytest -q
+
+      - name: Resolve mode
+        id: mode
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            MODE="${{ inputs.mode }}"
+          elif [[ "${{ vars.PRODUCT_SOCIAL_ENABLED }}" == "true" ]]; then
+            MODE="publish"
+          else
+            MODE="dry_run"
+          fi
+          echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+          echo "Resolved mode: $MODE"
+
+      - name: Generate daily product creative
+        if: steps.mode.outputs.mode == 'dry_run'
+        run: python product-social-engine/main.py --dry-run
+
+      - name: Generate and publish daily product creative
+        if: steps.mode.outputs.mode == 'publish'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python product-social-engine/main.py
+
+      - name: Upload WhatsApp-ready package
+        if: always() && hashFiles('product-social-engine/out/daily-product-ad.png') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-product-social-${{ github.run_id }}
+          path: |
+            product-social-engine/out/daily-product-ad.png
+            product-social-engine/out/caption.txt
+            product-social-engine/out/latest.json
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Persist successful rotation state
+        if: steps.mode.outputs.mode == 'publish' && success()
+        shell: bash
+        run: |
+          if git diff --quiet -- product-social-engine/state.json; then
+            echo "No state change to persist."
+            exit 0
+          fi
+          git config user.name "k20-product-social-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add product-social-engine/state.json
+          git commit -m "chore: record daily product social post"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
