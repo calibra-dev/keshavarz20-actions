@@ -106,7 +106,7 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add "$RESULT"
+          git add -f "$RESULT"
           git commit -m 'perf: record image-impact measurement'
           git pull --rebase origin main
           git push origin HEAD:main
