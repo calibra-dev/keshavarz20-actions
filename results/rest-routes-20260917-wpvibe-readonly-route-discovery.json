@@ -1,0 +1,397 @@
+{
+  "ok": true,
+  "mode": "read-only",
+  "terms": [
+    "wpvibe"
+  ],
+  "matched": 55,
+  "routes": [
+    {
+      "route": "/wpvibe/v1",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/audit-log",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/audit-log/record",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/authorize",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/authorize/preflight",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/beaver/modules",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/beaver/save-page",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/beaver/schema",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/breakdance/elements",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/breakdance/get-page",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/breakdance/save-page",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/bricks/elements",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/bricks/get-page",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/bricks/save-page",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/builder-login",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/cli/run",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/cli/run-approved",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/cli/status",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/code-snippet",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/connection-check-challenge",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/connection-status",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/content/edit",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/content/search",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/create-classic-theme",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/detached/run",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/draft-theme",
+      "methods": [
+        "DELETE",
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/draft-theme/compile-sources",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/draft-theme/delete",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/draft-theme/preview",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/draft-theme/publish",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/elementor/save-page",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/elementor/save-template",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/elementor/schema",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/elementor/style-schema",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/elementor/widgets",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/file/delete",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/file/edit",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/file/list",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/file/outline",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/file/read",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/file/search",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/file/write",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/health",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/last-change",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/navigate",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/op-proof/activate",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/op-proof/key",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/op-receipt/(?P<op_id>[a-z0-9_.:]+)",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/ping",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/registered-meta",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/rendered-html",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/self-update/health",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/self-update/run",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/site-info",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wpvibe/v1"
+    },
+    {
+      "route": "/wpvibe/v1/upload-media",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wpvibe/v1"
+    }
+  ],
+  "executed_at_utc": "2026-09-17T18:23:13.3928612Z"
+}
