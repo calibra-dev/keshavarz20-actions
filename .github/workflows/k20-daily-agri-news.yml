@@ -1,9 +1,6 @@
-name: Keshavarz20 Daily Agriculture News Draft
+name: Keshavarz20 Daily Agriculture News Draft (API mode)
 
 on:
-  schedule:
-    # Iran uses UTC+03:30 year-round. 04:30 UTC = 08:00 Asia/Tehran.
-    - cron: '30 4 * * *'
   workflow_dispatch:
     inputs:
       lookback_hours:
@@ -14,20 +11,18 @@ on:
         description: 'Research/generate only; do not create the WordPress draft'
         type: boolean
         required: false
-        default: false
-  push:
-    paths:
-      - 'daily-agri-news/manual-trigger.json'
+        default: true
   pull_request:
     paths:
       - '.github/workflows/k20-daily-agri-news.yml'
-      - 'daily-agri-news/**'
+      - 'daily-agri-news/main.py'
+      - 'daily-agri-news/requirements.txt'
 
 permissions:
   contents: read
 
 concurrency:
-  group: k20-daily-agri-news-${{ github.event_name }}-${{ github.ref }}
+  group: k20-daily-agri-news-api-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -58,8 +53,7 @@ jobs:
       OPENAI_TEXT_MODEL: ${{ vars.OPENAI_TEXT_MODEL || 'gpt-5.6' }}
       OPENAI_IMAGE_MODEL: ${{ vars.OPENAI_IMAGE_MODEL || 'gpt-image-2' }}
       K20_LOOKBACK_HOURS: ${{ inputs.lookback_hours || '24' }}
-      # Push trigger is intentionally forced to dry-run. Schedule remains live-draft.
-      K20_DRY_RUN: ${{ github.event_name == 'push' && 'true' || inputs.dry_run || 'false' }}
+      K20_DRY_RUN: ${{ inputs.dry_run || 'true' }}
       K20_NEWS_CATEGORY_ID: '839'
       K20_NEWS_CATEGORY_NAME: 'کشاورزی'
 
@@ -104,20 +98,6 @@ jobs:
           if [ -f daily-agri-news/output/summary.md ]; then
             cat daily-agri-news/output/summary.md >> "$GITHUB_STEP_SUMMARY"
           else
-            echo '## Keshavarz20 Daily Agriculture News' >> "$GITHUB_STEP_SUMMARY"
+            echo '## Keshavarz20 Daily Agriculture News API mode' >> "$GITHUB_STEP_SUMMARY"
             echo 'No summary file was produced.' >> "$GITHUB_STEP_SUMMARY"
           fi
-
-      - name: Upload sanitized run artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: k20-daily-agri-news-${{ github.run_id }}
-          if-no-files-found: ignore
-          retention-days: 14
-          path: |
-            daily-agri-news/output/selected-story.json
-            daily-agri-news/output/article.json
-            daily-agri-news/output/result.json
-            daily-agri-news/output/summary.md
-            daily-agri-news/output/featured-news.webp
