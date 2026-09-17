@@ -2,5 +2,6 @@
   "action": "media.targeted_reference_delta",
   "expected_ready_count": 25,
   "protected_ids": [141437, 141441, 142597],
-  "note": "Fresh targeted reference verification for the 25 live pre-delete candidates only. Do not rebuild sitewide/content inventory and do not delete in this step."
+  "retry_after_fix": "utc-normalization",
+  "note": "Same targeted reference verification for the same 25 live pre-delete candidates after fixing timestamp normalization. Do not rebuild sitewide/content inventory and do not delete in this step."
 }
