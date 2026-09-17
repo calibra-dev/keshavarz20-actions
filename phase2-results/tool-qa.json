@@ -1,0 +1,44 @@
+{
+  "ok": true,
+  "mode": "read-only-qa",
+  "pages": {
+    "one_hectare_basket": {
+      "id": 145233,
+      "status": "draft",
+      "slug": "one-hectare-drip-irrigation-basket",
+      "chars": 5013,
+      "has_script": true,
+      "has_h1": true,
+      "has_safety_copy": true,
+      "marker_ok": true
+    },
+    "product_comparator": {
+      "id": 145234,
+      "status": "draft",
+      "slug": "irrigation-product-comparator",
+      "chars": 4474,
+      "has_script": true,
+      "has_h1": true,
+      "has_safety_copy": true,
+      "marker_ok": true
+    }
+  },
+  "store_api": {
+    "ok": true,
+    "http_status": 200,
+    "items": 1
+  },
+  "basket_formula_test": {
+    "rows": 100,
+    "base_tape_m": 10000,
+    "total_tape_m": 10500.0,
+    "rolls": 11,
+    "expected": {
+      "rows": 100,
+      "base_tape_m": 10000,
+      "total_tape_m": 10500,
+      "rolls": 11
+    },
+    "ok": true
+  }
+}
