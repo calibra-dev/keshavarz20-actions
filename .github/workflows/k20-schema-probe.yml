@@ -1,0 +1,164 @@
+name: Keshavarz20 Structured Data Probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/schema-probe/*.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: k20-schema-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Probe live canonical, robots and JSON-LD
+        shell: bash
+        run: |
+          set -euo pipefail
+          before='${{ github.event.before }}'
+          current='${{ github.sha }}'
+          zero='0000000000000000000000000000000000000000'
+          if [ -n "$before" ] && [ "$before" != "$zero" ]; then
+            mapfile -t requests < <(git diff --name-only "$before" "$current" -- 'diagnostics/schema-probe/*.json' | sed '/^$/d' | sort -u)
+          else
+            mapfile -t requests < <(git show --pretty='' --name-only "$current" -- 'diagnostics/schema-probe/*.json' | sed '/^$/d' | sort -u)
+          fi
+          if [ "${#requests[@]}" -ne 1 ]; then
+            echo "Expected exactly one changed schema-probe request, found ${#requests[@]}" >&2
+            exit 1
+          fi
+
+          request="${requests[0]}"
+          out="$RUNNER_TEMP/k20-schema-probe"
+          mkdir -p "$out"
+          echo "REQUEST=$request"
+
+          jq -c '.targets[]' "$request" | while read -r target; do
+            name="$(jq -r '.name' <<<"$target")"
+            url="$(jq -r '.url' <<<"$target")"
+            html="$out/${name}.html"
+            headers="$out/${name}.headers.txt"
+            echo "=== TARGET $name $url ==="
+            curl -L -sS --compressed --max-time 60 -A 'K20-Schema-Probe/2026-09-17' -H 'Cookie:' -D "$headers" -o "$html" "$url"
+            python3 - "$name" "$url" "$html" <<'PY'
+          import json, sys
+          from html.parser import HTMLParser
+
+          name, requested_url, path = sys.argv[1:4]
+
+          class ProbeParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.in_ld = False
+                  self.buf = []
+                  self.ld = []
+                  self.canonical = ''
+                  self.robots = ''
+              def handle_starttag(self, tag, attrs):
+                  a = dict(attrs)
+                  if tag.lower() == 'script' and a.get('type', '').lower() == 'application/ld+json':
+                      self.in_ld = True
+                      self.buf = []
+                  if tag.lower() == 'link' and a.get('rel', '').lower() == 'canonical':
+                      self.canonical = a.get('href', '')
+                  if tag.lower() == 'meta' and a.get('name', '').lower() == 'robots':
+                      self.robots = a.get('content', '')
+              def handle_endtag(self, tag):
+                  if tag.lower() == 'script' and self.in_ld:
+                      self.ld.append(''.join(self.buf))
+                      self.in_ld = False
+                      self.buf = []
+              def handle_data(self, data):
+                  if self.in_ld:
+                      self.buf.append(data)
+
+          raw = open(path, 'r', encoding='utf-8', errors='replace').read()
+          p = ProbeParser()
+          p.feed(raw)
+
+          orgs = []
+          products = []
+          parse_errors = []
+
+          def type_list(v):
+              t = v.get('@type') if isinstance(v, dict) else None
+              if isinstance(t, list):
+                  return [str(x) for x in t]
+              return [str(t)] if t is not None else []
+
+          def walk(v, jpath, script_index):
+              if isinstance(v, dict):
+                  types = type_list(v)
+                  if 'Organization' in types:
+                      logo = v.get('logo')
+                      logo_url = ''
+                      if isinstance(logo, str):
+                          logo_url = logo
+                      elif isinstance(logo, dict):
+                          logo_url = str(logo.get('url') or logo.get('contentUrl') or logo.get('@id') or '')
+                      orgs.append({
+                          'script': script_index,
+                          'path': jpath,
+                          'id': v.get('@id', ''),
+                          'name': v.get('name', ''),
+                          'has_logo': bool(logo),
+                          'logo_url': logo_url,
+                      })
+                  if 'Product' in types:
+                      products.append({
+                          'script': script_index,
+                          'path': jpath,
+                          'id': v.get('@id', ''),
+                          'name': v.get('name', ''),
+                          'has_brand': bool(v.get('brand')),
+                          'has_offers': bool(v.get('offers')),
+                      })
+                  for k, child in v.items():
+                      walk(child, f'{jpath}.{k}', script_index)
+              elif isinstance(v, list):
+                  for i, child in enumerate(v):
+                      walk(child, f'{jpath}[{i}]', script_index)
+
+          for i, block in enumerate(p.ld):
+              try:
+                  data = json.loads(block)
+                  walk(data, '$', i)
+              except Exception as exc:
+                  parse_errors.append({'script': i, 'error': str(exc)[:200]})
+
+          result = {
+              'name': name,
+              'requested_url': requested_url,
+              'canonical': p.canonical,
+              'robots': p.robots,
+              'ld_json_blocks': len(p.ld),
+              'organization_count': len(orgs),
+              'organizations': orgs,
+              'product_count': len(products),
+              'products': products,
+              'parse_errors': parse_errors,
+          }
+          print('K20SCHEMA ' + json.dumps(result, ensure_ascii=False, separators=(',', ':')))
+          open(path + '.summary.json', 'w', encoding='utf-8').write(json.dumps(result, ensure_ascii=False, indent=2))
+          PY
+          done
+
+      - name: Upload probe evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-schema-probe
+          path: ${{ runner.temp }}/k20-schema-probe/
+          if-no-files-found: warn
+          retention-days: 14
