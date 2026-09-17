@@ -2,7 +2,7 @@
 
 ## Human approval gate
 
-- Every day at 23:00 Asia/Tehran the engine prepares tomorrow's candidate.
+- Every day at 22:45 Asia/Tehran the engine prepares tomorrow's candidate so ChatGPT can show it at 23:00.
 - Preparation never publishes to WhatsApp, Telegram, or Instagram.
 - Morning publication is allowed only when `product-social-engine/approvals/YYYY-MM-DD.json` exists and exactly matches the candidate date, product ID, and `candidate_hash`.
 - No approval, stale approval, wrong product, or changed candidate hash means **skip publication**.
