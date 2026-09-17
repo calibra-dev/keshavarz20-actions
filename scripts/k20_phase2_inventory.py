@@ -10,7 +10,7 @@ S=requests.Session(); S.auth=AUTH; S.headers.update({"Accept":"application/json"
 
 def get_json(path, params=None, timeout=120):
     u=urljoin(BASE,path.lstrip("/"))
-    r=S.get(u,params=params,timeout=timeout)
+    r=S.get(u,params=params,timeout=timeout,headers={"Cache-Control":"no-cache"})
     r.raise_for_status()
     return r.json()
 
@@ -56,9 +56,18 @@ def post_row(o, typ):
     }
 
 posts=[]
-for typ,path in [("post","wp-json/wp/v2/posts"),("page","wp-json/wp/v2/pages")]:
-    rows=paged(path,{"status":"publish","context":"view","_fields":"id,slug,status,link,modified_gmt,title,content,categories,tags,featured_media"})
-    posts.extend(post_row(x,typ) for x in rows)
+post_rows=paged("wp-json/wp/v2/posts",{"status":"publish","context":"view","_fields":"id,slug,status,link,modified_gmt,title,content,categories,tags,featured_media"})
+posts.extend(post_row(x,"post") for x in post_rows)
+
+# The live /wp/v2/pages collection is currently cache-contaminated by frontend compare markup.
+# Enumerate pages through core search, then read each page by ID; single-item page REST is verified healthy.
+page_refs=paged("wp-json/wp/v2/search",{"type":"post","subtype":"page","_fields":"id,title,url,subtype"})
+for ref in page_refs:
+    try:
+        o=get_json(f"wp-json/wp/v2/pages/{int(ref['id'])}",{"context":"view","_fields":"id,slug,status,link,modified_gmt,title,content,featured_media"})
+        posts.append(post_row(o,"page"))
+    except Exception:
+        continue
 
 cats=paged("wp-json/wc/v3/products/categories",{"hide_empty":"false","_fields":"id,name,slug,parent,count,description"})
 products=paged("wp-json/wc/v3/products",{"status":"publish","_fields":"id,name,slug,permalink,sku,stock_status,short_description,description,categories,tags,images,attributes,reviews_allowed,date_modified_gmt"})
