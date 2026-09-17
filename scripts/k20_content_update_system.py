@@ -53,14 +53,8 @@ def add_content_asset(o, typ):
 for o in paged("wp-json/wp/v2/posts",{"status":"publish","context":"view","_fields":"id,slug,status,link,modified_gmt,title,content"}):
     add_content_asset(o,"post")
 
-# Avoid the contaminated /wp/v2/pages collection; enumerate IDs via core search and fetch single items.
-for ref in paged("wp-json/wp/v2/search",{"type":"post","subtype":"page","_fields":"id,title,url,subtype"}):
-    try:
-        r=S.get(urljoin(BASE,f"wp-json/wp/v2/pages/{int(ref['id'])}"),params={"context":"view","_fields":"id,slug,status,link,modified_gmt,title,content"},timeout=120,headers={"Cache-Control":"no-cache"})
-        r.raise_for_status(); o=r.json()
-        add_content_asset(o,"page")
-    except Exception:
-        continue
+# The live /wp/v2/pages collection is cache-contaminated. Tool/page URLs are monitored through
+# the explicit GSC watchlist rather than bulk-reading potentially corrupted page responses.
 
 products=paged("wp-json/wc/v3/products",{"status":"publish","_fields":"id,name,permalink,stock_status,date_modified_gmt,images,description,short_description"})
 for p in products:
