@@ -29,6 +29,18 @@ def has_any(t, words):
     return any(w in t for w in words)
 
 products=paged("wp-json/wc/v3/products",{"status":"publish"})
+schema_template_points=0
+schema_probe={}
+if products:
+    try:
+        sample_url=products[0].get("permalink")
+        htmlr=requests.get(sample_url,timeout=30,headers={"User-Agent":"k20-product-quality-score/1.0","Cache-Control":"no-cache"}).text[:500000]
+        has_product=bool(re.search(r'"@type"\s*:\s*"Product"',htmlr,re.I))
+        has_offer=bool(re.search(r'"@type"\s*:\s*"Offer"',htmlr,re.I))
+        schema_template_points=(5 if has_product else 0)+(2 if has_offer else 0)
+        schema_probe={"sample_url":sample_url,"product_schema":has_product,"offer_schema":has_offer,"points":schema_template_points}
+    except Exception as e:
+        schema_probe={"error":type(e).__name__,"points":0}
 reviews=[]
 try:
     reviews=paged("wp-json/wc/v3/products/reviews",{"status":"approved"},cap=20)
@@ -101,13 +113,7 @@ for p in products:
     v=min(10,v); score+=v; detail["reviews_qa"]=v
     if v<8:gaps.append("Verified Review/Q&A")
 
-    schema_points=0
-    try:
-        htmlr=requests.get(p.get("permalink"),timeout=30,headers={"User-Agent":"k20-product-quality-score/1.0"}).text[:500000]
-        if re.search(r'"@type"\s*:\s*"Product"',htmlr,re.I): schema_points+=5
-        if re.search(r'"@type"\s*:\s*"Offer"',htmlr,re.I): schema_points+=2
-    except Exception:
-        pass
+    schema_points=schema_template_points
     # Product feed is Phase 3; keep its 3 points explicitly unearned in Phase 2.
     score+=schema_points; detail["schema_feed"]=schema_points
     if schema_points<7:gaps.append("Schema قابل‌مشاهده")
@@ -129,8 +135,8 @@ summary={
   "verified_review_products":sum(1 for x in rows if x["verified_reviews"]>0),
   "distribution":{"90_100":sum(1 for s in scores if s>=90),"85_89":sum(1 for s in scores if 85<=s<90),"70_84":sum(1 for s in scores if 70<=s<85),"below_70":sum(1 for s in scores if s<70)}
 }
-record={"ok":True,"mode":"read-only","version":"phase2-pqs-v1","weights_total":100,"feed_points_reserved_for_phase3":3,
-        "generated_at_utc":__import__("datetime").datetime.utcnow().isoformat()+"Z","summary":summary,"products":rows}
+record={"ok":True,"mode":"read-only","version":"phase2-pqs-v2","weights_total":100,"feed_points_reserved_for_phase3":3,
+        "schema_template_probe":schema_probe,"generated_at_utc":__import__("datetime").datetime.utcnow().isoformat()+"Z","summary":summary,"products":rows}
 os.makedirs(os.path.dirname(sys.argv[1]),exist_ok=True)
 with open(sys.argv[1],"w",encoding="utf-8") as f:json.dump(record,f,ensure_ascii=False,indent=2)
 print("PQS_OK",summary)
