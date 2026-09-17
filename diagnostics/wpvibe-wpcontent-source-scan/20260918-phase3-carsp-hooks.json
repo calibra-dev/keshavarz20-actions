@@ -1,0 +1,24 @@
+{
+  "paths": [
+    "plugins/Carsp_plugin_Wrench/carsp_plugin_wrench.php",
+    "plugins/Carsp_plugin_Wrench/inc/Avaynil_import_export_img_product.class.php",
+    "plugins/Carsp_plugin_Wrench/inc/SEOSettings_class.php",
+    "plugins/Carsp_plugin_Wrench/inc/carsp_irk_is_amazing.php",
+    "plugins/Carsp_plugin_Wrench/inc/carsp_plugin_wrench_active.php",
+    "plugins/Carsp_plugin_Wrench/inc/carsp_plugin_wrench_deactive.php",
+    "plugins/Carsp_plugin_Wrench/inc/carsp_plugin_wrench_main_menu.php",
+    "plugins/Carsp_plugin_Wrench/inc/carsp_yoast_seo_set.php"
+  ],
+  "patterns": [
+    "DONOTCACHEPAGE",
+    "nocache_headers",
+    "litespeed_control_set_nocache",
+    "Control::set_nocache",
+    "comments_open",
+    "comment_form",
+    "comments_template",
+    "wp-comments-post.php",
+    "review",
+    "comment"
+  ]
+}
