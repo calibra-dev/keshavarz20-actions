@@ -8,7 +8,7 @@
       "old_attachment_id": 141437,
       "source_768": "https://keshavarz20.com/wp-content/uploads/2024/07/neshaa-768x576.png",
       "source_bytes": 716133,
-      "new_attachment_id": 145239,
+      "new_attachment_id": 145243,
       "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-home-neshaa-768x576-p7.webp",
       "webp_bytes": 79406,
       "saving_pct": 88.91,
@@ -28,7 +28,7 @@
       "old_attachment_id": 141441,
       "source_768": "https://keshavarz20.com/wp-content/uploads/2024/07/loole-768x576.png",
       "source_bytes": 550233,
-      "new_attachment_id": 145240,
+      "new_attachment_id": 145244,
       "new_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-home-loole-768x576-p7.webp",
       "webp_bytes": 68324,
       "saving_pct": 87.58,
@@ -48,9 +48,14 @@
   "rollback": {
     "page_restored": true,
     "uploaded_media_cleanup": {
-      "145239": true,
-      "145240": true
+      "145243": true,
+      "145244": true
     }
+  },
+  "cache_purge": {
+    "http": 200,
+    "ok": true,
+    "stdout": "{\n    \"message\": \"LiteSpeed Cache cache purged.\"\n}"
   },
   "public_readback": {
     "attempt": 4,
@@ -64,7 +69,8 @@
         "new_present": false,
         "old_768_present": true
       }
-    }
+    },
+    "litespeed_cache": "hit"
   },
-  "error": "public readback failed"
+  "error": "public readback failed after LiteSpeed purge"
 }
