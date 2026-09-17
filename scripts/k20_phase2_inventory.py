@@ -50,8 +50,9 @@ def post_row(o, typ):
 
 posts=[]
 for typ,path in [("post","wp-json/wp/v2/posts"),("page","wp-json/wp/v2/pages")]:
-    rows=paged(path,{"status":"publish,draft","context":"edit","_fields":"id,slug,status,link,modified_gmt,title,content,categories,tags,featured_media"})
-    posts.extend(post_row(x,typ) for x in rows)
+    for status in ("publish","draft"):
+        rows=paged(path,{"status":status,"context":"edit","_fields":"id,slug,status,link,modified_gmt,title,content,categories,tags,featured_media"})
+        posts.extend(post_row(x,typ) for x in rows)
 
 cats=paged("wp-json/wc/v3/products/categories",{"hide_empty":"false","_fields":"id,name,slug,parent,count,description"})
 products=paged("wp-json/wc/v3/products",{"status":"publish","_fields":"id,name,slug,permalink,sku,stock_status,short_description,description,categories,tags,images,attributes,reviews_allowed,date_modified_gmt"})
