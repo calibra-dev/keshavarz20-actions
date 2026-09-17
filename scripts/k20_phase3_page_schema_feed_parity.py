@@ -10,8 +10,16 @@ S=requests.Session(); S.auth=AUTH
 S.headers.update({"Accept":"application/json","User-Agent":"k20-phase3-feed-parity/1.0","Cache-Control":"no-cache"})
 
 def get(path,params=None,auth=True):
-    r=(S if auth else requests).get(urljoin(BASE,path.lstrip("/")),params=params,timeout=120,headers={"User-Agent":"k20-phase3-feed-parity/1.0","Cache-Control":"no-cache"})
-    r.raise_for_status(); return r
+    last=None
+    for attempt in range(4):
+        try:
+            client=S if auth else requests
+            r=client.get(urljoin(BASE,path.lstrip("/")),params=params,timeout=120,headers={"User-Agent":"k20-phase3-feed-parity/1.0","Cache-Control":"no-cache"})
+            r.raise_for_status(); return r
+        except Exception as e:
+            last=e
+            __import__("time").sleep(1.5*(attempt+1))
+    raise last
 
 def setting_value(group,key):
     try:
@@ -59,8 +67,15 @@ feed=[]; parity=[]
 for item in pim.get("products",[]):
     pid=int(item["product_id"])
     p=get(f"wp-json/wc/v3/products/{pid}").json()
-    public=requests.get(p.get("permalink"),timeout=120,headers={"User-Agent":"k20-phase3-feed-parity/1.0","Cache-Control":"no-cache"})
-    public.raise_for_status()
+    public=None
+    last=None
+    for attempt in range(4):
+        try:
+            public=requests.get(p.get("permalink"),timeout=120,headers={"User-Agent":"k20-phase3-feed-parity/1.0","Cache-Control":"no-cache"})
+            public.raise_for_status(); break
+        except Exception as e:
+            last=e; __import__("time").sleep(1.5*(attempt+1))
+    if public is None or not public.ok: raise last
     plist=extract_products(public.text[:1500000])
     sku=(p.get("sku") or "").strip()
     schema=None
