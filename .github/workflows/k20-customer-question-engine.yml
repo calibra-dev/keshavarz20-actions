@@ -58,17 +58,17 @@ jobs:
               f.write(f'action={action}\n')
               f.write(f'op={op}\n')
 
-      - name: Run engine
+      - name: Run SEO God v18 engine
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p question-engine-results
           stamp="$(date -u +%Y%m%dT%H%M%SZ)"
           out="question-engine-results/${stamp}-${{ steps.resolve.outputs.action }}.json"
-          python question-engine/engine_v17.py --action '${{ steps.resolve.outputs.action }}' --result "$out"
+          python question-engine/engine_v18.py --action '${{ steps.resolve.outputs.action }}' --result "$out"
           echo "RESULT_PATH=$out" >> "$GITHUB_ENV"
 
-      - name: Validate engine tests
+      - name: Validate engine regression tests
         shell: bash
         run: |
           python question-engine/test_engine.py
@@ -88,6 +88,7 @@ jobs:
           python question-engine/test_engine_v15.py
           python question-engine/test_engine_v16.py
           python question-engine/test_engine_v17.py
+          python question-engine/test_engine_v18.py
 
       - name: Commit manual-run result
         shell: bash
