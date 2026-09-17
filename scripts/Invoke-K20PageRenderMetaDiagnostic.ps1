@@ -39,61 +39,47 @@ function To-CompactJson($Value){
   try { return ($Value | ConvertTo-Json -Depth 100 -Compress) } catch { return [string]$Value }
 }
 
+function Get-MetaValue($Meta,[string]$Name){
+  if($null -eq $Meta){ return $null }
+  $prop=$Meta.PSObject.Properties[$Name]
+  if($null -ne $prop){ return $prop.Value }
+  return $null
+}
+
 function Summarize-ElementorData($RawValue){
-  $text=''
   if($null -eq $RawValue){
-    return [ordered]@{present=$false;serialized_length=0;sha256='';json_parse_ok=$false;top_level_count=0;node_count=0;widget_type_counts=@{};template_id_refs=@()}
+    return [ordered]@{present=$false;serialized_length=0;sha256='';json_parse_ok=$false;top_level_count=0;widget_type_counts=@{};template_id_refs=@()}
   }
-  if($RawValue -is [string]){ $text=[string]$RawValue } else { $text=To-CompactJson $RawValue }
-  if([string]::IsNullOrWhiteSpace($text)){
-    return [ordered]@{present=$true;serialized_length=0;sha256=(Get-Sha256 $text);json_parse_ok=$false;top_level_count=0;node_count=0;widget_type_counts=@{};template_id_refs=@()}
-  }
-
-  $parsed=$null
+  $text=if($RawValue -is [string]){[string]$RawValue}else{To-CompactJson $RawValue}
   $parseOk=$false
-  try { $parsed=$text | ConvertFrom-Json -Depth 100; $parseOk=$true } catch {}
-  $widgetCounts=@{}
-  $templateRefs=New-Object System.Collections.Generic.HashSet[int]
-  $nodeCount=0
-
-  function Walk($Node){
-    if($null -eq $Node){ return }
-    if($Node -is [pscustomobject]){
-      $script:nodeCount++
-      $wt=$Node.PSObject.Properties['widgetType']
-      if($wt -and -not [string]::IsNullOrWhiteSpace([string]$wt.Value)){
-        $name=[string]$wt.Value
-        if($script:widgetCounts.ContainsKey($name)){ $script:widgetCounts[$name]++ } else { $script:widgetCounts[$name]=1 }
-      }
-      foreach($propName in @('template_id','templateId','post_id','postId')){
-        $p=$Node.PSObject.Properties[$propName]
-        if($p){
-          $n=0
-          if([int]::TryParse([string]$p.Value,[ref]$n) -and $n -gt 0){ [void]$script:templateRefs.Add($n) }
-        }
-      }
-      foreach($p in $Node.PSObject.Properties){ Walk $p.Value }
-      return
-    }
-    if(($Node -is [System.Collections.IEnumerable]) -and -not($Node -is [string])){
-      foreach($item in $Node){ Walk $item }
-    }
-  }
-
-  if($parseOk){ Walk $parsed }
   $topCount=0
-  if($parseOk){
-    if(($parsed -is [System.Collections.IEnumerable]) -and -not($parsed -is [string])){ $topCount=@($parsed).Count } else { $topCount=1 }
+  if(-not [string]::IsNullOrWhiteSpace($text)){
+    try {
+      $parsed=$text | ConvertFrom-Json -Depth 100
+      $parseOk=$true
+      if(($parsed -is [System.Collections.IEnumerable]) -and -not($parsed -is [string])){ $topCount=@($parsed).Count } else { $topCount=1 }
+    } catch {}
   }
+
+  $widgetCounts=[ordered]@{}
+  foreach($m in [regex]::Matches($text,'(?i)"widgetType"\s*:\s*"([^"]+)"')){
+    $name=$m.Groups[1].Value
+    if($widgetCounts.Contains($name)){ $widgetCounts[$name]=[int]$widgetCounts[$name]+1 } else { $widgetCounts[$name]=1 }
+  }
+  $refSet=New-Object System.Collections.Generic.HashSet[int]
+  foreach($m in [regex]::Matches($text,'(?i)"(?:template_id|templateId|post_id|postId)"\s*:\s*"?(\d+)"?')){
+    $n=0
+    if([int]::TryParse($m.Groups[1].Value,[ref]$n) -and $n -gt 0){ [void]$refSet.Add($n) }
+  }
+
   return [ordered]@{
     present=$true
     serialized_length=$text.Length
     sha256=(Get-Sha256 $text)
     json_parse_ok=$parseOk
     top_level_count=$topCount
-    node_count=$nodeCount
     widget_type_counts=$widgetCounts
-    template_id_refs=@($templateRefs | Sort-Object)
+    template_id_refs=@($refSet | Sort-Object)
   }
 }
 
@@ -102,33 +88,28 @@ foreach($id in $ids){
   $item=[ordered]@{id=$id}
 
   try {
-    $single=Invoke-JsonGet "wp-json/wp/v2/pages/$id?context=edit&_fields=id,slug,status,link,parent,template,title,content,meta"
+    $single=Invoke-JsonGet "wp-json/wp/v2/pages/${id}?context=edit&_fields=id,slug,status,link,parent,template,title,content,meta"
     $item.single_endpoint=[ordered]@{ok=$true;returned_id=[int]$single.id;slug=[string]$single.slug;status=[string]$single.status}
   } catch {
     $item.single_endpoint=[ordered]@{ok=$false;error=$_.Exception.Message}
   }
 
   try {
-    $rowsRaw=Invoke-JsonGet "wp-json/wp/v2/pages?context=edit&include=$id&per_page=1&_fields=id,slug,status,link,parent,template,title,content,meta"
+    $rowsRaw=Invoke-JsonGet "wp-json/wp/v2/pages?context=edit&include=${id}&per_page=1&_fields=id,slug,status,link,parent,template,title,content,meta"
     $p=@($rowsRaw | Where-Object {$null-ne $_ -and $_.id}) | Select-Object -First 1
     if($null -eq $p){ throw "Collection lookup returned no page for id $id" }
 
     $meta=$p.meta
     $metaNames=@()
     if($null-ne$meta){ $metaNames=@($meta.PSObject.Properties.Name) }
-    function MetaVal([string]$Name){
-      if($null-eq$meta){ return $null }
-      $prop=$meta.PSObject.Properties[$Name]
-      if($prop){ return $prop.Value }
-      return $null
-    }
+    $editMode=Get-MetaValue $meta '_elementor_edit_mode'
+    $templateType=Get-MetaValue $meta '_elementor_template_type'
+    $conditions=Get-MetaValue $meta '_elementor_conditions'
+    $pageSettings=Get-MetaValue $meta '_elementor_page_settings'
+    $elementorData=Get-MetaValue $meta '_elementor_data'
 
-    $editMode=MetaVal '_elementor_edit_mode'
-    $templateType=MetaVal '_elementor_template_type'
-    $conditions=MetaVal '_elementor_conditions'
-    $pageSettings=MetaVal '_elementor_page_settings'
-    $elementorData=MetaVal '_elementor_data'
-
+    $raw=[string]$p.content.raw
+    $rendered=[string]$p.content.rendered
     $item.collection=[ordered]@{
       ok=$true
       id=[int]$p.id
@@ -138,8 +119,8 @@ foreach($id in $ids){
       parent=[int]$p.parent
       template=[string]$p.template
       title=[string]$p.title.raw
-      content_raw_length=([string]$p.content.raw).Length
-      content_rendered_length=([string]$p.content.rendered).Length
+      content_raw_length=$raw.Length
+      content_rendered_length=$rendered.Length
       meta_keys=@($metaNames)
       elementor_edit_mode=(To-CompactJson $editMode)
       elementor_template_type=(To-CompactJson $templateType)
