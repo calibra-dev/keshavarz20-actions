@@ -1,0 +1,42 @@
+name: K20 Phase 3 Decision Link Verify
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'phase3-verify-ops/*.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: python -m pip install requests
+      - run: python scripts/k20_phase3_verify_decision_links.py
+      - shell: bash
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -f phase3-results/decision-link-live-verify.json ]; then git add -f phase3-results/decision-link-live-verify.json; fi
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase3: record decision-link live verification"
+          for attempt in 1 2 3 4; do
+            git pull --rebase origin main
+            if git push origin main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
