@@ -1,6 +1,10 @@
 name: K20 Daily Product Social
 
 on:
+  pull_request:
+    paths:
+      - '.github/workflows/k20-daily-product-social.yml'
+      - 'product-social-engine/**'
   schedule:
     # 09:00 Asia/Tehran (Iran is UTC+03:30 year-round)
     - cron: '30 5 * * *'
@@ -19,7 +23,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: k20-daily-product-social
+  group: k20-daily-product-social-${{ github.ref }}
   cancel-in-progress: false
 
 env:
@@ -54,7 +58,9 @@ jobs:
         id: mode
         shell: bash
         run: |
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            MODE="dry_run"
+          elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             MODE="${{ inputs.mode }}"
           elif [[ "${{ vars.PRODUCT_SOCIAL_ENABLED }}" == "true" ]]; then
             MODE="publish"
@@ -69,7 +75,7 @@ jobs:
         run: python product-social-engine/main.py --dry-run
 
       - name: Generate and publish daily product creative
-        if: steps.mode.outputs.mode == 'publish'
+        if: github.event_name != 'pull_request' && steps.mode.outputs.mode == 'publish'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -88,7 +94,7 @@ jobs:
           retention-days: 14
 
       - name: Persist successful rotation state
-        if: steps.mode.outputs.mode == 'publish' && success()
+        if: github.event_name != 'pull_request' && steps.mode.outputs.mode == 'publish' && success()
         shell: bash
         run: |
           if git diff --quiet -- product-social-engine/state.json; then
