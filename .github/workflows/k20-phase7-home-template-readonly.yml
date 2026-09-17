@@ -25,7 +25,7 @@ jobs:
           $auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"))
           $headers=@{Authorization="Basic $auth";Accept='application/json';'Content-Type'='application/json'}
           $paths=@('themes/irankala/partials/fullwidth-slider.php','themes/irankala-wpvibe-draft/partials/fullwidth-slider.php')
-          $patterns=@('fullwidth-slider','loading','wp_get_attachment_image','the_post_thumbnail','owl-carousel')
+          $patterns=@('thumbnail','image','slider','get_option','get_theme_mod','attachment','wp_get','the_post','lazy','owl')
           $out=@()
           foreach($p in $paths){
             try{
