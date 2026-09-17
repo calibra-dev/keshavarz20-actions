@@ -1,0 +1,38 @@
+{
+  "executed_at_utc": "2026-09-17T05:20:00Z",
+  "action": "content_media.direct_convert_classification",
+  "classification": "terminal_quality_server_scaling_regression",
+  "evidence_file": "content-webp-probe-results/20260917-0833-141437-141441.json",
+  "items": [
+    {
+      "old_attachment_id": 141437,
+      "success": false,
+      "stage": "quality_guard",
+      "terminal": true,
+      "reason": "WordPress big-image scaling rewrites uploaded 4000x3000 lossless WebP to 2560x1920 scaled WebP; final canonical WebP is larger than current PNG",
+      "source_bytes": 3185248,
+      "encoded_preupload_bytes": 2664566,
+      "wordpress_final_bytes": 4907060,
+      "wordpress_final_width": 2560,
+      "wordpress_final_height": 1920,
+      "final_size_change_pct": 54.05,
+      "probe_cleanup_verified_404": true
+    },
+    {
+      "old_attachment_id": 141441,
+      "success": false,
+      "stage": "quality_guard",
+      "terminal": true,
+      "reason": "WordPress big-image scaling rewrites uploaded 4000x3000 lossless WebP to 2560x1920 scaled WebP; final canonical WebP is larger than current PNG",
+      "source_bytes": 2269109,
+      "encoded_preupload_bytes": 1920370,
+      "wordpress_final_bytes": 4233002,
+      "wordpress_final_width": 2560,
+      "wordpress_final_height": 1920,
+      "final_size_change_pct": 86.55,
+      "probe_cleanup_verified_404": true
+    }
+  ],
+  "site_mutation": false,
+  "protected_attachment_ids_untouched": [142597]
+}
