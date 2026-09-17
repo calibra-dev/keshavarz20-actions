@@ -48,7 +48,7 @@ function Get-MetaValue($Meta,[string]$Name){
 
 function Summarize-ElementorData($RawValue){
   if($null -eq $RawValue){
-    return [ordered]@{present=$false;serialized_length=0;sha256='';json_parse_ok=$false;top_level_count=0;widget_type_counts=@{};template_id_refs=@()}
+    return [ordered]@{present=$false;serialized_length=0;sha256='';json_parse_ok=$false;top_level_count=0;widget_type_counts=@{};template_id_refs=@();raw_if_small=''}
   }
   $text=if($RawValue -is [string]){[string]$RawValue}else{To-CompactJson $RawValue}
   $parseOk=$false
@@ -80,6 +80,7 @@ function Summarize-ElementorData($RawValue){
     top_level_count=$topCount
     widget_type_counts=$widgetCounts
     template_id_refs=@($refSet | Sort-Object)
+    raw_if_small=if($text.Length -le 5000){$text}else{''}
   }
 }
 
