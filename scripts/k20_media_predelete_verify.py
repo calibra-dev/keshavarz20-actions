@@ -5,6 +5,7 @@ import pathlib
 import urllib.error
 import urllib.parse
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 
 ROOT = pathlib.Path('.')
@@ -13,6 +14,7 @@ SITEWIDE = ROOT / 'sitewide-media-results' / 'inventory.json'
 CONTENT = ROOT / 'content-media-results' / 'inventory.json'
 OPS = ROOT / 'media-predelete-ops'
 OUT = ROOT / 'media-predelete-results' / 'manifest.json'
+MAX_WORKERS = 8
 
 
 def load(path):
@@ -37,7 +39,7 @@ def wp_get(base, auth_header, attachment_id):
     url = f"{base}/wp-json/wp/v2/media/{attachment_id}?context=edit&_fields={fields}"
     req = urllib.request.Request(url, headers={'Authorization': auth_header, 'Accept': 'application/json'})
     try:
-        with urllib.request.urlopen(req, timeout=45) as r:
+        with urllib.request.urlopen(req, timeout=20) as r:
             return int(r.status), json.loads(r.read().decode('utf-8'))
     except urllib.error.HTTPError as e:
         try:
@@ -52,7 +54,7 @@ def wp_get(base, auth_header, attachment_id):
 def head(url):
     req = urllib.request.Request(url, method='HEAD', headers={'Accept': 'image/*,*/*;q=0.8'})
     try:
-        with urllib.request.urlopen(req, timeout=45) as r:
+        with urllib.request.urlopen(req, timeout=15) as r:
             return {'ok': 200 <= int(r.status) < 400, 'status': int(r.status), 'content_type': str(r.headers.get('Content-Type') or '')}
     except urllib.error.HTTPError as e:
         return {'ok': False, 'status': int(e.code), 'content_type': str(e.headers.get('Content-Type') or '')}
@@ -99,9 +101,8 @@ if not base or not user or not password:
 auth = base64.b64encode(f'{user}:{password}'.encode('utf-8')).decode('ascii')
 auth_header = f'Basic {auth}'
 
-ready = []
-blocked = []
-for row in plan_eligible:
+
+def verify_row(row):
     aid = int(row.get('attachment_id') or 0)
     reasons = []
     if aid <= 0:
@@ -160,9 +161,23 @@ for row in plan_eligible:
     }
     if reasons:
         out['reasons'] = reasons
-        blocked.append(out)
-    else:
-        ready.append(out)
+        return False, out
+    return True, out
+
+
+ready = []
+blocked = []
+with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+    futures = [pool.submit(verify_row, row) for row in plan_eligible]
+    for future in as_completed(futures):
+        ok, row = future.result()
+        if ok:
+            ready.append(row)
+        else:
+            blocked.append(row)
+
+ready.sort(key=lambda x: x['attachment_id'])
+blocked.sort(key=lambda x: x['attachment_id'])
 
 manifest = {
     'executed_at_utc': now_iso(),
