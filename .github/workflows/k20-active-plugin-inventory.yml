@@ -1,0 +1,42 @@
+name: K20 Active Plugin Inventory
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/plugin-inventory/*.json'
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read active plugin slugs only
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          foreach($n in 'WP_BASE_URL','WP_USERNAME','WP_APP_PASSWORD'){
+            if([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($n))){ throw "Missing required secret: $n" }
+          }
+          $base=$env:WP_BASE_URL.TrimEnd('/')
+          $auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"))
+          $headers=@{Authorization="Basic $auth";Accept='application/json'}
+          $rows=Invoke-RestMethod -Uri "$base/wp-json/wp/v2/plugins?status=active&per_page=100&_fields=plugin,status,name" -Headers $headers -Method GET -TimeoutSec 180
+          $safe=@($rows | ForEach-Object {[pscustomobject]@{plugin=[string]$_.plugin;name=[string]$_.name;status=[string]$_.status}} | Sort-Object plugin)
+          $dir=Join-Path $env:RUNNER_TEMP 'k20-active-plugins';New-Item -ItemType Directory -Force $dir|Out-Null
+          $safe | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $dir 'active-plugins.json') -Encoding utf8
+          Write-Host "ACTIVE_PLUGIN_INVENTORY_OK count=$($safe.Count)"
+      - name: Upload private diagnostic artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-active-plugin-inventory
+          path: ${{ runner.temp }}/k20-active-plugins/active-plugins.json
+          retention-days: 3
