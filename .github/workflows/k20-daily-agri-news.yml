@@ -15,6 +15,9 @@ on:
         type: boolean
         required: false
         default: false
+  push:
+    paths:
+      - 'daily-agri-news/manual-trigger.json'
   pull_request:
     paths:
       - '.github/workflows/k20-daily-agri-news.yml'
@@ -55,7 +58,8 @@ jobs:
       OPENAI_TEXT_MODEL: ${{ vars.OPENAI_TEXT_MODEL || 'gpt-5.6' }}
       OPENAI_IMAGE_MODEL: ${{ vars.OPENAI_IMAGE_MODEL || 'gpt-image-2' }}
       K20_LOOKBACK_HOURS: ${{ inputs.lookback_hours || '24' }}
-      K20_DRY_RUN: ${{ inputs.dry_run || 'false' }}
+      # Push trigger is intentionally forced to dry-run. Schedule remains live-draft.
+      K20_DRY_RUN: ${{ github.event_name == 'push' && 'true' || inputs.dry_run || 'false' }}
       K20_NEWS_CATEGORY_ID: '839'
       K20_NEWS_CATEGORY_NAME: 'کشاورزی'
 
