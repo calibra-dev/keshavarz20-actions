@@ -110,7 +110,7 @@ for page in range(1, 101):
         'per_page': 100,
         'page': page,
         'media_type': 'image',
-        '_fields': 'id,parent,source_url,mime_type,alt_text',
+        '_fields': 'id,post,source_url,mime_type,alt_text',
     })
     if code == 400 and page > 1:
         break
@@ -128,7 +128,7 @@ for page in range(1, 101):
         key = upload_key(url)
         media[aid] = {
             'attachment_id': aid,
-            'parent': int(row.get('parent') or 0),
+            'parent': int(row.get('post') or 0),
             'url': url,
             'format': fmt,
             'alt_text': str(row.get('alt_text') or ''),
