@@ -51,15 +51,39 @@ def wp_get(base, auth_header, attachment_id):
         return 0, {'message': str(e)}
 
 
+def encode_http_url(url):
+    parts = urllib.parse.urlsplit(str(url or ''))
+    path = urllib.parse.quote(parts.path, safe="/%:@-._~!$&'()*+,;=")
+    query = urllib.parse.quote(parts.query, safe="=&?/%:@-._~!$'()*+,;")
+    return urllib.parse.urlunsplit((parts.scheme, parts.netloc, path, query, parts.fragment))
+
+
 def head(url):
-    req = urllib.request.Request(url, method='HEAD', headers={'Accept': 'image/*,*/*;q=0.8'})
+    encoded_url = encode_http_url(url)
+    req = urllib.request.Request(encoded_url, method='HEAD', headers={'Accept': 'image/*,*/*;q=0.8'})
     try:
         with urllib.request.urlopen(req, timeout=15) as r:
-            return {'ok': 200 <= int(r.status) < 400, 'status': int(r.status), 'content_type': str(r.headers.get('Content-Type') or '')}
+            return {
+                'ok': 200 <= int(r.status) < 400,
+                'status': int(r.status),
+                'content_type': str(r.headers.get('Content-Type') or ''),
+                'encoded_url': encoded_url,
+            }
     except urllib.error.HTTPError as e:
-        return {'ok': False, 'status': int(e.code), 'content_type': str(e.headers.get('Content-Type') or '')}
+        return {
+            'ok': False,
+            'status': int(e.code),
+            'content_type': str(e.headers.get('Content-Type') or ''),
+            'encoded_url': encoded_url,
+        }
     except Exception as e:
-        return {'ok': False, 'status': 0, 'content_type': '', 'error': str(e)}
+        return {
+            'ok': False,
+            'status': 0,
+            'content_type': '',
+            'encoded_url': encoded_url,
+            'error': str(e),
+        }
 
 
 plan = load(PLAN)
@@ -133,6 +157,19 @@ def verify_row(row):
         'source_url': str(media.get('source_url') or '') if isinstance(media, dict) else '',
         'status': str(media.get('status') or '') if isinstance(media, dict) else '',
     }
+
+    if status == 404:
+        source_head = head(str(row.get('url') or '')) if row.get('url') else {'ok': False, 'status': 0, 'content_type': ''}
+        return 'absent', {
+            'attachment_id': aid,
+            'plan_url': str(row.get('url') or ''),
+            'sitewide_reference_count': int((s or {}).get('reference_count') or 0),
+            'content_reference_count': int((c or {}).get('reference_count') or 0),
+            'live': live,
+            'source_head': source_head,
+            'reason': 'WordPress media attachment is already absent (404); no attachment deletion is needed.',
+        }
+
     if status < 200 or status >= 300:
         reasons.append(f'live media read failed ({status})')
     else:
@@ -161,23 +198,26 @@ def verify_row(row):
     }
     if reasons:
         out['reasons'] = reasons
-        return False, out
-    return True, out
+        return 'blocked', out
+    return 'ready', out
 
 
 ready = []
+already_absent = []
 blocked = []
 with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
     futures = [pool.submit(verify_row, row) for row in plan_eligible]
     for future in as_completed(futures):
-        ok, row = future.result()
-        if ok:
+        state, row = future.result()
+        if state == 'ready':
             ready.append(row)
+        elif state == 'absent':
+            already_absent.append(row)
         else:
             blocked.append(row)
 
-ready.sort(key=lambda x: x['attachment_id'])
-blocked.sort(key=lambda x: x['attachment_id'])
+for rows in (ready, already_absent, blocked):
+    rows.sort(key=lambda x: x['attachment_id'])
 
 manifest = {
     'executed_at_utc': now_iso(),
@@ -190,17 +230,21 @@ manifest = {
     'requested_plan_eligible_count': len(plan_eligible),
     'protected_ids': sorted(protected),
     'ready_for_delete_count': len(ready),
+    'already_absent_count': len(already_absent),
     'blocked_at_predelete_count': len(blocked),
     'ready_attachment_ids': [x['attachment_id'] for x in ready],
+    'already_absent_attachment_ids': [x['attachment_id'] for x in already_absent],
     'ready': ready,
+    'already_absent': already_absent,
     'blocked': blocked,
-    'note': 'Read-only pre-delete verification. No attachment was deleted. Live WordPress media readback, parent/mime/source checks, and zero-reference evidence from the accepted complete inventories are required. Any protected or failed item is excluded.'
+    'note': 'Read-only pre-delete verification. No attachment was deleted. Unicode media URLs are percent-encoded for HEAD checks. WordPress media 404 responses are classified as already absent, not deletion candidates. Any protected or failed live item remains excluded.',
 }
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding='utf-8')
 print(json.dumps({
     'requested_plan_eligible_count': len(plan_eligible),
     'ready_for_delete_count': len(ready),
+    'already_absent_count': len(already_absent),
     'blocked_at_predelete_count': len(blocked),
     'protected_ids': sorted(protected),
     'deletion_authorized': False,
