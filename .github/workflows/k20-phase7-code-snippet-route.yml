@@ -1,0 +1,39 @@
+name: K20 Phase 7 Code Snippet Route Readonly
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'phase7-snippet-ops/*.json'
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect code snippet route only
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $base=$env:WP_BASE_URL.TrimEnd('/')
+          $auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"))
+          $headers=@{Authorization="Basic $auth";Accept='application/json'}
+          $index=Invoke-RestMethod -Uri "$base/wp-json/" -Headers $headers -Method GET -TimeoutSec 180
+          $route='/wpvibe/v1/code-snippet'
+          $p=$index.routes.PSObject.Properties[$route]
+          $result=if($null -eq $p){[ordered]@{route=$route;found=$false}}else{[ordered]@{route=$route;found=$true;definition=$p.Value}}
+          $dir=Join-Path $env:RUNNER_TEMP 'k20-phase7-snippet';New-Item -ItemType Directory -Force $dir|Out-Null
+          $result|ConvertTo-Json -Depth 30|Set-Content -LiteralPath (Join-Path $dir 'route.json') -Encoding utf8
+      - uses: actions/upload-artifact@v4
+        with:
+          name: k20-phase7-code-snippet-route
+          path: ${{ runner.temp }}/k20-phase7-snippet/route.json
+          retention-days: 3
