@@ -1,0 +1,29 @@
+{
+  "version": "phase2-video-program-v1",
+  "count": 20,
+  "format": "9:16",
+  "language": "fa",
+  "status": "SCRIPT_AND_PRE_RENDER_TRANSCRIPT_READY",
+  "render_status": "BLOCKED_PROVIDER_CREDITS",
+  "provider_blocker": {
+    "provider": "invideo",
+    "single_video_test_required_credits": 856,
+    "available_credits": 41,
+    "test_agent_id": "027a0961-d493-4e46-9e7b-9056bdbafe29",
+    "batch_agent_id": "00c9a3f1-7fdc-4b35-9c30-699e4a736ac6",
+    "note": "Provider reported insufficient credits before rendering; no video generation exists yet."
+  },
+  "policies": [
+    "no invented technical numbers",
+    "no fake customer/project evidence",
+    "illustrative visuals must not be presented as field evidence"
+  ],
+  "sitemap_gate": [
+    "public landing page",
+    "public thumbnail",
+    "public playable/content URL",
+    "duration",
+    "publication date"
+  ],
+  "final_transcript_rule": "After rendering, reconcile transcript/subtitle text against final audio before publication."
+}
