@@ -1,0 +1,80 @@
+name: K20 Phase 7 Custom Plugin Cache Scan Readonly
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'phase7-cache-scan-ops/*.json'
+permissions:
+  contents: write
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
+      - name: Scan custom plugins for cache-control signatures
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $base=$env:WP_BASE_URL.TrimEnd('/')
+          $auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"))
+          $headers=@{Authorization="Basic $auth";Accept='application/json';'Content-Type'='application/json'}
+          $dirs=@(
+            'plugins/keshavarz20-category-noindex-helper',
+            'plugins/keshavarz20-content-ops',
+            'plugins/keshavarz20-indexability-repair',
+            'plugins/keshavarz20-instagram-automation',
+            'plugins/keshavarz20-mcp-bridge',
+            'plugins/keshavarz20-product-discovery-batch15',
+            'plugins/keshavarz20-product-discovery-batch20',
+            'plugins/keshavarz20-seo-ops'
+          )
+          $patterns=@('DONOTCACHEPAGE','nocache','no-cache','litespeed_control','session_start','wp_cache','cache-control','Cache-Control','setcookie','set-cookie')
+          $matches=@();$scanned=0
+          foreach($dir in $dirs){
+            $enc=[Uri]::EscapeDataString($dir)
+            try{$list=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/file/list?scope=wp-content&directory=$enc" -Headers $headers -Method GET -TimeoutSec 180}catch{continue}
+            foreach($f in @($list.files)){
+              $path=[string]$f.path
+              if($path -notmatch '\.php$'){continue}
+              $scanned++
+              $body=[ordered]@{scope='wp-content';path=$path}|ConvertTo-Json -Compress
+              try{$r=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/file/read" -Headers $headers -Method POST -Body $body -TimeoutSec 180}catch{continue}
+              $content=if($r.PSObject.Properties.Name -contains 'content'){[string]$r.content}elseif($r.data){[string]$r.data.content}else{''}
+              if([string]::IsNullOrEmpty($content)){continue}
+              $lines=$content -split "\r?\n"
+              foreach($pat in $patterns){
+                $hits=0
+                for($i=0;$i -lt $lines.Count;$i++){
+                  if($lines[$i].IndexOf($pat,[StringComparison]::OrdinalIgnoreCase)-ge0){
+                    $s=$lines[$i].Trim()
+                    if($s.Length-gt360){$s=$s.Substring(0,360)}
+                    $matches+=,[pscustomobject]@{path=$path;pattern=$pat;line=$i+1;snippet=$s}
+                    $hits++; if($hits-ge8){break}
+                  }
+                }
+              }
+            }
+          }
+          New-Item -ItemType Directory -Force phase7-results|Out-Null
+          [ordered]@{mode='read-only';php_files_scanned=$scanned;matches=$matches}|ConvertTo-Json -Depth 20|Set-Content phase7-results/custom-plugin-cache-scan.json -Encoding utf8
+      - name: Commit sanitized scan
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase7-results/custom-plugin-cache-scan.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase7: record custom plugin cache scan"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt*2))
+          done
+          exit 1
