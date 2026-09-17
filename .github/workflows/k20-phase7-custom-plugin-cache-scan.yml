@@ -35,7 +35,7 @@ jobs:
             'plugins/keshavarz20-seo-ops'
           )
           $patterns=@('DONOTCACHEPAGE','nocache','no-cache','litespeed_control','session_start','wp_cache','cache-control','Cache-Control','setcookie','set-cookie')
-          $matches=@();$scanned=0
+          $findings=@();$scanned=0
           foreach($dir in $dirs){
             $enc=[Uri]::EscapeDataString($dir)
             try{$list=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/file/list?scope=wp-content&directory=$enc" -Headers $headers -Method GET -TimeoutSec 180}catch{continue}
@@ -54,7 +54,7 @@ jobs:
                   if($lines[$i].IndexOf($pat,[StringComparison]::OrdinalIgnoreCase)-ge0){
                     $s=$lines[$i].Trim()
                     if($s.Length-gt360){$s=$s.Substring(0,360)}
-                    $matches+=,[pscustomobject]@{path=$path;pattern=$pat;line=$i+1;snippet=$s}
+                    $findings+=,[pscustomobject]@{path=$path;pattern=$pat;line=$i+1;snippet=$s}
                     $hits++; if($hits-ge8){break}
                   }
                 }
@@ -62,7 +62,7 @@ jobs:
             }
           }
           New-Item -ItemType Directory -Force phase7-results|Out-Null
-          [ordered]@{mode='read-only';php_files_scanned=$scanned;matches=$matches}|ConvertTo-Json -Depth 20|Set-Content phase7-results/custom-plugin-cache-scan.json -Encoding utf8
+          [ordered]@{mode='read-only';php_files_scanned=$scanned;matches=$findings}|ConvertTo-Json -Depth 20|Set-Content phase7-results/custom-plugin-cache-scan.json -Encoding utf8
       - name: Commit sanitized scan
         shell: bash
         run: |
