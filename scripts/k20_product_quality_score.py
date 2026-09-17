@@ -119,10 +119,28 @@ for p in products:
     if schema_points<7:gaps.append("Schema قابل‌مشاهده")
     gaps.append("Feed (فاز ۳)") if schema_points>=5 else None
 
+    owner_map={
+      "عنوان استاندارد/کامل":"catalog",
+      "توضیح کوتاه تصمیم‌ساز":"content",
+      "مشخصات ساختاریافته/کامل":"catalog+technical",
+      "مناسب/نامناسب و محدودیت":"content+technical",
+      "تصاویر واقعی/ALT":"media",
+      "ویدئو":"media",
+      "قیمت/موجودی معتبر":"catalog",
+      "ارسال/مرجوعی/ضمانت نزدیک تصمیم خرید":"commerce-content",
+      "سازگاری":"technical-data",
+      "جایگزین/مکمل":"merchandising",
+      "Verified Review/Q&A":"customer-evidence",
+      "Schema قابل‌مشاهده":"seo-technical",
+      "Feed (فاز ۳)":"phase3-feed"
+    }
+    deadline="2026-10-18" if score<70 else ("2026-11-17" if score<85 else None)
+    remediation=[{"gap":g,"owner":owner_map.get(g,"content-ops"),"deadline":deadline if g!="Feed (فاز ۳)" else "Phase 3"} for g in gaps]
     rows.append({
       "id":p.get("id"),"name":title,"sku":p.get("sku"),"permalink":p.get("permalink"),
       "score":int(score),"promote_ready":score>=85,"verified_reviews":rstat["verified"],
-      "review_count":rstat["total"],"gaps":gaps,"breakdown":detail,"modified_gmt":p.get("date_modified_gmt")
+      "review_count":rstat["total"],"gaps":gaps,"remediation":remediation,
+      "deadline":deadline,"breakdown":detail,"modified_gmt":p.get("date_modified_gmt")
     })
 
 rows.sort(key=lambda x:(x["score"],x["id"] or 0))
@@ -135,7 +153,7 @@ summary={
   "verified_review_products":sum(1 for x in rows if x["verified_reviews"]>0),
   "distribution":{"90_100":sum(1 for s in scores if s>=90),"85_89":sum(1 for s in scores if 85<=s<90),"70_84":sum(1 for s in scores if 70<=s<85),"below_70":sum(1 for s in scores if s<70)}
 }
-record={"ok":True,"mode":"read-only","version":"phase2-pqs-v2","weights_total":100,"feed_points_reserved_for_phase3":3,
+record={"ok":True,"mode":"read-only","version":"phase2-pqs-v3","weights_total":100,"feed_points_reserved_for_phase3":3,
         "schema_template_probe":schema_probe,"generated_at_utc":__import__("datetime").datetime.utcnow().isoformat()+"Z","summary":summary,"products":rows}
 os.makedirs(os.path.dirname(sys.argv[1]),exist_ok=True)
 with open(sys.argv[1],"w",encoding="utf-8") as f:json.dump(record,f,ensure_ascii=False,indent=2)
