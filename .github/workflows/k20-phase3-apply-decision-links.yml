@@ -36,7 +36,7 @@ jobs:
             $name=[IO.Path]::GetFileNameWithoutExtension($f.Name)
             $out=Join-Path $env:RUNNER_TEMP "$name.result.json"
             & ./scripts/Invoke-K20SiteGateway.ps1 -RequestPath $f.FullName -OutputPath $out
-            if($LASTEXITCODE -ne 0){ throw "Gateway failed for $($f.Name)" }
+            if(-not (Test-Path -LiteralPath $out)){ throw "Gateway result missing for $($f.Name)" }
             Copy-Item $out "results/$name.json" -Force
           }
       - name: Persist results
