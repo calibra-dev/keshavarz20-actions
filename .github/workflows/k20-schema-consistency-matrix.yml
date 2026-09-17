@@ -1,0 +1,93 @@
+name: K20 Schema Consistency Matrix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/schema-matrix/*.json'
+
+permissions:
+  contents: read
+
+jobs:
+  matrix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify Product Offer seller Organization consistency
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/k20-schema-matrix"
+          mkdir -p "$out"
+          python3 - "$out/result.json" <<'PY'
+          import json, sys, urllib.request
+          from html import unescape
+          from html.parser import HTMLParser
+
+          result_path = sys.argv[1]
+          urls = [
+              'https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/',
+              'https://keshavarz20.com/product/%da%a9%d8%a7-%db%b6%db%b0-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/',
+              'https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%85%d8%a7%d8%af%d9%87-%d9%86%da%af%db%8c%d9%86-90-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86/',
+              'https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%db%8c%da%a9%d8%b3%d8%b1-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c/',
+          ]
+          canonical_org = 'https://keshavarz20.com/#organization'
+
+          class P(HTMLParser):
+              def __init__(self):
+                  super().__init__(); self.on=False; self.buf=[]; self.blocks=[]
+              def handle_starttag(self, tag, attrs):
+                  if tag.lower() == 'script' and (dict(attrs).get('type') or '').lower() == 'application/ld+json':
+                      self.on=True; self.buf=[]
+              def handle_endtag(self, tag):
+                  if tag.lower() == 'script' and self.on:
+                      self.blocks.append(''.join(self.buf)); self.on=False; self.buf=[]
+              def handle_data(self, data):
+                  if self.on: self.buf.append(data)
+
+          def walk(o):
+              if isinstance(o, dict):
+                  yield o
+                  for v in o.values(): yield from walk(v)
+              elif isinstance(o, list):
+                  for v in o: yield from walk(v)
+
+          rows=[]; failed=False
+          for url in urls:
+              req=urllib.request.Request(url, headers={'User-Agent':'K20-Schema-Matrix/2026-09-17','Cache-Control':'no-cache'})
+              with urllib.request.urlopen(req, timeout=90) as r:
+                  status=r.status; text=r.read().decode('utf-8','replace')
+              p=P(); p.feed(text)
+              parsed=[]
+              for raw in p.blocks:
+                  try: parsed.append(json.loads(unescape(raw)))
+                  except Exception: pass
+              nodes=[n for b in parsed for n in walk(b) if isinstance(n,dict)]
+              products=[n for n in nodes if 'Product' in (n.get('@type') if isinstance(n.get('@type'),list) else [n.get('@type')])]
+              offers=[n for n in nodes if 'Offer' in (n.get('@type') if isinstance(n.get('@type'),list) else [n.get('@type')])]
+              orgs=[n for n in nodes if 'Organization' in (n.get('@type') if isinstance(n.get('@type'),list) else [n.get('@type')])]
+              no_logo=[n for n in orgs if not n.get('logo')]
+              seller_refs=[n.get('seller') for n in offers]
+              seller_ok=(len(seller_refs)==1 and seller_refs[0]=={'@id':canonical_org})
+              row={
+                  'url':url,'http':status,'jsonld_blocks':len(p.blocks),
+                  'product_count':len(products),'offer_count':len(offers),'organization_count':len(orgs),
+                  'organization_without_logo_count':len(no_logo),'seller':seller_refs[0] if seller_refs else None,
+                  'pass': status==200 and len(products)==1 and len(offers)==1 and len(orgs)==1 and len(no_logo)==0 and seller_ok,
+              }
+              rows.append(row)
+              failed = failed or not row['pass']
+          result={'canonical_organization':canonical_org,'samples':rows,'pass':not failed}
+          print(json.dumps(result,ensure_ascii=False,indent=2))
+          with open(result_path,'w',encoding='utf-8') as f: json.dump(result,f,ensure_ascii=False,indent=2)
+          if failed: raise SystemExit(1)
+          PY
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-schema-consistency-matrix
+          path: ${{ runner.temp }}/k20-schema-matrix/result.json
+          retention-days: 14
