@@ -1,0 +1,94 @@
+name: Keshavarz20 SEO God Three-Engine Smoke
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/k20-seo-god-engine-smoke.yml'
+      - '.github/workflows/k20-customer-question-engine.yml'
+      - '.github/workflows/k20-question-scheduler.yml'
+      - '.github/workflows/k20-article-queue-publisher.yml'
+      - '.github/workflows/k20-news-queue-publisher.yml'
+      - '.github/workflows/k20-daily-agri-news.yml'
+      - 'automation-policy/**'
+      - 'question-engine/**'
+      - 'daily-agri-articles/publish_queue*.py'
+      - 'daily-agri-articles/SCHEDULED_TASK_PROMPT.md'
+      - 'daily-agri-news/publish_queue*.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: k20-seo-god-three-engine-smoke
+  cancel-in-progress: false
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install test dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          pip install -r daily-agri-articles/requirements.txt
+
+      - name: Compile upgraded engines
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile question-engine/engine_v18.py
+          python -m py_compile question-engine/test_engine_v18.py
+          python -m py_compile daily-agri-articles/publish_queue_v2.py
+          python -m py_compile daily-agri-news/publish_queue_v2.py
+          python -m py_compile automation-policy/test_seo_god_engines.py
+
+      - name: Run full question-engine regression suite
+        shell: bash
+        run: |
+          set -euo pipefail
+          python question-engine/test_engine.py
+          python question-engine/test_engine_v2.py
+          python question-engine/test_engine_v3.py
+          python question-engine/test_engine_v4.py
+          python question-engine/test_engine_v5.py
+          python question-engine/test_engine_v6.py
+          python question-engine/test_engine_v7.py
+          python question-engine/test_engine_v8.py
+          python question-engine/test_engine_v9.py
+          python question-engine/test_engine_v10.py
+          python question-engine/test_engine_v11.py
+          python question-engine/test_engine_v12.py
+          python question-engine/test_engine_v13.py
+          python question-engine/test_engine_v14.py
+          python question-engine/test_engine_v15.py
+          python question-engine/test_engine_v16.py
+          python question-engine/test_engine_v17.py
+          python question-engine/test_engine_v18.py
+
+      - name: Run cross-engine policy and publisher smoke tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python automation-policy/test_seo_god_engines.py
+
+      - name: Summary
+        if: always()
+        shell: bash
+        run: |
+          echo '## SEO God three-engine smoke' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Question engine: v1-v18 regression suite' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Article engine: adaptive FAQ + independent-source validator' >> "$GITHUB_STEP_SUMMARY"
+          echo '- News engine: independent-source + near-duplicate validator' >> "$GITHUB_STEP_SUMMARY"
+          echo '- API news path: verified manual-fallback only' >> "$GITHUB_STEP_SUMMARY"
