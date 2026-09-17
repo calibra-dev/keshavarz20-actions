@@ -1,43 +1,82 @@
-# K20 Daily Product Social Engine
+# K20 Approved Product Social Engine
 
-Daily zero-API-cost social publisher for Keshavarz20.
+Human-approved daily product promotion for Keshavarz20.
 
-## What it does
+## Daily flow
 
-1. Reads published products from the public WooCommerce Store API.
-2. Keeps in-stock products that have a real product image.
-3. Rotates products and avoids repeats using `state.json`.
-4. Uses the real product image to render a Persian 1080x1350 branded creative.
-5. Builds a factual Persian caption from the live product data; it does not invent technical claims and does not advertise a price.
-6. Publishes to a Telegram channel or group through the official Telegram Bot API.
-7. Uploads the same image and caption as a workflow artifact for WhatsApp use until an official programmable WhatsApp destination is configured for the account.
+- **22:45 Asia/Tehran**: GitHub prepares tomorrow's product, factual caption, 1080x1350 ad, and 1080x1920 Story image.
+- **23:00 Asia/Tehran**: ChatGPT shows the prepared image/text to the user for review.
+- Approval is stored as `product-social-engine/approvals/YYYY-MM-DD.json` and must match the exact date, product ID, and `candidate_hash`.
+- **08:45**: approved WhatsApp group image + caption + direct product link.
+- **08:50**: approved Telegram image + caption + direct product link.
+- **08:55**: approved Instagram Story image only.
+- Without an exact approval, every morning publisher skips safely.
 
-## Required GitHub configuration
+## Product rules
 
-Repository secrets:
+The engine reads the public WooCommerce Store API, keeps only currently visible/in-stock products with a real image, rotates them using `state.json`, and re-checks product eligibility immediately before publication.
 
-- `TELEGRAM_BOT_TOKEN`: token created by BotFather.
-- `TELEGRAM_CHAT_ID`: target channel username such as `@channelname`, or the numeric channel/group chat id.
+The WhatsApp and Telegram caption always includes the exact WooCommerce product permalink under:
 
-Repository variable:
+`🛒 خرید و مشاهده مشخصات کامل محصول:`
 
-- `PRODUCT_SOCIAL_ENABLED=true` enables scheduled publishing. Until this variable is true, scheduled runs only generate a dry-run artifact and never post.
+No price, discount, certification, agronomic result, warranty claim, or technical fact may be invented.
 
-The Telegram bot must be added to the target channel/group with permission to post messages. For a channel, make it an administrator with post permission.
+## Required GitHub Secrets
 
-## Schedule
+Telegram:
 
-The workflow runs every day at 05:30 UTC, which is 09:00 Iran Standard Time (UTC+03:30). It can also be started manually in `dry_run` or `publish` mode.
+- `TELEGRAM_BOT_TOKEN`
+- The workflow target is `@keshavarz_20`.
 
-## WhatsApp
+Official WhatsApp Cloud API Groups:
 
-The engine deliberately does not use unofficial WhatsApp Web browser automation. Such sessions are fragile and can stop after logout, QR/session changes, or platform enforcement. The workflow always produces a WhatsApp-ready image and caption artifact. If the connected WhatsApp Business account exposes an official supported endpoint for the intended destination, add it as a publisher adapter without changing the product-selection/rendering pipeline.
+- `WHATSAPP_ACCESS_TOKEN`
+- `WHATSAPP_PHONE_NUMBER_ID`
+- `WHATSAPP_GROUP_ID`
 
-## Local checks
+Instagram Story:
+
+- `INSTAGRAM_ACCESS_TOKEN`
+- `INSTAGRAM_USER_ID`
+
+Existing WordPress secrets:
+
+- `WP_BASE_URL`
+- `WP_USERNAME`
+- `WP_APP_PASSWORD`
+
+WordPress is used only to host the generated Story JPEG at a public HTTPS URL required for Meta ingestion.
+
+## Security
+
+Do not commit access tokens, app passwords, WhatsApp group IDs, or WhatsApp invite URLs. The public invite link is a human join link, not an API publishing credential.
+
+## Approval JSON
+
+When the user approves the exact preview shown in ChatGPT, create:
+
+```json
+{
+  "status": "approved",
+  "publish_date": "2026-09-19",
+  "product_id": 123,
+  "candidate_hash": "exact hash copied from the prepared candidate",
+  "approved_at": "2026-09-18T23:05:00+03:30",
+  "approved_via": "chatgpt-user-confirmation"
+}
+```
+
+Changing the product, caption, link, or candidate invalidates the old approval because the hash changes.
+
+## Manual commands
 
 ```bash
-cd product-social-engine
-python -m pip install -r requirements.txt
-pytest -q
-python main.py --dry-run
+python product-social-engine/approval_pipeline.py prepare
+python product-social-engine/approval_pipeline.py status --publish-date 2026-09-19
+python product-social-engine/approval_pipeline.py whatsapp --publish-date 2026-09-19
+python product-social-engine/approval_pipeline.py telegram --publish-date 2026-09-19
+python product-social-engine/approval_pipeline.py instagram --publish-date 2026-09-19
 ```
+
+See `POLICY.md` for the non-negotiable approval, content, credential, and failure rules.
