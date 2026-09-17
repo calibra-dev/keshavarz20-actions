@@ -52,11 +52,11 @@ def find_attr(attrs, needles):
 def classify(p):
     t=((p.get("name") or "")+" "+" ".join((c.get("name") or "") for c in p.get("categories") or [])).lower()
     if any(x in t for x in ["فیلتر","هیدروسیکلون"]): return "filter"
-    if any(x in t for x in ["نوار تیپ","نوار آبیاری","تیپ به تیپ"]): return "drip_tape"
     if any(x in t for x in ["نخدار","لی فلت","لی‌فلت","مه پاش","بارانی"]): return "layflat_rain"
+    if any(x in t for x in ["نوار تیپ","نوار آبیاری","تیپ به تیپ"]): return "drip_tape"
     if any(x in t for x in ["مخزن تزریق کود","تانک کود"]): return "fertigation"
     if any(x in t for x in ["شیر توپی","شیرتوپی","شیر پروانه","شیر ویفری","شیر انشعاب","سوپاپ"]): return "valve"
-    if any(x in t for x in ["رابط","زانو","سه راه","سه‌راه","فلنج","کمربند","درپوش","بوشن","تبدیل","سر شلنگ","سر شيلنگ"]): return "fitting"
+    if any(x in t for x in ["رابط","زانو","سه راه","سه‌راه","فلنج","فلنچ","کمربند","درپوش","بوشن","تبدیل","سر شلنگ","سر شيلنگ"]): return "fitting"
     return "other_irrigation"
 
 DECISION_LINKS={
