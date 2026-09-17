@@ -1,0 +1,33 @@
+name: K20 Case Study Evidence Gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'phase2/case-studies/*.json'
+      - 'phase2/case-study-evidence-policy.json'
+      - 'scripts/k20_case_study_gate.py'
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: python scripts/k20_case_study_gate.py phase2-results/case-study-gate.json
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase2-results/case-study-gate.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase2: record case study evidence gate"
+          git pull --rebase origin main
+          git push origin main
