@@ -59,15 +59,16 @@ posts=[]
 post_rows=paged("wp-json/wp/v2/posts",{"status":"publish","context":"view","_fields":"id,slug,status,link,modified_gmt,title,content,categories,tags,featured_media"})
 posts.extend(post_row(x,"post") for x in post_rows)
 
-# The live /wp/v2/pages collection is currently cache-contaminated by frontend compare markup.
-# Enumerate pages through core search, then read each page by ID; single-item page REST is verified healthy.
+# The live /wp/v2/pages collection is cache-contaminated by frontend compare markup.
+# For Phase-2 inventory we only need page identity/title/URL; enumerate these through core search.
 page_refs=paged("wp-json/wp/v2/search",{"type":"post","subtype":"page","_fields":"id,title,url,subtype"})
 for ref in page_refs:
-    try:
-        o=get_json(f"wp-json/wp/v2/pages/{int(ref['id'])}",{"context":"view","_fields":"id,slug,status,link,modified_gmt,title,content,featured_media"})
-        posts.append(post_row(o,"page"))
-    except Exception:
-        continue
+    posts.append({
+      "id":ref.get("id"),"type":"page","title":strip_markup(ref.get("title") or ""),"slug":None,
+      "status":"publish","link":ref.get("url"),"modified_gmt":None,"word_count":None,
+      "h2_count":None,"h3_count":None,"has_table":None,"has_faq_details":None,
+      "has_video":None,"categories":[],"tags":[],"featured_media":None
+    })
 
 cats=paged("wp-json/wc/v3/products/categories",{"hide_empty":"false","_fields":"id,name,slug,parent,count,description"})
 products=paged("wp-json/wc/v3/products",{"status":"publish","_fields":"id,name,slug,permalink,sku,stock_status,short_description,description,categories,tags,images,attributes,reviews_allowed,date_modified_gmt"})
