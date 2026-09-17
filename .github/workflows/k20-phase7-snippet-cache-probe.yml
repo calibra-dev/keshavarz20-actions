@@ -1,0 +1,54 @@
+name: K20 Phase 7 Snippet Cache Probe Readonly
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'phase7-db-ops/*.json'
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read only cache-related snippet metadata
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $base=$env:WP_BASE_URL.TrimEnd('/')
+          $auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"))
+          $headers=@{Authorization="Basic $auth";Accept='application/json';'Content-Type'='application/json'}
+          function RunCli([string]$command) {
+            $body=[ordered]@{command=$command;confirm_write=$false}|ConvertTo-Json -Compress
+            return Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/cli/run" -Headers $headers -Method POST -Body $body -TimeoutSec 180
+          }
+          $q1="db query ""SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME LIKE '%snippets' LIMIT 5;"" --skip-column-names"
+          $r1=RunCli $q1
+          $table=(([string]$r1.stdout) -split "\r?\n" | Where-Object { $_ -match '^[A-Za-z0-9_]+snippets$' } | Select-Object -First 1)
+          $rows=@()
+          if($table){
+            $safeTable=$table -replace '[^A-Za-z0-9_]',''
+            $q2="db query ""SELECT id,name,active,scope FROM $safeTable WHERE active=1 AND (code LIKE '%nocache%' OR code LIKE '%DONOTCACHEPAGE%' OR code LIKE '%litespeed%' OR code LIKE '%d_user_session%' OR code LIKE '%cache%') LIMIT 50;"" --skip-column-names"
+            $r2=RunCli $q2
+            foreach($line in (([string]$r2.stdout) -split "\r?\n")){
+              if([string]::IsNullOrWhiteSpace($line)){continue}
+              $parts=$line -split "\t",4
+              if($parts.Count -ge 4){$rows+=,[pscustomobject]@{id=$parts[0];name=$parts[1];active=$parts[2];scope=$parts[3]}}
+            }
+          }
+          $out=[ordered]@{mode='read-only';table_found=[bool]$table;table=$table;matching_active_snippets=$rows}
+          $dir=Join-Path $env:RUNNER_TEMP 'k20-phase7-db';New-Item -ItemType Directory -Force $dir|Out-Null
+          $out|ConvertTo-Json -Depth 10|Set-Content -LiteralPath (Join-Path $dir 'result.json') -Encoding utf8
+      - uses: actions/upload-artifact@v4
+        with:
+          name: k20-phase7-snippet-cache-probe
+          path: ${{ runner.temp }}/k20-phase7-db/result.json
+          retention-days: 3
