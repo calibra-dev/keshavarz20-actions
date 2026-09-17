@@ -1,0 +1,58 @@
+name: K20 Phase 7 LiteSpeed Media Options Readonly
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'phase7-litespeed-read-ops/*.json'
+permissions:
+  contents: write
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
+      - name: Read LiteSpeed media options
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $req=(git show --pretty='' --name-only '${{ github.sha }}' -- 'phase7-litespeed-read-ops/*.json' | Select-Object -First 1)
+          if(-not $req){throw 'request missing'}
+          $cfg=Get-Content -Raw -LiteralPath $req|ConvertFrom-Json
+          $base=$env:WP_BASE_URL.TrimEnd('/')
+          $auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"))
+          $headers=@{Authorization="Basic $auth";Accept='application/json';'Content-Type'='application/json'}
+          $rows=@()
+          foreach($key in @($cfg.keys)){
+            $k=[string]$key
+            if($k -notmatch '^[a-z0-9_-]+$'){throw "unsafe key $k"}
+            $body=[ordered]@{command="litespeed-option get $k";confirm_write=$false}|ConvertTo-Json -Compress
+            try{
+              $r=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/cli/run" -Headers $headers -Method POST -Body $body -TimeoutSec 180
+              $rows+=,[pscustomobject]@{key=$k;ok=$true;stdout=[string]$r.stdout;stderr=[string]$r.stderr}
+            }catch{
+              $rows+=,[pscustomobject]@{key=$k;ok=$false;error=$_.Exception.Message}
+            }
+          }
+          New-Item -ItemType Directory -Force phase7-results|Out-Null
+          [ordered]@{mode='read-only';options=$rows}|ConvertTo-Json -Depth 10|Set-Content phase7-results/litespeed-media-options.json -Encoding utf8
+      - name: Commit sanitized result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase7-results/litespeed-media-options.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase7: record LiteSpeed media options"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt*2))
+          done
+          exit 1
