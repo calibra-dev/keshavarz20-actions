@@ -4,7 +4,7 @@ Human-approved daily product promotion for Keshavarz20.
 
 ## Daily flow
 
-- **22:55 Asia/Tehran**: GitHub prepares tomorrow's product, factual caption, 1080x1350 ad, and 1080x1920 Story image.
+- **22:45 Asia/Tehran**: GitHub prepares tomorrow's product, factual caption, 1080x1350 ad, and 1080x1920 Story image.
 - **23:00 Asia/Tehran**: ChatGPT shows the prepared image/text to the user for review.
 - Approval is stored as `product-social-engine/approvals/YYYY-MM-DD.json` and must match the exact date, product ID, and `candidate_hash`.
 - **08:45**: approved WhatsApp group image + caption + direct product link.
