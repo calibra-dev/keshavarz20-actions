@@ -1,0 +1,47 @@
+name: K20 Phase 16 Internal Link Authority Graph
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'phase16-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-phase16-link-manifest
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build read-only internal-link manifest
+        env:
+          K20_BASE_URL: https://keshavarz20.com
+          K20_PHASE16_MAX_URLS: '1200'
+          K20_PHASE16_WORKERS: '12'
+          K20_PHASE16_TIMEOUT: '20'
+        run: python scripts/k20_phase16_internal_links.py phase16-results/internal-link-authority-manifest-latest.json
+      - name: Commit evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase16-results/internal-link-authority-manifest-latest.json
+          if git diff --cached --quiet; then
+            echo "Manifest unchanged; validation passed."
+            exit 0
+          fi
+          git commit -m "phase16: record internal link authority manifest"
+          git pull --rebase origin main
+          git push origin HEAD:main
