@@ -1,0 +1,64 @@
+{
+  "phase": 9,
+  "checked_on": "2026-09-18",
+  "method": {
+    "scope": "Top-30 canonical PIM cohort",
+    "queries_run": 30,
+    "query_pattern": "exact catalog SKU + GTIN/بارکد",
+    "objective": "Find public GTIN/barcode evidence without inferring from internal SKU strings."
+  },
+  "result": {
+    "exact_matching_agricultural_gtin_found": 0,
+    "false_positive_numeric_collisions_observed": true,
+    "interpretation": "No matching agricultural GTIN surfaced in the 30 exact-SKU public-web checks. Numeric SKU collisions with unrelated global products were explicitly rejected."
+  },
+  "rejected_false_positive_examples": [
+    {
+      "k20_sku": "170010003",
+      "unrelated_result": "Denby tableware / cable catalog identifiers",
+      "reason": "brand and product mismatch"
+    },
+    {
+      "k20_sku": "130020010",
+      "unrelated_result": "Kawasaki piston pin",
+      "reason": "brand and product mismatch"
+    },
+    {
+      "k20_sku": "430010300",
+      "unrelated_result": "Exacompta backpack with a GTIN",
+      "reason": "brand and product mismatch"
+    },
+    {
+      "k20_sku": "100010128",
+      "unrelated_result": "MKS valve kit / unrelated retail item identifiers",
+      "reason": "brand and product mismatch"
+    }
+  ],
+  "corroborated_family_evidence": [
+    {
+      "scope": "Vispar polymer ball valves",
+      "source_type": "manufacturer official channel",
+      "facts": [
+        "size family 1/2 to 4 inch",
+        "nominal pressure 6 bar"
+      ],
+      "url": "https://t.me/s/vispar_co?before=825",
+      "confidence": "high_family_level",
+      "promotion_policy": "Do not write as exact SKU fact unless exact model mapping is independently verified."
+    },
+    {
+      "scope": "Vispar polymer butterfly valves",
+      "source_type": "manufacturer official channel",
+      "facts": [
+        "family includes 4 and 5 inch",
+        "working pressure 6 bar"
+      ],
+      "url": "https://t.me/s/vispar_co?before=889",
+      "confidence": "high_family_level",
+      "promotion_policy": "Do not infer exact connection details without exact model evidence."
+    }
+  ],
+  "gtin_policy": "Absence of a public match is recorded as not_publicly_verified. Never copy a GTIN from an unrelated numeric collision.",
+  "compatibility_policy": "Same nominal size or title text is insufficient for hard compatibility. Exact connection standard, material and pressure evidence is required.",
+  "price_stock_policy": "No price, sale price, discount, coupon, stock, or availability values were changed."
+}
