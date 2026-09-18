@@ -54,7 +54,33 @@ jobs:
                   if($lines[$i].IndexOf($pat,[StringComparison]::OrdinalIgnoreCase)-ge0){
                     $s=$lines[$i].Trim()
                     if($s.Length-gt360){$s=$s.Substring(0,360)}
-                    $findings+=,[pscustomobject]@{path=$path;pattern=$pat;line=$i+1;snippet=$s}
+                    $start=[Math]::Max(0,$i-6); $end=[Math]::Min($lines.Count-1,$i+6)
+                    $context=@()
+                    for($j=$start;$j -le $end;$j++){
+                      $cs=$lines[$j].Trim()
+                      if($cs.Length-gt240){$cs=$cs.Substring(0,240)}
+                      $context+=("{0}:{1}" -f ($j+1),$cs)
+                    }
+                    $nearestFunction=$null
+                    for($k=$i;$k -ge [Math]::Max(0,$i-80);$k--){
+                      if($lines[$k] -match '^\s*(public\s+|private\s+|protected\s+|static\s+)*function\s+([A-Za-z0-9_]+)\s*\('){
+                        $nearestFunction=$matches[2]; break
+                      }
+                    }
+                    $nearbyHooks=@()
+                    for($k=[Math]::Max(0,$i-80);$k -le [Math]::Min($lines.Count-1,$i+20);$k++){
+                      if($lines[$k] -match 'add_(action|filter)\s*\(' -or $lines[$k] -match 'register_rest_route\s*\('){
+                        $hs=$lines[$k].Trim()
+                        if($hs.Length-gt240){$hs=$hs.Substring(0,240)}
+                        $nearbyHooks+=$hs
+                      }
+                    }
+                    $findings+=,[pscustomobject]@{
+                      path=$path;pattern=$pat;line=$i+1;snippet=$s;
+                      nearest_function=$nearestFunction;
+                      nearby_hooks=@($nearbyHooks | Select-Object -Unique | Select-Object -First 8);
+                      context=$context
+                    }
                     $hits++; if($hits-ge8){break}
                   }
                 }
@@ -62,7 +88,7 @@ jobs:
             }
           }
           New-Item -ItemType Directory -Force phase7-results|Out-Null
-          [ordered]@{mode='read-only';php_files_scanned=$scanned;matches=$findings}|ConvertTo-Json -Depth 20|Set-Content phase7-results/custom-plugin-cache-scan.json -Encoding utf8
+          [ordered]@{mode='read-only';php_files_scanned=$scanned;matches=$findings}|ConvertTo-Json -Depth 30|Set-Content phase7-results/custom-plugin-cache-scan.json -Encoding utf8
       - name: Commit sanitized scan
         shell: bash
         run: |
