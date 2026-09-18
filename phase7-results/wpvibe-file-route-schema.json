@@ -1,0 +1,211 @@
+{
+  "captured_at_utc": "2026-09-18T11:37:42.184376+00:00",
+  "routes": {
+    "/wpvibe/v1/file/read": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": {
+            "scope": {
+              "required": false,
+              "type": "string",
+              "enum": [
+                "theme",
+                "wp-content"
+              ]
+            },
+            "path": {
+              "required": true,
+              "type": "string",
+              "enum": null
+            },
+            "start_line": {
+              "required": false,
+              "type": "integer",
+              "enum": null
+            },
+            "end_line": {
+              "required": false,
+              "type": "integer",
+              "enum": null
+            }
+          }
+        }
+      ]
+    },
+    "/wpvibe/v1/file/list": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {
+            "scope": {
+              "required": false,
+              "type": "string",
+              "enum": [
+                "theme",
+                "wp-content"
+              ]
+            },
+            "directory": {
+              "required": false,
+              "type": "string",
+              "enum": null
+            },
+            "pattern": {
+              "required": false,
+              "type": "string",
+              "enum": null
+            }
+          }
+        }
+      ]
+    },
+    "/wpvibe/v1/file/search": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": {
+            "pattern": {
+              "required": true,
+              "type": "string",
+              "enum": null
+            },
+            "case_sensitive": {
+              "required": false,
+              "type": "boolean",
+              "enum": null
+            },
+            "extensions": {
+              "required": false,
+              "type": "array",
+              "enum": null
+            },
+            "max_results": {
+              "required": false,
+              "type": "integer",
+              "enum": null
+            }
+          }
+        }
+      ]
+    },
+    "/wpvibe/v1/file/outline": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": {
+            "path": {
+              "required": true,
+              "type": "string",
+              "enum": null
+            }
+          }
+        }
+      ]
+    },
+    "/wpvibe/v1/file/edit": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": {
+            "path": {
+              "required": true,
+              "type": "string",
+              "enum": null
+            },
+            "old_content": {
+              "required": true,
+              "type": "string",
+              "enum": null
+            },
+            "new_content": {
+              "required": true,
+              "type": "string",
+              "enum": null
+            }
+          }
+        }
+      ]
+    },
+    "/wpvibe/v1/file/write": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": {
+            "expected_source_hash": {
+              "required": false,
+              "type": "string",
+              "enum": null
+            },
+            "path": {
+              "required": true,
+              "type": "string",
+              "enum": null
+            },
+            "content": {
+              "required": true,
+              "type": "string",
+              "enum": null
+            }
+          }
+        }
+      ]
+    },
+    "/wpvibe/v1/file/delete": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": {
+            "path": {
+              "required": true,
+              "type": "string",
+              "enum": null
+            }
+          }
+        }
+      ]
+    }
+  }
+}
