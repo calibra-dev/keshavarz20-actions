@@ -17,6 +17,10 @@ jobs:
   audit:
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,13 +28,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Build read-only internal-link manifest
-        env:
-          K20_BASE_URL: https://keshavarz20.com
-          K20_PHASE16_MAX_URLS: '1200'
-          K20_PHASE16_WORKERS: '12'
-          K20_PHASE16_TIMEOUT: '20'
-        run: python scripts/k20_phase16_internal_links.py phase16-results/internal-link-authority-manifest-latest.json
+      - name: Validate required WordPress secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$WP_BASE_URL"
+          test -n "$WP_USERNAME"
+          test -n "$WP_APP_PASSWORD"
+      - name: Build authenticated REST internal-link manifest
+        run: python scripts/k20_phase16_rest_link_graph.py phase16-results/internal-link-authority-manifest-latest.json
       - name: Commit evidence
         shell: bash
         run: |
