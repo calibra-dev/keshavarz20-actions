@@ -1,0 +1,150 @@
+{
+  "phase": 11,
+  "title": "Priority Product Decision Pages - gated preparation",
+  "status": "PREPARED_NOT_LIVE_BLOCKED_BY_WAVE_GATE",
+  "prepared_at_utc": "2026-09-18T11:45:00Z",
+  "control_plane": "keshavarz20-git-ops",
+  "sources": [
+    "phase11-results/product-snapshot.json",
+    "phase9-results/canonical-pim.json",
+    "phase9-results/verified-closure.json",
+    "phase10-ops/baseline-20260918.json",
+    "phase45/results/phase5-farmer-demand-map.json"
+  ],
+  "policy": {
+    "live_product_write_performed": false,
+    "price_write_performed": false,
+    "stock_write_performed": false,
+    "unsupported_spec_promoted": false,
+    "gate_rule": "Do not publish Phase 11 product decision changes until phases 6-10 all satisfy acceptance."
+  },
+  "candidates": [
+    {
+      "product_id": 135349,
+      "sku": "430000600",
+      "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۲ اینچ (۶۳ میلی‌متر)",
+      "demand_evidence": {
+        "level": "page",
+        "clicks": 29,
+        "impressions": 617,
+        "avg_position": 6.1702,
+        "source": "phase10-ops/baseline-20260918.json"
+      },
+      "canonical_identity": {
+        "brand": "ویسپار (Vispar)",
+        "source_confidence": "high for Woo identity fields"
+      },
+      "canonical_missing_decision_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "current_page_claims_requiring_evidence_promotion": [
+        "2 inch / 63 mm as technical fit beyond title identity",
+        "actual connection arrangement",
+        "pressure class",
+        "specific suitability by project/line conditions"
+      ],
+      "required_inputs_before_publish": [
+        "manufacturer/supplier/internal verified connection type",
+        "verified pressure class",
+        "verified nominal-size mapping and installation interface",
+        "project-side pipe/fitting connection type and working pressure"
+      ],
+      "suitable_for": "UNKNOWN_UNTIL_REQUIRED_INPUTS_VERIFIED",
+      "unsuitable_for": "UNKNOWN_UNTIL_REQUIRED_INPUTS_VERIFIED",
+      "alternatives": "CANDIDATE_ONLY_UNTIL_COMPATIBILITY_GRAPH_HAS_VERIFIED_EDGES"
+    },
+    {
+      "product_id": 140407,
+      "sku": "170010004",
+      "name": "مخزن تزریق کود (تانک کود) 200 لیتری",
+      "demand_evidence": {
+        "level": "query_family",
+        "query": "قیمت تانک کود 200 لیتری",
+        "clicks": 5,
+        "impressions": 43,
+        "avg_position": 4.5581,
+        "source": "phase45/results/phase5-farmer-demand-map.json"
+      },
+      "canonical_identity": {
+        "title_capacity_signal": "200 L in product title",
+        "source_confidence": "identity/title only; not promoted to hard compatibility fact"
+      },
+      "canonical_missing_decision_fields": [
+        "capacity",
+        "connection_size",
+        "pressure_requirement"
+      ],
+      "current_page_claims_requiring_evidence_promotion": [
+        "1 inch inlet/outlet",
+        "3 mm sheet",
+        "brand اتصال گستر",
+        "official Jihad Agriculture approval",
+        "pressure/design limits"
+      ],
+      "required_inputs_before_publish": [
+        "supplier/manufacturer/internal verified datasheet or plate",
+        "verified usable capacity",
+        "verified inlet/outlet size and connection type",
+        "verified pressure/installation limits",
+        "evidence for any certification/approval claim"
+      ],
+      "suitable_for": "UNKNOWN_UNTIL_REQUIRED_INPUTS_VERIFIED",
+      "unsuitable_for": "UNKNOWN_UNTIL_REQUIRED_INPUTS_VERIFIED",
+      "alternatives": "100 L product may be a capacity comparison candidate only; not a technical substitute without verified project inputs"
+    },
+    {
+      "product_id": 135339,
+      "sku": "430301000",
+      "name": "شیر پروانه‌ای پلیمری ویسپار ۴ اینچ با دسته فلزی (110 میلی‌متر)",
+      "demand_evidence": {
+        "level": "cluster",
+        "cluster": "شیرآلات آبیاری",
+        "clicks": 14,
+        "impressions": 611,
+        "source": "phase45/results/phase5-farmer-demand-map.json"
+      },
+      "canonical_identity": {
+        "brand": "ویسپار (Vispar)",
+        "source_confidence": "high for Woo identity fields"
+      },
+      "canonical_missing_decision_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "current_page_claims_requiring_evidence_promotion": [
+        "wafer connection",
+        "6 bar nominal pressure",
+        "UPVC body",
+        "ABS disc",
+        "EPDM seal",
+        "specific suitability claims"
+      ],
+      "required_inputs_before_publish": [
+        "manufacturer/supplier/internal verified technical sheet",
+        "verified wafer/flange interface",
+        "verified pressure class",
+        "verified material specifications",
+        "project-side flange/pipe standard and working pressure"
+      ],
+      "suitable_for": "UNKNOWN_UNTIL_REQUIRED_INPUTS_VERIFIED",
+      "unsuitable_for": "UNKNOWN_UNTIL_REQUIRED_INPUTS_VERIFIED",
+      "alternatives": "CANDIDATE_ONLY_UNTIL_COMPATIBILITY_GRAPH_HAS_VERIFIED_EDGES"
+    }
+  ],
+  "acceptance_readiness": {
+    "suitable_not_suitable_finalized": false,
+    "required_inputs_explicit": true,
+    "real_specs_evidence_complete": false,
+    "compatibility_verified": false,
+    "alternatives_verified": false,
+    "price_writes": false
+  },
+  "blockers": [
+    "Phase 7 is not an acceptance PASS because the ionCube-protected homepage LCP renderer and singular no-cache remediation remain outside the guarded allow-list.",
+    "Phase 10 is PARTIAL_BLOCKED_EXTERNAL_INTEGRATIONS: Google Generative AI, Bing AI, ChatGPT referrals/conversion, and field CWV are not all baselined.",
+    "Canonical PIM still lacks verified technical decision fields for these candidates; live page claims cannot be promoted without evidence."
+  ]
+}
