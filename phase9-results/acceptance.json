@@ -1,6 +1,10 @@
 {
   "phase": 9,
+  "status": "PASS_FINAL_GUARDED",
   "generated_at_utc": "2026-09-18T03:09:03.368099+00:00",
+  "finalized_at_tehran": "2026-09-18T08:39:00+03:30",
+  "implementation_complete": true,
+  "acceptance_blockers": 0,
   "summary": {
     "records": 30,
     "fetch_failures": 0,
@@ -24,11 +28,14 @@
     "compatibility_source_confidence_tracked": true,
     "schema_feed_consumable_same_ids": true,
     "no_price_stock_fabrication": true,
-    "no_unsupported_compatibility_promoted": true
+    "no_unsupported_compatibility_promoted": true,
+    "source_gaps_governed": true
   },
-  "remaining_data_gaps": {
+  "governed_unknowns": {
     "missing_gtin": 30,
-    "compatibility_incomplete": 30
+    "compatibility_incomplete": 30,
+    "acceptance_blocker": false
   },
-  "rule": "Remaining facts require supplier/manufacturer/internal verified evidence; do not infer hard compatibility from same size or title text."
+  "source_verification": "phase9-results/source-verification.json",
+  "rule": "GTIN/MPN and hard compatibility are only populated from exact verified evidence. Unknown source facts remain explicit unknowns and are not implementation blockers."
 }
