@@ -6,59 +6,61 @@ Mode: GitHub-first; no price/payment/user/credential writes.
 
 ## Phase 16 — Internal Link Authority Graph
 
-Requested acceptance: manifest-first, no concurrent body edits, orphan priority=0 targets, canonical anchors, apply only after wave gate.
+Status: **EXECUTION READY / RESULT PENDING**
 
-Implemented on main:
-- read-only crawler/graph builder: `scripts/k20_phase16_internal_links.py`
-- GitHub-hosted workflow: `.github/workflows/k20-phase16-internal-link-audit.yml`
-- trigger: `phase16-ops/20260918T190200Z-build-manifest.json`
-- independent guarded gateway health probe: `requests/wave04-phase16-20260918T191000-bridge-health.json`
+Implemented and committed on main:
+- initial public crawler graph builder: `scripts/k20_phase16_internal_links.py`
+- authenticated WordPress/WooCommerce REST graph builder: `scripts/k20_phase16_rest_link_graph.py`
+- GitHub-hosted Phase 16 workflow: `.github/workflows/k20-phase16-internal-link-audit.yml`
+- dedicated Phase 16 ops triggers
+- allow-listed read-only `phase16.audit` action inside the Guarded Site Gateway
+- Gateway workflow hardened so every request writes a success/failure JSON result before a failed job exits
+
+Verified infrastructure:
+- Guarded Bridge health result exists and is successful:
+  - plugin: `Keshavarz20 Content Ops Bridge`
+  - version: `1.1.0`
+  - result commit: `733a8cdf0573277eb9adf1214de85cee408510b6`
+
+Latest Phase 16 execution triggers:
+- `2b3f42a87de10a83c869d01a6bc30962c3235412` — authenticated REST graph workflow trigger
+- `d908c0ec2eb05d993e887c8de9e550a959bbdfca` — guarded phase16.audit
+- `d8a7eaf0f2a156e46de4770b0fcb8600d74b4a83` — guarded phase16.audit with mandatory failure capture
 
 Safety:
 - body mutations: 0
-- script excludes the known technical `/elementor-143320/`
-- candidate links use canonical targets and are marked apply-later
-- priority target links are validated for HTTP success before PASS
-- no bulk content write was attempted
+- prices/sale/payment/users/credentials: untouched
+- no bulk internal-link insertion was attempted before manifest acceptance
+- technical/dynamic routes are excluded from authority recommendations
 
-Current verification state:
-- repository readback confirms all Phase 16 files and trigger are present on main.
-- no matching `phase16-results/internal-link-authority-manifest-latest.json` or guarded gateway result was observable through the current GitHub connector after the trigger.
-- therefore Phase 16 is **PARTIAL** under the package completion rule; it is not marked PASS without a successful GitHub-hosted Action result.
+Current readback:
+- the new Phase 16 result files are not yet present in the repository at the time of this ledger update.
+- because PASS requires a persisted GitHub-hosted result, Phase 16 is not falsely marked PASS.
 
 ## Phase 17 — Evidence, Expert Q&A & Case Studies
 
-Implemented on main:
-- `phase17/evidence-policy.json`
-- `phase17/evidence-cards.json`
-- `phase17/expert-qa-templates.json`
-- `scripts/k20_phase17_evidence_gate.py`
-- `.github/workflows/k20-phase17-evidence-gate.yml`
-- trigger: `phase17-ops/20260918T190600Z-validate.json`
+Status: **PASS**
 
-Evidence inventory:
-- 3 verified evidence cards, each carrying method, date/time, source references and limits.
-- 2 expert-Q&A templates are explicitly non-publishable until reviewed by a real expert and grounded in evidence.
-- existing 4 case-study slots remain gated: publication_ready=0, blocked_real_evidence=4.
-- no customer, review, testimonial, project result, or measured outcome was invented.
-- valid negative reviews are explicitly not suppressible merely for being negative.
-- no site content mutation was made by this phase.
+GitHub-hosted persisted result:
+- `phase17-results/evidence-expert-case-latest.json`
+- result commit: `f76f6d79973b80c01cd6aac82ad3b42a06595be9`
+- generated at: 2026-09-18T19:08:59Z
 
-Validation:
-- the exact Phase 17 validation logic was executed locally against the current policy/card/Q&A/case-gate state and returned PASS:
-  - verified evidence cards: 3
-  - expert Q&A templates valid: 2/2
-  - case templates: 4
-  - case publication ready: 0
-  - case blocked awaiting real evidence: 4
-  - anti-fabrication/review policy: true
-- repository readback confirms the GitHub-hosted validator and trigger are present on main.
-- no matching `phase17-results/evidence-expert-case-latest.json` was observable through the current GitHub connector after the trigger.
-- because package rules require a successful GitHub-hosted Action, Phase 17 is **PARTIAL** rather than PASS until that result is produced/read back.
+Validated:
+- verified evidence cards: 3/3
+- expert-Q&A templates valid: 2/2
+- case-study slots: 4
+- publication-ready cases: 0
+- cases blocked awaiting real evidence: 4
+- case evidence gate preserved: true
+- anti-fabrication review policy: true
+- site mutations: 0
+
+No customer identity, review, testimonial, project outcome, or case-study metric was invented. Existing case slots remain blocked until real evidence, consent, and privacy review are present.
 
 ## Final status
 
-- Phase 16: PARTIAL — implementation complete, Action/result evidence not observable.
-- Phase 17: PARTIAL — content/evidence gate implementation and deterministic validation complete; Action/result evidence not observable.
+- Phase 16: **EXECUTION READY / RESULT PENDING** — all required execution paths and diagnostics are installed and triggered; GitHub result file not yet persisted/readable.
+- Phase 17: **PASS** — GitHub-hosted result persisted and read back successfully.
 - production/site body changes: none.
 - prices/sale/payment/users/credentials: untouched.
