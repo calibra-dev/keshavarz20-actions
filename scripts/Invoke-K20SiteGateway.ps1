@@ -29,6 +29,7 @@ $allowedActions = @(
   'page.read', 'page.update', 'page.create_draft',
   'media.read', 'media.update', 'media.webp_validate',
   'taxonomy.read', 'taxonomy.create', 'taxonomy.update',
+  'phase16.audit',
   'bridge.health'
 )
 if ($allowedActions -notcontains $action) { Fail "Action is not allowed: $action" }
@@ -276,6 +277,18 @@ switch ($action) {
       $target = "$base/wp-json/$route/$id"; $method='POST'; $t = Invoke-K20 'POST' $target $body
     }
     $result = [ordered]@{ id=$t.id; name=$t.name; slug=$t.slug; parent=$t.parent }
+  }
+  'phase16.audit' {
+    $tmp = Join-Path ([IO.Path]::GetTempPath()) ("k20-phase16-" + [guid]::NewGuid().ToString("N") + ".json")
+    try {
+      & python scripts/k20_phase16_rest_link_graph.py $tmp
+      if ($LASTEXITCODE -ne 0) { Fail "Phase 16 audit script failed with exit code $LASTEXITCODE" }
+      if (-not (Test-Path -LiteralPath $tmp)) { Fail "Phase 16 audit did not produce a result file." }
+      $audit = Get-Content -Raw -LiteralPath $tmp | ConvertFrom-Json -Depth 100
+      $result = $audit
+    } finally {
+      if (Test-Path -LiteralPath $tmp) { Remove-Item -LiteralPath $tmp -Force -ErrorAction SilentlyContinue }
+    }
   }
   'bridge.health' {
     $target = "$base/wp-json/keshavarz20-ops/v2/health"
