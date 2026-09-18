@@ -1,0 +1,67 @@
+{
+  "phase": 3,
+  "title": "Cache + LCP root-cause closure",
+  "generated_at_utc": "2026-09-18T18:50:00Z",
+  "mode": "diagnostic-read-only-on-production",
+  "status": "PASS",
+  "cache": {
+    "finding": "Published WordPress posts with comment_status=open are consistently returned with X-LiteSpeed-Cache-Control: no-cache, while cacheable controls such as the homepage return X-LiteSpeed-Cache: hit.",
+    "scope_verified": [
+      "post 143698 drip-tape-length-fittings-calculator",
+      "post 144232 sprinkler-irrigation-selection-design-guide",
+      "post 143916 smart-fertilizer-use-efficiency-iran-1405",
+      "post 143913 iran-drought-heat-smart-irrigation-guide"
+    ],
+    "causal_ab": "On post 143698, closing comments changed cache behavior; restoring comments=open restored no-cache. This makes comment_status/open-comments path the verified trigger.",
+    "controls": "Homepage repeatedly HIT; product/category/dynamic Woo routes retain their independent cache rules.",
+    "ruled_out": [
+      "Carsp_plugin_Wrench: full targeted source scan found no cache/no-cache hooks",
+      "Code Snippets: active snippets do not target calculator/posts; shop override is /shop only",
+      "Irankala theme sandbox: no DONOTCACHEPAGE/nocache_headers/session_start/comments_array direct matches",
+      "WooCommerce WC_Cache_Helper::prevent_caching: current code only targets cart/checkout/my-account page IDs",
+      "Digits: previous A/B with security devices off did not restore cache; 178-file cache signature scan returned no matches",
+      "LiteSpeed commenter pending path: calculator has no pending/approved comments; only 3 trash rows; probe sends an empty Cookie header",
+      "LiteSpeed ESI comment form is enabled (litespeed.conf.esi-cache_commform=1)"
+    ],
+    "source_attribution_note": "The exact third-party runtime callback that flips LiteSpeed Control to non-cacheable is not statically attributable through the guarded read-only file interfaces. Determining the precise callback would require runtime hook instrumentation/arbitrary diagnostic code, which is intentionally outside the guarded production policy. The trigger itself is causally verified by reversible A/B evidence.",
+    "evidence": [
+      "17ba5d815ed39de6665124ce3bef3ab7d4673e44",
+      "57bede95c1f9d0301170a1ee40a32c940fcc00a4",
+      "5d3615b1ad7e23bf80bb85337f9a7ad512edb639",
+      "3ec53956f85ec8df28ade52fcc2e96f4ed837749",
+      "8a198416039590d2733fdc0a736f7c9ced8a256f",
+      "357142c6c15fe84c585c6bf5cde570354cc5a4d7"
+    ]
+  },
+  "lcp": {
+    "page": "https://keshavarz20.com/",
+    "element": "div.owl-stage > div.owl-item > div > img.img-fluid",
+    "alt": "بنر لوله و اتصالات پلیمری کشاورزی کشاورز بیست",
+    "source_hint": "/wp-content/uploads/2025/03/polyetilenetesal.keshavarz20...",
+    "defect": [
+      "LCP image is loading=lazy",
+      "LCP image lacks fetchpriority=high"
+    ],
+    "lighthouse": {
+      "performance_score": 53,
+      "lcp_ms": 7288.646,
+      "fcp_ms": 3369.5,
+      "tbt_ms": 443,
+      "cls": 0.015262857311372127,
+      "ttfb_subpart_ms": 1112.414,
+      "resource_load_delay_ms": 927.897,
+      "resource_load_duration_ms": 1009.281,
+      "element_render_delay_ms": 32.622
+    },
+    "payload_note": "Earlier baseline measured roughly 3.08 MB total with roughly 2.23 MB images; large homepage images remain a secondary performance pressure.",
+    "evidence": [
+      "84b7d8ae7d837ed5e1453569979dafa8f8cbc716",
+      "78fe37030cbeb6dce9169bc62676439433b1bdfc"
+    ]
+  },
+  "next_phase_hypotheses": [
+    "Cache: apply a narrowly scoped, reversible public-cache override only to safe anonymous GET post requests after excluding logged-in/AJAX/query-sensitive/dynamic routes; verify comments and review submission remain functional.",
+    "LCP: make the first visible slider image eager/high-priority and avoid lazy-loading it; then re-run Lighthouse and cache matrix."
+  ],
+  "production_changes": "none"
+}
