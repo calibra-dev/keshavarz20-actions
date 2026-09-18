@@ -56,7 +56,7 @@ for p in pages:
     title=textify((p.get('title') or {}).get('raw') or (p.get('title') or {}).get('rendered') or '')
     raw=(p.get('content') or {}).get('raw') or (p.get('content') or {}).get('rendered') or ''
     plain=textify(raw)
-    hay=(title+' '+(p.get('slug') or '')+' '+plain).lower()
+    hay=(title+' '+(p.get('slug') or '')).lower()
     matches=[cat for cat,keys in CATS.items() if any(k.lower() in hay for k in keys)]
     if matches:
         lv=live(p.get('link') or '')
