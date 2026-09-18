@@ -1,0 +1,82 @@
+{
+  "phase": 7,
+  "title": "Cache, performance and homepage LCP remediation",
+  "status": "completed_with_verified_external_blockers",
+  "completed_at_utc": "2026-09-18T03:10:00Z",
+  "verified": {
+    "homepage_cache": {
+      "state": "cacheable",
+      "warm_state": "HIT",
+      "baseline_first_seconds": 1.242,
+      "baseline_warm_seconds": [
+        0.164,
+        0.16,
+        0.158,
+        0.196
+      ]
+    },
+    "homepage_lighthouse": {
+      "performance_scores": [
+        58,
+        44
+      ],
+      "lcp_seconds": [
+        6.159,
+        8.465
+      ],
+      "image_bytes_approx": 2230000,
+      "requests": 115
+    },
+    "lcp_root_cause": {
+      "selector": "div.owl-stage > div.owl-item > div > img.img-fluid",
+      "asset": "polyetilenetesal.keshavarz20",
+      "issue": "above-the-fold LCP image is emitted with loading=lazy and without fetchpriority=high",
+      "renderer": "themes/irankala/partials/fullwidth-slider.php",
+      "renderer_state": "ionCube protected"
+    },
+    "heavy_home_images": [
+      {
+        "name": "neshaa-768x576.png",
+        "source_bytes": 716133,
+        "tested_webp_bytes": 79406,
+        "saving_pct": 88.91,
+        "psnr": 36.54,
+        "persistent_change": false,
+        "rollback_verified": true
+      },
+      {
+        "name": "loole-768x576.png",
+        "source_bytes": 550233,
+        "tested_webp_bytes": 68324,
+        "saving_pct": 87.58,
+        "psnr": 36.97,
+        "persistent_change": false,
+        "rollback_verified": true
+      }
+    ],
+    "singular_cache": {
+      "calculator": "x-litespeed-cache-control: no-cache",
+      "sampled_products": 5,
+      "sampled_products_with_explicit_nocache": 5,
+      "custom_plugin_scan_php_files": 17,
+      "custom_plugin_general_nocache_cause_found": false
+    },
+    "safety": {
+      "unsafe_theme_or_plugin_code_modified": false,
+      "temporary_media_cleaned_up": true,
+      "page_content_rollback_verified": true
+    }
+  },
+  "remaining_blockers": [
+    "Homepage LCP renderer is ionCube-protected; correcting its emitted lazy/fetchpriority behavior requires changing protected theme behavior or introducing arbitrary code, which is outside the current keshavarz20-git-ops allow-list.",
+    "Product/calculator no-cache behavior is not caused by scanned Keshavarz20 custom plugin code; remediation now requires third-party/theme/LiteSpeed configuration or code changes not exposed by the current guarded gateway."
+  ],
+  "evidence": [
+    "phase7-results/custom-plugin-cache-scan.json",
+    "phase7-results/home-heavy-webp-apply.json",
+    "phase7-results/home-template-source.json",
+    "results/phase3-lcp-chain-20260918-home.json",
+    "phase3-results/product-cache-probe.json",
+    "diagnostics/image-impact/20260918-phase7-cache-lcp-baseline-v2.json"
+  ]
+}
