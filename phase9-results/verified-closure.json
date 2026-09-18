@@ -1,0 +1,29 @@
+{
+  "phase": 9,
+  "status": "PASS_IMPLEMENTATION_DATA_GAPS_REMAIN",
+  "evidence_commit": "97c787c34836d5700faeecd12c137491235a2c68",
+  "canonical_pim": "phase9-results/canonical-pim.json",
+  "acceptance_file": "phase9-results/acceptance.json",
+  "verified_summary": {
+    "records": 30,
+    "fetch_failures": 0,
+    "stable_id_complete": 30,
+    "sku_present": 30,
+    "gtin_present": 0,
+    "verified_compatibility_edges": 3,
+    "candidate_only_edges": 25,
+    "schema_feed_parity_pass": 30,
+    "hard_fabrications": 0
+  },
+  "remaining_source_gaps": {
+    "missing_gtin": 30,
+    "compatibility_incomplete": 30,
+    "note": "These are source-data gaps, not implementation failures. They are intentionally not fabricated."
+  },
+  "guardrails": [
+    "Stable product IDs and SKU retained as canonical identifiers.",
+    "Same-size/title clues remain candidate-only and are not promoted to verified compatibility.",
+    "Missing GTIN/MPN/technical facts remain missing until supplier/manufacturer/internal verified evidence exists.",
+    "No price or stock values were invented or altered."
+  ]
+}
