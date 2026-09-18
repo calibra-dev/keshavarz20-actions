@@ -1,0 +1,49 @@
+name: K20 Phase 7 Bridge Capability Probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'phase7-ops/bridge-capabilities-*.json'
+      - 'scripts/k20_phase7_bridge_capabilities.py'
+      - '.github/workflows/k20-phase7-bridge-capabilities.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-phase7-bridge-capabilities
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install requests
+      - run: python scripts/k20_phase7_bridge_capabilities.py
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase7-results/bridge-capabilities.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase7: record bridge capability schema"
+          for attempt in 1 2 3 4; do
+            git pull --rebase origin main
+            if git push origin main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
