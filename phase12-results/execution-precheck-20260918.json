@@ -1,0 +1,105 @@
+{
+  "phase": 12,
+  "title": "Category Decision Pages",
+  "status": "BLOCKED_BY_WAVE_GATE_PREP_COMPLETE",
+  "checked_at": "2026-09-18T14:13:00+03:30",
+  "control_plane": "keshavarz20-git-ops",
+  "gsc": {
+    "property": "sc-domain:keshavarz20.com",
+    "window": "2026-08-19..2026-09-15",
+    "settled_through": "2026-09-15"
+  },
+  "dependencies": {
+    "phase6": "PASS",
+    "phase7": "COMPLETED_WITH_VERIFIED_EXTERNAL_BLOCKERS_NOT_ACCEPTANCE_PASS",
+    "phase8": "PASS_FINAL",
+    "phase9": "PASS_FINAL_GUARDED",
+    "phase10": "PARTIAL_BLOCKED_EXTERNAL_INTEGRATIONS"
+  },
+  "rule": "Wave 3 may start only after phases 6-10 pass their gates.",
+  "resource_lock": "category-content-write",
+  "priority_categories": [
+    {
+      "priority": 1,
+      "label": "XGreen fertilizers",
+      "url": "https://keshavarz20.com/product-category/%D9%86%D9%87%D8%A7%D8%AF%D9%87-%D9%87%D8%A7%DB%8C-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D9%83%D9%88%D8%AF%D9%87%D8%A7%DB%8C-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%DB%8C%DA%A9%D8%B3-%DA%AF%D8%B1%DB%8C%D9%86-xgreen/",
+      "clicks": 17,
+      "impressions": 393,
+      "position": 10.486,
+      "action_after_gate": "enhance_existing_category_decision_layer"
+    },
+    {
+      "priority": 2,
+      "label": "Shenzhen fertilizers",
+      "url": "https://keshavarz20.com/product-category/%D9%86%D9%87%D8%A7%D8%AF%D9%87-%D9%87%D8%A7%DB%8C-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D9%83%D9%88%D8%AF%D9%87%D8%A7%DB%8C-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%B4%D9%86%DA%98%D9%86-shenzhen/",
+      "clicks": 11,
+      "impressions": 91,
+      "position": 4.209,
+      "action_after_gate": "minimal_enhancement_only_preserve_current_intent"
+    },
+    {
+      "priority": 3,
+      "label": "لوله نخدار",
+      "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/%D9%84%D9%88%D9%84%D9%87-%D9%86%D8%AE%D8%AF%D8%A7%D8%B1/",
+      "clicks": 1,
+      "impressions": 136,
+      "position": 38.529,
+      "action_after_gate": "read_current_term_and_build_decision_layer"
+    },
+    {
+      "priority": 4,
+      "label": "نوار تیپ",
+      "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/%D9%86%D9%88%D8%A7%D8%B1-%D8%AA%DB%8C%D9%BE/",
+      "clicks": 0,
+      "impressions": 122,
+      "position": 59.262,
+      "action_after_gate": "connect_calculator_guides_and_selection_modules"
+    },
+    {
+      "priority": 5,
+      "label": "لوله پلی اتیلن",
+      "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/polyethylene-pipe/",
+      "clicks": 1,
+      "impressions": 58,
+      "position": 59.431,
+      "action_after_gate": "connect_size_flow_pressure_guide_and_compatibility_modules"
+    },
+    {
+      "priority": 6,
+      "label": "آبیاری بارانی",
+      "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-equipment/sprinkler-irrigation/",
+      "clicks": 0,
+      "impressions": 58,
+      "position": 28.741,
+      "action_after_gate": "research_then_build_category_decision_layer"
+    }
+  ],
+  "required_modules": [
+    "selection_criteria",
+    "filters_or_product_family_grouping",
+    "comparison_links",
+    "relevant_guide_and_tool_links",
+    "suitable_not_suitable",
+    "source_method_and_update_date"
+  ],
+  "live_assets_to_link_when_relevant": [
+    "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
+    "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+    "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+  ],
+  "hard_guards": [
+    "no_keyword_filler",
+    "no_product_body_collision",
+    "no_price_or_sale_price_write",
+    "no_guessed_specs_or_compatibility",
+    "read_current_taxonomy_id_and_description_before_any_write"
+  ],
+  "execution": {
+    "site_writes_performed": false,
+    "taxonomy_writes_performed": false,
+    "product_writes_performed": false,
+    "price_writes_performed": false,
+    "reason": "Wave 3 dependency gate is not open.",
+    "first_mutation_after_gate": "Read the current highest-priority category term through a GitHub-hosted authenticated read, then perform one taxonomy description/module mutation and verify result plus public readback before expanding."
+  }
+}
