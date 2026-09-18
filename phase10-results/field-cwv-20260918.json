@@ -1,0 +1,37 @@
+{
+  "phase": 10,
+  "captured_at_utc": "2026-09-18T18:33:00Z",
+  "source": "Google PageSpeed Insights via WPVibe audit_page",
+  "page": "https://keshavarz20.com/",
+  "strategy": "mobile",
+  "lab": {
+    "performance_score": 62,
+    "lcp_seconds": 4,
+    "cls": 0.274,
+    "tbt_ms": 80,
+    "fcp_seconds": 1.8,
+    "speed_index_seconds": 13.8
+  },
+  "field": {
+    "overall": "SLOW",
+    "lcp_ms": 9753,
+    "inp_ms": 117,
+    "cls_milli": 4,
+    "interpretation": {
+      "lcp": "SLOW",
+      "inp": "FAST",
+      "cls": "FAST"
+    }
+  },
+  "diagnostics": {
+    "unused_javascript_saving_kib": 77,
+    "unused_css_saving_kib": 54,
+    "total_byte_weight_kib": 3036,
+    "main_thread_work_seconds": 2.5
+  },
+  "policy": {
+    "field_data_preferred_over_lab": true,
+    "no_site_write": true,
+    "no_sensitive_data": true
+  }
+}
