@@ -1,0 +1,21 @@
+{
+  "paths": [
+    "plugins/litespeed-cache/src/base.cls.php",
+    "plugins/litespeed-cache/src/api.cls.php",
+    "plugins/litespeed-cache/src/control.cls.php",
+    "plugins/litespeed-cache/src/core.cls.php",
+    "plugins/litespeed-cache/src/vary.cls.php"
+  ],
+  "patterns": [
+    "set_nocache",
+    "litespeed_control_set_nocache",
+    "is_singular",
+    "comments_open",
+    "comment_author_",
+    "cache-commenter",
+    "cache_commform",
+    "empty tag header",
+    "DONOTCACHEPAGE",
+    "vary cookie"
+  ]
+}
