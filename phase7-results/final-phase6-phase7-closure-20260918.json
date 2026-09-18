@@ -1,0 +1,100 @@
+{
+  "generated_at_utc": "2026-09-18T19:05:00Z",
+  "scope": "SEO God phases 6 and 7",
+  "phase6": {
+    "execution_status": "complete_verified",
+    "result": "pass",
+    "summary": {
+      "targets": 3,
+      "http_200": 3,
+      "self_canonical": 3,
+      "noindex": 0,
+      "in_sitemap": 3,
+      "robots_txt_http": 200,
+      "sitemaps_found": 7,
+      "sitemap_parse_errors": 0
+    },
+    "evidence": "phase6-results/indexability-closure.json",
+    "evidence_commit": "934a846"
+  },
+  "phase7": {
+    "execution_status": "complete_to_supported_guardrail",
+    "result": "diagnosed_with_verified_external_blockers",
+    "cache": {
+      "home": "verified_cacheable; warm requests reach LiteSpeed HIT",
+      "singular": "verified no-cache on normal posts, calculator and products",
+      "ruled_out": [
+        "comments open/closed state",
+        "response cookies as primary cause",
+        "LiteSpeed ESI comment-form setting",
+        "Force Public / Force URI",
+        "Digits security-device setting",
+        "IranKala feature toggles previously tested",
+        "K20 custom plugins",
+        "Digits plaintext source",
+        "active Code Snippets",
+        "searchable draft-theme plaintext",
+        "per-post litespeed_no_cache meta",
+        "current installed WooCommerce/LiteSpeed cart-checkout-account integration"
+      ],
+      "installed_litespeed_source_findings": [
+        "Control supports DONOTCACHEPAGE, per-post meta, setting exclusions, third-party finalize hooks and empty-tag no-cache paths",
+        "litespeed_no_cache meta is empty on home control, 3 posts, calculator and 2 products",
+        "WooCommerce prevent_caching on this install is limited to cart/checkout/myaccount page IDs"
+      ],
+      "remaining_attribution_blocker": "The live singular execution path is ionCube-protected. single.php, post-views.php, comments.php and single partials are encoded; core.php is 257954 bytes and exceeds the supported 64 KiB WPVibe wp-content read limit. Available plaintext sources were exhausted without a global no-cache trigger.",
+      "safe_fix_applied": false
+    },
+    "lcp": {
+      "baseline_ms": 7288.646,
+      "selector": "div.owl-stage > div.owl-item > div > img.img-fluid",
+      "image": "/wp-content/uploads/2025/03/polyetilenetesal.keshavarz20.jpg",
+      "key_findings": [
+        "LCP image is emitted with loading=lazy",
+        "No fetchpriority=high was present",
+        "Transfer size was not the dominant issue",
+        "Renderer themes/irankala/partials/fullwidth-slider.php is ionCube-protected"
+      ],
+      "safe_fix_applied": false,
+      "blocker": "No supported theme/gateway control was found to change the protected first-slider markup without an unsafe theme/plugin patch."
+    },
+    "continuation_evidence": [
+      "results/wpvibe-wpcontent-source-scan-20260918-phase7-litespeed-targeted-v1.json",
+      "phase7-results/litespeed-no-cache-postmeta.json",
+      "results/wpvibe-wpcontent-source-scan-20260918-phase7-woo-litespeed-cache-v1.json",
+      "results/wpvibe-wpcontent-list-20260918-phase7-irankala-live-list.json",
+      "phase7-results/irankala-singular-source-signatures.json",
+      "results/phase3-lcp-chain-20260918-home.json",
+      "phase7-results/closure.json"
+    ],
+    "workflow_evidence": {
+      "comments_open_matrix_run": 35382278440,
+      "broad_litespeed_scan_run": {
+        "id": 35381127357,
+        "conclusion": "cancelled_timeout",
+        "replaced_by_targeted": true
+      },
+      "targeted_litespeed_scan_run": 35382587054,
+      "postmeta_run": 35382900532,
+      "woocommerce_litespeed_source_run": 35383099796,
+      "irankala_live_list_run": 35383306540,
+      "irankala_source_run": 35383792009
+    }
+  },
+  "changes_in_this_continuation": {
+    "wordpress_site_writes": 0,
+    "price_or_discount_changes": 0,
+    "user_or_role_changes": 0,
+    "arbitrary_theme_or_plugin_patches": 0,
+    "unsafe_workarounds_applied": false,
+    "repository_changes": "read-only diagnostic workflows/requests/results plus this closure record"
+  },
+  "final_state": {
+    "phase6": "closed",
+    "phase7": "closed_to_guardrail_with_two_verified_vendor/protected-code blockers",
+    "remaining_requirements_for_full_runtime_fix": [
+      "A supported IranKala setting or vendor/unprotected source path to make the first homepage slider image eager/high-priority.",
+      "A supported source/debug path inside the protected IranKala singular execution path (or vendor fix) to identify the exact caller that makes singular routes no-cache."
+    ]
+  }
+}
