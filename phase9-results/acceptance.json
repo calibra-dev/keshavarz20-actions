@@ -1,0 +1,34 @@
+{
+  "phase": 9,
+  "generated_at_utc": "2026-09-18T03:09:03.368099+00:00",
+  "summary": {
+    "records": 30,
+    "fetch_failures": 0,
+    "stable_id_complete": 30,
+    "sku_present": 30,
+    "gtin_present": 0,
+    "products_with_attributes": 0,
+    "normalized_attribute_quantities": 0,
+    "variants": 0,
+    "variant_groups": 0,
+    "verified_compatibility_edges": 3,
+    "candidate_only_edges": 25,
+    "schema_feed_parity_pass": 30,
+    "hard_fabrications": 0
+  },
+  "acceptance": {
+    "stable_ids": true,
+    "normalized_units_layer": true,
+    "attributes_captured": true,
+    "variants_captured": true,
+    "compatibility_source_confidence_tracked": true,
+    "schema_feed_consumable_same_ids": true,
+    "no_price_stock_fabrication": true,
+    "no_unsupported_compatibility_promoted": true
+  },
+  "remaining_data_gaps": {
+    "missing_gtin": 30,
+    "compatibility_incomplete": 30
+  },
+  "rule": "Remaining facts require supplier/manufacturer/internal verified evidence; do not infer hard compatibility from same size or title text."
+}

@@ -1,0 +1,1761 @@
+{
+  "ok": true,
+  "phase": 9,
+  "version": "phase9-canonical-pim-v1",
+  "generated_at_utc": "2026-09-18T03:09:03.368099+00:00",
+  "policy": "Canonical layer preserves verified Woo facts, normalizes units deterministically, and keeps title-only/same-size clues candidate-only. Missing GTIN/MPN/specs remain missing.",
+  "summary": {
+    "records": 30,
+    "fetch_failures": 0,
+    "stable_id_complete": 30,
+    "sku_present": 30,
+    "gtin_present": 0,
+    "products_with_attributes": 0,
+    "normalized_attribute_quantities": 0,
+    "variants": 0,
+    "variant_groups": 0,
+    "verified_compatibility_edges": 3,
+    "candidate_only_edges": 25,
+    "schema_feed_parity_pass": 30,
+    "hard_fabrications": 0
+  },
+  "acceptance": {
+    "stable_ids": true,
+    "normalized_units_layer": true,
+    "attributes_captured": true,
+    "variants_captured": true,
+    "compatibility_source_confidence_tracked": true,
+    "schema_feed_consumable_same_ids": true,
+    "no_price_stock_fabrication": true,
+    "no_unsupported_compatibility_promoted": true
+  },
+  "variant_groups": {},
+  "records": [
+    {
+      "stable_id": "wp-product:135349",
+      "product_id": 135349,
+      "sku": "430000600",
+      "gtin": null,
+      "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۲ اینچ (۶۳ میلی‌متر)",
+      "slug": "%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "ویسپار (Vispar)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای خرید شیرآلات آبیاری",
+          "url": "https://keshavarz20.com/irrigation-valves-buying-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:135339",
+      "product_id": 135339,
+      "sku": "430301000",
+      "gtin": null,
+      "name": "شیر پروانه‌ای پلیمری ویسپار ۴ اینچ با دسته فلزی (110 میلی‌متر)",
+      "slug": "%d8%b4%db%8c%d8%b1-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a8%d8%a7-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be-2",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a8%d8%a7-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be-2/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "ویسپار (Vispar)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای خرید شیرآلات آبیاری",
+          "url": "https://keshavarz20.com/irrigation-valves-buying-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:140407",
+      "product_id": 140407,
+      "sku": "170010004",
+      "gtin": null,
+      "name": "مخزن تزریق کود (تانک کود) 200 لیتری",
+      "slug": "%d9%85%d8%ae%d8%b2%d9%86-%d8%aa%d8%b2%d8%b1%db%8c%d9%82-%da%a9%d9%88%d8%af-%d8%aa%d8%a7%d9%86%da%a9-%da%a9%d9%88%d8%af-200-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d8%ae%d8%b2%d9%86-%d8%aa%d8%b2%d8%b1%db%8c%d9%82-%da%a9%d9%88%d8%af-%d8%aa%d8%a7%d9%86%da%a9-%da%a9%d9%88%d8%af-200-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": null,
+      "attributes": [],
+      "required_compatibility_fields": [
+        "capacity",
+        "connection_size",
+        "pressure_requirement"
+      ],
+      "missing_compatibility_fields": [
+        "capacity",
+        "connection_size",
+        "pressure_requirement"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای طراحی و خرید تجهیزات آبیاری قطره‌ای",
+          "url": "https://keshavarz20.com/complete-drip-irrigation-system-guide/"
+        },
+        {
+          "label": "انتخاب‌گر فیلتر آبیاری",
+          "url": "https://keshavarz20.com/irrigation-filter-selector/"
+        }
+      ],
+      "pim_completeness_score": 60,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:135341",
+      "product_id": 135341,
+      "sku": "430301200",
+      "gtin": null,
+      "name": "شیر پروانه‌ای پلیمری ویسپار ۵ اینچ با دسته فلزی (۱۲۵ میلی‌متر)",
+      "slug": "%d8%b4%db%8c%d8%b1-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a8%d8%a7-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be-3",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a8%d8%a7-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be-3/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "ویسپار (Vispar)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای خرید شیرآلات آبیاری",
+          "url": "https://keshavarz20.com/irrigation-valves-buying-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:140406",
+      "product_id": 140406,
+      "sku": "170010003",
+      "gtin": null,
+      "name": "مخزن تزریق کود (تانک کود) 100 لیتری",
+      "slug": "%d9%85%d8%ae%d8%b2%d9%86-%d8%aa%d8%b2%d8%b1%db%8c%d9%82-%da%a9%d9%88%d8%af-%d8%aa%d8%a7%d9%86%da%a9-%da%a9%d9%88%d8%af-100-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d8%ae%d8%b2%d9%86-%d8%aa%d8%b2%d8%b1%db%8c%d9%82-%da%a9%d9%88%d8%af-%d8%aa%d8%a7%d9%86%da%a9-%da%a9%d9%88%d8%af-100-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": null,
+      "attributes": [],
+      "required_compatibility_fields": [
+        "capacity",
+        "connection_size",
+        "pressure_requirement"
+      ],
+      "missing_compatibility_fields": [
+        "capacity",
+        "connection_size",
+        "pressure_requirement"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای طراحی و خرید تجهیزات آبیاری قطره‌ای",
+          "url": "https://keshavarz20.com/complete-drip-irrigation-system-guide/"
+        },
+        {
+          "label": "انتخاب‌گر فیلتر آبیاری",
+          "url": "https://keshavarz20.com/irrigation-filter-selector/"
+        }
+      ],
+      "pim_completeness_score": 60,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:141196",
+      "product_id": 141196,
+      "sku": "130020007",
+      "gtin": null,
+      "name": "سر شلنگی فلزی سایز 1 اینچ (32 میلیمتر)",
+      "slug": "%d8%b3%d8%b1-%d8%b4%d9%84%d9%86%da%af%db%8c-%d9%81%d9%84%d8%b2%db%8c-1-%d8%a7%db%8c%d9%86%da%86",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d8%b1-%d8%b4%d9%84%d9%86%da%af%db%8c-%d9%81%d9%84%d8%b2%db%8c-1-%d8%a7%db%8c%d9%86%da%86/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "باران (baran)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای اتصالات پلی‌اتیلن",
+          "url": "https://keshavarz20.com/polyethylene-compression-fittings-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:141536",
+      "product_id": 141536,
+      "sku": "130020042",
+      "gtin": null,
+      "name": "سوپاپ چدنی 6 اینچ",
+      "slug": "%d8%b3%d9%88%d9%be%d8%a7%d9%be-%da%86%d8%af%d9%86%db%8c-6-%d8%a7%db%8c%d9%86%da%86",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%88%d9%be%d8%a7%d9%be-%da%86%d8%af%d9%86%db%8c-6-%d8%a7%db%8c%d9%86%da%86/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": null,
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای خرید شیرآلات آبیاری",
+          "url": "https://keshavarz20.com/irrigation-valves-buying-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 60,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:140610",
+      "product_id": 140610,
+      "sku": "11406320000-1",
+      "gtin": null,
+      "name": "کمربند انشعاب پلی‌اتیلن 63 × 2 اینچ",
+      "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-63-x-63-2",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-63-x-63-2/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "آبافرین سیستم (Abafarin System)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای اتصالات پلی‌اتیلن",
+          "url": "https://keshavarz20.com/polyethylene-compression-fittings-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:135385",
+      "product_id": 135385,
+      "sku": "42041100-2",
+      "gtin": null,
+      "name": "رابط مساوی آبلوله 3 اینچ (90 میلیمتر)",
+      "slug": "%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-90-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-2",
+      "permalink": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-90-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-2/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "آب لوله بسپار (Ablooleh baspar)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای اتصالات پلی‌اتیلن",
+          "url": "https://keshavarz20.com/polyethylene-compression-fittings-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:140656",
+      "product_id": 140656,
+      "sku": "430000300-4",
+      "gtin": null,
+      "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۳ اینچ (۹۰ میلی‌متر)",
+      "slug": "%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "ویسپار (Vispar)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای خرید شیرآلات آبیاری",
+          "url": "https://keshavarz20.com/irrigation-valves-buying-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:140595",
+      "product_id": 140595,
+      "sku": "11406301200-1",
+      "gtin": null,
+      "name": "کمربند پلی‌اتیلن ۶۳ × ۱/۲ اینچ | انشعاب لوله ۲۰ میلی‌متر",
+      "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-20-x-63-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-20-x-63-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "آب لوله بسپار (Ablooleh baspar)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای اتصالات پلی‌اتیلن",
+          "url": "https://keshavarz20.com/polyethylene-compression-fittings-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:141188",
+      "product_id": 141188,
+      "sku": "130020010",
+      "gtin": null,
+      "name": "سر شلنگی فلزی سایز 2 اینچ (63 میلیمتر)",
+      "slug": "%d8%b3%d8%b1-%d8%b4%d9%84%d9%86%da%af%db%8c-%d9%81%d9%84%d8%b2%db%8c-%db%b2%d8%a7%db%8c%d9%86%da%86",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d8%b1-%d8%b4%d9%84%d9%86%da%af%db%8c-%d9%81%d9%84%d8%b2%db%8c-%db%b2%d8%a7%db%8c%d9%86%da%86/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "باران (baran)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای اتصالات پلی‌اتیلن",
+          "url": "https://keshavarz20.com/polyethylene-compression-fittings-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:135331",
+      "product_id": 135331,
+      "sku": "430010700",
+      "gtin": null,
+      "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۲ و ۱/۲ اینچ (۷۵ میلی‌متر)",
+      "slug": "%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-2-1-2-%d8%a7%db%8c%d9%86",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-2-1-2-%d8%a7%db%8c%d9%86/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "ویسپار (Vispar)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای خرید شیرآلات آبیاری",
+          "url": "https://keshavarz20.com/irrigation-valves-buying-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:139231",
+      "product_id": 139231,
+      "sku": "20509000006",
+      "gtin": null,
+      "name": "زانو 90 درجه جوشی سایز 3 اینچ (90 میلیمتر) - 6بار",
+      "slug": "%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "permalink": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": null,
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای اتصالات پلی‌اتیلن",
+          "url": "https://keshavarz20.com/polyethylene-compression-fittings-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 60,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:135383",
+      "product_id": 135383,
+      "sku": "42041100-1",
+      "gtin": null,
+      "name": "رابط مساوی پلی‌اتیلن ۴ اینچ (۱۱۰ میلی‌متر) آبلوله",
+      "slug": "%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "permalink": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": null,
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای اتصالات پلی‌اتیلن",
+          "url": "https://keshavarz20.com/polyethylene-compression-fittings-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 60,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:141528",
+      "product_id": 141528,
+      "sku": "130020035",
+      "gtin": null,
+      "name": "سوپاپ آهنی 5 اینچ",
+      "slug": "%d8%b3%d9%88%d9%be%d8%a7%d9%be-%d8%a2%d9%87%d9%86%db%8c-5-%d8%a7%db%8c%d9%86%da%86",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%88%d9%be%d8%a7%d9%be-%d8%a2%d9%87%d9%86%db%8c-5-%d8%a7%db%8c%d9%86%da%86/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "باران (baran)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای خرید شیرآلات آبیاری",
+          "url": "https://keshavarz20.com/irrigation-valves-buying-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:140014",
+      "product_id": 140014,
+      "sku": "K20-140014",
+      "gtin": null,
+      "name": "لوله بارانی مه‌پاش ۲ اینچ آسایش آذربایجان ۱۰۰ متری",
+      "slug": "%d9%84%d9%88%d9%84%d9%87-%d8%a8%d8%a7%d8%b1%d8%a7%d9%86%db%8c-%d9%85%d9%87-%d9%be%d8%a7%d8%b4-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%db%b1%db%b0%db%b0",
+      "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d8%a8%d8%a7%d8%b1%d8%a7%d9%86%db%8c-%d9%85%d9%87-%d9%be%d8%a7%d8%b4-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%db%b1%db%b0%db%b0/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "آسایش آذربایجان (asayesh azerbaijan)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "length",
+        "connection_type",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "length",
+        "connection_type",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای سایز لی‌فلت و نخدار",
+          "url": "https://keshavarz20.com/layflat-hose-size-inch-mm-guide/"
+        },
+        {
+          "label": "ماشین حساب لی‌فلت و اتصالات",
+          "url": "https://keshavarz20.com/layflat-length-fittings-calculator/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:141527",
+      "product_id": 141527,
+      "sku": "130020034",
+      "gtin": null,
+      "name": "سوپاپ آهنی 4 اینچ",
+      "slug": "%d8%b3%d9%88%d9%be%d8%a7%d9%be-%d8%a2%d9%87%d9%86%db%8c-4-%d8%a7%db%8c%d9%86%da%86",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%88%d9%be%d8%a7%d9%be-%d8%a2%d9%87%d9%86%db%8c-4-%d8%a7%db%8c%d9%86%da%86/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "باران (baran)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای خرید شیرآلات آبیاری",
+          "url": "https://keshavarz20.com/irrigation-valves-buying-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:141710",
+      "product_id": 141710,
+      "sku": "K20-141710",
+      "gtin": null,
+      "name": "فلنج دنده ای آهنی 3 اینچ",
+      "slug": "%d9%81%d9%84%d9%86%d8%ac-%d8%af%d9%86%d8%af%d9%87-%d8%a7%db%8c-%d8%a2%d9%87%d9%86%db%8c-3-%d8%a7%db%8c%d9%86%da%86",
+      "permalink": "https://keshavarz20.com/product/%d9%81%d9%84%d9%86%d8%ac-%d8%af%d9%86%d8%af%d9%87-%d8%a7%db%8c-%d8%a2%d9%87%d9%86%db%8c-3-%d8%a7%db%8c%d9%86%da%86/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": null,
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای اتصالات پلی‌اتیلن",
+          "url": "https://keshavarz20.com/polyethylene-compression-fittings-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 60,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:135064",
+      "product_id": 135064,
+      "sku": "42079032",
+      "gtin": null,
+      "name": "کمربند پلی‌اتیلن ۹۰ × ۱ اینچ | انشعاب لوله ۳۲ میلی‌متر",
+      "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-190mm",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-190mm/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "آب لوله بسپار (Ablooleh baspar)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای اتصالات پلی‌اتیلن",
+          "url": "https://keshavarz20.com/polyethylene-compression-fittings-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 60,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:135255",
+      "product_id": 135255,
+      "sku": "300568",
+      "gtin": null,
+      "name": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۳ اینچ (۹۰ میلی‌متر)",
+      "slug": "%d8%b4%db%8c%d8%b1-%d8%aa%d9%88%d9%be%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85%db%8c%d9%84",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d8%aa%d9%88%d9%be%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85%db%8c%d9%84/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "آبافرین سیستم (Abafarin System)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای خرید شیرآلات آبیاری",
+          "url": "https://keshavarz20.com/irrigation-valves-buying-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:140501",
+      "product_id": 140501,
+      "sku": "110010100",
+      "gtin": null,
+      "name": "زانو پلی اتیلن یکسر ماده 3/4 اینچ (25 میلیمتر)",
+      "slug": "%d8%b2%d8%a7%d9%86%d9%88-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%db%8c%da%a9%d8%b3%d8%b1-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-1-%d8%a7%db%8c%d9%86%da%86-32-%d9%85",
+      "permalink": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%db%8c%da%a9%d8%b3%d8%b1-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-1-%d8%a7%db%8c%d9%86%da%86-32-%d9%85/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "آب لوله بسپار (Ablooleh baspar)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای اتصالات پلی‌اتیلن",
+          "url": "https://keshavarz20.com/polyethylene-compression-fittings-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:140661",
+      "product_id": 140661,
+      "sku": "430010700-2",
+      "gtin": null,
+      "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۴ اینچ (۱۱۰ میلی‌متر)",
+      "slug": "%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-4-%d8%a7%db%8c%d9%86-2",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-4-%d8%a7%db%8c%d9%86-2/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "ویسپار (Vispar)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای خرید شیرآلات آبیاری",
+          "url": "https://keshavarz20.com/irrigation-valves-buying-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:140503",
+      "product_id": 140503,
+      "sku": "100010128",
+      "gtin": null,
+      "name": "زانو پلی اتیلن یکسر ماده 2 اینچ (63 میلیمتر)",
+      "slug": "%d8%b2%d8%a7%d9%86%d9%88-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%db%8c%da%a9%d8%b3%d8%b1-%d9%85%d8%a7%d8%af%d9%87-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85",
+      "permalink": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%db%8c%da%a9%d8%b3%d8%b1-%d9%85%d8%a7%d8%af%d9%87-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "پلی رود اتصال( Poliroodetesal)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای اتصالات پلی‌اتیلن",
+          "url": "https://keshavarz20.com/polyethylene-compression-fittings-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:139232",
+      "product_id": 139232,
+      "sku": "20511000006",
+      "gtin": null,
+      "name": "زانو 90 درجه جوشی سایز 4 اینچ (110 میلیمتر) - 6بار",
+      "slug": "%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "permalink": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": null,
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای اتصالات پلی‌اتیلن",
+          "url": "https://keshavarz20.com/polyethylene-compression-fittings-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 60,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:135667",
+      "product_id": 135667,
+      "sku": "300563",
+      "gtin": null,
+      "name": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۱ اینچ (۳۲ میلی‌متر)",
+      "slug": "%d8%b4%db%8c%d8%b1-%d8%aa%d9%88%d9%be%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-32-%d9%85%db%8c%d9%84",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d8%aa%d9%88%d9%be%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-32-%d9%85%db%8c%d9%84/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "آبافرین سیستم (Abafarin System)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای خرید شیرآلات آبیاری",
+          "url": "https://keshavarz20.com/irrigation-valves-buying-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:140657",
+      "product_id": 140657,
+      "sku": "430000300-6",
+      "gtin": null,
+      "name": "شیر توپی دسته فلزی ویسپار ۴ اینچ (۱۱۰ میلی‌متر)",
+      "slug": "%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "ویسپار (Vispar)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای خرید شیرآلات آبیاری",
+          "url": "https://keshavarz20.com/irrigation-valves-buying-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:135102",
+      "product_id": 135102,
+      "sku": "42081110",
+      "gtin": null,
+      "name": "فلنچ پلی‌اتیلن جوشی ۴ اینچ (۱۱۰ میلی‌متر) ۶ اتمسفر آبلوله",
+      "slug": "%d9%81%d9%84%d9%86%da%86-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%d8%ac%d9%88%d8%b4%db%8c-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "permalink": "https://keshavarz20.com/product/%d9%81%d9%84%d9%86%da%86-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%d8%ac%d9%88%d8%b4%db%8c-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "آب لوله بسپار (Ablooleh baspar)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "material",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای اتصالات پلی‌اتیلن",
+          "url": "https://keshavarz20.com/polyethylene-compression-fittings-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 60,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:135323",
+      "product_id": 135323,
+      "sku": "430010300",
+      "gtin": null,
+      "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ اینچ (۳۲ میلی‌متر)",
+      "slug": "%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-1-%d8%a7%db%8c%d9%86%da%86",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-1-%d8%a7%db%8c%d9%86%da%86/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": {
+        "value": "ویسپار (Vispar)",
+        "source": "woocommerce_brand",
+        "confidence": "high"
+      },
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "connection_type",
+        "pressure_class"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای خرید شیرآلات آبیاری",
+          "url": "https://keshavarz20.com/irrigation-valves-buying-guide/"
+        },
+        {
+          "label": "راهنمای سازگاری و سبد اتصالات",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/"
+        }
+      ],
+      "pim_completeness_score": 65,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    },
+    {
+      "stable_id": "wp-product:135235",
+      "product_id": 135235,
+      "sku": "160010017",
+      "gtin": null,
+      "name": "نوار تیپ آبیاری قطره‌ای ۲۰ سانتی‌متری مناسب کشت زیر پلاستیک",
+      "slug": "%d9%86%d9%88%d8%a7%d8%b1-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d9%82%d8%b7%d8%b1%d9%87-%d8%a7%db%8c-20-%d8%b3%d8%a7%d9%86%d8%aa%db%8c-%d9%85%d8%aa%d8%b1%db%8c-2",
+      "permalink": "https://keshavarz20.com/product/%d9%86%d9%88%d8%a7%d8%b1-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d9%82%d8%b7%d8%b1%d9%87-%d8%a7%db%8c-20-%d8%b3%d8%a7%d9%86%d8%aa%db%8c-%d9%85%d8%aa%d8%b1%db%8c-2/",
+      "type": "simple",
+      "parent_id": null,
+      "is_variant": false,
+      "status": "publish",
+      "catalog_visibility": "visible",
+      "brand": null,
+      "attributes": [],
+      "required_compatibility_fields": [
+        "nominal_size",
+        "length",
+        "emitter_spacing",
+        "filtration_requirement"
+      ],
+      "missing_compatibility_fields": [
+        "nominal_size",
+        "length",
+        "emitter_spacing",
+        "filtration_requirement"
+      ],
+      "decision_links": [
+        {
+          "label": "راهنمای خرید نوار تیپ",
+          "url": "https://keshavarz20.com/drip-tape-buying-guide/"
+        },
+        {
+          "label": "محاسبه متراژ نوار تیپ و اتصالات",
+          "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/"
+        }
+      ],
+      "pim_completeness_score": 60,
+      "schema_feed_parity_pass": true,
+      "source_policy": {
+        "wp_product_id": "A",
+        "sku": "A when present",
+        "gtin": "A when present",
+        "woocommerce_attribute": "A",
+        "title_derived": "candidate_only_not_promoted"
+      },
+      "last_verified_utc": "2026-09-18T03:09:03.368099+00:00"
+    }
+  ],
+  "compatibility": {
+    "verified_edges": [
+      {
+        "source_product_id": 140407,
+        "target_product_id": 140406,
+        "relation": "explicit_internal_reference",
+        "confidence": "high",
+        "evidence_url": "https://keshavarz20.com/product/%d9%85%d8%ae%d8%b2%d9%86-%d8%aa%d8%b2%d8%b1%db%8c%d9%82-%da%a9%d9%88%d8%af-%d8%aa%d8%a7%d9%86%da%a9-%da%a9%d9%88%d8%af-200-%d9%84%db%8c%d8%aa%d8%b1%db%8c/"
+      },
+      {
+        "source_product_id": 140406,
+        "target_product_id": 140407,
+        "relation": "explicit_internal_reference",
+        "confidence": "high",
+        "evidence_url": "https://keshavarz20.com/product/%d9%85%d8%ae%d8%b2%d9%86-%d8%aa%d8%b2%d8%b1%db%8c%d9%82-%da%a9%d9%88%d8%af-%d8%aa%d8%a7%d9%86%da%a9-%da%a9%d9%88%d8%af-100-%d9%84%db%8c%d8%aa%d8%b1%db%8c/"
+      },
+      {
+        "source_product_id": 135383,
+        "target_product_id": 135339,
+        "relation": "explicit_internal_reference",
+        "confidence": "high",
+        "evidence_url": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/"
+      }
+    ],
+    "candidate_edges": [
+      {
+        "a": 135349,
+        "b": 140014,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "۲ اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 135339,
+        "b": 135383,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "۴ اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 135339,
+        "b": 140661,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "۴ اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 135339,
+        "b": 140657,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "۴ اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 135339,
+        "b": 135102,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "۴ اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 135383,
+        "b": 140661,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "۴ اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 135383,
+        "b": 140657,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "۴ اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 135383,
+        "b": 135102,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "۴ اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 140661,
+        "b": 140657,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "۴ اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 140661,
+        "b": 135102,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "۴ اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 140657,
+        "b": 135102,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "۴ اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 140610,
+        "b": 141188,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "2 اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 140610,
+        "b": 140503,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "2 اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 141188,
+        "b": 140503,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "2 اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 135385,
+        "b": 139231,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "3 اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 135385,
+        "b": 141710,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "3 اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 139231,
+        "b": 141710,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "3 اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 135385,
+        "b": 139231,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "90 میلیمتر",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 140656,
+        "b": 135255,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "۳ اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 140595,
+        "b": 135331,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "۱/۲ اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 141188,
+        "b": 140503,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "63 میلیمتر",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 141527,
+        "b": 139232,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "4 اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 135064,
+        "b": 135667,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "۱ اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 135064,
+        "b": 135323,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "۱ اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      },
+      {
+        "a": 135667,
+        "b": 135323,
+        "relation": "same_title_size_token_candidate",
+        "size_token": "۱ اینچ",
+        "confidence": "candidate_only",
+        "warning": "Same nominal size does not prove compatibility; connection standard/material/pressure must be verified."
+      }
+    ]
+  },
+  "fetch_failures": []
+}
