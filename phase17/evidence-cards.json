@@ -1,0 +1,29 @@
+[
+  {
+    "evidence_id": "phase17-evidence-001",
+    "claim": "آزمون قطعی محاسبه نوار تیپ با ورودی 10000 مترمربع، طول ردیف 100 متر، فاصله 1 متر، ذخیره 5 درصد و رول 1000 متر برابر 100 ردیف، 10000 متر پایه، 10500 متر کل و 11 رول است.",
+    "method": "GitHub-hosted deterministic acceptance test for Phase 14 decision tool",
+    "observed_at_utc": "2026-09-18T18:41:22Z",
+    "source_refs": ["run:35381640927","commit:9a824066432b554225fb6f9dd6a710a9f4de9426"],
+    "limits": "آزمون محاسباتی است؛ طراحی هیدرولیکی، فشار، افت، زون‌بندی و سازگاری قطعات را اثبات نمی‌کند.",
+    "status": "verified"
+  },
+  {
+    "evidence_id": "phase17-evidence-002",
+    "claim": "سه رسانه محافظت‌شده 141437، 141441 و 142597 در خوانش زنده موجود بودند و بدون تغییر باقی ماندند.",
+    "method": "Bridge-backed read-only attachment inspection",
+    "observed_at_utc": "2026-09-18T18:44:37Z",
+    "source_refs": ["run:35381812221","run:35381877582","run:35381936185","commit:2545f6bf1466f628ba53ac1c82ce9f6fdb38ccea"],
+    "limits": "این شواهد فقط موجودبودن و مشخصات فایل‌ها را تایید می‌کند و کیفیت فنی محتوای تصویر را تایید نمی‌کند.",
+    "status": "verified"
+  },
+  {
+    "evidence_id": "phase17-evidence-003",
+    "claim": "در آزمون A/B روی نوشته 143698، بستن دیدگاه‌ها مسیر cache را تغییر داد و بازگرداندن دیدگاه‌ها به open رفتار no-cache را بازگرداند.",
+    "method": "Reversible production diagnostic A/B with readback",
+    "observed_at_utc": "2026-09-18T18:50:00Z",
+    "source_refs": ["commit:62c9ed51d891c91bcc38d6cf5ff6d8daeb67cad6","commit:357142c6c15fe84c585c6bf5cde570354cc5a4d7"],
+    "limits": "Trigger رفتاری تایید شده ولی callback دقیق third-party بدون instrumentation اجرایی نسبت داده نشده است.",
+    "status": "verified"
+  }
+]
