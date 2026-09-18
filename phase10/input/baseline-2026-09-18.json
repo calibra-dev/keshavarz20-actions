@@ -1,0 +1,56 @@
+{
+  "phase": 10,
+  "captured_at_utc": "2026-09-18T03:24:30Z",
+  "site": "sc-domain:keshavarz20.com",
+  "control_plane": "keshavarz20-git-ops",
+  "sources": {
+    "google_search_console": {
+      "state": "connected",
+      "settled_through": "2026-09-15",
+      "window": "last_28_settled_days",
+      "clicks": 928,
+      "impressions": 15572,
+      "ctr_pct": 5.959414333418957,
+      "avg_position": 9.316005758998044,
+      "comparison_delta": {
+        "clicks": -14,
+        "impressions": -469,
+        "ctr_percentage_points": 0.08696249126447864,
+        "avg_position": 2.7287706319407024
+      }
+    },
+    "google_search_appearance": {
+      "state": "measured",
+      "start_date": "2026-08-19",
+      "end_date": "2026-09-15",
+      "rows": [
+        {
+          "appearance": "PRODUCT_SNIPPETS",
+          "clicks": 79,
+          "impressions": 899,
+          "ctr_pct": 8.78754171301446,
+          "position": 6.421579532814238
+        }
+      ],
+      "google_ai_specific_metric_state": "not_exposed_by_current_search_console_response",
+      "note": "Do not infer Google AI Overview/AI Mode visibility from PRODUCT_SNIPPETS."
+    },
+    "bing_webmaster": {
+      "state": "not_configured_in_current_connector",
+      "quantitative_baseline_available": false
+    },
+    "ga4": {
+      "state": "no_usable_rows_returned_by_current_connector",
+      "quantitative_baseline_available": false
+    },
+    "chatgpt_referrals": {
+      "state": "not_measurable_without_usable_analytics_referral_data",
+      "quantitative_baseline_available": false
+    }
+  },
+  "policy": {
+    "missing_measurement_is_not_zero": true,
+    "no_sensitive_values_persisted": true,
+    "no_site_write_performed": true
+  }
+}
