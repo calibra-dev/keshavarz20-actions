@@ -1,0 +1,37 @@
+{
+  "phase": 10,
+  "status": "PARTIAL_BLOCKED_EXTERNAL_INTEGRATIONS",
+  "acceptance": "GSC GAI+Bing AI+ChatGPT referrals+CWV+index+conversion baselined; no sensitive data in repo",
+  "gsc_search_baselined": true,
+  "index_baselined": true,
+  "all_required_measurement_sources_baselined": false,
+  "public_live_checks_ok": true,
+  "contains_sensitive_data": false,
+  "blocking_sources": [
+    {
+      "source": "google_generative_ai",
+      "status": "manual_export_required",
+      "reason": "Dedicated GSC Generative AI data is not exposed by the connected Search Analytics API snapshot."
+    },
+    {
+      "source": "bing_ai_performance",
+      "status": "manual_export_required",
+      "reason": "No connected export/API source is available in the current control plane."
+    },
+    {
+      "source": "chatgpt_referrals",
+      "status": "not_baselined",
+      "reason": "GA4 is not connected."
+    },
+    {
+      "source": "cwv_field",
+      "status": "not_configured",
+      "reason": "No CrUX API key is configured."
+    },
+    {
+      "source": "conversion",
+      "status": "not_baselined",
+      "reason": "GA4 ecommerce/key-event access is not connected."
+    }
+  ]
+}
