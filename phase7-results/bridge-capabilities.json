@@ -1,0 +1,59 @@
+{
+  "captured_at_utc": "2026-09-18T10:39:49.941509+00:00",
+  "route_count": 3,
+  "routes": {
+    "/keshavarz20-ops/v2": {
+      "namespace": "keshavarz20-ops/v2",
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {
+            "namespace": {
+              "required": false,
+              "type": null,
+              "enum": null
+            },
+            "context": {
+              "required": false,
+              "type": null,
+              "enum": null
+            }
+          }
+        }
+      ]
+    },
+    "/keshavarz20-ops/v2/health": {
+      "namespace": "keshavarz20-ops/v2",
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {}
+        }
+      ]
+    },
+    "/keshavarz20-ops/v2/execute": {
+      "namespace": "keshavarz20-ops/v2",
+      "methods": [
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": {}
+        }
+      ]
+    }
+  }
+}
