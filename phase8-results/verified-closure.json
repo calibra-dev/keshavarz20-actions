@@ -1,0 +1,89 @@
+{
+  "phase": 8,
+  "status": "PASS_WITH_DOCUMENTED_GUARDRAILS",
+  "completed_at_utc": "2026-09-18T03:22:00Z",
+  "control_plane": "keshavarz20-git-ops",
+  "direct_wp_reads_writes_used_only_for_gap_closure": true,
+  "organization": {
+    "canonical_entity_prior_verified": true,
+    "evidence_commit": "1482062f0c82bb81f4a2312f6ca3441a2480a18d",
+    "note": "P0-C seller organization canonical entity link already verified; not duplicated."
+  },
+  "published_trust_pages": [
+    {
+      "id": 128612,
+      "title": "درباره ما",
+      "status": "publish"
+    },
+    {
+      "id": 128614,
+      "title": "تماس با ما",
+      "status": "publish"
+    },
+    {
+      "id": 143320,
+      "title": "ارسال سفارشات",
+      "status": "publish"
+    },
+    {
+      "id": 13,
+      "title": "مرجوعی و مغایرت کالا",
+      "status": "publish"
+    },
+    {
+      "id": 143336,
+      "title": "ضمانت اصالت کالا",
+      "status": "publish"
+    },
+    {
+      "id": 143353,
+      "title": "قوانین و مقررات خرید",
+      "status": "publish"
+    },
+    {
+      "id": 145247,
+      "title": "حریم خصوصی",
+      "slug": "privacy-policy",
+      "status": "publish",
+      "created_in_phase8": true
+    },
+    {
+      "id": 145248,
+      "title": "چرا کشاورز بیست",
+      "slug": "why-keshavarz20",
+      "status": "publish",
+      "created_in_phase8": true
+    },
+    {
+      "id": 145249,
+      "title": "روش تولید و بازبینی محتوا",
+      "slug": "content-methodology",
+      "status": "publish",
+      "created_in_phase8": true
+    },
+    {
+      "id": 140667,
+      "title": "پیش فاکتور سبد خرید",
+      "status": "publish"
+    }
+  ],
+  "guardrails": [
+    "No invented credentials, certificates, awards, reviews, legal promises or supplier facts.",
+    "No duplicate Organization schema added.",
+    "Trust-page claims constrained to verified site behavior and existing published policies.",
+    "Privacy page avoids claiming absolute security or unsupported data practices."
+  ],
+  "acceptance": {
+    "about": true,
+    "contact": true,
+    "shipping": true,
+    "returns": true,
+    "authenticity": true,
+    "terms": true,
+    "privacy": true,
+    "why_us": true,
+    "content_methodology": true,
+    "proforma": true,
+    "organization_regression_avoided": true
+  }
+}
