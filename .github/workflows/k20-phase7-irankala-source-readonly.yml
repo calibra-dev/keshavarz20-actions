@@ -38,12 +38,19 @@ jobs:
           foreach($path in @($req.paths)){
             $p=[string]$path
             if($p -notmatch '^themes/irankala/[A-Za-z0-9_./-]+\.php$' -or $p -match '\.\.'){ throw "Unsafe path: $p" }
-            $body=[ordered]@{scope='wp-content';path=$p;start_line=1;end_line=8}|ConvertTo-Json -Compress
-            $r=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/file/read" -Headers $headers -Method POST -Body $body -TimeoutSec 120
+            $body=[ordered]@{scope='wp-content';path=$p}|ConvertTo-Json -Compress
+            try {
+              $r=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/file/read" -Headers $headers -Method POST -Body $body -TimeoutSec 120
+            } catch {
+              $status=$null
+              try { $status=[int]$_.Exception.Response.StatusCode } catch {}
+              $out+=,[pscustomobject]@{path=$p;read_error=$_.Exception.Message;http_status=$status}
+              continue
+            }
             $content=$null
             if($r.PSObject.Properties.Name -contains 'content'){ $content=[string]$r.content }
             elseif(($r.PSObject.Properties.Name -contains 'data') -and $r.data -and ($r.data.PSObject.Properties.Name -contains 'content')){ $content=[string]$r.data.content }
-            if($null -eq $content){ throw "No content field returned for $p" }
+            if($null -eq $content){ $out+=,[pscustomobject]@{path=$p;read_error='No content field returned'}; continue }
             $lines=$content -split "\r?\n"
             $matches=@()
             foreach($pattern in @($req.patterns)){
