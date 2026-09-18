@@ -1,0 +1,16 @@
+{
+  "paths": [
+    "plugins/woocommerce/includes/class-wc-cache-helper.php",
+    "plugins/litespeed-cache/thirdparty/woocommerce.cls.php"
+  ],
+  "patterns": [
+    "prevent_caching",
+    "set_nocache_constants",
+    "DONOTCACHEPAGE",
+    "wp_headers",
+    "is_page",
+    "litespeed_control_set_nocache",
+    "wc_notice_count",
+    "woocommerce"
+  ]
+}
