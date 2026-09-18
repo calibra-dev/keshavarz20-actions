@@ -6,55 +6,208 @@
       "path": "plugins/keshavarz20-category-noindex-helper/keshavarz20-category-noindex-helper.php",
       "pattern": "nocache",
       "line": 217,
-      "snippet": "nocache_headers();"
+      "snippet": "nocache_headers();",
+      "nearest_function": "redirect_evidence_backed_taxonomy_urls",
+      "nearby_hooks": [],
+      "context": [
+        "211:",
+        "212:$resolved = self::redirect_target_for_path( $path );",
+        "213:if ( ! is_array( $resolved ) || empty( $resolved['url'] ) ) {",
+        "214:return;",
+        "215:}",
+        "216:",
+        "217:nocache_headers();",
+        "218:wp_safe_redirect( $resolved['url'], 301, 'Keshavarz20 Category Noindex Helper' );",
+        "219:exit;",
+        "220:}",
+        "221:",
+        "222:public static function filter_yoast_robots( $robots, $presentation = null ) {",
+        "223:if ( ! self::is_target_request() ) {"
+      ]
     },
     {
       "path": "plugins/keshavarz20-indexability-repair/keshavarz20-indexability-repair.php",
       "pattern": "wp_cache",
       "line": 282,
-      "snippet": "wp_cache_delete( self::ETHEPHON_ID, 'post_meta' );"
+      "snippet": "wp_cache_delete( self::ETHEPHON_ID, 'post_meta' );",
+      "nearest_function": null,
+      "nearby_hooks": [],
+      "context": [
+        "276:[ 'meta_id' => $meta_id ],",
+        "277:[ '%s' ],",
+        "278:[ '%d' ]",
+        "279:);",
+        "280:$direct_meta_fallback = $direct_meta_rows >= 0;",
+        "281:",
+        "282:wp_cache_delete( self::ETHEPHON_ID, 'post_meta' );",
+        "283:clean_post_cache( self::ETHEPHON_ID );",
+        "284:self::clear_elementor_cache();",
+        "285:self::purge_page_cache( self::ETHEPHON_ID );",
+        "286:",
+        "287:$new_data = (string) get_post_meta( self::ETHEPHON_ID, '_elementor_data', true );",
+        "288:$decoded_new = json_decode( $new_data, true );"
+      ]
     },
     {
       "path": "plugins/keshavarz20-mcp-bridge/keshavarz20-mcp-bridge.php",
       "pattern": "wp_cache",
       "line": 961,
-      "snippet": "if (function_exists('wp_cache_flush')) {"
+      "snippet": "if (function_exists('wp_cache_flush')) {",
+      "nearest_function": "purge_caches",
+      "nearby_hooks": [],
+      "context": [
+        "955:public static function purge_caches(array $input): array|WP_Error {",
+        "956:if (!self::confirmed($input)) {",
+        "957:return new WP_Error('confirmation_required', 'confirm=true is required for write operations.');",
+        "958:}",
+        "959:",
+        "960:$purged = [];",
+        "961:if (function_exists('wp_cache_flush')) {",
+        "962:wp_cache_flush();",
+        "963:$purged[] = 'wordpress_object_cache';",
+        "964:}",
+        "965:",
+        "966:do_action('litespeed_purge_all');",
+        "967:$purged[] = 'litespeed_hook_requested';"
+      ]
     },
     {
       "path": "plugins/keshavarz20-mcp-bridge/keshavarz20-mcp-bridge.php",
       "pattern": "wp_cache",
       "line": 962,
-      "snippet": "wp_cache_flush();"
+      "snippet": "wp_cache_flush();",
+      "nearest_function": "purge_caches",
+      "nearby_hooks": [],
+      "context": [
+        "956:if (!self::confirmed($input)) {",
+        "957:return new WP_Error('confirmation_required', 'confirm=true is required for write operations.');",
+        "958:}",
+        "959:",
+        "960:$purged = [];",
+        "961:if (function_exists('wp_cache_flush')) {",
+        "962:wp_cache_flush();",
+        "963:$purged[] = 'wordpress_object_cache';",
+        "964:}",
+        "965:",
+        "966:do_action('litespeed_purge_all');",
+        "967:$purged[] = 'litespeed_hook_requested';",
+        "968:"
+      ]
     },
     {
       "path": "plugins/keshavarz20-product-discovery-batch15/keshavarz20-product-discovery-batch15.php",
       "pattern": "no-cache",
       "line": 223,
-      "snippet": "'Cache-Control' => 'no-cache',"
+      "snippet": "'Cache-Control' => 'no-cache',",
+      "nearest_function": "http_get",
+      "nearby_hooks": [],
+      "context": [
+        "217:$response = wp_remote_get($url, array(",
+        "218:'timeout' => 7,",
+        "219:'redirection' => 0,",
+        "220:'sslverify' => true,",
+        "221:'headers' => array(",
+        "222:'User-Agent' => 'Keshavarz20-Indexability-QA/' . self::VERSION,",
+        "223:'Cache-Control' => 'no-cache',",
+        "224:),",
+        "225:));",
+        "226:if (is_wp_error($response)) {",
+        "227:$result = array(",
+        "228:'ok' => false,",
+        "229:'status' => 0,"
+      ]
     },
     {
       "path": "plugins/keshavarz20-product-discovery-batch15/keshavarz20-product-discovery-batch15.php",
       "pattern": "wp_cache",
       "line": 740,
-      "snippet": "wp_cache_delete(intval($post_id), 'post_meta');"
+      "snippet": "wp_cache_delete(intval($post_id), 'post_meta');",
+      "nearest_function": "make_backup",
+      "nearby_hooks": [],
+      "context": [
+        "734:),",
+        "735:array('%d', '%s', '%s')",
+        "736:);",
+        "737:if ($ok === false) {",
+        "738:return new WP_Error('backup_failed', $wpdb->last_error ? $wpdb->last_error : 'Could not store exact post_content backup.');",
+        "739:}",
+        "740:wp_cache_delete(intval($post_id), 'post_meta');",
+        "741:return $meta_key;",
+        "742:}",
+        "743:",
+        "744:private function direct_write_post_content($post_id, $new_content) {",
+        "745:global $wpdb;",
+        "746:$result = $wpdb->update("
+      ]
     },
     {
       "path": "plugins/keshavarz20-product-discovery-batch15/keshavarz20-product-discovery-batch15.php",
       "pattern": "wp_cache",
       "line": 757,
-      "snippet": "wp_cache_delete($post_id, 'posts');"
+      "snippet": "wp_cache_delete($post_id, 'posts');",
+      "nearest_function": "direct_write_post_content",
+      "nearby_hooks": [],
+      "context": [
+        "751:array('%d')",
+        "752:);",
+        "753:if ($result === false) {",
+        "754:return new WP_Error('db_update_failed', $wpdb->last_error ? $wpdb->last_error : 'Unknown database update error');",
+        "755:}",
+        "756:clean_post_cache($post_id);",
+        "757:wp_cache_delete($post_id, 'posts');",
+        "758:do_action('litespeed_purge_post', $post_id);",
+        "759:do_action('litespeed_purge_url', get_permalink($post_id));",
+        "760:return true;",
+        "761:}",
+        "762:",
+        "763:private function restore_backup($post_id, $meta_key) {"
+      ]
     },
     {
       "path": "plugins/keshavarz20-product-discovery-batch15/keshavarz20-product-discovery-batch15.php",
       "pattern": "cache-control",
       "line": 223,
-      "snippet": "'Cache-Control' => 'no-cache',"
+      "snippet": "'Cache-Control' => 'no-cache',",
+      "nearest_function": "http_get",
+      "nearby_hooks": [],
+      "context": [
+        "217:$response = wp_remote_get($url, array(",
+        "218:'timeout' => 7,",
+        "219:'redirection' => 0,",
+        "220:'sslverify' => true,",
+        "221:'headers' => array(",
+        "222:'User-Agent' => 'Keshavarz20-Indexability-QA/' . self::VERSION,",
+        "223:'Cache-Control' => 'no-cache',",
+        "224:),",
+        "225:));",
+        "226:if (is_wp_error($response)) {",
+        "227:$result = array(",
+        "228:'ok' => false,",
+        "229:'status' => 0,"
+      ]
     },
     {
       "path": "plugins/keshavarz20-product-discovery-batch15/keshavarz20-product-discovery-batch15.php",
       "pattern": "Cache-Control",
       "line": 223,
-      "snippet": "'Cache-Control' => 'no-cache',"
+      "snippet": "'Cache-Control' => 'no-cache',",
+      "nearest_function": "http_get",
+      "nearby_hooks": [],
+      "context": [
+        "217:$response = wp_remote_get($url, array(",
+        "218:'timeout' => 7,",
+        "219:'redirection' => 0,",
+        "220:'sslverify' => true,",
+        "221:'headers' => array(",
+        "222:'User-Agent' => 'Keshavarz20-Indexability-QA/' . self::VERSION,",
+        "223:'Cache-Control' => 'no-cache',",
+        "224:),",
+        "225:));",
+        "226:if (is_wp_error($response)) {",
+        "227:$result = array(",
+        "228:'ok' => false,",
+        "229:'status' => 0,"
+      ]
     }
   ]
 }
