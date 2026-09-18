@@ -26,8 +26,9 @@ jobs:
           $enc=[Uri]::EscapeDataString('plugins/digits')
           $r=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/file/list?scope=wp-content&directory=$enc" -Headers $headers -Method GET -TimeoutSec 180
           $paths=@($r.files | ForEach-Object {[string]$_.path} | Where-Object {$_ -match '\.php$'} | Sort-Object)
-          $interesting=@($paths | Where-Object {$_ -match '(session|cookie|user|login|auth|cache|security|device|helper|function|hook)'})
-          $out=[ordered]@{mode='read-only';php_file_count=$paths.Count;interesting_paths=$interesting}
+          $core=@($paths | Where-Object {$_ -notmatch '/vendor/' -and $_ -notmatch '/libphonenumber/vendor/'})
+          $interesting=@($core | Where-Object {$_ -match '(session|cookie|user|login|auth|cache|security|device|helper|function|hook)'})
+          $out=[ordered]@{mode='read-only';php_file_count=$paths.Count;core_php_file_count=$core.Count;core_paths=$core;interesting_paths=$interesting}
           $dir=Join-Path $env:RUNNER_TEMP 'k20-digits-index';New-Item -ItemType Directory -Force $dir|Out-Null
           $out|ConvertTo-Json -Depth 10|Set-Content -LiteralPath (Join-Path $dir 'digits-index.json') -Encoding utf8
       - name: Upload private index
