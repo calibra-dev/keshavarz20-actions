@@ -11,7 +11,8 @@
       "GSC search appearance baseline",
       "index baseline",
       "5/5 public live checks",
-      "change log and sanitized evidence"
+      "change log and sanitized evidence",
+      "field CWV baseline from real-user PageSpeed field data"
     ],
     "verified_metrics": {
       "settled_through": "2026-09-15",
@@ -20,25 +21,45 @@
       "ctr_percent": 5.959414333418957,
       "avg_position": 9.316005758998044,
       "product_snippets_clicks": 79,
-      "product_snippets_impressions": 899
+      "product_snippets_impressions": 899,
+      "field_cwv": {
+        "page": "https://keshavarz20.com/",
+        "strategy": "mobile",
+        "overall": "SLOW",
+        "lcp_ms": 9753,
+        "inp_ms": 117,
+        "cls": 0.004
+      }
     },
     "external_connections_pending": [
       "Google Generative AI dedicated export/metric not exposed by current connected Search Analytics response",
       "Bing Webmaster/AI data connection not configured",
       "GA4 OAuth/property not connected for ChatGPT referrals and conversion",
-      "CrUX API key not configured for field CWV"
+      "Field CWV is now baselined; remaining analytics blockers are Google Generative AI dedicated measurement, Bing data, and GA4 for ChatGPT referrals/conversion"
     ],
     "evidence_commits": [
       "cea8c6654862ce7695c2049dc81222e68fcd94bf",
       "2851a2521d81e0b6dd8c3931f96708bfe9dd2e98",
-      "2d59497f1c7931e430a35a5b6748d1e52767ca3b"
-    ]
+      "2d59497f1c7931e430a35a5b6748d1e52767ca3b",
+      "5b7f238957a9ce7979380c0601e22a472ca4d101",
+      "83e87966200b90b8daf7c577bf484357aca9c133"
+    ],
+    "ga4_sitekit_status": {
+      "configured": false,
+      "propertyID": "",
+      "measurementID": "",
+      "conclusion": "GA4 is not configured in WordPress Site Kit; this independently confirms the GA4 blocker."
+    }
   },
   "phase11": {
     "execution_status": "PASS_WITH_OWNER_DEPENDENCY_WAIVER",
     "strict_wave_gate_status": "BLOCKED_BY_PHASE7_AND_PHASE10_FORMAL_ACCEPTANCE",
     "owner_write_authorization": true,
-    "products_updated": [135349, 140407, 135339],
+    "products_updated": [
+      135349,
+      140407,
+      135339
+    ],
     "modules": [
       "suitable / not suitable decision guidance",
       "required project inputs before purchase",
@@ -74,5 +95,5 @@
     ],
     "arbitrary_theme_or_plugin_code_modified": false
   },
-  "conclusion": "Phase 10 implementation is complete within the available control plane, with external analytics connections still pending for formal full acceptance. Phase 11 live product decision modules were executed under the user's explicit owner waiver, verified by REST readback and public HTML on all three priority product pages, with no price, stock, user, role, or secret writes."
+  "conclusion": "Phase 10 implementation and field CWV measurement are complete within the available control plane; formal full acceptance still depends on external Google Generative AI/Bing measurement and GA4 connection for ChatGPT referrals/conversion. Phase 11 live decision modules are complete and publicly verified on all three priority products with no price, stock, user, role, or secret writes."
 }
