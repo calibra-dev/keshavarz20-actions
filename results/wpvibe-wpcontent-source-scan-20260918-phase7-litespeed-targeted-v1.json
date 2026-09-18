@@ -1,0 +1,200 @@
+{
+  "mode": "read-only",
+  "files": [
+    {
+      "path": "plugins/litespeed-cache/src/base.cls.php",
+      "line_count": 1125,
+      "matches": [
+        {
+          "pattern": "cache-commenter",
+          "line": 47,
+          "snippet": "const O_CACHE_COMMENTER      = 'cache-commenter';"
+        },
+        {
+          "pattern": "cache_commform",
+          "line": 102,
+          "snippet": "const O_ESI_CACHE_COMMFORM = 'esi-cache_commform';"
+        },
+        {
+          "pattern": "cache_commform",
+          "line": 418,
+          "snippet": "self::O_ESI_CACHE_COMMFORM => false,"
+        }
+      ]
+    },
+    {
+      "path": "plugins/litespeed-cache/src/api.cls.php",
+      "line_count": 321,
+      "matches": [
+        {
+          "pattern": "set_nocache",
+          "line": 81,
+          "snippet": "add_action( 'litespeed_control_set_nocache', __NAMESPACE__ . '\\Control::set_nocache' );"
+        },
+        {
+          "pattern": "litespeed_control_set_nocache",
+          "line": 81,
+          "snippet": "add_action( 'litespeed_control_set_nocache', __NAMESPACE__ . '\\Control::set_nocache' );"
+        },
+        {
+          "pattern": "vary cookie",
+          "line": 143,
+          "snippet": "// Filter `litespeed_vary_cookies` to register the final vary cookies, which will be written to rewrite rule. (litespeed_vary_curr_cookies are always equal to or less than litespeed_vary_cookies)"
+        },
+        {
+          "pattern": "vary cookie",
+          "line": 204,
+          "snippet": "* Adds commenter vary to the cache vary cookies."
+        }
+      ]
+    },
+    {
+      "path": "plugins/litespeed-cache/src/control.cls.php",
+      "line_count": 957,
+      "matches": [
+        {
+          "pattern": "set_nocache",
+          "line": 185,
+          "snippet": "self::set_nocache( '[Ctrl] TTL is set to no cache [status_header] ' . $code );"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 193,
+          "snippet": "self::set_nocache( '[Ctrl] 4xx/5xx default to no cache [status_header] ' . $code );"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 424,
+          "snippet": "public static function set_nocache( $reason = false ) {"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 615,
+          "snippet": "self::set_nocache( '301 to same url' );"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 701,
+          "snippet": "self::set_nocache( 'preview page' );"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 707,
+          "snippet": "self::set_nocache( 'per post metabox setting' );"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 759,
+          "snippet": "self::set_nocache();"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 766,
+          "snippet": "self::set_nocache( 'pswd cookie' );"
+        },
+        {
+          "pattern": "DONOTCACHEPAGE",
+          "line": 638,
+          "snippet": "if ( defined( 'DONOTCACHEPAGE' ) && apply_filters( 'litespeed_const_DONOTCACHEPAGE', DONOTCACHEPAGE ) ) {"
+        },
+        {
+          "pattern": "DONOTCACHEPAGE",
+          "line": 639,
+          "snippet": "self::debug( '❌ forced no cache [reason] DONOTCACHEPAGE const' );"
+        }
+      ]
+    },
+    {
+      "path": "plugins/litespeed-cache/src/core.cls.php",
+      "line_count": 751,
+      "matches": [
+        {
+          "pattern": "set_nocache",
+          "line": 580,
+          "snippet": "Control::set_nocache( 'empty tag header' );"
+        },
+        {
+          "pattern": "empty tag header",
+          "line": 580,
+          "snippet": "Control::set_nocache( 'empty tag header' );"
+        }
+      ]
+    },
+    {
+      "path": "plugins/litespeed-cache/src/vary.cls.php",
+      "line_count": 730,
+      "matches": [
+        {
+          "pattern": "set_nocache",
+          "line": 82,
+          "snippet": "Control::set_nocache( '❌❌ vary cookie setting error' );"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 105,
+          "snippet": "Control::set_nocache( 'vary cookie setting lost error' );"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 129,
+          "snippet": "Control::set_nocache( 'logged in user' );"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 298,
+          "snippet": "Control::set_nocache( 'existing commenter' );"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 707,
+          "snippet": "Control::set_nocache( 'password protected vary' );"
+        },
+        {
+          "pattern": "comment_author_",
+          "line": 283,
+          "snippet": "if ( strlen( $cookie_name ) >= 15 && 0 === strpos( $cookie_name, 'comment_author_' ) ) {"
+        },
+        {
+          "pattern": "vary cookie",
+          "line": 3,
+          "snippet": "* Manage the X-LiteSpeed-Vary behavior and vary cookie."
+        },
+        {
+          "pattern": "vary cookie",
+          "line": 15,
+          "snippet": "* and builds the X-LiteSpeed-Vary header and vary cookie accordingly."
+        },
+        {
+          "pattern": "vary cookie",
+          "line": 34,
+          "snippet": "* Default vary cookie name (used for logged-in/commenter state)."
+        },
+        {
+          "pattern": "vary cookie",
+          "line": 41,
+          "snippet": "* Whether Ajax calls are permitted to change the vary cookie."
+        },
+        {
+          "pattern": "vary cookie",
+          "line": 48,
+          "snippet": "* Update the default vary cookie name if site settings require it."
+        },
+        {
+          "pattern": "vary cookie",
+          "line": 82,
+          "snippet": "Control::set_nocache( '❌❌ vary cookie setting error' );"
+        },
+        {
+          "pattern": "vary cookie",
+          "line": 105,
+          "snippet": "Control::set_nocache( 'vary cookie setting lost error' );"
+        },
+        {
+          "pattern": "vary cookie",
+          "line": 142,
+          "snippet": "// Set vary cookie when user logs in (to avoid guest vary)."
+        }
+      ]
+    }
+  ]
+}
