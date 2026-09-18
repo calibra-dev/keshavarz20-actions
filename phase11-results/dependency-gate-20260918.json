@@ -2,7 +2,7 @@
   "phase": 11,
   "title": "Priority Product Decision Pages",
   "status": "BLOCKED_BY_WAVE_GATE",
-  "checked_at": "2026-09-18T11:24:00+03:30",
+  "checked_at": "2026-09-18T11:46:00Z",
   "dependencies": {
     "phase6": "PASS",
     "phase7": "COMPLETED_WITH_VERIFIED_EXTERNAL_BLOCKERS_NOT_ACCEPTANCE_PASS",
@@ -23,7 +23,11 @@
   ],
   "wpvibe_fallback": {
     "attempted": true,
-    "available": false,
-    "error": "link_id must identify an eligible linked account"
-  }
+    "available": true,
+    "mode": "read-only diagnostic",
+    "verified_site": "https://keshavarz20.com",
+    "outcome": "WPVibe confirmed the active IranKala theme and current WordPress/plugin environment, but it did not expose a safe allowed remediation that closes the Phase 7 ionCube/no-cache blockers. No site write was performed."
+  },
+  "prepared_decision_spec": "phase11-results/prepared-decision-spec-20260918.json",
+  "product_snapshot": "phase11-results/product-snapshot.json"
 }
