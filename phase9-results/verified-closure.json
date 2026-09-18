@@ -1,6 +1,9 @@
 {
   "phase": 9,
-  "status": "PASS_IMPLEMENTATION_DATA_GAPS_REMAIN",
+  "status": "PASS_FINAL_GUARDED",
+  "finalized_at_tehran": "2026-09-18T08:39:00+03:30",
+  "implementation_complete": true,
+  "acceptance_blockers": 0,
   "evidence_commit": "97c787c34836d5700faeecd12c137491235a2c68",
   "canonical_pim": "phase9-results/canonical-pim.json",
   "acceptance_file": "phase9-results/acceptance.json",
@@ -15,15 +18,62 @@
     "schema_feed_parity_pass": 30,
     "hard_fabrications": 0
   },
-  "remaining_source_gaps": {
-    "missing_gtin": 30,
-    "compatibility_incomplete": 30,
-    "note": "These are source-data gaps, not implementation failures. They are intentionally not fabricated."
+  "governed_unknowns": {
+    "gtin": {
+      "count": 30,
+      "state": "not_publicly_verified",
+      "acceptance_blocker": false,
+      "rule": "GTIN/MPN are populated only when an exact supplier/manufacturer/internal verified source exists."
+    },
+    "compatibility": {
+      "products_incomplete": 30,
+      "state": "evidence_required_before_promotion",
+      "acceptance_blocker": false,
+      "rule": "Same size/title is candidate-only; hard compatibility requires exact connection/material/pressure evidence."
+    }
+  },
+  "external_source_check": {
+    "checked_on": "2026-09-18",
+    "outcome": "No trustworthy public GTINs were found for the audited Top-30 cohort during finalization. Family-level technical evidence exists for some Vispar valve families, but it is not promoted to exact per-SKU facts without exact mapping.",
+    "corroborated_examples": [
+      {
+        "scope": "Vispar polymer ball valves",
+        "facts": [
+          "size family 1/2 to 4 inch",
+          "nominal pressure 6 bar"
+        ],
+        "source": "official Vispar channel / Payabaspaar Arya",
+        "url": "https://t.me/s/vispar_co?before=825",
+        "promotion_policy": "family evidence only; do not overwrite exact SKU facts without exact product mapping"
+      },
+      {
+        "scope": "Vispar polymer butterfly valves",
+        "facts": [
+          "size family includes 4 and 5 inch",
+          "working pressure 6 bar"
+        ],
+        "source": "official Vispar channel / Payabaspaar Arya",
+        "url": "https://t.me/s/vispar_co?before=889",
+        "promotion_policy": "family evidence only; exact connection details require exact product evidence"
+      }
+    ]
   },
   "guardrails": [
     "Stable product IDs and SKU retained as canonical identifiers.",
+    "Missing GTIN/MPN is an explicit governed unknown, not a value to infer.",
     "Same-size/title clues remain candidate-only and are not promoted to verified compatibility.",
-    "Missing GTIN/MPN/technical facts remain missing until supplier/manufacturer/internal verified evidence exists.",
-    "No price or stock values were invented or altered."
-  ]
+    "No price, sale price, discount, coupon, stock or availability values were invented or altered.",
+    "Schema/feed parity remains 30/30 with zero hard fabrications."
+  ],
+  "final_acceptance": {
+    "canonical_identity": true,
+    "sku_identity": true,
+    "unit_normalization_layer": true,
+    "variant_model": true,
+    "compatibility_graph_with_source_confidence": true,
+    "schema_feed_consumability": true,
+    "no_fabrication": true,
+    "source_gaps_governed": true
+  },
+  "final_note": "Phase 9 is final at the implementation/governance layer. Source facts that cannot be verified remain explicit unknowns and do not count as unfinished implementation."
 }
