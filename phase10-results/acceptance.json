@@ -24,14 +24,27 @@
       "reason": "GA4 is not connected."
     },
     {
-      "source": "cwv_field",
-      "status": "not_configured",
-      "reason": "No CrUX API key is configured."
-    },
-    {
       "source": "conversion",
       "status": "not_baselined",
       "reason": "GA4 ecommerce/key-event access is not connected."
     }
+  ],
+  "field_cwv_baselined": true,
+  "field_cwv": {
+    "source": "Google PageSpeed Insights field data",
+    "page": "https://keshavarz20.com/",
+    "strategy": "mobile",
+    "overall": "SLOW",
+    "lcp_ms": 9753,
+    "inp_ms": 117,
+    "cls": 0.004,
+    "evidence_file": "phase10-results/field-cwv-20260918.json"
+  },
+  "updated_at_utc": "2026-09-18T18:36:00Z",
+  "remaining_external_blockers": [
+    "google_generative_ai",
+    "bing_ai_performance",
+    "chatgpt_referrals",
+    "conversion"
   ]
 }
