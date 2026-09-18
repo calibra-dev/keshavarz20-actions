@@ -7,6 +7,7 @@
   "evidence_commit": "97c787c34836d5700faeecd12c137491235a2c68",
   "canonical_pim": "phase9-results/canonical-pim.json",
   "acceptance_file": "phase9-results/acceptance.json",
+  "source_verification_file": "phase9-results/source-verification.json",
   "verified_summary": {
     "records": 30,
     "fetch_failures": 0,
@@ -18,49 +19,50 @@
     "schema_feed_parity_pass": 30,
     "hard_fabrications": 0
   },
+  "source_verification_summary": {
+    "exact_sku_gtin_queries": 30,
+    "matching_agricultural_gtin_found": 0,
+    "false_positive_numeric_collisions_rejected": true,
+    "note": "Exact catalog-SKU + GTIN/barcode searches were run for all 30 audited records. No trustworthy matching agricultural GTIN surfaced in those checks; unrelated numeric collisions were rejected."
+  },
   "governed_unknowns": {
     "gtin": {
       "count": 30,
       "state": "not_publicly_verified",
       "acceptance_blocker": false,
-      "rule": "GTIN/MPN are populated only when an exact supplier/manufacturer/internal verified source exists."
+      "rule": "Populate only when an exact supplier/manufacturer/internal verified source exists."
     },
     "compatibility": {
       "products_incomplete": 30,
       "state": "evidence_required_before_promotion",
       "acceptance_blocker": false,
-      "rule": "Same size/title is candidate-only; hard compatibility requires exact connection/material/pressure evidence."
+      "rule": "Same size/title remains candidate-only; exact connection/material/pressure evidence is required."
     }
   },
-  "external_source_check": {
-    "checked_on": "2026-09-18",
-    "outcome": "No trustworthy public GTINs were found for the audited Top-30 cohort during finalization. Family-level technical evidence exists for some Vispar valve families, but it is not promoted to exact per-SKU facts without exact mapping.",
-    "corroborated_examples": [
-      {
-        "scope": "Vispar polymer ball valves",
-        "facts": [
-          "size family 1/2 to 4 inch",
-          "nominal pressure 6 bar"
-        ],
-        "source": "official Vispar channel / Payabaspaar Arya",
-        "url": "https://t.me/s/vispar_co?before=825",
-        "promotion_policy": "family evidence only; do not overwrite exact SKU facts without exact product mapping"
-      },
-      {
-        "scope": "Vispar polymer butterfly valves",
-        "facts": [
-          "size family includes 4 and 5 inch",
-          "working pressure 6 bar"
-        ],
-        "source": "official Vispar channel / Payabaspaar Arya",
-        "url": "https://t.me/s/vispar_co?before=889",
-        "promotion_policy": "family evidence only; exact connection details require exact product evidence"
-      }
-    ]
-  },
+  "externally_corroborated_family_facts": [
+    {
+      "scope": "Vispar polymer ball valves",
+      "facts": [
+        "size family 1/2 to 4 inch",
+        "nominal pressure 6 bar"
+      ],
+      "source": "official Vispar channel / Payabaspaar Arya",
+      "promotion_policy": "family evidence only; exact SKU mapping required before product-data write"
+    },
+    {
+      "scope": "Vispar polymer butterfly valves",
+      "facts": [
+        "family includes 4 and 5 inch",
+        "working pressure 6 bar"
+      ],
+      "source": "official Vispar channel / Payabaspaar Arya",
+      "promotion_policy": "family evidence only; exact model/connection mapping required before product-data write"
+    }
+  ],
   "guardrails": [
     "Stable product IDs and SKU retained as canonical identifiers.",
-    "Missing GTIN/MPN is an explicit governed unknown, not a value to infer.",
+    "Missing GTIN/MPN is a governed unknown, not a value to infer.",
+    "Unrelated GTINs found through numeric SKU collisions are explicitly rejected.",
     "Same-size/title clues remain candidate-only and are not promoted to verified compatibility.",
     "No price, sale price, discount, coupon, stock or availability values were invented or altered.",
     "Schema/feed parity remains 30/30 with zero hard fabrications."
@@ -75,5 +77,5 @@
     "no_fabrication": true,
     "source_gaps_governed": true
   },
-  "final_note": "Phase 9 is final at the implementation/governance layer. Source facts that cannot be verified remain explicit unknowns and do not count as unfinished implementation."
+  "final_note": "Phase 9 is final at the implementation/governance layer. Unverifiable source facts remain explicit unknowns and do not count as unfinished implementation."
 }
