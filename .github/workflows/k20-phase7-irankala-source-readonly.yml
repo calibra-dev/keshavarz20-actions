@@ -38,7 +38,7 @@ jobs:
           foreach($path in @($req.paths)){
             $p=[string]$path
             if($p -notmatch '^themes/irankala/[A-Za-z0-9_./-]+\.php$' -or $p -match '\.\.'){ throw "Unsafe path: $p" }
-            $body=[ordered]@{scope='wp-content';path=$p}|ConvertTo-Json -Compress
+            $body=[ordered]@{scope='wp-content';path=$p;start_line=1;end_line=8}|ConvertTo-Json -Compress
             $r=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/file/read" -Headers $headers -Method POST -Body $body -TimeoutSec 120
             $content=$null
             if($r.PSObject.Properties.Name -contains 'content'){ $content=[string]$r.content }
