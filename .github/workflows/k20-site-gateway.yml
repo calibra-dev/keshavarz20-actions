@@ -52,12 +52,33 @@ jobs:
           $changed = @($changed | Where-Object { $_ -match '^requests/.+\.json$' } | Sort-Object -Unique)
           if ($changed.Count -eq 0) { throw 'No request JSON found in triggering commit.' }
 
+          $hadFailure = $false
+
           foreach ($requestPath in $changed) {
             $name = [IO.Path]::GetFileNameWithoutExtension($requestPath)
             $localOutput = Join-Path $env:RUNNER_TEMP "$name.result.json"
+            $requestAction = $null
+            try {
+              $reqObj = Get-Content -Raw -LiteralPath $requestPath | ConvertFrom-Json -Depth 100
+              $requestAction = [string]$reqObj.action
+            } catch {}
 
-            & ./scripts/Invoke-K20SiteGateway.ps1 -RequestPath $requestPath -OutputPath $localOutput
-            if ($LASTEXITCODE -ne 0) { throw "Gateway failed for $requestPath" }
+            try {
+              & ./scripts/Invoke-K20SiteGateway.ps1 -RequestPath $requestPath -OutputPath $localOutput
+              if ($LASTEXITCODE -ne 0) { throw "Gateway failed for $requestPath with exit code $LASTEXITCODE" }
+              if (-not (Test-Path -LiteralPath $localOutput)) { throw "Gateway produced no result file for $requestPath" }
+            } catch {
+              $hadFailure = $true
+              $failure = [ordered]@{
+                ok = $false
+                request = [IO.Path]::GetFileName($requestPath)
+                action = $requestAction
+                executed_at_utc = [DateTime]::UtcNow.ToString('o')
+                error = $_.Exception.Message
+              }
+              $failure | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $localOutput -Encoding utf8
+              Write-Host "Captured failure for $requestPath"
+            }
 
             $resultText = Get-Content -Raw -LiteralPath $localOutput
             $encoded = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($resultText))
@@ -90,3 +111,5 @@ jobs:
             Invoke-RestMethod -Method Put -Uri $api -Headers $headers -ContentType 'application/json' -Body ($put | ConvertTo-Json -Depth 10) -TimeoutSec 60 | Out-Null
             Write-Host "Recorded $resultPath"
           }
+
+          if ($hadFailure) { throw 'One or more guarded requests failed; failure results were recorded.' }
