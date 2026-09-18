@@ -1,0 +1,17 @@
+{
+  "phase": 11,
+  "title": "Priority Product Decision Pages",
+  "status": "BLOCKED_BY_WAVE_GATE",
+  "checked_at": "2026-09-18T10:09:00+03:30",
+  "dependencies": {
+    "phase6": "PASS",
+    "phase7": "COMPLETED_WITH_VERIFIED_EXTERNAL_BLOCKERS_NOT_ACCEPTANCE_PASS",
+    "phase8": "PASS_FINAL",
+    "phase9": "PASS_FINAL_GUARDED",
+    "phase10": "PENDING_CURRENT_EXECUTION"
+  },
+  "rule": "Wave 3 may start only after phases 6-10 pass their gates.",
+  "site_writes_performed": false,
+  "price_writes_performed": false,
+  "prepared_priority_candidates_source": "phase10-ops/baseline-20260918.json"
+}
