@@ -1,0 +1,47 @@
+name: K20 Phase 10 Observability
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'phase10-ops/*.json'
+      - 'scripts/k20_phase10_observability.py'
+      - '.github/workflows/k20-phase10-observability.yml'
+  schedule:
+    - cron: '37 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-phase10-observability
+  cancel-in-progress: false
+
+jobs:
+  observe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install requests
+      - run: python scripts/k20_phase10_observability.py
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase10-results/observability-baseline.json phase10-results/acceptance.json phase10-results/change-log.md
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase10: record observability baseline"
+          for attempt in 1 2 3 4; do
+            git pull --rebase origin main
+            if git push origin main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
