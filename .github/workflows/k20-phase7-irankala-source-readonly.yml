@@ -1,0 +1,75 @@
+name: K20 Phase 7 IranKala Source Readonly
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/phase7-irankala-source/*.json'
+
+permissions:
+  contents: write
+
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Read exact IranKala files and emit signatures only
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $before='${{ github.event.before }}'; $current='${{ github.sha }}'; $zero='0000000000000000000000000000000000000000'
+          if($before -and $before -ne $zero){ $files=@(git diff --name-only $before $current -- 'diagnostics/phase7-irankala-source/*.json') }
+          else { $files=@(git show --pretty='' --name-only $current -- 'diagnostics/phase7-irankala-source/*.json') }
+          $reqPath=@($files | Where-Object { $_ -match '^diagnostics/phase7-irankala-source/.+\.json$' } | Sort-Object -Unique | Select-Object -First 1)
+          if(-not $reqPath){ throw 'No request file found.' }
+          $req=Get-Content -Raw -LiteralPath $reqPath | ConvertFrom-Json -Depth 10
+          $base=$env:WP_BASE_URL.TrimEnd('/')
+          $auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"))
+          $headers=@{Authorization="Basic $auth";Accept='application/json';'Content-Type'='application/json'}
+          $out=@()
+          foreach($path in @($req.paths)){
+            $p=[string]$path
+            if($p -notmatch '^themes/irankala/[A-Za-z0-9_./-]+\.php$' -or $p -match '\.\.'){ throw "Unsafe path: $p" }
+            $body=[ordered]@{scope='wp-content';path=$p}|ConvertTo-Json -Compress
+            $r=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/file/read" -Headers $headers -Method POST -Body $body -TimeoutSec 120
+            $content=$null
+            if($r.PSObject.Properties.Name -contains 'content'){ $content=[string]$r.content }
+            elseif(($r.PSObject.Properties.Name -contains 'data') -and $r.data -and ($r.data.PSObject.Properties.Name -contains 'content')){ $content=[string]$r.data.content }
+            if($null -eq $content){ throw "No content field returned for $p" }
+            $lines=$content -split "\r?\n"
+            $matches=@()
+            foreach($pattern in @($req.patterns)){
+              $pat=[string]$pattern
+              for($i=0;$i -lt $lines.Count;$i++){
+                if($lines[$i].IndexOf($pat,[System.StringComparison]::OrdinalIgnoreCase) -ge 0){
+                  $snippet=$lines[$i].Trim()
+                  if($snippet.Length -gt 360){$snippet=$snippet.Substring(0,360)}
+                  $matches+=,[pscustomobject]@{pattern=$pat;line=($i+1);snippet=$snippet}
+                  if((@($matches | Where-Object pattern -eq $pat)).Count -ge 8){break}
+                }
+              }
+            }
+            $head=@($lines | Select-Object -First 2 | ForEach-Object { $x=$_.Trim(); if($x.Length -gt 240){$x=$x.Substring(0,240)}; $x })
+            $out+=,[pscustomobject]@{path=$p;line_count=$lines.Count;head=$head;matches=$matches}
+          }
+          New-Item -ItemType Directory -Force 'phase7-results' | Out-Null
+          [ordered]@{mode='read-only';files=$out}|ConvertTo-Json -Depth 20|Set-Content -LiteralPath 'phase7-results/irankala-singular-source-signatures.json' -Encoding utf8
+      - name: Commit sanitized result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase7-results/irankala-singular-source-signatures.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase7: record IranKala singular source signatures"
+          git pull --rebase origin main
+          git push origin HEAD:main
