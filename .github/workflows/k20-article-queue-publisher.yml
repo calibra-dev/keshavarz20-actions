@@ -38,6 +38,7 @@ jobs:
         run: |
           python -m py_compile daily-agri-articles/publish_queue.py
           python -m py_compile daily-agri-articles/publish_queue_v2.py
+          python -m py_compile daily-agri-articles/publish_queue_v3.py
 
   publish-draft:
     if: github.event_name != 'pull_request'
@@ -110,8 +111,8 @@ jobs:
               echo "::error::Queue file not found: $file"
               exit 3
             fi
-            echo "Publishing article queue with SEO God validator: $file"
-            python daily-agri-articles/publish_queue_v2.py "$file"
+            echo "Publishing article queue with SEO God validator and REST transport: $file"
+            python daily-agri-articles/publish_queue_v3.py "$file"
           done < /tmp/k20-article-queue-files.txt
 
       - name: Write job summary
