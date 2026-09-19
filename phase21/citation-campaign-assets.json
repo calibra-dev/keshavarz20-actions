@@ -4,12 +4,18 @@
   "generated_at_utc": "2026-09-19T05:20:00Z",
   "mode": "external-no-sitewrite",
   "dependency_gate": {
-    "required_phases": [16,17,18,19,20],
+    "required_phases": [
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
     "phase16": "PASS",
     "phase17": "PASS",
     "phase18": "PASS",
     "phase19": "PASS",
-    "phase20": "PENDING_LIVE_RESULT"
+    "phase20": "PARTIAL_VERIFIED_THEME_LEVEL_A11Y_BLOCKERS"
   },
   "source_registry": [
     {
@@ -44,25 +50,43 @@
       "asset_id": "calculator-method-note",
       "format": "methodology_note",
       "headline_fa": "روش محاسبه مقدار نوار تیپ؛ فرض‌ها، واحدها و محدودیت‌ها",
-      "evidence": ["k20-phase17-e001"],
+      "evidence": [
+        "k20-phase17-e001"
+      ],
       "publication_rule": "Publish only with exact assumptions, formula, worked example, observed date and limits. Do not present as hydraulic design.",
-      "link_targets": ["agricultural educators","irrigation installers","technical media"]
+      "link_targets": [
+        "agricultural educators",
+        "irrigation installers",
+        "technical media"
+      ]
     },
     {
       "asset_id": "compatibility-data-brief",
       "format": "data_brief",
       "headline_fa": "چارچوب داده سازگاری قطعات آبیاری بدون حدس مشخصات",
-      "evidence": ["phase9-results/canonical-pim.json","phase19-results/acceptance-persisted-evidence.json"],
+      "evidence": [
+        "phase9-results/canonical-pim.json",
+        "phase19-results/acceptance-persisted-evidence.json"
+      ],
       "publication_rule": "Unknown GTIN/specs stay unknown; no invented compatibility or performance claim.",
-      "link_targets": ["manufacturers","installers","agricultural technical publishers"]
+      "link_targets": [
+        "manufacturers",
+        "installers",
+        "agricultural technical publishers"
+      ]
     },
     {
       "asset_id": "manufacturer-fact-check",
       "format": "source-backed product fact sheet",
       "headline_fa": "تطبیق مشخصات محصول ویسپار با منبع رسمی سازنده",
-      "evidence": ["official-vispar","phase19-results/product-discovery-readiness-feed-persisted.json"],
+      "evidence": [
+        "official-vispar",
+        "phase19-results/product-discovery-readiness-feed-persisted.json"
+      ],
       "publication_rule": "Only fields independently confirmed by the official manufacturer source may be promoted as manufacturer facts.",
-      "link_targets": ["Vispar editorial/contact team"]
+      "link_targets": [
+        "Vispar editorial/contact team"
+      ]
     }
   ],
   "outreach_templates": [
@@ -89,5 +113,11 @@
   "site_mutations": 0,
   "external_messages_sent": 0,
   "paid_placements": 0,
-  "status": "READY_WAITING_FOR_PHASE20_PASS"
+  "status": "READY_BLOCKED_BY_PHASE20_THEME_A11Y",
+  "blocking_evidence": [
+    "phase20-results/ux-a11y-live-latest.json",
+    "phase20-results/a11y-diagnostics-latest.json",
+    "phase20-results/fast-semantic-diagnostics-latest.json",
+    "phase20-results/site-context-latest.json"
+  ]
 }
