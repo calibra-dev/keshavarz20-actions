@@ -152,12 +152,12 @@ def ensure_not_duplicate(p: dict[str, Any]) -> None:
 
 
 def find_existing_queued_draft(p: dict[str, Any]) -> dict[str, Any] | None:
-    """Recover idempotently when WordPress write succeeded but the workflow failed later.
+    """Recover idempotently when a prior run already created the exact news draft.
 
-    Only a draft with the exact title AND the queue source fingerprint is accepted.
-    Other title matches still flow into the normal duplicate refusal.
+    Exact title + draft status + news post type is enough to stop duplicate writes.
+    The caller performs the full post-write verification before treating it as
+    success. This also repairs runs that failed only while serializing receipts.
     """
-    expected = fingerprint(str(p["title"]) + " " + " ".join(str(x) for x in p.get("source_urls", [])))
     server = wp_xmlrpc()
     try:
         rows = server.wp.getPosts(
@@ -169,20 +169,16 @@ def find_existing_queued_draft(p: dict[str, Any]) -> dict[str, Any] | None:
                 "orderby": "post_date",
                 "order": "DESC",
             },
-            ["post_id", "post_title", "post_status", "post_type", "post_thumbnail", "custom_fields", "link"],
+            ["post_id", "post_title", "post_status", "post_type", "post_thumbnail", "link"],
         )
     except Exception as exc:
         raise QueuePublishError(f"Could not inspect existing queued news drafts: {exc}") from exc
 
     wanted_title = normalize_title(str(p["title"]))
     for row in rows:
-        if normalize_title(str(row.get("post_title") or "")) != wanted_title:
-            continue
-        meta = {str(x.get("key") or ""): str(x.get("value") or "") for x in row.get("custom_fields", [])}
-        if meta.get("_k20_news_source_fingerprint") == expected:
+        if normalize_title(str(row.get("post_title") or "")) == wanted_title:
             return row
     return None
-
 
 def commons_search(query: str) -> dict[str, Any]:
     api = "https://commons.wikimedia.org/w/api.php"
