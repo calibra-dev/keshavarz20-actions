@@ -1,11 +1,11 @@
 {
   "phase": 20,
   "type": "a11y_diagnostics",
-  "generated_at_utc": "2026-09-19T05:29:57.272487+00:00",
-  "run_id": "35424027395",
+  "generated_at_utc": "2026-09-19T14:17:18.489134+00:00",
+  "run_id": "35448192706",
   "pages": {
     "home": {
-      "score": 0.72,
+      "score": 0.74,
       "audits": {
         "button-name": {
           "score": 0,
@@ -902,22 +902,13 @@
           ]
         },
         "heading-order": {
-          "score": 0,
-          "title": "Heading elements are not in a sequentially-descending order",
-          "items": [
-            {
-              "selector": "div.elementor-widget-container > div.widget > header.widget-header > h3.widget-title",
-              "nodeLabel": "دسته‌های ویژه",
-              "snippet": "<h3 class=\"widget-title\">",
-              "explanation": "Fix any of the following:\n  Heading order invalid",
-              "subItems": null
-            }
-          ]
+          "score": 1,
+          "title": "Heading elements appear in a sequentially-descending order",
+          "items": []
         }
       },
       "server_h1_texts": [
-        "کشاورز بیست",
-        "کشاورز بیست؛ مرجع خرید مطمئن تجهیزات و نهاده‌های کشاورزی"
+        "کشاورز بیست"
       ]
     },
     "product": {
@@ -1007,6 +998,13 @@
               "selector": "div.col-6 > div.header-buttons > div.user-button > a.login-register",
               "nodeLabel": "div.col-6 > div.header-buttons > div.user-button > a.login-register",
               "snippet": "<a href=\"https://keshavarz20.com/my-account\" class=\"login-register\">",
+              "explanation": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute",
+              "subItems": null
+            },
+            {
+              "selector": "div.owl-item > div.slider-item > div.second-img > a",
+              "nodeLabel": "div.owl-item > div.slider-item > div.second-img > a",
+              "snippet": "<a href=\"https://keshavarz20.com/product/%d9%be%d9%85%d9%be-%d8%a2%d8%a8-1-%d8%a7%d…\">",
               "explanation": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute",
               "subItems": null
             }
