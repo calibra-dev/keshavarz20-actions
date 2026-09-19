@@ -1,16 +1,16 @@
 {
   "phase": 20,
   "title": "UX/CRO/Accessibility/Agent Usability",
-  "generated_at_utc": "2026-09-19T09:06:55.832704+00:00",
-  "run_id": "35433701067",
-  "commit_sha": "81d2c8856f9c12dc909abed6a60f18014604baa9",
+  "generated_at_utc": "2026-09-19T09:31:23.188833+00:00",
+  "run_id": "35434816620",
+  "commit_sha": "8ac499f658e5bb10115b44000869d549b18f4302",
   "status": "PARTIAL",
   "target": "WCAG 2.2 AA + mobile RTL + agent-readable decision path",
   "acceptance": {
     "all_live_fetches_ok": true,
     "automated_accessibility_full_score": false,
     "mobile_content_width_pass": true,
-    "homepage_single_h1_and_main": false,
+    "homepage_single_h1_and_main": true,
     "semantic_language_present": true,
     "server_rendered_decision_content": true,
     "product_key_data_visible": true
@@ -22,7 +22,7 @@
       "final_url": "https://keshavarz20.com/",
       "http_status": 200,
       "fetch_error": null,
-      "accessibility_score": 0.72,
+      "accessibility_score": 0.74,
       "audits": {
         "html-has-lang": {
           "score": 1,
@@ -49,8 +49,8 @@
           "title": "Form elements have associated labels"
         },
         "heading-order": {
-          "score": 0,
-          "title": "Heading elements are not in a sequentially-descending order"
+          "score": 1,
+          "title": "Heading elements appear in a sequentially-descending order"
         },
         "landmark-one-main": {
           "score": null,
@@ -62,7 +62,7 @@
         }
       },
       "semantics": {
-        "h1_count": 2,
+        "h1_count": 1,
         "main_landmarks": 1,
         "html_lang": "fa-IR",
         "html_dir": "rtl",
@@ -120,7 +120,7 @@
         "main_landmarks": 1,
         "html_lang": "fa-IR",
         "html_dir": "rtl",
-        "raw_text_chars": 187551
+        "raw_text_chars": 187429
       },
       "product_key_data": {
         "price_text_present": true,
@@ -298,24 +298,11 @@
       "severity": "P1",
       "issue": "Automated accessibility score below 1.0",
       "evidence": {
-        "score": 0.72,
+        "score": 0.74,
         "failed_audits": [
           "button-name",
-          "link-name",
-          "heading-order"
+          "link-name"
         ]
-      }
-    },
-    {
-      "page": "home",
-      "severity": "P1",
-      "issue": "Homepage semantic H1/main gate failed",
-      "evidence": {
-        "h1_count": 2,
-        "main_landmarks": 1,
-        "html_lang": "fa-IR",
-        "html_dir": "rtl",
-        "raw_text_chars": 117967
       }
     },
     {
