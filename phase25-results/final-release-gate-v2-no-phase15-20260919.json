@@ -1,0 +1,75 @@
+{
+  "phase": 25,
+  "title": "SEO God Final Gate v2 — Phase 15 excluded by user",
+  "generated_at_utc": "2026-09-19T09:10:00Z",
+  "original_seo_god_release": {
+    "status": "FAIL",
+    "reason": "Phase 15 is SKIPPED_BY_USER/UNASSESSED and intrinsic blockers remain in performance/accessibility; original 10/10 must not be claimed."
+  },
+  "execution_completion_excluding_phase15": {
+    "status": "NOT_FULLY_ACCEPTED",
+    "phases": {
+      "1": "PASS_GUARDED",
+      "2": "WAITING_FOR_GOOGLE",
+      "3": "PASS",
+      "4": "PASS_GUARDED",
+      "5": "PASS_GUARDED",
+      "6": "PASS",
+      "7": "POLICY_GUARD",
+      "8": "PASS",
+      "9": "PASS_GUARDED",
+      "10": "PARTIAL_EXTERNAL",
+      "11": "PASS_GUARDED",
+      "12": "PASS_GUARDED",
+      "13": "PASS_GUARDED",
+      "14": "PASS",
+      "15": "SKIPPED_BY_USER",
+      "16": "PASS",
+      "17": "PASS_GUARDED",
+      "18": "PASS",
+      "19": "PASS_GUARDED",
+      "20": "POLICY_GUARD",
+      "21": "READY_FOR_EXTERNAL_ACTION",
+      "22": "PASS_GUARDED",
+      "23": "PASS_GUARDED",
+      "24": "PARTIAL_EXTERNAL",
+      "25": "FAIL"
+    }
+  },
+  "current_live_evidence": {
+    "gsc_index_tracker": {
+      "total": 134,
+      "indexed": 43,
+      "not_indexed": 91,
+      "pending": 0,
+      "errors": 0,
+      "warnings": 0,
+      "last_check_at": "2026-09-19T08:53:46.797Z"
+    },
+    "gsc_last28_settled_through": "2026-09-16",
+    "gsc_clicks": 923,
+    "gsc_impressions": 15549,
+    "gsc_ctr_percent": 5.93607305936073,
+    "gsc_avg_position": 9.411604239667566,
+    "phase10": "phase10-results/observability-baseline.json",
+    "phase20": "phase20-results/ux-a11y-live-latest.json",
+    "phase6": "phase6-results/indexability-closure.json",
+    "phase7": "phase7-results/closure-20260919-final.json",
+    "phase24": "phase24-results/measurement-baseline-20260919.json"
+  },
+  "intrinsic_blockers": [
+    "Phase 7: homepage LCP renderer and singular no-cache cause remain inside protected IranKala/ionCube paths or require a separately authorized supported/paid path.",
+    "Phase 20: theme-level accessible-name/heading issues remain; latest live audit is PARTIAL and arbitrary theme/plugin code is not authorized."
+  ],
+  "external_or_latency_blockers": [
+    "Google index outcome: 91 of 134 tracked URLs currently not indexed; technical indexability and Google outcome are tracked separately.",
+    "GA4 not connected for ChatGPT referrals and conversion.",
+    "Bing AI/Webmaster measurement source not connected to this control plane.",
+    "CrUX API not configured.",
+    "Dedicated Google generative-AI measurement requires manual/connected export.",
+    "200-prompt AI citation observations across named external surfaces are not actually observed yet.",
+    "Phase 21 external outreach messages have not been sent."
+  ],
+  "phase15": "SKIPPED_BY_USER",
+  "forbidden_claim": "Do not claim SEO God 10/10 until intrinsic blockers are resolved and Phase 15 is either explicitly restored and accepted or the release rubric is formally changed by the user."
+}
