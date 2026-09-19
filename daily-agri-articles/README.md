@@ -13,7 +13,7 @@ The scheduled research/writing task must read `automation-policy/seo-god-2026.js
 Each run must:
 
 1. inspect recent Keshavarz20 normal posts before topic selection;
-2. deep-search current and seasonal farmer decision needs;
+2. deep-search current and seasonal farmer decision needs; reject fresh event/news topics and leave those to `daily-agri-news`;
 3. optimize for real farmer value, not publishing frequency;
 4. prefer primary/official/university/research evidence;
 5. verify material claims with at least three direct source URLs when available and at least two independent domains;
@@ -33,6 +33,7 @@ Core fields:
 
 ```json
 {
+  "content_type": "post",
   "generated_at": "2026-09-18T08:20:00+03:30",
   "title": "...",
   "slug": "english-ascii-slug",
@@ -59,7 +60,7 @@ Core fields:
 
 ## Publisher safeguards
 
-- normal WordPress `post` only
+- normal WordPress `post` only; payloads without `content_type=post` are rejected before any WordPress write
 - `draft` only
 - duplicate and near-duplicate protection
 - minimum long-form content threshold
