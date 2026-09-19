@@ -1,0 +1,111 @@
+{
+  "phase": 25,
+  "title": "SEO God Final Gate v3 — live recheck after supported IranKala update attempt",
+  "generated_at_utc": "2026-09-19T14:30:00Z",
+  "verdict": "NOT_RELEASED_10_OF_10",
+  "execution_state": {
+    "completed_or_guarded": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      8,
+      9,
+      11,
+      12,
+      13,
+      14,
+      16,
+      17,
+      18,
+      19,
+      22,
+      23
+    ],
+    "waiting_or_external": [
+      2,
+      10,
+      21,
+      24
+    ],
+    "policy_guard": [
+      7,
+      20
+    ],
+    "skipped_by_user": [
+      15
+    ],
+    "final_gate": 25
+  },
+  "updates_since_v2": {
+    "phase7": {
+      "state": "POLICY_GUARD_VENDOR_UPDATE_BLOCKED",
+      "supported_theme_update_attempt": "10.9.0 -> 10.10.0",
+      "result": "vendor download returned Forbidden; no update installed",
+      "live_home_after_attempt": {
+        "performance_mobile": 57,
+        "accessibility_mobile": 74,
+        "lab_lcp_seconds": 4.4,
+        "field_lcp_ms": 9753,
+        "field_inp_ms": 115,
+        "field_cls": 0.004
+      },
+      "evidence": "phase7-results/irankala-supported-update-attempt-20260919.json"
+    },
+    "phase20": {
+      "state": "POLICY_GUARD",
+      "latest_exact_diagnostics_commit": "abc91952dba7acb5345767f467756588f2a78d82",
+      "verified_fixed": [
+        "homepage duplicate H1",
+        "homepage heading order"
+      ],
+      "verified_remaining": [
+        "button-name",
+        "link-name",
+        "theme/widget accessible-name failures"
+      ]
+    },
+    "phase2_6": {
+      "technical_indexability": "PASS",
+      "google_outcome": "WAITING_FOR_GOOGLE",
+      "latest_observed_priority_urls": [
+        {
+          "url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+          "coverage": "Discovered - currently not indexed"
+        },
+        {
+          "url": "https://keshavarz20.com/irrigation-filter-selector/",
+          "coverage": "URL is unknown to Google"
+        },
+        {
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+          "coverage": "Discovered - currently not indexed"
+        }
+      ]
+    },
+    "phase10_external": {
+      "site_kit_ga4_configured": false,
+      "crux_api_configured": false,
+      "bing_webmaster_configured": false,
+      "indexnow_control_plane_key_configured": false
+    }
+  },
+  "hard_blockers_requiring_external_or_owner_supported_access": [
+    "IranKala 10.10.0 package cannot be downloaded by the installed official updater because the vendor returned HTTP Forbidden.",
+    "IranKala/ionCube renderer-level LCP and theme accessible-name issues cannot be safely patched under the current no-arbitrary-code guard.",
+    "GA4 requires real account/property OAuth configuration; current Site Kit Analytics 4 account/property/measurement IDs are empty.",
+    "CrUX API key and Bing Webmaster API connection are not configured.",
+    "Phase 24 requires real observations on the named external AI answer surfaces.",
+    "Phase 21 requires real external outreach actions.",
+    "Google indexing outcome is external latency after technical indexability closure."
+  ],
+  "release_rule": "Do not claim 10/10. Phase 15 remains SKIPPED_BY_USER under the current master state, and intrinsic/external evidence gaps remain.",
+  "no_repeat": [
+    "Do not repeat Phase 3 root-cause audit.",
+    "Do not repeat Phase 6 technical indexability remediation unless a regression appears.",
+    "Do not repeat Phase 12/13 guarded content work.",
+    "Do not retry the IranKala updater until vendor authorization/update availability changes.",
+    "Do not modify protected ionCube files or inject arbitrary theme/plugin code."
+  ]
+}
