@@ -31,13 +31,16 @@ def _title_tokens(value: str) -> set[str]:
 
 def validate_payload_v2(p):
     required = [
-        "title", "slug", "excerpt", "content_html", "focus_keyphrase",
+        "content_type", "title", "slug", "excerpt", "content_html", "focus_keyphrase",
         "seo_title", "meta_description", "tags", "related_keyphrases",
         "source_urls", "source_names", "image_search_query", "alt_text",
     ]
     missing = [k for k in required if not p.get(k)]
     if missing:
         raise base.QueuePublishError(f"Missing required queue fields: {', '.join(missing)}")
+
+    if str(p.get("content_type") or "").strip().lower() != "news":
+        raise base.QueuePublishError("Routing guard: daily-agri-news queue must declare content_type=news")
 
     text = base.strip_html(str(p["content_html"]))
     if len(text) < 900:
