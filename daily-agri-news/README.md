@@ -17,7 +17,7 @@ Each automatic run must:
 3. verify material claims from direct sources;
 4. use at least two source URLs from at least two independent domains;
 5. prefer official/government/regulator/standards, university/extension/research, primary datasets, recognized agricultural bodies and reputable newswires/publications;
-6. inspect at least the latest 50 Keshavarz20 news items and reject duplicate/near-duplicate stories;
+6. use queue/public-web history for pre-selection dedupe; the publisher performs the final authenticated duplicate check against the real `news` CPT via XML-RPC because `/wp-json/wp/v2/news` is not exposed on this site;
 7. select at most one story using freshness, direct farmer impact, verifiability, seasonality/search interest and practical value;
 8. preserve uncertainty when evidence conflicts;
 9. reject rumor, source-less reposts, advertorials, sensationalism and low-value filler;
@@ -47,6 +47,7 @@ Sourced facts and editorial interpretation must remain visibly separate. Politic
 
 The scheduled task supplies:
 
+- `content_type` = `news` (hard routing guard)
 - `generated_at`
 - `title`
 - English ASCII `slug`
@@ -70,7 +71,7 @@ The scheduled task supplies:
 
 `publish_queue_v2.py` adds the SEO-God evidence gate while preserving the original publisher:
 
-- WordPress custom post type `news` only
+- WordPress custom post type `news` only; payloads without `content_type=news` are rejected before any WordPress write
 - `draft` only
 - category `کشاورزی` / `news_cat` ID 839
 - at least two direct sources from at least two independent domains
