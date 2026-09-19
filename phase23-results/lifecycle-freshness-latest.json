@@ -1,0 +1,3564 @@
+{
+  "phase": 23,
+  "title": "Lifecycle & Freshness Governance",
+  "generated_at_utc": "2026-09-19T05:40:56.108379+00:00",
+  "status": "READY_BLOCKED_BY_PHASE20",
+  "dependency_gate": {
+    "phase20": "PARTIAL",
+    "required_for_final_pass": true
+  },
+  "policy": {
+    "policy_version": "k20-lifecycle-governance-v1",
+    "review_days": {
+      "posts": 180,
+      "pages": 365,
+      "products": 180
+    },
+    "rules": {
+      "stale_review_does_not_touch_dateModified": true,
+      "outofstock_is_not_discontinued": true,
+      "discontinued_requires_explicit_evidence": true,
+      "merge_requires_manual_canonical_redirect_plan": true,
+      "automatic_bulk_rewrite_for_freshness": false
+    },
+    "transition_rules": {
+      "outofstock": "Keep public URL unless a separate evidence-backed deprecation decision is made; verify availability copy and structured data.",
+      "onbackorder": "Keep URL and represent availability accurately; do not claim immediate stock.",
+      "discontinued_explicit": "Preserve useful page and replacement path where appropriate; 301/410 requires a separate redirect/deprecation decision with evidence.",
+      "stale_content": "Queue for substantive review only. Do not update dateModified without a real content change."
+    }
+  },
+  "checks": {
+    "no_fake_freshness": true,
+    "outofstock_not_discontinued": true,
+    "explicit_discontinuation_evidence_required": true,
+    "no_bulk_freshness_rewrite": true,
+    "live_inventory_nonempty": true
+  },
+  "inventory": {
+    "posts": 38,
+    "pages": 40,
+    "products": 709
+  },
+  "review_queue_count": 206,
+  "stock_transition_watch": {
+    "outofstock": 206,
+    "onbackorder": 0
+  },
+  "review_queue": [
+    {
+      "id": 135659,
+      "kind": "products",
+      "slug": "%d8%b4%db%8c%d8%b1-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d9%85%d8%af%d9%84-%d9%81%d9%84%da%a9%d9%87-%da%86%d8%af%d9%86%db%8c-4-2",
+      "status": "pending",
+      "modified_gmt": "2026-09-09T08:45:45",
+      "age_days": 9,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 143119,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d8%a7%d9%88%d8%b1%d9%87-%d9%81%d8%b3%d9%81%d8%a7%d8%aa-0-44-17-%d8%a8%d9%84%d9%88%d9%86%d8%a7-bellona-17-44-0",
+      "status": "publish",
+      "modified_gmt": "2026-09-03T08:29:30",
+      "age_days": 15,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 143044,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%ac%db%8c%d8%b4%d9%86-magicin-%d9%85%d8%a7%db%8c%d8%b9-%d8%a8%db%8c%d8%af%d8%a7%d8%b1-%d8%b1%d8%b4%d8%af-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:56:10",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 143041,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%da%a9%d8%a7-%db%b5%db%b0-k50-%d9%85%d8%a7%db%8c%d8%b9-%d8%a8%db%8c%d8%af%d8%a7%d8%b1-%d8%b1%d8%b4%d8%af-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:55:27",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 143039,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%81%d9%88%d8%b3%da%a9%d8%a7-phos-k-%d9%85%d8%a7%db%8c%d8%b9-%d8%a8%db%8c%d8%af%d8%a7%d8%b1-%d8%b1%d8%b4%d8%af-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:54:46",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 143037,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%da%a9%d9%84%d8%a7%d8%aa-%d8%b1%d9%88%db%8c-zinc-%d9%85%d8%a7%db%8c%d8%b9-7-%d8%a8%db%8c%d8%af%d8%a7%d8%b1-%d8%b1%d8%b4%d8%af-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-17T05:10:59",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142851,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%db%8c%d9%88%d9%86%db%8c-%da%86%d9%85-%d8%a7%d9%85%d8%a7%d8%b1%d8%a7%d8%aa-50-0-0-uni-chem",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:35:23",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142844,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%85%d9%88%d9%84%d8%aa%db%8c-%d9%be%d9%88%d8%b1%d9%be%d9%84%da%a9%d8%b3-%da%af%d8%b1%d9%88%d9%85%d9%88%d8%b1-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-multi-p",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:39:23",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142817,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%81%d9%88%da%af%d9%88%d8%a8%db%8c%d8%b3-%da%af%d8%b1%d9%88%d9%85%d9%88%d8%b1-grow-more",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:38:40",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142809,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d8%ac%d9%84%d8%a8%da%a9-%d8%af%d8%b1%db%8c%d8%a7%db%8c%db%8c-%d8%b4%d9%86%da%98%d9%86-shenzhen-algae-plus",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:32:46",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142801,
+      "kind": "products",
+      "slug": "%d9%85%d8%a7%d9%86%da%a9%d9%88%d8%b2%d8%a8-80-%d9%87%d9%86%d8%af%db%8c-mancozeb",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:27:25",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142790,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%81%d8%b1%d9%88%d8%aa-%d8%b3%d8%aa-%d8%a7%d8%b3%db%8c%d8%af%d8%a2%d9%85%db%8c%d9%86%d9%87-%da%af%d8%b1%d9%88%d9%85%d9%88%d8%b1-grow-more",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:31:15",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142787,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d8%a2%d9%87%d9%86-%d8%a7%d9%88%d8%b1%d8%aa%d9%88%d9%81%d8%b1-%d8%a7%d8%b3%d9%be%d8%a7%d9%86%db%8c%d8%a7",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:24:52",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142781,
+      "kind": "products",
+      "slug": "%da%a9%d9%84%d8%a7%d8%aa-%d8%a2%d9%87%d9%86-cequesteerian-%d9%be%d9%88%d8%af%d8%b1-6",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:24:09",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142767,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d8%a2%d9%87%d9%86-%da%af%d8%b1%db%8c%d9%86%d8%b3%db%8c%d8%aa-%d8%a7%d8%b1%d8%aa%d9%88-%d8%a7%d8%b1%d8%aa%d9%88-%db%b4-%db%b8",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:20:43",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142472,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%a8%d8%a7%d9%84%d8%a7%d9%86%d8%b3-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-balance-lord",
+      "status": "draft",
+      "modified_gmt": "2026-09-13T10:44:36",
+      "age_days": 5,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142465,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%81%d8%b1%d9%85%d9%88%d9%84%d8%a7-1-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-formula-1-lord",
+      "status": "draft",
+      "modified_gmt": "2026-09-13T10:44:36",
+      "age_days": 5,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142470,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%a8%d9%88%d8%b1%d9%86-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-boron-lord",
+      "status": "draft",
+      "modified_gmt": "2026-09-13T10:44:36",
+      "age_days": 5,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142467,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%81%d8%b1%d9%88%d8%aa-%d8%b3%d8%aa-%d8%aa%db%8c-%d8%aa%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-tt-fruit",
+      "status": "draft",
+      "modified_gmt": "2026-09-13T10:44:36",
+      "age_days": 5,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142466,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%87%db%8c%d9%88%d9%85%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-humi-lord",
+      "status": "draft",
+      "modified_gmt": "2026-09-13T10:44:36",
+      "age_days": 5,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142454,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%87%db%8c%d9%88%d9%85%db%8c-1-%da%a9%db%8c%d9%84%d9%88%db%8c%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-humi-lord",
+      "status": "draft",
+      "modified_gmt": "2026-09-13T10:44:36",
+      "age_days": 5,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142452,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%da%a9%d9%84%d8%b3%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-calsi-lord",
+      "status": "draft",
+      "modified_gmt": "2026-09-13T10:44:36",
+      "age_days": 5,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142450,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%da%a9%db%8c%d9%be%d8%b1-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-keeper-lord",
+      "status": "draft",
+      "modified_gmt": "2026-09-13T10:44:36",
+      "age_days": 5,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142447,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%aa%d9%88%d8%b1%d8%a8%d9%88-%d9%81%d9%88%d8%b3-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-turbo-lord",
+      "status": "draft",
+      "modified_gmt": "2026-09-13T10:44:37",
+      "age_days": 5,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142445,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%84%d9%88%da%a9%d8%a7%d8%b3-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-lucas-lord",
+      "status": "draft",
+      "modified_gmt": "2026-09-13T10:44:39",
+      "age_days": 5,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142442,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%da%a9%d9%84%d8%b3%db%8c%d9%85-%d9%86%db%8c%d8%aa%d8%b1%d8%a7%d8%aa-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-nit",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:14:49",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142439,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%b3%d9%88%d9%84%d9%81%d9%88%d8%b1%d8%af-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2-%da%af%d9%84-sulford-lord",
+      "status": "draft",
+      "modified_gmt": "2026-09-13T10:44:40",
+      "age_days": 5,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142438,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%aa%d9%88%d8%aa%d8%a7%d9%84-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-total-lord",
+      "status": "draft",
+      "modified_gmt": "2026-09-13T10:44:41",
+      "age_days": 5,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142433,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%88%db%8c%d8%aa%d8%a7%d9%85%db%8c%d9%86-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-vitamine-lord",
+      "status": "draft",
+      "modified_gmt": "2026-09-13T10:44:42",
+      "age_days": 5,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142417,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d8%b1%da%a9%d9%88%d8%b1%d8%af-%d9%84%d8%b1%d8%af-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d8%b3%d8%a8%d8%b2%da%af%d9%84-record-lord",
+      "status": "draft",
+      "modified_gmt": "2026-09-13T10:44:43",
+      "age_days": 5,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142415,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%84%d8%b1%d8%af-250-%d8%b3%db%8c-%d8%b3%db%8c-%d8%b3%d8%a8%d8%b2-%da%af%d9%84-seven-lord",
+      "status": "draft",
+      "modified_gmt": "2026-09-13T10:44:44",
+      "age_days": 5,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142204,
+      "kind": "products",
+      "slug": "%d9%be%d9%85%d9%be-%d8%a2%d8%a8-1-%d8%a7%d8%b3%d8%a8-%d8%a8%d8%b4%d9%82%d8%a7%d8%a8%db%8c-%d9%81%d9%84%d8%a7%db%8c-%da%98%d9%86-flygen-cpm158",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:16:41",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142203,
+      "kind": "products",
+      "slug": "%d9%be%d9%85%d9%be-%d8%a2%d8%a8-1-%d8%a7%d8%b3%d8%a8-%d8%a8%d8%b4%d9%82%d8%a7%d8%a8%db%8c-%d9%81%d9%84%d8%a7%db%8c-%da%98%d9%86-flygen-cm100",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:10:49",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142199,
+      "kind": "products",
+      "slug": "%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-16-%d9%85%d8%aa%d8%b1%db%8c-2-%d8%a7%db%8c%d9%86%da%86-%d9%81%d9%84%d9%88%d8%aa%d8%b1%d8%af%d8%a7%d8%b1-%da%a9%d9%85%d9%84-camel",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:08:32",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142195,
+      "kind": "products",
+      "slug": "%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-16-%d9%85%d8%aa%d8%b1%db%8c-%d8%b3%d8%a7%d8%af%d9%87-2-%d8%a7%db%8c%d9%86%da%86-%da%a9%d9%85%d9%84-camel",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:07:53",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142194,
+      "kind": "products",
+      "slug": "%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-17-%d9%85%d8%aa%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-%da%a9%d9%85%d9%84-camel",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:07:14",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142192,
+      "kind": "products",
+      "slug": "%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-17-%d9%85%d8%aa%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-%d9%81%d9%84%d9%88%d8%aa%d8%b1%d8%af%d8%a7%d8%b1-%da%a9%d9%85%d9%84-camel",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:06:37",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142185,
+      "kind": "products",
+      "slug": "%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-32-%d9%85%d8%aa%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-%d9%81%d9%84%d9%88%d8%aa%d8%b1%d8%af%d8%a7%d8%b1-%da%a9%d9%85%d9%84-camel",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:05:55",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142184,
+      "kind": "products",
+      "slug": "%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-25-%d9%85%d8%aa%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-%d9%81%d9%84%d9%88%d8%aa%d8%b1%d8%af%d8%a7%d8%b1-%da%a9%d9%85%d9%84-camel",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:05:16",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142183,
+      "kind": "products",
+      "slug": "%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-12-%d9%85%d8%aa%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-%d9%81%d9%84%d9%88%d8%aa%d8%b1%d8%af%d8%a7%d8%b1-%da%a9%d9%85%d9%84-camel",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:04:37",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142182,
+      "kind": "products",
+      "slug": "%d8%b3%d8%aa-%da%a9%d9%86%d8%aa%d8%b1%d9%84-%d8%a7%d8%aa%d9%88%d9%85%d8%a7%d8%aa%db%8c%da%a9-%d9%be%d9%85%d9%be-%d8%a2%d8%a8-%d9%81%d9%84%d8%a7%db%8c%da%98%d9%86-flygen",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:10:18",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142076,
+      "kind": "products",
+      "slug": "%d8%b3%d9%85-%d8%ad%d8%b4%d8%b1%d9%87-%da%a9%d8%b4-%da%a9%d9%86%d8%b3%d8%a7%d9%84%d8%aa-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:01:48",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142075,
+      "kind": "products",
+      "slug": "%d8%b9%d9%84%d9%81-%da%a9%d8%b4-%d8%aa%d8%b1%db%8c-%d9%81%d9%84%d9%88%d8%b1%d8%a7%db%8c%d9%86-%d8%aa%d8%b1%d9%81%d9%84%d8%a7%d9%86-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-1",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T07:01:08",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142056,
+      "kind": "products",
+      "slug": "%d8%a8%d8%b3%d8%aa-%d9%88-%d9%82%d9%84%d8%a7%d8%a8-%d8%a7%d9%87%d8%b1%d9%85%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-1-%d8%a7%db%8c%d9%86%da%86-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:59:49",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142055,
+      "kind": "products",
+      "slug": "%d8%a8%d8%b3%d8%aa-%d9%88-%d9%82%d9%84%d8%a7%d8%a8-%d8%a7%d9%87%d8%b1%d9%85%db%8c-%d8%a2%d9%84%d9%85%db%8c%d9%86%db%8c%d9%88%d9%85%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-1-1-2-%d8%a7%db%8c%d9%86%da%86-50",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:59:08",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142047,
+      "kind": "products",
+      "slug": "%d8%b5%d8%a7%d8%a8%d9%88%d9%86-%d9%85%d8%ad%d9%84%d9%88%d9%84-%d9%be%d8%a7%d8%b4%db%8c-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:57:51",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142049,
+      "kind": "products",
+      "slug": "%d8%a8%d8%b3%d8%aa-%d9%88-%d9%82%d9%84%d8%a7%d8%a8-%d8%a7%d9%87%d8%b1%d9%85%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-%db%b2-%d8%a7%db%8c%d9%86%da%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:58:29",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142045,
+      "kind": "products",
+      "slug": "%d8%b3%d9%85-%d8%b9%d9%84%d9%81%da%a9%d8%b4-%d9%be%d8%b1%d8%aa%db%8c%d9%84%d8%a7%da%a9%d9%84%d8%b1-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-500-%d8%b3%db%8c-%d8%b3%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:57:12",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142043,
+      "kind": "products",
+      "slug": "%d8%b3%d9%85-%d8%b9%d9%84%d9%81-%da%a9%d8%b4-%da%af%d9%84%d8%a7%db%8c%d9%81%d9%88%d8%b2%db%8c%d8%aa-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:56:32",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142041,
+      "kind": "products",
+      "slug": "%d8%b3%d9%85-%da%a9%d9%86%d9%87-%da%a9%d8%b4-%d9%81%d9%86-%d9%be%db%8c%d8%b1%d9%88%da%a9%d8%b3%db%8c-%d9%85%db%8c%d8%aa-%d8%a7%d8%b1%d8%aa%d9%88%d8%b3-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:55:51",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142039,
+      "kind": "products",
+      "slug": "%d8%b3%d9%85-%d8%ad%d8%b4%d8%b1%d9%87-%da%a9%d8%b4-%d8%af%d9%88%d8%b1%d8%b3%d8%a8%d8%a7%d9%86-%da%a9%d9%84%d8%b1%d9%88%d9%be%db%8c%d8%b1%db%8c%d9%81%d9%88%d8%b3-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:54:50",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142037,
+      "kind": "products",
+      "slug": "%d8%b3%d9%85-%d8%b9%d9%84%d9%81%da%a9%d8%b4-%da%a9%d9%84%d9%88%d8%af%db%8c%d9%86%d8%a7%d9%81%d9%88%d9%be-%d9%be%d8%b1%d9%88%d9%be%d8%a7%d8%b1%da%98%db%8c%d9%84-%d8%aa%d8%a7%d9%be%db%8c%da%a9-%d8%b3",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:54:08",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142032,
+      "kind": "products",
+      "slug": "%d8%b3%d9%85-%da%a9%d9%86%d9%87-%da%a9%d8%b4-%d8%a8%d8%b1%d9%88%d9%85%d9%88%d9%be%d8%b1%d9%88%d9%be%db%8c%d9%84%d8%a7%d8%aa-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-%d9%86%d8%a6",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:53:27",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142031,
+      "kind": "products",
+      "slug": "%d8%b3%d9%85-%d8%ad%d8%b4%d8%b1%d9%87-%da%a9%d8%b4-%d8%a2%d8%a8%d8%a7%d9%85%da%a9%d8%aa%db%8c%d9%86-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-500-%d8%b3%db%8c-%d8%b3%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:52:44",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142030,
+      "kind": "products",
+      "slug": "%d8%b3%d9%85-%d8%b9%d9%84%d9%81%da%a9%d8%b4-%d8%aa%d9%88%d9%81%d9%88%d8%b1%d8%af%db%8c-%d8%a7%d9%85-%d8%b3%db%8c-%d9%be%db%8c-%d8%a2-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d8%b1%d8%a7%d9%86-%d8%b4%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-03T10:43:26",
+      "age_days": 15,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142000,
+      "kind": "products",
+      "slug": "%d8%b3%d9%85-%d9%82%d8%a7%d8%b1%da%86-%da%a9%d8%b4-%d8%a8%d8%b1%d8%af%d9%88%d9%81%db%8c%da%a9%d8%b3-%d8%a8%d8%a7%d8%ba%d8%a8%d8%a7%d9%86-%d8%aa%d8%a7%da%a9-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-03T10:43:25",
+      "age_days": 15,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 142001,
+      "kind": "products",
+      "slug": "%d8%b3%d9%85-%d9%82%d8%a7%d8%b1%da%86-%da%a9%d8%b4-%d8%a8%d8%b1%d8%af%d9%88%d9%81%db%8c%da%a9%d8%b3-%d8%a8%d8%a7%d8%ba%d8%a8%d8%a7%d9%86-%d8%aa%d8%a7%da%a9-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:50:35",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141994,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%a2%d9%84%d9%81%d8%b1%d8%af-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-alfered-xgreen-%d9%85%d8%ac%d9%85%d9%88",
+      "status": "draft",
+      "modified_gmt": "2026-09-09T08:45:15",
+      "age_days": 9,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141993,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%a7%d9%86%d8%b1%da%98%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-ener",
+      "status": "draft",
+      "modified_gmt": "2026-09-09T08:45:15",
+      "age_days": 9,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141945,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%81%d9%88%d8%b3%d8%aa%d8%b1-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c-fost",
+      "status": "draft",
+      "modified_gmt": "2026-09-09T08:45:15",
+      "age_days": 9,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141937,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%81%db%8c%d8%aa-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-250-%d8%b3%db%8c-%d8%b3%db%8c-fit-xgreen-%d9%85",
+      "status": "draft",
+      "modified_gmt": "2026-09-09T08:45:15",
+      "age_days": 9,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141879,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%85%db%8c%da%a9%d8%b1%d9%88%d8%aa%d8%a7%d9%be-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%d9%84%db%8c%d8%aa",
+      "status": "draft",
+      "modified_gmt": "2026-09-09T08:45:15",
+      "age_days": 9,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141869,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%a2%d9%85%db%8c%d9%86%d9%88-%d8%b1%d9%88%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%d9%84%db%8c",
+      "status": "draft",
+      "modified_gmt": "2026-09-09T08:45:14",
+      "age_days": 9,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141867,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%87%d8%a7%d8%b1%d9%88%d8%b3%d8%aa-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
+      "status": "draft",
+      "modified_gmt": "2026-09-09T08:45:14",
+      "age_days": 9,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141866,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%be%d9%8f%d9%84%db%8c-%d8%a7%d9%90%d8%b3-%d9%be%d9%84%db%8c%d8%b3-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9",
+      "status": "draft",
+      "modified_gmt": "2026-09-09T08:45:14",
+      "age_days": 9,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141861,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%ac%d8%aa-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-jet-xgreen-%d9%85",
+      "status": "draft",
+      "modified_gmt": "2026-09-09T08:45:14",
+      "age_days": 9,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141858,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%81%d8%b1%d9%88%d8%aa-%d8%b3%d8%aa-%d8%a2%d9%85%db%8c%d9%86%d9%88-%d8%a8%d9%88%d8%b1%d9%88%d9%86-%d8%b2%db%8c%d9%86%da%a9-%d8%a7%db%8c%da%a9%d8%b3",
+      "status": "draft",
+      "modified_gmt": "2026-09-09T08:45:14",
+      "age_days": 9,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141855,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%a2%d9%85%db%8c%d9%86%d9%88-%da%a9%d9%84%d8%a8%d8%b1-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%d9%84",
+      "status": "draft",
+      "modified_gmt": "2026-09-09T08:45:14",
+      "age_days": 9,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141850,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%da%a9%d8%a7-%db%b6%db%b0-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%da%a9%db%8c%d9%84%d9%88%db%8c",
+      "status": "draft",
+      "modified_gmt": "2026-09-09T08:45:14",
+      "age_days": 9,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141846,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%da%a9%d8%a7-%db%b4%db%b0-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-k40-xgree",
+      "status": "draft",
+      "modified_gmt": "2026-05-06T06:04:46",
+      "age_days": 135,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141842,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%87%d8%a7%db%8c%d9%be%d8%b1-%db%b1-%db%b0-%db%b4%db%b0-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-hype",
+      "status": "draft",
+      "modified_gmt": "2026-05-06T06:04:46",
+      "age_days": 135,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141838,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%87%d8%a7%db%8c%d9%be%d8%b1-%db%b3%db%b0-%db%b5-%db%b1%db%b5-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7",
+      "status": "draft",
+      "modified_gmt": "2026-05-06T06:04:46",
+      "age_days": 135,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141832,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%87%d8%a7%db%8c%d9%be%d8%b1-%db%b4%db%b0-%db%b8-%db%b8-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-10",
+      "status": "draft",
+      "modified_gmt": "2026-05-06T06:04:46",
+      "age_days": 135,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141829,
+      "kind": "products",
+      "slug": "%d9%81%db%8c%da%a9%d8%b3-%db%b1%db%b5-%da%a9%d8%a7%d8%b1%d9%87-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c-fix-15-xgreen",
+      "status": "draft",
+      "modified_gmt": "2026-05-06T06:04:46",
+      "age_days": 135,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141824,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%da%a9%db%8c%d9%86%da%af-%d9%85%d8%a7%db%8c%d8%b9-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-king-xgre-2",
+      "status": "draft",
+      "modified_gmt": "2026-05-06T06:04:46",
+      "age_days": 135,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141806,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%87%da%a9%d8%aa%d9%88%d8%b1-%d9%be%d9%88%d8%af%d8%b1%db%8c-1-%da%a9%db%8c%d9%84%d9%88%db%8c%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a7%db%8c%d8%aa%d8%a7%d9%84",
+      "status": "draft",
+      "modified_gmt": "2026-05-06T06:04:46",
+      "age_days": 135,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141805,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%85%d8%a7%db%8c%d8%b9-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85-2",
+      "status": "draft",
+      "modified_gmt": "2026-09-09T09:37:58",
+      "age_days": 9,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141802,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%85%d8%a7%db%8c%d8%b9-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1",
+      "status": "draft",
+      "modified_gmt": "2026-05-06T06:04:56",
+      "age_days": 135,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141801,
+      "kind": "products",
+      "slug": "%d9%87%db%8c%d9%88%d9%85%db%8c%da%a9-%d8%a7%d8%b3%db%8c%d8%af-%d9%85%d8%ac%db%8c%da%a9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-5-%d9%84%db%8c%d8%aa-2",
+      "status": "draft",
+      "modified_gmt": "2026-05-06T06:04:56",
+      "age_days": 135,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141797,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-2",
+      "status": "draft",
+      "modified_gmt": "2026-05-06T06:04:57",
+      "age_days": 135,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141794,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%da%a9%d9%88%d8%a6%db%8c%d9%86-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-quee",
+      "status": "draft",
+      "modified_gmt": "2026-05-06T06:04:57",
+      "age_days": 135,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141786,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%b3%d9%88%d9%84%d9%81%d9%88%da%a9%d8%b1%d8%a7%d9%be-%d9%85%d8%ac%db%8c%da%a9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c",
+      "status": "draft",
+      "modified_gmt": "2026-05-06T06:04:57",
+      "age_days": 135,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141785,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%b3%d9%88%d9%84%d8%ac%d8%b1-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-sol-2",
+      "status": "draft",
+      "modified_gmt": "2026-05-06T06:04:57",
+      "age_days": 135,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141782,
+      "kind": "products",
+      "slug": "%d9%87%db%8c%d9%88%d9%85%db%8c%da%a9-%d8%a7%d8%b3%db%8c%d8%af-%d9%85%d8%ac%db%8c%da%a9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-5-%da%a9%db%8c%d9%84-2",
+      "status": "draft",
+      "modified_gmt": "2026-05-06T06:04:57",
+      "age_days": 135,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141747,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%85%d8%a7%db%8c%d8%b9-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85-2",
+      "status": "draft",
+      "modified_gmt": "2026-05-06T06:04:57",
+      "age_days": 135,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141745,
+      "kind": "products",
+      "slug": "%d9%87%db%8c%d9%88%d9%85%db%8c%da%a9-%d8%a7%d8%b3%db%8c%d8%af-%d9%85%d8%ac%db%8c%da%a9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-20-%d9%84%db%8c%d8%aa-2",
+      "status": "draft",
+      "modified_gmt": "2026-05-06T06:04:57",
+      "age_days": 135,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141726,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%85%d8%a7%db%8c%d8%b9-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:47:14",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141719,
+      "kind": "products",
+      "slug": "%d9%87%db%8c%d9%88%d9%85%db%8c%da%a9-%d8%a7%d8%b3%db%8c%d8%af-%d9%85%d8%ac%db%8c%da%a9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-5-%d9%84%db%8c%d8%aa%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:45:11",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141720,
+      "kind": "products",
+      "slug": "%d9%87%db%8c%d9%88%d9%85%db%8c%da%a9-%d8%a7%d8%b3%db%8c%d8%af-%d9%85%d8%ac%db%8c%da%a9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-5-%da%a9%db%8c%d9%84%d9%88",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:45:52",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141677,
+      "kind": "products",
+      "slug": "%d9%86%d9%88%d8%a7%d8%b1-%d8%aa%db%8c%d9%be-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d9%82%d8%b7%d8%b1%d9%87-%d8%a7%db%8c-10-%d8%b3%d8%a7%d9%86%d8%aa%db%8c-%d9%85%d8%aa%d8%b1%db%8c-%da%a9%db%8c%d8%a7",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:32:42",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141676,
+      "kind": "products",
+      "slug": "%d9%86%d9%88%d8%a7%d8%b1-%d8%aa%db%8c%d9%be-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d9%82%d8%b7%d8%b1%d9%87-%d8%a7%db%8c-20-%d8%b3%d8%a7%d9%86%d8%aa%db%8c-%d9%85%d8%aa%d8%b1%db%8c-tbk",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:32:02",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141659,
+      "kind": "products",
+      "slug": "141659",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:30:38",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141479,
+      "kind": "products",
+      "slug": "%d8%a8%d8%b3%d8%aa-%d8%af%d9%88-%da%a9%d9%be%d9%87-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:28:09",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141480,
+      "kind": "products",
+      "slug": "%d8%a8%d8%b3%d8%aa-%d8%af%d9%88-%da%a9%d9%be%d9%87-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:28:44",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141481,
+      "kind": "products",
+      "slug": "%d8%a8%d8%b3%d8%aa-%d8%af%d9%88-%da%a9%d9%be%d9%87-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:29:15",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141482,
+      "kind": "products",
+      "slug": "%d8%a8%d8%b3%d8%aa-%d8%af%d9%88-%da%a9%d9%be%d9%87-2-1-2-%d8%a7%db%8c%d9%86%da%86-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:29:48",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141483,
+      "kind": "products",
+      "slug": "%d8%a8%d8%b3%d8%aa-%d8%af%d9%88-%da%a9%d9%be%d9%87-6-%d8%a7%db%8c%d9%86%da%86-160-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:30:21",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141471,
+      "kind": "products",
+      "slug": "%d8%a8%d8%b3%d8%aa-%d9%87%d9%86%d8%af%d9%84%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-5-5-%d8%a7%db%8c%d9%86%da%86-150-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:27:36",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141367,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%da%a9%d9%88%d9%be%db%8c%d8%aa-%d8%a2%d8%aa%d9%84%d8%a7%d9%86%d8%aa%db%8c%d8%b3-%d8%a8%d8%b3%d8%aa%d9%87-3-%d8%b9%d8%af%d8%af%db%8c-15-%da%a9%db%8c%d9%84%d9%88%da%af%d8%b1%d9%85",
+      "status": "publish",
+      "modified_gmt": "2026-09-12T09:56:09",
+      "age_days": 6,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141363,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%85%d8%a7%db%8c%d8%b9-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-hyper-hum",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:17:51",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141351,
+      "kind": "products",
+      "slug": "%d9%87%d8%a7%db%8c%d9%be%d8%b1-%d9%85%db%8c%da%a9%d8%b1%d9%88-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%db%b1%db%b0-%da%a9%db%8c%d9%84%d9%88%db%8c%db%8c-hyper-micro-xgreen",
+      "status": "draft",
+      "modified_gmt": "2026-09-08T13:49:34",
+      "age_days": 10,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141220,
+      "kind": "products",
+      "slug": "%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%85%d8%a7%db%8c%d8%b9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-hyper-hum-xgreen",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:15:53",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141217,
+      "kind": "products",
+      "slug": "%d8%a2%d9%85%db%8c%d9%86%d9%88%d8%aa%d8%a7%d9%be-%d9%85%d8%a7%db%8c%d8%b9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-aminotop-xgreen",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:33:54",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141202,
+      "kind": "products",
+      "slug": "%d8%b3%d8%b1-%d8%b4%d9%84%d9%86%da%af%db%8c-%d9%81%d9%84%d8%b2%db%8c-%d8%a2%d9%87%d9%86%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-6-%d8%a7%db%8c%d9%86%da%86-160-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:13:53",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141128,
+      "kind": "products",
+      "slug": "%d8%b4%db%8c%d8%b1-%d9%88%db%8c%d9%81%d8%b1%db%8c-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%b3%d8%a7%db%8c%d8%b2-2-%d8%a7%db%8c%d9%86%da%86-63",
+      "status": "draft",
+      "modified_gmt": "2026-09-08T13:50:10",
+      "age_days": 10,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141042,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d8%b3%d8%a7%d9%88%d8%a7%d9%86%d8%a7-0-0-32-room",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:22:13",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141030,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af10-52-10-room",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:07:48",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141029,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-36-12-12-room",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:07:14",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141028,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-30-05-15-room",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T08:59:42",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141027,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-20-20-20-room",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:06:00",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141002,
+      "kind": "products",
+      "slug": "%d8%a7%d9%88%d9%84%d8%aa%d8%b1%d8%a7%d9%81%d9%88%d8%b3-80-room",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:03:38",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141003,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%be%d8%aa%d8%a7%d8%b3%db%8c%d9%85-%d9%85%d8%a7%db%8c%d8%b9-room",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:04:11",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141004,
+      "kind": "products",
+      "slug": "%da%a9%d9%84%d8%b3%db%8c%d9%85-%d8%a8%d9%88%d8%b1-%da%a9%d9%84%d8%a7%d8%aa-%d8%b4%d8%af%d9%87-room",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:04:44",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141011,
+      "kind": "products",
+      "slug": "%d9%85%db%8c%da%a9%d8%b1%d9%88-%da%a9%d8%a7%d9%85%d9%84-%d8%b3%d9%88%d9%84%d9%81%d8%a7%d8%aa%d9%87-room",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:05:27",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 141010,
+      "kind": "products",
+      "slug": "%da%a9%d9%84%d8%a7%d8%aa-%d8%a2%d9%87%d9%86-%d9%be%d9%88%d8%af%d8%b1%db%8c-room",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:11:28",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140977,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%85%db%8c%da%a9%d8%b1%d9%88-%d9%85%db%8c%da%a9%d8%b3-room",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:01:52",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140978,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d8%b3%d9%87-%da%af%d8%a7%d9%86%d9%87-%d8%aa%d8%b1%db%8c%d8%a7%d9%86%da%af%d9%84-room",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:02:29",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140979,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%81%d8%b1%d9%88%d8%aa-%d8%b3%d8%aa-room",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:03:04",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140940,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%da%a9%d9%84%d8%a7%d8%aa-%d8%a2%d9%87%d9%86-8-room",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:56:15",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140941,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%da%a9%d9%84%d8%a7%d8%aa-%d9%85%d9%86%da%af%d9%86%d8%b2-8-%d9%85%db%8c%d9%86%db%8c-room",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:56:48",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140942,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%da%a9%d9%84%d8%a7%d8%aa-%d8%b1%d9%88%db%8c-11-room",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:57:21",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140943,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%da%a9%d9%84%d8%a7%d8%aa-%d8%a8%d9%88%d8%b1-14-room-%d9%82%d9%88%d8%b7%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:57:57",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140944,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d8%a7%d8%b3%db%8c%d8%af-%d8%a2%d9%85%db%8c%d9%86%d9%87-%d8%b1%d9%88%d9%85%db%8c%d9%86%d9%88-room-%d9%82%d9%88%d8%b7%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T03:01:18",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140933,
+      "kind": "products",
+      "slug": "%d8%b3%db%8c%d9%84%db%8c%da%af%d8%a7%d8%b1%d8%af-room-%d9%82%d9%88%d8%b7%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:52:17",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140934,
+      "kind": "products",
+      "slug": "%d8%b5%d8%a7%d8%a8%d9%88%d9%86-%d9%be%d8%aa%d8%a7%d8%b3%db%8c%d9%85-room-%d9%82%d9%88%d8%b7%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:52:50",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140935,
+      "kind": "products",
+      "slug": "%d8%a7%d9%86%d9%81%d9%88%d8%b1%db%8c%da%a9-%d8%a7%d8%b3%db%8c%d8%af-%d8%a7%d9%88%d8%b1%d8%a2%d8%b2-room-%d8%b3%d8%b7%d9%84-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:53:25",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140936,
+      "kind": "products",
+      "slug": "%da%a9%d9%88%d8%af-%d9%81%d8%b3%d9%81%db%8c%d8%aa-%d9%be%d8%aa%d8%a7%d8%b3%db%8c%d9%85-room-%d9%82%d9%88%d8%b7%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:54:02",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140937,
+      "kind": "products",
+      "slug": "%da%af%d9%88%da%af%d8%b1%d8%af-%d8%b3%d9%88%d8%b3%d9%be%d8%a7%d9%86%d8%b3%db%8c%d9%88%d9%86-80-room-%da%af%d8%a7%d9%84%d9%86-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:54:35",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140938,
+      "kind": "products",
+      "slug": "%da%af%d9%88%da%af%d8%b1%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%88-%da%af%d9%88%da%af%d8%b1%d8%af-%d8%a8%d9%86%d8%aa%d9%88%d9%86%db%8c%d8%aa-%d8%af%d8%a7%d8%b1-room-%da%a9%db%8c%d8%b3%d9%87-25",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:55:08",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140939,
+      "kind": "products",
+      "slug": "%d8%b5%d8%a7%d8%a8%d9%88%d9%86-%d9%85%d8%ad%d9%84%d9%88%d9%84-%d9%be%d8%a7%d8%b4%db%8c-%d8%b5%d8%a7%d8%a8%d9%88%d9%86-%d9%85%d8%ad%d9%84%d9%88%d9%84-%d9%be%d8%a7%d8%b4%db%8c-%db%8c%d9%88%d8%b3%d8%a7",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:55:42",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140892,
+      "kind": "products",
+      "slug": "sop-0-0-52-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-08T13:44:10",
+      "age_days": 10,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140875,
+      "kind": "products",
+      "slug": "%d9%87%d8%a7%db%8c%d9%be%d8%b1-%db%b3%db%b6-%db%b1%db%b2-%db%b1%db%b2",
+      "status": "publish",
+      "modified_gmt": "2026-09-08T13:44:10",
+      "age_days": 10,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140878,
+      "kind": "products",
+      "slug": "%d9%87%d8%a7%db%8c%d9%be%d8%b1-%db%b1%db%b0-%db%b1%db%b0-%db%b3%db%b0-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-08T13:44:10",
+      "age_days": 10,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140860,
+      "kind": "products",
+      "slug": "%d9%86%db%8c%d8%aa%d8%b1%d8%a7%d8%aa-%da%a9%d9%84%d8%b3%db%8c%d9%85-%d9%85%d8%a7%db%8c%d8%b9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-08T13:44:10",
+      "age_days": 10,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140854,
+      "kind": "products",
+      "slug": "%d9%85%d8%b9%d8%ac%d8%b2%d9%87-%da%af%d8%b1-%d8%a7%d8%b1%da%af%d8%a7%d9%86%db%8c%da%a9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-11T20:02:22",
+      "age_days": 7,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140820,
+      "kind": "products",
+      "slug": "%d9%85%d9%8e%da%af%d9%86%d9%88%d8%b3-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:42:36",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140789,
+      "kind": "products",
+      "slug": "%d9%81%d8%b3%d9%81%db%8c%da%a9%d8%a7-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-03T08:23:43",
+      "age_days": 15,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140768,
+      "kind": "products",
+      "slug": "%da%af%d8%b1%d8%a7%d9%86%d9%88%d9%84-%db%b1%db%b0-%db%b1%db%b0-%db%b1%db%b0-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-05T09:05:01",
+      "age_days": 13,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140759,
+      "kind": "products",
+      "slug": "%d9%87%db%8c%d9%88%d9%85%db%8c%da%a9-%da%af%d8%b1%d8%a7%d9%86%d9%88%d9%84-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T20:56:16",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140758,
+      "kind": "products",
+      "slug": "%d9%81%db%8c%da%a9%d8%b3-%db%b8-%da%a9%d8%a7%d8%b1%d9%87",
+      "status": "publish",
+      "modified_gmt": "2026-09-11T19:56:40",
+      "age_days": 7,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140751,
+      "kind": "products",
+      "slug": "%d9%85%d9%88%d9%86%d9%88%d8%a2%d9%85%d9%88%d9%86%db%8c%d9%88%d9%85-%d9%81%d8%b3%d9%81%d8%a7%d8%aa-%db%b0-%db%b6%db%b1-%db%b1%db%b2",
+      "status": "publish",
+      "modified_gmt": "2026-09-04T03:28:33",
+      "age_days": 15,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140735,
+      "kind": "products",
+      "slug": "%da%af%d8%b1%d8%a7%d9%86%d9%88%d9%84-%db%b5-%db%b5-%db%b5-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-03T09:04:09",
+      "age_days": 15,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140734,
+      "kind": "products",
+      "slug": "%da%af%d9%8f%d9%84%d8%b1-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-11T19:53:55",
+      "age_days": 7,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140720,
+      "kind": "products",
+      "slug": "%d9%be%d8%b1%d9%86%d8%b3-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-03T08:27:15",
+      "age_days": 15,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140773,
+      "kind": "products",
+      "slug": "mkp-0-52-34-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:34:13",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140767,
+      "kind": "products",
+      "slug": "%d9%81%d9%88%d9%84-%da%af%d9%84%d8%af-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:33:25",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140750,
+      "kind": "products",
+      "slug": "%d8%a2%d9%85%db%8c%d9%86%d9%88%d8%aa%d8%a7%d9%be-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:31:17",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140742,
+      "kind": "products",
+      "slug": "%d8%b4%d8%a7%d9%84%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:30:12",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140671,
+      "kind": "products",
+      "slug": "%d8%b1%d8%a7%d8%a8%d8%b7-%d8%aa%db%8c%d9%be-%d8%a8%d9%87-%d9%84%db%8c-%d9%81%d9%84%d8%aa-%d8%a8%d8%af%d9%88%d9%86-%d9%88%d8%a7%d8%b4%d8%b1-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:23:51",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140655,
+      "kind": "products",
+      "slug": "%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-1-1-4-%d8%a7%db%8c%d9%86%da%86-40",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:19:21",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140637,
+      "kind": "products",
+      "slug": "%d9%85%d8%ba%d8%b2%db%8c-u-pvc-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-1-4-%d8%a7%db%8c%d9%86%da%86-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-%d9%be%d8%a7%db%8c%d8%a7",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:16:08",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140631,
+      "kind": "products",
+      "slug": "%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-2-%d8%a7%db%8c%d9%86%da%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:13:51",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140630,
+      "kind": "products",
+      "slug": "%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-1-2-%d8%a7%db%8c%d9%86%da%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:13:16",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140628,
+      "kind": "products",
+      "slug": "%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:12:42",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140626,
+      "kind": "products",
+      "slug": "%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-4-%d8%a7%db%8c%d9%86%da%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:12:12",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140625,
+      "kind": "products",
+      "slug": "%d9%85%d8%aa%d9%87-%d8%af%d8%b3%d8%aa%db%8c-%d9%82%d8%b7%d8%b1-18-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:11:39",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140613,
+      "kind": "products",
+      "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-290mm-2",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T06:32:08",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140607,
+      "kind": "products",
+      "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-2160mm",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:07:05",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140605,
+      "kind": "products",
+      "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-2125mm",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:06:33",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140589,
+      "kind": "products",
+      "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-1-240mm",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:03:57",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140586,
+      "kind": "products",
+      "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-50-x-125-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:02:55",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140579,
+      "kind": "products",
+      "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-1160mm",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T02:01:53",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140567,
+      "kind": "products",
+      "slug": "%d9%81%d9%84%d9%86%da%86-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%d8%ac%d9%88%d8%b4%db%8c-8-%d8%a7%db%8c%d9%86%da%86-200-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-6-%d8%a7%d8%aa%d9%85",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T01:55:41",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140540,
+      "kind": "products",
+      "slug": "%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%86%d8%b1-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%b2%d9%84%d8%a7%d9%84-%d8%b1%d9%88%d8%af-2-%d8%a7%db%8c%d9%86%da%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T01:50:02",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140489,
+      "kind": "products",
+      "slug": "%d8%b2%d8%a7%d9%86%d9%88-%d8%af%d9%88-%d8%b3%d8%b1-%d9%86%d8%b1-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%b1%d8%b2%d9%88%d9%87-%d8%a7%db%8c-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85%db%8c%d9%84%db%8c%d9%85",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T01:47:56",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140490,
+      "kind": "products",
+      "slug": "%d8%b2%d8%a7%d9%86%d9%88-%d9%85%d8%a7%d8%af%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%b1%d8%b2%d9%88%d9%87-%d8%a7%db%8c-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T01:34:59",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140480,
+      "kind": "products",
+      "slug": "%d8%b1%d8%a7%d8%a8%d8%b7-%d8%aa%db%8c%d9%be-%d8%a8%d9%87-%d9%84%db%8c-%d9%81%d9%84%d8%aa-%d9%88%d8%a7%d8%b4%d8%b1-%d8%af%d8%a7%d8%b1-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%d9%8a%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T01:32:42",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140478,
+      "kind": "products",
+      "slug": "%d8%b1%d8%a7%d8%a8%d8%b7-%d8%aa%db%8c%d9%be-%d8%a8%d9%87-%d8%aa%db%8c%d9%be-%d9%83%d8%b4%d9%88%d9%8a%d9%8a-%d8%b2%d9%84%d8%a7%d9%84-%d8%b1%d9%88%d8%af",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T01:32:12",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140470,
+      "kind": "products",
+      "slug": "%d8%b1%d8%a7%d8%a8%d8%b7-%d8%aa%d9%8a%d9%be-%d8%a8%d9%87-16-%d9%83%d8%b4%d9%88%d9%8a%db%8c-%d8%b2%d9%84%d8%a7%d9%84-%d8%b1%d9%88%d8%af",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T01:30:41",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140448,
+      "kind": "products",
+      "slug": "%d8%a8%d8%a7%d8%a8%d9%84%d8%b1-%d9%82%d8%a7%d8%b1%da%86%db%8c-%d8%a8%d8%b2%d8%b1%da%af-%d8%b2%d9%84%d8%a7%d9%84-%d8%b1%d9%88%d8%af",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T01:24:52",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140443,
+      "kind": "products",
+      "slug": "%d8%a8%d8%a7%d8%a8%d9%84%d8%b1-%d8%aa%d9%86%d8%b8%d9%8a%d9%85%db%8c-%d8%b2%d9%84%d8%a7%d9%84-%d8%b1%d9%88%d8%af",
+      "status": "publish",
+      "modified_gmt": "2026-09-17T05:15:31",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140429,
+      "kind": "products",
+      "slug": "%d8%af%d8%b1%d9%be%d9%88%d8%b4-%d8%b1%d8%b2%d9%88%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-3-%d8%a7%db%8c%d9%86%da%86-%da%a9%d9%be%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T01:20:27",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140420,
+      "kind": "products",
+      "slug": "%d8%aa%d8%a8%d8%af%db%8c%d9%84-%d8%af%d9%86%d8%af%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-3-4-1-1-2-%d8%a7%db%8c%d9%86%da%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T01:18:49",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140371,
+      "kind": "products",
+      "slug": "%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-1-2-x-32",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T01:04:05",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140339,
+      "kind": "products",
+      "slug": "%d8%b4%db%8c%d8%b1-%d9%88%db%8c%d9%81%d8%b1%db%8c-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%b3%d8%a7%db%8c%d8%b2-%db%b6-%d8%a7%db%8c%d9%86%da%86",
+      "status": "draft",
+      "modified_gmt": "2026-09-09T08:51:58",
+      "age_days": 9,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140340,
+      "kind": "products",
+      "slug": "%d8%b4%db%8c%d8%b1-%d9%88%db%8c%d9%81%d8%b1%db%8c-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%b3%d8%a7%db%8c%d8%b2-%db%b5-%d8%a7%db%8c%d9%86%da%86",
+      "status": "draft",
+      "modified_gmt": "2026-09-09T08:52:13",
+      "age_days": 9,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140343,
+      "kind": "products",
+      "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a8%d8%a7-%d8%b1%db%8c%d9%86%da%af-%d9%81%d9%84%d8%b2%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-90110-%d9%85%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T01:03:34",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140342,
+      "kind": "products",
+      "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a8%d8%a7-%d8%b1%db%8c%d9%86%da%af-%d9%81%d9%84%d8%b2%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-110125-%d9%85%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T01:03:02",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140341,
+      "kind": "products",
+      "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a8%d8%a7-%d8%b1%db%8c%d9%86%da%af-%d9%81%d9%84%d8%b2%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-90125-%d9%85%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T01:02:29",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140338,
+      "kind": "products",
+      "slug": "%d8%b4%db%8c%d8%b1-%d9%88%db%8c%d9%81%d8%b1%db%8c-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%b3%d8%a7%db%8c%d8%b2-%db%b4-%d8%a7%db%8c%d9%86%da%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T00:59:38",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 140337,
+      "kind": "products",
+      "slug": "%d8%b4%db%8c%d8%b1-%d9%88%db%8c%d9%81%d8%b1%db%8c-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%b3%d8%a7%db%8c%d8%b2-%db%b3-%d8%a7%db%8c%d9%86%da%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T00:59:04",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 139241,
+      "kind": "products",
+      "slug": "%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-250-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T00:34:40",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 139234,
+      "kind": "products",
+      "slug": "%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-160-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T00:33:34",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 139228,
+      "kind": "products",
+      "slug": "%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-2-1-2-%d8%a7%db%8c%d9%86%da%86-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T00:31:21",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 139221,
+      "kind": "products",
+      "slug": "%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%85%d8%a7%d8%af%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-u-pvc-%d8%b3%d8%a7%db%8c%d8%b2-3-4-%d8%a7%db%8c%d9%86%da%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T00:28:08",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 139205,
+      "kind": "products",
+      "slug": "%da%a9%d9%be%d8%b3%d9%88%d9%84-%d8%b2%db%8c%d8%b1-%d8%b3%d8%b7%d8%ad%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T00:27:37",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 135249,
+      "kind": "products",
+      "slug": "%d9%84%d9%88%d8%a7%d8%b2%d9%85-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d9%85%d8%af%d9%84-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-4-2",
+      "status": "publish",
+      "modified_gmt": "2026-09-15T22:54:21",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 135134,
+      "kind": "products",
+      "slug": "%d8%b4%db%8c%d8%b1-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-20-%d8%a8%d9%87-%d8%aa%db%8c%d9%be-%d9%be%db%8c%da%86%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-15T22:34:21",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 135098,
+      "kind": "products",
+      "slug": "%d8%af%d8%b1%d9%be%d9%88%d8%b4-%d8%b1%d8%b2%d9%88%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-2-%d8%a7%db%8c%d9%86%da%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-15T21:32:35",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 135092,
+      "kind": "products",
+      "slug": "%d8%af%d8%b1%d9%be%d9%88%d8%b4-%d8%b1%d8%b2%d9%88%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-15T21:31:12",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 135801,
+      "kind": "products",
+      "slug": "%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-1-2-%d8%a7%db%8c%d9%86%da%86-2-3",
+      "status": "publish",
+      "modified_gmt": "2026-09-15T23:57:16",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 135415,
+      "kind": "products",
+      "slug": "%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-2-2",
+      "status": "publish",
+      "modified_gmt": "2026-09-15T23:28:03",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 135355,
+      "kind": "products",
+      "slug": "%d8%b4%db%8c%d8%b1-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d8%b1%d8%b2%d9%88%d9%87-1-2-%d8%a8%d9%87-%d9%86%d9%88%d8%a7%d8%b1-%d8%aa%db%8c%d9%be-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-15T23:12:08",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 135325,
+      "kind": "products",
+      "slug": "%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-1-1-4-%d8%a7%db%8c%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-15T22:59:42",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 135699,
+      "kind": "products",
+      "slug": "%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%81%d9%84%d9%86%da%86%d8%af%d8%a7%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-2-x-63-%d9%85%db%8c%d9%84%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T20:48:14",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 135261,
+      "kind": "products",
+      "slug": "%d8%b4%db%8c%d8%b1-%d8%aa%d9%88%d9%be%db%8c-%db%8c%da%a9%d8%b3%d8%b1-%d9%86%d8%b1-%db%8c%da%a9%d8%b3%d8%b1-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-2-%d8%a7%db%8c%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-16T21:00:40",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 135255,
+      "kind": "products",
+      "slug": "%d8%b4%db%8c%d8%b1-%d8%aa%d9%88%d9%be%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85%db%8c%d9%84",
+      "status": "publish",
+      "modified_gmt": "2026-09-17T22:56:57",
+      "age_days": 1,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 135010,
+      "kind": "products",
+      "slug": "%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%db%8c%da%a9%d8%b3%d8%b1-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-40-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84",
+      "status": "publish",
+      "modified_gmt": "2026-09-15T21:18:43",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 135629,
+      "kind": "products",
+      "slug": "%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%db%8c%da%a9%d8%b3%d8%b1-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c",
+      "status": "publish",
+      "modified_gmt": "2026-09-17T05:14:03",
+      "age_days": 2,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 135595,
+      "kind": "products",
+      "slug": "%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-125-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86",
+      "status": "publish",
+      "modified_gmt": "2026-09-15T23:46:22",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 135577,
+      "kind": "products",
+      "slug": "%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-250-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-6-%d8%a8%d8%a7%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-15T23:41:52",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 135559,
+      "kind": "products",
+      "slug": "%d8%b2%d8%a7%d9%86%d9%88-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%db%8c%da%a9%d8%b3%d8%b1-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-40-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-15T23:40:15",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 135551,
+      "kind": "products",
+      "slug": "%d8%b2%d8%a7%d9%86%d9%88-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%db%8c%da%a9%d8%b3%d8%b1-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-15T23:39:43",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 135173,
+      "kind": "products",
+      "slug": "%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-125-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-15T22:43:34",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 134996,
+      "kind": "products",
+      "slug": "%d8%b1%d8%a7%d8%a8%d8%b7-%d8%aa%d8%a8%d8%af%db%8c%d9%84-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-40-63",
+      "status": "publish",
+      "modified_gmt": "2026-09-15T21:20:20",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    },
+    {
+      "id": 134984,
+      "kind": "products",
+      "slug": "%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-502-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
+      "status": "publish",
+      "modified_gmt": "2026-09-15T20:07:12",
+      "age_days": 3,
+      "stock_status": "outofstock",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is a commerce state, not proof of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false
+    }
+  ],
+  "mutations": {
+    "content": 0,
+    "dateModified": 0,
+    "stock": 0,
+    "price": 0,
+    "status": 0
+  },
+  "notes": [
+    "A review-due flag never changes dateModified by itself.",
+    "Out-of-stock never implies discontinued; explicit evidence is required.",
+    "Merge/deprecate actions are recommendations only and require a separate canonical/redirect plan and verification."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "phase": 22,
+  "title": "Farmer Decision Personalization",
+  "generated_at_utc": "2026-09-19T05:40:56.153140+00:00",
+  "run_id": "35424559201",
+  "commit_sha": "8aafbff66f47d2bffc373bda2ae3ecd981ec5a3e",
+  "status": "READY_BLOCKED_BY_PHASE20",
+  "functional_validation": "PASS_MODEL_VALIDATION",
+  "dependency_gate": {
+    "phase20": "PARTIAL",
+    "required_for_final_pass": true
+  },
+  "acceptance": {
+    "no_agronomic_hydraulic_certainty_beyond_data": true,
+    "missing_inputs_stop_or_soften_answer": true,
+    "expert_escalation": true
+  },
+  "site_mutations": 0,
+  "commerce_mutations": 0
+}
