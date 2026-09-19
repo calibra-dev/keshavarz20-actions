@@ -1,0 +1,71 @@
+{
+  "mode": "read-only",
+  "files": [
+    {
+      "path": "plugins/litespeed-cache/src/base.cls.php",
+      "line_count": 1125,
+      "matches": [
+        {
+          "pattern": "self::name(",
+          "line": 693,
+          "snippet": "self::$_blog_options_cache[ $blog_id ][ $id ] = get_option( self::name( $id ), $default_v );"
+        },
+        {
+          "pattern": "LITESPEED_",
+          "line": 921,
+          "snippet": "return 'LITESPEED_CONF__' . strtoupper( str_replace( '-', '__', $id ) );"
+        },
+        {
+          "pattern": "LITESPEED_",
+          "line": 1062,
+          "snippet": "'LITESPEED_TIME_OFFSET',"
+        },
+        {
+          "pattern": "LITESPEED_",
+          "line": 1063,
+          "snippet": "'LITESPEED_SERVER_TYPE',"
+        },
+        {
+          "pattern": "LITESPEED_",
+          "line": 1064,
+          "snippet": "'LITESPEED_CLI',"
+        },
+        {
+          "pattern": "LITESPEED_",
+          "line": 1065,
+          "snippet": "'LITESPEED_ALLOWED',"
+        },
+        {
+          "pattern": "LITESPEED_",
+          "line": 1066,
+          "snippet": "'LITESPEED_ON',"
+        },
+        {
+          "pattern": "LITESPEED_",
+          "line": 1095,
+          "snippet": "$css = apply_filters( 'litespeed_' . $type, $css, $queue_k );"
+        },
+        {
+          "pattern": "LITESPEED_",
+          "line": 1108,
+          "snippet": "$static_file     = LITESPEED_STATIC_DIR . $filepath_prefix . $filecon_md5 . '.css';"
+        },
+        {
+          "pattern": "OPTION_NAME",
+          "line": 24,
+          "snippet": "const OPTION_NAME = 'litespeed-cache-conf';"
+        },
+        {
+          "pattern": "OPTION_NAME",
+          "line": 640,
+          "snippet": "* Structure: [ blog_id => [ option_name => value, ... ], ... ]"
+        },
+        {
+          "pattern": "litespeed.",
+          "line": 23,
+          "snippet": "// New conf items are `litespeed.key`"
+        }
+      ]
+    }
+  ]
+}
