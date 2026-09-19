@@ -95,6 +95,13 @@ jobs:
         run: |
           set -euo pipefail
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            case "$MANUAL_FILE" in
+              daily-agri-news/queue/*.json) ;;
+              *)
+                echo "::error::Routing guard: news publisher accepts only daily-agri-news/queue/*.json"
+                exit 4
+                ;;
+            esac
             printf '%s\n' "$MANUAL_FILE" > /tmp/k20-queue-files.txt
           else
             git diff-tree --no-commit-id --name-only -r HEAD -- 'daily-agri-news/queue/*.json' > /tmp/k20-queue-files.txt
