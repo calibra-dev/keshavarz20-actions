@@ -1,0 +1,34 @@
+{
+  "phase": 13,
+  "title": "Guides / Hubs",
+  "generated_at_utc": "2026-09-19T09:10:00Z",
+  "status": "PASS_GUARDED",
+  "decision": "NO_NEW_THIN_PAGE",
+  "source": "phase13-results/execution-precheck-20260918.json",
+  "rules_applied": {
+    "existing_intent_owner_preserved": true,
+    "query_variant_thin_pages_created": 0,
+    "fabricated_dosage_or_compatibility": false,
+    "blind_rewrite_without_content_diff": false
+  },
+  "owner_decisions": [
+    {
+      "cluster": "ethephon",
+      "decision": "preserve_existing_owner; strengthen only when authenticated live diff proves a gap"
+    },
+    {
+      "cluster": "iron_mixing",
+      "decision": "preserve_existing_owner; no query-variant page"
+    },
+    {
+      "cluster": "generic_iron",
+      "decision": "hold until content diff proves distinct intent"
+    },
+    {
+      "cluster": "irrigation_hub",
+      "decision": "only create if it adds navigation not duplicate intent"
+    }
+  ],
+  "mutations": 0,
+  "guard": "No new page is the correct guarded execution outcome when the precheck says consolidate into existing owners and no trustworthy same-run full-content diff proves a missing module."
+}
