@@ -1,0 +1,155 @@
+{
+  "mode": "read-only",
+  "files": [
+    {
+      "path": "plugins/litespeed-cache/src/media.cls.php",
+      "line_count": 1518,
+      "matches": [
+        {
+          "pattern": "lazy_exc",
+          "line": 999,
+          "snippet": "$excludes = apply_filters( 'litespeed_media_lazy_img_excludes', $this->conf( Base::O_MEDIA_LAZY_EXC ) );"
+        },
+        {
+          "pattern": "lazy_uri_exc",
+          "line": 822,
+          "snippet": "$excludes = $this->conf( Base::O_MEDIA_LAZY_URI_EXC );"
+        },
+        {
+          "pattern": "fetchpriority",
+          "line": 310,
+          "snippet": "$content .= '<link rel=\"preload\" fetchpriority=\"high\" as=\"image\" href=\"' . esc_url( Str::trim_quotes( $v ) ) . '\">';"
+        },
+        {
+          "pattern": "fetchpriority",
+          "line": 910,
+          "snippet": "* @since 7.6 - Added attributes fetchpriority=\"high\" and decode=\"sync\" for VPI images."
+        },
+        {
+          "pattern": "fetchpriority",
+          "line": 961,
+          "snippet": "// Add attributes fetchpriority=\"high\" and decode=\"sync\""
+        },
+        {
+          "pattern": "fetchpriority",
+          "line": 964,
+          "snippet": "$attrs[ 'fetchpriority' ] = 'high';"
+        },
+        {
+          "pattern": "fetchpriority",
+          "line": 977,
+          "snippet": "// if VPI fetchpriority changes, do the replacement"
+        },
+        {
+          "pattern": "loading",
+          "line": 16,
+          "snippet": "* Handles media-related optimizations like lazy loading, next-gen image replacement, and admin UI."
+        },
+        {
+          "pattern": "loading",
+          "line": 127,
+          "snippet": "add_filter( 'wp_lazy_loading_enabled', '__return_false' );"
+        },
+        {
+          "pattern": "loading",
+          "line": 962,
+          "snippet": "// after WP 6.3.0 use: wp_img_tag_add_loading_optimization_attrs()."
+        },
+        {
+          "pattern": "get_option",
+          "line": 676,
+          "snippet": "$sizes[ $_size ]['width']  = get_option( $_size . '_size_w' );"
+        },
+        {
+          "pattern": "get_option",
+          "line": 677,
+          "snippet": "$sizes[ $_size ]['height'] = get_option( $_size . '_size_h' );"
+        },
+        {
+          "pattern": "get_option",
+          "line": 678,
+          "snippet": "$sizes[ $_size ]['crop']   = (bool) get_option( $_size . '_crop' );"
+        }
+      ]
+    },
+    {
+      "path": "plugins/litespeed-cache/src/conf.cls.php",
+      "line_count": 776,
+      "matches": [
+        {
+          "pattern": "get_option",
+          "line": 179,
+          "snippet": "$options[ $k ] = self::get_option( $k, $v );"
+        },
+        {
+          "pattern": "get_option",
+          "line": 387,
+          "snippet": "$this->set_conf( $name, self::get_option( $name, $default_val ) );"
+        }
+      ]
+    },
+    {
+      "path": "plugins/litespeed-cache/tpl/page_optm/settings_media.tpl.php",
+      "line_count": 322,
+      "matches": [
+        {
+          "pattern": "loading",
+          "line": 5,
+          "snippet": "* Renders the media settings interface for LiteSpeed Cache, including lazy loading, placeholders, and image optimization options."
+        },
+        {
+          "pattern": "loading",
+          "line": 41,
+          "snippet": "<?php esc_html_e( 'This can improve page loading time by reducing initial HTTP requests.', 'litespeed-cache' ); ?>"
+        },
+        {
+          "pattern": "loading",
+          "line": 59,
+          "snippet": "<?php esc_html_e( 'Specify a base64 image to be used as a simple placeholder while images finish loading.', 'litespeed-cache' ); ?>"
+        },
+        {
+          "pattern": "loading",
+          "line": 122,
+          "snippet": "<?php esc_html_e( 'Use QUIC.cloud LQIP (Low Quality Image Placeholder) generator service for responsive image previews while loading.', 'litespeed-cache' ); ?>"
+        },
+        {
+          "pattern": "loading",
+          "line": 235,
+          "snippet": "<?php esc_html_e( 'This can improve page loading time by reducing initial HTTP requests.', 'litespeed-cache' ); ?>"
+        }
+      ]
+    },
+    {
+      "path": "plugins/litespeed-cache/tpl/page_optm/settings_media_exc.tpl.php",
+      "line_count": 138,
+      "matches": [
+        {
+          "pattern": "lazy_exc",
+          "line": 25,
+          "snippet": "<?php $option_id = Base::O_MEDIA_LAZY_EXC; ?>"
+        },
+        {
+          "pattern": "lazy_uri_exc",
+          "line": 112,
+          "snippet": "<?php $option_id = Base::O_MEDIA_LAZY_URI_EXC; ?>"
+        },
+        {
+          "pattern": "loading",
+          "line": 5,
+          "snippet": "* Renders the media excludes settings interface for LiteSpeed Cache, allowing configuration of exclusions for lazy loading and LQIP."
+        }
+      ]
+    },
+    {
+      "path": "plugins/litespeed-cache/tpl/page_optm/settings_vpi.tpl.php",
+      "line_count": 128,
+      "matches": [
+        {
+          "pattern": "loading",
+          "line": 37,
+          "snippet": "<?php esc_html_e( 'When you use Lazy Load, it will delay the loading of all images on a page.', 'litespeed-cache' ); ?>"
+        }
+      ]
+    }
+  ]
+}
