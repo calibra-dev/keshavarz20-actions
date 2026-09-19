@@ -1,6 +1,6 @@
 # Keshavarz20 Daily Long-form Agriculture Article — SEO God 2026
 
-This is the canonical instruction for the automatic **daily long-form article** engine. It is separate from `daily-agri-news` and must never create a news item.
+This is the canonical instruction for the automatic **daily long-form article** engine. It is separate from `daily-agri-news` and must never create a news item. It owns only normal WordPress `post` drafts.
 
 ## 0) Read policy first
 
@@ -27,7 +27,7 @@ If no topic clears the quality gate, **skip the day**. A skipped weak article is
 
 ## 2) Research and topic selection
 
-Deep-search current web sources and inspect recent normal Keshavarz20 posts before choosing a topic. Score candidates on:
+Deep-search current web sources and inspect recent normal Keshavarz20 posts before choosing a topic. **Routing gate:** if a candidate is primarily a fresh event, announcement, outbreak/current incident, current policy action, or time-sensitive market/news development, reject it from this engine and leave it to `daily-agri-news`. Score durable candidates on:
 
 - Iranian farmer relevance
 - search intent and recurring question demand
@@ -100,6 +100,7 @@ Do not use fake authors, fake reviews, fake first-hand experience, purchased men
 
 Prepare all queue fields required by the publisher, including:
 
+- `content_type` = `post` (hard routing guard)
 - `generated_at`
 - `title`
 - English ASCII `slug`
