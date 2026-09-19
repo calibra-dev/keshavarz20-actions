@@ -19,7 +19,7 @@ jobs:
       WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
-      - name: Read exact LiteSpeed lazy-exclude options
+      - name: Read exact LiteSpeed media-vpi option
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
@@ -29,7 +29,7 @@ jobs:
           $base=$env:WP_BASE_URL.TrimEnd('/')
           $auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"))
           $headers=@{Authorization="Basic $auth";Accept='application/json';'Content-Type'='application/json'}
-          $cmd="db query SELECT option_name, option_value FROM {prefix}options WHERE option_name=0x6c69746573706565642e6d656469612d6c617a795f657863 --limit=5"
+          $cmd="db query SELECT option_name, option_value FROM {prefix}options WHERE option_name=0x6c69746573706565642e6d656469612d767069 --limit=5"
           $payload=[ordered]@{command=$cmd;confirm_write=$false}|ConvertTo-Json -Compress
           $r=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/cli/run" -Headers $headers -Method POST -Body $payload -TimeoutSec 180
           $dir=Join-Path $env:RUNNER_TEMP 'k20-phase7-litespeed-option-raw'; New-Item -ItemType Directory -Force $dir|Out-Null
