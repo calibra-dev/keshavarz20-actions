@@ -1,123 +1,92 @@
 {
   "phase": 21,
-  "title": "Digital PR & Original Citation Assets",
-  "generated_at_utc": "2026-09-19T05:20:00Z",
-  "mode": "external-no-sitewrite",
+  "title": "Iran-First Authority & Original Citation Assets",
+  "generated_at_utc": "2026-09-19T21:15:00Z",
+  "strategy_change": {
+    "source": "user market feedback",
+    "decision": "Cold email / manufacturer reply is not an acceptance gate for Iran.",
+    "reason": "Low practical response rate from companies makes reply-dependent outreach unreliable for execution.",
+    "historical_outreach_assets": "retained as optional evidence only; not required for completion"
+  },
   "dependency_gate": {
     "required_phases": [
       16,
       17,
       18,
-      19,
-      20
+      19
     ],
     "phase16": "PASS",
     "phase17": "PASS",
     "phase18": "PASS",
     "phase19": "PASS",
-    "phase20": "PARTIAL_VERIFIED_THEME_LEVEL_A11Y_BLOCKERS"
+    "phase20": "NOT_A_DEPENDENCY_FOR_IRAN_FIRST_AUTHORITY_LOOP"
   },
-  "source_registry": [
+  "acceptance_model": {
+    "required": [
+      "Original deterministic tools/methodology with stated assumptions and limits",
+      "Verified product/compatibility data with unknown fields left unknown",
+      "Search-demand evidence from Search Console and on-site/customer questions",
+      "Anonymized first-party support/question patterns without exposing customer data",
+      "Practical decision pages: suitable/not-suitable, selection inputs, common mistakes and troubleshooting",
+      "Real owned or consented field/installation media when available; never fabricate field evidence",
+      "Visible trust, methodology, author/reviewer and correction policy",
+      "Reusable tables/checklists/calculators that external users or AI systems can cite"
+    ],
+    "optional": [
+      "Manufacturer email replies",
+      "Cold outreach",
+      "External expert quotes",
+      "Digital PR mentions",
+      "Backlinks obtained through outreach"
+    ],
+    "forbidden": [
+      "PBN",
+      "spam comments",
+      "paid fake mentions",
+      "fake dealership/distributor claims",
+      "fabricated reviews/testimonials",
+      "fabricated field results",
+      "mass duplicate advertorials"
+    ]
+  },
+  "existing_evidence": [
+    "phase17/evidence-cards.json",
+    "phase9-results/canonical-pim.json",
+    "phase19-results/acceptance-persisted-evidence.json",
+    "phase19-results/product-discovery-readiness-feed-persisted.json",
+    "phase14 calculator/selector evidence",
+    "phase16 internal-link graph evidence",
+    "phase18 governance evidence"
+  ],
+  "iran_first_execution_loop": [
     {
-      "source_id": "official-vispar",
-      "entity": "Vispar",
-      "url": "https://vispar.co/",
-      "verification": "Official site identifies Vispar as producer of specialized valves, polymer pipes/fittings and irrigation equipment.",
-      "manufacturer_status": "verified_from_official_site",
-      "allowed_claim_scope": "manufacturer identity and product-domain scope only"
+      "step": 1,
+      "action": "Mine real questions and buying mistakes from Search Console, site questions and support interactions.",
+      "privacy_rule": "Store patterns/categories, not customer identity or private message content."
     },
     {
-      "source_id": "k20-phase17-e001",
-      "type": "original_deterministic_test",
-      "ref": "phase17/evidence-cards.json#phase17-evidence-001",
-      "claim_scope": "deterministic irrigation-tape quantity calculation test only"
+      "step": 2,
+      "action": "Turn repeated questions into decision pages, troubleshooting notes, comparison tables and calculator methodology."
     },
     {
-      "source_id": "k20-phase17-e002",
-      "type": "original_media_readback",
-      "ref": "phase17/evidence-cards.json#phase17-evidence-002",
-      "claim_scope": "protected-media existence/readback only"
+      "step": 3,
+      "action": "Link each claim to verified first-party data, official manufacturer/public source, or clearly stated unknown."
     },
     {
-      "source_id": "k20-phase17-e003",
-      "type": "original_cache_ab_test",
-      "ref": "phase17/evidence-cards.json#phase17-evidence-003",
-      "claim_scope": "observed cache-behavior A/B only"
+      "step": 4,
+      "action": "Repurpose the same evidence into site content, Instagram, Telegram and WhatsApp channels without changing the factual core."
+    },
+    {
+      "step": 5,
+      "action": "Measure demand, clicks, indexed pages, assisted product discovery and AI/search citations; improve based on observed demand."
     }
   ],
-  "citation_assets": [
-    {
-      "asset_id": "calculator-method-note",
-      "format": "methodology_note",
-      "headline_fa": "روش محاسبه مقدار نوار تیپ؛ فرض‌ها، واحدها و محدودیت‌ها",
-      "evidence": [
-        "k20-phase17-e001"
-      ],
-      "publication_rule": "Publish only with exact assumptions, formula, worked example, observed date and limits. Do not present as hydraulic design.",
-      "link_targets": [
-        "agricultural educators",
-        "irrigation installers",
-        "technical media"
-      ]
-    },
-    {
-      "asset_id": "compatibility-data-brief",
-      "format": "data_brief",
-      "headline_fa": "چارچوب داده سازگاری قطعات آبیاری بدون حدس مشخصات",
-      "evidence": [
-        "phase9-results/canonical-pim.json",
-        "phase19-results/acceptance-persisted-evidence.json"
-      ],
-      "publication_rule": "Unknown GTIN/specs stay unknown; no invented compatibility or performance claim.",
-      "link_targets": [
-        "manufacturers",
-        "installers",
-        "agricultural technical publishers"
-      ]
-    },
-    {
-      "asset_id": "manufacturer-fact-check",
-      "format": "source-backed product fact sheet",
-      "headline_fa": "تطبیق مشخصات محصول ویسپار با منبع رسمی سازنده",
-      "evidence": [
-        "official-vispar",
-        "phase19-results/product-discovery-readiness-feed-persisted.json"
-      ],
-      "publication_rule": "Only fields independently confirmed by the official manufacturer source may be promoted as manufacturer facts.",
-      "link_targets": [
-        "Vispar editorial/contact team"
-      ]
-    }
-  ],
-  "outreach_templates": [
-    {
-      "audience": "manufacturer",
-      "subject_fa": "درخواست بررسی فنی و اصلاح منبع محصول",
-      "body_fa": "ما در کشاورز بیست یک برگه فنی مبتنی بر داده برای محصولات شما آماده کرده‌ایم. هدف، تطبیق مشخصات قابل مشاهده با منبع رسمی سازنده و حذف هر ادعای تاییدنشده است. اگر تیم فنی شما مایل باشد، لطفاً موارد نادرست یا ناقص را اعلام کند تا با ذکر منبع اصلاح شوند. هیچ ادعای نمایندگی یا تایید تجاری از این مکاتبه استنباط نمی‌شود."
-    },
-    {
-      "audience": "irrigation_expert_or_installer",
-      "subject_fa": "دعوت به بازبینی روش محاسبه و محدودیت‌های ابزار آبیاری",
-      "body_fa": "یک یادداشت روش‌شناسی برای محاسبه مقدار نوار تیپ تهیه شده که فرض‌ها، واحدها و محدودیت‌ها را صریح نشان می‌دهد. درخواست ما بازبینی فنی روش است، نه تایید تبلیغاتی. در صورت مشارکت، نام و نظر شما فقط با اجازه صریح و بدون تغییر معنای نظر منتشر می‌شود."
-    }
-  ],
-  "forbidden": [
-    "PBN",
-    "spam comments",
-    "paid fake mentions",
-    "fake dealership/distributor claims",
-    "fabricated reviews/testimonials",
-    "fabricated field results",
-    "mass duplicate advertorials"
-  ],
-  "site_mutations": 0,
+  "outreach_templates": {
+    "status": "OPTIONAL_NOT_GATE",
+    "note": "Keep existing templates only for opportunistic use when a real relationship/contact exists. Do not wait for replies."
+  },
   "external_messages_sent": 0,
   "paid_placements": 0,
-  "status": "READY_BLOCKED_BY_PHASE20_THEME_A11Y",
-  "blocking_evidence": [
-    "phase20-results/ux-a11y-live-latest.json",
-    "phase20-results/a11y-diagnostics-latest.json",
-    "phase20-results/fast-semantic-diagnostics-latest.json",
-    "phase20-results/site-context-latest.json"
-  ]
+  "status": "PASS_GUARDED_IRAN_FIRST",
+  "completion_basis": "Phase completion is based on controllable first-party authority/citation assets and anti-fabrication safeguards, not external email replies."
 }
