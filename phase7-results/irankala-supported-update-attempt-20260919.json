@@ -1,0 +1,39 @@
+{
+  "phase": 7,
+  "related_phase": 20,
+  "generated_at_utc": "2026-09-19T14:20:00Z",
+  "action": "supported_irankala_update_attempt",
+  "theme": {
+    "slug": "irankala",
+    "before_version": "10.9.0",
+    "offered_version": "10.10.0",
+    "result": "BLOCKED_BY_VENDOR_DOWNLOAD_403",
+    "installed_version_after_attempt": "10.9.0"
+  },
+  "updater": {
+    "provider": "Zhaket Smart Updater",
+    "error": "Download failed: Forbidden",
+    "maintenance_mode_after_attempt": false
+  },
+  "post_attempt_live_validation": {
+    "homepage_http_healthy": true,
+    "mobile_performance_score": 57,
+    "mobile_accessibility_score": 74,
+    "lab_lcp_seconds": 4.4,
+    "field_lcp_ms": 9753,
+    "field_inp_ms": 115,
+    "field_cls": 0.004
+  },
+  "phase20_latest_exact_diagnostics_commit": "abc91952dba7acb5345767f467756588f2a78d82",
+  "verified_safe_fixes": {
+    "homepage_single_h1": true,
+    "heading_order_pass": true
+  },
+  "remaining_verified_blockers": [
+    "IranKala/Owl carousel buttons lack accessible names",
+    "Theme site-logo/login-register/image-only links lack discernible accessible names",
+    "Homepage LCP image remains emitted lazy without supported renderer-level fetchpriority fix",
+    "Singular no-cache cause remains in protected/unsupported theme paths"
+  ],
+  "guard": "No credentials, license state, arbitrary theme/plugin code, price, stock, user, role, or protected ionCube code was changed."
+}
