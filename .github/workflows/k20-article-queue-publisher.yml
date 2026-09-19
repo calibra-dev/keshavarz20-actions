@@ -2,6 +2,7 @@ name: Keshavarz20 ChatGPT Pro Article Queue Publisher
 
 on:
   push:
+    branches: [main]
     paths:
       - 'daily-agri-articles/queue/*.json'
   pull_request:
@@ -20,7 +21,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: k20-article-queue-publisher-${{ github.ref }}
+  group: k20-article-queue-publisher
   cancel-in-progress: false
 
 jobs:

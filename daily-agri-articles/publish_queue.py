@@ -424,6 +424,12 @@ def main() -> None:
         "category": category_name, "category_id": category_id, "image_source": image_source.get("original_url"),
         "image_license": image_source.get("license"), "edit_url": f"{WP_BASE}/wp-admin/post.php?post={post_id}&action=edit",
         "wp_status": verified.get("post_status"), "wp_type": verified.get("post_type"), "queue_file": str(queue_path),
+        "source_urls": [str(x) for x in p.get("source_urls", [])],
+        "source_names": [str(x) for x in p.get("source_names", [])],
+        "fields_written": ["title", "slug", "excerpt", "content", "featured_media", "category", "tags", "yoast_title", "yoast_meta_description", "yoast_focus_keyphrase"],
+        "qa_score": 100,
+        "qa_score_basis": "all deterministic required gates and post-write readback passed",
+        "readback": {"status": verified.get("post_status"), "type": verified.get("post_type"), "featured_media": verified.get("post_thumbnail")},
     }
     save_result(result)
     print(json.dumps(result, ensure_ascii=False, indent=2))

@@ -2,6 +2,7 @@ name: Keshavarz20 ChatGPT Pro News Queue Publisher
 
 on:
   push:
+    branches: [main]
     paths:
       - 'daily-agri-news/queue/*.json'
   pull_request:
@@ -24,7 +25,24 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  static-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile publishers
+        run: |
+          python -m py_compile daily-agri-news/publish_queue.py
+          python -m py_compile daily-agri-news/publish_queue_v2.py
+
   publish-draft:
+    if: github.event_name != 'pull_request'
+    needs: static-check
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:

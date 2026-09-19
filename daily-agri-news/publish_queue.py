@@ -102,23 +102,47 @@ def validate_payload(p: dict[str, Any]) -> None:
 
 
 def recent_news_titles(limit: int = 100) -> list[str]:
-    r = SESSION.get(
-        f"{WP_BASE}/wp-json/wp/v2/news",
-        params={"per_page": min(limit, 100), "orderby": "date", "order": "desc", "status": "publish,draft,pending,future,private"},
-        auth=(WP_USER, WP_PASS),
-        timeout=30,
-    )
-    if not r.ok:
-        raise QueuePublishError(f"Could not inspect recent WordPress news: HTTP {r.status_code}")
-    titles: list[str] = []
-    for row in r.json():
-        title = row.get("title", {})
-        if isinstance(title, dict):
-            title = title.get("rendered", "")
-        if title:
-            titles.append(str(title))
-    return titles
+    """Inspect the real custom news post type through authenticated XML-RPC.
 
+    The live custom type is not exposed at /wp-json/wp/v2/news. Duplicate
+    inspection therefore uses the same WordPress capability as the draft
+    writer, while remaining read-only.
+    """
+    server = wp_xmlrpc()
+    try:
+        methods = set(server.system.listMethods())
+        if "wp.getPosts" not in methods:
+            raise QueuePublishError("WordPress XML-RPC missing wp.getPosts for news duplicate inspection")
+
+        titles: list[str] = []
+        seen: set[str] = set()
+        for status in ("publish", "draft", "pending", "future", "private"):
+            rows = server.wp.getPosts(
+                0, WP_USER, WP_PASS,
+                {
+                    "post_type": "news",
+                    "post_status": status,
+                    "number": min(limit, 100),
+                    "orderby": "post_date",
+                    "order": "DESC",
+                },
+                ["post_title"],
+            )
+            for row in rows:
+                title = str(row.get("post_title") or "").strip()
+                key = normalize_title(title)
+                if title and key not in seen:
+                    seen.add(key)
+                    titles.append(title)
+                if len(titles) >= limit:
+                    return titles
+        return titles
+    except QueuePublishError:
+        raise
+    except Exception as exc:
+        raise QueuePublishError(
+            f"Could not inspect recent WordPress news through XML-RPC: {exc}"
+        ) from exc
 
 def ensure_not_duplicate(p: dict[str, Any]) -> None:
     wanted = fingerprint(str(p["title"]))
@@ -364,6 +388,12 @@ def main() -> None:
         "wp_status": verified.get("post_status"),
         "wp_type": verified.get("post_type"),
         "queue_file": str(queue_path),
+        "source_urls": [str(x) for x in p.get("source_urls", [])],
+        "source_names": [str(x) for x in p.get("source_names", [])],
+        "fields_written": ["title", "slug", "excerpt", "content", "featured_media", "news_cat", "news_tag", "yoast_title", "yoast_meta_description", "yoast_focus_keyphrase"],
+        "qa_score": 100,
+        "qa_score_basis": "all deterministic required gates and post-write readback passed",
+        "readback": {"status": verified.get("post_status"), "type": verified.get("post_type"), "featured_media": verified.get("post_thumbnail")},
     }
     save_result(result)
     print(json.dumps(result, ensure_ascii=False, indent=2))
