@@ -364,7 +364,24 @@ def main() -> None:
     validate_payload(p)
     ensure_not_duplicate(p)
 
-    image_source = commons_search(str(p["image_search_query"]))
+    image_queries = [str(p["image_search_query"]).strip()]
+    for item in p.get("image_search_fallbacks") or []:
+        q = str(item).strip()
+        if q and q not in image_queries:
+            image_queries.append(q)
+
+    image_source = None
+    image_errors = []
+    for q in image_queries[:5]:
+        try:
+            image_source = commons_search(q)
+            image_source["search_query_used"] = q
+            break
+        except Exception as exc:
+            image_errors.append(f"{q}: {exc}")
+    if image_source is None:
+        raise QueuePublishError("No suitable open-license Wikimedia image found after fallback queries: " + " | ".join(image_errors))
+
     image_path = make_editorial_image(image_source)
 
     server = wp_xmlrpc()
