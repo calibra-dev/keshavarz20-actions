@@ -9,10 +9,21 @@ import os
 import urllib.error
 import urllib.parse
 import urllib.request
+import time
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, Iterable, List, Tuple
 
 UTC = dt.timezone.utc
+DEFAULT_POLICY = {
+    "review_days": {"posts": 180, "pages": 365, "products": 180},
+    "rules": {
+        "stale_review_does_not_touch_dateModified": True,
+        "outofstock_is_not_discontinued": True,
+        "discontinued_requires_explicit_evidence": True,
+        "merge_requires_manual_canonical_redirect_plan": True,
+        "automatic_bulk_rewrite_for_freshness": False,
+    },
+}
 
 
 def parse_time(value: Any) -> dt.datetime | None:
@@ -85,11 +96,23 @@ def _auth_header(user: str, password: str) -> str:
 
 
 def fetch_json(url: str, auth: str) -> Tuple[Any, Dict[str, str]]:
-    req = urllib.request.Request(url, headers={"Authorization": auth, "Accept": "application/json", "User-Agent": "K20-Phase23/1.0"})
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        data = json.loads(resp.read().decode("utf-8"))
-        headers = {k.lower(): v for k, v in resp.headers.items()}
-        return data, headers
+    last_error = None
+    for attempt in range(1, 5):
+        req = urllib.request.Request(url, headers={"Authorization": auth, "Accept": "application/json", "User-Agent": "K20-Phase23/1.0"})
+        try:
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                raw = resp.read().decode("utf-8", "replace")
+                headers = {k.lower(): v for k, v in resp.headers.items()}
+                ctype = headers.get("content-type", "")
+                try:
+                    return json.loads(raw), headers
+                except json.JSONDecodeError:
+                    last_error = RuntimeError(f"Non-JSON REST response (content-type={ctype!r}, preview={raw[:160]!r})")
+        except (urllib.error.URLError, TimeoutError, RuntimeError) as e:
+            last_error = e
+        if attempt < 4:
+            time.sleep(attempt * 2)
+    raise RuntimeError(f"REST fetch failed after retries: {url}: {last_error}")
 
 
 def paginate(base: str, route: str, auth: str, params: Dict[str, str], max_pages: int = 40) -> List[Dict[str, Any]]:
@@ -171,9 +194,9 @@ def main() -> None:
     dep = str(phase20.get("status") or "UNKNOWN")
     auth = _auth_header(user, password)
 
-    posts = paginate(base, "/wp-json/wp/v2/posts", auth, {"context": "edit", "status": "any"})
-    pages = paginate(base, "/wp-json/wp/v2/pages", auth, {"context": "edit", "status": "any"})
-    products = paginate(base, "/wp-json/wc/v3/products", auth, {"status": "any"})
+    posts = paginate(base, "/wp-json/wp/v2/posts", auth, {"context": "edit", "_fields": "id,slug,status,modified_gmt"})
+    pages = paginate(base, "/wp-json/wp/v2/pages", auth, {"context": "edit", "_fields": "id,slug,status,modified_gmt"})
+    products = paginate(base, "/wp-json/wc/v3/products", auth, {"status": "any", "_fields": "id,slug,status,date_modified_gmt,stock_status"})
     report = build_report(posts, pages, products, policy, dep)
 
     out = Path(args.output)
