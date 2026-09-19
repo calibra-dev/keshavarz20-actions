@@ -1,0 +1,79 @@
+{
+  "phase": 24,
+  "title": "AI Citation Experimentation & Influence Measurement",
+  "generated_at": "2026-09-19",
+  "status": "EXECUTION_COMPLETE_WITH_EXTERNAL_MEASUREMENT_BLOCKERS",
+  "prompt_bank": {
+    "count": 200,
+    "path": "phase24/prompt-bank-200-fa.json",
+    "result_fields": "PENDING_EXTERNAL_MEASUREMENT"
+  },
+  "live_measurement": {
+    "gsc": {
+      "property": "sc-domain:keshavarz20.com",
+      "settled_through": "2026-09-16",
+      "last_28_days": {
+        "clicks": 923,
+        "impressions": 15549,
+        "ctr_percent": 5.93607305936073,
+        "average_position": 9.411604239667566
+      },
+      "search_appearance": {
+        "rows": 1,
+        "observed": [
+          "PRODUCT_SNIPPETS"
+        ],
+        "product_snippets": {
+          "clicks": 78,
+          "impressions": 873,
+          "ctr_percent": 8.934707903780069,
+          "position": 6.457044673539519
+        }
+      },
+      "dedicated_google_generative_ai_surface_exposed": false
+    },
+    "ga4": {
+      "connected": false,
+      "llm_referral_measurement": false,
+      "blocker": "Connected GSC Wizard account has no Google Analytics scope/property, so ChatGPT/Perplexity/Copilot/Gemini referral sessions and downstream conversions cannot be measured."
+    },
+    "bing": {
+      "configured": false,
+      "citation_or_query_measurement": false,
+      "blocker": "No Bing Webmaster Tools API key is configured for this property."
+    },
+    "crux_connector": {
+      "configured": false,
+      "note": "GSC Wizard CrUX key is not configured; existing repo Phase 10 field CWV evidence remains the authoritative baseline for the release gate."
+    }
+  },
+  "kpis": {
+    "citation_rate": null,
+    "brand_mention_rate": null,
+    "citation_influence": null,
+    "cited_page_coverage": null,
+    "grounding_query_coverage": null,
+    "ai_share_of_voice_proxy": null,
+    "ai_referral_sessions": null,
+    "cta_proforma_conversion": null,
+    "assisted_revenue": null
+  },
+  "reason_kpis_null": "The external AI answer/citation surfaces and GA4/Bing telemetry are not connected in the current control plane. Null is intentional; zero would be a false measurement.",
+  "acceptance": {
+    "no_ranking_promise": true,
+    "citations_not_equated_to_recommendation": true,
+    "source_influence_clicks_conversions_measured": false
+  },
+  "dependency_state": {
+    "phase16": "PASS",
+    "phase17": "PASS",
+    "phase18": "PASS",
+    "phase19": "PASS",
+    "phase20": "PARTIAL_VERIFIED_THEME_LEVEL_A11Y_BLOCKERS",
+    "phase21": "READY_BLOCKED_BY_PHASE20_THEME_A11Y",
+    "phase22": "READY_BLOCKED_BY_PHASE20",
+    "phase23": "READY_BLOCKED_BY_PHASE20"
+  },
+  "site_mutations": 0,
+  "commerce_mutations": 0
+}
