@@ -104,7 +104,7 @@ def validate_payload(p: dict[str, Any]) -> None:
 def recent_news_titles(limit: int = 100) -> list[str]:
     """Inspect the real custom news post type through authenticated XML-RPC.
 
-    The live custom type is not exposed at /wp-json/wp/v2/news. Duplicate
+    The live custom type is not exposed by the expected REST collection. Duplicate
     inspection therefore uses the same WordPress capability as the draft
     writer, while remaining read-only.
     """
