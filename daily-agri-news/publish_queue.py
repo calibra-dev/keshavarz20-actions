@@ -246,8 +246,23 @@ def make_editorial_image(source: dict[str, Any]) -> Path:
     return target
 
 
+class TimeoutSafeTransport(xmlrpc.client.SafeTransport):
+    def __init__(self, timeout: int = 45):
+        super().__init__()
+        self.timeout = timeout
+
+    def make_connection(self, host):
+        connection = super().make_connection(host)
+        connection.timeout = self.timeout
+        return connection
+
+
 def wp_xmlrpc() -> xmlrpc.client.ServerProxy:
-    return xmlrpc.client.ServerProxy(f"{WP_BASE}/xmlrpc.php", allow_none=True)
+    return xmlrpc.client.ServerProxy(
+        f"{WP_BASE}/xmlrpc.php",
+        allow_none=True,
+        transport=TimeoutSafeTransport(45),
+    )
 
 
 def upload_wp_image(server: xmlrpc.client.ServerProxy, path: Path, p: dict[str, Any], source: dict[str, Any]) -> int:
