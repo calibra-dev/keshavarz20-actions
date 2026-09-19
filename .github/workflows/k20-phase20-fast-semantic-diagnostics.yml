@@ -1,0 +1,87 @@
+name: K20 Phase 20 Fast Semantic Diagnostics
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'phase20-fastdiag-ops/*.json'
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Inspect live server HTML
+        shell: python
+        run: |
+          import json,re,urllib.request,datetime,os,html
+          from html.parser import HTMLParser
+          feed=json.load(open('phase19-results/product-discovery-readiness-feed-persisted.json',encoding='utf-8'))
+          product=next((p.get('canonical_url') for p in feed.get('products',[]) if p.get('canonical_url')), 'https://keshavarz20.com/product/')
+          targets={'home':'https://keshavarz20.com/','product':product,'pipe-guide':'https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/','filter-selector':'https://keshavarz20.com/irrigation-filter-selector/','fittings-selector':'https://keshavarz20.com/irrigation-fittings-compatibility-selector/'}
+          class Parser(HTMLParser):
+            def __init__(self):
+              super().__init__(); self.stack=[]; self.links=[]; self.buttons=[]; self.h1s=[]; self.current_h1=None
+            def handle_starttag(self,tag,attrs):
+              a=dict(attrs); node={'tag':tag,'attrs':a,'text':[]}
+              self.stack.append(node)
+              if tag=='a': self.links.append(node)
+              if tag=='button': self.buttons.append(node)
+              if tag=='h1': self.current_h1=node; self.h1s.append(node)
+            def handle_data(self,d):
+              for n in self.stack: n['text'].append(d)
+            def handle_endtag(self,tag):
+              for i in range(len(self.stack)-1,-1,-1):
+                if self.stack[i]['tag']==tag:
+                  del self.stack[i:]; break
+              if tag=='h1': self.current_h1=None
+          def compact(n):
+            a=n['attrs']; txt=re.sub(r'\s+',' ',' '.join(n['text'])).strip()
+            return {'href':a.get('href'),'class':a.get('class'),'id':a.get('id'),'aria_label':a.get('aria-label'),'title':a.get('title'),'text':txt[:300]}
+          out={'phase':20,'type':'fast_server_semantic_diagnostic','generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'pages':{},'site_mutations':0}
+          for name,url in targets.items():
+            req=urllib.request.Request(url,headers={'User-Agent':'K20-Phase20-FastDiag/1.0'})
+            with urllib.request.urlopen(req,timeout=60) as r: raw=r.read().decode('utf-8','replace')
+            p=Parser(); p.feed(raw)
+            empty_links=[]
+            for n in p.links:
+              c=compact(n)
+              if not (c['text'] or c['aria_label'] or c['title']):
+                empty_links.append(c)
+            empty_buttons=[]
+            for n in p.buttons:
+              c=compact(n)
+              if not (c['text'] or c['aria_label'] or c['title']):
+                empty_buttons.append(c)
+            out['pages'][name]={
+              'url':url,
+              'h1s':[compact(n) for n in p.h1s],
+              'empty_links':empty_links[:100],
+              'empty_buttons':empty_buttons[:100],
+              'counts':{'h1':len(p.h1s),'empty_links':len(empty_links),'empty_buttons':len(empty_buttons)}
+            }
+          os.makedirs('phase20-results',exist_ok=True)
+          json.dump(out,open('phase20-results/fast-semantic-diagnostics-latest.json','w'),ensure_ascii=False,indent=2)
+      - name: Persist
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase20-results/fast-semantic-diagnostics-latest.json
+          git commit -m "phase20: record fast semantic diagnostics" || exit 0
+          for attempt in 1 2 3 4; do
+            git pull --rebase origin main
+            if git push origin main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
