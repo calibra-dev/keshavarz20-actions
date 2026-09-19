@@ -1,5 +1,5 @@
 {
-  "policy_version": "seo-god-2026.09.18",
+  "policy_version": "seo-god-2026.09.19-routing-fix",
   "brand": {
     "fa": "کشاورز بیست",
     "latin": "Keshavarz20",
@@ -161,6 +161,28 @@
     "separate_logs": true,
     "kill_switch_required": true,
     "rollback_required": true,
-    "no_secret_values_in_logs": true
+    "no_secret_values_in_logs": true,
+    "routing": {
+      "news": {
+        "queue_prefix": "daily-agri-news/queue/",
+        "wordpress_post_type": "news",
+        "required_content_type": "news",
+        "taxonomy_category": "news_cat",
+        "taxonomy_tag": "news_tag"
+      },
+      "article": {
+        "queue_prefix": "daily-agri-articles/queue/",
+        "wordpress_post_type": "post",
+        "required_content_type": "post",
+        "taxonomy_category": "category",
+        "taxonomy_tag": "post_tag"
+      },
+      "hard_guards": [
+        "news_payload_must_never_be_written_as_post",
+        "article_payload_must_never_be_written_as_news",
+        "publisher_must_verify_wordpress_post_type_after_write",
+        "breaking_or_time_sensitive_news_belongs_to_news_engine_not_article_engine"
+      ]
+    }
   }
 }
