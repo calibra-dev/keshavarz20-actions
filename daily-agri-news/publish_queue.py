@@ -371,6 +371,19 @@ def verify(server: xmlrpc.client.ServerProxy, post_id: int) -> dict[str, Any]:
         raise QueuePublishError("Created item is not a news draft")
     if not post.get("post_thumbnail"):
         raise QueuePublishError("Created draft has no featured image")
+
+    terms = post.get("terms") or []
+    has_news_category = any(
+        str(t.get("taxonomy") or "") == "news_cat"
+        and (
+            str(t.get("name") or "") == NEWS_CAT_NAME
+            or str(t.get("term_id") or "") == str(NEWS_CAT_ID)
+        )
+        for t in terms
+    )
+    if not has_news_category:
+        raise QueuePublishError("Created news draft is missing the required news_cat=کشاورزی category")
+
     keys = {x.get("key") for x in post.get("custom_fields", [])}
     required = {"_yoast_wpseo_title", "_yoast_wpseo_metadesc", "_yoast_wpseo_focuskw", "_yoast_wpseo_primary_news_cat"}
     missing = sorted(required - keys)
