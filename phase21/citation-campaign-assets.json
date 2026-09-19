@@ -1,0 +1,93 @@
+{
+  "phase": 21,
+  "title": "Digital PR & Original Citation Assets",
+  "generated_at_utc": "2026-09-19T05:20:00Z",
+  "mode": "external-no-sitewrite",
+  "dependency_gate": {
+    "required_phases": [16,17,18,19,20],
+    "phase16": "PASS",
+    "phase17": "PASS",
+    "phase18": "PASS",
+    "phase19": "PASS",
+    "phase20": "PENDING_LIVE_RESULT"
+  },
+  "source_registry": [
+    {
+      "source_id": "official-vispar",
+      "entity": "Vispar",
+      "url": "https://vispar.co/",
+      "verification": "Official site identifies Vispar as producer of specialized valves, polymer pipes/fittings and irrigation equipment.",
+      "manufacturer_status": "verified_from_official_site",
+      "allowed_claim_scope": "manufacturer identity and product-domain scope only"
+    },
+    {
+      "source_id": "k20-phase17-e001",
+      "type": "original_deterministic_test",
+      "ref": "phase17/evidence-cards.json#phase17-evidence-001",
+      "claim_scope": "deterministic irrigation-tape quantity calculation test only"
+    },
+    {
+      "source_id": "k20-phase17-e002",
+      "type": "original_media_readback",
+      "ref": "phase17/evidence-cards.json#phase17-evidence-002",
+      "claim_scope": "protected-media existence/readback only"
+    },
+    {
+      "source_id": "k20-phase17-e003",
+      "type": "original_cache_ab_test",
+      "ref": "phase17/evidence-cards.json#phase17-evidence-003",
+      "claim_scope": "observed cache-behavior A/B only"
+    }
+  ],
+  "citation_assets": [
+    {
+      "asset_id": "calculator-method-note",
+      "format": "methodology_note",
+      "headline_fa": "روش محاسبه مقدار نوار تیپ؛ فرض‌ها، واحدها و محدودیت‌ها",
+      "evidence": ["k20-phase17-e001"],
+      "publication_rule": "Publish only with exact assumptions, formula, worked example, observed date and limits. Do not present as hydraulic design.",
+      "link_targets": ["agricultural educators","irrigation installers","technical media"]
+    },
+    {
+      "asset_id": "compatibility-data-brief",
+      "format": "data_brief",
+      "headline_fa": "چارچوب داده سازگاری قطعات آبیاری بدون حدس مشخصات",
+      "evidence": ["phase9-results/canonical-pim.json","phase19-results/acceptance-persisted-evidence.json"],
+      "publication_rule": "Unknown GTIN/specs stay unknown; no invented compatibility or performance claim.",
+      "link_targets": ["manufacturers","installers","agricultural technical publishers"]
+    },
+    {
+      "asset_id": "manufacturer-fact-check",
+      "format": "source-backed product fact sheet",
+      "headline_fa": "تطبیق مشخصات محصول ویسپار با منبع رسمی سازنده",
+      "evidence": ["official-vispar","phase19-results/product-discovery-readiness-feed-persisted.json"],
+      "publication_rule": "Only fields independently confirmed by the official manufacturer source may be promoted as manufacturer facts.",
+      "link_targets": ["Vispar editorial/contact team"]
+    }
+  ],
+  "outreach_templates": [
+    {
+      "audience": "manufacturer",
+      "subject_fa": "درخواست بررسی فنی و اصلاح منبع محصول",
+      "body_fa": "ما در کشاورز بیست یک برگه فنی مبتنی بر داده برای محصولات شما آماده کرده‌ایم. هدف، تطبیق مشخصات قابل مشاهده با منبع رسمی سازنده و حذف هر ادعای تاییدنشده است. اگر تیم فنی شما مایل باشد، لطفاً موارد نادرست یا ناقص را اعلام کند تا با ذکر منبع اصلاح شوند. هیچ ادعای نمایندگی یا تایید تجاری از این مکاتبه استنباط نمی‌شود."
+    },
+    {
+      "audience": "irrigation_expert_or_installer",
+      "subject_fa": "دعوت به بازبینی روش محاسبه و محدودیت‌های ابزار آبیاری",
+      "body_fa": "یک یادداشت روش‌شناسی برای محاسبه مقدار نوار تیپ تهیه شده که فرض‌ها، واحدها و محدودیت‌ها را صریح نشان می‌دهد. درخواست ما بازبینی فنی روش است، نه تایید تبلیغاتی. در صورت مشارکت، نام و نظر شما فقط با اجازه صریح و بدون تغییر معنای نظر منتشر می‌شود."
+    }
+  ],
+  "forbidden": [
+    "PBN",
+    "spam comments",
+    "paid fake mentions",
+    "fake dealership/distributor claims",
+    "fabricated reviews/testimonials",
+    "fabricated field results",
+    "mass duplicate advertorials"
+  ],
+  "site_mutations": 0,
+  "external_messages_sent": 0,
+  "paid_placements": 0,
+  "status": "READY_WAITING_FOR_PHASE20_PASS"
+}
