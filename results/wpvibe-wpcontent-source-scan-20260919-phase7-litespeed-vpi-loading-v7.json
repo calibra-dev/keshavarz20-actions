@@ -1,0 +1,151 @@
+{
+  "mode": "read-only",
+  "files": [
+    {
+      "path": "plugins/litespeed-cache/src/media.cls.php",
+      "line_count": 1518,
+      "matches": [
+        {
+          "pattern": "vpi_fp_search",
+          "line": 932,
+          "snippet": "$vpi_fp_search  = [];"
+        },
+        {
+          "pattern": "vpi_fp_search",
+          "line": 972,
+          "snippet": "$vpi_fp_search[]  = $match[1];"
+        },
+        {
+          "pattern": "vpi_fp_search",
+          "line": 978,
+          "snippet": "if ( $vpi_fp_search && $vpi_fp_replace ) {"
+        },
+        {
+          "pattern": "vpi_fp_search",
+          "line": 979,
+          "snippet": "$this->content = str_replace( $vpi_fp_search, $vpi_fp_replace, $this->content );"
+        },
+        {
+          "pattern": "vpi_fp_search",
+          "line": 981,
+          "snippet": "unset( $vpi_fp_search );"
+        },
+        {
+          "pattern": "vpi_fp_replace",
+          "line": 933,
+          "snippet": "$vpi_fp_replace = [];"
+        },
+        {
+          "pattern": "vpi_fp_replace",
+          "line": 973,
+          "snippet": "$vpi_fp_replace[] = implode( ' ', $new_html);"
+        },
+        {
+          "pattern": "vpi_fp_replace",
+          "line": 978,
+          "snippet": "if ( $vpi_fp_search && $vpi_fp_replace ) {"
+        },
+        {
+          "pattern": "vpi_fp_replace",
+          "line": 979,
+          "snippet": "$this->content = str_replace( $vpi_fp_search, $vpi_fp_replace, $this->content );"
+        },
+        {
+          "pattern": "vpi_fp_replace",
+          "line": 982,
+          "snippet": "unset( $vpi_fp_replace );"
+        },
+        {
+          "pattern": "fetchpriority",
+          "line": 310,
+          "snippet": "$content .= '<link rel=\"preload\" fetchpriority=\"high\" as=\"image\" href=\"' . esc_url( Str::trim_quotes( $v ) ) . '\">';"
+        },
+        {
+          "pattern": "fetchpriority",
+          "line": 910,
+          "snippet": "* @since 7.6 - Added attributes fetchpriority=\"high\" and decode=\"sync\" for VPI images."
+        },
+        {
+          "pattern": "fetchpriority",
+          "line": 961,
+          "snippet": "// Add attributes fetchpriority=\"high\" and decode=\"sync\""
+        },
+        {
+          "pattern": "fetchpriority",
+          "line": 964,
+          "snippet": "$attrs[ 'fetchpriority' ] = 'high';"
+        },
+        {
+          "pattern": "fetchpriority",
+          "line": 977,
+          "snippet": "// if VPI fetchpriority changes, do the replacement"
+        },
+        {
+          "pattern": "data-lazy",
+          "line": 881,
+          "snippet": "$v       = str_replace( '<iframe ', '<iframe data-lazyloaded=\"1\" src=\"about:blank\" ', $v );"
+        },
+        {
+          "pattern": "data-lazy",
+          "line": 1056,
+          "snippet": "! empty( $attrs['data-lazyloaded'] ) ||"
+        },
+        {
+          "pattern": "data-lazy",
+          "line": 1208,
+          "snippet": "if ( ! empty( $attrs['data-no-lazy'] ) || ! empty( $attrs['data-skip-lazy'] ) || ! empty( $attrs['data-lazyloaded'] ) || ! empty( $attrs['data-src'] ) ) {"
+        },
+        {
+          "pattern": "lazyload",
+          "line": 22,
+          "snippet": "const LIB_FILE_IMG_LAZYLOAD = 'assets/js/lazyload.min.js';"
+        },
+        {
+          "pattern": "lazyload",
+          "line": 126,
+          "snippet": "self::debug( 'Suppress default WP lazyload' );"
+        },
+        {
+          "pattern": "lazyload",
+          "line": 801,
+          "snippet": "* Run lazyload replacement for images in buffer."
+        },
+        {
+          "pattern": "lazyload",
+          "line": 827,
+          "snippet": "self::debug( 'bypass lazyload: hit URI Excludes setting: ' . $result );"
+        },
+        {
+          "pattern": "lazyload",
+          "line": 850,
+          "snippet": "self::debug( 'lazyload disabled' );"
+        },
+        {
+          "pattern": "lazyload",
+          "line": 881,
+          "snippet": "$v       = str_replace( '<iframe ', '<iframe data-lazyloaded=\"1\" src=\"about:blank\" ', $v );"
+        },
+        {
+          "pattern": "lazyload",
+          "line": 890,
+          "snippet": "// Include lazyload lib js and init lazyload."
+        },
+        {
+          "pattern": "lazyload",
+          "line": 892,
+          "snippet": "$lazy_lib = '<script data-no-optimize=\"1\">window.lazyLoadOptions=Object.assign({},{threshold:' . apply_filters( 'litespeed_lazyload_threshold', 300 ) . '},window.lazyLoadOptions||{});' . File::read( LSCWP_DIR . self::LIB_FILE_IMG_LAZYLOAD ) . '</script>';"
+        },
+        {
+          "pattern": "remove_attr",
+          "line": 1112,
+          "snippet": "$inner    = Utility::remove_attr( $match[1], 'width' );"
+        },
+        {
+          "pattern": "remove_attr",
+          "line": 1113,
+          "snippet": "$inner    = Utility::remove_attr( $inner, 'height' );"
+        }
+      ]
+    }
+  ]
+}
