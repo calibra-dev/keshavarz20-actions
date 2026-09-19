@@ -1,0 +1,47 @@
+{
+  "phase": 2,
+  "workstream": "P0-D Google index coverage",
+  "generated_at_utc": "2026-09-19T09:20:00Z",
+  "technical_indexability_source": "phase6-results/indexability-closure.json",
+  "status": "WAITING_FOR_GOOGLE",
+  "inspection_quota_before": 1969,
+  "targets": [
+    {
+      "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": null,
+      "referringUrls": []
+    },
+    {
+      "url": "https://keshavarz20.com/irrigation-filter-selector/",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": null,
+      "referringUrls": []
+    },
+    {
+      "url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": null,
+      "referringUrls": [
+        "https://keshavarz20.com/drip-tape-sloped-field-design-guide/",
+        "https://keshavarz20.com/post-sitemap.xml"
+      ]
+    }
+  ],
+  "sitemap": {
+    "url": "https://keshavarz20.com/sitemap_index.xml",
+    "pending": false,
+    "warnings": 0,
+    "errors": 0,
+    "lastDownloaded": "2026-09-18T18:04:51.560Z"
+  },
+  "indexnow": {
+    "attempted_for_3_targets": true,
+    "submitted": false,
+    "blocker": "IndexNow API key is not configured in the connected indexing service. No success was claimed."
+  },
+  "conclusion": "Technical remediation is already PASS. Current blocker is Google discovery/indexing outcome. Do not repeat canonical/robots/sitemap remediation without regression evidence."
+}
