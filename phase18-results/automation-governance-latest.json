@@ -1,0 +1,130 @@
+{
+  "phase": 18,
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "news_schedule_0800_tehran",
+      "pass": true
+    },
+    {
+      "name": "article_schedule_0820_tehran",
+      "pass": true
+    },
+    {
+      "name": "news_api_generator_manual_fallback_only",
+      "pass": true
+    },
+    {
+      "name": "news_queue_push_main_only",
+      "pass": true
+    },
+    {
+      "name": "news_pr_does_not_publish",
+      "pass": true
+    },
+    {
+      "name": "news_global_concurrency_lock",
+      "pass": true
+    },
+    {
+      "name": "article_queue_push_main_only",
+      "pass": true
+    },
+    {
+      "name": "article_pr_does_not_publish",
+      "pass": true
+    },
+    {
+      "name": "article_global_concurrency_lock",
+      "pass": true
+    },
+    {
+      "name": "article_v3_keeps_v2_validation",
+      "pass": true
+    },
+    {
+      "name": "question_scheduler_v18",
+      "pass": true
+    },
+    {
+      "name": "question_heartbeat_status_v18",
+      "pass": true
+    },
+    {
+      "name": "question_watchdog_recovery",
+      "pass": true
+    },
+    {
+      "name": "question_interval_truthful",
+      "pass": true
+    },
+    {
+      "name": "news_skip_day_supported",
+      "pass": true
+    },
+    {
+      "name": "article_skip_day_supported",
+      "pass": true
+    },
+    {
+      "name": "news_duplicate_exact_and_near",
+      "pass": true
+    },
+    {
+      "name": "article_duplicate_guard",
+      "pass": true
+    },
+    {
+      "name": "news_custom_type_read_probe",
+      "pass": true
+    },
+    {
+      "name": "news_no_broken_rest_cpt_route",
+      "pass": true
+    },
+    {
+      "name": "news_draft_only",
+      "pass": true
+    },
+    {
+      "name": "article_draft_only",
+      "pass": true
+    },
+    {
+      "name": "human_review_required",
+      "pass": true
+    },
+    {
+      "name": "news_result_evidence",
+      "pass": true
+    },
+    {
+      "name": "article_result_evidence",
+      "pass": true
+    }
+  ],
+  "acceptance": {
+    "news_0800_architecture_current_and_tested": true,
+    "article_schedule_validated": true,
+    "question_cadence_truthful": true,
+    "skip_day_supported": true,
+    "duplicate_drafts_guarded": true
+  },
+  "runtime_evidence": {
+    "article_success_run_id": 35309190730,
+    "news_prewrite_failure_run_id": 35307329294,
+    "news_prewrite_failure": "custom news REST route returned HTTP 404",
+    "question_scheduler_success_run_id": 35409274042,
+    "question_heartbeat_success_run_id": 35408959840
+  },
+  "news_read_probe": {
+    "ok": true,
+    "read_only": true,
+    "post_type": "news",
+    "sample_title_count": 5,
+    "writes_performed": 0
+  },
+  "site_mutations_by_acceptance_workflow": 0,
+  "commerce_mutations": 0,
+  "secret_values_persisted": false
+}
