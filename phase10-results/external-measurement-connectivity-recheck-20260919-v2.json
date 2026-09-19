@@ -1,0 +1,56 @@
+{
+  "phase": 10,
+  "title": "External measurement connectivity recheck",
+  "generated_at_utc": "2026-09-19T14:35:00Z",
+  "ga4_site_tracking": {
+    "configured": true,
+    "source": "Google Analytics for WooCommerce",
+    "measurement_id": "G-TKWY8X1PSM",
+    "ecommerce_tracking_enabled": true,
+    "event_tracking_enabled": true,
+    "enhanced_remove_from_cart": true,
+    "enhanced_product_impression": true,
+    "enhanced_product_click": true,
+    "enhanced_product_detail_view": true,
+    "enhanced_checkout_process": true,
+    "site_kit_analytics4_connected": false,
+    "note": "Site Kit is not the active GA4 configuration path; WooCommerce GA integration is configured."
+  },
+  "ga4_control_plane": {
+    "gsc_wizard_read_access": false,
+    "reason": "no_scope",
+    "consequence": "Sessions, ecommerce, conversions and LLM referral reports cannot be read from GSC Wizard until Analytics OAuth/property scope is connected."
+  },
+  "cwv": {
+    "gsc_wizard_crux_api_key": false,
+    "field_measurement_available_via_live_pagespeed_audit": true,
+    "latest_home_mobile_field": {
+      "lcp_ms": 9753,
+      "inp_ms": 115,
+      "cls": 0.004
+    },
+    "note": "Historical CrUX API connector is absent, but current field CWV is measurable through the live PageSpeed path."
+  },
+  "bing_webmaster": {
+    "connected": false,
+    "reason": "No Bing Webmaster API key configured in GSC Wizard."
+  },
+  "indexnow_site_plugin": {
+    "active": true,
+    "version": "1.0.4",
+    "internal_key_configured": true,
+    "internal_key_valid": true,
+    "auto_submission_enabled": true,
+    "passed_submissions": 824,
+    "failed_submissions": 0,
+    "retry_queue": 0,
+    "latest_passed_db_time": "2026-09-19 05:50:14",
+    "note": "The separate GSC Wizard IndexNow key is not configured, but site-side IndexNow is operational. No API key value was read or stored."
+  },
+  "status": "PARTIAL_EXTERNAL_READ_ACCESS",
+  "remaining_external_requirements": [
+    "Connect Google Analytics scope/property to GSC Wizard for readable sessions, conversion, ecommerce and LLM-referral evidence.",
+    "Connect Bing Webmaster API to GSC Wizard for Bing traffic/query/crawl evidence.",
+    "Keep performance Phase 7 open until field LCP acceptance is met."
+  ]
+}
