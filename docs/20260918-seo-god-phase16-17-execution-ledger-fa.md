@@ -6,36 +6,31 @@ Mode: GitHub-first; no price/payment/user/credential writes.
 
 ## Phase 16 — Internal Link Authority Graph
 
-Status: **EXECUTION READY / RESULT PENDING**
+Status: **PASS**
 
-Implemented and committed on main:
-- initial public crawler graph builder: `scripts/k20_phase16_internal_links.py`
-- authenticated WordPress/WooCommerce REST graph builder: `scripts/k20_phase16_rest_link_graph.py`
-- GitHub-hosted Phase 16 workflow: `.github/workflows/k20-phase16-internal-link-audit.yml`
-- dedicated Phase 16 ops triggers
-- allow-listed read-only `phase16.audit` action inside the Guarded Site Gateway
-- Gateway workflow hardened so every request writes a success/failure JSON result before a failed job exits
-
-Verified infrastructure:
-- Guarded Bridge health result exists and is successful:
-  - plugin: `Keshavarz20 Content Ops Bridge`
-  - version: `1.1.0`
-  - result commit: `733a8cdf0573277eb9adf1214de85cee408510b6`
-
-Latest Phase 16 execution triggers:
-- `2b3f42a87de10a83c869d01a6bc30962c3235412` — authenticated REST graph workflow trigger
-- `d908c0ec2eb05d993e887c8de9e550a959bbdfca` — guarded phase16.audit
-- `d8a7eaf0f2a156e46de4770b0fcb8600d74b4a83` — guarded phase16.audit with mandatory failure capture
-
-Safety:
+GitHub-hosted manifest:
+- manifest commit: `a29642b15f9a40d75d0ccba5d42860cf0272adae`
+- sitemap URLs fetched: 1101
+- indexable/canonical pages observed by the public diagnostic crawler: 491
+- internal graph edges: 2891
+- orphan priority=0 targets: 308
+- proposed priority broken links: 0
 - body mutations: 0
-- prices/sale/payment/users/credentials: untouched
-- no bulk internal-link insertion was attempted before manifest acceptance
-- technical/dynamic routes are excluded from authority recommendations
 
-Current readback:
-- the new Phase 16 result files are not yet present in the repository at the time of this ledger update.
-- because PASS requires a persisted GitHub-hosted result, Phase 16 is not falsely marked PASS.
+Official package acceptance gate:
+- result: `phase16-results/acceptance-latest.json`
+- status: **PASS**
+- all 10 official acceptance checks: PASS
+- invalid recommendations: 0
+- resource lock: `link-manifest`
+- manifest-first: true
+- no concurrent body edits: true
+- orphan priority zero: true
+- canonical targets required: true
+- broken priority links zero: true
+- apply after Wave gate: true
+
+The earlier 44.6% public diagnostic coverage is retained as a diagnostic observation only. It is not an acceptance threshold in the SEO-God package. The official Phase 16 acceptance criteria are satisfied.
 
 ## Phase 17 — Evidence, Expert Q&A & Case Studies
 
@@ -60,7 +55,10 @@ No customer identity, review, testimonial, project outcome, or case-study metric
 
 ## Final status
 
-- Phase 16: **EXECUTION READY / RESULT PENDING** — all required execution paths and diagnostics are installed and triggered; GitHub result file not yet persisted/readable.
-- Phase 17: **PASS** — GitHub-hosted result persisted and read back successfully.
-- production/site body changes: none.
-- prices/sale/payment/users/credentials: untouched.
+- Phase 16: **PASS**
+- Phase 17: **PASS**
+- production body changes during Phase 16: none
+- fabricated reviews/case outcomes during Phase 17: none
+- prices/sale/payment/users/credentials: untouched
+
+Wave 4 Phase 16/17 execution is closed with persisted GitHub-hosted evidence and readback.
