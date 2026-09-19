@@ -26,13 +26,16 @@ def _registrableish_host(url: str) -> str:
 
 def validate_payload_v2(p):
     required = [
-        "title", "slug", "excerpt", "content_html", "focus_keyphrase", "seo_title",
+        "content_type", "title", "slug", "excerpt", "content_html", "focus_keyphrase", "seo_title",
         "meta_description", "related_keyphrases", "category_name", "tags", "source_urls",
         "source_names", "research_summary", "image_search_query", "image_title", "alt_text",
     ]
     missing = [k for k in required if not p.get(k)]
     if missing:
         raise base.QueuePublishError(f"Missing required queue fields: {', '.join(missing)}")
+
+    if str(p.get("content_type") or "").strip().lower() != "post":
+        raise base.QueuePublishError("Routing guard: daily-agri-articles queue must declare content_type=post")
 
     p["slug"] = base.safe_slug(str(p["slug"]))
     if not p["slug"]:
