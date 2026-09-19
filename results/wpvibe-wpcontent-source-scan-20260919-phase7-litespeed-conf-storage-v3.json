@@ -1,0 +1,113 @@
+{
+  "mode": "read-only",
+  "files": [
+    {
+      "path": "plugins/litespeed-cache/src/conf.cls.php",
+      "line_count": 776,
+      "matches": [
+        {
+          "pattern": "get_option(",
+          "line": 179,
+          "snippet": "$options[ $k ] = self::get_option( $k, $v );"
+        },
+        {
+          "pattern": "get_option(",
+          "line": 387,
+          "snippet": "$this->set_conf( $name, self::get_option( $name, $default_val ) );"
+        },
+        {
+          "pattern": "update_option(",
+          "line": 132,
+          "snippet": "self::update_option( Base::_VER, Core::VER );"
+        },
+        {
+          "pattern": "update_option(",
+          "line": 583,
+          "snippet": "self::update_option( $id, $val );"
+        }
+      ]
+    },
+    {
+      "path": "plugins/litespeed-cache/src/base.cls.php",
+      "line_count": 1125,
+      "matches": [
+        {
+          "pattern": "get_option(",
+          "line": 663,
+          "snippet": "return self::get_option( $id, $default_v );"
+        },
+        {
+          "pattern": "get_option(",
+          "line": 693,
+          "snippet": "self::$_blog_options_cache[ $blog_id ][ $id ] = get_option( self::name( $id ), $default_v );"
+        },
+        {
+          "pattern": "litespeed-cache-conf",
+          "line": 24,
+          "snippet": "const OPTION_NAME = 'litespeed-cache-conf';"
+        },
+        {
+          "pattern": "option_name",
+          "line": 24,
+          "snippet": "const OPTION_NAME = 'litespeed-cache-conf';"
+        },
+        {
+          "pattern": "option_name",
+          "line": 640,
+          "snippet": "* Structure: [ blog_id => [ option_name => value, ... ], ... ]"
+        },
+        {
+          "pattern": "O_MEDIA_LAZY_EXC",
+          "line": 215,
+          "snippet": "const O_MEDIA_LAZY_EXC                   = 'media-lazy_exc';"
+        },
+        {
+          "pattern": "O_MEDIA_LAZY_EXC",
+          "line": 515,
+          "snippet": "self::O_MEDIA_LAZY_EXC => [],"
+        },
+        {
+          "pattern": "O_MEDIA_LAZY_EXC",
+          "line": 934,
+          "snippet": "self::O_MEDIA_LAZY_EXC => 'uri',"
+        },
+        {
+          "pattern": "media-lazy_exc",
+          "line": 215,
+          "snippet": "const O_MEDIA_LAZY_EXC                   = 'media-lazy_exc';"
+        }
+      ]
+    },
+    {
+      "path": "plugins/litespeed-cache/src/admin-settings.cls.php",
+      "line_count": 442,
+      "matches": [
+        {
+          "pattern": "option_name",
+          "line": 416,
+          "snippet": "if ( empty( $instance[ Conf::OPTION_NAME ] ) ) {"
+        },
+        {
+          "pattern": "option_name",
+          "line": 418,
+          "snippet": "$instance[ Conf::OPTION_NAME ] = [];"
+        },
+        {
+          "pattern": "option_name",
+          "line": 420,
+          "snippet": "$instance[ Conf::OPTION_NAME ][ ESI::WIDGET_O_ESIENABLE ] = $esi;"
+        },
+        {
+          "pattern": "option_name",
+          "line": 421,
+          "snippet": "$instance[ Conf::OPTION_NAME ][ ESI::WIDGET_O_TTL ]       = $ttl;"
+        },
+        {
+          "pattern": "option_name",
+          "line": 423,
+          "snippet": "$current = ! empty( $old_instance[ Conf::OPTION_NAME ] ) ? $old_instance[ Conf::OPTION_NAME ] : false;"
+        }
+      ]
+    }
+  ]
+}
