@@ -151,6 +151,39 @@ def ensure_not_duplicate(p: dict[str, Any]) -> None:
             raise QueuePublishError(f"Duplicate news title detected; refusing to publish: {title}")
 
 
+def find_existing_queued_draft(p: dict[str, Any]) -> dict[str, Any] | None:
+    """Recover idempotently when WordPress write succeeded but the workflow failed later.
+
+    Only a draft with the exact title AND the queue source fingerprint is accepted.
+    Other title matches still flow into the normal duplicate refusal.
+    """
+    expected = fingerprint(str(p["title"]) + " " + " ".join(str(x) for x in p.get("source_urls", [])))
+    server = wp_xmlrpc()
+    try:
+        rows = server.wp.getPosts(
+            0, WP_USER, WP_PASS,
+            {
+                "post_type": "news",
+                "post_status": "draft",
+                "number": 100,
+                "orderby": "post_date",
+                "order": "DESC",
+            },
+            ["post_id", "post_title", "post_status", "post_type", "post_thumbnail", "custom_fields", "link"],
+        )
+    except Exception as exc:
+        raise QueuePublishError(f"Could not inspect existing queued news drafts: {exc}") from exc
+
+    wanted_title = normalize_title(str(p["title"]))
+    for row in rows:
+        if normalize_title(str(row.get("post_title") or "")) != wanted_title:
+            continue
+        meta = {str(x.get("key") or ""): str(x.get("value") or "") for x in row.get("custom_fields", [])}
+        if meta.get("_k20_news_source_fingerprint") == expected:
+            return row
+    return None
+
+
 def commons_search(query: str) -> dict[str, Any]:
     api = "https://commons.wikimedia.org/w/api.php"
     params = {
@@ -351,7 +384,7 @@ def verify(server: xmlrpc.client.ServerProxy, post_id: int) -> dict[str, Any]:
 
 
 def save_result(result: dict[str, Any]) -> None:
-    (OUT / "queue-result.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    (OUT / "queue-result.json").write_text(json.dumps(result, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
     lines = [
         "## Keshavarz20 scheduled news publisher",
         "",
@@ -377,6 +410,34 @@ def main() -> None:
     queue_path = Path(sys.argv[1])
     p = load_queue(queue_path)
     validate_payload(p)
+
+    existing = find_existing_queued_draft(p)
+    if existing:
+        existing_id = int(existing["post_id"])
+        server = wp_xmlrpc()
+        verified = verify(server, existing_id)
+        result = {
+            "status": "draft-already-created",
+            "post_id": existing_id,
+            "title": p["title"],
+            "edit_url": f"{WP_BASE}/wp-admin/post.php?post={existing_id}&action=edit",
+            "wp_status": verified.get("post_status"),
+            "wp_type": verified.get("post_type"),
+            "queue_file": str(queue_path),
+            "source_urls": [str(x) for x in p.get("source_urls", [])],
+            "source_names": [str(x) for x in p.get("source_names", [])],
+            "qa_score": 100,
+            "qa_score_basis": "idempotent recovery matched exact title and source fingerprint; post-write readback passed",
+            "readback": {
+                "status": verified.get("post_status"),
+                "type": verified.get("post_type"),
+                "featured_media": verified.get("post_thumbnail"),
+            },
+        }
+        save_result(result)
+        print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+        return
+
     ensure_not_duplicate(p)
 
     image_queries = [str(p["image_search_query"]).strip()]
@@ -428,7 +489,7 @@ def main() -> None:
         "readback": {"status": verified.get("post_status"), "type": verified.get("post_type"), "featured_media": verified.get("post_thumbnail")},
     }
     save_result(result)
-    print(json.dumps(result, ensure_ascii=False, indent=2))
+    print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
 
 
 if __name__ == "__main__":
