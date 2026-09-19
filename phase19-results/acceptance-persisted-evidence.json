@@ -1,0 +1,111 @@
+{
+  "phase": 19,
+  "status": "PASS",
+  "generated_at_utc": "2026-09-19T05:06:10.739912+00:00",
+  "acceptance": {
+    "page_feed_schema_parity": {
+      "products": 30,
+      "parity_pass": 30,
+      "parity_fail": 0,
+      "schema_missing": 0,
+      "offer_missing": 0,
+      "sku_mismatch": 0,
+      "availability_mismatch": 0,
+      "price_mismatch": 0,
+      "store_currency": "IRT"
+    },
+    "feed_api_specs_and_region_gates_documented": true,
+    "external_eligibility_not_invented": true,
+    "payment_checkout_untouched": true
+  },
+  "readiness": {
+    "product_count": 30,
+    "openai_discovery_rows_fully_ready": 0,
+    "rows_missing_brand": 8,
+    "rows_with_unresolved_irt_to_iso4217_price_mapping": 30,
+    "description_layer_required_before_openai_submission": true,
+    "external_submission_blocked_until_required_fields_and_legal_program_gates_are_satisfied": true
+  },
+  "checks": [
+    {
+      "name": "internal_feed_nonempty",
+      "pass": true
+    },
+    {
+      "name": "page_feed_schema_parity_all_pass",
+      "pass": true
+    },
+    {
+      "name": "schema_offer_sku_availability_price_mismatches_zero",
+      "pass": true
+    },
+    {
+      "name": "phase9_canonical_pim_pass",
+      "pass": true
+    },
+    {
+      "name": "stable_ids_complete",
+      "pass": true
+    },
+    {
+      "name": "canonical_urls_complete",
+      "pass": true
+    },
+    {
+      "name": "unknown_identifiers_not_fabricated",
+      "pass": true
+    },
+    {
+      "name": "openai_submission_not_claimed",
+      "pass": true
+    },
+    {
+      "name": "openai_checkout_not_claimed",
+      "pass": true
+    },
+    {
+      "name": "google_ucp_participation_not_invented",
+      "pass": true
+    },
+    {
+      "name": "google_ucp_checkout_not_claimed",
+      "pass": true
+    },
+    {
+      "name": "payment_checkout_untouched",
+      "pass": true
+    }
+  ],
+  "protocol_gates": {
+    "openai": {
+      "product_feed_required_fields": [
+        "item_id",
+        "title",
+        "description",
+        "url",
+        "brand",
+        "seller_name",
+        "image_url",
+        "availability",
+        "price"
+      ],
+      "unknown_optional_values_must_be_omitted_not_fabricated": true,
+      "current_price_and_availability_required": true,
+      "merchant_acceptance_or_feed_submission_claimed": false,
+      "checkout_claimed": false,
+      "legal_and_trade_compliance_review_required_before_submission": true
+    },
+    "google_ucp": {
+      "observed_scope": "UCP integration hub gradually rolling out in the United States; scope applies only to products sold within the United States",
+      "observed_checkout_gate": "checkout is early access for select participating merchants",
+      "merchant_center_participation_claimed": false,
+      "us_product_scope_claimed": false,
+      "checkout_claimed": false
+    }
+  },
+  "external_submission": false,
+  "site_mutations": 0,
+  "price_stock_mutations": 0,
+  "payment_checkout_mutations": 0,
+  "secret_values_persisted": false
+}
