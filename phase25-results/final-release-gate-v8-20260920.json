@@ -1,0 +1,51 @@
+{
+  "phase": 25,
+  "title": "SEO God Final Gate v8 — remaining closure execution",
+  "generated_at_utc": "2026-09-20T16:28:00Z",
+  "verdict": "NOT_RELEASED_10_OF_10",
+  "changed_since_v7": {
+    "brand_entity_collision_delta": {
+      "state": "AUDITED_NEEDS_OWNER_POLICY",
+      "evidence": "validation-results/brand-entity-collision-delta-20260920.json",
+      "summary": "5 exact brand/category archive collisions confirmed; 2 unused brand terms found; no structural mutation applied."
+    },
+    "product_60_reconciliation": {
+      "state": "WAITING_SOURCE_ARTIFACT",
+      "evidence": "validation-results/60-product-reconciliation-status-20260920.json",
+      "summary": "No authoritative 60-item source identified; membership was not fabricated."
+    },
+    "phase24_direct_surface_gate": {
+      "state": "WAITING_EXTERNAL_SURFACE_OBSERVATION",
+      "evidence": "phase24-results/direct-surface-observation-gate-20260920.json",
+      "summary": "GA4 ChatGPT referral evidence exists, but direct citation/mention observations are still not captured; Bing remains provider-throttled."
+    }
+  },
+  "retained_blockers": [
+    "Phase 7 IranKala protected renderer / LCP and singular no-cache blocker.",
+    "Phase 20 theme/Owl accessible-name failures.",
+    "Phase 24 direct multi-surface citation/mention observations.",
+    "Authoritative original 60-product workbook/list is missing from active sources.",
+    "Brand/category duplicate archive ownership policy must be decided before canonical/noindex/merge/redirect changes.",
+    "Drip-tape calculator remains APPLIED_WAITING_GSC.",
+    "Phase 15 remains SKIPPED_BY_USER under the strict rubric."
+  ],
+  "next_safe_actions": [
+    "Obtain/identify the authoritative original 60-product workbook/list.",
+    "Choose one archive ownership policy for brand-vs-category duplicates before structural SEO mutation.",
+    "Use a supported IranKala/vendor route for Phase 7 and Phase 20 theme-level issues.",
+    "Capture real direct AI answer-surface observations when an authenticated observation path is available.",
+    "Re-check calculator performance after sufficient settled GSC data."
+  ],
+  "no_repeat": [
+    "Do not repeat full crawl, Phase 10 connection setup, Phase 16 graph build, or calculator rewrite.",
+    "Do not fabricate the 60-product set.",
+    "Do not merge/delete/noindex taxonomy archives without owner policy.",
+    "Do not treat AI referral sessions as citation evidence."
+  ],
+  "evidence_commits": {
+    "remaining_prompt": "1c1bf1a6bc24c1fccceced7384228b01f9f3431e",
+    "collision_delta": "78635a2c17a64c5ff15ccda061fbb1a2d6454ee1",
+    "reconciliation_status": "8610dbca5ed2800836f537214b69973a9d0b02d9",
+    "phase24_surface_gate": "8bed93a14ded5b982b89914812062b1c524e35d8"
+  }
+}
