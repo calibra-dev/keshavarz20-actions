@@ -1,0 +1,92 @@
+{
+  "phase": 25,
+  "title": "SEO God Final Gate v6 — external measurement access materially improved",
+  "generated_at_utc": "2026-09-20T13:55:00Z",
+  "verdict": "NOT_RELEASED_10_OF_10",
+  "delta_since_v5": {
+    "phase10": {
+      "previous": "WAITING_EXTERNAL",
+      "current": "PASS_GUARDED",
+      "evidence": "phase10-results/external-measurement-live-validation-20260920.json",
+      "evidence_commit": "ac8985d81d41a649022cb05a12024bd223f2579e",
+      "changes": [
+        "GA4 connected and live read succeeded for keshavarz20.com.",
+        "Google Search Console connected and live read succeeded for sc-domain:keshavarz20.com.",
+        "Bing Webmaster account connected; live read currently blocked by provider/Windsor ThrottleIP."
+      ]
+    },
+    "ai_referral_evidence": {
+      "chatgpt_source_medium_sessions_30d": 2,
+      "interpretation": "Direct GA4 evidence now exists that chatgpt.com referred traffic in the sampled 30-day period. This does not by itself close Phase 24 multi-surface citation measurement."
+    }
+  },
+  "phase_states": {
+    "1": "PASS_GUARDED",
+    "2": "WAITING_EXTERNAL",
+    "3": "PASS",
+    "4": "PASS_GUARDED",
+    "5": "PASS_GUARDED",
+    "6": "PASS",
+    "7": "POLICY_GUARD",
+    "8": "PASS",
+    "9": "PASS_GUARDED",
+    "10": "PASS_GUARDED",
+    "11": "PASS_GUARDED",
+    "12": "PASS_GUARDED",
+    "13": "PASS_GUARDED",
+    "14": "PASS",
+    "15": "SKIPPED_BY_USER",
+    "16": "PASS",
+    "17": "PASS",
+    "18": "PASS",
+    "19": "PASS",
+    "20": "POLICY_GUARD",
+    "21": "WAITING_EXTERNAL",
+    "22": "PASS_GUARDED",
+    "23": "PASS_GUARDED",
+    "24": "OPEN",
+    "25": "OPEN"
+  },
+  "verified_measurement_snapshot": {
+    "ga4_last_30d": {
+      "sessions": 1191,
+      "active_users": 1108,
+      "engaged_sessions": 550,
+      "add_to_carts": 18,
+      "checkouts": 16,
+      "ecommerce_purchases": 0,
+      "transactions": 0
+    },
+    "gsc_recent_settled_window": {
+      "clicks": 931,
+      "impressions": 15704,
+      "ctr": 0.0592842588,
+      "avg_position": 9.5298
+    },
+    "ga4_chatgpt_referral_sessions": 2
+  },
+  "hard_blockers": [
+    "Phase 7 remains blocked by IranKala/theme performance constraints and protected renderer paths; latest accepted field LCP evidence is still outside target.",
+    "Phase 20 remaining accessible-name failures are still in theme/Owl-rendered UI.",
+    "Phase 24 still lacks complete real observations across all required named AI answer/search surfaces; GA4 ChatGPT referral evidence alone is insufficient.",
+    "30-day final validation delta is not yet fully closed: remaining priority internal-link application, 60-product reconciliation, brand/entity collision delta, 404/soft-404 delta, and fresh final comparison remain.",
+    "Bing live data read is temporarily blocked by provider throttle even though account connection is verified.",
+    "Phase 15 remains SKIPPED_BY_USER under the existing strict release rubric."
+  ],
+  "new_quality_flag": {
+    "ga4_ecommerce": "Checkout/add-to-cart events are recorded, but purchase/transaction events are zero in the sampled 30 days. Treat as a tracking-validation flag; do not infer zero real orders without a privacy-safe WooCommerce aggregate source."
+  },
+  "no_repeat": [
+    "Do not repeat closed technical/indexability/root-cause audits.",
+    "Do not rerun Phase 10 connection setup; GA4 and GSC are now verified.",
+    "Retry Bing data only after provider throttle clears.",
+    "Do not rerun Phase 25 unless a hard blocker changes."
+  ],
+  "next_actions": [
+    "Continue the remaining 30-day validation delta using existing manifests/baselines.",
+    "Complete Phase 24 real AI-surface observation set.",
+    "Resolve Phase 20 theme accessibility issues through supported settings/hooks only.",
+    "Revalidate Phase 7 only after a supported IranKala/theme change.",
+    "Validate GA4 purchase event instrumentation using a privacy-safe aggregate method if one becomes available."
+  ]
+}
