@@ -1,0 +1,83 @@
+{
+  "phase": 24,
+  "title": "AI Citation Experimentation & Influence Measurement — live telemetry update",
+  "generated_at_utc": "2026-09-20T14:12:00Z",
+  "status": "PARTIAL_WITH_LIVE_GA4_AND_GSC",
+  "prompt_bank": {
+    "count": 200,
+    "path": "phase24/prompt-bank-200-fa.json"
+  },
+  "live_measurement": {
+    "ga4": {
+      "connected": true,
+      "account_id": "456208539",
+      "property_name": "keshavarz20.com",
+      "last_30d": {
+        "sessions": 1191,
+        "active_users": 1108,
+        "engaged_sessions": 550,
+        "source_medium": {
+          "google / organic": 935,
+          "(direct) / (none)": 239,
+          "bing / organic": 7,
+          "facebook.com / referral": 3,
+          "chatgpt.com / ai-assistant": 2,
+          "yahoo / organic": 1,
+          "zarebin.ir / referral": 1
+        },
+        "ecommerce": {
+          "view_item_events": 689,
+          "add_to_cart_events": 18,
+          "begin_checkout_events": 16,
+          "purchases": 0,
+          "transactions": 0
+        }
+      },
+      "ai_referral_sessions_observed": 2,
+      "ai_referral_source_observed": "chatgpt.com / ai-assistant"
+    },
+    "gsc": {
+      "connected": true,
+      "property": "sc-domain:keshavarz20.com",
+      "recent_settled_window": {
+        "start": "2026-08-21",
+        "end": "2026-09-17",
+        "clicks": 931,
+        "impressions": 15704,
+        "ctr": 0.0592842588,
+        "avg_position": 9.5298
+      }
+    },
+    "bing": {
+      "connected": true,
+      "property": "https://keshavarz20.com",
+      "data_read": "TEMPORARILY_BLOCKED",
+      "blocker": "Windsor/provider ERROR!!! ThrottleIP"
+    }
+  },
+  "kpis": {
+    "ai_referral_sessions": 2,
+    "citation_rate": null,
+    "brand_mention_rate": null,
+    "citation_influence": null,
+    "cited_page_coverage": null,
+    "grounding_query_coverage": null,
+    "ai_share_of_voice_proxy": null,
+    "cta_proforma_conversion": null,
+    "assisted_revenue": null
+  },
+  "interpretation": [
+    "GA4 now provides direct evidence of ChatGPT-referred sessions.",
+    "This is referral evidence, not proof that ChatGPT cited or recommended the site in a specific answer.",
+    "Citation/mention KPIs remain null until observations are made on the named AI answer surfaces themselves.",
+    "Google Search Console remains useful for downstream search demand and page/query performance, not as a direct AI-citation counter."
+  ],
+  "acceptance": {
+    "no_ranking_promise": true,
+    "citations_not_equated_to_recommendation": true,
+    "source_influence_clicks_conversions_measured": "PARTIAL",
+    "external_ai_surface_observations_complete": false
+  },
+  "remaining_blocker": "No direct authenticated/first-party observation channel is currently available here for complete multi-surface ChatGPT/Perplexity/Gemini/Copilot/Google AI Overview citation logging.",
+  "next_action": "Continue with accessible telemetry and only mark citation metrics complete after direct surface observations are actually captured."
+}
