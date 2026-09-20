@@ -1,0 +1,89 @@
+{
+  "phase": 25,
+  "title": "SEO God Final Gate v5 — live bridge preflight and no-repeat evidence gate",
+  "generated_at_utc": "2026-09-20T07:28:00Z",
+  "verdict": "NOT_RELEASED_10_OF_10",
+  "execution": {
+    "prompt_path": "phase25-prompts/final-release-gate-v5-20260920.md",
+    "prompt_commit": "38c416d25fd04354d8c28170ec84358727ceb8bd",
+    "bridge_health_request": "requests/20260920-phase25-v5-bridge-health.json",
+    "bridge_health_request_commit": "992c355633c4a138b6727f1ba5e662b51c713561",
+    "bridge_health_run_id": 35496914412,
+    "bridge_health_run_conclusion": "success",
+    "bridge_health_result_path": "results/20260920-phase25-v5-bridge-health.json",
+    "bridge_health": {
+      "plugin": "Keshavarz20 Content Ops Bridge",
+      "version": "1.1.0",
+      "gateway_ok": true
+    }
+  },
+  "delta_since_v4": {
+    "control_plane": "Guarded GitHub -> WordPress bridge path reverified live on 2026-09-20.",
+    "evidence_change": "No fresh evidence was found that closes the known Phase 7, Phase 20, Phase 24, external analytics/Bing, or final 30-day validation blockers.",
+    "no_repeat": "Closed audits were not rerun."
+  },
+  "phase_states": {
+    "1": "PASS_GUARDED",
+    "2": "WAITING_EXTERNAL",
+    "3": "PASS",
+    "4": "PASS_GUARDED",
+    "5": "PASS_GUARDED",
+    "6": "PASS",
+    "7": "POLICY_GUARD",
+    "8": "PASS",
+    "9": "PASS_GUARDED",
+    "10": "WAITING_EXTERNAL",
+    "11": "PASS_GUARDED",
+    "12": "PASS_GUARDED",
+    "13": "PASS_GUARDED",
+    "14": "PASS",
+    "15": "SKIPPED_BY_USER",
+    "16": "PASS",
+    "17": "PASS",
+    "18": "PASS",
+    "19": "PASS",
+    "20": "POLICY_GUARD",
+    "21": "WAITING_EXTERNAL",
+    "22": "PASS_GUARDED",
+    "23": "PASS_GUARDED",
+    "24": "OPEN",
+    "25": "OPEN"
+  },
+  "hard_blockers": [
+    "Phase 7: mobile field LCP remains approximately 9.75s in latest accepted evidence; supported IranKala 10.10.0 updater previously returned HTTP 403 and protected renderer paths remain outside safe arbitrary patching.",
+    "Phase 20: remaining accessible-name failures include Owl dots/button-name, login/register link-name, site-logo naming, and image-only theme/product/promo links.",
+    "Phase 10 external read access: site-side GA4 collection exists, but Google Analytics OAuth/read scope is still not verified in the control plane; Bing Webmaster API remains unverified/unconnected.",
+    "Phase 24: real external AI-surface observations/citation measurement are not complete.",
+    "30-day final validation delta is not complete: fresh Coverage/Internal Links comparison, remaining internal-link application, 60-product reconciliation, collision delta, and 404/soft-404 delta remain open.",
+    "Phase 15 remains skipped by user under the current rubric; the rubric must explicitly accept that state before a strict 10/10 release can be claimed."
+  ],
+  "verified_not_blockers": [
+    "GitHub guarded gateway connectivity",
+    "Keshavarz20 Content Ops Bridge reachability",
+    "Site-side GA4 collection presence",
+    "Site-side IndexNow operation",
+    "Homepage duplicate H1",
+    "Homepage heading order",
+    "Phase 6 technical indexability for the priority selector/guide URLs"
+  ],
+  "exact_next_actions": [
+    "Only after an actual supported IranKala/theme change, rerun Phase 7 performance validation.",
+    "Close Phase 20 accessible-name issues using a supported theme setting/hook or allow-listed safe extension path; do not inject arbitrary protected-theme code.",
+    "Apply remaining priority internal links from the existing manifest without rebuilding the graph.",
+    "Reconcile the original 60-product workbook against already modified products and finish only truly missing rows.",
+    "Run brand/entity collision delta and old 404/soft-404 cleanup delta only.",
+    "Connect/verify Google Analytics read scope and Bing Webmaster API where available.",
+    "Execute real Phase 24 observations on the named AI answer/search surfaces and log citations/mentions/URLs.",
+    "Run fresh GSC Coverage/Internal Links validation delta against the 30-day baseline.",
+    "Rerun Phase 25 only when at least one hard blocker has materially changed."
+  ],
+  "no_repeat": [
+    "Do not repeat Phase 3 root-cause audit.",
+    "Do not rerun full canonical/robots/sitemap audit without regression.",
+    "Do not rebuild Phase 16 graph from zero.",
+    "Do not repeat Phase 8/9/12/13/14/17/18/19 work without regression.",
+    "Do not retry IranKala official updater until vendor authorization/update availability changes.",
+    "Do not modify protected ionCube/theme files or protected media IDs 141437, 141441, 142597 without explicit verified reason."
+  ],
+  "release_rule": "RELEASED_10_OF_10 is allowed only after all required hard internal blockers and active-rubric external evidence gates are actually closed or explicitly waived by the rubric. Missing evidence is never a pass."
+}
