@@ -25,6 +25,10 @@ Each automatic run must:
 
 If no story clears the gate, the correct result is to skip that day.
 
+## Visual design
+
+Every new news draft must also read and follow `daily-agri-news/DESIGN_SYSTEM.md`. The default output is a premium RTL editorial page with a soft colored wrapper, green hero, boxed H2 sections, meaningful callouts, a clean sources card, and a visually separated Keshavarz20 editorial-analysis card. Inline styles are preferred for Classic Editor compatibility.
+
 ## Article structure
 
 The generated news should include, when applicable:
