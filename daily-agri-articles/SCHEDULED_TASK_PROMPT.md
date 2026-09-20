@@ -72,6 +72,12 @@ Recommended structure, adapted to the topic:
 - clearly separated `نظر کارشناسی کشاورز بیست` as editorial analysis, never disguised as sourced fact
 - visible source/reference section when appropriate
 
+
+### Visual design contract
+
+Before drafting `content_html`, also read and obey `daily-agri-articles/DESIGN_SYSTEM.md`.
+All new long-form posts must use the premium RTL card-based visual system: a soft colored page wrapper, hero card, boxed H2 sections, distinct practical/warning/editorial callouts, styled tables, boxed FAQ when used, and a strong closing summary card. The visual system must improve scanning without turning every sentence into a separate box. Use inline styles so the design survives theme changes and remains mobile-friendly.
+
 ### FAQ rule — adaptive, not quota-driven
 
 FAQ is optional. Never force FAQ merely for SEO or rich-result markup.
