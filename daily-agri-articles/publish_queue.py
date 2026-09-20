@@ -142,7 +142,7 @@ def recent_posts(limit: int = 100) -> list[dict[str, str]]:
         title = row.get("title", {})
         if isinstance(title, dict):
             title = title.get("rendered", "")
-        rows.append({"title": strip_html(str(title or "")), "slug": str(row.get("slug") or "")})
+        rows.append({"id": int(row.get("id") or 0), "title": strip_html(str(title or "")), "slug": str(row.get("slug") or "")})
     return rows
 
 
@@ -157,7 +157,10 @@ def ensure_not_duplicate(p: dict[str, Any]) -> None:
     wanted_fp = fingerprint(str(p["title"]))
     wanted_slug = str(p["slug"])
     wanted_tokens = title_token_set(str(p["title"]))
+    rebuild_of = int(p.get("rebuild_of_post_id") or 0)
     for row in recent_posts():
+        if rebuild_of and int(row.get("id") or 0) == rebuild_of:
+            continue
         if fingerprint(row["title"]) == wanted_fp or row["slug"] == wanted_slug:
             raise QueuePublishError(f"Duplicate article detected: {row['title']}")
         other = title_token_set(row["title"])
