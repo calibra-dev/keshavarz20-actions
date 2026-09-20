@@ -455,6 +455,35 @@ def main() -> None:
         if q and q not in image_queries:
             image_queries.append(q)
 
+    # Always add deterministic topic-aware Commons fallbacks. Scheduled tasks may
+    # produce a perfectly valid news payload whose first visual query is too
+    # specific for Wikimedia Commons; image lookup must never silently prevent
+    # an otherwise valid news draft from reaching the real news CPT.
+    topic_blob = " ".join([
+        str(p.get("title") or ""),
+        str(p.get("focus_keyphrase") or ""),
+        " ".join(str(x) for x in (p.get("tags") or [])),
+        str(p.get("image_search_query") or ""),
+    ]).lower()
+    auto_fallbacks = []
+    if any(x in topic_blob for x in ("مرغ", "طیور", "poultry", "chicken", "broiler")):
+        auto_fallbacks += ["chicken farm", "poultry farm", "broiler chicken", "chickens"]
+    if any(x in topic_blob for x in ("دام", "گوسفند", "گاو", "livestock", "cattle", "sheep")):
+        auto_fallbacks += ["livestock farm", "cattle farm", "sheep farm"]
+    if any(x in topic_blob for x in ("گندم", "wheat")):
+        auto_fallbacks += ["wheat field", "wheat harvest", "agriculture wheat"]
+    if any(x in topic_blob for x in ("برنج", "rice")):
+        auto_fallbacks += ["rice field", "rice farming"]
+    if any(x in topic_blob for x in ("آبیاری", "آب", "irrigation", "water")):
+        auto_fallbacks += ["irrigation agriculture", "farm irrigation"]
+    if any(x in topic_blob for x in ("گلخانه", "greenhouse")):
+        auto_fallbacks += ["greenhouse agriculture", "greenhouse farming"]
+    auto_fallbacks += ["agriculture farm", "farming field"]
+
+    for q in auto_fallbacks:
+        if q and q not in image_queries:
+            image_queries.append(q)
+
     image_source = None
     image_errors = []
     for q in image_queries[:5]:
