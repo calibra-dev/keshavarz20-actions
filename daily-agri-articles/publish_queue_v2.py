@@ -57,8 +57,8 @@ def validate_payload_v2(p):
         p["faq_items"] = []
     if not isinstance(faq, list):
         raise base.QueuePublishError("faq_items must be an array when provided")
-    if faq and not (3 <= len(faq) <= 8):
-        raise base.QueuePublishError("Adaptive FAQ must contain 3 to 8 useful question/answer objects, or be empty")
+    if faq and not (3 <= len(faq) <= 15):
+        raise base.QueuePublishError("FAQ must contain 3 to 15 useful question/answer objects, or be empty")
     for i, item in enumerate(faq, 1):
         if not isinstance(item, dict) or not item.get("question") or not item.get("answer"):
             raise base.QueuePublishError(f"FAQ item {i} is incomplete")
