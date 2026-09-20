@@ -54,7 +54,7 @@ For material claims use at least **three credible direct source URLs when availa
 
 ## 3) Article design
 
-Write natural, expert-edited Persian for humans. Do not create a separate "AI version" and do not fragment content into artificial answer bait.
+Write natural, expert-edited Persian for humans. The voice is a specialist agricultural seller and practical advisor: helpful, precise and commercially aware without sales pressure, fake urgency, exaggerated product claims or pointless promotional sentences. Do not create a separate "AI version" and do not fragment content into artificial answer bait.
 
 Target roughly **1,200–2,600 useful words** when the topic warrants it. Do not pad to reach a length.
 
@@ -78,14 +78,9 @@ Recommended structure, adapted to the topic:
 Before drafting `content_html`, also read and obey `daily-agri-articles/DESIGN_SYSTEM.md`.
 All new long-form posts must use the premium RTL card-based visual system: a soft colored page wrapper, hero card, boxed H2 sections, distinct practical/warning/editorial callouts, styled tables, boxed FAQ when used, and a strong closing summary card. The visual system must improve scanning without turning every sentence into a separate box. Use inline styles so the design survives theme changes and remains mobile-friendly.
 
-### FAQ rule — adaptive, not quota-driven
+### FAQ rule — Keshavarz20 long-form standard
 
-FAQ is optional. Never force FAQ merely for SEO or rich-result markup.
-
-- If FAQ adds genuine value: include **3–8** distinct, substantive questions and answers.
-- If the article does not need FAQ: use an empty `faq_items` array.
-- Never create 15 repetitive FAQ items.
-- Any FAQ question included in `faq_items` must also be visibly answered in `content_html`.
+For the current Keshavarz20 long-form article standard, include **15 distinct, substantive, topic-specific questions and answers** when the article is a full troubleshooting, buying, calculation, installation, maintenance, soil/fertilizer, or decision guide. The questions must reflect real user intent, must not repeat one another, and every answer must be visible in `content_html`. Do not add filler questions just to hit the count; if a topic genuinely cannot support 15 useful questions, skip the article rather than padding it.
 
 ## 4) GEO / AEO / citation quality
 
