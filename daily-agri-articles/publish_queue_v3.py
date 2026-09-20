@@ -137,6 +137,16 @@ def create_draft_rest(server, p: dict[str, Any], media_id: int, category_id: int
         "meta": meta,
         "comment_status": "open",
     }
+    update_post_id = int(p.get("update_post_id") or 0)
+    if update_post_id:
+        existing = rest_request("GET", f"/wp/v2/posts/{update_post_id}", params={"context": "edit"}).json()
+        if existing.get("type") != "post":
+            raise base.QueuePublishError("update_post_id is not a normal WordPress post")
+        r = rest_request("POST", f"/wp/v2/posts/{update_post_id}", json=payload, timeout=70)
+        updated_id = int(r.json()["id"])
+        if updated_id != update_post_id:
+            raise base.QueuePublishError("WordPress updated an unexpected post id")
+        return updated_id
     r = rest_request("POST", "/wp/v2/posts", json=payload, timeout=70)
     return int(r.json()["id"])
 
