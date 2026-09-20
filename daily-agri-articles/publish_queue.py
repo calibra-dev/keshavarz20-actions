@@ -410,7 +410,17 @@ def main() -> None:
     validate_payload(p)
     ensure_not_duplicate(p)
     category_id, category_name = resolve_category(p)
-    image_source = commons_search(str(p["image_search_query"]))
+    image_queries = [str(p["image_search_query"])] + [str(x) for x in p.get("image_search_fallbacks", []) if str(x).strip()]
+    image_source = None
+    last_image_error = None
+    for q in image_queries:
+        try:
+            image_source = commons_search(q)
+            break
+        except Exception as exc:
+            last_image_error = exc
+    if image_source is None:
+        raise QueuePublishError(f"No suitable open-license image found after fallbacks: {last_image_error}")
     image_path = make_editorial_cover(image_source, p)
 
     server = wp_xmlrpc()
