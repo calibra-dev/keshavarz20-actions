@@ -4,14 +4,30 @@
   "format": "9:16",
   "language": "fa",
   "status": "SCRIPT_AND_PRE_RENDER_TRANSCRIPT_READY",
-  "render_status": "BLOCKED_PROVIDER_CREDITS",
+  "render_status": "BLOCKED_PROVIDER_CAPACITY",
   "provider_blocker": {
-    "provider": "invideo",
-    "single_video_test_required_credits": 856,
-    "available_credits": 41,
-    "test_agent_id": "027a0961-d493-4e46-9e7b-9056bdbafe29",
-    "batch_agent_id": "00c9a3f1-7fdc-4b35-9c30-699e4a736ac6",
-    "note": "Provider reported insufficient credits before rendering; no video generation exists yet."
+    "checked_at_utc": "2026-09-21T06:30:00Z",
+    "invideo": {
+      "prior_single_video_test_required_credits": 856,
+      "prior_available_credits": 41,
+      "note": "Previous provider preflight remained insufficient; no rendered asset was created."
+    },
+    "higgsfield": {
+      "unlimited_text_to_video_models": 0,
+      "free_generation_allowances": [
+        {
+          "type": "genjutsu",
+          "remaining": 1,
+          "scope": "motion/object workflows only"
+        },
+        {
+          "type": "viral_hub_video",
+          "remaining": 1
+        }
+      ],
+      "note": "Current free allowance cannot render the required 20 independent SEO-God videos; no paid generation was started automatically."
+    },
+    "rule": "Do not fabricate video assets or silently spend credits."
   },
   "policies": [
     "no invented technical numbers",
@@ -25,5 +41,6 @@
     "duration",
     "publication date"
   ],
-  "final_transcript_rule": "After rendering, reconcile transcript/subtitle text against final audio before publication."
+  "final_transcript_rule": "After rendering, reconcile transcript/subtitle text against final audio before publication.",
+  "gate_rechecked_at": "2026-09-21"
 }
