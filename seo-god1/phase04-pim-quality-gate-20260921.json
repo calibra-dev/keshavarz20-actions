@@ -1,0 +1,38 @@
+{
+  "program": "seo-god1",
+  "phase": 4,
+  "generated_at_utc": "2026-09-21T04:27:08Z",
+  "status": "QUALITY_SYSTEM_REFRESHED_DATA_COMPLETION_BLOCKED_BY_AUTHORITATIVE_SOURCE_GAPS",
+  "run_id": 35560969173,
+  "top30_summary": {
+    "selected": 30,
+    "average_pim_completeness": 63.33,
+    "scores_85_plus": 0,
+    "missing_sku": 0,
+    "missing_gtin": 30,
+    "missing_mpn": 30,
+    "missing_brand": 8,
+    "compatibility_incomplete": 30,
+    "decision_link_missing": 0,
+    "average_product_quality_score": 69.33,
+    "product_quality_below_85": 30
+  },
+  "compatibility": {
+    "verified_edges": 3,
+    "candidate_edges": 25,
+    "rule": "candidate edges are not promoted to verified without explicit evidence"
+  },
+  "remediation_actions": 128,
+  "source_policy": [
+    "Do not infer technical specifications from product titles.",
+    "Do not invent GTIN/MPN/brand/pressure/material/compatibility.",
+    "Woo product ID/SKU and explicit Woo/manufacturer/supplier data may be authoritative; title-derived values remain candidates until verified.",
+    "HTML, schema and future feeds must resolve to one canonical product-data source."
+  ],
+  "closure_requirements": [
+    "Collect authoritative catalog/supplier data for required family attributes and identifiers.",
+    "Add real product galleries/videos where only one image exists.",
+    "Promote only evidence-backed compatibility relations.",
+    "Re-run Top30 gate until each promoted priority product reaches the agreed >=85 quality threshold without fabricated fields."
+  ]
+}
