@@ -1,0 +1,354 @@
+{
+  "read_only": true,
+  "site": "https://keshavarz20.com",
+  "rest_index_http": 200,
+  "wpvibe_route_count": 56,
+  "wpvibe_routes": {
+    "/wpvibe/v1": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/connection-check-challenge": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/self-update/health": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/self-update/run": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/detached/run": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/site-info": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/registered-meta": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/file/read": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/file/list": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/file/search": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/file/outline": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/file/edit": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/file/write": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/file/delete": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/content/edit": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/content/search": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/classic-theme-safety": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/draft-theme/compile-sources": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/draft-theme": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST",
+        "DELETE"
+      ]
+    },
+    "/wpvibe/v1/draft-theme/publish": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/draft-theme/preview": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/draft-theme/delete": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/cli/run": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/audit-log": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/audit-log/record": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/op-receipt/(?P<op_id>[a-z0-9_.:]+)": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/cli/run-approved": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/authorize": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/authorize/preflight": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/connection-status": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/op-proof/check": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/code-snippet": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/cli/status": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/builder-login": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/rendered-html": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/create-classic-theme": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/create-classic-theme-safe": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/upload-media": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/last-change": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/navigate": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/elementor/widgets": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/elementor/schema": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/elementor/style-schema": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/elementor/save-page": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/elementor/save-template": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/beaver/save-page": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/beaver/modules": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/beaver/schema": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/breakdance/save-page": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/breakdance/get-page": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/breakdance/elements": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/bricks/save-page": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "POST"
+      ]
+    },
+    "/wpvibe/v1/bricks/get-page": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/bricks/elements": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/ping": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    },
+    "/wpvibe/v1/health": {
+      "namespace": "wpvibe/v1",
+      "methods": [
+        "GET"
+      ]
+    }
+  },
+  "plugins_http": 200,
+  "wpvibe_plugins": [
+    {
+      "plugin": "vibe-ai/vibe-ai",
+      "status": "active",
+      "version": "1.17.4",
+      "name": "WPVibe – Connect Your Site to Claude, ChatGPT &amp; AI Assistants"
+    }
+  ]
+}
