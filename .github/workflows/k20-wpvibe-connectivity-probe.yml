@@ -72,6 +72,33 @@ jobs:
                       except Exception:
                           row["json_type"] = None
                           row["json_keys"] = []
+              except urllib.error.HTTPError as exc:
+                  raw = exc.read()
+                  text = raw.decode("utf-8", "replace")
+                  row.update({
+                      "http": int(exc.code),
+                      "error": f"HTTPError: HTTP {exc.code}",
+                      "content_type": exc.headers.get("Content-Type"),
+                      "server": exc.headers.get("Server"),
+                      "cf_ray": exc.headers.get("CF-Ray"),
+                      "cf_cache_status": exc.headers.get("CF-Cache-Status"),
+                      "x_litespeed_cache": exc.headers.get("X-LiteSpeed-Cache"),
+                      "cache_control": exc.headers.get("Cache-Control"),
+                      "body_bytes": len(raw),
+                      "body_sha256": hashlib.sha256(raw).hexdigest(),
+                      "looks_json": text.lstrip().startswith(("{", "[")),
+                      "looks_html": "<html" in text[:500].lower() or "<!doctype html" in text[:500].lower(),
+                  })
+                  try:
+                      parsed = json.loads(text)
+                      row["json_type"] = type(parsed).__name__
+                      row["json_keys"] = sorted(parsed.keys())[:20] if isinstance(parsed, dict) else []
+                      if isinstance(parsed, dict):
+                          row["json_code"] = parsed.get("code")
+                          row["json_message"] = str(parsed.get("message") or "")[:160]
+                  except Exception:
+                      row["json_type"] = None
+                      row["json_keys"] = []
               except Exception as exc:
                   row.update({"http": 0, "error": f"{type(exc).__name__}: {exc}"})
               rows.append(row)
