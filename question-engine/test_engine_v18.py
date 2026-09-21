@@ -51,5 +51,5 @@ blob = " ".join(x["core"] for x in seo)
 assert "برچسب" in blob or "آفت" in blob, blob
 assert "دوز قطعی" not in blob, blob
 
-assert m.POLICY["policy_version"] == "seo-god-2026.09.18"
+assert m.POLICY["policy_version"] == "seo-god-2026.09.19-routing-fix"
 print("PASS v18")
