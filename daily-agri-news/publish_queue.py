@@ -22,6 +22,7 @@ TEHRAN = pytz.timezone("Asia/Tehran")
 WP_BASE = os.environ.get("WP_BASE_URL", "https://keshavarz20.com").rstrip("/")
 WP_USER = os.environ.get("WP_USERNAME", "")
 WP_PASS = os.environ.get("WP_APP_PASSWORD", "")
+WP_XMLRPC_PASS = re.sub(r"\\s+", "", WP_PASS)
 NEWS_CAT_ID = int(os.environ.get("K20_NEWS_CATEGORY_ID", "839"))
 NEWS_CAT_NAME = os.environ.get("K20_NEWS_CATEGORY_NAME", "کشاورزی")
 
@@ -118,7 +119,7 @@ def recent_news_titles(limit: int = 100) -> list[str]:
         seen: set[str] = set()
         for status in ("publish", "draft", "pending", "future", "private"):
             rows = server.wp.getPosts(
-                0, WP_USER, WP_PASS,
+                0, WP_USER, WP_XMLRPC_PASS,
                 {
                     "post_type": "news",
                     "post_status": status,
@@ -161,7 +162,7 @@ def find_existing_queued_draft(p: dict[str, Any]) -> dict[str, Any] | None:
     server = wp_xmlrpc()
     try:
         rows = server.wp.getPosts(
-            0, WP_USER, WP_PASS,
+            0, WP_USER, WP_XMLRPC_PASS,
             {
                 "post_type": "news",
                 "post_status": "draft",
@@ -302,12 +303,12 @@ def upload_wp_image(server: xmlrpc.client.ServerProxy, path: Path, p: dict[str, 
         "overwrite": False,
         "post_id": 0,
     }
-    media = server.wp.uploadFile(0, WP_USER, WP_PASS, payload)
+    media = server.wp.uploadFile(0, WP_USER, WP_XMLRPC_PASS, payload)
     media_id = int(media["id"])
 
     description = " | ".join(x for x in [source.get("title", ""), source.get("artist", ""), source.get("license", ""), source.get("original_url", "")] if x)
     try:
-        server.wp.editPost(0, WP_USER, WP_PASS, media_id, {
+        server.wp.editPost(0, WP_USER, WP_XMLRPC_PASS, media_id, {
             "post_title": p.get("image_title") or p["title"],
             "post_excerpt": "",
             "post_content": description,
@@ -360,11 +361,11 @@ def create_draft(server: xmlrpc.client.ServerProxy, p: dict[str, Any], media_id:
         "custom_fields": custom_fields,
         "comment_status": "open",
     }
-    return int(server.wp.newPost(0, WP_USER, WP_PASS, content))
+    return int(server.wp.newPost(0, WP_USER, WP_XMLRPC_PASS, content))
 
 
 def verify(server: xmlrpc.client.ServerProxy, post_id: int) -> dict[str, Any]:
-    post = server.wp.getPost(0, WP_USER, WP_PASS, post_id, [
+    post = server.wp.getPost(0, WP_USER, WP_XMLRPC_PASS, post_id, [
         "post_id", "post_title", "post_status", "post_type", "post_thumbnail", "terms", "custom_fields", "link"
     ])
     if post.get("post_status") != "draft" or post.get("post_type") != "news":
