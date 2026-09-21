@@ -1,0 +1,41 @@
+{
+  "program": "SEO God1",
+  "phase": 1,
+  "generated_at_utc": "2026-09-21T19:46:00Z",
+  "title": "Nationwide shipping -> checkout -> payment gateway E2E",
+  "status": "PASS_TO_EXTERNAL_PAYMENT_GATEWAY_NO_CHARGE",
+  "run_id": 35646396231,
+  "source_result": "checkout-e2e-results/20260921-tehran-payment-gateway-e2e-v4.json",
+  "verified": {
+    "destination": {
+      "country": "IR",
+      "province": "THR",
+      "city": "تهران"
+    },
+    "shipping_method": "ارسال با باربری یا تیپاکس به سراسر کشور (هزینه حمل پس‌کرایه)",
+    "local_pickup_visible": false,
+    "free_shipping_visible": false,
+    "shipping_line_method_id": "flat_rate",
+    "shipping_line_total": "0",
+    "external_gateway_id": "WC_bitpayir2",
+    "external_gateway_title": "پرداخت امن بیت پی",
+    "payment_redirect_host": "bpm.shaparak.ir",
+    "payment_redirect_path": "/pgwchannel/payment.mellat",
+    "external_payment_page_loaded": false,
+    "real_payment_attempted": false,
+    "card_data_entered": false,
+    "temporary_order_id": 145322,
+    "temporary_order_status": "pending",
+    "temporary_order_deleted": true,
+    "temporary_order_404_verified": true
+  },
+  "interpretation": [
+    "A non-local Tehran checkout successfully passed the nationwide shipping rules and WooCommerce checkout validation.",
+    "The enabled WC_bitpayir2 gateway successfully produced an external Shaparak/Mellat payment redirect.",
+    "The browser intentionally aborted before loading the external bank payment page; no card data or payment was submitted.",
+    "This proves checkout-to-gateway reachability, not successful payment settlement/callback."
+  ],
+  "remaining_payment_gate": [
+    "Successful card payment, callback, order status transition, and settlement were not tested because that would require a real/sandbox payment."
+  ]
+}
