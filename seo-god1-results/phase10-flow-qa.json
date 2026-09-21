@@ -1,0 +1,63 @@
+{
+  "program": "SEO God1",
+  "phase": 10,
+  "generated_at_utc": "2026-09-21T05:36:58.752508+00:00",
+  "checks": {
+    "calculator_public": true,
+    "calculator_to_basket": true,
+    "calculator_to_comparator": true,
+    "calculator_to_quote": true,
+    "basket_public": true,
+    "basket_has_calculator": true,
+    "basket_has_comparator": true,
+    "basket_has_quote": true,
+    "basket_safety_copy": true,
+    "comparator_public": true,
+    "comparator_to_basket": true,
+    "comparator_has_quote": true,
+    "comparator_unknown_policy": true,
+    "store_api_ok": true,
+    "formula_ok": true
+  },
+  "formula_test": {
+    "rows": 100,
+    "base_tape_m": 10000,
+    "total_tape_m": 10500.0,
+    "rolls": 11,
+    "ok": true
+  },
+  "objects": {
+    "calculator": {
+      "id": 143698,
+      "status": "publish",
+      "link": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
+      "chars": 61878
+    },
+    "basket": {
+      "id": 145233,
+      "status": "publish",
+      "slug": "one-hectare-drip-irrigation-basket",
+      "link": "https://keshavarz20.com/one-hectare-drip-irrigation-basket/",
+      "chars": 6501,
+      "public": {
+        "http": 200,
+        "bytes": 166781,
+        "final_url": "https://keshavarz20.com/one-hectare-drip-irrigation-basket/"
+      }
+    },
+    "comparator": {
+      "id": 145234,
+      "status": "publish",
+      "slug": "irrigation-product-comparator",
+      "link": "https://keshavarz20.com/irrigation-product-comparator/",
+      "chars": 5623,
+      "public": {
+        "http": 200,
+        "bytes": 165288,
+        "final_url": "https://keshavarz20.com/irrigation-product-comparator/"
+      }
+    }
+  },
+  "pass": true,
+  "policy": "Flow is calculator -> basket/comparator -> quote/expert review. No exact compatibility is inferred from same-size/title-only clues."
+}
