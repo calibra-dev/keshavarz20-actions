@@ -30,7 +30,7 @@ jobs:
           import os,json,base64,urllib.request,datetime
           base=os.environ['WP_BASE_URL'].rstrip('/')
           token=base64.b64encode((os.environ['WP_USERNAME']+':'+os.environ['WP_APP_PASSWORD']).encode()).decode()
-          headers={'Authorization':'Basic '+token,'Accept':'application/json','User-Agent':'K20-Phase20-Context/1.0'}
+          headers={'Authorization':'Basic '+token,'Accept':'application/json','User-Agent':'K20-Phase20-Context/1.1'}
           def get(path):
               req=urllib.request.Request(base+path,headers=headers)
               with urllib.request.urlopen(req,timeout=60) as r:
@@ -48,7 +48,18 @@ jobs:
           }
           try:
               themes=get('/wp-json/wp/v2/themes?status=active&context=edit')
-              out['active_themes']=[{'stylesheet':x.get('stylesheet'),'template':x.get('template'),'name':(x.get('name') or {}).get('rendered') if isinstance(x.get('name'),dict) else x.get('name')} for x in themes]
+              out['active_themes']=[]
+              for x in themes:
+                  name=x.get('name')
+                  if isinstance(name,dict):
+                      name=name.get('rendered') or name.get('raw')
+                  out['active_themes'].append({
+                      'stylesheet':x.get('stylesheet'),
+                      'template':x.get('template'),
+                      'name':name,
+                      'version':x.get('version'),
+                      'status':x.get('status')
+                  })
           except Exception as e:
               out['theme_read_error']=str(e)
           os.makedirs('phase20-results',exist_ok=True)
