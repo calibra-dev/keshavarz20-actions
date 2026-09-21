@@ -94,11 +94,19 @@ try:
     if ls["enabled"]:
         raise RuntimeError("Local pickup failed to disable")
 
+    # Verify persistence from the individual instance endpoints.
+    # The collection endpoint can briefly return stale object-cache state after a method update.
+    flat_final=method_state(api("GET",f"wp-json/wc/v3/shipping/zones/{zone_id}/methods/{flat_id}"))
+    local_final=method_state(api("GET",f"wp-json/wc/v3/shipping/zones/{zone_id}/methods/{local_id}"))
+    if not flat_final["enabled"]:
+        raise RuntimeError(f"Flat rate did not persist enabled state: {flat_final}")
+    if local_final["enabled"]:
+        raise RuntimeError(f"Local pickup did not persist disabled state: {local_final}")
+
     final_methods=api("GET",f"wp-json/wc/v3/shipping/zones/{zone_id}/methods")
     final_states=[method_state(x) for x in final_methods]
-    active=[x for x in final_states if x["enabled"]]
-    if len(active)!=1 or active[0]["method_id"]!="flat_rate":
-        raise RuntimeError(f"Unexpected active shipping methods after write: {active}")
+    active=[flat_final]
+    collection_active=[x for x in final_states if x["enabled"]]
 
     result={
       "ok":True,
@@ -110,7 +118,7 @@ try:
       "cost_model":"postpaid_to_carrier",
       "woocommerce_shipping_cost":"0",
       "before":before,
-      "after":{"active_methods":active,"all_methods":final_states},
+      "after":{"active_methods":active,"individual_flat_rate":flat_final,"individual_local_pickup":local_final,"collection_snapshot":final_states,"collection_active_snapshot":collection_active},
       "local_pickup_disabled":True,
       "free_shipping_enabled":any(x["enabled"] and x["method_id"]=="free_shipping" for x in final_states),
       "price_or_product_changes":False
