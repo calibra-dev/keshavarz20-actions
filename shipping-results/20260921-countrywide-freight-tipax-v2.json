@@ -1,0 +1,137 @@
+{
+  "ok": true,
+  "executed_at_utc": "2026-09-21T14:05:23.717181+00:00",
+  "zone": {
+    "id": 1,
+    "name": "ایران",
+    "locations": [
+      {
+        "code": "IR",
+        "type": "country",
+        "_links": {
+          "collection": [
+            {
+              "href": "https://keshavarz20.com/wp-json/wc/v3/shipping/zones/1/locations"
+            }
+          ],
+          "describes": [
+            {
+              "href": "https://keshavarz20.com/wp-json/wc/v3/shipping/zones/1"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "model": "countrywide_postpaid_carrier",
+  "customer_facing_title": "ارسال با باربری یا تیپاکس به سراسر کشور (هزینه حمل پس‌کرایه)",
+  "carrier_options": [
+    "باربری",
+    "تیپاکس"
+  ],
+  "cost_model": "postpaid_to_carrier",
+  "woocommerce_shipping_cost": "0",
+  "before": {
+    "flat_rate": {
+      "id": 2,
+      "method_id": "flat_rate",
+      "title": "نرخ ثابت",
+      "enabled": false,
+      "settings": {
+        "title": "نرخ ثابت",
+        "cost": "25000"
+      }
+    },
+    "local_pickup": {
+      "id": 3,
+      "method_id": "local_pickup",
+      "title": "تحویل محلی",
+      "enabled": true,
+      "settings": {
+        "title": "تحویل محلی",
+        "cost": ""
+      }
+    }
+  },
+  "after": {
+    "active_methods": [
+      {
+        "id": 2,
+        "method_id": "flat_rate",
+        "title": "ارسال با باربری یا تیپاکس به سراسر کشور (هزینه حمل پس‌کرایه)",
+        "enabled": true,
+        "settings": {
+          "title": "ارسال با باربری یا تیپاکس به سراسر کشور (هزینه حمل پس‌کرایه)",
+          "cost": "0"
+        }
+      }
+    ],
+    "individual_flat_rate": {
+      "id": 2,
+      "method_id": "flat_rate",
+      "title": "ارسال با باربری یا تیپاکس به سراسر کشور (هزینه حمل پس‌کرایه)",
+      "enabled": true,
+      "settings": {
+        "title": "ارسال با باربری یا تیپاکس به سراسر کشور (هزینه حمل پس‌کرایه)",
+        "cost": "0"
+      }
+    },
+    "individual_local_pickup": {
+      "id": 3,
+      "method_id": "local_pickup",
+      "title": "تحویل محلی",
+      "enabled": false,
+      "settings": {
+        "title": "تحویل محلی",
+        "cost": ""
+      }
+    },
+    "collection_snapshot": [
+      {
+        "id": 1,
+        "method_id": "free_shipping",
+        "title": "حمل و نقل رایگان",
+        "enabled": false,
+        "settings": {
+          "title": "حمل و نقل رایگان",
+          "cost": null
+        }
+      },
+      {
+        "id": 2,
+        "method_id": "flat_rate",
+        "title": "نرخ ثابت",
+        "enabled": false,
+        "settings": {
+          "title": "نرخ ثابت",
+          "cost": "25000"
+        }
+      },
+      {
+        "id": 3,
+        "method_id": "local_pickup",
+        "title": "تحویل محلی",
+        "enabled": true,
+        "settings": {
+          "title": "تحویل محلی",
+          "cost": ""
+        }
+      }
+    ],
+    "collection_active_snapshot": [
+      {
+        "id": 3,
+        "method_id": "local_pickup",
+        "title": "تحویل محلی",
+        "enabled": true,
+        "settings": {
+          "title": "تحویل محلی",
+          "cost": ""
+        }
+      }
+    ]
+  },
+  "local_pickup_disabled": true,
+  "free_shipping_enabled": false,
+  "price_or_product_changes": false
+}
