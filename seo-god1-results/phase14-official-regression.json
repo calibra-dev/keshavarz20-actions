@@ -2,11 +2,11 @@
   "program": "SEO God1",
   "phase": 14,
   "title": "Calculators / Selectors / BOM / Proforma Tools",
-  "generated_at_utc": "2026-09-21T08:17:04.151981+00:00",
+  "generated_at_utc": "2026-09-21T08:18:57.529328+00:00",
   "mode": "read-only-regression-qa",
   "tools_registered": 9,
-  "tools_pass": 4,
-  "tools_fail": 5,
+  "tools_pass": 9,
+  "tools_fail": 0,
   "basket_formula_test": {
     "inputs": {
       "area_m2": 10000,
@@ -53,8 +53,8 @@
         "bytes": 358104,
         "content_type": "text/html; charset=UTF-8"
       },
-      "has_h1": false,
-      "has_script": false,
+      "has_h1": true,
+      "has_script": true,
       "has_input_or_select": true,
       "has_action": true,
       "safety_terms": [
@@ -83,11 +83,9 @@
         "درصد"
       ],
       "worked_example_signal": true,
-      "pass": false,
-      "reasons": [
-        "h1_missing",
-        "script_missing"
-      ]
+      "validation_code_signal": true,
+      "pass": true,
+      "reasons": []
     },
     {
       "key": "pipe_size_selector",
@@ -105,8 +103,8 @@
         "bytes": 231326,
         "content_type": "text/html; charset=UTF-8"
       },
-      "has_h1": false,
-      "has_script": false,
+      "has_h1": true,
+      "has_script": true,
       "has_input_or_select": true,
       "has_action": true,
       "safety_terms": [
@@ -128,11 +126,9 @@
         "درصد"
       ],
       "worked_example_signal": true,
-      "pass": false,
-      "reasons": [
-        "h1_missing",
-        "script_missing"
-      ]
+      "validation_code_signal": true,
+      "pass": true,
+      "reasons": []
     },
     {
       "key": "fittings_compatibility",
@@ -150,7 +146,7 @@
         "bytes": 183163,
         "content_type": "text/html; charset=UTF-8"
       },
-      "has_h1": false,
+      "has_h1": true,
       "has_script": true,
       "has_input_or_select": true,
       "has_action": true,
@@ -167,11 +163,9 @@
         "اینچ"
       ],
       "worked_example_signal": true,
-      "pass": false,
-      "reasons": [
-        "h1_missing",
-        "input_validation_signal_missing"
-      ]
+      "validation_code_signal": true,
+      "pass": true,
+      "reasons": []
     },
     {
       "key": "filter_selector",
@@ -189,7 +183,7 @@
         "bytes": 171034,
         "content_type": "text/html; charset=UTF-8"
       },
-      "has_h1": false,
+      "has_h1": true,
       "has_script": true,
       "has_input_or_select": true,
       "has_action": true,
@@ -207,10 +201,9 @@
         "متر"
       ],
       "worked_example_signal": true,
-      "pass": false,
-      "reasons": [
-        "h1_missing"
-      ]
+      "validation_code_signal": true,
+      "pass": true,
+      "reasons": []
     },
     {
       "key": "layflat_calculator",
@@ -228,7 +221,7 @@
         "bytes": 204321,
         "content_type": "text/html; charset=UTF-8"
       },
-      "has_h1": false,
+      "has_h1": true,
       "has_script": true,
       "has_input_or_select": true,
       "has_action": true,
@@ -249,10 +242,9 @@
         "درصد"
       ],
       "worked_example_signal": false,
-      "pass": false,
-      "reasons": [
-        "h1_missing"
-      ]
+      "validation_code_signal": true,
+      "pass": true,
+      "reasons": []
     },
     {
       "key": "request_quotation",
@@ -271,8 +263,8 @@
         "content_type": "text/html; charset=UTF-8"
       },
       "has_h1": true,
-      "has_script": false,
-      "has_input_or_select": false,
+      "has_script": true,
+      "has_input_or_select": true,
       "has_action": true,
       "safety_terms": [
         "بررسی",
@@ -286,6 +278,7 @@
         "متر"
       ],
       "worked_example_signal": false,
+      "validation_code_signal": true,
       "pass": true,
       "reasons": []
     },
@@ -325,6 +318,7 @@
         "متر"
       ],
       "worked_example_signal": false,
+      "validation_code_signal": true,
       "pass": true,
       "reasons": []
     },
@@ -361,6 +355,7 @@
         "متر"
       ],
       "worked_example_signal": false,
+      "validation_code_signal": true,
       "pass": true,
       "reasons": []
     },
@@ -381,8 +376,8 @@
         "content_type": "text/html; charset=UTF-8"
       },
       "has_h1": true,
-      "has_script": false,
-      "has_input_or_select": false,
+      "has_script": true,
+      "has_input_or_select": true,
       "has_action": true,
       "safety_terms": [
         "حدس",
@@ -397,14 +392,15 @@
       ],
       "unit_terms": [],
       "worked_example_signal": true,
+      "validation_code_signal": true,
       "pass": true,
       "reasons": []
     }
   ],
   "acceptance": {
-    "all_public_and_functional_signals": false,
+    "all_public_and_functional_signals": true,
     "deterministic_formula_pass": true,
     "no_site_writes": true,
-    "overall_pass": false
+    "overall_pass": true
   }
 }
