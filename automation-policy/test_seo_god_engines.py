@@ -32,7 +32,8 @@ long_body = (
 )
 
 article_payload = {
-    "content_type": "post",\n    "title": "آزمون ساختاری موتور مقاله کشاورز بیست",
+    "content_type": "post",
+    "title": "آزمون ساختاری موتور مقاله کشاورز بیست",
     "slug": "seo-god-article-smoke",
     "excerpt": "این فقط payload ساختاری برای تست اعتبارسنج موتور مقاله است و وارد وردپرس نمی‌شود.",
     "content_html": long_body,
@@ -87,7 +88,8 @@ news_body = (
     + '<h2>منابع</h2><p><a href="https://example.org/news">منبع اول</a> <a href="https://example.edu/news">منبع دوم</a></p>'
 )
 news_payload = {
-    "content_type": "news",\n    "title": "آزمون ساختاری موتور خبر کشاورز بیست",
+    "content_type": "news",
+    "title": "آزمون ساختاری موتور خبر کشاورز بیست",
     "slug": "seo-god-news-smoke",
     "excerpt": "payload تست خبر",
     "content_html": news_body,
