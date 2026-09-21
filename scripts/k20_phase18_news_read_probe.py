@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import base64, json, os, sys
+import base64, json, os, sys, xmlrpc.client
 from pathlib import Path
 import requests
 
@@ -86,7 +86,31 @@ try:
         "news_rest_base":news_type.get("rest_base") if isinstance(news_type,dict) else None
     }
     if not method:
-        result["error"]="No authenticated REST collection/search path exposed readable news items."
+        try:
+            xml_pass="".join(str(PASS).split())
+            server=xmlrpc.client.ServerProxy(f"{BASE}/xmlrpc.php",allow_none=True)
+            methods=set(server.system.listMethods())
+            if "wp.getPosts" not in methods:
+                attempts.append({"name":"xmlrpc_methods","ok":False,"reason":"wp.getPosts_missing"})
+            else:
+                rows=server.wp.getPosts(
+                    0, USER, xml_pass,
+                    {"post_type":"news","post_status":"publish","number":5,"orderby":"post_date","order":"DESC"},
+                    ["post_title"],
+                )
+                vals=[str((row or {}).get("post_title") or "").strip() for row in (rows or [])]
+                vals=[x for x in vals if x]
+                attempts.append({"name":"xmlrpc_normalized_app_password","ok":True,"row_count":len(vals)})
+                titles=vals
+                method="xmlrpc_normalized_app_password"
+                result["ok"]=True
+                result["probe_method"]=method
+                result["sample_title_count"]=len(titles)
+        except Exception as exc:
+            attempts.append({"name":"xmlrpc_normalized_app_password","ok":False,"error":str(exc)})
+            result["rest_attempts"]=attempts
+            result["error"]="No authenticated REST news path and normalized XML-RPC probe failed."
+
 except Exception as exc:
     result={
         "ok":False,"read_only":True,"post_type":"news","sample_title_count":0,
