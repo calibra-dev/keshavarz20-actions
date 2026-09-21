@@ -22,7 +22,6 @@ TEHRAN = pytz.timezone("Asia/Tehran")
 WP_BASE = os.environ.get("WP_BASE_URL", "https://keshavarz20.com").rstrip("/")
 WP_USER = os.environ.get("WP_USERNAME", "")
 WP_PASS = os.environ.get("WP_APP_PASSWORD", "")
-WP_XMLRPC_PASS = re.sub(r"\\s+", "", WP_PASS)
 NEWS_CAT_ID = int(os.environ.get("K20_NEWS_CATEGORY_ID", "839"))
 NEWS_CAT_NAME = os.environ.get("K20_NEWS_CATEGORY_NAME", "کشاورزی")
 
