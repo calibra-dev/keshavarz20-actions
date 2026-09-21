@@ -1,0 +1,41 @@
+name: K20 SEO God1 Phase14-15 Baseline
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/k20_seogod1_phase14_15_audit.py'
+      - '.github/workflows/k20-seogod1-phase14-15-baseline.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-seogod1-phase14-15-baseline
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: python -m pip install requests
+      - run: python scripts/k20_seogod1_phase14_15_audit.py
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f seo-god1-results/phase14-15-baseline.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'seo-god1: record phase14-15 baseline'
+          git pull --rebase origin main
+          git push origin main
