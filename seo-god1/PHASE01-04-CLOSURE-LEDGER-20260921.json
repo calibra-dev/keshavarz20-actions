@@ -1,0 +1,127 @@
+{
+  "program": "SEO God1",
+  "scope": "Phases 01-04",
+  "generated_at_utc": "2026-09-21T04:39:00Z",
+  "rule": "No-repeat, GitHub-first, no fabricated PASS. A phase closes only when its production acceptance criteria are verifiably satisfied.",
+  "phases": [
+    {
+      "phase": 1,
+      "title": "Purchase Path / Shipping / Payment / Checkout / Order Lifecycle",
+      "execution_status": "PARTIAL_BLOCKED",
+      "completed": [
+        "Bridge health via guarded gateway",
+        "Fresh Iran shipping methods read",
+        "Fresh payment-gateway status read with secrets redacted",
+        "Checkout/account settings read",
+        "Representative product reads",
+        "Woo Store API route inventory"
+      ],
+      "verified_blockers": [
+        "Iran standard Woo zone exposes only local pickup",
+        "No verified redundant external card-payment path",
+        "Guarded gateway does not allow-list cart/checkout/order/payment-setting mutations",
+        "No safe sandbox payment path verified"
+      ],
+      "definition_of_done": false
+    },
+    {
+      "phase": 2,
+      "title": "Measurement & Attribution Reliability",
+      "execution_status": "DIAGNOSIS_COMPLETE_IMPLEMENTATION_BLOCKED",
+      "completed": [
+        "Fresh GA4 funnel/event audit",
+        "Duplicate begin_checkout isolated",
+        "Device/source baselines",
+        "Event/UTM contract persisted",
+        "Exact instrumentation change-set persisted"
+      ],
+      "verified_blockers": [
+        "begin_checkout multi-fires",
+        "purchase/add_shipping_info/add_payment_info absent in measured period",
+        "WhatsApp event naming fragmented",
+        "No allow-listed GA/tagging mutation path",
+        "Purchase validation depends on safe Phase1 transaction path"
+      ],
+      "definition_of_done": false
+    },
+    {
+      "phase": 3,
+      "title": "Mobile Performance / Accessibility / API / Plugin Hygiene",
+      "execution_status": "DIAGNOSIS_COMPLETE_REMEDIATION_BLOCKED_PARTIAL",
+      "completed": [
+        "Fresh six-route performance baseline",
+        "Fresh mobile a11y gate",
+        "Exact a11y failing-node diagnostic",
+        "Fresh 41-plugin inventory",
+        "Prior cache/LCP root cause reconciled with current state"
+      ],
+      "verified_blockers": [
+        "PDP/calculator no-cache with ~5s TTFB",
+        "PDP CLS ~0.55",
+        "Calculator LCP ~9.6-9.8s",
+        "Cart/checkout slow server response",
+        "IranKala protected renderer and vendor update 403",
+        "A11y accessible-name defects",
+        "PHP 8.1.34 EOL"
+      ],
+      "definition_of_done": false
+    },
+    {
+      "phase": 4,
+      "title": "PIM & Product Data Quality",
+      "execution_status": "SYSTEM_REFRESHED_SAFE_FIXES_APPLIED_AUTHORITATIVE_DATA_BLOCKED",
+      "completed": [
+        "Top30 PIM refresh",
+        "Compatibility graph refresh",
+        "128 remediation actions generated",
+        "Two inaccurate/incomplete image ALT fields corrected and verified through Woo product readback",
+        "Authoritative data request/gate persisted"
+      ],
+      "verified_state": [
+        "Average PIM 63.33",
+        "0/30 score>=85",
+        "30/30 GTIN missing",
+        "30/30 MPN missing",
+        "8/30 brand missing",
+        "30/30 compatibility incomplete",
+        "0 SKU missing",
+        "3 verified compatibility edges; 25 candidates not promoted"
+      ],
+      "blockers": [
+        "Authoritative manufacturer/supplier specifications and identifiers unavailable for required fields",
+        "Product galleries mostly incomplete"
+      ],
+      "definition_of_done": false
+    }
+  ],
+  "actual_production_writes": [
+    {
+      "type": "media.alt",
+      "id": 144373,
+      "value": "نوار تیپ آبیاری قطره‌ای ۲۰ سانتی‌متری مناسب کشت زیر پلاستیک",
+      "verified_via": "Woo product 135235 readback"
+    },
+    {
+      "type": "media.alt",
+      "id": 144586,
+      "value": "مخزن تزریق کود (تانک کود) ۲۰۰ لیتری",
+      "verified_via": "Woo product 140407 readback"
+    }
+  ],
+  "prohibited_or_not_attempted": [
+    "Price/sale/coupon changes",
+    "Payment-setting mutation",
+    "Real charged order",
+    "User/role changes",
+    "Arbitrary code injection",
+    "Protected IranKala modification",
+    "Fabricated GTIN/MPN/specification",
+    "Blind plugin deactivation"
+  ],
+  "next_unlocks": [
+    "Approve/define nationwide shipping business rules and expose a guarded shipping-config/test action.",
+    "Explicitly change payment-settings policy only if gateway redundancy/test configuration should be implemented.",
+    "Provide an allow-listed tagging/theme implementation path or supported vendor update for Phase2/3 remediation.",
+    "Supply authoritative manufacturer/supplier catalog data and real media for Phase4 completion."
+  ]
+}
