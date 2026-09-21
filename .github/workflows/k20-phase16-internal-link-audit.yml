@@ -36,7 +36,7 @@ jobs:
           test -n "$WP_USERNAME"
           test -n "$WP_APP_PASSWORD"
       - name: Build authenticated REST internal-link manifest
-        run: python scripts/k20_phase16_rest_link_graph.py phase16-results/internal-link-authority-manifest-latest.json
+        run: python scripts/k20_phase16_internal_links.py phase16-results/internal-link-authority-manifest-latest.json
       - name: Commit evidence
         shell: bash
         run: |
