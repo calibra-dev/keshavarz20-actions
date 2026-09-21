@@ -1,0 +1,72 @@
+{
+  "program": "SEO God1 Remaining",
+  "wave": 1,
+  "name": "SUPPORTED_RUNTIME_THEME_REMEDIATION",
+  "checkpoint": "2026-09-21T10:27Z",
+  "state": "ACTIVE_VERIFICATION_BLOCKED_FOR_DIRECT_THEME_CODE",
+  "verified_now": {
+    "product_cache_probe": {
+      "run_id": 35588343344,
+      "status": "PASS_DIAGNOSTIC",
+      "sample": 5,
+      "cache_hit_after_warmup": 0,
+      "explicit_litespeed_nocache": 5,
+      "observed_response_seconds": "5.94-6.88",
+      "conclusion": "P0 singular no-cache blocker remains live"
+    },
+    "homepage_lcp_chain": {
+      "run_id": 35588712130,
+      "status": "PASS_DIAGNOSTIC",
+      "performance_score": 38,
+      "lcp_ms": 5494.08,
+      "cls": 0.23518386566726615,
+      "tbt_ms": 854,
+      "ttfb_component_ms": 1482.806,
+      "lcp_lazy_loaded": true,
+      "fetchpriority_high": false,
+      "notable_large_images_bytes": [
+        716653,
+        550617
+      ],
+      "conclusion": "Homepage LCP/media blocker remains live"
+    },
+    "fast_semantic": {
+      "run_id": 35588708831,
+      "status": "PASS_DIAGNOSTIC",
+      "homepage_h1_count": 1,
+      "homepage_empty_links": 11,
+      "product_empty_links": 3,
+      "conclusion": "Heading H1 state is currently good; discernible-link-name blocker remains"
+    }
+  },
+  "in_progress_runs": [
+    {
+      "run_id": 35588703962,
+      "name": "K20 Phase 20 UX A11y Live Gate"
+    },
+    {
+      "run_id": 35588707134,
+      "name": "K20 Phase 20 A11y Diagnostics"
+    }
+  ],
+  "supported_path_status": {
+    "irankala_current_version": "10.9.0",
+    "offered_version": "10.10.0",
+    "previous_supported_update_attempt": "BLOCKED_BY_VENDOR_DOWNLOAD_403",
+    "direct_theme_file_edit": "FORBIDDEN",
+    "executable_snippet_insertion": "FORBIDDEN"
+  },
+  "safe_actions_completed": [
+    "Fresh product cache probe",
+    "Fresh homepage Lighthouse LCP chain",
+    "Fresh server semantic diagnostic",
+    "No price/payment/user/role/credential/site-code mutation"
+  ],
+  "remaining_p0": [
+    "Resolve product/calculator explicit no-cache through supported cache/theme/server path",
+    "Stop lazy-loading homepage LCP image and expose fetchpriority=high through supported renderer path",
+    "Reduce heavy homepage image payloads where references can be changed safely",
+    "Re-run Phase20 live accessibility after supported IranKala fix path exists"
+  ],
+  "site_mutations": 0
+}
