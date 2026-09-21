@@ -147,7 +147,7 @@ try:
         fill_any(page,["#billing_address_1","input[name='billing_address_1']","input[name='billing-address_1']"],"آدرس تست سیستمی - سفارش واقعی نیست")
         fill_any(page,["#billing_city","input[name='billing_city']","input[name='billing-city']"],"تهران")
         fill_any(page,["#billing_postcode","input[name='billing_postcode']","input[name='billing-postcode']"],"1111111111")
-        fill_any(page,["#billing_phone","input[name='billing_phone']","input[name='billing-phone']"],"09121234567")
+        fill_any(page,["#billing_phone","input[name='billing_phone']","input[name='billing-phone']"],"09179197005")
         fill_any(page,["#billing_email","input[name='billing_email']","input[name='email']"],email)
 
         # Country/state/city. Some Iran checkout plugins re-render city/phone after state selection.
@@ -160,7 +160,7 @@ try:
         # Refill dynamic fields after state/city AJAX refresh.
         fill_any(page,["#billing_address_1","input[name='billing_address_1']","input[name='billing-address_1']"],"آدرس تست سیستمی - سفارش واقعی نیست")
         fill_any(page,["#billing_postcode","input[name='billing_postcode']","input[name='billing-postcode']"],"1111111111")
-        fill_any(page,["#billing_phone","input[name='billing_phone']","input[name='billing-phone']"],"09121234567")
+        fill_any(page,["#billing_phone","input[name='billing_phone']","input[name='billing-phone']"],"09179197005")
         fill_any(page,["#billing_email","input[name='billing_email']","input[name='email']"],email)
         result["address_selection"]={"country":country,"state":state,"city_select":city_select,"city":"تهران","synthetic":True}
 
@@ -238,8 +238,22 @@ try:
                     cb.check(force=True)
             except Exception:
                 pass
+        # The site has a custom postpaid/freight rules checkbox without a usable label-for relation.
+        if page.locator("#So_rent_checkbox").count():
+            page.locator("#So_rent_checkbox").check(force=True)
+            for row in checkbox_info:
+                if row.get("id")=="So_rent_checkbox":
+                    row["checked_for_test"]=True
+        # Re-assert business checkout phone after all dynamic checkout refreshes and fire events used by Digits/Woo.
+        phone=page.locator("#billing_phone")
+        if phone.count():
+            phone.fill("09179197005")
+            phone.evaluate("""el => { el.dispatchEvent(new Event('input',{bubbles:true})); el.dispatchEvent(new Event('change',{bubbles:true})); el.dispatchEvent(new Event('blur',{bubbles:true})); }""")
+            result["billing_phone_dom"]={"present":True,"length":len(phone.input_value()),"starts_with_09":phone.input_value().startswith("09")}
+        else:
+            result["billing_phone_dom"]={"present":False}
         result["required_checkbox_signals"]=checkbox_info[:40]
-        page.wait_for_timeout(1200)
+        page.wait_for_timeout(1800)
 
         place=None
         for sel in ["#place_order","button[name='woocommerce_checkout_place_order']",".wc-block-components-checkout-place-order-button"]:
