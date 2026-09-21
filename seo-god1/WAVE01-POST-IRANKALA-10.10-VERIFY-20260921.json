@@ -1,0 +1,218 @@
+{
+  "program": "SEO God1 Remaining",
+  "wave": 1,
+  "title": "Post-IranKala 10.10.0 verification",
+  "generated_at_utc": "2026-09-21T10:42:00Z",
+  "repository": "calibra-dev/keshavarz20-actions",
+  "active_theme": {
+    "stylesheet": "irankala",
+    "name": "ایران‌کالا",
+    "before_version": "10.9.0",
+    "after_version": "10.10.0",
+    "verified_active": true,
+    "verification_run_id": 35589572257
+  },
+  "vendor_update_blocker": {
+    "previous": "Vendor-supported update attempt blocked by Zhaket 403",
+    "current": "CLOSED",
+    "note": "IranKala 10.10.0 is now active in production."
+  },
+  "post_update_verification": {
+    "accessibility": {
+      "ux_gate_run_id": 35589574859,
+      "exact_diagnostics_run_id": 35589578036,
+      "status": "PARTIAL",
+      "scores_before": {
+        "home": 0.74,
+        "product": 0.75,
+        "pipe_guide": 0.83,
+        "filter_selector": 0.82,
+        "fittings_selector": 0.82
+      },
+      "scores_after": {
+        "home": 0.77,
+        "product": 0.78,
+        "pipe_guide": 0.87,
+        "filter_selector": 0.86,
+        "fittings_selector": 0.86
+      },
+      "exact_failures_after": {
+        "home": {
+          "button_name": 114,
+          "link_name": 12
+        },
+        "product": {
+          "button_name": 10,
+          "link_name": 1
+        },
+        "pipe_guide": {
+          "button_name": 0,
+          "link_name": 1
+        },
+        "filter_selector": {
+          "button_name": 0,
+          "link_name": 1
+        },
+        "fittings_selector": {
+          "button_name": 0,
+          "link_name": 1
+        }
+      },
+      "interpretation": "Overall scores improved slightly, but the targeted button-name/link-name failures remain."
+    },
+    "semantic": {
+      "run_id": 35589580861,
+      "homepage_h1_count": 1,
+      "heading_order_issue_count": 0,
+      "homepage_empty_links": 11,
+      "product_empty_links": 3,
+      "interpretation": "H1/heading state remains good; discernible-link-name defects remain."
+    },
+    "product_cache": {
+      "run_id": 35589583475,
+      "sample": 5,
+      "cache_hit_after_warmup": 0,
+      "explicit_litespeed_nocache": 5,
+      "observed_seconds_range": [
+        6.121,
+        7.075
+      ],
+      "interpretation": "No-cache blocker persists after theme update."
+    },
+    "homepage_lcp_chain": {
+      "run_id": 35589586837,
+      "before": {
+        "performance_score": 38,
+        "lcp_ms": 5494.08,
+        "tbt_ms": 854,
+        "cls": 0.23518386566726615,
+        "ttfb_component_ms": 1482.806
+      },
+      "after": {
+        "performance_score": 48,
+        "lcp_ms": 6273.478,
+        "tbt_ms": 767,
+        "cls": 0.01536805797628541,
+        "ttfb_component_ms": 1117.479
+      },
+      "lcp_image_lazy": true,
+      "fetchpriority_high": false,
+      "interpretation": "Homepage CLS and TTFB component improved, but LCP remains poor and the LCP image is still lazy-loaded without fetchpriority=high."
+    },
+    "full_performance": {
+      "run_id": 35589589984,
+      "home": {
+        "performance_scores": [
+          49,
+          54
+        ],
+        "lcp_s": [
+          6.175494,
+          7.470019
+        ],
+        "cls": [
+          0.015805,
+          0.015198
+        ],
+        "cache": "hit"
+      },
+      "shop": {
+        "performance_scores": [
+          66,
+          76
+        ],
+        "lcp_s": [
+          4.605026,
+          4.269514
+        ],
+        "cache_after_warmup": "hit"
+      },
+      "product": {
+        "performance_scores": [
+          68,
+          50
+        ],
+        "lcp_s": [
+          4.245154,
+          4.3008
+        ],
+        "cls": [
+          0,
+          0.336034
+        ],
+        "ttfb_s_range": [
+          5.573669,
+          7.329639
+        ],
+        "cache_control": "no-cache"
+      },
+      "calculator": {
+        "performance_scores": [
+          49,
+          49
+        ],
+        "lcp_s": [
+          9.786247,
+          9.355966
+        ],
+        "cls": [
+          0.096256,
+          0.096256
+        ],
+        "ttfb_s_range": [
+          5.231006,
+          6.288289
+        ],
+        "cache_control": "no-cache"
+      },
+      "cart": {
+        "ttfb_s_range": [
+          4.40191,
+          4.526441
+        ],
+        "cache_control": "no-cache"
+      },
+      "checkout": {
+        "ttfb_s_range": [
+          6.382696,
+          7.820765
+        ],
+        "cache_control": "no-cache",
+        "redirects": 1
+      }
+    },
+    "source_readonly": {
+      "run_id": 35589965269,
+      "protected_files_confirmed": [
+        "themes/irankala/elementor/header/header-logo.php",
+        "themes/irankala/blocks/main-slider.php",
+        "themes/irankala/blocks/products-slider.php",
+        "themes/irankala/blocks/special-ads.php"
+      ],
+      "user_button_read": "413 Request Entity Too Large",
+      "functions_php_pattern_matches": 0,
+      "interpretation": "The update did not expose a readable supported renderer source for the residual a11y/LCP defects; relevant PHP remains ionCube-protected."
+    }
+  },
+  "closed_now": [
+    "IranKala vendor-update availability/version blocker"
+  ],
+  "residual_p0_p1": [
+    "Product and calculator explicit no-cache behavior",
+    "Homepage LCP image still lazy without fetchpriority=high",
+    "Calculator LCP remains ~9.4-9.8s",
+    "Cart/checkout server response remains slow while correctly session-safe/no-cache",
+    "Owl carousel buttons still lack accessible names",
+    "Theme logo/image-only links still lack discernible names",
+    "PDP CLS remains variable and must not be marked closed",
+    "PHP 8.1 runtime upgrade still requires staging/hosting compatibility path"
+  ],
+  "safety": {
+    "site_mutations_from_verification": 0,
+    "price_payment_user_role_credential_mutations": 0,
+    "protected_theme_edits": 0,
+    "executable_snippet_injection": 0
+  },
+  "wave1_state": "VENDOR_UPDATE_COMPLETE_RESIDUALS_REMAIN_SUPPORTED_PATH_REQUIRED",
+  "next_action": "Continue only through supported cache/server/theme settings or vendor-supported hooks; do not edit protected IranKala code or inject arbitrary runtime code."
+}
