@@ -1,0 +1,114 @@
+{
+  "program": "SEO God1",
+  "scope": "Official Phases 14 and 15",
+  "generated_at_utc": "2026-09-21T06:31:30Z",
+  "control_plane": "keshavarz20-git-ops",
+  "source_of_truth": "docs/20260918-seo-god-phase14-15-execution-ledger-fa.md",
+  "phase14": {
+    "title": "Calculators, Selectors, BOM & Proforma Tools",
+    "status": "PASS_FRESH",
+    "evidence": {
+      "fresh_qa_run": 35568692084,
+      "qa_result": "phase2-results/tool-qa.json",
+      "one_hectare_basket": {
+        "id": 145233,
+        "status": "publish",
+        "script": true,
+        "h1": true,
+        "safety_copy": true,
+        "marker": true
+      },
+      "product_comparator": {
+        "id": 145234,
+        "status": "publish",
+        "script": true,
+        "h1": true,
+        "safety_copy": true,
+        "marker": true
+      },
+      "store_api_http": 200,
+      "formula_test": {
+        "area_m2": 10000,
+        "row_length_m": 100,
+        "row_spacing_m": 1,
+        "reserve_percent": 5,
+        "roll_length_m": 1000,
+        "rows": 100,
+        "base_tape_m": 10000,
+        "total_tape_m": 10500,
+        "rolls": 11,
+        "pass": true
+      }
+    },
+    "repair": {
+      "commit": "c51cd143a0ba6c061da4ccd2deddb07364e7b4c7",
+      "note": "QA no longer falsely requires decision tools to remain draft after intentional production publication; draft or publish is accepted while all functionality/safety checks remain mandatory."
+    },
+    "acceptance_pass": true
+  },
+  "phase15": {
+    "title": "Visual, Video & Image Search",
+    "status": "PARTIAL_EXTERNAL_ASSET_GATE",
+    "completed": [
+      "Fresh content-media summary executed successfully",
+      "Image sitemap remains previously PASS_EXISTING with 975 submitted images, 0 warnings, 0 errors",
+      "20 Persian pre-render scripts/transcripts remain registered",
+      "Protected homepage/media assets remain guarded; no forced replacement/deletion",
+      "Video provider availability rechecked against InVideo history and current Higgsfield account",
+      "Video sitemap gate rerun successfully and correctly remained blocked rather than fabricating assets"
+    ],
+    "fresh_evidence": {
+      "media_summary_run": 35568653895,
+      "media_summary": "content-media-results/summary.json",
+      "media_coverage": {
+        "posts": 38,
+        "pages": 37,
+        "products": 709,
+        "categories": 62,
+        "public_urls": 783,
+        "public_pages_read": 726,
+        "direct_writable_jpeg_png": 27,
+        "rendered_jpeg_png": 262,
+        "rendered_only_jpeg_png": 240
+      },
+      "video_sitemap_run": 35568747667,
+      "video_gate": {
+        "registered": 20,
+        "ready": 0,
+        "blocked": 20,
+        "status": "BLOCKED_PUBLIC_VIDEO_ASSETS"
+      },
+      "provider_gate": {
+        "invideo": "Prior preflight required 856 credits for a single test while recorded balance was 41.",
+        "higgsfield": "Current account exposes 0 unlimited text-to-video models; free allowances are insufficient for 20 independent production videos."
+      }
+    },
+    "blockers": [
+      "20 real/public rendered video assets do not exist yet.",
+      "Each episode still lacks landing_page, video_url, thumbnail_url, duration_seconds, publication_date, title and description.",
+      "Generating 20 production videos requires sufficient rendering capacity/credits or an external render pipeline; silent paid generation is not performed.",
+      "Protected media IDs 141437, 141441 and 142597 remain under no-force-replacement guard; no new evidence safely unlocks them."
+    ],
+    "acceptance_pass": false
+  },
+  "supplemental_audit": {
+    "note": "A separate whole-catalog feeds/merchandising read-only audit was run during this execution. It is explicitly not the official Phase14/15 definition.",
+    "run": 35568540988,
+    "published_products": 652,
+    "feed_core_ready": 393,
+    "wc_related_coverage_percent": 100,
+    "recommendation_block_percent": 53.68
+  },
+  "safety": {
+    "price_changed": false,
+    "sale_price_changed": false,
+    "coupon_changed": false,
+    "stock_changed": false,
+    "payment_changed": false,
+    "user_role_changed": false,
+    "protected_media_forced": false,
+    "fake_video_assets_created": false,
+    "hidden_paid_generation_started": false,
+    "customer_pii_persisted": false
+  }
+}
