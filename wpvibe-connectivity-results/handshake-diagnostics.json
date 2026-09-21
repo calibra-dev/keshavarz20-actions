@@ -1,0 +1,237 @@
+{
+  "read_only": true,
+  "site": "https://keshavarz20.com",
+  "routes": {
+    "/wpvibe/v1/connection-check-challenge": {
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {}
+        }
+      ]
+    },
+    "/wpvibe/v1/authorize/preflight": {
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {}
+        }
+      ]
+    },
+    "/wpvibe/v1/authorize": {
+      "methods": [
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": {
+            "name": {
+              "required": true,
+              "type": "string",
+              "enum": null
+            },
+            "app_id": {
+              "required": false,
+              "type": "string",
+              "enum": null
+            }
+          }
+        }
+      ]
+    },
+    "/wpvibe/v1/connection-status": {
+      "methods": [
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": {}
+        }
+      ]
+    },
+    "/wpvibe/v1/site-info": {
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {}
+        }
+      ]
+    },
+    "/wpvibe/v1/health": {
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {}
+        }
+      ]
+    },
+    "/wpvibe/v1/ping": {
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {}
+        }
+      ]
+    },
+    "/wpvibe/v1/cli/status": {
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {}
+        }
+      ]
+    },
+    "/wpvibe/v1/audit-log": {
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {
+            "limit": {
+              "required": false,
+              "type": "integer",
+              "enum": null
+            },
+            "offset": {
+              "required": false,
+              "type": "integer",
+              "enum": null
+            }
+          }
+        }
+      ]
+    }
+  },
+  "probes": {
+    "health": {
+      "http": 200,
+      "content_type": "application/json; charset=UTF-8",
+      "keys": [
+        "features",
+        "plugin",
+        "plugin_version",
+        "wp_version"
+      ],
+      "code": null,
+      "message": "",
+      "safe_scalars": {
+        "plugin": "wpvibe",
+        "plugin_version": "1.17.4",
+        "wp_version": "7.1.1"
+      }
+    },
+    "ping": {
+      "http": 200,
+      "content_type": "application/json; charset=UTF-8",
+      "keys": [
+        "features",
+        "plugin",
+        "plugin_version",
+        "wp_version"
+      ],
+      "code": null,
+      "message": "",
+      "safe_scalars": {
+        "plugin": "wpvibe",
+        "plugin_version": "1.17.4",
+        "wp_version": "7.1.1"
+      }
+    },
+    "site_info": {
+      "http": 200,
+      "content_type": "application/json; charset=UTF-8",
+      "keys": [
+        "active_theme",
+        "connected_user",
+        "features",
+        "php_version",
+        "plugins",
+        "site_name",
+        "themes",
+        "wp_cli_available",
+        "wp_cli_version",
+        "wp_version",
+        "wpvibe_plugin_version"
+      ],
+      "code": null,
+      "message": "",
+      "safe_scalars": {
+        "site_name": "کشاورز بیست",
+        "wp_version": "7.1.1",
+        "php_version": "8.1.34",
+        "wpvibe_plugin_version": "1.17.4",
+        "wp_cli_available": true,
+        "wp_cli_version": null
+      }
+    },
+    "cli_status": {
+      "http": 200,
+      "content_type": "application/json; charset=UTF-8",
+      "keys": [
+        "available",
+        "method"
+      ],
+      "code": null,
+      "message": "",
+      "safe_scalars": {
+        "available": true,
+        "method": "native"
+      }
+    },
+    "audit_log": {
+      "http": 200,
+      "content_type": "application/json; charset=UTF-8",
+      "keys": [
+        "entries",
+        "total"
+      ],
+      "code": null,
+      "message": "",
+      "safe_scalars": {
+        "total": 604
+      },
+      "entries_count": 20
+    }
+  },
+  "rest_index_http": 200
+}
