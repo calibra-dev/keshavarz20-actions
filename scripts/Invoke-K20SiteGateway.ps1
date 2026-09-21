@@ -199,9 +199,9 @@ switch ($action) {
   }
   'media.read' {
     $id = Require-Id
-    $target = "$base/wp-json/wp/v2/media/$id?context=edit"
+    $target = "$base/wp-json/wp/v2/media/${id}?context=edit"
     $m = Invoke-K20 'GET' $target
-    $result = [ordered]@{ id=$m.id; slug=$m.slug; status=$m.status; source_url=$m.source_url; alt_text=$m.alt_text; title=$m.title.raw; modified_gmt=$m.modified_gmt }
+    $result = [ordered]@{ id=$m.id; slug=$m.slug; status=$m.status; source_url=$m.source_url; alt_text=$m.alt_text; title=$m.title.raw; modified_gmt=$m.modified_gmt; parent=$m.parent; mime_type=$m.mime_type; width=$m.media_details.width; height=$m.media_details.height; filesize=$m.media_details.filesize }
   }
   'media.update' {
     $id = Require-Id
@@ -219,7 +219,7 @@ switch ($action) {
     $items = New-Object System.Collections.Generic.List[object]
     foreach ($id in $ids) {
       try {
-        $m = Invoke-K20 'GET' "$base/wp-json/wp/v2/media/$id?context=edit&_fields=id,source_url,mime_type,media_details,parent"
+        $m = Invoke-K20 'GET' "$base/wp-json/wp/v2/media/${id}?context=edit&_fields=id,source_url,mime_type,media_details,parent"
       } catch {
         $items.Add([pscustomobject][ordered]@{ id=$id; media_read_ok=$false; error=$_.Exception.Message })
         continue
