@@ -32,8 +32,16 @@ Acceptance:
 - Phase20 fresh accessibility gate PASS.
 - Mobile performance targets improve materially and no commerce/session regression.
 - Supported-code provenance documented.
+Post-update verification (2026-09-21):
+- IranKala 10.10.0 is verified active in production; the previous vendor-update/403 blocker is closed.
+- Fresh A11y scores improved slightly (Home 0.77, PDP 0.78, guides 0.86-0.87), but the exact button-name/link-name failures remain.
+- Product/calculator still emit explicit LiteSpeed no-cache; product TTFB remains roughly 5.6-7.3s and calculator roughly 5.2-6.3s.
+- Homepage CLS improved materially, but LCP remains poor and the LCP image is still lazy-loaded without fetchpriority=high.
+- Calculator LCP remains roughly 9.4-9.8s; cart/checkout server response remains slow.
+- Relevant IranKala renderer PHP remains ionCube-protected after the update.
+
 Blocker/unlock:
-- Requires vendor-supported IranKala update/hook or an explicitly allow-listed code deployment path in keshavarz20-git-ops.
+- Continue only through supported cache/server/theme settings or vendor-supported hooks; protected IranKala edits and arbitrary runtime code injection remain disallowed.
 - PHP upgrade requires hosting/staging control.
 
 ### Wave 2 — Commerce path + measurement truth (P0)
@@ -145,5 +153,5 @@ Must verify performance/runtime; accessibility/agent usability; commerce path + 
 Do not re-run phases 8, 9, 10, 14, 16, 17, 18, or 19 unless a later mutation affects their governed resources or their evidence becomes stale.
 
 ## Immediate next action
-WAVE_1_SUPPORTED_RUNTIME_THEME_REMEDIATION
-Reason: it is the highest-leverage release blocker and unlocks Phase20 -> Phase21/22/23, while also addressing Phase3/Phase25 performance and accessibility blockers.
+WAVE_1_POST_VENDOR_UPDATE_RESIDUAL_REMEDIATION
+Reason: IranKala 10.10.0 is now active and the vendor-update blocker is closed, but fresh post-update evidence still shows singular no-cache, poor homepage/calculator LCP, slow cart/checkout TTFB and unresolved accessible-name defects.
