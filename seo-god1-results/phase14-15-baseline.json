@@ -1,0 +1,157 @@
+{
+  "program": "SEO God1",
+  "phases": [
+    14,
+    15
+  ],
+  "generated_at_utc": "2026-09-21T06:28:58.858754+00:00",
+  "privacy": {
+    "customer_pii_persisted": false,
+    "orders_read": false
+  },
+  "phase14": {
+    "title": "Torob / Emalls / Feeds / Distribution",
+    "active_plugin_endpoint_http": 200,
+    "relevant_active_plugins": [
+      {
+        "plugin": "keshavarz20-product-discovery-batch15/keshavarz20-product-discovery-batch15",
+        "name": "Keshavarz20 Product Discovery Batch 15",
+        "status": "active"
+      },
+      {
+        "plugin": "keshavarz20-product-discovery-batch20/keshavarz20-product-discovery-batch20",
+        "name": "Keshavarz20 Product Discovery Batch 20",
+        "status": "active"
+      }
+    ],
+    "relevant_rest_routes": [
+      "/elementor-one/v1/top-bar/feedback",
+      "/elementor/v1/feedback",
+      "/elementor/v1/feedback/submit",
+      "/mosmcp/v1/deactivation-feedback",
+      "/wc-admin/marketing/misc-recommendations",
+      "/wc-admin/marketing/recommendations",
+      "/wc-admin/marketing/recommended",
+      "/wc-admin/tax/recommendations/dismiss",
+      "/wc-analytics/products/(?P<id>[\\d]+)/related",
+      "/wc/v2/products/(?P<id>[\\d]+)/related",
+      "/wc/v3/products/(?P<id>[\\d]+)/related",
+      "/yoast/v1/semrush/related_keyphrases"
+    ],
+    "published_products": 652,
+    "core_feed_ready_products": 393,
+    "core_feed_ready_percent": 60.28,
+    "field_coverage": {
+      "sku": {
+        "count": 431,
+        "percent": 66.1
+      },
+      "absolute_url": {
+        "count": 652,
+        "percent": 100.0
+      },
+      "main_image": {
+        "count": 652,
+        "percent": 100.0
+      },
+      "price": {
+        "count": 562,
+        "percent": 86.2
+      },
+      "stock_status": {
+        "count": 652,
+        "percent": 100.0
+      },
+      "category": {
+        "count": 652,
+        "percent": 100.0
+      },
+      "brand": {
+        "count": 489,
+        "percent": 75.0
+      },
+      "description_ge_200_chars": {
+        "count": 652,
+        "percent": 100.0
+      },
+      "image_count_ge_1": {
+        "count": 652,
+        "percent": 100.0
+      }
+    },
+    "public_probes": {
+      "torob_api/v3/products": {
+        "http": 404,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 204910
+      },
+      "wp-json/torob/v1": {
+        "http": 404,
+        "content_type": "application/json; charset=UTF-8",
+        "bytes": 270
+      },
+      "wp-json/torob": {
+        "http": 404,
+        "content_type": "application/json; charset=UTF-8",
+        "bytes": 270
+      },
+      "torob/products": {
+        "http": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 158376
+      }
+    }
+  },
+  "phase15": {
+    "title": "Personalization / Recommendations / Intelligent Merchandising",
+    "products_with_wc_related_or_up_cross_sell": 652,
+    "products_with_wc_related_or_up_cross_sell_percent": 100.0,
+    "products_with_description_recommendation_signal": 350,
+    "products_with_description_recommendation_signal_percent": 53.68,
+    "coverage": {
+      "related_ids": {
+        "count": 652,
+        "percent": 100.0
+      },
+      "upsell_ids": {
+        "count": 0,
+        "percent": 0.0
+      },
+      "cross_sell_ids": {
+        "count": 0,
+        "percent": 0.0
+      },
+      "recommendation_block": {
+        "count": 350,
+        "percent": 53.68
+      }
+    },
+    "decision_tools": {
+      "drip-tape-length-fittings-calculator/": {
+        "http": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 358104
+      },
+      "one-hectare-drip-irrigation-basket/": {
+        "http": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 166781
+      },
+      "irrigation-product-comparator/": {
+        "http": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 165288
+      },
+      "request-proforma/": {
+        "http": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 163800
+      }
+    }
+  },
+  "sample_safe_counts_only": {
+    "products_with_brand_missing": 163,
+    "products_with_description_lt_200": 0,
+    "products_with_no_explicit_merch_signal": 0
+  }
+}
