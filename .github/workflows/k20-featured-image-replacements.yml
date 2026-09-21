@@ -51,6 +51,18 @@ jobs:
             $postId = [int]$item.post_id
             if ($allowed -notcontains $postId) { throw "Post id not allow-listed: $postId" }
             $path = [string]$item.path
+            if ($item.chunks -and $item.chunks.Count -gt 0) {
+              $tmpDir = Join-Path $env:RUNNER_TEMP 'k20-featured'
+              New-Item -ItemType Directory -Force -Path $tmpDir | Out-Null
+              $path = Join-Path $tmpDir ("$postId.webp")
+              $b64 = ''
+              foreach ($chunk in $item.chunks) {
+                $chunkPath = [string]$chunk
+                if (-not (Test-Path -LiteralPath $chunkPath)) { throw "Chunk not found: $chunkPath" }
+                $b64 += (Get-Content -Raw -LiteralPath $chunkPath).Trim()
+              }
+              [IO.File]::WriteAllBytes($path, [Convert]::FromBase64String($b64))
+            }
             if (-not (Test-Path -LiteralPath $path)) { throw "Image not found: $path" }
 
             $before = Get-Post $postId
