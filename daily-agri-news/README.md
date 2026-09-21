@@ -85,7 +85,7 @@ The scheduled task supplies:
 - required `جمع‌بندی`, `نظر کارشناسی کشاورز بیست` and `منابع`
 - open-license Wikimedia image selection and 1280×720 WebP treatment
 - Yoast metadata
-- post-write draft/type/ASCII-slug/image/SEO verification
+- post-write draft/type/ASCII-slug/image/SEO verification\n- validated ASCII target slug persisted in `_k20_news_target_slug` while the custom CPT remains draft; human review applies it at publication when WordPress has not yet materialized `post_name`
 - no credentials in queue or artifacts
 
 ## Automatic schedule
