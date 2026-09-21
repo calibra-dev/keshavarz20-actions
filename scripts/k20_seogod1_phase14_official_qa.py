@@ -3,12 +3,17 @@ import json, os, re
 from datetime import datetime, timezone
 from urllib.parse import urljoin
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 BASE=os.environ["WP_BASE_URL"].rstrip("/")+"/"
 AUTH=(os.environ["WP_USERNAME"], os.environ["WP_APP_PASSWORD"])
 S=requests.Session()
 S.auth=AUTH
 S.headers.update({"Accept":"application/json","User-Agent":"k20-seogod1-phase14-official-qa/1.0","Cache-Control":"no-cache"})
+retry=Retry(total=3, connect=3, read=3, backoff_factor=1.2, status_forcelist=[429,500,502,503,504], allowed_methods=frozenset(["GET"]))
+S.mount("https://",HTTPAdapter(max_retries=retry))
+S.mount("http://",HTTPAdapter(max_retries=retry))
 
 TOOLS=[
   {"key":"drip_tape_calculator","id":143698,"label":"Drip-tape calculator","kind":"interactive"},
@@ -38,7 +43,7 @@ def get_object(pid):
 
 def public_probe(link):
     try:
-        r=requests.get(link,timeout=60,headers={"User-Agent":"k20-seogod1-phase14-official-qa/1.0","Cache-Control":"no-cache"})
+        S0=requests.Session(); S0.mount("https://",HTTPAdapter(max_retries=retry)); r=S0.get(link,timeout=60,headers={"User-Agent":"k20-seogod1-phase14-official-qa/1.0","Cache-Control":"no-cache"})
         return {"http":r.status_code,"bytes":len(r.content),"content_type":r.headers.get("content-type")}
     except Exception as e:
         return {"http":0,"error":type(e).__name__}
