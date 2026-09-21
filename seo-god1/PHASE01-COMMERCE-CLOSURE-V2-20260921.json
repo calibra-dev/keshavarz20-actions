@@ -1,0 +1,57 @@
+{
+  "program": "SEO God1",
+  "phase": 1,
+  "generated_at_utc": "2026-09-21T19:55:00Z",
+  "title": "Purchase Path / Shipping / Checkout / Payment Reachability",
+  "status": "PASS_GUARDED_EXTERNAL_SETTLEMENT",
+  "verified": {
+    "nationwide_shipping_model": "countrywide_postpaid_carrier",
+    "shipping_title": "ارسال با باربری یا تیپاکس به سراسر کشور (هزینه حمل پس‌کرایه)",
+    "local_pickup_disabled": true,
+    "free_shipping_disabled": true,
+    "shipping_evidence": "shipping-results/20260921-countrywide-freight-tipax-v2.json",
+    "shipping_policy_page": {
+      "id": 145319,
+      "slug": "shipping",
+      "status": "publish"
+    },
+    "proforma_page": {
+      "id": 145286,
+      "slug": "request-proforma",
+      "status": "publish"
+    },
+    "checkout_destination": {
+      "country": "IR",
+      "province": "THR",
+      "city": "تهران"
+    },
+    "checkout_reached": true,
+    "payment_gateway": "WC_bitpayir2",
+    "payment_redirect_host": "bpm.shaparak.ir",
+    "payment_redirect_path": "/pgwchannel/payment.mellat",
+    "synthetic_order_id": 145322,
+    "synthetic_order_cleanup": true,
+    "synthetic_order_404_verified": true,
+    "real_payment_attempted": false,
+    "card_data_entered": false
+  },
+  "acceptance": {
+    "nationwide_nonlocal_checkout": true,
+    "shipping_method_visible": true,
+    "external_gateway_selectable": true,
+    "external_gateway_redirect_captured": true,
+    "no_real_charge": true,
+    "temporary_order_cleanup_verified": true
+  },
+  "remaining_external_gate": [
+    "Successful card/sandbox payment settlement was not executed.",
+    "Gateway callback and paid order status transition remain unverified without a real or sandbox payment path."
+  ],
+  "safety": {
+    "customer_pii_persisted": false,
+    "card_data_entered": false,
+    "payment_settings_changed": false,
+    "price_changed": false,
+    "coupon_changed": false
+  }
+}
