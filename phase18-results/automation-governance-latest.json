@@ -87,6 +87,10 @@
       "pass": true
     },
     {
+      "name": "news_publisher_e2e_cleanup",
+      "pass": true
+    },
+    {
       "name": "news_draft_only",
       "pass": true
     },
@@ -118,10 +122,11 @@
     "article_success_run_id": 35309190730,
     "news_read_probe_success_run_id": 35573897572,
     "news_cli_capability_success_run_id": 35574370226,
-    "news_writer_smoke_success_run_id": 35574590859,
+    "news_writer_smoke_success_run_id": 35575147724,
     "question_engine_success_run_id": 35566433455,
     "news_writer_path": "WP REST media + guarded WPVibe WP-native CLI for custom news CPT",
-    "legacy_xmlrpc_status": "retired_from_primary_news_publisher_after_live_403_on_2026-09-21"
+    "legacy_xmlrpc_status": "retired_from_primary_news_publisher_after_live_403_on_2026-09-21",
+    "news_publisher_e2e_success_run_id": 35575161509
   },
   "news_read_probe": {
     "ok": true,
@@ -164,6 +169,54 @@
     ],
     "news_type_exposed": false,
     "news_rest_base": null
+  },
+  "news_publisher_e2e": {
+    "ok": true,
+    "temporary_news_id": 145297,
+    "temporary_media_id": 145296,
+    "steps": [
+      {
+        "step": "validate_payload",
+        "ok": true
+      },
+      {
+        "step": "commons_search",
+        "ok": true
+      },
+      {
+        "step": "render_webp",
+        "ok": true
+      },
+      {
+        "step": "upload_media",
+        "ok": true,
+        "media_id": 145296
+      },
+      {
+        "step": "create_draft",
+        "ok": true,
+        "post_id": 145297
+      },
+      {
+        "step": "verify",
+        "ok": true,
+        "status": "draft",
+        "type": "news",
+        "target_slug": true,
+        "slug_state": "draft-empty-with-target-meta",
+        "featured_media": true
+      },
+      {
+        "step": "cleanup",
+        "ok": true,
+        "post_trash": true,
+        "media_trash": true
+      }
+    ],
+    "cleanup_verified": {
+      "post": true,
+      "media": true
+    }
   },
   "site_mutations_by_acceptance_workflow": 0,
   "commerce_mutations": 0,
