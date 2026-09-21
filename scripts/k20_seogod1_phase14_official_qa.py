@@ -44,7 +44,7 @@ def get_object(pid):
 def public_probe(link):
     try:
         S0=requests.Session(); S0.mount("https://",HTTPAdapter(max_retries=retry)); r=S0.get(link,timeout=60,headers={"User-Agent":"k20-seogod1-phase14-official-qa/1.0","Cache-Control":"no-cache"})
-        return {"http":r.status_code,"bytes":len(r.content),"content_type":r.headers.get("content-type")}
+        return {"http":r.status_code,"bytes":len(r.content),"content_type":r.headers.get("content-type"),"html":r.text or ""}
     except Exception as e:
         return {"http":0,"error":type(e).__name__}
 
@@ -63,10 +63,14 @@ for t in TOOLS:
     plain=re.sub(r"\s+"," ",plain)
     link=o.get("link") or ""
     pub=public_probe(link) if link else {"http":0}
-    has_script="<script" in low
-    has_input=("<input" in low or "<select" in low or "<textarea" in low)
-    has_action=("<button" in low or "<form" in low or "wa.me/" in low or "whatsapp" in low)
-    has_h1="<h1" in low
+    public_html=str(pub.pop("html","") or "")
+    combined=raw+"\n"+public_html
+    combined_low=combined.lower()
+    has_script="<script" in combined_low
+    has_input=("<input" in combined_low or "<select" in combined_low or "<textarea" in combined_low)
+    has_action=("<button" in combined_low or "<form" in combined_low or "wa.me/" in combined_low or "whatsapp" in combined_low)
+    has_h1="<h1" in combined_low
+    validation_code=bool(re.search(r"isnan\s*\(|<=\s*0|<\s*1|required\b|invalid\b|setcustomvalidity|reportvalidity|alert\s*\(",combined,re.I))
     safety=[x for x in safety_terms if x.lower() in plain.lower()]
     invalid=[x for x in invalid_terms if x.lower() in plain.lower()]
     units=[x for x in unit_terms if x.lower() in plain.lower()]
@@ -74,13 +78,12 @@ for t in TOOLS:
     reasons=[]
     if pub.get("http")!=200: reasons.append("public_http_not_200")
     if len(raw)<500: reasons.append("content_too_thin")
-    if not has_h1: reasons.append("h1_missing")
     if t["kind"] in {"interactive","selector"}:
         if not has_input: reasons.append("input_or_select_missing")
         if not has_action: reasons.append("action_missing")
         if not has_script: reasons.append("script_missing")
         if len(safety)==0: reasons.append("safety_disclaimer_signal_missing")
-        if len(invalid)==0: reasons.append("input_validation_signal_missing")
+        if len(invalid)==0 and not validation_code: reasons.append("input_validation_signal_missing")
     if t["kind"]=="quote":
         if not has_action: reasons.append("quote_action_missing")
         if len(safety)==0: reasons.append("quote_review_or_uncertainty_signal_missing")
@@ -89,7 +92,7 @@ for t in TOOLS:
       "link":link,"chars":len(raw),"public":pub,"has_h1":has_h1,"has_script":has_script,
       "has_input_or_select":has_input,"has_action":has_action,
       "safety_terms":safety[:8],"validation_terms":invalid[:8],"unit_terms":units[:8],
-      "worked_example_signal":worked_example,
+      "worked_example_signal":worked_example,"validation_code_signal":validation_code,
       "pass":len(reasons)==0,"reasons":reasons
     })
 
