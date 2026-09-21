@@ -32,7 +32,7 @@ long_body = (
 )
 
 article_payload = {
-    "title": "آزمون ساختاری موتور مقاله کشاورز بیست",
+    "content_type": "post",\n    "title": "آزمون ساختاری موتور مقاله کشاورز بیست",
     "slug": "seo-god-article-smoke",
     "excerpt": "این فقط payload ساختاری برای تست اعتبارسنج موتور مقاله است و وارد وردپرس نمی‌شود.",
     "content_html": long_body,
@@ -64,10 +64,10 @@ faq_payload["content_html"] = long_body + "<h2>این تست چه چیزی را 
 article.validate_payload_v2(faq_payload)
 
 bad_faq = dict(faq_payload)
-bad_faq["faq_items"] = bad_faq["faq_items"] * 3
+bad_faq["faq_items"] = bad_faq["faq_items"] * 6
 try:
     article.validate_payload_v2(bad_faq)
-    raise AssertionError("9 FAQ items must be rejected")
+    raise AssertionError("More than 15 FAQ items must be rejected")
 except article.base.QueuePublishError:
     pass
 
@@ -87,7 +87,7 @@ news_body = (
     + '<h2>منابع</h2><p><a href="https://example.org/news">منبع اول</a> <a href="https://example.edu/news">منبع دوم</a></p>'
 )
 news_payload = {
-    "title": "آزمون ساختاری موتور خبر کشاورز بیست",
+    "content_type": "news",\n    "title": "آزمون ساختاری موتور خبر کشاورز بیست",
     "slug": "seo-god-news-smoke",
     "excerpt": "payload تست خبر",
     "content_html": news_body,
