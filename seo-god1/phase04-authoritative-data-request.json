@@ -1,0 +1,66 @@
+{
+  "program": "seo-god1",
+  "phase": 4,
+  "type": "authoritative_data_request",
+  "priority": "P1",
+  "required_by_family": {
+    "valve": [
+      "nominal_size",
+      "connection_type",
+      "pressure_class",
+      "material",
+      "brand/manufacturer",
+      "model/mpn if real"
+    ],
+    "fitting": [
+      "nominal_size",
+      "connection_type",
+      "material",
+      "pressure_class",
+      "brand/manufacturer",
+      "model/mpn if real"
+    ],
+    "fertigation": [
+      "capacity",
+      "connection_size",
+      "pressure_requirement",
+      "material",
+      "brand/manufacturer"
+    ],
+    "layflat_rain": [
+      "nominal_size",
+      "length",
+      "connection_type",
+      "pressure_class",
+      "material",
+      "layers/thickness where documented"
+    ],
+    "drip_tape": [
+      "nominal_size",
+      "roll_length",
+      "emitter_spacing",
+      "filtration_requirement",
+      "thickness",
+      "flow/pressure where documented"
+    ]
+  },
+  "data_sources_allowed": [
+    "manufacturer catalog/spec sheet",
+    "supplier technical sheet",
+    "packaging/label photograph",
+    "existing authoritative Woo attribute already stored",
+    "verified factory/brand documentation"
+  ],
+  "rejected_sources": [
+    "title-only inference",
+    "AI guess",
+    "competitor copy without corroboration",
+    "fabricated GTIN/MPN",
+    "same-size product assumed compatible"
+  ],
+  "top30_gate": {
+    "target_quality_score": 85,
+    "required": "all promoted fields evidence-backed; visible HTML/schema/feed consistent; compatibility only verified edges"
+  },
+  "media_gate": "Priority product gallery should include multiple decision-useful real views; current Top30 is predominantly one image."
+}
