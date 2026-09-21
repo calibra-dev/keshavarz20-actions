@@ -27,12 +27,18 @@ groups=[
  {'key':'driptape','queries':['تیپ','نوار تیپ']},
  {'key':'pe','queries':['PE','پلی اتیلن','پلی‌اتیلن']}
 ]
+products=paged('wp-json/wc/v3/products',{'status':'publish'},cap=30)
 search=[]
 for g in groups:
   variants=[]
   union=set()
   for q in g['queries']:
-    rows=get('wp-json/wc/v3/products',{'status':'publish','search':q,'per_page':100})
+    nq=norm(q)
+    toks=[t for t in nq.split(' ') if t]
+    rows=[]
+    for x in products:
+      corpus=norm((x.get('name') or '')+' '+(x.get('sku') or '')+' '+' '.join((c.get('name') or '') for c in x.get('categories') or [])+' '+' '.join((a.get('name') or '')+' '+' '.join(str(v) for v in (a.get('options') or [])) for a in x.get('attributes') or []))
+      if all(t in corpus for t in toks): rows.append(x)
     ids=[int(x['id']) for x in rows]; union.update(ids)
     variants.append({'query':q,'count':len(rows),'top':[{'id':int(x['id']),'name':x.get('name')} for x in rows[:10]]})
   search.append({'group':g['key'],'variants':variants,'union_count':len(union)})
