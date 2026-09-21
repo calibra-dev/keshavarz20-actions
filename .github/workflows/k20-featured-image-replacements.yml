@@ -1,0 +1,94 @@
+name: K20 Replace Featured Images
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'media-replacements/manifest.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-featured-image-replacements
+  cancel-in-progress: false
+
+jobs:
+  replace:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Upload images and replace featured media
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $base = $env:WP_BASE_URL.TrimEnd('/')
+          $user = $env:WP_USERNAME
+          $pass = $env:WP_APP_PASSWORD
+          if ([string]::IsNullOrWhiteSpace($base) -or [string]::IsNullOrWhiteSpace($user) -or [string]::IsNullOrWhiteSpace($pass)) { throw 'Required WordPress secrets are missing.' }
+
+          $manifest = Get-Content -Raw -LiteralPath 'media-replacements/manifest.json' | ConvertFrom-Json -Depth 20
+          $allowed = @(145251,145235,145238,145259,145263,145237,145253,145281)
+
+          $basic = $user + ':' + $pass
+          $authValue = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($basic))
+          $headers = @{ Authorization = "Basic $authValue"; Accept = 'application/json' }
+
+          function Get-Post([int]$id) {
+            return Invoke-RestMethod -Method Get -Uri "$base/wp-json/wp/v2/posts/$id?context=edit" -Headers $headers -TimeoutSec 60
+          }
+
+          $results = @()
+          foreach ($item in $manifest.items) {
+            $postId = [int]$item.post_id
+            if ($allowed -notcontains $postId) { throw "Post id not allow-listed: $postId" }
+            $path = [string]$item.path
+            if (-not (Test-Path -LiteralPath $path)) { throw "Image not found: $path" }
+
+            $before = Get-Post $postId
+            $beforeTitle = [string]$before.title.raw
+            if ($beforeTitle -ne [string]$item.expected_title) { throw "Title mismatch for $postId" }
+
+            $filename = [IO.Path]::GetFileName($path)
+            $uploadRaw = & curl --fail --silent --show-error --user $basic -H "Content-Disposition: attachment; filename=$filename" -H "Content-Type: image/jpeg" --data-binary "@$path" "$base/wp-json/wp/v2/media"
+            if ($LASTEXITCODE -ne 0) { throw "Media upload failed for $postId" }
+            $media = $uploadRaw | ConvertFrom-Json -Depth 20
+            $mediaId = [int]$media.id
+            if ($mediaId -lt 1) { throw "Media id missing for $postId" }
+
+            $metaBody = @{ title=[string]$item.media_title; alt_text=[string]$item.alt_text; caption=''; description=[string]$item.description } | ConvertTo-Json -Depth 10
+            Invoke-RestMethod -Method Post -Uri "$base/wp-json/wp/v2/media/$mediaId" -Headers $headers -ContentType 'application/json; charset=utf-8' -Body $metaBody -TimeoutSec 60 | Out-Null
+
+            $postBody = @{ featured_media=$mediaId } | ConvertTo-Json
+            Invoke-RestMethod -Method Post -Uri "$base/wp-json/wp/v2/posts/$postId" -Headers $headers -ContentType 'application/json; charset=utf-8' -Body $postBody -TimeoutSec 60 | Out-Null
+
+            $after = Get-Post $postId
+            if ([int]$after.featured_media -ne $mediaId) { throw "Featured media readback failed for $postId" }
+
+            $mediaRead = Invoke-RestMethod -Method Get -Uri "$base/wp-json/wp/v2/media/$mediaId?context=edit" -Headers $headers -TimeoutSec 60
+            if ([string]$mediaRead.alt_text -ne [string]$item.alt_text) { throw "Alt text readback failed for media $mediaId" }
+
+            $results += [ordered]@{ post_id=$postId; title=[string]$after.title.raw; status=[string]$after.status; old_featured_media=[int]$before.featured_media; new_featured_media=$mediaId; source_url=[string]$mediaRead.source_url; alt_text=[string]$mediaRead.alt_text; verified=$true }
+          }
+
+          $record = [ordered]@{ ok=$true; executed_at_utc=[DateTime]::UtcNow.ToString('o'); count=$results.Count; items=$results }
+          $record | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath 'media-replacements/result.json' -Encoding utf8
+
+      - name: Commit verified result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add media-replacements/result.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "media: record verified featured image replacements"
+          git push
