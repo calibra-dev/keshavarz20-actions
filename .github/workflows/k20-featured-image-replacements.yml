@@ -37,6 +37,21 @@ jobs:
 
           $manifest = Get-Content -Raw -LiteralPath 'media-replacements/manifest.json' | ConvertFrom-Json -Depth 20
           $allowed = @(145251,145235,145238,145259,145263,145237,145253,145281)
+          $archiveDir = $null
+          if ($manifest.archive_chunks -and $manifest.archive_chunks.Count -gt 0) {
+            $archiveDir = Join-Path $env:RUNNER_TEMP 'k20-featured-archive'
+            New-Item -ItemType Directory -Force -Path $archiveDir | Out-Null
+            $archiveB64 = ''
+            foreach ($chunk in $manifest.archive_chunks) {
+              $chunkPath = [string]$chunk
+              if (-not (Test-Path -LiteralPath $chunkPath)) { throw "Archive chunk not found: $chunkPath" }
+              $archiveB64 += (Get-Content -Raw -LiteralPath $chunkPath).Trim()
+            }
+            $archivePath = Join-Path $env:RUNNER_TEMP 'k20-featured-images.tar.gz'
+            [IO.File]::WriteAllBytes($archivePath, [Convert]::FromBase64String($archiveB64))
+            tar -xzf $archivePath -C $archiveDir
+            if ($LASTEXITCODE -ne 0) { throw 'Could not extract featured image archive.' }
+          }
 
           $basic = $user + ':' + $pass
           $authValue = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($basic))
@@ -51,6 +66,9 @@ jobs:
             $postId = [int]$item.post_id
             if ($allowed -notcontains $postId) { throw "Post id not allow-listed: $postId" }
             $path = [string]$item.path
+            if ($archiveDir -and $item.file) {
+              $path = Join-Path $archiveDir ([string]$item.file)
+            }
             if ($item.chunks -and $item.chunks.Count -gt 0) {
               $tmpDir = Join-Path $env:RUNNER_TEMP 'k20-featured'
               New-Item -ItemType Directory -Force -Path $tmpDir | Out-Null
