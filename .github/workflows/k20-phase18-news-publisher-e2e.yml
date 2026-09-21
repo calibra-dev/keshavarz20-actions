@@ -1,0 +1,45 @@
+name: K20 Phase 18 News Publisher E2E
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'phase18-news-publisher-e2e-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-phase18-news-publisher-e2e
+  cancel-in-progress: false
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      K20_NEWS_CATEGORY_ID: '839'
+      K20_NEWS_CATEGORY_NAME: 'کشاورزی'
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: |
+          python -m pip install --upgrade pip
+          pip install -r daily-agri-news/requirements.txt
+      - run: python scripts/k20_phase18_news_publisher_e2e.py phase18-results/news-publisher-e2e-latest.json
+      - name: Persist sanitized E2E evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main
+          git add -f phase18-results/news-publisher-e2e-latest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase18: record news publisher E2E"
+          git push origin HEAD:main
