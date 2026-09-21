@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 POLICY = json.loads((ROOT / "automation-policy" / "seo-god-2026.json").read_text(encoding="utf-8"))
-assert POLICY["policy_version"] == "seo-god-2026.09.18"
+assert POLICY["policy_version"] == "seo-god-2026.09.19-routing-fix"
 assert POLICY["automation"]["news_status"] == "draft"
 assert POLICY["automation"]["article_status"] == "draft"
 assert POLICY["automation"]["question_status"] == "hold"
