@@ -244,14 +244,26 @@ try:
             for row in checkbox_info:
                 if row.get("id")=="So_rent_checkbox":
                     row["checked_for_test"]=True
-        # Re-assert business checkout phone after all dynamic checkout refreshes and fire events used by Digits/Woo.
-        phone=page.locator("#billing_phone")
-        if phone.count():
-            phone.fill("09179197005")
-            phone.evaluate("""el => { el.dispatchEvent(new Event('input',{bubbles:true})); el.dispatchEvent(new Event('change',{bubbles:true})); el.dispatchEvent(new Event('blur',{bubbles:true})); }""")
-            result["billing_phone_dom"]={"present":True,"length":len(phone.input_value()),"starts_with_09":phone.input_value().startswith("09")}
-        else:
-            result["billing_phone_dom"]={"present":False}
+        # Digits hides Woo's canonical phone input and exposes a visible mobile field.
+        phone_meta=[]
+        phone_candidates=page.locator("input[type='tel'], input[id*='phone' i], input[name*='phone' i], input[id*='mobile' i], input[name*='mobile' i]")
+        for i in range(phone_candidates.count()):
+            el=phone_candidates.nth(i)
+            try:
+                eid=el.get_attribute("id") or ""
+                name=el.get_attribute("name") or ""
+                typ=el.get_attribute("type") or ""
+                visible=el.is_visible()
+                phone_meta.append({"id":eid,"name":name,"type":typ,"visible":visible})
+                if visible and typ.lower()!="hidden":
+                    el.fill("09121234567",timeout=5000)
+                    el.dispatch_event("input")
+                    el.dispatch_event("change")
+                    el.dispatch_event("blur")
+            except Exception:
+                pass
+        result["billing_phone_dom"]={"candidates":phone_meta[:30]}
+
         result["required_checkbox_signals"]=checkbox_info[:40]
         page.wait_for_timeout(1800)
 
