@@ -17,7 +17,7 @@ Each automatic run must:
 3. verify material claims from direct sources;
 4. use at least two source URLs from at least two independent domains;
 5. prefer official/government/regulator/standards, university/extension/research, primary datasets, recognized agricultural bodies and reputable newswires/publications;
-6. use queue/public-web history for pre-selection dedupe; the publisher performs the final authenticated duplicate check against the real `news` CPT via XML-RPC because `/wp-json/wp/v2/news` is not exposed on this site;
+6. use queue/public-web history for pre-selection dedupe; the publisher performs the final authenticated duplicate check against the real `news` CPT through the guarded WPVibe WP-native CLI route because `/wp-json/wp/v2/news` is not exposed on this site;
 7. select at most one story using freshness, direct farmer impact, verifiability, seasonality/search interest and practical value;
 8. preserve uncertainty when evidence conflicts;
 9. reject rumor, source-less reposts, advertorials, sensationalism and low-value filler;
@@ -85,7 +85,7 @@ The scheduled task supplies:
 - required `جمع‌بندی`, `نظر کارشناسی کشاورز بیست` and `منابع`
 - open-license Wikimedia image selection and 1280×720 WebP treatment
 - Yoast metadata
-- post-write draft/type/image/SEO verification
+- post-write draft/type/ASCII-slug/image/SEO verification
 - no credentials in queue or artifacts
 
 ## Automatic schedule
@@ -104,6 +104,10 @@ Recommended diagnostic run:
 - `dry_run = true`
 
 The fallback requires `OPENAI_API_KEY`; the normal queue publisher does not.
+
+## WordPress execution path
+
+The publisher uses authenticated WordPress REST for media and the allow-listed `/wpvibe/v1/cli/run` route for the custom `news` CPT. XML-RPC is no longer required by the primary publisher path.
 
 ## Required WordPress secrets
 
