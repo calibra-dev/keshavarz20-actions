@@ -1,0 +1,92 @@
+name: K20 WPVibe Auth Audit Readonly
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'wpvibe-auth-audit-ops/*.json'
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
+      - name: Capture recent WPVibe auth-related audit entries safely
+        shell: python
+        run: |
+          import json, os, requests
+          from pathlib import Path
+
+          base=os.environ["WP_BASE_URL"].rstrip("/")
+          s=requests.Session()
+          s.auth=(os.environ["WP_USERNAME"],os.environ["WP_APP_PASSWORD"])
+          s.headers.update({
+              "Accept":"application/json",
+              "Cache-Control":"no-cache, no-store, max-age=0",
+              "Pragma":"no-cache",
+              "User-Agent":"k20-wpvibe-auth-audit-readonly/1.0",
+          })
+          out={"read_only":True,"site":base,"http":0,"entries":[]}
+          r=s.get(base+"/wp-json/wpvibe/v1/audit-log",params={"limit":80,"offset":0},timeout=60)
+          out["http"]=r.status_code
+          try:
+              body=r.json()
+          except Exception:
+              body={}
+          entries=body.get("entries",[]) if isinstance(body,dict) else []
+
+          def safe_value(k,v):
+              lk=str(k).lower()
+              if any(x in lk for x in ["password","token","secret","nonce","credential","authorization","api_key","key","cookie"]):
+                  return None
+              if isinstance(v,(str,int,float,bool)) or v is None:
+                  sv=str(v) if isinstance(v,str) else v
+                  if isinstance(sv,str) and len(sv)>300:
+                      sv=sv[:300]
+                  return sv
+              return None
+
+          for e in entries:
+              if not isinstance(e,dict):
+                  continue
+              blob=" ".join(str(e.get(k,"")) for k in e.keys()).lower()
+              if not any(term in blob for term in ["author", "connect", "wpvibe", "application", "credential"]):
+                  continue
+              safe={}
+              for k,v in e.items():
+                  vv=safe_value(k,v)
+                  if vv is not None:
+                      safe[k]=vv
+              out["entries"].append(safe)
+          out["matched_count"]=len(out["entries"])
+          out["total_reported"]=body.get("total") if isinstance(body,dict) else None
+
+          Path("wpvibe-connectivity-results").mkdir(exist_ok=True)
+          Path("wpvibe-connectivity-results/auth-audit.json").write_text(
+              json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"
+          )
+          print(json.dumps({"http":out["http"],"matched_count":out["matched_count"],"total_reported":out["total_reported"]}))
+      - name: Commit sanitized result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f wpvibe-connectivity-results/auth-audit.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "diag: record WPVibe auth audit"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt*2))
+          done
+          exit 1
