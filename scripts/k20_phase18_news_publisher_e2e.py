@@ -55,11 +55,14 @@ try:
         "ok":True,
         "status":verified.get("post_status"),
         "type":verified.get("post_type"),
-        "ascii_slug":verified.get("post_name")==p["slug"],
+        "target_slug":verified.get("target_slug")==p["slug"],
+        "slug_state":verified.get("slug_state"),
         "featured_media":verified.get("post_thumbnail")==media_id,
     })
-    if verified.get("post_name")!=p["slug"]:
-        raise RuntimeError("ASCII slug readback mismatch")
+    if verified.get("target_slug")!=p["slug"]:
+        raise RuntimeError("ASCII target slug readback mismatch")
+    if verified.get("post_name") not in ("", p["slug"]):
+        raise RuntimeError("Draft post_name conflicts with validated target slug")
     if verified.get("post_thumbnail")!=media_id:
         raise RuntimeError("Featured media readback mismatch")
 
