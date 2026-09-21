@@ -1,0 +1,68 @@
+name: K20 Phase 3 Live Image Context Diagnostic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/phase3-live-image-context/*.json'
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Inspect live HTML around one image reference
+        shell: python
+        run: |
+          import json,os,re,urllib.request,datetime,hashlib,subprocess
+          before='${{ github.event.before }}'; current='${{ github.sha }}'; zero='0'*40
+          if before and before!=zero:
+              cmd=['git','diff','--name-only',before,current,'--','diagnostics/phase3-live-image-context/*.json']
+          else:
+              cmd=['git','show','--pretty=','--name-only',current,'--','diagnostics/phase3-live-image-context/*.json']
+          changed=[x.strip() for x in subprocess.check_output(cmd,text=True).splitlines() if x.strip().endswith('.json')]
+          if len(changed)!=1: raise SystemExit(f'Expected one request, got {len(changed)}')
+          req=json.load(open(changed[0],encoding='utf-8'))
+          url=str(req.get('url') or '')
+          needle=str(req.get('needle') or '')
+          if not url.startswith('https://keshavarz20.com/') or not needle: raise SystemExit('safe URL and needle required')
+          q=urllib.request.Request(url,headers={'User-Agent':'K20-Phase3-LiveImageContext/1.0','Accept':'text/html'})
+          with urllib.request.urlopen(q,timeout=120) as r:
+              html=r.read().decode('utf-8','replace'); status=r.status
+          low=html.lower(); nl=needle.lower(); hits=[]; pos=0
+          while len(hits)<8:
+              i=low.find(nl,pos)
+              if i<0: break
+              tag_start=html.rfind('<img',0,i)
+              tag_end=html.find('>',i)
+              img_tag=html[tag_start:tag_end+1] if tag_start>=0 and tag_end>=i and (i-tag_start)<5000 else ''
+              s=max(0,i-1000); e=min(len(html),i+len(needle)+1400)
+              context=re.sub(r'\s+',' ',html[s:e]).strip()
+              hits.append({'offset':i,'img_tag':img_tag[:5000],'context':context[:3500]})
+              pos=i+len(needle)
+          out={
+            'mode':'read-only','generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            'url':url,'http_status':status,'html_length':len(html),'html_sha256':hashlib.sha256(html.encode()).hexdigest(),
+            'needle':needle,'hit_count':len(hits),'hits':hits,'site_mutations':0
+          }
+          os.makedirs('phase3-results',exist_ok=True)
+          name=os.path.splitext(os.path.basename(changed[0]))[0]
+          json.dump(out,open(f'phase3-results/live-image-context-{name}.json','w',encoding='utf-8'),ensure_ascii=False,indent=2)
+      - name: Persist sanitized diagnostic
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase3-results/live-image-context-*.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase3: record live image context diagnostic"
+          git pull --rebase origin main
+          git push origin HEAD:main
