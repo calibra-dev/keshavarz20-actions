@@ -383,7 +383,7 @@ def create_draft(server, p: dict[str, Any], media_id: int, image_source: dict[st
         _meta_update(post_id, "_k20_news_image_license", str(image_source.get("license") or ""))
         # Preserve the authored excerpt even though the safe CLI emulator does
         # not expose post_excerpt as a write field.
-        _meta_update(post_id, "_k20_news_excerpt", str(p["excerpt"]))
+        _meta_update(post_id, "_k20_news_excerpt", str(p["excerpt"]))\n        _meta_update(post_id, "_k20_news_target_slug", str(p["slug"]))
 
         wpvibe_cli(f"post term set {post_id} news_cat {NEWS_CAT_ID} --by=id")
         if tags:
@@ -407,8 +407,11 @@ def verify(server, post_id: int) -> dict[str, Any]:
     if row.get("post_status") != "draft" or row.get("post_type") != "news":
         raise QueuePublishError("Created item is not a news draft")
     post_name = str(row.get("post_name") or "")
-    if not re.fullmatch(r"[a-z0-9-]+", post_name):
-        raise QueuePublishError("Created news draft did not preserve an ASCII slug")
+    target_slug = str(wpvibe_cli(f"post meta get {post_id} _k20_news_target_slug").get("stdout") or "").strip()
+    if not re.fullmatch(r"[a-z0-9-]+", target_slug):
+        raise QueuePublishError("Created news draft has no valid ASCII target slug")
+    if post_name and post_name != target_slug:
+        raise QueuePublishError("Draft post_name differs from the validated target slug")
 
     thumbnail = str(wpvibe_cli(f"post meta get {post_id} _thumbnail_id").get("stdout") or "").strip()
     if not re.search(r"\d+", thumbnail):
@@ -423,6 +426,8 @@ def verify(server, post_id: int) -> dict[str, Any]:
         "post_id": int(row["ID"]),
         "post_title": row.get("post_title"),
         "post_name": post_name,
+        "target_slug": target_slug,
+        "slug_state": "set" if post_name == target_slug else "draft-empty-with-target-meta",
         "post_status": row.get("post_status"),
         "post_type": row.get("post_type"),
         "post_thumbnail": int(re.search(r"\d+", thumbnail).group(0)),
@@ -561,7 +566,7 @@ def main() -> None:
         "queue_file": str(queue_path),
         "source_urls": [str(x) for x in p.get("source_urls", [])],
         "source_names": [str(x) for x in p.get("source_names", [])],
-        "fields_written": ["title", "slug", "content", "featured_media", "news_cat", "news_tag", "yoast_title", "yoast_meta_description", "yoast_focus_keyphrase", "k20_excerpt_meta"],
+        "fields_written": ["title", "target_slug_meta", "content", "featured_media", "news_cat", "news_tag", "yoast_title", "yoast_meta_description", "yoast_focus_keyphrase", "k20_excerpt_meta"],
         "qa_score": 100,
         "qa_score_basis": "all deterministic required gates and post-write readback passed",
         "readback": {"status": verified.get("post_status"), "type": verified.get("post_type"), "featured_media": verified.get("post_thumbnail")},
