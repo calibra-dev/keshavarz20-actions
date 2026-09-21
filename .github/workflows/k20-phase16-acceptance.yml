@@ -20,10 +20,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Resolve manifest evidence commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha="$(git log -1 --format=%H -- phase16-results/internal-link-authority-manifest-latest.json)"
+          test -n "$sha"
+          echo "PHASE16_MANIFEST_COMMIT=$sha" >> "$GITHUB_ENV"
       - name: Validate official Phase 16 acceptance criteria
         run: python scripts/k20_phase16_acceptance.py phase16-results/acceptance-latest.json
       - name: Commit acceptance result
