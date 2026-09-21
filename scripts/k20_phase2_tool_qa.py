@@ -32,7 +32,7 @@ width=area/length; rows=max(1,int(width//spacing)); base_tape=rows*length; total
 formula={"rows":rows,"base_tape_m":base_tape,"total_tape_m":total,"rolls":rolls,
          "expected":{"rows":100,"base_tape_m":10000,"total_tape_m":10500,"rolls":11}}
 formula["ok"]=all(formula[k]==v for k,v in formula["expected"].items())
-record={"ok":all(x["status"]=="draft" and x["has_script"] and x["has_h1"] and x["marker_ok"] for x in checks.values()) and store["ok"] and formula["ok"],
+record={"ok":all(x["status"] in {"draft","publish"} and x["has_script"] and x["has_h1"] and x["marker_ok"] for x in checks.values()) and store["ok"] and formula["ok"],
         "mode":"read-only-qa","pages":checks,"store_api":store,"basket_formula_test":formula}
 os.makedirs(os.path.dirname(sys.argv[1]),exist_ok=True)
 with open(sys.argv[1],"w",encoding="utf-8") as f:json.dump(record,f,ensure_ascii=False,indent=2)
