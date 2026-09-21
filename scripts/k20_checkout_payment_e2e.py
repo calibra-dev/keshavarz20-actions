@@ -99,8 +99,14 @@ try:
     if not candidates:
         raise RuntimeError("No in-stock purchasable physical simple product found")
     candidates.sort(key=lambda x:x[0])
-    product=candidates[0][1]
-    result["product"]={"id":product.get("id"),"name":product.get("name"),"sku":product.get("sku"),"price_present":bool(product.get("price"))}
+    over_min=[x for x in candidates if x[0] >= 1000000]
+    if over_min:
+        price,product=over_min[0]
+        quantity=1
+    else:
+        price,product=candidates[-1]
+        quantity=max(1,int((1000000 + price - 1)//price))
+    result["product"]={"id":product.get("id"),"name":product.get("name"),"sku":product.get("sku"),"price_present":bool(product.get("price")),"unit_price":price,"quantity":quantity,"estimated_subtotal":price*quantity}
 
     chrome=shutil.which("google-chrome") or shutil.which("google-chrome-stable") or shutil.which("chromium") or shutil.which("chromium-browser")
     if not chrome:
@@ -128,7 +134,7 @@ try:
 
         context.route("**/*", route_handler)
 
-        add_url=f"{BASE}/?add-to-cart={product['id']}&quantity=1"
+        add_url=f"{BASE}/?add-to-cart={product['id']}&quantity={quantity}"
         page.goto(add_url,wait_until="domcontentloaded",timeout=90000)
         page.goto(f"{BASE}/checkout/",wait_until="domcontentloaded",timeout=90000)
         page.wait_for_timeout(4000)
@@ -141,13 +147,22 @@ try:
         fill_any(page,["#billing_address_1","input[name='billing_address_1']","input[name='billing-address_1']"],"آدرس تست سیستمی - سفارش واقعی نیست")
         fill_any(page,["#billing_city","input[name='billing_city']","input[name='billing-city']"],"تهران")
         fill_any(page,["#billing_postcode","input[name='billing_postcode']","input[name='billing-postcode']"],"1111111111")
-        fill_any(page,["#billing_phone","input[name='billing_phone']","input[name='billing-phone']"],"09120000000")
+        fill_any(page,["#billing_phone","input[name='billing_phone']","input[name='billing-phone']"],"09121234567")
         fill_any(page,["#billing_email","input[name='billing_email']","input[name='email']"],email)
 
-        # Country/state.
+        # Country/state/city. Some Iran checkout plugins re-render city/phone after state selection.
         country=select_text_any(page,["#billing_country","select[name='billing_country']","select[name='billing-country']"],"ایران")
         state=select_text_any(page,["#billing_state","select[name='billing_state']","select[name='billing-state']"],"تهران")
-        result["address_selection"]={"country":country,"state":state,"city":"تهران","synthetic":True}
+        page.wait_for_timeout(2500)
+        city_select=select_text_any(page,["#billing_city","select[name='billing_city']","select[name='billing-city']"],"تهران")
+        if not city_select:
+            fill_any(page,["#billing_city","input[name='billing_city']","input[name='billing-city']"],"تهران")
+        # Refill dynamic fields after state/city AJAX refresh.
+        fill_any(page,["#billing_address_1","input[name='billing_address_1']","input[name='billing-address_1']"],"آدرس تست سیستمی - سفارش واقعی نیست")
+        fill_any(page,["#billing_postcode","input[name='billing_postcode']","input[name='billing-postcode']"],"1111111111")
+        fill_any(page,["#billing_phone","input[name='billing_phone']","input[name='billing-phone']"],"09121234567")
+        fill_any(page,["#billing_email","input[name='billing_email']","input[name='email']"],email)
+        result["address_selection"]={"country":country,"state":state,"city_select":city_select,"city":"تهران","synthetic":True}
 
         # Trigger checkout updates.
         try: page.locator("body").click(position={"x":20,"y":20})
@@ -204,6 +219,27 @@ try:
         chosen.check(force=True)
         page.wait_for_timeout(1500)
         result["payment_gateway_selectable"]=True
+
+        # Accept only checkout-required terms, including the site's postpaid-shipping terms.
+        checkbox_info=[]
+        checks=page.locator("input[type='checkbox']")
+        for i in range(checks.count()):
+            cb=checks.nth(i)
+            try:
+                cid=cb.get_attribute("id") or ""
+                name=cb.get_attribute("name") or ""
+                label_text=""
+                if cid and page.locator(f"label[for='{cid}']").count():
+                    label_text=(page.locator(f"label[for='{cid}']").first.inner_text() or "").strip()
+                blob=(cid+" "+name+" "+label_text).lower()
+                should=("terms" in blob or "شرایط" in label_text or "قوانین" in label_text or "پس کرایه" in label_text)
+                checkbox_info.append({"id":cid,"name":name,"label":label_text[:180],"checked_for_test":should})
+                if should:
+                    cb.check(force=True)
+            except Exception:
+                pass
+        result["required_checkbox_signals"]=checkbox_info[:40]
+        page.wait_for_timeout(1200)
 
         place=None
         for sel in ["#place_order","button[name='woocommerce_checkout_place_order']",".wc-block-components-checkout-place-order-button"]:
