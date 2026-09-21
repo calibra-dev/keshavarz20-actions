@@ -1,0 +1,20 @@
+{
+  "program": "seo-god1",
+  "phase": 1,
+  "type": "store_api_route_evidence",
+  "generated_at_utc": "2026-09-21T04:36:55Z",
+  "run_id": 35561656853,
+  "matched_routes": 118,
+  "verified": [
+    "/wc/store/v1/cart GET",
+    "/wc/store/v1/cart/add-item POST",
+    "/wc/store/v1/cart/update-customer POST",
+    "/wc/store/v1/cart/select-shipping-rate POST",
+    "/wc/store/v1/checkout GET|POST|PUT|PATCH",
+    "/wc/store/v1/order/{id} GET",
+    "/wc/v3/shipping/zones and methods read/write routes exist",
+    "/wc/v3/payment_gateways read and individual gateway write routes exist"
+  ],
+  "interpretation": "WooCommerce exposes the primitives needed to build a guarded end-to-end test, but current K20 guarded gateway does not allow-list cart/checkout/order/payment-setting actions. Route existence is not authorization to mutate them.",
+  "security": "Do not expand the public/guarded gateway to payment credentials; test runner must redact sensitive settings and use sandbox/non-monetary flow."
+}
