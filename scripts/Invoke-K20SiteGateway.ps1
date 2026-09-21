@@ -173,7 +173,7 @@ switch ($action) {
     $type = if ($action.StartsWith('post.')) { 'posts' } else { 'pages' }
     $target = "$base/wp-json/wp/v2/$type/${id}?context=edit"
     $o = Invoke-K20 'GET' $target
-    $result = [ordered]@{ id=$o.id; slug=$o.slug; status=$o.status; link=$o.link; modified_gmt=$o.modified_gmt; title=$o.title.raw; comment_status=$o.comment_status; ping_status=$o.ping_status }
+    $result = [ordered]@{ id=$o.id; slug=$o.slug; status=$o.status; link=$o.link; modified_gmt=$o.modified_gmt; title=$o.title.raw; comment_status=$o.comment_status; ping_status=$o.ping_status; featured_media=$o.featured_media }
   }
   { $_ -in @('post.update','page.update') } {
     $id = Require-Id
@@ -201,7 +201,7 @@ switch ($action) {
     $id = Require-Id
     $target = "$base/wp-json/wp/v2/media/${id}?context=edit"
     $m = Invoke-K20 'GET' $target
-    $result = [ordered]@{ id=$m.id; slug=$m.slug; status=$m.status; source_url=$m.source_url; alt_text=$m.alt_text; title=$m.title.raw; modified_gmt=$m.modified_gmt; parent=$m.parent; mime_type=$m.mime_type; width=$m.media_details.width; height=$m.media_details.height; filesize=$m.media_details.filesize }
+    $result = [ordered]@{ id=$m.id; slug=$m.slug; status=$m.status; source_url=$m.source_url; alt_text=$m.alt_text; title=$m.title.raw; modified_gmt=$m.modified_gmt; parent=$m.parent; mime_type=$m.mime_type; width=$m.media_details.width; height=$m.media_details.height; filesize=$m.media_details.filesize; sizes=$m.media_details.sizes }
   }
   'media.update' {
     $id = Require-Id
