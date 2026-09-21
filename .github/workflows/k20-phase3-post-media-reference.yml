@@ -71,12 +71,27 @@ jobs:
                   matches.append({'pattern':pat,'raw_hits':rh,'rendered_hits':eh})
           meta=p.get('meta') or {}
           meta_keys=sorted(list(meta.keys())) if isinstance(meta,dict) else []
+          elementor_data=''
+          if isinstance(meta,dict):
+              value=meta.get('_elementor_data')
+              if isinstance(value,str): elementor_data=value
+              elif value is not None: elementor_data=json.dumps(value,ensure_ascii=False,separators=(',',':'))
+          meta_matches=[]
+          for pat in patterns:
+              mh=clip(elementor_data,pat) if elementor_data else []
+              if mh: meta_matches.append({'pattern':pat,'elementor_hits':mh})
           out={
             'mode':'read-only',
             'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
             'post':{'id':p.get('id'),'slug':p.get('slug'),'status':p.get('status'),'link':p.get('link'),'modified_gmt':p.get('modified_gmt'),'featured_media':p.get('featured_media')},
             'content':{'raw_length':len(raw),'rendered_length':len(rendered),'raw_sha256':hashlib.sha256(raw.encode()).hexdigest(),'rendered_sha256':hashlib.sha256(rendered.encode()).hexdigest()},
             'matches':matches,
+            'elementor_meta':{
+              'present':bool(elementor_data),
+              'length':len(elementor_data),
+              'sha256':hashlib.sha256(elementor_data.encode()).hexdigest() if elementor_data else '',
+              'matches':meta_matches
+            },
             'meta_keys':meta_keys,
             'site_mutations':0
           }
