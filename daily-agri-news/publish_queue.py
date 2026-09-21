@@ -383,7 +383,8 @@ def create_draft(server, p: dict[str, Any], media_id: int, image_source: dict[st
         _meta_update(post_id, "_k20_news_image_license", str(image_source.get("license") or ""))
         # Preserve the authored excerpt even though the safe CLI emulator does
         # not expose post_excerpt as a write field.
-        _meta_update(post_id, "_k20_news_excerpt", str(p["excerpt"]))\n        _meta_update(post_id, "_k20_news_target_slug", str(p["slug"]))
+        _meta_update(post_id, "_k20_news_excerpt", str(p["excerpt"]))
+        _meta_update(post_id, "_k20_news_target_slug", str(p["slug"]))
 
         wpvibe_cli(f"post term set {post_id} news_cat {NEWS_CAT_ID} --by=id")
         if tags:
