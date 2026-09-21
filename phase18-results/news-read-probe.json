@@ -2,6 +2,41 @@
   "ok": true,
   "read_only": true,
   "post_type": "news",
+  "probe_method": "wpvibe_cli_readonly",
   "sample_title_count": 5,
-  "writes_performed": 0
+  "writes_performed": 0,
+  "attempts": [
+    {
+      "name": "types",
+      "http": 200,
+      "content_type": "application/json; charset=UTF-8",
+      "json_list": false,
+      "json_count": null
+    },
+    {
+      "name": "search_subtype_news",
+      "http": 400,
+      "content_type": "application/json; charset=UTF-8",
+      "json_list": false,
+      "json_count": null
+    },
+    {
+      "name": "wpvibe_cli_read_news",
+      "http": 200,
+      "content_type": "application/json; charset=UTF-8",
+      "json_list": false,
+      "json_count": null,
+      "row_count": 5,
+      "response_keys": [
+        "command",
+        "execution_time_ms",
+        "exit_code",
+        "stderr",
+        "stdout",
+        "tier"
+      ]
+    }
+  ],
+  "news_type_exposed": false,
+  "news_rest_base": null
 }
