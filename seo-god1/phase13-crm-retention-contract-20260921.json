@@ -1,0 +1,177 @@
+{
+  "program": "SEO God1",
+  "phase": 13,
+  "generated_date": "2026-09-21",
+  "title": "CRM, Abandonment, WhatsApp, Telegram & Retention operating contract",
+  "privacy_guard": {
+    "persist_customer_pii_in_repo": false,
+    "persist_order_ids_in_repo": false,
+    "persist_customer_messages_in_repo": false,
+    "analytics_pii": false
+  },
+  "verified_baseline": {
+    "crm_backend": false,
+    "form_backend": false,
+    "privacy_consent_signal": true,
+    "lead_entrypoints": {
+      "calculator": {
+        "whatsapp": true,
+        "utm_public_signal": true,
+        "source_code": "calculator"
+      },
+      "basket": {
+        "whatsapp": true,
+        "utm_public_signal": true,
+        "source_code": "basket"
+      },
+      "comparator": {
+        "whatsapp": true,
+        "utm_public_signal": true,
+        "source_code": "comparator"
+      },
+      "proforma": {
+        "whatsapp": true,
+        "source_code": "proforma"
+      }
+    },
+    "completed_orders_available_for_consent_aware_future_flow": 180,
+    "note": "Count only; no customer identity persisted."
+  },
+  "canonical_events": {
+    "whatsapp_click": {
+      "required": true,
+      "pii": false,
+      "fields": [
+        "page_path",
+        "placement",
+        "lead_source"
+      ]
+    },
+    "request_quote": {
+      "required": true,
+      "fire_when": "successful quote submission only",
+      "pii": false
+    },
+    "shipping_quote": {
+      "required": true,
+      "fire_when": "successful shipping quote request only",
+      "pii": false
+    },
+    "purchase": {
+      "required": true,
+      "fire_when": "verified order confirmation",
+      "dedupe": "transaction_id"
+    },
+    "review_request": {
+      "required": true,
+      "fire_when": "consented post-delivery request dispatched"
+    },
+    "unsubscribe": {
+      "required": true,
+      "fire_when": "no-contact request recorded"
+    }
+  },
+  "lead_source_codes": [
+    "calculator",
+    "basket",
+    "comparator",
+    "proforma",
+    "pdp",
+    "category",
+    "telegram",
+    "whatsapp_channel",
+    "email",
+    "direct"
+  ],
+  "messaging_rules": {
+    "consent_required": true,
+    "discount_first_message": false,
+    "max_automated_followups_without_new_customer_reply": 1,
+    "stop_on_unsubscribe_or_no_contact": true,
+    "preserve_context": [
+      "product_or_sku",
+      "url",
+      "variant_if_known",
+      "quantity_if_known",
+      "city_if_provided",
+      "request_type"
+    ],
+    "do_not_send_if": [
+      "consent_unknown",
+      "customer_requested_no_contact",
+      "channel_not_authorized"
+    ]
+  },
+  "triggers": {
+    "cart_abandonment": {
+      "status": "blocked_no_consent_aware_cart_crm_backend"
+    },
+    "quote_followup": {
+      "status": "manual_context_preserved_in_whatsapp"
+    },
+    "calculator_followup": {
+      "status": "manual_context_preserved_in_whatsapp"
+    },
+    "back_in_stock": {
+      "status": "blocked_no_subscription_backend"
+    },
+    "post_purchase": {
+      "status": "blocked_no_consent_aware_messaging_backend"
+    }
+  },
+  "post_purchase_sequence": [
+    "order/service update",
+    "installation_or_use_guide_when_relevant",
+    "neutral_review_request_after_delivery_with_consent",
+    "reorder_reminder_only_for_genuinely_consumable_items_and_only_with_consent"
+  ],
+  "segmentation": {
+    "allowed": [
+      "new",
+      "returning",
+      "irrigation",
+      "inputs",
+      "B2B",
+      "retail",
+      "province_if_legitimately_collected",
+      "crop_if_legitimately_collected"
+    ],
+    "prohibited": [
+      "inferred_sensitive_data",
+      "fabricated_crop_or_location",
+      "unconsented_contact_lists"
+    ]
+  },
+  "lost_quote_reasons": [
+    "price",
+    "freight",
+    "stock",
+    "trust",
+    "timing",
+    "compatibility",
+    "payment",
+    "customer_no_longer_needs",
+    "unknown"
+  ],
+  "channel_contract": {
+    "whatsapp": "Contextual CTA; source code must remain identifiable; no unsolicited bulk messaging.",
+    "telegram": "Every campaign link uses stable UTM source/medium/campaign/content and lands on a relevant site page.",
+    "campaign_structure": [
+      "Problem",
+      "Proof",
+      "Product",
+      "CTA"
+    ]
+  },
+  "known_blockers": [
+    "No CRM/Form backend route is exposed on the current WordPress REST surface.",
+    "No WhatsApp/Telegram ChatGPT connector is currently available/connected.",
+    "Phase 2 tagging path is not allow-listed, so request_quote/purchase/whatsapp_click canonical instrumentation cannot yet be deployed through the guarded gateway.",
+    "Abandoned-cart and post-purchase automation must not be activated until consent/no-contact state can be stored and enforced."
+  ],
+  "unlocks": [
+    "Connect an approved CRM with consent and no-contact fields, or expose an equivalent guarded on-site CRM endpoint.",
+    "Expose an allow-listed analytics/tagging configuration path for canonical lead events.",
+    "Connect a legal/consented WhatsApp or Telegram messaging provider if automated sends are required."
+  ]
+}
