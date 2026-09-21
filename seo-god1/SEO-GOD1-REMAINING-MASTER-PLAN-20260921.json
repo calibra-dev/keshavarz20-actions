@@ -1,18 +1,23 @@
 {
   "program": "SEO God1 Remaining",
-  "generated_at_utc": "2026-09-21T10:43:00Z",
+  "generated_at_utc": "2026-09-21T21:53:00Z",
   "repository": "calibra-dev/keshavarz20-actions",
   "scope": "phases 1-25",
   "policy": "GitHub-first, evidence-first, no-repeat, no fabricated PASS",
   "closed_no_repeat": [
+    1,
+    2,
+    5,
     8,
     9,
     10,
+    11,
     14,
     16,
     17,
     18,
-    19
+    19,
+    21
   ],
   "waves": [
     {
@@ -24,25 +29,22 @@
         20
       ],
       "unlocks": [
-        21,
         22,
         23,
         25
       ],
-      "state": "VENDOR_UPDATE_COMPLETE_RESIDUALS_REMAIN_SUPPORTED_PATH_REQUIRED",
-      "post_update_evidence": "seo-god1/WAVE01-POST-IRANKALA-10.10-VERIFY-20260921.json",
-      "closed_now": [
-        "IranKala 10.10.0 vendor update/version blocker"
+      "state": "PARTIAL_POLICY_GUARD",
+      "current_evidence": "seo-god1/WAVE01-CURRENT-STATE-20260922.json",
+      "completed": [
+        "IranKala 10.10.0 active",
+        "Calculator singular no-cache resolved with guarded post comment_status change",
+        "Calculator featured image payload materially reduced"
       ],
       "residuals": [
-        "product/calculator explicit no-cache",
-        "homepage LCP image still lazy and lacks fetchpriority=high",
-        "calculator LCP ~9.4-9.8s",
-        "cart/checkout slow server response while session-safe/no-cache",
-        "Owl carousel accessible-name failures",
-        "theme logo/image-only link accessible-name failures",
-        "PDP CLS remains variable",
-        "PHP 8.1 runtime upgrade pending hosting/staging compatibility path"
+        "Product singular no-cache remains while reviews stay enabled",
+        "Homepage and calculator verified LCP images remain lazy-loaded",
+        "Owl carousel/login/image-link accessible-name defects remain in IranKala renderer",
+        "PHP 8.1.34 runtime upgrade still needs hosting/staging compatibility path"
       ]
     },
     {
@@ -53,7 +55,15 @@
         1,
         2
       ],
-      "state": "BLOCKED_NEEDS_SHIPPING_RULES_TAGGING_AND_PAYMENT_POLICY"
+      "state": "PASS_GUARDED",
+      "evidence": [
+        "seo-god1/PHASE01-COMMERCE-CLOSURE-V2-20260921.json",
+        "seo-god1/PHASE02-MEASUREMENT-CLOSURE-V2-20260921.json"
+      ],
+      "residual_guards": [
+        "Successful settlement/callback untested",
+        "Canonical event instrumentation mutation remains policy-gated"
+      ]
     },
     {
       "wave": 3,
@@ -76,7 +86,15 @@
         12,
         13
       ],
-      "state": "BLOCKED_NEEDS_BACKEND_AND_MESSAGING"
+      "state": "PARTIAL_EXTERNAL_BACKEND",
+      "completed": [
+        "Phase11 nationwide shipping verified"
+      ],
+      "residuals": [
+        "Structured quote backend",
+        "Consent-aware review outreach",
+        "CRM/form/messaging backend"
+      ]
     },
     {
       "wave": 5,
@@ -85,7 +103,7 @@
       "phases": [
         15
       ],
-      "state": "BLOCKED_RENDER_CAPACITY"
+      "state": "PARTIAL_EXTERNAL_RENDER_CAPACITY"
     },
     {
       "wave": 6,
@@ -97,7 +115,14 @@
         23,
         24
       ],
-      "state": "BLOCKED_PHASE20_AND_EXTERNAL_OBSERVATIONS"
+      "state": "PARTIAL_POLICY_AND_EXTERNAL",
+      "completed": [
+        "Phase21 PASS_GUARDED"
+      ],
+      "residuals": [
+        "Phase22/23 depend on Phase20 supported remediation",
+        "Phase24 direct answer-surface observations remain external"
+      ]
     },
     {
       "wave": 7,
@@ -106,7 +131,7 @@
       "phases": [
         16
       ],
-      "state": "POST_PASS_CONTROLLED_BACKLOG",
+      "state": "PASS_WITH_CONTROLLED_BACKLOG",
       "items": 308
     },
     {
@@ -116,21 +141,21 @@
       "phases": [
         25
       ],
-      "state": "WAITING_UPSTREAM"
+      "state": "NOT_RELEASED_10_OF_10"
     }
   ],
   "current_release_blockers": [
-    "Post-IranKala-10.10 residual performance/accessibility remediation through supported cache/server/theme settings or vendor-supported hooks; protected IranKala code and arbitrary runtime injection remain disallowed.",
-    "Nationwide shipping rules + guarded checkout test path; payment fallback only after explicit payment-policy authorization.",
-    "Allow-listed tagging/configuration path for canonical commerce/lead events.",
-    "Authoritative manufacturer/supplier product specs, identifiers and real product media.",
-    "Quote/CRM/form/messaging backend with consent enforcement.",
-    "20 real rendered public videos and complete video sitemap metadata.",
-    "Direct AI answer-surface observations and settled post-change GSC evidence for calculator outcome."
+    "Narrow supported configuration/renderer path for remaining Phase3/20 LCP and accessible-name defects; protected IranKala code and arbitrary runtime injection remain disallowed.",
+    "Authoritative manufacturer/supplier product identifiers, specifications, compatibility evidence and real media for Phase4/6.",
+    "Allow-listed canonical analytics event configuration path for remaining Phase2/13/24 instrumentation.",
+    "Consent-aware CRM/form/review/messaging backend for Phase12/13.",
+    "20 real public rendered videos with stable metadata for Phase15.",
+    "Direct AI answer-surface citation observations and settled post-change Google data for Phase24.",
+    "Successful payment settlement/callback/order-status transition remains externally untested."
   ],
   "immediate_next_action": {
-    "key": "WAVE_1_POST_VENDOR_UPDATE_RESIDUAL_REMEDIATION",
-    "reason": "IranKala 10.10.0 is active, closing the vendor-update blocker, but fresh post-update tests still show singular no-cache, poor homepage/calculator LCP, slow cart/checkout TTFB and unresolved accessible-name defects."
+    "key": "WAVE_1_NARROW_SUPPORTED_CONFIG_UNLOCK",
+    "reason": "Direct WPVibe read access is restored and exact LiteSpeed media settings are now known. Calculator cache is already fixed, so the remaining high-leverage internal change is a narrow reversible lazy-load exclusion for the two verified LCP image variants plus renderer accessibility remediation. Current site-access policy blocks admin/theme setting mutation, so do not repeat audits until that narrow scope is explicitly allow-listed."
   },
   "no_repeat_rule": "Do not repeat closed phases unless later changes affect governed resources or evidence becomes stale."
 }
