@@ -1,0 +1,928 @@
+{
+  "ok": true,
+  "mode": "read-only",
+  "terms": [
+    "wc/store",
+    "checkout",
+    "cart",
+    "shipping",
+    "payment"
+  ],
+  "matched": 118,
+  "routes": [
+    {
+      "route": "/wc-admin/launch-your-store/woopayments/test-orders",
+      "methods": [
+        "DELETE"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/launch-your-store/woopayments/test-orders/count",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/payment-gateway-suggestions",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/payment-gateway-suggestions/dismiss",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/country",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/providers",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/providers/order",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/suggestion/(?P<id>[\\w\\d\\-]+)/attach",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/suggestion/(?P<id>[\\w\\d\\-]+)/hide",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/suggestion/(?P<suggestion_id>[\\w\\d\\-]+)/incentive/(?P<incentive_id>[\\w\\d\\-]+)/dismiss",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/preload",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/reset",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/(?P<step>[a-zA-Z0-9_-]+)/check",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/(?P<step>[a-zA-Z0-9_-]+)/clean",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/(?P<step>[a-zA-Z0-9_-]+)/finish",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/(?P<step>[a-zA-Z0-9_-]+)/save",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/(?P<step>[a-zA-Z0-9_-]+)/start",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/business_verification/kyc_session",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/business_verification/kyc_session/finish",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/business_verification/test_account/disable",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/test_account/init",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/test_account/reset",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/test_account/disable",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/woopay-eligibility",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc-admin/shipping-partner-suggestions",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc-admin"
+    },
+    {
+      "route": "/wc/store",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/batch",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/cart",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/cart/add-item",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/cart/apply-coupon",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/cart/coupons",
+      "methods": [
+        "DELETE",
+        "GET",
+        "POST"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/cart/coupons/(?P<code>[\\w-]+)",
+      "methods": [
+        "DELETE",
+        "GET"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/cart/extensions",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/cart/items",
+      "methods": [
+        "DELETE",
+        "GET",
+        "POST"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/cart/items/(?P<key>[\\w-]{32})",
+      "methods": [
+        "DELETE",
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/cart/remove-coupon",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/cart/remove-item",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/cart/select-shipping-rate",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/cart/update-customer",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/cart/update-item",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/checkout",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/checkout/(?P<id>[\\d]+)",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/order/(?P<id>[\\d]+)",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/products",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/products/(?P<id>[\\d]+)",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/products/(?P<slug>[\\S]+)",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/products/attributes",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/products/attributes/(?P<attribute_id>[\\d]+)/terms",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/products/attributes/(?P<id>[\\d]+)",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/products/brands",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/products/brands/(?P<identifier>[\\w-]+)",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/products/categories",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/products/categories/(?P<id>[\\d]+)",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/products/collection-data",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/products/reviews",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/products/tags",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store"
+    },
+    {
+      "route": "/wc/store/v1",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/batch",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/cart",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/cart/add-item",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/cart/apply-coupon",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/cart/coupons",
+      "methods": [
+        "DELETE",
+        "GET",
+        "POST"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/cart/coupons/(?P<code>[\\w-]+)",
+      "methods": [
+        "DELETE",
+        "GET"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/cart/extensions",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/cart/items",
+      "methods": [
+        "DELETE",
+        "GET",
+        "POST"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/cart/items/(?P<key>[\\w-]{32})",
+      "methods": [
+        "DELETE",
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/cart/remove-coupon",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/cart/remove-item",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/cart/select-shipping-rate",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/cart/update-customer",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/cart/update-item",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/checkout",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/checkout/(?P<id>[\\d]+)",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/order/(?P<id>[\\d]+)",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/products",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/products/(?P<id>[\\d]+)",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/products/(?P<slug>[\\S]+)",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/products/attributes",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/products/attributes/(?P<attribute_id>[\\d]+)/terms",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/products/attributes/(?P<id>[\\d]+)",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/products/brands",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/products/brands/(?P<identifier>[\\w-]+)",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/products/categories",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/products/categories/(?P<id>[\\d]+)",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/products/collection-data",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/products/reviews",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/store/v1/products/tags",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/store/v1"
+    },
+    {
+      "route": "/wc/v1/products/shipping_classes",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "namespace": "wc/v1"
+    },
+    {
+      "route": "/wc/v1/products/shipping_classes/(?P<id>[\\d]+)",
+      "methods": [
+        "DELETE",
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc/v1"
+    },
+    {
+      "route": "/wc/v1/products/shipping_classes/batch",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc/v1"
+    },
+    {
+      "route": "/wc/v2/payment_gateways",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/v2"
+    },
+    {
+      "route": "/wc/v2/payment_gateways/(?P<id>[\\w-]+)",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc/v2"
+    },
+    {
+      "route": "/wc/v2/products/shipping_classes",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "namespace": "wc/v2"
+    },
+    {
+      "route": "/wc/v2/products/shipping_classes/(?P<id>[\\d]+)",
+      "methods": [
+        "DELETE",
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc/v2"
+    },
+    {
+      "route": "/wc/v2/products/shipping_classes/batch",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc/v2"
+    },
+    {
+      "route": "/wc/v2/shipping_methods",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/v2"
+    },
+    {
+      "route": "/wc/v2/shipping_methods/(?P<id>[\\w-]+)",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/v2"
+    },
+    {
+      "route": "/wc/v2/shipping/zones",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "namespace": "wc/v2"
+    },
+    {
+      "route": "/wc/v2/shipping/zones/(?P<id>[\\d]+)",
+      "methods": [
+        "DELETE",
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc/v2"
+    },
+    {
+      "route": "/wc/v2/shipping/zones/(?P<id>[\\d]+)/locations",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc/v2"
+    },
+    {
+      "route": "/wc/v2/shipping/zones/(?P<zone_id>[\\d]+)/methods",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "namespace": "wc/v2"
+    },
+    {
+      "route": "/wc/v2/shipping/zones/(?P<zone_id>[\\d]+)/methods/(?P<instance_id>[\\d]+)",
+      "methods": [
+        "DELETE",
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc/v2"
+    },
+    {
+      "route": "/wc/v3/payment_gateways",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/v3"
+    },
+    {
+      "route": "/wc/v3/payment_gateways/(?P<id>[\\w-]+)",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc/v3"
+    },
+    {
+      "route": "/wc/v3/paypal-buttons/cancel-payment",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/v3"
+    },
+    {
+      "route": "/wc/v3/paypal-standard/update-shipping",
+      "methods": [
+        "POST"
+      ],
+      "namespace": "wc/v3"
+    },
+    {
+      "route": "/wc/v3/products/shipping_classes",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "namespace": "wc/v3"
+    },
+    {
+      "route": "/wc/v3/products/shipping_classes/(?P<id>[\\d]+)",
+      "methods": [
+        "DELETE",
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc/v3"
+    },
+    {
+      "route": "/wc/v3/products/shipping_classes/batch",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc/v3"
+    },
+    {
+      "route": "/wc/v3/products/shipping_classes/slug-suggestion",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/v3"
+    },
+    {
+      "route": "/wc/v3/shipping_methods",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/v3"
+    },
+    {
+      "route": "/wc/v3/shipping_methods/(?P<id>[\\w-]+)",
+      "methods": [
+        "GET"
+      ],
+      "namespace": "wc/v3"
+    },
+    {
+      "route": "/wc/v3/shipping/zones",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "namespace": "wc/v3"
+    },
+    {
+      "route": "/wc/v3/shipping/zones/(?P<id>[\\d]+)",
+      "methods": [
+        "DELETE",
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc/v3"
+    },
+    {
+      "route": "/wc/v3/shipping/zones/(?P<id>[\\d]+)/locations",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc/v3"
+    },
+    {
+      "route": "/wc/v3/shipping/zones/(?P<zone_id>[\\d]+)/methods",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "namespace": "wc/v3"
+    },
+    {
+      "route": "/wc/v3/shipping/zones/(?P<zone_id>[\\d]+)/methods/(?P<instance_id>[\\d]+)",
+      "methods": [
+        "DELETE",
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "namespace": "wc/v3"
+    }
+  ],
+  "executed_at_utc": "2026-09-21T04:36:55.0807927Z"
+}
