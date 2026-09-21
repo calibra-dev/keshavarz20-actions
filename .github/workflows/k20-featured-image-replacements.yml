@@ -58,7 +58,7 @@ jobs:
             if ($beforeTitle -ne [string]$item.expected_title) { throw "Title mismatch for $postId" }
 
             $filename = [IO.Path]::GetFileName($path)
-            $uploadRaw = & curl --fail --silent --show-error --user $basic -H "Content-Disposition: attachment; filename=$filename" -H "Content-Type: image/jpeg" --data-binary "@$path" "$base/wp-json/wp/v2/media"
+            $uploadRaw = & curl --fail --silent --show-error --user $basic -H "Content-Disposition: attachment; filename=$filename" -H "Content-Type: image/webp" --data-binary "@$path" "$base/wp-json/wp/v2/media"
             if ($LASTEXITCODE -ne 0) { throw "Media upload failed for $postId" }
             $media = $uploadRaw | ConvertFrom-Json -Depth 20
             $mediaId = [int]$media.id
