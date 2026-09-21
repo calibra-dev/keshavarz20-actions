@@ -171,9 +171,9 @@ switch ($action) {
   { $_ -in @('post.read','page.read') } {
     $id = Require-Id
     $type = if ($action.StartsWith('post.')) { 'posts' } else { 'pages' }
-    $target = "$base/wp-json/wp/v2/$type/$id?context=edit"
+    $target = "$base/wp-json/wp/v2/$type/${id}?context=edit"
     $o = Invoke-K20 'GET' $target
-    $result = [ordered]@{ id=$o.id; slug=$o.slug; status=$o.status; link=$o.link; modified_gmt=$o.modified_gmt; title=$o.title.raw }
+    $result = [ordered]@{ id=$o.id; slug=$o.slug; status=$o.status; link=$o.link; modified_gmt=$o.modified_gmt; title=$o.title.raw; comment_status=$o.comment_status; ping_status=$o.ping_status }
   }
   { $_ -in @('post.update','page.update') } {
     $id = Require-Id
