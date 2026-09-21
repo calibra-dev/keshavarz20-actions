@@ -61,7 +61,7 @@ def main(outpath):
       "title":"Internal Link Authority Graph — Acceptance Gate",
       "generated_at_utc":datetime.datetime.now(datetime.timezone.utc).isoformat(),
       "status":"PASS" if passed else "FAIL",
-      "manifest_commit_evidence":"a29642b15f9a40d75d0ccba5d42860cf0272adae",
+      "manifest_commit_evidence":os.environ.get("PHASE16_MANIFEST_COMMIT") or None,
       "manifest_generated_at_utc":m.get("generated_at_utc"),
       "manifest_diagnostic_status":m.get("status"),
       "diagnostic_coverage_ratio":m.get("coverage_ratio"),
