@@ -2,27 +2,17 @@
   "mode": "read-only",
   "options": [
     {
-      "key": "media-lazy",
+      "key": "cache-rest",
       "ok": false,
       "error": "Response status code does not indicate success: 403 (Forbidden)."
     },
     {
-      "key": "media-vpi",
+      "key": "cache-exc",
       "ok": false,
       "error": "Response status code does not indicate success: 403 (Forbidden)."
     },
     {
-      "key": "media-vpi_cron",
-      "ok": false,
-      "error": "Response status code does not indicate success: 403 (Forbidden)."
-    },
-    {
-      "key": "media-lazy_exc",
-      "ok": false,
-      "error": "Response status code does not indicate success: 403 (Forbidden)."
-    },
-    {
-      "key": "media-lazy_uri_exc",
+      "key": "cache-force-uri",
       "ok": false,
       "error": "Response status code does not indicate success: 403 (Forbidden)."
     }
