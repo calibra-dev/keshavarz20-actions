@@ -1,0 +1,76 @@
+{
+  "program": "SEO God1 Remaining Gate",
+  "generated_at_utc": "2026-09-21T09:47:30.221892+00:00",
+  "closed_no_repeat": [
+    8,
+    9,
+    10,
+    14,
+    16,
+    17,
+    18,
+    19
+  ],
+  "release_blocker_count": 7,
+  "next_action": {
+    "key": "WAVE_1_SUPPORTED_RUNTIME_THEME_REMEDIATION",
+    "reason": "Highest-leverage release blocker; clears Phase20 and unlocks 21/22/23 while addressing Phase3 and Phase25."
+  },
+  "waves": [
+    {
+      "wave": 1,
+      "name": "SUPPORTED_RUNTIME_THEME_REMEDIATION",
+      "priority": "P0",
+      "state": "BLOCKED_NEEDS_SUPPORTED_CODE_OR_VENDOR_PATH"
+    },
+    {
+      "wave": 2,
+      "name": "COMMERCE_AND_MEASUREMENT",
+      "priority": "P0",
+      "state": "BLOCKED_NEEDS_SHIPPING_RULES_TAGGING_AND_PAYMENT_POLICY"
+    },
+    {
+      "wave": 3,
+      "name": "PRODUCT_TRUTH_CRO_DISCOVERY",
+      "priority": "P1",
+      "state": "PARTIAL_NEEDS_AUTHORITATIVE_DATA_MEDIA_AND_UI_PATH"
+    },
+    {
+      "wave": 4,
+      "name": "QUOTE_REVIEW_CRM_RETENTION",
+      "priority": "P1",
+      "state": "BLOCKED_NEEDS_BACKEND_AND_MESSAGING"
+    },
+    {
+      "wave": 5,
+      "name": "VIDEO_AND_VIDEO_SITEMAP",
+      "priority": "P1",
+      "state": "BLOCKED_RENDER_CAPACITY"
+    },
+    {
+      "wave": 6,
+      "name": "AUTHORITY_AND_AI_INFLUENCE",
+      "priority": "P1",
+      "state": "BLOCKED_PHASE20_AND_EXTERNAL_OBSERVATIONS"
+    },
+    {
+      "wave": 7,
+      "name": "INTERNAL_LINK_APPLICATION_WAVES",
+      "priority": "P2",
+      "state": "POST_PASS_CONTROLLED_BACKLOG"
+    },
+    {
+      "wave": 8,
+      "name": "FINAL_RELEASE_GATE",
+      "priority": "P0_FINAL",
+      "state": "WAITING_UPSTREAM"
+    }
+  ],
+  "guard": {
+    "repeat_closed_audits": false,
+    "fabricate_unknowns": false,
+    "mass_internal_link_body_rewrite": false,
+    "hidden_paid_video_generation": false,
+    "unauthorized_payment_or_secret_mutation": false
+  }
+}
