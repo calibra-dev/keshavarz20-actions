@@ -1,0 +1,42 @@
+{
+  "program": "seo-god1",
+  "phase": 1,
+  "type": "required_change_set",
+  "priority": "P0",
+  "changes": [
+    {
+      "key": "shipping_model",
+      "desired_state": "Iran checkout supports parcel, freight/quote, and local pickup without misleading costs.",
+      "prerequisites": [
+        "Approve parcel pricing rule or carrier integration",
+        "Define which products/classes require freight quote",
+        "Define local pickup eligibility"
+      ],
+      "implementation": [
+        "Create/verify shipping classes",
+        "Enable only the methods whose commercial rules are approved",
+        "Map parcel products to parcel method",
+        "Map bulky/oversize products to freight/quote path",
+        "Keep local pickup as explicit option where applicable"
+      ],
+      "acceptance": [
+        "Non-Shiraz parcel order sees a valid selectable delivery method",
+        "Bulky order does not silently receive an unrealistically low flat rate",
+        "Method/cost responsibility/ETA are visible before Place order",
+        "Cart and checkout preserve session state"
+      ],
+      "rollback": "Restore prior method enablement and class mappings from pre-change snapshot."
+    },
+    {
+      "key": "payment_redundancy",
+      "desired_state": "At least two verified external card-payment paths or one primary plus a tested fallback.",
+      "blocked_by": "keshavarz20-git-ops forbids payment-setting mutations.",
+      "acceptance": [
+        "Success callback maps to one order and one transaction",
+        "Cancel/fail/retry are recoverable",
+        "Duplicate callback is idempotent",
+        "No secret values appear in logs/results"
+      ]
+    }
+  ]
+}
