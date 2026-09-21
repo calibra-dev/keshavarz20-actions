@@ -1,0 +1,61 @@
+{
+  "program": "seo-god1",
+  "phase": 3,
+  "type": "plugin_hygiene_inventory",
+  "generated_at_utc": "2026-09-21T04:38:00Z",
+  "source": {
+    "run_id": 35560971176,
+    "active_plugin_count": 41,
+    "artifact_id": 10621499464
+  },
+  "confirmed": {
+    "cache": [
+      "litespeed-cache/litespeed-cache"
+    ],
+    "analytics": [
+      "google-site-kit/google-site-kit",
+      "woocommerce-google-analytics-integration/woocommerce-google-analytics-integration"
+    ],
+    "tracking_injection_surfaces": [
+      "code-snippets/code-snippets",
+      "wp-headers-and-footers/wp-headers-and-footers"
+    ],
+    "product_discovery": [
+      "keshavarz20-product-discovery-batch15/keshavarz20-product-discovery-batch15",
+      "keshavarz20-product-discovery-batch20/keshavarz20-product-discovery-batch20"
+    ],
+    "ai_mcp_connectors": [
+      "keshavarz20-mcp-bridge/keshavarz20-mcp-bridge",
+      "miniorange-secure-mcp-server/miniorange-secure-mcp-server",
+      "nibwp/nibwp",
+      "vibe-ai/vibe-ai"
+    ],
+    "mellat_integrations": [
+      "kamangir-smart-gateway-wc-mellat/index",
+      "Woocommerce_Mellat_new/index"
+    ],
+    "seo": [
+      "wordpress-seo/wp-seo",
+      "wordpress-seo-premium/wp-seo-premium"
+    ],
+    "theme_update": [
+      "zhaket-updater/zhaket-updater"
+    ]
+  },
+  "interpretation": [
+    "Only LiteSpeed Cache is confirmed active among cache plugins in the fresh inventory; do not carry forward a dual-cache claim.",
+    "Yoast SEO plus Yoast SEO Premium is not automatically a conflict because Premium commonly extends the base plugin.",
+    "Batch15 and Batch20 being simultaneously active is an overlap candidate, not proof of conflict; compare hooks/output before deactivation.",
+    "Two Mellat gateway plugins are simultaneously active; only one Mellat gateway entry was observed in Woo payment data, so ownership/registration must be traced before any plugin change.",
+    "Multiple AI/MCP connector plugins expand admin/API attack surface; do not remove until required integrations are mapped.",
+    "Code Snippets and WP Headers and Footers are plausible tag-injection surfaces and must be included in the GA4 ownership audit."
+  ],
+  "safe_actions_taken": [
+    "Fresh active-plugin inventory captured privately; no plugin activation/deactivation/update performed."
+  ],
+  "acceptance_for_cleanup": [
+    "For each candidate overlap, identify owner, hooks/routes/scripts, active business dependency, and rollback.",
+    "Deactivate only in staging or a controlled maintenance window after before/after checkout, analytics, SEO and cache tests.",
+    "Never remove a plugin solely because another plugin has a similar name."
+  ]
+}
