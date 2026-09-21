@@ -1,0 +1,111 @@
+{
+  "program": "SEO God1",
+  "wave": 1,
+  "title": "Current Wave 1 state after IranKala 10.10, calculator cache remediation, image optimization, and restored WPVibe read access",
+  "generated_at_utc": "2026-09-21T21:52:00Z",
+  "verified": {
+    "theme": {
+      "name": "IranKala",
+      "version": "10.10.0",
+      "active": true
+    },
+    "wpvibe": {
+      "connected": true,
+      "plugin_version": "1.17.4",
+      "wp_version": "7.1.1",
+      "php_version": "8.1.34",
+      "authenticated_read_verified": true
+    },
+    "calculator_cache": {
+      "state": "RESOLVED",
+      "method": "comment_status closed on post 143698 through guarded post update",
+      "evidence": "diagnostics/image-impact-results/20260921-calculator-post-comments-close-lighthouse-result.json",
+      "warm_cache_ttfb_s": [
+        0.806359,
+        0.636871,
+        0.83191,
+        0.771707
+      ],
+      "cache_after_warmup": "hit"
+    },
+    "calculator_featured_image": {
+      "state": "OPTIMIZED",
+      "before_render_bytes": 373442,
+      "after_render_bytes": 67762,
+      "evidence": "diagnostics/image-impact-results/20260921-calculator-after-featured-optimize-result.json",
+      "residual_lcp_s": [
+        8.131252,
+        8.186668
+      ]
+    },
+    "homepage_lcp": {
+      "state": "RESIDUAL",
+      "evidence": "results/phase3-lcp-chain-20260921-post-manual-irankala-update.json",
+      "rendered_selector": "div.owl-stage > div.owl-item > div > img.img-fluid",
+      "rendered_image": "polyetilenetesal.keshavarz20-768x225.jpg",
+      "loading_lazy": true,
+      "fetchpriority_high": false
+    },
+    "accessibility": {
+      "state": "PARTIAL",
+      "evidence": "phase20-results/a11y-diagnostics-latest.json",
+      "residuals": [
+        "Owl dot buttons lack accessible names",
+        "login/register link lacks accessible name",
+        "homepage image-only links lack discernible names"
+      ]
+    },
+    "litespeed_media_options": {
+      "read_source": "direct authenticated WPVibe CLI read after GitHub relay returned 403",
+      "media-lazy": "1",
+      "media-vpi": "0",
+      "media-vpi_cron": "1",
+      "media-lazy_cls_exc": [
+        "wmu-preview-img",
+        "keshavarz20-product-lcp"
+      ],
+      "media-lazy_exc": [
+        "polyetilenetesal.keshavarz20.jpg"
+      ],
+      "media-lazy_uri_exc": []
+    },
+    "abilities_api": {
+      "litespeed": 0,
+      "irankala": 0,
+      "elementor": 0
+    }
+  },
+  "exact_supported_config_candidate": {
+    "setting": "litespeed.conf.media-lazy_exc",
+    "current": [
+      "polyetilenetesal.keshavarz20.jpg"
+    ],
+    "proposed_narrow_delta": [
+      "polyetilenetesal.keshavarz20-768x225.jpg",
+      "k20-calculator-featured-optimized-1200-768x432.webp"
+    ],
+    "purpose": "Exclude only the two verified above-fold LCP image variants from LiteSpeed lazy loading.",
+    "broad_settings_avoided": [
+      "media-lazy global off",
+      "wp-post-image class-wide exclusion",
+      "media-vpi global enable"
+    ],
+    "rollback": "Restore current one-item media-lazy_exc array.",
+    "apply_allowed_now": false,
+    "block_reason": "Current keshavarz20-git-ops site-access policy hard-blocks admin_settings/options mutation."
+  },
+  "residuals": [
+    "Product singular no-cache remains while preserving WooCommerce review functionality.",
+    "Homepage LCP image remains lazy-loaded and lacks fetchpriority=high.",
+    "Calculator LCP remains ~8.1s despite cache restoration and image payload reduction.",
+    "Owl/login/image-link accessibility renderer output remains unresolved in ionCube-protected theme.",
+    "PHP 8.1.34 runtime remains pending staging/hosting compatibility path."
+  ],
+  "no_repeat": [
+    "Do not rerun IranKala update verification.",
+    "Do not rerun calculator cache root-cause A/B; comments-close cache restoration is proven.",
+    "Do not rerun calculator featured-image compression work.",
+    "Do not repeat Phase20 exact-node audit until a renderer/config mutation is actually applied."
+  ],
+  "site_mutations_in_this_reconciliation": 0
+}
