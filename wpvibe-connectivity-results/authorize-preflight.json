@@ -1,0 +1,30 @@
+{
+  "read_only": true,
+  "site": "https://keshavarz20.com",
+  "route_schema": {
+    "methods": [
+      "GET"
+    ],
+    "endpoints": [
+      {
+        "methods": [
+          "GET"
+        ],
+        "args": {}
+      }
+    ]
+  },
+  "http": 403,
+  "content_type": "application/json; charset=UTF-8",
+  "response_keys": [
+    "code",
+    "data",
+    "message"
+  ],
+  "code": "wpvibe_authorize_session_only",
+  "message": "This route accepts the logged-in browser session only.",
+  "safe_scalars": {
+    "code": "wpvibe_authorize_session_only",
+    "message": "This route accepts the logged-in browser session only."
+  }
+}
