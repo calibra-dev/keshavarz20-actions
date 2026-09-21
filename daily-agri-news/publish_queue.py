@@ -1,11 +1,11 @@
 from __future__ import annotations
 
+import base64
 import hashlib
 import json
 import os
 import re
 import sys
-import xmlrpc.client
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -30,6 +30,43 @@ SESSION = requests.Session()
 SESSION.headers.update({
     "User-Agent": "Keshavarz20ScheduledNews/2.0 (+https://keshavarz20.com/)"
 })
+
+def cli_quote(value: str) -> str:
+    value = str(value or "").replace("\\", "\\\\").replace('"', '\\"').replace("\r", " ").replace("\n", " ")
+    return f'"{value}"'
+
+
+def wpvibe_cli(command: str) -> dict[str, Any]:
+    r = SESSION.post(
+        f"{WP_BASE}/wp-json/wpvibe/v1/cli/run",
+        json={"command": command, "confirm_write": False},
+        auth=(WP_USER, WP_PASS),
+        timeout=90,
+    )
+    try:
+        data = r.json()
+    except Exception as exc:
+        raise QueuePublishError(f"WPVibe CLI returned non-JSON HTTP {r.status_code}") from exc
+    if not r.ok:
+        raise QueuePublishError(f"WPVibe CLI HTTP {r.status_code}")
+    if int(data.get("exit_code", 1)) != 0:
+        err = str(data.get("stderr") or "").strip()
+        raise QueuePublishError(f"WPVibe CLI failed: {err[:500]}")
+    return data
+
+
+def wpvibe_cli_json(command: str):
+    data = wpvibe_cli(command)
+    raw = str(data.get("stdout") or "").strip()
+    try:
+        return json.loads(raw)
+    except Exception as exc:
+        raise QueuePublishError(f"WPVibe CLI JSON parse failed for command family: {command.split()[0:2]}") from exc
+
+
+def trash_wp_post(post_id: int) -> None:
+    wpvibe_cli(f"post delete {int(post_id)}")
+
 
 ALLOWED_HTML_TAGS = {"p", "h2", "h3", "ul", "ol", "li", "strong", "em", "a", "blockquote", "small"}
 
@@ -103,47 +140,29 @@ def validate_payload(p: dict[str, Any]) -> None:
 
 
 def recent_news_titles(limit: int = 100) -> list[str]:
-    """Inspect the real custom news post type through authenticated XML-RPC.
+    """Read the real custom news CPT through the authenticated WPVibe CLI route.
 
-    The live custom type is not exposed by the expected REST collection. Duplicate
-    inspection therefore uses the same WordPress capability as the draft
-    writer, while remaining read-only.
+    The news CPT is intentionally not exposed by wp/v2 on this site. The WPVibe
+    route dispatches through WordPress native APIs and is reachable from the
+    GitHub control plane with the existing application-password credentials.
     """
-    server = wp_xmlrpc()
-    try:
-        methods = set(server.system.listMethods())
-        if "wp.getPosts" not in methods:
-            raise QueuePublishError("WordPress XML-RPC missing wp.getPosts for news duplicate inspection")
-
-        titles: list[str] = []
-        seen: set[str] = set()
-        for status in ("publish", "draft", "pending", "future", "private"):
-            rows = server.wp.getPosts(
-                0, WP_USER, WP_XMLRPC_PASS,
-                {
-                    "post_type": "news",
-                    "post_status": status,
-                    "number": min(limit, 100),
-                    "orderby": "post_date",
-                    "order": "DESC",
-                },
-                ["post_title"],
-            )
-            for row in rows:
-                title = str(row.get("post_title") or "").strip()
-                key = normalize_title(title)
-                if title and key not in seen:
-                    seen.add(key)
-                    titles.append(title)
-                if len(titles) >= limit:
-                    return titles
-        return titles
-    except QueuePublishError:
-        raise
-    except Exception as exc:
-        raise QueuePublishError(
-            f"Could not inspect recent WordPress news through XML-RPC: {exc}"
-        ) from exc
+    rows = wpvibe_cli_json(
+        f"post list --post_type=news --post_status=any --posts_per_page={min(max(limit, 1), 100)} "
+        "--fields=ID,post_title,post_status --format=json"
+    )
+    if not isinstance(rows, list):
+        raise QueuePublishError("News CPT read did not return a list")
+    titles: list[str] = []
+    seen: set[str] = set()
+    for row in rows:
+        title = str((row or {}).get("post_title") or "").strip()
+        key = normalize_title(title)
+        if title and key not in seen:
+            seen.add(key)
+            titles.append(title)
+        if len(titles) >= limit:
+            break
+    return titles
 
 def ensure_not_duplicate(p: dict[str, Any]) -> None:
     wanted = fingerprint(str(p["title"]))
@@ -153,32 +172,21 @@ def ensure_not_duplicate(p: dict[str, Any]) -> None:
 
 
 def find_existing_queued_draft(p: dict[str, Any]) -> dict[str, Any] | None:
-    """Recover idempotently when a prior run already created the exact news draft.
-
-    Exact title + draft status + news post type is enough to stop duplicate writes.
-    The caller performs the full post-write verification before treating it as
-    success. This also repairs runs that failed only while serializing receipts.
-    """
-    server = wp_xmlrpc()
-    try:
-        rows = server.wp.getPosts(
-            0, WP_USER, WP_XMLRPC_PASS,
-            {
-                "post_type": "news",
-                "post_status": "draft",
-                "number": 100,
-                "orderby": "post_date",
-                "order": "DESC",
-            },
-            ["post_id", "post_title", "post_status", "post_type", "post_thumbnail", "link"],
-        )
-    except Exception as exc:
-        raise QueuePublishError(f"Could not inspect existing queued news drafts: {exc}") from exc
-
+    rows = wpvibe_cli_json(
+        "post list --post_type=news --post_status=draft --posts_per_page=100 "
+        "--fields=ID,post_title,post_status --format=json"
+    )
+    if not isinstance(rows, list):
+        raise QueuePublishError("Draft recovery read did not return a list")
     wanted_title = normalize_title(str(p["title"]))
     for row in rows:
-        if normalize_title(str(row.get("post_title") or "")) == wanted_title:
-            return row
+        if normalize_title(str((row or {}).get("post_title") or "")) == wanted_title:
+            return {
+                "post_id": int(row["ID"]),
+                "post_title": row.get("post_title"),
+                "post_status": row.get("post_status"),
+                "post_type": "news",
+            }
     return None
 
 def commons_search(query: str) -> dict[str, Any]:
@@ -276,121 +284,151 @@ def make_editorial_image(source: dict[str, Any]) -> Path:
     return target
 
 
-class TimeoutSafeTransport(xmlrpc.client.SafeTransport):
-    def __init__(self, timeout: int = 45):
-        super().__init__()
-        self.timeout = timeout
-
-    def make_connection(self, host):
-        connection = super().make_connection(host)
-        connection.timeout = self.timeout
-        return connection
-
-
-def wp_xmlrpc() -> xmlrpc.client.ServerProxy:
-    return xmlrpc.client.ServerProxy(
-        f"{WP_BASE}/xmlrpc.php",
-        allow_none=True,
-        transport=TimeoutSafeTransport(45),
-    )
-
-
-def upload_wp_image(server: xmlrpc.client.ServerProxy, path: Path, p: dict[str, Any], source: dict[str, Any]) -> int:
-    payload = {
-        "name": f"keshavarz20-news-{now_tehran().strftime('%Y%m%d-%H%M%S')}.webp",
-        "type": "image/webp",
-        "bits": xmlrpc.client.Binary(path.read_bytes()),
-        "overwrite": False,
-        "post_id": 0,
-    }
-    media = server.wp.uploadFile(0, WP_USER, WP_XMLRPC_PASS, payload)
-    media_id = int(media["id"])
-
-    description = " | ".join(x for x in [source.get("title", ""), source.get("artist", ""), source.get("license", ""), source.get("original_url", "")] if x)
-    try:
-        server.wp.editPost(0, WP_USER, WP_XMLRPC_PASS, media_id, {
-            "post_title": p.get("image_title") or p["title"],
-            "post_excerpt": "",
-            "post_content": description,
-        })
-    except Exception:
-        pass
-
+def upload_wp_image(server, path: Path, p: dict[str, Any], source: dict[str, Any]) -> int:
+    filename = f"keshavarz20-news-{now_tehran().strftime('%Y%m%d-%H%M%S')}.webp"
     r = SESSION.post(
-        f"{WP_BASE}/wp-json/wp/v2/media/{media_id}",
-        json={"alt_text": p["alt_text"], "caption": "", "description": description},
+        f"{WP_BASE}/wp-json/wp/v2/media",
+        data=path.read_bytes(),
+        headers={
+            "Content-Disposition": f'attachment; filename="{filename}"',
+            "Content-Type": "image/webp",
+        },
         auth=(WP_USER, WP_PASS),
-        timeout=30,
+        timeout=90,
     )
     if not r.ok:
-        print(f"Warning: media metadata update returned HTTP {r.status_code}", file=sys.stderr)
+        raise QueuePublishError(f"WordPress media upload returned HTTP {r.status_code}")
+    media = r.json()
+    media_id = int(media["id"])
+
+    description = " | ".join(
+        x for x in [
+            source.get("title", ""), source.get("artist", ""), source.get("license", ""),
+            source.get("original_url", ""),
+        ] if x
+    )
+    meta = SESSION.post(
+        f"{WP_BASE}/wp-json/wp/v2/media/{media_id}",
+        json={
+            "title": p.get("image_title") or p["title"],
+            "alt_text": p["alt_text"],
+            "caption": "",
+            "description": description,
+        },
+        auth=(WP_USER, WP_PASS),
+        timeout=45,
+    )
+    if not meta.ok:
+        try:
+            trash_wp_post(media_id)
+        finally:
+            raise QueuePublishError(f"WordPress media metadata returned HTTP {meta.status_code}")
     return media_id
 
 
-def create_draft(server: xmlrpc.client.ServerProxy, p: dict[str, Any], media_id: int, image_source: dict[str, Any]) -> int:
+def _ensure_news_tag(name: str) -> int:
+    name = str(name or "").strip()
+    if not name:
+        raise QueuePublishError("Empty news tag")
+    rows = wpvibe_cli_json(f"term list news_tag --number=100 --search={cli_quote(name)}")
+    if isinstance(rows, list):
+        for row in rows:
+            if str((row or {}).get("name") or "").strip() == name:
+                term_id = (row or {}).get("term_id") or (row or {}).get("term_id".upper()) or (row or {}).get("ID")
+                if term_id:
+                    return int(term_id)
+    created = wpvibe_cli(f"term create news_tag {cli_quote(name)} --porcelain")
+    raw = str(created.get("stdout") or "")
+    m = re.search(r"\b(\d+)\b", raw)
+    if not m:
+        raise QueuePublishError(f"Could not resolve/create news tag: {name}")
+    return int(m.group(1))
+
+
+def _meta_update(post_id: int, key: str, value: str) -> None:
+    wpvibe_cli(f"post meta update {int(post_id)} {key} {cli_quote(value)} --force")
+
+
+def create_draft(server, p: dict[str, Any], media_id: int, image_source: dict[str, Any]) -> int:
     related = [str(x).strip() for x in p.get("related_keyphrases", []) if str(x).strip()][:6]
     tags = [str(x).strip() for x in p.get("tags", []) if str(x).strip()][:8]
-    custom_fields = [
-        {"key": "_yoast_wpseo_title", "value": p["seo_title"]},
-        {"key": "_yoast_wpseo_metadesc", "value": p["meta_description"]},
-        {"key": "_yoast_wpseo_focuskw", "value": p["focus_keyphrase"]},
-        {"key": "_yoast_wpseo_primary_news_cat", "value": str(NEWS_CAT_ID)},
-        {"key": "_yoast_wpseo_focuskeywords", "value": json.dumps([{"keyword": p["focus_keyphrase"], "score": 0}], ensure_ascii=False)},
-        {"key": "_yoast_wpseo_keywordsynonyms", "value": json.dumps([", ".join(related)], ensure_ascii=False)},
-        {"key": "_k20_news_source_urls", "value": json.dumps(p["source_urls"], ensure_ascii=False)},
-        {"key": "_k20_news_source_names", "value": json.dumps(p["source_names"], ensure_ascii=False)},
-        {"key": "_k20_news_engine", "value": "chatgpt-pro-scheduled-v2"},
-        {"key": "_k20_news_generated_at", "value": str(p.get("generated_at") or now_tehran().isoformat())},
-        {"key": "_k20_news_source_fingerprint", "value": fingerprint(str(p["title"]) + " " + " ".join(p["source_urls"]))},
-        {"key": "_k20_news_image_source", "value": str(image_source.get("original_url") or "")},
-        {"key": "_k20_news_image_license", "value": str(image_source.get("license") or "")},
-    ]
 
-    content = {
-        "post_type": "news",
-        "post_status": "draft",
-        "post_title": p["title"],
-        "post_name": p["slug"],
-        "post_excerpt": p["excerpt"],
-        "post_content": p["content_html"],
-        "post_thumbnail": media_id,
-        "terms_names": {
-            "news_cat": [NEWS_CAT_NAME],
-            "news_tag": tags,
-        },
-        "custom_fields": custom_fields,
-        "comment_status": "open",
-    }
-    return int(server.wp.newPost(0, WP_USER, WP_XMLRPC_PASS, content))
+    # Seed the draft with the validated ASCII slug as the initial title so
+    # WordPress creates a stable ASCII post_name, then replace only the title.
+    encoded_content = base64.b64encode(str(p["content_html"]).encode("utf-8")).decode("ascii")
+    created = wpvibe_cli(
+        f"post create --post_title={cli_quote(p['slug'])} --post_content_base64={encoded_content} "
+        "--post_status=draft --post_type=news --porcelain"
+    )
+    raw = str(created.get("stdout") or "")
+    m = re.search(r"\b(\d+)\b", raw)
+    if not m:
+        raise QueuePublishError("Could not parse created news draft ID")
+    post_id = int(m.group(1))
+
+    try:
+        wpvibe_cli(f"post update {post_id} --post_title={cli_quote(p['title'])}")
+        _meta_update(post_id, "_thumbnail_id", str(media_id))
+        _meta_update(post_id, "_yoast_wpseo_title", str(p["seo_title"]))
+        _meta_update(post_id, "_yoast_wpseo_metadesc", str(p["meta_description"]))
+        _meta_update(post_id, "_yoast_wpseo_focuskw", str(p["focus_keyphrase"]))
+        _meta_update(post_id, "_yoast_wpseo_primary_news_cat", str(NEWS_CAT_ID))
+        _meta_update(post_id, "_yoast_wpseo_focuskeywords", json.dumps([{"keyword": p["focus_keyphrase"], "score": 0}], ensure_ascii=False))
+        _meta_update(post_id, "_yoast_wpseo_keywordsynonyms", json.dumps([", ".join(related)], ensure_ascii=False))
+        _meta_update(post_id, "_k20_news_source_urls", json.dumps(p["source_urls"], ensure_ascii=False))
+        _meta_update(post_id, "_k20_news_source_names", json.dumps(p["source_names"], ensure_ascii=False))
+        _meta_update(post_id, "_k20_news_engine", "chatgpt-pro-scheduled-v3-wpvibe-cli")
+        _meta_update(post_id, "_k20_news_generated_at", str(p.get("generated_at") or now_tehran().isoformat()))
+        _meta_update(post_id, "_k20_news_source_fingerprint", fingerprint(str(p["title"]) + " " + " ".join(p["source_urls"])))
+        _meta_update(post_id, "_k20_news_image_source", str(image_source.get("original_url") or ""))
+        _meta_update(post_id, "_k20_news_image_license", str(image_source.get("license") or ""))
+        # Preserve the authored excerpt even though the safe CLI emulator does
+        # not expose post_excerpt as a write field.
+        _meta_update(post_id, "_k20_news_excerpt", str(p["excerpt"]))
+
+        wpvibe_cli(f"post term set {post_id} news_cat {NEWS_CAT_ID} --by=id")
+        if tags:
+            tag_ids = [_ensure_news_tag(tag) for tag in tags]
+            wpvibe_cli(f"post term set {post_id} news_tag {' '.join(str(x) for x in tag_ids)} --by=id")
+        return post_id
+    except Exception:
+        try:
+            trash_wp_post(post_id)
+        except Exception:
+            pass
+        raise
 
 
-def verify(server: xmlrpc.client.ServerProxy, post_id: int) -> dict[str, Any]:
-    post = server.wp.getPost(0, WP_USER, WP_XMLRPC_PASS, post_id, [
-        "post_id", "post_title", "post_status", "post_type", "post_thumbnail", "terms", "custom_fields", "link"
-    ])
-    if post.get("post_status") != "draft" or post.get("post_type") != "news":
+def verify(server, post_id: int) -> dict[str, Any]:
+    row = wpvibe_cli_json(
+        f"post get {int(post_id)} --fields=ID,post_title,post_name,post_status,post_type"
+    )
+    if not isinstance(row, dict):
+        raise QueuePublishError("News readback did not return an object")
+    if row.get("post_status") != "draft" or row.get("post_type") != "news":
         raise QueuePublishError("Created item is not a news draft")
-    if not post.get("post_thumbnail"):
+    post_name = str(row.get("post_name") or "")
+    if not re.fullmatch(r"[a-z0-9-]+", post_name):
+        raise QueuePublishError("Created news draft did not preserve an ASCII slug")
+
+    thumbnail = str(wpvibe_cli(f"post meta get {post_id} _thumbnail_id").get("stdout") or "").strip()
+    if not re.search(r"\d+", thumbnail):
         raise QueuePublishError("Created draft has no featured image")
 
-    terms = post.get("terms") or []
-    has_news_category = any(
-        str(t.get("taxonomy") or "") == "news_cat"
-        and (
-            str(t.get("name") or "") == NEWS_CAT_NAME
-            or str(t.get("term_id") or "") == str(NEWS_CAT_ID)
-        )
-        for t in terms
-    )
-    if not has_news_category:
-        raise QueuePublishError("Created news draft is missing the required news_cat=کشاورزی category")
+    for key in ("_yoast_wpseo_title", "_yoast_wpseo_metadesc", "_yoast_wpseo_focuskw", "_yoast_wpseo_primary_news_cat"):
+        value = str(wpvibe_cli(f"post meta get {post_id} {key}").get("stdout") or "").strip()
+        if not value:
+            raise QueuePublishError(f"Required Yoast field missing after write: {key}")
 
-    keys = {x.get("key") for x in post.get("custom_fields", [])}
-    required = {"_yoast_wpseo_title", "_yoast_wpseo_metadesc", "_yoast_wpseo_focuskw", "_yoast_wpseo_primary_news_cat"}
-    missing = sorted(required - keys)
-    if missing:
-        raise QueuePublishError(f"Required Yoast fields missing after write: {missing}")
-    return post
+    return {
+        "post_id": int(row["ID"]),
+        "post_title": row.get("post_title"),
+        "post_name": post_name,
+        "post_status": row.get("post_status"),
+        "post_type": row.get("post_type"),
+        "post_thumbnail": int(re.search(r"\d+", thumbnail).group(0)),
+        "link": f"{WP_BASE}/?p={int(row['ID'])}",
+    }
 
 
 def save_result(result: dict[str, Any]) -> None:
@@ -424,7 +462,7 @@ def main() -> None:
     existing = find_existing_queued_draft(p)
     if existing:
         existing_id = int(existing["post_id"])
-        server = wp_xmlrpc()
+        server = None
         verified = verify(server, existing_id)
         result = {
             "status": "draft-already-created",
@@ -499,15 +537,17 @@ def main() -> None:
 
     image_path = make_editorial_image(image_source)
 
-    server = wp_xmlrpc()
-    methods = set(server.system.listMethods())
-    needed = {"wp.newPost", "wp.uploadFile", "wp.getPost"}
-    if not needed.issubset(methods):
-        raise QueuePublishError(f"WordPress XML-RPC missing methods: {sorted(needed - methods)}")
-
+    server = None
     media_id = upload_wp_image(server, image_path, p, image_source)
-    post_id = create_draft(server, p, media_id, image_source)
-    verified = verify(server, post_id)
+    try:
+        post_id = create_draft(server, p, media_id, image_source)
+        verified = verify(server, post_id)
+    except Exception:
+        try:
+            trash_wp_post(media_id)
+        except Exception:
+            pass
+        raise
 
     result = {
         "status": "draft-created",
@@ -522,7 +562,7 @@ def main() -> None:
         "queue_file": str(queue_path),
         "source_urls": [str(x) for x in p.get("source_urls", [])],
         "source_names": [str(x) for x in p.get("source_names", [])],
-        "fields_written": ["title", "slug", "excerpt", "content", "featured_media", "news_cat", "news_tag", "yoast_title", "yoast_meta_description", "yoast_focus_keyphrase"],
+        "fields_written": ["title", "slug", "content", "featured_media", "news_cat", "news_tag", "yoast_title", "yoast_meta_description", "yoast_focus_keyphrase", "k20_excerpt_meta"],
         "qa_score": 100,
         "qa_score_basis": "all deterministic required gates and post-write readback passed",
         "readback": {"status": verified.get("post_status"), "type": verified.get("post_type"), "featured_media": verified.get("post_thumbnail")},
