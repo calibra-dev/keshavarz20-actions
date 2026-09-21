@@ -1,0 +1,47 @@
+{
+  "program": "SEO God1",
+  "phase": 2,
+  "generated_at_utc": "2026-09-21T19:55:00Z",
+  "title": "Measurement & Attribution Reliability",
+  "status": "PASS_GUARDED_INSTRUMENTATION_POLICY_GAP",
+  "live_evidence": {
+    "ga4_connected": true,
+    "ga4_property": "456208539",
+    "ga4_last_30d": {
+      "sessions": 1191,
+      "active_users": 1108,
+      "engaged_sessions": 550,
+      "chatgpt_referral_sessions": 2,
+      "ecommerce": {
+        "view_item": 689,
+        "add_to_cart": 18,
+        "begin_checkout": 16,
+        "purchases": 0,
+        "transactions": 0
+      }
+    },
+    "gsc_connected": true,
+    "gsc_settled_window": {
+      "start": "2026-08-21",
+      "end": "2026-09-17",
+      "clicks": 931,
+      "impressions": 15704,
+      "ctr": 0.0592842588,
+      "avg_position": 9.5298
+    },
+    "bing_connected": true,
+    "bing_read_state": "provider_throttled"
+  },
+  "verified_issues": [
+    "Historical begin_checkout duplication remains evidenced.",
+    "purchase/add_shipping_info/add_payment_info are not yet observed as reliable canonical events.",
+    "WhatsApp tracking still has legacy fragmented names in historical measurement."
+  ],
+  "exact_contract": "seo-god1/phase02-measurement-contract-20260921.json",
+  "blocker": "No allow-listed GitHub tagging/plugin configuration mutation path exists for these event fixes.",
+  "unlock": "Expose a supported allow-listed tagging/configuration path; then validate one no-charge checkout and one verified purchase callback when a safe payment test exists.",
+  "safety": {
+    "fake_events_generated": false,
+    "pii_in_analytics_contract": false
+  }
+}
