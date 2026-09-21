@@ -1,0 +1,70 @@
+{
+  "ok": false,
+  "started_at_utc": "2026-09-21T19:35:03.970356+00:00",
+  "test_identity": "synthetic_noncustomer",
+  "real_payment_attempted": false,
+  "card_data_entered": false,
+  "external_payment_page_loaded": false,
+  "test_order_cleanup": {
+    "found": false,
+    "deleted": false,
+    "verified_404": false
+  },
+  "enabled_gateways": [
+    {
+      "id": "wal_wallet",
+      "title": "کیف پول ووکامرس",
+      "enabled": true
+    },
+    {
+      "id": "WC_bitpayir2",
+      "title": "پرداخت امن بیت پی",
+      "enabled": true
+    }
+  ],
+  "selected_gateway": {
+    "id": "WC_bitpayir2",
+    "title": "پرداخت امن بیت پی",
+    "enabled": true
+  },
+  "product": {
+    "id": 142485,
+    "name": "واشر بست ابتدایی ۱۶ میلی‌متر آبیاری قطره‌ای",
+    "sku": "",
+    "price_present": true
+  },
+  "checkout_url": "https://keshavarz20.com/checkout/",
+  "checkout_http_reached": true,
+  "address_selection": {
+    "country": {
+      "selector": "#billing_country",
+      "value": "IR",
+      "label": "ایران"
+    },
+    "state": {
+      "selector": "#billing_state",
+      "value": "THR",
+      "label": "تهران"
+    },
+    "city": "تهران",
+    "synthetic": true
+  },
+  "shipping_text": "ارسال با باربری یا تیپاکس به سراسر کشور (هزینه حمل پس‌کرایه)\nارسال با باربری یا تیپاکس به سراسر کشور (هزینه حمل پس‌کرایه)\nمحصول\tجمع جزء\n\n1\nواشر بست ابتدایی ۱۶ میلی‌متر آبیاری قطره‌ای \n6,950 تومان\n\nجمع جزء\t6,950 تومان\nحمل و نقل\t\nارسال با باربری یا تیپاکس به سراسر کشور (هزینه حمل پس‌کرایه)\n\nمجموع\t6,950 تومان",
+  "shipping_countrywide_visible": true,
+  "local_pickup_visible": false,
+  "free_shipping_visible": false,
+  "payment_radio_signals": [
+    {
+      "value": "WC_bitpayir2",
+      "id": "payment_method_WC_bitpayir2",
+      "name": "payment_method"
+    }
+  ],
+  "payment_gateway_selectable": true,
+  "place_order_button_reached": true,
+  "checkout_error": "حداقل مبلغ سفارش باید 1,000,000 تومان تومان باشد.\nخواهشمند است تیک قوانین پس کرایه را بزنید.\nشماره موبایل معتبر نیست.\nصورتحساب شهر یک گزینه الزامی است.\nصورتحساب شماره موبایل یک گزینه الزامی است.\nلطفا شرایط و ضوابط را برای ادامه سفارش خود مطالعه و قبول کنید.",
+  "payment_redirect_captured": false,
+  "current_url_after_place_order": "https://keshavarz20.com/checkout/",
+  "created_order_count": 0,
+  "finished_at_utc": "2026-09-21T19:36:07.793807+00:00"
+}
