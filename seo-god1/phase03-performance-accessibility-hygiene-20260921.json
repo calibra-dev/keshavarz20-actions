@@ -1,0 +1,224 @@
+{
+  "program": "seo-god1",
+  "phase": 3,
+  "generated_at_utc": "2026-09-21T04:38:19Z",
+  "status": "DIAGNOSED_WITH_VERIFIED_BLOCKERS_REMEDIATION_PARTIAL",
+  "evidence": {
+    "performance_run": {
+      "run_id": 35561430558,
+      "conclusion": "success",
+      "lighthouse_version": "13.5.0"
+    },
+    "performance": {
+      "home": {
+        "cache": "hit",
+        "ttfb_range_s": [
+          0.588,
+          1.454
+        ],
+        "performance_scores": [
+          41,
+          50
+        ],
+        "lcp_s": [
+          5.313,
+          6.005
+        ],
+        "cls": [
+          0.0153,
+          0.2543
+        ],
+        "tbt_ms": [
+          2469.2,
+          235
+        ],
+        "bytes_mb": 3.08,
+        "requests": 121
+      },
+      "shop": {
+        "cache": "hit",
+        "ttfb_range_s": [
+          0.593,
+          1.33
+        ],
+        "performance_scores": [
+          79,
+          77
+        ],
+        "lcp_s": [
+          4.236,
+          4.388
+        ],
+        "cls": [
+          0.0145,
+          0.0026
+        ],
+        "tbt_ms": [
+          131.5,
+          139
+        ],
+        "bytes_mb": 0.98,
+        "requests": 94
+      },
+      "product_135349": {
+        "cache": "no-cache",
+        "ttfb_range_s": [
+          4.936,
+          5.186
+        ],
+        "performance_scores": [
+          50,
+          49
+        ],
+        "lcp_s": [
+          4.164,
+          4.234
+        ],
+        "cls": [
+          0.5497,
+          0.5497
+        ],
+        "tbt_ms": [
+          151,
+          162.5
+        ],
+        "bytes_mb": 1.06,
+        "requests": 107
+      },
+      "calculator": {
+        "cache": "no-cache",
+        "ttfb_range_s": [
+          4.856,
+          5.342
+        ],
+        "performance_scores": [
+          53,
+          52
+        ],
+        "lcp_s": [
+          9.835,
+          9.578
+        ],
+        "cls": [
+          0.09825,
+          0.09826
+        ],
+        "tbt_ms": [
+          154,
+          200
+        ],
+        "bytes_mb": 1.23,
+        "requests": 86
+      },
+      "cart": {
+        "cache": "no-cache",
+        "ttfb_range_s": [
+          3.358,
+          4.185
+        ],
+        "http": 200
+      },
+      "checkout_empty": {
+        "cache": "no-cache",
+        "ttfb_range_s": [
+          5.49,
+          8.169
+        ],
+        "http": 200,
+        "redirects": 1
+      }
+    },
+    "accessibility": {
+      "run_id": 35560964119,
+      "status": "PARTIAL",
+      "scores": {
+        "home": 0.74,
+        "product": 0.75,
+        "pipe_guide": 0.83,
+        "filter_selector": 0.82,
+        "fittings_selector": 0.82
+      },
+      "passes": [
+        "all sampled routes HTTP 200",
+        "mobile content width gate",
+        "homepage single H1/main",
+        "fa-IR + rtl",
+        "server-rendered decision content",
+        "product price/buy CTA/stock visible"
+      ],
+      "fails": [
+        "Owl carousel dot buttons have no accessible name",
+        "theme login/register link has no accessible name",
+        "multiple image-only links on homepage lack discernible names"
+      ]
+    },
+    "plugin_inventory": {
+      "run_id": 35560971176,
+      "active_count": 41,
+      "cache_plugins_confirmed": [
+        "litespeed-cache/litespeed-cache"
+      ],
+      "notes": [
+        "Cache Enabler is not active in the fresh inventory.",
+        "Site Kit and WooCommerce Google Analytics Integration are active.",
+        "Code Snippets and WP Headers and Footers are active tag-injection surfaces.",
+        "Two Product Discovery batch plugins are active; overlap is unproven.",
+        "Two Mellat integrations are active; ownership must be traced before any change."
+      ]
+    },
+    "existing_root_cause": {
+      "homepage_lcp": "IranKala fullwidth slider emits above-fold LCP image with loading=lazy and lacks fetchpriority=high; renderer is ionCube-protected.",
+      "singular_cache": "Product/calculator explicit no-cache persists; prior safe probes found no simple postmeta/readable custom-plugin cause.",
+      "theme_update": "IranKala 10.10.0 vendor update attempt was blocked by Zhaket 403; installed version remained 10.9.0."
+    },
+    "api_health": {
+      "current": "GitHub product reads and the selected Woo admin reads succeeded with parseable JSON.",
+      "prior_issue": "A PHP warning had previously polluted one Woo REST response; it was not reproduced in this execution.",
+      "secret_hygiene": "Authenticated payment settings can contain secrets. No secret values were persisted in repo evidence."
+    },
+    "php": {
+      "observed": "8.1.34",
+      "state": "EOL upstream; upgrade requires staging compatibility validation"
+    }
+  },
+  "safe_changes_in_this_phase": [
+    "Fresh performance, accessibility, exact-node and active-plugin diagnostics executed.",
+    "No protected theme code, arbitrary snippet, plugin state, price, stock, payment or user setting was changed."
+  ],
+  "required_remediation": [
+    {
+      "priority": "P0",
+      "item": "Resolve singular no-cache/root cause or establish safe cache behavior for product/calculator while excluding cart/checkout/session-sensitive pages."
+    },
+    {
+      "priority": "P0",
+      "item": "Reduce product CLS from ~0.55 by reserving stable media/content dimensions and preventing late layout injection."
+    },
+    {
+      "priority": "P0",
+      "item": "Reduce calculator LCP from ~9.6-9.8s and server TTFB ~5s; investigate 373KB sitewide image and uncached backend path."
+    },
+    {
+      "priority": "P0",
+      "item": "Profile cart/checkout server path; checkout empty request showed ~5.5-8.2s TTFB after redirect."
+    },
+    {
+      "priority": "P1",
+      "item": "Fix accessible names for Owl dots, login/register and image-only links through a supported IranKala hook/update or explicitly allow-listed implementation."
+    },
+    {
+      "priority": "P1",
+      "item": "Stage PHP upgrade from 8.1.34 to a supported branch after theme/plugin/payment compatibility tests."
+    },
+    {
+      "priority": "P1",
+      "item": "Map ownership of analytics/header/snippet injection and payment integrations before any deactivation."
+    }
+  ],
+  "blockers": [
+    "IranKala relevant renderer paths are ionCube-protected.",
+    "Arbitrary code/snippet injection is forbidden by current keshavarz20-git-ops guard.",
+    "Supported IranKala update path previously failed at vendor download with 403.",
+    "Cart/checkout must remain session-safe and must not be blindly cached."
+  ]
+}
