@@ -108,10 +108,10 @@ for path in ["drip-tape-length-fittings-calculator/","one-hectare-drip-irrigatio
     probes[path]=host_public(path)
 
 out={
- "program":"SEO God1","phases":[14,15],"generated_at_utc":datetime.now(timezone.utc).isoformat(),
+ "program":"SEO God1","scope":"supplemental_feed_merchandising_audit_not_official_phase_definition","generated_at_utc":datetime.now(timezone.utc).isoformat(),
  "privacy":{"customer_pii_persisted":False,"orders_read":False},
  "phase14":{
-   "title":"Torob / Emalls / Feeds / Distribution",
+   "title":"Supplemental feeds/distribution readiness",
    "active_plugin_endpoint_http":rp.status_code,
    "relevant_active_plugins":relevant_plugins,
    "relevant_rest_routes":route_hits,
@@ -132,7 +132,7 @@ out={
    "public_probes":{k:v for k,v in probes.items() if "torob" in k},
  },
  "phase15":{
-   "title":"Personalization / Recommendations / Intelligent Merchandising",
+   "title":"Supplemental merchandising/recommendation readiness",
    "products_with_wc_related_or_up_cross_sell":rec_any,
    "products_with_wc_related_or_up_cross_sell_percent":pct(rec_any),
    "products_with_description_recommendation_signal":desc_rec_signal,
