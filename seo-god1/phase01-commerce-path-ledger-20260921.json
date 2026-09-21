@@ -1,0 +1,74 @@
+{
+  "program": "seo-god1",
+  "phase": 1,
+  "generated_at_utc": "2026-09-21T04:30:00Z",
+  "status": "PARTIAL_BLOCKED_BY_GUARDS_AND_BUSINESS_RULE",
+  "execution": {
+    "github_bridge": {
+      "run_id": 35560792466,
+      "conclusion": "success",
+      "bridge": "Keshavarz20 Content Ops Bridge",
+      "version": "1.1.0"
+    },
+    "shipping_iran": {
+      "free_shipping": false,
+      "flat_rate": false,
+      "flat_rate_stored_cost": "25000",
+      "local_pickup": true
+    },
+    "payments": {
+      "enabled": [
+        "wal_wallet",
+        "WC_bitpayir2"
+      ],
+      "disabled_observed": [
+        "bacs",
+        "cheque",
+        "cod",
+        "mellat",
+        "wc_zibal"
+      ],
+      "raw_secrets_persisted": false
+    },
+    "checkout_account": {
+      "guest_checkout": true,
+      "checkout_login_reminder": true,
+      "signup_from_checkout": true,
+      "generate_password": false,
+      "generate_username": true
+    },
+    "product_reads_verified": [
+      135235,
+      135349
+    ],
+    "real_charge_attempted": false,
+    "order_mutation_attempted": false
+  },
+  "p0_findings": [
+    "Iran shipping zone exposes only local pickup in standard WooCommerce methods.",
+    "Only one observed enabled external card-payment gateway plus wallet; there is no verified bank-gateway redundancy.",
+    "Guest checkout is enabled, but account/login UI is also enabled in checkout.",
+    "Current guarded gateway has no allow-listed checkout/order/payment-settings action, so an actual paid transaction was not performed.",
+    "Authenticated payment-settings read returned sensitive configuration fields; no secret values were stored in GitHub or this ledger."
+  ],
+  "not_applied": [
+    {
+      "change": "Enable flat-rate shipping at stored 25000",
+      "reason": "Unsafe without an approved parcel-vs-freight business rule; could undercharge bulky orders."
+    },
+    {
+      "change": "Enable/modify a second payment gateway",
+      "reason": "Payment settings are hard-blocked by keshavarz20-git-ops policy."
+    },
+    {
+      "change": "Create real checkout/order test",
+      "reason": "Order/payment mutation is not allow-listed and no verified sandbox path is exposed."
+    }
+  ],
+  "closure_requirements": [
+    "Approve a nationwide shipping model separating parcel, freight/quote, and local pickup.",
+    "Expose a guarded shipping configuration action or perform an approved admin change, then verify non-Shiraz checkout.",
+    "Explicitly authorize payment-setting work and provide/verify a sandbox/test path before callback/status testing.",
+    "After those changes, run one controlled non-monetary/sandbox end-to-end checkout with unique order status evidence."
+  ]
+}
