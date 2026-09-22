@@ -72,6 +72,37 @@
   },
   "performance_retest": {
     "workflow_run_id": 35685276503,
-    "state": "RUNNING_AT_RECORD_TIME"
-  }
+    "state": "PASS_MEASUREMENT",
+    "result_file": "diagnostics/image-impact-results/20260922-home-promo-webp-postchange-result.json",
+    "curl": {
+      "cold_miss_ttfb_s": 7.411811,
+      "warm_hit_ttfb_s": [
+        1.337449,
+        1.329171,
+        1.139902,
+        1.327525
+      ],
+      "cache_after_warmup": "hit"
+    },
+    "lighthouse": [
+      {
+        "performance_score": 43,
+        "lcp_s": 5.2678745,
+        "tbt_ms": 1057.433,
+        "cls": 0.015112023912903352,
+        "total_bytes": 1976639,
+        "image_bytes": 1106835
+      },
+      {
+        "performance_score": 67,
+        "lcp_s": 6.1020655,
+        "tbt_ms": 190,
+        "cls": 0.014275232754265054,
+        "total_bytes": 1976526,
+        "image_bytes": 1106789
+      }
+    ],
+    "interpretation": "The two prior ~716 KB/~550 KB homepage PNG variants no longer appear among the largest network images. Homepage payload is materially lighter, but LCP remains above target and is now a separate residual."
+  },
+  "closure_state": "PROMOTION_IMAGE_PAYLOAD_FIXED_LCP_RESIDUAL_REMAINS"
 }
