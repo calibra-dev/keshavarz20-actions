@@ -1,0 +1,113 @@
+{
+  "program": "SEO God1",
+  "wave": 1,
+  "title": "Wave1 VPI execution result and rollback",
+  "executed_at_utc": "2026-09-22T11:34:00Z",
+  "approval": {
+    "op_id": "op_e47e1ec319f54d2e",
+    "operation": "cron event run:litespeed_task_vpi",
+    "status": "executed"
+  },
+  "preflight_evidence": "seo-god1/WAVE01-VPI-READINESS-20260922.json",
+  "config": {
+    "media_lazy_before": "1",
+    "media_vpi_before": "0",
+    "media_vpi_cron": "1",
+    "media_vpi_enabled_for_test": "1",
+    "media_vpi_final": "0",
+    "rollback_verified": true
+  },
+  "vpi_meta": {
+    "homepage": {
+      "post_id": 644,
+      "desktop_list": [
+        "logo-deks2-keshavarz20.png",
+        "polyetilenetesal.keshavarz20.jpg"
+      ],
+      "behavior": "VPI added preload and fetchpriority=high for the full 1536px polyetilenetesal image."
+    },
+    "calculator": {
+      "post_id": 143698,
+      "desktop_list_contains": "drip-tape-length-fittings-calculator.png",
+      "current_featured_image": "k20-calculator-featured-optimized-1200.webp",
+      "behavior": "VPI metadata is stale relative to the current optimized featured image."
+    }
+  },
+  "live_html": {
+    "homepage": {
+      "preload": true,
+      "fetchpriority_high": true,
+      "direct_src": true,
+      "note": "The full 1536px image was promoted to high priority."
+    },
+    "calculator": {
+      "featured_still_litespeed_lazy": true,
+      "current_image_not_in_vpi_list": true
+    }
+  },
+  "performance": {
+    "evidence": "diagnostics/image-impact-results/20260922-wave1-vpi-round1-result.json",
+    "homepage_before_vpi": {
+      "evidence": "diagnostics/image-impact-results/20260922-home-promo-webp-postchange-result.json",
+      "lcp_s": [
+        5.2678745,
+        6.1020655
+      ],
+      "total_bytes": [
+        1976639,
+        1976526
+      ],
+      "image_bytes": [
+        1106835,
+        1106789
+      ]
+    },
+    "homepage_with_vpi": {
+      "lcp_s": [
+        9.756138,
+        7.3330895
+      ],
+      "performance_score": [
+        49,
+        51
+      ],
+      "total_bytes": [
+        2358737,
+        2358673
+      ],
+      "image_bytes": [
+        1488889,
+        1488837
+      ],
+      "promoted_full_image_bytes": 376323,
+      "verdict": "REGRESSION"
+    },
+    "calculator_before_vpi": {
+      "evidence": "diagnostics/image-impact-results/20260921-calculator-after-featured-optimize-result.json",
+      "lcp_s": [
+        8.131251796318052,
+        8.186668296318054
+      ]
+    },
+    "calculator_with_vpi": {
+      "lcp_s": [
+        8.466275796318056,
+        8.38203479631805
+      ],
+      "performance_score": [
+        59,
+        65
+      ],
+      "verdict": "NO_LCP_IMPROVEMENT"
+    }
+  },
+  "conclusion": "VPI is rejected for the current production configuration. It promoted the full-size homepage hero, increased image payload, and worsened homepage LCP; calculator VPI data was stale and did not improve LCP. VPI was disabled and all temporary policy expansion was removed.",
+  "rollback": {
+    "option": "litespeed.conf.media-vpi",
+    "restored": "0",
+    "cache_purge_triggered": true,
+    "policy_exception_removed": true,
+    "policy_close_commit": "6b1c269a2c2462406ab1d47ad067c7ad7b83393c"
+  },
+  "no_repeat": "Do not re-enable VPI in production unless hero source sizing or VPI generation behavior materially changes."
+}
