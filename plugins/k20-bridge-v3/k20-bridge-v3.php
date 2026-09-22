@@ -228,7 +228,7 @@ final class K20_Bridge_V3 {
     }
     private static function redact($value) {
         if (!is_array($value)) return $value; $out=[];
-        foreach ($value as $k=>$v) { if (in_array(strtolower((string)$k,self::$blocked_keys,true)) continue; $out[$k]=is_array($v)?self::redact($v):$v; } return $out;
+        foreach ($value as $k=>$v) { if (in_array(strtolower((string)$k),self::$blocked_keys,true)) continue; $out[$k]=is_array($v)?self::redact($v):$v; } return $out;
     }
     private static function action(string $v): string { $v=strtolower(trim($v)); return preg_replace('/[^a-z0-9._-]/','',$v) ?: ''; }
     private static function receipt_key(string $id): string { return 'k20b3_'.substr(hash('sha256',$id),0,32); }
