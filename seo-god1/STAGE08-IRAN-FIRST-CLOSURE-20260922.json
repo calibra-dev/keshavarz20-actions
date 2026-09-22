@@ -1,0 +1,29 @@
+{
+  "program": "Keshavarz20 Stage 8 Iran-first authority loop",
+  "generated_at_utc": "2026-09-22T16:19:00Z",
+  "status": "PASS_EXISTING_NO_REPEAT",
+  "evidence": [
+    "phase21/citation-campaign-assets.json",
+    "phase21/verified-outreach-targets-20260919.json"
+  ],
+  "reused_assets": [
+    "deterministic tools and calculators",
+    "verified product/compatibility data",
+    "Search Console demand",
+    "anonymized question patterns",
+    "decision pages",
+    "methodology/trust pages",
+    "reusable checklists and tables"
+  ],
+  "policy": {
+    "outreach_optional": true,
+    "cold_email_reply_not_acceptance_gate": true,
+    "pbn_forbidden": true,
+    "spam_comments_forbidden": true,
+    "fake_dealership_claims_forbidden": true,
+    "fake_mentions_or_field_results_forbidden": true
+  },
+  "new_mutations": 0,
+  "reason_no_repeat": "Phase21 is already PASS_GUARDED_IRAN_FIRST. Re-running outreach or rebuilding the authority framework would be duplicate work.",
+  "next_action": "Proceed to Stage 9 measurement reliability."
+}
