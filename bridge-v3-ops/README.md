@@ -1,45 +1,63 @@
-# Keshavarz20 Bridge v3 requests
+# Keshavarz20 Bridge v3.1 requests
 
-Commit a uniquely named JSON file under this folder to trigger the guarded Bridge v3 workflow.
+Commit a uniquely named JSON file under bridge-v3-ops/.
 
-Example read:
-
-```json
-{
-  "action": "rest.proxy",
-  "method": "GET",
-  "path": "/wc/v3/products/123"
-}
-```
-
-Example safe draft creation:
+## Search and patch content
 
 ```json
-{
-  "action": "rest.proxy",
-  "method": "POST",
-  "path": "/wc/v3/products",
-  "payload": {
-    "name": "Temporary product",
-    "status": "draft"
-  }
-}
+{"action":"content.search","payload":{"target_type":"post","post_id":123,"field":"post_content","pattern":"old text"}}
 ```
-
-Example SEO dry-run:
 
 ```json
-{
-  "action": "seo.update",
-  "id": 123,
-  "dry_run": true,
-  "payload": {
-    "title": "SEO title",
-    "description": "SEO description"
-  }
-}
+{"action":"content.patch","payload":{"target_type":"post","post_id":123,"field":"post_content","old_content":"old text","new_content":"new text","expected_sha256":"<from search>"}}
 ```
 
-Supported families include WordPress posts/pages/media/search/categories/tags, WooCommerce products/product categories/tags/attributes, Yoast metadata, Elementor inspection, cache status/purge, bounded batch execution, audit receipts, dry-run, and idempotent request IDs.
+## Elementor safe edit
 
-Hard denied: prices, discounts/coupons, payment data, users/roles/capabilities, credentials/secrets, customer/order data, SQL, arbitrary PHP/shell/commands.
+```json
+{"action":"elementor.search","id":123,"payload":{"pattern":"old heading"}}
+```
+
+```json
+{"action":"elementor.edit","id":123,"payload":{"old_content":"old heading","new_content":"new heading","expected_sha256":"<from search>"}}
+```
+
+## Media
+
+```json
+{"action":"media.import","payload":{"url":"https://example.com/image.webp","alt_text":"Example"}}
+```
+
+```json
+{"action":"media.transform","payload":{"attachment_id":321,"width":1200,"height":1200,"crop":true,"quality":82}}
+```
+
+## Background job
+
+```json
+{"action":"job.create","payload":{"items":[{"action":"seo.read","id":123},{"action":"cache.status"}]}}
+```
+
+Use job.status or job.run with payload.job_id to inspect/resume.
+
+## Engine router
+
+```json
+{"action":"engine.status","engine":"question"}
+```
+
+```json
+{"action":"engine.run","engine":"news","lookback_hours":24,"dry_run":true}
+```
+
+```json
+{"action":"engine.run","engine":"social","engine_action":"prepare"}
+```
+
+Article runs require an existing allow-listed daily-agri-articles/queue/*.json path.
+
+## GitOps profile
+
+```json
+{"action":"gitops.profile"}
+```

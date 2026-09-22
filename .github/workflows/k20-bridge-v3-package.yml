@@ -1,10 +1,11 @@
-name: Keshavarz20 Bridge v3 Package
+name: Keshavarz20 Bridge v3.1 Test and Package
 
 on:
   push:
     branches: [main]
     paths:
       - 'plugins/k20-bridge-v3/**'
+      - 'scripts/Invoke-K20BridgeV3.ps1'
       - '.github/workflows/k20-bridge-v3-package.yml'
   workflow_dispatch:
 
@@ -12,42 +13,67 @@ permissions:
   contents: read
 
 jobs:
-  package:
+  test-package:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Lint PHP
-        run: php -l plugins/k20-bridge-v3/k20-bridge-v3.php
-
-      - name: Guard against arbitrary execution primitives
+      - name: PHP syntax
         shell: bash
         run: |
           set -euo pipefail
-          if grep -En '\b(eval|exec|shell_exec|system|passthru|proc_open|popen)[[:space:]]*\(' plugins/k20-bridge-v3/k20-bridge-v3.php; then
-            echo "Forbidden execution primitive found."
+          find plugins/k20-bridge-v3 -name '*.php' -print0 | xargs -0 -n1 php -l
+
+      - name: PowerShell parse
+        shell: pwsh
+        run: |
+          $null = [scriptblock]::Create((Get-Content -Raw scripts/Invoke-K20BridgeV3.ps1))
+          Write-Host 'PowerShell parse OK'
+
+      - name: Security policy guard
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -REn '\b(eval|exec|shell_exec|system|passthru|proc_open|popen)[[:space:]]*\(' plugins/k20-bridge-v3 --include='*.php'; then
+            echo 'Forbidden execution primitive found'
             exit 1
           fi
+          grep -q "'price'" plugins/k20-bridge-v3/k20-bridge-v3.php
+          grep -q "'password'" plugins/k20-bridge-v3/k20-bridge-v3.php
+          grep -q "'engine.status'" scripts/Invoke-K20BridgeV3.ps1
+          grep -q "k20-customer-question-engine.yml" scripts/Invoke-K20BridgeV3.ps1
+          grep -q "k20-daily-agri-news.yml" scripts/Invoke-K20BridgeV3.ps1
+          grep -q "k20-article-queue-publisher.yml" scripts/Invoke-K20BridgeV3.ps1
+          grep -q "k20-daily-product-social.yml" scripts/Invoke-K20BridgeV3.ps1
+
+      - name: Contract smoke checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          for token in content.search content.patch elementor.edit media.import media.transform job.create job.status job.run; do
+            grep -q "'$token'" plugins/k20-bridge-v3/k20-bridge-v3.php
+          done
+          test -f plugins/k20-bridge-v3/includes/class-k20-bridge-v31-content.php
+          test -f plugins/k20-bridge-v3/includes/class-k20-bridge-v31-media.php
+          test -f plugins/k20-bridge-v3/includes/class-k20-bridge-v31-jobs.php
 
       - name: Build installable ZIP
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p dist/k20-bridge-v3
-          cp plugins/k20-bridge-v3/k20-bridge-v3.php dist/k20-bridge-v3/
-          cp plugins/k20-bridge-v3/README.md dist/k20-bridge-v3/
+          cp -R plugins/k20-bridge-v3/. dist/k20-bridge-v3/
           cd dist
-          zip -qr k20-bridge-v3.0.0.zip k20-bridge-v3
-          sha256sum k20-bridge-v3.0.0.zip > k20-bridge-v3.0.0.sha256
+          zip -qr k20-bridge-v3.1.0.zip k20-bridge-v3
+          sha256sum k20-bridge-v3.1.0.zip > k20-bridge-v3.1.0.sha256
 
       - name: Upload package
         uses: actions/upload-artifact@v4
         with:
-          name: k20-bridge-v3.0.0
+          name: k20-bridge-v3.1.0
           path: |
-            dist/k20-bridge-v3.0.0.zip
-            dist/k20-bridge-v3.0.0.sha256
+            dist/k20-bridge-v3.1.0.zip
+            dist/k20-bridge-v3.1.0.sha256
           if-no-files-found: error
           retention-days: 30
