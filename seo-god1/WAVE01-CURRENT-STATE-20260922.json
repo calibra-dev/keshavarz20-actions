@@ -2,7 +2,7 @@
   "program": "SEO God1",
   "wave": 1,
   "title": "Current Wave 1 state after IranKala 10.10, calculator remediation, homepage promotion WebP replacement, and restored WPVibe access",
-  "generated_at_utc": "2026-09-22T04:03:00Z",
+  "generated_at_utc": "2026-09-22T05:26:00Z",
   "verified": {
     "theme": {
       "name": "IranKala",
@@ -98,40 +98,37 @@
       },
       "performance_retest_run_id": 35685276503,
       "interpretation": "The two prior ~550 KB/~716 KB homepage promotion PNGs are removed from the live render path; LCP remains a separate residual."
+    },
+    "narrow_litespeed_exclusion_attempt": {
+      "state": "FAILED_ACCEPTANCE_ROLLED_BACK",
+      "evidence": "seo-god1/WAVE01-NARROW-CONFIG-EXECUTION-RESULT-20260922.json",
+      "final_option_value": [
+        "polyetilenetesal.keshavarz20.jpg"
+      ],
+      "permanent_policy_expansion": false,
+      "finding": "Exact image excludes cannot by themselves clear the remaining native/theme lazy-loading path."
     }
   },
   "exact_supported_config_candidate": {
-    "setting": "litespeed.conf.media-lazy_exc",
-    "current": [
-      "polyetilenetesal.keshavarz20.jpg"
-    ],
-    "proposed_narrow_delta": [
-      "polyetilenetesal.keshavarz20-768x225.jpg",
-      "k20-calculator-featured-optimized-1200-768x432.webp"
-    ],
-    "purpose": "Exclude only the two verified above-fold LCP image variants from LiteSpeed lazy loading.",
-    "broad_settings_avoided": [
-      "media-lazy global off",
-      "wp-post-image class-wide exclusion",
-      "media-vpi global enable"
-    ],
-    "rollback": "Restore current one-item media-lazy_exc array.",
-    "apply_allowed_now": false,
-    "block_reason": "Current keshavarz20-git-ops site-access policy hard-blocks admin_settings/options mutation."
+    "state": "REJECTED_BY_LIVE_ACCEPTANCE",
+    "evidence": "seo-god1/WAVE01-NARROW-CONFIG-EXECUTION-RESULT-20260922.json",
+    "rollback_verified": true
   },
   "residuals": [
     "Product singular no-cache remains while preserving WooCommerce review functionality.",
-    "Homepage LCP image remains lazy-loaded and lacks fetchpriority=high.",
-    "Calculator LCP remains ~8.1s despite cache restoration and image payload reduction.",
+    "Homepage LCP image still carries native/theme loading=lazy and lacks fetchpriority=high.",
+    "Calculator primary featured image still carries LiteSpeed/native lazy-loading; variant-only exclusion is insufficient.",
     "Owl/login/image-link accessibility renderer output remains unresolved in ionCube-protected theme.",
-    "PHP 8.1.34 runtime remains pending staging/hosting compatibility path."
+    "PHP 8.1.34 runtime remains pending staging/hosting compatibility path.",
+    "LiteSpeed VPI is the documented supported above-the-fold path but QUIC.cloud service may incur cost and was not enabled without explicit consent."
   ],
   "no_repeat": [
     "Do not rerun IranKala update verification.",
     "Do not rerun calculator cache root-cause A/B; comments-close cache restoration is proven.",
     "Do not rerun calculator featured-image compression work.",
     "Do not repeat Phase20 exact-node audit until a renderer/config mutation is actually applied.",
-    "Do not repeat homepage promotion image source tracing or PNG-to-WebP replacement; term-meta ownership and live replacement are proven."
+    "Do not repeat homepage promotion image source tracing or PNG-to-WebP replacement; term-meta ownership and live replacement are proven.",
+    "Do not retry the same two-entry LiteSpeed media-lazy_exc mutation; it failed live acceptance and was rolled back."
   ],
   "site_mutations_in_this_reconciliation": 2
 }
