@@ -1,0 +1,124 @@
+name: K20 Product Comment NoCache Source Scan
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/product-comment-nocache-scan-ops/*.json'
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Targeted comments/no-cache source scan
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $base=$env:WP_BASE_URL.TrimEnd('/')
+          $auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"))
+          $headers=@{Authorization="Basic $auth";Accept='application/json';'Content-Type'='application/json'}
+          $roots=@(
+            'themes/irankala',
+            'plugins/litespeed-cache',
+            'plugins/woocommerce',
+            'plugins/woocommerce-builder-elementor',
+            'plugins/keshavarz20-content-ops',
+            'plugins/keshavarz20-seo-ops',
+            'plugins/keshavarz20-indexability-repair',
+            'plugins/k20-bridge-v3',
+            'plugins/digits',
+            'plugins/jetpack'
+          )
+          $needles=@(
+            'comments_open',
+            'comment_status',
+            'DONOTCACHEPAGE',
+            'litespeed_const_DONOTCACHEPAGE',
+            'litespeed_control_set_nocache',
+            'nocache_headers',
+            'no-cache',
+            'woocommerce_recently_viewed'
+          )
+          $findings=@(); $files=0; $readable=0
+          foreach($root in $roots){
+            $enc=[Uri]::EscapeDataString($root)
+            try{$list=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/file/list?scope=wp-content&directory=$enc" -Headers $headers -Method GET -TimeoutSec 180}catch{continue}
+            foreach($f in @($list.files)){
+              $path=[string]$f.path
+              if($path -notmatch '\.php$'){continue}
+              $files++
+              $body=[ordered]@{scope='wp-content';path=$path}|ConvertTo-Json -Compress
+              try{$r=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/file/read" -Headers $headers -Method POST -Body $body -TimeoutSec 180}catch{continue}
+              $content=if($r.PSObject.Properties.Name -contains 'content'){[string]$r.content}elseif($r.data){[string]$r.data.content}else{''}
+              if([string]::IsNullOrEmpty($content)){continue}
+              $readable++
+              $lines=$content -split "\r?\n"
+              $hitLines=@()
+              for($i=0;$i -lt $lines.Count;$i++){
+                foreach($needle in $needles){
+                  if($lines[$i].IndexOf($needle,[StringComparison]::OrdinalIgnoreCase)-ge0){
+                    $hitLines+=,[pscustomobject]@{i=$i;needle=$needle};break
+                  }
+                }
+              }
+              foreach($h in $hitLines){
+                $i=[int]$h.i
+                $start=[Math]::Max(0,$i-18);$end=[Math]::Min($lines.Count-1,$i+18)
+                $ctx=($lines[$start..$end] -join "\n")
+                $hasComment=($ctx -match '(?i)comments_open|comment_status')
+                $hasNoCache=($ctx -match '(?i)DONOTCACHEPAGE|litespeed_control_set_nocache|litespeed_const_DONOTCACHEPAGE|nocache_headers|no-cache')
+                $hasRecent=($ctx -match '(?i)woocommerce_recently_viewed')
+                if($hasComment -and $hasNoCache -or $hasRecent -and $hasNoCache){
+                  $san=@()
+                  for($j=$start;$j -le $end;$j++){
+                    $s=$lines[$j].Trim()
+                    if($s.Length-gt260){$s=$s.Substring(0,260)}
+                    $san+=("{0}:{1}" -f ($j+1),$s)
+                  }
+                  $findings+=,[pscustomobject]@{
+                    path=$path
+                    trigger=$h.needle
+                    line=$i+1
+                    context=$san
+                  }
+                }
+              }
+            }
+          }
+          New-Item -ItemType Directory -Force 'diagnostics/product-comment-nocache-scan-results'|Out-Null
+          $out=[ordered]@{
+            mode='read-only'
+            roots=$roots
+            php_files_seen=$files
+            readable_php_files=$readable
+            focused_matches=@($findings | Sort-Object path,line -Unique)
+          }
+          $out|ConvertTo-Json -Depth 30|Set-Content 'diagnostics/product-comment-nocache-scan-results/20260922-result.json' -Encoding utf8
+
+      - name: Commit sanitized scan
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f diagnostics/product-comment-nocache-scan-results/20260922-result.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "perf: record focused product comment nocache source scan"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
