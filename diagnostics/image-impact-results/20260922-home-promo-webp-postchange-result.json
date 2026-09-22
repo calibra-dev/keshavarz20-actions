@@ -1,0 +1,156 @@
+{
+  "tested_at_utc": "2026-09-22T04:01:31Z",
+  "lighthouse_version": "13.5.0",
+  "targets": [
+    {
+      "name": "home",
+      "url": "https://keshavarz20.com/",
+      "curl_samples": [
+        {
+          "seq": 1,
+          "http_code": 200,
+          "ttfb_s": 7.411811,
+          "total_s": 7.778338,
+          "html_bytes": 77822,
+          "redirects": 0,
+          "litespeed_cache": "miss",
+          "litespeed_cache_control": "public,max-age=604800"
+        },
+        {
+          "seq": 2,
+          "http_code": 200,
+          "ttfb_s": 1.337449,
+          "total_s": 1.529354,
+          "html_bytes": 77822,
+          "redirects": 0,
+          "litespeed_cache": "hit",
+          "litespeed_cache_control": ""
+        },
+        {
+          "seq": 3,
+          "http_code": 200,
+          "ttfb_s": 1.329171,
+          "total_s": 1.513065,
+          "html_bytes": 77822,
+          "redirects": 0,
+          "litespeed_cache": "hit",
+          "litespeed_cache_control": ""
+        },
+        {
+          "seq": 4,
+          "http_code": 200,
+          "ttfb_s": 1.139902,
+          "total_s": 1.509450,
+          "html_bytes": 77822,
+          "redirects": 0,
+          "litespeed_cache": "hit",
+          "litespeed_cache_control": ""
+        },
+        {
+          "seq": 5,
+          "http_code": 200,
+          "ttfb_s": 1.327525,
+          "total_s": 1.510084,
+          "html_bytes": 77822,
+          "redirects": 0,
+          "litespeed_cache": "hit",
+          "litespeed_cache_control": ""
+        }
+      ],
+      "lighthouse_runs": [
+        {
+          "seq": 1,
+          "performance_score": 43,
+          "fcp_s": 2.9743625000000002,
+          "lcp_s": 5.2678745,
+          "speed_index_s": 13.167172333291335,
+          "tbt_ms": 1057.433,
+          "cls": 0.015112023912903352,
+          "total_bytes": 1976639,
+          "image_bytes": 1106835,
+          "request_count": 124,
+          "lcp_element": null,
+          "lcp_element_path": null,
+          "largest_images": [
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/06/hossini.jpg",
+              "transferSize": 138281,
+              "resourceSize": 138113,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/07/kood-768x576.jpg",
+              "transferSize": 125514,
+              "resourceSize": 125364,
+              "priority": "Low"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/07/barani-768x576.jpg",
+              "transferSize": 117194,
+              "resourceSize": 117044,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/10/FLYGEN-768x576.jpg",
+              "transferSize": 115543,
+              "resourceSize": 115393,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/07/etesalat-768x576.jpg",
+              "transferSize": 111956,
+              "resourceSize": 111816,
+              "priority": "High"
+            }
+          ]
+        },
+        {
+          "seq": 2,
+          "performance_score": 67,
+          "fcp_s": 3.1161875,
+          "lcp_s": 6.1020655,
+          "speed_index_s": 4.774156248125701,
+          "tbt_ms": 190,
+          "cls": 0.014275232754265054,
+          "total_bytes": 1976526,
+          "image_bytes": 1106789,
+          "request_count": 124,
+          "lcp_element": null,
+          "lcp_element_path": null,
+          "largest_images": [
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/06/hossini.jpg",
+              "transferSize": 138290,
+              "resourceSize": 138113,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/07/kood-768x576.jpg",
+              "transferSize": 125514,
+              "resourceSize": 125364,
+              "priority": "Low"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/07/barani-768x576.jpg",
+              "transferSize": 117194,
+              "resourceSize": 117044,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/10/FLYGEN-768x576.jpg",
+              "transferSize": 115543,
+              "resourceSize": 115393,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/07/etesalat-768x576.jpg",
+              "transferSize": 111956,
+              "resourceSize": 111816,
+              "priority": "High"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
