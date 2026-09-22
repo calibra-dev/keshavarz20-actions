@@ -1,0 +1,92 @@
+{
+  "program": "Keshavarz20 Stage 0 Performance Gate",
+  "generated_at_utc": "2026-09-22T13:47:00Z",
+  "prompt": "prompts/k20-performance-50pct-20260922.md",
+  "cohort": {
+    "requested": 50,
+    "read_ok": 46,
+    "failed": 4
+  },
+  "baseline": {
+    "median_ttfb_s": 5.3311,
+    "median_total_s": 5.7258,
+    "p75_total_s": 5.9669,
+    "cache_hit_pages": 10,
+    "explicit_no_cache_pages": 36
+  },
+  "retained_safe_changes": {
+    "action": "closed comments only on 9 published non-product posts that had zero approved public comments and were proven no-cache",
+    "ids": [
+      142587,
+      142954,
+      143782,
+      143691,
+      143858,
+      143699,
+      143869,
+      143848,
+      143700
+    ],
+    "product_reviews_changed": false
+  },
+  "verified_individual_wins": [
+    {
+      "id": 142587,
+      "baseline_total_s": 6.129492,
+      "post_total_s": 1.343973,
+      "improvement_pct": 78.1
+    },
+    {
+      "id": 142954,
+      "baseline_total_s": 5.884389,
+      "post_total_s": 1.014782,
+      "improvement_pct": 82.8
+    },
+    {
+      "id": 143782,
+      "baseline_total_s": 5.9305,
+      "post_total_s": 2.672366,
+      "improvement_pct": 54.9
+    },
+    {
+      "id": 143691,
+      "baseline_total_s": 5.789161,
+      "post_total_s": 1.285505,
+      "improvement_pct": 77.8
+    },
+    {
+      "id": 143858,
+      "baseline_total_s": 5.714544,
+      "post_total_s": 1.293733,
+      "improvement_pct": 77.4
+    },
+    {
+      "id": 143699,
+      "baseline_total_s": 5.635185,
+      "post_total_s": 1.290335,
+      "improvement_pct": 77.1
+    }
+  ],
+  "same_cohort_latest": {
+    "median_ttfb_s": 5.653,
+    "median_total_s": 6.0228,
+    "p75_total_s": 6.2687,
+    "cache_hit_pages": 21,
+    "explicit_no_cache_pages": 25
+  },
+  "acceptance": {
+    "target_50pct_cohort_met": false,
+    "explanation": "Safe non-product fixes produced >50% improvements on changed guides, but cohort median remains dominated by product singular pages that stay explicit no-cache.",
+    "product_root_cause": "open WooCommerce product review/comment renderer path; disabling reviews made K60 MISS/HIT/HIT and restoring reviews restored no-cache.",
+    "safe_product_fix_available": false,
+    "vendor_or_supported_renderer_fix_required": true
+  },
+  "no_repeat": [
+    "VPI on current renderer",
+    "exact lazy-exclude on current renderer",
+    "ESI enable experiment",
+    "woocommerce_recently_viewed A/B",
+    "disabling product reviews for speed"
+  ],
+  "next_action": "Proceed to independent Stage 1 GSC recovery and PIM/internal-link work while product review-renderer cache fix remains vendor-supported blocker."
+}
