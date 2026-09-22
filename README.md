@@ -1,41 +1,27 @@
-# keshavarz20-actions
+# Keshavarz20 Bridge v3
 
-Public GitHub Actions control plane for `keshavarz20.com`.
+Guarded WordPress execution layer for the GitHub-first Keshavarz20 control plane.
 
-## Purpose
+## Endpoints
 
-This repository contains only cloud-safe, reusable automation required to operate the public website without a personal computer or self-hosted runner.
+- GET /wp-json/keshavarz20-ops/v3/
+- GET /wp-json/keshavarz20-ops/v3/health
+- GET /wp-json/keshavarz20-ops/v3/capabilities
+- POST /wp-json/keshavarz20-ops/v3/execute
 
-The private repository `calibra-dev/keshavarz20-ops` remains the archive for historical evidence, local-runner tooling, backups, raw bridge queues/results, one-off batch artifacts, and anything that may contain sensitive operational data.
+It reuses normal WordPress REST authentication and creates no new credential.
 
-## Verified cloud path
+## Coverage
 
-`GitHub -> GitHub-hosted ubuntu runner -> WordPress/WooCommerce REST API -> keshavarz20.com`
+- WordPress posts, pages, media, categories, tags, and search
+- WooCommerce products, product categories, tags, global attributes and attribute terms
+- Product draft creation and non-price updates through official WooCommerce REST controllers
+- Yoast title, meta description, focus keyword, canonical and noindex metadata
+- Elementor metadata inspection
+- Cache status and guarded purge
+- System/plugin inventory read
+- Dry-run, bounded batch execution, idempotent request IDs and bounded audit receipts
 
-The lifecycle workflow has been verified end-to-end with:
+## Hard boundaries
 
-- create temporary draft product
-- authenticated readback
-- delete
-- verify 404
-
-No personal computer is required for this path.
-
-## Required repository secrets
-
-- `WP_BASE_URL`
-- `WP_USERNAME`
-- `WP_APP_PASSWORD`
-
-Do not commit credentials, tokens, application passwords, raw authenticated API responses, local bridge config, or backups to this public repository.
-
-## Workflows
-
-- `woocommerce-hosted-lifecycle.yml` - end-to-end WooCommerce write/read/delete verification.
-- `k20-cloud-health.yml` - authenticated read-only WordPress/WooCommerce connectivity check.
-
-## Migration policy
-
-Only reusable and public-safe operational logic is migrated from `keshavarz20-ops`. Historical batch workflows, self-hosted runner paths, Windows scheduled-task configuration, bridge queue/result archives, backups, and diagnostic evidence remain private.
-
-See `docs/MIGRATION-FROM-KESHAVARZ20-OPS.md` for details.
+No price/sale/discount/coupon/payment changes. No user/role/capability management. No credentials/tokens/secrets. No customer/order export. No SQL, arbitrary PHP, shell, generic command execution or arbitrary file access.

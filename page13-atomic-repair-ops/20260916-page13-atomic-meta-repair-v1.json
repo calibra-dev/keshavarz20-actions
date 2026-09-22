@@ -1,8 +1,0 @@
-{
-  "action": "repair_elementor_root_array_atomic",
-  "id": 13,
-  "confirm_root_only": true,
-  "expected_sha256": "411d1c0bb3ac6038a4effd4758984f99836c72b3864588cd539880d8ff1fb344",
-  "expected_after_sha256": "ad88a9e43d4045e482939e0aa7c32ebc1c7285c5f7e0cc211754a757025e2592",
-  "purpose": "Atomically wrap the exact current Elementor root object in one array without changing any bytes inside it; then read back, clear Elementor cache, and verify refund/product live markup"
-}
