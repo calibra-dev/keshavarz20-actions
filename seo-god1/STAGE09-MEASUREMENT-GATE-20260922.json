@@ -1,0 +1,34 @@
+{
+  "program": "Keshavarz20 Stage 9 Measurement reliability",
+  "generated_at_utc": "2026-09-22T16:20:00Z",
+  "status": "PARTIAL_GUARDED_INSTRUMENTATION_PATH_REQUIRED",
+  "evidence": [
+    "seo-god1/phase01-checkout-gateway-e2e-20260921.json",
+    "seo-god1/phase02-measurement-contract-20260921.json",
+    "seo-god1/PHASE02-MEASUREMENT-CLOSURE-V2-20260921.json",
+    "phase24-results/measurement-live-update-20260920.json"
+  ],
+  "verified": {
+    "ga4_connected": true,
+    "gsc_connected": true,
+    "checkout_to_external_gateway_reachability": true,
+    "real_payment_attempted": false,
+    "begin_checkout_duplication_historical": true,
+    "purchase_event_verified": false,
+    "add_shipping_info_verified": false,
+    "add_payment_info_verified": false,
+    "whatsapp_event_names_fragmented_historically": true
+  },
+  "blockers": [
+    "No allow-listed GitHub/Bridge tagging configuration path exists for canonical event fixes.",
+    "A successful card payment/callback/settlement was intentionally not executed without a safe real or sandbox payment path."
+  ],
+  "safety": {
+    "fake_conversion_events": false,
+    "payment_credentials_touched": false,
+    "real_charge_attempted": false,
+    "pii_added_to_analytics": false
+  },
+  "mutation": "none; instrumentation cannot be safely altered through the current allow-listed control plane",
+  "next_action": "Proceed to Stage 10. Instrumentation fixes wait for an allow-listed tagging/configuration endpoint and a safe payment callback test."
+}
