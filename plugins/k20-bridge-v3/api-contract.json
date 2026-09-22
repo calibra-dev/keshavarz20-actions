@@ -1,0 +1,17 @@
+{
+  "schema_version": "3.2",
+  "plugin_version": "3.2.0",
+  "namespace": "keshavarz20-ops/v3",
+  "compatibility": {
+    "request_min": "3.1",
+    "response_current": "3.2"
+  },
+  "guarantees": [
+    "existing v3.1 action names remain valid",
+    "writes are allow-listed",
+    "price/discount/coupon/payment/user/role/credential/arbitrary-code operations remain denied",
+    "new high-impact actions use two-phase approval",
+    "content and bridge updates are reversible through bounded snapshots/backups"
+  ]
+}
+

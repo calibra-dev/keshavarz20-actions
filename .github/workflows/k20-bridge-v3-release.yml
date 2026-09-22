@@ -1,0 +1,57 @@
+name: Keshavarz20 Bridge v3.2 Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/k20-bridge-v3/**'
+      - '.github/workflows/k20-bridge-v3-release.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-bridge-v3.2-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate version
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'Version: 3.2.0' plugins/k20-bridge-v3/k20-bridge-v3.php
+          python - <<'PY'
+          import json
+          m=json.load(open('plugins/k20-bridge-v3/update-manifest.json'))
+          assert m['version']=='3.2.0'
+          PY
+
+      - name: Build release package
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf dist
+          mkdir -p dist/k20-bridge-v3
+          cp -R plugins/k20-bridge-v3/. dist/k20-bridge-v3/
+          cd dist
+          zip -qr k20-bridge-v3.2.0.zip k20-bridge-v3
+          sha256sum k20-bridge-v3.2.0.zip > k20-bridge-v3.2.0.sha256
+
+      - name: Publish or refresh release assets
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if gh release view v3.2.0 >/dev/null 2>&1; then
+            gh release upload v3.2.0 dist/k20-bridge-v3.2.0.zip dist/k20-bridge-v3.2.0.sha256 --clobber
+          else
+            gh release create v3.2.0               dist/k20-bridge-v3.2.0.zip               dist/k20-bridge-v3.2.0.sha256               --title 'Keshavarz20 Bridge v3.2.0'               --notes 'Guarded K20 Bridge v3.2: rollback, approval, job recovery, advanced media, structural Elementor, observability, self-update and API contract.'
+          fi

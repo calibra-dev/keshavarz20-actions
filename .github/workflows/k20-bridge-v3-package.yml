@@ -1,4 +1,4 @@
-name: Keshavarz20 Bridge v3.1 Test and Package
+name: Keshavarz20 Bridge v3.2 Test and Package
 
 on:
   push:
@@ -15,7 +15,7 @@ permissions:
 jobs:
   test-package:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
 
@@ -31,6 +31,22 @@ jobs:
           $null = [scriptblock]::Create((Get-Content -Raw scripts/Invoke-K20BridgeV3.ps1))
           Write-Host 'PowerShell parse OK'
 
+      - name: JSON contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m json.tool plugins/k20-bridge-v3/api-contract.json >/dev/null
+          python -m json.tool plugins/k20-bridge-v3/update-manifest.json >/dev/null
+          python - <<'PY'
+          import json
+          c=json.load(open('plugins/k20-bridge-v3/api-contract.json'))
+          m=json.load(open('plugins/k20-bridge-v3/update-manifest.json'))
+          assert c['schema_version']=='3.2'
+          assert c['plugin_version']=='3.2.0'
+          assert m['version']=='3.2.0'
+          assert m['package_url'].startswith('https://github.com/calibra-dev/keshavarz20-actions/releases/download/v3.2.0/')
+          PY
+
       - name: Security policy guard
         shell: bash
         run: |
@@ -41,39 +57,40 @@ jobs:
           fi
           grep -q "'price'" plugins/k20-bridge-v3/k20-bridge-v3.php
           grep -q "'password'" plugins/k20-bridge-v3/k20-bridge-v3.php
-          grep -q "'engine.status'" scripts/Invoke-K20BridgeV3.ps1
-          grep -q "k20-customer-question-engine.yml" scripts/Invoke-K20BridgeV3.ps1
-          grep -q "k20-daily-agri-news.yml" scripts/Invoke-K20BridgeV3.ps1
-          grep -q "k20-article-queue-publisher.yml" scripts/Invoke-K20BridgeV3.ps1
-          grep -q "k20-daily-product-social.yml" scripts/Invoke-K20BridgeV3.ps1
+          grep -q "REPO_RELEASE_PREFIX='https://github.com/calibra-dev/keshavarz20-actions/releases/download/'" plugins/k20-bridge-v3/includes/class-k20-bridge-v32-updater.php
+          grep -q "checksum_mismatch" plugins/k20-bridge-v3/includes/class-k20-bridge-v32-updater.php
+          grep -q "approval_required" plugins/k20-bridge-v3/includes/class-k20-bridge-v32-approval.php
 
       - name: Contract smoke checks
         shell: bash
         run: |
           set -euo pipefail
-          for token in content.search content.patch elementor.edit media.import media.transform job.create job.status job.run; do
+          for token in             content.block.patch elementor.structure media.optimize media.focal_crop media.watermark             job.retry_failed snapshot.rollback approval.execute observability.status selftest.run             update.check update.stage update.apply update.rollback; do
             grep -q "'$token'" plugins/k20-bridge-v3/k20-bridge-v3.php
           done
-          test -f plugins/k20-bridge-v3/includes/class-k20-bridge-v31-content.php
-          test -f plugins/k20-bridge-v3/includes/class-k20-bridge-v31-media.php
-          test -f plugins/k20-bridge-v3/includes/class-k20-bridge-v31-jobs.php
+          for file in             class-k20-bridge-v32-snapshots.php             class-k20-bridge-v32-approval.php             class-k20-bridge-v32-content.php             class-k20-bridge-v32-media.php             class-k20-bridge-v32-jobs.php             class-k20-bridge-v32-updater.php             class-k20-bridge-v32-observability.php; do
+            test -f "plugins/k20-bridge-v3/includes/$file"
+          done
+          grep -q "'engine.status'" scripts/Invoke-K20BridgeV3.ps1
+          grep -q "schema_version='3.2'" scripts/Invoke-K20BridgeV3.ps1
 
       - name: Build installable ZIP
         shell: bash
         run: |
           set -euo pipefail
+          rm -rf dist
           mkdir -p dist/k20-bridge-v3
           cp -R plugins/k20-bridge-v3/. dist/k20-bridge-v3/
           cd dist
-          zip -qr k20-bridge-v3.1.0.zip k20-bridge-v3
-          sha256sum k20-bridge-v3.1.0.zip > k20-bridge-v3.1.0.sha256
+          zip -qr k20-bridge-v3.2.0.zip k20-bridge-v3
+          sha256sum k20-bridge-v3.2.0.zip > k20-bridge-v3.2.0.sha256
 
       - name: Upload package
         uses: actions/upload-artifact@v4
         with:
-          name: k20-bridge-v3.1.0
+          name: k20-bridge-v3.2.0
           path: |
-            dist/k20-bridge-v3.1.0.zip
-            dist/k20-bridge-v3.1.0.sha256
+            dist/k20-bridge-v3.2.0.zip
+            dist/k20-bridge-v3.2.0.sha256
           if-no-files-found: error
           retention-days: 30

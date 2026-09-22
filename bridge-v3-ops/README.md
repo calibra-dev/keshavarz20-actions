@@ -1,63 +1,66 @@
-# Keshavarz20 Bridge v3.1 requests
+# Bridge v3.2 request examples
 
-Commit a uniquely named JSON file under bridge-v3-ops/.
-
-## Search and patch content
-
+## Observability
 ```json
-{"action":"content.search","payload":{"target_type":"post","post_id":123,"field":"post_content","pattern":"old text"}}
+{"action":"observability.status"}
 ```
 
+## Lifecycle self-test
 ```json
-{"action":"content.patch","payload":{"target_type":"post","post_id":123,"field":"post_content","old_content":"old text","new_content":"new text","expected_sha256":"<from search>"}}
+{"action":"selftest.run"}
 ```
 
-## Elementor safe edit
-
+## Snapshot rollback
+First request:
 ```json
-{"action":"elementor.search","id":123,"payload":{"pattern":"old heading"}}
+{"action":"snapshot.rollback","payload":{"snapshot_id":123}}
+```
+The response returns `approval_id` and `fingerprint`. Execute the frozen request with:
+```json
+{"action":"approval.execute","payload":{"approval_id":"ap_...","fingerprint":"..."}}
 ```
 
+## Gutenberg block patch
 ```json
-{"action":"elementor.edit","id":123,"payload":{"old_content":"old heading","new_content":"new heading","expected_sha256":"<from search>"}}
+{"action":"content.block.inspect","id":123,"payload":{"block_path":[0]}}
+```
+```json
+{"action":"content.block.patch","id":123,"payload":{"block_path":[0],"old_content":"Old","new_content":"New","expected_sha256":"..."}}
 ```
 
-## Media
-
+## Elementor structural edit
 ```json
-{"action":"media.import","payload":{"url":"https://example.com/image.webp","alt_text":"Example"}}
+{"action":"elementor.structure","id":123,"payload":{"operation":"update_settings","element_id":"abc1234","settings":{"title":"New title"}}}
+```
+Remove, duplicate, insert and move require two-phase approval.
+
+## Job recovery
+```json
+{"action":"job.create","payload":{"items":[{"action":"cache.status"}],"max_retries":2,"backoff_seconds":30}}
+```
+```json
+{"action":"job.retry_failed","payload":{"job_id":"job_..."}}
 ```
 
+## Media Pro
 ```json
-{"action":"media.transform","payload":{"attachment_id":321,"width":1200,"height":1200,"crop":true,"quality":82}}
+{"action":"media.optimize","payload":{"attachment_id":321,"mime":"image/webp","quality":82,"max_dimension":1920}}
+```
+```json
+{"action":"media.focal_crop","payload":{"attachment_id":321,"width":1200,"height":1200,"focal_x":0.5,"focal_y":0.35}}
+```
+```json
+{"action":"media.watermark","payload":{"attachment_id":321,"watermark_attachment_id":400,"opacity":0.35,"scale":0.22,"position":"bottom-right"}}
 ```
 
-## Background job
-
+## Self update
 ```json
-{"action":"job.create","payload":{"items":[{"action":"seo.read","id":123},{"action":"cache.status"}]}}
+{"action":"update.check"}
 ```
-
-Use job.status or job.run with payload.job_id to inspect/resume.
-
-## Engine router
-
 ```json
-{"action":"engine.status","engine":"question"}
+{"action":"update.stage"}
 ```
-
 ```json
-{"action":"engine.run","engine":"news","lookback_hours":24,"dry_run":true}
+{"action":"update.apply"}
 ```
-
-```json
-{"action":"engine.run","engine":"social","engine_action":"prepare"}
-```
-
-Article runs require an existing allow-listed daily-agri-articles/queue/*.json path.
-
-## GitOps profile
-
-```json
-{"action":"gitops.profile"}
-```
+Apply and rollback use the same two-phase approval flow.
