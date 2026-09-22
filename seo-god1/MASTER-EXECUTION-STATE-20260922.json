@@ -9,9 +9,6 @@
       "name": "Performance gate",
       "state": "PARTIAL_VENDOR_BLOCKED_WITH_VERIFIED_SAFE_WINS",
       "evidence": [
-        "prompts/k20-performance-50pct-20260922.md",
-        "performance-fast-audit-ops/20260922-top50-fast-baseline-v1.json",
-        "performance-audit-ops/20260922-top50-baseline-v1.json",
         "seo-god1/STAGE00-PERFORMANCE-GATE-RESULT-20260922.json",
         "performance-results/20260922-top50-fast-post-comments-v2-result.json"
       ]
@@ -19,76 +16,107 @@
     {
       "stage": 1,
       "name": "Recover current Google losses",
-      "state": "IN_PROGRESS",
+      "state": "PASS_FOCUSED_RECOVERY_WAVE1_MONITOR_GSC",
       "evidence": [
         "seo-god1/STAGE01-GSC-RECOVERY-TARGETS-20260922.json",
-        "bridge-v3-results/20260922-stage1-hyper-seo-read.json",
-        "bridge-v3-results/20260922-stage1-phosphoro-seo-read.json",
-        "bridge-v3-results/20260922-stage1-mesi-seo-read.json"
+        "bridge-v3-results/20260922-stage1-hyper-seo-readback.json",
+        "bridge-v3-results/20260922-stage1-phosphoro-seo-final-readback.json",
+        "bridge-v3-results/20260922-stage1-mesi-seo-final-readback.json",
+        "seo-god1/STAGE01-STALE-URL-CLASSIFICATION-20260922.json"
       ]
     },
     {
       "stage": 2,
       "name": "Product Truth / PIM / PDP authority",
-      "state": "IN_PROGRESS_DATA_GATED",
+      "state": "PARTIAL_AUTHORITATIVE_DATA_GATED",
       "evidence": [
-        "results/20260922-stage1-hyper-product-read.json",
-        "results/20260922-stage1-phosphoro-product-read.json",
-        "results/20260922-stage1-mesi-product-read.json",
-        "bridge-v3-results/20260922-stage2-phosphoro-image-optimize.json"
+        "seo-god1/STAGE02-PIM-GAP-MANIFEST-20260922.json",
+        "results/20260922-stage2-phosphoro-webp-final-readback.json"
       ]
     },
     {
       "stage": 3,
       "name": "Controlled internal-link application",
-      "state": "PENDING"
+      "state": "PASS_SMALL_WAVE1_BACKLOG_CONTROLLED",
+      "evidence": [
+        "seo-god1/STAGE03-INTERNAL-LINK-WAVE1-20260922.json",
+        "phase16-results/internal-link-authority-manifest-latest.json"
+      ]
     },
     {
       "stage": 4,
       "name": "Category / brand / topic ownership",
-      "state": "PENDING"
+      "state": "PASS_SCOPE1_XGREEN",
+      "evidence": [
+        "seo-god1/STAGE04-QUERY-OWNERSHIP-XGREEN-20260922.json"
+      ]
     },
     {
       "stage": 5,
       "name": "Decision Engine publication",
-      "state": "PENDING"
+      "state": "PASS_LIVE_DECISION_PATH",
+      "evidence": [
+        "seo-god1/STAGE05-DECISION-ENGINE-CLOSURE-20260922.json",
+        "bridge-v3-results/20260922-stage5-pipe-decision-path-readback.json"
+      ]
     },
     {
       "stage": 6,
       "name": "AEO / GEO answer architecture",
-      "state": "PENDING"
+      "state": "PASS_CONTENT_ARCHITECTURE_EXTERNAL_SURFACE_GATED",
+      "evidence": [
+        "seo-god1/STAGE06-AEO-GEO-CLOSURE-20260922.json"
+      ]
     },
     {
       "stage": 7,
       "name": "Trust, reviews, Q&A, video",
-      "state": "PENDING"
+      "state": "PARTIAL_EXTERNAL_VIDEO_AND_CONSENT_BACKEND",
+      "evidence": [
+        "seo-god1/STAGE07-TRUST-REVIEWS-VIDEO-GATE-20260922.json"
+      ]
     },
     {
       "stage": 8,
       "name": "Iran-first authority loop",
-      "state": "PENDING"
+      "state": "PASS_EXISTING_NO_REPEAT",
+      "evidence": [
+        "seo-god1/STAGE08-IRAN-FIRST-CLOSURE-20260922.json"
+      ]
     },
     {
       "stage": 9,
       "name": "Measurement reliability",
-      "state": "PENDING"
+      "state": "PARTIAL_GUARDED_INSTRUMENTATION_PATH_REQUIRED",
+      "evidence": [
+        "seo-god1/STAGE09-MEASUREMENT-GATE-20260922.json"
+      ]
     },
     {
       "stage": 10,
       "name": "Freshness and lifecycle governance",
-      "state": "PENDING"
+      "state": "PASS_GOVERNANCE_QUEUE_DATA_GATED",
+      "evidence": [
+        "seo-god1/STAGE10-LIFECYCLE-CLOSURE-20260922.json"
+      ]
     },
     {
       "stage": 11,
       "name": "Accessibility / renderer residuals",
-      "state": "PENDING"
+      "state": "PARTIAL_VENDOR_THEME_BLOCKED",
+      "evidence": [
+        "seo-god1/STAGE11-RENDERER-ACCESSIBILITY-GATE-20260922.json"
+      ]
     },
     {
       "stage": 12,
       "name": "Final release gate",
-      "state": "PENDING"
+      "state": "NOT_RELEASED_10_OF_10",
+      "evidence": [
+        "seo-god1/STAGE12-FINAL-RELEASE-GATE-20260922.json"
+      ]
     }
   ],
-  "next_action": "Continue Stage 1/2 with verified product truth and focused recovery; Stage 0 product cache remains vendor-supported review-renderer blocker. Do not repeat failed performance experiments.",
-  "last_updated_utc": "2026-09-22T13:49:00Z"
+  "next_action": "Obtain a vendor-supported IranKala/WooCommerce product review renderer/cache path that preserves reviews and cart/checkout/account privacy. Do not repeat VPI, lazy-exclude, ESI, woocommerce_recently_viewed, or review-disable experiments.",
+  "last_updated_utc": "2026-09-22T16:24:00Z"
 }
