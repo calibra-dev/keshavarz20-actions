@@ -1,0 +1,30 @@
+{
+  "program": "Keshavarz20 Stage 11 Accessibility / renderer residuals",
+  "generated_at_utc": "2026-09-22T16:22:00Z",
+  "status": "PARTIAL_VENDOR_THEME_BLOCKED",
+  "evidence": [
+    "phase20-results/final-remediation-20260921.json",
+    "seo-god1/STAGE00-PERFORMANCE-GATE-RESULT-20260922.json"
+  ],
+  "residuals": [
+    "Owl carousel dot buttons without accessible names",
+    "site-logo/theme image-only links without discernible names",
+    "homepage LCP hero renderer still emits native/theme loading=lazy behavior in ionCube-protected IranKala output",
+    "WooCommerce product review/comment renderer path keeps product singular pages explicit no-cache while reviews remain enabled"
+  ],
+  "exhausted_safe_experiments": [
+    "current-renderer VPI experiment (rolled back after worse LCP)",
+    "exact lazy-exclude experiment",
+    "ESI experiment",
+    "woocommerce_recently_viewed A/B",
+    "disabling product reviews for speed (rejected and restored)"
+  ],
+  "guardrails": [
+    "No protected IranKala/ionCube source edits.",
+    "No arbitrary PHP/JS injection.",
+    "No aria-hidden/tabindex hacks on interactive controls.",
+    "No disabling product reviews to win a benchmark."
+  ],
+  "unlock": "Vendor-supported IranKala renderer/update/hook or a newly allow-listed safe deployment path that exposes accessible names and supported cache/LCP behavior.",
+  "next_action": "Proceed to Stage 12 final gate with this blocker explicit."
+}
