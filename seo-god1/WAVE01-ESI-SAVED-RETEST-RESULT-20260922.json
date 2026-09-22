@@ -1,0 +1,49 @@
+{
+  "program": "SEO God1",
+  "wave": 1,
+  "title": "LiteSpeed ESI saved-setting retest result",
+  "recorded_at_utc": "2026-09-22T12:43:00Z",
+  "trigger_commit": "5e218ea392936fb87dc7a4599c7957ca0b715159",
+  "workflow_run_id": 35728560237,
+  "workflow_conclusion": "success",
+  "esi_state_evidence": "x-litespeed-cache-control includes esi=on on product, cart, and checkout responses",
+  "product": {
+    "route": "K60 product",
+    "cache_samples": [
+      {
+        "seq": 1,
+        "ttfb_s": 6.544198,
+        "ls_cache": "",
+        "ls_control": "no-cache,esi=on",
+        "set_cookie": "woocommerce_recently_viewed=140856"
+      },
+      {
+        "seq": 2,
+        "ttfb_s": 6.069187,
+        "ls_cache": "",
+        "ls_control": "no-cache,esi=on",
+        "set_cookie": "woocommerce_recently_viewed=140856"
+      },
+      {
+        "seq": 3,
+        "ttfb_s": 5.880139,
+        "ls_cache": "",
+        "ls_control": "no-cache,esi=on",
+        "set_cookie": "woocommerce_recently_viewed=140856"
+      }
+    ],
+    "result": "NO_CACHE_STILL_ACTIVE",
+    "interpretation": "ESI is definitely enabled now, but the product remains explicitly non-cacheable. No HIT was observed."
+  },
+  "session_routes": {
+    "cart": "no-cache,esi=on; private",
+    "checkout": "no-cache,esi=on; private",
+    "account": "no-cache; no-store; private"
+  },
+  "comparison_to_unsaved_test": {
+    "previous_product_ttfb_avg_s": 6.684481,
+    "current_product_ttfb_avg_s": 6.164508,
+    "note": "Small latency improvement only; because responses remain no-cache with no HIT, this is not evidence that ESI fixed caching."
+  },
+  "decision": "ESI does not resolve the product no-cache root cause. Continue investigation toward the actual product no-cache owner, with emphasis on the product singular request path and woocommerce_recently_viewed behavior."
+}
