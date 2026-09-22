@@ -1,0 +1,94 @@
+{
+  "program": "Keshavarz20 Stage 2 Product Truth / PIM",
+  "generated_at_utc": "2026-09-22T14:05:00Z",
+  "scope": "Current GSC recovery XGreen cohort",
+  "policy": "Unknown manufacturer identifiers stay unknown. Do not invent GTIN/MPN/SKU or technical values.",
+  "products": [
+    {
+      "id": 140853,
+      "product": "Hyper 40-0-1 XGreen 10kg",
+      "current": {
+        "internal_sku": "",
+        "primary_media": "WebP",
+        "media_alt": "present",
+        "categories": [
+          "XGreen",
+          "Fertilizers",
+          "Agricultural inputs"
+        ],
+        "seo_title": "خرید کود هایپر ۴۰-۰-۱ ایکس گرین ۱۰ کیلو | نیتروژن بالا"
+      },
+      "gaps": [
+        "No verified manufacturer SKU/MPN/GTIN in current evidence",
+        "WooCommerce attributes array not populated from verified specification fields"
+      ],
+      "safe_action": "Keep unknown identifiers empty; preserve rich visible content and WebP media."
+    },
+    {
+      "id": 140741,
+      "product": "Fosforo 80 Plus XGreen 5L",
+      "current": {
+        "internal_sku": "",
+        "primary_media": "legacy JPEG attachment 140745",
+        "categories": [
+          "XGreen",
+          "Fertilizers",
+          "Agricultural inputs"
+        ],
+        "seo_title": "خرید کود فسفرو ۸۰ پلاس ایکس گرین ۵ لیتری | فسفر مایع"
+      },
+      "gaps": [
+        "No verified manufacturer SKU/MPN/GTIN in current evidence",
+        "Legacy primary image attachment file missing for direct Bridge optimizer"
+      ],
+      "safe_action": "Recovered public source into new attachment 145338 and queued supported Bridge WebP optimization; keep old attachment as rollback source."
+    },
+    {
+      "id": 140760,
+      "product": "Mesi XGreen 1L",
+      "current": {
+        "internal_sku": "",
+        "primary_media": "WebP",
+        "media_alt": "present",
+        "categories": [
+          "XGreen",
+          "Fertilizers",
+          "Agricultural inputs"
+        ],
+        "seo_title": "خرید کود مسی ایکس گرین ۱ لیتری | مس کلاته و پتاسیم"
+      },
+      "gaps": [
+        "No verified manufacturer SKU/MPN/GTIN in current evidence",
+        "WooCommerce attributes array not populated from verified specification fields"
+      ],
+      "safe_action": "Keep unknown identifiers empty; preserve verified media/content."
+    },
+    {
+      "id": 140856,
+      "product": "K60 XGreen 1kg",
+      "current": {
+        "internal_sku": "K20-140856",
+        "primary_media": "WebP",
+        "media_alt": "present",
+        "categories": [
+          "XGreen",
+          "Fertilizers",
+          "Agricultural inputs"
+        ],
+        "attributes": []
+      },
+      "gaps": [
+        "No verified manufacturer MPN/GTIN in current evidence",
+        "Product singular remains no-cache while reviews stay enabled"
+      ],
+      "safe_action": "Do not disable reviews; vendor/supported renderer cache remediation required."
+    }
+  ],
+  "acceptance": {
+    "invented_identifiers": false,
+    "price_changes": false,
+    "stock_changes": false,
+    "preserve_reviews": true
+  },
+  "next_action": "Finish Fosforo WebP recovery and readback; then only populate PIM fields when manufacturer/supplier evidence is available."
+}
