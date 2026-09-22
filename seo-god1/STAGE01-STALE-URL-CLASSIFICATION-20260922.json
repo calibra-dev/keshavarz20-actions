@@ -1,0 +1,41 @@
+{
+  "program": "Keshavarz20 Stage 1 stale-URL classification",
+  "generated_at_utc": "2026-09-22T14:08:00Z",
+  "source": "Top50 audit + live WordPress posts table",
+  "policy": "No blind redirect. Draft/trash state is not proof of discontinuation; 301/410 needs explicit evidence.",
+  "urls": [
+    {
+      "old_url": "https://keshavarz20.com/product/کود-مایع-لوکاس-20-لیتری-لرد-سبزگل-lucas-lord/",
+      "post_id": 142445,
+      "current_status": "draft",
+      "exact_title": "کود مایع لوکاس 20 لیتری لرد سبزگل (Lucas Lord)",
+      "decision": "HOLD_NO_REDIRECT",
+      "reason": "Exact product exists as draft; publishing/discontinuation intent not established."
+    },
+    {
+      "old_url": "https://keshavarz20.com/product/کود-مایع-توتال-1-لیتری-لرد-سبزگل-total-lord/",
+      "post_id": 142438,
+      "current_status": "draft",
+      "exact_title": "کود مایع توتال 1 لیتری لرد سبزگل (Total Lord)",
+      "decision": "HOLD_NO_REDIRECT",
+      "reason": "Exact product exists as draft; no evidence-backed replacement."
+    },
+    {
+      "old_url": "https://keshavarz20.com/product/کود-پودری-هیومی-1-کیلویی-لرد-سبزگل-humi-lord/",
+      "post_id": 142454,
+      "current_status": "draft",
+      "exact_title": "کود پودری هیومی 1 کیلویی لرد سبزگل (Humi Lord)",
+      "decision": "HOLD_NO_REDIRECT",
+      "reason": "Exact product exists as draft; no proof it is discontinued."
+    },
+    {
+      "old_url": "https://keshavarz20.com/product/ست-۱۰۰-عددی-سری-بیت-پیچگوشتی-ایمپکت-م.../",
+      "post_id": 143204,
+      "current_status": "trash",
+      "exact_title": "ست ۱۰۰ عددی سری بیت پیچ‌گوشتی ایمپکت میلواکی",
+      "decision": "HOLD_NO_REDIRECT",
+      "reason": "Trash state alone does not establish a safe canonical replacement or 410 policy."
+    }
+  ],
+  "next_action": "Only publish, redirect, or 410 after product lifecycle evidence confirms the intended state."
+}
