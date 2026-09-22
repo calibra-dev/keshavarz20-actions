@@ -1,0 +1,77 @@
+{
+  "program": "SEO God1",
+  "wave": 1,
+  "title": "Homepage IranKala promotion-image WebP replacement closure",
+  "verified_at_utc": "2026-09-22T04:02:00Z",
+  "root_cause": {
+    "page_id": 644,
+    "finding": "IranKala homepage promotion images are rendered from product-category term meta irk_promotion_img, not from homepage post_content or Elementor meta.",
+    "term_mappings_before": [
+      {
+        "term_id": 722,
+        "term_name": "لوله و نوار آبیاری",
+        "meta_key": "irk_promotion_img",
+        "old_attachment_id": 141441
+      },
+      {
+        "term_id": 793,
+        "term_name": "نشاء",
+        "meta_key": "irk_promotion_img",
+        "old_attachment_id": 141437
+      }
+    ]
+  },
+  "applied": [
+    {
+      "term_id": 722,
+      "new_attachment_id": 145324,
+      "file": "k20-home-loole-768x576-wave1.webp",
+      "source_bytes": 550233,
+      "new_bytes": 68324,
+      "saving_pct": 87.58
+    },
+    {
+      "term_id": 793,
+      "new_attachment_id": 145323,
+      "file": "k20-home-neshaa-768x576-wave1.webp",
+      "source_bytes": 716133,
+      "new_bytes": 79406,
+      "saving_pct": 88.91
+    }
+  ],
+  "database_readback": [
+    {
+      "term_id": 722,
+      "meta_key": "irk_promotion_img",
+      "meta_value": "145324"
+    },
+    {
+      "term_id": 793,
+      "meta_key": "irk_promotion_img",
+      "meta_value": "145323"
+    }
+  ],
+  "cache_purge": {
+    "litespeed": true,
+    "elementor_css": true,
+    "object_cache_flushed": true
+  },
+  "live_frontend_readback": {
+    "page": "https://keshavarz20.com/",
+    "new_loole_present": true,
+    "new_neshaa_present": true,
+    "old_loole_present": false,
+    "old_neshaa_present": false,
+    "dimensions": "768x576",
+    "note": "Live HTML now references the WebP variants through LiteSpeed lazy-load data-src/data-srcset."
+  },
+  "safety": {
+    "price_payment_user_role_secret_changes": 0,
+    "old_media_deleted": false,
+    "rollback_assets_retained": true
+  },
+  "performance_retest": {
+    "workflow_run_id": 35685276503,
+    "state": "RUNNING_AT_RECORD_TIME"
+  }
+}
