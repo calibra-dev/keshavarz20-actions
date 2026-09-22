@@ -1,8 +1,8 @@
 {
   "program": "SEO God1",
   "wave": 1,
-  "title": "Current Wave 1 state after IranKala 10.10, calculator cache remediation, image optimization, and restored WPVibe read access",
-  "generated_at_utc": "2026-09-21T21:52:00Z",
+  "title": "Current Wave 1 state after IranKala 10.10, calculator remediation, homepage promotion WebP replacement, and restored WPVibe access",
+  "generated_at_utc": "2026-09-22T04:03:00Z",
   "verified": {
     "theme": {
       "name": "IranKala",
@@ -73,6 +73,31 @@
       "litespeed": 0,
       "irankala": 0,
       "elementor": 0
+    },
+    "homepage_promotion_images": {
+      "state": "RESOLVED",
+      "evidence": "seo-god1/WAVE01-HOME-PROMO-WEBP-CLOSURE-20260922.json",
+      "root_cause": "IranKala irk_promotion_img term meta on product categories 722 and 793",
+      "replacements": [
+        {
+          "term_id": 722,
+          "old_attachment_id": 141441,
+          "new_attachment_id": 145324,
+          "saving_pct": 87.58
+        },
+        {
+          "term_id": 793,
+          "old_attachment_id": 141437,
+          "new_attachment_id": 145323,
+          "saving_pct": 88.91
+        }
+      ],
+      "live_readback": {
+        "new_variants_present": true,
+        "old_variants_present": false
+      },
+      "performance_retest_run_id": 35685276503,
+      "interpretation": "The two prior ~550 KB/~716 KB homepage promotion PNGs are removed from the live render path; LCP remains a separate residual."
     }
   },
   "exact_supported_config_candidate": {
@@ -105,7 +130,8 @@
     "Do not rerun IranKala update verification.",
     "Do not rerun calculator cache root-cause A/B; comments-close cache restoration is proven.",
     "Do not rerun calculator featured-image compression work.",
-    "Do not repeat Phase20 exact-node audit until a renderer/config mutation is actually applied."
+    "Do not repeat Phase20 exact-node audit until a renderer/config mutation is actually applied.",
+    "Do not repeat homepage promotion image source tracing or PNG-to-WebP replacement; term-meta ownership and live replacement are proven."
   ],
-  "site_mutations_in_this_reconciliation": 0
+  "site_mutations_in_this_reconciliation": 2
 }
