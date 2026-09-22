@@ -1,0 +1,248 @@
+{
+  "mode": "read-only",
+  "files": [
+    {
+      "path": "plugins/litespeed-cache/src/vpi.cls.php",
+      "line_count": 177,
+      "matches": [
+        {
+          "pattern": "purge",
+          "line": 173,
+          "snippet": "// Prepare cache tag for later purge."
+        },
+        {
+          "pattern": "POST_META",
+          "line": 35,
+          "snippet": "const POST_META = 'litespeed_vpi_list';"
+        },
+        {
+          "pattern": "POST_META",
+          "line": 43,
+          "snippet": "const POST_META_MOBILE = 'litespeed_vpi_list_mobile';"
+        },
+        {
+          "pattern": "POST_META",
+          "line": 109,
+          "snippet": "$name = ! empty( $v['is_mobile'] ) ? self::POST_META_MOBILE : self::POST_META;"
+        },
+        {
+          "pattern": "POST_META_MOBILE",
+          "line": 43,
+          "snippet": "const POST_META_MOBILE = 'litespeed_vpi_list_mobile';"
+        },
+        {
+          "pattern": "POST_META_MOBILE",
+          "line": 109,
+          "snippet": "$name = ! empty( $v['is_mobile'] ) ? self::POST_META_MOBILE : self::POST_META;"
+        },
+        {
+          "pattern": "Metabox",
+          "line": 118,
+          "snippet": "$this->cls( 'Metabox' )->save( (int) $v['post_id'], $name, $urldecode );"
+        },
+        {
+          "pattern": "queue",
+          "line": 7,
+          "snippet": "* remote svc via queue + cron."
+        },
+        {
+          "pattern": "queue",
+          "line": 20,
+          "snippet": "class VPI extends Cloud_Queue_Svc {"
+        },
+        {
+          "pattern": "queue",
+          "line": 55,
+          "snippet": "* Svc id slug — drives queue type, Cloud::SVC_VPI, and summary key prefix."
+        },
+        {
+          "pattern": "queue",
+          "line": 85,
+          "snippet": "* @param string $queue_k Queue key."
+        },
+        {
+          "pattern": "queue",
+          "line": 86,
+          "snippet": "* @param array  $v       Queue item."
+        },
+        {
+          "pattern": "queue",
+          "line": 89,
+          "snippet": "protected function _build_payload( $queue_k, $v ) {"
+        },
+        {
+          "pattern": "queue",
+          "line": 92,
+          "snippet": "'queue_k'    => $queue_k,"
+        },
+        {
+          "pattern": "queue",
+          "line": 101,
+          "snippet": "* post is marked processed and not re-queued."
+        }
+      ]
+    },
+    {
+      "path": "plugins/litespeed-cache/src/cloud-queue-svc.cls.php",
+      "line_count": 356,
+      "matches": [
+        {
+          "pattern": "queue",
+          "line": 3,
+          "snippet": "* Shared base for QC queue-driven svcs."
+        },
+        {
+          "pattern": "queue",
+          "line": 19,
+          "snippet": "* Abstract base for queue-driven QUIC.cloud svcs."
+        },
+        {
+          "pattern": "queue",
+          "line": 23,
+          "snippet": "abstract class Cloud_Queue_Svc extends Base {"
+        },
+        {
+          "pattern": "queue",
+          "line": 29,
+          "snippet": "* In-memory working queue."
+        },
+        {
+          "pattern": "queue",
+          "line": 33,
+          "snippet": "protected $_queue;"
+        },
+        {
+          "pattern": "queue",
+          "line": 38,
+          "snippet": "* Used as queue type, Cloud::SVC_* suffix, and summary key prefix."
+        },
+        {
+          "pattern": "queue",
+          "line": 54,
+          "snippet": "* @param string $queue_k Queue key."
+        },
+        {
+          "pattern": "queue",
+          "line": 55,
+          "snippet": "* @param array  $v       Queue item."
+        },
+        {
+          "pattern": "clear",
+          "line": 26,
+          "snippet": "const TYPE_CLEAR_Q = 'clear_q';"
+        },
+        {
+          "pattern": "clear",
+          "line": 200,
+          "snippet": "self::debug( 'Cleared try_later flag, resuming ' . $type . ' processing' );"
+        },
+        {
+          "pattern": "clear",
+          "line": 345,
+          "snippet": "case static::TYPE_CLEAR_Q:"
+        },
+        {
+          "pattern": "clear",
+          "line": 346,
+          "snippet": "$this->clear_q( $this->_svc_id() );"
+        }
+      ]
+    },
+    {
+      "path": "plugins/litespeed-cache/src/admin-display.cls.php",
+      "line_count": 1678,
+      "matches": [
+        {
+          "pattern": "purge",
+          "line": 70,
+          "snippet": "* Purge by: category."
+        },
+        {
+          "pattern": "purge",
+          "line": 74,
+          "snippet": "const PURGEBY_CAT = '0';"
+        },
+        {
+          "pattern": "purge",
+          "line": 76,
+          "snippet": "* Purge by: post ID."
+        },
+        {
+          "pattern": "purge",
+          "line": 80,
+          "snippet": "const PURGEBY_PID = '1';"
+        },
+        {
+          "pattern": "purge",
+          "line": 82,
+          "snippet": "* Purge by: tag."
+        },
+        {
+          "pattern": "purge",
+          "line": 86,
+          "snippet": "const PURGEBY_TAG = '2';"
+        },
+        {
+          "pattern": "purge",
+          "line": 88,
+          "snippet": "* Purge by: URL."
+        },
+        {
+          "pattern": "purge",
+          "line": 92,
+          "snippet": "const PURGEBY_URL = '3';"
+        },
+        {
+          "pattern": "reset",
+          "line": 254,
+          "snippet": "'litespeed-presets'       => [ 'title' => __( 'Presets', 'litespeed-cache' ), 'tpl' => 'presets/entry.tpl.php', 'scope' => 'site' ],"
+        },
+        {
+          "pattern": "Metabox",
+          "line": 300,
+          "snippet": "$this->cls( 'Metabox' )->register_settings();"
+        },
+        {
+          "pattern": "queue",
+          "line": 5,
+          "snippet": "* Provides admin page rendering, notices, enqueueing of assets,"
+        },
+        {
+          "pattern": "queue",
+          "line": 266,
+          "snippet": "add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_style' ] );"
+        },
+        {
+          "pattern": "queue",
+          "line": 268,
+          "snippet": "add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );"
+        },
+        {
+          "pattern": "queue",
+          "line": 279,
+          "snippet": "// `admin_notices` is after `admin_enqueue_scripts`."
+        },
+        {
+          "pattern": "queue",
+          "line": 400,
+          "snippet": "public function enqueue_style() {"
+        },
+        {
+          "pattern": "queue",
+          "line": 401,
+          "snippet": "wp_enqueue_style( Core::PLUGIN_NAME, LSWCP_PLUGIN_URL . 'assets/css/litespeed.css', [], Core::VER, 'all' );"
+        },
+        {
+          "pattern": "queue",
+          "line": 402,
+          "snippet": "wp_enqueue_style( Core::PLUGIN_NAME . '-dark-mode', LSWCP_PLUGIN_URL . 'assets/css/litespeed-dark-mode.css', [], Core::VER, 'all' );"
+        },
+        {
+          "pattern": "queue",
+          "line": 406,
+          "snippet": "* Register/enqueue the JavaScript for the admin area."
+        }
+      ]
+    }
+  ]
+}
