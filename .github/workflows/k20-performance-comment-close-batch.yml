@@ -1,0 +1,113 @@
+name: Keshavarz20 Performance Comment Close Batch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'performance-comment-close-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-performance-comment-close-batch
+  cancel-in-progress: false
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Resolve batch request
+        id: req
+        shell: bash
+        run: |
+          set -euo pipefail
+          before='${{ github.event.before }}'
+          current='${{ github.sha }}'
+          zero='0000000000000000000000000000000000000000'
+          if [ -n "$before" ] && [ "$before" != "$zero" ]; then
+            mapfile -t files < <(git diff --name-only "$before" "$current" -- 'performance-comment-close-ops/*.json' | sed '/^$/d' | sort -u)
+          else
+            mapfile -t files < <(git show --pretty= --name-only "$current" -- 'performance-comment-close-ops/*.json' | sed '/^$/d' | sort -u)
+          fi
+          if [ "${#files[@]}" -ne 1 ]; then
+            echo "Expected exactly one batch request, found ${#files[@]}" >&2
+            exit 1
+          fi
+          req="${files[0]}"
+          base="$(basename "$req" .json)"
+          result="performance-comment-close-results/${base}-result.json"
+          echo "request=$req" >> "$GITHUB_OUTPUT"
+          echo "result=$result" >> "$GITHUB_OUTPUT"
+
+      - name: Execute fixed guarded post comment close batch
+        shell: pwsh
+        env:
+          REQUEST: ${{ steps.req.outputs.request }}
+          RESULT: ${{ steps.req.outputs.result }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $batch = Get-Content -Raw -LiteralPath $env:REQUEST | ConvertFrom-Json -Depth 20
+          $ids = @($batch.post_ids)
+          if ($ids.Count -lt 1 -or $ids.Count -gt 20) { throw 'post_ids must contain 1..20 items' }
+          $out = @()
+          foreach ($raw in $ids) {
+            $id = 0
+            if (-not [int]::TryParse([string]$raw, [ref]$id) -or $id -le 0) { throw "Invalid post id: $raw" }
+            $tempReq = Join-Path $env:RUNNER_TEMP "k20-post-$id.json"
+            $tempOut = Join-Path $env:RUNNER_TEMP "k20-post-$id-result.json"
+            @{
+              action = 'post.update'
+              id = $id
+              payload = @{ comment_status = 'closed' }
+            } | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $tempReq -Encoding utf8
+            & ./scripts/Invoke-K20SiteGateway.ps1 -RequestPath $tempReq -OutputPath $tempOut
+            if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $tempOut)) {
+              throw "Guarded gateway failed for post $id"
+            }
+            $one = Get-Content -Raw -LiteralPath $tempOut | ConvertFrom-Json -Depth 100
+            if (-not $one.ok) { throw "WordPress update failed for post $id" }
+            $out += [ordered]@{
+              id = $id
+              ok = $true
+              slug = $one.result.slug
+              link = $one.result.link
+              modified_gmt = $one.result.modified_gmt
+            }
+          }
+          $dir = Split-Path -Parent $env:RESULT
+          New-Item -ItemType Directory -Force -Path $dir | Out-Null
+          [ordered]@{
+            ok = $true
+            action = 'fixed post.update comment_status=closed batch'
+            executed_at_utc = [DateTime]::UtcNow.ToString('o')
+            requested = $ids.Count
+            completed = $out.Count
+            results = $out
+          } | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $env:RESULT -Encoding utf8
+
+      - name: Commit sanitized batch result
+        shell: bash
+        env:
+          RESULT: ${{ steps.req.outputs.result }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f "$RESULT"
+          git commit -m "perf: record empty-comment close batch"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
