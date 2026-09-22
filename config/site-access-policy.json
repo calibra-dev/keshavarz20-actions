@@ -35,8 +35,7 @@
     "frontend.audit",
     "internal_links.audit",
     "cache.purge",
-    "bridge.health",
-    "performance.litespeed_lcp_exclusions"
+    "bridge.health"
   ],
   "blocked_scopes": [
     "users",
@@ -96,21 +95,6 @@
     "prefer_plugin_ability_over_raw_database": true,
     "prefer_direct_private_connector_for_unpublished_content": true,
     "never_commit_credentials": true,
-    "never_commit_private_draft_content_to_public_repo": true,
-    "narrow_admin_setting_exceptions": {
-      "litespeed.conf.media-lazy_exc": {
-        "scope": "performance.litespeed_lcp_exclusions",
-        "mode": "append_only_exact",
-        "required_existing": [
-          "polyetilenetesal.keshavarz20.jpg"
-        ],
-        "allowed_additions": [
-          "polyetilenetesal.keshavarz20-768x225.jpg",
-          "k20-calculator-featured-optimized-1200-768x432.webp"
-        ],
-        "rollback": "restore_exact_original",
-        "purpose": "Wave1 verified LCP lazy-load exclusions only"
-      }
-    }
+    "never_commit_private_draft_content_to_public_repo": true
   }
 }
