@@ -1,0 +1,21 @@
+{
+  "paths": [
+    "plugins/woocommerce/includes/wc-template-functions.php",
+    "plugins/litespeed-cache/thirdparty/woocommerce.cls.php",
+    "plugins/litespeed-cache/src/control.cls.php",
+    "plugins/litespeed-cache/src/esi.cls.php"
+  ],
+  "patterns": [
+    "wc_track_product_view",
+    "woocommerce_recently_viewed",
+    "wc_setcookie",
+    "Set-Cookie",
+    "setcookie",
+    "comment_status",
+    "comments_open",
+    "comment_form",
+    "litespeed_control_set_nocache",
+    "set_nocache",
+    "DONOTCACHEPAGE"
+  ]
+}
