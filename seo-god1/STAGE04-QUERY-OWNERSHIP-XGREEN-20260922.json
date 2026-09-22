@@ -1,0 +1,40 @@
+{
+  "program": "Keshavarz20 Stage 4 Query Ownership",
+  "generated_at_utc": "2026-09-22T14:07:00Z",
+  "scope": "XGreen recovery cluster",
+  "rule": "One primary owner per intent; supporting pages may link but must not imitate the primary intent.",
+  "owners": [
+    {
+      "intent": "برند/کاتالوگ محصولات ایکس گرین و انتخاب بین محصولات",
+      "owner_type": "product_category",
+      "owner_id": 846,
+      "owner_url": "https://keshavarz20.com/product-category/نهاده-های-کشاورزی/كودهای-کشاورزی/ایکس-گرین-xgreen/"
+    },
+    {
+      "intent": "خرید/مشخصات هایپر ۴۰-۰-۱ ایکس گرین",
+      "owner_type": "product",
+      "owner_id": 140853
+    },
+    {
+      "intent": "خرید/مشخصات فسفرو ۸۰ پلاس ایکس گرین",
+      "owner_type": "product",
+      "owner_id": 140741
+    },
+    {
+      "intent": "خرید/مشخصات مسی ایکس گرین",
+      "owner_type": "product",
+      "owner_id": 140760
+    },
+    {
+      "intent": "خرید/قیمت/خواص/زمان مصرف K60 ایکس گرین",
+      "owner_type": "product",
+      "owner_id": 140856
+    }
+  ],
+  "guardrails": [
+    "No blanket noindex for product tags",
+    "Do not create duplicate brand/product guides for exact commercial intents",
+    "Category answers comparison intent; PDPs own exact-product intent"
+  ],
+  "status": "PASS_SCOPE_1"
+}
