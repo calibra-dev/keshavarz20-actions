@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "action": "gitops.profile",
+  "request_id": "v31-gitops-profile-smoke",
+  "profile": "keshavarz20-git-ops",
+  "primary_path": "ChatGPT -> GitHub -> guarded gateway -> WordPress/WooCommerce/K20 Bridge",
+  "engines": [
+    "question",
+    "news",
+    "article",
+    "social"
+  ],
+  "hard_guards": [
+    "no price/discount/coupon/payment mutation",
+    "no users/roles/capabilities",
+    "no credentials/secrets",
+    "no arbitrary code/SQL/shell"
+  ],
+  "executed_at_utc": "2026-09-22T12:09:27.7139566Z"
+}
