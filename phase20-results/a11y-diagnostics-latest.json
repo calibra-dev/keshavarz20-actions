@@ -1,8 +1,8 @@
 {
   "phase": 20,
   "type": "a11y_diagnostics",
-  "generated_at_utc": "2026-09-21T10:37:43.965715+00:00",
-  "run_id": "35589578036",
+  "generated_at_utc": "2026-09-22T04:09:46.984862+00:00",
+  "run_id": "35685701736",
   "pages": {
     "home": {
       "score": 0.77,
@@ -998,6 +998,13 @@
               "selector": "div.col-6 > div.header-buttons > div.user-button > a.login-register",
               "nodeLabel": "div.col-6 > div.header-buttons > div.user-button > a.login-register",
               "snippet": "<a href=\"https://keshavarz20.com/my-account\" class=\"login-register\">",
+              "explanation": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute",
+              "subItems": null
+            },
+            {
+              "selector": "div.owl-item > div.slider-item > div.second-img > a",
+              "nodeLabel": "div.owl-item > div.slider-item > div.second-img > a",
+              "snippet": "<a href=\"https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%be%d8%aa%d8%a7%d8%b…\">",
               "explanation": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute",
               "subItems": null
             }
