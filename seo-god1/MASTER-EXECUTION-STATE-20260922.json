@@ -7,22 +7,36 @@
     {
       "stage": 0,
       "name": "Performance gate",
-      "state": "IN_PROGRESS",
+      "state": "PARTIAL_VENDOR_BLOCKED_WITH_VERIFIED_SAFE_WINS",
       "evidence": [
         "prompts/k20-performance-50pct-20260922.md",
         "performance-fast-audit-ops/20260922-top50-fast-baseline-v1.json",
-        "performance-audit-ops/20260922-top50-baseline-v1.json"
+        "performance-audit-ops/20260922-top50-baseline-v1.json",
+        "seo-god1/STAGE00-PERFORMANCE-GATE-RESULT-20260922.json",
+        "performance-results/20260922-top50-fast-post-comments-v2-result.json"
       ]
     },
     {
       "stage": 1,
       "name": "Recover current Google losses",
-      "state": "PENDING"
+      "state": "IN_PROGRESS",
+      "evidence": [
+        "seo-god1/STAGE01-GSC-RECOVERY-TARGETS-20260922.json",
+        "bridge-v3-results/20260922-stage1-hyper-seo-read.json",
+        "bridge-v3-results/20260922-stage1-phosphoro-seo-read.json",
+        "bridge-v3-results/20260922-stage1-mesi-seo-read.json"
+      ]
     },
     {
       "stage": 2,
       "name": "Product Truth / PIM / PDP authority",
-      "state": "PENDING"
+      "state": "IN_PROGRESS_DATA_GATED",
+      "evidence": [
+        "results/20260922-stage1-hyper-product-read.json",
+        "results/20260922-stage1-phosphoro-product-read.json",
+        "results/20260922-stage1-mesi-product-read.json",
+        "bridge-v3-results/20260922-stage2-phosphoro-image-optimize.json"
+      ]
     },
     {
       "stage": 3,
@@ -75,5 +89,6 @@
       "state": "PENDING"
     }
   ],
-  "next_action": "Complete the 50-page baseline, classify bottlenecks, retain safe performance improvements, and re-test the same cohort before moving to Stage 1."
+  "next_action": "Continue Stage 1/2 with verified product truth and focused recovery; Stage 0 product cache remains vendor-supported review-renderer blocker. Do not repeat failed performance experiments.",
+  "last_updated_utc": "2026-09-22T13:49:00Z"
 }
