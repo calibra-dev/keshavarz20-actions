@@ -1,0 +1,58 @@
+name: K20 LiteSpeed Debug Extract Readonly
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/litespeed-debug-extract-ops/*.json'
+permissions:
+  contents: write
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
+      - name: Extract sanitized recent no-cache reasons
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $base=$env:WP_BASE_URL.TrimEnd('/')
+          $auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"))
+          $headers=@{Authorization="Basic $auth";Accept='application/json';'Content-Type'='application/json'}
+          $body=[ordered]@{scope='wp-content';path='litespeed/debug/debug3e3c2e9b70299960.log'}|ConvertTo-Json -Compress
+          $r=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/file/read" -Headers $headers -Method POST -Body $body -TimeoutSec 180
+          $content=if($r.PSObject.Properties.Name -contains 'content'){[string]$r.content}elseif($r.data){[string]$r.data.content}else{''}
+          if([string]::IsNullOrWhiteSpace($content)){throw 'Empty LiteSpeed debug log'}
+          $lines=$content -split "\r?\n"
+          $start=[Math]::Max(0,$lines.Count-2500)
+          $recent=$lines[$start..($lines.Count-1)]
+          $keep=@()
+          foreach($line in $recent){
+            if($line -match '(?i)product/|DONOTCACHEPAGE|no cache|not cacheable|forced no cache|cache control|\[Ctrl\]|\[Router\]'){
+              $s=$line -replace '(?i)(cookie:).*','$1 [redacted]'
+              if($s.Length -gt 700){$s=$s.Substring(0,700)}
+              $keep+=$s
+            }
+          }
+          $keep=@($keep | Select-Object -Last 500)
+          New-Item -ItemType Directory -Force 'diagnostics/litespeed-debug-extract-results'|Out-Null
+          [ordered]@{mode='read-only';generated_at_utc=[DateTime]::UtcNow.ToString('o');source='wp-content/litespeed/debug/debug*.log';recent_lines_scanned=$recent.Count;matched_lines=$keep}|ConvertTo-Json -Depth 10|Set-Content 'diagnostics/litespeed-debug-extract-results/20260922-k60.json' -Encoding utf8
+      - name: Commit sanitized extract
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f diagnostics/litespeed-debug-extract-results/20260922-k60.json
+          git commit -m "perf: record sanitized LiteSpeed K60 debug extract"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt*2))
+          done
+          exit 1
