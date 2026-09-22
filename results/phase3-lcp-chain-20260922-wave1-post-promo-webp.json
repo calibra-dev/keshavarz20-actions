@@ -1,0 +1,548 @@
+{
+  "tested_at": "2026-09-22T04:08:34.124Z",
+  "requestedUrl": "https://keshavarz20.com/",
+  "finalUrl": "https://keshavarz20.com/",
+  "performance_score": 39,
+  "metrics": {
+    "fcp_ms": 3547.959,
+    "lcp_ms": 5563.037999999999,
+    "tbt_ms": 2200.4790000000003,
+    "cls": 0.015197558748285513
+  },
+  "lcp_element": null,
+  "lcp_discovery": {
+    "id": "lcp-discovery-insight",
+    "title": "LCP request discovery",
+    "description": "[Optimize LCP](https://developer.chrome.com/docs/performance/insights/lcp-discovery) by making the LCP image discoverable from the HTML immediately, and avoiding lazy-loading",
+    "score": 0,
+    "scoreDisplayMode": "numeric",
+    "metricSavings": {
+      "LCP": 0
+    },
+    "details": {
+      "type": "list",
+      "items": [
+        {
+          "type": "checklist",
+          "items": {
+            "priorityHinted": {
+              "label": "fetchpriority=high should be applied",
+              "value": false
+            },
+            "requestDiscoverable": {
+              "label": "Request is discoverable in initial document",
+              "value": true
+            },
+            "eagerlyLoaded": {
+              "label": "LCP resources should not use loading=lazy",
+              "value": false
+            }
+          }
+        },
+        {
+          "type": "node",
+          "lhId": "page-0-IMG",
+          "path": "1,HTML,1,BODY,5,MAIN,0,DIV,0,DIV,0,DIV,0,DIV,2,DIV,0,DIV,0,IMG",
+          "selector": "div.owl-stage > div.owl-item > div > img.img-fluid",
+          "boundingRect": {
+            "top": 128,
+            "bottom": 249,
+            "left": 824,
+            "right": 1236,
+            "width": 412,
+            "height": 121
+          },
+          "snippet": "<img loading=\"lazy\" width=\"1536\" height=\"450\" src=\"https://keshavarz20.com/wp-content/uploads/2025/03/polyetilenetesal.keshav…\" class=\"img-fluid wp-post-image\" alt=\"بنر لوله و اتصالات پلیمری کشاورزی کشاورز بیست\" decoding=\"async\" srcset=\"https://keshavarz20.com/wp-content/uploads/2025/03/polyetilenetesal.keshav…\" sizes=\"(max-width: 1536px) 100vw, 1536px\">",
+          "nodeLabel": "بنر لوله و اتصالات پلیمری کشاورزی کشاورز بیست"
+        }
+      ]
+    },
+    "guidanceLevel": 3
+  },
+  "lcp_breakdown": {
+    "id": "lcp-breakdown-insight",
+    "title": "LCP breakdown",
+    "description": "Each [subpart has specific improvement strategies](https://developer.chrome.com/docs/performance/insights/lcp-breakdown). Ideally, most of the LCP time should be spent on loading the resources, not within delays.",
+    "score": 1,
+    "scoreDisplayMode": "informative",
+    "metricSavings": {
+      "LCP": 0
+    },
+    "details": {
+      "type": "list",
+      "items": [
+        {
+          "type": "table",
+          "headings": [
+            {
+              "key": "label",
+              "valueType": "text",
+              "label": "Subpart"
+            },
+            {
+              "key": "duration",
+              "valueType": "ms",
+              "label": "Duration"
+            }
+          ],
+          "items": [
+            {
+              "subpart": "timeToFirstByte",
+              "label": "Time to first byte",
+              "duration": 721.669
+            },
+            {
+              "subpart": "resourceLoadDelay",
+              "label": "Resource load delay",
+              "duration": 1291.678
+            },
+            {
+              "subpart": "resourceLoadDuration",
+              "label": "Resource load duration",
+              "duration": 226.33
+            },
+            {
+              "subpart": "elementRenderDelay",
+              "label": "Element render delay",
+              "duration": 75.524
+            }
+          ]
+        },
+        {
+          "type": "node",
+          "lhId": "page-0-IMG",
+          "path": "1,HTML,1,BODY,5,MAIN,0,DIV,0,DIV,0,DIV,0,DIV,2,DIV,0,DIV,0,IMG",
+          "selector": "div.owl-stage > div.owl-item > div > img.img-fluid",
+          "boundingRect": {
+            "top": 128,
+            "bottom": 249,
+            "left": 824,
+            "right": 1236,
+            "width": 412,
+            "height": 121
+          },
+          "snippet": "<img loading=\"lazy\" width=\"1536\" height=\"450\" src=\"https://keshavarz20.com/wp-content/uploads/2025/03/polyetilenetesal.keshav…\" class=\"img-fluid wp-post-image\" alt=\"بنر لوله و اتصالات پلیمری کشاورزی کشاورز بیست\" decoding=\"async\" srcset=\"https://keshavarz20.com/wp-content/uploads/2025/03/polyetilenetesal.keshav…\" sizes=\"(max-width: 1536px) 100vw, 1536px\">",
+          "nodeLabel": "بنر لوله و اتصالات پلیمری کشاورزی کشاورز بیست"
+        }
+      ]
+    },
+    "guidanceLevel": 3
+  },
+  "network_dependency_tree": {
+    "id": "network-dependency-tree-insight",
+    "title": "Network dependency tree",
+    "description": "[Avoid chaining critical requests](https://developer.chrome.com/docs/performance/insights/network-dependency-tree) by reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.",
+    "score": 0,
+    "scoreDisplayMode": "numeric",
+    "metricSavings": {
+      "LCP": 0
+    },
+    "details": {
+      "type": "list",
+      "items": [
+        {
+          "type": "list-section",
+          "value": {
+            "type": "network-tree",
+            "chains": {
+              "48581A6EB6C2C09C017E229B35A21749": {
+                "url": "https://keshavarz20.com/",
+                "navStartToEndTime": 1100,
+                "transferSize": 91971,
+                "isLongest": true,
+                "children": {
+                  "2136.95": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/a1548c83adc2678218fff1bf8a308b0d.js?ver=2c37a",
+                    "navStartToEndTime": 3247,
+                    "transferSize": 17838,
+                    "isLongest": true,
+                    "children": {}
+                  },
+                  "2136.90": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
+                    "navStartToEndTime": 3233,
+                    "transferSize": 61377,
+                    "children": {}
+                  },
+                  "2136.79": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/0cc6bdf8c66b1a3b7118fdadef6aa6d5.js?ver=ae346",
+                    "navStartToEndTime": 3050,
+                    "transferSize": 26926,
+                    "children": {}
+                  },
+                  "2136.75": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/4fe8f127c29828e027ef11d551317262.js?ver=df9fc",
+                    "navStartToEndTime": 2884,
+                    "transferSize": 19216,
+                    "children": {}
+                  },
+                  "2136.94": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/81a58d62acc2bda2575a4119ca64c006.js?ver=f4a3e",
+                    "navStartToEndTime": 2871,
+                    "transferSize": 16391,
+                    "children": {}
+                  },
+                  "2136.99": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/2a0ea258e5521cde493b5f6064d174fb.js?ver=e4860",
+                    "navStartToEndTime": 2871,
+                    "transferSize": 332,
+                    "children": {}
+                  },
+                  "2136.98": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/a2d2ccea685edbc59d862922362b1d37.js?ver=1d6d4",
+                    "navStartToEndTime": 2870,
+                    "transferSize": 1011,
+                    "children": {}
+                  },
+                  "2136.97": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/3ad9913ed2e76213ce80eaaa9e5f104d.js?ver=34f77",
+                    "navStartToEndTime": 2869,
+                    "transferSize": 3394,
+                    "children": {}
+                  },
+                  "2136.96": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/b60ce8f8cdb2cbf0aeaa486e96347151.js?ver=f5b36",
+                    "navStartToEndTime": 2869,
+                    "transferSize": 9307,
+                    "children": {}
+                  },
+                  "2136.93": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/ba805fd84d4b50e3366d18c5a8c0be90.js?ver=8db63",
+                    "navStartToEndTime": 2866,
+                    "transferSize": 2016,
+                    "children": {}
+                  },
+                  "2136.92": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/291fb7a293d236f8f164f4535f17e96e.js?ver=b0977",
+                    "navStartToEndTime": 2864,
+                    "transferSize": 8472,
+                    "children": {}
+                  },
+                  "2136.91": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/cc20a965911f0e0c941a624febd1e51f.js?ver=ab876",
+                    "navStartToEndTime": 2864,
+                    "transferSize": 1170,
+                    "children": {}
+                  },
+                  "2136.89": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/784c92126ab2141d7704eccaacf2f50c.js?ver=733a1",
+                    "navStartToEndTime": 2863,
+                    "transferSize": 10190,
+                    "children": {}
+                  },
+                  "2136.88": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/ef52755deab8edf19d4a58de3fd651b1.js?ver=786ef",
+                    "navStartToEndTime": 2862,
+                    "transferSize": 6363,
+                    "children": {}
+                  },
+                  "2136.87": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/61299613ea7b1e100096655b25b3d9c3.js?ver=750f6",
+                    "navStartToEndTime": 2862,
+                    "transferSize": 15511,
+                    "children": {}
+                  },
+                  "2136.86": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/30fa0e85c6a9e323f53f2dc0775e47dc.js?ver=ac7d3",
+                    "navStartToEndTime": 2859,
+                    "transferSize": 2400,
+                    "children": {}
+                  },
+                  "2136.85": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/6d34fb03e431748cf236d80c04d2fc0a.js?ver=2fc0a",
+                    "navStartToEndTime": 2691,
+                    "transferSize": 742,
+                    "children": {}
+                  },
+                  "2136.83": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/17ab8d74595c085eb0f60af1b19b14c5.js?ver=b14c5",
+                    "navStartToEndTime": 2691,
+                    "transferSize": 10049,
+                    "children": {}
+                  },
+                  "2136.84": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/69b68c538bdec1627dd4aa6c47bf660b.js?ver=f660b",
+                    "navStartToEndTime": 2691,
+                    "transferSize": 13256,
+                    "children": {}
+                  },
+                  "2136.80": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/24628fe1ceb819a56ca96943c888775a.js?ver=05e7a",
+                    "navStartToEndTime": 2690,
+                    "transferSize": 986,
+                    "children": {}
+                  },
+                  "2136.82": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/0b27f16887d6b2eff369b5d255123089.js?ver=b9ef2",
+                    "navStartToEndTime": 2690,
+                    "transferSize": 1101,
+                    "children": {}
+                  },
+                  "2136.78": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/1ae53464d568614135fe06c49eac7be4.js?ver=ea0e8",
+                    "navStartToEndTime": 2690,
+                    "transferSize": 6608,
+                    "children": {}
+                  },
+                  "2136.81": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/48024c4eb360e093e56b89735c2a875e.js?ver=5bf93",
+                    "navStartToEndTime": 2690,
+                    "transferSize": 4682,
+                    "children": {}
+                  },
+                  "2136.76": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/a0faaf10558058a125cc0dcb18f2136a.js?ver=43fe1",
+                    "navStartToEndTime": 2689,
+                    "transferSize": 428,
+                    "children": {}
+                  },
+                  "2136.392": {
+                    "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebboldfanum.woff",
+                    "navStartToEndTime": 2689,
+                    "transferSize": 33661,
+                    "children": {}
+                  },
+                  "2136.393": {
+                    "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebregularfanum.woff",
+                    "navStartToEndTime": 2673,
+                    "transferSize": 33705,
+                    "children": {}
+                  },
+                  "2136.102": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/1d5c61e4e264d256b6f6456c8fc54f4a.js?ver=cc8d6",
+                    "navStartToEndTime": 2492,
+                    "transferSize": 10143,
+                    "children": {}
+                  },
+                  "2136.101": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/5b507bd01200da96f44cfa52fdf38685.js?ver=a8ac3",
+                    "navStartToEndTime": 2491,
+                    "transferSize": 6254,
+                    "children": {}
+                  },
+                  "2136.100": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/d1a157639f3e36854b87da5c88c77fab.js?ver=6de88",
+                    "navStartToEndTime": 2487,
+                    "transferSize": 2698,
+                    "children": {}
+                  },
+                  "2136.68": {
+                    "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+                    "navStartToEndTime": 1389,
+                    "transferSize": 194495,
+                    "children": {
+                      "2136.644": {
+                        "url": "https://analytics.google.com/g/collect?v=2&tid=G-TKWY8X1PSM&gtm=45je69i2v9194059779za200zd9194059779xf1&_p=1790050116024&_gaz=1&gcs=G1--&gcd=13l3l3l3l5l1&npa=0&dma=0&gdid=dOGY3NW&_eu=AAAAACAC&cid=1795538139.1790050117&frm=0&ibt=1&pscdl=noapi&rcb=17&sr=412x823&uaa=&uab=64&uafvl=Chromium%3B152.0.7977.82%7CNot%253FA_Brand%3B24.0.0.0%7CGoogle%2520Chrome%3B152.0.7977.82&uam=moto%20g%20power%20(2022)&uamb=1&uap=Android&uapv=11.0&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938468~118897920~118897930~120213116~120385422~120412528~120469145~120469153&sid=1790050117&sct=1&seg=0&dl=https%3A%2F%2Fkeshavarz20.com%2F&dt=%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%20%D8%A8%DB%8C%D8%B3%D8%AA%20%7C%20%D8%AE%D8%B1%DB%8C%D8%AF%20%D9%85%D8%B7%D9%85%D8%A6%D9%86%20%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA%20%D9%88%20%D9%86%D9%87%D8%A7%D8%AF%D9%87%20%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C&_tu=AAg&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.track_404=true&ep.logged_in=false&tfd=2252",
+                        "navStartToEndTime": 2378,
+                        "transferSize": 0,
+                        "children": {}
+                      }
+                    }
+                  },
+                  "2136.30": {
+                    "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+                    "navStartToEndTime": 1644,
+                    "transferSize": 29860,
+                    "children": {}
+                  },
+                  "2136.67": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/6f6fccca5701fc31779bb329f68e15a0.js?ver=49594",
+                    "navStartToEndTime": 1620,
+                    "transferSize": 2869,
+                    "children": {}
+                  },
+                  "2136.73": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/656d4b457ff72cce48c5c66cef023d01.js?ver=23d01",
+                    "navStartToEndTime": 1620,
+                    "transferSize": 5777,
+                    "children": {}
+                  },
+                  "2136.69": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/12b57f5c83ea5b70b2b7473446f4607b.js?ver=47d4c",
+                    "navStartToEndTime": 1620,
+                    "transferSize": 1813,
+                    "children": {}
+                  },
+                  "2136.70": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/ed409692eee5cbfdf32903665e3ae9ae.js?ver=2a0a9",
+                    "navStartToEndTime": 1620,
+                    "transferSize": 2458,
+                    "children": {}
+                  },
+                  "2136.65": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/95a9006f8e4ffc363679cec5343abfe9.js?ver=6fb11",
+                    "navStartToEndTime": 1617,
+                    "transferSize": 7292,
+                    "children": {}
+                  },
+                  "2136.71": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/71c3ba7f1e2bde5718461357744685d6.js?ver=b8b51",
+                    "navStartToEndTime": 1617,
+                    "transferSize": 6540,
+                    "children": {}
+                  },
+                  "2136.74": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/514715ecc7b6903b454cf3d05016a2ef.js?ver=e7f10",
+                    "navStartToEndTime": 1616,
+                    "transferSize": 200,
+                    "children": {}
+                  },
+                  "2136.72": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/1ad6e6e83e608b73928dbb64ebc8fae7.js?ver=8fae7",
+                    "navStartToEndTime": 1616,
+                    "transferSize": 5310,
+                    "children": {}
+                  },
+                  "2136.60": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/d83023bfe4b76eb18913925fea90caf0.js?ver=588e9",
+                    "navStartToEndTime": 1616,
+                    "transferSize": 4809,
+                    "children": {}
+                  },
+                  "2136.66": {
+                    "url": "https://keshavarz20.com/wp-content/litespeed/js/19aa97b643bf918e984ebcf73900d82d.js?ver=e405e",
+                    "navStartToEndTime": 1616,
+                    "transferSize": 755,
+                    "children": {}
+                  }
+                }
+              }
+            },
+            "longestChain": {
+              "duration": 3247
+            }
+          }
+        },
+        {
+          "type": "list-section",
+          "title": "Preconnected origins",
+          "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+          "value": {
+            "type": "text",
+            "value": "no origins were preconnected"
+          }
+        },
+        {
+          "type": "list-section",
+          "title": "Preconnect candidates",
+          "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4.",
+          "value": {
+            "type": "text",
+            "value": "No additional origins are good candidates for preconnecting"
+          }
+        }
+      ]
+    },
+    "guidanceLevel": 1
+  },
+  "top_image_requests": [
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2024/06/hossini.jpg",
+      "transferSize": 138327,
+      "resourceSize": 138113,
+      "startTime": null,
+      "endTime": null,
+      "priority": "High",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2024/07/kood-768x576.jpg",
+      "transferSize": 125514,
+      "resourceSize": 125364,
+      "startTime": null,
+      "endTime": null,
+      "priority": "Low",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2024/07/barani-768x576.jpg",
+      "transferSize": 117194,
+      "resourceSize": 117044,
+      "startTime": null,
+      "endTime": null,
+      "priority": "High",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2024/10/FLYGEN-768x576.jpg",
+      "transferSize": 115543,
+      "resourceSize": 115393,
+      "startTime": null,
+      "endTime": null,
+      "priority": "High",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2024/07/etesalat-768x576.jpg",
+      "transferSize": 111956,
+      "resourceSize": 111816,
+      "startTime": null,
+      "endTime": null,
+      "priority": "High",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2024/07/etesalat-chodan-768x576.jpg",
+      "transferSize": 102887,
+      "resourceSize": 102747,
+      "startTime": null,
+      "endTime": null,
+      "priority": "High",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2024/07/LAVAZEM-768x576.jpg",
+      "transferSize": 84525,
+      "resourceSize": 84394,
+      "startTime": null,
+      "endTime": null,
+      "priority": "High",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-home-neshaa-768x576-wave1.webp",
+      "transferSize": 79537,
+      "resourceSize": 79406,
+      "startTime": null,
+      "endTime": null,
+      "priority": "Low",
+      "mimeType": "image/webp"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-home-loole-768x576-wave1.webp",
+      "transferSize": 68454,
+      "resourceSize": 68324,
+      "startTime": null,
+      "endTime": null,
+      "priority": "High",
+      "mimeType": "image/webp"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2023/02/keshavarz20-4-768x225.jpg",
+      "transferSize": 63867,
+      "resourceSize": 63755,
+      "startTime": null,
+      "endTime": null,
+      "priority": "Low",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2023/02/%D9%81%D9%84%D8%A7%DB%8C%DA%98%D9%861-768x225.jpg",
+      "transferSize": 55019,
+      "resourceSize": 54884,
+      "startTime": null,
+      "endTime": null,
+      "priority": "Low",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2025/03/polyetilenetesal.keshavarz20-768x225.jpg",
+      "transferSize": 31434,
+      "resourceSize": 31276,
+      "startTime": null,
+      "endTime": null,
+      "priority": "High",
+      "mimeType": "image/jpeg"
+    }
+  ]
+}
