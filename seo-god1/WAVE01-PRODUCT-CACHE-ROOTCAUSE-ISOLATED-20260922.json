@@ -1,0 +1,84 @@
+{
+  "program": "SEO God1",
+  "wave": 1,
+  "title": "Product singular no-cache root cause isolated by reversible A-B-A",
+  "recorded_at_utc": "2026-09-22T13:14:30Z",
+  "product": {
+    "id": 140856,
+    "route": "K60 product",
+    "status": "publish",
+    "review_state_before": true,
+    "review_state_after_restore": true
+  },
+  "evidence": {
+    "remaining_gate_commit": "c196347dcfc453abb428ca0fa2c58858994fbe89",
+    "esi_saved_retest": {
+      "commit": "71978607bc904a589d3432aaf7c3c53fa989868e",
+      "run_id": 35728560237,
+      "result": "reviews/comments-open product stayed no-cache,esi=on; ESI did not fix caching"
+    },
+    "cookie_ab": {
+      "request_commit": "1d38ae1692a068a04650d1f332b021c13f398cd5",
+      "run_id": 35731121505,
+      "variants": [
+        "clean",
+        "woocommerce_recently_viewed=same product",
+        "woocommerce_recently_viewed=unrelated product"
+      ],
+      "result": "all variants remained no-cache,esi=on",
+      "conclusion": "woocommerce_recently_viewed and initial d_user_session are not the root cause"
+    },
+    "reviews_disabled_ab": {
+      "update_request": "requests/20260922-k60-reviews-disable-cache-ab-v1.json",
+      "cache_probe_commit": "352ef5c53ba1e40574b7dcb845c7ced7707bb969",
+      "run_id": 35731907093,
+      "samples": [
+        "x-litespeed-cache: miss",
+        "x-litespeed-cache: hit",
+        "x-litespeed-cache: hit"
+      ],
+      "conclusion": "product singular becomes publicly cacheable when reviews are disabled"
+    },
+    "rollback": {
+      "restore_request": "requests/20260922-k60-reviews-restore-after-cache-ab-v1.json",
+      "review_readback": "reviews_allowed=true",
+      "cache_verify_commit": "4f0a9837496b0a3c8637f8ff7111de516d6e0afb",
+      "run_id": 35732076834,
+      "samples": [
+        "no-cache,esi=on",
+        "no-cache,esi=on",
+        "no-cache,esi=on"
+      ],
+      "conclusion": "rollback restored both review state and original no-cache behavior; no stale reviews-disabled public cache remained"
+    }
+  },
+  "root_cause_scope": {
+    "proven": "The no-cache trigger is causally coupled to the open product review/comment path.",
+    "excluded": [
+      "VPI/lazy-loading configuration as a cache cause",
+      "LiteSpeed ESI enablement as a fix",
+      "woocommerce_recently_viewed cookie as the root cause",
+      "initial d_user_session cookie as the root cause",
+      "WooCommerce core cart/checkout/account cache helper as the product singular cause"
+    ],
+    "unresolved_exact_owner": "Exact hook inside the review/comment renderer remains opaque; current evidence points to the IranKala/protected renderer-runtime comments path or another hook executed only when comments/reviews are open."
+  },
+  "decision": {
+    "next_action_key": "WAVE_1_VENDOR_RENDERER_COMMENTS_CACHE_FIX",
+    "safest_next_action": "Keep reviews enabled. Escalate/fix the IranKala vendor-supported comments/review renderer so open reviews do not call LiteSpeed no-cache, then rerun the same product acceptance matrix.",
+    "acceptance": [
+      "reviews_allowed remains true and review form/reviews remain usable",
+      "anonymous product request is cacheable and reaches HIT on repeated request",
+      "cart, checkout and account remain private/non-cacheable",
+      "no logged-in/private content leaks",
+      "no VPI or lazy-loading experiment is repeated"
+    ],
+    "no_repeat": [
+      "VPI experiment",
+      "lazy-load exclusion experiment",
+      "ESI enable experiment",
+      "woocommerce_recently_viewed cookie A-B",
+      "global or persistent disabling of product reviews"
+    ]
+  }
+}
