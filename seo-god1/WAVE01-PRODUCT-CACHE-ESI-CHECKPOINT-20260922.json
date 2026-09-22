@@ -1,0 +1,38 @@
+{
+  "program": "SEO God1",
+  "wave": 1,
+  "title": "Product singular no-cache root-cause checkpoint",
+  "recorded_at_utc": "2026-09-22T11:50:00Z",
+  "verified": {
+    "open_comments_correlation": {
+      "calculator_comments_closed": "cache HIT",
+      "calculator_comments_open": "explicit LiteSpeed no-cache",
+      "multiple_open_posts": "explicit LiteSpeed no-cache",
+      "product_samples": "explicit LiteSpeed no-cache"
+    },
+    "litespeed_esi": {
+      "enabled": "0",
+      "cache_comment_form": "1",
+      "comment_form_esi_support_present": true
+    },
+    "excluded_culprits": [
+      "WooCommerce core product cache helper only forces no-cache on cart/checkout/account",
+      "active K20 custom snippets do not set product/comment no-cache",
+      "custom Keshavarz plugins do not expose a generic comments-open no-cache rule"
+    ],
+    "unresolved_owner": "Likely protected renderer/runtime path; IranKala comments.php is ionCube-protected, so textual source inspection cannot verify its internal behavior."
+  },
+  "next_safe_test": {
+    "requires_user_manual_action": true,
+    "action": "Enable LiteSpeed Cache > Cache > ESI > Enable ESI only; leave Cache Comment Form enabled and all other settings unchanged.",
+    "reason": "admin_settings is hard-blocked by keshavarz20-git-ops, so the assistant must not toggle ESI indirectly.",
+    "acceptance_after_user_action": [
+      "Open-comments product transitions from explicit no-cache to cacheable HIT for anonymous visitor",
+      "Product review/comment form remains present and usable",
+      "Cart, checkout and account remain non-cacheable/session-safe",
+      "No logged-in/private content leaks into public cache"
+    ],
+    "rollback": "If acceptance fails, user switches Enable ESI back OFF immediately."
+  },
+  "no_repeat": "Do not rerun comments-open/closed A/B before the ESI setting changes."
+}
