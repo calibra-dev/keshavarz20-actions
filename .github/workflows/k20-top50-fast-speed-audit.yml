@@ -1,0 +1,73 @@
+name: Keshavarz20 Top50 Fast Speed Audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'performance-fast-audit-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-top50-fast-speed-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Resolve request and result
+        id: req
+        shell: bash
+        run: |
+          set -euo pipefail
+          before='${{ github.event.before }}'
+          current='${{ github.sha }}'
+          zero='0000000000000000000000000000000000000000'
+          if [ -n "$before" ] && [ "$before" != "$zero" ]; then
+            mapfile -t files < <(git diff --name-only "$before" "$current" -- 'performance-fast-audit-ops/*.json' | sed '/^$/d' | sort -u)
+          else
+            mapfile -t files < <(git show --pretty= --name-only "$current" -- 'performance-fast-audit-ops/*.json' | sed '/^$/d' | sort -u)
+          fi
+          if [ "${#files[@]}" -ne 1 ]; then
+            echo "Expected exactly one fast performance request, found ${#files[@]}" >&2
+            exit 1
+          fi
+          req="${files[0]}"
+          base="$(basename "$req" .json)"
+          result="performance-results/${base}-result.json"
+          echo "request=$req" >> "$GITHUB_OUTPUT"
+          echo "result=$result" >> "$GITHUB_OUTPUT"
+
+      - name: Validate audit script
+        run: python -m py_compile scripts/k20_top50_speed_audit.py
+
+      - name: Read and measure 50 priority pages
+        env:
+          K20_SPEED_REQUEST: ${{ steps.req.outputs.request }}
+          K20_SPEED_RESULT: ${{ steps.req.outputs.result }}
+        run: python scripts/k20_top50_speed_audit.py
+
+      - name: Commit sanitized result
+        shell: bash
+        env:
+          RESULT: ${{ steps.req.outputs.result }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f "$RESULT"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "perf: record top50 fast speed audit"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
