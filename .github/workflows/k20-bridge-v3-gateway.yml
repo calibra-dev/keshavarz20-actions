@@ -1,0 +1,75 @@
+name: Keshavarz20 Bridge v3 Gateway
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'bridge-v3-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-bridge-v3-gateway
+  cancel-in-progress: false
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Execute changed v3 requests
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $before = '${{ github.event.before }}'
+          $current = '${{ github.sha }}'
+          $zero = '0000000000000000000000000000000000000000'
+          if ($before -and $before -ne $zero) {
+            $changed = @(git diff --name-only $before $current -- 'bridge-v3-ops/*.json')
+          } else {
+            $changed = @(git show --pretty='' --name-only $current -- 'bridge-v3-ops/*.json')
+          }
+          $changed = @($changed | Where-Object { $_ -match '^bridge-v3-ops/.+\.json$' } | Sort-Object -Unique)
+          if ($changed.Count -eq 0) { throw 'No Bridge v3 request JSON found.' }
+
+          $hadFailure = $false
+          foreach ($requestPath in $changed) {
+            $name = [IO.Path]::GetFileNameWithoutExtension($requestPath)
+            $out = Join-Path $env:RUNNER_TEMP "$name.result.json"
+            try {
+              & ./scripts/Invoke-K20BridgeV3.ps1 -RequestPath $requestPath -OutputPath $out
+              if ($LASTEXITCODE -ne 0) { throw "Bridge v3 client exited $LASTEXITCODE" }
+            } catch {
+              $hadFailure = $true
+              if (-not (Test-Path -LiteralPath $out)) {
+                [ordered]@{ ok=$false; request=[IO.Path]::GetFileName($requestPath); executed_at_utc=[DateTime]::UtcNow.ToString('o'); error=$_.Exception.Message } |
+                  ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $out -Encoding utf8
+              }
+            }
+
+            $resultText = Get-Content -Raw -LiteralPath $out
+            $encoded = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($resultText))
+            $resultPath = "bridge-v3-results/$name.json"
+            $encodedPath = (($resultPath -split '/') | ForEach-Object { [Uri]::EscapeDataString($_) }) -join '/'
+            $api = "https://api.github.com/repos/${{ github.repository }}/contents/$encodedPath"
+            $headers = @{ Authorization="Bearer $env:GH_TOKEN"; Accept='application/vnd.github+json'; 'X-GitHub-Api-Version'='2022-11-28'; 'User-Agent'='k20-bridge-v3-gateway' }
+            $existingSha = $null
+            try { $existingSha = (Invoke-RestMethod -Method Get -Uri "${api}?ref=main" -Headers $headers -TimeoutSec 60).sha } catch {
+              if (-not ($_.Exception.Response -and [int]$_.Exception.Response.StatusCode -eq 404)) { throw }
+            }
+            $put = [ordered]@{ message="bridge-v3: record result for $name"; content=$encoded; branch='main' }
+            if ($existingSha) { $put.sha = $existingSha }
+            Invoke-RestMethod -Method Put -Uri $api -Headers $headers -ContentType 'application/json' -Body ($put | ConvertTo-Json -Depth 10) -TimeoutSec 60 | Out-Null
+          }
+          if ($hadFailure) { throw 'One or more Bridge v3 requests failed; sanitized results were recorded.' }
