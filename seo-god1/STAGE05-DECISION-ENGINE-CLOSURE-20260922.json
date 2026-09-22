@@ -1,0 +1,51 @@
+{
+  "program": "Keshavarz20 Stage 5 Decision Engine publication",
+  "generated_at_utc": "2026-09-22T16:16:00Z",
+  "status": "PASS_LIVE_DECISION_PATH",
+  "no_repeat_basis": [
+    "phase22-results/decision-model-latest.json is already PASS_MODEL_VALIDATION",
+    "phase11-results/priority-decision-modules.json already proves live suitable/not-suitable/input decision modules on priority products"
+  ],
+  "live_pages": [
+    {
+      "id": 143869,
+      "url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+      "role": "pipe size / flow / pressure decision guide"
+    },
+    {
+      "id": 144238,
+      "url": "https://keshavarz20.com/irrigation-filter-selector/",
+      "role": "filter selection checklist"
+    },
+    {
+      "id": 144239,
+      "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+      "role": "fittings compatibility selector"
+    },
+    {
+      "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
+      "role": "drip-tape quantity and fittings calculator"
+    }
+  ],
+  "new_mutation": {
+    "post_id": 143869,
+    "action": "content.patch",
+    "evidence": "bridge-v3-results/20260922-stage5-pipe-decision-path-patch.json",
+    "readback": "bridge-v3-results/20260922-stage5-pipe-decision-path-readback.json",
+    "before_sha256": "410803dd47f33044238d54ebd4c03034f98be7fcb1a414f1a7cdd3bf9b7eeca5",
+    "after_sha256": "9d87ec84c0c4ea7bc0002e29c11531a4417aa59000ac7ef242484355da905a60",
+    "changed_matches": 1,
+    "purpose": "Connect pipe-sizing decision to filter and fittings checks and explicitly stop specific selection when required measurements are missing."
+  },
+  "acceptance": {
+    "suitable_not_suitable_or_stop_rules": true,
+    "required_inputs": true,
+    "common_mistakes": true,
+    "explainable_next_steps": true,
+    "expert_escalation": true,
+    "no_specific_sku_without_verified_compatibility": true,
+    "no_price_stock_mutation": true
+  },
+  "fallback_note": "Bridge v3 rest.proxy does not allow /wp/v2/pages?slug lookups. WPVibe was used read-only to resolve current live page content/IDs; the write and readback were executed through the GitHub -> Bridge path.",
+  "next_action": "Proceed to Stage 6 answer architecture; do not rebuild the Phase22 model."
+}
