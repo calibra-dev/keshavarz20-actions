@@ -1,0 +1,297 @@
+{
+  "mode": "read-only",
+  "files": [
+    {
+      "path": "plugins/litespeed-cache/src/vpi.cls.php",
+      "line_count": 177,
+      "matches": [
+        {
+          "pattern": "queue",
+          "line": 7,
+          "snippet": "* remote svc via queue + cron."
+        },
+        {
+          "pattern": "queue",
+          "line": 20,
+          "snippet": "class VPI extends Cloud_Queue_Svc {"
+        },
+        {
+          "pattern": "queue",
+          "line": 55,
+          "snippet": "* Svc id slug — drives queue type, Cloud::SVC_VPI, and summary key prefix."
+        },
+        {
+          "pattern": "queue",
+          "line": 85,
+          "snippet": "* @param string $queue_k Queue key."
+        },
+        {
+          "pattern": "queue",
+          "line": 86,
+          "snippet": "* @param array  $v       Queue item."
+        },
+        {
+          "pattern": "queue",
+          "line": 89,
+          "snippet": "protected function _build_payload( $queue_k, $v ) {"
+        },
+        {
+          "pattern": "queue",
+          "line": 92,
+          "snippet": "'queue_k'    => $queue_k,"
+        },
+        {
+          "pattern": "queue",
+          "line": 101,
+          "snippet": "* post is marked processed and not re-queued."
+        },
+        {
+          "pattern": "post_meta",
+          "line": 35,
+          "snippet": "const POST_META = 'litespeed_vpi_list';"
+        },
+        {
+          "pattern": "post_meta",
+          "line": 43,
+          "snippet": "const POST_META_MOBILE = 'litespeed_vpi_list_mobile';"
+        },
+        {
+          "pattern": "post_meta",
+          "line": 109,
+          "snippet": "$name = ! empty( $v['is_mobile'] ) ? self::POST_META_MOBILE : self::POST_META;"
+        },
+        {
+          "pattern": "vpi",
+          "line": 3,
+          "snippet": "* The viewport image (VPI) class."
+        },
+        {
+          "pattern": "vpi",
+          "line": 18,
+          "snippet": "* Generate and manage ViewPort Images (VPI) for pages."
+        },
+        {
+          "pattern": "vpi",
+          "line": 20,
+          "snippet": "class VPI extends Cloud_Queue_Svc {"
+        },
+        {
+          "pattern": "vpi",
+          "line": 27,
+          "snippet": "const LOG_TAG = '[VPI]';"
+        },
+        {
+          "pattern": "vpi",
+          "line": 30,
+          "snippet": "* VPI Desktop Meta name."
+        },
+        {
+          "pattern": "vpi",
+          "line": 35,
+          "snippet": "const POST_META = 'litespeed_vpi_list';"
+        },
+        {
+          "pattern": "vpi",
+          "line": 38,
+          "snippet": "* VPI Mobile Meta name."
+        },
+        {
+          "pattern": "vpi",
+          "line": 43,
+          "snippet": "const POST_META_MOBILE = 'litespeed_vpi_list_mobile';"
+        },
+        {
+          "pattern": "request",
+          "line": 73,
+          "snippet": "* UI templates read `last_request` directly (settings_vpi.tpl.php,"
+        },
+        {
+          "pattern": "request",
+          "line": 78,
+          "snippet": "protected function _last_request_key() {"
+        },
+        {
+          "pattern": "request",
+          "line": 79,
+          "snippet": "return 'last_request';"
+        },
+        {
+          "pattern": "request",
+          "line": 83,
+          "snippet": "* Build the request body for Cloud::post."
+        },
+        {
+          "pattern": "request",
+          "line": 130,
+          "snippet": "$request_url = Utility::request_url();"
+        },
+        {
+          "pattern": "request",
+          "line": 132,
+          "snippet": "if ( ! apply_filters( 'litespeed_vpi_should_queue', true, $request_url ) ) {"
+        },
+        {
+          "pattern": "request",
+          "line": 158,
+          "snippet": "$queue_k = ( $is_mobile ? 'mobile' : '' ) . ' ' . $request_url;"
+        },
+        {
+          "pattern": "request",
+          "line": 165,
+          "snippet": "'url'        => apply_filters( 'litespeed_vpi_url', $request_url ),"
+        },
+        {
+          "pattern": "response",
+          "line": 64,
+          "snippet": "* Response field carrying the viewport image data."
+        },
+        {
+          "pattern": "url",
+          "line": 91,
+          "snippet": "'url'        => $v['url'],"
+        },
+        {
+          "pattern": "url",
+          "line": 111,
+          "snippet": "$urldecode = array_map( 'urldecode', $data );"
+        },
+        {
+          "pattern": "url",
+          "line": 113,
+          "snippet": "$urldecode = '';"
+        },
+        {
+          "pattern": "url",
+          "line": 115,
+          "snippet": "$urldecode = urldecode( (string) $data );"
+        },
+        {
+          "pattern": "url",
+          "line": 117,
+          "snippet": "self::debug( 'save data_vpi', $urldecode );"
+        },
+        {
+          "pattern": "url",
+          "line": 118,
+          "snippet": "$this->cls( 'Metabox' )->save( (int) $v['post_id'], $name, $urldecode );"
+        },
+        {
+          "pattern": "url",
+          "line": 130,
+          "snippet": "$request_url = Utility::request_url();"
+        },
+        {
+          "pattern": "url",
+          "line": 132,
+          "snippet": "if ( ! apply_filters( 'litespeed_vpi_should_queue', true, $request_url ) ) {"
+        },
+        {
+          "pattern": "summary",
+          "line": 51,
+          "snippet": "$this->_summary = self::get_summary();"
+        },
+        {
+          "pattern": "summary",
+          "line": 55,
+          "snippet": "* Svc id slug — drives queue type, Cloud::SVC_VPI, and summary key prefix."
+        }
+      ]
+    },
+    {
+      "path": "plugins/litespeed-cache/src/cloud.cls.php",
+      "line_count": 348,
+      "matches": [
+        {
+          "pattern": "queue",
+          "line": 67,
+          "snippet": "const SVC_QUEUE            = 'queue';"
+        },
+        {
+          "pattern": "queue",
+          "line": 174,
+          "snippet": "* Services that should go through the queue."
+        },
+        {
+          "pattern": "queue",
+          "line": 178,
+          "snippet": "private static $_queue_svc_set = [ self::SVC_CCSS, self::SVC_UCSS, self::SVC_VPI ];"
+        },
+        {
+          "pattern": "queue",
+          "line": 208,
+          "snippet": "// self::SVC_QUEUE,"
+        },
+        {
+          "pattern": "vpi",
+          "line": 65,
+          "snippet": "const SVC_VPI              = 'vpi';"
+        },
+        {
+          "pattern": "vpi",
+          "line": 178,
+          "snippet": "private static $_queue_svc_set = [ self::SVC_CCSS, self::SVC_UCSS, self::SVC_VPI ];"
+        },
+        {
+          "pattern": "vpi",
+          "line": 188,
+          "snippet": "// self::SVC_VPI,"
+        },
+        {
+          "pattern": "vpi",
+          "line": 203,
+          "snippet": "self::SVC_VPI,"
+        },
+        {
+          "pattern": "request",
+          "line": 20,
+          "snippet": "use Cloud_Request;"
+        },
+        {
+          "pattern": "request",
+          "line": 78,
+          "snippet": "const EXPIRATION_REQ = 300; // Seconds of min interval between two unfinished requests"
+        },
+        {
+          "pattern": "request",
+          "line": 96,
+          "snippet": "const CALLBACK_ERR_REQUEST    = 'litespeed_callback_request';"
+        },
+        {
+          "pattern": "request",
+          "line": 279,
+          "snippet": "* Handle all request actions from main cls"
+        },
+        {
+          "pattern": "response",
+          "line": 250,
+          "snippet": "* Return succeeded response"
+        },
+        {
+          "pattern": "response",
+          "line": 271,
+          "snippet": "self::debug( '❌ Error response code: ' . $code );"
+        },
+        {
+          "pattern": "url",
+          "line": 27,
+          "snippet": "* Base API server URL."
+        },
+        {
+          "pattern": "url",
+          "line": 34,
+          "snippet": "* Cloud dashboard URL."
+        },
+        {
+          "pattern": "url",
+          "line": 41,
+          "snippet": "* Cloud WP API server URL."
+        },
+        {
+          "pattern": "summary",
+          "line": 246,
+          "snippet": "$this->_summary = self::get_summary();"
+        }
+      ]
+    }
+  ]
+}
