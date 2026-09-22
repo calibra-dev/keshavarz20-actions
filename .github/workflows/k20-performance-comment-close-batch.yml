@@ -71,8 +71,8 @@ jobs:
               payload = @{ comment_status = 'closed' }
             } | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $tempReq -Encoding utf8
             & ./scripts/Invoke-K20SiteGateway.ps1 -RequestPath $tempReq -OutputPath $tempOut
-            if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $tempOut)) {
-              throw "Guarded gateway failed for post $id"
+            if (-not (Test-Path -LiteralPath $tempOut)) {
+              throw "Guarded gateway produced no result for post $id"
             }
             $one = Get-Content -Raw -LiteralPath $tempOut | ConvertFrom-Json -Depth 100
             if (-not $one.ok) { throw "WordPress update failed for post $id" }
