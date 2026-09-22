@@ -1,0 +1,64 @@
+{
+  "program": "SEO God1",
+  "wave": 1,
+  "title": "LiteSpeed ESI manual-enable acceptance result",
+  "recorded_at_utc": "2026-09-22T12:38:00Z",
+  "user_manual_change": "LiteSpeed Cache > Cache > ESI > Enable ESI = ON",
+  "verification": {
+    "readonly_setting_probe": {
+      "run_id": 35727965676,
+      "conclusion": "success",
+      "note": "Allow-listed option read executed successfully; artifact produced."
+    },
+    "cache_matrix": {
+      "run_id": 35728082386,
+      "conclusion": "success",
+      "product": {
+        "route": "K60 product",
+        "samples": [
+          {
+            "seq": 1,
+            "ttfb_s": 6.695788,
+            "ls_cache": "",
+            "ls_ctl": "no-cache",
+            "set_cookie": "woocommerce_recently_viewed"
+          },
+          {
+            "seq": 2,
+            "ttfb_s": 7.23164,
+            "ls_cache": "",
+            "ls_ctl": "no-cache",
+            "set_cookie": "woocommerce_recently_viewed"
+          },
+          {
+            "seq": 3,
+            "ttfb_s": 6.126014,
+            "ls_cache": "",
+            "ls_ctl": "no-cache",
+            "set_cookie": "woocommerce_recently_viewed"
+          }
+        ],
+        "acceptance": "FAILED",
+        "reason": "Comments-open product remained explicit LiteSpeed no-cache; no HIT observed."
+      },
+      "cart": {
+        "acceptance": "PASS_SESSION_SAFETY",
+        "ls_ctl": "no-cache",
+        "http_cache_control": "no-cache, must-revalidate, max-age=0, private"
+      },
+      "checkout": {
+        "acceptance": "PASS_SESSION_SAFETY",
+        "ls_ctl": "no-cache",
+        "http_cache_control": "no-cache, must-revalidate, max-age=0, private"
+      },
+      "account": {
+        "acceptance": "PASS_SESSION_SAFETY",
+        "ls_ctl": "no-cache",
+        "http_cache_control": "no-cache, must-revalidate, max-age=0, no-store, private"
+      }
+    }
+  },
+  "decision": "ROLLBACK_REQUIRED",
+  "required_user_action": "Set LiteSpeed Cache > Cache > ESI > Enable ESI back to OFF. Leave Cache Comment Form ON and all other settings unchanged.",
+  "no_repeat": "Do not repeat the same ESI enable experiment. Next investigation must target the actual no-cache owner or the woocommerce_recently_viewed/product singular path without changing price/payment/user settings."
+}
