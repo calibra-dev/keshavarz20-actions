@@ -1,0 +1,70 @@
+{
+  "program": "SEO God1",
+  "wave": 1,
+  "title": "Wave1 narrow supported config execution result",
+  "executed_at_utc": "2026-09-22T05:25:00Z",
+  "prompt": {
+    "path": "seo-god1/prompts/WAVE01-NARROW-SUPPORTED-CONFIG-EXECUTION-PROMPT-20260922.md",
+    "commit": "08e503a5e46685a01a180eedb6e6286f1925e37c"
+  },
+  "temporary_policy_exception": {
+    "opened_commit": "6af1918b6e2fa8c26c6f307a6513ff06d9d2108b",
+    "closed_commit": "b95d0436d1e705ad882b3b86f502283e55ab31e9",
+    "persistent_policy_expansion": false
+  },
+  "litespeed_option": {
+    "key": "litespeed.conf.media-lazy_exc",
+    "before": "[\"polyetilenetesal.keshavarz20.jpg\"]",
+    "attempted": "[\"polyetilenetesal.keshavarz20.jpg\",\"polyetilenetesal.keshavarz20-768x225.jpg\",\"k20-calculator-featured-optimized-1200-768x432.webp\"]",
+    "write_succeeded": true,
+    "automatic_cache_purge": {
+      "litespeed": true,
+      "elementor_css": true,
+      "object_cache": true
+    },
+    "post_write_readback_exact": true
+  },
+  "live_acceptance": {
+    "home": {
+      "target": "polyetilenetesal.keshavarz20-768x225.jpg",
+      "litespeed_placeholder_removed_for_primary_banner": true,
+      "direct_src_present": true,
+      "native_loading_lazy_still_present": true,
+      "fetchpriority_high": false,
+      "acceptance": "FAIL"
+    },
+    "calculator": {
+      "target_requested": "k20-calculator-featured-optimized-1200-768x432.webp",
+      "actual_primary_src": "k20-calculator-featured-optimized-1200.webp",
+      "litespeed_data_src_still_present": true,
+      "native_loading_lazy_still_present": true,
+      "fetchpriority_high": false,
+      "acceptance": "FAIL"
+    }
+  },
+  "rollback": {
+    "executed": true,
+    "restored_exact_original": true,
+    "final_value": "[\"polyetilenetesal.keshavarz20.jpg\"]",
+    "cache_purged_after_rollback": true
+  },
+  "supported_path_research": {
+    "official_litespeed": {
+      "lazy_image_excludes": "Supported for excluding exact filenames/URLs from LiteSpeed lazy loading.",
+      "vpi": "Official supported mechanism for detecting above-the-fold images, excluding them from lazy load, and preloading them.",
+      "vpi_dependency": "Requires QUIC.cloud Page Optimization/VPI service; fee may apply."
+    },
+    "irankala_accessibility": {
+      "abilities_found": 0,
+      "obvious_owl_option_found": false,
+      "obvious_aria_option_found": false,
+      "protected_renderer": "ionCube"
+    }
+  },
+  "conclusion": "Narrow Lazy Load Image Excludes did not satisfy the acceptance criteria because native/theme lazy-loading remains and calculator primary src did not match the tested variant. The exact setting was rolled back. No permanent admin-setting expansion remains.",
+  "next_supported_unlock": {
+    "key": "WAVE_1_VPI_OR_VENDOR_RENDERER_UNLOCK",
+    "reason": "For LCP, LiteSpeed VPI is the documented supported above-the-fold preload path but requires QUIC.cloud service and may incur cost, so it was not enabled without explicit consent. For accessibility, no supported IranKala setting/ability was found; vendor-supported renderer change remains required."
+  },
+  "forbidden_changes": 0
+}
