@@ -2,7 +2,7 @@
   "program": "SEO God1",
   "wave": 1,
   "title": "Current Wave 1 state after IranKala 10.10, calculator remediation, homepage promotion WebP replacement, and restored WPVibe access",
-  "generated_at_utc": "2026-09-22T05:26:00Z",
+  "generated_at_utc": "2026-09-22T11:35:00Z",
   "verified": {
     "theme": {
       "name": "IranKala",
@@ -107,6 +107,20 @@
       ],
       "permanent_policy_expansion": false,
       "finding": "Exact image excludes cannot by themselves clear the remaining native/theme lazy-loading path."
+    },
+    "vpi_execution": {
+      "state": "REJECTED_REGRESSION_ROLLED_BACK",
+      "evidence": "seo-god1/WAVE01-VPI-EXECUTION-RESULT-20260922.json",
+      "final_media_vpi": "0",
+      "homepage_vpi_lcp_s": [
+        9.756138,
+        7.3330895
+      ],
+      "calculator_vpi_lcp_s": [
+        8.466275796318056,
+        8.38203479631805
+      ],
+      "finding": "VPI promoted the full 1536px homepage hero and increased image payload; calculator VPI data was stale."
     }
   },
   "exact_supported_config_candidate": {
@@ -116,11 +130,10 @@
   },
   "residuals": [
     "Product singular no-cache remains while preserving WooCommerce review functionality.",
-    "Homepage LCP image still carries native/theme loading=lazy and lacks fetchpriority=high.",
-    "Calculator primary featured image still carries LiteSpeed/native lazy-loading; variant-only exclusion is insufficient.",
+    "Homepage LCP remains unresolved; VPI and exact lazy-exclude experiments both failed production acceptance and were rolled back.",
+    "Calculator LCP remains ~8s; VPI metadata is stale relative to the current optimized featured image.",
     "Owl/login/image-link accessibility renderer output remains unresolved in ionCube-protected theme.",
-    "PHP 8.1.34 runtime remains pending staging/hosting compatibility path.",
-    "LiteSpeed VPI is the documented supported above-the-fold path but QUIC.cloud service may incur cost and was not enabled without explicit consent."
+    "PHP 8.1.34 runtime remains pending staging/hosting compatibility path."
   ],
   "no_repeat": [
     "Do not rerun IranKala update verification.",
@@ -128,7 +141,8 @@
     "Do not rerun calculator featured-image compression work.",
     "Do not repeat Phase20 exact-node audit until a renderer/config mutation is actually applied.",
     "Do not repeat homepage promotion image source tracing or PNG-to-WebP replacement; term-meta ownership and live replacement are proven.",
-    "Do not retry the same two-entry LiteSpeed media-lazy_exc mutation; it failed live acceptance and was rolled back."
+    "Do not retry the same two-entry LiteSpeed media-lazy_exc mutation; it failed live acceptance and was rolled back.",
+    "Do not re-enable VPI on the current production hero configuration; measured regression was rolled back."
   ],
   "site_mutations_in_this_reconciliation": 2
 }
