@@ -1,0 +1,306 @@
+{
+  "tested_at_utc": "2026-09-22T11:30:58Z",
+  "lighthouse_version": "13.5.0",
+  "targets": [
+    {
+      "name": "home",
+      "url": "https://keshavarz20.com/",
+      "curl_samples": [
+        {
+          "seq": 1,
+          "http_code": 200,
+          "ttfb_s": 1.336712,
+          "total_s": 1.745157,
+          "html_bytes": 77821,
+          "redirects": 0,
+          "litespeed_cache": "hit",
+          "litespeed_cache_control": ""
+        },
+        {
+          "seq": 2,
+          "http_code": 200,
+          "ttfb_s": 1.481276,
+          "total_s": 1.684965,
+          "html_bytes": 77821,
+          "redirects": 0,
+          "litespeed_cache": "hit",
+          "litespeed_cache_control": ""
+        },
+        {
+          "seq": 3,
+          "http_code": 200,
+          "ttfb_s": 0.822606,
+          "total_s": 1.236849,
+          "html_bytes": 77821,
+          "redirects": 0,
+          "litespeed_cache": "hit",
+          "litespeed_cache_control": ""
+        },
+        {
+          "seq": 4,
+          "http_code": 200,
+          "ttfb_s": 0.636635,
+          "total_s": 1.047651,
+          "html_bytes": 77821,
+          "redirects": 0,
+          "litespeed_cache": "hit",
+          "litespeed_cache_control": ""
+        },
+        {
+          "seq": 5,
+          "http_code": 200,
+          "ttfb_s": 1.262749,
+          "total_s": 1.679858,
+          "html_bytes": 77821,
+          "redirects": 0,
+          "litespeed_cache": "hit",
+          "litespeed_cache_control": ""
+        }
+      ],
+      "lighthouse_runs": [
+        {
+          "seq": 1,
+          "performance_score": 49,
+          "fcp_s": 2.9866599999999996,
+          "lcp_s": 9.756138000000004,
+          "speed_index_s": 5.186837325730433,
+          "tbt_ms": 705.3679999999999,
+          "cls": 0.015549335817744538,
+          "total_bytes": 2358737,
+          "image_bytes": 1488889,
+          "request_count": 125,
+          "lcp_element": null,
+          "lcp_element_path": null,
+          "largest_images": [
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2025/03/polyetilenetesal.keshavarz20.jpg",
+              "transferSize": 376663,
+              "resourceSize": 376323,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/06/hossini.jpg",
+              "transferSize": 138292,
+              "resourceSize": 138113,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/07/kood-768x576.jpg",
+              "transferSize": 125514,
+              "resourceSize": 125364,
+              "priority": "Low"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/07/barani-768x576.jpg",
+              "transferSize": 117194,
+              "resourceSize": 117044,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/10/FLYGEN-768x576.jpg",
+              "transferSize": 115544,
+              "resourceSize": 115393,
+              "priority": "High"
+            }
+          ]
+        },
+        {
+          "seq": 2,
+          "performance_score": 51,
+          "fcp_s": 2.7910335,
+          "lcp_s": 7.3330895,
+          "speed_index_s": 5.22508824479186,
+          "tbt_ms": 282,
+          "cls": 0.22087301551495386,
+          "total_bytes": 2358673,
+          "image_bytes": 1488837,
+          "request_count": 125,
+          "lcp_element": null,
+          "lcp_element_path": null,
+          "largest_images": [
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2025/03/polyetilenetesal.keshavarz20.jpg",
+              "transferSize": 376639,
+              "resourceSize": 376323,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/06/hossini.jpg",
+              "transferSize": 138291,
+              "resourceSize": 138113,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/07/kood-768x576.jpg",
+              "transferSize": 125514,
+              "resourceSize": 125364,
+              "priority": "Low"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/07/barani-768x576.jpg",
+              "transferSize": 117194,
+              "resourceSize": 117044,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/10/FLYGEN-768x576.jpg",
+              "transferSize": 115543,
+              "resourceSize": 115393,
+              "priority": "High"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "calculator",
+      "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
+      "curl_samples": [
+        {
+          "seq": 1,
+          "http_code": 200,
+          "ttfb_s": 1.379845,
+          "total_s": 1.584055,
+          "html_bytes": 72178,
+          "redirects": 0,
+          "litespeed_cache": "hit",
+          "litespeed_cache_control": ""
+        },
+        {
+          "seq": 2,
+          "http_code": 200,
+          "ttfb_s": 1.147019,
+          "total_s": 1.554088,
+          "html_bytes": 72178,
+          "redirects": 0,
+          "litespeed_cache": "hit",
+          "litespeed_cache_control": ""
+        },
+        {
+          "seq": 3,
+          "http_code": 200,
+          "ttfb_s": 1.175208,
+          "total_s": 1.591913,
+          "html_bytes": 72178,
+          "redirects": 0,
+          "litespeed_cache": "hit",
+          "litespeed_cache_control": ""
+        },
+        {
+          "seq": 4,
+          "http_code": 200,
+          "ttfb_s": 0.656227,
+          "total_s": 1.075243,
+          "html_bytes": 72178,
+          "redirects": 0,
+          "litespeed_cache": "hit",
+          "litespeed_cache_control": ""
+        },
+        {
+          "seq": 5,
+          "http_code": 200,
+          "ttfb_s": 0.653265,
+          "total_s": 1.070139,
+          "html_bytes": 72178,
+          "redirects": 0,
+          "litespeed_cache": "hit",
+          "litespeed_cache_control": ""
+        }
+      ],
+      "lighthouse_runs": [
+        {
+          "seq": 1,
+          "performance_score": 59,
+          "fcp_s": 2.855907,
+          "lcp_s": 8.466275796318056,
+          "speed_index_s": 12.022880220943168,
+          "tbt_ms": 190,
+          "cls": 0.03851695178783132,
+          "total_bytes": 942339,
+          "image_bytes": 226965,
+          "request_count": 89,
+          "lcp_element": null,
+          "lcp_element_path": null,
+          "largest_images": [
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/06/hossini.jpg",
+              "transferSize": 138281,
+              "resourceSize": 138113,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured-optimized-1200-768x432.webp",
+              "transferSize": 67892,
+              "resourceSize": 67762,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/05/logo-deks2-keshavarz20.png",
+              "transferSize": 5397,
+              "resourceSize": 5305,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/07/download.png",
+              "transferSize": 3283,
+              "resourceSize": 3200,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/05/%D9%84%D9%88%DA%AF%D9%88-2-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B220-.png",
+              "transferSize": 2909,
+              "resourceSize": 2780,
+              "priority": "High"
+            }
+          ]
+        },
+        {
+          "seq": 2,
+          "performance_score": 65,
+          "fcp_s": 2.8096259999999993,
+          "lcp_s": 8.38203479631805,
+          "speed_index_s": 4.715088027100334,
+          "tbt_ms": 180,
+          "cls": 0.06657182207621506,
+          "total_bytes": 941950,
+          "image_bytes": 226989,
+          "request_count": 89,
+          "lcp_element": null,
+          "lcp_element_path": null,
+          "largest_images": [
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/06/hossini.jpg",
+              "transferSize": 138286,
+              "resourceSize": 138113,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured-optimized-1200-768x432.webp",
+              "transferSize": 67892,
+              "resourceSize": 67762,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/05/logo-deks2-keshavarz20.png",
+              "transferSize": 5397,
+              "resourceSize": 5305,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/07/download.png",
+              "transferSize": 3283,
+              "resourceSize": 3200,
+              "priority": "High"
+            },
+            {
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/05/%D9%84%D9%88%DA%AF%D9%88-2-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B220-.png",
+              "transferSize": 2917,
+              "resourceSize": 2780,
+              "priority": "High"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
