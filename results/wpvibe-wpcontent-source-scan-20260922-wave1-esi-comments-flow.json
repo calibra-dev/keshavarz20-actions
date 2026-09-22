@@ -1,0 +1,378 @@
+{
+  "mode": "read-only",
+  "files": [
+    {
+      "path": "plugins/litespeed-cache/src/esi.cls.php",
+      "line_count": 1192,
+      "matches": [
+        {
+          "pattern": "cache_commform",
+          "line": 873,
+          "snippet": "if (!$this->conf(Base::O_ESI_CACHE_COMMFORM)) {"
+        },
+        {
+          "pattern": "comment_form",
+          "line": 308,
+          "snippet": "add_action('litespeed_esi_load-comment-form', array( $this, 'load_comment_form_block' ));"
+        },
+        {
+          "pattern": "comment_form",
+          "line": 366,
+          "snippet": "add_filter('comment_form_defaults', array( $this, 'register_comment_form_actions' ));"
+        },
+        {
+          "pattern": "comment_form",
+          "line": 870,
+          "snippet": "public function load_comment_form_block( $params ) {"
+        },
+        {
+          "pattern": "comment_form",
+          "line": 871,
+          "snippet": "comment_form($params[self::PARAM_ARGS], $params[self::PARAM_ID]);"
+        },
+        {
+          "pattern": "comment_form",
+          "line": 985,
+          "snippet": "* Hooked to the comment_form_defaults filter."
+        },
+        {
+          "pattern": "comment_form",
+          "line": 987,
+          "snippet": "* If sub_comment_form_block is triggered, the output buffer is cleared and an esi block is added. The remaining comment form is also buffered and cleared."
+        },
+        {
+          "pattern": "comment_form",
+          "line": 993,
+          "snippet": "public function register_comment_form_actions( $defaults ) {"
+        },
+        {
+          "pattern": "comment_form",
+          "line": 996,
+          "snippet": "add_filter('comment_form_submit_button', array( $this, 'sub_comment_form_btn' ), 1000, 2); // To save the params passed in"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 393,
+          "snippet": "Control::set_nocache('ESI combine request');"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 812,
+          "snippet": "Control::set_nocache('ESI Widget time to live set to 0');"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 854,
+          "snippet": "Control::set_nocache('build-in set to not cacheable');"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 874,
+          "snippet": "Control::set_nocache('build-in set to not cacheable');"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 960,
+          "snippet": "Control::set_nocache('ESI shortcode att ttl=0');"
+        },
+        {
+          "pattern": "no-cache",
+          "line": 1156,
+          "snippet": "$esi_block = $this->sub_esi_block(self::COMBO, '__COMBINE_MAIN__', array(), 'no-cache', true);"
+        },
+        {
+          "pattern": "DONOTCACHEPAGE",
+          "line": 66,
+          "snippet": "if (defined('DONOTCACHEPAGE') && apply_filters('litespeed_const_DONOTCACHEPAGE', DONOTCACHEPAGE)) {"
+        },
+        {
+          "pattern": "esi",
+          "line": 5,
+          "snippet": "* The ESI class."
+        },
+        {
+          "pattern": "esi",
+          "line": 7,
+          "snippet": "* This is used to define all esi related functions."
+        },
+        {
+          "pattern": "esi",
+          "line": 17,
+          "snippet": "class ESI extends Root {"
+        },
+        {
+          "pattern": "esi",
+          "line": 21,
+          "snippet": "private static $has_esi        = false;"
+        },
+        {
+          "pattern": "esi",
+          "line": 24,
+          "snippet": "private $esi_args              = null;"
+        },
+        {
+          "pattern": "esi",
+          "line": 25,
+          "snippet": "private $_esi_preserve_list  = array();"
+        },
+        {
+          "pattern": "esi",
+          "line": 28,
+          "snippet": "const QS_ACTION = 'lsesi';"
+        },
+        {
+          "pattern": "esi",
+          "line": 29,
+          "snippet": "const QS_PARAMS = 'esi';"
+        },
+        {
+          "pattern": "comment",
+          "line": 96,
+          "snippet": "add_action('wp_update_comment_count', __NAMESPACE__ . '\\Purge::purge_comment_widget');"
+        },
+        {
+          "pattern": "comment",
+          "line": 308,
+          "snippet": "add_action('litespeed_esi_load-comment-form', array( $this, 'load_comment_form_block' ));"
+        },
+        {
+          "pattern": "comment",
+          "line": 364,
+          "snippet": "// Add comment forum esi for logged-in user or commenter"
+        },
+        {
+          "pattern": "comment",
+          "line": 366,
+          "snippet": "add_filter('comment_form_defaults', array( $this, 'register_comment_form_actions' ));"
+        },
+        {
+          "pattern": "comment",
+          "line": 449,
+          "snippet": "* Build the esi url. This method will build the html comment wrapper as well as serialize and encode the parameter array."
+        },
+        {
+          "pattern": "comment",
+          "line": 456,
+          "snippet": "* @param string $wrapper      The wrapper for the esi comments."
+        },
+        {
+          "pattern": "comment",
+          "line": 459,
+          "snippet": "* @param bool   $silence      If generate wrapper comment or not"
+        },
+        {
+          "pattern": "comment",
+          "line": 485,
+          "snippet": "// Don't add comment to esi block ( original for nonce used in tag property data-nonce='esi_block' )"
+        }
+      ]
+    },
+    {
+      "path": "plugins/litespeed-cache/src/control.cls.php",
+      "line_count": 957,
+      "matches": [
+        {
+          "pattern": "set_nocache",
+          "line": 185,
+          "snippet": "self::set_nocache( '[Ctrl] TTL is set to no cache [status_header] ' . $code );"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 193,
+          "snippet": "self::set_nocache( '[Ctrl] 4xx/5xx default to no cache [status_header] ' . $code );"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 424,
+          "snippet": "public static function set_nocache( $reason = false ) {"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 615,
+          "snippet": "self::set_nocache( '301 to same url' );"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 701,
+          "snippet": "self::set_nocache( 'preview page' );"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 707,
+          "snippet": "self::set_nocache( 'per post metabox setting' );"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 759,
+          "snippet": "self::set_nocache();"
+        },
+        {
+          "pattern": "set_nocache",
+          "line": 766,
+          "snippet": "self::set_nocache( 'pswd cookie' );"
+        },
+        {
+          "pattern": "no-cache",
+          "line": 640,
+          "snippet": "$hdr .= 'no-cache' . $esi_hdr;"
+        },
+        {
+          "pattern": "no-cache",
+          "line": 649,
+          "snippet": "// $hdr .= 'no-cache';"
+        },
+        {
+          "pattern": "no-cache",
+          "line": 653,
+          "snippet": "// $hdr .= 'no-cache';"
+        },
+        {
+          "pattern": "no-cache",
+          "line": 668,
+          "snippet": "$hdr .= 'no-cache' . $esi_hdr;"
+        },
+        {
+          "pattern": "DONOTCACHEPAGE",
+          "line": 638,
+          "snippet": "if ( defined( 'DONOTCACHEPAGE' ) && apply_filters( 'litespeed_const_DONOTCACHEPAGE', DONOTCACHEPAGE ) ) {"
+        },
+        {
+          "pattern": "DONOTCACHEPAGE",
+          "line": 639,
+          "snippet": "self::debug( '❌ forced no cache [reason] DONOTCACHEPAGE const' );"
+        },
+        {
+          "pattern": "esi",
+          "line": 630,
+          "snippet": "$esi_hdr = '';"
+        },
+        {
+          "pattern": "esi",
+          "line": 631,
+          "snippet": "if ( ESI::has_esi() ) {"
+        },
+        {
+          "pattern": "esi",
+          "line": 632,
+          "snippet": "$esi_hdr = ',esi=on';"
+        },
+        {
+          "pattern": "esi",
+          "line": 640,
+          "snippet": "$hdr .= 'no-cache' . $esi_hdr;"
+        },
+        {
+          "pattern": "esi",
+          "line": 660,
+          "snippet": "// $hdr .= $esi_hdr;"
+        },
+        {
+          "pattern": "esi",
+          "line": 668,
+          "snippet": "$hdr .= 'no-cache' . $esi_hdr;"
+        },
+        {
+          "pattern": "esi",
+          "line": 684,
+          "snippet": "$hdr .= ',max-age=' . $this->get_ttl() . $esi_hdr;"
+        },
+        {
+          "pattern": "esi",
+          "line": 749,
+          "snippet": "do_action( 'litespeed_control_finalize', defined( 'LSCACHE_IS_ESI' ) ? LSCACHE_IS_ESI : false ); // Pass ESI block id."
+        }
+      ]
+    },
+    {
+      "path": "plugins/litespeed-cache/src/core.cls.php",
+      "line_count": 751,
+      "matches": [
+        {
+          "pattern": "set_nocache",
+          "line": 580,
+          "snippet": "Control::set_nocache( 'empty tag header' );"
+        },
+        {
+          "pattern": "esi",
+          "line": 34,
+          "snippet": "const ACTION_QS_PURGE_SINGLE     = 'PURGESINGLE'; // This will be same as `ACTION_QS_PURGE` (purge single URL only)"
+        },
+        {
+          "pattern": "esi",
+          "line": 163,
+          "snippet": "* Note: ESI nonce won't be available until hook after_setup_theme ESI init due to Guest Mode concern"
+        },
+        {
+          "pattern": "esi",
+          "line": 167,
+          "snippet": "if ( $this->cls( 'Router' )->esi_enabled() && ! function_exists( 'wp_create_nonce' ) ) {"
+        },
+        {
+          "pattern": "esi",
+          "line": 168,
+          "snippet": "Debug2::debug( '[ESI] Overwrite wp_create_nonce()' );"
+        },
+        {
+          "pattern": "esi",
+          "line": 257,
+          "snippet": "* Preload ESI functionality for ESI request URI recovery"
+        },
+        {
+          "pattern": "esi",
+          "line": 260,
+          "snippet": "* @since 4.0 ESI init needs to be after Guest mode detection to bypass ESI if is under Guest mode"
+        },
+        {
+          "pattern": "esi",
+          "line": 262,
+          "snippet": "$this->cls( 'ESI' )->init();"
+        },
+        {
+          "pattern": "esi",
+          "line": 457,
+          "snippet": "* ESI: clean wrappers MUST run before any optimizer hook (HTML minifier strips HTML comments and would erase the wrapper markers themselves). Runs unconditionally so NO_OPTM requests with ESI blocks still produce a clean buffer."
+        },
+        {
+          "pattern": "comment",
+          "line": 51,
+          "snippet": "* Footer comment buffer."
+        },
+        {
+          "pattern": "comment",
+          "line": 56,
+          "snippet": "private $footer_comment = '';"
+        },
+        {
+          "pattern": "comment",
+          "line": 384,
+          "snippet": "* Trigger comment info display hook"
+        },
+        {
+          "pattern": "comment",
+          "line": 457,
+          "snippet": "* ESI: clean wrappers MUST run before any optimizer hook (HTML minifier strips HTML comments and would erase the wrapper markers themselves). Runs unconditionally so NO_OPTM requests with ESI blocks still produce a clean buffer."
+        },
+        {
+          "pattern": "comment",
+          "line": 495,
+          "snippet": "// Init comment info"
+        },
+        {
+          "pattern": "comment",
+          "line": 502,
+          "snippet": "* Silence comment for JSON request"
+        },
+        {
+          "pattern": "comment",
+          "line": 508,
+          "snippet": "Debug2::debug( '[Core] Silence Comment due to REST/AJAX' );"
+        },
+        {
+          "pattern": "comment",
+          "line": 510,
+          "snippet": "$running_info_showing = apply_filters( 'litespeed_comment', $running_info_showing );"
+        }
+      ]
+    }
+  ]
+}
