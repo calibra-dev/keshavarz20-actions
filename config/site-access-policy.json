@@ -35,8 +35,7 @@
     "frontend.audit",
     "internal_links.audit",
     "cache.purge",
-    "bridge.health",
-    "performance.litespeed_vpi"
+    "bridge.health"
   ],
   "blocked_scopes": [
     "users",
@@ -96,21 +95,6 @@
     "prefer_plugin_ability_over_raw_database": true,
     "prefer_direct_private_connector_for_unpublished_content": true,
     "never_commit_credentials": true,
-    "never_commit_private_draft_content_to_public_repo": true,
-    "narrow_admin_setting_exceptions": {
-      "litespeed.conf.media-vpi": {
-        "scope": "performance.litespeed_vpi",
-        "mode": "exact_toggle",
-        "required_existing": "0",
-        "allowed_target": "1",
-        "rollback": "0",
-        "precondition": {
-          "quic_cloud_linked": true,
-          "free_page_optimization_remaining_daily_quota_min": 1,
-          "paid_page_optimization_balance_required": 0
-        },
-        "purpose": "Wave1 VPI activation for verified above-the-fold LCP remediation only"
-      }
-    }
+    "never_commit_private_draft_content_to_public_repo": true
   }
 }
