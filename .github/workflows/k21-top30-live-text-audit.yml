@@ -1,0 +1,45 @@
+name: K21 Top30 Live Text Audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'k21-top30-ops/live-text-audit*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k21-top30-live-text-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependency
+        run: python -m pip install requests
+      - name: Audit live Top30 text only
+        run: python scripts/k21_top30_live_text_audit.py
+      - name: Commit sanitized audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f k21-top30-results/live-text-readiness-20260923.json k21-top30-results/live-text-readiness-20260923.md
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "k21: record live Top30 text readiness"
+          git pull --rebase origin main
+          git push origin HEAD:main
