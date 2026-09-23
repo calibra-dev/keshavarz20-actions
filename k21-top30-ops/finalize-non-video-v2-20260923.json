@@ -1,0 +1,28 @@
+{
+  "task": "final_non_video_refresh_v2",
+  "scope": "K21 Top30",
+  "excludes": [
+    "new_video_generation",
+    "video_editing"
+  ],
+  "includes": [
+    "latest_tank_structured_data",
+    "rainpipe_pressure_evidence",
+    "drip_tape_filtration_requirement",
+    "exact_code_polyrod_brand_evidence",
+    "product_quality_v5",
+    "pim",
+    "compatibility",
+    "indexability",
+    "schema_feed_parity",
+    "discovery_feed",
+    "ai_readiness",
+    "final_report"
+  ],
+  "guardrails": [
+    "no fabricated identifiers",
+    "no fabricated reviews",
+    "no guessed pressure",
+    "no price or stock changes"
+  ]
+}
