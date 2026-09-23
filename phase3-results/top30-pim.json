@@ -2,7 +2,7 @@
   "ok": true,
   "mode": "read-only",
   "version": "phase3-top30-pim-v2",
-  "generated_at_utc": "2026-09-23T09:13:14.636369Z",
+  "generated_at_utc": "2026-09-23T09:36:52.429760Z",
   "selection_rule": "GSC irrigation/fertigation candidate cohort; published Woo products; organic demand dominates priority; in-stock bonus; out-of-stock penalty. This is commercial-priority, not a profit/margin claim.",
   "summary": {
     "selected": 30,
@@ -14,7 +14,7 @@
     "missing_gtin": 30,
     "missing_mpn": 30,
     "missing_brand": 3,
-    "compatibility_incomplete": 17,
+    "compatibility_incomplete": 16,
     "decision_link_missing": 0,
     "average_product_quality_score": 93.3,
     "product_quality_below_85": 0
@@ -81,6 +81,7 @@
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
         },
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -91,6 +92,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -185,6 +187,7 @@
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
         },
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -195,6 +198,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -280,6 +284,7 @@
         },
         "material": null,
         "pressure_class": null,
+        "pressure_requirement": null,
         "length": null,
         "capacity": {
           "value": "۲۰۰ لیتر",
@@ -295,6 +300,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -394,6 +400,7 @@
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
         },
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -404,6 +411,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -489,6 +497,12 @@
         },
         "material": null,
         "pressure_class": null,
+        "pressure_requirement": {
+          "value": "فشار مجاز مخزن باید از پلاک، بدنه یا دیتاشیت همان نمونه تأیید شود؛ پیش از بازکردن یا سرویس، فشار مدار قطع شود",
+          "source": "woocommerce_attribute",
+          "field": "الزام فشار",
+          "confidence": "high"
+        },
         "length": null,
         "capacity": {
           "value": "۱۰۰ لیتر",
@@ -504,6 +518,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -511,9 +526,7 @@
         "connection_size",
         "pressure_requirement"
       ],
-      "compatibility_missing_fields": [
-        "pressure_requirement"
-      ],
+      "compatibility_missing_fields": [],
       "decision_links": [
         {
           "label": "راهنمای طراحی و خرید تجهیزات آبیاری قطره‌ای",
@@ -538,8 +551,7 @@
       ],
       "gaps": [
         "missing_gtin",
-        "missing_mpn",
-        "compatibility_fields_incomplete"
+        "missing_mpn"
       ]
     },
     {
@@ -598,6 +610,7 @@
           "confidence": "high"
         },
         "pressure_class": null,
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -608,6 +621,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -697,11 +711,13 @@
           "confidence": "high"
         },
         "pressure_class": null,
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": null,
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -799,6 +815,7 @@
           "confidence": "high"
         },
         "pressure_class": null,
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -809,6 +826,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -902,6 +920,7 @@
           "confidence": "high"
         },
         "pressure_class": null,
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -912,6 +931,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -1010,6 +1030,7 @@
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
         },
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -1020,6 +1041,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -1109,6 +1131,7 @@
           "confidence": "high"
         },
         "pressure_class": null,
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -1119,6 +1142,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -1212,6 +1236,7 @@
           "confidence": "high"
         },
         "pressure_class": null,
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -1222,6 +1247,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -1320,6 +1346,7 @@
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
         },
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -1330,6 +1357,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -1425,6 +1453,7 @@
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
         },
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -1435,6 +1464,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -1528,6 +1558,7 @@
           "confidence": "high"
         },
         "pressure_class": null,
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -1538,6 +1569,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -1631,11 +1663,13 @@
           "confidence": "high"
         },
         "pressure_class": null,
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": null,
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -1731,6 +1765,7 @@
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
         },
+        "pressure_requirement": null,
         "length": {
           "value": "۱۰۰ متر",
           "source": "woocommerce_attribute",
@@ -1746,6 +1781,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -1768,8 +1804,8 @@
       "decision_links_present": true,
       "content": {
         "short_words": 62,
-        "description_words": 1325,
-        "image_count": 9,
+        "description_words": 1298,
+        "image_count": 6,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
@@ -1836,11 +1872,13 @@
           "confidence": "high"
         },
         "pressure_class": null,
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": null,
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -1932,6 +1970,7 @@
           "confidence": "high"
         },
         "pressure_class": null,
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -1942,6 +1981,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -2038,6 +2078,7 @@
           "confidence": "high"
         },
         "pressure_class": null,
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -2048,6 +2089,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -2136,6 +2178,7 @@
         },
         "material": null,
         "pressure_class": null,
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -2146,6 +2189,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -2240,6 +2284,7 @@
           "confidence": "high"
         },
         "pressure_class": null,
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -2250,6 +2295,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -2348,6 +2394,7 @@
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
         },
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -2358,6 +2405,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -2452,6 +2500,7 @@
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
         },
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -2462,6 +2511,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -2558,6 +2608,7 @@
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
         },
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -2568,6 +2619,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -2655,6 +2707,7 @@
         },
         "material": null,
         "pressure_class": null,
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -2665,6 +2718,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -2764,6 +2818,7 @@
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
         },
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -2774,6 +2829,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -2868,6 +2924,7 @@
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
         },
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -2878,6 +2935,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -2973,6 +3031,7 @@
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
         },
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": {
@@ -2983,6 +3042,7 @@
         },
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": null,
         "emitter_spacing": null
       },
       "compatibility_required_fields": [
@@ -3063,11 +3123,18 @@
         },
         "material": null,
         "pressure_class": null,
+        "pressure_requirement": null,
         "length": null,
         "capacity": null,
         "connection_type": null,
         "flow_rate": null,
         "filtration_grade": null,
+        "filtration_requirement": {
+          "value": "فیلتر متناسب با کیفیت آب پیش از خط الزامی است؛ مش دقیق باید بر اساس کیفیت آب و مشخصات همان رول تعیین شود",
+          "source": "woocommerce_attribute",
+          "field": "فیلتراسیون",
+          "confidence": "high"
+        },
         "emitter_spacing": {
           "value": "۲۰ سانتی‌متر",
           "source": "woocommerce_attribute",
@@ -3082,8 +3149,7 @@
         "filtration_requirement"
       ],
       "compatibility_missing_fields": [
-        "length",
-        "filtration_requirement"
+        "length"
       ],
       "decision_links": [
         {
