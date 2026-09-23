@@ -262,7 +262,7 @@ def render_video(poster: Path, audio: Path, dest: Path) -> None:
         f"zoompan=z='min(zoom+0.00035,1.06)':d=1:"
         f"s={TARGET_W}x{TARGET_H}:fps={FPS},format=yuv420p"
     )
-    if ffmpeg_has_encoder("h264_nvenc"):
+    if command_exists("nvidia-smi") and ffmpeg_has_encoder("h264_nvenc"):
         video_args = ["-c:v", "h264_nvenc", "-preset", "p5", "-cq", "20", "-b:v", "0"]
     else:
         video_args = ["-c:v", "libx264", "-preset", "medium", "-crf", "20"]
