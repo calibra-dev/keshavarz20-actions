@@ -27,3 +27,5 @@ def main():
         assert "approved must be true" in combined, combined
     print(json.dumps({"ok":True,"test":"approval-fail-closed","site_write_attempted":False}))
 if __name__=="__main__": main()
+
+# selftest trigger marker
