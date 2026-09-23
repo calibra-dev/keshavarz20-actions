@@ -1,0 +1,26 @@
+name: K20 Gallery Product Creator Selftest
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'engine-gallery-product-creator/tests/test_approval_gate.py'
+
+permissions:
+  contents: read
+
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install minimal dependencies
+        run: python -m pip install requests
+      - name: Compile publisher
+        run: python -m py_compile engine-gallery-product-creator/scripts/publish_approved.py
+      - name: Verify approval gate fails closed
+        run: python engine-gallery-product-creator/tests/test_approval_gate.py
