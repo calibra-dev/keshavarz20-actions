@@ -232,4 +232,5 @@ result = {
 }
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='utf-8')
+Path('growthos-phase2-results/product-truth-summary.json').write_text(json.dumps({'ok': result['ok'], 'phase': 2, 'version': result['version'], 'generated_at_utc': NOW, 'summary': summary, 'acceptance': acceptance}, ensure_ascii=False, indent=2), encoding='utf-8')
 print('GROWTHOS_PHASE2_PRODUCT_TRUTH_OK', json.dumps({'summary': summary, 'acceptance': acceptance}, ensure_ascii=False))
