@@ -49,6 +49,15 @@ def find_attr(attrs, needles):
             return {"value":v,"source":"woocommerce_attribute","field":k,"confidence":"high"}
     return None
 
+def find_size_attr(attrs):
+    # Avoid false positives such as "فاصله قطره‌چکان", where "قطر" is only a substring of "قطره".
+    exact_names={"سایز","اندازه","قطر","size","diameter","سایز / قطر اسمی"}
+    for k,v in attrs.items():
+        kl=re.sub(r"\s+"," ",(k or "").strip().lower())
+        if kl in exact_names and str(v).strip():
+            return {"value":v,"source":"woocommerce_attribute","field":k,"confidence":"high"}
+    return None
+
 def classify(p):
     t=((p.get("name") or "")+" "+" ".join((c.get("name") or "") for c in p.get("categories") or [])).lower()
     if any(x in t for x in ["فیلتر","هیدروسیکلون"]): return "filter"
@@ -134,7 +143,7 @@ for rank,x in enumerate(selected,1):
     if not brand: brand=find_attr(attrs,["brand","برند","سازنده"])
     mpn=find_attr(attrs,["mpn","کد سازنده","part number","شماره قطعه"])
     model=find_attr(attrs,["model","مدل"])
-    size=find_attr(attrs,["سایز","اندازه","قطر","size","diameter"])
+    size=find_size_attr(attrs)
     material=find_attr(attrs,["جنس","material"])
     pressure=find_attr(attrs,["فشار کاری","کلاس فشار","pressure","pn","sdr"])
     pressure_requirement=find_attr(attrs,["الزام فشار","نیاز فشار","pressure requirement"])
