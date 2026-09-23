@@ -235,19 +235,30 @@ def make_srt(ep: Episode, duration: float, dest: Path) -> None:
     dest.write_text("\n".join(rows), encoding="utf-8-sig")
 
 
+def ffmpeg_has_encoder(name: str) -> bool:
+    try:
+        return name in run(["ffmpeg", "-hide_banner", "-encoders"]).stdout
+    except Exception:
+        return False
+
+
 def render_video(poster: Path, audio: Path, dest: Path) -> None:
     duration = media_duration(audio)
-    frames = max(1, int(math.ceil(duration * FPS)))
     vf = (
         f"scale={TARGET_W}:{TARGET_H},"
-        f"zoompan=z='min(zoom+0.00035,1.06)':d={frames}:"
+        f"zoompan=z='min(zoom+0.00035,1.06)':d=1:"
         f"s={TARGET_W}x{TARGET_H}:fps={FPS},format=yuv420p"
     )
+    if ffmpeg_has_encoder("h264_nvenc"):
+        video_args = ["-c:v", "h264_nvenc", "-preset", "p5", "-cq", "20", "-b:v", "0"]
+    else:
+        video_args = ["-c:v", "libx264", "-preset", "medium", "-crf", "20"]
+
     cmd = [
-        "ffmpeg", "-y", "-loop", "1", "-i", str(poster), "-i", str(audio),
-        "-vf", vf, "-c:v", "libx264", "-preset", "medium", "-crf", "20",
-        "-c:a", "aac", "-b:a", "160k", "-shortest", "-movflags", "+faststart",
-        str(dest),
+        "ffmpeg", "-y", "-loop", "1", "-framerate", str(FPS),
+        "-i", str(poster), "-i", str(audio), "-vf", vf, *video_args,
+        "-c:a", "aac", "-b:a", "160k", "-t", f"{duration:.3f}",
+        "-shortest", "-movflags", "+faststart", str(dest),
     ]
     run(cmd)
 
