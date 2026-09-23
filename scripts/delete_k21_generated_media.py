@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 import base64, json, os, re
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 import requests
 
@@ -28,32 +29,63 @@ def main():
     targets=sorted(image_ids | set(VIDEO_IDS))
     base=os.environ["WP_BASE_URL"].rstrip("/")
     headers=auth_headers()
-    verified=[]
-    missing=[]
-    for mid in targets:
-        r=requests.get(f"{base}/wp-json/wp/v2/media/{mid}",headers=headers,timeout=60)
+
+    def inspect(mid):
+        r=requests.get(f"{base}/wp-json/wp/v2/media/{mid}",headers=headers,timeout=30)
         if r.status_code==404:
-            missing.append(mid); continue
+            return ("missing",mid,None)
         r.raise_for_status()
         item=r.json()
         url=str(item.get("source_url") or "")
-        ok = (mid in VIDEO_IDS and re.search(r"/2026/09/(?:video(?:-\d+)?\.mp4|thumbnail(?:-\d+)?\.jpg)$",url,re.I)) or              (mid in CUSTOM_IMAGE_IDS) or              (mid in image_ids and ("/k21-p" in url or re.search(r"/k21-\d+-decision-",url,re.I)))
+        ok = (mid in VIDEO_IDS and re.search(r"/2026/09/(?:video(?:-\\d+)?\\.mp4|thumbnail(?:-\\d+)?\\.jpg)$",url,re.I)) or \
+             (mid in CUSTOM_IMAGE_IDS) or \
+             (mid in image_ids and ("/k21-p" in url or re.search(r"/k21-\\d+-decision-",url,re.I)))
         if not ok:
-            raise RuntimeError(f"Refusing delete for {mid}: unexpected source_url {url}")
-        verified.append({"id":mid,"source_url":url})
-    deleted=[]
-    for item in verified:
+            return ("refuse",mid,url)
+        return ("verified",mid,url)
+
+    verified=[]
+    missing=[]
+    refused=[]
+    with ThreadPoolExecutor(max_workers=12) as ex:
+        futs={ex.submit(inspect,mid):mid for mid in targets}
+        for fut in as_completed(futs):
+            state,mid,url=fut.result()
+            if state=="missing": missing.append(mid)
+            elif state=="refuse": refused.append({"id":mid,"source_url":url})
+            else: verified.append({"id":mid,"source_url":url})
+    if refused:
+        result={"ok":False,"target_count":len(targets),"verified_count":len(verified),"missing_count":len(missing),"refused":sorted(refused,key=lambda x:x["id"]),"guardrail":"Deletion aborted because one or more media URLs did not match exact K21 evidence."}
+        OUT.write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding="utf-8")
+        raise RuntimeError(f"Refusing cleanup for {len(refused)} unexpected media attachments")
+
+    def delete_one(item):
         mid=item["id"]
-        r=requests.delete(f"{base}/wp-json/wp/v2/media/{mid}",headers=headers,params={"force":"true"},timeout=90)
+        r=requests.delete(f"{base}/wp-json/wp/v2/media/{mid}",headers=headers,params={"force":"true"},timeout=45)
         if r.status_code==404:
-            missing.append(mid); continue
+            return ("missing",mid)
         r.raise_for_status()
-        deleted.append(mid)
+        return ("deleted",mid)
+
+    deleted=[]
+    with ThreadPoolExecutor(max_workers=10) as ex:
+        futs=[ex.submit(delete_one,item) for item in verified]
+        for fut in as_completed(futs):
+            state,mid=fut.result()
+            if state=="missing": missing.append(mid)
+            else: deleted.append(mid)
+
+    def verify_absent(mid):
+        r=requests.get(f"{base}/wp-json/wp/v2/media/{mid}",headers=headers,timeout=30)
+        return None if r.status_code==404 else {"id":mid,"http_code":r.status_code}
+
     remaining=[]
-    for mid in deleted:
-        r=requests.get(f"{base}/wp-json/wp/v2/media/{mid}",headers=headers,timeout=60)
-        if r.status_code != 404:
-            remaining.append({"id":mid,"http_code":r.status_code})
+    with ThreadPoolExecutor(max_workers=12) as ex:
+        futs=[ex.submit(verify_absent,mid) for mid in deleted]
+        for fut in as_completed(futs):
+            item=fut.result()
+            if item: remaining.append(item)
+
     result={
         "ok": not remaining,
         "target_count":len(targets),
@@ -61,8 +93,8 @@ def main():
         "deleted_count":len(deleted),
         "missing_count":len(set(missing)),
         "verified_absent_count":len(deleted)-len(remaining),
-        "remaining_after_delete":remaining,
-        "deleted_ids":deleted,
+        "remaining_after_delete":sorted(remaining,key=lambda x:x["id"]),
+        "deleted_ids":sorted(deleted),
         "missing_ids":sorted(set(missing)),
         "guardrail":"Only exact K21-generated image/video/thumbnail IDs derived from repository evidence were eligible."
     }
@@ -70,5 +102,6 @@ def main():
     print(json.dumps({k:v for k,v in result.items() if k not in ("deleted_ids","missing_ids","remaining_after_delete")},ensure_ascii=False))
     if remaining:
         raise RuntimeError(f"{len(remaining)} media attachments still resolve after permanent deletion")
+
 if __name__=="__main__":
     main()
