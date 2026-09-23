@@ -64,12 +64,24 @@ jobs:
             $encodedPath = (($resultPath -split '/') | ForEach-Object { [Uri]::EscapeDataString($_) }) -join '/'
             $api = "https://api.github.com/repos/${{ github.repository }}/contents/$encodedPath"
             $headers = @{ Authorization="Bearer $env:GH_TOKEN"; Accept='application/vnd.github+json'; 'X-GitHub-Api-Version'='2022-11-28'; 'User-Agent'='k20-bridge-v3-gateway' }
-            $existingSha = $null
-            try { $existingSha = (Invoke-RestMethod -Method Get -Uri "${api}?ref=main" -Headers $headers -TimeoutSec 60).sha } catch {
-              if (-not ($_.Exception.Response -and [int]$_.Exception.Response.StatusCode -eq 404)) { throw }
+            $recorded = $false
+            for ($attempt=1; $attempt -le 5 -and -not $recorded; $attempt++) {
+              $existingSha = $null
+              try { $existingSha = (Invoke-RestMethod -Method Get -Uri "${api}?ref=main" -Headers $headers -TimeoutSec 60).sha } catch {
+                if (-not ($_.Exception.Response -and [int]$_.Exception.Response.StatusCode -eq 404)) { throw }
+              }
+              $put = [ordered]@{ message="bridge-v3: record result for $name"; content=$encoded; branch='main' }
+              if ($existingSha) { $put.sha = $existingSha }
+              try {
+                Invoke-RestMethod -Method Put -Uri $api -Headers $headers -ContentType 'application/json' -Body ($put | ConvertTo-Json -Depth 10) -TimeoutSec 60 | Out-Null
+                $recorded = $true
+              } catch {
+                $status = if ($_.Exception.Response) { [int]$_.Exception.Response.StatusCode } else { 0 }
+                if ($status -eq 409 -and $attempt -lt 5) {
+                  Start-Sleep -Seconds ($attempt * 2)
+                } else { throw }
+              }
             }
-            $put = [ordered]@{ message="bridge-v3: record result for $name"; content=$encoded; branch='main' }
-            if ($existingSha) { $put.sha = $existingSha }
-            Invoke-RestMethod -Method Put -Uri $api -Headers $headers -ContentType 'application/json' -Body ($put | ConvertTo-Json -Depth 10) -TimeoutSec 60 | Out-Null
+            if (-not $recorded) { throw "Failed to persist sanitized result after retries: $name" }
           }
           if ($hadFailure) { throw 'One or more Bridge v3 requests failed; sanitized results were recorded.' }
