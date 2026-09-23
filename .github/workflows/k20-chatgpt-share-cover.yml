@@ -1,0 +1,75 @@
+name: Keshavarz20 ChatGPT Share Cover Import
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'chatgpt-share-cover-ops/*.json'
+      - 'scripts/k20_import_chatgpt_share_cover.py'
+      - '.github/workflows/k20-chatgpt-share-cover.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-chatgpt-share-cover
+  cancel-in-progress: false
+
+jobs:
+  import-cover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: python -m pip install --quiet requests Pillow
+
+      - name: Import changed share covers
+        shell: bash
+        run: |
+          set -euo pipefail
+          before="${{ github.event.before }}"
+          current="${{ github.sha }}"
+          zero="0000000000000000000000000000000000000000"
+          if [ -n "$before" ] && [ "$before" != "$zero" ]; then
+            git diff --name-only "$before" "$current" -- 'chatgpt-share-cover-ops/*.json' > /tmp/k20-cover-ops.txt
+          else
+            git show --pretty='' --name-only "$current" -- 'chatgpt-share-cover-ops/*.json' > /tmp/k20-cover-ops.txt
+          fi
+          if [ ! -s /tmp/k20-cover-ops.txt ]; then
+            echo "No changed share-cover op files."
+            exit 0
+          fi
+          while IFS= read -r file; do
+            [ -n "$file" ] || continue
+            python scripts/k20_import_chatgpt_share_cover.py "$file"
+          done < /tmp/k20-cover-ops.txt
+
+      - name: Commit sanitized results
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -d chatgpt-share-cover-results ]; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add chatgpt-share-cover-results
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "record ChatGPT share cover import result"
+          git pull --rebase origin main
+          git push origin HEAD:main
