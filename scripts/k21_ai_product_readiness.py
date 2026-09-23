@@ -97,14 +97,17 @@ for p in pim.get("products",[]):
         compatibility=0
 
     # 6) Evidence readiness: conservative, based only on persisted observable evidence.
-    evidence=0
-    evidence += points(bool(f.get("brand")),15)
-    evidence += points(content.get("all_image_alt_present") is True,10)
-    evidence += points(content.get("image_count",0)>=4,15)
-    evidence += points(len(missing_compat)==0,25)
-    evidence += points(p.get("decision_links_present") is True,15)
-    evidence += points("Verified Review/Q&A" not in gaps,10)
-    evidence += points("ویدئو" not in gaps,10)
+    evidence_non_video=0
+    evidence_non_video += points(bool(f.get("brand")),15)
+    evidence_non_video += points(content.get("all_image_alt_present") is True,10)
+    evidence_non_video += points(content.get("image_count",0)>=4,15)
+    evidence_non_video += points(len(missing_compat)==0,25)
+    evidence_non_video += points(p.get("decision_links_present") is True,15)
+    evidence_non_video += points("Verified Review/Q&A" not in gaps,10)
+
+    # Keep the legacy composite for backwards compatibility, but expose a strict
+    # non-video score so remediation can be evaluated without relying on video.
+    evidence=evidence_non_video + points("ویدئو" not in gaps,10)
 
     scores={
       "ai_product_completeness":min(100,product_truth),
@@ -115,6 +118,8 @@ for p in pim.get("products",[]):
       "evidence_readiness":min(100,evidence)
     }
     overall=round(sum(scores.values())/len(scores),1)
+    non_video_scores={**scores,"evidence_readiness":min(100,evidence_non_video)}
+    overall_non_video=round(sum(non_video_scores.values())/len(non_video_scores),1)
     blockers=[]
     if not f.get("brand"): blockers.append("verified_brand_missing")
     if missing_compat: blockers.append("compatibility_fields_incomplete")
@@ -128,6 +133,8 @@ for p in pim.get("products",[]):
     rows.append({
       "rank":p.get("rank"),"product_id":pid,"name":p.get("name"),"url":p.get("permalink"),
       "scores":scores,"overall":overall,"ai_ready_85_plus":overall>=85,
+      "non_video_scores":non_video_scores,"overall_non_video":overall_non_video,
+      "non_video_ready_85_plus":overall_non_video>=85,
       "blockers":blockers,
       "policy":"Unknown product identifiers/specifications remain unknown until an authoritative source is available."
     })
@@ -139,6 +146,9 @@ summary={
   "overall_average":round(sum(x["overall"] for x in rows)/max(1,len(rows)),1),
   "ai_ready_85_plus":sum(1 for x in rows if x["ai_ready_85_plus"]),
   "below_85":sum(1 for x in rows if not x["ai_ready_85_plus"]),
+  "non_video_overall_average":round(sum(x["overall_non_video"] for x in rows)/max(1,len(rows)),1),
+  "non_video_ready_85_plus":sum(1 for x in rows if x["non_video_ready_85_plus"]),
+  "non_video_below_85":sum(1 for x in rows if not x["non_video_ready_85_plus"]),
   "averages":{k:avg(k) for k in [
     "ai_product_completeness","answer_readiness","citation_readiness",
     "merchant_discovery_readiness","compatibility_readiness","evidence_readiness"
@@ -153,7 +163,7 @@ for x in rows:
 out={
  "ok":True,
  "program":"K21 GEO/AEO AI Product Readiness",
- "version":"k21-ai-readiness-v2",
+ "version":"k21-ai-readiness-v3",
  "generated_at_utc":NOW,
  "mode":"read-only-scoring",
  "source_files":[
