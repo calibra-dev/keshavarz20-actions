@@ -75,10 +75,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Verify local Python
+      - name: Bootstrap Python 3.12
         run: |
-          python --version
-          where python
+          python --version >nul 2>&1
+          if errorlevel 1 (
+            echo Python missing; installing private portable runtime...
+            curl.exe -L --fail --retry 3 -o "%RUNNER_TEMP%\python-3.12.10-amd64.exe" "https://www.python.org/ftp/python/3.12.10/python-3.12.10-amd64.exe"
+            "%RUNNER_TEMP%\python-3.12.10-amd64.exe" /quiet InstallAllUsers=0 TargetDir="%RUNNER_TEMP%\k20-python" Include_pip=1 Include_test=0 Include_launcher=0 PrependPath=0 Shortcuts=0
+            if errorlevel 1 exit /b 1
+            echo %RUNNER_TEMP%\k20-python>>"%GITHUB_PATH%"
+            echo %RUNNER_TEMP%\k20-python\Scripts>>"%GITHUB_PATH%"
+            "%RUNNER_TEMP%\k20-python\python.exe" --version
+          ) else (
+            python --version
+          )
+
+      - name: Bootstrap FFmpeg
+        run: |
+          ffmpeg -version >nul 2>&1
+          if errorlevel 1 (
+            echo FFmpeg missing; installing private portable runtime...
+            curl.exe -L --fail --retry 3 -o "%RUNNER_TEMP%\ffmpeg.zip" "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip"
+            if exist "%RUNNER_TEMP%\k20-ffmpeg" rmdir /s /q "%RUNNER_TEMP%\k20-ffmpeg"
+            mkdir "%RUNNER_TEMP%\k20-ffmpeg"
+            tar.exe -xf "%RUNNER_TEMP%\ffmpeg.zip" -C "%RUNNER_TEMP%\k20-ffmpeg"
+            if errorlevel 1 exit /b 1
+            for /d %%D in ("%RUNNER_TEMP%\k20-ffmpeg\ffmpeg-*") do echo %%D\bin>>"%GITHUB_PATH%"
+          ) else (
+            ffmpeg -version
+          )
 
       - name: Install Python dependencies
         run: |
