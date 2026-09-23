@@ -1,10 +1,12 @@
 import importlib.util
+import sys
 from pathlib import Path
 
 MODULE_PATH = Path(__file__).with_name("k20_video_engine.py")
 spec = importlib.util.spec_from_file_location("k20_video_engine", MODULE_PATH)
 engine = importlib.util.module_from_spec(spec)
 assert spec and spec.loader
+sys.modules[spec.name] = engine
 spec.loader.exec_module(engine)
 
 
