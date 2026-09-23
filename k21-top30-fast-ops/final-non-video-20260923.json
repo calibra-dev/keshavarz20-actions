@@ -1,0 +1,11 @@
+{
+  "task": "final_non_video_top30_qa",
+  "exclude_video_work": true,
+  "snapshot": "after all verified tank/rainpipe/driptape/polyrod evidence updates",
+  "guardrails": [
+    "no fabricated GTIN/MPN",
+    "no fabricated reviews",
+    "no price/stock mutation",
+    "no guessed technical values"
+  ]
+}
