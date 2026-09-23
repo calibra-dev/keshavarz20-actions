@@ -33,7 +33,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python scripts/k20_product_quality_score.py
+          python scripts/k20_product_quality_score.py phase2-results/product-quality-score.json
           python scripts/k20_phase3_top30_pim.py
           python scripts/k21_openai_feed_draft.py
           python scripts/k20_phase3_page_schema_feed_parity.py
