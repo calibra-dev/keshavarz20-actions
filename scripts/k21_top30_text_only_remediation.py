@@ -212,6 +212,15 @@ def main():
       "media_generation":False,
       "products":manifest
     },ensure_ascii=False,indent=2),encoding="utf-8")
+    items=[]
+    for pid in [int(x["product_id"]) for x in pim["products"]]:
+        req=json.loads((OPS/f"20260923-k21-text-only-{pid}.json").read_text(encoding="utf-8"))
+        items.append(req)
+    (OPS/"20260923-k21-text-only-job-template.json").write_text(json.dumps({
+      "action":"job.create",
+      "request_id":"k21-text-only-top30-job-template-20260923",
+      "payload":{"items":items,"max_retries":2,"backoff_seconds":20}
+    },ensure_ascii=False,indent=2),encoding="utf-8")
     print("K21_TEXT_ONLY_PLAN_OK",len(manifest))
 
 if __name__=="__main__":
