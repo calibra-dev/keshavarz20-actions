@@ -125,9 +125,13 @@ jobs:
         if: github.event_name == 'push' || inputs.action == 'health'
         run: python phase15-video-engine/k20_video_engine.py health
 
-      - name: Render push smoke episode 1
+      - name: Render full Phase15 batch
         if: github.event_name == 'push'
-        run: python phase15-video-engine/k20_video_engine.py render --episode 1
+        run: python phase15-video-engine/k20_video_engine.py batch --start 1 --end 20
+
+      - name: Validate full Phase15 package
+        if: github.event_name == 'push'
+        run: python phase15-video-engine/k20_video_engine.py package --start 1 --end 20
 
       - name: Render one episode
         if: github.event_name == 'workflow_dispatch' && inputs.action == 'episode'
