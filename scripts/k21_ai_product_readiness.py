@@ -118,7 +118,11 @@ for p in pim.get("products",[]):
       "evidence_readiness":min(100,evidence)
     }
     overall=round(sum(scores.values())/len(scores),1)
-    non_video_scores={**scores,"evidence_readiness":min(100,evidence_non_video)}
+    # In a video-excluded profile, renormalize the remaining evidence signals
+    # (90 available points) back to a 0..100 scale instead of imposing an automatic
+    # 10-point ceiling penalty for a workstream intentionally out of scope.
+    evidence_non_video_normalized=round(100*evidence_non_video/90) if evidence_non_video else 0
+    non_video_scores={**scores,"evidence_readiness":min(100,evidence_non_video_normalized)}
     overall_non_video=round(sum(non_video_scores.values())/len(non_video_scores),1)
     blockers=[]
     if not f.get("brand"): blockers.append("verified_brand_missing")
@@ -163,7 +167,7 @@ for x in rows:
 out={
  "ok":True,
  "program":"K21 GEO/AEO AI Product Readiness",
- "version":"k21-ai-readiness-v3",
+ "version":"k21-ai-readiness-v4",
  "generated_at_utc":NOW,
  "mode":"read-only-scoring",
  "source_files":[
