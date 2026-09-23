@@ -1,0 +1,50 @@
+name: K21 OpenAI Product Discovery Draft
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'geo-aeo-feed-ops/*.json'
+      - 'scripts/k21_openai_feed_draft.py'
+  workflow_dispatch:
+  schedule:
+    - cron: '45 2 * * 1'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k21-openai-product-discovery-draft
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install requests
+      - run: python scripts/k21_openai_feed_draft.py
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f geo-aeo-results/k21-openai-discovery-feed-draft.json geo-aeo-results/k21-openai-discovery-valid.jsonl
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "k21: record OpenAI discovery feed draft"
+          for attempt in 1 2 3 4; do
+            git pull --rebase origin main
+            if git push origin main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
