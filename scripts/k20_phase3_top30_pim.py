@@ -136,12 +136,14 @@ for rank,x in enumerate(selected,1):
     model=find_attr(attrs,["model","مدل"])
     size=find_attr(attrs,["سایز","اندازه","قطر","size","diameter"])
     material=find_attr(attrs,["جنس","material"])
-    pressure=find_attr(attrs,["فشار","pressure","pn","sdr"])
+    pressure=find_attr(attrs,["فشار کاری","کلاس فشار","pressure","pn","sdr"])
+    pressure_requirement=find_attr(attrs,["الزام فشار","نیاز فشار","pressure requirement"])
     length=find_attr(attrs,["طول","length"])
     capacity=find_attr(attrs,["ظرفیت","capacity"])
     connection=find_attr(attrs,["اتصال","رزوه","connection"])
     flow=find_attr(attrs,["دبی","flow"])
-    filtration=find_attr(attrs,["میکرون","mesh","مش","filtration"])
+    filtration=find_attr(attrs,["میکرون","mesh","مش","filtration grade"])
+    filtration_requirement=find_attr(attrs,["فیلتراسیون","الزام فیلتراسیون","نیاز فیلتراسیون","filtration requirement"])
     emitter=find_attr(attrs,["فاصله قطره","فاصله خروجی","emitter"])
     gtin=(p.get("global_unique_id") or "").strip() if isinstance(p.get("global_unique_id"),str) else ""
     imgs=p.get("images") or []
@@ -149,7 +151,7 @@ for rank,x in enumerate(selected,1):
     links=DECISION_LINKS.get(family,DECISION_LINKS["other_irrigation"])
     current_all=(desc+" "+short).lower()
     has_decision_link=any(l["url"].lower() in current_all for l in links)
-    tech=[size,material,pressure,length,capacity,connection,flow,filtration,emitter,model]
+    tech=[size,material,pressure,pressure_requirement,length,capacity,connection,flow,filtration,filtration_requirement,emitter,model]
     tech_count=sum(1 for z in tech if z)
     score=0
     score+=10
@@ -166,12 +168,14 @@ for rank,x in enumerate(selected,1):
     score+=5 if stock in ("instock","outofstock","onbackorder") else 0
     extracted={
       "brand":brand,"mpn":mpn,"model":model,"nominal_size":size,"material":material,
-      "pressure_class":pressure,"length":length,"capacity":capacity,"connection_type":connection,
-      "flow_rate":flow,"filtration_grade":filtration,"emitter_spacing":emitter
+      "pressure_class":pressure,"pressure_requirement":pressure_requirement,
+      "length":length,"capacity":capacity,"connection_type":connection,
+      "flow_rate":flow,"filtration_grade":filtration,"filtration_requirement":filtration_requirement,
+      "emitter_spacing":emitter
     }
     req=REQ.get(family,[])
     missing=[]
-    aliases={"connection_size":"nominal_size","pressure_requirement":"pressure_class","filtration_requirement":"filtration_grade"}
+    aliases={"connection_size":"nominal_size"}
     for k in req:
         kk=aliases.get(k,k)
         if not extracted.get(kk): missing.append(k)
