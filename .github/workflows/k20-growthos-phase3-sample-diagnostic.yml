@@ -1,0 +1,29 @@
+name: K20 GrowthOS Phase 3 Sample Diagnostic
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'growthos-phase3-sample-ops/*.json'
+permissions:
+  contents: write
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m py_compile scripts/k20_growthos_phase3_sample_diagnostic.py
+      - run: python scripts/k20_growthos_phase3_sample_diagnostic.py
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f growthos-phase3-results/parity-sample-diagnostic.json
+          git diff --cached --quiet && exit 0
+          git commit -m "growthos phase3: record sample schema diagnostic"
+          git pull --rebase origin main
+          git push origin HEAD:main
