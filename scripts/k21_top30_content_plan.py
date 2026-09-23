@@ -106,20 +106,13 @@ def facts_table(spec:dict,brand:str|None,sku:str)->str:
     rows.append(("GTIN / MPN","در داده معتبر فعلی تأیید نشده؛ عددی ساخته نشده است"))
     return "<table>"+''.join(f"<tr><th>{a}</th><td>{b}</td></tr>" for a,b in rows)+"</table>"
 
-def block(name:str,sku:str,brand:str|None,family:str,spec:dict,video:dict,links:list[dict])->str:
+def block(name:str,sku:str,brand:str|None,family:str,spec:dict,links:list[dict])->str:
     copy=FAMILY_COPY[family]
     known=", ".join(v for k,v in spec.items() if k in ("size","capacity","length","emitter","connection","pressure") and v)
     direct=f"{name} با SKU {sku or 'ثبت‌نشده'} در کشاورز بیست برای انتخاب دقیق باید بر اساس مشخصات همین مدل بررسی شود."
     if known: direct += f" داده‌های تصمیم‌ساز ثبت‌شده این صفحه شامل {known} است."
     direct += " هر مشخصه‌ای که برای همین مدل تأیید نشده، عمداً حدس زده نشده است."
     links_html=''.join(f'<li><a href="{x["url"]}">{x["label"]}</a></li>' for x in links)
-    video_html=""
-    if video and video.get("video",{}).get("source_url"):
-        vu=video["video"]["source_url"]; pu=video.get("thumbnail",{}).get("source_url") or ""
-        poster=f' poster="{pu}"' if pu else ""
-        video_html=f'''<h2>ویدئوی راهنمای این خانواده محصول</h2>
-<video controls preload="metadata" src="{vu}"{poster} style="max-width:100%;height:auto"></video>
-<p>این ویدئو یک راهنمای تصمیم‌گیری برای خانواده همین محصول است و جایگزین کنترل سایز، فشار، قطعه مقابل و مشخصات نمونه تحویلی نیست.</p>'''
     return f'''<!-- k21-top30-start -->
 <section class="k21-top30-decision" dir="rtl" style="direction:rtl;text-align:right;line-height:2">
 <h2>خلاصه انتخاب؛ قبل از خرید این محصول چه چیزی را بدانیم؟</h2>
@@ -145,7 +138,6 @@ def block(name:str,sku:str,brand:str|None,family:str,spec:dict,video:dict,links:
 <p>شرایط ارسال، مغایرت، مرجوعی و ضمانت براساس سیاست جاری کشاورز بیست و وضعیت همان سفارش اعمال می‌شود. هنگام تحویل، نام و سایز محصول، سلامت ظاهری و مشخصات درج‌شده روی قطعه یا بسته‌بندی را با سفارش تطبیق دهید؛ در صورت مغایرت، پیش از نصب موضوع را ثبت کنید.</p>
 <h2>راهنمای تکمیلی برای تصمیم بهتر</h2>
 <ul>{links_html}</ul>
-{video_html}
 </section>
 <!-- k21-top30-end -->'''
 
@@ -158,7 +150,6 @@ def short_text(name:str,spec:dict,family:str)->str:
 
 def main()->int:
     pim=json.loads((ROOT/"phase3-results/top30-pim.json").read_text(encoding="utf-8"))
-    vids=json.loads((ROOT/"phase15-video-results/k21-top30-family-videos.json").read_text(encoding="utf-8"))
     OUT.mkdir(exist_ok=True)
     generated=[]
     for row in pim["products"]:
@@ -169,8 +160,7 @@ def main()->int:
         name=live.get("data_name") or row["name"]
         sku=live.get("data_sku") or ""
         brand=((row.get("pim_fields") or {}).get("brand") or {}).get("value")
-        video=(vids.get("families") or {}).get(family) or {}
-        enriched=desc+"\n"+block(name,sku,brand,family,spec,video,row.get("decision_links") or [])
+        enriched=desc+"\n"+block(name,sku,brand,family,spec,row.get("decision_links") or [])
         attrs=attrs_merge(live.get("data_attributes") or [],spec)
         req={
           "action":"rest.proxy","request_id":f"k21-top30-product-{pid}-20260923",
