@@ -1,6 +1,11 @@
 name: K20 Phase15 Local Video Engine
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/k20-phase15-local-video.yml'
+      - 'phase15-video-engine/**'
   pull_request:
     paths:
       - '.github/workflows/k20-phase15-local-video.yml'
@@ -60,7 +65,7 @@ jobs:
           python -m pytest -q phase15-video-engine/test_engine.py
 
   render:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push'
     needs: validate
     runs-on: [self-hosted, Windows, X64, k20-video, gpu]
     timeout-minutes: 240
@@ -76,7 +81,7 @@ jobs:
           python -m pip install -r phase15-video-engine/requirements.txt
 
       - name: Health
-        if: inputs.action == 'health'
+        if: github.event_name == 'push' || inputs.action == 'health'
         run: python phase15-video-engine/k20_video_engine.py health
 
       - name: Render one episode
@@ -92,7 +97,7 @@ jobs:
         run: python phase15-video-engine/k20_video_engine.py package --start ${{ inputs.start }} --end ${{ inputs.end }}
 
       - name: Upload render artifacts
-        if: always()
+        if: always() && github.event_name == 'workflow_dispatch'
         uses: actions/upload-artifact@v4
         with:
           name: k20-phase15-video-${{ inputs.action }}-${{ github.run_id }}
