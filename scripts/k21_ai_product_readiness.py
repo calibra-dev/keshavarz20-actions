@@ -11,10 +11,23 @@ def load(rel):
 
 pim=load("phase3-results/top30-pim.json")
 feed=load("phase19-results/product-discovery-readiness-feed-persisted.json")
+discovery=load("geo-aeo-results/k21-openai-discovery-feed-draft.json")
 parity=load("phase3-results/page-schema-feed-parity.json")
 indexability=load("phase3-results/top30-indexability.json")
 
 feed_by={int(x["wp_product_id"]):x for x in feed.get("products",[]) if x.get("wp_product_id")}
+# Prefer the current validated discovery draft for products that have a valid live row.
+for x in discovery.get("valid_rows",[]):
+    if not x.get("wp_product_id"): continue
+    pid=int(x["wp_product_id"])
+    feed_by[pid]={
+      **feed_by.get(pid,{}),
+      **x,
+      "image_url":x.get("image_url"),
+      "brand":x.get("brand"),
+      "openai_discovery_missing_or_unresolved_fields":[],
+      "source":"k21-openai-discovery-feed-draft.valid_rows"
+    }
 parity_by={int(x["product_id"]):x for x in parity.get("products",[]) if x.get("product_id")}
 idx_by={int(x["product_id"]):x for x in indexability.get("products",[]) if x.get("product_id")}
 
@@ -140,12 +153,13 @@ for x in rows:
 out={
  "ok":True,
  "program":"K21 GEO/AEO AI Product Readiness",
- "version":"k21-ai-readiness-v1",
+ "version":"k21-ai-readiness-v2",
  "generated_at_utc":NOW,
  "mode":"read-only-scoring",
  "source_files":[
    "phase3-results/top30-pim.json",
    "phase19-results/product-discovery-readiness-feed-persisted.json",
+   "geo-aeo-results/k21-openai-discovery-feed-draft.json",
    "phase3-results/page-schema-feed-parity.json",
    "phase3-results/top30-indexability.json"
  ],
