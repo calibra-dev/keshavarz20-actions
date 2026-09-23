@@ -141,7 +141,7 @@ for p in products:
     v=min(10,review_points+(4 if qa else 0)); score+=v
     detail["reviews_qa"]=v
     detail["review_collection_ready"]=review_collection_ready
-    if v<8:gaps.append("Verified Review/Q&A")
+    if v<6:gaps.append("Verified Review/Q&A")
 
     feed_ready=int(p.get("id") or 0) in feed_ready_ids
     schema_points=schema_template_points+(3 if feed_ready else 0)
@@ -185,7 +185,7 @@ summary={
   "verified_review_products":sum(1 for x in rows if x["verified_reviews"]>0),
   "distribution":{"90_100":sum(1 for s in scores if s>=90),"85_89":sum(1 for s in scores if 85<=s<90),"70_84":sum(1 for s in scores if 70<=s<85),"below_70":sum(1 for s in scores if s<70)}
 }
-record={"ok":True,"mode":"read-only","version":"phase2-pqs-v4","weights_total":100,"feed_points_reserved_for_phase3":3,
+record={"ok":True,"mode":"read-only","version":"phase2-pqs-v5","weights_total":100,"feed_points_reserved_for_phase3":3,
         "schema_template_probe":schema_probe,"generated_at_utc":__import__("datetime").datetime.utcnow().isoformat()+"Z","summary":summary,"products":rows}
 os.makedirs(os.path.dirname(sys.argv[1]),exist_ok=True)
 with open(sys.argv[1],"w",encoding="utf-8") as f:json.dump(record,f,ensure_ascii=False,indent=2)
