@@ -39,6 +39,8 @@ jobs:
         run: python scripts/k21_openai_feed_draft.py
       - name: Recompute K21 AI readiness
         run: python scripts/k21_ai_product_readiness.py
+      - name: Build final Top30 score report
+        run: python scripts/k21_top30_final_report.py
       - name: Commit final evidence atomically
         shell: bash
         run: |
@@ -55,6 +57,8 @@ jobs:
           cp geo-aeo-results/k21-openai-discovery-valid.jsonl /tmp/k21-final/
           cp geo-aeo-results/k21-ai-product-readiness.json /tmp/k21-final/
           cp geo-aeo-results/k21-ai-product-backlog.json /tmp/k21-final/
+          cp k21-top30-results/final-top30-scores.json /tmp/k21-final/
+          cp k21-top30-results/final-top30-scores.md /tmp/k21-final/
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
@@ -70,7 +74,10 @@ jobs:
           cp /tmp/k21-final/k21-openai-discovery-valid.jsonl geo-aeo-results/k21-openai-discovery-valid.jsonl
           cp /tmp/k21-final/k21-ai-product-readiness.json geo-aeo-results/k21-ai-product-readiness.json
           cp /tmp/k21-final/k21-ai-product-backlog.json geo-aeo-results/k21-ai-product-backlog.json
-          git add -f phase2-results/product-quality-score.json phase3-results/top30-pim.json phase3-results/compatibility-graph.json phase3-results/top30-remediation.json phase3-results/top30-indexability.json phase3-results/top30-product-feed.json phase3-results/page-schema-feed-parity.json geo-aeo-results/k21-openai-discovery-feed-draft.json geo-aeo-results/k21-openai-discovery-valid.jsonl geo-aeo-results/k21-ai-product-readiness.json geo-aeo-results/k21-ai-product-backlog.json
+          mkdir -p k21-top30-results
+          cp /tmp/k21-final/final-top30-scores.json k21-top30-results/final-top30-scores.json
+          cp /tmp/k21-final/final-top30-scores.md k21-top30-results/final-top30-scores.md
+          git add -f phase2-results/product-quality-score.json phase3-results/top30-pim.json phase3-results/compatibility-graph.json phase3-results/top30-remediation.json phase3-results/top30-indexability.json phase3-results/top30-product-feed.json phase3-results/page-schema-feed-parity.json geo-aeo-results/k21-openai-discovery-feed-draft.json geo-aeo-results/k21-openai-discovery-valid.jsonl geo-aeo-results/k21-ai-product-readiness.json geo-aeo-results/k21-ai-product-backlog.json k21-top30-results/final-top30-scores.json k21-top30-results/final-top30-scores.md
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "k21: record final Top30 remediation readiness"
           git push origin HEAD:main
