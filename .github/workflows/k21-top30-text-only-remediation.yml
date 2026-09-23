@@ -1,0 +1,46 @@
+name: K21 Top30 Text-Only Remediation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'k21-top30-ops/text-only-batch*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k21-top30-text-only-remediation
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate text-only product requests
+        run: python scripts/k21_top30_text_only_remediation.py
+      - name: Commit Bridge requests and manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/k21-text-ops /tmp/k21-text-results
+          cp bridge-v3-ops/20260923-k21-text-only-*.json /tmp/k21-text-ops/
+          cp k21-top30-results/text-only-remediation-plan-20260923.json /tmp/k21-text-results/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git reset --hard origin/main
+          mkdir -p bridge-v3-ops k21-top30-results
+          cp /tmp/k21-text-ops/*.json bridge-v3-ops/
+          cp /tmp/k21-text-results/*.json k21-top30-results/
+          git add -f bridge-v3-ops/20260923-k21-text-only-*.json k21-top30-results/text-only-remediation-plan-20260923.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "k21: queue text-only remediation for all Top30 products"
+          git push origin HEAD:main
