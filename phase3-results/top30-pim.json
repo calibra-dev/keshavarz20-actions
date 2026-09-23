@@ -2,19 +2,19 @@
   "ok": true,
   "mode": "read-only",
   "version": "phase3-top30-pim-v2",
-  "generated_at_utc": "2026-09-23T07:36:28.897120Z",
+  "generated_at_utc": "2026-09-23T08:46:05.024944Z",
   "selection_rule": "GSC irrigation/fertigation candidate cohort; published Woo products; organic demand dominates priority; in-stock bonus; out-of-stock penalty. This is commercial-priority, not a profit/margin claim.",
   "summary": {
     "selected": 30,
     "mapped_candidates": 46,
     "unmapped_candidates": 0,
-    "average_pim_completeness": 83.5,
-    "scores_85_plus": 23,
+    "average_pim_completeness": 83.67,
+    "scores_85_plus": 22,
     "missing_sku": 0,
     "missing_gtin": 30,
     "missing_mpn": 30,
-    "missing_brand": 7,
-    "compatibility_incomplete": 22,
+    "missing_brand": 8,
+    "compatibility_incomplete": 19,
     "decision_link_missing": 0,
     "average_product_quality_score": 93.73,
     "product_quality_below_85": 0
@@ -58,9 +58,9 @@
         },
         "mpn": null,
         "model": {
-          "value": "شیر توپی تک‌ضرب",
+          "value": "شیر توپی تک‌ضرب دسته فلزی",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
@@ -70,13 +70,13 @@
           "confidence": "high"
         },
         "material": {
-          "value": "فلزی",
+          "value": "پلیمری / uPVC",
           "source": "woocommerce_attribute",
           "field": "جنس",
           "confidence": "high"
         },
         "pressure_class": {
-          "value": "۶ بار؛ لیبل/کاتالوگ همان قطعه ملاک نهایی",
+          "value": "۶ بار",
           "source": "woocommerce_attribute",
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
@@ -84,7 +84,7 @@
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "پیچی/فشاری پلی‌اتیلن",
+          "value": "دنده‌ای",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -111,9 +111,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 42,
-        "description_words": 2862,
-        "image_count": 4,
+        "short_words": 59,
+        "description_words": 2683,
+        "image_count": 7,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
@@ -164,9 +164,9 @@
         },
         "mpn": null,
         "model": {
-          "value": "شیر پروانه‌ای",
+          "value": "شیر پروانه‌ای پلیمری دسته فلزی",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
@@ -217,9 +217,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 41,
-        "description_words": 1485,
-        "image_count": 4,
+        "short_words": 64,
+        "description_words": 1355,
+        "image_count": 7,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
@@ -266,9 +266,9 @@
         "brand": null,
         "mpn": null,
         "model": {
-          "value": "مخزن تزریق کود",
+          "value": "تانک کود / مخزن تزریق کود",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": null,
@@ -276,12 +276,17 @@
         "pressure_class": null,
         "length": null,
         "capacity": {
-          "value": "200 لیتر",
+          "value": "۲۰۰ لیتر",
           "source": "woocommerce_attribute",
           "field": "ظرفیت",
           "confidence": "high"
         },
-        "connection_type": null,
+        "connection_type": {
+          "value": "ورودی و خروجی ۱ اینچ؛ پیش از نصب با نمونه تحویلی تطبیق شود",
+          "source": "woocommerce_attribute",
+          "field": "نوع اتصال",
+          "confidence": "high"
+        },
         "flow_rate": null,
         "filtration_grade": null,
         "emitter_spacing": null
@@ -307,12 +312,12 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 22,
-        "description_words": 1280,
-        "image_count": 4,
+        "short_words": 63,
+        "description_words": 1121,
+        "image_count": 7,
         "all_image_alt_present": true
       },
-      "pim_completeness_score": 75,
+      "pim_completeness_score": 80,
       "product_quality_score": 86,
       "product_quality_gaps": [
         "مشخصات ساختاریافته/کامل",
@@ -364,13 +369,13 @@
         },
         "mpn": null,
         "model": {
-          "value": "شیر پروانه‌ای",
+          "value": "شیر پروانه‌ای پلیمری دسته فلزی",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
-          "value": "۵ اینچ",
+          "value": "۵ اینچ / ۱۲۵ میلی‌متر",
           "source": "woocommerce_attribute",
           "field": "سایز / قطر اسمی",
           "confidence": "high"
@@ -417,9 +422,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 38,
-        "description_words": 1238,
-        "image_count": 4,
+        "short_words": 64,
+        "description_words": 1117,
+        "image_count": 7,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
@@ -466,9 +471,9 @@
         "brand": null,
         "mpn": null,
         "model": {
-          "value": "مخزن تزریق کود",
+          "value": "تانک کود / مخزن تزریق کود",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": null,
@@ -476,12 +481,17 @@
         "pressure_class": null,
         "length": null,
         "capacity": {
-          "value": "100 لیتر",
+          "value": "۱۰۰ لیتر",
           "source": "woocommerce_attribute",
           "field": "ظرفیت",
           "confidence": "high"
         },
-        "connection_type": null,
+        "connection_type": {
+          "value": "ورودی و خروجی ۳/۴ اینچ؛ پیش از نصب با نمونه تحویلی تطبیق شود",
+          "source": "woocommerce_attribute",
+          "field": "نوع اتصال",
+          "confidence": "high"
+        },
         "flow_rate": null,
         "filtration_grade": null,
         "emitter_spacing": null
@@ -507,12 +517,12 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 22,
-        "description_words": 1082,
-        "image_count": 4,
+        "short_words": 63,
+        "description_words": 923,
+        "image_count": 7,
         "all_image_alt_present": true
       },
-      "pim_completeness_score": 75,
+      "pim_completeness_score": 80,
       "product_quality_score": 86,
       "product_quality_gaps": [
         "مشخصات ساختاریافته/کامل",
@@ -564,13 +574,13 @@
         },
         "mpn": null,
         "model": {
-          "value": "سرشلنگی",
+          "value": "سرشلنگی فلزی",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
-          "value": "1 اینچ / 32 میلیمتر",
+          "value": "۱ اینچ / ۳۲ میلی‌متر",
           "source": "woocommerce_attribute",
           "field": "سایز / قطر اسمی",
           "confidence": "high"
@@ -585,7 +595,7 @@
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "سرشلنگی دنباله‌دار؛ مهار با بست متناسب",
+          "value": "سرشلنگی؛ مهار با بست متناسب",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -615,9 +625,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 36,
-        "description_words": 1252,
-        "image_count": 4,
+        "short_words": 59,
+        "description_words": 1104,
+        "image_count": 7,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
@@ -665,13 +675,13 @@
         "brand": null,
         "mpn": null,
         "model": {
-          "value": "سوپاپ",
+          "value": "سوپاپ چدنی",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
-          "value": "6 اینچ",
+          "value": "۶ اینچ",
           "source": "woocommerce_attribute",
           "field": "سایز / قطر اسمی",
           "confidence": "high"
@@ -711,9 +721,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 22,
-        "description_words": 1326,
-        "image_count": 4,
+        "short_words": 47,
+        "description_words": 1130,
+        "image_count": 7,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 80,
@@ -768,13 +778,13 @@
         },
         "mpn": null,
         "model": {
-          "value": "کمربند انشعاب",
+          "value": "کمربند انشعاب پلی‌اتیلن",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
-          "value": "۲ اینچ",
+          "value": "لوله اصلی ۶۳ میلی‌متر / خروجی ۲ اینچ",
           "source": "woocommerce_attribute",
           "field": "سایز / قطر اسمی",
           "confidence": "high"
@@ -789,7 +799,7 @@
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "شیر، رابط یا تجهیز دارای رزوه نر ۲ اینچ",
+          "value": "کمربندی دو تکه + رزوه مادگی ۲ اینچ",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -819,9 +829,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 35,
-        "description_words": 1689,
-        "image_count": 4,
+        "short_words": 64,
+        "description_words": 1553,
+        "image_count": 7,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
@@ -875,21 +885,26 @@
         "model": {
           "value": "رابط مساوی",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
-          "value": "3 اینچ، 90 میلیمتر",
+          "value": "۳ اینچ / ۹۰ میلی‌متر",
           "source": "woocommerce_attribute",
           "field": "سایز / قطر اسمی",
           "confidence": "high"
         },
-        "material": null,
+        "material": {
+          "value": "پلی‌اتیلن",
+          "source": "woocommerce_attribute",
+          "field": "جنس",
+          "confidence": "high"
+        },
         "pressure_class": null,
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "پیچی/فشاری پلی‌اتیلن",
+          "value": "پیچی/فشاری دو سر مساوی",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -905,7 +920,6 @@
         "pressure_class"
       ],
       "compatibility_missing_fields": [
-        "material",
         "pressure_class"
       ],
       "decision_links": [
@@ -920,9 +934,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 30,
-        "description_words": 2155,
-        "image_count": 4,
+        "short_words": 57,
+        "description_words": 2000,
+        "image_count": 7,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
@@ -974,9 +988,9 @@
         },
         "mpn": null,
         "model": {
-          "value": "شیر توپی تک‌ضرب",
+          "value": "شیر توپی تک‌ضرب دسته فلزی",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
@@ -986,13 +1000,13 @@
           "confidence": "high"
         },
         "material": {
-          "value": "فلزی",
+          "value": "پلیمری / uPVC",
           "source": "woocommerce_attribute",
           "field": "جنس",
           "confidence": "high"
         },
         "pressure_class": {
-          "value": "۶ بار؛ لیبل/کاتالوگ همان قطعه ملاک نهایی",
+          "value": "۶ بار",
           "source": "woocommerce_attribute",
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
@@ -1000,7 +1014,7 @@
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "پیچی/فشاری پلی‌اتیلن",
+          "value": "دنده‌ای",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -1027,9 +1041,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 42,
-        "description_words": 2679,
-        "image_count": 4,
+        "short_words": 59,
+        "description_words": 2500,
+        "image_count": 7,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
@@ -1080,13 +1094,13 @@
         },
         "mpn": null,
         "model": {
-          "value": "کمربند انشعاب",
+          "value": "کمربند انشعاب پلی‌اتیلن",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
-          "value": "۶۳ × ۱/۲ اینچ",
+          "value": "لوله اصلی ۶۳ میلی‌متر / خروجی ۱/۲ اینچ",
           "source": "woocommerce_attribute",
           "field": "سایز / قطر اسمی",
           "confidence": "high"
@@ -1101,7 +1115,7 @@
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "کمربندی؛ خروجی رزوه‌ای باید با قطعه مقابل تطبیق شود",
+          "value": "کمربندی دو تکه + رزوه مادگی ۱/۲ اینچ",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -1131,9 +1145,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 41,
-        "description_words": 1777,
-        "image_count": 4,
+        "short_words": 68,
+        "description_words": 1635,
+        "image_count": 7,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
@@ -1185,13 +1199,13 @@
         },
         "mpn": null,
         "model": {
-          "value": "سرشلنگی",
+          "value": "سرشلنگی فلزی",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
-          "value": "2 اینچ / 63 میلیمتر",
+          "value": "۲ اینچ / ۶۳ میلی‌متر",
           "source": "woocommerce_attribute",
           "field": "سایز / قطر اسمی",
           "confidence": "high"
@@ -1206,7 +1220,7 @@
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "سرشلنگی دنباله‌دار؛ مهار با بست متناسب",
+          "value": "سرشلنگی؛ مهار با بست متناسب",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -1236,9 +1250,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 36,
-        "description_words": 1292,
-        "image_count": 4,
+        "short_words": 59,
+        "description_words": 1144,
+        "image_count": 7,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
@@ -1290,9 +1304,9 @@
         },
         "mpn": null,
         "model": {
-          "value": "شیر توپی تک‌ضرب",
+          "value": "شیر توپی تک‌ضرب دسته پلیمری",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
@@ -1302,13 +1316,13 @@
           "confidence": "high"
         },
         "material": {
-          "value": "پلیمری",
+          "value": "پلیمری / uPVC",
           "source": "woocommerce_attribute",
           "field": "جنس",
           "confidence": "high"
         },
         "pressure_class": {
-          "value": "۶ بار؛ لیبل/کاتالوگ همان قطعه ملاک نهایی",
+          "value": "۶ بار",
           "source": "woocommerce_attribute",
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
@@ -1316,7 +1330,7 @@
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "پیچی/فشاری پلی‌اتیلن",
+          "value": "دنده‌ای",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -1343,9 +1357,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 46,
-        "description_words": 2720,
-        "image_count": 4,
+        "short_words": 63,
+        "description_words": 2539,
+        "image_count": 7,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
@@ -1394,18 +1408,23 @@
         "model": {
           "value": "زانو ۹۰ درجه جوشی",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
-          "value": "3 اینچ / 90 میلیمتر",
+          "value": "۳ اینچ / ۹۰ میلی‌متر",
           "source": "woocommerce_attribute",
           "field": "سایز / قطر اسمی",
           "confidence": "high"
         },
-        "material": null,
+        "material": {
+          "value": "پلی‌اتیلن",
+          "source": "woocommerce_attribute",
+          "field": "جنس",
+          "confidence": "high"
+        },
         "pressure_class": {
-          "value": "6 بار",
+          "value": "۶ بار",
           "source": "woocommerce_attribute",
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
@@ -1413,7 +1432,7 @@
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "جوشی پلی‌اتیلن",
+          "value": "جوش لب‌به‌لب",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -1428,9 +1447,7 @@
         "material",
         "pressure_class"
       ],
-      "compatibility_missing_fields": [
-        "material"
-      ],
+      "compatibility_missing_fields": [],
       "decision_links": [
         {
           "label": "راهنمای اتصالات پلی‌اتیلن",
@@ -1443,9 +1460,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 38,
-        "description_words": 2061,
-        "image_count": 4,
+        "short_words": 61,
+        "description_words": 1912,
+        "image_count": 7,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 80,
@@ -1457,8 +1474,7 @@
       "gaps": [
         "missing_gtin",
         "missing_mpn",
-        "missing_brand",
-        "compatibility_fields_incomplete"
+        "missing_brand"
       ]
     },
     {
@@ -1492,21 +1508,16 @@
         "mpn": null
       },
       "pim_fields": {
-        "brand": {
-          "value": "آب لوله بسپار (Ablooleh baspar)",
-          "source": "woocommerce_attribute",
-          "field": "برند",
-          "confidence": "high"
-        },
+        "brand": null,
         "mpn": null,
         "model": {
           "value": "رابط مساوی",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
-          "value": "4 اینچ، 110 میلیمتر",
+          "value": "۴ اینچ / ۱۱۰ میلی‌متر",
           "source": "woocommerce_attribute",
           "field": "سایز / قطر اسمی",
           "confidence": "high"
@@ -1521,7 +1532,7 @@
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "پیچی/فشاری پلی‌اتیلن",
+          "value": "پیچی/فشاری دو سر مساوی",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -1551,12 +1562,12 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 31,
-        "description_words": 2134,
-        "image_count": 4,
+        "short_words": 58,
+        "description_words": 1998,
+        "image_count": 7,
         "all_image_alt_present": true
       },
-      "pim_completeness_score": 85,
+      "pim_completeness_score": 80,
       "product_quality_score": 93,
       "product_quality_gaps": [
         "Verified Review/Q&A",
@@ -1565,6 +1576,7 @@
       "gaps": [
         "missing_gtin",
         "missing_mpn",
+        "missing_brand",
         "compatibility_fields_incomplete"
       ]
     },
@@ -1606,19 +1618,19 @@
         },
         "mpn": null,
         "model": {
-          "value": "سوپاپ",
+          "value": "سوپاپ آهنی",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
-          "value": "5 اینچ",
+          "value": "۵ اینچ",
           "source": "woocommerce_attribute",
           "field": "سایز / قطر اسمی",
           "confidence": "high"
         },
         "material": {
-          "value": "آهن",
+          "value": "آهنی",
           "source": "woocommerce_attribute",
           "field": "جنس",
           "confidence": "high"
@@ -1652,9 +1664,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 22,
-        "description_words": 1315,
-        "image_count": 4,
+        "short_words": 47,
+        "description_words": 1135,
+        "image_count": 7,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
@@ -1708,7 +1720,7 @@
         "model": {
           "value": "لوله بارانی مه‌پاش",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
@@ -1722,12 +1734,12 @@
         "length": {
           "value": "۱۰۰ متر",
           "source": "woocommerce_attribute",
-          "field": "طول / متراژ",
+          "field": "طول",
           "confidence": "high"
         },
         "capacity": null,
         "connection_type": {
-          "value": "اتصال مخصوص لوله تاشو/مه‌پاش متناسب با سایز واقعی",
+          "value": "سرشلنگی/رابط و بست متناسب با لوله ۲ اینچ",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -1757,9 +1769,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 36,
-        "description_words": 1414,
-        "image_count": 5,
+        "short_words": 62,
+        "description_words": 1284,
+        "image_count": 9,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
@@ -1811,19 +1823,19 @@
         },
         "mpn": null,
         "model": {
-          "value": "سوپاپ",
+          "value": "سوپاپ آهنی",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
-          "value": "4 اینچ",
+          "value": "۴ اینچ",
           "source": "woocommerce_attribute",
           "field": "سایز / قطر اسمی",
           "confidence": "high"
         },
         "material": {
-          "value": "آهن",
+          "value": "آهنی",
           "source": "woocommerce_attribute",
           "field": "جنس",
           "confidence": "high"
@@ -1857,9 +1869,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 22,
-        "description_words": 1315,
-        "image_count": 4,
+        "short_words": 47,
+        "description_words": 1135,
+        "image_count": 7,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
@@ -1907,19 +1919,19 @@
         "brand": null,
         "mpn": null,
         "model": {
-          "value": "فلنج",
+          "value": "فلنج دنده‌ای آهنی",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
-          "value": "3 اینچ",
+          "value": "۳ اینچ",
           "source": "woocommerce_attribute",
           "field": "سایز / قطر اسمی",
           "confidence": "high"
         },
         "material": {
-          "value": "آهن",
+          "value": "آهنی",
           "source": "woocommerce_attribute",
           "field": "جنس",
           "confidence": "high"
@@ -1928,7 +1940,7 @@
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "فلنجی + رزوه‌ای",
+          "value": "رزوه‌ای × فلنجی",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -1958,9 +1970,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 28,
-        "description_words": 1295,
-        "image_count": 4,
+        "short_words": 52,
+        "description_words": 1140,
+        "image_count": 7,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 80,
@@ -2014,19 +2026,19 @@
         },
         "mpn": null,
         "model": {
-          "value": "کمربند انشعاب",
+          "value": "کمربند انشعاب پلی‌اتیلن",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
-          "value": "۹۰ میلی‌متر",
+          "value": "لوله اصلی ۹۰ میلی‌متر / خروجی ۱ اینچ",
           "source": "woocommerce_attribute",
           "field": "سایز / قطر اسمی",
           "confidence": "high"
         },
         "material": {
-          "value": "پلی‌اتیلن",
+          "value": "پلیمری",
           "source": "woocommerce_attribute",
           "field": "جنس",
           "confidence": "high"
@@ -2035,7 +2047,7 @@
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "کمربندی؛ خروجی رزوه‌ای باید با قطعه مقابل تطبیق شود",
+          "value": "کمربندی دو تکه + رزوه مادگی ۱ اینچ",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -2065,9 +2077,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 39,
-        "description_words": 1301,
-        "image_count": 4,
+        "short_words": 68,
+        "description_words": 1165,
+        "image_count": 7,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
@@ -2119,9 +2131,9 @@
         },
         "mpn": null,
         "model": {
-          "value": "شیر توپی دو سر ماده",
+          "value": "شیر توپی دو سر ماده دسته پلیمری",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
@@ -2130,17 +2142,12 @@
           "field": "سایز / قطر اسمی",
           "confidence": "high"
         },
-        "material": {
-          "value": "پلیمری",
-          "source": "woocommerce_attribute",
-          "field": "جنس",
-          "confidence": "high"
-        },
+        "material": null,
         "pressure_class": null,
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "رزوه مادگی دوطرفه",
+          "value": "رزوه مادگی در دو سمت",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -2169,9 +2176,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 37,
-        "description_words": 2643,
-        "image_count": 4,
+        "short_words": 63,
+        "description_words": 2487,
+        "image_count": 7,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
@@ -2225,11 +2232,11 @@
         "model": {
           "value": "زانو پلی‌اتیلن یکسر ماده",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
-          "value": "3/4 اینچ / 25 میلیمتر",
+          "value": "لوله ۲۵ میلی‌متر / رزوه ۳/۴ اینچ",
           "source": "woocommerce_attribute",
           "field": "سایز / قطر اسمی",
           "confidence": "high"
@@ -2244,7 +2251,7 @@
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "یک سر مادگی رزوه‌ای؛ سمت دیگر مطابق ساختار زانوی پلی‌اتیلن",
+          "value": "پیچی/فشاری × رزوه مادگی",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -2274,9 +2281,9 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 41,
-        "description_words": 1244,
-        "image_count": 4,
+        "short_words": 61,
+        "description_words": 1085,
+        "image_count": 7,
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
@@ -2328,9 +2335,9 @@
         },
         "mpn": null,
         "model": {
-          "value": "شیر توپی تک‌ضرب",
+          "value": "شیر توپی تک‌ضرب دسته پلیمری",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
@@ -2340,13 +2347,13 @@
           "confidence": "high"
         },
         "material": {
-          "value": "پلیمری",
+          "value": "پلیمری / uPVC",
           "source": "woocommerce_attribute",
           "field": "جنس",
           "confidence": "high"
         },
         "pressure_class": {
-          "value": "۶ بار؛ لیبل/کاتالوگ همان قطعه ملاک نهایی",
+          "value": "۶ بار",
           "source": "woocommerce_attribute",
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
@@ -2354,7 +2361,7 @@
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "پیچی/فشاری پلی‌اتیلن",
+          "value": "دنده‌ای",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -2381,8 +2388,8 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 42,
-        "description_words": 2686,
+        "short_words": 59,
+        "description_words": 2507,
         "image_count": 4,
         "all_image_alt_present": true
       },
@@ -2436,11 +2443,11 @@
         "model": {
           "value": "زانو پلی‌اتیلن یکسر ماده",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
-          "value": "2 اینچ / 63 میلیمتر",
+          "value": "لوله ۶۳ میلی‌متر / رزوه ۲ اینچ",
           "source": "woocommerce_attribute",
           "field": "سایز / قطر اسمی",
           "confidence": "high"
@@ -2455,7 +2462,7 @@
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "یک سر مادگی رزوه‌ای؛ سمت دیگر مطابق ساختار زانوی پلی‌اتیلن",
+          "value": "پیچی/فشاری × رزوه مادگی",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -2485,8 +2492,8 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 41,
-        "description_words": 1230,
+        "short_words": 61,
+        "description_words": 1071,
         "image_count": 4,
         "all_image_alt_present": true
       },
@@ -2537,18 +2544,23 @@
         "model": {
           "value": "زانو ۹۰ درجه جوشی",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
-          "value": "4 اینچ / 110 میلیمتر",
+          "value": "۴ اینچ / ۱۱۰ میلی‌متر",
           "source": "woocommerce_attribute",
           "field": "سایز / قطر اسمی",
           "confidence": "high"
         },
-        "material": null,
+        "material": {
+          "value": "پلی‌اتیلن",
+          "source": "woocommerce_attribute",
+          "field": "جنس",
+          "confidence": "high"
+        },
         "pressure_class": {
-          "value": "6 بار",
+          "value": "۶ بار",
           "source": "woocommerce_attribute",
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
@@ -2556,7 +2568,7 @@
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "جوشی پلی‌اتیلن",
+          "value": "جوش لب‌به‌لب",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -2571,9 +2583,7 @@
         "material",
         "pressure_class"
       ],
-      "compatibility_missing_fields": [
-        "material"
-      ],
+      "compatibility_missing_fields": [],
       "decision_links": [
         {
           "label": "راهنمای اتصالات پلی‌اتیلن",
@@ -2586,8 +2596,8 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 38,
-        "description_words": 2061,
+        "short_words": 61,
+        "description_words": 1912,
         "image_count": 4,
         "all_image_alt_present": true
       },
@@ -2600,8 +2610,7 @@
       "gaps": [
         "missing_gtin",
         "missing_mpn",
-        "missing_brand",
-        "compatibility_fields_incomplete"
+        "missing_brand"
       ]
     },
     {
@@ -2642,9 +2651,9 @@
         },
         "mpn": null,
         "model": {
-          "value": "شیر توپی دو سر ماده",
+          "value": "شیر توپی دو سر ماده دسته پلیمری",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
@@ -2653,17 +2662,12 @@
           "field": "سایز / قطر اسمی",
           "confidence": "high"
         },
-        "material": {
-          "value": "پلیمری",
-          "source": "woocommerce_attribute",
-          "field": "جنس",
-          "confidence": "high"
-        },
+        "material": null,
         "pressure_class": null,
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "رزوه مادگی دوطرفه",
+          "value": "رزوه مادگی در دو سمت",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -2692,8 +2696,8 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 37,
-        "description_words": 2634,
+        "short_words": 63,
+        "description_words": 2478,
         "image_count": 4,
         "all_image_alt_present": true
       },
@@ -2746,9 +2750,9 @@
         },
         "mpn": null,
         "model": {
-          "value": "شیر توپی",
+          "value": "شیر توپی تک‌ضرب دسته فلزی",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
@@ -2758,16 +2762,21 @@
           "confidence": "high"
         },
         "material": {
-          "value": "فلزی",
+          "value": "پلیمری / uPVC",
           "source": "woocommerce_attribute",
           "field": "جنس",
           "confidence": "high"
         },
-        "pressure_class": null,
+        "pressure_class": {
+          "value": "۶ بار",
+          "source": "woocommerce_attribute",
+          "field": "فشار کاری / کلاس فشار",
+          "confidence": "high"
+        },
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "پیچی/فشاری پلی‌اتیلن",
+          "value": "دنده‌ای",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -2781,9 +2790,7 @@
         "connection_type",
         "pressure_class"
       ],
-      "compatibility_missing_fields": [
-        "pressure_class"
-      ],
+      "compatibility_missing_fields": [],
       "decision_links": [
         {
           "label": "راهنمای خرید شیرآلات آبیاری",
@@ -2796,8 +2803,8 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 33,
-        "description_words": 2649,
+        "short_words": 58,
+        "description_words": 2502,
         "image_count": 4,
         "all_image_alt_present": true
       },
@@ -2808,8 +2815,7 @@
       ],
       "gaps": [
         "missing_gtin",
-        "missing_mpn",
-        "compatibility_fields_incomplete"
+        "missing_mpn"
       ]
     },
     {
@@ -2850,9 +2856,9 @@
         },
         "mpn": null,
         "model": {
-          "value": "فلنج",
+          "value": "فلنج پلی‌اتیلن جوشی",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
@@ -2876,7 +2882,7 @@
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "جوشی پلی‌اتیلن",
+          "value": "جوش لب‌به‌لب × فلنجی",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -2904,8 +2910,8 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 37,
-        "description_words": 987,
+        "short_words": 62,
+        "description_words": 879,
         "image_count": 4,
         "all_image_alt_present": true
       },
@@ -2957,9 +2963,9 @@
         },
         "mpn": null,
         "model": {
-          "value": "شیر توپی تک‌ضرب",
+          "value": "شیر توپی تک‌ضرب دسته پلیمری",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
@@ -2969,13 +2975,13 @@
           "confidence": "high"
         },
         "material": {
-          "value": "پلیمری",
+          "value": "پلیمری / uPVC",
           "source": "woocommerce_attribute",
           "field": "جنس",
           "confidence": "high"
         },
         "pressure_class": {
-          "value": "۶ بار؛ لیبل/کاتالوگ همان قطعه ملاک نهایی",
+          "value": "۶ بار",
           "source": "woocommerce_attribute",
           "field": "فشار کاری / کلاس فشار",
           "confidence": "high"
@@ -2983,7 +2989,7 @@
         "length": null,
         "capacity": null,
         "connection_type": {
-          "value": "پیچی/فشاری پلی‌اتیلن",
+          "value": "دنده‌ای",
           "source": "woocommerce_attribute",
           "field": "نوع اتصال",
           "confidence": "high"
@@ -3010,8 +3016,8 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 42,
-        "description_words": 2674,
+        "short_words": 59,
+        "description_words": 2495,
         "image_count": 4,
         "all_image_alt_present": true
       },
@@ -3059,33 +3065,28 @@
         "brand": null,
         "mpn": null,
         "model": {
-          "value": "نوار تیپ آبیاری قطره‌ای",
+          "value": "نوار تیپ آبیاری قطره‌ای برای کشت زیر پلاستیک",
           "source": "woocommerce_attribute",
-          "field": "مدل / نوع",
+          "field": "مدل / نوع محصول",
           "confidence": "high"
         },
         "nominal_size": {
           "value": "۲۰ سانتی‌متر",
           "source": "woocommerce_attribute",
-          "field": "فاصله خروجی / قطره‌چکان",
+          "field": "فاصله قطره‌چکان",
           "confidence": "high"
         },
         "material": null,
         "pressure_class": null,
         "length": null,
         "capacity": null,
-        "connection_type": {
-          "value": "اتصال مخصوص نوار تیپ؛ نوع رابط باید با قطر واقعی رول تطبیق شود",
-          "source": "woocommerce_attribute",
-          "field": "نوع اتصال",
-          "confidence": "high"
-        },
+        "connection_type": null,
         "flow_rate": null,
         "filtration_grade": null,
         "emitter_spacing": {
           "value": "۲۰ سانتی‌متر",
           "source": "woocommerce_attribute",
-          "field": "فاصله خروجی / قطره‌چکان",
+          "field": "فاصله قطره‌چکان",
           "confidence": "high"
         }
       },
@@ -3111,8 +3112,8 @@
       ],
       "decision_links_present": true,
       "content": {
-        "short_words": 39,
-        "description_words": 1739,
+        "short_words": 53,
+        "description_words": 1551,
         "image_count": 4,
         "all_image_alt_present": true
       },
