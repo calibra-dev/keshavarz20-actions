@@ -1,0 +1,21 @@
+{
+  "task": "final_non_video_refresh",
+  "scope": "K21 Top30",
+  "exclude_new_video_work": true,
+  "refresh": [
+    "product_quality",
+    "pim",
+    "compatibility",
+    "indexability",
+    "schema_feed_parity",
+    "discovery_feed",
+    "ai_readiness",
+    "final_report"
+  ],
+  "guardrails": [
+    "no fabricated GTIN/MPN",
+    "no fabricated reviews",
+    "no unverified technical values",
+    "no price or stock changes"
+  ]
+}
