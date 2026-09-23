@@ -5,15 +5,15 @@
     "selected": 30,
     "mapped_candidates": 46,
     "unmapped_candidates": 0,
-    "average_pim_completeness": 83.67,
-    "scores_85_plus": 22,
+    "average_pim_completeness": 83.83,
+    "scores_85_plus": 23,
     "missing_sku": 0,
     "missing_gtin": 30,
     "missing_mpn": 30,
-    "missing_brand": 8,
-    "compatibility_incomplete": 19,
+    "missing_brand": 7,
+    "compatibility_incomplete": 18,
     "decision_link_missing": 0,
-    "average_product_quality_score": 93.73,
+    "average_product_quality_score": 92.77,
     "product_quality_below_85": 0
   },
   "actions": [
@@ -356,14 +356,6 @@
     {
       "product_id": 135383,
       "rank": 15,
-      "gap": "missing_brand",
-      "owner": "catalog",
-      "deadline": "2026-11-01",
-      "write_policy": "Never invent GTIN/MPN/brand/technical specs. SKU may use proposed K20-{id} only after uniqueness check."
-    },
-    {
-      "product_id": 135383,
-      "rank": 15,
       "gap": "compatibility_fields_incomplete",
       "owner": "technical-data",
       "deadline": "2026-11-01",
@@ -574,14 +566,6 @@
       "rank": 24,
       "gap": "missing_mpn",
       "owner": "catalog+supplier",
-      "deadline": "2026-11-17",
-      "write_policy": "Never invent GTIN/MPN/brand/technical specs. SKU may use proposed K20-{id} only after uniqueness check."
-    },
-    {
-      "product_id": 140503,
-      "rank": 24,
-      "gap": "compatibility_fields_incomplete",
-      "owner": "technical-data",
       "deadline": "2026-11-17",
       "write_policy": "Never invent GTIN/MPN/brand/technical specs. SKU may use proposed K20-{id} only after uniqueness check."
     },
