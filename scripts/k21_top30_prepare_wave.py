@@ -6,10 +6,13 @@ import io
 import json
 import os
 import re
+import time
 from pathlib import Path
 from typing import Any
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 import arabic_reshaper
 from bidi.algorithm import get_display
@@ -27,6 +30,16 @@ AUTH=(USER,PASS)
 S=requests.Session()
 S.auth=AUTH
 S.headers.update({"Accept":"application/json","User-Agent":"K21-Top30-Remediator/1.0"})
+_retry=Retry(
+    total=4,
+    connect=4,
+    read=4,
+    status=4,
+    backoff_factor=1.0,
+    status_forcelist=[429,500,502,503,504],
+    allowed_methods=frozenset(["GET","HEAD","OPTIONS","PUT","DELETE"]),
+)
+S.mount("https://",HTTPAdapter(max_retries=_retry))
 
 MARK_START="<!-- k21-top30-v1:start -->"
 MARK_END="<!-- k21-top30-v1:end -->"
@@ -42,14 +55,26 @@ LINKS={
  "drip_tape":[("راهنمای خرید نوار تیپ","https://keshavarz20.com/drip-tape-buying-guide/"),("محاسبه متراژ نوار تیپ و اتصالات","https://keshavarz20.com/drip-tape-length-fittings-calculator/")],
 }
 
+def request_with_retry(method:str, url:str, attempts:int=4, **kwargs):
+    last=None
+    for attempt in range(1,attempts+1):
+        try:
+            r=S.request(method,url,timeout=180,**kwargs)
+            r.raise_for_status()
+            return r
+        except requests.RequestException as exc:
+            last=exc
+            if attempt==attempts:
+                raise
+            time.sleep(attempt*1.5)
+    raise last
+
 def wc(path:str, method:str="GET", **kwargs):
-    r=S.request(method, f"{BASE}/wp-json/wc/v3/{path.lstrip('/')}", timeout=180, **kwargs)
-    r.raise_for_status()
+    r=request_with_retry(method, f"{BASE}/wp-json/wc/v3/{path.lstrip('/')}", **kwargs)
     return r.json()
 
 def wp(path:str, method:str="GET", **kwargs):
-    r=S.request(method, f"{BASE}/wp-json/wp/v2/{path.lstrip('/')}", timeout=180, **kwargs)
-    r.raise_for_status()
+    r=request_with_retry(method, f"{BASE}/wp-json/wp/v2/{path.lstrip('/')}", **kwargs)
     return r.json()
 
 def textify(s:str)->str:
@@ -362,17 +387,49 @@ def card_bytes(kind:str, base:Image.Image, title:str, bullets:list[str])->bytes:
     canvas.save(b,format="WEBP",quality=90,method=6)
     return b.getvalue()
 
+def media_slug(filename:str)->str:
+    return re.sub(r"[^a-z0-9-]+","-",Path(filename).stem.lower()).strip("-")
+
+def find_media(filename:str)->dict|None:
+    try:
+        rows=wp("media",params={"slug":media_slug(filename),"per_page":5})
+        if rows:
+            item=rows[0]
+            return {"id":int(item["id"]),"src":item.get("source_url"),"raw":item}
+    except Exception:
+        pass
+    return None
+
 def upload_media(data:bytes, filename:str, alt:str, caption:str)->dict:
+    existing=find_media(filename)
+    if existing:
+        item=wp(f"media/{existing['id']}",method="POST",json={"alt_text":alt,"caption":caption,"title":alt})
+        return {"id":int(item["id"]),"src":item.get("source_url"),"alt":alt,"derived":True,"reused":True}
+
     token=base64.b64encode(f"{USER}:{PASS}".encode()).decode()
     headers={"Authorization":f"Basic {token}","Content-Disposition":f'attachment; filename="{filename}"',"Content-Type":"image/webp","Accept":"application/json"}
-    r=requests.post(f"{BASE}/wp-json/wp/v2/media",headers=headers,data=data,timeout=180)
-    r.raise_for_status()
-    item=r.json()
+    item=None
+    for attempt in range(1,3):
+        try:
+            r=requests.post(f"{BASE}/wp-json/wp/v2/media",headers=headers,data=data,timeout=180)
+            r.raise_for_status()
+            item=r.json()
+            break
+        except requests.RequestException:
+            recovered=find_media(filename)
+            if recovered:
+                item=recovered["raw"]
+                break
+            if attempt==2:
+                raise
+            time.sleep(2)
     item=wp(f"media/{item['id']}",method="POST",json={"alt_text":alt,"caption":caption,"title":alt})
-    return {"id":int(item["id"]),"src":item.get("source_url"),"alt":alt,"derived":True}
+    time.sleep(0.25)
+    return {"id":int(item["id"]),"src":item.get("source_url"),"alt":alt,"derived":True,"reused":False}
 
 def set_alt(media_id:int, alt:str):
     wp(f"media/{media_id}",method="POST",json={"alt_text":alt})
+    time.sleep(0.15)
 
 def make_media(product:dict, attrs:list[dict])->tuple[list[dict],list[dict]]:
     existing=product.get("images") or []
