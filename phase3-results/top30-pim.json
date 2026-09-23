@@ -2,7 +2,7 @@
   "ok": true,
   "mode": "read-only",
   "version": "phase3-top30-pim-v2",
-  "generated_at_utc": "2026-09-23T09:36:52.429760Z",
+  "generated_at_utc": "2026-09-23T09:38:23.471819Z",
   "selection_rule": "GSC irrigation/fertigation candidate cohort; published Woo products; organic demand dominates priority; in-stock bonus; out-of-stock penalty. This is commercial-priority, not a profit/margin claim.",
   "summary": {
     "selected": 30,
@@ -3115,12 +3115,7 @@
           "field": "مدل / نوع محصول",
           "confidence": "high"
         },
-        "nominal_size": {
-          "value": "۲۰ سانتی‌متر",
-          "source": "woocommerce_attribute",
-          "field": "فاصله قطره‌چکان",
-          "confidence": "high"
-        },
+        "nominal_size": null,
         "material": null,
         "pressure_class": null,
         "pressure_requirement": null,
@@ -3149,6 +3144,7 @@
         "filtration_requirement"
       ],
       "compatibility_missing_fields": [
+        "nominal_size",
         "length"
       ],
       "decision_links": [
