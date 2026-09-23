@@ -1,0 +1,50 @@
+{
+  "program": "SEO God1",
+  "phase": 15,
+  "evidence_type": "local_render_completion",
+  "generated_at_utc": "2026-09-23T06:58:57Z",
+  "workflow_run_id": 35829024974,
+  "workflow_url": "https://github.com/calibra-dev/keshavarz20-actions/actions/runs/35829024974",
+  "status": "LOCAL_RENDER_COMPLETE_PUBLICATION_PENDING",
+  "runner": {
+    "name": "CEDARITY",
+    "labels": [
+      "self-hosted",
+      "Windows",
+      "X64",
+      "k20-video",
+      "gpu"
+    ],
+    "python": "3.12.10",
+    "ffmpeg": true,
+    "ffprobe": true,
+    "gpu": "NVIDIA GeForce RTX 2060",
+    "vram_mib": 12288,
+    "nvidia_driver": "560.94",
+    "health_ok": true
+  },
+  "render": {
+    "requested": 20,
+    "rendered": 20,
+    "failed": 0,
+    "package_ok": true,
+    "format": "9:16",
+    "persistent_output_root": "C:\\actions-runner\\k20-output\\run-35829024974",
+    "encoder": "libx264 fallback",
+    "encoder_reason": "Detected NVENC encoder, but FFmpeg 9 reported required NVENC API 13.1 while driver 560.94 exposes 12.2; batch safely fell back to CPU libx264."
+  },
+  "publication_gate": {
+    "public_video_urls": 0,
+    "public_thumbnail_urls": 0,
+    "landing_pages_complete": false,
+    "publication_dates_complete": false,
+    "video_sitemap_ready": false,
+    "note": "No fake public URLs or sitemap entries were created. Public hosting is the remaining Phase 15 gate."
+  },
+  "safety": {
+    "paid_provider_used": false,
+    "fabricated_video_assets": false,
+    "fabricated_public_urls": false,
+    "price_stock_payment_user_changes": false
+  }
+}
