@@ -151,8 +151,21 @@ def store_products(search: str) -> list[dict]:
     return data if isinstance(data, list) else []
 
 
-def choose_real_product_image(search: str) -> tuple[str, str, int]:
-    products = store_products(search)
+def store_product(product_id: int) -> dict:
+    response = requests.get(
+        f"{STORE_API}/{product_id}",
+        timeout=30,
+        headers={"User-Agent": "K20-Phase15-Video-Engine/1.0"},
+    )
+    response.raise_for_status()
+    data = response.json()
+    if not isinstance(data, dict) or int(data.get("id") or 0) != product_id:
+        raise RuntimeError(f"Product {product_id} did not resolve from Store API")
+    return data
+
+
+def choose_real_product_image(search: str, product_id: int | None = None) -> tuple[str, str, int]:
+    products = [store_product(product_id)] if product_id else store_products(search)
     for product in products:
         images = product.get("images") or []
         if not images:
@@ -263,7 +276,7 @@ def render_video(poster: Path, audio: Path, dest: Path) -> None:
     run(cmd)
 
 
-def render_episode(number: int, voice: str = "fa-IR-FaridNeural") -> dict:
+def render_episode(number: int, voice: str = "fa-IR-FaridNeural", product_id: int | None = None) -> dict:
     episodes = parse_episodes()
     if number not in episodes:
         raise ValueError(f"Episode {number} not found")
@@ -273,7 +286,7 @@ def render_episode(number: int, voice: str = "fa-IR-FaridNeural") -> dict:
     episode_dir = OUT / f"episode-{number:02d}"
     episode_dir.mkdir(parents=True, exist_ok=True)
 
-    image_url, product_url, product_id = choose_real_product_image(search)
+    image_url, product_url, resolved_product_id = choose_real_product_image(search, product_id=product_id)
     source = episode_dir / "source-product.jpg"
     poster = episode_dir / "thumbnail.jpg"
     audio = episode_dir / "narration.mp3"
@@ -298,7 +311,7 @@ def render_episode(number: int, voice: str = "fa-IR-FaridNeural") -> dict:
         "title": ep.title,
         "status": "rendered_local",
         "duration_seconds": round(media_duration(video), 3),
-        "source_product_id": product_id,
+        "source_product_id": resolved_product_id,
         "source_product_url": product_url,
         "source_image_url": image_url,
         "video_sha256": digest,
@@ -347,6 +360,7 @@ def main() -> int:
     render_p = sub.add_parser("render")
     render_p.add_argument("--episode", type=int, required=True)
     render_p.add_argument("--voice", default="fa-IR-FaridNeural")
+    render_p.add_argument("--product-id", type=int)
 
     batch_p = sub.add_parser("batch")
     batch_p.add_argument("--start", type=int, default=1)
@@ -365,7 +379,7 @@ def main() -> int:
         return 0 if result["ok"] else 2
 
     if args.cmd == "render":
-        print(json.dumps(render_episode(args.episode, args.voice), ensure_ascii=False, indent=2))
+        print(json.dumps(render_episode(args.episode, args.voice, args.product_id), ensure_ascii=False, indent=2))
         return 0
 
     if args.cmd == "batch":
