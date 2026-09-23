@@ -32,7 +32,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install publisher dependencies
-        run: python -m pip install --disable-pip-version-check requests
+        run: python -m pip install --disable-pip-version-check requests Pillow
 
       - name: Resolve explicit approval
         id: approval
