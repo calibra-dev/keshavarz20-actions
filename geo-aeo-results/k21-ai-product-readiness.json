@@ -2,7 +2,7 @@
   "ok": true,
   "program": "K21 GEO/AEO AI Product Readiness",
   "version": "k21-ai-readiness-v2",
-  "generated_at_utc": "2026-09-23T07:03:36.043610+00:00",
+  "generated_at_utc": "2026-09-23T07:44:11.963509+00:00",
   "mode": "read-only-scoring",
   "source_files": [
     "phase3-results/top30-pim.json",
@@ -13,29 +13,27 @@
   ],
   "summary": {
     "products": 30,
-    "overall_average": 56.1,
-    "ai_ready_85_plus": 0,
-    "below_85": 30,
+    "overall_average": 81.5,
+    "ai_ready_85_plus": 8,
+    "below_85": 22,
     "averages": {
-      "ai_product_completeness": 54.0,
-      "answer_readiness": 78.5,
-      "citation_readiness": 75.0,
-      "merchant_discovery_readiness": 93.3,
-      "compatibility_readiness": 0.0,
-      "evidence_readiness": 35.3
+      "ai_product_completeness": 75.3,
+      "answer_readiness": 90.0,
+      "citation_readiness": 89.0,
+      "merchant_discovery_readiness": 94.2,
+      "compatibility_readiness": 72.2,
+      "evidence_readiness": 68.2
     },
     "external_product_feed_submitted": false,
     "direct_ai_citation_measurement_complete": false
   },
   "blocker_counts": {
-    "compatibility_fields_incomplete": 30,
     "gtin_mpn_unknown_do_not_invent": 30,
-    "real_media_set_incomplete": 30,
-    "real_video_missing": 30,
     "verified_review_qa_missing": 30,
-    "feed_currency_mapping_unresolved": 8,
-    "feed_description_unresolved": 8,
-    "verified_brand_missing": 8
+    "compatibility_fields_incomplete": 22,
+    "feed_currency_mapping_unresolved": 7,
+    "feed_description_unresolved": 7,
+    "verified_brand_missing": 7
   },
   "products": [
     {
@@ -44,23 +42,21 @@
       "name": "مخزن تزریق کود (تانک کود) 100 لیتری",
       "url": "https://keshavarz20.com/product/%d9%85%d8%ae%d8%b2%d9%86-%d8%aa%d8%b2%d8%b1%db%8c%d9%82-%da%a9%d9%88%d8%af-%d8%aa%d8%a7%d9%86%da%a9-%da%a9%d9%88%d8%af-100-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
       "scores": {
-        "ai_product_completeness": 40,
-        "answer_readiness": 65,
-        "citation_readiness": 75,
+        "ai_product_completeness": 50,
+        "answer_readiness": 90,
+        "citation_readiness": 85,
         "merchant_discovery_readiness": 75,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 25
+        "compatibility_readiness": 33,
+        "evidence_readiness": 50
       },
-      "overall": 46.7,
+      "overall": 63.8,
       "ai_ready_85_plus": false,
       "blockers": [
         "verified_brand_missing",
         "compatibility_fields_incomplete",
         "feed_description_unresolved",
         "feed_currency_mapping_unresolved",
-        "real_media_set_incomplete",
         "verified_review_qa_missing",
-        "real_video_missing",
         "gtin_mpn_unknown_do_not_invent"
       ],
       "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
@@ -71,158 +67,21 @@
       "name": "مخزن تزریق کود (تانک کود) 200 لیتری",
       "url": "https://keshavarz20.com/product/%d9%85%d8%ae%d8%b2%d9%86-%d8%aa%d8%b2%d8%b1%db%8c%d9%82-%da%a9%d9%88%d8%af-%d8%aa%d8%a7%d9%86%da%a9-%da%a9%d9%88%d8%af-200-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
       "scores": {
-        "ai_product_completeness": 40,
-        "answer_readiness": 65,
-        "citation_readiness": 75,
+        "ai_product_completeness": 50,
+        "answer_readiness": 90,
+        "citation_readiness": 85,
         "merchant_discovery_readiness": 75,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 25
+        "compatibility_readiness": 33,
+        "evidence_readiness": 50
       },
-      "overall": 46.7,
+      "overall": 63.8,
       "ai_ready_85_plus": false,
       "blockers": [
         "verified_brand_missing",
         "compatibility_fields_incomplete",
         "feed_description_unresolved",
         "feed_currency_mapping_unresolved",
-        "real_media_set_incomplete",
         "verified_review_qa_missing",
-        "real_video_missing",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 30,
-      "product_id": 135235,
-      "name": "نوار تیپ آبیاری قطره‌ای ۲۰ سانتی‌متری مناسب کشت زیر پلاستیک",
-      "url": "https://keshavarz20.com/product/%d9%86%d9%88%d8%a7%d8%b1-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d9%82%d8%b7%d8%b1%d9%87-%d8%a7%db%8c-20-%d8%b3%d8%a7%d9%86%d8%aa%db%8c-%d9%85%d8%aa%d8%b1%db%8c-2/",
-      "scores": {
-        "ai_product_completeness": 40,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 75,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 25
-      },
-      "overall": 49.2,
-      "ai_ready_85_plus": false,
-      "blockers": [
-        "verified_brand_missing",
-        "compatibility_fields_incomplete",
-        "feed_description_unresolved",
-        "feed_currency_mapping_unresolved",
-        "real_media_set_incomplete",
-        "verified_review_qa_missing",
-        "real_video_missing",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 25,
-      "product_id": 139232,
-      "name": "زانو 90 درجه جوشی سایز 4 اینچ (110 میلیمتر) - 6بار",
-      "url": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-      "scores": {
-        "ai_product_completeness": 40,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 75,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 25
-      },
-      "overall": 49.2,
-      "ai_ready_85_plus": false,
-      "blockers": [
-        "verified_brand_missing",
-        "compatibility_fields_incomplete",
-        "feed_description_unresolved",
-        "feed_currency_mapping_unresolved",
-        "real_media_set_incomplete",
-        "verified_review_qa_missing",
-        "real_video_missing",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 19,
-      "product_id": 141710,
-      "name": "فلنج دنده ای آهنی 3 اینچ",
-      "url": "https://keshavarz20.com/product/%d9%81%d9%84%d9%86%d8%ac-%d8%af%d9%86%d8%af%d9%87-%d8%a7%db%8c-%d8%a2%d9%87%d9%86%db%8c-3-%d8%a7%db%8c%d9%86%da%86/",
-      "scores": {
-        "ai_product_completeness": 40,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 75,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 25
-      },
-      "overall": 49.2,
-      "ai_ready_85_plus": false,
-      "blockers": [
-        "verified_brand_missing",
-        "compatibility_fields_incomplete",
-        "feed_description_unresolved",
-        "feed_currency_mapping_unresolved",
-        "real_media_set_incomplete",
-        "verified_review_qa_missing",
-        "real_video_missing",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 15,
-      "product_id": 135383,
-      "name": "رابط مساوی پلی‌اتیلن ۴ اینچ (۱۱۰ میلی‌متر) آبلوله",
-      "url": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-      "scores": {
-        "ai_product_completeness": 40,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 75,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 25
-      },
-      "overall": 49.2,
-      "ai_ready_85_plus": false,
-      "blockers": [
-        "verified_brand_missing",
-        "compatibility_fields_incomplete",
-        "feed_description_unresolved",
-        "feed_currency_mapping_unresolved",
-        "real_media_set_incomplete",
-        "verified_review_qa_missing",
-        "real_video_missing",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 14,
-      "product_id": 139231,
-      "name": "زانو 90 درجه جوشی سایز 3 اینچ (90 میلیمتر) - 6بار",
-      "url": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-      "scores": {
-        "ai_product_completeness": 40,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 75,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 25
-      },
-      "overall": 49.2,
-      "ai_ready_85_plus": false,
-      "blockers": [
-        "verified_brand_missing",
-        "compatibility_fields_incomplete",
-        "feed_description_unresolved",
-        "feed_currency_mapping_unresolved",
-        "real_media_set_incomplete",
-        "verified_review_qa_missing",
-        "real_video_missing",
         "gtin_mpn_unknown_do_not_invent"
       ],
       "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
@@ -233,239 +92,121 @@
       "name": "سوپاپ چدنی 6 اینچ",
       "url": "https://keshavarz20.com/product/%d8%b3%d9%88%d9%be%d8%a7%d9%be-%da%86%d8%af%d9%86%db%8c-6-%d8%a7%db%8c%d9%86%da%86/",
       "scores": {
-        "ai_product_completeness": 40,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
+        "ai_product_completeness": 55,
+        "answer_readiness": 90,
+        "citation_readiness": 85,
         "merchant_discovery_readiness": 75,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 25
+        "compatibility_readiness": 33,
+        "evidence_readiness": 50
       },
-      "overall": 49.2,
+      "overall": 64.7,
       "ai_ready_85_plus": false,
       "blockers": [
         "verified_brand_missing",
         "compatibility_fields_incomplete",
         "feed_description_unresolved",
         "feed_currency_mapping_unresolved",
-        "real_media_set_incomplete",
         "verified_review_qa_missing",
-        "real_video_missing",
         "gtin_mpn_unknown_do_not_invent"
       ],
       "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
     },
     {
-      "rank": 28,
-      "product_id": 135102,
-      "name": "فلنچ پلی‌اتیلن جوشی ۴ اینچ (۱۱۰ میلی‌متر) ۶ اتمسفر آبلوله",
-      "url": "https://keshavarz20.com/product/%d9%81%d9%84%d9%86%da%86-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%d8%ac%d9%88%d8%b4%db%8c-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-      "scores": {
-        "ai_product_completeness": 50,
-        "answer_readiness": 65,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 30
-      },
-      "overall": 53.3,
-      "ai_ready_85_plus": false,
-      "blockers": [
-        "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
-        "verified_review_qa_missing",
-        "real_video_missing",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 20,
-      "product_id": 135064,
-      "name": "کمربند پلی‌اتیلن ۹۰ × ۱ اینچ | انشعاب لوله ۳۲ میلی‌متر",
-      "url": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-190mm/",
-      "scores": {
-        "ai_product_completeness": 50,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 30
-      },
-      "overall": 55.8,
-      "ai_ready_85_plus": false,
-      "blockers": [
-        "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
-        "verified_review_qa_missing",
-        "real_video_missing",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 29,
-      "product_id": 135323,
-      "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ اینچ (۳۲ میلی‌متر)",
-      "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-1-%d8%a7%db%8c%d9%86%da%86/",
+      "rank": 30,
+      "product_id": 135235,
+      "name": "نوار تیپ آبیاری قطره‌ای ۲۰ سانتی‌متری مناسب کشت زیر پلاستیک",
+      "url": "https://keshavarz20.com/product/%d9%86%d9%88%d8%a7%d8%b1-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d9%82%d8%b7%d8%b1%d9%87-%d8%a7%db%8c-20-%d8%b3%d8%a7%d9%86%d8%aa%db%8c-%d9%85%d8%aa%d8%b1%db%8c-2/",
       "scores": {
         "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
+        "answer_readiness": 90,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 75,
+        "compatibility_readiness": 50,
+        "evidence_readiness": 50
       },
-      "overall": 59.2,
+      "overall": 68.3,
       "ai_ready_85_plus": false,
       "blockers": [
+        "verified_brand_missing",
         "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
+        "feed_description_unresolved",
+        "feed_currency_mapping_unresolved",
         "verified_review_qa_missing",
-        "real_video_missing",
         "gtin_mpn_unknown_do_not_invent"
       ],
       "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
     },
     {
-      "rank": 27,
-      "product_id": 140657,
-      "name": "شیر توپی دسته فلزی ویسپار ۴ اینچ (۱۱۰ میلی‌متر)",
-      "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85/",
+      "rank": 25,
+      "product_id": 139232,
+      "name": "زانو 90 درجه جوشی سایز 4 اینچ (110 میلیمتر) - 6بار",
+      "url": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
       "scores": {
         "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
+        "answer_readiness": 90,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 75,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 50
       },
-      "overall": 59.2,
+      "overall": 72.5,
       "ai_ready_85_plus": false,
       "blockers": [
+        "verified_brand_missing",
         "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
+        "feed_description_unresolved",
+        "feed_currency_mapping_unresolved",
         "verified_review_qa_missing",
-        "real_video_missing",
         "gtin_mpn_unknown_do_not_invent"
       ],
       "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
     },
     {
-      "rank": 26,
-      "product_id": 135667,
-      "name": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۱ اینچ (۳۲ میلی‌متر)",
-      "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d8%aa%d9%88%d9%be%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-32-%d9%85%db%8c%d9%84/",
+      "rank": 19,
+      "product_id": 141710,
+      "name": "فلنج دنده ای آهنی 3 اینچ",
+      "url": "https://keshavarz20.com/product/%d9%81%d9%84%d9%86%d8%ac-%d8%af%d9%86%d8%af%d9%87-%d8%a7%db%8c-%d8%a2%d9%87%d9%86%db%8c-3-%d8%a7%db%8c%d9%86%da%86/",
       "scores": {
         "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
+        "answer_readiness": 90,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 75,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 50
       },
-      "overall": 59.2,
+      "overall": 72.5,
       "ai_ready_85_plus": false,
       "blockers": [
+        "verified_brand_missing",
         "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
+        "feed_description_unresolved",
+        "feed_currency_mapping_unresolved",
         "verified_review_qa_missing",
-        "real_video_missing",
         "gtin_mpn_unknown_do_not_invent"
       ],
       "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
     },
     {
-      "rank": 24,
-      "product_id": 140503,
-      "name": "زانو پلی اتیلن یکسر ماده 2 اینچ (63 میلیمتر)",
-      "url": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%db%8c%da%a9%d8%b3%d8%b1-%d9%85%d8%a7%d8%af%d9%87-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85/",
+      "rank": 14,
+      "product_id": 139231,
+      "name": "زانو 90 درجه جوشی سایز 3 اینچ (90 میلیمتر) - 6بار",
+      "url": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
       "scores": {
         "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
+        "answer_readiness": 90,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 75,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 50
       },
-      "overall": 59.2,
+      "overall": 72.5,
       "ai_ready_85_plus": false,
       "blockers": [
+        "verified_brand_missing",
         "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
+        "feed_description_unresolved",
+        "feed_currency_mapping_unresolved",
         "verified_review_qa_missing",
-        "real_video_missing",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 23,
-      "product_id": 140661,
-      "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۴ اینچ (۱۱۰ میلی‌متر)",
-      "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-4-%d8%a7%db%8c%d9%86-2/",
-      "scores": {
-        "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
-      },
-      "overall": 59.2,
-      "ai_ready_85_plus": false,
-      "blockers": [
-        "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
-        "verified_review_qa_missing",
-        "real_video_missing",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 22,
-      "product_id": 140501,
-      "name": "زانو پلی اتیلن یکسر ماده 3/4 اینچ (25 میلیمتر)",
-      "url": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%db%8c%da%a9%d8%b3%d8%b1-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-1-%d8%a7%db%8c%d9%86%da%86-32-%d9%85/",
-      "scores": {
-        "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
-      },
-      "overall": 59.2,
-      "ai_ready_85_plus": false,
-      "blockers": [
-        "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
-        "verified_review_qa_missing",
-        "real_video_missing",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 21,
-      "product_id": 135255,
-      "name": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۳ اینچ (۹۰ میلی‌متر)",
-      "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d8%aa%d9%88%d9%be%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85%db%8c%d9%84/",
-      "scores": {
-        "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
-      },
-      "overall": 59.2,
-      "ai_ready_85_plus": false,
-      "blockers": [
-        "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
-        "verified_review_qa_missing",
-        "real_video_missing",
         "gtin_mpn_unknown_do_not_invent"
       ],
       "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
@@ -476,44 +217,18 @@
       "name": "سوپاپ آهنی 4 اینچ",
       "url": "https://keshavarz20.com/product/%d8%b3%d9%88%d9%be%d8%a7%d9%be-%d8%a2%d9%87%d9%86%db%8c-4-%d8%a7%db%8c%d9%86%da%86/",
       "scores": {
-        "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
+        "ai_product_completeness": 75,
+        "answer_readiness": 90,
+        "citation_readiness": 85,
         "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
+        "compatibility_readiness": 33,
+        "evidence_readiness": 65
       },
-      "overall": 59.2,
+      "overall": 74.7,
       "ai_ready_85_plus": false,
       "blockers": [
         "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
         "verified_review_qa_missing",
-        "real_video_missing",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 17,
-      "product_id": 140014,
-      "name": "لوله بارانی مه‌پاش ۲ اینچ آسایش آذربایجان ۱۰۰ متری",
-      "url": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d8%a8%d8%a7%d8%b1%d8%a7%d9%86%db%8c-%d9%85%d9%87-%d9%be%d8%a7%d8%b4-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%db%b1%db%b0%db%b0/",
-      "scores": {
-        "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
-      },
-      "overall": 59.2,
-      "ai_ready_85_plus": false,
-      "blockers": [
-        "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
-        "verified_review_qa_missing",
-        "real_video_missing",
         "gtin_mpn_unknown_do_not_invent"
       ],
       "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
@@ -524,116 +239,18 @@
       "name": "سوپاپ آهنی 5 اینچ",
       "url": "https://keshavarz20.com/product/%d8%b3%d9%88%d9%be%d8%a7%d9%be-%d8%a2%d9%87%d9%86%db%8c-5-%d8%a7%db%8c%d9%86%da%86/",
       "scores": {
-        "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
+        "ai_product_completeness": 75,
+        "answer_readiness": 90,
+        "citation_readiness": 85,
         "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
+        "compatibility_readiness": 33,
+        "evidence_readiness": 65
       },
-      "overall": 59.2,
+      "overall": 74.7,
       "ai_ready_85_plus": false,
       "blockers": [
         "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
         "verified_review_qa_missing",
-        "real_video_missing",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 13,
-      "product_id": 135331,
-      "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۲ و ۱/۲ اینچ (۷۵ میلی‌متر)",
-      "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-2-1-2-%d8%a7%db%8c%d9%86/",
-      "scores": {
-        "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
-      },
-      "overall": 59.2,
-      "ai_ready_85_plus": false,
-      "blockers": [
-        "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
-        "verified_review_qa_missing",
-        "real_video_missing",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 12,
-      "product_id": 141188,
-      "name": "سر شلنگی فلزی سایز 2 اینچ (63 میلیمتر)",
-      "url": "https://keshavarz20.com/product/%d8%b3%d8%b1-%d8%b4%d9%84%d9%86%da%af%db%8c-%d9%81%d9%84%d8%b2%db%8c-%db%b2%d8%a7%db%8c%d9%86%da%86/",
-      "scores": {
-        "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
-      },
-      "overall": 59.2,
-      "ai_ready_85_plus": false,
-      "blockers": [
-        "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
-        "verified_review_qa_missing",
-        "real_video_missing",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 11,
-      "product_id": 140595,
-      "name": "کمربند پلی‌اتیلن ۶۳ × ۱/۲ اینچ | انشعاب لوله ۲۰ میلی‌متر",
-      "url": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-20-x-63-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87/",
-      "scores": {
-        "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
-      },
-      "overall": 59.2,
-      "ai_ready_85_plus": false,
-      "blockers": [
-        "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
-        "verified_review_qa_missing",
-        "real_video_missing",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 10,
-      "product_id": 140656,
-      "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۳ اینچ (۹۰ میلی‌متر)",
-      "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85/",
-      "scores": {
-        "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
-      },
-      "overall": 59.2,
-      "ai_ready_85_plus": false,
-      "blockers": [
-        "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
-        "verified_review_qa_missing",
-        "real_video_missing",
         "gtin_mpn_unknown_do_not_invent"
       ],
       "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
@@ -644,20 +261,238 @@
       "name": "رابط مساوی آبلوله 3 اینچ (90 میلیمتر)",
       "url": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-90-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-2/",
       "scores": {
-        "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
+        "ai_product_completeness": 75,
+        "answer_readiness": 90,
+        "citation_readiness": 85,
         "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
+        "compatibility_readiness": 50,
+        "evidence_readiness": 65
       },
-      "overall": 59.2,
+      "overall": 77.5,
       "ai_ready_85_plus": false,
       "blockers": [
         "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
         "verified_review_qa_missing",
-        "real_video_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
+      "rank": 27,
+      "product_id": 140657,
+      "name": "شیر توپی دسته فلزی ویسپار ۴ اینچ (۱۱۰ میلی‌متر)",
+      "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85/",
+      "scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 90,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 67,
+        "evidence_readiness": 65
+      },
+      "overall": 81.2,
+      "ai_ready_85_plus": false,
+      "blockers": [
+        "compatibility_fields_incomplete",
+        "verified_review_qa_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
+      "rank": 26,
+      "product_id": 135667,
+      "name": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۱ اینچ (۳۲ میلی‌متر)",
+      "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d8%aa%d9%88%d9%be%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-32-%d9%85%db%8c%d9%84/",
+      "scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 90,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 67,
+        "evidence_readiness": 65
+      },
+      "overall": 81.2,
+      "ai_ready_85_plus": false,
+      "blockers": [
+        "compatibility_fields_incomplete",
+        "verified_review_qa_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
+      "rank": 21,
+      "product_id": 135255,
+      "name": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۳ اینچ (۹۰ میلی‌متر)",
+      "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d8%aa%d9%88%d9%be%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85%db%8c%d9%84/",
+      "scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 90,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 67,
+        "evidence_readiness": 65
+      },
+      "overall": 81.2,
+      "ai_ready_85_plus": false,
+      "blockers": [
+        "compatibility_fields_incomplete",
+        "verified_review_qa_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
+      "rank": 24,
+      "product_id": 140503,
+      "name": "زانو پلی اتیلن یکسر ماده 2 اینچ (63 میلیمتر)",
+      "url": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%db%8c%da%a9%d8%b3%d8%b1-%d9%85%d8%a7%d8%af%d9%87-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85/",
+      "scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 90,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 65
+      },
+      "overall": 82.5,
+      "ai_ready_85_plus": false,
+      "blockers": [
+        "compatibility_fields_incomplete",
+        "verified_review_qa_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
+      "rank": 22,
+      "product_id": 140501,
+      "name": "زانو پلی اتیلن یکسر ماده 3/4 اینچ (25 میلیمتر)",
+      "url": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%db%8c%da%a9%d8%b3%d8%b1-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-1-%d8%a7%db%8c%d9%86%da%86-32-%d9%85/",
+      "scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 90,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 65
+      },
+      "overall": 82.5,
+      "ai_ready_85_plus": false,
+      "blockers": [
+        "compatibility_fields_incomplete",
+        "verified_review_qa_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
+      "rank": 20,
+      "product_id": 135064,
+      "name": "کمربند پلی‌اتیلن ۹۰ × ۱ اینچ | انشعاب لوله ۳۲ میلی‌متر",
+      "url": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-190mm/",
+      "scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 90,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 65
+      },
+      "overall": 82.5,
+      "ai_ready_85_plus": false,
+      "blockers": [
+        "compatibility_fields_incomplete",
+        "verified_review_qa_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
+      "rank": 17,
+      "product_id": 140014,
+      "name": "لوله بارانی مه‌پاش ۲ اینچ آسایش آذربایجان ۱۰۰ متری",
+      "url": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d8%a8%d8%a7%d8%b1%d8%a7%d9%86%db%8c-%d9%85%d9%87-%d9%be%d8%a7%d8%b4-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%db%b1%db%b0%db%b0/",
+      "scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 90,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 65
+      },
+      "overall": 82.5,
+      "ai_ready_85_plus": false,
+      "blockers": [
+        "compatibility_fields_incomplete",
+        "verified_review_qa_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
+      "rank": 15,
+      "product_id": 135383,
+      "name": "رابط مساوی پلی‌اتیلن ۴ اینچ (۱۱۰ میلی‌متر) آبلوله",
+      "url": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 90,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 65
+      },
+      "overall": 82.5,
+      "ai_ready_85_plus": false,
+      "blockers": [
+        "compatibility_fields_incomplete",
+        "verified_review_qa_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
+      "rank": 12,
+      "product_id": 141188,
+      "name": "سر شلنگی فلزی سایز 2 اینچ (63 میلیمتر)",
+      "url": "https://keshavarz20.com/product/%d8%b3%d8%b1-%d8%b4%d9%84%d9%86%da%af%db%8c-%d9%81%d9%84%d8%b2%db%8c-%db%b2%d8%a7%db%8c%d9%86%da%86/",
+      "scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 90,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 65
+      },
+      "overall": 82.5,
+      "ai_ready_85_plus": false,
+      "blockers": [
+        "compatibility_fields_incomplete",
+        "verified_review_qa_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
+      "rank": 11,
+      "product_id": 140595,
+      "name": "کمربند پلی‌اتیلن ۶۳ × ۱/۲ اینچ | انشعاب لوله ۲۰ میلی‌متر",
+      "url": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-20-x-63-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87/",
+      "scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 90,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 65
+      },
+      "overall": 82.5,
+      "ai_ready_85_plus": false,
+      "blockers": [
+        "compatibility_fields_incomplete",
+        "verified_review_qa_missing",
         "gtin_mpn_unknown_do_not_invent"
       ],
       "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
@@ -668,20 +503,18 @@
       "name": "کمربند انشعاب پلی‌اتیلن 63 × 2 اینچ",
       "url": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-63-x-63-2/",
       "scores": {
-        "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
+        "ai_product_completeness": 80,
+        "answer_readiness": 90,
+        "citation_readiness": 85,
         "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
+        "compatibility_readiness": 75,
+        "evidence_readiness": 65
       },
-      "overall": 59.2,
+      "overall": 82.5,
       "ai_ready_85_plus": false,
       "blockers": [
         "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
         "verified_review_qa_missing",
-        "real_video_missing",
         "gtin_mpn_unknown_do_not_invent"
       ],
       "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
@@ -692,20 +525,123 @@
       "name": "سر شلنگی فلزی سایز 1 اینچ (32 میلیمتر)",
       "url": "https://keshavarz20.com/product/%d8%b3%d8%b1-%d8%b4%d9%84%d9%86%da%af%db%8c-%d9%81%d9%84%d8%b2%db%8c-1-%d8%a7%db%8c%d9%86%da%86/",
       "scores": {
-        "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
+        "ai_product_completeness": 80,
+        "answer_readiness": 90,
+        "citation_readiness": 85,
         "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
+        "compatibility_readiness": 75,
+        "evidence_readiness": 65
       },
-      "overall": 59.2,
+      "overall": 82.5,
       "ai_ready_85_plus": false,
       "blockers": [
         "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
         "verified_review_qa_missing",
-        "real_video_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
+      "rank": 29,
+      "product_id": 135323,
+      "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ اینچ (۳۲ میلی‌متر)",
+      "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-1-%d8%a7%db%8c%d9%86%da%86/",
+      "scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 90,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
+      },
+      "overall": 94.2,
+      "ai_ready_85_plus": true,
+      "blockers": [
+        "verified_review_qa_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
+      "rank": 28,
+      "product_id": 135102,
+      "name": "فلنچ پلی‌اتیلن جوشی ۴ اینچ (۱۱۰ میلی‌متر) ۶ اتمسفر آبلوله",
+      "url": "https://keshavarz20.com/product/%d9%81%d9%84%d9%86%da%86-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%d8%ac%d9%88%d8%b4%db%8c-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 90,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
+      },
+      "overall": 94.2,
+      "ai_ready_85_plus": true,
+      "blockers": [
+        "verified_review_qa_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
+      "rank": 23,
+      "product_id": 140661,
+      "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۴ اینچ (۱۱۰ میلی‌متر)",
+      "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-4-%d8%a7%db%8c%d9%86-2/",
+      "scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 90,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
+      },
+      "overall": 94.2,
+      "ai_ready_85_plus": true,
+      "blockers": [
+        "verified_review_qa_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
+      "rank": 13,
+      "product_id": 135331,
+      "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۲ و ۱/۲ اینچ (۷۵ میلی‌متر)",
+      "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-2-1-2-%d8%a7%db%8c%d9%86/",
+      "scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 90,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
+      },
+      "overall": 94.2,
+      "ai_ready_85_plus": true,
+      "blockers": [
+        "verified_review_qa_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
+      "rank": 10,
+      "product_id": 140656,
+      "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۳ اینچ (۹۰ میلی‌متر)",
+      "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85/",
+      "scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 90,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
+      },
+      "overall": 94.2,
+      "ai_ready_85_plus": true,
+      "blockers": [
+        "verified_review_qa_missing",
         "gtin_mpn_unknown_do_not_invent"
       ],
       "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
@@ -716,20 +652,17 @@
       "name": "شیر پروانه‌ای پلیمری ویسپار ۵ اینچ با دسته فلزی (۱۲۵ میلی‌متر)",
       "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a8%d8%a7-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be-3/",
       "scores": {
-        "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
+        "ai_product_completeness": 85,
+        "answer_readiness": 90,
+        "citation_readiness": 100,
         "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
       },
-      "overall": 59.2,
-      "ai_ready_85_plus": false,
+      "overall": 94.2,
+      "ai_ready_85_plus": true,
       "blockers": [
-        "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
         "verified_review_qa_missing",
-        "real_video_missing",
         "gtin_mpn_unknown_do_not_invent"
       ],
       "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
@@ -740,20 +673,17 @@
       "name": "شیر پروانه‌ای پلیمری ویسپار ۴ اینچ با دسته فلزی (110 میلی‌متر)",
       "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a8%d8%a7-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be-2/",
       "scores": {
-        "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
+        "ai_product_completeness": 85,
+        "answer_readiness": 90,
+        "citation_readiness": 100,
         "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
       },
-      "overall": 59.2,
-      "ai_ready_85_plus": false,
+      "overall": 94.2,
+      "ai_ready_85_plus": true,
       "blockers": [
-        "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
         "verified_review_qa_missing",
-        "real_video_missing",
         "gtin_mpn_unknown_do_not_invent"
       ],
       "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
@@ -764,20 +694,17 @@
       "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۲ اینچ (۶۳ میلی‌متر)",
       "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85/",
       "scores": {
-        "ai_product_completeness": 60,
-        "answer_readiness": 80,
-        "citation_readiness": 75,
+        "ai_product_completeness": 85,
+        "answer_readiness": 90,
+        "citation_readiness": 100,
         "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 0,
-        "evidence_readiness": 40
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
       },
-      "overall": 59.2,
-      "ai_ready_85_plus": false,
+      "overall": 94.2,
+      "ai_ready_85_plus": true,
       "blockers": [
-        "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
         "verified_review_qa_missing",
-        "real_video_missing",
         "gtin_mpn_unknown_do_not_invent"
       ],
       "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
