@@ -1,0 +1,53 @@
+name: K21 Top30 Family Videos
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'k21-top30-ops/video-batch*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k21-top30-family-videos
+  cancel-in-progress: false
+
+jobs:
+  render-upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      K20_SITE_BASE_URL: https://keshavarz20.com
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Install dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python -m pip install -r phase15-video-engine/requirements.txt
+      - name: Render and upload family guides
+        run: python phase15-video-engine/run_k21_family_video_batch.py
+      - name: Commit evidence manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp phase15-video-results/k21-top30-family-videos.json /tmp/k21-family-videos.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git reset --hard origin/main
+          mkdir -p phase15-video-results
+          cp /tmp/k21-family-videos.json phase15-video-results/k21-top30-family-videos.json
+          git add -f phase15-video-results/k21-top30-family-videos.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "k21: record Top30 family video evidence"
+          git push origin HEAD:main
