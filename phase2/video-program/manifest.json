@@ -3,8 +3,8 @@
   "count": 20,
   "format": "9:16",
   "language": "fa",
-  "status": "SCRIPT_AND_PRE_RENDER_TRANSCRIPT_READY",
-  "render_status": "BLOCKED_PROVIDER_CAPACITY",
+  "status": "LOCAL_RENDER_COMPLETE",
+  "render_status": "LOCAL_RENDER_COMPLETE_PUBLICATION_PENDING",
   "provider_blocker": {
     "checked_at_utc": "2026-09-21T06:30:00Z",
     "invideo": {
@@ -42,5 +42,18 @@
     "publication date"
   ],
   "final_transcript_rule": "After rendering, reconcile transcript/subtitle text against final audio before publication.",
-  "gate_rechecked_at": "2026-09-21"
+  "gate_rechecked_at": "2026-09-23",
+  "local_render": {
+    "completed_at_utc": "2026-09-23T06:58:57Z",
+    "workflow_run_id": 35829024974,
+    "rendered_count": 20,
+    "package_ok": true,
+    "runner": "CEDARITY",
+    "gpu_detected": "NVIDIA GeForce RTX 2060, 12288 MiB",
+    "nvidia_driver": "560.94",
+    "encoder_note": "FFmpeg 9 NVENC requires NVIDIA driver >=610.00; runtime safely fell back to libx264 for this batch.",
+    "persistent_output_root": "C:\\actions-runner\\k20-output\\run-35829024974",
+    "public_hosting_complete": false
+  },
+  "provider_blocker_resolved_by": "Local self-hosted Windows rendering; no paid provider credits used."
 }
