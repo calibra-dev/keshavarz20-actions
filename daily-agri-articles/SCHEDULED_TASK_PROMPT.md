@@ -118,6 +118,8 @@ Prepare all queue fields required by the publisher, including:
 - `research_summary` documenting why the topic and evidence were chosen
 - precise English `image_search_query`
 - `image_title`
+- short `cover_title` suitable for a maximum of two visual lines
+- optional `cover_subtitle` suitable for a maximum of two visual lines
 - descriptive `alt_text`
 - adaptive `faq_items` (0 or 3–8)
 
@@ -126,6 +128,17 @@ Do not create SEO fields by stuffing exact-match phrases. Titles, headings and m
 ## 6) Image
 
 The queue publisher may select an open-license Wikimedia image. The requested visual must be factual and relevant, not a fake field-test image. Do not present AI-created or unrelated imagery as documentary evidence.
+
+### Persian cover-text safety — hard rule
+
+Never ask an image model to draw, spell, typeset or embed Persian text inside the cover artwork. Persian text generated inside an image is not accepted because even visually attractive covers can contain malformed or nonsensical Persian.
+
+The cover workflow is now strictly two-stage:
+
+1. choose/generate only a **text-free factual background image**;
+2. render `کشاورز بیست`, `cover_title` and optional `cover_subtitle` deterministically in the GitHub publisher using the approved Noto Arabic font, Pillow, arabic-reshaper and python-bidi.
+
+The publisher must **fail closed** if the approved Persian font or shaping stack is unavailable. It must never fall back to AI-rendered text or a generic font merely to finish the run. Keep `cover_title` concise; do not copy a long H1 into the image when a shorter accurate phrase is possible.
 
 ## 7) Duplicate/cannibalization gate
 
