@@ -427,6 +427,15 @@ def make_card(source:bytes,title:str,lines:list[str],footer:str)->bytes:
 def wp_auth():
     return (os.environ["WP_USERNAME"],os.environ["WP_APP_PASSWORD"])
 
+def find_existing_media(slug:str)->dict|None:
+    base=os.environ["WP_BASE_URL"].rstrip("/")
+    r=requests.get(f"{base}/wp-json/wp/v2/media",auth=wp_auth(),params={"slug":slug,"per_page":10},timeout=120)
+    r.raise_for_status()
+    rows=r.json()
+    if not rows: return None
+    item=rows[0]
+    return {"id":int(item["id"]),"source_url":item.get("source_url"),"alt_text":item.get("alt_text")}
+
 def upload_media(data:bytes,filename:str,title:str,alt:str,caption:str)->dict:
     base=os.environ["WP_BASE_URL"].rstrip("/")
     auth=wp_auth()
@@ -482,8 +491,11 @@ def main():
             src=requests.get(primary_url,timeout=120,headers={"User-Agent":"K21-Top30-Media/1.0"}); src.raise_for_status()
             for kind in (1,2,3):
                 title,lines=card_lines(facts,p,kind)
-                data=make_card(src.content,title,lines,"keshavarz20.com | کارت راهنما بر پایه داده همین صفحه")
-                uploaded=upload_media(data,f"k21-p{pid}-card-{kind}.jpg",f"{title} - {read['data_name']}",f"{title} برای {read['data_name']}","کارت راهنمای تصمیم‌گیری کشاورز بیست؛ تصویر مشتق‌شده از عکس واقعی محصول و داده ثبت‌شده صفحه.")
+                slug=f"k21-p{pid}-card-{kind}"
+                uploaded=find_existing_media(slug)
+                if not uploaded:
+                    data=make_card(src.content,title,lines,"keshavarz20.com | کارت راهنما بر پایه داده همین صفحه")
+                    uploaded=upload_media(data,f"{slug}.jpg",f"{title} - {read['data_name']}",f"{title} برای {read['data_name']}","کارت راهنمای تصمیم‌گیری کشاورز بیست؛ تصویر مشتق‌شده از عکس واقعی محصول و داده ثبت‌شده صفحه.")
                 image_ids.append(uploaded["id"]); cards.append(uploaded)
 
         payload={
