@@ -1,55 +1,47 @@
-# Product singular cache renderer — production acceptance PASS
+# Product singular cache renderer — production acceptance CORRECTION
 
 Date: 2026-09-23
 Target: K60 product ID 140856
 
-## Change
-Published the prepared IranKala draft-theme remediation:
-- replaced the ionCube-protected IranKala WooCommerce review template override with the current WooCommerce core single-product-reviews template
-- WPVibe created theme backup: `irankala-wpvibe-backup`
-- LiteSpeed and Elementor caches were purged automatically during publish
+## Status
+**NOT PASS.**
 
-## Production validation
-GitHub Actions run:
-- workflow: Keshavarz20 Cache Root-Cause Matrix
-- run id: 35786120945
-- request commit: 886be6bc8fc1d6b86d7266bbaa9c67db5c9e415c
+The earlier apparent `MISS -> HIT -> HIT` result was produced by testing the non-canonical query URL:
+`https://keshavarz20.com/?post_type=product&p=140856`
 
-K60 anonymous sequence:
-1. x-litespeed-cache: miss
-2. x-litespeed-cache: hit
-3. x-litespeed-cache: hit
+That request redirects to the canonical PDP. The probe parsed the final `x-litespeed-cache-control` but also observed cache state from the redirect chain, creating a false-positive acceptance.
 
-K60 TTFB / total:
-1. 9.981182 / 10.322381 s
-2. 6.322952 / 6.669207 s
-3. 5.735675 / 6.079559 s
+## Canonical re-test
+Direct canonical URL:
+`https://keshavarz20.com/product/کا-۶۰-ایکس-گرین/`
 
-Private WooCommerce surfaces:
-- Cart: no LiteSpeed HIT; cache-control private/no-cache
-- Checkout: no LiteSpeed HIT; cache-control private/no-cache
-- My Account: no LiteSpeed HIT; cache-control private/no-cache/no-store
+Three direct requests:
+- seq1: no `x-litespeed-cache`; `x-litespeed-cache-control: no-cache,esi=on`
+- seq2: no `x-litespeed-cache`; `x-litespeed-cache-control: no-cache,esi=on`
+- seq3: no `x-litespeed-cache`; `x-litespeed-cache-control: no-cache,esi=on`
 
-Review renderer live readback:
-- review tab rendered
-- rating select rendered
-- textarea rendered
-- name/email fields rendered
-- K20 review nonce rendered
-- K20 custom real-experience fields rendered
-- comment_post_ID 140856
+Hyper 40-0-1 canonical PDP showed the same behavior.
 
-SEO readback:
-- canonical preserved: https://keshavarz20.com/product/کا-۶۰-ایکس-گرین/
-- Yoast schema graph still present
-- SEO title/description still present
+## Broad cohort
+The post-renderer Top50 audit also confirms canonical product URLs remain no-cache while many non-product guides are HIT.
 
-## Decision
-`PRODUCT_SINGULAR_CACHE_RENDERER` acceptance criterion PASS for K60.
+## Review-template change
+The WooCommerce standard review template remains live because:
+- Review UI/functionality readback passed.
+- Canonical/Yoast/schema readback passed.
+- It did not itself solve the cache blocker.
+- A backup exists as `irankala-wpvibe-backup`.
 
-Important nuance:
-`x-litespeed-cache-control: no-cache,esi=on` is still emitted on the product response, but the server-level cache header now proves the effective anonymous sequence is MISS -> HIT -> HIT. Therefore do not interpret the control header alone as a failed acceptance while effective x-litespeed-cache is HIT.
+## Root-cause progress
+LiteSpeed scoped debug on canonical K60 reports:
+`forced no cache [reason] DONOTCACHEPAGE const`
 
-## Next action
-Do not repeat K60 root-cause experiments.
-Run a controlled small PDP cohort to verify the fix generalizes beyond K60 before declaring the whole product catalog gate closed. Measure warm TTFB/total separately because cacheability is fixed, but K60 warm latency remains around 6 seconds and still needs a separate renderer/LCP/performance investigation.
+So LiteSpeed is reacting to a pre-existing `DONOTCACHEPAGE` constant set elsewhere.
+
+Snippet 25 (`K20 K21 Verified Review Capture v1`) was temporarily disabled with reviews still enabled. K60 remained no-cache on all three canonical requests, so snippet 25 is not the owner and was reactivated.
+
+## Correct release state
+`PRODUCT_SINGULAR_CACHE_RENDERER = OPEN`
+
+Do not use the earlier non-canonical MISS/HIT/HIT result as acceptance evidence.
+Use only direct canonical PDP URLs for future cache acceptance.
