@@ -95,20 +95,24 @@ def main():
             uploaded.append({"id":mid,"url":media.get("source_url"),"sha256":asset["sha256"]})
 
         merged=[{"id":i} for i in before_ids+[x["id"] for x in uploaded]]
-        wp("PUT",f"/wc/v3/products/{product_id}",json={"images":merged})
+        write_result=wp("PUT",f"/wc/v3/products/{product_id}",json={"images":merged})
+        write_ids=[int(x["id"]) for x in (write_result.get("images") or [])]
+        write_confirmed=all(x["id"] in write_ids for x in uploaded) and all(i in write_ids for i in before_ids)
+        if not write_confirmed:
+            wp("PUT",f"/wc/v3/products/{product_id}",json={"images":[{"id":i} for i in before_ids]})
+            raise RuntimeError("gallery PUT response missing expected image IDs; previous gallery IDs restored")
 
         verified=False
         final_ids=[]
-        for _ in range(8):
-            time.sleep(3)
-            final=wp("GET",f"/wc/v3/products/{product_id}")
+        for attempt in range(12):
+            time.sleep(5)
+            final=wp("GET",f"/wc/v3/products/{product_id}?context=edit&_cb={int(time.time())}-{attempt}")
             final_ids=[int(x["id"]) for x in (final.get("images") or [])]
             if all(x["id"] in final_ids for x in uploaded) and all(i in final_ids for i in before_ids):
                 verified=True
                 break
         if not verified:
-            wp("PUT",f"/wc/v3/products/{product_id}",json={"images":[{"id":i} for i in before_ids]})
-            raise RuntimeError("gallery readback failed; previous gallery IDs restored")
+            raise RuntimeError("gallery write confirmed by PUT response but cache-busted readback did not converge; gallery was NOT rolled back")
 
         result={
             "ok":True,
