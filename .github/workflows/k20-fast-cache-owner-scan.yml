@@ -1,0 +1,68 @@
+name: K20 Fast Cache Owner Scan
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/fast-cache-owner-ops/*.json'
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Targeted read-only scan
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $before='${{ github.event.before }}'; $current='${{ github.sha }}'; $zero='0000000000000000000000000000000000000000'
+          if($before -and $before -ne $zero){$reqPath=(git diff --name-only $before $current -- 'diagnostics/fast-cache-owner-ops/*.json'|Select-Object -First 1)}else{$reqPath=(git show --pretty='' --name-only $current -- 'diagnostics/fast-cache-owner-ops/*.json'|Select-Object -First 1)}
+          if(!$reqPath){throw 'No request'}
+          $req=Get-Content -Raw $reqPath|ConvertFrom-Json -Depth 10
+          $base=$env:WP_BASE_URL.TrimEnd('/')
+          $auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"))
+          $headers=@{Authorization="Basic $auth";Accept='application/json';'Content-Type'='application/json'}
+          $needles=@('DONOTCACHEPAGE','wc_nocache_headers','nocache_headers','set_nocache_constants')
+          $rx='(?i)(cache|comment|review|woocommerce|login|session|digit|wp\.php|init|core)'
+          $matches=@(); $candidates=@(); $read=0
+          foreach($root in @($req.roots)){
+            $enc=[Uri]::EscapeDataString([string]$root)
+            try{$list=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/file/list?scope=wp-content&directory=$enc" -Headers $headers -Method GET -TimeoutSec 90}catch{continue}
+            $files=@($list.files)|Where-Object { $_.path -match '\.php$' -and $_.path -match $rx }|Sort-Object path
+            foreach($f in $files){
+              $path=[string]$f.path; $size=[int64]$f.size
+              $candidates+=,[pscustomobject]@{path=$path;size=$size;readable=($size -le 65536)}
+              if($size -gt 65536){continue}
+              $body=@{scope='wp-content';path=$path}|ConvertTo-Json -Compress
+              try{$r=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/file/read" -Headers $headers -Method POST -Body $body -TimeoutSec 90}catch{continue}
+              $content=if($r.PSObject.Properties.Name -contains 'content'){[string]$r.content}elseif($r.data){[string]$r.data.content}else{''}
+              if(!$content){continue}; $read++
+              $src=$content -split "\r?\n"
+              for($i=0;$i -lt $src.Count;$i++){foreach($needle in $needles){if($src[$i].IndexOf($needle,[StringComparison]::OrdinalIgnoreCase)-ge0){$matches+=,[pscustomobject]@{path=$path;line=$i+1;token=$needle};break}}}
+            }
+          }
+          New-Item -ItemType Directory -Force 'diagnostics/fast-cache-owner-results'|Out-Null
+          $baseName=[IO.Path]::GetFileNameWithoutExtension($reqPath); $out="diagnostics/fast-cache-owner-results/$baseName-result.json"
+          @{mode='read-only';readable_files_scanned=$read;matches=@($matches|Sort-Object path,line -Unique);large_candidates=@($candidates|Where-Object {-not $_.readable})}|ConvertTo-Json -Depth 10|Set-Content $out -Encoding utf8
+          "RESULT_PATH=$out"|Out-File $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Commit result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f "$RESULT_PATH"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "diag: record fast cache owner scan"
+          git pull --rebase origin main
+          git push origin HEAD:main
