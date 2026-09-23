@@ -20,18 +20,58 @@ jobs:
     defaults:
       run:
         shell: cmd
+    env:
+      PYTHONUTF8: '1'
+      PYTHONIOENCODING: utf-8
+      K20_SITE_BASE_URL: https://keshavarz20.com
     steps:
       - uses: actions/checkout@v4
+
+      - name: Bootstrap persistent Python 3.12
+        run: |
+          set "K20_PY=C:\actions-runner\k20-runtime\python"
+          if not exist "%K20_PY%\python.exe" (
+            echo Python runtime missing; installing portable embedded runtime...
+            if not exist "C:\actions-runner\k20-runtime" mkdir "C:\actions-runner\k20-runtime"
+            if exist "%K20_PY%" rmdir /s /q "%K20_PY%"
+            mkdir "%K20_PY%"
+            curl.exe -L --fail --retry 3 -o "%RUNNER_TEMP%\python-embed.zip" "https://www.python.org/ftp/python/3.12.10/python-3.12.10-embed-amd64.zip"
+            tar.exe -xf "%RUNNER_TEMP%\python-embed.zip" -C "%K20_PY%"
+            if errorlevel 1 exit /b 1
+            powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "(Get-Content '%K20_PY%\python312._pth') -replace '#import site','import site' | Set-Content -Encoding ASCII '%K20_PY%\python312._pth'"
+            curl.exe -L --fail --retry 3 -o "%RUNNER_TEMP%\get-pip.py" "https://bootstrap.pypa.io/get-pip.py"
+            "%K20_PY%\python.exe" "%RUNNER_TEMP%\get-pip.py"
+            if errorlevel 1 exit /b 1
+          )
+          echo %K20_PY%>>"%GITHUB_PATH%"
+          echo %K20_PY%\Scripts>>"%GITHUB_PATH%"
+          "%K20_PY%\python.exe" --version
+
+      - name: Bootstrap persistent FFmpeg
+        run: |
+          set "K20_FFROOT=C:\actions-runner\k20-runtime\ffmpeg"
+          if not exist "%K20_FFROOT%\bin\ffmpeg.exe" (
+            echo FFmpeg runtime missing; installing portable runtime...
+            if not exist "C:\actions-runner\k20-runtime" mkdir "C:\actions-runner\k20-runtime"
+            if exist "%K20_FFROOT%" rmdir /s /q "%K20_FFROOT%"
+            mkdir "%K20_FFROOT%"
+            curl.exe -L --fail --retry 3 -o "%RUNNER_TEMP%\ffmpeg.zip" "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip"
+            if exist "%RUNNER_TEMP%\k20-ffmpeg-extract" rmdir /s /q "%RUNNER_TEMP%\k20-ffmpeg-extract"
+            mkdir "%RUNNER_TEMP%\k20-ffmpeg-extract"
+            tar.exe -xf "%RUNNER_TEMP%\ffmpeg.zip" -C "%RUNNER_TEMP%\k20-ffmpeg-extract"
+            if errorlevel 1 exit /b 1
+            for /d %%D in ("%RUNNER_TEMP%\k20-ffmpeg-extract\ffmpeg-*") do xcopy /E /I /Y "%%D\*" "%K20_FFROOT%\" >nul
+          )
+          echo %K20_FFROOT%\bin>>"%GITHUB_PATH%"
+          "%K20_FFROOT%\bin\ffmpeg.exe" -version
 
       - name: Resolve changed request
         id: req
         run: |
           python -c "import json,os; e=json.load(open(os.environ['GITHUB_EVENT_PATH'],encoding='utf-8')); h=e.get('head_commit') or {}; p=[x for x in (h.get('added',[])+h.get('modified',[])) if x.startswith('phase15-local-video-ops/') and x.endswith('.json')]; assert p, 'No local video request found'; open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8').write('path='+p[-1]+'\n')"
 
-      - name: Verify Python and FFmpeg
+      - name: Verify GPU
         run: |
-          python --version
-          ffmpeg -version
           nvidia-smi
 
       - name: Install renderer dependencies
@@ -53,6 +93,7 @@ jobs:
 
       - name: Upload artifact
         if: always()
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: k20-motion-infographic-${{ github.run_id }}
