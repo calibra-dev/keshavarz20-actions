@@ -1,0 +1,35 @@
+{
+  "ok": true,
+  "phase": 1,
+  "version": "sitewide-crawl-audit-v2",
+  "evidence_run_id": 35930565003,
+  "executed_at_utc": "2026-09-23T23:01:28Z",
+  "summary": {
+    "public_urls_discovered": 856,
+    "http_200": 856,
+    "html_crawlable": 856,
+    "self_canonical": 856,
+    "noindex": 0,
+    "soft_404_suspected": 0,
+    "redirected_sitemap_urls": 0,
+    "query_param_sitemap_urls": 0,
+    "lastmod_missing": 0,
+    "future_lastmod": 0,
+    "money_pages_in_scope": 42,
+    "money_pages_pass": 42,
+    "top30_in_scope": 30,
+    "top30_pass": 30,
+    "p0": 0,
+    "p1": 0,
+    "pass": 856
+  },
+  "definition_of_done": {
+    "top30_200_canonical_indexable_crawlable_sitemap_internal_linked": true,
+    "money_pages_200_canonical_indexable_crawlable_sitemap_internal_linked": true,
+    "robots_reachable": true,
+    "googlebot_access": true,
+    "bingbot_access": true,
+    "oai_searchbot_access": true
+  },
+  "note": "Audit step completed successfully. The workflow run conclusion was failure only because the evidence persistence step hit local unstaged changes during git pull --rebase; this compact summary is copied verbatim from the successful audit step log."
+}
