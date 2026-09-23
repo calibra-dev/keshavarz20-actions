@@ -25,8 +25,16 @@ FAMILIES={
 
 def main()->int:
     result={"ok":True,"generated_at_utc":__import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat(),"families":{}}
-    for family,episode in FAMILIES.items():
-        subprocess.run([sys.executable,str(ENGINE/"k20_video_engine.py"),"render","--episode",str(episode)],check=True)
+    for family,(episode,product_id) in FAMILIES.items():
+        subprocess.run([
+            sys.executable,
+            str(ENGINE/"k20_video_engine.py"),
+            "render",
+            "--episode",
+            str(episode),
+            "--product-id",
+            str(product_id),
+        ],check=True)
         d=OUT/f"episode-{episode:02d}"
         meta=json.loads((d/"metadata.json").read_text(encoding="utf-8"))
         video=upload_media(d/"video.mp4",f"K21 {family} guide - Keshavarz20")
