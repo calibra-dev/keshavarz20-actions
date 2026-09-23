@@ -37,11 +37,13 @@ def main():
         r.raise_for_status()
         item=r.json()
         url=str(item.get("source_url") or "")
-        ok = (mid in VIDEO_IDS and re.search(r"/2026/09/(?:video(?:-\\d+)?\\.mp4|thumbnail(?:-\\d+)?\\.jpg)$",url,re.I)) or \
-             (mid in CUSTOM_IMAGE_IDS) or \
-             (mid in image_ids and ("/k21-p" in url or re.search(r"/k21-\\d+-decision-",url,re.I)))
+        mime=str(item.get("mime_type") or "")
+        if mid in VIDEO_IDS:
+            ok = bool(re.search(r"/2026/09/(?:video(?:-\\d+)?\\.mp4|thumbnail(?:-\\d+)?\\.jpg)$",url,re.I))
+        else:
+            ok = mid in image_ids and mime.startswith("image/") and "/wp-content/uploads/2026/09/" in url
         if not ok:
-            return ("refuse",mid,url)
+            return ("refuse",mid,f"{mime} {url}")
         return ("verified",mid,url)
 
     verified=[]
