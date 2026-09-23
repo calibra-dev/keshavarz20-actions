@@ -49,8 +49,26 @@ def main():
             missing.append(mid); continue
         r.raise_for_status()
         deleted.append(mid)
-    result={"ok":True,"target_count":len(targets),"verified_count":len(verified),"deleted_count":len(deleted),"missing_count":len(set(missing)),"deleted_ids":deleted,"missing_ids":sorted(set(missing)),"guardrail":"Only exact K21-generated image/video/thumbnail IDs derived from repository evidence were eligible."}
+    remaining=[]
+    for mid in deleted:
+        r=requests.get(f"{base}/wp-json/wp/v2/media/{mid}",headers=headers,timeout=60)
+        if r.status_code != 404:
+            remaining.append({"id":mid,"http_code":r.status_code})
+    result={
+        "ok": not remaining,
+        "target_count":len(targets),
+        "verified_count":len(verified),
+        "deleted_count":len(deleted),
+        "missing_count":len(set(missing)),
+        "verified_absent_count":len(deleted)-len(remaining),
+        "remaining_after_delete":remaining,
+        "deleted_ids":deleted,
+        "missing_ids":sorted(set(missing)),
+        "guardrail":"Only exact K21-generated image/video/thumbnail IDs derived from repository evidence were eligible."
+    }
     OUT.write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding="utf-8")
-    print(json.dumps({k:v for k,v in result.items() if k not in ("deleted_ids","missing_ids")},ensure_ascii=False))
+    print(json.dumps({k:v for k,v in result.items() if k not in ("deleted_ids","missing_ids","remaining_after_delete")},ensure_ascii=False))
+    if remaining:
+        raise RuntimeError(f"{len(remaining)} media attachments still resolve after permanent deletion")
 if __name__=="__main__":
     main()
