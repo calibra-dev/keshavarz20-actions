@@ -1,10 +1,7 @@
 name: K21 Top30 Family Videos
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'k21-top30-ops/video-batch*.json'
+  workflow_dispatch:
 
 permissions:
   contents: write
