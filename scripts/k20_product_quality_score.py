@@ -112,7 +112,7 @@ for p in products:
     if img_points<8:gaps.append("تصاویر واقعی/ALT")
 
     raw_media=((p.get("description") or "")+" "+(p.get("short_description") or ""))
-    video=bool(re.search(r"<video\\b|youtube\\.com|youtu\\.be|aparat\\.com",raw_media,re.I))
+    video=bool(re.search(r"<video\b|youtube\.com|youtu\.be|aparat\.com",raw_media,re.I))
     v=5 if video else 0; score+=v; detail["video"]=v
     if not video:gaps.append("ویدئو")
 
