@@ -1,0 +1,90 @@
+{
+  "version": "1.0",
+  "output": {
+    "width": 1000,
+    "height": 1000,
+    "format": "WEBP",
+    "quality": 84,
+    "slides_per_product": 5
+  },
+  "general_pipe_fitting_size_map_mm_to_inch": {
+    "16": "16",
+    "20": "1/2",
+    "25": "3/4",
+    "32": "1",
+    "40": "1-1/4",
+    "50": "1-1/2",
+    "63": "2",
+    "75": "2-1/2",
+    "90": "3",
+    "110": "4",
+    "125": "5",
+    "160": "6",
+    "200": "8"
+  },
+  "threaded_layflat_only_outer_inch_to_inner_mm": {
+    "2": 50,
+    "3": 75,
+    "4": 100,
+    "5": 125,
+    "6": 150,
+    "8": 200,
+    "2.5": 63,
+    "3.5": 90,
+    "4.5": 110,
+    "5.5": 140,
+    "6.5": 160
+  },
+  "precedence": [
+    "For category_key=threaded-layflat use threaded_layflat_only_outer_inch_to_inner_mm.",
+    "For all other pipes and fittings use general_pipe_fitting_size_map_mm_to_inch.",
+    "Never infer pressure, flow, spray radius, wall thickness, warranty, certification or field performance unless product data or an approved category rule explicitly supplies it."
+  ],
+  "categories": {
+    "mist-pipe": {
+      "label_fa": "لوله بارانی و مه‌پاش",
+      "accent": "agri-cinematic",
+      "slide_focus": [
+        "معرفی محصول",
+        "مشخصات تاییدشده",
+        "الگوی کاربرد و نحوه پاشش به‌صورت مفهومی",
+        "چک‌لیست انتخاب و نصب",
+        "جمع‌بندی و سازگاری"
+      ],
+      "safe_copy": [
+        "آبدهی و شعاع پاشش به فشار، طول مسیر، آرایش خط، سوراخ‌کاری و شرایط واقعی پروژه وابسته است.",
+        "عدد فنی تاییدنشده از محصول مشابه کپی نمی‌شود.",
+        "برای انتخاب نهایی فشار سیستم، طول مسیر، نوع اتصال، کیفیت آب و شرایط باد بررسی شود."
+      ]
+    },
+    "threaded-layflat": {
+      "label_fa": "لوله نخدار",
+      "accent": "reinforced-hose",
+      "slide_focus": [
+        "معرفی محصول",
+        "قطر خارجی و داخلی",
+        "ساختار نخدار و کاربرد",
+        "چک‌لیست اتصال و نصب",
+        "جمع‌بندی سایز و سازگاری"
+      ],
+      "safe_copy": [
+        "قاعده قطر داخلی این دسته فقط برای لوله نخدار اعمال می‌شود.",
+        "سایز اتصالات عمومی با جدول عمومی پروژه کنترل می‌شود."
+      ]
+    },
+    "default": {
+      "label_fa": "محصول کشاورز بیست",
+      "accent": "premium-agri",
+      "slide_focus": [
+        "معرفی محصول",
+        "مشخصات تاییدشده",
+        "کاربرد",
+        "چک‌لیست خرید",
+        "جمع‌بندی"
+      ],
+      "safe_copy": [
+        "اطلاعات تاییدنشده نمایش داده نمی‌شود."
+      ]
+    }
+  }
+}
