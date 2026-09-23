@@ -1,0 +1,67 @@
+name: K20 Local Motion Infographic Video
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'phase15-local-video-ops/*.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: k20-local-motion-infographic
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: [self-hosted, Windows, X64, k20-video, gpu]
+    timeout-minutes: 90
+    defaults:
+      run:
+        shell: cmd
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve changed request
+        id: req
+        shell: powershell
+        run: |
+          $req = git diff --name-only HEAD^ HEAD -- 'phase15-local-video-ops/*.json' | Select-Object -Last 1
+          if (-not $req) { throw 'No local video request found' }
+          "path=$req" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+
+      - name: Verify Python and FFmpeg
+        run: |
+          python --version
+          ffmpeg -version
+          nvidia-smi
+
+      - name: Install renderer dependencies
+        run: |
+          python -m pip install -r phase15-video-engine/requirements.txt
+
+      - name: Render 15-second motion infographic
+        run: |
+          python phase15-video-engine/render_motion_infographic.py "${{ steps.req.outputs.path }}"
+
+      - name: Persist output on Windows host
+        if: always()
+        run: |
+          if exist phase15-video-engine\out (
+            if not exist "C:\actions-runner\k20-output\motion-${{ github.run_id }}" mkdir "C:\actions-runner\k20-output\motion-${{ github.run_id }}"
+            xcopy /E /I /Y "phase15-video-engine\out\*" "C:\actions-runner\k20-output\motion-${{ github.run_id }}\" >nul
+            echo Persistent output: C:\actions-runner\k20-output\motion-${{ github.run_id }}
+          )
+
+      - name: Upload artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-motion-infographic-${{ github.run_id }}
+          retention-days: 14
+          if-no-files-found: warn
+          path: |
+            phase15-video-engine/out/motion-infographic-*/video.mp4
+            phase15-video-engine/out/motion-infographic-*/scene-*.png
+            phase15-video-engine/out/motion-infographic-*/result.json
