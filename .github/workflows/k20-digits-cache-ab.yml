@@ -1,0 +1,75 @@
+name: K20 Digits PDP Cache A-B
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/digits-cache-ab-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-digits-cache-ab
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: One-request reversible A-B
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $reqPath=(git show --pretty='' --name-only '${{ github.sha }}' -- 'diagnostics/digits-cache-ab-ops/*.json'|Select-Object -First 1)
+          if(!$reqPath){throw 'No request'}
+          $req=Get-Content -Raw $reqPath|ConvertFrom-Json -Depth 10
+          $url=[string]$req.url
+          $base=$env:WP_BASE_URL.TrimEnd('/')
+          $auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"))
+          $headers=@{Authorization="Basic $auth";Accept='application/json';'Content-Type'='application/json'}
+          function Cli([string]$cmd){
+            $payload=@{command=$cmd;confirm_write=$false}|ConvertTo-Json -Compress
+            return Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/cli/run" -Headers $headers -Method POST -Body $payload -TimeoutSec 120
+          }
+          $before=Cli 'plugin get digits'
+          $activatedAfter=$false
+          $probe=$null
+          try {
+            $null=Cli 'plugin deactivate digits'
+            Start-Sleep -Seconds 1
+            $tmp=Join-Path $env:RUNNER_TEMP 'digits-ab.headers'
+            $timing=& curl -L -sS --max-time 45 -A 'K20-Digits-Cache-AB/2026-09-23' -H 'Cookie:' -D $tmp -o /dev/null -w '%{http_code}|%{time_starttransfer}|%{time_total}|%{num_redirects}' $url
+            $cache=(Select-String -Path $tmp -Pattern '^x-litespeed-cache:' -CaseSensitive:$false|Select-Object -Last 1).Line
+            $ctl=(Select-String -Path $tmp -Pattern '^x-litespeed-cache-control:' -CaseSensitive:$false|Select-Object -Last 1).Line
+            $cc=(Select-String -Path $tmp -Pattern '^cache-control:' -CaseSensitive:$false|Select-Object -Last 1).Line
+            $probe=[ordered]@{timing=$timing;x_litespeed_cache=$cache;x_litespeed_cache_control=$ctl;cache_control=$cc}
+          } finally {
+            for($i=1;$i -le 5;$i++){
+              try{$null=Cli 'plugin activate digits';$activatedAfter=$true;break}catch{Start-Sleep -Seconds ($i*2)}
+            }
+          }
+          if(-not $activatedAfter){throw 'CRITICAL: DIGITS reactivation failed after retries'}
+          $after=Cli 'plugin get digits'
+          New-Item -ItemType Directory -Force 'diagnostics/digits-cache-ab-results'|Out-Null
+          $baseName=[IO.Path]::GetFileNameWithoutExtension($reqPath);$out="diagnostics/digits-cache-ab-results/$baseName-result.json"
+          [ordered]@{mode='single-request-reversible-ab';plugin='digits';before=[string]$before.text;probe=$probe;reactivated=$activatedAfter;after=[string]$after.text}|ConvertTo-Json -Depth 10|Set-Content $out -Encoding utf8
+          "RESULT_PATH=$out"|Out-File $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Commit sanitized result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f "$RESULT_PATH"
+          git commit -m "diag: record DIGITS PDP cache A-B" || exit 0
+          git pull --rebase origin main
+          git push origin HEAD:main
