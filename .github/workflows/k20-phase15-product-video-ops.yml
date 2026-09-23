@@ -1,0 +1,79 @@
+name: K20 Phase15 Product Video Ops
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'phase15-video-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-phase15-product-video-ops
+  cancel-in-progress: false
+
+jobs:
+  render-upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      K20_SITE_BASE_URL: https://keshavarz20.com
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python -m pip install -r phase15-video-engine/requirements.txt
+
+      - name: Resolve request
+        id: req
+        shell: bash
+        run: |
+          set -euo pipefail
+          req="$(git diff --name-only HEAD^ HEAD -- 'phase15-video-ops/*.json' | tail -n 1)"
+          test -n "$req"
+          echo "path=$req" >> "$GITHUB_OUTPUT"
+
+      - name: Render exact-product video and upload media
+        shell: bash
+        run: python phase15-video-engine/run_product_video_request.py '${{ steps.req.outputs.path }}'
+
+      - name: Commit sanitized result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase15-video-results/*.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase15: record product video evidence"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Upload render artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-product-video-${{ github.run_id }}
+          if-no-files-found: warn
+          retention-days: 14
+          path: |
+            phase15-video-engine/out/**/*.mp4
+            phase15-video-engine/out/**/*.jpg
+            phase15-video-engine/out/**/*.srt
+            phase15-video-engine/out/**/*.txt
+            phase15-video-engine/out/**/*.json
