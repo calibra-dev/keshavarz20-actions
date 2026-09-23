@@ -16,11 +16,11 @@ sys.path.insert(0,str(ENGINE))
 from run_product_video_request import upload_media
 
 FAMILIES={
-    "valve":17,
-    "fitting":12,
-    "fertigation":20,
-    "layflat_rain":7,
-    "drip_tape":1,
+    "valve":(17,135349),
+    "fitting":(12,140610),
+    "fertigation":(20,140407),
+    "layflat_rain":(7,140014),
+    "drip_tape":(1,135235),
 }
 
 def main()->int:
