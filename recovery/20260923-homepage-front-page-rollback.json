@@ -1,0 +1,24 @@
+{
+  "incident": "homepage-middle-content-missing",
+  "site": "https://keshavarz20.com/",
+  "investigation": {
+    "expected_front_page_id": 644,
+    "unexpected_front_page_id": 145342,
+    "unexpected_page_title": "__صفحه اصلی__",
+    "unexpected_page_created": "2026-09-23T00:49:50",
+    "page_644_elementor_hash_unchanged": true,
+    "page_644_modified_gmt": "2026-09-21T22:10:14",
+    "bridge_snapshot_count_for_644": 0
+  },
+  "recovery": {
+    "page_on_front_restored_to": 644,
+    "cache_purged": ["LiteSpeed Cache", "Elementor CSS cache", "object cache"],
+    "verification": {
+      "show_on_front": "page",
+      "page_on_front": 644,
+      "page_644_status": "publish",
+      "page_644_template": "page-templates/home.php"
+    }
+  },
+  "note": "Bridge v3.2 does not expose WordPress option writes, so the reversible page_on_front restoration used the connected WPVibe WordPress control plane after Git/Bridge diagnosis."
+}
