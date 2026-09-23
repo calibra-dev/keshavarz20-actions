@@ -2,19 +2,19 @@
   "ok": true,
   "mode": "read-only",
   "version": "phase3-top30-pim-v2",
-  "generated_at_utc": "2026-09-23T09:01:57.248842Z",
+  "generated_at_utc": "2026-09-23T09:14:34.130394Z",
   "selection_rule": "GSC irrigation/fertigation candidate cohort; published Woo products; organic demand dominates priority; in-stock bonus; out-of-stock penalty. This is commercial-priority, not a profit/margin claim.",
   "summary": {
     "selected": 30,
     "mapped_candidates": 46,
     "unmapped_candidates": 0,
-    "average_pim_completeness": 83.83,
-    "scores_85_plus": 23,
+    "average_pim_completeness": 84.5,
+    "scores_85_plus": 27,
     "missing_sku": 0,
     "missing_gtin": 30,
     "missing_mpn": 30,
-    "missing_brand": 7,
-    "compatibility_incomplete": 18,
+    "missing_brand": 3,
+    "compatibility_incomplete": 17,
     "decision_link_missing": 0,
     "average_product_quality_score": 92.77,
     "product_quality_below_85": 0
@@ -259,7 +259,12 @@
         "mpn": null
       },
       "pim_fields": {
-        "brand": null,
+        "brand": {
+          "value": "اتصال گستر",
+          "source": "woocommerce_attribute",
+          "field": "برند",
+          "confidence": "high"
+        },
         "mpn": null,
         "model": {
           "value": "تانک کود / مخزن تزریق کود",
@@ -267,7 +272,12 @@
           "field": "مدل / نوع محصول",
           "confidence": "high"
         },
-        "nominal_size": null,
+        "nominal_size": {
+          "value": "ورودی و خروجی ۱ اینچ",
+          "source": "woocommerce_attribute",
+          "field": "سایز / قطر اسمی",
+          "confidence": "high"
+        },
         "material": null,
         "pressure_class": null,
         "length": null,
@@ -293,7 +303,6 @@
         "pressure_requirement"
       ],
       "compatibility_missing_fields": [
-        "connection_size",
         "pressure_requirement"
       ],
       "decision_links": [
@@ -313,7 +322,7 @@
         "image_count": 7,
         "all_image_alt_present": true
       },
-      "pim_completeness_score": 80,
+      "pim_completeness_score": 85,
       "product_quality_score": 87,
       "product_quality_gaps": [
         "مشخصات ساختاریافته/کامل",
@@ -322,7 +331,6 @@
       "gaps": [
         "missing_gtin",
         "missing_mpn",
-        "missing_brand",
         "compatibility_fields_incomplete"
       ]
     },
@@ -461,7 +469,12 @@
         "mpn": null
       },
       "pim_fields": {
-        "brand": null,
+        "brand": {
+          "value": "اتصال گستر",
+          "source": "woocommerce_attribute",
+          "field": "برند",
+          "confidence": "high"
+        },
         "mpn": null,
         "model": {
           "value": "تانک کود / مخزن تزریق کود",
@@ -469,7 +482,12 @@
           "field": "مدل / نوع محصول",
           "confidence": "high"
         },
-        "nominal_size": null,
+        "nominal_size": {
+          "value": "ورودی و خروجی ۳/۴ اینچ",
+          "source": "woocommerce_attribute",
+          "field": "سایز / قطر اسمی",
+          "confidence": "high"
+        },
         "material": null,
         "pressure_class": null,
         "length": null,
@@ -495,7 +513,6 @@
         "pressure_requirement"
       ],
       "compatibility_missing_fields": [
-        "connection_size",
         "pressure_requirement"
       ],
       "decision_links": [
@@ -515,7 +532,7 @@
         "image_count": 7,
         "all_image_alt_present": true
       },
-      "pim_completeness_score": 80,
+      "pim_completeness_score": 85,
       "product_quality_score": 87,
       "product_quality_gaps": [
         "مشخصات ساختاریافته/کامل",
@@ -524,7 +541,6 @@
       "gaps": [
         "missing_gtin",
         "missing_mpn",
-        "missing_brand",
         "compatibility_fields_incomplete"
       ]
     },
@@ -1380,7 +1396,12 @@
         "mpn": null
       },
       "pim_fields": {
-        "brand": null,
+        "brand": {
+          "value": "پلی رود اتصال (Polirood Etesal)",
+          "source": "woocommerce_attribute",
+          "field": "برند",
+          "confidence": "high"
+        },
         "mpn": null,
         "model": {
           "value": "زانو ۹۰ درجه جوشی",
@@ -1442,15 +1463,14 @@
         "image_count": 7,
         "all_image_alt_present": true
       },
-      "pim_completeness_score": 80,
+      "pim_completeness_score": 85,
       "product_quality_score": 93,
       "product_quality_gaps": [
         "Feed (فاز ۳)"
       ],
       "gaps": [
         "missing_gtin",
-        "missing_mpn",
-        "missing_brand"
+        "missing_mpn"
       ]
     },
     {
@@ -1707,7 +1727,12 @@
           "confidence": "high"
         },
         "material": null,
-        "pressure_class": null,
+        "pressure_class": {
+          "value": "حداکثر ۰.۸ بار برای خانواده رین‌پایپ آسایش؛ لیبل رول تحویلی کنترل شود",
+          "source": "woocommerce_attribute",
+          "field": "فشار کاری / کلاس فشار",
+          "confidence": "high"
+        },
         "length": {
           "value": "۱۰۰ متر",
           "source": "woocommerce_attribute",
@@ -1731,9 +1756,7 @@
         "connection_type",
         "pressure_class"
       ],
-      "compatibility_missing_fields": [
-        "pressure_class"
-      ],
+      "compatibility_missing_fields": [],
       "decision_links": [
         {
           "label": "راهنمای سایز لی‌فلت و نخدار",
@@ -1747,7 +1770,7 @@
       "decision_links_present": true,
       "content": {
         "short_words": 62,
-        "description_words": 1284,
+        "description_words": 1325,
         "image_count": 9,
         "all_image_alt_present": true
       },
@@ -1756,8 +1779,7 @@
       "product_quality_gaps": [],
       "gaps": [
         "missing_gtin",
-        "missing_mpn",
-        "compatibility_fields_incomplete"
+        "missing_mpn"
       ]
     },
     {
@@ -2507,7 +2529,12 @@
         "mpn": null
       },
       "pim_fields": {
-        "brand": null,
+        "brand": {
+          "value": "پلی رود اتصال (Polirood Etesal)",
+          "source": "woocommerce_attribute",
+          "field": "برند",
+          "confidence": "high"
+        },
         "mpn": null,
         "model": {
           "value": "زانو ۹۰ درجه جوشی",
@@ -2569,15 +2596,14 @@
         "image_count": 7,
         "all_image_alt_present": true
       },
-      "pim_completeness_score": 80,
+      "pim_completeness_score": 85,
       "product_quality_score": 93,
       "product_quality_gaps": [
         "Feed (فاز ۳)"
       ],
       "gaps": [
         "missing_gtin",
-        "missing_mpn",
-        "missing_brand"
+        "missing_mpn"
       ]
     },
     {
@@ -3074,7 +3100,7 @@
       "decision_links_present": true,
       "content": {
         "short_words": 53,
-        "description_words": 1551,
+        "description_words": 1590,
         "image_count": 7,
         "all_image_alt_present": true
       },
