@@ -13,7 +13,10 @@ for x in sorted(ready.get("products",[]), key=lambda z:z.get("rank") or 999):
       "rank":x.get("rank"),"product_id":x["product_id"],"name":x["name"],
       "ai_readiness_overall":x["overall"],
       "ai_ready_85_plus":x["ai_ready_85_plus"],
+      "non_video_ai_readiness":x.get("overall_non_video"),
+      "non_video_ready_85_plus":x.get("non_video_ready_85_plus"),
       "scores":x["scores"],
+      "non_video_scores":x.get("non_video_scores"),
       "product_quality_score":q.get("score"),
       "promote_ready":q.get("promote_ready"),
       "blockers":x.get("blockers",[]),
@@ -22,8 +25,14 @@ for x in sorted(ready.get("products",[]), key=lambda z:z.get("rank") or 999):
 out={"summary":ready.get("summary"),"products":rows}
 d=ROOT/"k21-top30-results"; d.mkdir(exist_ok=True)
 (d/"final-top30-scores.json").write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
-lines=["# K21 Top30 Final Scores","",f"میانگین AI Readiness: **{ready.get('summary',{}).get('overall_average')}**","", "| رتبه | محصول | AI Readiness | Product Quality |", "|---:|---|---:|---:|"]
+lines=[
+  "# K21 Top30 Final Scores","",
+  f"میانگین AI Readiness: **{ready.get('summary',{}).get('overall_average')}**",
+  f"میانگین AI Readiness بدون ویدئو: **{ready.get('summary',{}).get('non_video_overall_average')}**","",
+  "| رتبه | محصول | AI Readiness | بدون ویدئو | Product Quality |",
+  "|---:|---|---:|---:|---:|"
+]
 for r in rows:
-    lines.append(f"| {r['rank']} | {r['name']} | {r['ai_readiness_overall']} | {r.get('product_quality_score') if r.get('product_quality_score') is not None else '-'} |")
+    lines.append(f"| {r['rank']} | {r['name']} | {r['ai_readiness_overall']} | {r.get('non_video_ai_readiness') if r.get('non_video_ai_readiness') is not None else '-'} | {r.get('product_quality_score') if r.get('product_quality_score') is not None else '-'} |")
 (d/"final-top30-scores.md").write_text("\n".join(lines),encoding="utf-8")
 print("K21_TOP30_REPORT_OK",len(rows),ready.get("summary",{}).get("overall_average"))
