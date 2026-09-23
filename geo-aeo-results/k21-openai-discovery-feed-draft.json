@@ -1,7 +1,7 @@
 {
   "program": "K21 GEO/AEO OpenAI Product Discovery",
   "version": "k21-openai-discovery-draft-v1",
-  "generated_at_utc": "2026-09-23T06:25:30.071001+00:00",
+  "generated_at_utc": "2026-09-23T06:29:11.360306+00:00",
   "status": "INTERNAL_DRAFT_NOT_SUBMITTED",
   "official_schema_basis": "OpenAI Agentic Commerce stable file-upload product discovery: nine basic required fields.",
   "market_gate": {
@@ -18,9 +18,11 @@
   },
   "summary": {
     "top30": 30,
-    "requested_product_ids": [],
-    "target_products": 30,
-    "schema_complete_rows": 22,
+    "requested_product_ids": [
+      135311
+    ],
+    "target_products": 31,
+    "schema_complete_rows": 23,
     "blocked_rows": 8,
     "externally_submitted": 0
   },
@@ -309,6 +311,19 @@
       "availability": "in_stock",
       "price": "3000000 IRR",
       "wp_product_id": 135323,
+      "source_policy": "Existing WooCommerce visible/catalog data only; no generated specifications."
+    },
+    {
+      "item_id": "900715",
+      "title": "لوله نخدار ۲.۵ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "description": "لوله نخدار ۲.۵ اینچ آسایش آذربایجان، ۵ لایه، رول ۱۰۰ متری با SKU 900715 برای انتقال و توزیع آب در شبکه‌های آبیاری کم‌فشار است. برای همین مدل، قطر ۶۳ میلی‌متر، فشار کاری اعلام‌شده ۱.۵ بار و وزن حدود ۱۲.۲ کیلوگرم ثبت شده است. قبل از خرید، قطر واقعی ۶۳ میلی‌متر، فشار شبکه، طول مسیر و نوع رابط/سرشلنگی را کنترل کنید؛ نام اینچی به‌تنهایی برای انتخاب اتصال کافی نیست.",
+      "url": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%d9%85%d8%af%d9%84-%d9%86%d8%ae-%d8%af%d8%a7%d8%b1-3/",
+      "brand": "آسایش آذربایجان",
+      "seller_name": "Keshavarz20",
+      "image_url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135311-a140680-webp.webp",
+      "availability": "in_stock",
+      "price": "43700000 IRR",
+      "wp_product_id": 135311,
       "source_policy": "Existing WooCommerce visible/catalog data only; no generated specifications."
     }
   ],
