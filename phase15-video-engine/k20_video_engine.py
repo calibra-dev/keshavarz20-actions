@@ -350,6 +350,7 @@ def render_custom_product_video(
     data = {
         "mode": "custom_product_video",
         "product_id": resolved_product_id,
+        "source_product_id": resolved_product_id,
         "title": title,
         "status": "rendered_local",
         "duration_seconds": round(media_duration(video), 3),
