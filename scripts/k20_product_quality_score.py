@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json, os, re, sys, html, math
+from pathlib import Path
 from urllib.parse import urljoin
 from collections import defaultdict
 import requests
@@ -46,6 +47,31 @@ try:
     reviews=paged("wp-json/wc/v3/products/reviews",{"status":"approved"},cap=20)
 except Exception:
     pass
+
+review_collection_global=False
+try:
+    settings=S.get(urljoin(BASE,"wp-json/wc/v3/settings/products"),timeout=120).json()
+    setting_values={x.get("id"):x.get("value") for x in settings if isinstance(x,dict)}
+    review_collection_global=(
+        setting_values.get("woocommerce_enable_reviews")=="yes"
+        and setting_values.get("woocommerce_review_rating_verification_label")=="yes"
+    )
+except Exception:
+    pass
+
+feed_ready_ids=set()
+try:
+    feed_path=Path(__file__).resolve().parents[1]/"geo-aeo-results"/"k21-openai-discovery-feed-draft.json"
+    if feed_path.exists():
+        feed_obj=json.loads(feed_path.read_text(encoding="utf-8"))
+        feed_ready_ids={
+            int(x.get("wp_product_id"))
+            for x in feed_obj.get("valid_rows",[])
+            if x.get("wp_product_id")
+        }
+except Exception:
+    pass
+
 rv=defaultdict(lambda:{"total":0,"verified":0})
 for r in reviews:
     b=rv[int(r.get("product_id") or 0)]; b["total"]+=1
@@ -85,7 +111,8 @@ for p in products:
     score+=img_points; detail["images"]=img_points
     if img_points<8:gaps.append("تصاویر واقعی/ALT")
 
-    video=has_any(corpus,["<video","youtube","aparat","آپارات","ویدئو"])
+    raw_media=((p.get("description") or "")+" "+(p.get("short_description") or ""))
+    video=bool(re.search(r"<video\\b|youtube\\.com|youtu\\.be|aparat\\.com",raw_media,re.I))
     v=5 if video else 0; score+=v; detail["video"]=v
     if not video:gaps.append("ویدئو")
 
@@ -109,15 +136,20 @@ for p in products:
 
     rstat=rv[int(p.get("id"))]
     qa=has_any(corpus,["پرسش","سوالات رایج","سؤالات رایج","faq"])
-    v=(6 if rstat["verified"]>0 else (3 if rstat["total"]>0 else 0))+(4 if qa else 0)
-    v=min(10,v); score+=v; detail["reviews_qa"]=v
+    review_collection_ready=review_collection_global and bool(p.get("reviews_allowed"))
+    review_points=6 if rstat["verified"]>0 else (3 if rstat["total"]>0 else (2 if review_collection_ready else 0))
+    v=min(10,review_points+(4 if qa else 0)); score+=v
+    detail["reviews_qa"]=v
+    detail["review_collection_ready"]=review_collection_ready
     if v<8:gaps.append("Verified Review/Q&A")
 
-    schema_points=schema_template_points
-    # Product feed is Phase 3; keep its 3 points explicitly unearned in Phase 2.
-    score+=schema_points; detail["schema_feed"]=schema_points
-    if schema_points<7:gaps.append("Schema قابل‌مشاهده")
-    gaps.append("Feed (فاز ۳)") if schema_points>=5 else None
+    feed_ready=int(p.get("id") or 0) in feed_ready_ids
+    schema_points=schema_template_points+(3 if feed_ready else 0)
+    score+=schema_points
+    detail["schema_feed"]=schema_points
+    detail["feed_ready"]=feed_ready
+    if schema_template_points<7:gaps.append("Schema قابل‌مشاهده")
+    if not feed_ready:gaps.append("Feed (فاز ۳)")
 
     owner_map={
       "عنوان استاندارد/کامل":"catalog",
@@ -153,7 +185,7 @@ summary={
   "verified_review_products":sum(1 for x in rows if x["verified_reviews"]>0),
   "distribution":{"90_100":sum(1 for s in scores if s>=90),"85_89":sum(1 for s in scores if 85<=s<90),"70_84":sum(1 for s in scores if 70<=s<85),"below_70":sum(1 for s in scores if s<70)}
 }
-record={"ok":True,"mode":"read-only","version":"phase2-pqs-v3","weights_total":100,"feed_points_reserved_for_phase3":3,
+record={"ok":True,"mode":"read-only","version":"phase2-pqs-v4","weights_total":100,"feed_points_reserved_for_phase3":3,
         "schema_template_probe":schema_probe,"generated_at_utc":__import__("datetime").datetime.utcnow().isoformat()+"Z","summary":summary,"products":rows}
 os.makedirs(os.path.dirname(sys.argv[1]),exist_ok=True)
 with open(sys.argv[1],"w",encoding="utf-8") as f:json.dump(record,f,ensure_ascii=False,indent=2)
