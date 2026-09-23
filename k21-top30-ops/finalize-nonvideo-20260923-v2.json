@@ -1,0 +1,24 @@
+{
+  "task": "finalize_top30_non_video_readiness_after_evidence_fixes",
+  "scope": "Top30",
+  "exclude_new_video_work": true,
+  "required_outputs": [
+    "product-quality",
+    "top30-pim",
+    "compatibility-graph",
+    "indexability",
+    "page-schema-feed-parity",
+    "validated-discovery-feed",
+    "ai-readiness",
+    "non-video-readiness",
+    "final-product-score-list"
+  ],
+  "guardrails": [
+    "no fabricated GTIN/MPN",
+    "no fake reviews",
+    "no invented pressure class",
+    "no invented brand",
+    "do not count a filtration requirement as a numeric filtration grade",
+    "do not count emitter spacing as nominal pipe/tape diameter"
+  ]
+}
