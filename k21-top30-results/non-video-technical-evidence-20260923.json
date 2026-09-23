@@ -1,0 +1,29 @@
+{
+  "generated_at_utc": "2026-09-23T09:00:00Z",
+  "program": "K21 Top30 non-video remediation",
+  "policy": "Only claims supported by first-party site state or an external exact-family source are promoted to structured product data. Unknown GTIN/MPN/reviews remain unknown.",
+  "entries": [
+    {
+      "product_id": 135383,
+      "field": "brand",
+      "value": "آب لوله بسپار (Ablooleh baspar)",
+      "evidence_type": "first_party_product_name",
+      "evidence": "The live WooCommerce product name explicitly includes «آبلوله»."
+    },
+    {
+      "product_id": 140503,
+      "field": "working_pressure",
+      "value": "10 bar",
+      "evidence_type": "manufacturer_family_secondary_crosscheck",
+      "source_title": "اتصالات پیچی پلی اتیلن پلی رود اتصال",
+      "source_url": "https://blusearch.ir/product/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%D9%BE%DB%8C%DA%86%DB%8C-%D9%BE%D9%84%DB%8C-%D8%B1%D9%88%D8%AF-%D8%A7%D8%AA%D8%B5%D8%A7%D9%84",
+      "note": "The source identifies Polyrod compression fittings and states working pressure 10 atm; product 140503 is a Polyrod compression female elbow."
+    }
+  ],
+  "intentionally_unfilled": [
+    "GTIN/MPN for all Top30 unless authoritative identifiers are found",
+    "Pressure class for products where the exact model/family could not be verified",
+    "Verified customer reviews when none exist",
+    "Drip-tape roll length/filtration grade without exact-SKU evidence"
+  ]
+}
