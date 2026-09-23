@@ -2,7 +2,7 @@
   "ok": true,
   "program": "K21 GEO/AEO AI Product Readiness",
   "version": "k21-ai-readiness-v3",
-  "generated_at_utc": "2026-09-23T09:39:45.198868+00:00",
+  "generated_at_utc": "2026-09-23T09:50:57.108159+00:00",
   "mode": "read-only-scoring",
   "source_files": [
     "phase3-results/top30-pim.json",
@@ -13,29 +13,30 @@
   ],
   "summary": {
     "products": 30,
-    "overall_average": 89.1,
-    "ai_ready_85_plus": 22,
-    "below_85": 8,
-    "non_video_overall_average": 87.5,
-    "non_video_ready_85_plus": 14,
-    "non_video_below_85": 16,
+    "overall_average": 89.6,
+    "ai_ready_85_plus": 23,
+    "below_85": 7,
+    "non_video_overall_average": 88.0,
+    "non_video_ready_85_plus": 15,
+    "non_video_below_85": 15,
     "averages": {
-      "ai_product_completeness": 79.3,
+      "ai_product_completeness": 79.8,
       "answer_readiness": 100.0,
-      "citation_readiness": 92.0,
+      "citation_readiness": 92.5,
       "merchant_discovery_readiness": 97.5,
-      "compatibility_readiness": 80.8,
-      "evidence_readiness": 85.2
+      "compatibility_readiness": 81.9,
+      "evidence_readiness": 85.7
     },
     "external_product_feed_submitted": false,
     "direct_ai_citation_measurement_complete": false
   },
   "blocker_counts": {
     "gtin_mpn_unknown_do_not_invent": 30,
-    "compatibility_fields_incomplete": 16,
+    "compatibility_fields_incomplete": 15,
     "feed_currency_mapping_unresolved": 3,
     "feed_description_unresolved": 3,
-    "verified_brand_missing": 3
+    "verified_brand_missing": 3,
+    "real_video_missing": 1
   },
   "products": [
     {
@@ -208,24 +209,24 @@
       "name": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۱ اینچ (۳۲ میلی‌متر)",
       "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d8%aa%d9%88%d9%be%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-32-%d9%85%db%8c%d9%84/",
       "scores": {
-        "ai_product_completeness": 75,
+        "ai_product_completeness": 80,
         "answer_readiness": 100,
         "citation_readiness": 85,
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 67,
         "evidence_readiness": 75
       },
-      "overall": 83.7,
+      "overall": 84.5,
       "ai_ready_85_plus": false,
       "non_video_scores": {
-        "ai_product_completeness": 75,
+        "ai_product_completeness": 80,
         "answer_readiness": 100,
         "citation_readiness": 85,
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 67,
         "evidence_readiness": 65
       },
-      "overall_non_video": 82.0,
+      "overall_non_video": 82.8,
       "non_video_ready_85_plus": false,
       "blockers": [
         "compatibility_fields_incomplete",
@@ -238,37 +239,6 @@
       "product_id": 135255,
       "name": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۳ اینچ (۹۰ میلی‌متر)",
       "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d8%aa%d9%88%d9%be%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85%db%8c%d9%84/",
-      "scores": {
-        "ai_product_completeness": 75,
-        "answer_readiness": 100,
-        "citation_readiness": 85,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 67,
-        "evidence_readiness": 75
-      },
-      "overall": 83.7,
-      "ai_ready_85_plus": false,
-      "non_video_scores": {
-        "ai_product_completeness": 75,
-        "answer_readiness": 100,
-        "citation_readiness": 85,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 67,
-        "evidence_readiness": 65
-      },
-      "overall_non_video": 82.0,
-      "non_video_ready_85_plus": false,
-      "blockers": [
-        "compatibility_fields_incomplete",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 3,
-      "product_id": 140407,
-      "name": "مخزن تزریق کود (تانک کود) 200 لیتری",
-      "url": "https://keshavarz20.com/product/%d9%85%d8%ae%d8%b2%d9%86-%d8%aa%d8%b2%d8%b1%db%8c%d9%82-%da%a9%d9%88%d8%af-%d8%aa%d8%a7%d9%86%da%a9-%da%a9%d9%88%d8%af-200-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
       "scores": {
         "ai_product_completeness": 80,
         "answer_readiness": 100,
@@ -544,6 +514,37 @@
       "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
     },
     {
+      "rank": 17,
+      "product_id": 140014,
+      "name": "لوله بارانی مه‌پاش ۲ اینچ آسایش آذربایجان ۱۰۰ متری",
+      "url": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d8%a8%d8%a7%d8%b1%d8%a7%d9%86%db%8c-%d9%85%d9%87-%d9%be%d8%a7%d8%b4-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%db%b1%db%b0%db%b0/",
+      "scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
+      },
+      "overall": 95.8,
+      "ai_ready_85_plus": true,
+      "non_video_scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
+      },
+      "overall_non_video": 95.8,
+      "non_video_ready_85_plus": true,
+      "blockers": [
+        "real_video_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
       "rank": 29,
       "product_id": 135323,
       "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ اینچ (۳۲ میلی‌متر)",
@@ -724,36 +725,6 @@
       "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
     },
     {
-      "rank": 17,
-      "product_id": 140014,
-      "name": "لوله بارانی مه‌پاش ۲ اینچ آسایش آذربایجان ۱۰۰ متری",
-      "url": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d8%a8%d8%a7%d8%b1%d8%a7%d9%86%db%8c-%d9%85%d9%87-%d9%be%d8%a7%d8%b4-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%db%b1%db%b0%db%b0/",
-      "scores": {
-        "ai_product_completeness": 85,
-        "answer_readiness": 100,
-        "citation_readiness": 100,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 100,
-        "evidence_readiness": 100
-      },
-      "overall": 97.5,
-      "ai_ready_85_plus": true,
-      "non_video_scores": {
-        "ai_product_completeness": 85,
-        "answer_readiness": 100,
-        "citation_readiness": 100,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 100,
-        "evidence_readiness": 90
-      },
-      "overall_non_video": 95.8,
-      "non_video_ready_85_plus": true,
-      "blockers": [
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
       "rank": 14,
       "product_id": 139231,
       "name": "زانو 90 درجه جوشی سایز 3 اینچ (90 میلیمتر) - 6بار",
@@ -878,6 +849,36 @@
       "product_id": 135341,
       "name": "شیر پروانه‌ای پلیمری ویسپار ۵ اینچ با دسته فلزی (۱۲۵ میلی‌متر)",
       "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a8%d8%a7-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be-3/",
+      "scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 100
+      },
+      "overall": 97.5,
+      "ai_ready_85_plus": true,
+      "non_video_scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
+      },
+      "overall_non_video": 95.8,
+      "non_video_ready_85_plus": true,
+      "blockers": [
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
+      "rank": 3,
+      "product_id": 140407,
+      "name": "مخزن تزریق کود (تانک کود) 200 لیتری",
+      "url": "https://keshavarz20.com/product/%d9%85%d8%ae%d8%b2%d9%86-%d8%aa%d8%b2%d8%b1%db%8c%d9%82-%da%a9%d9%88%d8%af-%d8%aa%d8%a7%d9%86%da%a9-%da%a9%d9%88%d8%af-200-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
       "scores": {
         "ai_product_completeness": 85,
         "answer_readiness": 100,

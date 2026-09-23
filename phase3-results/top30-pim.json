@@ -2,7 +2,7 @@
   "ok": true,
   "mode": "read-only",
   "version": "phase3-top30-pim-v2",
-  "generated_at_utc": "2026-09-23T09:38:23.471819Z",
+  "generated_at_utc": "2026-09-23T09:41:50.326711Z",
   "selection_rule": "GSC irrigation/fertigation candidate cohort; published Woo products; organic demand dominates priority; in-stock bonus; out-of-stock penalty. This is commercial-priority, not a profit/margin claim.",
   "summary": {
     "selected": 30,
@@ -14,9 +14,9 @@
     "missing_gtin": 30,
     "missing_mpn": 30,
     "missing_brand": 3,
-    "compatibility_incomplete": 16,
+    "compatibility_incomplete": 15,
     "decision_link_missing": 0,
-    "average_product_quality_score": 93.3,
+    "average_product_quality_score": 93.73,
     "product_quality_below_85": 0
   },
   "products": [
@@ -284,7 +284,12 @@
         },
         "material": null,
         "pressure_class": null,
-        "pressure_requirement": null,
+        "pressure_requirement": {
+          "value": "فشار مجاز مخزن باید از پلاک، بدنه یا دیتاشیت همان نمونه تأیید شود؛ پیش از بازکردن یا سرویس، فشار مدار قطع شود",
+          "source": "woocommerce_attribute",
+          "field": "الزام فشار",
+          "confidence": "high"
+        },
         "length": null,
         "capacity": {
           "value": "۲۰۰ لیتر",
@@ -308,9 +313,7 @@
         "connection_size",
         "pressure_requirement"
       ],
-      "compatibility_missing_fields": [
-        "pressure_requirement"
-      ],
+      "compatibility_missing_fields": [],
       "decision_links": [
         {
           "label": "راهنمای طراحی و خرید تجهیزات آبیاری قطره‌ای",
@@ -329,14 +332,11 @@
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
-      "product_quality_score": 93,
-      "product_quality_gaps": [
-        "Feed (فاز ۳)"
-      ],
+      "product_quality_score": 96,
+      "product_quality_gaps": [],
       "gaps": [
         "missing_gtin",
-        "missing_mpn",
-        "compatibility_fields_incomplete"
+        "missing_mpn"
       ]
     },
     {
@@ -545,10 +545,8 @@
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
-      "product_quality_score": 93,
-      "product_quality_gaps": [
-        "Feed (فاز ۳)"
-      ],
+      "product_quality_score": 96,
+      "product_quality_gaps": [],
       "gaps": [
         "missing_gtin",
         "missing_mpn"
@@ -1492,10 +1490,8 @@
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
-      "product_quality_score": 93,
-      "product_quality_gaps": [
-        "Feed (فاز ۳)"
-      ],
+      "product_quality_score": 96,
+      "product_quality_gaps": [],
       "gaps": [
         "missing_gtin",
         "missing_mpn"
@@ -1809,8 +1805,10 @@
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
-      "product_quality_score": 96,
-      "product_quality_gaps": [],
+      "product_quality_score": 91,
+      "product_quality_gaps": [
+        "ویدئو"
+      ],
       "gaps": [
         "missing_gtin",
         "missing_mpn"
@@ -2176,7 +2174,12 @@
           "field": "سایز / قطر اسمی",
           "confidence": "high"
         },
-        "material": null,
+        "material": {
+          "value": "UPVC؛ طبق کاتالوگ خانواده شیرهای توپی آبافرین",
+          "source": "woocommerce_attribute",
+          "field": "جنس",
+          "confidence": "high"
+        },
         "pressure_class": null,
         "pressure_requirement": null,
         "length": null,
@@ -2218,10 +2221,8 @@
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
-      "product_quality_score": 90,
-      "product_quality_gaps": [
-        "مشخصات ساختاریافته/کامل"
-      ],
+      "product_quality_score": 93,
+      "product_quality_gaps": [],
       "gaps": [
         "missing_gtin",
         "missing_mpn",
@@ -2647,10 +2648,8 @@
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
-      "product_quality_score": 93,
-      "product_quality_gaps": [
-        "Feed (فاز ۳)"
-      ],
+      "product_quality_score": 96,
+      "product_quality_gaps": [],
       "gaps": [
         "missing_gtin",
         "missing_mpn"
@@ -2705,7 +2704,12 @@
           "field": "سایز / قطر اسمی",
           "confidence": "high"
         },
-        "material": null,
+        "material": {
+          "value": "UPVC؛ طبق کاتالوگ خانواده شیرهای توپی آبافرین",
+          "source": "woocommerce_attribute",
+          "field": "جنس",
+          "confidence": "high"
+        },
         "pressure_class": null,
         "pressure_requirement": null,
         "length": null,
@@ -2747,10 +2751,8 @@
         "all_image_alt_present": true
       },
       "pim_completeness_score": 85,
-      "product_quality_score": 90,
-      "product_quality_gaps": [
-        "مشخصات ساختاریافته/کامل"
-      ],
+      "product_quality_score": 93,
+      "product_quality_gaps": [],
       "gaps": [
         "missing_gtin",
         "missing_mpn",

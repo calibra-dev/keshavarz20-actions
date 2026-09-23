@@ -1,16 +1,19 @@
 {
   "summary": {
     "products": 30,
-    "overall_average": 88.7,
-    "ai_ready_85_plus": 21,
-    "below_85": 9,
+    "overall_average": 89.6,
+    "ai_ready_85_plus": 23,
+    "below_85": 7,
+    "non_video_overall_average": 88.0,
+    "non_video_ready_85_plus": 15,
+    "non_video_below_85": 15,
     "averages": {
-      "ai_product_completeness": 79.2,
+      "ai_product_completeness": 79.8,
       "answer_readiness": 100.0,
-      "citation_readiness": 91.5,
+      "citation_readiness": 92.5,
       "merchant_discovery_readiness": 97.5,
-      "compatibility_readiness": 79.7,
-      "evidence_readiness": 84.3
+      "compatibility_readiness": 81.9,
+      "evidence_readiness": 85.7
     },
     "external_product_feed_submitted": false,
     "direct_ai_citation_measurement_complete": false
@@ -22,6 +25,8 @@
       "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۲ اینچ (۶۳ میلی‌متر)",
       "ai_readiness_overall": 97.5,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 95.8,
+      "non_video_ready_85_plus": true,
       "scores": {
         "ai_product_completeness": 85,
         "answer_readiness": 100,
@@ -29,6 +34,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 100,
         "evidence_readiness": 100
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
       },
       "product_quality_score": 96,
       "promote_ready": true,
@@ -43,6 +56,8 @@
       "name": "شیر پروانه‌ای پلیمری ویسپار ۴ اینچ با دسته فلزی (110 میلی‌متر)",
       "ai_readiness_overall": 97.5,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 95.8,
+      "non_video_ready_85_plus": true,
       "scores": {
         "ai_product_completeness": 85,
         "answer_readiness": 100,
@@ -50,6 +65,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 100,
         "evidence_readiness": 100
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
       },
       "product_quality_score": 96,
       "promote_ready": true,
@@ -62,32 +85,10 @@
       "rank": 3,
       "product_id": 140407,
       "name": "مخزن تزریق کود (تانک کود) 200 لیتری",
-      "ai_readiness_overall": 84.5,
-      "ai_ready_85_plus": false,
-      "scores": {
-        "ai_product_completeness": 80,
-        "answer_readiness": 100,
-        "citation_readiness": 85,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 67,
-        "evidence_readiness": 75
-      },
-      "product_quality_score": 93,
-      "promote_ready": true,
-      "blockers": [
-        "compatibility_fields_incomplete",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "quality_gaps": [
-        "Feed (فاز ۳)"
-      ]
-    },
-    {
-      "rank": 4,
-      "product_id": 135341,
-      "name": "شیر پروانه‌ای پلیمری ویسپار ۵ اینچ با دسته فلزی (۱۲۵ میلی‌متر)",
       "ai_readiness_overall": 97.5,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 95.8,
+      "non_video_ready_85_plus": true,
       "scores": {
         "ai_product_completeness": 85,
         "answer_readiness": 100,
@@ -95,6 +96,45 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 100,
         "evidence_readiness": 100
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
+      },
+      "product_quality_score": 96,
+      "promote_ready": true,
+      "blockers": [
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "quality_gaps": []
+    },
+    {
+      "rank": 4,
+      "product_id": 135341,
+      "name": "شیر پروانه‌ای پلیمری ویسپار ۵ اینچ با دسته فلزی (۱۲۵ میلی‌متر)",
+      "ai_readiness_overall": 97.5,
+      "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 95.8,
+      "non_video_ready_85_plus": true,
+      "scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 100
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
       },
       "product_quality_score": 96,
       "promote_ready": true,
@@ -107,25 +147,32 @@
       "rank": 5,
       "product_id": 140406,
       "name": "مخزن تزریق کود (تانک کود) 100 لیتری",
-      "ai_readiness_overall": 84.5,
-      "ai_ready_85_plus": false,
+      "ai_readiness_overall": 97.5,
+      "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 95.8,
+      "non_video_ready_85_plus": true,
       "scores": {
-        "ai_product_completeness": 80,
+        "ai_product_completeness": 85,
         "answer_readiness": 100,
-        "citation_readiness": 85,
+        "citation_readiness": 100,
         "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 67,
-        "evidence_readiness": 75
+        "compatibility_readiness": 100,
+        "evidence_readiness": 100
       },
-      "product_quality_score": 93,
+      "non_video_scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
+      },
+      "product_quality_score": 96,
       "promote_ready": true,
       "blockers": [
-        "compatibility_fields_incomplete",
         "gtin_mpn_unknown_do_not_invent"
       ],
-      "quality_gaps": [
-        "Feed (فاز ۳)"
-      ]
+      "quality_gaps": []
     },
     {
       "rank": 6,
@@ -133,6 +180,8 @@
       "name": "سر شلنگی فلزی سایز 1 اینچ (32 میلیمتر)",
       "ai_readiness_overall": 85.8,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 84.2,
+      "non_video_ready_85_plus": false,
       "scores": {
         "ai_product_completeness": 80,
         "answer_readiness": 100,
@@ -140,6 +189,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 75,
         "evidence_readiness": 75
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 100,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 65
       },
       "product_quality_score": 93,
       "promote_ready": true,
@@ -155,6 +212,8 @@
       "name": "سوپاپ چدنی 6 اینچ",
       "ai_readiness_overall": 68.0,
       "ai_ready_85_plus": false,
+      "non_video_ai_readiness": 66.3,
+      "non_video_ready_85_plus": false,
       "scores": {
         "ai_product_completeness": 55,
         "answer_readiness": 100,
@@ -162,6 +221,14 @@
         "merchant_discovery_readiness": 75,
         "compatibility_readiness": 33,
         "evidence_readiness": 60
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 55,
+        "answer_readiness": 100,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 75,
+        "compatibility_readiness": 33,
+        "evidence_readiness": 50
       },
       "product_quality_score": 87,
       "promote_ready": true,
@@ -183,6 +250,8 @@
       "name": "کمربند انشعاب پلی‌اتیلن 63 × 2 اینچ",
       "ai_readiness_overall": 85.8,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 84.2,
+      "non_video_ready_85_plus": false,
       "scores": {
         "ai_product_completeness": 80,
         "answer_readiness": 100,
@@ -190,6 +259,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 75,
         "evidence_readiness": 75
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 100,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 65
       },
       "product_quality_score": 93,
       "promote_ready": true,
@@ -205,6 +282,8 @@
       "name": "رابط مساوی آبلوله 3 اینچ (90 میلیمتر)",
       "ai_readiness_overall": 85.8,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 84.2,
+      "non_video_ready_85_plus": false,
       "scores": {
         "ai_product_completeness": 80,
         "answer_readiness": 100,
@@ -212,6 +291,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 75,
         "evidence_readiness": 75
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 100,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 65
       },
       "product_quality_score": 93,
       "promote_ready": true,
@@ -227,6 +314,8 @@
       "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۳ اینچ (۹۰ میلی‌متر)",
       "ai_readiness_overall": 97.5,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 95.8,
+      "non_video_ready_85_plus": true,
       "scores": {
         "ai_product_completeness": 85,
         "answer_readiness": 100,
@@ -234,6 +323,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 100,
         "evidence_readiness": 100
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
       },
       "product_quality_score": 96,
       "promote_ready": true,
@@ -248,6 +345,8 @@
       "name": "کمربند پلی‌اتیلن ۶۳ × ۱/۲ اینچ | انشعاب لوله ۲۰ میلی‌متر",
       "ai_readiness_overall": 85.8,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 84.2,
+      "non_video_ready_85_plus": false,
       "scores": {
         "ai_product_completeness": 80,
         "answer_readiness": 100,
@@ -255,6 +354,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 75,
         "evidence_readiness": 75
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 100,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 65
       },
       "product_quality_score": 93,
       "promote_ready": true,
@@ -270,6 +377,8 @@
       "name": "سر شلنگی فلزی سایز 2 اینچ (63 میلیمتر)",
       "ai_readiness_overall": 85.8,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 84.2,
+      "non_video_ready_85_plus": false,
       "scores": {
         "ai_product_completeness": 80,
         "answer_readiness": 100,
@@ -277,6 +386,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 75,
         "evidence_readiness": 75
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 100,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 65
       },
       "product_quality_score": 93,
       "promote_ready": true,
@@ -292,6 +409,8 @@
       "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۲ و ۱/۲ اینچ (۷۵ میلی‌متر)",
       "ai_readiness_overall": 97.5,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 95.8,
+      "non_video_ready_85_plus": true,
       "scores": {
         "ai_product_completeness": 85,
         "answer_readiness": 100,
@@ -299,6 +418,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 100,
         "evidence_readiness": 100
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
       },
       "product_quality_score": 96,
       "promote_ready": true,
@@ -313,6 +440,8 @@
       "name": "زانو 90 درجه جوشی سایز 3 اینچ (90 میلیمتر) - 6بار",
       "ai_readiness_overall": 97.5,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 95.8,
+      "non_video_ready_85_plus": true,
       "scores": {
         "ai_product_completeness": 85,
         "answer_readiness": 100,
@@ -321,14 +450,20 @@
         "compatibility_readiness": 100,
         "evidence_readiness": 100
       },
-      "product_quality_score": 93,
+      "non_video_scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
+      },
+      "product_quality_score": 96,
       "promote_ready": true,
       "blockers": [
         "gtin_mpn_unknown_do_not_invent"
       ],
-      "quality_gaps": [
-        "Feed (فاز ۳)"
-      ]
+      "quality_gaps": []
     },
     {
       "rank": 15,
@@ -336,6 +471,8 @@
       "name": "رابط مساوی پلی‌اتیلن ۴ اینچ (۱۱۰ میلی‌متر) آبلوله",
       "ai_readiness_overall": 85.8,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 84.2,
+      "non_video_ready_85_plus": false,
       "scores": {
         "ai_product_completeness": 80,
         "answer_readiness": 100,
@@ -343,6 +480,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 75,
         "evidence_readiness": 75
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 100,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 65
       },
       "product_quality_score": 96,
       "promote_ready": true,
@@ -358,6 +503,8 @@
       "name": "سوپاپ آهنی 5 اینچ",
       "ai_readiness_overall": 78.0,
       "ai_ready_85_plus": false,
+      "non_video_ai_readiness": 76.3,
+      "non_video_ready_85_plus": false,
       "scores": {
         "ai_product_completeness": 75,
         "answer_readiness": 100,
@@ -365,6 +512,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 33,
         "evidence_readiness": 75
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 75,
+        "answer_readiness": 100,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 33,
+        "evidence_readiness": 65
       },
       "product_quality_score": 90,
       "promote_ready": true,
@@ -380,22 +535,35 @@
       "rank": 17,
       "product_id": 140014,
       "name": "لوله بارانی مه‌پاش ۲ اینچ آسایش آذربایجان ۱۰۰ متری",
-      "ai_readiness_overall": 97.5,
+      "ai_readiness_overall": 95.8,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 95.8,
+      "non_video_ready_85_plus": true,
       "scores": {
         "ai_product_completeness": 85,
         "answer_readiness": 100,
         "citation_readiness": 100,
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 100,
-        "evidence_readiness": 100
+        "evidence_readiness": 90
       },
-      "product_quality_score": 96,
+      "non_video_scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
+      },
+      "product_quality_score": 91,
       "promote_ready": true,
       "blockers": [
+        "real_video_missing",
         "gtin_mpn_unknown_do_not_invent"
       ],
-      "quality_gaps": []
+      "quality_gaps": [
+        "ویدئو"
+      ]
     },
     {
       "rank": 18,
@@ -403,6 +571,8 @@
       "name": "سوپاپ آهنی 4 اینچ",
       "ai_readiness_overall": 78.0,
       "ai_ready_85_plus": false,
+      "non_video_ai_readiness": 76.3,
+      "non_video_ready_85_plus": false,
       "scores": {
         "ai_product_completeness": 75,
         "answer_readiness": 100,
@@ -410,6 +580,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 33,
         "evidence_readiness": 75
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 75,
+        "answer_readiness": 100,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 33,
+        "evidence_readiness": 65
       },
       "product_quality_score": 90,
       "promote_ready": true,
@@ -427,6 +605,8 @@
       "name": "فلنج دنده ای آهنی 3 اینچ",
       "ai_readiness_overall": 75.8,
       "ai_ready_85_plus": false,
+      "non_video_ai_readiness": 74.2,
+      "non_video_ready_85_plus": false,
       "scores": {
         "ai_product_completeness": 60,
         "answer_readiness": 100,
@@ -434,6 +614,14 @@
         "merchant_discovery_readiness": 75,
         "compatibility_readiness": 75,
         "evidence_readiness": 60
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 60,
+        "answer_readiness": 100,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 75,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 50
       },
       "product_quality_score": 90,
       "promote_ready": true,
@@ -454,6 +642,8 @@
       "name": "کمربند پلی‌اتیلن ۹۰ × ۱ اینچ | انشعاب لوله ۳۲ میلی‌متر",
       "ai_readiness_overall": 85.8,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 84.2,
+      "non_video_ready_85_plus": false,
       "scores": {
         "ai_product_completeness": 80,
         "answer_readiness": 100,
@@ -461,6 +651,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 75,
         "evidence_readiness": 75
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 100,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 65
       },
       "product_quality_score": 93,
       "promote_ready": true,
@@ -474,25 +672,33 @@
       "rank": 21,
       "product_id": 135255,
       "name": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۳ اینچ (۹۰ میلی‌متر)",
-      "ai_readiness_overall": 83.7,
+      "ai_readiness_overall": 84.5,
       "ai_ready_85_plus": false,
+      "non_video_ai_readiness": 82.8,
+      "non_video_ready_85_plus": false,
       "scores": {
-        "ai_product_completeness": 75,
+        "ai_product_completeness": 80,
         "answer_readiness": 100,
         "citation_readiness": 85,
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 67,
         "evidence_readiness": 75
       },
-      "product_quality_score": 90,
+      "non_video_scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 100,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 67,
+        "evidence_readiness": 65
+      },
+      "product_quality_score": 93,
       "promote_ready": true,
       "blockers": [
         "compatibility_fields_incomplete",
         "gtin_mpn_unknown_do_not_invent"
       ],
-      "quality_gaps": [
-        "مشخصات ساختاریافته/کامل"
-      ]
+      "quality_gaps": []
     },
     {
       "rank": 22,
@@ -500,6 +706,8 @@
       "name": "زانو پلی اتیلن یکسر ماده 3/4 اینچ (25 میلیمتر)",
       "ai_readiness_overall": 85.8,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 84.2,
+      "non_video_ready_85_plus": false,
       "scores": {
         "ai_product_completeness": 80,
         "answer_readiness": 100,
@@ -507,6 +715,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 75,
         "evidence_readiness": 75
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 100,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 75,
+        "evidence_readiness": 65
       },
       "product_quality_score": 93,
       "promote_ready": true,
@@ -522,6 +738,8 @@
       "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۴ اینچ (۱۱۰ میلی‌متر)",
       "ai_readiness_overall": 97.5,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 95.8,
+      "non_video_ready_85_plus": true,
       "scores": {
         "ai_product_completeness": 85,
         "answer_readiness": 100,
@@ -529,6 +747,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 100,
         "evidence_readiness": 100
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
       },
       "product_quality_score": 96,
       "promote_ready": true,
@@ -543,6 +769,8 @@
       "name": "زانو پلی اتیلن یکسر ماده 2 اینچ (63 میلیمتر)",
       "ai_readiness_overall": 97.5,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 95.8,
+      "non_video_ready_85_plus": true,
       "scores": {
         "ai_product_completeness": 85,
         "answer_readiness": 100,
@@ -550,6 +778,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 100,
         "evidence_readiness": 100
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
       },
       "product_quality_score": 96,
       "promote_ready": true,
@@ -564,6 +800,8 @@
       "name": "زانو 90 درجه جوشی سایز 4 اینچ (110 میلیمتر) - 6بار",
       "ai_readiness_overall": 97.5,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 95.8,
+      "non_video_ready_85_plus": true,
       "scores": {
         "ai_product_completeness": 85,
         "answer_readiness": 100,
@@ -572,38 +810,52 @@
         "compatibility_readiness": 100,
         "evidence_readiness": 100
       },
-      "product_quality_score": 93,
+      "non_video_scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
+      },
+      "product_quality_score": 96,
       "promote_ready": true,
       "blockers": [
         "gtin_mpn_unknown_do_not_invent"
       ],
-      "quality_gaps": [
-        "Feed (فاز ۳)"
-      ]
+      "quality_gaps": []
     },
     {
       "rank": 26,
       "product_id": 135667,
       "name": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۱ اینچ (۳۲ میلی‌متر)",
-      "ai_readiness_overall": 83.7,
+      "ai_readiness_overall": 84.5,
       "ai_ready_85_plus": false,
+      "non_video_ai_readiness": 82.8,
+      "non_video_ready_85_plus": false,
       "scores": {
-        "ai_product_completeness": 75,
+        "ai_product_completeness": 80,
         "answer_readiness": 100,
         "citation_readiness": 85,
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 67,
         "evidence_readiness": 75
       },
-      "product_quality_score": 90,
+      "non_video_scores": {
+        "ai_product_completeness": 80,
+        "answer_readiness": 100,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 67,
+        "evidence_readiness": 65
+      },
+      "product_quality_score": 93,
       "promote_ready": true,
       "blockers": [
         "compatibility_fields_incomplete",
         "gtin_mpn_unknown_do_not_invent"
       ],
-      "quality_gaps": [
-        "مشخصات ساختاریافته/کامل"
-      ]
+      "quality_gaps": []
     },
     {
       "rank": 27,
@@ -611,6 +863,8 @@
       "name": "شیر توپی دسته فلزی ویسپار ۴ اینچ (۱۱۰ میلی‌متر)",
       "ai_readiness_overall": 97.5,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 95.8,
+      "non_video_ready_85_plus": true,
       "scores": {
         "ai_product_completeness": 85,
         "answer_readiness": 100,
@@ -618,6 +872,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 100,
         "evidence_readiness": 100
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
       },
       "product_quality_score": 96,
       "promote_ready": true,
@@ -632,6 +894,8 @@
       "name": "فلنچ پلی‌اتیلن جوشی ۴ اینچ (۱۱۰ میلی‌متر) ۶ اتمسفر آبلوله",
       "ai_readiness_overall": 97.5,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 95.8,
+      "non_video_ready_85_plus": true,
       "scores": {
         "ai_product_completeness": 85,
         "answer_readiness": 100,
@@ -639,6 +903,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 100,
         "evidence_readiness": 100
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
       },
       "product_quality_score": 96,
       "promote_ready": true,
@@ -653,6 +925,8 @@
       "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ اینچ (۳۲ میلی‌متر)",
       "ai_readiness_overall": 97.5,
       "ai_ready_85_plus": true,
+      "non_video_ai_readiness": 95.8,
+      "non_video_ready_85_plus": true,
       "scores": {
         "ai_product_completeness": 85,
         "answer_readiness": 100,
@@ -660,6 +934,14 @@
         "merchant_discovery_readiness": 100,
         "compatibility_readiness": 100,
         "evidence_readiness": 100
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 85,
+        "answer_readiness": 100,
+        "citation_readiness": 100,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 100,
+        "evidence_readiness": 90
       },
       "product_quality_score": 96,
       "promote_ready": true,
@@ -674,6 +956,8 @@
       "name": "نوار تیپ آبیاری قطره‌ای ۲۰ سانتی‌متری مناسب کشت زیر پلاستیک",
       "ai_readiness_overall": 70.8,
       "ai_ready_85_plus": false,
+      "non_video_ai_readiness": 69.2,
+      "non_video_ready_85_plus": false,
       "scores": {
         "ai_product_completeness": 55,
         "answer_readiness": 100,
@@ -681,6 +965,14 @@
         "merchant_discovery_readiness": 75,
         "compatibility_readiness": 50,
         "evidence_readiness": 60
+      },
+      "non_video_scores": {
+        "ai_product_completeness": 55,
+        "answer_readiness": 100,
+        "citation_readiness": 85,
+        "merchant_discovery_readiness": 75,
+        "compatibility_readiness": 50,
+        "evidence_readiness": 50
       },
       "product_quality_score": 87,
       "promote_ready": true,
