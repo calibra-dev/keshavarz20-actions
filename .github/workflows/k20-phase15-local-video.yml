@@ -125,14 +125,6 @@ jobs:
         if: github.event_name == 'push' || inputs.action == 'health'
         run: python phase15-video-engine/k20_video_engine.py health
 
-      - name: Render full Phase15 batch
-        if: github.event_name == 'push'
-        run: python phase15-video-engine/k20_video_engine.py batch --start 1 --end 20
-
-      - name: Validate full Phase15 package
-        if: github.event_name == 'push'
-        run: python phase15-video-engine/k20_video_engine.py package --start 1 --end 20
-
       - name: Render one episode
         if: github.event_name == 'workflow_dispatch' && inputs.action == 'episode'
         run: python phase15-video-engine/k20_video_engine.py render --episode ${{ inputs.episode }}
@@ -155,7 +147,7 @@ jobs:
           )
 
       - name: Upload render artifacts
-        if: always()
+        if: always() && github.event_name == 'workflow_dispatch'
         continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
