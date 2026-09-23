@@ -1,0 +1,11 @@
+{
+  "requested_at_utc": "2026-09-23T06:38:00Z",
+  "task": "rescore_after_real_feed_review-readiness_and_real-video",
+  "product_id": 135311,
+  "scorer_version_expected": "phase2-pqs-v4",
+  "guardrails": [
+    "do not fabricate reviews",
+    "count feed only from valid generated row",
+    "count video only from real embedded media"
+  ]
+}
