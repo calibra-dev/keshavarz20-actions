@@ -262,18 +262,30 @@ def render_video(poster: Path, audio: Path, dest: Path) -> None:
         f"zoompan=z='min(zoom+0.00035,1.06)':d=1:"
         f"s={TARGET_W}x{TARGET_H}:fps={FPS},format=yuv420p"
     )
-    if command_exists("nvidia-smi") and ffmpeg_has_encoder("h264_nvenc"):
-        video_args = ["-c:v", "h264_nvenc", "-preset", "p5", "-cq", "20", "-b:v", "0"]
-    else:
-        video_args = ["-c:v", "libx264", "-preset", "medium", "-crf", "20"]
 
-    cmd = [
-        "ffmpeg", "-y", "-loop", "1", "-framerate", str(FPS),
-        "-i", str(poster), "-i", str(audio), "-vf", vf, *video_args,
-        "-c:a", "aac", "-b:a", "160k", "-t", f"{duration:.3f}",
-        "-shortest", "-movflags", "+faststart", str(dest),
-    ]
-    run(cmd)
+    def encode(video_args: list[str]) -> None:
+        cmd = [
+            "ffmpeg", "-y", "-loop", "1", "-framerate", str(FPS),
+            "-i", str(poster), "-i", str(audio), "-vf", vf, *video_args,
+            "-c:a", "aac", "-b:a", "160k", "-t", f"{duration:.3f}",
+            "-shortest", "-movflags", "+faststart", str(dest),
+        ]
+        run(cmd)
+
+    if command_exists("nvidia-smi") and ffmpeg_has_encoder("h264_nvenc"):
+        try:
+            encode(["-c:v", "h264_nvenc", "-preset", "p5", "-cq", "20", "-b:v", "0"])
+            return
+        except subprocess.CalledProcessError as exc:
+            if dest.exists():
+                dest.unlink()
+            print(
+                "NVENC runtime encode failed; falling back to libx264. "
+                f"ffmpeg stderr: {exc.stderr[-2000:] if exc.stderr else 'unavailable'}",
+                file=sys.stderr,
+            )
+
+    encode(["-c:v", "libx264", "-preset", "medium", "-crf", "20"])
 
 
 def render_episode(number: int, voice: str = "fa-IR-FaridNeural", product_id: int | None = None) -> dict:
