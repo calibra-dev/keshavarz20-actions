@@ -32,20 +32,44 @@ def _norm(text: str) -> str:
     return " ".join(text.split())
 
 
-def resolve_product_id(search: str) -> int:
-    products = engine.store_products(search)
-    if not products:
+def resolve_product(search: str) -> dict:
+    norm_search = _norm(search)
+    queries = [
+        search,
+        "آسایش آذربایجان" if "آسایش" in norm_search else "",
+        "آسایش" if "آسایش" in norm_search else "",
+        "مه پاش" if "مه" in norm_search and "پاش" in norm_search else "",
+        "2 اینچ" if "2" in norm_search and "اینچ" in norm_search else "",
+        "لوله" if "لوله" in norm_search else "",
+    ]
+    seen = {}
+    for q in queries:
+        if not q:
+            continue
+        for p in engine.store_products(q):
+            seen[int(p["id"])] = p
+    if not seen:
         raise RuntimeError(f"No product found for search={search!r}")
-    wanted = [t for t in _norm(search).split() if len(t) > 1]
+
+    wanted = [t for t in norm_search.split() if len(t) > 1 or t.isdigit()]
     ranked = []
-    for p in products:
-        name = _norm(str(p.get("name") or ""))
+    for p in seen.values():
+        raw_name = str(p.get("name") or "")
+        name = _norm(raw_name)
         score = sum(1 for t in wanted if t in name)
-        ranked.append((score, int(p["id"]), str(p.get("name") or "")))
-    ranked.sort(reverse=True)
-    if not ranked or ranked[0][0] == 0:
+        if "آسایش" in norm_search and "آسایش" in name:
+            score += 5
+        if "آذربایجان" in norm_search and "آذربایجان" in name:
+            score += 3
+        if "2 اینچ" in norm_search and "2 اینچ" in name:
+            score += 6
+        if "مه پاش" in norm_search and "مه پاش" in name:
+            score += 6
+        ranked.append((score, int(p["id"]), p))
+    ranked.sort(key=lambda x: (x[0], x[1]), reverse=True)
+    if not ranked or ranked[0][0] < 3:
         raise RuntimeError(f"No sufficiently matching product found for search={search!r}")
-    return ranked[0][1]
+    return ranked[0][2]
 
 
 def upload_media(path: Path, title: str) -> dict:
@@ -91,7 +115,12 @@ def main() -> int:
 
     request_path = ROOT / args.request
     req = json.loads(request_path.read_text(encoding="utf-8"))
-    product_id = int(req["product_id"]) if req.get("product_id") else resolve_product_id(str(req["product_search"]))
+    resolved_product = None
+    if req.get("product_id"):
+        product_id = int(req["product_id"])
+    else:
+        resolved_product = resolve_product(str(req["product_search"]))
+        product_id = int(resolved_product["id"])
     if product_id < 1:
         raise SystemExit("Invalid product_id")
 
@@ -145,6 +174,7 @@ def main() -> int:
         "episode": episode,
         "custom_video": bool(custom),
         "source_product_id": metadata.get("source_product_id"),
+        "source_product_name": (resolved_product or {}).get("name"),
         "source_product_url": metadata.get("source_product_url"),
         "source_image_url": metadata.get("source_image_url"),
         "video_sha256": metadata.get("video_sha256"),
