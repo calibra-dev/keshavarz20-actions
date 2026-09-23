@@ -51,8 +51,8 @@ jobs:
           foreach($r in $requests){
             $out=Join-Path "$env:RUNNER_TEMP/k21-results" ($r.BaseName+'.result.json')
             & ./scripts/Invoke-K20BridgeV3.ps1 -RequestPath $r.FullName -OutputPath $out
-            if($LASTEXITCODE -ne 0){ throw "Bridge 3.2 failed for $($r.Name)" }
             $obj=Get-Content -Raw -LiteralPath $out | ConvertFrom-Json
+            if($obj.ok -ne $true){ throw "Bridge 3.2 returned not-ok for $($r.Name): $($obj.error_code) $($obj.message)" }
             $summary += [ordered]@{
               request=$r.Name
               ok=$obj.ok
