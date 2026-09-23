@@ -75,9 +75,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
+      - name: Verify local Python
+        run: |
+          python --version
+          where python
 
       - name: Install Python dependencies
         run: |
