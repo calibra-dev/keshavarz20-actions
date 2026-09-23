@@ -1,0 +1,92 @@
+name: K20 DONOTCACHEPAGE Owner Scan
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/donotcache-owner-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-donotcache-owner-scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Scan selected plugin roots read-only
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $before='${{ github.event.before }}'
+          $current='${{ github.sha }}'
+          $zero='0000000000000000000000000000000000000000'
+          if($before -and $before -ne $zero){
+            $reqPath=(git diff --name-only $before $current -- 'diagnostics/donotcache-owner-ops/*.json' | Select-Object -First 1)
+          } else {
+            $reqPath=(git show --pretty='' --name-only $current -- 'diagnostics/donotcache-owner-ops/*.json' | Select-Object -First 1)
+          }
+          if([string]::IsNullOrWhiteSpace($reqPath)){throw 'No request file found.'}
+          $req=Get-Content -Raw -LiteralPath $reqPath | ConvertFrom-Json -Depth 10
+          $base=$env:WP_BASE_URL.TrimEnd('/')
+          $auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"))
+          $headers=@{Authorization="Basic $auth";Accept='application/json';'Content-Type'='application/json'}
+          $needles=@('DONOTCACHEPAGE','wc_nocache_headers','nocache_headers','set_nocache_constants')
+          $matches=@(); $seen=0; $read=0
+          foreach($root in @($req.roots)){
+            $enc=[Uri]::EscapeDataString([string]$root)
+            try{$list=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/file/list?scope=wp-content&directory=$enc" -Headers $headers -Method GET -TimeoutSec 120}catch{continue}
+            foreach($f in @($list.files)){
+              $path=[string]$f.path
+              if($path -notmatch '\.php$'){continue}
+              $seen++
+              if([int64]$f.size -gt 65536){continue}
+              $body=[ordered]@{scope='wp-content';path=$path}|ConvertTo-Json -Compress
+              try{$r=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/file/read" -Headers $headers -Method POST -Body $body -TimeoutSec 120}catch{continue}
+              $content=if($r.PSObject.Properties.Name -contains 'content'){[string]$r.content}elseif($r.data){[string]$r.data.content}else{''}
+              if([string]::IsNullOrEmpty($content)){continue}
+              $read++
+              $srcLines=$content -split "\r?\n"
+              for($i=0;$i -lt $srcLines.Count;$i++){
+                foreach($needle in $needles){
+                  if($srcLines[$i].IndexOf($needle,[StringComparison]::OrdinalIgnoreCase)-ge0){
+                    $matches+=,[pscustomobject]@{root=[string]$root;path=$path;line=$i+1;token=$needle}
+                    break
+                  }
+                }
+              }
+            }
+          }
+          New-Item -ItemType Directory -Force 'diagnostics/donotcache-owner-results'|Out-Null
+          $baseName=[IO.Path]::GetFileNameWithoutExtension($reqPath)
+          $outPath="diagnostics/donotcache-owner-results/$baseName-result.json"
+          [ordered]@{mode='read-only';php_files_seen=$seen;readable_php_files=$read;matches=@($matches | Sort-Object path,line -Unique)}|ConvertTo-Json -Depth 10|Set-Content -LiteralPath $outPath -Encoding utf8
+          "RESULT_PATH=$outPath" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Commit sanitized result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f "$RESULT_PATH"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "diag: record DONOTCACHEPAGE owner scan"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
