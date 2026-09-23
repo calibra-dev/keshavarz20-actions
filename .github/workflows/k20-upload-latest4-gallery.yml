@@ -1,0 +1,43 @@
+name: K20 Upload Latest Four Gallery Slides
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'gallery-slide-ops/latest4-*.json'
+
+permissions:
+  contents: write
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install requests Pillow
+      - name: Rebuild, upload and append four WebP slides
+        run: python scripts/k20_upload_latest4_gallery.py
+      - name: Commit verified evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp gallery-slide-results/20260923-p140014-latest4-gallery.json /tmp/latest4.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git reset --hard origin/main
+          mkdir -p gallery-slide-results
+          cp /tmp/latest4.json gallery-slide-results/20260923-p140014-latest4-gallery.json
+          git add -f gallery-slide-results/20260923-p140014-latest4-gallery.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "gallery: record latest four Asayesh slides"
+          git push origin HEAD:main
