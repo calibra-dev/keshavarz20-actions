@@ -28,6 +28,7 @@ _spec.loader.exec_module(engine)
 
 def _norm(text: str) -> str:
     text = (text or "").lower().replace("ي", "ی").replace("ك", "ک")
+    text = text.translate(str.maketrans("۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩", "01234567890123456789"))
     text = re.sub(r"[^0-9a-z\u0600-\u06ff]+", " ", text)
     return " ".join(text.split())
 
