@@ -1,0 +1,106 @@
+name: K20 Phase15 Local Video Engine
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/k20-phase15-local-video.yml'
+      - 'phase15-video-engine/**'
+      - 'phase2/video-program/**'
+  workflow_dispatch:
+    inputs:
+      action:
+        description: health | episode | batch | package
+        required: true
+        default: health
+        type: choice
+        options:
+          - health
+          - episode
+          - batch
+          - package
+      episode:
+        description: Episode number for action=episode
+        required: false
+        default: '1'
+      start:
+        description: First episode for batch/package
+        required: false
+        default: '1'
+      end:
+        description: Last episode for batch/package
+        required: false
+        default: '20'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: k20-phase15-video-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PYTHONUNBUFFERED: '1'
+  K20_SITE_BASE_URL: https://keshavarz20.com
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: phase15-video-engine/requirements.txt
+      - run: python -m pip install -r phase15-video-engine/requirements.txt
+      - name: Compile and unit test
+        run: |
+          python -m py_compile phase15-video-engine/k20_video_engine.py
+          python -m pytest -q phase15-video-engine/test_engine.py
+
+  render:
+    if: github.event_name == 'workflow_dispatch'
+    needs: validate
+    runs-on: [self-hosted, Windows, X64, k20-video, gpu]
+    timeout-minutes: 240
+    defaults:
+      run:
+        shell: powershell
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r phase15-video-engine/requirements.txt
+
+      - name: Health
+        if: inputs.action == 'health'
+        run: python phase15-video-engine/k20_video_engine.py health
+
+      - name: Render one episode
+        if: inputs.action == 'episode'
+        run: python phase15-video-engine/k20_video_engine.py render --episode ${{ inputs.episode }}
+
+      - name: Render batch
+        if: inputs.action == 'batch'
+        run: python phase15-video-engine/k20_video_engine.py batch --start ${{ inputs.start }} --end ${{ inputs.end }}
+
+      - name: Package validation
+        if: inputs.action == 'package'
+        run: python phase15-video-engine/k20_video_engine.py package --start ${{ inputs.start }} --end ${{ inputs.end }}
+
+      - name: Upload render artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-phase15-video-${{ inputs.action }}-${{ github.run_id }}
+          if-no-files-found: warn
+          retention-days: 14
+          path: |
+            phase15-video-engine/out/**/*.mp4
+            phase15-video-engine/out/**/*.jpg
+            phase15-video-engine/out/**/*.srt
+            phase15-video-engine/out/**/*.txt
+            phase15-video-engine/out/**/*.json
