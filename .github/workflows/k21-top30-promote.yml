@@ -1,0 +1,46 @@
+name: K21 Top30 Promote Dry-runs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'k21-top30-apply-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k21-top30-promote
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify all 30 dry-runs and create apply requests
+        run: python scripts/k21_promote_top30_dryruns.py
+      - name: Commit apply requests
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/k21-apply
+          mkdir -p /tmp/k21-apply/bridge-v3-ops /tmp/k21-apply/geo-aeo-results
+          cp bridge-v3-ops/20260923-k21-top30-*-apply.json /tmp/k21-apply/bridge-v3-ops/
+          cp geo-aeo-results/k21-top30-apply-manifest.json /tmp/k21-apply/geo-aeo-results/
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/k21-apply/bridge-v3-ops/*.json bridge-v3-ops/
+          cp /tmp/k21-apply/geo-aeo-results/*.json geo-aeo-results/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f bridge-v3-ops/20260923-k21-top30-*-apply.json geo-aeo-results/k21-top30-apply-manifest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "k21: promote validated Top30 remediation to apply"
+          git push origin HEAD:main
