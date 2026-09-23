@@ -51,6 +51,8 @@ Core fields:
   "research_summary": "Why the topic passed the evidence and farmer-decision gate, including uncertainty.",
   "image_search_query": "precise factual agriculture editorial photo query",
   "image_title": "عنوان کوتاه کاور",
+  "cover_title": "عنوان کوتاه و خوانای روی تصویر",
+  "cover_subtitle": "زیرعنوان کوتاه اختیاری",
   "alt_text": "توضیح دقیق و طبیعی تصویر",
   "faq_items": []
 }
@@ -72,6 +74,9 @@ Core fields:
 - existing category validation
 - 4–10 useful tags
 - open-license Wikimedia source image only
+- text-free source/background image; never rely on AI-generated Persian lettering
+- deterministic Persian overlay using approved Noto Arabic font + Pillow + arabic-reshaper + python-bidi
+- fail closed if the Persian shaping/font stack is unavailable
 - branded 1280×720 WebP cover generation
 - image title + ALT metadata
 - post-write verification of draft status/type/featured image/category/SEO fields
