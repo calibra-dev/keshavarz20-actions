@@ -130,11 +130,15 @@ jobs:
         run: python phase15-video-engine/k20_video_engine.py render --episode ${{ inputs.episode }}
 
       - name: Render batch
-        if: inputs.action == 'batch'
+        if: github.event_name == 'workflow_dispatch' && inputs.action == 'batch'
         run: python phase15-video-engine/k20_video_engine.py batch --start ${{ inputs.start }} --end ${{ inputs.end }}
 
+      - name: Validate rendered batch
+        if: github.event_name == 'workflow_dispatch' && inputs.action == 'batch'
+        run: python phase15-video-engine/k20_video_engine.py package --start ${{ inputs.start }} --end ${{ inputs.end }}
+
       - name: Package validation
-        if: inputs.action == 'package'
+        if: github.event_name == 'workflow_dispatch' && inputs.action == 'package'
         run: python phase15-video-engine/k20_video_engine.py package --start ${{ inputs.start }} --end ${{ inputs.end }}
 
       - name: Persist render output on Windows host
