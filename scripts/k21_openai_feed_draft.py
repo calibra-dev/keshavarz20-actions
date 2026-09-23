@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os, json, re, html, datetime
+import os, json, re, html, datetime, concurrent.futures
 from pathlib import Path
 from urllib.parse import urljoin
 import requests
@@ -58,11 +58,10 @@ for pid in sorted(requested_ids):
     if pid not in pim_by:
         target_ids.append(pid)
 
-valid=[]; blocked=[]
-for pid in target_ids:
+def build_row(pid):
     item=pim_by.get(pid,{"product_id":pid,"pim_fields":{}})
     pid=int(item["product_id"])
-    r=S.get(urljoin(BASE,f"wp-json/wc/v3/products/{pid}"),timeout=120)
+    r=requests.get(urljoin(BASE,f"wp-json/wc/v3/products/{pid}"),auth=AUTH,timeout=45,headers={"Accept":"application/json","User-Agent":"k21-openai-feed-draft/1.1","Cache-Control":"no-cache"})
     r.raise_for_status(); p=r.json()
     old=existing_by.get(pid,{})
     description=plain(p.get("short_description") or "")
@@ -96,7 +95,16 @@ for pid in target_ids:
       "source_policy":"Existing WooCommerce visible/catalog data only; no generated specifications."
     }
     missing=[k for k in ["item_id","title","description","url","brand","seller_name","image_url","availability","price"] if not row.get(k)]
-    # OpenAI discovery accepts explicit unknown availability, but current Woo state is known for these products.
+    return pid,row,missing
+
+valid=[]; blocked=[]
+built=[]
+with concurrent.futures.ThreadPoolExecutor(max_workers=min(8,max(1,len(target_ids)))) as ex:
+    futs=[ex.submit(build_row,pid) for pid in target_ids]
+    for fut in concurrent.futures.as_completed(futs):
+        built.append(fut.result())
+built.sort(key=lambda x:target_ids.index(x[0]))
+for pid,row,missing in built:
     if missing:
         blocked.append({"wp_product_id":pid,"title":row["title"],"missing_required_fields":missing,"row":row})
     else:
@@ -104,7 +112,7 @@ for pid in target_ids:
 
 out={
  "program":"K21 GEO/AEO OpenAI Product Discovery",
- "version":"k21-openai-discovery-draft-v1",
+ "version":"k21-openai-discovery-draft-v2",
  "generated_at_utc":NOW,
  "status":"INTERNAL_DRAFT_NOT_SUBMITTED",
  "official_schema_basis":"OpenAI Agentic Commerce stable file-upload product discovery: nine basic required fields.",
