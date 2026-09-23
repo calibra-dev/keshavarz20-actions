@@ -69,7 +69,17 @@ def resolve_product(search: str) -> dict:
     ranked.sort(key=lambda x: (x[0], x[1]), reverse=True)
     if not ranked or ranked[0][0] < 3:
         raise RuntimeError(f"No sufficiently matching product found for search={search!r}")
-    return ranked[0][2]
+    selected = ranked[0][2]
+    selected_name = _norm(str(selected.get("name") or ""))
+    if "آسایش" in norm_search and "آسایش" not in selected_name:
+        raise RuntimeError(f"Resolved product is not Asayesh: {selected.get('name')!r}")
+    if "2 اینچ" in norm_search and "2 اینچ" not in selected_name:
+        raise RuntimeError(f"Resolved product is not exact 2 inch: {selected.get('name')!r}")
+    print(json.dumps({
+        "resolved_product_id": int(selected["id"]),
+        "resolved_product_name": selected.get("name"),
+    }, ensure_ascii=False))
+    return selected
 
 
 def upload_media(path: Path, title: str) -> dict:
