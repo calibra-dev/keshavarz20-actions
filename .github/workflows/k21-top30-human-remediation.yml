@@ -1,0 +1,86 @@
+name: K21 Top30 Human Product Remediation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'k21-top30-remediation-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k21-top30-human-remediation
+  cancel-in-progress: false
+
+jobs:
+  remediate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install remediation dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-dejavu-core
+          python -m pip install requests pillow arabic-reshaper python-bidi
+      - name: Generate human-written product updates and media
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf "$RUNNER_TEMP/k21-requests" "$RUNNER_TEMP/k21-results"
+          mkdir -p "$RUNNER_TEMP/k21-requests" "$RUNNER_TEMP/k21-results"
+          python scripts/k21_top30_human_remediation.py --out-dir "$RUNNER_TEMP/k21-requests"
+      - name: Apply all product and SEO updates through Bridge 3.2
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $requests=Get-ChildItem -LiteralPath "$env:RUNNER_TEMP/k21-requests" -Filter '*.json' | Sort-Object Name
+          $summary=@()
+          foreach($r in $requests){
+            $out=Join-Path "$env:RUNNER_TEMP/k21-results" ($r.BaseName+'.result.json')
+            & ./scripts/Invoke-K20BridgeV3.ps1 -RequestPath $r.FullName -OutputPath $out
+            if($LASTEXITCODE -ne 0){ throw "Bridge 3.2 failed for $($r.Name)" }
+            $obj=Get-Content -Raw -LiteralPath $out | ConvertFrom-Json
+            $summary += [ordered]@{
+              request=$r.Name
+              ok=$obj.ok
+              action=$obj.action
+              http_code=$obj.http_code
+              data_id=$obj.result.data_id
+              data_status=$obj.result.data_status
+              data_sku=$obj.result.data_sku
+              purged=$obj.result.purged
+              error_code=$obj.error_code
+            }
+          }
+          $summary | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath "$env:RUNNER_TEMP/k21-results/summary.json" -Encoding utf8
+      - name: Commit compact evidence ledger
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/k21-commit/k21-top30-remediation-results /tmp/k21-commit/geo-aeo-results
+          cp "$RUNNER_TEMP/k21-results/summary.json" /tmp/k21-commit/k21-top30-remediation-results/20260923-summary.json
+          cp geo-aeo-results/k21-top30-remediation-ledger.json /tmp/k21-commit/geo-aeo-results/k21-top30-remediation-ledger.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git reset --hard origin/main
+          mkdir -p k21-top30-remediation-results geo-aeo-results
+          cp /tmp/k21-commit/k21-top30-remediation-results/20260923-summary.json k21-top30-remediation-results/20260923-summary.json
+          cp /tmp/k21-commit/geo-aeo-results/k21-top30-remediation-ledger.json geo-aeo-results/k21-top30-remediation-ledger.json
+          git add -f k21-top30-remediation-results/20260923-summary.json geo-aeo-results/k21-top30-remediation-ledger.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "k21: record Top30 human remediation evidence"
+          git push origin HEAD:main
