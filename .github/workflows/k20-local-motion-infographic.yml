@@ -25,11 +25,11 @@ jobs:
 
       - name: Resolve changed request
         id: req
-        shell: powershell
         run: |
-          $req = git diff --name-only HEAD^ HEAD -- 'phase15-local-video-ops/*.json' | Select-Object -Last 1
-          if (-not $req) { throw 'No local video request found' }
-          "path=$req" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          set "REQ="
+          for /f "delims=" %%F in ('git diff --name-only HEAD^ HEAD -- "phase15-local-video-ops/*.json"') do set "REQ=%%F"
+          if not defined REQ exit /b 1
+          echo path=%REQ%>>"%GITHUB_OUTPUT%"
 
       - name: Verify Python and FFmpeg
         run: |
