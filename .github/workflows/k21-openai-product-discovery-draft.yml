@@ -39,12 +39,13 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp geo-aeo-results/k21-openai-discovery-feed-draft.json /tmp/k21-feed.json
+          cp geo-aeo-results/k21-openai-discovery-valid.jsonl /tmp/k21-feed.jsonl
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/k21-feed.json geo-aeo-results/k21-openai-discovery-feed-draft.json
+          cp /tmp/k21-feed.jsonl geo-aeo-results/k21-openai-discovery-valid.jsonl
           git add -f geo-aeo-results/k21-openai-discovery-feed-draft.json geo-aeo-results/k21-openai-discovery-valid.jsonl
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "k21: record OpenAI discovery feed draft"
-          for attempt in 1 2 3 4; do
-            git pull --rebase origin main
-            if git push origin main; then exit 0; fi
-            sleep $((attempt * 2))
-          done
-          exit 1
+          git push origin HEAD:main
