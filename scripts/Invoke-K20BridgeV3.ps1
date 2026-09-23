@@ -177,14 +177,15 @@ if($parsed -and $parsed.result){
     'id','status','slug','title','name','sku','stock_status','stock_quantity','count','purged','planned','version','wp_version','php_version',
     'woocommerce','yoast','elementor','object_cache','method','path','job_id','cursor','total','success','failed','retrying','dead_letter',
     'matches','changed','before_sha256','after_sha256','source_attachment_id','new_attachment_id','approval_id','fingerprint','rolled_back',
-    'current_version','available_version','update_available','staged','applied','installed_file_version','schema_version'
+    'current_version','available_version','update_available','staged','applied','installed_file_version','schema_version',
+    'description','focus_keyword','canonical','noindex'
   )){
     $p=$result.PSObject.Properties[$name]; if($p){ $safe[$name]=$p.Value }
   }
   if($result.data){
     $data=$result.data
     if(($data -is [System.Collections.IEnumerable]) -and -not($data -is [string]) -and -not($data -is [pscustomobject])){ $safe['data_count']=@($data).Count }
-    else{ foreach($name in @('id','status','slug','title','name','sku','stock_status','stock_quantity','modified_gmt','link')){ $p=$data.PSObject.Properties[$name]; if($p){ $safe["data_$name"]=$p.Value } } }
+    else{ foreach($name in @('id','status','slug','title','name','sku','stock_status','stock_quantity','modified_gmt','link','permalink','description','short_description','attributes','images','categories','tags')){ $p=$data.PSObject.Properties[$name]; if($p){ $safe["data_$name"]=$p.Value } } }
   }
   $record['result']=$safe
 }
