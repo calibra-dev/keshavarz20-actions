@@ -288,6 +288,85 @@ def render_video(poster: Path, audio: Path, dest: Path) -> None:
     encode(["-c:v", "libx264", "-preset", "medium", "-crf", "20"])
 
 
+
+def _atempo_chain(value: float) -> str:
+    parts = []
+    while value > 2.0:
+        parts.append("atempo=2.0")
+        value /= 2.0
+    while value < 0.5:
+        parts.append("atempo=0.5")
+        value /= 0.5
+    parts.append(f"atempo={value:.6f}")
+    return ",".join(parts)
+
+
+def fit_audio_duration(source: Path, dest: Path, target_seconds: float) -> None:
+    raw = media_duration(source)
+    tempo = raw / target_seconds
+    run([
+        "ffmpeg", "-y", "-i", str(source),
+        "-filter:a", _atempo_chain(tempo),
+        "-t", f"{target_seconds:.3f}",
+        "-c:a", "libmp3lame", "-b:a", "96k", str(dest),
+    ])
+
+
+def render_custom_product_video(
+    product_id: int,
+    title: str,
+    hook: str,
+    body: str,
+    cta: str,
+    target_seconds: float = 15.0,
+    voice: str = "fa-IR-FaridNeural",
+) -> dict:
+    if not 8 <= target_seconds <= 90:
+        raise ValueError("target_seconds must be between 8 and 90")
+    ep = Episode(number=0, title=title, hook=hook, body=body, cta=cta)
+    image_url, product_url, resolved_product_id = choose_real_product_image("", product_id=product_id)
+
+    episode_dir = OUT / f"product-{product_id}-{int(round(target_seconds))}s"
+    episode_dir.mkdir(parents=True, exist_ok=True)
+    source = episode_dir / "source-product.jpg"
+    poster = episode_dir / "thumbnail.jpg"
+    raw_audio = episode_dir / "narration-raw.mp3"
+    audio = episode_dir / "narration.mp3"
+    subtitle = episode_dir / "subtitles-fa.srt"
+    video = episode_dir / "video.mp4"
+    transcript = episode_dir / "transcript-fa.txt"
+    metadata = episode_dir / "metadata.json"
+
+    download(image_url, source)
+    make_poster(source, ep, poster)
+    synthesize_audio(ep.narration, raw_audio, voice=voice)
+    fit_audio_duration(raw_audio, audio, target_seconds)
+    duration = media_duration(audio)
+    make_srt(ep, duration, subtitle)
+    render_video(poster, audio, video)
+    transcript.write_text(ep.narration + "\n", encoding="utf-8")
+
+    digest = hashlib.sha256(video.read_bytes()).hexdigest()
+    data = {
+        "mode": "custom_product_video",
+        "product_id": resolved_product_id,
+        "title": title,
+        "status": "rendered_local",
+        "duration_seconds": round(media_duration(video), 3),
+        "target_duration_seconds": target_seconds,
+        "source_product_url": product_url,
+        "source_image_url": image_url,
+        "video_sha256": digest,
+        "video_file": video.name,
+        "thumbnail_file": poster.name,
+        "subtitle_file": subtitle.name,
+        "transcript_file": transcript.name,
+        "rendered_at_epoch": int(time.time()),
+    }
+    metadata.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    return data
+
+
 def render_episode(number: int, voice: str = "fa-IR-FaridNeural", product_id: int | None = None) -> dict:
     episodes = parse_episodes()
     if number not in episodes:
