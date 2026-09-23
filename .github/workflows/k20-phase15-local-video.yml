@@ -45,6 +45,8 @@ concurrency:
 
 env:
   PYTHONUNBUFFERED: '1'
+  PYTHONUTF8: '1'
+  PYTHONIOENCODING: utf-8
   K20_SITE_BASE_URL: https://keshavarz20.com
 
 jobs:
@@ -139,11 +141,21 @@ jobs:
         if: inputs.action == 'package'
         run: python phase15-video-engine/k20_video_engine.py package --start ${{ inputs.start }} --end ${{ inputs.end }}
 
+      - name: Persist render output on Windows host
+        if: always()
+        run: |
+          if exist phase15-video-engine\out (
+            if not exist "C:\actions-runner\k20-output\run-${{ github.run_id }}" mkdir "C:\actions-runner\k20-output\run-${{ github.run_id }}"
+            xcopy /E /I /Y "phase15-video-engine\out\*" "C:\actions-runner\k20-output\run-${{ github.run_id }}\" >nul
+            echo Persistent output: C:\actions-runner\k20-output\run-${{ github.run_id }}
+          )
+
       - name: Upload render artifacts
         if: always()
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
-          name: k20-phase15-video-${{ inputs.action }}-${{ github.run_id }}
+          name: k20-phase15-video-${{ github.run_id }}
           if-no-files-found: warn
           retention-days: 14
           path: |
