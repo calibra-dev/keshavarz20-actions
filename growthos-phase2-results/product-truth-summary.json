@@ -1,0 +1,49 @@
+{
+  "ok": true,
+  "phase": 2,
+  "version": "growthos-product-truth-registry-v1",
+  "generated_at_utc": "2026-09-23T22:49:27Z",
+  "evidence_run_id": 35930379268,
+  "summary": {
+    "published_products": 652,
+    "records_created": 652,
+    "record_coverage_percent": 100,
+    "status_counts": {
+      "VERIFIED": 2303,
+      "USER-CONFIRMED": 0,
+      "SOURCE-CONFIRMED": 0,
+      "UNKNOWN": 9433
+    },
+    "field_unknown_counts": {
+      "sku": 221,
+      "model": 622,
+      "mpn": 652,
+      "gtin": 652,
+      "unit": 652,
+      "dimensions": 652,
+      "material": 625,
+      "pressure_delivery": 636,
+      "compatibility": 652,
+      "required_accessories": 652,
+      "optional_accessories": 652,
+      "alternatives": 652,
+      "limitations": 652,
+      "shipping_class": 652,
+      "warranty_return_status": 651,
+      "brand": 158
+    },
+    "hard_fabrications": 0,
+    "price_fields_exposed": 0,
+    "discount_fields_exposed": 0,
+    "customer_or_order_fields_exposed": 0
+  },
+  "acceptance": {
+    "one_truth_record_per_published_product": true,
+    "required_fields_present_in_every_record": true,
+    "unknowns_explicit_not_guessed": true,
+    "gtin_mpn_not_inferred": true,
+    "source_status_attached": true,
+    "no_price_discount_customer_order_data": true
+  },
+  "note": "Compact acceptance summary reconstructed verbatim from the successful Build read-only Product Truth Registry step of GitHub Actions run 35930379268 after its final git push conflicted with concurrent main activity. The full registry was already committed by the prior successful run."
+}
