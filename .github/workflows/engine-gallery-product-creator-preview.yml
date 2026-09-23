@@ -1,0 +1,100 @@
+name: K20 Gallery Product Creator Preview
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'engine-gallery-product-creator/queue/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: engine-gallery-product-creator-preview
+  cancel-in-progress: false
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install preview dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-noto-core
+          python -m pip install --disable-pip-version-check requests Pillow arabic-reshaper python-bidi
+
+      - name: Static contract tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile engine-gallery-product-creator/scripts/generate_preview.py
+          python -m py_compile engine-gallery-product-creator/scripts/validate_preview.py
+          python -m py_compile engine-gallery-product-creator/scripts/publish_approved.py
+          python engine-gallery-product-creator/tests/test_contract.py
+
+      - name: Resolve queue request
+        id: req
+        shell: bash
+        run: |
+          set -euo pipefail
+          req=$(git diff --name-only HEAD^ HEAD -- 'engine-gallery-product-creator/queue/*.json' | tail -n 1)
+          test -n "$req"
+          batch=$(python -c "import json;print(json.load(open('$req',encoding='utf-8'))['batch_id'])")
+          echo "path=$req" >> "$GITHUB_OUTPUT"
+          echo "batch=$batch" >> "$GITHUB_OUTPUT"
+
+      - name: Generate preview only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python engine-gallery-product-creator/scripts/generate_preview.py "${{ steps.req.outputs.path }}"
+
+      - name: Validate five preview assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          python engine-gallery-product-creator/scripts/validate_preview.py "${{ steps.req.outputs.batch }}"
+
+      - name: Assert no publisher evidence was created
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e "engine-gallery-product-creator/publish-results/${{ steps.req.outputs.batch }}.json"
+
+      - name: Commit preview assets and manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          batch='${{ steps.req.outputs.batch }}'
+          mkdir -p /tmp/k20-preview/$batch
+          cp -a "engine-gallery-product-creator/previews/$batch/." "/tmp/k20-preview/$batch/"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          git reset --hard origin/main
+          mkdir -p "engine-gallery-product-creator/previews/$batch"
+          cp -a "/tmp/k20-preview/$batch/." "engine-gallery-product-creator/previews/$batch/"
+          git add "engine-gallery-product-creator/previews/$batch"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "engine-gallery-product-creator: preview $batch"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((i*2))
+          done
+          exit 1
