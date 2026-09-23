@@ -38,8 +38,29 @@ pim=load("phase3-results/top30-pim.json")
 existing=load("phase19-results/product-discovery-readiness-feed-persisted.json")
 existing_by={int(x["wp_product_id"]):x for x in existing.get("products",[]) if x.get("wp_product_id")}
 
+pim_products=pim.get("products",[])
+pim_by={int(x["product_id"]):x for x in pim_products if x.get("product_id")}
+requested_ids=set()
+ops_dir=ROOT/"geo-aeo-feed-ops"
+if ops_dir.exists():
+    for op_path in sorted(ops_dir.glob("*.json")):
+        try:
+            op=json.loads(op_path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if op.get("product_id"):
+            requested_ids.add(int(op["product_id"]))
+        for pid in op.get("product_ids",[]) or []:
+            requested_ids.add(int(pid))
+
+target_ids=list(pim_by)
+for pid in sorted(requested_ids):
+    if pid not in pim_by:
+        target_ids.append(pid)
+
 valid=[]; blocked=[]
-for item in pim.get("products",[]):
+for pid in target_ids:
+    item=pim_by.get(pid,{"product_id":pid,"pim_fields":{}})
     pid=int(item["product_id"])
     r=S.get(urljoin(BASE,f"wp-json/wc/v3/products/{pid}"),timeout=120)
     r.raise_for_status(); p=r.json()
@@ -49,6 +70,14 @@ for item in pim.get("products",[]):
     description=description[:5000].strip()
     fields=item.get("pim_fields") or {}
     brand=((fields.get("brand") or {}).get("value") if isinstance(fields.get("brand"),dict) else fields.get("brand"))
+    if not brand:
+        for attr in p.get("attributes") or []:
+            name=str(attr.get("name") or "").strip().lower()
+            if name in ("برند","brand","manufacturer"):
+                options=attr.get("options") or []
+                if options:
+                    brand=str(options[0]).strip()
+                    break
     images=p.get("images") or []
     image_url=(images[0].get("src") if images else None)
     price=money_irr(p.get("price"),old.get("store_currency_raw") or "IRT")
@@ -91,7 +120,7 @@ out={
    "conversion":"store price x10 -> IRR",
    "basis":"Existing live page/schema parity already validates IRT store amounts against IRR structured-data amounts."
  },
- "summary":{"top30":len(pim.get("products",[])),"schema_complete_rows":len(valid),"blocked_rows":len(blocked),"externally_submitted":0},
+ "summary":{"top30":len(pim_products),"requested_product_ids":sorted(requested_ids),"target_products":len(target_ids),"schema_complete_rows":len(valid),"blocked_rows":len(blocked),"externally_submitted":0},
  "valid_rows":valid,
  "blocked_rows":blocked,
  "guardrails":[
