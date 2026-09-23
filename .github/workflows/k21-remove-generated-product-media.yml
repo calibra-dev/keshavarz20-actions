@@ -1,0 +1,46 @@
+name: K21 Remove Generated Product Media
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'k21-cleanup-ops/remove-generated-media*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k21-remove-generated-product-media
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build guarded Bridge cleanup requests
+        run: python scripts/k21_remove_generated_product_media.py
+      - name: Commit Bridge requests and cleanup manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/k21-cleanup-ops /tmp/k21-cleanup-results
+          cp bridge-v3-ops/20260923-remove-generated-media-*.json /tmp/k21-cleanup-ops/
+          cp k21-top30-results/generated-media-cleanup-plan.json /tmp/k21-cleanup-results/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git reset --hard origin/main
+          mkdir -p bridge-v3-ops k21-top30-results
+          cp /tmp/k21-cleanup-ops/*.json bridge-v3-ops/
+          cp /tmp/k21-cleanup-results/generated-media-cleanup-plan.json k21-top30-results/
+          git add -f bridge-v3-ops/20260923-remove-generated-media-*.json k21-top30-results/generated-media-cleanup-plan.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "k21: queue removal of generated product media"
+          git push origin HEAD:main
