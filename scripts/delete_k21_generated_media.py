@@ -39,7 +39,7 @@ def main():
         url=str(item.get("source_url") or "")
         mime=str(item.get("mime_type") or "")
         if mid in VIDEO_IDS:
-            ok = bool(re.search(r"/2026/09/(?:video(?:-\\d+)?\\.mp4|thumbnail(?:-\\d+)?\\.jpg)$",url,re.I))
+            ok = (mime == "video/mp4" or mime.startswith("image/")) and "/wp-content/uploads/2026/09/" in url
         else:
             ok = mid in image_ids and mime.startswith("image/") and "/wp-content/uploads/2026/09/" in url
         if not ok:
