@@ -75,35 +75,44 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Bootstrap Python 3.12
+      - name: Bootstrap persistent Python 3.12
         run: |
-          python --version >nul 2>&1
-          if errorlevel 1 (
-            echo Python missing; installing private portable runtime...
-            curl.exe -L --fail --retry 3 -o "%RUNNER_TEMP%\python-3.12.10-amd64.exe" "https://www.python.org/ftp/python/3.12.10/python-3.12.10-amd64.exe"
-            "%RUNNER_TEMP%\python-3.12.10-amd64.exe" /quiet InstallAllUsers=0 TargetDir="%RUNNER_TEMP%\k20-python" Include_pip=1 Include_test=0 Include_launcher=0 PrependPath=0 Shortcuts=0
+          set "K20_PY=C:\actions-runner\k20-runtime\python"
+          if not exist "%K20_PY%\python.exe" (
+            echo Python runtime missing; installing portable embedded runtime...
+            if not exist "C:\actions-runner\k20-runtime" mkdir "C:\actions-runner\k20-runtime"
+            if exist "%K20_PY%" rmdir /s /q "%K20_PY%"
+            mkdir "%K20_PY%"
+            curl.exe -L --fail --retry 3 -o "%RUNNER_TEMP%\python-embed.zip" "https://www.python.org/ftp/python/3.12.10/python-3.12.10-embed-amd64.zip"
+            tar.exe -xf "%RUNNER_TEMP%\python-embed.zip" -C "%K20_PY%"
             if errorlevel 1 exit /b 1
-            echo %RUNNER_TEMP%\k20-python>>"%GITHUB_PATH%"
-            echo %RUNNER_TEMP%\k20-python\Scripts>>"%GITHUB_PATH%"
-            "%RUNNER_TEMP%\k20-python\python.exe" --version
-          ) else (
-            python --version
+            powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "(Get-Content '%K20_PY%\python312._pth') -replace '#import site','import site' | Set-Content -Encoding ASCII '%K20_PY%\python312._pth'"
+            curl.exe -L --fail --retry 3 -o "%RUNNER_TEMP%\get-pip.py" "https://bootstrap.pypa.io/get-pip.py"
+            "%K20_PY%\python.exe" "%RUNNER_TEMP%\get-pip.py"
+            if errorlevel 1 exit /b 1
           )
+          echo %K20_PY%>>"%GITHUB_PATH%"
+          echo %K20_PY%\Scripts>>"%GITHUB_PATH%"
+          "%K20_PY%\python.exe" --version
+          "%K20_PY%\python.exe" -m pip --version
 
-      - name: Bootstrap FFmpeg
+      - name: Bootstrap persistent FFmpeg
         run: |
-          ffmpeg -version >nul 2>&1
-          if errorlevel 1 (
-            echo FFmpeg missing; installing private portable runtime...
+          set "K20_FFROOT=C:\actions-runner\k20-runtime\ffmpeg"
+          if not exist "%K20_FFROOT%\bin\ffmpeg.exe" (
+            echo FFmpeg runtime missing; installing portable runtime...
+            if not exist "C:\actions-runner\k20-runtime" mkdir "C:\actions-runner\k20-runtime"
+            if exist "%K20_FFROOT%" rmdir /s /q "%K20_FFROOT%"
+            mkdir "%K20_FFROOT%"
             curl.exe -L --fail --retry 3 -o "%RUNNER_TEMP%\ffmpeg.zip" "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip"
-            if exist "%RUNNER_TEMP%\k20-ffmpeg" rmdir /s /q "%RUNNER_TEMP%\k20-ffmpeg"
-            mkdir "%RUNNER_TEMP%\k20-ffmpeg"
-            tar.exe -xf "%RUNNER_TEMP%\ffmpeg.zip" -C "%RUNNER_TEMP%\k20-ffmpeg"
+            if exist "%RUNNER_TEMP%\k20-ffmpeg-extract" rmdir /s /q "%RUNNER_TEMP%\k20-ffmpeg-extract"
+            mkdir "%RUNNER_TEMP%\k20-ffmpeg-extract"
+            tar.exe -xf "%RUNNER_TEMP%\ffmpeg.zip" -C "%RUNNER_TEMP%\k20-ffmpeg-extract"
             if errorlevel 1 exit /b 1
-            for /d %%D in ("%RUNNER_TEMP%\k20-ffmpeg\ffmpeg-*") do echo %%D\bin>>"%GITHUB_PATH%"
-          ) else (
-            ffmpeg -version
+            for /d %%D in ("%RUNNER_TEMP%\k20-ffmpeg-extract\ffmpeg-*") do xcopy /E /I /Y "%%D\*" "%K20_FFROOT%\" >nul
           )
+          echo %K20_FFROOT%\bin>>"%GITHUB_PATH%"
+          "%K20_FFROOT%\bin\ffmpeg.exe" -version
 
       - name: Install Python dependencies
         run: |
