@@ -71,7 +71,7 @@ def brand_for(pim:dict,name:str)->tuple[str,str,str]:
     ]
     for needle,value in mapping:
         if needle in name: return value,"product_title","high"
-    return "Generic / بدون برند ثبت‌شده","catalog_brand_absence","high"
+    return None,"catalog_brand_absence","missing"
 
 def model_for(name:str,family:str)->str:
     pairs=[
