@@ -1,0 +1,58 @@
+name: K20 GrowthOS Structured Data Plugin Diagnostic
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'growthos-schema-plugin-ops/*.json'
+permissions:
+  contents: write
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install requests
+      - name: Extract schema-related active plugin identities only
+        shell: python
+        run: |
+          import json, os, pathlib, requests
+          base=os.environ['WP_BASE_URL'].rstrip('/')
+          r=requests.get(base+'/wp-json/wc/v3/system_status',auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD']),timeout=90)
+          r.raise_for_status()
+          j=r.json()
+          plugins=j.get('active_plugins') or []
+          needles=('schema','seo','woo','rich','merchant','product','feed','structured','rank','snippet')
+          out=[]
+          for p in plugins:
+              name=str(p.get('name') or '')
+              plugin=str(p.get('plugin') or '')
+              hay=(name+' '+plugin).lower()
+              if any(n in hay for n in needles):
+                  out.append({'name':name,'plugin':plugin,'version':p.get('version')})
+          result={'http':r.status_code,'matching_active_plugins':out}
+          pathlib.Path('growthos-phase3-results').mkdir(exist_ok=True)
+          pathlib.Path('growthos-phase3-results/structured-data-plugins.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(result,ensure_ascii=False))
+      - name: Commit sanitized plugin identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f growthos-phase3-results/structured-data-plugins.json
+          git diff --cached --quiet && exit 0
+          git commit -m "growthos phase3: record structured-data plugin identities"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
