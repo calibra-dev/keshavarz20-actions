@@ -29,7 +29,7 @@ jobs:
           r.raise_for_status()
           j=r.json()
           plugins=j.get('active_plugins') or []
-          needles=('schema','seo','woo','rich','merchant','product','feed','structured','rank','snippet')
+          needles=('schema','seo','woo','rich','merchant','product','feed','structured','rank','snippet','brand')
           out=[]
           for p in plugins:
               name=str(p.get('name') or '')
