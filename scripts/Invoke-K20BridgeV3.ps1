@@ -171,6 +171,11 @@ $record=[ordered]@{
   error_code=if($parsed -and $parsed.ok -ne $true){[string]$parsed.code}else{$null}
   message=if($parsed -and $parsed.ok -ne $true){[string]$parsed.message}else{$null}
 }
+if($parsed -and $parsed.ok -ne $true){
+  foreach($name in @('approval_id','fingerprint','expires_at_utc')){
+    $p=$parsed.PSObject.Properties[$name]; if($p){ $record[$name]=$p.Value }
+  }
+}
 if($parsed -and $parsed.result){
   $result=$parsed.result; $safe=[ordered]@{}
   foreach($name in @(
