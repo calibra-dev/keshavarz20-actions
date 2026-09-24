@@ -1,0 +1,48 @@
+{
+  "ok": true,
+  "phase": 5,
+  "version": "growthos-central-intent-registry-v1",
+  "generated_at_utc": "2026-09-24T06:43:02.748343+00:00",
+  "status": "PASS_WITH_CANONICAL_CONFLICT_BACKLOG",
+  "summary": {
+    "source_raw_rows": 437,
+    "filtered_irrigation_rows": 186,
+    "central_intents": 62,
+    "topics": {
+      "drip_tape": 7,
+      "fertigation_tank": 4,
+      "pe_valve": 19,
+      "pe_fitting_saddle": 4,
+      "polyethylene_pipe": 7,
+      "sprinkler": 3,
+      "pe_fitting_elbow": 8,
+      "pe_fitting_general": 2,
+      "layflat_hose": 7,
+      "other_irrigation": 1
+    },
+    "intents": {
+      "محاسبه": 1,
+      "خرید": 22,
+      "انتخاب": 30,
+      "سازگاری": 1,
+      "مقایسه": 5,
+      "نگهداری": 1,
+      "شناخت": 1,
+      "عیب‌یابی": 1
+    },
+    "review_required_canonical_conflicts": 10,
+    "active_intents": 52,
+    "site_writes": 0,
+    "new_pages_created": 0
+  },
+  "acceptance": {
+    "fresh_search_console_snapshot_used": true,
+    "prompt_to_intent_to_subquestions_to_entities_to_evidence_to_canonical_to_conversion_complete": true,
+    "stable_ids_unique": true,
+    "shared_intents_merged_by_semantic_key": true,
+    "multi_url_conflicts_not_silently_hidden": true,
+    "no_new_pages_auto_created": true,
+    "no_site_writes": true
+  },
+  "next_gate": "Phase 6 hubs should consume this central registry and Phase 4 graph; REVIEW_REQUIRED URL conflicts must be resolved before creating overlapping pages."
+}
