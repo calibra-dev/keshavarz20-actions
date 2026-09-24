@@ -1011,11 +1011,18 @@ def main():
             backlog.append({
                 'product_id': pid,
                 'name': p.get('name'),
+                'sku': p.get('sku'),
+                'brands': [{'id': b.get('id'), 'name': b.get('name'), 'slug': b.get('slug')} for b in (p.get('brands') or [])],
+                'categories': [{'id': x.get('id'), 'name': x.get('name'), 'slug': x.get('slug')} for x in (p.get('categories') or [])],
+                'image_evidence_candidates': [
+                    {'id': im.get('id'), 'src': im.get('src'), 'name': im.get('name'), 'alt': im.get('alt')}
+                    for im in (p.get('images') or [])[:6]
+                ],
                 'family': family,
                 'missing_required_dimensions': missing,
                 'model_gap': family == 'unmodeled_irrigation',
                 'priority': 'HIGH' if family in ('drip_tape', 'drip_tape_component', 'layflat_rain', 'filter', 'fitting', 'valve', 'pipe', 'fertigation', 'sprinkler', 'pump') else 'NORMAL',
-                'verification_rule': 'Use exact manufacturer datasheet, packaging/label, first-party catalog, or explicit Woo attribute. SITE_DECLARED values are useful evidence but are not promoted to manufacturer-verified compatibility.',
+                'verification_rule': 'Use exact manufacturer datasheet, packaging/label, first-party catalog, explicit Woo attribute, or readable exact-SKU packaging/nameplate image. SITE_DECLARED values are useful evidence but are not promoted to manufacturer-verified compatibility.',
                 'research_disposition': research_disposition(p, family, missing)
             })
         nodes.append({
