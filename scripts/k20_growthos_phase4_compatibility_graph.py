@@ -727,7 +727,16 @@ def technical_dimensions(p, truth_rec):
     dims = {}
     cat = category_semantics(p)
     size_patterns = [r'^سایز$', r'^قطر$', r'diameter', r'^size$', r'سایز.*قطر']
-    dims['nominal_size'] = direct_attr(attrs, size_patterns) or spec_attr(specs, size_patterns) or technical_meta_attr(meta, size_patterns) or prose_nominal_size(p) or title_declared_size(name) or quoted_inch_size(name) or implicit_fraction_size(name) or fitting_pair_size(name)
+    dims['nominal_size'] = (
+        direct_attr(attrs, size_patterns)
+        or spec_attr(specs, size_patterns)
+        or technical_meta_attr(meta, size_patterns)
+        or prose_nominal_size(p)
+        or title_declared_size(name)
+        or quoted_inch_size(name)
+        or implicit_fraction_size(name)
+        or fitting_pair_size(name)
+    )
     dims['connection_size'] = (
         direct_attr(attrs, [r'سایز اتصال', r'قطر اتصال'])
         or spec_attr(specs, [r'سایز اتصال', r'قطر اتصال'])
@@ -748,7 +757,9 @@ def technical_dimensions(p, truth_rec):
     )
     dims['material'] = (
         truth_field(truth_rec, 'material')
-        or direct_attr(attrs, [r'^جنس
+        or direct_attr(attrs, [r'^جنس$', r'material'])
+        or spec_attr(specs, [r'^جنس$', r'material'])
+        or technical_meta_attr(meta, [r'material', r'جنس'])
         or prose_material(p)
         or title_declared_material(name)
         or title_declared_aluminum(name)
@@ -756,7 +767,9 @@ def technical_dimensions(p, truth_rec):
         or cat.get('material')
     )
     dims['pressure_class'] = (
-        direct_attr(attrs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn
+        direct_attr(attrs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn$', r'^sdr$'])
+        or spec_attr(specs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn$', r'^sdr$'])
+        or technical_meta_attr(meta, [r'pressure', r'(^|_)pn($|_)', r'sdr', r'فشار'])
         or prose_pressure(p)
         or title_declared_pressure(name)
     )
@@ -792,145 +805,41 @@ def technical_dimensions(p, truth_rec):
         or title_declared_emitter_spacing(name)
     )
     dims['length'] = (
-        direct_attr(attrs, [r'^طول
+        direct_attr(attrs, [r'^طول$', r'طول رول', r'length'])
+        or spec_attr(specs, [r'^طول$', r'طول رول', r'length'])
+        or technical_meta_attr(meta, [r'length', r'طول'])
         or prose_length(p)
         or title_declared_length(name)
         or title_declared_length_cm(name)
     )
-    dims['capacity'] = direct_attr(attrs, [r'^ظرفیت$', r'capacity']) or spec_attr(specs, [r'^ظرفیت$', r'capacity']) or title_declared_capacity(name)
+    dims['capacity'] = (
+        direct_attr(attrs, [r'^ظرفیت$', r'capacity'])
+        or spec_attr(specs, [r'^ظرفیت$', r'capacity'])
+        or technical_meta_attr(meta, [r'capacity', r'ظرفیت'])
+        or title_declared_capacity(name)
+    )
     nominal = dims.get('nominal_size') or {'status':'UNKNOWN','value':None}
     dims['tool_size'] = nominal if nominal.get('status') != 'UNKNOWN' else (installation_tool_size(name) or {'status':'UNKNOWN','value':None})
     dims['component_type'] = component_type_from_title(name)
     dims['interface_signature'] = interface_signature_from_title(name)
-    dims['head'] = direct_attr(attrs, [r'هد', r'ارتفاع']) or spec_attr(specs, [r'هد', r'ارتفاع']) or technical_meta_attr(meta, [r'head', r'هد', r'ارتفاع']) or prose_head(p) or title_declared_head(name)
-    dims['power'] = direct_attr(attrs, [r'توان', r'اسب']) or spec_attr(specs, [r'توان', r'اسب']) or technical_meta_attr(meta, [r'power', r'kw', r'hp', r'توان', r'اسب']) or prose_power(p) or title_declared_power(name)
+    dims['head'] = (
+        direct_attr(attrs, [r'هد', r'ارتفاع'])
+        or spec_attr(specs, [r'هد', r'ارتفاع'])
+        or technical_meta_attr(meta, [r'head', r'هد', r'ارتفاع'])
+        or prose_head(p)
+        or title_declared_head(name)
+    )
+    dims['power'] = (
+        direct_attr(attrs, [r'توان', r'اسب'])
+        or spec_attr(specs, [r'توان', r'اسب'])
+        or technical_meta_attr(meta, [r'power', r'kw', r'hp', r'توان', r'اسب'])
+        or prose_power(p)
+        or title_declared_power(name)
+    )
     connection = dims.get('connection_type') or {'status':'UNKNOWN','value':None}
     if re.search(r'بابلر|دریپر|قطره[\s‌-]*چکان', name, re.I) and connection.get('status') == 'UNKNOWN':
         dims['connection_type'] = emitter_connection_type(name) or connection
     return {k: (v if v else {'status': 'UNKNOWN', 'value': None}) for k, v in dims.items()}
-
-
-def normalize_evidence_value(field, value):
-    s = str(value or '').strip().lower()
-    fa = '۰۱۲۳۴۵۶۷۸۹'
-    en = '0123456789'
-    s = s.translate(str.maketrans(fa, en))
-    s = s.replace('‌', ' ')
-    s = re.sub(r'\s+', ' ', s)
-    if field in ('pressure_class', 'pressure_requirement'):
-        m = re.search(r'([0-9]+(?:[./][0-9]+)?)\s*(بار|bar|اتمسفر|atm)', s, re.I)
-        if m:
-            num = m.group(1).replace('/', '.')
-            unit = m.group(2).lower()
-            unit = 'bar' if unit in ('بار','bar') else 'atm'
-            return f'{num}:{unit}'
-    if field == 'connection_type':
-        aliases = {
-            'دنده ای':'threaded','دنده‌ای':'threaded','رزوه ای':'threaded','رزوه‌ای':'threaded',
-            'threaded':'threaded','male_male_threaded':'threaded','female_threaded':'threaded',
-            'male_threaded':'threaded'
-        }
-        if s in aliases:
-            return aliases[s]
-    if field == 'material':
-        if 'upvc' in s or 'u-pvc' in s or 'u pvc' in s:
-            return 'upvc'
-        aliases = {
-            'پلی اتیلن':'polyethylene','پلی‌اتیلن':'polyethylene','polyethylene':'polyethylene',
-            'polymeric_unspecified':'polymeric','polymeric':'polymeric','upvc':'upvc','u-pvc':'upvc',
-            'pe100':'pe100'
-        }
-        if s in aliases:
-            return aliases[s]
-        if 'پلی' in s and 'اتیلن' in s and 'نخ' in s:
-            return 'reinforced_polyethylene'
-        if 'polyethylene' in s and 'reinforced' in s:
-            return 'reinforced_polyethylene'
-    return re.sub(r'[^0-9a-zآ-ی]+', '', s)
-
-
-def values_compatible(field, current, incoming):
-    a = normalize_evidence_value(field, current)
-    b = normalize_evidence_value(field, incoming)
-    if a == b:
-        return True
-    if field == 'connection_type' and a == 'threaded' and b == 'threaded':
-        return True
-    if field == 'material':
-        # Manufacturer PE100 is a refinement of retailer-declared polyethylene.
-        if {a,b} == {'polyethylene','pe100'}:
-            return True
-        if {a,b} == {'polymeric','upvc'}:
-            return True
-        if a == b == 'reinforced_polyethylene':
-            return True
-    return False
-
-
-def apply_external_evidence(p, family, dims, pack, fill_counts, conflicts):
-    name = p.get('name') or ''
-    source_map = {s.get('id'): s for s in (pack.get('sources') or []) if s.get('id')}
-    for rule in pack.get('rules') or []:
-        allowed = rule.get('family') or []
-        if family not in allowed:
-            continue
-        try:
-            matched = re.search(rule.get('name_regex') or r'$.', name, re.I)
-        except re.error:
-            continue
-        if not matched:
-            continue
-        source_id = rule.get('source_id')
-        source = source_map.get(source_id, {})
-        for field, spec in (rule.get('fields') or {}).items():
-            incoming = {
-                'status': spec.get('status') or ('MANUFACTURER_VERIFIED' if source.get('tier') == 'manufacturer' else 'SECONDARY_VERIFIED'),
-                'value': spec.get('value'),
-                'source': 'external_research_evidence',
-                'evidence': {
-                    'rule_id': rule.get('id'),
-                    'source_id': source_id,
-                    'publisher': source.get('publisher'),
-                    'source_tier': source.get('tier'),
-                    'url': source.get('url'),
-                    'retrieved_at': source.get('retrieved_at')
-                }
-            }
-            current = dims.get(field) or {'status':'UNKNOWN','value':None}
-            if current.get('status') == 'UNKNOWN' or current.get('value') in (None, '', [], {}):
-                dims[field] = incoming
-                fill_counts[incoming['status']] += 1
-                continue
-
-            if values_compatible(field, current.get('value'), incoming.get('value')):
-                # Prefer a manufacturer refinement over a generic retailer/title declaration.
-                if incoming['status'] == 'MANUFACTURER_VERIFIED' and current.get('status') == 'SITE_DECLARED':
-                    old = current
-                    dims[field] = dict(incoming)
-                    dims[field]['evidence'] = dict(incoming['evidence'])
-                    dims[field]['evidence']['corroborates'] = old
-                    fill_counts['MANUFACTURER_REFINED'] += 1
-                else:
-                    ev = dict(current.get('evidence') or {})
-                    ev.setdefault('corroboration', []).append(incoming['evidence'])
-                    current['evidence'] = ev
-                    if incoming['status'] == 'MANUFACTURER_VERIFIED' and current.get('status') in ('VERIFIED','SOURCE-CONFIRMED','USER-CONFIRMED'):
-                        current['status'] = 'MANUFACTURER_CORROBORATED'
-                    dims[field] = current
-                    fill_counts['CORROBORATED'] += 1
-                continue
-
-            conflicts.append({
-                'product_id': p.get('id'),
-                'name': name,
-                'family': family,
-                'field': field,
-                'existing': current,
-                'incoming': incoming,
-                'resolution': 'kept_existing_value; true semantic conflict retained for review'
-            })
-    return dims
-
 
 
 def research_disposition(p, family, missing):
