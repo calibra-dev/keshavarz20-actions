@@ -1,0 +1,59 @@
+name: K20 GrowthOS Code Snippets Route Diagnostic
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'growthos-code-snippets-route-ops/*.json'
+permissions:
+  contents: write
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install requests
+      - name: Discover snippet-related REST routes
+        shell: python
+        run: |
+          import json, os, pathlib, requests
+          base=os.environ['WP_BASE_URL'].rstrip('/')
+          r=requests.get(base+'/wp-json/',auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD']),timeout=90)
+          r.raise_for_status()
+          routes=r.json().get('routes') or {}
+          out={}
+          for route,definition in routes.items():
+              if 'snippet' in route.lower() or 'code-snippets' in route.lower():
+                  out[route]={
+                    'methods':definition.get('methods'),
+                    'endpoints':[
+                      {'methods':e.get('methods'),'args':sorted((e.get('args') or {}).keys())}
+                      for e in (definition.get('endpoints') or [])
+                    ]
+                  }
+          result={'http':r.status_code,'routes':out}
+          pathlib.Path('growthos-phase3-results').mkdir(exist_ok=True)
+          pathlib.Path('growthos-phase3-results/code-snippets-routes.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(result,ensure_ascii=False))
+      - name: Commit sanitized route evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f growthos-phase3-results/code-snippets-routes.json
+          git diff --cached --quiet && exit 0
+          git commit -m "growthos phase3: record Code Snippets REST routes"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
