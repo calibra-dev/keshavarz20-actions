@@ -12,7 +12,7 @@
   "author_name": "پرسش پیشنهادی خریداران",
   "author_email": "questions@keshavarz20.com",
   "comment_status": "hold",
-  "politeness_target": 0.70,
+  "politeness_target": 0.7,
   "colloquial_target": 0.15,
   "history_window": 200,
   "products_per_page": 100,
@@ -26,5 +26,11 @@
   "watchdog_max_consecutive_failures": 3,
   "answer_memory_enabled": true,
   "answer_memory_max_comments_per_product": 200,
-  "allow_product_statuses": ["publish"]
+  "allow_product_statuses": [
+    "publish"
+  ],
+  "engine_version": "v18",
+  "production_mode": true,
+  "persistent_mode": true,
+  "scheduler_watchdog_enabled": true
 }
