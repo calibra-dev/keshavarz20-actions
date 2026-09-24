@@ -1,0 +1,58 @@
+{
+  "program": "Keshavarz20 AI Growth OS",
+  "scope": "phases 4 and 5",
+  "finalized_at_utc": "2026-09-24T06:51:00Z",
+  "execution_path": "ChatGPT -> GitHub -> calibra-dev/keshavarz20-actions -> read-only WooCommerce/Search Console evidence pipelines",
+  "wpvibe_used": false,
+  "site_writes": 0,
+  "phase4": {
+    "name": "Compatibility Knowledge Graph",
+    "execution_status": "COMPLETED_SUCCESS",
+    "semantic_status": "PASS_FOUNDATION_WITH_GOVERNED_EVIDENCE_GAPS",
+    "run_id": 35966370535,
+    "result_commit": "ffbca1aea6af04fed01b32fd8dda53c00a649c90",
+    "evidence": "growthos-phase4-results/compatibility-summary.json",
+    "outputs": [
+      "growthos-phase4-results/compatibility-knowledge-graph.json",
+      "growthos-phase4-results/compatibility-summary.json",
+      "growthos-phase4-results/verification-backlog.json"
+    ],
+    "published_products": 652,
+    "nodes": 652,
+    "node_coverage_percent": 100,
+    "products_exact_dimension_ready": 13,
+    "products_with_required_dimension_gaps": 623,
+    "verified_reference_edges": 2005,
+    "candidate_only_edges": 23,
+    "verified_technical_compatibility_edges": 0,
+    "hard_fabrications": 0,
+    "safety_note": "Internal references and same-size candidates were not promoted to fits/worksWith. Exact compatibility still requires explicit manufacturer/first-party evidence."
+  },
+  "phase5": {
+    "name": "Query Fan-out and Search Intent Graph",
+    "execution_status": "COMPLETED_SUCCESS",
+    "semantic_status": "PASS_WITH_CANONICAL_CONFLICT_BACKLOG",
+    "run_id": 35966409720,
+    "result_commit": "455fa801cb5d53badb9270c34023f11105031cfa",
+    "source": "Fresh Google Search Console 28-day snapshot via Windsor.ai",
+    "evidence": "growthos-phase5-results/intent-summary.json",
+    "outputs": [
+      "growthos-phase5-results/central-intent-registry.json",
+      "growthos-phase5-results/cannibalization-report.json",
+      "growthos-phase5-results/intent-summary.json"
+    ],
+    "source_raw_rows": 437,
+    "filtered_irrigation_rows": 186,
+    "central_intents": 78,
+    "active_intents": 67,
+    "review_required_canonical_conflicts": 11,
+    "new_pages_created": 0,
+    "site_writes": 0,
+    "safety_note": "Shared intents are merged by semantic entity focus; multi-URL conflicts remain REVIEW_REQUIRED. No automatic page, redirect, canonical, or content mutation was made."
+  },
+  "overall_status": "EXECUTION_COMPLETE__PHASE4_EVIDENCE_GAPS_AND_PHASE5_CANONICAL_BACKLOG_REMAIN",
+  "next_gate": [
+    "Phase 4: acquire exact technical dimensions and manufacturer/first-party evidence before automatic product-to-product compatibility recommendations.",
+    "Phase 5: resolve the 11 REVIEW_REQUIRED URL/intent overlaps before creating overlapping Phase 6 hub/support pages."
+  ]
+}
