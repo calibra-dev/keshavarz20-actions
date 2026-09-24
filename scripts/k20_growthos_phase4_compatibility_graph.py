@@ -474,7 +474,8 @@ def technical_dimensions(p, truth_rec):
         or title_declared_length_cm(name)
     )
     dims['capacity'] = direct_attr(attrs, [r'^ظرفیت$', r'capacity']) or spec_attr(specs, [r'^ظرفیت$', r'capacity']) or title_declared_capacity(name)
-    dims['tool_size'] = dims['nominal_size'] if dims['nominal_size'].get('status') != 'UNKNOWN' else (installation_tool_size(name) or {'status':'UNKNOWN','value':None})
+    nominal = dims.get('nominal_size') or {'status':'UNKNOWN','value':None}
+    dims['tool_size'] = nominal if nominal.get('status') != 'UNKNOWN' else (installation_tool_size(name) or {'status':'UNKNOWN','value':None})
     dims['component_type'] = component_type_from_title(name)
     dims['head'] = direct_attr(attrs, [r'هد', r'ارتفاع']) or spec_attr(specs, [r'هد', r'ارتفاع']) or title_declared_head(name)
     dims['power'] = direct_attr(attrs, [r'توان', r'اسب']) or spec_attr(specs, [r'توان', r'اسب']) or title_declared_power(name)
