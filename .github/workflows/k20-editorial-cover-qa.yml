@@ -1,0 +1,87 @@
+name: Keshavarz20 Editorial Cover QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'automation-policy/**'
+      - 'daily-agri-news/publish_queue*.py'
+      - 'daily-agri-news/requirements.txt'
+      - 'daily-agri-news/README.md'
+      - 'daily-agri-news/SCHEDULED_TASK_PROMPT.md'
+      - 'daily-agri-articles/publish_queue*.py'
+      - 'daily-agri-articles/requirements.txt'
+      - 'daily-agri-articles/README.md'
+      - 'daily-agri-articles/SCHEDULED_TASK_PROMPT.md'
+      - '.github/workflows/k20-editorial-cover-qa.yml'
+      - '.github/workflows/k20-news-queue-publisher.yml'
+      - '.github/workflows/k20-article-queue-publisher.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: k20-editorial-cover-qa
+  cancel-in-progress: true
+
+jobs:
+  visual-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install approved Persian font and dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-core
+          python -m pip install --upgrade pip
+          pip install -r daily-agri-articles/requirements.txt
+          pip install -r daily-agri-news/requirements.txt
+          fc-match "Noto Sans Arabic"
+
+      - name: Compile final publishers
+        run: |
+          python -m py_compile daily-agri-articles/publish_queue_v5.py
+          python -m py_compile daily-agri-news/publish_queue_v3.py
+          python -m py_compile automation-policy/test_seo_god_engines.py
+
+      - name: Run cross-engine policy tests
+        run: python automation-policy/test_seo_god_engines.py
+
+      - name: Run Persian overlay copy-fit smoke
+        shell: python
+        run: |
+          import importlib.util
+          from pathlib import Path
+          root=Path.cwd()
+
+          def load(name,path):
+              spec=importlib.util.spec_from_file_location(name,path)
+              mod=importlib.util.module_from_spec(spec)
+              spec.loader.exec_module(mod)
+              return mod
+
+          a=load("article_v5_qa",root/"daily-agri-articles"/"publish_queue_v5.py")
+          n=load("news_v3_qa",root/"daily-agri-news"/"publish_queue_v3.py")
+
+          title, sub, _ = a._copy({
+              "cover_title":"سنجش یکنواختی آبیاری قطره‌ای",
+              "cover_subtitle":"راهنمای میدانی ارزیابی عملکرد شبکه"
+          })
+          assert a._word_count(title) <= 8
+          assert a._word_count(sub) <= 12
+
+          t,s,_=n._select_copy({
+              "cover_title":"صادرات کیوی زودتر آغاز شد",
+              "cover_subtitle":"آنچه باغداران باید پیگیری کنند"
+          })
+          assert n._wc(t) <= 8
+          assert n._wc(s) <= 12
+          assert "کشاورز" in n._normalize("کشاورز بیست")
+          print("PASS deterministic Persian editorial cover QA")
