@@ -1,0 +1,44 @@
+{
+  "action": "batch",
+  "request_id": "growthos-p3-brand-taxonomy-existing-3-20260924",
+  "payload": {
+    "items": [
+      {
+        "action": "rest.proxy",
+        "method": "PUT",
+        "path": "/wc/v3/products/135383",
+        "payload": {
+          "brands": [
+            {
+              "id": 660
+            }
+          ]
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "PUT",
+        "path": "/wc/v3/products/139231",
+        "payload": {
+          "brands": [
+            {
+              "id": 658
+            }
+          ]
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "PUT",
+        "path": "/wc/v3/products/139232",
+        "payload": {
+          "brands": [
+            {
+              "id": 658
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
