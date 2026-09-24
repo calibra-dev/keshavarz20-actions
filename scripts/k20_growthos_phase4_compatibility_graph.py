@@ -479,8 +479,9 @@ def technical_dimensions(p, truth_rec):
     dims['component_type'] = component_type_from_title(name)
     dims['head'] = direct_attr(attrs, [r'هد', r'ارتفاع']) or spec_attr(specs, [r'هد', r'ارتفاع']) or title_declared_head(name)
     dims['power'] = direct_attr(attrs, [r'توان', r'اسب']) or spec_attr(specs, [r'توان', r'اسب']) or title_declared_power(name)
-    if re.search(r'بابلر|دریپر|قطره[\s‌-]*چکان', name, re.I) and dims['connection_type'].get('status') == 'UNKNOWN':
-        dims['connection_type'] = emitter_connection_type(name) or dims['connection_type']
+    connection = dims.get('connection_type') or {'status':'UNKNOWN','value':None}
+    if re.search(r'بابلر|دریپر|قطره[\s‌-]*چکان', name, re.I) and connection.get('status') == 'UNKNOWN':
+        dims['connection_type'] = emitter_connection_type(name) or connection
     return {k: (v if v else {'status': 'UNKNOWN', 'value': None}) for k, v in dims.items()}
 
 
