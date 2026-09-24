@@ -1,0 +1,71 @@
+name: K20 Bridge v3.3 Chat Asset Relay
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'bridge-v3-asset-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-bridge-v33-chat-asset-relay
+  cancel-in-progress: false
+
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check requests
+
+      - name: Relay changed asset manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+          before="${{ github.event.before }}"
+          current="${{ github.sha }}"
+          zero="0000000000000000000000000000000000000000"
+          if [[ -n "$before" && "$before" != "$zero" ]]; then
+            mapfile -t changed < <(git diff --name-only "$before" "$current" -- 'bridge-v3-asset-ops/*.json' | sort -u)
+          else
+            mapfile -t changed < <(git show --pretty='' --name-only "$current" -- 'bridge-v3-asset-ops/*.json' | sort -u)
+          fi
+          if [[ "${#changed[@]}" -eq 0 ]]; then
+            echo 'No chat-asset manifest found.'
+            exit 0
+          fi
+          failed=0
+          for req in "${changed[@]}"; do
+            name="$(basename "$req" .json)"
+            out="bridge-v3-asset-results/${name}.json"
+            if ! python scripts/k20_chat_asset_relay.py "$req" "$out"; then
+              failed=1
+            fi
+          done
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f bridge-v3-asset-results/
+          if ! git diff --cached --quiet; then
+            git commit -m 'bridge-v3.3: record chat asset relay results'
+            for attempt in 1 2 3 4 5; do
+              git pull --rebase origin main && git push origin HEAD:main && break
+              git rebase --abort >/dev/null 2>&1 || true
+              sleep $((attempt*2))
+              [[ "$attempt" -eq 5 ]] && exit 1
+            done
+          fi
+          exit "$failed"
