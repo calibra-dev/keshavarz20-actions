@@ -1,0 +1,58 @@
+name: K20 GrowthOS Existing Schema Snippets Read
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'growthos-schema-snippets-read-ops/*.json'
+permissions:
+  contents: write
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install requests
+      - name: Read active schema-related snippets
+        shell: python
+        run: |
+          import json, os, pathlib, requests
+          base=os.environ['WP_BASE_URL'].rstrip('/')
+          s=requests.Session(); s.auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD'])
+          ids=[13,14,15,16,18,31]
+          rows=[]
+          for sid in ids:
+              r=s.get(f"{base}/wp-json/code-snippets/v1/snippets/{sid}",timeout=90)
+              r.raise_for_status()
+              x=r.json()
+              rows.append({
+                'id':x.get('id'),'name':x.get('name'),'active':x.get('active'),
+                'scope':x.get('scope'),'priority':x.get('priority'),
+                'tags':x.get('tags'),'desc':x.get('desc'),'code':x.get('code')
+              })
+          result={'snippets':rows}
+          pathlib.Path('growthos-phase3-results').mkdir(exist_ok=True)
+          pathlib.Path('growthos-phase3-results/schema-snippets-source.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps([{'id':x['id'],'name':x['name'],'active':x['active']} for x in rows],ensure_ascii=False))
+      - name: Commit snippet source evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f growthos-phase3-results/schema-snippets-source.json
+          git diff --cached --quiet && exit 0
+          git commit -m "growthos phase3: record existing schema snippet source"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
