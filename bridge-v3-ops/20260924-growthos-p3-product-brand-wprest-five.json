@@ -1,0 +1,58 @@
+{
+  "action": "batch",
+  "request_id": "growthos-p3-product-brand-wprest-five-20260924",
+  "payload": {
+    "items": [
+      {
+        "action": "rest.proxy",
+        "method": "PUT",
+        "path": "/wp/v2/product/135383",
+        "payload": {
+          "product_brand": [
+            660
+          ]
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "PUT",
+        "path": "/wp/v2/product/139231",
+        "payload": {
+          "product_brand": [
+            658
+          ]
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "PUT",
+        "path": "/wp/v2/product/139232",
+        "payload": {
+          "product_brand": [
+            658
+          ]
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "PUT",
+        "path": "/wp/v2/product/140406",
+        "payload": {
+          "product_brand": [
+            2250
+          ]
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "PUT",
+        "path": "/wp/v2/product/140407",
+        "payload": {
+          "product_brand": [
+            2250
+          ]
+        }
+      }
+    ]
+  }
+}
