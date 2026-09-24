@@ -561,6 +561,113 @@ def hose_barb_connection(name):
                 'evidence':{'field':'connection_type','title':s}}
     return None
 
+
+def exact_product_prose(p):
+    raw = (p.get('description') or '') + '\n' + (p.get('short_description') or '')
+    text = BeautifulSoup(raw, 'html.parser').get_text(' ', strip=True)
+    return re.sub(r'\s+', ' ', html.unescape(text)).strip()
+
+
+def prose_match(p, patterns, field):
+    text = exact_product_prose(p)
+    if not text:
+        return None
+    for pat in patterns:
+        m = re.search(pat, text, re.I)
+        if not m:
+            continue
+        value = m.group(1).strip(' :：-،؛.')
+        if not value:
+            continue
+        start = max(0, m.start() - 55)
+        end = min(len(text), m.end() + 90)
+        return {
+            'status': 'VERIFIED',
+            'value': re.sub(r'\s+', ' ', value),
+            'source': 'woocommerce_product_prose',
+            'evidence': {
+                'field': field,
+                'matched_snippet': text[start:end]
+            }
+        }
+    return None
+
+
+def prose_nominal_size(p):
+    return prose_match(p, [
+        r'(?:قطر\s*داخلی|قطر\s*اسمی|سایز\s*اسمی)\s*[:：\-]?\s*([۰-۹0-9]+(?:[./][۰-۹0-9]+)?\s*(?:میلی[\s‌-]*متر|میلیمتر|mm|اینچ))'
+    ], 'nominal_size')
+
+
+def prose_pressure(p):
+    return prose_match(p, [
+        r'(?:فشار\s*(?:کاری|کارکرد|اسمی|مجاز|بهینه|مورد\s*نیاز)|محدوده\s*فشار\s*کاری)\s*[:：\-]?\s*([۰-۹0-9]+(?:[./][۰-۹0-9]+)?(?:\s*(?:الی|تا|[-–])\s*[۰-۹0-9]+(?:[./][۰-۹0-9]+)?)?\s*(?:بار|اتمسفر|atm|bar))',
+        r'(?:حداقل\s*فشار|حداکثر\s*فشار)\s*[:：\-]?\s*([۰-۹0-9]+(?:[./][۰-۹0-9]+)?\s*(?:بار|اتمسفر|atm|bar))'
+    ], 'pressure_class')
+
+
+def prose_flow_rate(p):
+    return prose_match(p, [
+        r'(?:دبی|آبدهی|آب[\s‌-]*دهی)\s*(?:اسمی|خروجی|هر\s*قطره[\s‌-]*چکان|هر\s*روزنه)?\s*[:：\-]?\s*([۰-۹0-9]+(?:[./][۰-۹0-9]+)?(?:\s*(?:الی|تا|[-–])\s*[۰-۹0-9]+(?:[./][۰-۹0-9]+)?)?\s*(?:لیتر(?:\s*بر\s*(?:ساعت|ثانیه))?|l/h|lph|m3/h|متر\s*مکعب(?:\s*بر\s*ساعت)?))'
+    ], 'flow_rate')
+
+
+def prose_filtration_grade(p):
+    name = p.get('name') or ''
+    if not re.search(r'فیلتر', name, re.I):
+        return None
+    return prose_match(p, [
+        r'(?:مش|درجه\s*فیلتراسیون|دقت\s*فیلتراسیون)\s*[:：\-]?\s*([۰-۹0-9]{2,3}\s*(?:مش|mesh)?)',
+        r'(?:فیلتر|دیسک|کارتریج)[^.!؟]{0,80}?([۰-۹0-9]{2,3}\s*(?:مش|mesh))'
+    ], 'filtration_grade')
+
+
+def prose_filtration_requirement(p):
+    name = p.get('name') or ''
+    if not re.search(r'نوار\s*تیپ|نوارتیپ|نوار\s*آبیاری', name, re.I):
+        return None
+    return prose_match(p, [
+        r'(?:فیلتر(?:اسیون)?\s*(?:مناسب|مورد\s*نیاز|توصیه\s*شده)?|مش\s*فیلتر)\s*[:：\-]?\s*([۰-۹0-9]{2,3}\s*(?:مش|mesh))',
+        r'(?:ذرات|ناخالصی)[^.!؟]{0,80}?([۰-۹0-9]{2,3}\s*میکرون)'
+    ], 'filtration_requirement')
+
+
+def prose_connection_size(p):
+    return prose_match(p, [
+        r'(?:سایز\s*اتصال|قطر\s*اتصال|سایز\s*ورودی|سایز\s*خروجی|ورودی\s*و\s*خروجی)\s*[:：\-]?\s*([۰-۹0-9]+(?:[./][۰-۹0-9]+)?\s*(?:اینچ|میلی[\s‌-]*متر|میلیمتر|mm))'
+    ], 'connection_size')
+
+
+def prose_connection_type(p):
+    return prose_match(p, [
+        r'(?:نوع\s*اتصال|روش\s*اتصال)\s*[:：\-]?\s*((?:رزوه[‌\s-]*ای|دنده[‌\s-]*ای|پیچی|جوشی|چسبی|ویکتالیک|فلنجی|پرسی|کوپلینگی))'
+    ], 'connection_type')
+
+
+def prose_material(p):
+    return prose_match(p, [
+        r'(?:جنس\s*(?:بدنه|لوله|محصول)?|مواد\s*سازنده)\s*[:：\-]?\s*((?:u[\s-]*pvc|upvc|pvc|pe100|pe80|پلی[\s‌-]*اتیلن|پلیمری|آلومینیوم|آلمینیوم|چدن|فلز)[^،؛.!؟]{0,55})'
+    ], 'material')
+
+
+def prose_power(p):
+    return prose_match(p, [
+        r'(?:توان\s*(?:موتور|نامی)?|قدرت\s*موتور)\s*[:：\-]?\s*([۰-۹0-9]+(?:[./][۰-۹0-9]+)?\s*(?:وات|کیلووات|kw|w|اسب(?:\s*بخار)?|hp))'
+    ], 'power')
+
+
+def prose_head(p):
+    return prose_match(p, [
+        r'(?:حداکثر\s*ارتفاع|ارتفاع\s*پمپاژ|هد\s*(?:حداکثر|ماکزیمم|پمپ)?|max(?:imum)?\s*head)\s*[:：\-]?\s*([۰-۹0-9]+(?:[./][۰-۹0-9]+)?\s*(?:متر|m))'
+    ], 'head')
+
+
+def prose_length(p):
+    return prose_match(p, [
+        r'(?:طول\s*(?:کلاف|رول|شاخه|لوله)?|متراژ\s*(?:کلاف|رول)?)\s*[:：\-]?\s*([۰-۹0-9]+(?:[./][۰-۹0-9]+)?\s*(?:متر|متری|m))'
+    ], 'length')
+
+
 def technical_dimensions(p, truth_rec):
     attrs = attrs_map(p)
     specs = spec_map(p)
@@ -568,16 +675,18 @@ def technical_dimensions(p, truth_rec):
     dims = {}
     cat = category_semantics(p)
     size_patterns = [r'^سایز$', r'^قطر$', r'diameter', r'^size$', r'سایز.*قطر']
-    dims['nominal_size'] = direct_attr(attrs, size_patterns) or spec_attr(specs, size_patterns) or title_declared_size(name) or quoted_inch_size(name) or implicit_fraction_size(name) or fitting_pair_size(name)
+    dims['nominal_size'] = direct_attr(attrs, size_patterns) or spec_attr(specs, size_patterns) or prose_nominal_size(p) or title_declared_size(name) or quoted_inch_size(name) or implicit_fraction_size(name) or fitting_pair_size(name)
     dims['connection_size'] = (
         direct_attr(attrs, [r'سایز اتصال', r'قطر اتصال'])
         or spec_attr(specs, [r'سایز اتصال', r'قطر اتصال'])
+        or prose_connection_size(p)
         or title_declared_connection_size(name)
         or dims['nominal_size']
     )
     dims['connection_type'] = (
         direct_attr(attrs, [r'نوع اتصال', r'رزوه', r'connection', r'thread'])
         or spec_attr(specs, [r'نوع اتصال', r'رزوه', r'connection', r'thread'])
+        or prose_connection_type(p)
         or title_declared_connection_type(name)
         or semantic_connection_type(name)
         or hose_barb_connection(name)
@@ -587,6 +696,7 @@ def technical_dimensions(p, truth_rec):
         truth_field(truth_rec, 'material')
         or direct_attr(attrs, [r'^جنس$', r'material'])
         or spec_attr(specs, [r'^جنس$', r'material'])
+        or prose_material(p)
         or title_declared_material(name)
         or title_declared_aluminum(name)
         or metal_material_from_title(name)
@@ -595,6 +705,7 @@ def technical_dimensions(p, truth_rec):
     dims['pressure_class'] = (
         direct_attr(attrs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn$', r'^sdr$'])
         or spec_attr(specs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn$', r'^sdr$'])
+        or prose_pressure(p)
         or title_declared_pressure(name)
     )
     dims['pressure_requirement'] = (
@@ -605,15 +716,18 @@ def technical_dimensions(p, truth_rec):
     dims['flow_rate'] = (
         direct_attr(attrs, [r'^دبی', r'flow'])
         or spec_attr(specs, [r'^دبی', r'flow'])
+        or prose_flow_rate(p)
         or title_declared_flow_rate(name)
     )
     dims['filtration_grade'] = (
         direct_attr(attrs, [r'میکرون', r'مش', r'mesh', r'filtration grade'])
         or spec_attr(specs, [r'میکرون', r'مش', r'mesh', r'filtration grade'])
+        or prose_filtration_grade(p)
     )
     dims['filtration_requirement'] = (
         direct_attr(attrs, [r'نیاز فیلتراسیون', r'الزام فیلتراسیون', r'filtration requirement'])
         or spec_attr(specs, [r'نیاز فیلتراسیون', r'الزام فیلتراسیون', r'filtration requirement'])
+        or prose_filtration_requirement(p)
     )
     dims['emitter_spacing'] = (
         direct_attr(attrs, [r'فاصله قطره', r'فاصله خروجی', r'emitter spacing'])
@@ -623,6 +737,7 @@ def technical_dimensions(p, truth_rec):
     dims['length'] = (
         direct_attr(attrs, [r'^طول$', r'طول رول', r'length'])
         or spec_attr(specs, [r'^طول$', r'طول رول', r'length'])
+        or prose_length(p)
         or title_declared_length(name)
         or title_declared_length_cm(name)
     )
@@ -631,8 +746,8 @@ def technical_dimensions(p, truth_rec):
     dims['tool_size'] = nominal if nominal.get('status') != 'UNKNOWN' else (installation_tool_size(name) or {'status':'UNKNOWN','value':None})
     dims['component_type'] = component_type_from_title(name)
     dims['interface_signature'] = interface_signature_from_title(name)
-    dims['head'] = direct_attr(attrs, [r'هد', r'ارتفاع']) or spec_attr(specs, [r'هد', r'ارتفاع']) or title_declared_head(name)
-    dims['power'] = direct_attr(attrs, [r'توان', r'اسب']) or spec_attr(specs, [r'توان', r'اسب']) or title_declared_power(name)
+    dims['head'] = direct_attr(attrs, [r'هد', r'ارتفاع']) or spec_attr(specs, [r'هد', r'ارتفاع']) or prose_head(p) or title_declared_head(name)
+    dims['power'] = direct_attr(attrs, [r'توان', r'اسب']) or spec_attr(specs, [r'توان', r'اسب']) or prose_power(p) or title_declared_power(name)
     connection = dims.get('connection_type') or {'status':'UNKNOWN','value':None}
     if re.search(r'بابلر|دریپر|قطره[\s‌-]*چکان', name, re.I) and connection.get('status') == 'UNKNOWN':
         dims['connection_type'] = emitter_connection_type(name) or connection
