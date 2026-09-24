@@ -111,7 +111,7 @@ def classify_product(p):
     if re.search(r'(?:رابط|زانو|سه\s*راه|کورکن|درپوش).*(?:16|۱۶)\s*میلی', name):
         return 'drip_line_component'
 
-    if re.search(r'شیر\s*انشعاب\s*(?:16|۱۶)\s*به\s*(?:16|۱۶)', name):
+    if re.search(r'شیر\s*انشعاب\s*(?:16|۱۶)\s*به\s*(?:(?:16|۱۶)|(?:1/2|۱/۲))', name):
         return 'drip_line_component'
 
     if re.search(r'نوار\s*تیپ|نوارتیپ|نوار\s*آبیاری', name):
@@ -432,6 +432,9 @@ def emitter_connection_type(name):
     if re.search(r'پرسی', s, re.I):
         return {'status':'SITE_DECLARED','value':'press_fit','source':'woocommerce_product_title',
                 'evidence':{'field':'connection_type','title':s}}
+    if re.search(r'مخصوص\s*لوله\s*(?:16|۱۶)|لوله\s*(?:16|۱۶)', s, re.I):
+        return {'status':'SITE_DECLARED','value':'fit_on_16mm_line','source':'woocommerce_product_title',
+                'evidence':{'field':'connection_type','title':s}}
     return None
 
 
@@ -514,6 +517,10 @@ def interface_signature_from_title(name):
             if sz and sz.get('value'):
                 v += ':'+str(sz.get('value'))
         return {'status':'SITE_DECLARED','value':v,
+                'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
+
+    if re.search(r'شیر\s*انشعاب\s*(?:16|۱۶)\s*به\s*(?:1/2|۱/۲)', n, re.I):
+        return {'status':'SITE_DECLARED','value':'line16<->thread_1/2',
                 'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
 
     if re.search(r'شیر\s*انشعاب\s*(?:16|۱۶)\s*به\s*(?:16|۱۶)', n, re.I):
