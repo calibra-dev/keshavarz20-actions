@@ -1,0 +1,558 @@
+{
+  "http": 200,
+  "routes": {
+    "/wpvibe/v1/code-snippet": {
+      "methods": [
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": [
+            "action",
+            "code",
+            "code_type",
+            "id",
+            "insert_method",
+            "location",
+            "title"
+          ]
+        }
+      ]
+    },
+    "/code-snippets/v1": {
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "context",
+            "namespace"
+          ]
+        }
+      ]
+    },
+    "/code-snippets/v1/snippets": {
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "context",
+            "exclude_types",
+            "order",
+            "orderby",
+            "page",
+            "per_page",
+            "search",
+            "status"
+          ]
+        },
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": [
+            "active",
+            "code",
+            "condition_id",
+            "desc",
+            "locked",
+            "name",
+            "network",
+            "priority",
+            "scope",
+            "shared_network",
+            "tags",
+            "trashed"
+          ]
+        }
+      ]
+    },
+    "/code-snippets/v1/snippets/(?P<id>[\\d]+)": {
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": []
+        },
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": [
+            "active",
+            "code",
+            "condition_id",
+            "desc",
+            "locked",
+            "name",
+            "network",
+            "priority",
+            "scope",
+            "shared_network",
+            "tags",
+            "trashed"
+          ]
+        },
+        {
+          "methods": [
+            "DELETE"
+          ],
+          "args": []
+        }
+      ]
+    },
+    "/code-snippets/v1/snippets/(?P<id>[\\d]+)/restore": {
+      "methods": [
+        "POST",
+        "PUT",
+        "PATCH"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": []
+        }
+      ]
+    },
+    "/code-snippets/v1/snippets/schema": {
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": []
+        }
+      ]
+    },
+    "/code-snippets/v1/snippets/(?P<id>[\\d]+)/activate": {
+      "methods": [
+        "POST",
+        "PUT",
+        "PATCH"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": []
+        }
+      ]
+    },
+    "/code-snippets/v1/snippets/(?P<id>[\\d]+)/deactivate": {
+      "methods": [
+        "POST",
+        "PUT",
+        "PATCH"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": []
+        }
+      ]
+    },
+    "/code-snippets/v1/snippets/(?P<id>[\\d]+)/export": {
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": []
+        }
+      ]
+    },
+    "/code-snippets/v1/snippets/(?P<id>[\\d]+)/export-code": {
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": []
+        }
+      ]
+    },
+    "/code-snippets/v1/recently-active": {
+      "methods": [
+        "GET",
+        "DELETE"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "network"
+          ]
+        },
+        {
+          "methods": [
+            "DELETE"
+          ],
+          "args": [
+            "network"
+          ]
+        }
+      ]
+    },
+    "/code-snippets/v1/preferences/snippet-view": {
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": []
+        },
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": [
+            "view"
+          ]
+        }
+      ]
+    },
+    "/code-snippets/v1/import/plugins": {
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": []
+        }
+      ]
+    },
+    "/code-snippets/v1/import/plugins/insert-headers-and-footers": {
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": []
+        }
+      ]
+    },
+    "/code-snippets/v1/import/plugins/insert-headers-and-footers/import": {
+      "methods": [
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": [
+            "auto_add_tags",
+            "ids",
+            "network",
+            "tag_value"
+          ]
+        }
+      ]
+    },
+    "/code-snippets/v1/import/plugins/header-footer-code-manager": {
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": []
+        }
+      ]
+    },
+    "/code-snippets/v1/import/plugins/header-footer-code-manager/import": {
+      "methods": [
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": [
+            "auto_add_tags",
+            "ids",
+            "network",
+            "tag_value"
+          ]
+        }
+      ]
+    },
+    "/code-snippets/v1/import/plugins/insert-php-code-snippet": {
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": []
+        }
+      ]
+    },
+    "/code-snippets/v1/import/plugins/insert-php-code-snippet/import": {
+      "methods": [
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": [
+            "auto_add_tags",
+            "ids",
+            "network",
+            "tag_value"
+          ]
+        }
+      ]
+    },
+    "/code-snippets/v1/import/file-upload/parse": {
+      "methods": [
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": []
+        }
+      ]
+    },
+    "/code-snippets/v1/import/file-upload/import": {
+      "methods": [
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": [
+            "duplicate_action",
+            "network",
+            "snippets"
+          ]
+        }
+      ]
+    },
+    "/code-snippets/v1/cloud/snippets": {
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "category",
+            "page",
+            "per_page",
+            "query",
+            "searchByCodevault",
+            "status",
+            "type"
+          ]
+        }
+      ]
+    },
+    "/code-snippets/v1/cloud/snippets/featured": {
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "category",
+            "page",
+            "per_page",
+            "status",
+            "type"
+          ]
+        }
+      ]
+    },
+    "/code-snippets/v1/cloud/snippets/(?P<id>\\d+)/download": {
+      "methods": [
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": [
+            "id"
+          ]
+        }
+      ]
+    },
+    "/wp/v2/elementor_snippet": {
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "after",
+            "author",
+            "author_exclude",
+            "before",
+            "context",
+            "exclude",
+            "include",
+            "modified_after",
+            "modified_before",
+            "offset",
+            "order",
+            "orderby",
+            "page",
+            "per_page",
+            "search",
+            "search_columns",
+            "search_semantics",
+            "slug",
+            "status"
+          ]
+        },
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": [
+            "author",
+            "date",
+            "date_gmt",
+            "meta",
+            "password",
+            "slug",
+            "status",
+            "template",
+            "title"
+          ]
+        }
+      ]
+    },
+    "/wp/v2/elementor_snippet/(?P<id>[\\d]+)": {
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "context",
+            "id",
+            "password"
+          ]
+        },
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": [
+            "author",
+            "date",
+            "date_gmt",
+            "id",
+            "meta",
+            "password",
+            "slug",
+            "status",
+            "template",
+            "title"
+          ]
+        },
+        {
+          "methods": [
+            "DELETE"
+          ],
+          "args": [
+            "force",
+            "id"
+          ]
+        }
+      ]
+    }
+  }
+}
