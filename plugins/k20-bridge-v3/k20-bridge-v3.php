@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Keshavarz20 Bridge v3
  * Description: GitHub-first guarded execution bridge for Keshavarz20.
- * Version: 3.2.0
+ * Version: 3.2.1
  * Author: Keshavarz20
  */
 
 if (!defined('ABSPATH')) exit;
-if (!defined('K20_BRIDGE_RUNTIME_VERSION')) define('K20_BRIDGE_RUNTIME_VERSION','3.2.0');
+if (!defined('K20_BRIDGE_RUNTIME_VERSION')) define('K20_BRIDGE_RUNTIME_VERSION','3.2.1');
 
 require_once __DIR__.'/includes/class-k20-bridge-v31-content.php';
 require_once __DIR__.'/includes/class-k20-bridge-v31-media.php';
@@ -20,7 +20,7 @@ require_once __DIR__.'/includes/class-k20-bridge-v32-updater.php';
 require_once __DIR__.'/includes/class-k20-bridge-v32-observability.php';
 
 final class K20_Bridge_V3 {
-    private const VERSION='3.2.0';
+    private const VERSION='3.2.1';
     private const CONTRACT='3.2';
     private const NS='keshavarz20-ops/v3';
     private const AUDIT_OPTION='k20_bridge_v3_audit';
@@ -106,6 +106,7 @@ final class K20_Bridge_V3 {
         return [
             '#^/wp/v2/posts(?:/\d+)?$#','#^/wp/v2/pages(?:/\d+)?$#','#^/wp/v2/media(?:/\d+)?$#',
             '#^/wp/v2/categories(?:/\d+)?$#','#^/wp/v2/tags(?:/\d+)?$#','#^/wp/v2/search$#',
+            '#^/wp/v2/product(?:/\d+)?$#',
             '#^/wc/v3/products(?:/\d+)?$#','#^/wc/v3/products/categories(?:/\d+)?$#',
             '#^/wc/v3/products/tags(?:/\d+)?$#','#^/wc/v3/products/attributes(?:/\d+)?(?:/terms(?:/\d+)?)?$#'
         ];

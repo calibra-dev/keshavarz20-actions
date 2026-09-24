@@ -1,4 +1,4 @@
-name: Keshavarz20 Bridge v3.2 Test and Package
+name: Keshavarz20 Bridge v3.2.1 Test and Package
 
 on:
   push:
@@ -42,9 +42,9 @@ jobs:
           c=json.load(open('plugins/k20-bridge-v3/api-contract.json'))
           m=json.load(open('plugins/k20-bridge-v3/update-manifest.json'))
           assert c['schema_version']=='3.2'
-          assert c['plugin_version']=='3.2.0'
-          assert m['version']=='3.2.0'
-          assert m['package_url'].startswith('https://github.com/calibra-dev/keshavarz20-actions/releases/download/v3.2.0/')
+          assert c['plugin_version']=='3.2.1'
+          assert m['version']=='3.2.1'
+          assert m['package_url'].startswith('https://github.com/calibra-dev/keshavarz20-actions/releases/download/v3.2.1/')
           PY
 
       - name: Security policy guard
@@ -82,15 +82,15 @@ jobs:
           mkdir -p dist/k20-bridge-v3
           cp -R plugins/k20-bridge-v3/. dist/k20-bridge-v3/
           cd dist
-          zip -qr k20-bridge-v3.2.0.zip k20-bridge-v3
-          sha256sum k20-bridge-v3.2.0.zip > k20-bridge-v3.2.0.sha256
+          zip -qr k20-bridge-v3.2.1.zip k20-bridge-v3
+          sha256sum k20-bridge-v3.2.1.zip > k20-bridge-v3.2.1.sha256
 
       - name: Upload package
         uses: actions/upload-artifact@v4
         with:
-          name: k20-bridge-v3.2.0
+          name: k20-bridge-v3.2.1
           path: |
-            dist/k20-bridge-v3.2.0.zip
-            dist/k20-bridge-v3.2.0.sha256
+            dist/k20-bridge-v3.2.1.zip
+            dist/k20-bridge-v3.2.1.sha256
           if-no-files-found: error
           retention-days: 30
