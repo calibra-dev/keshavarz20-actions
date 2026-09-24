@@ -44,6 +44,7 @@ RULES = {
     'emitter': ['flow_rate', 'connection_type'],
     'drip_tape': ['nominal_size', 'length', 'emitter_spacing', 'filtration_requirement', 'pressure_class'],
     'drip_tape_component': ['interface_signature'],
+    'drip_line_component': ['interface_signature'],
     'filter': ['connection_size', 'filtration_grade'],
     'fertigation': ['capacity', 'connection_size', 'pressure_requirement'],
     'pipe': ['nominal_size', 'length', 'pressure_class', 'material'],
@@ -103,6 +104,12 @@ def classify_product(p):
 
     if re.search(r'^لوله.*(?:مه[\s‌-]*پاش|بارانی)', name):
         return 'layflat_rain'
+
+    if re.search(r'(?:رابط|شیر|سه\s*راه|اتصال|کورکن|درپوش).*تیپ|تیپ.*(?:رابط|شیر|سه\s*راه|اتصال|کورکن|درپوش)', name) and not re.search(r'لی[\s‌-]*فلت|نخ[\s‌-]*دار', name):
+        return 'drip_tape_component'
+
+    if re.search(r'(?:رابط|زانو|سه\s*راه|کورکن|درپوش).*۱?6\s*میلی|(?:رابط|زانو|سه\s*راه|کورکن|درپوش).*16\s*میلی', name):
+        return 'drip_line_component'
 
     if re.search(r'نوار\s*تیپ|نوارتیپ|نوار\s*آبیاری', name):
         if re.search(r'شیر|رابط|بست|سه\s*راه|اتصال|کورکن|درپوش|ابتدایی', name):
@@ -393,6 +400,17 @@ def quoted_inch_size(name):
     return None
 
 
+
+def fitting_pair_size(name):
+    s = name or ''
+    if not re.search(r'اتصال|رابط|زانو|سه\s*راه|تبدیل|کمربند|بوشن', s, re.I):
+        return None
+    pair = pair_size_signature(s)
+    if pair:
+        return {'status':'SITE_DECLARED','value':pair,'source':'woocommerce_product_title',
+                'evidence':{'field':'nominal_size','title':s,'rule':'explicit_pair_signature'}}
+    return None
+
 def installation_tool_size(name):
     s = name or ''
     m = re.search(r'(?:پانچ|پانچر|گردبر|سوراخ[\s‌-]*کن)\D*([۰-۹0-9]+)', s, re.I)
@@ -480,7 +498,7 @@ def interface_signature_from_title(name):
         return {'status':'SITE_DECLARED','value':'thread_or_branch<->drip_tape',
                 'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
 
-    if re.search(r'بست\s*ابتدایی|واشر|اورینگ|گسکت|بست\s*و\s*قلاب', n, re.I):
+    if re.search(r'بست|واشر|اورینگ|گسکت', n, re.I):
         v = 'seal_or_clamp'
         if pair:
             v += ':'+pair
@@ -496,6 +514,19 @@ def interface_signature_from_title(name):
         if pair:
             v += ':'+pair
         return {'status':'SITE_DECLARED','value':v,
+                'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
+
+    if re.search(r'رابط.*(?:16|۱۶).*میلی', n, re.I):
+        return {'status':'SITE_DECLARED','value':'line16<->line16',
+                'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
+    if re.search(r'زانو.*(?:16|۱۶).*میلی', n, re.I):
+        return {'status':'SITE_DECLARED','value':'line16:elbow',
+                'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
+    if re.search(r'سه\s*راه.*(?:16|۱۶).*میلی', n, re.I):
+        return {'status':'SITE_DECLARED','value':'line16:tee',
+                'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
+    if re.search(r'کورکن|درپوش', n, re.I) and re.search(r'(?:16|۱۶).*میلی', n, re.I):
+        return {'status':'SITE_DECLARED','value':'line16:end_closure',
                 'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
 
     return None
@@ -526,7 +557,7 @@ def technical_dimensions(p, truth_rec):
     dims = {}
     cat = category_semantics(p)
     size_patterns = [r'^سایز$', r'^قطر$', r'diameter', r'^size$', r'سایز.*قطر']
-    dims['nominal_size'] = direct_attr(attrs, size_patterns) or spec_attr(specs, size_patterns) or title_declared_size(name) or quoted_inch_size(name) or implicit_fraction_size(name)
+    dims['nominal_size'] = direct_attr(attrs, size_patterns) or spec_attr(specs, size_patterns) or title_declared_size(name) or quoted_inch_size(name) or implicit_fraction_size(name) or fitting_pair_size(name)
     dims['connection_size'] = (
         direct_attr(attrs, [r'سایز اتصال', r'قطر اتصال'])
         or spec_attr(specs, [r'سایز اتصال', r'قطر اتصال'])
