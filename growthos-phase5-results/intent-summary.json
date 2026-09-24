@@ -1,37 +1,38 @@
 {
   "ok": true,
   "phase": 5,
-  "version": "growthos-central-intent-registry-v1",
-  "generated_at_utc": "2026-09-24T06:49:57.346794+00:00",
-  "status": "PASS_WITH_CANONICAL_CONFLICT_BACKLOG",
+  "version": "growthos-central-intent-registry-v2",
+  "generated_at_utc": "2026-09-24T07:11:36.698561+00:00",
+  "status": "PASS_RESOLVED_OWNER_MAP",
   "summary": {
     "source_raw_rows": 437,
     "filtered_irrigation_rows": 186,
-    "central_intents": 78,
+    "central_intents": 84,
     "topics": {
       "drip_tape": 8,
       "fertigation_tank": 4,
-      "pe_valve": 28,
+      "pe_valve": 32,
       "pe_fitting_saddle": 4,
       "polyethylene_pipe": 8,
       "sprinkler": 3,
-      "pe_fitting_general": 4,
+      "pe_fitting_general": 5,
       "layflat_hose": 11,
-      "pe_fitting_elbow": 7,
+      "pe_fitting_elbow": 8,
       "pe_installation_tool": 1
     },
     "intents": {
       "محاسبه": 1,
-      "خرید": 27,
-      "انتخاب": 41,
+      "خرید": 29,
+      "انتخاب": 45,
       "سازگاری": 1,
       "مقایسه": 5,
       "نگهداری": 1,
       "شناخت": 1,
       "عیب‌یابی": 1
     },
-    "review_required_canonical_conflicts": 11,
-    "active_intents": 67,
+    "review_required_canonical_conflicts": 0,
+    "resolved_multi_url_groups": 27,
+    "active_intents": 84,
     "site_writes": 0,
     "new_pages_created": 0
   },
@@ -40,9 +41,10 @@
     "prompt_to_intent_to_subquestions_to_entities_to_evidence_to_canonical_to_conversion_complete": true,
     "stable_ids_unique": true,
     "shared_intents_merged_by_semantic_key": true,
-    "multi_url_conflicts_not_silently_hidden": true,
+    "multi_url_conflicts_resolved_to_existing_owner": true,
+    "no_unresolved_owner": true,
     "no_new_pages_auto_created": true,
     "no_site_writes": true
   },
-  "next_gate": "Phase 6 hubs should consume this central registry and Phase 4 graph; REVIEW_REQUIRED URL conflicts must be resolved before creating overlapping pages."
+  "next_gate": "Phase 6 must consume the resolved owner map. Interim product/tag owners should be replaced by durable hubs/categories only when inventory breadth and content justify it; do not create duplicate pages."
 }

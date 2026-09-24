@@ -1,64 +1,760 @@
 {
   "phase": 5,
-  "generated_at_utc": "2026-09-24T06:49:57.346794+00:00",
-  "count": 11,
+  "generated_at_utc": "2026-09-24T07:11:36.698561+00:00",
+  "count": 27,
   "conflicts": [
     {
-      "semantic_key": "pe_fitting_general|اتصالات پلی اتیلن|انتخاب|",
+      "semantic_key": "fertigation_tank|تانک کود|خرید|100||",
+      "topic": "fertigation_tank",
+      "entity_focus": "تانک کود",
+      "intent": "خرید",
+      "size_token": "100",
+      "brand_token": null,
+      "variant_token": null,
+      "observed_queries": [
+        {
+          "query": "قیمت تانک کود 100 لیتری",
+          "clicks": 5.0,
+          "impressions": 51.0,
+          "position": 5.0392
+        }
+      ],
+      "canonical_decision": {
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product/%D9%85%D8%AE%D8%B2%D9%86-%D8%AA%D8%B2%D8%B1%DB%8C%D9%82-%DA%A9%D9%88%D8%AF-%D8%AA%D8%A7%D9%86%DA%A9-%DA%A9%D9%88%D8%AF-100-%D9%84%DB%8C%D8%AA%D8%B1%DB%8C/",
+        "owner_page_type": "product",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product/%D9%85%D8%AE%D8%B2%D9%86-%D8%AA%D8%B2%D8%B1%DB%8C%D9%82-%DA%A9%D9%88%D8%AF-%D8%AA%D8%A7%D9%86%DA%A9-%DA%A9%D9%88%D8%AF-100-%D9%84%DB%8C%D8%AA%D8%B1%DB%8C/",
+            "page_type": "product",
+            "clicks": 11.0,
+            "impressions": 102.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D9%85%D8%AE%D8%B2%D9%86-%D8%AA%D8%B2%D8%B1%DB%8C%D9%82-%DA%A9%D9%88%D8%AF-%D8%AA%D8%A7%D9%86%DA%A9-%DA%A9%D9%88%D8%AF-200-%D9%84%DB%8C%D8%AA%D8%B1%DB%8C/",
+            "page_type": "product",
+            "clicks": 4.0,
+            "impressions": 63.0
+          }
+        ],
+        "owner_impression_share": 0.6182,
+        "decision_reasons": [
+          "specific_product_page",
+          "observed_for_exact_intent"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product/%D9%85%D8%AE%D8%B2%D9%86-%D8%AA%D8%B2%D8%B1%DB%8C%D9%82-%DA%A9%D9%88%D8%AF-%D8%AA%D8%A7%D9%86%DA%A9-%DA%A9%D9%88%D8%AF-100-%D9%84%DB%8C%D8%AA%D8%B1%DB%8C/",
+          "owner_page_type": "product",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%D9%85%D8%AE%D8%B2%D9%86-%D8%AA%D8%B2%D8%B1%DB%8C%D9%82-%DA%A9%D9%88%D8%AF-%D8%AA%D8%A7%D9%86%DA%A9-%DA%A9%D9%88%D8%AF-200-%D9%84%DB%8C%D8%AA%D8%B1%DB%8C/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
+        }
+      }
+    },
+    {
+      "semantic_key": "fertigation_tank|تانک کود|انتخاب|||",
+      "topic": "fertigation_tank",
+      "entity_focus": "تانک کود",
+      "intent": "انتخاب",
+      "size_token": null,
+      "brand_token": null,
+      "variant_token": null,
+      "observed_queries": [
+        {
+          "query": "تانک کود",
+          "clicks": 0.0,
+          "impressions": 13.0,
+          "position": 3.5384
+        },
+        {
+          "query": "تانک کود دست دوم",
+          "clicks": 1.0,
+          "impressions": 3.0,
+          "position": 1.3333
+        },
+        {
+          "query": "مخزن تزریق کود",
+          "clicks": 1.0,
+          "impressions": 3.0,
+          "position": 3.3333
+        },
+        {
+          "query": "مخزن کود",
+          "clicks": 0.0,
+          "impressions": 3.0,
+          "position": 10.0
+        },
+        {
+          "query": "تانک کود کشاورزی",
+          "clicks": 0.0,
+          "impressions": 2.0,
+          "position": 10.0
+        }
+      ],
+      "canonical_decision": {
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product/%D9%85%D8%AE%D8%B2%D9%86-%D8%AA%D8%B2%D8%B1%DB%8C%D9%82-%DA%A9%D9%88%D8%AF-%D8%AA%D8%A7%D9%86%DA%A9-%DA%A9%D9%88%D8%AF-200-%D9%84%DB%8C%D8%AA%D8%B1%DB%8C/",
+        "owner_page_type": "product",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product/%D9%85%D8%AE%D8%B2%D9%86-%D8%AA%D8%B2%D8%B1%DB%8C%D9%82-%DA%A9%D9%88%D8%AF-%D8%AA%D8%A7%D9%86%DA%A9-%DA%A9%D9%88%D8%AF-200-%D9%84%DB%8C%D8%AA%D8%B1%DB%8C/",
+            "page_type": "product",
+            "clicks": 5.0,
+            "impressions": 78.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D9%85%D8%AE%D8%B2%D9%86-%D8%AA%D8%B2%D8%B1%DB%8C%D9%82-%DA%A9%D9%88%D8%AF-%D8%AA%D8%A7%D9%86%DA%A9-%DA%A9%D9%88%D8%AF-100-%D9%84%DB%8C%D8%AA%D8%B1%DB%8C/",
+            "page_type": "product",
+            "clicks": 7.0,
+            "impressions": 60.0
+          }
+        ],
+        "owner_impression_share": 0.5652,
+        "decision_reasons": [
+          "specific_product_page",
+          "observed_for_exact_intent"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product/%D9%85%D8%AE%D8%B2%D9%86-%D8%AA%D8%B2%D8%B1%DB%8C%D9%82-%DA%A9%D9%88%D8%AF-%D8%AA%D8%A7%D9%86%DA%A9-%DA%A9%D9%88%D8%AF-200-%D9%84%DB%8C%D8%AA%D8%B1%DB%8C/",
+          "owner_page_type": "product",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%D9%85%D8%AE%D8%B2%D9%86-%D8%AA%D8%B2%D8%B1%DB%8C%D9%82-%DA%A9%D9%88%D8%AF-%D8%AA%D8%A7%D9%86%DA%A9-%DA%A9%D9%88%D8%AF-100-%D9%84%DB%8C%D8%AA%D8%B1%DB%8C/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
+        }
+      }
+    },
+    {
+      "semantic_key": "pe_valve|شیر پلی اتیلن|خرید|110||",
+      "topic": "pe_valve",
+      "entity_focus": "شیر پلی اتیلن",
+      "intent": "خرید",
+      "size_token": "110",
+      "brand_token": null,
+      "variant_token": null,
+      "observed_queries": [
+        {
+          "query": "قیمت شیر فلکه پلی اتیلن 110",
+          "clicks": 1.0,
+          "impressions": 102.0,
+          "position": 8.1667
+        }
+      ],
+      "canonical_decision": {
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-category/%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+        "owner_page_type": "product_category",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "page_type": "product",
+            "clicks": 4.0,
+            "impressions": 292.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "page_type": "product",
+            "clicks": 6.0,
+            "impressions": 117.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 44.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85%DB%8C%D9%84/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 20.0
+          },
+          {
+            "url": "https://keshavarz20.com/product_brand/%D8%A2%D8%A8-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%B3%D9%BE%D8%A7%D8%B1/",
+            "page_type": "guide_or_content",
+            "clicks": 0.0,
+            "impressions": 20.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-4-%D8%A7%DB%8C%D9%86-2/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 5.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 4.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 4.0
+          },
+          {
+            "url": "https://keshavarz20.com/",
+            "page_type": "home",
+            "clicks": 0.0,
+            "impressions": 3.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-1-%D8%A7%DB%8C%D9%86%DA%86-32-%D9%85%DB%8C%D9%84/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 2.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D9%81%D9%84%D9%86%DA%86-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%D8%AC%D9%88%D8%B4%DB%8C-4-%D8%A7%DB%8C%D9%86%DA%86-110-%D9%85%DB%8C%D9%84%DB%8C%D9%85%D8%AA%D8%B1/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 2.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 1.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 1.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 1.0
+          }
+        ],
+        "owner_impression_share": 0.0019,
+        "decision_reasons": [
+          "generic_or_commercial_intent_prefers_category"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-category/%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+          "owner_page_type": "product_category",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85%DB%8C%D9%84/",
+            "https://keshavarz20.com/product_brand/%D8%A2%D8%A8-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%B3%D9%BE%D8%A7%D8%B1/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-4-%D8%A7%DB%8C%D9%86-2/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
+            "https://keshavarz20.com/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-1-%D8%A7%DB%8C%D9%86%DA%86-32-%D9%85%DB%8C%D9%84/",
+            "https://keshavarz20.com/product/%D9%81%D9%84%D9%86%DA%86-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%D8%AC%D9%88%D8%B4%DB%8C-4-%D8%A7%DB%8C%D9%86%DA%86-110-%D9%85%DB%8C%D9%84%DB%8C%D9%85%D8%AA%D8%B1/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86/",
+            "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
+        }
+      }
+    },
+    {
+      "semantic_key": "pe_valve|شیر پلی اتیلن|خرید|90||",
+      "topic": "pe_valve",
+      "entity_focus": "شیر پلی اتیلن",
+      "intent": "خرید",
+      "size_token": "90",
+      "brand_token": null,
+      "variant_token": null,
+      "observed_queries": [
+        {
+          "query": "قیمت شیر پلی اتیلن 90",
+          "clicks": 1.0,
+          "impressions": 22.0,
+          "position": 8.1364
+        },
+        {
+          "query": "قیمت شیر فلکه پلی اتیلن 90",
+          "clicks": 1.0,
+          "impressions": 2.0,
+          "position": 15.0
+        }
+      ],
+      "canonical_decision": {
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-category/%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+        "owner_page_type": "product_category",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "page_type": "product",
+            "clicks": 3.0,
+            "impressions": 191.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "page_type": "product",
+            "clicks": 6.0,
+            "impressions": 117.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 44.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85%DB%8C%D9%84/",
+            "page_type": "product",
+            "clicks": 2.0,
+            "impressions": 40.0
+          },
+          {
+            "url": "https://keshavarz20.com/product_brand/%D8%A2%D8%A8-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%B3%D9%BE%D8%A7%D8%B1/",
+            "page_type": "guide_or_content",
+            "clicks": 0.0,
+            "impressions": 20.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85/",
+            "page_type": "product",
+            "clicks": 2.0,
+            "impressions": 8.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 4.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-4-%D8%A7%DB%8C%D9%86-2/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 4.0
+          },
+          {
+            "url": "https://keshavarz20.com/",
+            "page_type": "home",
+            "clicks": 0.0,
+            "impressions": 3.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-1-%D8%A7%DB%8C%D9%86%DA%86-32-%D9%85%DB%8C%D9%84/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 2.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D9%81%D9%84%D9%86%DA%86-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%D8%AC%D9%88%D8%B4%DB%8C-4-%D8%A7%DB%8C%D9%86%DA%86-110-%D9%85%DB%8C%D9%84%DB%8C%D9%85%D8%AA%D8%B1/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 2.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 1.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 1.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 1.0
+          }
+        ],
+        "owner_impression_share": 0.0023,
+        "decision_reasons": [
+          "generic_or_commercial_intent_prefers_category"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-category/%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+          "owner_page_type": "product_category",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85%DB%8C%D9%84/",
+            "https://keshavarz20.com/product_brand/%D8%A2%D8%A8-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%B3%D9%BE%D8%A7%D8%B1/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-4-%D8%A7%DB%8C%D9%86-2/",
+            "https://keshavarz20.com/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-1-%D8%A7%DB%8C%D9%86%DA%86-32-%D9%85%DB%8C%D9%84/",
+            "https://keshavarz20.com/product/%D9%81%D9%84%D9%86%DA%86-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%D8%AC%D9%88%D8%B4%DB%8C-4-%D8%A7%DB%8C%D9%86%DA%86-110-%D9%85%DB%8C%D9%84%DB%8C%D9%85%D8%AA%D8%B1/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86/",
+            "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
+        }
+      }
+    },
+    {
+      "semantic_key": "pe_fitting_saddle|کمربند پلی اتیلن|خرید|63||",
+      "topic": "pe_fitting_saddle",
+      "entity_focus": "کمربند پلی اتیلن",
+      "intent": "خرید",
+      "size_token": "63",
+      "brand_token": null,
+      "variant_token": null,
+      "observed_queries": [
+        {
+          "query": "قیمت کمربند پلی اتیلن 63",
+          "clicks": 2.0,
+          "impressions": 62.0,
+          "position": 9.5161
+        }
+      ],
+      "canonical_decision": {
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product/%DA%A9%D9%85%D8%B1%D8%A8%D9%86%D8%AF-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-63-x-63-2/",
+        "owner_page_type": "product",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product/%DA%A9%D9%85%D8%B1%D8%A8%D9%86%D8%AF-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-63-x-63-2/",
+            "page_type": "product",
+            "clicks": 2.0,
+            "impressions": 126.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%DA%A9%D9%85%D8%B1%D8%A8%D9%86%D8%AF-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-20-x-63-%D8%A2%D8%A8%D9%84%D9%88%D9%84%D9%87/",
+            "page_type": "product",
+            "clicks": 2.0,
+            "impressions": 41.0
+          }
+        ],
+        "owner_impression_share": 0.7545,
+        "decision_reasons": [
+          "specific_product_page",
+          "observed_for_exact_intent"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product/%DA%A9%D9%85%D8%B1%D8%A8%D9%86%D8%AF-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-63-x-63-2/",
+          "owner_page_type": "product",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%DA%A9%D9%85%D8%B1%D8%A8%D9%86%D8%AF-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-20-x-63-%D8%A2%D8%A8%D9%84%D9%88%D9%84%D9%87/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category.",
+            "Owner is an interim product-level landing page; create no duplicate page in Phase 5. Phase 6 may promote a durable category/hub if inventory breadth justifies it."
+          ]
+        }
+      }
+    },
+    {
+      "semantic_key": "pe_valve|شیر پلی اتیلن|مقایسه|||butt_fusion",
+      "topic": "pe_valve",
+      "entity_focus": "شیر پلی اتیلن",
+      "intent": "مقایسه",
+      "size_token": null,
+      "brand_token": null,
+      "variant_token": "butt_fusion",
+      "observed_queries": [
+        {
+          "query": "اتصالات زانو لوله لوازم کشاورزی کشاورز بیست فروشگاه باران شیرالات آبیاری بارانی ابیاری قطره ای سه راهی اتصالات پلی اتیلن پلی اتیلن جوشی اتصالات چدنی کشاورزی باغبانی لوازم کشاورزی انواع فلنج",
+          "clicks": 0.0,
+          "impressions": 26.0,
+          "position": 16.4615
+        }
+      ],
+      "canonical_decision": {
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-category/%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+        "owner_page_type": "product_category",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "page_type": "product",
+            "clicks": 3.0,
+            "impressions": 191.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "page_type": "product",
+            "clicks": 6.0,
+            "impressions": 117.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 44.0
+          },
+          {
+            "url": "https://keshavarz20.com/product_brand/%D8%A2%D8%A8-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%B3%D9%BE%D8%A7%D8%B1/",
+            "page_type": "guide_or_content",
+            "clicks": 0.0,
+            "impressions": 40.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85%DB%8C%D9%84/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 20.0
+          },
+          {
+            "url": "https://keshavarz20.com/",
+            "page_type": "home",
+            "clicks": 0.0,
+            "impressions": 6.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 4.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D9%81%D9%84%D9%86%DA%86-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%D8%AC%D9%88%D8%B4%DB%8C-4-%D8%A7%DB%8C%D9%86%DA%86-110-%D9%85%DB%8C%D9%84%DB%8C%D9%85%D8%AA%D8%B1/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 4.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 4.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-4-%D8%A7%DB%8C%D9%86-2/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 4.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-1-%D8%A7%DB%8C%D9%86%DA%86-32-%D9%85%DB%8C%D9%84/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 2.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 2.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 1.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 1.0
+          }
+        ],
+        "owner_impression_share": 0.0045,
+        "decision_reasons": [
+          "generic_or_commercial_intent_prefers_category",
+          "observed_for_exact_intent"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-category/%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+          "owner_page_type": "product_category",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "https://keshavarz20.com/product_brand/%D8%A2%D8%A8-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%B3%D9%BE%D8%A7%D8%B1/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85%DB%8C%D9%84/",
+            "https://keshavarz20.com/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85/",
+            "https://keshavarz20.com/product/%D9%81%D9%84%D9%86%DA%86-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%D8%AC%D9%88%D8%B4%DB%8C-4-%D8%A7%DB%8C%D9%86%DA%86-110-%D9%85%DB%8C%D9%84%DB%8C%D9%85%D8%AA%D8%B1/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-4-%D8%A7%DB%8C%D9%86-2/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-1-%D8%A7%DB%8C%D9%86%DA%86-32-%D9%85%DB%8C%D9%84/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86/",
+            "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
+        }
+      }
+    },
+    {
+      "semantic_key": "pe_fitting_general|اتصالات پلی اتیلن|انتخاب|||",
       "topic": "pe_fitting_general",
       "entity_focus": "اتصالات پلی اتیلن",
       "intent": "انتخاب",
       "size_token": null,
+      "brand_token": null,
+      "variant_token": null,
       "observed_queries": [
         {
           "query": "اتصالات لوله پلی اتیلن کشاورزی",
           "clicks": 0.0,
           "impressions": 8.0,
           "position": 107.125
-        },
-        {
-          "query": "اتصالات پلی اتیلن پیچی",
-          "clicks": 0.0,
-          "impressions": 4.0,
-          "position": 56.25
-        },
-        {
-          "query": "اتصالات پیچی پلی اتیلن",
-          "clicks": 0.0,
-          "impressions": 1.0,
-          "position": 39.0
         }
       ],
       "canonical_decision": {
-        "status": "REVIEW_REQUIRED",
-        "canonical_url": null,
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/",
+        "owner_page_type": "product_category",
         "observed_pages": [
           {
             "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/",
+            "page_type": "product_category",
             "clicks": 0.0,
-            "impressions": 7.0
+            "impressions": 9.0
           },
           {
             "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/",
+            "page_type": "product_category",
             "clicks": 0.0,
-            "impressions": 4.0
+            "impressions": 8.0
           },
           {
             "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/other-polyethylene-compression-fittings/",
+            "page_type": "product_category",
             "clicks": 0.0,
-            "impressions": 2.0
+            "impressions": 4.0
           }
         ],
-        "top_impression_share": 0.5385,
-        "warning": "Intent is split across multiple landing pages; do not create another page until overlap is resolved."
+        "owner_impression_share": 0.4286,
+        "decision_reasons": [
+          "curated_existing_owner_hint",
+          "observed_in_fresh_search_console_focus_catalog"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/",
+          "owner_page_type": "product_category",
+          "supporting_urls": [
+            "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/",
+            "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/other-polyethylene-compression-fittings/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
+        }
       }
     },
     {
-      "semantic_key": "polyethylene_pipe|لوله پلی اتیلن|خرید|۹۰میلی متر",
+      "semantic_key": "layflat_hose|لوله نخدار|انتخاب|||",
+      "topic": "layflat_hose",
+      "entity_focus": "لوله نخدار",
+      "intent": "انتخاب",
+      "size_token": null,
+      "brand_token": null,
+      "variant_token": null,
+      "observed_queries": [
+        {
+          "query": "لوله نخ دار",
+          "clicks": 0.0,
+          "impressions": 78.0,
+          "position": 37.2051
+        },
+        {
+          "query": "شیلنگ نخ دار",
+          "clicks": 0.0,
+          "impressions": 38.0,
+          "position": 50.0263
+        },
+        {
+          "query": "لوله نخدار",
+          "clicks": 0.0,
+          "impressions": 12.0,
+          "position": 30.1667
+        },
+        {
+          "query": "اتصالات نخ دار",
+          "clicks": 0.0,
+          "impressions": 1.0,
+          "position": 48.0
+        }
+      ],
+      "canonical_decision": {
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/%D9%84%D9%88%D9%84%D9%87-%D9%86%D8%AE%D8%AF%D8%A7%D8%B1/",
+        "owner_page_type": "product_category",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/%D9%84%D9%88%D9%84%D9%87-%D9%86%D8%AE%D8%AF%D8%A7%D8%B1/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 258.0
+          },
+          {
+            "url": "https://keshavarz20.com/layflat-hose-fittings-installation-guide/",
+            "page_type": "guide_or_content",
+            "clicks": 0.0,
+            "impressions": 2.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/loole-nakhdar-moj-3-inch/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 1.0
+          },
+          {
+            "url": "https://keshavarz20.com/asayesh-azarbaijan-layflat-pipe-price/",
+            "page_type": "guide_or_content",
+            "clicks": 0.0,
+            "impressions": 1.0
+          }
+        ],
+        "owner_impression_share": 0.9847,
+        "decision_reasons": [
+          "generic_or_commercial_intent_prefers_category",
+          "observed_for_exact_intent"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/%D9%84%D9%88%D9%84%D9%87-%D9%86%D8%AE%D8%AF%D8%A7%D8%B1/",
+          "owner_page_type": "product_category",
+          "supporting_urls": [
+            "https://keshavarz20.com/layflat-hose-fittings-installation-guide/",
+            "https://keshavarz20.com/product/loole-nakhdar-moj-3-inch/",
+            "https://keshavarz20.com/asayesh-azarbaijan-layflat-pipe-price/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
+        }
+      }
+    },
+    {
+      "semantic_key": "polyethylene_pipe|لوله پلی اتیلن|خرید|۹۰میلی متر||",
       "topic": "polyethylene_pipe",
       "entity_focus": "لوله پلی اتیلن",
       "intent": "خرید",
       "size_token": "۹۰میلی متر",
+      "brand_token": null,
+      "variant_token": null,
       "observed_queries": [
         {
           "query": "قیمت لوله پلی اتیلن ۹۰میلی متر با فشار کاری ۱۶ اتمسفر",
@@ -86,45 +782,79 @@
         }
       ],
       "canonical_decision": {
-        "status": "REVIEW_REQUIRED",
-        "canonical_url": null,
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/polyethylene-pipe/",
+        "owner_page_type": "product_category",
         "observed_pages": [
           {
             "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/polyethylene-pipe/",
+            "page_type": "product_category",
             "clicks": 0.0,
-            "impressions": 30.0
+            "impressions": 70.0
           },
           {
             "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/",
+            "page_type": "product_category",
             "clicks": 0.0,
-            "impressions": 20.0
+            "impressions": 40.0
           },
           {
             "url": "https://keshavarz20.com/polyethylene-irrigation-pipe-buying-guide/",
+            "page_type": "guide_or_content",
             "clicks": 0.0,
-            "impressions": 16.0
+            "impressions": 36.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-tag/%D9%82%DB%8C%D9%85%D8%AA-%D9%84%D9%88%D9%84%D9%87-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%DB%B6%DB%B3/",
+            "page_type": "product_tag",
+            "clicks": 0.0,
+            "impressions": 4.0
           },
           {
             "url": "https://keshavarz20.com/",
+            "page_type": "home",
             "clicks": 0.0,
-            "impressions": 2.0
+            "impressions": 4.0
           },
           {
             "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/",
+            "page_type": "product_category",
             "clicks": 0.0,
-            "impressions": 1.0
+            "impressions": 2.0
           }
         ],
-        "top_impression_share": 0.4348,
-        "warning": "Intent is split across multiple landing pages; do not create another page until overlap is resolved."
+        "owner_impression_share": 0.4487,
+        "decision_reasons": [
+          "curated_existing_owner_hint",
+          "observed_in_fresh_search_console_focus_catalog"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/polyethylene-pipe/",
+          "owner_page_type": "product_category",
+          "supporting_urls": [
+            "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/",
+            "https://keshavarz20.com/polyethylene-irrigation-pipe-buying-guide/",
+            "https://keshavarz20.com/product-tag/%D9%82%DB%8C%D9%85%D8%AA-%D9%84%D9%88%D9%84%D9%87-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%DB%B6%DB%B3/",
+            "https://keshavarz20.com/",
+            "https://keshavarz20.com/product-category/agricultural-equipment-supplies/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category.",
+            "Review duplicate product-tag archives for noindex/merge only after content-equivalence and indexability readback."
+          ]
+        }
       }
     },
     {
-      "semantic_key": "polyethylene_pipe|لوله پلی اتیلن|خرید|",
+      "semantic_key": "polyethylene_pipe|لوله پلی اتیلن|انتخاب|||",
       "topic": "polyethylene_pipe",
       "entity_focus": "لوله پلی اتیلن",
-      "intent": "خرید",
+      "intent": "انتخاب",
       "size_token": null,
+      "brand_token": null,
+      "variant_token": null,
       "observed_queries": [
         {
           "query": "راهنمای خرید لوله پلی اتیلن برای گلخانه",
@@ -133,37 +863,86 @@
           "position": 70.1667
         },
         {
-          "query": "قیمت لوله پلی اتیلن کشاورزی",
+          "query": "لوله پلی اتیلن کشاورزی",
           "clicks": 0.0,
-          "impressions": 1.0,
-          "position": 65.0
+          "impressions": 4.0,
+          "position": 71.5
         }
       ],
       "canonical_decision": {
-        "status": "REVIEW_REQUIRED",
-        "canonical_url": null,
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/polyethylene-irrigation-pipe-buying-guide/",
+        "owner_page_type": "guide_or_content",
         "observed_pages": [
           {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/polyethylene-pipe/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 46.0
+          },
+          {
             "url": "https://keshavarz20.com/polyethylene-irrigation-pipe-buying-guide/",
+            "page_type": "guide_or_content",
+            "clicks": 0.0,
+            "impressions": 24.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 20.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-tag/%D9%82%DB%8C%D9%85%D8%AA-%D9%84%D9%88%D9%84%D9%87-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%DB%B6%DB%B3/",
+            "page_type": "product_tag",
             "clicks": 0.0,
             "impressions": 4.0
           },
           {
-            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/polyethylene-pipe/",
+            "url": "https://keshavarz20.com/",
+            "page_type": "home",
             "clicks": 0.0,
-            "impressions": 3.0
+            "impressions": 2.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 1.0
           }
         ],
-        "top_impression_share": 0.5714,
-        "warning": "Intent is split across multiple landing pages; do not create another page until overlap is resolved."
+        "owner_impression_share": 0.2474,
+        "decision_reasons": [
+          "guide_modifier_matches_content_page",
+          "observed_for_exact_intent"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/polyethylene-irrigation-pipe-buying-guide/",
+          "owner_page_type": "guide_or_content",
+          "supporting_urls": [
+            "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/polyethylene-pipe/",
+            "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/",
+            "https://keshavarz20.com/product-tag/%D9%82%DB%8C%D9%85%D8%AA-%D9%84%D9%88%D9%84%D9%87-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%DB%B6%DB%B3/",
+            "https://keshavarz20.com/",
+            "https://keshavarz20.com/product-category/agricultural-equipment-supplies/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category.",
+            "Review duplicate product-tag archives for noindex/merge only after content-equivalence and indexability readback."
+          ]
+        }
       }
     },
     {
-      "semantic_key": "pe_fitting_elbow|زانو پلی اتیلن|انتخاب|",
+      "semantic_key": "pe_fitting_elbow|زانو پلی اتیلن|انتخاب|||",
       "topic": "pe_fitting_elbow",
       "entity_focus": "زانو پلی اتیلن",
       "intent": "انتخاب",
       "size_token": null,
+      "brand_token": null,
+      "variant_token": null,
       "observed_queries": [
         {
           "query": "زانو پلی اتیلن",
@@ -184,12 +963,6 @@
           "position": 7.5
         },
         {
-          "query": "زانو مادگی پلی اتیلن",
-          "clicks": 0.0,
-          "impressions": 1.0,
-          "position": 9.0
-        },
-        {
           "query": "زانویی لوله پلی اتیلن",
           "clicks": 0.0,
           "impressions": 1.0,
@@ -197,80 +970,57 @@
         }
       ],
       "canonical_decision": {
-        "status": "REVIEW_REQUIRED",
-        "canonical_url": null,
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-compression-elbow/",
+        "owner_page_type": "product_category",
         "observed_pages": [
           {
             "url": "https://keshavarz20.com/product/%D8%B2%D8%A7%D9%86%D9%88-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%DB%8C%DA%A9%D8%B3%D8%B1-%D9%85%D8%A7%D8%AF%D9%87-%D9%BE%D9%84%DB%8C-%D8%B1%D9%88%D8%AF-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "page_type": "product",
             "clicks": 0.0,
-            "impressions": 7.0
+            "impressions": 27.0
           },
           {
             "url": "https://keshavarz20.com/product/%D8%B2%D8%A7%D9%86%D9%88-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%DB%8C%DA%A9%D8%B3%D8%B1-%D9%85%D8%A7%D8%AF%D9%87-%D8%A2%D8%A8%D9%84%D9%88%D9%84%D9%87-1-%D8%A7%DB%8C%D9%86%DA%86-32-%D9%85/",
+            "page_type": "product",
             "clicks": 0.0,
-            "impressions": 5.0
+            "impressions": 11.0
           },
           {
             "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-compression-elbow/",
+            "page_type": "product_category",
             "clicks": 0.0,
-            "impressions": 1.0
+            "impressions": 2.0
           }
         ],
-        "top_impression_share": 0.5385,
-        "warning": "Intent is split across multiple landing pages; do not create another page until overlap is resolved."
-      }
-    },
-    {
-      "semantic_key": "pe_valve|شیر توپی|انتخاب|",
-      "topic": "pe_valve",
-      "entity_focus": "شیر توپی",
-      "intent": "انتخاب",
-      "size_token": null,
-      "observed_queries": [
-        {
-          "query": "شیر توپی ویسپار",
-          "clicks": 0.0,
-          "impressions": 4.0,
-          "position": 1.0
-        },
-        {
-          "query": "شیر توپی پلی اتیلن",
-          "clicks": 0.0,
-          "impressions": 3.0,
-          "position": 1.0
-        },
-        {
-          "query": "شیر توپی پلیمری",
-          "clicks": 0.0,
-          "impressions": 3.0,
-          "position": 7.6667
+        "owner_impression_share": 0.05,
+        "decision_reasons": [
+          "curated_existing_owner_hint",
+          "observed_in_fresh_search_console_focus_catalog"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-compression-elbow/",
+          "owner_page_type": "product_category",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%D8%B2%D8%A7%D9%86%D9%88-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%DB%8C%DA%A9%D8%B3%D8%B1-%D9%85%D8%A7%D8%AF%D9%87-%D9%BE%D9%84%DB%8C-%D8%B1%D9%88%D8%AF-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "https://keshavarz20.com/product/%D8%B2%D8%A7%D9%86%D9%88-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%DB%8C%DA%A9%D8%B3%D8%B1-%D9%85%D8%A7%D8%AF%D9%87-%D8%A2%D8%A8%D9%84%D9%88%D9%84%D9%87-1-%D8%A7%DB%8C%D9%86%DA%86-32-%D9%85/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
         }
-      ],
-      "canonical_decision": {
-        "status": "REVIEW_REQUIRED",
-        "canonical_url": null,
-        "observed_pages": [
-          {
-            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-1-%D8%A7%DB%8C%D9%86%DA%86/",
-            "clicks": 0.0,
-            "impressions": 6.0
-          },
-          {
-            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
-            "clicks": 0.0,
-            "impressions": 4.0
-          }
-        ],
-        "top_impression_share": 0.6,
-        "warning": "Intent is split across multiple landing pages; do not create another page until overlap is resolved."
       }
     },
     {
-      "semantic_key": "pe_valve|شیر پلی اتیلن|انتخاب|",
+      "semantic_key": "pe_valve|شیر پلی اتیلن|انتخاب|||",
       "topic": "pe_valve",
       "entity_focus": "شیر پلی اتیلن",
       "intent": "انتخاب",
       "size_token": null,
+      "brand_token": null,
+      "variant_token": null,
       "observed_queries": [
         {
           "query": "شیر دو اینچ پلی اتیلن",
@@ -286,35 +1036,653 @@
         }
       ],
       "canonical_decision": {
-        "status": "REVIEW_REQUIRED",
-        "canonical_url": null,
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-category/%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+        "owner_page_type": "product_category",
         "observed_pages": [
           {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "page_type": "product",
+            "clicks": 3.0,
+            "impressions": 192.0
+          },
+          {
             "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "page_type": "product",
+            "clicks": 6.0,
+            "impressions": 118.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 44.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85%DB%8C%D9%84/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 20.0
+          },
+          {
+            "url": "https://keshavarz20.com/product_brand/%D8%A2%D8%A8-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%B3%D9%BE%D8%A7%D8%B1/",
+            "page_type": "guide_or_content",
             "clicks": 0.0,
-            "impressions": 1.0
+            "impressions": 20.0
           },
           {
             "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 5.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 4.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-4-%D8%A7%DB%8C%D9%86-2/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 4.0
+          },
+          {
+            "url": "https://keshavarz20.com/",
+            "page_type": "home",
+            "clicks": 0.0,
+            "impressions": 3.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-1-%D8%A7%DB%8C%D9%86%DA%86-32-%D9%85%DB%8C%D9%84/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 2.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D9%81%D9%84%D9%86%DA%86-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%D8%AC%D9%88%D8%B4%DB%8C-4-%D8%A7%DB%8C%D9%86%DA%86-110-%D9%85%DB%8C%D9%84%DB%8C%D9%85%D8%AA%D8%B1/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 2.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+            "page_type": "product_category",
             "clicks": 0.0,
             "impressions": 1.0
           },
           {
-            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 1.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/",
+            "page_type": "product_category",
             "clicks": 0.0,
             "impressions": 1.0
           }
         ],
-        "top_impression_share": 0.3333,
-        "warning": "Intent is split across multiple landing pages; do not create another page until overlap is resolved."
+        "owner_impression_share": 0.0024,
+        "decision_reasons": [
+          "generic_or_commercial_intent_prefers_category"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-category/%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+          "owner_page_type": "product_category",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85%DB%8C%D9%84/",
+            "https://keshavarz20.com/product_brand/%D8%A2%D8%A8-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%B3%D9%BE%D8%A7%D8%B1/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-4-%D8%A7%DB%8C%D9%86-2/",
+            "https://keshavarz20.com/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-1-%D8%A7%DB%8C%D9%86%DA%86-32-%D9%85%DB%8C%D9%84/",
+            "https://keshavarz20.com/product/%D9%81%D9%84%D9%86%DA%86-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%D8%AC%D9%88%D8%B4%DB%8C-4-%D8%A7%DB%8C%D9%86%DA%86-110-%D9%85%DB%8C%D9%84%DB%8C%D9%85%D8%AA%D8%B1/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86/",
+            "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
+        }
       }
     },
     {
-      "semantic_key": "pe_valve|شیر پلی اتیلن|انتخاب|۲ اینچ",
+      "semantic_key": "pe_valve|شیر پلی اتیلن|انتخاب|۴ اینچ||",
+      "topic": "pe_valve",
+      "entity_focus": "شیر پلی اتیلن",
+      "intent": "انتخاب",
+      "size_token": "۴ اینچ",
+      "brand_token": null,
+      "variant_token": null,
+      "observed_queries": [
+        {
+          "query": "شیر پلی اتیلن ۴ اینچ",
+          "clicks": 0.0,
+          "impressions": 20.0,
+          "position": 8.9
+        },
+        {
+          "query": "شیر فلکه پلاستیکی ۴ اینچ",
+          "clicks": 0.0,
+          "impressions": 7.0,
+          "position": 7.4286
+        },
+        {
+          "query": "شیر ۴ اینچ پلی اتیلن",
+          "clicks": 0.0,
+          "impressions": 7.0,
+          "position": 7.0
+        },
+        {
+          "query": "شیر فلکه ۴ اینچ پلی اتیلن",
+          "clicks": 0.0,
+          "impressions": 5.0,
+          "position": 7.2
+        },
+        {
+          "query": "شیر فلکه پلی اتیلن ۴ اینچ",
+          "clicks": 0.0,
+          "impressions": 3.0,
+          "position": 7.3333
+        }
+      ],
+      "canonical_decision": {
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-category/%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+        "owner_page_type": "product_category",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "page_type": "product",
+            "clicks": 3.0,
+            "impressions": 230.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "page_type": "product",
+            "clicks": 6.0,
+            "impressions": 117.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 44.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85%DB%8C%D9%84/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 20.0
+          },
+          {
+            "url": "https://keshavarz20.com/product_brand/%D8%A2%D8%A8-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%B3%D9%BE%D8%A7%D8%B1/",
+            "page_type": "guide_or_content",
+            "clicks": 0.0,
+            "impressions": 20.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-4-%D8%A7%DB%8C%D9%86-2/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 7.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 4.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 4.0
+          },
+          {
+            "url": "https://keshavarz20.com/",
+            "page_type": "home",
+            "clicks": 0.0,
+            "impressions": 3.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-1-%D8%A7%DB%8C%D9%86%DA%86-32-%D9%85%DB%8C%D9%84/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 2.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D9%81%D9%84%D9%86%DA%86-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%D8%AC%D9%88%D8%B4%DB%8C-4-%D8%A7%DB%8C%D9%86%DA%86-110-%D9%85%DB%8C%D9%84%DB%8C%D9%85%D8%AA%D8%B1/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 2.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 1.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 1.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 1.0
+          }
+        ],
+        "owner_impression_share": 0.0022,
+        "decision_reasons": [
+          "generic_or_commercial_intent_prefers_category"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-category/%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+          "owner_page_type": "product_category",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85%DB%8C%D9%84/",
+            "https://keshavarz20.com/product_brand/%D8%A2%D8%A8-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%B3%D9%BE%D8%A7%D8%B1/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-4-%D8%A7%DB%8C%D9%86-2/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
+            "https://keshavarz20.com/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-1-%D8%A7%DB%8C%D9%86%DA%86-32-%D9%85%DB%8C%D9%84/",
+            "https://keshavarz20.com/product/%D9%81%D9%84%D9%86%DA%86-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%D8%AC%D9%88%D8%B4%DB%8C-4-%D8%A7%DB%8C%D9%86%DA%86-110-%D9%85%DB%8C%D9%84%DB%8C%D9%85%D8%AA%D8%B1/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86/",
+            "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
+        }
+      }
+    },
+    {
+      "semantic_key": "drip_tape|شیر نوار تیپ|انتخاب|||",
+      "topic": "drip_tape",
+      "entity_focus": "شیر نوار تیپ",
+      "intent": "انتخاب",
+      "size_token": null,
+      "brand_token": null,
+      "variant_token": null,
+      "observed_queries": [
+        {
+          "query": "شیر نوار تیپ",
+          "clicks": 0.0,
+          "impressions": 56.0,
+          "position": 45.9285
+        }
+      ],
+      "canonical_decision": {
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-tag/%D8%B4%DB%8C%D8%B1-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D9%86%D9%88%D8%A7%D8%B1-%D8%AA%DB%8C%D9%BE/",
+        "owner_page_type": "product_tag",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product-tag/%D8%B4%DB%8C%D8%B1-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D9%86%D9%88%D8%A7%D8%B1-%D8%AA%DB%8C%D9%BE/",
+            "page_type": "product_tag",
+            "clicks": 0.0,
+            "impressions": 110.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-tag/%D9%82%DB%8C%D9%85%D8%AA-%D8%B4%DB%8C%D8%B1-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D8%B1%D8%B2%D9%88%D9%87-%D8%A7%DB%8C/",
+            "page_type": "product_tag",
+            "clicks": 0.0,
+            "impressions": 2.0
+          }
+        ],
+        "owner_impression_share": 0.9821,
+        "decision_reasons": [
+          "neutral_tag_fallback",
+          "observed_for_exact_intent"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-tag/%D8%B4%DB%8C%D8%B1-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D9%86%D9%88%D8%A7%D8%B1-%D8%AA%DB%8C%D9%BE/",
+          "owner_page_type": "product_tag",
+          "supporting_urls": [
+            "https://keshavarz20.com/product-tag/%D9%82%DB%8C%D9%85%D8%AA-%D8%B4%DB%8C%D8%B1-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D8%B1%D8%B2%D9%88%D9%87-%D8%A7%DB%8C/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category.",
+            "Review duplicate product-tag archives for noindex/merge only after content-equivalence and indexability readback.",
+            "Owner is an interim existing tag because no stronger category/guide was observed; Phase 6 should replace it with a durable hub/category before retiring the tag."
+          ]
+        }
+      }
+    },
+    {
+      "semantic_key": "pe_valve|شیر پروانه ای|انتخاب|||butterfly",
+      "topic": "pe_valve",
+      "entity_focus": "شیر پروانه‌ای",
+      "intent": "انتخاب",
+      "size_token": null,
+      "brand_token": null,
+      "variant_token": "butterfly",
+      "observed_queries": [
+        {
+          "query": "شیر پروانه ای پلیمری",
+          "clicks": 0.0,
+          "impressions": 15.0,
+          "position": 14.4
+        },
+        {
+          "query": "شیر پروانه ای فیشر",
+          "clicks": 0.0,
+          "impressions": 2.0,
+          "position": 81.5
+        },
+        {
+          "query": "شیر پروانه ای پلی اتیلن",
+          "clicks": 0.0,
+          "impressions": 1.0,
+          "position": 6.0
+        }
+      ],
+      "canonical_decision": {
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/",
+        "owner_page_type": "product_category",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 50.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 19.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 6.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%88%DB%8C%D9%81%D8%B1%DB%8C-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%B3%D8%A7%DB%8C%D8%B2-%DB%B4-%D8%A7%DB%8C%D9%86%DA%86/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 1.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-4/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 1.0
+          }
+        ],
+        "owner_impression_share": 0.0779,
+        "decision_reasons": [
+          "generic_or_commercial_intent_prefers_category",
+          "observed_for_exact_intent"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/",
+          "owner_page_type": "product_category",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%88%DB%8C%D9%81%D8%B1%DB%8C-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%B3%D8%A7%DB%8C%D8%B2-%DB%B4-%D8%A7%DB%8C%D9%86%DA%86/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-4/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
+        }
+      }
+    },
+    {
+      "semantic_key": "pe_valve|شیر پروانه ای|انتخاب||ویسپار|butterfly",
+      "topic": "pe_valve",
+      "entity_focus": "شیر پروانه‌ای",
+      "intent": "انتخاب",
+      "size_token": null,
+      "brand_token": "ویسپار",
+      "variant_token": "butterfly",
+      "observed_queries": [
+        {
+          "query": "شیر پروانه ای ویسپار",
+          "clicks": 0.0,
+          "impressions": 2.0,
+          "position": 5.0
+        }
+      ],
+      "canonical_decision": {
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/",
+        "owner_page_type": "product_category",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 38.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 18.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 3.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%88%DB%8C%D9%81%D8%B1%DB%8C-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%B3%D8%A7%DB%8C%D8%B2-%DB%B4-%D8%A7%DB%8C%D9%86%DA%86/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 1.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-4/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 1.0
+          }
+        ],
+        "owner_impression_share": 0.0492,
+        "decision_reasons": [
+          "generic_or_commercial_intent_prefers_category"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/",
+          "owner_page_type": "product_category",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%88%DB%8C%D9%81%D8%B1%DB%8C-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%B3%D8%A7%DB%8C%D8%B2-%DB%B4-%D8%A7%DB%8C%D9%86%DA%86/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-4/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
+        }
+      }
+    },
+    {
+      "semantic_key": "pe_valve|شیر پروانه ای|انتخاب|۴ اینچ||butterfly",
+      "topic": "pe_valve",
+      "entity_focus": "شیر پروانه‌ای",
+      "intent": "انتخاب",
+      "size_token": "۴ اینچ",
+      "brand_token": null,
+      "variant_token": "butterfly",
+      "observed_queries": [
+        {
+          "query": "شیر پروانه ای ۴ اینچ",
+          "clicks": 0.0,
+          "impressions": 10.0,
+          "position": 10.9
+        }
+      ],
+      "canonical_decision": {
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/",
+        "owner_page_type": "product_category",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 37.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 26.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 3.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%88%DB%8C%D9%81%D8%B1%DB%8C-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%B3%D8%A7%DB%8C%D8%B2-%DB%B4-%D8%A7%DB%8C%D9%86%DA%86/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 2.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-4/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 1.0
+          }
+        ],
+        "owner_impression_share": 0.0435,
+        "decision_reasons": [
+          "generic_or_commercial_intent_prefers_category"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/",
+          "owner_page_type": "product_category",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%88%DB%8C%D9%81%D8%B1%DB%8C-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%B3%D8%A7%DB%8C%D8%B2-%DB%B4-%D8%A7%DB%8C%D9%86%DA%86/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-4/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
+        }
+      }
+    },
+    {
+      "semantic_key": "pe_valve|شیر پروانه ای|انتخاب|۶ اینچ||butterfly",
+      "topic": "pe_valve",
+      "entity_focus": "شیر پروانه‌ای",
+      "intent": "انتخاب",
+      "size_token": "۶ اینچ",
+      "brand_token": null,
+      "variant_token": "butterfly",
+      "observed_queries": [
+        {
+          "query": "شیر پروانه ای ۶ اینچ",
+          "clicks": 0.0,
+          "impressions": 5.0,
+          "position": 77.4
+        }
+      ],
+      "canonical_decision": {
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/",
+        "owner_page_type": "product_category",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 41.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 17.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 3.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-4/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 2.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%88%DB%8C%D9%81%D8%B1%DB%8C-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%B3%D8%A7%DB%8C%D8%B2-%DB%B4-%D8%A7%DB%8C%D9%86%DA%86/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 1.0
+          }
+        ],
+        "owner_impression_share": 0.0469,
+        "decision_reasons": [
+          "generic_or_commercial_intent_prefers_category"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/",
+          "owner_page_type": "product_category",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-4/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%88%DB%8C%D9%81%D8%B1%DB%8C-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%B3%D8%A7%DB%8C%D8%B2-%DB%B4-%D8%A7%DB%8C%D9%86%DA%86/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
+        }
+      }
+    },
+    {
+      "semantic_key": "pe_valve|شیر پلی اتیلن|انتخاب|۲ اینچ||",
       "topic": "pe_valve",
       "entity_focus": "شیر پلی اتیلن",
       "intent": "انتخاب",
       "size_token": "۲ اینچ",
+      "brand_token": null,
+      "variant_token": null,
       "observed_queries": [
         {
           "query": "شیر پلی اتیلن ۲ اینچ",
@@ -330,47 +1698,139 @@
         }
       ],
       "canonical_decision": {
-        "status": "REVIEW_REQUIRED",
-        "canonical_url": null,
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-category/%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+        "owner_page_type": "product_category",
         "observed_pages": [
           {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "page_type": "product",
+            "clicks": 3.0,
+            "impressions": 191.0
+          },
+          {
             "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "page_type": "product",
+            "clicks": 6.0,
+            "impressions": 124.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 44.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85%DB%8C%D9%84/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 20.0
+          },
+          {
+            "url": "https://keshavarz20.com/product_brand/%D8%A2%D8%A8-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%B3%D9%BE%D8%A7%D8%B1/",
+            "page_type": "guide_or_content",
+            "clicks": 0.0,
+            "impressions": 20.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
+            "page_type": "product",
             "clicks": 0.0,
             "impressions": 7.0
           },
           {
-            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 4.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-4-%D8%A7%DB%8C%D9%86-2/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 4.0
+          },
+          {
+            "url": "https://keshavarz20.com/",
+            "page_type": "home",
             "clicks": 0.0,
             "impressions": 3.0
           },
           {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-1-%D8%A7%DB%8C%D9%86%DA%86-32-%D9%85%DB%8C%D9%84/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 2.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D9%81%D9%84%D9%86%DA%86-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%D8%AC%D9%88%D8%B4%DB%8C-4-%D8%A7%DB%8C%D9%86%DA%86-110-%D9%85%DB%8C%D9%84%DB%8C%D9%85%D8%AA%D8%B1/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 2.0
+          },
+          {
             "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 2.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 1.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/",
+            "page_type": "product_category",
             "clicks": 0.0,
             "impressions": 1.0
           }
         ],
-        "top_impression_share": 0.6364,
-        "warning": "Intent is split across multiple landing pages; do not create another page until overlap is resolved."
+        "owner_impression_share": 0.0024,
+        "decision_reasons": [
+          "generic_or_commercial_intent_prefers_category"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-category/%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+          "owner_page_type": "product_category",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85%DB%8C%D9%84/",
+            "https://keshavarz20.com/product_brand/%D8%A2%D8%A8-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%B3%D9%BE%D8%A7%D8%B1/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-4-%D8%A7%DB%8C%D9%86-2/",
+            "https://keshavarz20.com/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-1-%D8%A7%DB%8C%D9%86%DA%86-32-%D9%85%DB%8C%D9%84/",
+            "https://keshavarz20.com/product/%D9%81%D9%84%D9%86%DA%86-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-%D8%AC%D9%88%D8%B4%DB%8C-4-%D8%A7%DB%8C%D9%86%DA%86-110-%D9%85%DB%8C%D9%84%DB%8C%D9%85%D8%AA%D8%B1/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86/",
+            "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
+        }
       }
     },
     {
-      "semantic_key": "pe_valve|شیر توپی|خرید|",
+      "semantic_key": "pe_valve|شیر توپی|خرید|||ball",
       "topic": "pe_valve",
       "entity_focus": "شیر توپی",
       "intent": "خرید",
       "size_token": null,
+      "brand_token": null,
+      "variant_token": "ball",
       "observed_queries": [
         {
           "query": "قیمت شیر توپی پلیمری",
           "clicks": 0.0,
           "impressions": 3.0,
           "position": 1.6667
-        },
-        {
-          "query": "قیمت شیر توپی ویسپار",
-          "clicks": 0.0,
-          "impressions": 2.0,
-          "position": 3.0
         },
         {
           "query": "قیمت شیر توپی پلیمری دسته فلزی",
@@ -380,40 +1840,296 @@
         }
       ],
       "canonical_decision": {
-        "status": "REVIEW_REQUIRED",
-        "canonical_url": null,
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-ball-valve/",
+        "owner_page_type": "product_category",
         "observed_pages": [
           {
-            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "page_type": "product",
             "clicks": 0.0,
-            "impressions": 4.0
+            "impressions": 19.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 10.0
           },
           {
             "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-1-%D8%A7%DB%8C%D9%86%DA%86/",
+            "page_type": "product",
             "clicks": 0.0,
-            "impressions": 1.0
+            "impressions": 8.0
           },
           {
             "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-ball-valve/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 2.0
+          }
+        ],
+        "owner_impression_share": 0.0513,
+        "decision_reasons": [
+          "curated_existing_owner_hint",
+          "observed_in_fresh_search_console_focus_catalog"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-ball-valve/",
+          "owner_page_type": "product_category",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-1-%D8%A7%DB%8C%D9%86%DA%86/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
+        }
+      }
+    },
+    {
+      "semantic_key": "pe_valve|شیر پروانه ای|خرید||ویسپار|butterfly",
+      "topic": "pe_valve",
+      "entity_focus": "شیر پروانه‌ای",
+      "intent": "خرید",
+      "size_token": null,
+      "brand_token": "ویسپار",
+      "variant_token": "butterfly",
+      "observed_queries": [
+        {
+          "query": "قیمت شیر پروانه ای ویسپار",
+          "clicks": 0.0,
+          "impressions": 12.0,
+          "position": 4.0833
+        }
+      ],
+      "canonical_decision": {
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/",
+        "owner_page_type": "product_category",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 48.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 18.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 3.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%88%DB%8C%D9%81%D8%B1%DB%8C-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%B3%D8%A7%DB%8C%D8%B2-%DB%B4-%D8%A7%DB%8C%D9%86%DA%86/",
+            "page_type": "product",
             "clicks": 0.0,
             "impressions": 1.0
           },
           {
-            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-4/",
+            "page_type": "product",
             "clicks": 0.0,
             "impressions": 1.0
           }
         ],
-        "top_impression_share": 0.5714,
-        "warning": "Intent is split across multiple landing pages; do not create another page until overlap is resolved."
+        "owner_impression_share": 0.0423,
+        "decision_reasons": [
+          "generic_or_commercial_intent_prefers_category"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/",
+          "owner_page_type": "product_category",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%88%DB%8C%D9%81%D8%B1%DB%8C-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%B3%D8%A7%DB%8C%D8%B2-%DB%B4-%D8%A7%DB%8C%D9%86%DA%86/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-4/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
+        }
       }
     },
     {
-      "semantic_key": "layflat_hose|لوله بارانی|انتخاب|",
+      "semantic_key": "pe_valve|شیر پروانه ای|خرید|||butterfly",
+      "topic": "pe_valve",
+      "entity_focus": "شیر پروانه‌ای",
+      "intent": "خرید",
+      "size_token": null,
+      "brand_token": null,
+      "variant_token": "butterfly",
+      "observed_queries": [
+        {
+          "query": "قیمت شیر پروانه ای پلیمری",
+          "clicks": 0.0,
+          "impressions": 12.0,
+          "position": 7.3333
+        }
+      ],
+      "canonical_decision": {
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/",
+        "owner_page_type": "product_category",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 45.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 21.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 3.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%88%DB%8C%D9%81%D8%B1%DB%8C-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%B3%D8%A7%DB%8C%D8%B2-%DB%B4-%D8%A7%DB%8C%D9%86%DA%86/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 1.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-4/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 1.0
+          }
+        ],
+        "owner_impression_share": 0.0423,
+        "decision_reasons": [
+          "generic_or_commercial_intent_prefers_category"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-butterfly-valve/",
+          "owner_page_type": "product_category",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-3/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%88%DB%8C%D9%81%D8%B1%DB%8C-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%B3%D8%A7%DB%8C%D8%B2-%DB%B4-%D8%A7%DB%8C%D9%86%DA%86/",
+            "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-4/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
+        }
+      }
+    },
+    {
+      "semantic_key": "drip_tape|نوار تیپ|مقایسه|||",
+      "topic": "drip_tape",
+      "entity_focus": "نوار تیپ",
+      "intent": "مقایسه",
+      "size_token": null,
+      "brand_token": null,
+      "variant_token": null,
+      "observed_queries": [
+        {
+          "query": "نوار آبیاری",
+          "clicks": 0.0,
+          "impressions": 67.0,
+          "position": 64.209
+        },
+        {
+          "query": "نوار تیپ آبیاری",
+          "clicks": 0.0,
+          "impressions": 10.0,
+          "position": 35.9
+        },
+        {
+          "query": "قیمت نوار تیپ آبیاری",
+          "clicks": 0.0,
+          "impressions": 1.0,
+          "position": 38.0
+        }
+      ],
+      "canonical_decision": {
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/%D9%86%D9%88%D8%A7%D8%B1-%D8%AA%DB%8C%D9%BE/",
+        "owner_page_type": "product_category",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
+            "page_type": "guide_or_content",
+            "clicks": 21.0,
+            "impressions": 418.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/%D9%86%D9%88%D8%A7%D8%B1-%D8%AA%DB%8C%D9%BE/",
+            "page_type": "product_category",
+            "clicks": 0.0,
+            "impressions": 174.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D9%86%D9%88%D8%A7%D8%B1-%D8%A2%D8%A8%DB%8C%D8%A7%D8%B1%DB%8C-%D9%82%D8%B7%D8%B1%D9%87-%D8%A7%DB%8C-20-%D8%B3%D8%A7%D9%86%D8%AA%DB%8C-%D9%85%D8%AA%D8%B1%DB%8C-2/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 40.0
+          },
+          {
+            "url": "https://keshavarz20.com/drip-tape-clogging-flushing-guide/",
+            "page_type": "guide_or_content",
+            "clicks": 0.0,
+            "impressions": 2.0
+          },
+          {
+            "url": "https://keshavarz20.com/layflat-hose-fittings-installation-guide/",
+            "page_type": "guide_or_content",
+            "clicks": 0.0,
+            "impressions": 1.0
+          }
+        ],
+        "owner_impression_share": 0.274,
+        "decision_reasons": [
+          "generic_or_commercial_intent_prefers_category",
+          "observed_for_exact_intent"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/%D9%86%D9%88%D8%A7%D8%B1-%D8%AA%DB%8C%D9%BE/",
+          "owner_page_type": "product_category",
+          "supporting_urls": [
+            "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
+            "https://keshavarz20.com/product/%D9%86%D9%88%D8%A7%D8%B1-%D8%A2%D8%A8%DB%8C%D8%A7%D8%B1%DB%8C-%D9%82%D8%B7%D8%B1%D9%87-%D8%A7%DB%8C-20-%D8%B3%D8%A7%D9%86%D8%AA%DB%8C-%D9%85%D8%AA%D8%B1%DB%8C-2/",
+            "https://keshavarz20.com/drip-tape-clogging-flushing-guide/",
+            "https://keshavarz20.com/layflat-hose-fittings-installation-guide/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category."
+          ]
+        }
+      }
+    },
+    {
+      "semantic_key": "layflat_hose|لوله بارانی|انتخاب|||",
       "topic": "layflat_hose",
       "entity_focus": "لوله بارانی",
       "intent": "انتخاب",
       "size_token": null,
+      "brand_token": null,
+      "variant_token": null,
       "observed_queries": [
         {
           "query": "لوله بارانی",
@@ -423,35 +2139,66 @@
         }
       ],
       "canonical_decision": {
-        "status": "REVIEW_REQUIRED",
-        "canonical_url": null,
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product-tag/%D9%84%D9%88%D9%84%D9%87-%D8%A2%D8%A8%DB%8C%D8%A7%D8%B1%DB%8C-%D8%A8%D8%A7%D8%B1%D8%A7%D9%86%DB%8C/",
+        "owner_page_type": "product_tag",
         "observed_pages": [
           {
             "url": "https://keshavarz20.com/product-tag/%D9%84%D9%88%D9%84%D9%87-%D8%A2%D8%A8%DB%8C%D8%A7%D8%B1%DB%8C-%D8%A8%D8%A7%D8%B1%D8%A7%D9%86%DB%8C/",
+            "page_type": "product_tag",
             "clicks": 0.0,
-            "impressions": 31.0
+            "impressions": 62.0
           },
           {
             "url": "https://keshavarz20.com/product-tag/%D8%AE%D8%B1%DB%8C%D8%AF-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%A7%D8%B1%D8%A7%D9%86%DB%8C/",
+            "page_type": "product_tag",
             "clicks": 0.0,
-            "impressions": 14.0
+            "impressions": 28.0
           },
           {
             "url": "https://keshavarz20.com/product-tag/%D9%82%DB%8C%D9%85%D8%AA-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%A7%D8%B1%D8%A7%D9%86%DB%8C/",
+            "page_type": "product_tag",
             "clicks": 0.0,
-            "impressions": 5.0
+            "impressions": 10.0
+          },
+          {
+            "url": "https://keshavarz20.com/rain-pipe-price-guide/",
+            "page_type": "guide_or_content",
+            "clicks": 0.0,
+            "impressions": 2.0
           }
         ],
-        "top_impression_share": 0.62,
-        "warning": "Intent is split across multiple landing pages; do not create another page until overlap is resolved."
+        "owner_impression_share": 0.6078,
+        "decision_reasons": [
+          "curated_existing_owner_hint",
+          "observed_in_fresh_search_console_focus_catalog"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product-tag/%D9%84%D9%88%D9%84%D9%87-%D8%A2%D8%A8%DB%8C%D8%A7%D8%B1%DB%8C-%D8%A8%D8%A7%D8%B1%D8%A7%D9%86%DB%8C/",
+          "owner_page_type": "product_tag",
+          "supporting_urls": [
+            "https://keshavarz20.com/product-tag/%D8%AE%D8%B1%DB%8C%D8%AF-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%A7%D8%B1%D8%A7%D9%86%DB%8C/",
+            "https://keshavarz20.com/product-tag/%D9%82%DB%8C%D9%85%D8%AA-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%A7%D8%B1%D8%A7%D9%86%DB%8C/",
+            "https://keshavarz20.com/rain-pipe-price-guide/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category.",
+            "Review duplicate product-tag archives for noindex/merge only after content-equivalence and indexability readback.",
+            "Owner is an interim existing tag because no stronger category/guide was observed; Phase 6 should replace it with a durable hub/category before retiring the tag."
+          ]
+        }
       }
     },
     {
-      "semantic_key": "layflat_hose|لوله مه پاش|انتخاب|",
+      "semantic_key": "layflat_hose|لوله مه پاش|انتخاب|||",
       "topic": "layflat_hose",
       "entity_focus": "لوله مه پاش",
       "intent": "انتخاب",
       "size_token": null,
+      "brand_token": null,
+      "variant_token": null,
       "observed_queries": [
         {
           "query": "لوله مه پاش",
@@ -467,45 +2214,80 @@
         }
       ],
       "canonical_decision": {
-        "status": "REVIEW_REQUIRED",
-        "canonical_url": null,
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product/%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%A7%D8%B1%D8%A7%D9%86%DB%8C-%D9%85%D9%87-%D9%BE%D8%A7%D8%B4-%D8%A2%D8%B3%D8%A7%DB%8C%D8%B4-%D8%A2%D8%B0%D8%B1%D8%A8%D8%A7%DB%8C%D8%AC%D8%A7%D9%86-%DB%B1%DB%B0%DB%B0/",
+        "owner_page_type": "product",
         "observed_pages": [
           {
             "url": "https://keshavarz20.com/product/%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%A7%D8%B1%D8%A7%D9%86%DB%8C-%D9%85%D9%87-%D9%BE%D8%A7%D8%B4-%D8%A2%D8%B3%D8%A7%DB%8C%D8%B4-%D8%A2%D8%B0%D8%B1%D8%A8%D8%A7%DB%8C%D8%AC%D8%A7%D9%86-%DB%B1%DB%B0%DB%B0/",
+            "page_type": "product",
             "clicks": 0.0,
-            "impressions": 56.0
+            "impressions": 128.0
           },
           {
             "url": "https://keshavarz20.com/product-tag/%D9%84%D9%88%D9%84%D9%87-%D8%A2%D8%A8%DB%8C%D8%A7%D8%B1%DB%8C-%D9%85%D9%87-%D9%BE%D8%A7%D8%B4/",
+            "page_type": "product_tag",
             "clicks": 0.0,
-            "impressions": 48.0
+            "impressions": 96.0
           },
           {
             "url": "https://keshavarz20.com/product-tag/%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%A7%D8%B1%D8%A7%D9%86%DB%8C-%D9%85%D9%87-%D9%BE%D8%A7%D8%B4/",
+            "page_type": "product_tag",
             "clicks": 0.0,
-            "impressions": 47.0
+            "impressions": 94.0
           },
           {
             "url": "https://keshavarz20.com/product-tag/%D9%84%D9%88%D9%84%D9%87-%D9%85%D9%87-%D9%BE%D8%A7%D8%B4/",
+            "page_type": "product_tag",
             "clicks": 0.0,
-            "impressions": 44.0
+            "impressions": 88.0
           },
           {
             "url": "https://keshavarz20.com/product/moj-rain-misting-hose-2-inch-100m/",
+            "page_type": "product",
+            "clicks": 0.0,
+            "impressions": 2.0
+          },
+          {
+            "url": "https://keshavarz20.com/rain-pipe-price-guide/",
+            "page_type": "guide_or_content",
             "clicks": 0.0,
             "impressions": 1.0
           }
         ],
-        "top_impression_share": 0.2857,
-        "warning": "Intent is split across multiple landing pages; do not create another page until overlap is resolved."
+        "owner_impression_share": 0.313,
+        "decision_reasons": [
+          "curated_existing_owner_hint",
+          "observed_in_fresh_search_console_focus_catalog"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product/%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%A7%D8%B1%D8%A7%D9%86%DB%8C-%D9%85%D9%87-%D9%BE%D8%A7%D8%B4-%D8%A2%D8%B3%D8%A7%DB%8C%D8%B4-%D8%A2%D8%B0%D8%B1%D8%A8%D8%A7%DB%8C%D8%AC%D8%A7%D9%86-%DB%B1%DB%B0%DB%B0/",
+          "owner_page_type": "product",
+          "supporting_urls": [
+            "https://keshavarz20.com/product-tag/%D9%84%D9%88%D9%84%D9%87-%D8%A2%D8%A8%DB%8C%D8%A7%D8%B1%DB%8C-%D9%85%D9%87-%D9%BE%D8%A7%D8%B4/",
+            "https://keshavarz20.com/product-tag/%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%A7%D8%B1%D8%A7%D9%86%DB%8C-%D9%85%D9%87-%D9%BE%D8%A7%D8%B4/",
+            "https://keshavarz20.com/product-tag/%D9%84%D9%88%D9%84%D9%87-%D9%85%D9%87-%D9%BE%D8%A7%D8%B4/",
+            "https://keshavarz20.com/product/moj-rain-misting-hose-2-inch-100m/",
+            "https://keshavarz20.com/rain-pipe-price-guide/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category.",
+            "Review duplicate product-tag archives for noindex/merge only after content-equivalence and indexability readback.",
+            "Owner is an interim product-level landing page; create no duplicate page in Phase 5. Phase 6 may promote a durable category/hub if inventory breadth justifies it."
+          ]
+        }
       }
     },
     {
-      "semantic_key": "pe_fitting_saddle|کمربند پلی اتیلن|انتخاب|",
+      "semantic_key": "pe_fitting_saddle|کمربند پلی اتیلن|انتخاب|||",
       "topic": "pe_fitting_saddle",
       "entity_focus": "کمربند پلی اتیلن",
       "intent": "انتخاب",
       "size_token": null,
+      "brand_token": null,
+      "variant_token": null,
       "observed_queries": [
         {
           "query": "کمربند لوله یک دوم",
@@ -527,24 +2309,97 @@
         }
       ],
       "canonical_decision": {
-        "status": "REVIEW_REQUIRED",
-        "canonical_url": null,
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product/%DA%A9%D9%85%D8%B1%D8%A8%D9%86%D8%AF-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-63-x-63-2/",
+        "owner_page_type": "product",
         "observed_pages": [
           {
             "url": "https://keshavarz20.com/product/%DA%A9%D9%85%D8%B1%D8%A8%D9%86%D8%AF-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-63-x-63-2/",
-            "clicks": 0.0,
-            "impressions": 3.0
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 68.0
           },
           {
             "url": "https://keshavarz20.com/product/%DA%A9%D9%85%D8%B1%D8%A8%D9%86%D8%AF-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-20-x-63-%D8%A2%D8%A8%D9%84%D9%88%D9%84%D9%87/",
-            "clicks": 0.0,
-            "impressions": 3.0
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 43.0
           }
         ],
-        "top_impression_share": 0.5,
-        "warning": "Intent is split across multiple landing pages; do not create another page until overlap is resolved."
+        "owner_impression_share": 0.6126,
+        "decision_reasons": [
+          "specific_product_page",
+          "observed_for_exact_intent"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product/%DA%A9%D9%85%D8%B1%D8%A8%D9%86%D8%AF-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-63-x-63-2/",
+          "owner_page_type": "product",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%DA%A9%D9%85%D8%B1%D8%A8%D9%86%D8%AF-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-20-x-63-%D8%A2%D8%A8%D9%84%D9%88%D9%84%D9%87/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category.",
+            "Owner is an interim product-level landing page; create no duplicate page in Phase 5. Phase 6 may promote a durable category/hub if inventory breadth justifies it."
+          ]
+        }
+      }
+    },
+    {
+      "semantic_key": "pe_fitting_saddle|کمربند پلی اتیلن|انتخاب|63||",
+      "topic": "pe_fitting_saddle",
+      "entity_focus": "کمربند پلی اتیلن",
+      "intent": "انتخاب",
+      "size_token": "63",
+      "brand_token": null,
+      "variant_token": null,
+      "observed_queries": [
+        {
+          "query": "کمربند پلی اتیلن 63",
+          "clicks": 0.0,
+          "impressions": 6.0,
+          "position": 8.6667
+        }
+      ],
+      "canonical_decision": {
+        "status": "RESOLVED_OWNER",
+        "canonical_url": "https://keshavarz20.com/product/%DA%A9%D9%85%D8%B1%D8%A8%D9%86%D8%AF-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-63-x-63-2/",
+        "owner_page_type": "product",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product/%DA%A9%D9%85%D8%B1%D8%A8%D9%86%D8%AF-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-63-x-63-2/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 66.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%DA%A9%D9%85%D8%B1%D8%A8%D9%86%D8%AF-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-20-x-63-%D8%A2%D8%A8%D9%84%D9%88%D9%84%D9%87/",
+            "page_type": "product",
+            "clicks": 1.0,
+            "impressions": 45.0
+          }
+        ],
+        "owner_impression_share": 0.5946,
+        "decision_reasons": [
+          "specific_product_page",
+          "observed_for_exact_intent"
+        ],
+        "action_plan": {
+          "owner_url": "https://keshavarz20.com/product/%DA%A9%D9%85%D8%B1%D8%A8%D9%86%D8%AF-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-63-x-63-2/",
+          "owner_page_type": "product",
+          "supporting_urls": [
+            "https://keshavarz20.com/product/%DA%A9%D9%85%D8%B1%D8%A8%D9%86%D8%AF-%D8%A7%D9%86%D8%B4%D8%B9%D8%A7%D8%A8-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86-20-x-63-%D8%A2%D8%A8%D9%84%D9%88%D9%84%D9%87/"
+          ],
+          "site_write_performed": false,
+          "implementation": [
+            "Point internal links for this generic intent to the owner URL.",
+            "Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category.",
+            "Owner is an interim product-level landing page; create no duplicate page in Phase 5. Phase 6 may promote a durable category/hub if inventory breadth justifies it."
+          ]
+        }
       }
     }
   ],
-  "rule": "Resolve overlap by reusing/merging existing pages before creating any new URL. No redirect/canonical/content change was made automatically."
+  "rule": "Every multi-URL intent is assigned an existing owner. Product variants remain valid for specific brand/size intents. No redirect/canonical/content write is made in Phase 5; implementation is queued for a later technical phase after equivalence/indexability readback."
 }
