@@ -16,7 +16,10 @@
     "no_keyword_stuffing",
     "no_llms_txt_as_ranking_hack",
     "dedupe_before_generation_and_before_wordpress_write",
-    "preserve_draft_or_hold_safety_state"
+    "preserve_draft_or_hold_safety_state",
+    "editorial_covers_use_text_free_factual_backgrounds",
+    "persian_cover_text_must_be_deterministic_not_model_rendered",
+    "visual_qa_must_fail_closed_on_broken_persian_unreadable_overlay_or_layout_overflow"
   ],
   "research": {
     "discovery_is_not_evidence": true,
@@ -89,7 +92,14 @@
       "prefer_decision_changing_questions_over_generic_questions",
       "avoid_repeating_existing_product_questions_and_answers",
       "preserve_polite_and_colloquial_distribution_targets"
-    ]
+    ],
+    "production": {
+      "enabled": true,
+      "engine_version": "v18",
+      "mode": "continuous",
+      "persistent_until_explicitly_disabled": true,
+      "scheduler": "heartbeat_plus_watchdog"
+    }
   },
   "content_engine": {
     "answer_first": true,
@@ -133,7 +143,9 @@
       "farmer_impact",
       "practical_next_step_if_any",
       "source_list"
-    ]
+    ],
+    "visual_profile": "factual_news_controlled_cinematic",
+    "cover_copy": "2_to_8_words_preferred_max_8"
   },
   "article_engine": {
     "draft_only": true,
@@ -150,7 +162,9 @@
       "internal_link_relevance",
       "adaptive_faq_only_when_useful",
       "clear_update_triggers"
-    ]
+    ],
+    "visual_profile": "premium_reference_controlled_cinematic",
+    "cover_copy": "2_to_8_words_preferred_max_8"
   },
   "automation": {
     "question_status": "hold",
@@ -183,6 +197,67 @@
         "publisher_must_verify_wordpress_post_type_after_write",
         "breaking_or_time_sensitive_news_belongs_to_news_engine_not_article_engine"
       ]
+    },
+    "schedules": {
+      "question": {
+        "mode": "continuous",
+        "target_interval_seconds_min": 1080,
+        "target_interval_seconds_max": 1559,
+        "watchdog": "10-minute scheduler control + workflow-run heartbeat + hourly tertiary safety net"
+      },
+      "news": {
+        "primary_time_tehran": "08:00",
+        "recovery_time_tehran": "08:15",
+        "draft_only": true
+      },
+      "article": {
+        "primary_time_tehran": "09:00",
+        "recovery_time_tehran": "09:20",
+        "draft_only": true
+      }
+    }
+  },
+  "visual_system": {
+    "version": "keshavarz20-editorial-cover-2026.09.24",
+    "goal": "premium controlled-cinematic editorial covers with deterministic Persian typography",
+    "background": {
+      "aspect_ratio": "16:9",
+      "output_size": "1280x720",
+      "require_text_free_source": true,
+      "prefer_factual_realistic_agriculture": true,
+      "treatment": "controlled_cinematic_editorial",
+      "forbid_fake_documentary_evidence": true,
+      "forbid_overdesigned_social_poster_style": true
+    },
+    "overlay_copy": {
+      "canonical_field": "cover_title",
+      "legacy_alias": "image_overlay_title",
+      "title_max_words": 8,
+      "title_max_lines": 2,
+      "subtitle_max_words": 12,
+      "subtitle_max_lines": 2,
+      "forbid_manual_linebreaks": true,
+      "require_shorter_than_h1": true
+    },
+    "persian_renderer": {
+      "deterministic": true,
+      "font_family": "Noto Sans Arabic/Noto Naskh Arabic",
+      "stack": [
+        "Pillow",
+        "arabic-reshaper",
+        "python-bidi"
+      ],
+      "fail_closed_if_font_or_shaping_missing": true,
+      "ai_text_rendering": false
+    },
+    "quality_gate": {
+      "safe_margins": true,
+      "high_contrast_text_panel": true,
+      "reject_overflow": true,
+      "reject_too_dense_copy": true,
+      "reject_bidi_controls": true,
+      "reject_low_relevance_background": true,
+      "preserve_source_license_metadata": true
     }
   }
 }
