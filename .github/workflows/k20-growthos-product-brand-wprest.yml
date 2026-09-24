@@ -1,0 +1,81 @@
+name: K20 GrowthOS Product Brand WP REST Route Probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'growthos-product-brand-wprest-ops/*.json'
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install requests
+      - name: Probe product WP REST route and taxonomy field
+        shell: python
+        run: |
+          import json, os, pathlib, requests
+          base=os.environ["WP_BASE_URL"].rstrip("/")
+          auth=(os.environ["WP_USERNAME"],os.environ["WP_APP_PASSWORD"])
+          s=requests.Session(); s.auth=auth; s.headers.update({"Accept":"application/json","User-Agent":"k20-growthos-wprest-brand-probe/1.0"})
+          out={}
+          t=s.get(base+"/wp-json/wp/v2/types/product",timeout=90)
+          out["type_http"]=t.status_code
+          if t.status_code==200:
+              tj=t.json()
+              out["type"]={k:tj.get(k) for k in ("slug","rest_base","rest_namespace","taxonomies")}
+          for route in ["/wp-json/wp/v2/product/135383?context=edit","/wp-json/wp/v2/products/135383?context=edit"]:
+              r=s.get(base+route,timeout=90)
+              key=route.split("?")[0]
+              item={"http":r.status_code,"content_type":r.headers.get("content-type")}
+              if r.status_code==200:
+                  j=r.json()
+                  item["keys"]=sorted(j.keys())
+                  item["product_brand"]=j.get("product_brand")
+                  item["brands"]=j.get("brands")
+                  item["id"]=j.get("id")
+              else:
+                  try:item["code"]=r.json().get("code")
+                  except Exception:item["code"]=None
+              out[key]=item
+          idx=s.get(base+"/wp-json/",timeout=90)
+          if idx.status_code==200:
+              routes=idx.json().get("routes") or {}
+              candidates={}
+              for k,v in routes.items():
+                  if "product" in k and ("brand" in k or k.startswith("/wp/v2/product")):
+                      endpoints=[]
+                      for e in (v.get("endpoints") or []):
+                          endpoints.append({"methods":e.get("methods"),"args":sorted((e.get("args") or {}).keys())})
+                      candidates[k]={"namespace":v.get("namespace"),"methods":v.get("methods"),"endpoints":endpoints}
+              out["candidate_routes"]=candidates
+          pathlib.Path("growthos-phase3-results").mkdir(exist_ok=True)
+          pathlib.Path("growthos-phase3-results/product-brand-wprest-route.json").write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
+          print(json.dumps(out,ensure_ascii=False))
+      - name: Commit sanitized probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f growthos-phase3-results/product-brand-wprest-route.json
+          git diff --cached --quiet && exit 0
+          git commit -m "growthos phase3: record product brand WP REST route"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
