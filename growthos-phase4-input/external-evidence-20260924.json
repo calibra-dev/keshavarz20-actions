@@ -1,6 +1,6 @@
 {
   "version": "growthos-phase4-external-evidence-v1",
-  "researched_at_utc": "2026-09-24T07:18:00Z",
+  "researched_at_utc": "2026-09-24T07:31:00Z",
   "policy": {
     "manufacturer_verified": "Official manufacturer channel/profile/catalog claim. May fill an unknown technical dimension when product family/name match is exact enough.",
     "secondary_verified": "Independent specialist seller/distributor/product page. May fill an unknown data dimension but does not count as manufacturer-grade compatibility proof.",
@@ -95,6 +95,22 @@
       "url": "https://rodineh.com/product/%D9%86%D9%88%D8%A7%D8%B1-%D8%A2%D8%A8%DB%8C%D8%A7%D8%B1%DB%8C-%D8%AA%DB%8C%D9%BE-%D8%A8%D8%BA%D9%84-%D8%AF%D9%88%D8%AE%D8%AA-%D9%81%D8%B1%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C%D9%85%D8%B1/",
       "retrieved_at": "2026-09-24",
       "notes": "Farat drip tape page: emitter spacing 10/20/30 cm, ideal 0.6 atm; min 0.4/max 1 atm; >100 micron particles should be excluded; 1.6-2 L/h stated."
+    },
+    {
+      "id": "vispar-official-automatic-valve",
+      "tier": "manufacturer",
+      "publisher": "Vispar / Paya Baspar Aria",
+      "url": "https://t.me/s/vispar_co?before=580",
+      "retrieved_at": "2026-09-24",
+      "notes": "Official channel: automatic polymer valve sizes 1, 1.5 and 2 inch; nominal pressure 10 bar; designed for quick connection of sprinkler riser to laterals."
+    },
+    {
+      "id": "abafarin-official-layflat-interface",
+      "tier": "manufacturer",
+      "publisher": "Abafarin System",
+      "url": "https://t.me/s/abafarinsystem?after=321",
+      "retrieved_at": "2026-09-24",
+      "notes": "Official channel: Abafarin tape-to-layflat connector 17*L and Sinab layflat/tape valve use surface-to-surface pressure sealing."
     }
   ],
   "rules": [
@@ -287,6 +303,38 @@
         "material": {
           "value": "polymeric",
           "status": "SECONDARY_VERIFIED"
+        }
+      }
+    },
+    {
+      "id": "vispar-automatic-valve-pn10",
+      "family": [
+        "valve"
+      ],
+      "name_regex": "(?=.*ویسپار)(?=.*شیر\\s*خودکار)",
+      "source_id": "vispar-official-automatic-valve",
+      "fields": {
+        "pressure_class": {
+          "value": "10 bar",
+          "status": "MANUFACTURER_VERIFIED"
+        },
+        "connection_type": {
+          "value": "quick_riser_to_lateral_coupling",
+          "status": "MANUFACTURER_VERIFIED"
+        }
+      }
+    },
+    {
+      "id": "abafarin-tape-layflat-interface",
+      "family": [
+        "layflat_component"
+      ],
+      "name_regex": "(?=.*آبافرین)(?=.*(?:تیپ.*لی[\\s‌-]*فلت|لی[\\s‌-]*فلت.*تیپ))",
+      "source_id": "abafarin-official-layflat-interface",
+      "fields": {
+        "interface_signature": {
+          "value": "layflat<->drip_tape",
+          "status": "MANUFACTURER_VERIFIED"
         }
       }
     }
