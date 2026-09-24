@@ -362,23 +362,65 @@ def technical_dimensions(p, truth_rec):
     dims = {}
     size_patterns = [r'^سایز$', r'^قطر$', r'diameter', r'^size$', r'سایز.*قطر']
     dims['nominal_size'] = direct_attr(attrs, size_patterns) or spec_attr(specs, size_patterns) or title_declared_size(name)
-    dims['connection_size'] = direct_attr(attrs, [r'سایز اتصال', r'قطر اتصال']) or spec_attr(specs, [r'سایز اتصال', r'قطر اتصال']) or title_declared_connection_size(name) or dims['nominal_size']
-    dims['connection_type'] = direct_attr(attrs, [r'نوع اتصال', r'رزوه', r'connection', r'thread']) or spec_attr(specs, [r'نوع اتصال', r'رزوه', r'connection', r'thread']) or title_declared_connection_type(name) or semantic_connection_type(name)
-    dims['material'] = truth_field(truth_rec, 'material') or direct_attr(attrs, [r'^جنس
-    dims['pressure_class'] = direct_attr(attrs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn$', r'^sdr$']) or spec_attr(specs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn$', r'^sdr$']) or title_declared_pressure(name)
-    dims['pressure_requirement'] = direct_attr(attrs, [r'نیاز فشار', r'فشار مورد نیاز', r'pressure requirement']) or spec_attr(specs, [r'نیاز فشار', r'فشار مورد نیاز', r'pressure requirement']) or dims['pressure_class']
-    dims['flow_rate'] = direct_attr(attrs, [r'^دبی', r'flow']) or spec_attr(specs, [r'^دبی', r'flow']) or title_declared_flow_rate(name)
-    dims['filtration_grade'] = direct_attr(attrs, [r'میکرون', r'مش', r'mesh', r'filtration grade']) or spec_attr(specs, [r'میکرون', r'مش', r'mesh', r'filtration grade'])
-    dims['filtration_requirement'] = direct_attr(attrs, [r'نیاز فیلتراسیون', r'الزام فیلتراسیون', r'filtration requirement']) or spec_attr(specs, [r'نیاز فیلتراسیون', r'الزام فیلتراسیون', r'filtration requirement'])
-    dims['emitter_spacing'] = direct_attr(attrs, [r'فاصله قطره', r'فاصله خروجی', r'emitter spacing']) or spec_attr(specs, [r'فاصله قطره', r'فاصله خروجی', r'emitter spacing']) or title_declared_emitter_spacing(name)
-    dims['length'] = direct_attr(attrs, [r'^طول
+    dims['connection_size'] = (
+        direct_attr(attrs, [r'سایز اتصال', r'قطر اتصال'])
+        or spec_attr(specs, [r'سایز اتصال', r'قطر اتصال'])
+        or title_declared_connection_size(name)
+        or dims['nominal_size']
+    )
+    dims['connection_type'] = (
+        direct_attr(attrs, [r'نوع اتصال', r'رزوه', r'connection', r'thread'])
+        or spec_attr(specs, [r'نوع اتصال', r'رزوه', r'connection', r'thread'])
+        or title_declared_connection_type(name)
+        or semantic_connection_type(name)
+    )
+    dims['material'] = (
+        truth_field(truth_rec, 'material')
+        or direct_attr(attrs, [r'^جنس$', r'material'])
+        or spec_attr(specs, [r'^جنس$', r'material'])
+        or title_declared_material(name)
+        or title_declared_aluminum(name)
+    )
+    dims['pressure_class'] = (
+        direct_attr(attrs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn$', r'^sdr$'])
+        or spec_attr(specs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn$', r'^sdr$'])
+        or title_declared_pressure(name)
+    )
+    dims['pressure_requirement'] = (
+        direct_attr(attrs, [r'نیاز فشار', r'فشار مورد نیاز', r'pressure requirement'])
+        or spec_attr(specs, [r'نیاز فشار', r'فشار مورد نیاز', r'pressure requirement'])
+        or dims['pressure_class']
+    )
+    dims['flow_rate'] = (
+        direct_attr(attrs, [r'^دبی', r'flow'])
+        or spec_attr(specs, [r'^دبی', r'flow'])
+        or title_declared_flow_rate(name)
+    )
+    dims['filtration_grade'] = (
+        direct_attr(attrs, [r'میکرون', r'مش', r'mesh', r'filtration grade'])
+        or spec_attr(specs, [r'میکرون', r'مش', r'mesh', r'filtration grade'])
+    )
+    dims['filtration_requirement'] = (
+        direct_attr(attrs, [r'نیاز فیلتراسیون', r'الزام فیلتراسیون', r'filtration requirement'])
+        or spec_attr(specs, [r'نیاز فیلتراسیون', r'الزام فیلتراسیون', r'filtration requirement'])
+    )
+    dims['emitter_spacing'] = (
+        direct_attr(attrs, [r'فاصله قطره', r'فاصله خروجی', r'emitter spacing'])
+        or spec_attr(specs, [r'فاصله قطره', r'فاصله خروجی', r'emitter spacing'])
+        or title_declared_emitter_spacing(name)
+    )
+    dims['length'] = (
+        direct_attr(attrs, [r'^طول$', r'طول رول', r'length'])
+        or spec_attr(specs, [r'^طول$', r'طول رول', r'length'])
+        or title_declared_length(name)
+        or title_declared_length_cm(name)
+    )
     dims['capacity'] = direct_attr(attrs, [r'^ظرفیت$', r'capacity']) or spec_attr(specs, [r'^ظرفیت$', r'capacity']) or title_declared_capacity(name)
     dims['tool_size'] = dims['nominal_size']
     dims['component_type'] = component_type_from_title(name)
     dims['head'] = direct_attr(attrs, [r'هد', r'ارتفاع']) or spec_attr(specs, [r'هد', r'ارتفاع']) or title_declared_head(name)
     dims['power'] = direct_attr(attrs, [r'توان', r'اسب']) or spec_attr(specs, [r'توان', r'اسب']) or title_declared_power(name)
     return {k: (v if v else {'status': 'UNKNOWN', 'value': None}) for k, v in dims.items()}
-
 
 
 def edge_key(e):
