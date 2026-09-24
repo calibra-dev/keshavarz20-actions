@@ -40,18 +40,19 @@ RULES = {
     'valve': ['nominal_size', 'connection_type', 'pressure_class'],
     'fitting': ['nominal_size', 'connection_type', 'material'],
     'layflat_rain': ['nominal_size', 'length', 'pressure_class', 'material'],
-    'layflat_component': ['nominal_size', 'connection_type', 'material'],
+    'layflat_component': ['interface_signature'],
     'emitter': ['flow_rate', 'connection_type'],
     'drip_tape': ['nominal_size', 'length', 'emitter_spacing', 'filtration_requirement', 'pressure_class'],
-    'drip_tape_component': ['connection_size', 'connection_type'],
+    'drip_tape_component': ['interface_signature'],
     'filter': ['connection_size', 'filtration_grade'],
     'fertigation': ['capacity', 'connection_size', 'pressure_requirement'],
     'pipe': ['nominal_size', 'length', 'pressure_class', 'material'],
     'sprinkler': ['connection_size', 'flow_rate', 'pressure_requirement'],
     'installation_tool': ['tool_size'],
-    'washer_clamp': ['nominal_size', 'component_type'],
+    'washer_clamp': ['interface_signature', 'component_type'],
     'riser': ['nominal_size', 'length', 'connection_type', 'material'],
     'pump': ['connection_size', 'head', 'power'],
+    'branch_connector': ['interface_signature'],
     'unmodeled_irrigation': [],
     'excluded_non_irrigation': []
 }
@@ -122,6 +123,8 @@ def classify_product(p):
         return 'fertigation'
     if re.search(r'آبپاش|اسپرینکلر', name):
         return 'sprinkler'
+    if re.search(r'انشعاب\s*(?:دو|سه)[\s‌-]*شاخه', name):
+        return 'branch_connector'
     if re.search(r'واشر|اورینگ|گسکت|بست\s*(تک|دو|هندلی|ابتدایی)|بست\s*و\s*قلاب', name):
         return 'washer_clamp'
     if re.search(r'رایزر', name):
@@ -410,6 +413,111 @@ def emitter_connection_type(name):
     return None
 
 
+
+def implicit_fraction_size(name):
+    s = name or ''
+    if not re.search(r'بوشن|مغزی|کپ|درپوش|زانو|سه\s*راه|اتصال|شیر|رایزر|سر\s*شلنگ|سرشلنگ', s, re.I):
+        return None
+    m = re.search(r'(?<![۰-۹0-9])([۰-۹0-9]+/[۰-۹0-9]+)(?![۰-۹0-9])', s)
+    if m:
+        return {'status':'SITE_DECLARED','value':m.group(1)+' inch','source':'woocommerce_product_title',
+                'evidence':{'field':'nominal_size','title':s,'rule':'implicit_fraction_in_fitting_or_valve_title'}}
+    return None
+
+
+def pair_size_signature(name):
+    s = name or ''
+    patterns = [
+        r'([۰-۹0-9]+(?:[./][۰-۹0-9]+)?)\s*[x×*]\s*([۰-۹0-9]+(?:[./][۰-۹0-9]+)?)',
+        r'([۰-۹0-9]+)\s*به\s*([۰-۹0-9]+(?:/[۰-۹0-9]+)?)'
+    ]
+    for pat in patterns:
+        m = re.search(pat, s, re.I)
+        if m:
+            return m.group(1)+'x'+m.group(2)
+    return None
+
+
+def interface_signature_from_title(name):
+    s = name or ''
+    n = re.sub(r'\s+', ' ', s).strip()
+    pair = pair_size_signature(n)
+
+    if re.search(r'رابط.*(?:نخ[\s‌-]*دار|لی[\s‌-]*فلت)', n, re.I) and pair:
+        return {'status':'SITE_DECLARED','value':'layflat:'+pair.replace('x','<->layflat:'),
+                'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
+
+    if re.search(r'(?:رابط|شیر).*لی[\s‌-]*فلت.*(?:به\s*)?تیپ|(?:رابط|شیر).*تیپ.*به\s*لی[\s‌-]*فلت', n, re.I):
+        return {'status':'SITE_DECLARED','value':'layflat<->drip_tape',
+                'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
+
+    if re.search(r'کور(?:کن)?(?:\s*کامل)?\s*لی[\s‌-]*فلت', n, re.I):
+        return {'status':'SITE_DECLARED','value':'layflat:end_cap',
+                'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
+
+    if re.search(r'کمربند.*(?:نخ[\s‌-]*دار|لی[\s‌-]*فلت)', n, re.I):
+        size = title_declared_size(n)
+        v = 'layflat:saddle'
+        if size and size.get('value'):
+            v += ':' + str(size.get('value'))
+        return {'status':'SITE_DECLARED','value':v,
+                'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
+
+    if re.search(r'رابط.*تیپ.*(?:به\s*)?16|رابط.*16.*(?:به\s*)?تیپ', n, re.I):
+        return {'status':'SITE_DECLARED','value':'drip_tape<->line16mm',
+                'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
+
+    if re.search(r'رابط.*تیپ.*به\s*تیپ|رابط\s*لوله\s*نواری\s*تیپ\s*به\s*تیپ', n, re.I):
+        return {'status':'SITE_DECLARED','value':'drip_tape<->drip_tape',
+                'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
+
+    if re.search(r'رابط.*تیپ.*به\s*لوله', n, re.I):
+        return {'status':'SITE_DECLARED','value':'drip_tape<->pipe',
+                'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
+
+    if re.search(r'شیر\s*انشعاب.*(?:1/2|۱/۲).*نوار\s*تیپ|شیر\s*انشعاب.*نوار\s*تیپ', n, re.I):
+        return {'status':'SITE_DECLARED','value':'thread_or_branch<->drip_tape',
+                'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
+
+    if re.search(r'بست\s*ابتدایی|واشر|اورینگ|گسکت|بست\s*و\s*قلاب', n, re.I):
+        v = 'seal_or_clamp'
+        if pair:
+            v += ':'+pair
+        else:
+            sz = title_declared_size(n)
+            if sz and sz.get('value'):
+                v += ':'+str(sz.get('value'))
+        return {'status':'SITE_DECLARED','value':v,
+                'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
+
+    if re.search(r'انشعاب\s*(?:دو|سه)[\s‌-]*شاخه', n, re.I):
+        v = 'branch'
+        if pair:
+            v += ':'+pair
+        return {'status':'SITE_DECLARED','value':v,
+                'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
+
+    return None
+
+
+def metal_material_from_title(name):
+    s = name or ''
+    if re.search(r'فلزی', s, re.I):
+        return {'status':'SITE_DECLARED','value':'metal_unspecified','source':'woocommerce_product_title',
+                'evidence':{'field':'material','title':s}}
+    return None
+
+
+def hose_barb_connection(name):
+    s = name or ''
+    if re.search(r'سر\s*شلنگ|سرشلنگ', s, re.I):
+        return {'status':'SITE_DECLARED','value':'hose_barb','source':'product_type_semantics',
+                'evidence':{'field':'connection_type','title':s}}
+    if re.search(r'کورکن\s*کلیدی', s, re.I):
+        return {'status':'SITE_DECLARED','value':'line_end_closure','source':'product_type_semantics',
+                'evidence':{'field':'connection_type','title':s}}
+    return None
+
 def technical_dimensions(p, truth_rec):
     attrs = attrs_map(p)
     specs = spec_map(p)
@@ -417,7 +525,7 @@ def technical_dimensions(p, truth_rec):
     dims = {}
     cat = category_semantics(p)
     size_patterns = [r'^سایز$', r'^قطر$', r'diameter', r'^size$', r'سایز.*قطر']
-    dims['nominal_size'] = direct_attr(attrs, size_patterns) or spec_attr(specs, size_patterns) or title_declared_size(name) or quoted_inch_size(name)
+    dims['nominal_size'] = direct_attr(attrs, size_patterns) or spec_attr(specs, size_patterns) or title_declared_size(name) or quoted_inch_size(name) or implicit_fraction_size(name)
     dims['connection_size'] = (
         direct_attr(attrs, [r'سایز اتصال', r'قطر اتصال'])
         or spec_attr(specs, [r'سایز اتصال', r'قطر اتصال'])
@@ -429,6 +537,7 @@ def technical_dimensions(p, truth_rec):
         or spec_attr(specs, [r'نوع اتصال', r'رزوه', r'connection', r'thread'])
         or title_declared_connection_type(name)
         or semantic_connection_type(name)
+        or hose_barb_connection(name)
         or cat.get('connection_type')
     )
     dims['material'] = (
@@ -437,6 +546,7 @@ def technical_dimensions(p, truth_rec):
         or spec_attr(specs, [r'^جنس$', r'material'])
         or title_declared_material(name)
         or title_declared_aluminum(name)
+        or metal_material_from_title(name)
         or cat.get('material')
     )
     dims['pressure_class'] = (
@@ -477,6 +587,7 @@ def technical_dimensions(p, truth_rec):
     nominal = dims.get('nominal_size') or {'status':'UNKNOWN','value':None}
     dims['tool_size'] = nominal if nominal.get('status') != 'UNKNOWN' else (installation_tool_size(name) or {'status':'UNKNOWN','value':None})
     dims['component_type'] = component_type_from_title(name)
+    dims['interface_signature'] = interface_signature_from_title(name)
     dims['head'] = direct_attr(attrs, [r'هد', r'ارتفاع']) or spec_attr(specs, [r'هد', r'ارتفاع']) or title_declared_head(name)
     dims['power'] = direct_attr(attrs, [r'توان', r'اسب']) or spec_attr(specs, [r'توان', r'اسب']) or title_declared_power(name)
     connection = dims.get('connection_type') or {'status':'UNKNOWN','value':None}
