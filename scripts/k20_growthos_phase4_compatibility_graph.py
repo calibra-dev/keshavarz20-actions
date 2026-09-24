@@ -37,15 +37,23 @@ RELATION_VOCABULARY = {
 
 RULES = {
     'valve': ['nominal_size', 'connection_type', 'pressure_class'],
-    'fitting': ['nominal_size', 'connection_type', 'material', 'pressure_class'],
-    'layflat_rain': ['nominal_size', 'length', 'connection_type', 'pressure_class'],
-    'drip_tape': ['nominal_size', 'length', 'emitter_spacing', 'filtration_requirement'],
-    'filter': ['connection_size', 'flow_rate', 'filtration_grade'],
+    'fitting': ['nominal_size', 'connection_type', 'material'],
+    'layflat_rain': ['nominal_size', 'length', 'pressure_class', 'material'],
+    'drip_tape': ['nominal_size', 'length', 'emitter_spacing', 'filtration_requirement', 'pressure_class'],
+    'drip_tape_component': ['connection_size', 'connection_type'],
+    'filter': ['connection_size', 'filtration_grade'],
     'fertigation': ['capacity', 'connection_size', 'pressure_requirement'],
-    'pipe': ['nominal_size', 'pressure_class', 'material'],
+    'pipe': ['nominal_size', 'length', 'pressure_class', 'material'],
     'sprinkler': ['connection_size', 'flow_rate', 'pressure_requirement'],
-    'other_irrigation': ['nominal_size', 'connection_type']
+    'installation_tool': ['tool_size'],
+    'washer_clamp': ['nominal_size', 'component_type'],
+    'riser': ['nominal_size', 'length', 'connection_type', 'material'],
+    'pump': ['connection_size', 'head', 'power'],
+    'unmodeled_irrigation': [],
+    'excluded_non_irrigation': []
 }
+
+
 
 
 def paged_products():
@@ -78,24 +86,47 @@ def norm_url(u):
 
 
 def classify_product(p):
-    hay = ((p.get('name') or '') + ' ' + ' '.join((c.get('name') or '') for c in (p.get('categories') or []))).lower()
-    if any(x in hay for x in ['نوار تیپ', 'نوار آبیاری', 'تیپ به تیپ']):
+    name = (p.get('name') or '').lower()
+    cats = ' '.join((x.get('name') or '') for x in (p.get('categories') or [])).lower()
+    hay = name + ' ' + cats
+
+    # Explicitly outside the irrigation compatibility graph.
+    if re.search(r'کود|فرتینوکس|هیومیک|اسید آمینه|گوگرد|پتاس|فسفر|کلسیم|آهن|ریز مغذی|بذر|نشاء|نهال|کوکوپیت|پیت ماس', name):
+        return 'excluded_non_irrigation'
+
+    # Title-first classification avoids parent-category contamination.
+    if re.search(r'نوار\s*تیپ|نوارتیپ|نوار\s*آبیاری', name):
+        if re.search(r'شیر|رابط|بست|سه\s*راه|اتصال|کورکن|درپوش|ابتدایی', name):
+            return 'drip_tape_component'
         return 'drip_tape'
-    if any(x in hay for x in ['نخدار', 'نخ دار', 'لی فلت', 'لی‌فلت', 'مه پاش', 'مه‌پاش', 'لوله بارانی']):
+    if re.search(r'لوله\s*نخ\s*دار|لوله\s*نخدار|لی[\s‌-]*فلت|لوله\s*بارانی|مه[\s‌-]*پاش', name):
         return 'layflat_rain'
-    if any(x in hay for x in ['هیدروسیکلون', 'فیلتر']):
-        return 'filter'
-    if any(x in hay for x in ['مخزن تزریق کود', 'تانک کود']):
-        return 'fertigation'
-    if any(x in hay for x in ['آبپاش', 'اسپرینکلر']):
-        return 'sprinkler'
-    if any(x in hay for x in ['لوله پلی اتیلن', 'لوله پلی‌اتیلن', 'لوله pe']):
+    if re.search(r'لوله\s*پلی[\s‌-]*اتیلن|\bpe\s*(80|100)\b', name):
         return 'pipe'
-    if any(x in hay for x in ['شیر توپی', 'شیرتوپی', 'شیر پروانه', 'شیر ویفری', 'شیر انشعاب', 'سوپاپ']):
+    if re.search(r'هیدروسیکلون|فیلتر', name):
+        return 'filter'
+    if re.search(r'مخزن\s*تزریق\s*کود|تانک\s*کود', name):
+        return 'fertigation'
+    if re.search(r'آبپاش|اسپرینکلر', name):
+        return 'sprinkler'
+    if re.search(r'مته|پانچ|سوراخ\s*کن|گردبر|آچار\s*اتصالات', name):
+        return 'installation_tool'
+    if re.search(r'واشر|اورینگ|گسکت|بست\s*(تک|دو|هندلی|ابتدایی)', name):
+        return 'washer_clamp'
+    if re.search(r'رایزر', name):
+        return 'riser'
+    if re.search(r'پمپ|کف\s*کش|الکتروپمپ|ست\s*کنترل', name):
+        return 'pump'
+    if re.search(r'شیر|سوپاپ', name):
         return 'valve'
-    if any(x in hay for x in ['رابط', 'زانو', 'سه راه', 'سه‌راه', 'فلنج', 'فلنچ', 'کمربند', 'درپوش', 'بوشن', 'تبدیل', 'سر شلنگ', 'سرشلنگ']):
+    if re.search(r'رابط|زانو|زانویی|سه\s*راه|سه‌راه|فلنج|فلنچ|کمربند|درپوش|بوشن|تبدیل|سر\s*شلنگ|سرشلنگ|چپقی|مغزی|اتصال\s*(نر|ماده)', name):
         return 'fitting'
-    return 'other_irrigation'
+
+    # Category fallback is intentionally conservative.
+    if any(x in cats for x in ['آبیاری', 'اتصالات', 'لوله', 'شیرآلات']):
+        return 'unmodeled_irrigation'
+    return 'excluded_non_irrigation'
+
 
 
 def attrs_map(p):
@@ -149,21 +180,117 @@ def direct_attr(attrs, patterns):
     return None
 
 
-def title_declared_size(name):
+def title_declared_value(name, patterns, field):
     s = name or ''
-    pats = [
+    vals = []
+    for pat in patterns:
+        vals += re.findall(pat, s, flags=re.I)
+    cleaned = []
+    for x in vals:
+        if isinstance(x, tuple):
+            x = ' '.join(str(v) for v in x if v)
+        x = re.sub(r'\s+', ' ', str(x)).strip()
+        if x and x not in cleaned:
+            cleaned.append(x)
+    if not cleaned:
+        return None
+    return {
+        'status': 'SITE_DECLARED',
+        'value': cleaned[0] if len(cleaned) == 1 else cleaned,
+        'source': 'woocommerce_product_title',
+        'evidence': {'field': field, 'title': s}
+    }
+
+
+def title_declared_size(name):
+    return title_declared_value(name, [
         r'(?<!\d)([۰-۹0-9]+(?:\s*و\s*[۰-۹0-9]+/[۰-۹0-9]+|[./][۰-۹0-9]+)?\s*اینچ)',
         r'(?<!\d)([۰-۹0-9]+\s*میلی\s*متر)',
         r'(?<!\d)([۰-۹0-9]+\s*میلیمتر)',
         r'(?<!\d)([۰-۹0-9]+\s*mm)'
+    ], 'nominal_size')
+
+
+def title_declared_length(name):
+    return title_declared_value(name, [
+        r'([۰-۹0-9]+(?:[./][۰-۹0-9]+)?\s*متری)',
+        r'([۰-۹0-9]+(?:[./][۰-۹0-9]+)?\s*متر)'
+    ], 'length')
+
+
+def title_declared_pressure(name):
+    return title_declared_value(name, [
+        r'([۰-۹0-9]+(?:[./][۰-۹0-9]+)?\s*(?:بار|اتمسفر))'
+    ], 'pressure_class')
+
+
+def title_declared_emitter_spacing(name):
+    if not re.search(r'نوار\s*تیپ|نوارتیپ|نوار\s*آبیاری', name or '', re.I):
+        return None
+    return title_declared_value(name, [
+        r'([۰-۹0-9]+(?:[./][۰-۹0-9]+)?\s*سانتی\s*متری)',
+        r'([۰-۹0-9]+(?:[./][۰-۹0-9]+)?\s*سانت)'
+    ], 'emitter_spacing')
+
+
+def title_declared_capacity(name):
+    return title_declared_value(name, [r'([۰-۹0-9]+\s*لیتری)'], 'capacity')
+
+
+def title_declared_head(name):
+    if not re.search(r'پمپ|کف\s*کش|الکتروپمپ', name or '', re.I):
+        return None
+    return title_declared_value(name, [r'([۰-۹0-9]+\s*متری)'], 'head')
+
+
+def title_declared_power(name):
+    return title_declared_value(name, [r'([۰-۹0-9]+(?:[./][۰-۹0-9]+)?\s*اسب)'], 'power')
+
+
+def title_declared_connection_type(name):
+    s = name or ''
+    mapping = [
+        (r'رزوه[‌\s-]*ای|دنده[‌\s-]*ای|یکسر\s*نر|یکسر\s*ماده|دو\s*سر\s*نر|دو\s*سر\s*ماده', 'threaded'),
+        (r'پیچی', 'compression'),
+        (r'جوشی|بات\s*فیوژن|butt', 'butt_fusion'),
+        (r'الکتروفیوژن|electrofusion', 'electrofusion'),
+        (r'چسبی', 'solvent_weld'),
+        (r'ویکتالیک|victaulic', 'grooved')
     ]
-    vals = []
-    for pat in pats:
-        vals += re.findall(pat, s, flags=re.I)
-    vals = list(dict.fromkeys(re.sub(r'\s+', ' ', x).strip() for x in vals if x.strip()))
+    vals = [label for pat, label in mapping if re.search(pat, s, re.I)]
     if not vals:
         return None
-    return {'status': 'TITLE_DECLARED', 'value': vals, 'source': 'woocommerce_product_title', 'evidence': {'title': s}}
+    return {'status': 'SITE_DECLARED', 'value': vals[0] if len(vals) == 1 else vals,
+            'source': 'woocommerce_product_title', 'evidence': {'field': 'connection_type', 'title': s}}
+
+
+def title_declared_material(name):
+    s = name or ''
+    if re.search(r'upvc|u-pvc|یو\s*پی\s*وی\s*سی', s, re.I):
+        v = 'uPVC'
+    elif re.search(r'پلی[\s‌-]*اتیلن|\bpe\b', s, re.I):
+        v = 'polyethylene'
+    elif re.search(r'پلیمری', s, re.I):
+        v = 'polymeric_unspecified'
+    else:
+        return None
+    return {'status': 'SITE_DECLARED', 'value': v, 'source': 'woocommerce_product_title',
+            'evidence': {'field': 'material', 'title': s}}
+
+
+def component_type_from_title(name):
+    s = name or ''
+    for pat, val in [
+        (r'واشر|اورینگ|گسکت', 'seal'),
+        (r'بست', 'clamp'),
+        (r'مته|پانچ|گردبر|سوراخ\s*کن', 'punch_tool'),
+        (r'آچار', 'installation_wrench')
+    ]:
+        if re.search(pat, s, re.I):
+            return {'status': 'SITE_DECLARED', 'value': val, 'source': 'woocommerce_product_title',
+                    'evidence': {'field': 'component_type', 'title': s}}
+    return None
+
 
 
 def truth_field(rec, key):
@@ -176,21 +303,27 @@ def truth_field(rec, key):
 def technical_dimensions(p, truth_rec):
     attrs = attrs_map(p)
     specs = spec_map(p)
+    name = p.get('name') or ''
     dims = {}
     size_patterns = [r'^سایز$', r'^قطر$', r'diameter', r'^size$', r'سایز.*قطر']
-    dims['nominal_size'] = direct_attr(attrs, size_patterns) or spec_attr(specs, size_patterns) or title_declared_size(p.get('name'))
+    dims['nominal_size'] = direct_attr(attrs, size_patterns) or spec_attr(specs, size_patterns) or title_declared_size(name)
     dims['connection_size'] = direct_attr(attrs, [r'سایز اتصال', r'قطر اتصال']) or spec_attr(specs, [r'سایز اتصال', r'قطر اتصال']) or dims['nominal_size']
-    dims['connection_type'] = direct_attr(attrs, [r'نوع اتصال', r'رزوه', r'connection', r'thread']) or spec_attr(specs, [r'نوع اتصال', r'رزوه', r'connection', r'thread'])
-    dims['material'] = truth_field(truth_rec, 'material') or direct_attr(attrs, [r'^جنس$', r'material']) or spec_attr(specs, [r'^جنس$', r'material'])
-    dims['pressure_class'] = direct_attr(attrs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn$', r'^sdr$']) or spec_attr(specs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn$', r'^sdr$'])
+    dims['connection_type'] = direct_attr(attrs, [r'نوع اتصال', r'رزوه', r'connection', r'thread']) or spec_attr(specs, [r'نوع اتصال', r'رزوه', r'connection', r'thread']) or title_declared_connection_type(name)
+    dims['material'] = truth_field(truth_rec, 'material') or direct_attr(attrs, [r'^جنس$', r'material']) or spec_attr(specs, [r'^جنس$', r'material']) or title_declared_material(name)
+    dims['pressure_class'] = direct_attr(attrs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn$', r'^sdr$']) or spec_attr(specs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn$', r'^sdr$']) or title_declared_pressure(name)
     dims['pressure_requirement'] = direct_attr(attrs, [r'نیاز فشار', r'فشار مورد نیاز', r'pressure requirement']) or spec_attr(specs, [r'نیاز فشار', r'فشار مورد نیاز', r'pressure requirement']) or dims['pressure_class']
     dims['flow_rate'] = direct_attr(attrs, [r'^دبی', r'flow']) or spec_attr(specs, [r'^دبی', r'flow'])
     dims['filtration_grade'] = direct_attr(attrs, [r'میکرون', r'مش', r'mesh', r'filtration grade']) or spec_attr(specs, [r'میکرون', r'مش', r'mesh', r'filtration grade'])
     dims['filtration_requirement'] = direct_attr(attrs, [r'نیاز فیلتراسیون', r'الزام فیلتراسیون', r'filtration requirement']) or spec_attr(specs, [r'نیاز فیلتراسیون', r'الزام فیلتراسیون', r'filtration requirement'])
-    dims['emitter_spacing'] = direct_attr(attrs, [r'فاصله قطره', r'فاصله خروجی', r'emitter spacing']) or spec_attr(specs, [r'فاصله قطره', r'فاصله خروجی', r'emitter spacing'])
-    dims['length'] = direct_attr(attrs, [r'^طول$', r'طول رول', r'length']) or spec_attr(specs, [r'^طول$', r'طول رول', r'length'])
-    dims['capacity'] = direct_attr(attrs, [r'^ظرفیت$', r'capacity']) or spec_attr(specs, [r'^ظرفیت$', r'capacity'])
+    dims['emitter_spacing'] = direct_attr(attrs, [r'فاصله قطره', r'فاصله خروجی', r'emitter spacing']) or spec_attr(specs, [r'فاصله قطره', r'فاصله خروجی', r'emitter spacing']) or title_declared_emitter_spacing(name)
+    dims['length'] = direct_attr(attrs, [r'^طول$', r'طول رول', r'length']) or spec_attr(specs, [r'^طول$', r'طول رول', r'length']) or title_declared_length(name)
+    dims['capacity'] = direct_attr(attrs, [r'^ظرفیت$', r'capacity']) or spec_attr(specs, [r'^ظرفیت$', r'capacity']) or title_declared_capacity(name)
+    dims['tool_size'] = dims['nominal_size']
+    dims['component_type'] = component_type_from_title(name)
+    dims['head'] = direct_attr(attrs, [r'هد', r'ارتفاع']) or spec_attr(specs, [r'هد', r'ارتفاع']) or title_declared_head(name)
+    dims['power'] = direct_attr(attrs, [r'توان', r'اسب']) or spec_attr(specs, [r'توان', r'اسب']) or title_declared_power(name)
     return {k: (v if v else {'status': 'UNKNOWN', 'value': None}) for k, v in dims.items()}
+
 
 
 def edge_key(e):
@@ -216,21 +349,24 @@ def main():
         family = classify_product(p)
         family_counts[family] += 1
         dims = technical_dimensions(p, truth_by_id.get(pid))
-        required = RULES.get(family, RULES['other_irrigation'])
+        required = RULES.get(family, [])
+        in_scope = family != 'excluded_non_irrigation'
         missing = [k for k in required if dims.get(k, {}).get('status') == 'UNKNOWN']
-        exact_ready = not missing and all(dims[k].get('status') == 'VERIFIED' for k in required)
-        if exact_ready:
+        data_ready = in_scope and bool(required) and not missing
+        exact_ready = data_ready and all(dims[k].get('status') in ('VERIFIED', 'SOURCE-CONFIRMED', 'USER-CONFIRMED', 'MANUFACTURER_VERIFIED') for k in required)
+        if data_ready:
             ready_counts[family] += 1
         for k in missing:
             missing_dim_counts[k] += 1
-        if missing:
+        if in_scope and (missing or family == 'unmodeled_irrigation'):
             backlog.append({
                 'product_id': pid,
                 'name': p.get('name'),
                 'family': family,
                 'missing_required_dimensions': missing,
-                'priority': 'HIGH' if family in ('drip_tape', 'layflat_rain', 'filter', 'fitting', 'valve', 'pipe', 'fertigation', 'sprinkler') else 'NORMAL',
-                'verification_rule': 'Use exact manufacturer datasheet, packaging/label, first-party catalog, or explicit Woo attribute. Never promote title similarity alone.'
+                'model_gap': family == 'unmodeled_irrigation',
+                'priority': 'HIGH' if family in ('drip_tape', 'drip_tape_component', 'layflat_rain', 'filter', 'fitting', 'valve', 'pipe', 'fertigation', 'sprinkler', 'pump') else 'NORMAL',
+                'verification_rule': 'Use exact manufacturer datasheet, packaging/label, first-party catalog, or explicit Woo attribute. SITE_DECLARED values are useful evidence but are not promoted to manufacturer-verified compatibility.'
             })
         nodes.append({
             'product_id': pid,
@@ -242,8 +378,10 @@ def main():
             'technical_dimensions': dims,
             'required_dimensions': required,
             'missing_required_dimensions': missing,
+            'compatibility_scope': 'excluded' if family == 'excluded_non_irrigation' else 'in_scope',
+            'data_dimension_ready': data_ready,
             'exact_compatibility_dimension_ready': exact_ready,
-            'evidence_policy': 'VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility.'
+            'evidence_policy': 'VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof.'
         })
 
         parent_id = int(p.get('parent_id') or 0)
@@ -335,8 +473,11 @@ def main():
         'node_coverage_percent': round(len(nodes) / len(products) * 100, 2) if products else 0,
         'family_counts': dict(family_counts),
         'exact_dimension_ready_by_family': dict(ready_counts),
+        'products_data_dimension_ready': sum(1 for n in nodes if n.get('data_dimension_ready')),
         'products_exact_dimension_ready': sum(1 for n in nodes if n['exact_compatibility_dimension_ready']),
-        'products_with_required_dimension_gaps': sum(1 for n in nodes if n['missing_required_dimensions']),
+        'products_with_required_dimension_gaps': sum(1 for n in nodes if n.get('compatibility_scope') == 'in_scope' and n['missing_required_dimensions']),
+        'excluded_non_irrigation_products': sum(1 for n in nodes if n.get('compatibility_scope') == 'excluded'),
+        'unmodeled_irrigation_products': sum(1 for n in nodes if n.get('family') == 'unmodeled_irrigation'),
         'missing_dimension_counts': dict(missing_dim_counts),
         'edge_count': len(edges),
         'relation_counts': dict(relation_counts),
@@ -362,15 +503,15 @@ def main():
     graph = {
         'ok': all(acceptance.values()),
         'phase': 4,
-        'version': 'growthos-compatibility-knowledge-graph-v1',
+        'version': 'growthos-compatibility-knowledge-graph-v2',
         'generated_at_utc': NOW,
         'execution_mode': 'read-only-evidence-graph',
-        'status': 'PASS_FOUNDATION_WITH_GOVERNED_EVIDENCE_GAPS',
+        'status': 'PASS_RESCOPED_WITH_GOVERNED_EVIDENCE_GAPS',
         'relation_vocabulary': RELATION_VOCABULARY,
         'compatibility_rule_templates': RULES,
         'policy': {
             'verified_edge_rule': 'fits/worksWith/needs/replaces/avoids/requires require exact source evidence; same size/title/category is never enough.',
-            'title_declared_rule': 'Title-declared size may be used for discovery/backlog only and is not a compatibility proof.',
+            'title_declared_rule': 'Explicit title/spec values are stored as SITE_DECLARED and can satisfy machine-readable data completeness, but they do not by themselves prove manufacturer-grade compatibility.',
             'reference_rule': 'Internal links and Woo cross-sells are references/candidates, not technical compatibility claims.',
             'unknown_rule': 'Unknown remains unknown; no inherited specs from similar products.'
         },
