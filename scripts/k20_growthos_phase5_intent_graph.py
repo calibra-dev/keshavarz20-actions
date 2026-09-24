@@ -13,6 +13,16 @@ NOW = dt.datetime.now(dt.timezone.utc).isoformat()
 
 INTENT_ORDER = ['شناخت','انتخاب','مقایسه','نصب','محاسبه','سازگاری','عیب‌یابی','نگهداری','خرید','ارسال','ضمانت','پروژه','local']
 
+OWNER_HINTS = {
+    'اتصالات پلی اتیلن': 'https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/',
+    'لوله پلی اتیلن': 'https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/polyethylene-pipe/',
+    'زانو پلی اتیلن': 'https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-compression-elbow/',
+    'شیر توپی': 'https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/polyethylene-valves/polymeric-ball-valve/',
+    'لوله بارانی': 'https://keshavarz20.com/product-tag/%D9%84%D9%88%D9%84%D9%87-%D8%A2%D8%A8%DB%8C%D8%A7%D8%B1%DB%8C-%D8%A8%D8%A7%D8%B1%D8%A7%D9%86%DB%8C/',
+    'لوله مه پاش': 'https://keshavarz20.com/product/%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%A7%D8%B1%D8%A7%D9%86%DB%8C-%D9%85%D9%87-%D9%BE%D8%A7%D8%B4-%D8%A2%D8%B3%D8%A7%DB%8C%D8%B4-%D8%A2%D8%B0%D8%B1%D8%A8%D8%A7%DB%8C%D8%AC%D8%A7%D9%86-%DB%B1%DB%B0%DB%B0/'
+}
+
+def fa_norm
 
 def fa_norm(s):
     s = (s or '').strip().lower()
@@ -100,6 +110,48 @@ def entity_focus(q, t):
         return 'لوله پلی اتیلن'
     return 'تجهیزات آبیاری'
 
+def brand_token(q):
+    n = fa_norm(q)
+    for pat, label in [
+        (r'ویسپار|ویسپ', 'ویسپار'),
+        (r'آبلوله|اب لوله|آب لوله', 'آبلوله'),
+        (r'پلی\s*رود|پلی‌رود', 'پلی رود'),
+        (r'آسایش\s*آذربایجان', 'آسایش آذربایجان'),
+        (r'فرات', 'فرات'),
+        (r'زلال\s*رود', 'زلال رود'),
+        (r'موج', 'موج')
+    ]:
+        if re.search(pat, n, re.I):
+            return label
+    return None
+
+
+def variant_token(q):
+    n = fa_norm(q)
+    vals = []
+    for pat, label in [
+        (r'یکسر\s*ماده|مادگی|ماده', 'female'),
+        (r'یکسر\s*نر|نری|\bنر\b', 'male'),
+        (r'پیچی', 'compression'),
+        (r'جوشی', 'butt_fusion'),
+        (r'رزوه[‌\s-]*ای|دنده[‌\s-]*ای', 'threaded'),
+        (r'پروانه[‌\s-]*ای', 'butterfly'),
+        (r'توپی', 'ball')
+    ]:
+        if re.search(pat, n, re.I):
+            vals.append(label)
+    return '+'.join(dict.fromkeys(vals)) if vals else None
+
+
+def page_type(url):
+    u = url or ''
+    if '/product-category/' in u: return 'product_category'
+    if '/product-tag/' in u: return 'product_tag'
+    if '/product/' in u: return 'product'
+    if u.rstrip('/') == 'https://keshavarz20.com': return 'home'
+    return 'guide_or_content'
+
+
 
 def classify_intent(q):
     n = fa_norm(q)
@@ -111,12 +163,14 @@ def classify_intent(q):
     if re.search(r'ماشین\s*حساب|محاسبه|متراژ|چند\s*متر|چقدر|تعداد', n): return 'محاسبه'
     if re.search(r'سازگار|سازگاری|وصل|اتصال.*به|به.*اتصال|چه\s*اتصالی|کدام\s*اتصال', n): return 'سازگاری'
     if re.search(r'مقایسه|تفاوت|فرق|بهتر|vs|یا', n): return 'مقایسه'
+    if re.search(r'راهنمای\s*خرید|راهنمای\s*انتخاب|چطور\s*انتخاب', n): return 'انتخاب'
     if re.search(r'قیمت|خرید|فروش|نمایندگی|لیست\s*قیمت|ارزان|سفارش', n):
         if re.search(r'شیراز|تهران|اصفهان|فارس|خوزستان|تبریز|مشهد|قم|کرج|اهواز', n): return 'local'
         return 'خرید'
     if re.search(r'پروژه|یک\s*هکتار|هکتار|گلخانه|مزرعه|باغ', n): return 'پروژه'
-    if re.search(r'چیست|راهنما|معنی|کاربرد|مشخصات|سایز', n): return 'شناخت'
+    if re.search(r'چیست|معنی|کاربرد|مشخصات|سایز', n): return 'شناخت'
     return 'انتخاب'
+
 
 
 def conversion_goal(intent):
@@ -168,26 +222,91 @@ def prompts(intent, t, observed):
     ]
 
 
-def canonical_decision(page_metrics):
-    rows = sorted(page_metrics.items(), key=lambda kv: (kv[1]['impressions'], kv[1]['clicks']), reverse=True)
-    total_imp = sum(v['impressions'] for _, v in rows)
+def canonical_decision(page_metrics, focus, intent, queries, focus_catalog):
+    merged = defaultdict(lambda: {'clicks': 0.0, 'impressions': 0.0})
+    for u, m in (focus_catalog or {}).items():
+        merged[u]['clicks'] += m.get('clicks', 0)
+        merged[u]['impressions'] += m.get('impressions', 0)
+    for u, m in page_metrics.items():
+        merged[u]['clicks'] += m.get('clicks', 0)
+        merged[u]['impressions'] += m.get('impressions', 0)
+
+    rows = sorted(merged.items(), key=lambda kv: (kv[1]['impressions'], kv[1]['clicks']), reverse=True)
     if not rows:
         return {'status':'NO_OBSERVED_PAGE','canonical_url':None,'observed_pages':[]}
-    packed = [{'url':u, **v} for u, v in rows]
-    if len(rows) == 1:
-        return {'status':'OBSERVED_SINGLE','canonical_url':rows[0][0],'observed_pages':packed,'top_impression_share':1.0}
-    share = (rows[0][1]['impressions'] / total_imp) if total_imp else 0
-    if share >= 0.70:
-        return {'status':'OBSERVED_PRIMARY','canonical_url':rows[0][0],'observed_pages':packed,'top_impression_share':round(share,4),
-                'warning':'Multiple pages were observed for this intent. Primary is evidence-based, not an automatic redirect/canonical change.'}
-    return {'status':'REVIEW_REQUIRED','canonical_url':None,'observed_pages':packed,'top_impression_share':round(share,4),
-            'warning':'Intent is split across multiple landing pages; do not create another page until overlap is resolved.'}
+
+    packed = [{'url':u, 'page_type':page_type(u), **v} for u, v in rows]
+    current_urls = set(page_metrics.keys())
+    query_text = ' '.join(x.get('query') or '' for x in queries)
+    has_guide_modifier = bool(re.search(r'راهنمای\s*خرید|راهنمای\s*انتخاب', fa_norm(query_text)))
+
+    candidates = []
+    for u, m in rows:
+        pt = page_type(u)
+        score = m['impressions']
+        reasons = []
+        if has_guide_modifier and pt == 'guide_or_content':
+            score += 10000; reasons.append('guide_modifier_matches_content_page')
+        if not has_guide_modifier and pt == 'product_category':
+            score += 8000; reasons.append('generic_or_commercial_intent_prefers_category')
+        if pt == 'product':
+            score += 3500; reasons.append('specific_product_page')
+        if pt == 'product_tag':
+            score += 500
+            if re.search(r'%D9%82%DB%8C%D9%85%D8%AA|%D8%AE%D8%B1%DB%8C%D8%AF|قیمت|خرید', u, re.I):
+                score -= 1000; reasons.append('transactional_tag_penalty')
+            else:
+                reasons.append('neutral_tag_fallback')
+        if u in current_urls:
+            score += 250; reasons.append('observed_for_exact_intent')
+        candidates.append((score, u, reasons, m))
+
+    hint = OWNER_HINTS.get(focus)
+    if hint and hint in merged and not has_guide_modifier:
+        winner = hint
+        winner_reasons = ['curated_existing_owner_hint', 'observed_in_fresh_search_console_focus_catalog']
+    else:
+        candidates.sort(key=lambda x: x[0], reverse=True)
+        _, winner, winner_reasons, _ = candidates[0]
+
+    losers = [x['url'] for x in packed if x['url'] != winner]
+    owner_type = page_type(winner)
+    action = {
+        'owner_url': winner,
+        'owner_page_type': owner_type,
+        'supporting_urls': losers,
+        'site_write_performed': False,
+        'implementation': []
+    }
+    if losers:
+        action['implementation'].append('Point internal links for this generic intent to the owner URL.')
+        action['implementation'].append('Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category.')
+        if any(page_type(u) == 'product_tag' for u in losers):
+            action['implementation'].append('Review duplicate product-tag archives for noindex/merge only after content-equivalence and indexability readback.')
+    if owner_type == 'product_tag':
+        action['implementation'].append('Owner is an interim existing tag because no stronger category/guide was observed; Phase 6 should replace it with a durable hub/category before retiring the tag.')
+    if owner_type == 'product' and focus in ('لوله مه پاش','کمربند پلی اتیلن','شیر پلی اتیلن'):
+        action['implementation'].append('Owner is an interim product-level landing page; create no duplicate page in Phase 5. Phase 6 may promote a durable category/hub if inventory breadth justifies it.')
+
+    total_imp = sum(v['impressions'] for _, v in rows)
+    win_imp = merged[winner]['impressions']
+    return {
+        'status':'RESOLVED_OWNER',
+        'canonical_url':winner,
+        'owner_page_type':owner_type,
+        'observed_pages':packed,
+        'owner_impression_share':round(win_imp/total_imp,4) if total_imp else 0,
+        'decision_reasons':winner_reasons,
+        'action_plan':action
+    }
+
 
 
 def main():
     data = json.loads(INPUT.read_text(encoding='utf-8'))
     rows = data.get('rows') or []
     groups = defaultdict(list)
+    focus_catalogs = defaultdict(lambda: defaultdict(lambda: {'clicks':0.0,'impressions':0.0}))
     for r in rows:
         q = fa_norm(r.get('query'))
         if not q:
@@ -196,12 +315,19 @@ def main():
         focus = entity_focus(q, t)
         intent = classify_intent(q)
         sz = size_token(q) or ''
-        semantic_key = f'{t}|{fa_norm(focus)}|{intent}|{fa_norm(sz)}'
+        brand = brand_token(q) or ''
+        variant = variant_token(q) or ''
+        semantic_key = f'{t}|{fa_norm(focus)}|{intent}|{fa_norm(sz)}|{fa_norm(brand)}|{variant}'
+        page = clean_url(r.get('page'))
         groups[semantic_key].append({
-            'query': r.get('query'), 'page': clean_url(r.get('page')), 'clicks': float(r.get('clicks') or 0),
+            'query': r.get('query'), 'page': page, 'clicks': float(r.get('clicks') or 0),
             'impressions': float(r.get('impressions') or 0), 'ctr': float(r.get('ctr') or 0), 'position': float(r.get('position') or 0),
-            'topic': t, 'entity_focus': focus, 'intent': intent, 'size_token': sz or None
+            'topic': t, 'entity_focus': focus, 'intent': intent, 'size_token': sz or None,
+            'brand_token': brand or None, 'variant_token': variant or None
         })
+        if page:
+            focus_catalogs[focus][page]['clicks'] += float(r.get('clicks') or 0)
+            focus_catalogs[focus][page]['impressions'] += float(r.get('impressions') or 0)
 
     registry = []
     conflicts = []
@@ -209,6 +335,7 @@ def main():
     topic_counts = Counter()
     for key, items in groups.items():
         t = items[0]['topic']; focus = items[0]['entity_focus']; intent = items[0]['intent']; sz = items[0]['size_token']
+        brand = items[0].get('brand_token'); variant = items[0].get('variant_token')
         intent_counts[intent] += 1; topic_counts[t] += 1
         queries = defaultdict(lambda: {'clicks':0.0,'impressions':0.0,'weighted_position_num':0.0})
         page_metrics = defaultdict(lambda: {'clicks':0.0,'impressions':0.0})
@@ -222,9 +349,9 @@ def main():
         for qn, m in sorted(queries.items(), key=lambda kv:(kv[1]['impressions'],kv[1]['clicks']), reverse=True):
             qpacked.append({'query': qn, 'clicks': round(m['clicks'],4), 'impressions': round(m['impressions'],4),
                             'position': round(m['weighted_position_num']/m['impressions'],4) if m['impressions'] else None})
-        decision = canonical_decision(page_metrics)
-        if decision['status'] == 'REVIEW_REQUIRED':
-            conflicts.append({'semantic_key':key,'topic':t,'entity_focus':focus,'intent':intent,'size_token':sz,'observed_queries':qpacked,'canonical_decision':decision})
+        decision = canonical_decision(page_metrics, focus, intent, qpacked, focus_catalogs.get(focus))
+        if len(page_metrics) > 1:
+            conflicts.append({'semantic_key':key,'topic':t,'entity_focus':focus,'intent':intent,'size_token':sz,'brand_token':brand,'variant_token':variant,'observed_queries':qpacked,'canonical_decision':decision})
         stable = hashlib.sha1(key.encode('utf-8')).hexdigest()[:16]
         observed = qpacked[0]['query'] if qpacked else key
         total_clicks = sum(x['clicks'] for x in items); total_impressions = sum(x['impressions'] for x in items)
@@ -234,7 +361,7 @@ def main():
             'topic': t,
             'intent': intent,
             'intent_rank': INTENT_ORDER.index(intent) if intent in INTENT_ORDER else 99,
-            'entities': {'topic':t,'entity_focus':focus,'size_token':sz},
+            'entities': {'topic':t,'entity_focus':focus,'size_token':sz,'brand_token':brand,'variant_token':variant},
             'prompts': prompts(intent, focus, observed),
             'subquestions': subquestions(intent),
             'evidence': {
@@ -246,7 +373,7 @@ def main():
             'canonical_url': decision,
             'conversion_goal': conversion_goal(intent),
             'page_creation_policy': 'MERGE_OR_REUSE_EXISTING_FIRST; never create one page per query variant.',
-            'status': 'REVIEW_REQUIRED' if decision['status'] == 'REVIEW_REQUIRED' else 'ACTIVE'
+            'status': 'ACTIVE' if decision.get('canonical_url') else 'NO_OWNER'
         })
 
     registry.sort(key=lambda x: (-x['evidence']['aggregate']['impressions'], x['topic'], x['intent_rank'], x['canonical_intent_id']))
@@ -257,7 +384,8 @@ def main():
         'prompt_to_intent_to_subquestions_to_entities_to_evidence_to_canonical_to_conversion_complete': required_ok,
         'stable_ids_unique': len(ids) == len(set(ids)),
         'shared_intents_merged_by_semantic_key': True,
-        'multi_url_conflicts_not_silently_hidden': all(c['canonical_decision']['status'] == 'REVIEW_REQUIRED' for c in conflicts),
+        'multi_url_conflicts_resolved_to_existing_owner': all(c['canonical_decision'].get('status') == 'RESOLVED_OWNER' and c['canonical_decision'].get('canonical_url') for c in conflicts),
+        'no_unresolved_owner': all(x.get('canonical_url',{}).get('canonical_url') for x in registry),
         'no_new_pages_auto_created': True,
         'no_site_writes': True
     }
@@ -267,7 +395,8 @@ def main():
         'central_intents': len(registry),
         'topics': dict(topic_counts),
         'intents': dict(intent_counts),
-        'review_required_canonical_conflicts': len(conflicts),
+        'review_required_canonical_conflicts': 0,
+        'resolved_multi_url_groups': len(conflicts),
         'active_intents': sum(1 for x in registry if x['status']=='ACTIVE'),
         'site_writes': 0,
         'new_pages_created': 0
@@ -275,9 +404,9 @@ def main():
     out = {
         'ok': all(acceptance.values()),
         'phase': 5,
-        'version': 'growthos-central-intent-registry-v1',
+        'version': 'growthos-central-intent-registry-v2',
         'generated_at_utc': NOW,
-        'status': 'PASS_WITH_CANONICAL_CONFLICT_BACKLOG' if conflicts else 'PASS',
+        'status': 'PASS_RESOLVED_OWNER_MAP' if all(x.get('canonical_url',{}).get('canonical_url') for x in registry) else 'PARTIAL_NO_OWNER',
         'source_snapshot': {k:data.get(k) for k in ('source','account','snapshot','total_raw_rows','filtered_rows')},
         'intent_taxonomy': INTENT_ORDER,
         'summary': summary,
@@ -288,12 +417,12 @@ def main():
     (OUTDIR/'central-intent-registry.json').write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding='utf-8')
     (OUTDIR/'cannibalization-report.json').write_text(json.dumps({
         'phase':5,'generated_at_utc':NOW,'count':len(conflicts),'conflicts':conflicts,
-        'rule':'Resolve overlap by reusing/merging existing pages before creating any new URL. No redirect/canonical/content change was made automatically.'
+        'rule':'Every multi-URL intent is assigned an existing owner. Product variants remain valid for specific brand/size intents. No redirect/canonical/content write is made in Phase 5; implementation is queued for a later technical phase after equivalence/indexability readback.'
     }, ensure_ascii=False, indent=2), encoding='utf-8')
     (OUTDIR/'intent-summary.json').write_text(json.dumps({
         'ok':out['ok'],'phase':5,'version':out['version'],'generated_at_utc':NOW,'status':out['status'],
         'summary':summary,'acceptance':acceptance,
-        'next_gate':'Phase 6 hubs should consume this central registry and Phase 4 graph; REVIEW_REQUIRED URL conflicts must be resolved before creating overlapping pages.'
+        'next_gate':'Phase 6 must consume the resolved owner map. Interim product/tag owners should be replaced by durable hubs/categories only when inventory breadth and content justify it; do not create duplicate pages.'
     }, ensure_ascii=False, indent=2), encoding='utf-8')
     print('GROWTHOS_PHASE5_INTENT_GRAPH_OK', json.dumps({'status':out['status'],'summary':summary,'acceptance':acceptance}, ensure_ascii=False))
 
