@@ -1,0 +1,22 @@
+{
+  "phase": 2,
+  "status": "SOURCE_CONFIRMATION_REQUIRED",
+  "issue": "duplicate_sku",
+  "duplicate_sku": "430000300-2",
+  "products": [
+    {
+      "product_id": 140654,
+      "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۳/۴ اینچ (۲۵ میلی‌متر)",
+      "status": "publish"
+    },
+    {
+      "product_id": 140655,
+      "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱ و ۱/۴ اینچ (۴۰ میلی‌متر)",
+      "status": "publish"
+    }
+  ],
+  "verified_via": "Bridge v3.2 rest.proxy GET readback",
+  "policy": "Do not guess or auto-write SKU when two published products conflict and the intended manufacturer code is not authoritatively established.",
+  "action_taken": "No product mutation. Issue isolated for source confirmation.",
+  "risk_if_guessed": "A guessed SKU would corrupt Product Truth and downstream schema/feed identifiers."
+}
