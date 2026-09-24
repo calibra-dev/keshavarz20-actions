@@ -96,7 +96,7 @@ def classify_product(p):
     if re.search(r'کود|فرتینوکس|هیومیک|اسید آمینه|گوگرد|پتاس|فسفر|کلسیم|آهن|ریز مغذی|بذر|نشاء|نهال|کوکوپیت|پیت ماس', name):
         return 'excluded_non_irrigation'
 
-    if re.search(r'مته|پانچ|پانچر|سوراخ[\s‌-]*کن|گردبر|آچار[\s‌-]*اتصالات', name):
+    if re.search(r'کلید\s*شیر\s*خودکار|مته|پانچ|پانچر|سوراخ[\s‌-]*کن|گردبر|آچار[\s‌-]*اتصالات', name):
         return 'installation_tool'
     if re.search(r'بابلر|دریپر|قطره[\s‌-]*چکان', name):
         return 'emitter'
@@ -296,6 +296,7 @@ def component_type_from_title(name):
         (r'واشر|اورینگ|گسکت', 'seal'),
         (r'بست', 'clamp'),
         (r'مته|پانچ|گردبر|سوراخ\s*کن', 'punch_tool'),
+        (r'کلید\s*شیر\s*خودکار', 'automatic_valve_key'),
         (r'آچار', 'installation_wrench')
     ]:
         if re.search(pat, s, re.I):
@@ -693,6 +694,7 @@ def main():
             'stable_id': f'wp-product:{pid}',
             'name': p.get('name'),
             'permalink': p.get('permalink'),
+            'brands': [{'id': b.get('id'), 'name': b.get('name'), 'slug': b.get('slug')} for b in (p.get('brands') or [])],
             'family': family,
             'product_type': p.get('type'),
             'technical_dimensions': dims,
