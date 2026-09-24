@@ -45,15 +45,36 @@ def clean_url(u):
 
 def size_token(q):
     pats = [
-        r'([۰-۹0-9]+(?:\s*و\s*[۰-۹0-9]+/[۰-۹0-9]+|[./][۰-۹0-9]+)?\s*اینچ)',
-        r'([۰-۹0-9]+\s*میلی\s*متر)',
-        r'([۰-۹0-9]+\s*میلیمتر)',
-        r'(?<!\d)([۰-۹0-9]{2,3})(?!\d)'
+        r'([۰-۹0-9]+(?:\s*و\s*[۰-۹0-۹]+/[۰-۹0-9]+|[./][۰-۹0-9]+)?\s*اینچ)',
+        r'([۰-۹0-9]+\s*میلی[\s‌-]*متر)',
+        r'([۰-۹0-9]+\s*میلیمتر)'
     ]
     for pat in pats:
         m = re.search(pat, q, re.I)
         if m:
             return re.sub(r'\s+', ' ', m.group(1)).strip()
+    return None
+
+
+def dimension_token(q, t):
+    n = fa_norm(q)
+    if t == 'fertigation_tank':
+        m = re.search(r'([۰-۹0-9]+)\s*لیتر(?:ی)?', n, re.I)
+        return f"capacity:{m.group(1)}L" if m else None
+    if t == 'drip_tape':
+        m = re.search(r'([۰-۹0-9]+)\s*سانت(?:ی[\s‌-]*متر|یمتر)?', n, re.I)
+        if m:
+            return f"spacing:{m.group(1)}cm"
+        m = re.search(r'([۰-۹0-9]+)\s*متر(?:ی)?', n, re.I)
+        if m:
+            return f"length:{m.group(1)}m"
+    s = size_token(n)
+    if s:
+        return f"size:{s}"
+    if t in ('polyethylene_pipe','pe_valve','pe_fitting_saddle','pe_fitting_elbow','pe_fitting_general','layflat_hose','sprinkler','filtration'):
+        m = re.search(r'(?<!\d)([۰-۹0-9]{2,3})(?!\d)', n)
+        if m:
+            return f"nominal:{m.group(1)}"
     return None
 
 
@@ -160,7 +181,7 @@ def classify_intent(q):
     if re.search(r'نصب|راه\s*اندازی|بستن|مونتاژ', n): return 'نصب'
     if re.search(r'ماشین\s*حساب|محاسبه|متراژ|چند\s*متر|چقدر|تعداد', n): return 'محاسبه'
     if re.search(r'سازگار|سازگاری|وصل|اتصال.*به|به.*اتصال|چه\s*اتصالی|کدام\s*اتصال', n): return 'سازگاری'
-    if re.search(r'مقایسه|تفاوت|فرق|بهتر|vs|یا', n): return 'مقایسه'
+    if re.search(r'مقایسه|تفاوت|فرق|بهتر|(?:^|\s)vs(?:\s|$)|(?:^|\s)یا(?:\s|$)', n): return 'مقایسه'
     if re.search(r'راهنمای\s*خرید|راهنمای\s*انتخاب|چطور\s*انتخاب', n): return 'انتخاب'
     if re.search(r'قیمت|خرید|فروش|نمایندگی|لیست\s*قیمت|ارزان|سفارش', n):
         if re.search(r'شیراز|تهران|اصفهان|فارس|خوزستان|تبریز|مشهد|قم|کرج|اهواز', n): return 'local'
@@ -220,14 +241,21 @@ def prompts(intent, t, observed):
     ]
 
 
-def canonical_decision(page_metrics, focus, intent, queries, focus_catalog):
+def canonical_decision(page_metrics, focus, intent, queries, focus_catalog, brand=None, variant=None, dimension=None):
+    specific = bool(brand or variant or dimension)
     merged = defaultdict(lambda: {'clicks': 0.0, 'impressions': 0.0})
-    for u, m in (focus_catalog or {}).items():
+
+    # Specific brand/size/variant intents must be decided from pages actually
+    # observed for that exact intent. Generic family data is used only for
+    # generic intents, preventing unrelated variants from becoming owners.
+    base_catalog = page_metrics if specific else (focus_catalog or {})
+    for u, m in base_catalog.items():
         merged[u]['clicks'] += m.get('clicks', 0)
         merged[u]['impressions'] += m.get('impressions', 0)
-    for u, m in page_metrics.items():
-        merged[u]['clicks'] += m.get('clicks', 0)
-        merged[u]['impressions'] += m.get('impressions', 0)
+    if not specific:
+        for u, m in page_metrics.items():
+            merged[u]['clicks'] += m.get('clicks', 0)
+            merged[u]['impressions'] += m.get('impressions', 0)
 
     rows = sorted(merged.items(), key=lambda kv: (kv[1]['impressions'], kv[1]['clicks']), reverse=True)
     if not rows:
@@ -245,22 +273,30 @@ def canonical_decision(page_metrics, focus, intent, queries, focus_catalog):
         reasons = []
         if has_guide_modifier and pt == 'guide_or_content':
             score += 10000; reasons.append('guide_modifier_matches_content_page')
-        if not has_guide_modifier and pt == 'product_category':
-            score += 8000; reasons.append('generic_or_commercial_intent_prefers_category')
-        if pt == 'product':
-            score += 3500; reasons.append('specific_product_page')
+        if specific:
+            if u in current_urls:
+                score += 6000; reasons.append('observed_for_exact_specific_intent')
+            if pt == 'product':
+                score += 5000; reasons.append('specific_intent_prefers_product')
+            elif pt == 'product_category':
+                score += 1500; reasons.append('category_fallback_for_specific_intent')
+        else:
+            if not has_guide_modifier and pt == 'product_category':
+                score += 8000; reasons.append('generic_or_commercial_intent_prefers_category')
+            if pt == 'product':
+                score += 2500; reasons.append('product_fallback')
+            if u in current_urls:
+                score += 250; reasons.append('observed_for_exact_intent')
         if pt == 'product_tag':
             score += 500
             if re.search(r'%D9%82%DB%8C%D9%85%D8%AA|%D8%AE%D8%B1%DB%8C%D8%AF|قیمت|خرید', u, re.I):
                 score -= 1000; reasons.append('transactional_tag_penalty')
             else:
                 reasons.append('neutral_tag_fallback')
-        if u in current_urls:
-            score += 250; reasons.append('observed_for_exact_intent')
         candidates.append((score, u, reasons, m))
 
     hint = OWNER_HINTS.get(focus)
-    if hint and hint in merged and not has_guide_modifier:
+    if hint and hint in merged and not has_guide_modifier and not specific:
         winner = hint
         winner_reasons = ['curated_existing_owner_hint', 'observed_in_fresh_search_console_focus_catalog']
     else:
@@ -277,14 +313,14 @@ def canonical_decision(page_metrics, focus, intent, queries, focus_catalog):
         'implementation': []
     }
     if losers:
-        action['implementation'].append('Point internal links for this generic intent to the owner URL.')
-        action['implementation'].append('Keep variant/product URLs for specific brand/size intents; do not canonicalize dissimilar product detail pages to a category.')
+        action['implementation'].append('Point internal links for this intent to the owner URL where context matches.')
+        action['implementation'].append('Keep distinct brand/size/product URLs when they satisfy distinct specific intents; never canonicalize dissimilar products merely to consolidate metrics.')
         if any(page_type(u) == 'product_tag' for u in losers):
             action['implementation'].append('Review duplicate product-tag archives for noindex/merge only after content-equivalence and indexability readback.')
     if owner_type == 'product_tag':
-        action['implementation'].append('Owner is an interim existing tag because no stronger category/guide was observed; Phase 6 should replace it with a durable hub/category before retiring the tag.')
-    if owner_type == 'product' and focus in ('لوله مه پاش','کمربند پلی اتیلن','شیر پلی اتیلن'):
-        action['implementation'].append('Owner is an interim product-level landing page; create no duplicate page in Phase 5. Phase 6 may promote a durable category/hub if inventory breadth justifies it.')
+        action['implementation'].append('Owner is an interim existing tag; Phase 6 should replace it with a durable category/hub only if inventory breadth justifies one.')
+    if owner_type == 'product' and not specific:
+        action['implementation'].append('Generic intent currently lacks a stronger observed category/hub; keep this product as interim owner and do not create a duplicate page in Phase 5.')
 
     total_imp = sum(v['impressions'] for _, v in rows)
     win_imp = merged[winner]['impressions']
@@ -295,9 +331,9 @@ def canonical_decision(page_metrics, focus, intent, queries, focus_catalog):
         'observed_pages':packed,
         'owner_impression_share':round(win_imp/total_imp,4) if total_imp else 0,
         'decision_reasons':winner_reasons,
+        'specificity': {'brand':brand,'variant':variant,'dimension':dimension},
         'action_plan':action
     }
-
 
 
 def main():
@@ -312,15 +348,15 @@ def main():
         t = topic(q)
         focus = entity_focus(q, t)
         intent = classify_intent(q)
-        sz = size_token(q) or ''
+        dimension = dimension_token(q, t) or ''
         brand = brand_token(q) or ''
         variant = variant_token(q) or ''
-        semantic_key = f'{t}|{fa_norm(focus)}|{intent}|{fa_norm(sz)}|{fa_norm(brand)}|{variant}'
+        semantic_key = f'{t}|{fa_norm(focus)}|{intent}|{fa_norm(dimension)}|{fa_norm(brand)}|{variant}'
         page = clean_url(r.get('page'))
         groups[semantic_key].append({
             'query': r.get('query'), 'page': page, 'clicks': float(r.get('clicks') or 0),
             'impressions': float(r.get('impressions') or 0), 'ctr': float(r.get('ctr') or 0), 'position': float(r.get('position') or 0),
-            'topic': t, 'entity_focus': focus, 'intent': intent, 'size_token': sz or None,
+            'topic': t, 'entity_focus': focus, 'intent': intent, 'dimension_token': dimension or None,
             'brand_token': brand or None, 'variant_token': variant or None
         })
         if page:
@@ -332,7 +368,7 @@ def main():
     intent_counts = Counter()
     topic_counts = Counter()
     for key, items in groups.items():
-        t = items[0]['topic']; focus = items[0]['entity_focus']; intent = items[0]['intent']; sz = items[0]['size_token']
+        t = items[0]['topic']; focus = items[0]['entity_focus']; intent = items[0]['intent']; dimension = items[0].get('dimension_token')
         brand = items[0].get('brand_token'); variant = items[0].get('variant_token')
         intent_counts[intent] += 1; topic_counts[t] += 1
         queries = defaultdict(lambda: {'clicks':0.0,'impressions':0.0,'weighted_position_num':0.0})
@@ -347,9 +383,9 @@ def main():
         for qn, m in sorted(queries.items(), key=lambda kv:(kv[1]['impressions'],kv[1]['clicks']), reverse=True):
             qpacked.append({'query': qn, 'clicks': round(m['clicks'],4), 'impressions': round(m['impressions'],4),
                             'position': round(m['weighted_position_num']/m['impressions'],4) if m['impressions'] else None})
-        decision = canonical_decision(page_metrics, focus, intent, qpacked, focus_catalogs.get(focus))
+        decision = canonical_decision(page_metrics, focus, intent, qpacked, focus_catalogs.get(focus), brand=brand, variant=variant, dimension=dimension)
         if len(page_metrics) > 1:
-            conflicts.append({'semantic_key':key,'topic':t,'entity_focus':focus,'intent':intent,'size_token':sz,'brand_token':brand,'variant_token':variant,'observed_queries':qpacked,'canonical_decision':decision})
+            conflicts.append({'semantic_key':key,'topic':t,'entity_focus':focus,'intent':intent,'dimension_token':dimension,'brand_token':brand,'variant_token':variant,'observed_queries':qpacked,'canonical_decision':decision})
         stable = hashlib.sha1(key.encode('utf-8')).hexdigest()[:16]
         observed = qpacked[0]['query'] if qpacked else key
         total_clicks = sum(x['clicks'] for x in items); total_impressions = sum(x['impressions'] for x in items)
@@ -359,7 +395,7 @@ def main():
             'topic': t,
             'intent': intent,
             'intent_rank': INTENT_ORDER.index(intent) if intent in INTENT_ORDER else 99,
-            'entities': {'topic':t,'entity_focus':focus,'size_token':sz,'brand_token':brand,'variant_token':variant},
+            'entities': {'topic':t,'entity_focus':focus,'dimension_token':dimension,'brand_token':brand,'variant_token':variant},
             'prompts': prompts(intent, focus, observed),
             'subquestions': subquestions(intent),
             'evidence': {
@@ -402,7 +438,7 @@ def main():
     out = {
         'ok': all(acceptance.values()),
         'phase': 5,
-        'version': 'growthos-central-intent-registry-v2',
+        'version': 'growthos-central-intent-registry-v3',
         'generated_at_utc': NOW,
         'status': 'PASS_RESOLVED_OWNER_MAP' if all(x.get('canonical_url',{}).get('canonical_url') for x in registry) else 'PARTIAL_NO_OWNER',
         'source_snapshot': {k:data.get(k) for k in ('source','account','snapshot','total_raw_rows','filtered_rows')},
