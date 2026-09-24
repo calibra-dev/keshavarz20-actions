@@ -1,12 +1,16 @@
-name: Keshavarz20 Bridge v3.2.1 Test and Package
+name: Keshavarz20 Bridge v3.3.0 Test and Package
 
 on:
   push:
-    branches: [main]
+    branches: [main, 'bridge-v3.*']
     paths:
       - 'plugins/k20-bridge-v3/**'
       - 'scripts/Invoke-K20BridgeV3.ps1'
       - '.github/workflows/k20-bridge-v3-package.yml'
+      - 'scripts/k20_chat_asset_relay.py'
+      - 'scripts/k20_secure_bridge_relay.py'
+      - '.github/workflows/k20-bridge-v3-chat-asset-relay.yml'
+      - '.github/workflows/k20-bridge-v3-secure-relay.yml'
   workflow_dispatch:
 
 permissions:
@@ -31,6 +35,12 @@ jobs:
           $null = [scriptblock]::Create((Get-Content -Raw scripts/Invoke-K20BridgeV3.ps1))
           Write-Host 'PowerShell parse OK'
 
+      - name: Python relay syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/k20_chat_asset_relay.py scripts/k20_secure_bridge_relay.py
+
       - name: JSON contracts
         shell: bash
         run: |
@@ -41,10 +51,10 @@ jobs:
           import json
           c=json.load(open('plugins/k20-bridge-v3/api-contract.json'))
           m=json.load(open('plugins/k20-bridge-v3/update-manifest.json'))
-          assert c['schema_version']=='3.2'
-          assert c['plugin_version']=='3.2.1'
-          assert m['version']=='3.2.1'
-          assert m['package_url'].startswith('https://github.com/calibra-dev/keshavarz20-actions/releases/download/v3.2.1/')
+          assert c['schema_version']=='3.3'
+          assert c['plugin_version']=='3.3.0'
+          assert m['version']=='3.3.0'
+          assert m['package_url'].startswith('https://github.com/calibra-dev/keshavarz20-actions/releases/download/v3.3.0/')
           PY
 
       - name: Security policy guard
@@ -65,14 +75,22 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for token in             content.block.patch elementor.structure media.optimize media.focal_crop media.watermark             job.retry_failed snapshot.rollback approval.execute observability.status selftest.run             update.check update.stage update.apply update.rollback; do
+          for token in             content.block.patch elementor.structure media.optimize media.focal_crop media.watermark             asset.featured.set asset.gallery.append asset.gallery.replace asset.content.insert             snippet.list snippet.read snippet.validate snippet.create_draft snippet.update_draft snippet.deactivate             code.read code.search             job.retry_failed snapshot.rollback approval.execute observability.status selftest.run             update.check update.stage update.apply update.rollback; do
             grep -q "'$token'" plugins/k20-bridge-v3/k20-bridge-v3.php
           done
-          for file in             class-k20-bridge-v32-snapshots.php             class-k20-bridge-v32-approval.php             class-k20-bridge-v32-content.php             class-k20-bridge-v32-media.php             class-k20-bridge-v32-jobs.php             class-k20-bridge-v32-updater.php             class-k20-bridge-v32-observability.php; do
+          for file in             class-k20-bridge-v32-snapshots.php             class-k20-bridge-v32-approval.php             class-k20-bridge-v32-content.php             class-k20-bridge-v32-media.php             class-k20-bridge-v32-jobs.php             class-k20-bridge-v32-updater.php             class-k20-bridge-v32-observability.php             class-k20-bridge-v33-assets.php             class-k20-bridge-v33-snippets.php             class-k20-bridge-v33-code.php; do
             test -f "plugins/k20-bridge-v3/includes/$file"
           done
           grep -q "'engine.status'" scripts/Invoke-K20BridgeV3.ps1
-          grep -q "schema_version='3.2'" scripts/Invoke-K20BridgeV3.ps1
+          grep -q "schema_version='3.3'" scripts/Invoke-K20BridgeV3.ps1
+          test -f scripts/k20_chat_asset_relay.py
+          test -f scripts/k20_secure_bridge_relay.py
+          test -f .github/workflows/k20-bridge-v3-chat-asset-relay.yml
+          test -f .github/workflows/k20-bridge-v3-secure-relay.yml
+          if grep -q "snippet.create_draft" scripts/Invoke-K20BridgeV3.ps1; then
+            echo 'Sensitive snippet writes must not use the public result gateway'
+            exit 1
+          fi
 
       - name: Build installable ZIP
         shell: bash
@@ -82,15 +100,15 @@ jobs:
           mkdir -p dist/k20-bridge-v3
           cp -R plugins/k20-bridge-v3/. dist/k20-bridge-v3/
           cd dist
-          zip -qr k20-bridge-v3.2.1.zip k20-bridge-v3
-          sha256sum k20-bridge-v3.2.1.zip > k20-bridge-v3.2.1.sha256
+          zip -qr k20-bridge-v3.3.0.zip k20-bridge-v3
+          sha256sum k20-bridge-v3.3.0.zip > k20-bridge-v3.3.0.sha256
 
       - name: Upload package
         uses: actions/upload-artifact@v4
         with:
-          name: k20-bridge-v3.2.1
+          name: k20-bridge-v3.3.0
           path: |
-            dist/k20-bridge-v3.2.1.zip
-            dist/k20-bridge-v3.2.1.sha256
+            dist/k20-bridge-v3.3.0.zip
+            dist/k20-bridge-v3.3.0.sha256
           if-no-files-found: error
           retention-days: 30
