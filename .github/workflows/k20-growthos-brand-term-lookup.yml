@@ -1,0 +1,55 @@
+name: K20 GrowthOS Brand Term Lookup
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'growthos-brand-term-ops/*.json'
+permissions:
+  contents: write
+jobs:
+  lookup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install requests
+      - name: Lookup existing WooCommerce brand terms
+        shell: python
+        run: |
+          import json, os, pathlib, requests
+          names=["آب لوله بسپار (Ablooleh baspar)","پلی رود اتصال (Polirood Etesal)","اتصال گستر"]
+          base=os.environ["WP_BASE_URL"].rstrip("/")
+          s=requests.Session();s.auth=(os.environ["WP_USERNAME"],os.environ["WP_APP_PASSWORD"])
+          rows=[]
+          for name in names:
+              r=s.get(base+"/wp-json/wc/v3/products/brands",params={"search":name,"per_page":100,"hide_empty":False},timeout=90)
+              r.raise_for_status()
+              candidates=[{"id":x.get("id"),"name":x.get("name"),"slug":x.get("slug"),"count":x.get("count")} for x in r.json()]
+              exact=[x for x in candidates if str(x.get("name") or "").strip()==name]
+              rows.append({"requested_name":name,"exact":exact,"candidates":candidates[:20]})
+          out={"rows":rows}
+          pathlib.Path("growthos-phase3-results").mkdir(exist_ok=True)
+          pathlib.Path("growthos-phase3-results/brand-term-lookup.json").write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
+          print(json.dumps(out,ensure_ascii=False))
+      - name: Commit lookup evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f growthos-phase3-results/brand-term-lookup.json
+          git diff --cached --quiet && exit 0
+          git commit -m "growthos phase3: record brand term lookup"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
