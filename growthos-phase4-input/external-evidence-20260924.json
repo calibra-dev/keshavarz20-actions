@@ -1,6 +1,6 @@
 {
   "version": "growthos-phase4-external-evidence-v1",
-  "researched_at_utc": "2026-09-24T07:55:00Z",
+  "researched_at_utc": "2026-09-24T08:30:00Z",
   "policy": {
     "manufacturer_verified": "Official manufacturer channel/profile/catalog claim. May fill an unknown technical dimension when product family/name match is exact enough.",
     "secondary_verified": "Independent specialist seller/distributor/product page. May fill an unknown data dimension but does not count as manufacturer-grade compatibility proof.",
@@ -119,6 +119,14 @@
       "url": "https://rodineh.com/product/%D9%81%DB%8C%D9%84%D8%AA%D8%B1-%D8%AF%DB%8C%D8%B3%DA%A9%DB%8C-%D8%AF%D9%88%D8%A8%D9%84-4-%D8%A7%DB%8C%D9%86%DA%86-%D8%B1%D8%B2%D9%88%D9%87-%D8%A7%DB%8C-%D9%81%D8%B1%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C/",
       "retrieved_at": "2026-09-24",
       "notes": "Specialist seller page states 120 mesh for Farat disc filtration and its base-long Helix family section lists 2-inch/63 mm and 3-inch/90 mm sizes. Stored as secondary family evidence, not manufacturer-grade proof."
+    },
+    {
+      "id": "vispar-official-aluminum-sprinkler-stand-2026",
+      "tier": "manufacturer",
+      "publisher": "Vispar / Paya Baspar Aria",
+      "url": "https://t.me/s/vispar_co?after=888",
+      "retrieved_at": "2026-09-24",
+      "notes": "Official Vispar channel: aluminum sprinkler stands are produced in 1.5 and 2 inch sizes, in variable lengths, with sprinkler-side thread made to the sprinkler inlet thread."
     }
   ],
   "rules": [
@@ -360,6 +368,24 @@
         }
       },
       "limitations": "Secondary family-level evidence only. Satisfies data completeness but is deliberately excluded from exact manufacturer-grade compatibility readiness."
+    },
+    {
+      "id": "vispar-aluminum-riser-sprinkler-interface",
+      "family": [
+        "riser"
+      ],
+      "product_ids": [
+        140485,
+        140486
+      ],
+      "source_id": "vispar-official-aluminum-sprinkler-stand-2026",
+      "fields": {
+        "connection_type": {
+          "value": "sprinkler_side_threaded_configurable",
+          "status": "MANUFACTURER_PARTIAL_INTERFACE"
+        }
+      },
+      "limitations": "Manufacturer source proves the sprinkler-side threaded/configurable interface and exact 1.5/2 inch aluminum stand family. It does not prove the lower lateral/automatic-valve coupling, so this status must not count as exact technical compatibility."
     }
   ],
   "non_applied_family_evidence": [
