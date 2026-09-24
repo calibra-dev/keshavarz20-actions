@@ -55,7 +55,7 @@ def textnorm(v):
     s = str(v or '').casefold().replace('\u200c',' ').replace('\u200f',' ')
     for ch in '()[]{}،,._-/\\':
         s = s.replace(ch, ' ')
-    return ' '.join(s.split())
+    return ''.join(s.split())
 
 
 def brand_tokens(v):
