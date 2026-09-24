@@ -1,6 +1,6 @@
 {
   "version": "growthos-phase4-external-evidence-v1",
-  "researched_at_utc": "2026-09-24T07:31:00Z",
+  "researched_at_utc": "2026-09-24T07:55:00Z",
   "policy": {
     "manufacturer_verified": "Official manufacturer channel/profile/catalog claim. May fill an unknown technical dimension when product family/name match is exact enough.",
     "secondary_verified": "Independent specialist seller/distributor/product page. May fill an unknown data dimension but does not count as manufacturer-grade compatibility proof.",
@@ -111,6 +111,14 @@
       "url": "https://t.me/s/abafarinsystem?after=321",
       "retrieved_at": "2026-09-24",
       "notes": "Official channel: Abafarin tape-to-layflat connector 17*L and Sinab layflat/tape valve use surface-to-surface pressure sealing."
+    },
+    {
+      "id": "farat-tall-filter-family-secondary",
+      "tier": "secondary",
+      "publisher": "Rodineh",
+      "url": "https://rodineh.com/product/%D9%81%DB%8C%D9%84%D8%AA%D8%B1-%D8%AF%DB%8C%D8%B3%DA%A9%DB%8C-%D8%AF%D9%88%D8%A8%D9%84-4-%D8%A7%DB%8C%D9%86%DA%86-%D8%B1%D8%B2%D9%88%D9%87-%D8%A7%DB%8C-%D9%81%D8%B1%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C/",
+      "retrieved_at": "2026-09-24",
+      "notes": "Specialist seller page states 120 mesh for Farat disc filtration and its base-long Helix family section lists 2-inch/63 mm and 3-inch/90 mm sizes. Stored as secondary family evidence, not manufacturer-grade proof."
     }
   ],
   "rules": [
@@ -337,6 +345,21 @@
           "status": "MANUFACTURER_VERIFIED"
         }
       }
+    },
+    {
+      "id": "farat-tall-helix-2-3-secondary-family",
+      "family": [
+        "filter"
+      ],
+      "name_regex": "(?=.*فرات\\s*پلیمر)(?=.*پایه\\s*بلند)(?=.*هلیکس)(?=.*(?:۲|2|۳|3)\\s*اینچ)",
+      "source_id": "farat-tall-filter-family-secondary",
+      "fields": {
+        "filtration_grade": {
+          "value": "120 mesh",
+          "status": "SECONDARY_FAMILY_VERIFIED"
+        }
+      },
+      "limitations": "Secondary family-level evidence only. Satisfies data completeness but is deliberately excluded from exact manufacturer-grade compatibility readiness."
     }
   ],
   "non_applied_family_evidence": [
@@ -356,6 +379,32 @@
         "flow_rate_lph": "1.6-2"
       },
       "reason": "K20 drip-tape SKUs in the current backlog are not all explicitly branded Farat Polymer, so family data is not assigned automatically."
+    },
+    {
+      "topic": "Unbranded K20 drip tape",
+      "source_id": "current-market-benchmark-arka-tape",
+      "claims": {
+        "benchmark_only": "Current manufacturer Arka lists 0.8-1 bar working pressure and 150 mesh filtration for its own tape products."
+      },
+      "source_url": "https://t.me/s/SANATEAAB",
+      "reason": "K20 backlog tape SKUs do not expose an exact manufacturer/model identity, so current Arka values are not assigned."
+    },
+    {
+      "topic": "K20 Mouj reinforced hose",
+      "source_id": "current-market-benchmark-reinforced-hose",
+      "claims": {
+        "benchmark_only": "Current specialist sources commonly list reinforced PE/polyester hose around 1.5 bar, but exact Mouj manufacturer data was not found."
+      },
+      "source_url": "https://keshtno.com/%D9%84%D9%88%D9%84%D9%87-%D9%86%D8%AE-%D8%AF%D8%A7%D8%B1/",
+      "reason": "Brand-specific pressure/material/roll length must not be inferred from other manufacturers."
+    },
+    {
+      "topic": "Camel and FLYGEN pumps",
+      "source_id": "pump-model-identity-required",
+      "claims": {
+        "benchmark_only": "Search found differing powers for superficially similar head/outlet pumps across brands, proving that head/outlet alone is insufficient to infer motor power."
+      },
+      "reason": "Exact model datasheet or label is required; no cross-brand power inheritance."
     }
   ]
 }
