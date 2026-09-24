@@ -4,7 +4,7 @@ Daily editorial automation for the `news` post type on keshavarz20.com.
 
 ## Primary automatic architecture
 
-`ChatGPT Scheduled Task (08:00 Asia/Tehran)` → live deep research → `daily-agri-news/queue/YYYY-MM-DD.json` → `k20-news-queue-publisher.yml` → `publish_queue_v2.py` → WordPress **news draft**.
+`ChatGPT Scheduled Task (08:00 Asia/Tehran)` → live deep research → `daily-agri-news/queue/YYYY-MM-DD.json` → `k20-news-queue-publisher.yml` → `publish_queue_v3.py` → WordPress **news draft**.
 
 The automatic research task must read `automation-policy/seo-god-2026.json`. The queue publisher is deterministic and does not call an LLM. The old API-mode workflow remains available as a **manual fallback only** and has no daily cron, preventing duplicate daily drafts and avoiding unnecessary API dependence.
 
@@ -67,6 +67,8 @@ The scheduled task supplies:
 - `published_at` when known
 - `image_search_query`
 - `image_title`
+- `cover_title` — تیتر کوتاه 2 تا 8 کلمه برای کاور، حداکثر دو خط
+- `cover_subtitle` — اختیاری، حداکثر 12 کلمه و دو خط
 - `alt_text`
 - `selection_reason`
 - `fact_check_notes`
@@ -83,14 +85,18 @@ The scheduled task supplies:
 - duplicate and near-duplicate title/topic protection
 - minimum useful content threshold
 - required `جمع‌بندی`, `نظر کارشناسی کشاورز بیست` and `منابع`
-- open-license Wikimedia image selection and 1280×720 WebP treatment
+- open-license Wikimedia factual background selection + controlled cinematic 1280×720 WebP treatment
+- deterministic Persian overlay; image models never typeset Persian
+- Noto Arabic + Pillow + arabic-reshaper + python-bidi; fail closed if unavailable
+- hard max 8 words / 2 lines for cover title, safe margins and overflow rejection
+- visual QA manifest saved with the sanitized workflow artifact
 - Yoast metadata
 - post-write draft/type/ASCII-slug/image/SEO verification\n- validated ASCII target slug persisted in `_k20_news_target_slug` while the custom CPT remains draft; human review applies it at publication when WordPress has not yet materialized `post_name`
 - no credentials in queue or artifacts
 
 ## Automatic schedule
 
-The connected ChatGPT task is enabled for **08:00 Asia/Tehran every day**. It writes the queue JSON. GitHub Actions triggers automatically when that queue file is committed.
+The connected ChatGPT primary task runs at **08:00 Asia/Tehran every day** and the recovery task checks at **08:15 Asia/Tehran**. Both first inspect whether today's queue already exists. The queue is written only when needed; GitHub Actions triggers automatically when that queue file is committed.
 
 There is intentionally **no second daily GitHub cron** on the API-mode generator. `k20-daily-agri-news.yml` is manual fallback/testing only.
 
@@ -120,3 +126,22 @@ Do not commit secret values.
 ## Failure behavior
 
 The engine intentionally stops without creating a draft when evidence is insufficient, sources are not independent, the topic duplicates recent news, structure is incomplete, image acquisition fails, WordPress credentials are unavailable, or post-write verification fails. A skipped day is safer than a weak or misleading draft.
+
+
+## Editorial cover hardening — 2026-09-24
+
+News covers use a two-stage pipeline:
+
+1. choose an open-license, factual, **text-free** agriculture background;
+2. apply restrained cinematic grading and render Persian copy deterministically in GitHub.
+
+Rules:
+
+- never ask an image model to draw Persian letters;
+- canonical overlay field is `cover_title`;
+- `image_overlay_title` is only a legacy alias;
+- keep cover title at 2–8 useful words, maximum two lines;
+- optional subtitle is maximum 12 words / two lines;
+- no manual line breaks, bidi control characters, fake metrics, fake documentary scenes or sensational visual claims;
+- if approved Noto Arabic font, shaping libraries, fit checks or safe-margin checks fail, **do not create the draft**;
+- background source/licence remains stored in metadata and workflow artifacts.
