@@ -100,6 +100,9 @@ def classify_product(p):
     if re.search(r'بابلر|دریپر|قطره[\s‌-]*چکان', name):
         return 'emitter'
 
+    if re.search(r'^لوله.*(?:مه[\s‌-]*پاش|بارانی)', name):
+        return 'layflat_rain'
+
     if re.search(r'نوار\s*تیپ|نوارتیپ|نوار\s*آبیاری', name):
         if re.search(r'شیر|رابط|بست|سه\s*راه|اتصال|کورکن|درپوش|ابتدایی', name):
             return 'drip_tape_component'
@@ -356,13 +359,65 @@ def truth_field(rec, key):
     return None
 
 
+
+def category_semantics(p):
+    names = [str(x.get('name') or '') for x in (p.get('categories') or [])]
+    cats = ' | '.join(names).lower()
+    out = {}
+    if re.search(r'اتصالات.*پلی[\s‌-]*اتیلن|polyethylene.*fitting|لوله.*پلی[\s‌-]*اتیلن', cats, re.I):
+        out['material'] = {'status':'SITE_DECLARED','value':'polyethylene','source':'woocommerce_category',
+                           'evidence':{'categories':names}}
+    if re.search(r'اتصالات.*پیچی|compression.*fitting|پیچی.*پلی[\s‌-]*اتیلن', cats, re.I):
+        out['connection_type'] = {'status':'SITE_DECLARED','value':'compression','source':'woocommerce_category',
+                                  'evidence':{'categories':names}}
+    elif re.search(r'اتصالات.*جوشی|butt.*fusion|جوشی.*پلی[\s‌-]*اتیلن', cats, re.I):
+        out['connection_type'] = {'status':'SITE_DECLARED','value':'butt_fusion','source':'woocommerce_category',
+                                  'evidence':{'categories':names}}
+    elif re.search(r'اتصالات.*رزوه|threaded.*fitting', cats, re.I):
+        out['connection_type'] = {'status':'SITE_DECLARED','value':'threaded','source':'woocommerce_category',
+                                  'evidence':{'categories':names}}
+    return out
+
+
+def quoted_inch_size(name):
+    s = name or ''
+    for pat in [r'["″]\s*([۰-۹0-9]+(?:[./][۰-۹0-9]+)?)', r'([۰-۹0-9]+(?:[./][۰-۹0-9]+)?)\s*["″]']:
+        m = re.search(pat, s)
+        if m:
+            return {'status':'SITE_DECLARED','value':m.group(1) + ' inch','source':'woocommerce_product_title',
+                    'evidence':{'field':'nominal_size','title':s}}
+    return None
+
+
+def installation_tool_size(name):
+    s = name or ''
+    m = re.search(r'(?:پانچ|پانچر|گردبر|سوراخ[\s‌-]*کن)\D*([۰-۹0-9]+)', s, re.I)
+    if m:
+        return {'status':'SITE_DECLARED','value':m.group(1),'source':'woocommerce_product_title',
+                'evidence':{'field':'tool_size','title':s}}
+    m = re.search(r'\(([۰-۹0-9]+)\s*[-–]\s*([۰-۹0-9]+)\)', s)
+    if m:
+        return {'status':'SITE_DECLARED','value':m.group(1)+'-'+m.group(2),'source':'woocommerce_product_title',
+                'evidence':{'field':'tool_size','title':s}}
+    return None
+
+
+def emitter_connection_type(name):
+    s = name or ''
+    if re.search(r'پرسی', s, re.I):
+        return {'status':'SITE_DECLARED','value':'press_fit','source':'woocommerce_product_title',
+                'evidence':{'field':'connection_type','title':s}}
+    return None
+
+
 def technical_dimensions(p, truth_rec):
     attrs = attrs_map(p)
     specs = spec_map(p)
     name = p.get('name') or ''
     dims = {}
+    cat = category_semantics(p)
     size_patterns = [r'^سایز$', r'^قطر$', r'diameter', r'^size$', r'سایز.*قطر']
-    dims['nominal_size'] = direct_attr(attrs, size_patterns) or spec_attr(specs, size_patterns) or title_declared_size(name)
+    dims['nominal_size'] = direct_attr(attrs, size_patterns) or spec_attr(specs, size_patterns) or title_declared_size(name) or quoted_inch_size(name)
     dims['connection_size'] = (
         direct_attr(attrs, [r'سایز اتصال', r'قطر اتصال'])
         or spec_attr(specs, [r'سایز اتصال', r'قطر اتصال'])
@@ -374,6 +429,7 @@ def technical_dimensions(p, truth_rec):
         or spec_attr(specs, [r'نوع اتصال', r'رزوه', r'connection', r'thread'])
         or title_declared_connection_type(name)
         or semantic_connection_type(name)
+        or cat.get('connection_type')
     )
     dims['material'] = (
         truth_field(truth_rec, 'material')
@@ -381,6 +437,7 @@ def technical_dimensions(p, truth_rec):
         or spec_attr(specs, [r'^جنس$', r'material'])
         or title_declared_material(name)
         or title_declared_aluminum(name)
+        or cat.get('material')
     )
     dims['pressure_class'] = (
         direct_attr(attrs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn$', r'^sdr$'])
@@ -417,10 +474,12 @@ def technical_dimensions(p, truth_rec):
         or title_declared_length_cm(name)
     )
     dims['capacity'] = direct_attr(attrs, [r'^ظرفیت$', r'capacity']) or spec_attr(specs, [r'^ظرفیت$', r'capacity']) or title_declared_capacity(name)
-    dims['tool_size'] = dims['nominal_size']
+    dims['tool_size'] = dims['nominal_size'] if dims['nominal_size'].get('status') != 'UNKNOWN' else (installation_tool_size(name) or {'status':'UNKNOWN','value':None})
     dims['component_type'] = component_type_from_title(name)
     dims['head'] = direct_attr(attrs, [r'هد', r'ارتفاع']) or spec_attr(specs, [r'هد', r'ارتفاع']) or title_declared_head(name)
     dims['power'] = direct_attr(attrs, [r'توان', r'اسب']) or spec_attr(specs, [r'توان', r'اسب']) or title_declared_power(name)
+    if re.search(r'بابلر|دریپر|قطره[\s‌-]*چکان', name, re.I) and dims['connection_type'].get('status') == 'UNKNOWN':
+        dims['connection_type'] = emitter_connection_type(name) or dims['connection_type']
     return {k: (v if v else {'status': 'UNKNOWN', 'value': None}) for k, v in dims.items()}
 
 
@@ -620,7 +679,7 @@ def main():
         'nodes': len(nodes),
         'node_coverage_percent': round(len(nodes) / len(products) * 100, 2) if products else 0,
         'family_counts': dict(family_counts),
-        'exact_dimension_ready_by_family': dict(ready_counts),
+        'data_dimension_ready_by_family': dict(ready_counts),
         'products_data_dimension_ready': sum(1 for n in nodes if n.get('data_dimension_ready')),
         'products_exact_dimension_ready': sum(1 for n in nodes if n['exact_compatibility_dimension_ready']),
         'products_with_required_dimension_gaps': sum(1 for n in nodes if n.get('compatibility_scope') == 'in_scope' and n['missing_required_dimensions']),
