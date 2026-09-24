@@ -29,7 +29,7 @@ jobs:
           s=requests.Session();s.auth=(os.environ["WP_USERNAME"],os.environ["WP_APP_PASSWORD"])
           rows=[]
           for name in names:
-              r=s.get(base+"/wp-json/wc/v3/products/brands",params={"search":name,"per_page":100,"hide_empty":False},timeout=90)
+              r=s.get(base+"/wp-json/wc/store/v1/products/brands",params={"search":name,"per_page":100,"hide_empty":False},timeout=90)
               r.raise_for_status()
               candidates=[{"id":x.get("id"),"name":x.get("name"),"slug":x.get("slug"),"count":x.get("count")} for x in r.json()]
               exact=[x for x in candidates if str(x.get("name") or "").strip()==name]
