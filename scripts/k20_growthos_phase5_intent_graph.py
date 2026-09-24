@@ -27,7 +27,8 @@ def clean_url(u):
         p = urlsplit(u or '')
         scheme = 'https' if p.netloc.endswith('keshavarz20.com') else (p.scheme or 'https')
         path = re.sub(r'/+', '/', p.path or '/')
-        path = re.sub(r'/page/[0-9]+/? and '.' not in path.rsplit('/', 1)[-1]:
+        path = re.sub(r'/page/[0-9]+/?$', '/', path, flags=re.I)
+        if not path.endswith('/') and '.' not in path.rsplit('/', 1)[-1]:
             path += '/'
         return urlunsplit((scheme, p.netloc.lower(), path, '', ''))
     except Exception:
@@ -55,7 +56,8 @@ def topic(q):
     if re.search(r'هیدروسیکلون|فیلتر', n): return 'filtration'
     if re.search(r'تانک\s*کود|مخزن.*کود|تزریق\s*کود', n): return 'fertigation_tank'
     if re.search(r'آبپاش', n): return 'sprinkler'
-    if re.search(r'شیر\s*(فلکه|توپی|پروانه)|شیر\s*پلی\s*اتیلن|شیر\s*[۰-۹0-9]', n): return 'pe_valve'
+    if re.search(r'مته|سوراخ\s*کن|پانچ', n) and re.search(r'پلی\s*اتیلن|لوله', n): return 'pe_installation_tool'
+    if re.search(r'شیر\s*(فلکه|توپی|پروانه)|شیر.*پلی\s*اتیلن|شیر\s*[۰-۹0-9]', n): return 'pe_valve'
     if re.search(r'کمربند', n): return 'pe_fitting_saddle'
     if re.search(r'زانو|زانویی', n): return 'pe_fitting_elbow'
     if re.search(r'رابط|فلنج|فلنچ|سه\s*راه|بوشن|تبدیل|درپوش|اتصالات', n): return 'pe_fitting_general'
