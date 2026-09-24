@@ -1,0 +1,575 @@
+{
+  "type_http": 200,
+  "type": {
+    "slug": "product",
+    "rest_base": "product",
+    "rest_namespace": "wp/v2",
+    "taxonomies": [
+      "product_cat",
+      "product_tag",
+      "product_brand"
+    ]
+  },
+  "/wp-json/wp/v2/product/135383": {
+    "http": 200,
+    "content_type": "application/json; charset=UTF-8",
+    "keys": [
+      "_links",
+      "class_list",
+      "comment_status",
+      "content",
+      "date",
+      "date_gmt",
+      "excerpt",
+      "featured_media",
+      "generated_slug",
+      "guid",
+      "id",
+      "link",
+      "meta",
+      "modified",
+      "modified_gmt",
+      "password",
+      "permalink_template",
+      "ping_status",
+      "product_brand",
+      "product_cat",
+      "product_tag",
+      "slug",
+      "status",
+      "template",
+      "title",
+      "type",
+      "yoast_head",
+      "yoast_head_json"
+    ],
+    "product_brand": [],
+    "brands": null,
+    "id": 135383
+  },
+  "/wp-json/wp/v2/products/135383": {
+    "http": 404,
+    "content_type": "application/json; charset=UTF-8",
+    "code": "rest_no_route"
+  },
+  "candidate_routes": {
+    "/wc/store/products/brands": {
+      "namespace": "wc/store",
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "context",
+            "exclude",
+            "hide_empty",
+            "include",
+            "order",
+            "orderby",
+            "page",
+            "parent",
+            "per_page",
+            "search"
+          ]
+        }
+      ]
+    },
+    "/wc/store/products/brands/(?P<identifier>[\\w-]+)": {
+      "namespace": "wc/store",
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "context",
+            "identifier"
+          ]
+        }
+      ]
+    },
+    "/wc/store/v1/products/brands": {
+      "namespace": "wc/store/v1",
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "context",
+            "exclude",
+            "hide_empty",
+            "include",
+            "order",
+            "orderby",
+            "page",
+            "parent",
+            "per_page",
+            "search"
+          ]
+        }
+      ]
+    },
+    "/wc/store/v1/products/brands/(?P<identifier>[\\w-]+)": {
+      "namespace": "wc/store/v1",
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "context",
+            "identifier"
+          ]
+        }
+      ]
+    },
+    "/wp/v2/product": {
+      "namespace": "wp/v2",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "after",
+            "before",
+            "context",
+            "exclude",
+            "include",
+            "modified_after",
+            "modified_before",
+            "offset",
+            "order",
+            "orderby",
+            "page",
+            "per_page",
+            "product_brand",
+            "product_brand_exclude",
+            "product_cat",
+            "product_cat_exclude",
+            "product_tag",
+            "product_tag_exclude",
+            "search",
+            "search_columns",
+            "search_semantics",
+            "slug",
+            "status",
+            "tax_relation"
+          ]
+        },
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": [
+            "comment_status",
+            "content",
+            "date",
+            "date_gmt",
+            "excerpt",
+            "featured_media",
+            "meta",
+            "password",
+            "ping_status",
+            "product_brand",
+            "product_cat",
+            "product_tag",
+            "slug",
+            "status",
+            "template",
+            "title"
+          ]
+        }
+      ]
+    },
+    "/wp/v2/product/(?P<id>[\\d]+)": {
+      "namespace": "wp/v2",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "context",
+            "excerpt_length",
+            "id",
+            "password"
+          ]
+        },
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": [
+            "comment_status",
+            "content",
+            "date",
+            "date_gmt",
+            "excerpt",
+            "featured_media",
+            "id",
+            "meta",
+            "password",
+            "ping_status",
+            "product_brand",
+            "product_cat",
+            "product_tag",
+            "slug",
+            "status",
+            "template",
+            "title"
+          ]
+        },
+        {
+          "methods": [
+            "DELETE"
+          ],
+          "args": [
+            "force",
+            "id"
+          ]
+        }
+      ]
+    },
+    "/wp/v2/product/(?P<id>[\\d]+)/autosaves": {
+      "namespace": "wp/v2",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "context",
+            "parent"
+          ]
+        },
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": [
+            "comment_status",
+            "content",
+            "date",
+            "date_gmt",
+            "excerpt",
+            "featured_media",
+            "meta",
+            "parent",
+            "password",
+            "ping_status",
+            "product_brand",
+            "product_cat",
+            "product_tag",
+            "slug",
+            "status",
+            "template",
+            "title"
+          ]
+        }
+      ]
+    },
+    "/wp/v2/product/(?P<parent>[\\d]+)/autosaves/(?P<id>[\\d]+)": {
+      "namespace": "wp/v2",
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "context",
+            "id",
+            "parent"
+          ]
+        }
+      ]
+    },
+    "/wp/v2/product_cat": {
+      "namespace": "wp/v2",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "context",
+            "exclude",
+            "hide_empty",
+            "include",
+            "order",
+            "orderby",
+            "page",
+            "parent",
+            "per_page",
+            "post",
+            "search",
+            "slug"
+          ]
+        },
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": [
+            "description",
+            "meta",
+            "name",
+            "parent",
+            "slug"
+          ]
+        }
+      ]
+    },
+    "/wp/v2/product_cat/(?P<id>[\\d]+)": {
+      "namespace": "wp/v2",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "context",
+            "id"
+          ]
+        },
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": [
+            "description",
+            "id",
+            "meta",
+            "name",
+            "parent",
+            "slug"
+          ]
+        },
+        {
+          "methods": [
+            "DELETE"
+          ],
+          "args": [
+            "force",
+            "id"
+          ]
+        }
+      ]
+    },
+    "/wp/v2/product_tag": {
+      "namespace": "wp/v2",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "context",
+            "exclude",
+            "hide_empty",
+            "include",
+            "offset",
+            "order",
+            "orderby",
+            "page",
+            "per_page",
+            "post",
+            "search",
+            "slug"
+          ]
+        },
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": [
+            "description",
+            "meta",
+            "name",
+            "slug"
+          ]
+        }
+      ]
+    },
+    "/wp/v2/product_tag/(?P<id>[\\d]+)": {
+      "namespace": "wp/v2",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "context",
+            "id"
+          ]
+        },
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": [
+            "description",
+            "id",
+            "meta",
+            "name",
+            "slug"
+          ]
+        },
+        {
+          "methods": [
+            "DELETE"
+          ],
+          "args": [
+            "force",
+            "id"
+          ]
+        }
+      ]
+    },
+    "/wp/v2/product_brand": {
+      "namespace": "wp/v2",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "context",
+            "exclude",
+            "hide_empty",
+            "include",
+            "order",
+            "orderby",
+            "page",
+            "parent",
+            "per_page",
+            "post",
+            "search",
+            "slug"
+          ]
+        },
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": [
+            "description",
+            "meta",
+            "name",
+            "parent",
+            "slug"
+          ]
+        }
+      ]
+    },
+    "/wp/v2/product_brand/(?P<id>[\\d]+)": {
+      "namespace": "wp/v2",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": [
+            "context",
+            "id"
+          ]
+        },
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": [
+            "description",
+            "id",
+            "meta",
+            "name",
+            "parent",
+            "slug"
+          ]
+        },
+        {
+          "methods": [
+            "DELETE"
+          ],
+          "args": [
+            "force",
+            "id"
+          ]
+        }
+      ]
+    }
+  }
+}
