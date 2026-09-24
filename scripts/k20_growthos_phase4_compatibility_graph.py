@@ -628,6 +628,61 @@ def technical_dimensions(p, truth_rec):
     return {k: (v if v else {'status': 'UNKNOWN', 'value': None}) for k, v in dims.items()}
 
 
+def normalize_evidence_value(field, value):
+    s = str(value or '').strip().lower()
+    fa = '۰۱۲۳۴۵۶۷۸۹'
+    en = '0123456789'
+    s = s.translate(str.maketrans(fa, en))
+    s = s.replace('‌', ' ')
+    s = re.sub(r'\s+', ' ', s)
+    if field in ('pressure_class', 'pressure_requirement'):
+        m = re.search(r'([0-9]+(?:[./][0-9]+)?)\s*(بار|bar|اتمسفر|atm)', s, re.I)
+        if m:
+            num = m.group(1).replace('/', '.')
+            unit = m.group(2).lower()
+            unit = 'bar' if unit in ('بار','bar') else 'atm'
+            return f'{num}:{unit}'
+    if field == 'connection_type':
+        aliases = {
+            'دنده ای':'threaded','دنده‌ای':'threaded','رزوه ای':'threaded','رزوه‌ای':'threaded',
+            'threaded':'threaded','male_male_threaded':'threaded','female_threaded':'threaded',
+            'male_threaded':'threaded'
+        }
+        if s in aliases:
+            return aliases[s]
+    if field == 'material':
+        aliases = {
+            'پلی اتیلن':'polyethylene','پلی‌اتیلن':'polyethylene','polyethylene':'polyethylene',
+            'polymeric_unspecified':'polymeric','polymeric':'polymeric','upvc':'upvc','u-pvc':'upvc',
+            'pe100':'pe100'
+        }
+        if s in aliases:
+            return aliases[s]
+        if 'پلی' in s and 'اتیلن' in s and 'نخ' in s:
+            return 'reinforced_polyethylene'
+        if 'polyethylene' in s and 'reinforced' in s:
+            return 'reinforced_polyethylene'
+    return re.sub(r'[^0-9a-zآ-ی]+', '', s)
+
+
+def values_compatible(field, current, incoming):
+    a = normalize_evidence_value(field, current)
+    b = normalize_evidence_value(field, incoming)
+    if a == b:
+        return True
+    if field == 'connection_type' and a == 'threaded' and b == 'threaded':
+        return True
+    if field == 'material':
+        # Manufacturer PE100 is a refinement of retailer-declared polyethylene.
+        if {a,b} == {'polyethylene','pe100'}:
+            return True
+        if {a,b} == {'polymeric','upvc'}:
+            return True
+        if a == b == 'reinforced_polyethylene':
+            return True
+    return False
+
+
 def apply_external_evidence(p, family, dims, pack, fill_counts, conflicts):
     name = p.get('name') or ''
     source_map = {s.get('id'): s for s in (pack.get('sources') or []) if s.get('id')}
@@ -661,16 +716,35 @@ def apply_external_evidence(p, family, dims, pack, fill_counts, conflicts):
             if current.get('status') == 'UNKNOWN' or current.get('value') in (None, '', [], {}):
                 dims[field] = incoming
                 fill_counts[incoming['status']] += 1
-            elif str(current.get('value')).strip().lower() != str(incoming.get('value')).strip().lower():
-                conflicts.append({
-                    'product_id': p.get('id'),
-                    'name': name,
-                    'family': family,
-                    'field': field,
-                    'existing': current,
-                    'incoming': incoming,
-                    'resolution': 'kept_existing_value; external evidence retained for review'
-                })
+                continue
+
+            if values_compatible(field, current.get('value'), incoming.get('value')):
+                # Prefer a manufacturer refinement over a generic retailer/title declaration.
+                if incoming['status'] == 'MANUFACTURER_VERIFIED' and current.get('status') == 'SITE_DECLARED':
+                    old = current
+                    dims[field] = dict(incoming)
+                    dims[field]['evidence'] = dict(incoming['evidence'])
+                    dims[field]['evidence']['corroborates'] = old
+                    fill_counts['MANUFACTURER_REFINED'] += 1
+                else:
+                    ev = dict(current.get('evidence') or {})
+                    ev.setdefault('corroboration', []).append(incoming['evidence'])
+                    current['evidence'] = ev
+                    if incoming['status'] == 'MANUFACTURER_VERIFIED' and current.get('status') in ('VERIFIED','SOURCE-CONFIRMED','USER-CONFIRMED'):
+                        current['status'] = 'MANUFACTURER_CORROBORATED'
+                    dims[field] = current
+                    fill_counts['CORROBORATED'] += 1
+                continue
+
+            conflicts.append({
+                'product_id': p.get('id'),
+                'name': name,
+                'family': family,
+                'field': field,
+                'existing': current,
+                'incoming': incoming,
+                'resolution': 'kept_existing_value; true semantic conflict retained for review'
+            })
     return dims
 
 
@@ -705,7 +779,7 @@ def main():
         in_scope = family != 'excluded_non_irrigation'
         missing = [k for k in required if dims.get(k, {}).get('status') == 'UNKNOWN']
         data_ready = in_scope and bool(required) and not missing
-        exact_ready = data_ready and all(dims[k].get('status') in ('VERIFIED', 'SOURCE-CONFIRMED', 'USER-CONFIRMED', 'MANUFACTURER_VERIFIED') for k in required)
+        exact_ready = data_ready and all(dims[k].get('status') in ('VERIFIED', 'SOURCE-CONFIRMED', 'USER-CONFIRMED', 'MANUFACTURER_VERIFIED', 'MANUFACTURER_CORROBORATED') for k in required)
         if data_ready:
             ready_counts[family] += 1
         for k in missing:
