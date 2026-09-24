@@ -4,7 +4,7 @@ This is the separate long-form «نوشته‌ها» engine for keshavarz20.com.
 
 ## Architecture
 
-`ChatGPT Scheduled Task (08:20 Asia/Tehran)` → `daily-agri-articles/queue/YYYY-MM-DD.json` → `k20-article-queue-publisher.yml` → `publish_queue_v2.py` → WordPress **post draft**.
+`ChatGPT Scheduled Task (09:00 Asia/Tehran)` → `daily-agri-articles/queue/YYYY-MM-DD.json` → `k20-article-queue-publisher.yml` → `publish_queue_v5.py` → WordPress **post draft**.
 
 The scheduled research/writing task must read `automation-policy/seo-god-2026.json` and `SCHEDULED_TASK_PROMPT.md`. GitHub Actions is the deterministic validator/publisher; it does not need an OpenAI API key for this queue path.
 
@@ -50,9 +50,9 @@ Core fields:
   "source_names": ["Source One", "Source Two", "Source Three"],
   "research_summary": "Why the topic passed the evidence and farmer-decision gate, including uncertainty.",
   "image_search_query": "precise factual agriculture editorial photo query",
-  "image_title": "عنوان کوتاه کاور",
-  "cover_title": "عنوان کوتاه و خوانای روی تصویر",
-  "cover_subtitle": "زیرعنوان کوتاه اختیاری",
+  "image_title": "عنوان رسانه",
+  "cover_title": "تیتر کوتاه 2 تا 8 کلمه برای کاور",
+  "cover_subtitle": "زیرعنوان اختیاری، حداکثر 12 کلمه",
   "alt_text": "توضیح دقیق و طبیعی تصویر",
   "faq_items": []
 }
@@ -77,7 +77,9 @@ Core fields:
 - text-free source/background image; never rely on AI-generated Persian lettering
 - deterministic Persian overlay using approved Noto Arabic font + Pillow + arabic-reshaper + python-bidi
 - fail closed if the Persian shaping/font stack is unavailable
-- branded 1280×720 WebP cover generation
+- branded 1280×720 WebP cover generation with controlled cinematic grading
+- title max 8 words / 2 lines; subtitle max 12 words / 2 lines; overflow fails closed
+- safe margins, high-contrast editorial panel and deterministic visual QA manifest
 - image title + ALT metadata
 - post-write verification of draft status/type/featured image/category/SEO fields
 - sanitized artifact output only
@@ -93,3 +95,14 @@ No OpenAI API secret is required by the queue publisher.
 ## Safety
 
 Never add secrets to queue files. Never invent product specifications, prices, stock, field-test results, authors, customer experiences or citations. Never use FAQ count, keyword repetition or `llms.txt` as a ranking shortcut.
+
+
+## Automatic schedule and recovery
+
+- Primary ChatGPT research/writing task: **09:00 Asia/Tehran**
+- Recovery check: **09:20 Asia/Tehran**
+- Both first check for `daily-agri-articles/queue/YYYY-MM-DD.json`; if it already exists, they must not rewrite or duplicate it.
+
+## Cover quality hard rule
+
+The background must be factual, realistic, text-free and relevant. Restrained cinematic treatment is allowed for clarity and editorial polish, but fake documentary drama is not. Persian text is rendered only by the deterministic GitHub cover renderer; no image model may spell Persian. `cover_title` should be 2–8 words and materially shorter than the H1.
