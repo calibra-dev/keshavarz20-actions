@@ -885,6 +885,92 @@ def apply_external_evidence(p, family, dims, pack, fill_counts, conflicts):
     return dims
 
 
+
+def research_disposition(p, family, missing):
+    name = str(p.get('name') or '')
+    fields = list(missing or [])
+    common = {
+        'research_state': 'SOURCE_BOUND_UNRESOLVED',
+        'missing_fields': fields,
+        'do_not_infer': True
+    }
+
+    if family == 'drip_tape':
+        return {**common,
+            'code': 'EXACT_TAPE_MANUFACTURER_OR_LABEL_REQUIRED',
+            'reason': 'Current public tape specifications vary materially by manufacturer, wall thickness, emitter type, and model. K20 title alone does not identify an exact technical series.',
+            'next_evidence': 'Exact manufacturer/model identity plus package label or first-party datasheet stating diameter, operating pressure, and filtration requirement.'
+        }
+    if family == 'filter':
+        return {**common,
+            'code': 'EXACT_FILTER_ELEMENT_GRADE_REQUIRED',
+            'reason': 'Connection size identifies the housing, but filtration grade is an element-specific property and cannot be inherited from a different filter size or series.',
+            'next_evidence': 'Exact Farat Polymer catalog/label for this SKU stating mesh or micron grade.'
+        }
+    if family == 'layflat_rain' and re.search(r'موج', name, re.I):
+        return {**common,
+            'code': 'MOUJ_EXACT_DATASHEET_OR_ROLL_LABEL_REQUIRED',
+            'reason': 'Reinforced layflat/rain-hose pressure, material stack, and roll length vary by manufacturer and series; comparable brands are benchmark evidence only.',
+            'next_evidence': 'Mouj manufacturer datasheet, packaging, or roll label for the exact diameter/series.'
+        }
+    if family == 'pipe':
+        return {**common,
+            'code': 'EXACT_PIPE_PN_SDR_MARKING_REQUIRED',
+            'reason': 'Nominal diameter and roll length do not determine pressure class.',
+            'next_evidence': 'Pipe print-line/label or manufacturer table with PN/SDR for the exact 16 mm product.'
+        }
+    if family == 'pump':
+        return {**common,
+            'code': 'EXACT_PUMP_MODEL_DATASHEET_OR_NAMEPLATE_REQUIRED',
+            'reason': 'Pumps with similar outlet size and head can have different motor power, max head, controller limits, and hydraulic curves.',
+            'next_evidence': 'Exact Camel/FLYGEN model code and manufacturer nameplate/datasheet for power, head, and inlet/outlet size.'
+        }
+    if family == 'sprinkler':
+        return {**common,
+            'code': 'EXACT_SPRINKLER_NOZZLE_FLOW_TABLE_REQUIRED',
+            'reason': 'Flow and pressure depend on nozzle configuration and exact sprinkler model; radius or inlet size alone is insufficient.',
+            'next_evidence': 'Manufacturer nozzle table/curve for the exact Vispar/Paya sprinkler model and nozzle set.'
+        }
+    if family == 'valve':
+        if re.search(r'آبافرین', name, re.I):
+            code = 'ABAFARIN_EXACT_PRESSURE_DATASHEET_REQUIRED'
+            reason = 'Current manufacturer material confirms the product family, but no exact pressure class for these K20 Abafarin SKUs was found in the verified public source set.'
+        elif re.search(r'سوپاپ|چدنی', name, re.I):
+            code = 'CAST_IRON_VALVE_MODEL_PN_AND_CONNECTION_REQUIRED'
+            reason = 'Cast-iron valve/check-valve pressure and end connection vary by model and standard.'
+        else:
+            code = 'EXACT_VALVE_PRESSURE_OR_CONNECTION_DATASHEET_REQUIRED'
+            reason = 'Pressure class or end-connection standard is not uniquely determined by size/title.'
+        return {**common,
+            'code': code,
+            'reason': reason,
+            'next_evidence': 'Exact model label, first-party catalog, or manufacturer datasheet with the missing pressure/connection field.'
+        }
+    if family == 'emitter':
+        return {**common,
+            'code': 'EXACT_EMITTER_FLOW_OR_INTERFACE_SPEC_REQUIRED',
+            'reason': 'Emitter/bubbler flow range and inlet interface differ by model; another brand or visually similar emitter is not a valid substitute source.',
+            'next_evidence': 'Exact Zalal Roud/product-series datasheet or package label with flow range and inlet/interface.'
+        }
+    if family == 'riser':
+        return {**common,
+            'code': 'EXACT_RISER_COUPLING_STANDARD_REQUIRED',
+            'reason': 'Length and diameter are known, but the lower-end coupling/connection standard is not explicit for this unbranded aluminum riser.',
+            'next_evidence': 'Exact product label/catalog or first-party specification for the riser-to-valve connection.'
+        }
+    if family == 'fitting':
+        return {**common,
+            'code': 'EXACT_FITTING_INTERFACE_OR_MATERIAL_REQUIRED',
+            'reason': 'The remaining fitting title/category evidence does not uniquely prove every interface/material field.',
+            'next_evidence': 'Exact manufacturer SKU/catalog/packaging showing connection method and material.'
+        }
+    return {**common,
+        'code': 'EXACT_SKU_SOURCE_REQUIRED',
+        'reason': 'The remaining field is not uniquely recoverable from the current exact-source evidence.',
+        'next_evidence': 'Exact SKU label, first-party catalog, or manufacturer datasheet for the missing field.'
+    }
+
+
 def edge_key(e):
     return (str(e.get('source_product_id') or ''), str(e.get('target_product_id') or ''), e.get('relation'), e.get('status'))
 
@@ -929,7 +1015,8 @@ def main():
                 'missing_required_dimensions': missing,
                 'model_gap': family == 'unmodeled_irrigation',
                 'priority': 'HIGH' if family in ('drip_tape', 'drip_tape_component', 'layflat_rain', 'filter', 'fitting', 'valve', 'pipe', 'fertigation', 'sprinkler', 'pump') else 'NORMAL',
-                'verification_rule': 'Use exact manufacturer datasheet, packaging/label, first-party catalog, or explicit Woo attribute. SITE_DECLARED values are useful evidence but are not promoted to manufacturer-verified compatibility.'
+                'verification_rule': 'Use exact manufacturer datasheet, packaging/label, first-party catalog, or explicit Woo attribute. SITE_DECLARED values are useful evidence but are not promoted to manufacturer-verified compatibility.',
+                'research_disposition': research_disposition(p, family, missing)
             })
         nodes.append({
             'product_id': pid,
@@ -1031,6 +1118,9 @@ def main():
     all_edges_governed = all(e.get('status') and e.get('evidence') is not None and e.get('compatibility_claim') is not None for e in edges)
     candidate_promotions = [e for e in edges if e.get('relation') == 'sameSizeCandidate' and e.get('status') != 'CANDIDATE_ONLY']
 
+    disposition_counts = Counter((x.get('research_disposition') or {}).get('code') for x in backlog)
+    all_backlog_disposed = all((x.get('research_disposition') or {}).get('research_state') == 'SOURCE_BOUND_UNRESOLVED' for x in backlog)
+
     summary = {
         'published_products': len(products),
         'nodes': len(nodes),
@@ -1047,6 +1137,9 @@ def main():
         'external_evidence_rules': len(external.get('rules') or []),
         'external_fill_counts': dict(external_fill_counts),
         'external_conflicts': len(external_conflicts),
+        'source_bound_unresolved_products': len(backlog),
+        'research_disposition_counts': {k:v for k,v in disposition_counts.items() if k},
+        'public_research_pass_complete': all_backlog_disposed,
         'edge_count': len(edges),
         'relation_counts': dict(relation_counts),
         'edge_status_counts': dict(status_counts),
@@ -1066,7 +1159,8 @@ def main():
         'verification_backlog_generated': True,
         'no_price_or_stock_mutation': True,
         'hard_fabrications_zero': summary['hard_fabrications'] == 0,
-        'external_evidence_conflicts_preserved_for_review': True
+        'external_evidence_conflicts_preserved_for_review': True,
+        'all_remaining_gaps_have_research_disposition': all_backlog_disposed
     }
 
     graph = {
@@ -1075,7 +1169,7 @@ def main():
         'version': 'growthos-compatibility-knowledge-graph-v2',
         'generated_at_utc': NOW,
         'execution_mode': 'read-only-evidence-graph',
-        'status': 'PASS_RESCOPED_WITH_GOVERNED_EVIDENCE_GAPS',
+        'status': 'PASS_PUBLIC_RESEARCH_COMPLETE_WITH_SOURCE_BOUND_GAPS' if all_backlog_disposed else 'PASS_RESCOPED_WITH_GOVERNED_EVIDENCE_GAPS',
         'relation_vocabulary': RELATION_VOCABULARY,
         'compatibility_rule_templates': RULES,
         'external_evidence': {
@@ -1104,12 +1198,12 @@ def main():
         'ok': graph['ok'], 'phase': 4, 'version': graph['version'], 'generated_at_utc': NOW,
         'status': graph['status'], 'summary': summary, 'acceptance': acceptance,
         'external_evidence': graph.get('external_evidence'),
-        'next_gate': 'Before automatic product-to-product recommendation (Phase 18), fill exact missing dimensions and add exact manufacturer/source evidence for fits/worksWith/needs relations.'
+        'next_gate': 'Public research pass is complete. Remaining source-bound gaps require exact SKU/manufacturer labels or datasheets before automatic product-to-product recommendation (Phase 18); never infer them from similar products.'
     }, ensure_ascii=False, indent=2), encoding='utf-8')
     backlog.sort(key=lambda x: (0 if x['priority'] == 'HIGH' else 1, x['family'], x['product_id']))
     (OUTDIR / 'verification-backlog.json').write_text(json.dumps({
         'phase': 4, 'generated_at_utc': NOW, 'count': len(backlog), 'items': backlog,
-        'rule': 'Backlog is evidence acquisition work, not permission to infer values.'
+        'rule': 'Every remaining item is source-bound with an explicit research disposition. The backlog is evidence acquisition work, not permission to infer values.'
     }, ensure_ascii=False, indent=2), encoding='utf-8')
     print('GROWTHOS_PHASE4_COMPATIBILITY_OK', json.dumps({'status': graph['status'], 'summary': summary, 'acceptance': acceptance}, ensure_ascii=False))
 
