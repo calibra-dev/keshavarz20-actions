@@ -1,0 +1,313 @@
+{
+  "version": "growthos-phase4-external-evidence-v1",
+  "researched_at_utc": "2026-09-24T07:18:00Z",
+  "policy": {
+    "manufacturer_verified": "Official manufacturer channel/profile/catalog claim. May fill an unknown technical dimension when product family/name match is exact enough.",
+    "secondary_verified": "Independent specialist seller/distributor/product page. May fill an unknown data dimension but does not count as manufacturer-grade compatibility proof.",
+    "family_candidate": "Useful family evidence but not applied to exact SKU dimensions automatically.",
+    "conflict_rule": "Never overwrite a non-UNKNOWN site value silently. Conflicts are reported for review."
+  },
+  "sources": [
+    {
+      "id": "vispar-official-telegram-2026",
+      "tier": "manufacturer",
+      "publisher": "Vispar / Paya Baspar Aria",
+      "url": "https://t.me/s/vispar_co?before=889",
+      "retrieved_at": "2026-09-24",
+      "notes": "Official channel; threaded uPVC fittings 16 bar, butterfly valve uPVC / 6 bar, riser threaded, aluminum sprinkler inlet data."
+    },
+    {
+      "id": "vispar-official-telegram-ball-2026",
+      "tier": "manufacturer",
+      "publisher": "Vispar / Paya Baspar Aria",
+      "url": "https://t.me/s/vispar_co?after=888",
+      "retrieved_at": "2026-09-24",
+      "notes": "Official channel; polymer ball valve 3-4 inch PN6 and Vispar layflat PVC 4 bar."
+    },
+    {
+      "id": "vispar-linkedin-current-2026",
+      "tier": "manufacturer",
+      "publisher": "Vispar Co.",
+      "url": "https://www.linkedin.com/company/vispar-co/",
+      "retrieved_at": "2026-09-24",
+      "notes": "Official company profile, crawled last week; dual-nozzle polymer sprinkler 1 inch, working pressure 1-4.5 bar."
+    },
+    {
+      "id": "vispar-ball-secondary",
+      "tier": "secondary",
+      "publisher": "Mirab Sazeh",
+      "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+      "retrieved_at": "2026-09-24",
+      "notes": "Distributor page; Vispar single-strike polymer ball valve lists threaded inlet/outlet and 6 bar."
+    },
+    {
+      "id": "polyrod-official-telegram-2026",
+      "tier": "manufacturer",
+      "publisher": "Poli Rood Etteصال",
+      "url": "https://t.me/s/polirood?before=854",
+      "retrieved_at": "2026-09-24",
+      "notes": "Official channel; PE100 butt-weld high-pressure fittings sizes 20-630 mm, nominal pressures 6/10/16 bar."
+    },
+    {
+      "id": "polyrod-current-catalog-index-1405",
+      "tier": "manufacturer",
+      "publisher": "Poli Rood Etteصال",
+      "url": "https://t.me/s/polirood",
+      "retrieved_at": "2026-09-24",
+      "notes": "Official channel current 1405 catalog/price-list index includes electrofusion, compression, threaded, ball-valve, high-pressure, drip and saddle product families."
+    },
+    {
+      "id": "asayesh-current-specialist-index",
+      "tier": "secondary",
+      "publisher": "Abyari Ghatrei",
+      "url": "https://abyarighatrei.com/",
+      "retrieved_at": "2026-09-24",
+      "notes": "Current specialist retailer index: Asayesh standard 5-layer reinforced PE hose 1.5 bar; ECO 5-layer 1.2 bar; Asaflex rain hose 0.8 bar."
+    },
+    {
+      "id": "asayesh-5in-secondary",
+      "tier": "secondary",
+      "publisher": "Mirab Sazeh",
+      "url": "https://www.mirabsaze.com/product/%D9%84%D9%88%D9%84%D9%87-%D9%86%D8%AE-%D8%AF%D8%A7%D8%B1-5-%D8%A7%DB%8C%D9%86%DA%86-%D9%BE%D9%86%D8%AC-%D9%84%D8%A7%DB%8C%D9%87-%D8%A2%D8%B3%D8%A7%DB%8C%D8%B4-%D8%A2%D8%B0%D8%B1%D8%A8%D8%A7%DB%8C/",
+      "retrieved_at": "2026-09-24",
+      "notes": "Exact 5-inch Asayesh five-layer hose: PE, 100 m, 1.5 bar."
+    },
+    {
+      "id": "asayesh-rain-secondary",
+      "tier": "secondary",
+      "publisher": "Mirab Sazeh",
+      "url": "https://www.mirabsaze.com/product/%D8%B1%DB%8C%D9%86-%D9%BE%D8%A7%DB%8C%D9%BE-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%A7%D8%B1%D8%A7%D9%86%DB%8C-1-5-%D8%A7%DB%8C%D9%86%DA%86/",
+      "retrieved_at": "2026-09-24",
+      "notes": "Asayesh rain/misting hose family: reinforced PE, working pressure up to 0.8 bar; exact page is 1.5 inch, so pressure is not automatically applied to 2-inch SKU unless corroborated."
+    },
+    {
+      "id": "farat-double4-secondary",
+      "tier": "secondary",
+      "publisher": "Rodineh",
+      "url": "https://rodineh.com/product/%D9%81%DB%8C%D9%84%D8%AA%D8%B1-%D8%AF%DB%8C%D8%B3%DA%A9%DB%8C-%D8%AF%D9%88%D8%A8%D9%84-4-%D8%A7%DB%8C%D9%86%DA%86-%D8%B1%D8%B2%D9%88%D9%87-%D8%A7%DB%8C-%D9%81%D8%B1%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C/",
+      "retrieved_at": "2026-09-24",
+      "notes": "Exact Farat Polymer double helix 4-inch disc filter: 120 mesh, polymeric, 1-6 atm working range."
+    },
+    {
+      "id": "farat-driptape-secondary",
+      "tier": "secondary",
+      "publisher": "Rodineh",
+      "url": "https://rodineh.com/product/%D9%86%D9%88%D8%A7%D8%B1-%D8%A2%D8%A8%DB%8C%D8%A7%D8%B1%DB%8C-%D8%AA%DB%8C%D9%BE-%D8%A8%D8%BA%D9%84-%D8%AF%D9%88%D8%AE%D8%AA-%D9%81%D8%B1%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C%D9%85%D8%B1/",
+      "retrieved_at": "2026-09-24",
+      "notes": "Farat drip tape page: emitter spacing 10/20/30 cm, ideal 0.6 atm; min 0.4/max 1 atm; >100 micron particles should be excluded; 1.6-2 L/h stated."
+    }
+  ],
+  "rules": [
+    {
+      "id": "vispar-threaded-upvc",
+      "family": [
+        "fitting"
+      ],
+      "name_regex": "(?=.*(?:ویسپار|پایا))(?=.*(?:رزوه|مغزی|سه\\s*راه\\s*ماده|زانو.*ماده|چپقی|بوشن|کپ))",
+      "source_id": "vispar-official-telegram-2026",
+      "fields": {
+        "material": {
+          "value": "uPVC",
+          "status": "MANUFACTURER_VERIFIED"
+        },
+        "connection_type": {
+          "value": "threaded",
+          "status": "MANUFACTURER_VERIFIED"
+        }
+      },
+      "family_claims": {
+        "pressure_class": "up to 16 bar; not applied as exact SKU pressure unless the product is clearly in the threaded uPVC family"
+      }
+    },
+    {
+      "id": "vispar-butterfly",
+      "family": [
+        "valve"
+      ],
+      "name_regex": "(?=.*(?:ویسپار|ویسپ|پایا))(?=.*شیر\\s*پروانه)",
+      "source_id": "vispar-official-telegram-2026",
+      "fields": {
+        "material": {
+          "value": "uPVC",
+          "status": "MANUFACTURER_VERIFIED"
+        },
+        "pressure_class": {
+          "value": "6 bar",
+          "status": "MANUFACTURER_VERIFIED"
+        }
+      }
+    },
+    {
+      "id": "vispar-ball-pressure",
+      "family": [
+        "valve"
+      ],
+      "name_regex": "(?=.*(?:ویسپار|ویسپ|پایا))(?=.*شیر\\s*توپی)",
+      "source_id": "vispar-official-telegram-ball-2026",
+      "fields": {
+        "pressure_class": {
+          "value": "6 bar",
+          "status": "MANUFACTURER_VERIFIED"
+        }
+      }
+    },
+    {
+      "id": "vispar-ball-thread-secondary",
+      "family": [
+        "valve"
+      ],
+      "name_regex": "(?=.*ویسپار)(?=.*شیر\\s*توپی)",
+      "source_id": "vispar-ball-secondary",
+      "fields": {
+        "connection_type": {
+          "value": "threaded",
+          "status": "SECONDARY_VERIFIED"
+        }
+      }
+    },
+    {
+      "id": "vispar-riser-thread",
+      "family": [
+        "riser"
+      ],
+      "name_regex": "(?=.*ویسپار)(?=.*رایزر)",
+      "source_id": "vispar-official-telegram-2026",
+      "fields": {
+        "connection_type": {
+          "value": "threaded",
+          "status": "MANUFACTURER_VERIFIED"
+        }
+      }
+    },
+    {
+      "id": "vispar-aluminum-sprinkler-inlet",
+      "family": [
+        "sprinkler"
+      ],
+      "name_regex": "(?=.*آبپاش)(?=.*آلومین)(?=.*پایا)",
+      "source_id": "vispar-official-telegram-2026",
+      "fields": {
+        "connection_size": {
+          "value": "1.5 inch",
+          "status": "MANUFACTURER_VERIFIED"
+        }
+      }
+    },
+    {
+      "id": "vispar-polymer-sprinkler-1in-pressure",
+      "family": [
+        "sprinkler"
+      ],
+      "name_regex": "(?=.*آبپاش)(?=.*پلیمری)(?=.*ویسپار)(?=.*(?:۱|1)\\s*اینچ)",
+      "source_id": "vispar-linkedin-current-2026",
+      "fields": {
+        "pressure_requirement": {
+          "value": "1-4.5 bar",
+          "status": "MANUFACTURER_VERIFIED"
+        }
+      }
+    },
+    {
+      "id": "polyrod-welded-pe100",
+      "family": [
+        "fitting"
+      ],
+      "name_regex": "(?=.*پلی[\\s‌-]*رود)(?=.*جوشی)",
+      "source_id": "polyrod-official-telegram-2026",
+      "fields": {
+        "material": {
+          "value": "PE100",
+          "status": "MANUFACTURER_VERIFIED"
+        },
+        "connection_type": {
+          "value": "butt_fusion",
+          "status": "MANUFACTURER_VERIFIED"
+        }
+      },
+      "family_claims": {
+        "pressure_classes": [
+          "6 bar",
+          "10 bar",
+          "16 bar"
+        ],
+        "size_range_mm": "20-630"
+      }
+    },
+    {
+      "id": "asayesh-five-layer-standard",
+      "family": [
+        "layflat_rain"
+      ],
+      "name_regex": "(?=.*آسایش\\s*آذربایجان)(?=.*نخدار)(?=.*(?:۵|5)\\s*لایه)(?!.*ECO)",
+      "source_id": "asayesh-current-specialist-index",
+      "fields": {
+        "material": {
+          "value": "polyethylene reinforced five-layer",
+          "status": "SECONDARY_VERIFIED"
+        },
+        "pressure_class": {
+          "value": "1.5 bar",
+          "status": "SECONDARY_VERIFIED"
+        }
+      }
+    },
+    {
+      "id": "asayesh-rainhose-material",
+      "family": [
+        "layflat_rain"
+      ],
+      "name_regex": "(?=.*آسایش\\s*آذربایجان)(?=.*(?:بارانی|مه[\\s‌-]*پاش))",
+      "source_id": "asayesh-rain-secondary",
+      "fields": {
+        "material": {
+          "value": "reinforced polyethylene",
+          "status": "SECONDARY_VERIFIED"
+        }
+      },
+      "family_claims": {
+        "pressure_class": "0.8 bar family evidence; exact 2-inch SKU pressure not automatically applied"
+      }
+    },
+    {
+      "id": "farat-double4-filter",
+      "family": [
+        "filter"
+      ],
+      "name_regex": "(?=.*فرات\\s*پلیمر)(?=.*دوبل)(?=.*(?:۴|4)\\s*اینچ)",
+      "source_id": "farat-double4-secondary",
+      "fields": {
+        "filtration_grade": {
+          "value": "120 mesh",
+          "status": "SECONDARY_VERIFIED"
+        },
+        "pressure_class": {
+          "value": "1-6 atm",
+          "status": "SECONDARY_VERIFIED"
+        },
+        "material": {
+          "value": "polymeric",
+          "status": "SECONDARY_VERIFIED"
+        }
+      }
+    }
+  ],
+  "non_applied_family_evidence": [
+    {
+      "topic": "Farat Polymer drip tape",
+      "source_id": "farat-driptape-secondary",
+      "claims": {
+        "emitter_spacing_options_cm": [
+          10,
+          20,
+          30
+        ],
+        "pressure_ideal_atm": 0.6,
+        "pressure_min_atm": 0.4,
+        "pressure_max_atm": 1,
+        "filtration_requirement": "prevent particles larger than 100 microns from entering network",
+        "flow_rate_lph": "1.6-2"
+      },
+      "reason": "K20 drip-tape SKUs in the current backlog are not all explicitly branded Farat Polymer, so family data is not assigned automatically."
+    }
+  ]
+}
