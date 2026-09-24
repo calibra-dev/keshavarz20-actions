@@ -8,6 +8,7 @@ from pathlib import Path
 from urllib.parse import urlsplit, urlunsplit
 
 INPUT = Path('growthos-phase5-input/gsc-windsor-irrigation-20260924.json')
+BING_STATUS = Path('growthos-phase5-input/bing-measurement-status-20260924.json')
 OUTDIR = Path('growthos-phase5-results')
 NOW = dt.datetime.now(dt.timezone.utc).isoformat()
 
@@ -338,6 +339,10 @@ def canonical_decision(page_metrics, focus, intent, queries, focus_catalog, bran
 
 def main():
     data = json.loads(INPUT.read_text(encoding='utf-8'))
+    try:
+        bing_status = json.loads(BING_STATUS.read_text(encoding='utf-8'))
+    except Exception:
+        bing_status = {'connection_status':'unknown','query_fetch_status':'not_checked'}
     rows = data.get('rows') or []
     groups = defaultdict(list)
     focus_catalogs = defaultdict(lambda: defaultdict(lambda: {'clicks':0.0,'impressions':0.0}))
@@ -421,7 +426,8 @@ def main():
         'multi_url_conflicts_resolved_to_existing_owner': all(c['canonical_decision'].get('status') == 'RESOLVED_OWNER' and c['canonical_decision'].get('canonical_url') for c in conflicts),
         'no_unresolved_owner': all(x.get('canonical_url',{}).get('canonical_url') for x in registry),
         'no_new_pages_auto_created': True,
-        'no_site_writes': True
+        'no_site_writes': True,
+        'bing_throttle_not_interpreted_as_zero': bing_status.get('query_fetch_status') != 'temporarily_unavailable' or bool(bing_status.get('interpretation'))
     }
     summary = {
         'source_raw_rows': data.get('total_raw_rows'),
@@ -433,7 +439,17 @@ def main():
         'resolved_multi_url_groups': len(conflicts),
         'active_intents': sum(1 for x in registry if x['status']=='ACTIVE'),
         'site_writes': 0,
-        'new_pages_created': 0
+        'new_pages_created': 0,
+        'measurement_sources': {
+            'google_search_console': {'status':'measured','snapshot':data.get('snapshot'),'rows':len(rows)},
+            'bing_webmaster': {
+                'connection_status': bing_status.get('connection_status'),
+                'query_fetch_status': bing_status.get('query_fetch_status'),
+                'error_code': bing_status.get('error_code'),
+                'error': bing_status.get('error'),
+                'interpretation': bing_status.get('interpretation')
+            }
+        }
     }
     out = {
         'ok': all(acceptance.values()),
@@ -442,6 +458,7 @@ def main():
         'generated_at_utc': NOW,
         'status': 'PASS_RESOLVED_OWNER_MAP' if all(x.get('canonical_url',{}).get('canonical_url') for x in registry) else 'PARTIAL_NO_OWNER',
         'source_snapshot': {k:data.get(k) for k in ('source','account','snapshot','total_raw_rows','filtered_rows')},
+        'measurement_status': {'google':'measured','bing':bing_status},
         'intent_taxonomy': INTENT_ORDER,
         'summary': summary,
         'acceptance': acceptance,
