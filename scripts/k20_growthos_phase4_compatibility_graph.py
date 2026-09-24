@@ -53,6 +53,7 @@ RULES = {
     'washer_clamp': ['interface_signature', 'component_type'],
     'riser': ['nominal_size', 'length', 'connection_type', 'material'],
     'pump': ['connection_size', 'head', 'power'],
+    'pump_controller': ['connection_size', 'pressure_class', 'electrical_rating'],
     'branch_connector': ['interface_signature'],
     'unmodeled_irrigation': [],
     'excluded_non_irrigation': []
@@ -139,7 +140,9 @@ def classify_product(p):
         return 'washer_clamp'
     if re.search(r'رایزر', name):
         return 'riser'
-    if re.search(r'پمپ|کف\s*کش|الکتروپمپ|ست\s*کنترل', name):
+    if re.search(r'ست\s*کنترل.*پمپ|کنترل\s*اتوماتیک.*پمپ', name):
+        return 'pump_controller'
+    if re.search(r'پمپ|کف\s*کش|الکتروپمپ', name):
         return 'pump'
     if re.search(r'شیر|سوپاپ', name):
         return 'valve'
@@ -167,8 +170,8 @@ def safe_technical_meta_map(p):
     out = {}
     allowed_key = re.compile(
         r'(pressure|pn|sdr|mesh|micron|filter|flow|debi|head|power|kw|hp|'
-        r'connection|thread|diameter|size|length|material|فشار|مش|میکرون|'
-        r'دبی|آبدهی|آب_دهی|هد|توان|اتصال|رزوه|قطر|سایز|طول|جنس|فیلتراسیون)',
+        r'connection|thread|diameter|size|length|material|voltage|volt|amp|current|watt|فشار|مش|میکرون|'
+        r'دبی|آبدهی|آب_دهی|هد|توان|ولتاژ|آمپر|جریان|اتصال|رزوه|قطر|سایز|طول|جنس|فیلتراسیون)',
         re.I
     )
     blocked_key = re.compile(
@@ -836,6 +839,11 @@ def technical_dimensions(p, truth_rec):
         or prose_power(p)
         or title_declared_power(name)
     )
+    dims['electrical_rating'] = (
+        direct_attr(attrs, [r'ولتاژ', r'آمپر', r'جریان', r'voltage', r'current', r'amp'])
+        or spec_attr(specs, [r'ولتاژ', r'آمپر', r'جریان', r'voltage', r'current', r'amp'])
+        or technical_meta_attr(meta, [r'voltage', r'volt', r'current', r'amp', r'watt', r'ولتاژ', r'آمپر', r'جریان'])
+    )
     connection = dims.get('connection_type') or {'status':'UNKNOWN','value':None}
     if re.search(r'بابلر|دریپر|قطره[\s‌-]*چکان', name, re.I) and connection.get('status') == 'UNKNOWN':
         dims['connection_type'] = emitter_connection_type(name) or connection
@@ -905,10 +913,16 @@ def apply_external_evidence(p, family, dims, pack, fill_counts, conflicts):
         allowed = rule.get('family') or []
         if family not in allowed:
             continue
+        product_ids = {int(x) for x in (rule.get('product_ids') or []) if str(x).isdigit()}
+        id_match = bool(product_ids and int(p.get('id') or 0) in product_ids)
         try:
-            matched = re.search(rule.get('name_regex') or r'$.', name, re.I)
+            name_match = bool(rule.get('name_regex') and re.search(rule.get('name_regex'), name, re.I))
         except re.error:
-            continue
+            name_match = False
+        if product_ids:
+            matched = id_match
+        else:
+            matched = name_match
         if not matched:
             continue
         source_id = rule.get('source_id')
@@ -995,6 +1009,12 @@ def research_disposition(p, family, missing):
             'reason': 'Nominal diameter and roll length do not determine pressure class.',
             'next_evidence': 'Pipe print-line/label or manufacturer table with PN/SDR for the exact 16 mm product.'
         }
+    if family == 'pump_controller':
+        return {**common,
+            'code': 'EXACT_PUMP_CONTROLLER_LABEL_REQUIRED',
+            'reason': 'An automatic pump controller is not a pump: compatibility depends on inlet/outlet size, maximum working pressure, voltage/current and permitted pump load rather than hydraulic head.',
+            'next_evidence': 'Exact FLYGEN controller label/datasheet with thread size, max pressure and electrical/pump-load rating.'
+        }
     if family == 'pump':
         return {**common,
             'code': 'EXACT_PUMP_MODEL_DATASHEET_OR_NAMEPLATE_REQUIRED',
@@ -1047,6 +1067,46 @@ def research_disposition(p, family, missing):
     }
 
 
+
+def catalog_quality_flags(p, family):
+    name = str(p.get('name') or '')
+    brand_names = ' | '.join(str(b.get('name') or '') for b in (p.get('brands') or []))
+    cat_names = ' | '.join(str(x.get('name') or '') for x in (p.get('categories') or []))
+    flags = []
+
+    brand_rules = [
+        (r'ویسپار|Vispar', r'ویسپار|vispar|پایا\s*بسپار', 'vispar'),
+        (r'فرات\s*پلیمر', r'فرات\s*پلیمر|forat', 'farat_polymer'),
+        (r'آبافرین|Abafarin', r'آبافرین|abafarin', 'abafarin'),
+        (r'زلال[\s‌-]*رود', r'زلال[\s‌-]*رود|zolal', 'zalal_roud'),
+        (r'\bFLYGEN\b|فلای\s*ژن|فلایژن', r'flygen|فلای\s*ژن|فلایژن', 'flygen'),
+        (r'\bCamel\b|کمل', r'camel|کمل', 'camel')
+    ]
+    for title_pat, brand_pat, expected in brand_rules:
+        if re.search(title_pat, name, re.I) and not re.search(brand_pat, brand_names, re.I):
+            flags.append({
+                'code':'TITLE_BRAND_TAXONOMY_MISMATCH_CANDIDATE',
+                'expected_from_title': expected,
+                'taxonomy_brands': [b.get('name') for b in (p.get('brands') or [])],
+                'action':'Review product brand taxonomy; do not auto-change from Phase 4.'
+            })
+
+    if re.search(r'آلومین|آلمین', name, re.I) and re.search(r'رایزر\s*پلیمری|پلیمری', cat_names, re.I):
+        flags.append({
+            'code':'TITLE_MATERIAL_CATEGORY_MISMATCH_CANDIDATE',
+            'title_material':'aluminum',
+            'categories':[x.get('name') for x in (p.get('categories') or [])],
+            'action':'Review category assignment; do not auto-change from Phase 4.'
+        })
+
+    if family in ('pump','pump_controller','drip_tape','layflat_rain') and not (p.get('brands') or []):
+        flags.append({
+            'code':'TECHNICAL_SERIES_BRAND_TAXONOMY_MISSING',
+            'action':'Add/verify brand only after exact product identity is confirmed.'
+        })
+    return flags
+
+
 def edge_key(e):
     return (str(e.get('source_product_id') or ''), str(e.get('target_product_id') or ''), e.get('relation'), e.get('status'))
 
@@ -1067,6 +1127,7 @@ def main():
     edges = []
     external_fill_counts = Counter()
     external_conflicts = []
+    quality_flag_counts = Counter()
 
     for p in products:
         pid = int(p['id'])
@@ -1074,6 +1135,9 @@ def main():
         family_counts[family] += 1
         dims = technical_dimensions(p, truth_by_id.get(pid))
         dims = apply_external_evidence(p, family, dims, external, external_fill_counts, external_conflicts)
+        quality_flags = catalog_quality_flags(p, family)
+        for qf in quality_flags:
+            quality_flag_counts[qf.get('code')] += 1
         required = RULES.get(family, [])
         in_scope = family != 'excluded_non_irrigation'
         missing = [k for k in required if dims.get(k, {}).get('status') == 'UNKNOWN']
@@ -1110,6 +1174,7 @@ def main():
             'family': family,
             'product_type': p.get('type'),
             'technical_dimensions': dims,
+            'catalog_quality_flags': quality_flags,
             'required_dimensions': required,
             'missing_required_dimensions': missing,
             'compatibility_scope': 'excluded' if family == 'excluded_non_irrigation' else 'in_scope',
@@ -1223,6 +1288,8 @@ def main():
         'source_bound_unresolved_products': len(backlog),
         'research_disposition_counts': {k:v for k,v in disposition_counts.items() if k},
         'public_research_pass_complete': all_backlog_disposed,
+        'catalog_quality_flag_counts': dict(quality_flag_counts),
+        'catalog_quality_flag_total': sum(quality_flag_counts.values()),
         'edge_count': len(edges),
         'relation_counts': dict(relation_counts),
         'edge_status_counts': dict(status_counts),
