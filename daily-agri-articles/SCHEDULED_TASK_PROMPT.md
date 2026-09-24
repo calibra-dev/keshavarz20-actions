@@ -80,7 +80,7 @@ All new long-form posts must use the premium RTL card-based visual system: a sof
 
 ### FAQ rule — Keshavarz20 long-form standard
 
-For the current Keshavarz20 long-form article standard, include **15 distinct, substantive, topic-specific questions and answers** when the article is a full troubleshooting, buying, calculation, installation, maintenance, soil/fertilizer, or decision guide. The questions must reflect real user intent, must not repeat one another, and every answer must be visible in `content_html`. Do not add filler questions just to hit the count; if a topic genuinely cannot support 15 useful questions, skip the article rather than padding it.
+FAQ is **adaptive**, not quota-driven. Use none when it adds no value. When the topic genuinely benefits from FAQ, include **3–8 distinct, substantive, topic-specific questions and answers** that reflect real user intent and are visibly present in `content_html`. Never create filler questions merely to hit a count.
 
 ## 4) GEO / AEO / citation quality
 
@@ -118,8 +118,8 @@ Prepare all queue fields required by the publisher, including:
 - `research_summary` documenting why the topic and evidence were chosen
 - precise English `image_search_query`
 - `image_title`
-- short `cover_title` suitable for a maximum of two visual lines
-- optional `cover_subtitle` suitable for a maximum of two visual lines
+- short `cover_title`: **2–8 words**, no manual line breaks, maximum two rendered lines
+- optional `cover_subtitle`: maximum **12 words**, maximum two rendered lines
 - descriptive `alt_text`
 - adaptive `faq_items` (0 or 3–8)
 
@@ -133,12 +133,13 @@ The queue publisher may select an open-license Wikimedia image. The requested vi
 
 Never ask an image model to draw, spell, typeset or embed Persian text inside the cover artwork. Persian text generated inside an image is not accepted because even visually attractive covers can contain malformed or nonsensical Persian.
 
-The cover workflow is now strictly two-stage:
+The cover workflow is strictly staged and uses a controlled cinematic editorial profile:
 
-1. choose/generate only a **text-free factual background image**;
-2. render `کشاورز بیست`, `cover_title` and optional `cover_subtitle` deterministically in the GitHub publisher using the approved Noto Arabic font, Pillow, arabic-reshaper and python-bidi.
+1. choose/generate only a **text-free factual background image** with realistic agriculture context and no fake documentary evidence;
+2. apply restrained cinematic grading without changing factual meaning;
+3. render `کشاورز بیست`, `cover_title` and optional `cover_subtitle` deterministically in GitHub using approved Noto Arabic, Pillow, arabic-reshaper and python-bidi.
 
-The publisher must **fail closed** if the approved Persian font or shaping stack is unavailable. It must never fall back to AI-rendered text or a generic font merely to finish the run. Keep `cover_title` concise; do not copy a long H1 into the image when a shorter accurate phrase is possible.
+The publisher must **fail closed** if the approved Persian font or shaping stack is unavailable. It must never fall back to AI-rendered text or a generic font merely to finish the run. Keep `cover_title` materially shorter than the H1. Prefer 2–8 words. Reject copy that cannot fit inside two title lines / two subtitle lines with safe margins; never shrink into unreadable typography merely to finish.
 
 ## 7) Duplicate/cannibalization gate
 
