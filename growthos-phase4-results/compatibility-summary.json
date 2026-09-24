@@ -2,8 +2,8 @@
   "ok": true,
   "phase": 4,
   "version": "growthos-compatibility-knowledge-graph-v2",
-  "generated_at_utc": "2026-09-24T07:53:46.336886+00:00",
-  "status": "PASS_RESCOPED_WITH_GOVERNED_EVIDENCE_GAPS",
+  "generated_at_utc": "2026-09-24T07:55:16.285341+00:00",
+  "status": "PASS_PUBLIC_RESEARCH_COMPLETE_WITH_SOURCE_BOUND_GAPS",
   "summary": {
     "published_products": 652,
     "nodes": 652,
@@ -71,6 +71,22 @@
       "CORROBORATED": 22
     },
     "external_conflicts": 0,
+    "source_bound_unresolved_products": 58,
+    "research_disposition_counts": {
+      "MOUJ_EXACT_DATASHEET_OR_ROLL_LABEL_REQUIRED": 6,
+      "EXACT_FITTING_INTERFACE_OR_MATERIAL_REQUIRED": 4,
+      "EXACT_PUMP_MODEL_DATASHEET_OR_NAMEPLATE_REQUIRED": 10,
+      "EXACT_TAPE_MANUFACTURER_OR_LABEL_REQUIRED": 4,
+      "CAST_IRON_VALVE_MODEL_PN_AND_CONNECTION_REQUIRED": 5,
+      "EXACT_SPRINKLER_NOZZLE_FLOW_TABLE_REQUIRED": 5,
+      "EXACT_FILTER_ELEMENT_GRADE_REQUIRED": 3,
+      "EXACT_EMITTER_FLOW_OR_INTERFACE_SPEC_REQUIRED": 7,
+      "EXACT_RISER_COUPLING_STANDARD_REQUIRED": 2,
+      "ABAFARIN_EXACT_PRESSURE_DATASHEET_REQUIRED": 9,
+      "EXACT_PIPE_PN_SDR_MARKING_REQUIRED": 1,
+      "EXACT_VALVE_PRESSURE_OR_CONNECTION_DATASHEET_REQUIRED": 2
+    },
+    "public_research_pass_complete": true,
     "edge_count": 2028,
     "relation_counts": {
       "explicitReference": 2005,
@@ -96,7 +112,8 @@
     "verification_backlog_generated": true,
     "no_price_or_stock_mutation": true,
     "hard_fabrications_zero": true,
-    "external_evidence_conflicts_preserved_for_review": true
+    "external_evidence_conflicts_preserved_for_review": true,
+    "all_remaining_gaps_have_research_disposition": true
   },
   "external_evidence": {
     "version": "growthos-phase4-external-evidence-v1",
@@ -157,5 +174,5 @@
       }
     ]
   },
-  "next_gate": "Before automatic product-to-product recommendation (Phase 18), fill exact missing dimensions and add exact manufacturer/source evidence for fits/worksWith/needs relations."
+  "next_gate": "Public research pass is complete. Remaining source-bound gaps require exact SKU/manufacturer labels or datasheets before automatic product-to-product recommendation (Phase 18); never infer them from similar products."
 }
