@@ -2,7 +2,7 @@
   "ok": true,
   "phase": 5,
   "version": "growthos-central-intent-registry-v3",
-  "generated_at_utc": "2026-09-24T07:20:32.473578+00:00",
+  "generated_at_utc": "2026-09-24T07:23:49.963750+00:00",
   "status": "PASS_RESOLVED_OWNER_MAP",
   "source_snapshot": {
     "source": "Windsor.ai Search Console",
@@ -10,6 +10,20 @@
     "snapshot": "last_28d_at_2026-09-24",
     "total_raw_rows": 437,
     "filtered_rows": 186
+  },
+  "measurement_status": {
+    "google": "measured",
+    "bing": {
+      "source": "Windsor.ai Bing Webmaster",
+      "account": "https://keshavarz20.com",
+      "checked_at_utc": "2026-09-24T07:22:00Z",
+      "connection_status": "connected",
+      "query_fetch_status": "temporarily_unavailable",
+      "error_code": 17,
+      "error": "ThrottleIP",
+      "interpretation": "Measurement gap only. Do not interpret as zero Bing demand or zero visibility.",
+      "fallback": "Phase 5 owner decisions use the fresh 28-day Google Search Console snapshot. Bing should be re-measured when throttling clears."
+    }
   },
   "intent_taxonomy": [
     "شناخت",
@@ -56,7 +70,21 @@
     "resolved_multi_url_groups": 28,
     "active_intents": 82,
     "site_writes": 0,
-    "new_pages_created": 0
+    "new_pages_created": 0,
+    "measurement_sources": {
+      "google_search_console": {
+        "status": "measured",
+        "snapshot": "last_28d_at_2026-09-24",
+        "rows": 186
+      },
+      "bing_webmaster": {
+        "connection_status": "connected",
+        "query_fetch_status": "temporarily_unavailable",
+        "error_code": 17,
+        "error": "ThrottleIP",
+        "interpretation": "Measurement gap only. Do not interpret as zero Bing demand or zero visibility."
+      }
+    }
   },
   "acceptance": {
     "fresh_search_console_snapshot_used": true,
@@ -66,7 +94,8 @@
     "multi_url_conflicts_resolved_to_existing_owner": true,
     "no_unresolved_owner": true,
     "no_new_pages_auto_created": true,
-    "no_site_writes": true
+    "no_site_writes": true,
+    "bing_throttle_not_interpreted_as_zero": true
   },
   "registry": [
     {
