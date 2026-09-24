@@ -377,17 +377,19 @@ def truth_field(rec, key):
 def category_semantics(p):
     names = [str(x.get('name') or '') for x in (p.get('categories') or [])]
     cats = ' | '.join(names).lower()
+    title = str(p.get('name') or '').lower()
     out = {}
+    allow_connection_inference = not re.search(r'شیر|آبپاش|فیلتر|پمپ|بابلر|دریپر|قطره[\s‌-]*چکان|رایزر|سوپاپ', title)
     if re.search(r'اتصالات.*پلی[\s‌-]*اتیلن|polyethylene.*fitting|لوله.*پلی[\s‌-]*اتیلن', cats, re.I):
         out['material'] = {'status':'SITE_DECLARED','value':'polyethylene','source':'woocommerce_category',
                            'evidence':{'categories':names}}
-    if re.search(r'اتصالات.*پیچی|compression.*fitting|پیچی.*پلی[\s‌-]*اتیلن', cats, re.I):
+    if allow_connection_inference and re.search(r'اتصالات.*پیچی|compression.*fitting|پیچی.*پلی[\s‌-]*اتیلن', cats, re.I):
         out['connection_type'] = {'status':'SITE_DECLARED','value':'compression','source':'woocommerce_category',
                                   'evidence':{'categories':names}}
-    elif re.search(r'اتصالات.*جوشی|butt.*fusion|جوشی.*پلی[\s‌-]*اتیلن', cats, re.I):
+    elif allow_connection_inference and re.search(r'اتصالات.*جوشی|butt.*fusion|جوشی.*پلی[\s‌-]*اتیلن', cats, re.I):
         out['connection_type'] = {'status':'SITE_DECLARED','value':'butt_fusion','source':'woocommerce_category',
                                   'evidence':{'categories':names}}
-    elif re.search(r'اتصالات.*رزوه|threaded.*fitting', cats, re.I):
+    elif allow_connection_inference and re.search(r'اتصالات.*رزوه|threaded.*fitting', cats, re.I):
         out['connection_type'] = {'status':'SITE_DECLARED','value':'threaded','source':'woocommerce_category',
                                   'evidence':{'categories':names}}
     return out
@@ -784,6 +786,8 @@ def normalize_evidence_value(field, value):
         if s in aliases:
             return aliases[s]
     if field == 'material':
+        if 'upvc' in s or 'u-pvc' in s or 'u pvc' in s:
+            return 'upvc'
         aliases = {
             'پلی اتیلن':'polyethylene','پلی‌اتیلن':'polyethylene','polyethylene':'polyethylene',
             'polymeric_unspecified':'polymeric','polymeric':'polymeric','upvc':'upvc','u-pvc':'upvc',
