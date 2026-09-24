@@ -41,6 +41,7 @@ jobs:
           python -m py_compile daily-agri-articles/publish_queue_v2.py
           python -m py_compile daily-agri-articles/publish_queue_v3.py
           python -m py_compile daily-agri-articles/publish_queue_v4.py
+          python -m py_compile daily-agri-articles/publish_queue_v5.py
 
   publish-draft:
     if: github.event_name != 'pull_request'
@@ -127,7 +128,7 @@ jobs:
               exit 3
             fi
             echo "Publishing article queue with SEO God validator and REST transport: $file"
-            python daily-agri-articles/publish_queue_v4.py "$file"
+            python daily-agri-articles/publish_queue_v5.py "$file"
           done < /tmp/k20-article-queue-files.txt
 
       - name: Write job summary
