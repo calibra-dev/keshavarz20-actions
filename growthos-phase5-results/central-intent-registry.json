@@ -2,7 +2,7 @@
   "ok": true,
   "phase": 5,
   "version": "growthos-central-intent-registry-v1",
-  "generated_at_utc": "2026-09-24T06:44:58.664814+00:00",
+  "generated_at_utc": "2026-09-24T06:49:57.346794+00:00",
   "status": "PASS_WITH_CANONICAL_CONFLICT_BACKLOG",
   "source_snapshot": {
     "source": "Windsor.ai Search Console",
@@ -33,14 +33,14 @@
     "topics": {
       "drip_tape": 8,
       "fertigation_tank": 4,
-      "pe_valve": 27,
+      "pe_valve": 28,
       "pe_fitting_saddle": 4,
       "polyethylene_pipe": 8,
       "sprinkler": 3,
-      "pe_fitting_elbow": 8,
       "pe_fitting_general": 4,
       "layflat_hose": 11,
-      "other_irrigation": 1
+      "pe_fitting_elbow": 7,
+      "pe_installation_tool": 1
     },
     "intents": {
       "محاسبه": 1,
@@ -52,8 +52,8 @@
       "شناخت": 1,
       "عیب‌یابی": 1
     },
-    "review_required_canonical_conflicts": 12,
-    "active_intents": 66,
+    "review_required_canonical_conflicts": 11,
+    "active_intents": 67,
     "site_writes": 0,
     "new_pages_created": 0
   },
@@ -535,7 +535,7 @@
             "impressions": 2.0
           },
           {
-            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/page/5/",
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/",
             "clicks": 0.0,
             "impressions": 1.0
           }
@@ -1345,14 +1345,14 @@
       "status": "ACTIVE"
     },
     {
-      "canonical_intent_id": "intent:84bd059da0349734",
-      "semantic_key": "pe_fitting_elbow|زانو پلی اتیلن|مقایسه|",
-      "topic": "pe_fitting_elbow",
+      "canonical_intent_id": "intent:e8975a6417e78272",
+      "semantic_key": "pe_valve|شیر پلی اتیلن|مقایسه|",
+      "topic": "pe_valve",
       "intent": "مقایسه",
       "intent_rank": 2,
       "entities": {
-        "topic": "pe_fitting_elbow",
-        "entity_focus": "زانو پلی اتیلن",
+        "topic": "pe_valve",
+        "entity_focus": "شیر پلی اتیلن",
         "size_token": null
       },
       "prompts": [
@@ -1362,7 +1362,7 @@
         },
         {
           "kind": "derived_ai_prompt",
-          "text": "مقایسه فنی زانو پلی اتیلن را با شواهد قابل استناد و بدون حدس توضیح بده."
+          "text": "مقایسه فنی شیر پلی اتیلن را با شواهد قابل استناد و بدون حدس توضیح بده."
         }
       ],
       "subquestions": [
@@ -1388,10 +1388,10 @@
       },
       "canonical_url": {
         "status": "OBSERVED_PRIMARY",
-        "canonical_url": "https://keshavarz20.com/product_brand/%D8%A2%D8%A8-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%B3%D9%BE%D8%A7%D8%B1/page/4/",
+        "canonical_url": "https://keshavarz20.com/product_brand/%D8%A2%D8%A8-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%B3%D9%BE%D8%A7%D8%B1/",
         "observed_pages": [
           {
-            "url": "https://keshavarz20.com/product_brand/%D8%A2%D8%A8-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%B3%D9%BE%D8%A7%D8%B1/page/4/",
+            "url": "https://keshavarz20.com/product_brand/%D8%A2%D8%A8-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%B3%D9%BE%D8%A7%D8%B1/",
             "clicks": 0.0,
             "impressions": 20.0
           },
@@ -2137,35 +2137,20 @@
           {
             "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/",
             "clicks": 0.0,
-            "impressions": 5.0
+            "impressions": 7.0
+          },
+          {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/",
+            "clicks": 0.0,
+            "impressions": 4.0
           },
           {
             "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/other-polyethylene-compression-fittings/",
             "clicks": 0.0,
             "impressions": 2.0
-          },
-          {
-            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/compression-polyethylene-fittings/page/7/",
-            "clicks": 0.0,
-            "impressions": 2.0
-          },
-          {
-            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/page/8/",
-            "clicks": 0.0,
-            "impressions": 2.0
-          },
-          {
-            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/",
-            "clicks": 0.0,
-            "impressions": 1.0
-          },
-          {
-            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/polyethylene-fittings/page/3/",
-            "clicks": 0.0,
-            "impressions": 1.0
           }
         ],
-        "top_impression_share": 0.3846,
+        "top_impression_share": 0.5385,
         "warning": "Intent is split across multiple landing pages; do not create another page until overlap is resolved."
       },
       "conversion_goal": "reach_category_or_selector",
@@ -3050,76 +3035,6 @@
       "status": "ACTIVE"
     },
     {
-      "canonical_intent_id": "intent:4333112ca0d705e9",
-      "semantic_key": "polyethylene_pipe|لوله پلی اتیلن|انتخاب|",
-      "topic": "polyethylene_pipe",
-      "intent": "انتخاب",
-      "intent_rank": 1,
-      "entities": {
-        "topic": "polyethylene_pipe",
-        "entity_focus": "لوله پلی اتیلن",
-        "size_token": null
-      },
-      "prompts": [
-        {
-          "kind": "observed_search_query",
-          "text": "لوله پلی اتیلن کشاورزی"
-        },
-        {
-          "kind": "derived_ai_prompt",
-          "text": "انتخاب مناسب لوله پلی اتیلن را با شواهد قابل استناد و بدون حدس توضیح بده."
-        }
-      ],
-      "subquestions": [
-        "برای چه سناریویی مناسب است؟",
-        "کدام سایز/نوع باید بررسی شود؟",
-        "چه محدودیتی قبل از خرید باید کنترل شود؟"
-      ],
-      "evidence": {
-        "source": "Google Search Console via Windsor.ai",
-        "snapshot": "last_28d_at_2026-09-24",
-        "observed_queries": [
-          {
-            "query": "لوله پلی اتیلن کشاورزی",
-            "clicks": 0.0,
-            "impressions": 4.0,
-            "position": 71.5
-          },
-          {
-            "query": "مته سوراخ کن لوله پلی اتیلن",
-            "clicks": 0.0,
-            "impressions": 2.0,
-            "position": 32.5
-          }
-        ],
-        "aggregate": {
-          "clicks": 0.0,
-          "impressions": 6.0
-        }
-      },
-      "canonical_url": {
-        "status": "REVIEW_REQUIRED",
-        "canonical_url": null,
-        "observed_pages": [
-          {
-            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/polyethylene-pipe/",
-            "clicks": 0.0,
-            "impressions": 4.0
-          },
-          {
-            "url": "https://keshavarz20.com/product-tag/%D9%85%D8%AA%D9%87-%D9%84%D9%88%D9%84%D9%87-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
-            "clicks": 0.0,
-            "impressions": 2.0
-          }
-        ],
-        "top_impression_share": 0.6667,
-        "warning": "Intent is split across multiple landing pages; do not create another page until overlap is resolved."
-      },
-      "conversion_goal": "reach_category_or_selector",
-      "page_creation_policy": "MERGE_OR_REUSE_EXISTING_FIRST; never create one page per query variant.",
-      "status": "REVIEW_REQUIRED"
-    },
-    {
       "canonical_intent_id": "intent:1ee418e5fe039b57",
       "semantic_key": "pe_valve|شیر پروانه ای|انتخاب|۶ اینچ",
       "topic": "pe_valve",
@@ -3359,6 +3274,64 @@
         "observed_pages": [
           {
             "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "clicks": 0.0,
+            "impressions": 4.0
+          }
+        ],
+        "top_impression_share": 1.0
+      },
+      "conversion_goal": "reach_category_or_selector",
+      "page_creation_policy": "MERGE_OR_REUSE_EXISTING_FIRST; never create one page per query variant.",
+      "status": "ACTIVE"
+    },
+    {
+      "canonical_intent_id": "intent:4333112ca0d705e9",
+      "semantic_key": "polyethylene_pipe|لوله پلی اتیلن|انتخاب|",
+      "topic": "polyethylene_pipe",
+      "intent": "انتخاب",
+      "intent_rank": 1,
+      "entities": {
+        "topic": "polyethylene_pipe",
+        "entity_focus": "لوله پلی اتیلن",
+        "size_token": null
+      },
+      "prompts": [
+        {
+          "kind": "observed_search_query",
+          "text": "لوله پلی اتیلن کشاورزی"
+        },
+        {
+          "kind": "derived_ai_prompt",
+          "text": "انتخاب مناسب لوله پلی اتیلن را با شواهد قابل استناد و بدون حدس توضیح بده."
+        }
+      ],
+      "subquestions": [
+        "برای چه سناریویی مناسب است؟",
+        "کدام سایز/نوع باید بررسی شود؟",
+        "چه محدودیتی قبل از خرید باید کنترل شود؟"
+      ],
+      "evidence": {
+        "source": "Google Search Console via Windsor.ai",
+        "snapshot": "last_28d_at_2026-09-24",
+        "observed_queries": [
+          {
+            "query": "لوله پلی اتیلن کشاورزی",
+            "clicks": 0.0,
+            "impressions": 4.0,
+            "position": 71.5
+          }
+        ],
+        "aggregate": {
+          "clicks": 0.0,
+          "impressions": 4.0
+        }
+      },
+      "canonical_url": {
+        "status": "OBSERVED_SINGLE",
+        "canonical_url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/polyethylene-pipe/",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product-category/agricultural-equipment-supplies/irrigation-pipes/polyethylene-pipe/",
             "clicks": 0.0,
             "impressions": 4.0
           }
@@ -3660,6 +3633,81 @@
       "status": "ACTIVE"
     },
     {
+      "canonical_intent_id": "intent:fc0885cd7ed5b7d6",
+      "semantic_key": "pe_valve|شیر پلی اتیلن|انتخاب|",
+      "topic": "pe_valve",
+      "intent": "انتخاب",
+      "intent_rank": 1,
+      "entities": {
+        "topic": "pe_valve",
+        "entity_focus": "شیر پلی اتیلن",
+        "size_token": null
+      },
+      "prompts": [
+        {
+          "kind": "observed_search_query",
+          "text": "شیر دو اینچ پلی اتیلن"
+        },
+        {
+          "kind": "derived_ai_prompt",
+          "text": "انتخاب مناسب شیر پلی اتیلن را با شواهد قابل استناد و بدون حدس توضیح بده."
+        }
+      ],
+      "subquestions": [
+        "برای چه سناریویی مناسب است؟",
+        "کدام سایز/نوع باید بررسی شود؟",
+        "چه محدودیتی قبل از خرید باید کنترل شود؟"
+      ],
+      "evidence": {
+        "source": "Google Search Console via Windsor.ai",
+        "snapshot": "last_28d_at_2026-09-24",
+        "observed_queries": [
+          {
+            "query": "شیر دو اینچ پلی اتیلن",
+            "clicks": 0.0,
+            "impressions": 2.0,
+            "position": 9.5
+          },
+          {
+            "query": "شیر فلکه پلی اتیلن",
+            "clicks": 0.0,
+            "impressions": 1.0,
+            "position": 7.0
+          }
+        ],
+        "aggregate": {
+          "clicks": 0.0,
+          "impressions": 3.0
+        }
+      },
+      "canonical_url": {
+        "status": "REVIEW_REQUIRED",
+        "canonical_url": null,
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
+            "clicks": 0.0,
+            "impressions": 1.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
+            "clicks": 0.0,
+            "impressions": 1.0
+          },
+          {
+            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
+            "clicks": 0.0,
+            "impressions": 1.0
+          }
+        ],
+        "top_impression_share": 0.3333,
+        "warning": "Intent is split across multiple landing pages; do not create another page until overlap is resolved."
+      },
+      "conversion_goal": "reach_category_or_selector",
+      "page_creation_policy": "MERGE_OR_REUSE_EXISTING_FIRST; never create one page per query variant.",
+      "status": "REVIEW_REQUIRED"
+    },
+    {
       "canonical_intent_id": "intent:53b52331e82dccb7",
       "semantic_key": "pe_valve|شیر توپی|خرید|63",
       "topic": "pe_valve",
@@ -3788,70 +3836,6 @@
       "status": "ACTIVE"
     },
     {
-      "canonical_intent_id": "intent:89c14968a02322ac",
-      "semantic_key": "other_irrigation|تجهیزات آبیاری|انتخاب|",
-      "topic": "other_irrigation",
-      "intent": "انتخاب",
-      "intent_rank": 1,
-      "entities": {
-        "topic": "other_irrigation",
-        "entity_focus": "تجهیزات آبیاری",
-        "size_token": null
-      },
-      "prompts": [
-        {
-          "kind": "observed_search_query",
-          "text": "شیر دو اینچ پلی اتیلن"
-        },
-        {
-          "kind": "derived_ai_prompt",
-          "text": "انتخاب مناسب تجهیزات آبیاری را با شواهد قابل استناد و بدون حدس توضیح بده."
-        }
-      ],
-      "subquestions": [
-        "برای چه سناریویی مناسب است؟",
-        "کدام سایز/نوع باید بررسی شود؟",
-        "چه محدودیتی قبل از خرید باید کنترل شود؟"
-      ],
-      "evidence": {
-        "source": "Google Search Console via Windsor.ai",
-        "snapshot": "last_28d_at_2026-09-24",
-        "observed_queries": [
-          {
-            "query": "شیر دو اینچ پلی اتیلن",
-            "clicks": 0.0,
-            "impressions": 2.0,
-            "position": 9.5
-          }
-        ],
-        "aggregate": {
-          "clicks": 0.0,
-          "impressions": 2.0
-        }
-      },
-      "canonical_url": {
-        "status": "REVIEW_REQUIRED",
-        "canonical_url": null,
-        "observed_pages": [
-          {
-            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-%D8%A7%DB%8C%D9%86%DA%86-63-%D9%85/",
-            "clicks": 0.0,
-            "impressions": 1.0
-          },
-          {
-            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1%D8%AA%D9%88%D9%BE%DB%8C-%D8%AA%DA%A9-%D8%B6%D8%B1%D8%A8-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE%D8%A7%D8%B1-2-1-2-%D8%A7%DB%8C%D9%86/",
-            "clicks": 0.0,
-            "impressions": 1.0
-          }
-        ],
-        "top_impression_share": 0.5,
-        "warning": "Intent is split across multiple landing pages; do not create another page until overlap is resolved."
-      },
-      "conversion_goal": "reach_category_or_selector",
-      "page_creation_policy": "MERGE_OR_REUSE_EXISTING_FIRST; never create one page per query variant.",
-      "status": "REVIEW_REQUIRED"
-    },
-    {
       "canonical_intent_id": "intent:b92d2af5e27304a8",
       "semantic_key": "pe_fitting_general|فلنج پلی اتیلن|انتخاب|3 اینچ",
       "topic": "pe_fitting_general",
@@ -3899,6 +3883,64 @@
         "observed_pages": [
           {
             "url": "https://keshavarz20.com/product/%D9%81%D9%84%D9%86%D8%AC-%D8%AF%D9%86%D8%AF%D9%87-%D8%A7%DB%8C-%D8%A2%D9%87%D9%86%DB%8C-3-%D8%A7%DB%8C%D9%86%DA%86/",
+            "clicks": 0.0,
+            "impressions": 2.0
+          }
+        ],
+        "top_impression_share": 1.0
+      },
+      "conversion_goal": "reach_category_or_selector",
+      "page_creation_policy": "MERGE_OR_REUSE_EXISTING_FIRST; never create one page per query variant.",
+      "status": "ACTIVE"
+    },
+    {
+      "canonical_intent_id": "intent:e4ec1d502ef779a8",
+      "semantic_key": "pe_installation_tool|ابزار نصب لوله پلی اتیلن|انتخاب|",
+      "topic": "pe_installation_tool",
+      "intent": "انتخاب",
+      "intent_rank": 1,
+      "entities": {
+        "topic": "pe_installation_tool",
+        "entity_focus": "ابزار نصب لوله پلی اتیلن",
+        "size_token": null
+      },
+      "prompts": [
+        {
+          "kind": "observed_search_query",
+          "text": "مته سوراخ کن لوله پلی اتیلن"
+        },
+        {
+          "kind": "derived_ai_prompt",
+          "text": "انتخاب مناسب ابزار نصب لوله پلی اتیلن را با شواهد قابل استناد و بدون حدس توضیح بده."
+        }
+      ],
+      "subquestions": [
+        "برای چه سناریویی مناسب است؟",
+        "کدام سایز/نوع باید بررسی شود؟",
+        "چه محدودیتی قبل از خرید باید کنترل شود؟"
+      ],
+      "evidence": {
+        "source": "Google Search Console via Windsor.ai",
+        "snapshot": "last_28d_at_2026-09-24",
+        "observed_queries": [
+          {
+            "query": "مته سوراخ کن لوله پلی اتیلن",
+            "clicks": 0.0,
+            "impressions": 2.0,
+            "position": 32.5
+          }
+        ],
+        "aggregate": {
+          "clicks": 0.0,
+          "impressions": 2.0
+        }
+      },
+      "canonical_url": {
+        "status": "OBSERVED_SINGLE",
+        "canonical_url": "https://keshavarz20.com/product-tag/%D9%85%D8%AA%D9%87-%D9%84%D9%88%D9%84%D9%87-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
+        "observed_pages": [
+          {
+            "url": "https://keshavarz20.com/product-tag/%D9%85%D8%AA%D9%87-%D9%84%D9%88%D9%84%D9%87-%D9%BE%D9%84%DB%8C-%D8%A7%D8%AA%DB%8C%D9%84%D9%86/",
             "clicks": 0.0,
             "impressions": 2.0
           }
@@ -4943,64 +4985,6 @@
         "observed_pages": [
           {
             "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D8%A2%D8%A8%D8%A7%D9%81%D8%B1%DB%8C%D9%86-%D8%AF%D8%B3%D8%AA%D9%87-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-1-%D8%A7%DB%8C%D9%86%DA%86-32-%D9%85%DB%8C%D9%84/",
-            "clicks": 0.0,
-            "impressions": 1.0
-          }
-        ],
-        "top_impression_share": 1.0
-      },
-      "conversion_goal": "reach_category_or_selector",
-      "page_creation_policy": "MERGE_OR_REUSE_EXISTING_FIRST; never create one page per query variant.",
-      "status": "ACTIVE"
-    },
-    {
-      "canonical_intent_id": "intent:fc0885cd7ed5b7d6",
-      "semantic_key": "pe_valve|شیر پلی اتیلن|انتخاب|",
-      "topic": "pe_valve",
-      "intent": "انتخاب",
-      "intent_rank": 1,
-      "entities": {
-        "topic": "pe_valve",
-        "entity_focus": "شیر پلی اتیلن",
-        "size_token": null
-      },
-      "prompts": [
-        {
-          "kind": "observed_search_query",
-          "text": "شیر فلکه پلی اتیلن"
-        },
-        {
-          "kind": "derived_ai_prompt",
-          "text": "انتخاب مناسب شیر پلی اتیلن را با شواهد قابل استناد و بدون حدس توضیح بده."
-        }
-      ],
-      "subquestions": [
-        "برای چه سناریویی مناسب است؟",
-        "کدام سایز/نوع باید بررسی شود؟",
-        "چه محدودیتی قبل از خرید باید کنترل شود؟"
-      ],
-      "evidence": {
-        "source": "Google Search Console via Windsor.ai",
-        "snapshot": "last_28d_at_2026-09-24",
-        "observed_queries": [
-          {
-            "query": "شیر فلکه پلی اتیلن",
-            "clicks": 0.0,
-            "impressions": 1.0,
-            "position": 7.0
-          }
-        ],
-        "aggregate": {
-          "clicks": 0.0,
-          "impressions": 1.0
-        }
-      },
-      "canonical_url": {
-        "status": "OBSERVED_SINGLE",
-        "canonical_url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
-        "observed_pages": [
-          {
-            "url": "https://keshavarz20.com/product/%D8%B4%DB%8C%D8%B1-%D9%BE%D8%B1%D9%88%D8%A7%D9%86%D9%87-%D8%A7%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%AF%D8%B3%D8%AA%D9%87-%D9%81%D9%84%D8%B2%DB%8C-%D9%88%DB%8C%D8%B3%D9%BE-2/",
             "clicks": 0.0,
             "impressions": 1.0
           }
