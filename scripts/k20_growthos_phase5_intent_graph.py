@@ -63,6 +63,41 @@ def topic(q):
     return 'other_irrigation'
 
 
+def entity_focus(q, t):
+    n = fa_norm(q)
+    if t == 'drip_tape':
+        return 'شیر نوار تیپ' if 'شیر' in n else 'نوار تیپ'
+    if t == 'layflat_hose':
+        if re.search(r'مه\s*پاش', n): return 'لوله مه پاش'
+        if re.search(r'نخ\s*دار|نخدار', n): return 'لوله نخدار'
+        if re.search(r'لوله\s*بارانی', n): return 'لوله بارانی'
+        return 'لی فلت'
+    if t == 'filtration':
+        if 'هیدروسیکلون' in n: return 'هیدروسیکلون'
+        if 'دیسکی' in n: return 'فیلتر دیسکی'
+        if 'توری' in n: return 'فیلتر توری'
+        return 'فیلتر آبیاری'
+    if t == 'fertigation_tank': return 'تانک کود'
+    if t == 'sprinkler': return 'آبپاش'
+    if t == 'pe_valve':
+        if 'پروانه' in n: return 'شیر پروانه‌ای'
+        if 'توپی' in n: return 'شیر توپی'
+        return 'شیر پلی اتیلن'
+    if t == 'pe_fitting_saddle': return 'کمربند پلی اتیلن'
+    if t == 'pe_fitting_elbow': return 'زانو پلی اتیلن'
+    if t == 'pe_fitting_general':
+        if 'رابط' in n: return 'رابط پلی اتیلن'
+        if re.search(r'فلنج|فلنچ', n): return 'فلنج پلی اتیلن'
+        if re.search(r'سه\s*راه', n): return 'سه راه پلی اتیلن'
+        if 'بوشن' in n: return 'بوشن پلی اتیلن'
+        if 'تبدیل' in n: return 'تبدیل پلی اتیلن'
+        return 'اتصالات پلی اتیلن'
+    if t == 'polyethylene_pipe':
+        if re.search(r'pe\s*80|pe\s*100|sdr', n): return 'گرید و فشار لوله پلی اتیلن'
+        return 'لوله پلی اتیلن'
+    return 'تجهیزات آبیاری'
+
+
 def classify_intent(q):
     n = fa_norm(q)
     if re.search(r'ارسال|هزینه\s*حمل|کرایه', n): return 'ارسال'
@@ -155,13 +190,14 @@ def main():
         if not q:
             continue
         t = topic(q)
+        focus = entity_focus(q, t)
         intent = classify_intent(q)
         sz = size_token(q) or ''
-        semantic_key = f'{t}|{intent}|{fa_norm(sz)}'
+        semantic_key = f'{t}|{fa_norm(focus)}|{intent}|{fa_norm(sz)}'
         groups[semantic_key].append({
             'query': r.get('query'), 'page': clean_url(r.get('page')), 'clicks': float(r.get('clicks') or 0),
             'impressions': float(r.get('impressions') or 0), 'ctr': float(r.get('ctr') or 0), 'position': float(r.get('position') or 0),
-            'topic': t, 'intent': intent, 'size_token': sz or None
+            'topic': t, 'entity_focus': focus, 'intent': intent, 'size_token': sz or None
         })
 
     registry = []
@@ -169,7 +205,7 @@ def main():
     intent_counts = Counter()
     topic_counts = Counter()
     for key, items in groups.items():
-        t = items[0]['topic']; intent = items[0]['intent']; sz = items[0]['size_token']
+        t = items[0]['topic']; focus = items[0]['entity_focus']; intent = items[0]['intent']; sz = items[0]['size_token']
         intent_counts[intent] += 1; topic_counts[t] += 1
         queries = defaultdict(lambda: {'clicks':0.0,'impressions':0.0,'weighted_position_num':0.0})
         page_metrics = defaultdict(lambda: {'clicks':0.0,'impressions':0.0})
@@ -185,7 +221,7 @@ def main():
                             'position': round(m['weighted_position_num']/m['impressions'],4) if m['impressions'] else None})
         decision = canonical_decision(page_metrics)
         if decision['status'] == 'REVIEW_REQUIRED':
-            conflicts.append({'semantic_key':key,'topic':t,'intent':intent,'size_token':sz,'observed_queries':qpacked,'canonical_decision':decision})
+            conflicts.append({'semantic_key':key,'topic':t,'entity_focus':focus,'intent':intent,'size_token':sz,'observed_queries':qpacked,'canonical_decision':decision})
         stable = hashlib.sha1(key.encode('utf-8')).hexdigest()[:16]
         observed = qpacked[0]['query'] if qpacked else key
         total_clicks = sum(x['clicks'] for x in items); total_impressions = sum(x['impressions'] for x in items)
@@ -195,8 +231,8 @@ def main():
             'topic': t,
             'intent': intent,
             'intent_rank': INTENT_ORDER.index(intent) if intent in INTENT_ORDER else 99,
-            'entities': {'topic':t,'size_token':sz},
-            'prompts': prompts(intent, t, observed),
+            'entities': {'topic':t,'entity_focus':focus,'size_token':sz},
+            'prompts': prompts(intent, focus, observed),
             'subquestions': subquestions(intent),
             'evidence': {
                 'source':'Google Search Console via Windsor.ai',
