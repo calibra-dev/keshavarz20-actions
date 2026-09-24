@@ -1,0 +1,86 @@
+{
+  "active_snippets_scanned": 23,
+  "hits": [
+    {
+      "id": 9,
+      "name": "K20 - WooCommerce LCP Images",
+      "priority": 10,
+      "scope": "global",
+      "matched": [
+        "unset"
+      ],
+      "excerpts": [
+        {
+          "line": 79,
+          "text": "                unset( $attr['fetchpriority'] );"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Merchant Return Policy Schema - Keshavarz20",
+      "priority": 10,
+      "scope": "global",
+      "matched": [
+        "woocommerce_structured_data_product",
+        "structured_data_product",
+        "unset"
+      ],
+      "excerpts": [
+        {
+          "line": 37,
+          "text": "add_filter( 'woocommerce_structured_data_product_offer', function ( $offer, $product ) {"
+        },
+        {
+          "line": 84,
+          "text": "        unset( $value );"
+        },
+        {
+          "line": 90,
+          "text": "    unset( $piece );"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Keshavarz20 Shipping Policy Schema",
+      "priority": 10,
+      "scope": "global",
+      "matched": [
+        "woocommerce_structured_data_product",
+        "structured_data_product",
+        "unset"
+      ],
+      "excerpts": [
+        {
+          "line": 174,
+          "text": "    'woocommerce_structured_data_product_offer',"
+        },
+        {
+          "line": 276,
+          "text": "    unset( $piece );"
+        },
+        {
+          "line": 334,
+          "text": "    unset( $value );"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "name": "K20 Seller Organization Entity Link v1",
+      "priority": 10,
+      "scope": "global",
+      "matched": [
+        "woocommerce_structured_data_product",
+        "structured_data_product"
+      ],
+      "excerpts": [
+        {
+          "line": 13,
+          "text": "add_filter( 'woocommerce_structured_data_product_offer', function ( $offer, $product ) {"
+        }
+      ]
+    }
+  ]
+}
