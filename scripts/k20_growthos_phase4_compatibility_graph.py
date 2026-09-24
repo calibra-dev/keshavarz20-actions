@@ -20,6 +20,7 @@ OUTDIR = Path('growthos-phase4-results')
 TRUTH = Path('growthos-phase2-results/product-truth-registry.json')
 OLD_GRAPH = Path('phase3-results/compatibility-graph.json')
 CANONICAL_PIM = Path('phase9-results/canonical-pim.json')
+EXTERNAL_EVIDENCE = Path('growthos-phase4-input/external-evidence-20260924.json')
 NOW = dt.datetime.now(dt.timezone.utc).isoformat()
 
 RELATION_VOCABULARY = {
@@ -423,6 +424,52 @@ def technical_dimensions(p, truth_rec):
     return {k: (v if v else {'status': 'UNKNOWN', 'value': None}) for k, v in dims.items()}
 
 
+def apply_external_evidence(p, family, dims, pack, fill_counts, conflicts):
+    name = p.get('name') or ''
+    source_map = {s.get('id'): s for s in (pack.get('sources') or []) if s.get('id')}
+    for rule in pack.get('rules') or []:
+        allowed = rule.get('family') or []
+        if family not in allowed:
+            continue
+        try:
+            matched = re.search(rule.get('name_regex') or r'$.', name, re.I)
+        except re.error:
+            continue
+        if not matched:
+            continue
+        source_id = rule.get('source_id')
+        source = source_map.get(source_id, {})
+        for field, spec in (rule.get('fields') or {}).items():
+            incoming = {
+                'status': spec.get('status') or ('MANUFACTURER_VERIFIED' if source.get('tier') == 'manufacturer' else 'SECONDARY_VERIFIED'),
+                'value': spec.get('value'),
+                'source': 'external_research_evidence',
+                'evidence': {
+                    'rule_id': rule.get('id'),
+                    'source_id': source_id,
+                    'publisher': source.get('publisher'),
+                    'source_tier': source.get('tier'),
+                    'url': source.get('url'),
+                    'retrieved_at': source.get('retrieved_at')
+                }
+            }
+            current = dims.get(field) or {'status':'UNKNOWN','value':None}
+            if current.get('status') == 'UNKNOWN' or current.get('value') in (None, '', [], {}):
+                dims[field] = incoming
+                fill_counts[incoming['status']] += 1
+            elif str(current.get('value')).strip().lower() != str(incoming.get('value')).strip().lower():
+                conflicts.append({
+                    'product_id': p.get('id'),
+                    'name': name,
+                    'family': family,
+                    'field': field,
+                    'existing': current,
+                    'incoming': incoming,
+                    'resolution': 'kept_existing_value; external evidence retained for review'
+                })
+    return dims
+
+
 def edge_key(e):
     return (str(e.get('source_product_id') or ''), str(e.get('target_product_id') or ''), e.get('relation'), e.get('status'))
 
@@ -430,6 +477,7 @@ def edge_key(e):
 def main():
     truth = load_json(TRUTH, {})
     truth_by_id = {int(r.get('product_id')): r for r in truth.get('records', []) if r.get('product_id')}
+    external = load_json(EXTERNAL_EVIDENCE, {'sources': [], 'rules': []})
     products = paged_products()
     by_id = {int(p['id']): p for p in products}
     by_path = {norm_url(p.get('permalink')): int(p['id']) for p in products if p.get('permalink')}
@@ -440,12 +488,15 @@ def main():
     missing_dim_counts = Counter()
     backlog = []
     edges = []
+    external_fill_counts = Counter()
+    external_conflicts = []
 
     for p in products:
         pid = int(p['id'])
         family = classify_product(p)
         family_counts[family] += 1
         dims = technical_dimensions(p, truth_by_id.get(pid))
+        dims = apply_external_evidence(p, family, dims, external, external_fill_counts, external_conflicts)
         required = RULES.get(family, [])
         in_scope = family != 'excluded_non_irrigation'
         missing = [k for k in required if dims.get(k, {}).get('status') == 'UNKNOWN']
@@ -576,6 +627,10 @@ def main():
         'excluded_non_irrigation_products': sum(1 for n in nodes if n.get('compatibility_scope') == 'excluded'),
         'unmodeled_irrigation_products': sum(1 for n in nodes if n.get('family') == 'unmodeled_irrigation'),
         'missing_dimension_counts': dict(missing_dim_counts),
+        'external_evidence_sources': len(external.get('sources') or []),
+        'external_evidence_rules': len(external.get('rules') or []),
+        'external_fill_counts': dict(external_fill_counts),
+        'external_conflicts': len(external_conflicts),
         'edge_count': len(edges),
         'relation_counts': dict(relation_counts),
         'edge_status_counts': dict(status_counts),
@@ -594,7 +649,8 @@ def main():
         'variant_edges_only_from_direct_structure': True,
         'verification_backlog_generated': True,
         'no_price_or_stock_mutation': True,
-        'hard_fabrications_zero': summary['hard_fabrications'] == 0
+        'hard_fabrications_zero': summary['hard_fabrications'] == 0,
+        'external_evidence_conflicts_preserved_for_review': True
     }
 
     graph = {
@@ -606,6 +662,15 @@ def main():
         'status': 'PASS_RESCOPED_WITH_GOVERNED_EVIDENCE_GAPS',
         'relation_vocabulary': RELATION_VOCABULARY,
         'compatibility_rule_templates': RULES,
+        'external_evidence': {
+            'version': external.get('version'),
+            'researched_at_utc': external.get('researched_at_utc'),
+            'source_count': len(external.get('sources') or []),
+            'rule_count': len(external.get('rules') or []),
+            'fill_counts': dict(external_fill_counts),
+            'conflicts': external_conflicts,
+            'non_applied_family_evidence': external.get('non_applied_family_evidence') or []
+        },
         'policy': {
             'verified_edge_rule': 'fits/worksWith/needs/replaces/avoids/requires require exact source evidence; same size/title/category is never enough.',
             'title_declared_rule': 'Explicit title/spec values are stored as SITE_DECLARED and can satisfy machine-readable data completeness, but they do not by themselves prove manufacturer-grade compatibility.',
@@ -622,6 +687,7 @@ def main():
     (OUTDIR / 'compatibility-summary.json').write_text(json.dumps({
         'ok': graph['ok'], 'phase': 4, 'version': graph['version'], 'generated_at_utc': NOW,
         'status': graph['status'], 'summary': summary, 'acceptance': acceptance,
+        'external_evidence': graph.get('external_evidence'),
         'next_gate': 'Before automatic product-to-product recommendation (Phase 18), fill exact missing dimensions and add exact manufacturer/source evidence for fits/worksWith/needs relations.'
     }, ensure_ascii=False, indent=2), encoding='utf-8')
     backlog.sort(key=lambda x: (0 if x['priority'] == 'HIGH' else 1, x['family'], x['product_id']))
