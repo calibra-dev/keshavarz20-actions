@@ -1,0 +1,32 @@
+{
+  "action": "batch",
+  "request_id": "growthos-p3-brand-taxonomy-etesalgostar-2-20260924",
+  "payload": {
+    "items": [
+      {
+        "action": "rest.proxy",
+        "method": "PUT",
+        "path": "/wc/v3/products/140406",
+        "payload": {
+          "brands": [
+            {
+              "id": 2250
+            }
+          ]
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "PUT",
+        "path": "/wc/v3/products/140407",
+        "payload": {
+          "brands": [
+            {
+              "id": 2250
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
