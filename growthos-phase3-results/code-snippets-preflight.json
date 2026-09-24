@@ -1,0 +1,431 @@
+{
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "snippet",
+    "type": "object",
+    "properties": {
+      "id": {
+        "description": "شناسه منحصر به فرد برای قطعه کد.",
+        "type": "integer",
+        "readonly": true
+      },
+      "name": {
+        "description": "عنوان توضیحی برای قطعه کد.",
+        "type": "string"
+      },
+      "desc": {
+        "description": "متن توضیحی مرتبط با قطعه کد.",
+        "type": "string"
+      },
+      "code": {
+        "description": "کدِ قابل اجرای قطعه کد.",
+        "type": "string"
+      },
+      "tags": {
+        "description": "لیست دسته‌بندی برچسب‌هایی که قطعه کد به آن‌ها تعلق دارد.",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scope": {
+        "description": "زمینه‌ای (Context) که قطعه کد در آن قابل اجرا است.",
+        "type": "string"
+      },
+      "condition_id": {
+        "description": "شناسه‌ی وضعیت مرتبط با این قطعه کد.",
+        "type": "integer"
+      },
+      "active": {
+        "description": "وضعیت فعال‌سازی قطعه کد.",
+        "type": "boolean"
+      },
+      "trashed": {
+        "description": "اینکه آیا اسنیپت به عنوان حذف‌شده علامت‌گذاری شده است یا خیر.",
+        "type": "boolean"
+      },
+      "locked": {
+        "description": "اینکه آیا اسنیپت در برابر تغییر یا حذف قفل شده است یا خیر.",
+        "type": "boolean"
+      },
+      "priority": {
+        "description": "اولویت نسبی که قطعه کد در آن اجرا می‌شود.",
+        "type": "integer"
+      },
+      "network": {
+        "description": "آیا قطعه کد مربوط به کل شبکه است یا فقط مخصوص سایت.",
+        "type": [
+          "boolean",
+          "null"
+        ],
+        "default": null
+      },
+      "shared_network": {
+        "description": "اگر یک قطعه کد شبکه است، آیا می‌تواند به جای اجرا در کل شبکه، در سایت‌های مجزا فعال شود.",
+        "type": [
+          "boolean",
+          "null"
+        ]
+      },
+      "modified": {
+        "description": "تاریخ و زمان آخرین تغییر قطعه کد، در فرمت ISO.",
+        "type": "string",
+        "format": "date-time",
+        "readonly": true
+      },
+      "last_active": {
+        "description": "برچسب زمانی آخرین باری که اسنیپت فعال بوده است، در صورت وجود.",
+        "type": "integer",
+        "readonly": true
+      },
+      "code_error": {
+        "description": "پیام خطا در صورتی که کد قطعه کد قابل تجزیه نباشد.",
+        "type": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "type": [
+            "string",
+            "integer"
+          ]
+        },
+        "readonly": true
+      },
+      "code_error_trace": {
+        "description": "ردپای پشته برای تازه‌ترین خطای کد اسنیپت.",
+        "type": [
+          "string",
+          "null"
+        ],
+        "readonly": true
+      }
+    }
+  },
+  "matching_snippets": [
+    {
+      "id": 1,
+      "name": "تبدیل نام فایل‌های آپلودی به حروف کوچک",
+      "active": false,
+      "scope": "global",
+      "priority": 10,
+      "tags": [
+        "sample",
+        "media"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "غیرفعال‌سازی نوار مدیریت",
+      "active": false,
+      "scope": "front-end",
+      "priority": 10,
+      "tags": [
+        "sample",
+        "admin-bar"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "اجازه دادن به شکلک‌ها",
+      "active": false,
+      "scope": "global",
+      "priority": 10,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "سال جاری",
+      "active": false,
+      "scope": "content",
+      "priority": 10,
+      "tags": [
+        "sample",
+        "dates"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "K20 - Professional Product Sorting",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "tags": []
+    },
+    {
+      "id": 6,
+      "name": "K20 - WooCommerce LiteSpeed Cache Test",
+      "active": false,
+      "scope": "global",
+      "priority": 10,
+      "tags": []
+    },
+    {
+      "id": 7,
+      "name": "K20 - Find DONOTCACHEPAGE Source",
+      "active": false,
+      "scope": "global",
+      "priority": 10,
+      "tags": []
+    },
+    {
+      "id": 8,
+      "name": "K20 - LiteSpeed Shop Public Cache",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "tags": []
+    },
+    {
+      "id": 9,
+      "name": "K20 - WooCommerce LCP Images",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "tags": []
+    },
+    {
+      "id": 10,
+      "name": "بهینه‌سازی تصویر اصلی محصول برای LCP",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "tags": []
+    },
+    {
+      "id": 11,
+      "name": "اصلاح Accessibility امتیاز محصول",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "tags": []
+    },
+    {
+      "id": 12,
+      "name": "اصلاح دسترس‌پذیری جستجوی کشور Digits",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "tags": []
+    },
+    {
+      "id": 13,
+      "name": "Merchant Return Policy Schema - Keshavarz20",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "tags": []
+    },
+    {
+      "id": 14,
+      "name": "Keshavarz20 Shipping Policy Schema",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "tags": []
+    },
+    {
+      "id": 15,
+      "name": "Keshavarz20 Real Product Reviews Schema",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "tags": []
+    },
+    {
+      "id": 16,
+      "name": "Keshavarz20 Organization Address Schema",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "tags": []
+    },
+    {
+      "id": 17,
+      "name": "Keshavarz20 TEMP Schema QA 2026-09-05",
+      "active": false,
+      "scope": "global",
+      "priority": 10,
+      "tags": []
+    },
+    {
+      "id": 18,
+      "name": "کشاورز بیست - نرمال‌سازی فروشنده عمومی",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "tags": [
+        "woocommerce",
+        "seller",
+        "کشاورز بیست"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "کشاورز بیست - تست موقت فروشنده",
+      "active": false,
+      "scope": "global",
+      "priority": 10,
+      "tags": [
+        "qa",
+        "temporary"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "کشاورز بیست — همراه بوت‌استرپ IndexNow 1.0.0",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "tags": [
+        "indexnow",
+        "operations",
+        "one-shot"
+      ]
+    },
+    {
+      "id": 21,
+      "name": "K20 K21 Crawl Hygiene Guard v1",
+      "active": true,
+      "scope": "global",
+      "priority": 20,
+      "tags": [
+        "k21",
+        "seo",
+        "crawl",
+        "sitemap"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "K20 Irrigation Tools UI Runtime v1",
+      "active": true,
+      "scope": "global",
+      "priority": 20,
+      "tags": [
+        "k21",
+        "irrigation",
+        "calculator",
+        "ui"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "K20 K21 Money Page Decision Tools v1",
+      "active": true,
+      "scope": "global",
+      "priority": 20,
+      "tags": [
+        "k21",
+        "money-page",
+        "internal-linking",
+        "irrigation"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "K20 K21 Top-30 Product Decision Layer v1",
+      "active": true,
+      "scope": "global",
+      "priority": 20,
+      "tags": [
+        "k21",
+        "cro",
+        "review",
+        "product-data",
+        "gsc"
+      ]
+    },
+    {
+      "id": 25,
+      "name": "K20 K21 Verified Review Capture v1",
+      "active": true,
+      "scope": "global",
+      "priority": 20,
+      "tags": [
+        "k21",
+        "reviews",
+        "woocommerce",
+        "ugc"
+      ]
+    },
+    {
+      "id": 26,
+      "name": "K20 K21 Drip Tape Smart Basket v1",
+      "active": true,
+      "scope": "global",
+      "priority": 30,
+      "tags": [
+        "k21",
+        "calculator",
+        "basket",
+        "woocommerce"
+      ]
+    },
+    {
+      "id": 27,
+      "name": "K20 K21 Price Inquiry Fallback v1",
+      "active": true,
+      "scope": "global",
+      "priority": 20,
+      "tags": [
+        "k21",
+        "woocommerce",
+        "price",
+        "cro"
+      ]
+    },
+    {
+      "id": 28,
+      "name": "K20 K21 Pipe Size Selector Runtime v1",
+      "active": true,
+      "scope": "global",
+      "priority": 20,
+      "tags": [
+        "k21",
+        "irrigation",
+        "calculator",
+        "pipe-size"
+      ]
+    },
+    {
+      "id": 29,
+      "name": "K20 K21 Pipe Selector Category Links v1",
+      "active": true,
+      "scope": "global",
+      "priority": 20,
+      "tags": [
+        "k21",
+        "category",
+        "pipe-size"
+      ]
+    },
+    {
+      "id": 30,
+      "name": "K20 K21 Pipe Basket Proforma v1",
+      "active": true,
+      "scope": "global",
+      "priority": 20,
+      "tags": [
+        "k21",
+        "irrigation",
+        "basket",
+        "proforma"
+      ]
+    },
+    {
+      "id": 31,
+      "name": "K20 Seller Organization Entity Link v1",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "tags": [
+        "k20",
+        "schema",
+        "p0-c"
+      ]
+    }
+  ]
+}
