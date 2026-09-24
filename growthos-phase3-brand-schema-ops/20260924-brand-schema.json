@@ -1,0 +1,8 @@
+{
+  "phase": 3,
+  "action": "request_guarded_wpcode_brand_schema_snippet",
+  "reason": "Bridge v3.2 intentionally blocks arbitrary PHP; fallback is limited to the missing schema hook only.",
+  "scope": "product_brand -> Product JSON-LD brand only",
+  "no_price_write": true,
+  "no_stock_write": true
+}
