@@ -41,7 +41,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f growthos-phase4-results/compatibility-knowledge-graph.json growthos-phase4-results/compatibility-summary.json growthos-phase4-results/verification-backlog.json
+          git add -f growthos-phase4-results/compatibility-knowledge-graph.json growthos-phase4-results/compatibility-summary.json growthos-phase4-results/verification-backlog.json growthos-phase4-results/source-bound-acquisition-manifest.json growthos-phase4-results/catalog-quality-flags.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "growthos phase4: record compatibility knowledge graph"
           for attempt in 1 2 3 4 5; do
