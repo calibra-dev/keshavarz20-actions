@@ -1,0 +1,121 @@
+{
+  "program": "Keshavarz20 AI Growth OS",
+  "scope": "phases 1, 2, 3",
+  "finalized_at_utc": "2026-09-24T05:55:02Z",
+  "execution_path": "ChatGPT -> GitHub -> calibra-dev/keshavarz20-actions -> Keshavarz20 Bridge v3.2.1 -> WordPress/WooCommerce",
+  "wpvibe_site_writes_used": false,
+  "phase1": {
+    "status": "PASS",
+    "evidence": "growthos-phase1-results/technical-retrieval-index-control-summary.json",
+    "public_urls_discovered": 856,
+    "http_200": 856,
+    "crawlable": 856,
+    "self_canonical": 856,
+    "noindex": 0,
+    "soft_404_suspected": 0,
+    "money_pages_pass": "42/42",
+    "top30_pass": "30/30",
+    "p0": 0,
+    "p1": 0,
+    "bot_access": {
+      "googlebot": true,
+      "bingbot": true,
+      "oai_searchbot": true
+    }
+  },
+  "phase2": {
+    "status": "PASS_WITH_1_SOURCE_CONFIRMATION_BLOCKER",
+    "evidence": "growthos-phase2-results/product-truth-summary.json",
+    "published_products": 652,
+    "records_created": 652,
+    "record_coverage_percent": 100,
+    "hard_fabrications": 0,
+    "price_fields_exposed": 0,
+    "discount_fields_exposed": 0,
+    "customer_or_order_fields_exposed": 0,
+    "acceptance": {
+      "one_truth_record_per_published_product": true,
+      "required_fields_present_in_every_record": true,
+      "unknowns_explicit_not_guessed": true,
+      "gtin_mpn_not_inferred": true,
+      "source_status_attached": true,
+      "no_price_discount_customer_order_data": true
+    },
+    "remaining_source_blocker": {
+      "issue": "duplicate_sku",
+      "sku": "430000300-2",
+      "product_ids": [
+        140654,
+        140655
+      ],
+      "reason": "No authoritative source established which product should receive a different manufacturer SKU. No guess or mutation was made.",
+      "evidence": "growthos-phase2-results/duplicate-sku-blocker-20260924.json"
+    }
+  },
+  "phase3": {
+    "status": "PASS",
+    "evidence": "growthos-phase3-results/html-schema-feed-parity-summary.json",
+    "source_version": "growthos-html-schema-feed-parity-v2.1",
+    "published_products": 652,
+    "audited_products": 652,
+    "eligible_for_offer_schema": 562,
+    "non_purchasable_or_price_empty": 90,
+    "pass": 652,
+    "fail": 0,
+    "eligible_product_schema_missing": 0,
+    "eligible_offer_schema_missing": 0,
+    "eligible_sku_mismatch": 0,
+    "eligible_brand_mismatch_when_truth_known": 0,
+    "eligible_price_parity_fail": 0,
+    "eligible_availability_parity_fail": 0,
+    "breadcrumb_missing": 0,
+    "organization_missing": 0,
+    "unbacked_aggregate_rating": 0,
+    "variable_grouping_fail": 0,
+    "yoast_version": "28.5",
+    "policy_note": "The 90 price-empty/non-purchasable products are intentionally not forced to emit fabricated Product/Offer requirements.",
+    "changes": {
+      "bridge_upgrade": {
+        "from": "3.2.0",
+        "to": "3.2.1",
+        "reason": "Allow guarded /wp/v2/product/{id} taxonomy writes through rest.proxy."
+      },
+      "product_brand_repairs": [
+        {
+          "product_id": 135383,
+          "brand_term_id": 660,
+          "brand": "آب لوله بسپار (Ablooleh baspar)"
+        },
+        {
+          "product_id": 139231,
+          "brand_term_id": 658,
+          "brand": "پلی رود اتصال( Poliroodetesal)"
+        },
+        {
+          "product_id": 139232,
+          "brand_term_id": 658,
+          "brand": "پلی رود اتصال( Poliroodetesal)"
+        },
+        {
+          "product_id": 140406,
+          "brand_term_id": 2250,
+          "brand": "اتصال گستر"
+        },
+        {
+          "product_id": 140407,
+          "brand_term_id": 2250,
+          "brand": "اتصال گستر"
+        }
+      ],
+      "created_brand_term": {
+        "id": 2250,
+        "name": "اتصال گستر"
+      },
+      "cache_purged_after_brand_fix": true,
+      "targeted_live_schema_readback": true,
+      "no_full_crawl_repeated_for_final_brand_false_positive_reclassification": true
+    }
+  },
+  "overall_status": "EXECUTED_COMPLETE_WITH_ONE_EXTERNAL_SOURCE_DATA_BLOCKER",
+  "next_action": "Obtain an authoritative Vispar manufacturer/SKU source for products 140654 and 140655 before changing duplicate SKU 430000300-2. No other Phase 1-3 execution action is pending."
+}
