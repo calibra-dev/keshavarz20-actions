@@ -31,6 +31,11 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install requests beautifulsoup4
+      - name: Sync latest main before build
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin main
       - name: Validate
         run: python -m py_compile scripts/k20_growthos_phase4_compatibility_graph.py
       - name: Build Phase 4 evidence graph
