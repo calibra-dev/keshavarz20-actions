@@ -2,7 +2,7 @@
   "ok": true,
   "phase": 4,
   "version": "growthos-compatibility-knowledge-graph-v2",
-  "generated_at_utc": "2026-09-24T07:19:45.389481+00:00",
+  "generated_at_utc": "2026-09-24T07:27:15.245068+00:00",
   "execution_mode": "read-only-evidence-graph",
   "status": "PASS_RESCOPED_WITH_GOVERNED_EVIDENCE_GAPS",
   "relation_vocabulary": {
@@ -101,11 +101,81 @@
     "source_count": 11,
     "rule_count": 11,
     "fill_counts": {
-      "SECONDARY_VERIFIED": 35,
+      "SECONDARY_VERIFIED": 24,
       "MANUFACTURER_VERIFIED": 22
     },
     "conflicts": [
       {
+        "product_id": 140690,
+        "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۳/۴ اینچ (۲۵ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140689,
+        "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱/۲ اینچ (۲۰ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
         "product_id": 140661,
         "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۴ اینچ (۱۱۰ میلی‌متر)",
         "family": "valve",
@@ -144,6 +214,41 @@
           "source": "woocommerce_attribute",
           "evidence": {
             "attribute": "نوع اتصال"
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140660,
+        "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۳ اینچ (۹۰ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "incoming": {
@@ -256,6 +361,111 @@
           "source": "woocommerce_attribute",
           "evidence": {
             "attribute": "نوع اتصال"
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140655,
+        "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱ و ۱/۴ اینچ (۴۰ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140654,
+        "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۳/۴ اینچ (۲۵ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140653,
+        "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱/۲ اینچ (۲۰ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "incoming": {
@@ -685,6 +895,41 @@
         "resolution": "kept_existing_value; external evidence retained for review"
       },
       {
+        "product_id": 135351,
+        "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۲ و ۱/۲ اینچ (۷۵ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
         "product_id": 135349,
         "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۲ اینچ (۶۳ میلی‌متر)",
         "family": "valve",
@@ -723,6 +968,76 @@
           "source": "woocommerce_attribute",
           "evidence": {
             "attribute": "نوع اتصال"
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135347,
+        "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱ و ۱/۲ اینچ (۵۰ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135345,
+        "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱ اینچ (۳۲ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "incoming": {
@@ -893,6 +1208,111 @@
           "source": "woocommerce_attribute",
           "evidence": {
             "attribute": "نوع اتصال"
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135329,
+        "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۲ اینچ (۶۳ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135327,
+        "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ و ۱/۲ اینچ (۵۰ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135325,
+        "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ و ۱/۴ اینچ (۴۰ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "incoming": {
@@ -1110,8 +1530,7 @@
     "nodes": 652,
     "node_coverage_percent": 100.0,
     "family_counts": {
-      "unmodeled_irrigation": 4,
-      "layflat_rain": 16,
+      "layflat_rain": 18,
       "excluded_non_irrigation": 262,
       "fitting": 226,
       "washer_clamp": 28,
@@ -1125,46 +1544,47 @@
       "installation_tool": 7,
       "emitter": 8,
       "riser": 8,
-      "drip_tape_component": 3
+      "drip_tape_component": 3,
+      "unmodeled_irrigation": 2
     },
-    "exact_dimension_ready_by_family": {
-      "fitting": 130,
-      "washer_clamp": 22,
-      "layflat_rain": 11,
+    "data_dimension_ready_by_family": {
+      "fitting": 196,
+      "washer_clamp": 26,
+      "layflat_rain": 12,
       "filter": 1,
       "pipe": 8,
       "valve": 22,
-      "installation_tool": 4,
+      "installation_tool": 7,
+      "emitter": 1,
       "drip_tape_component": 2,
       "riser": 6
     },
-    "products_data_dimension_ready": 206,
+    "products_data_dimension_ready": 281,
     "products_exact_dimension_ready": 22,
-    "products_with_required_dimension_gaps": 180,
+    "products_with_required_dimension_gaps": 107,
     "excluded_non_irrigation_products": 262,
-    "unmodeled_irrigation_products": 4,
+    "unmodeled_irrigation_products": 2,
     "missing_dimension_counts": {
+      "pressure_class": 33,
+      "material": 35,
       "length": 5,
-      "pressure_class": 32,
-      "material": 78,
-      "connection_type": 101,
-      "nominal_size": 39,
+      "connection_type": 58,
+      "nominal_size": 33,
       "connection_size": 3,
       "head": 3,
       "power": 8,
       "filtration_requirement": 4,
       "flow_rate": 10,
       "pressure_requirement": 3,
-      "filtration_grade": 5,
-      "tool_size": 3
+      "filtration_grade": 5
     },
     "external_evidence_sources": 11,
     "external_evidence_rules": 11,
     "external_fill_counts": {
-      "SECONDARY_VERIFIED": 35,
+      "SECONDARY_VERIFIED": 24,
       "MANUFACTURER_VERIFIED": 22
     },
-    "external_conflicts": 34,
+    "external_conflicts": 46,
     "edge_count": 2028,
     "relation_counts": {
       "explicitReference": 2005,
@@ -1198,7 +1618,7 @@
       "stable_id": "wp-product:144249",
       "name": "لوله مه پاش بارانی موج 2 اینچ 100 متری",
       "permalink": "https://keshavarz20.com/product/moj-rain-misting-hose-2-inch-100m/",
-      "family": "unmodeled_irrigation",
+      "family": "layflat_rain",
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
@@ -1286,8 +1706,16 @@
           "value": null
         }
       },
-      "required_dimensions": [],
-      "missing_required_dimensions": [],
+      "required_dimensions": [
+        "nominal_size",
+        "length",
+        "pressure_class",
+        "material"
+      ],
+      "missing_required_dimensions": [
+        "pressure_class",
+        "material"
+      ],
       "compatibility_scope": "in_scope",
       "data_dimension_ready": false,
       "exact_compatibility_dimension_ready": false,
@@ -18248,8 +18676,13 @@
           "value": null
         },
         "tool_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "100",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "tool_size",
+            "title": "سینی نشاء 112 حفره (لبه دار-پانچ شده) بسته 100 عددی"
+          }
         },
         "component_type": {
           "status": "SITE_DECLARED",
@@ -27138,16 +27571,18 @@
           }
         },
         "connection_type": {
-          "status": "SECONDARY_VERIFIED",
-          "value": "threaded",
-          "source": "external_research_evidence",
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
           "evidence": {
-            "rule_id": "vispar-ball-thread-secondary",
-            "source_id": "vispar-ball-secondary",
-            "publisher": "Mirab Sazeh",
-            "source_tier": "secondary",
-            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
-            "retrieved_at": "2026-09-24"
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "material": {
@@ -27257,16 +27692,18 @@
           }
         },
         "connection_type": {
-          "status": "SECONDARY_VERIFIED",
-          "value": "threaded",
-          "source": "external_research_evidence",
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
           "evidence": {
-            "rule_id": "vispar-ball-thread-secondary",
-            "source_id": "vispar-ball-secondary",
-            "publisher": "Mirab Sazeh",
-            "source_tier": "secondary",
-            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
-            "retrieved_at": "2026-09-24"
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "material": {
@@ -27856,16 +28293,18 @@
           }
         },
         "connection_type": {
-          "status": "SECONDARY_VERIFIED",
-          "value": "threaded",
-          "source": "external_research_evidence",
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
           "evidence": {
-            "rule_id": "vispar-ball-thread-secondary",
-            "source_id": "vispar-ball-secondary",
-            "publisher": "Mirab Sazeh",
-            "source_tier": "secondary",
-            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
-            "retrieved_at": "2026-09-24"
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "material": {
@@ -28193,21 +28632,34 @@
           }
         },
         "connection_type": {
-          "status": "SECONDARY_VERIFIED",
-          "value": "threaded",
-          "source": "external_research_evidence",
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
           "evidence": {
-            "rule_id": "vispar-ball-thread-secondary",
-            "source_id": "vispar-ball-secondary",
-            "publisher": "Mirab Sazeh",
-            "source_tier": "secondary",
-            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
-            "retrieved_at": "2026-09-24"
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "MANUFACTURER_VERIFIED",
@@ -28307,21 +28759,34 @@
           }
         },
         "connection_type": {
-          "status": "SECONDARY_VERIFIED",
-          "value": "threaded",
-          "source": "external_research_evidence",
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
           "evidence": {
-            "rule_id": "vispar-ball-thread-secondary",
-            "source_id": "vispar-ball-secondary",
-            "publisher": "Mirab Sazeh",
-            "source_tier": "secondary",
-            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
-            "retrieved_at": "2026-09-24"
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "MANUFACTURER_VERIFIED",
@@ -28421,21 +28886,34 @@
           }
         },
         "connection_type": {
-          "status": "SECONDARY_VERIFIED",
-          "value": "threaded",
-          "source": "external_research_evidence",
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
           "evidence": {
-            "rule_id": "vispar-ball-thread-secondary",
-            "source_id": "vispar-ball-secondary",
-            "publisher": "Mirab Sazeh",
-            "source_tier": "secondary",
-            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
-            "retrieved_at": "2026-09-24"
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "MANUFACTURER_VERIFIED",
@@ -28545,8 +29023,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصال یکسر نر پلی اتیلن",
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سایر اتصالات پلی اتیلن پیچی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -28607,11 +29096,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -28650,8 +29137,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصال یکسر ماده پلی اتیلن",
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سایر اتصالات پلی اتیلن پیچی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -28712,11 +29210,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -31268,8 +31764,18 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "کمربند انشعاب پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -31347,11 +31853,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -33731,8 +34235,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سه راه انشعاب پلی اتیلن",
+              "سه راه پیچی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -33802,11 +34317,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -33837,8 +34350,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سه راه انشعاب پلی اتیلن",
+              "سه راه پیچی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -33908,11 +34432,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -36813,12 +37335,34 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -36882,12 +37426,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -36924,12 +37465,34 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -36993,12 +37556,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -37035,12 +37595,34 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -37104,12 +37686,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -37232,8 +37811,13 @@
           "value": null
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "press_fit",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "connection_type",
+            "title": "دریپر ۸ لیتری پرسی زلال رود"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -37305,11 +37889,9 @@
         "flow_rate",
         "connection_type"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -39439,12 +40021,34 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط تبدیل پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط تبدیل پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -39505,12 +40109,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -40464,8 +41065,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصال یکسر نر پلی اتیلن",
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سایر اتصالات پلی اتیلن پیچی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -40526,11 +41138,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -40569,8 +41179,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصال یکسر نر پلی اتیلن",
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سایر اتصالات پلی اتیلن پیچی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -40631,11 +41252,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -40674,8 +41293,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصال یکسر نر پلی اتیلن",
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سایر اتصالات پلی اتیلن پیچی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -40736,11 +41366,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -40779,8 +41407,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصال یکسر نر پلی اتیلن",
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سایر اتصالات پلی اتیلن پیچی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -40841,11 +41480,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -40884,8 +41521,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصال یکسر نر پلی اتیلن",
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سایر اتصالات پلی اتیلن پیچی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -40946,11 +41594,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -40989,8 +41635,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصال یکسر ماده پلی اتیلن",
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سایر اتصالات پلی اتیلن پیچی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -41051,11 +41708,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -41084,8 +41739,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصال یکسر ماده پلی اتیلن",
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سایر اتصالات پلی اتیلن پیچی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -41142,8 +41808,7 @@
         "material"
       ],
       "missing_required_dimensions": [
-        "nominal_size",
-        "material"
+        "nominal_size"
       ],
       "compatibility_scope": "in_scope",
       "data_dimension_ready": false,
@@ -41185,8 +41850,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصال یکسر ماده پلی اتیلن",
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سایر اتصالات پلی اتیلن پیچی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -41247,11 +41923,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -41280,8 +41954,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصال یکسر ماده پلی اتیلن",
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سایر اتصالات پلی اتیلن پیچی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -41338,8 +42023,7 @@
         "material"
       ],
       "missing_required_dimensions": [
-        "nominal_size",
-        "material"
+        "nominal_size"
       ],
       "compatibility_scope": "in_scope",
       "data_dimension_ready": false,
@@ -41373,8 +42057,17 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "کمربند انشعاب پلی اتیلن"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -41444,11 +42137,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -41479,8 +42170,17 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "کمربند انشعاب پلی اتیلن"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -41550,11 +42250,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -41585,8 +42283,17 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "کمربند انشعاب پلی اتیلن"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -41656,11 +42363,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -41697,8 +42402,18 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر پروانه‌ای پلیمری",
+              "شیرآلات پلی اتیلن"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -41799,8 +42514,18 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر پروانه‌ای پلیمری",
+              "شیرآلات پلی اتیلن"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -44197,12 +44922,22 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "8 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "واشر فلنج سوراخدار 8\" اینچ"
+          }
         },
         "connection_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "8 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "واشر فلنج سوراخدار 8\" اینچ"
+          }
         },
         "connection_type": {
           "status": "SITE_DECLARED",
@@ -44251,8 +44986,13 @@
           "value": null
         },
         "tool_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "8 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "واشر فلنج سوراخدار 8\" اینچ"
+          }
         },
         "component_type": {
           "status": "SITE_DECLARED",
@@ -44276,11 +45016,9 @@
         "nominal_size",
         "component_type"
       ],
-      "missing_required_dimensions": [
-        "nominal_size"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -44289,7 +45027,7 @@
       "stable_id": "wp-product:140014",
       "name": "لوله بارانی مه‌پاش ۲ اینچ آسایش آذربایجان ۱۰۰ متری",
       "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d9%84%d9%87-%d8%a8%d8%a7%d8%b1%d8%a7%d9%86%db%8c-%d9%85%d9%87-%d9%be%d8%a7%d8%b4-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%db%b1%db%b0%db%b0/",
-      "family": "unmodeled_irrigation",
+      "family": "layflat_rain",
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
@@ -44317,8 +45055,17 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SECONDARY_VERIFIED",
+          "value": "reinforced polyethylene",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "asayesh-rainhose-material",
+            "source_id": "asayesh-rain-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B1%DB%8C%D9%86-%D9%BE%D8%A7%DB%8C%D9%BE-%D9%84%D9%88%D9%84%D9%87-%D8%A8%D8%A7%D8%B1%D8%A7%D9%86%DB%8C-1-5-%D8%A7%DB%8C%D9%86%DA%86/",
+            "retrieved_at": "2026-09-24"
+          }
         },
         "pressure_class": {
           "status": "VERIFIED",
@@ -44385,10 +45132,15 @@
           "value": null
         }
       },
-      "required_dimensions": [],
+      "required_dimensions": [
+        "nominal_size",
+        "length",
+        "pressure_class",
+        "material"
+      ],
       "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -45236,8 +45988,16 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "اتصالات پلی اتیلن جوشی",
+              "تجهیزات و لوازم کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "SITE_DECLARED",
@@ -45308,11 +46068,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -45352,8 +46110,16 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "اتصالات پلی اتیلن جوشی",
+              "تجهیزات و لوازم کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "SITE_DECLARED",
@@ -45424,11 +46190,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -45468,8 +46232,16 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "اتصالات پلی اتیلن جوشی",
+              "تجهیزات و لوازم کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "SITE_DECLARED",
@@ -45540,11 +46312,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -45590,8 +46360,16 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "اتصالات پلی اتیلن جوشی",
+              "تجهیزات و لوازم کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "SITE_DECLARED",
@@ -45665,11 +46443,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -45933,8 +46709,16 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "اتصالات پلی اتیلن جوشی",
+              "تجهیزات و لوازم کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "SITE_DECLARED",
@@ -46008,11 +46792,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -47166,12 +47948,34 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط تبدیل پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط تبدیل پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -47232,12 +48036,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -47268,12 +48069,34 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط تبدیل پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط تبدیل پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -47334,12 +48157,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -47370,8 +48190,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط تبدیل پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -47441,11 +48272,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -47709,8 +48538,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "زانو پلی اتیلن پیچی",
+              "زانو پیچی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -47783,11 +48623,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -47824,8 +48662,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "زانو پلی اتیلن پیچی",
+              "زانو پیچی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -47898,11 +48747,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -47939,8 +48786,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "زانو پلی اتیلن پیچی",
+              "زانو پیچی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -48013,11 +48871,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -48054,8 +48910,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "زانو پلی اتیلن پیچی",
+              "زانو پیچی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -48128,11 +48995,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -48169,8 +49034,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "زانو پلی اتیلن پیچی",
+              "زانو پیچی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -48243,11 +49119,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -48284,8 +49158,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "زانو پلی اتیلن پیچی",
+              "زانو پیچی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -48358,11 +49243,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -48399,8 +49282,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سه راه انشعاب پلی اتیلن",
+              "سه راه پیچی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -48473,11 +49367,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -48514,8 +49406,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سه راه انشعاب پلی اتیلن",
+              "سه راه پیچی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -48588,11 +49491,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -48629,8 +49530,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سه راه انشعاب پلی اتیلن",
+              "سه راه پیچی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -48703,11 +49615,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -48744,8 +49654,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سه راه انشعاب پلی اتیلن",
+              "سه راه پیچی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -48818,11 +49739,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -48859,8 +49778,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سه راه انشعاب پلی اتیلن",
+              "سه راه پیچی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -48933,11 +49863,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -48974,8 +49902,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سه راه انشعاب پلی اتیلن",
+              "سه راه پیچی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -49048,11 +49987,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -50919,8 +51856,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -51643,8 +52591,16 @@
           "value": null
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "آچار اتصالات پلی اتیلن",
+              "تجهیزات و لوازم کشاورزی",
+              "لوازم جانبی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -51679,8 +52635,13 @@
           "value": null
         },
         "tool_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "125-50",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "tool_size",
+            "title": "آچار اتصالات (125-50)"
+          }
         },
         "component_type": {
           "status": "SITE_DECLARED",
@@ -51703,11 +52664,9 @@
       "required_dimensions": [
         "tool_size"
       ],
-      "missing_required_dimensions": [
-        "tool_size"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -51732,8 +52691,16 @@
           "value": null
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "آچار اتصالات پلی اتیلن",
+              "تجهیزات و لوازم کشاورزی",
+              "لوازم جانبی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -51768,8 +52735,13 @@
           "value": null
         },
         "tool_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "50-20",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "tool_size",
+            "title": "آچار اتصالات (50-20)"
+          }
         },
         "component_type": {
           "status": "SITE_DECLARED",
@@ -51792,11 +52764,9 @@
       "required_dimensions": [
         "tool_size"
       ],
-      "missing_required_dimensions": [
-        "tool_size"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -51821,8 +52791,16 @@
           "value": null
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "آچار اتصالات پلی اتیلن",
+              "تجهیزات و لوازم کشاورزی",
+              "لوازم جانبی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -51857,8 +52835,13 @@
           "value": null
         },
         "tool_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "16",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "tool_size",
+            "title": "پانچر لی فلت 16"
+          }
         },
         "component_type": {
           "status": "SITE_DECLARED",
@@ -51881,11 +52864,9 @@
       "required_dimensions": [
         "tool_size"
       ],
-      "missing_required_dimensions": [
-        "tool_size"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -51920,8 +52901,16 @@
           "value": null
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "آچار اتصالات پلی اتیلن",
+              "تجهیزات و لوازم کشاورزی",
+              "لوازم جانبی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -52022,8 +53011,16 @@
           "value": null
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "آچار اتصالات پلی اتیلن",
+              "تجهیزات و لوازم کشاورزی",
+              "لوازم جانبی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -52747,12 +53744,22 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "100 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "سه راه انشعاب \"100x2/5x2"
+          }
         },
         "connection_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "100 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "سه راه انشعاب \"100x2/5x2"
+          }
         },
         "connection_type": {
           "status": "UNKNOWN",
@@ -52795,8 +53802,13 @@
           "value": null
         },
         "tool_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "100 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "سه راه انشعاب \"100x2/5x2"
+          }
         },
         "component_type": {
           "status": "UNKNOWN",
@@ -52817,7 +53829,6 @@
         "material"
       ],
       "missing_required_dimensions": [
-        "nominal_size",
         "connection_type",
         "material"
       ],
@@ -52835,12 +53846,22 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "100 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "چهار راه انشعاب \"100x2/5x2"
+          }
         },
         "connection_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "100 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "چهار راه انشعاب \"100x2/5x2"
+          }
         },
         "connection_type": {
           "status": "UNKNOWN",
@@ -52883,8 +53904,13 @@
           "value": null
         },
         "tool_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "100 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "چهار راه انشعاب \"100x2/5x2"
+          }
         },
         "component_type": {
           "status": "UNKNOWN",
@@ -54742,12 +55768,34 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط تبدیل پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط تبدیل پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -54808,12 +55856,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -54844,12 +55889,34 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط تبدیل پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط تبدیل پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -54910,12 +55977,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -54952,12 +56016,34 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -55021,12 +56107,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -55063,12 +56146,34 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -55132,12 +56237,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -55174,12 +56276,34 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -55243,12 +56367,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -55713,12 +56834,22 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "4 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "واشر سوراخدار \"4"
+          }
         },
         "connection_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "4 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "واشر سوراخدار \"4"
+          }
         },
         "connection_type": {
           "status": "UNKNOWN",
@@ -55761,8 +56892,13 @@
           "value": null
         },
         "tool_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "4 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "واشر سوراخدار \"4"
+          }
         },
         "component_type": {
           "status": "SITE_DECLARED",
@@ -55786,11 +56922,9 @@
         "nominal_size",
         "component_type"
       ],
-      "missing_required_dimensions": [
-        "nominal_size"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -55803,12 +56937,22 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "5 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "واشر سوراخدار \"5"
+          }
         },
         "connection_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "5 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "واشر سوراخدار \"5"
+          }
         },
         "connection_type": {
           "status": "UNKNOWN",
@@ -55851,8 +56995,13 @@
           "value": null
         },
         "tool_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "5 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "واشر سوراخدار \"5"
+          }
         },
         "component_type": {
           "status": "SITE_DECLARED",
@@ -55876,11 +57025,9 @@
         "nominal_size",
         "component_type"
       ],
-      "missing_required_dimensions": [
-        "nominal_size"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -55893,12 +57040,22 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "6 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "واشر سوراخدار \"6"
+          }
         },
         "connection_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "6 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "واشر سوراخدار \"6"
+          }
         },
         "connection_type": {
           "status": "UNKNOWN",
@@ -55941,8 +57098,13 @@
           "value": null
         },
         "tool_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "6 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "واشر سوراخدار \"6"
+          }
         },
         "component_type": {
           "status": "SITE_DECLARED",
@@ -55966,11 +57128,9 @@
         "nominal_size",
         "component_type"
       ],
-      "missing_required_dimensions": [
-        "nominal_size"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -56199,8 +57359,16 @@
           "value": null
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "آچار اتصالات پلی اتیلن",
+              "تجهیزات و لوازم کشاورزی",
+              "لوازم جانبی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -56755,21 +57923,34 @@
           }
         },
         "connection_type": {
-          "status": "SECONDARY_VERIFIED",
-          "value": "threaded",
-          "source": "external_research_evidence",
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
           "evidence": {
-            "rule_id": "vispar-ball-thread-secondary",
-            "source_id": "vispar-ball-secondary",
-            "publisher": "Mirab Sazeh",
-            "source_tier": "secondary",
-            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
-            "retrieved_at": "2026-09-24"
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "MANUFACTURER_VERIFIED",
@@ -56978,21 +58159,34 @@
           }
         },
         "connection_type": {
-          "status": "SECONDARY_VERIFIED",
-          "value": "threaded",
-          "source": "external_research_evidence",
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
           "evidence": {
-            "rule_id": "vispar-ball-thread-secondary",
-            "source_id": "vispar-ball-secondary",
-            "publisher": "Mirab Sazeh",
-            "source_tier": "secondary",
-            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
-            "retrieved_at": "2026-09-24"
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "MANUFACTURER_VERIFIED",
@@ -57092,21 +58286,34 @@
           }
         },
         "connection_type": {
-          "status": "SECONDARY_VERIFIED",
-          "value": "threaded",
-          "source": "external_research_evidence",
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
           "evidence": {
-            "rule_id": "vispar-ball-thread-secondary",
-            "source_id": "vispar-ball-secondary",
-            "publisher": "Mirab Sazeh",
-            "source_tier": "secondary",
-            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
-            "retrieved_at": "2026-09-24"
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "MANUFACTURER_VERIFIED",
@@ -57761,16 +58968,18 @@
           }
         },
         "connection_type": {
-          "status": "SECONDARY_VERIFIED",
-          "value": "threaded",
-          "source": "external_research_evidence",
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
           "evidence": {
-            "rule_id": "vispar-ball-thread-secondary",
-            "source_id": "vispar-ball-secondary",
-            "publisher": "Mirab Sazeh",
-            "source_tier": "secondary",
-            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
-            "retrieved_at": "2026-09-24"
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "material": {
@@ -57880,16 +59089,18 @@
           }
         },
         "connection_type": {
-          "status": "SECONDARY_VERIFIED",
-          "value": "threaded",
-          "source": "external_research_evidence",
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
           "evidence": {
-            "rule_id": "vispar-ball-thread-secondary",
-            "source_id": "vispar-ball-secondary",
-            "publisher": "Mirab Sazeh",
-            "source_tier": "secondary",
-            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
-            "retrieved_at": "2026-09-24"
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "material": {
@@ -57999,16 +59210,18 @@
           }
         },
         "connection_type": {
-          "status": "SECONDARY_VERIFIED",
-          "value": "threaded",
-          "source": "external_research_evidence",
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
           "evidence": {
-            "rule_id": "vispar-ball-thread-secondary",
-            "source_id": "vispar-ball-secondary",
-            "publisher": "Mirab Sazeh",
-            "source_tier": "secondary",
-            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
-            "retrieved_at": "2026-09-24"
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "material": {
@@ -60046,8 +61259,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -61737,12 +62961,22 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "1/2 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "کمربند انشعاب پلی اتیلن \"1/2 × 110 آبلوله"
+          }
         },
         "connection_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "1/2 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "کمربند انشعاب پلی اتیلن \"1/2 × 110 آبلوله"
+          }
         },
         "connection_type": {
           "status": "SITE_DECLARED",
@@ -61796,8 +63030,13 @@
           "value": null
         },
         "tool_size": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "1/2 inch",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "nominal_size",
+            "title": "کمربند انشعاب پلی اتیلن \"1/2 × 110 آبلوله"
+          }
         },
         "component_type": {
           "status": "UNKNOWN",
@@ -61817,11 +63056,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "nominal_size"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -62184,8 +63421,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سه راه انشعاب پلی اتیلن",
+              "سه راه پیچی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -62258,11 +63506,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -62299,8 +63545,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سه راه انشعاب پلی اتیلن",
+              "سه راه پیچی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -62373,11 +63630,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -62414,8 +63669,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سه راه انشعاب پلی اتیلن",
+              "سه راه پیچی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -62488,11 +63754,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -62532,8 +63796,16 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن جوشی",
+              "تجهیزات و لوازم کشاورزی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "SITE_DECLARED",
@@ -62604,11 +63876,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -62648,8 +63918,16 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن جوشی",
+              "تجهیزات و لوازم کشاورزی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "SITE_DECLARED",
@@ -62720,11 +63998,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -63079,12 +64355,28 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "butt_fusion",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن جوشی",
+              "تجهیزات و لوازم کشاورزی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن جوشی",
+              "تجهیزات و لوازم کشاورزی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "SITE_DECLARED",
@@ -63155,12 +64447,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -63199,8 +64488,16 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن جوشی",
+              "تجهیزات و لوازم کشاورزی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "SITE_DECLARED",
@@ -63271,11 +64568,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -63312,12 +64607,34 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -63381,12 +64698,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -63423,12 +64737,34 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -63492,12 +64828,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -63534,8 +64867,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -63608,11 +64952,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -63649,12 +64991,34 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط مساوی پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -63718,12 +65082,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -64190,12 +65551,34 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط تبدیل پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط تبدیل پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -64256,12 +65639,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -64292,12 +65672,34 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط تبدیل پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط تبدیل پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -64358,12 +65760,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -64394,12 +65793,34 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط تبدیل پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط تبدیل پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -64460,12 +65881,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -64496,8 +65914,19 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "رابط پلی اتیلن پیچی",
+              "رابط تبدیل پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "material": {
           "status": "SITE_DECLARED",
@@ -64567,11 +65996,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -64610,8 +66037,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصال یکسر نر پلی اتیلن",
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سایر اتصالات پلی اتیلن پیچی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -64672,11 +66110,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -64715,8 +66151,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصال یکسر ماده پلی اتیلن",
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سایر اتصالات پلی اتیلن پیچی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -64777,11 +66224,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -64820,8 +66265,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصال یکسر ماده پلی اتیلن",
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سایر اتصالات پلی اتیلن پیچی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -64882,11 +66338,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -64925,8 +66379,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصال یکسر ماده پلی اتیلن",
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سایر اتصالات پلی اتیلن پیچی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -64987,11 +66452,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -65030,8 +66493,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصال یکسر ماده پلی اتیلن",
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سایر اتصالات پلی اتیلن پیچی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -65092,11 +66566,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -65135,8 +66607,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصال یکسر ماده پلی اتیلن",
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سایر اتصالات پلی اتیلن پیچی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -65197,11 +66680,9 @@
         "connection_type",
         "material"
       ],
-      "missing_required_dimensions": [
-        "material"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
@@ -65230,8 +66711,19 @@
           }
         },
         "material": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصال یکسر ماده پلی اتیلن",
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "سایر اتصالات پلی اتیلن پیچی",
+              "محصولات کشاورزی"
+            ]
+          }
         },
         "pressure_class": {
           "status": "UNKNOWN",
@@ -65288,8 +66780,7 @@
         "material"
       ],
       "missing_required_dimensions": [
-        "nominal_size",
-        "material"
+        "nominal_size"
       ],
       "compatibility_scope": "in_scope",
       "data_dimension_ready": false,

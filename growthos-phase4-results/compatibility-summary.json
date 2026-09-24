@@ -2,15 +2,14 @@
   "ok": true,
   "phase": 4,
   "version": "growthos-compatibility-knowledge-graph-v2",
-  "generated_at_utc": "2026-09-24T07:19:45.389481+00:00",
+  "generated_at_utc": "2026-09-24T07:27:15.245068+00:00",
   "status": "PASS_RESCOPED_WITH_GOVERNED_EVIDENCE_GAPS",
   "summary": {
     "published_products": 652,
     "nodes": 652,
     "node_coverage_percent": 100.0,
     "family_counts": {
-      "unmodeled_irrigation": 4,
-      "layflat_rain": 16,
+      "layflat_rain": 18,
       "excluded_non_irrigation": 262,
       "fitting": 226,
       "washer_clamp": 28,
@@ -24,46 +23,47 @@
       "installation_tool": 7,
       "emitter": 8,
       "riser": 8,
-      "drip_tape_component": 3
+      "drip_tape_component": 3,
+      "unmodeled_irrigation": 2
     },
-    "exact_dimension_ready_by_family": {
-      "fitting": 130,
-      "washer_clamp": 22,
-      "layflat_rain": 11,
+    "data_dimension_ready_by_family": {
+      "fitting": 196,
+      "washer_clamp": 26,
+      "layflat_rain": 12,
       "filter": 1,
       "pipe": 8,
       "valve": 22,
-      "installation_tool": 4,
+      "installation_tool": 7,
+      "emitter": 1,
       "drip_tape_component": 2,
       "riser": 6
     },
-    "products_data_dimension_ready": 206,
+    "products_data_dimension_ready": 281,
     "products_exact_dimension_ready": 22,
-    "products_with_required_dimension_gaps": 180,
+    "products_with_required_dimension_gaps": 107,
     "excluded_non_irrigation_products": 262,
-    "unmodeled_irrigation_products": 4,
+    "unmodeled_irrigation_products": 2,
     "missing_dimension_counts": {
+      "pressure_class": 33,
+      "material": 35,
       "length": 5,
-      "pressure_class": 32,
-      "material": 78,
-      "connection_type": 101,
-      "nominal_size": 39,
+      "connection_type": 58,
+      "nominal_size": 33,
       "connection_size": 3,
       "head": 3,
       "power": 8,
       "filtration_requirement": 4,
       "flow_rate": 10,
       "pressure_requirement": 3,
-      "filtration_grade": 5,
-      "tool_size": 3
+      "filtration_grade": 5
     },
     "external_evidence_sources": 11,
     "external_evidence_rules": 11,
     "external_fill_counts": {
-      "SECONDARY_VERIFIED": 35,
+      "SECONDARY_VERIFIED": 24,
       "MANUFACTURER_VERIFIED": 22
     },
-    "external_conflicts": 34,
+    "external_conflicts": 46,
     "edge_count": 2028,
     "relation_counts": {
       "explicitReference": 2005,
@@ -97,11 +97,81 @@
     "source_count": 11,
     "rule_count": 11,
     "fill_counts": {
-      "SECONDARY_VERIFIED": 35,
+      "SECONDARY_VERIFIED": 24,
       "MANUFACTURER_VERIFIED": 22
     },
     "conflicts": [
       {
+        "product_id": 140690,
+        "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۳/۴ اینچ (۲۵ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140689,
+        "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱/۲ اینچ (۲۰ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
         "product_id": 140661,
         "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۴ اینچ (۱۱۰ میلی‌متر)",
         "family": "valve",
@@ -140,6 +210,41 @@
           "source": "woocommerce_attribute",
           "evidence": {
             "attribute": "نوع اتصال"
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140660,
+        "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۳ اینچ (۹۰ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "incoming": {
@@ -252,6 +357,111 @@
           "source": "woocommerce_attribute",
           "evidence": {
             "attribute": "نوع اتصال"
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140655,
+        "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱ و ۱/۴ اینچ (۴۰ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140654,
+        "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۳/۴ اینچ (۲۵ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140653,
+        "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱/۲ اینچ (۲۰ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "incoming": {
@@ -681,6 +891,41 @@
         "resolution": "kept_existing_value; external evidence retained for review"
       },
       {
+        "product_id": 135351,
+        "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۲ و ۱/۲ اینچ (۷۵ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
         "product_id": 135349,
         "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۲ اینچ (۶۳ میلی‌متر)",
         "family": "valve",
@@ -719,6 +964,76 @@
           "source": "woocommerce_attribute",
           "evidence": {
             "attribute": "نوع اتصال"
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135347,
+        "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱ و ۱/۲ اینچ (۵۰ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135345,
+        "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱ اینچ (۳۲ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "incoming": {
@@ -889,6 +1204,111 @@
           "source": "woocommerce_attribute",
           "evidence": {
             "attribute": "نوع اتصال"
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135329,
+        "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۲ اینچ (۶۳ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135327,
+        "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ و ۱/۲ اینچ (۵۰ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135325,
+        "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ و ۱/۴ اینچ (۴۰ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "compression",
+          "source": "woocommerce_category",
+          "evidence": {
+            "categories": [
+              "اتصالات پلی اتیلن",
+              "پلی اتیلن پیچی",
+              "تجهیزات و لوازم کشاورزی",
+              "شیر توپی پلیمری",
+              "شیرآلات پلی اتیلن",
+              "محصولات کشاورزی"
+            ]
           }
         },
         "incoming": {
