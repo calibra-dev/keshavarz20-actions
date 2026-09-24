@@ -108,7 +108,10 @@ def classify_product(p):
     if re.search(r'(?:رابط|شیر|سه\s*راه|اتصال|کورکن|درپوش).*تیپ|تیپ.*(?:رابط|شیر|سه\s*راه|اتصال|کورکن|درپوش)', name) and not re.search(r'لی[\s‌-]*فلت|نخ[\s‌-]*دار', name):
         return 'drip_tape_component'
 
-    if re.search(r'(?:رابط|زانو|سه\s*راه|کورکن|درپوش).*۱?6\s*میلی|(?:رابط|زانو|سه\s*راه|کورکن|درپوش).*16\s*میلی', name):
+    if re.search(r'(?:رابط|زانو|سه\s*راه|کورکن|درپوش).*(?:16|۱۶)\s*میلی', name):
+        return 'drip_line_component'
+
+    if re.search(r'شیر\s*انشعاب\s*(?:16|۱۶)\s*به\s*(?:16|۱۶)', name):
         return 'drip_line_component'
 
     if re.search(r'نوار\s*تیپ|نوارتیپ|نوار\s*آبیاری', name):
@@ -482,7 +485,7 @@ def interface_signature_from_title(name):
         return {'status':'SITE_DECLARED','value':v,
                 'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
 
-    if re.search(r'رابط.*تیپ.*(?:به\s*)?16|رابط.*16.*(?:به\s*)?تیپ', n, re.I):
+    if re.search(r'رابط.*تیپ.*(?:به\s*)?(?:16|۱۶)|رابط.*(?:16|۱۶).*(?:به\s*)?تیپ', n, re.I):
         return {'status':'SITE_DECLARED','value':'drip_tape<->line16mm',
                 'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
 
@@ -492,6 +495,10 @@ def interface_signature_from_title(name):
 
     if re.search(r'رابط.*تیپ.*به\s*لوله', n, re.I):
         return {'status':'SITE_DECLARED','value':'drip_tape<->pipe',
+                'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
+
+    if re.search(r'شیر\s*انشعاب.*(?:16|۱۶)\s*به\s*تیپ', n, re.I):
+        return {'status':'SITE_DECLARED','value':'line16<->drip_tape',
                 'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
 
     if re.search(r'شیر\s*انشعاب.*(?:1/2|۱/۲).*نوار\s*تیپ|شیر\s*انشعاب.*نوار\s*تیپ', n, re.I):
@@ -507,6 +514,10 @@ def interface_signature_from_title(name):
             if sz and sz.get('value'):
                 v += ':'+str(sz.get('value'))
         return {'status':'SITE_DECLARED','value':v,
+                'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
+
+    if re.search(r'شیر\s*انشعاب\s*(?:16|۱۶)\s*به\s*(?:16|۱۶)', n, re.I):
+        return {'status':'SITE_DECLARED','value':'line16<->line16',
                 'source':'woocommerce_product_title','evidence':{'field':'interface_signature','title':s}}
 
     if re.search(r'انشعاب\s*(?:دو|سه)[\s‌-]*شاخه', n, re.I):
