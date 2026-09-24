@@ -27,14 +27,22 @@ jobs:
           names=["آب لوله بسپار (Ablooleh baspar)","پلی رود اتصال (Polirood Etesal)","اتصال گستر"]
           base=os.environ["WP_BASE_URL"].rstrip("/")
           s=requests.Session();s.auth=(os.environ["WP_USERNAME"],os.environ["WP_APP_PASSWORD"])
+          all_terms=[]
+          for page in range(1,20):
+              r=s.get(base+"/wp-json/wc/store/v1/products/brands",params={"per_page":100,"page":page,"hide_empty":False},timeout=90)
+              if r.status_code==400 and page>1: break
+              r.raise_for_status()
+              batch=r.json()
+              if not batch: break
+              all_terms.extend([{"id":x.get("id"),"name":x.get("name"),"slug":x.get("slug"),"count":x.get("count")} for x in batch])
+              if len(batch)<100: break
           rows=[]
           for name in names:
-              r=s.get(base+"/wp-json/wc/store/v1/products/brands",params={"search":name,"per_page":100,"hide_empty":False},timeout=90)
-              r.raise_for_status()
-              candidates=[{"id":x.get("id"),"name":x.get("name"),"slug":x.get("slug"),"count":x.get("count")} for x in r.json()]
-              exact=[x for x in candidates if str(x.get("name") or "").strip()==name]
-              rows.append({"requested_name":name,"exact":exact,"candidates":candidates[:20]})
-          out={"rows":rows}
+              exact=[x for x in all_terms if str(x.get("name") or "").strip()==name]
+              tokens=[t.casefold() for t in name.replace("("," ").replace(")"," ").split() if len(t)>2]
+              similar=[x for x in all_terms if any(t in str(x.get("name") or "").casefold() for t in tokens)]
+              rows.append({"requested_name":name,"exact":exact,"similar":similar[:30]})
+          out={"term_count":len(all_terms),"rows":rows,"all_terms":all_terms}
           pathlib.Path("growthos-phase3-results").mkdir(exist_ok=True)
           pathlib.Path("growthos-phase3-results/brand-term-lookup.json").write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
           print(json.dumps(out,ensure_ascii=False))
