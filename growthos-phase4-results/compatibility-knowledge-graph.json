@@ -2,7 +2,7 @@
   "ok": true,
   "phase": 4,
   "version": "growthos-compatibility-knowledge-graph-v1",
-  "generated_at_utc": "2026-09-24T06:43:02.598077+00:00",
+  "generated_at_utc": "2026-09-24T06:49:30.721581+00:00",
   "execution_mode": "read-only-evidence-graph",
   "status": "PASS_FOUNDATION_WITH_GOVERNED_EVIDENCE_GAPS",
   "relation_vocabulary": {
@@ -89,20 +89,20 @@
     },
     "exact_dimension_ready_by_family": {
       "valve": 8,
-      "fitting": 4
+      "fitting": 5
     },
-    "products_exact_dimension_ready": 12,
-    "products_with_required_dimension_gaps": 640,
+    "products_exact_dimension_ready": 13,
+    "products_with_required_dimension_gaps": 623,
     "missing_dimension_counts": {
       "length": 49,
       "emitter_spacing": 37,
       "filtration_requirement": 38,
       "nominal_size": 307,
-      "connection_type": 575,
+      "connection_type": 533,
       "material": 207,
-      "pressure_class": 264,
+      "pressure_class": 262,
       "connection_size": 1,
-      "flow_rate": 11,
+      "flow_rate": 9,
       "pressure_requirement": 7,
       "filtration_grade": 6
     },
@@ -11924,8 +11924,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "۱ اینچ بودن باید با اتصال واقعی خط تطبیق داشته باشد.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "سایز و نوع اتصال"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -11940,8 +11944,12 @@
           "value": null
         },
         "flow_rate": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "دبی واقعی پروژه را با ظرفیت اعلامی همان مدل مقایسه کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "دبی خط"
+          }
         },
         "filtration_grade": {
           "status": "UNKNOWN",
@@ -11970,7 +11978,6 @@
         "filtration_grade"
       ],
       "missing_required_dimensions": [
-        "flow_rate",
         "filtration_grade"
       ],
       "exact_compatibility_dimension_ready": false,
@@ -11995,13 +12002,11 @@
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۳/۴ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۳/۴ اینچ باید با اتصال واقعی خط شما یکسان باشد.",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "مینی فیلتر دیسکی ۳/۴ اینچ فرات پلیمر"
+            "label": "سایز اتصال"
           }
         },
         "connection_type": {
@@ -12021,8 +12026,12 @@
           "value": null
         },
         "flow_rate": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "ظرفیت مجاز فیلتر باید از دبی لحظه‌ای خط کمتر نباشد.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "دبی"
+          }
         },
         "filtration_grade": {
           "status": "UNKNOWN",
@@ -12051,7 +12060,6 @@
         "filtration_grade"
       ],
       "missing_required_dimensions": [
-        "flow_rate",
         "filtration_grade"
       ],
       "exact_compatibility_dimension_ready": false,
@@ -17682,8 +17690,12 @@
           "value": null
         },
         "filtration_grade": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "مقدار",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "مشخصه"
+          }
         },
         "filtration_requirement": {
           "status": "UNKNOWN",
@@ -18770,8 +18782,12 @@
           "value": null
         },
         "filtration_grade": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "مقدار تأییدشده",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "مشخصه"
+          }
         },
         "filtration_requirement": {
           "status": "UNKNOWN",
@@ -19042,8 +19058,12 @@
           "value": null
         },
         "filtration_grade": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "مقدار تأییدشده",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "مشخصه"
+          }
         },
         "filtration_requirement": {
           "status": "UNKNOWN",
@@ -19858,8 +19878,12 @@
           "value": null
         },
         "filtration_grade": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "مقدار تأییدشده",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "مشخصه"
+          }
         },
         "filtration_requirement": {
           "status": "UNKNOWN",
@@ -20306,23 +20330,19 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۳/۴ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۳/۴ اینچ / ۲۵ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۳/۴ اینچ (۲۵ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۳/۴ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۳/۴ اینچ / ۲۵ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۳/۴ اینچ (۲۵ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
@@ -20387,23 +20407,19 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۱/۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱/۲ اینچ / ۲۰ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱/۲ اینچ (۲۰ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۱/۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱/۲ اینچ / ۲۰ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱/۲ اینچ (۲۰ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
@@ -20843,23 +20859,19 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۳ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۳ اینچ / ۹۰ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۳ اینچ (۹۰ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۳ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۳ اینچ / ۹۰ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۳ اینچ (۹۰ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
@@ -21098,23 +21110,19 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۱ و ۱/۴ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱ و ۱/۴ اینچ / ۴۰ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱ و ۱/۴ اینچ (۴۰ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۱ و ۱/۴ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱ و ۱/۴ اینچ / ۴۰ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱ و ۱/۴ اینچ (۴۰ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
@@ -21179,23 +21187,19 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۳/۴ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۳/۴ اینچ / ۲۵ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۳/۴ اینچ (۲۵ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۳/۴ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۳/۴ اینچ / ۲۵ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۳/۴ اینچ (۲۵ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
@@ -21260,23 +21264,19 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۱/۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱/۲ اینچ / ۲۰ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱/۲ اینچ (۲۰ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۱/۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱/۲ اینچ / ۲۰ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱/۲ اینچ (۲۰ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
@@ -21361,8 +21361,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن سمت پلی‌اتیلن به معنی سازگاری خودکار سمت رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -21405,9 +21409,7 @@
         "nominal_size",
         "connection_type"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
     },
@@ -21440,8 +21442,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن سمت پلی‌اتیلن به معنی سازگاری خودکار سمت رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -21484,9 +21490,7 @@
         "nominal_size",
         "connection_type"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
     },
@@ -22650,12 +22654,20 @@
           "source": "woocommerce_attribute:جنس"
         },
         "pressure_class": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "باید از مشخصات دقیق مدل موجود کنترل شود",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "فشار کاری"
+          }
         },
         "pressure_requirement": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "باید از مشخصات دقیق مدل موجود کنترل شود",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "فشار کاری"
+          }
         },
         "flow_rate": {
           "status": "UNKNOWN",
@@ -22688,10 +22700,8 @@
         "material",
         "pressure_class"
       ],
-      "missing_required_dimensions": [
-        "pressure_class"
-      ],
-      "exact_compatibility_dimension_ready": false,
+      "missing_required_dimensions": [],
+      "exact_compatibility_dimension_ready": true,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
     },
     {
@@ -23382,12 +23392,20 @@
           "value": null
         },
         "pressure_class": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "طبق مشخصات فنی محصول",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "فشار کاری"
+          }
         },
         "pressure_requirement": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "طبق مشخصات فنی محصول",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "فشار کاری"
+          }
         },
         "flow_rate": {
           "status": "UNKNOWN",
@@ -23423,8 +23441,7 @@
       "missing_required_dimensions": [
         "nominal_size",
         "connection_type",
-        "material",
-        "pressure_class"
+        "material"
       ],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
@@ -23687,23 +23704,19 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "1 اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "شیر خودکار و کلید باید از نظر سایز با هم سازگار باشند.",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "کلید شیر خودکار ویسپار 1 اینچ"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "1 اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "شیر خودکار و کلید باید از نظر سایز با هم سازگار باشند.",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "کلید شیر خودکار ویسپار 1 اینچ"
+            "label": "سایز"
           }
         },
         "connection_type": {
@@ -24761,8 +24774,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن بخش پلی‌اتیلن به معنی سازگاری خودکار رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -24808,7 +24825,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -26035,8 +26051,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "پیشنهادهای این بخش به معنی سازگاری خودکار سمت رزوه با همه شیرها یا اتصالات هم‌سایز نیست؛ نوع رزوه و اندازه واقعی قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -26082,7 +26102,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -26208,8 +26227,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "پیشنهادهای این بخش به معنی سازگاری خودکار سمت رزوه با همه شیرها یا اتصالات هم‌سایز نیست؛ نوع رزوه و اندازه واقعی قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -26255,7 +26278,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -26375,8 +26397,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "پیشنهادهای این بخش به معنی سازگاری خودکار سمت رزوه با همه شیرها یا اتصالات هم‌سایز نیست؛ نوع رزوه و اندازه واقعی قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -26422,7 +26448,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -30236,8 +30261,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن سمت پلی‌اتیلن به معنی سازگاری خودکار سمت رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -30280,9 +30309,7 @@
         "nominal_size",
         "connection_type"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
     },
@@ -30315,8 +30342,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن سمت پلی‌اتیلن به معنی سازگاری خودکار سمت رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -30359,9 +30390,7 @@
         "nominal_size",
         "connection_type"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
     },
@@ -30394,8 +30423,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن سمت پلی‌اتیلن به معنی سازگاری خودکار سمت رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -30438,9 +30471,7 @@
         "nominal_size",
         "connection_type"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
     },
@@ -30473,8 +30504,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن سمت پلی‌اتیلن به معنی سازگاری خودکار سمت رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -30517,9 +30552,7 @@
         "nominal_size",
         "connection_type"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
     },
@@ -30552,8 +30585,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن سمت پلی‌اتیلن به معنی سازگاری خودکار سمت رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -30596,9 +30633,7 @@
         "nominal_size",
         "connection_type"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
     },
@@ -30631,8 +30666,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن سمت پلی‌اتیلن به معنی سازگاری خودکار سمت رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -30675,9 +30714,7 @@
         "nominal_size",
         "connection_type"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
     },
@@ -30698,8 +30735,12 @@
           "value": null
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن سمت پلی‌اتیلن به معنی سازگاری خودکار سمت رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -30743,8 +30784,7 @@
         "connection_type"
       ],
       "missing_required_dimensions": [
-        "nominal_size",
-        "connection_type"
+        "nominal_size"
       ],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
@@ -30778,8 +30818,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن سمت پلی‌اتیلن به معنی سازگاری خودکار سمت رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -30822,9 +30866,7 @@
         "nominal_size",
         "connection_type"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
     },
@@ -30845,8 +30887,12 @@
           "value": null
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن سمت پلی‌اتیلن به معنی سازگاری خودکار سمت رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -30890,8 +30936,7 @@
         "connection_type"
       ],
       "missing_required_dimensions": [
-        "nominal_size",
-        "connection_type"
+        "nominal_size"
       ],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
@@ -31121,28 +31166,28 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۴ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۴ اینچ، معادل ۱۱۰ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر ویفری پروانه‌ای آبافرین ۴ اینچ (110 میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۴ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۴ اینچ، معادل ۱۱۰ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر ویفری پروانه‌ای آبافرین ۴ اینچ (110 میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "ویفری، نصب بین دو فلنج",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نوع اتصال"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -31187,7 +31232,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "pressure_class"
       ],
       "exact_compatibility_dimension_ready": false,
@@ -31202,28 +31246,28 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۳ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۳ اینچ (90 میلی‌متر)",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر ویفری پروانه‌ای آبافرین ۳ اینچ (90 میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۳ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۳ اینچ (90 میلی‌متر)",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر ویفری پروانه‌ای آبافرین ۳ اینچ (90 میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "ویفری",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نوع اتصال"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -31268,7 +31312,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "pressure_class"
       ],
       "exact_compatibility_dimension_ready": false,
@@ -37017,8 +37060,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "نافی این مدل ماده است؛ قطعه مقابل باید رزوه نر سازگار داشته باشد.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نوع رزوه"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -37064,7 +37111,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -37100,8 +37146,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "رزوه ماده باید با سایز و استاندارد رزوه قطعه نر مقابل یکسان باشد.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "رزوه خروجی"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -37147,7 +37197,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -37183,8 +37232,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "رزوه داخلی سه راه باید با قطعه نر مقابل از نظر سایز و استاندارد رزوه یکسان باشد.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "سایز رزوه شاخه"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -37230,7 +37283,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -37266,8 +37318,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "نافی ماده است و برای اتصال قطعه نر سازگار استفاده می‌شود.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نوع اتصال شاخه"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -37313,7 +37369,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -37515,8 +37570,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن بخش پلی‌اتیلن به معنی سازگاری خودکار رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -37562,7 +37621,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -38093,25 +38151,19 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "2 اینچ",
-            "63 میلیمتر"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۲ اینچ / ۶۳ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی دو سر نر آبافرین 2 اینچ (63 میلیمتر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "2 اینچ",
-            "63 میلیمتر"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۲ اینچ / ۶۳ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی دو سر نر آبافرین 2 اینچ (63 میلیمتر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
@@ -38426,8 +38478,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "مشخص کنید هر سمت قطعه مقابل رزوه نر است یا ماده؛ عنوان محصول به‌تنهایی برای تشخیص جهت نصب کافی نیست.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نوع اتصال"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -38473,7 +38529,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -39933,28 +39988,28 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۶ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۶ اینچ / ۱۶۰ میلی‌متر درج‌شده در نام محصول را با لوله و اتصال مقابل تطبیق دهید.",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "فلنچ پلی‌اتیلن جوشی ۶ اینچ (۱۶۰ میلی‌متر) ۶ اتمسفر زلال‌رود"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۶ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۶ اینچ / ۱۶۰ میلی‌متر درج‌شده در نام محصول را با لوله و اتصال مقابل تطبیق دهید.",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "فلنچ پلی‌اتیلن جوشی ۶ اینچ (۱۶۰ میلی‌متر) ۶ اتمسفر زلال‌رود"
+            "label": "سایز"
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "قطعات قبل و بعد و روش اجرا باید با خانواده پلی‌اتیلن جوشی سازگار باشند.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نوع اتصال"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -40000,7 +40055,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -40267,28 +40321,28 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۵ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۵ اینچ / ۱۲۵ میلی‌متر درج‌شده در نام محصول را با لوله و اتصال مقابل تطبیق دهید.",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "فلنچ پلی‌اتیلن جوشی ۵ اینچ (۱۲۵ میلی‌متر) ۶ اتمسفر آبلوله"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۵ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۵ اینچ / ۱۲۵ میلی‌متر درج‌شده در نام محصول را با لوله و اتصال مقابل تطبیق دهید.",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "فلنچ پلی‌اتیلن جوشی ۵ اینچ (۱۲۵ میلی‌متر) ۶ اتمسفر آبلوله"
+            "label": "سایز"
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "روش اجرا و قطعات دو طرف باید با اتصال پلی‌اتیلن جوشی و شرایط واقعی پروژه سازگار باشند.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نوع اتصال"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -40334,7 +40388,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -40438,30 +40491,28 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "3 اینچ",
-            "90 میلیمتر"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "3 اینچ / 90 میلی‌متر درج‌شده در نام محصول را با لوله و قطعه مقابل تطبیق دهید.",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "فلنچ پلی اتیلن جوشی 3 اینچ (90 میلیمتر) 6 اتمسفر"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "3 اینچ",
-            "90 میلیمتر"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "3 اینچ / 90 میلی‌متر درج‌شده در نام محصول را با لوله و قطعه مقابل تطبیق دهید.",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "فلنچ پلی اتیلن جوشی 3 اینچ (90 میلیمتر) 6 اتمسفر"
+            "label": "سایز"
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "این محصول در خانواده اتصالات پلی‌اتیلن جوشی قرار دارد؛ روش اجرای اتصال و قطعات مقابل باید با همین خانواده سازگار باشند.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نوع اتصال"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -40507,7 +40558,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -40875,12 +40925,20 @@
           "value": null
         },
         "pressure_class": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "فقط از مشخصات معتبر همان مدل استفاده کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "فشار کاری"
+          }
         },
         "pressure_requirement": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "فقط از مشخصات معتبر همان مدل استفاده کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "فشار کاری"
+          }
         },
         "flow_rate": {
           "status": "UNKNOWN",
@@ -40903,8 +40961,12 @@
           "value": null
         },
         "capacity": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "بزرگ‌تر بودن اتصال لزوماً به معنی مناسب‌تر بودن برای هر شبکه نیست.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "ظرفیت"
+          }
         }
       },
       "required_dimensions": [
@@ -40946,8 +41008,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "فقط «1 اینچ» کافی نیست؛ نوع اتصال و رزوه قطعه مقابل را هم بررسی کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "سایز و نوع رزوه"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -40990,9 +41056,7 @@
         "nominal_size",
         "connection_type"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
     },
@@ -42587,23 +42651,19 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۲ و ۱/۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۲ و ۱/۲ اینچ / ۷۵ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۲ و ۱/۲ اینچ (۷۵ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۲ و ۱/۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۲ و ۱/۲ اینچ / ۷۵ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۲ و ۱/۲ اینچ (۷۵ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
@@ -42755,23 +42815,19 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۱ و ۱/۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱ و ۱/۲ اینچ / ۵۰ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱ و ۱/۲ اینچ (۵۰ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۱ و ۱/۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱ و ۱/۲ اینچ / ۵۰ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱ و ۱/۲ اینچ (۵۰ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
@@ -42836,23 +42892,19 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۱ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱ اینچ / ۳۲ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱ اینچ (۳۲ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۱ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱ اینچ / ۳۲ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱ اینچ (۳۲ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
@@ -42917,28 +42969,28 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۶ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۶ اینچ (160 میلی‌متر)",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر پروانه‌ای پلیمری ویسپار ۶ اینچ با دسته فلزی (160 میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۶ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۶ اینچ (160 میلی‌متر)",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر پروانه‌ای پلیمری ویسپار ۶ اینچ با دسته فلزی (160 میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "ویفری",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نوع اتصال"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -42983,7 +43035,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "pressure_class"
       ],
       "exact_compatibility_dimension_ready": false,
@@ -43172,28 +43223,28 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۳ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۳ اینچ (90 میلی‌متر)",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر پروانه‌ای پلیمری ویسپار ۳ اینچ با دسته فلزی (90 میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۳ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۳ اینچ (90 میلی‌متر)",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر پروانه‌ای پلیمری ویسپار ۳ اینچ با دسته فلزی (90 میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "ویفری",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نوع اتصال"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -43238,7 +43289,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "pressure_class"
       ],
       "exact_compatibility_dimension_ready": false,
@@ -43340,23 +43390,19 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۲ اینچ / ۶۳ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۲ اینچ (۶۳ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۲ اینچ / ۶۳ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۲ اینچ (۶۳ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
@@ -43421,23 +43467,19 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۱ و ۱/۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱ و ۱/۲ اینچ / ۵۰ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ و ۱/۲ اینچ (۵۰ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۱ و ۱/۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱ و ۱/۲ اینچ / ۵۰ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ و ۱/۲ اینچ (۵۰ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
@@ -43502,23 +43544,19 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۱ و ۱/۴ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱ و ۱/۴ اینچ / ۴۰ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ و ۱/۴ اینچ (۴۰ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۱ و ۱/۴ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱ و ۱/۴ اینچ / ۴۰ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ و ۱/۴ اینچ (۴۰ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
@@ -44460,8 +44498,12 @@
           "value": null
         },
         "filtration_grade": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "مقدار یا توضیح",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "مشخصه"
+          }
         },
         "filtration_requirement": {
           "status": "UNKNOWN",
@@ -44624,8 +44666,12 @@
           "value": null
         },
         "filtration_grade": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "توضیح",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "مشخصه"
+          }
         },
         "filtration_requirement": {
           "status": "UNKNOWN",
@@ -44916,23 +44962,19 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۲ اینچ / ۶۳ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی دو سر ماده آبافرین دسته فلزی ۲ اینچ (۶۳ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۲ اینچ / ۶۳ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی دو سر ماده آبافرین دسته فلزی ۲ اینچ (۶۳ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
@@ -45649,23 +45691,19 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۲ اینچ / ۶۳ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی یکسر نر یکسر ماده آبافرین دسته پلیمری ۲ اینچ (۶۳ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۲ اینچ / ۶۳ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی یکسر نر یکسر ماده آبافرین دسته پلیمری ۲ اینچ (۶۳ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
@@ -45811,23 +45849,19 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۲ اینچ / ۶۳ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۲ اینچ (۶۳ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۲ اینچ / ۶۳ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۲ اینچ (۶۳ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
@@ -45892,23 +45926,19 @@
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۱ و ۱/۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱ و ۱/۲ اینچ / ۵۰ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۱ و ۱/۲ اینچ (۵۰ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_size": {
-          "status": "TITLE_DECLARED",
-          "value": [
-            "۱ و ۱/۲ اینچ"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱ و ۱/۲ اینچ / ۵۰ میلی‌متر",
+          "source": "woocommerce_product_spec_block",
           "evidence": {
-            "title": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۱ و ۱/۲ اینچ (۵۰ میلی‌متر)"
+            "label": "سایز"
           }
         },
         "connection_type": {
@@ -46229,8 +46259,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "شاخه نر باید با رزوه ماده قطعه مقابل از نظر سایز و استاندارد رزوه هماهنگ باشد.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "رزوه شاخه"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -46276,7 +46310,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -46312,8 +46345,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "از نام محصول نمی‌توان سایز رزوه شاخه را قطعی نتیجه گرفت؛ آن را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "سایز رزوه"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -46359,7 +46396,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -46899,8 +46935,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "پیشنهادهای این بخش به معنی سازگاری خودکار سمت رزوه با همه شیرها یا اتصالات هم‌سایز نیست؛ نوع رزوه و اندازه واقعی قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -46946,7 +46986,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -46982,8 +47021,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "پیشنهادهای این بخش به معنی سازگاری خودکار سمت رزوه با همه شیرها یا اتصالات هم‌سایز نیست؛ نوع رزوه و اندازه واقعی قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -47029,7 +47072,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -47065,8 +47107,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "پیشنهادهای این بخش به معنی سازگاری خودکار سمت رزوه با همه شیرها یا اتصالات هم‌سایز نیست؛ نوع رزوه و اندازه واقعی قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -47112,7 +47158,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -47231,8 +47276,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "این مدل جوشی است؛ تجهیزات و شرایط اجرای جوش پلی‌اتیلن باید در محل پروژه فراهم باشد.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نوع اتصال"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -47278,7 +47327,6 @@
         "pressure_class"
       ],
       "missing_required_dimensions": [
-        "connection_type",
         "material",
         "pressure_class"
       ],
@@ -48305,8 +48353,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن سمت پلی‌اتیلن به معنی سازگاری خودکار سمت رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -48349,9 +48401,7 @@
         "nominal_size",
         "connection_type"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
     },
@@ -48384,8 +48434,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن سمت پلی‌اتیلن به معنی سازگاری خودکار سمت رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -48428,9 +48482,7 @@
         "nominal_size",
         "connection_type"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
     },
@@ -48463,8 +48515,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن سمت پلی‌اتیلن به معنی سازگاری خودکار سمت رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -48507,9 +48563,7 @@
         "nominal_size",
         "connection_type"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
     },
@@ -48542,8 +48596,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن سمت پلی‌اتیلن به معنی سازگاری خودکار سمت رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -48586,9 +48644,7 @@
         "nominal_size",
         "connection_type"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
     },
@@ -48621,8 +48677,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن سمت پلی‌اتیلن به معنی سازگاری خودکار سمت رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -48665,9 +48725,7 @@
         "nominal_size",
         "connection_type"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
     },
@@ -48700,8 +48758,12 @@
           }
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن سمت پلی‌اتیلن به معنی سازگاری خودکار سمت رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -48744,9 +48806,7 @@
         "nominal_size",
         "connection_type"
       ],
-      "missing_required_dimensions": [
-        "connection_type"
-      ],
+      "missing_required_dimensions": [],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
     },
@@ -48767,8 +48827,12 @@
           "value": null
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "VERIFIED",
+          "value": "هم‌سایز بودن سمت پلی‌اتیلن به معنی سازگاری خودکار سمت رزوه نیست. نوع نر یا ماده و اندازه واقعی رزوه قطعه مقابل را جداگانه کنترل کنید.",
+          "source": "woocommerce_product_spec_block",
+          "evidence": {
+            "label": "نکته اتصال رزوه‌ای"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -48812,8 +48876,7 @@
         "connection_type"
       ],
       "missing_required_dimensions": [
-        "nominal_size",
-        "connection_type"
+        "nominal_size"
       ],
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED = explicit Woo/source field; TITLE_DECLARED may help discovery but never proves compatibility."
