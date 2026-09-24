@@ -1,0 +1,38 @@
+{
+  "phase": 2,
+  "investigation": "duplicate_sku_external_source_check",
+  "checked_at_utc": "2026-09-24T06:15:00Z",
+  "duplicate_sku": "430000300-2",
+  "products": [
+    {
+      "product_id": 140654,
+      "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۳/۴ اینچ (۲۵ میلی‌متر)"
+    },
+    {
+      "product_id": 140655,
+      "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱ و ۱/۴ اینچ (۴۰ میلی‌متر)"
+    }
+  ],
+  "sources_checked": [
+    {
+      "source": "Vispar official public channel / company identity",
+      "result": "Confirms Vispar/Paya Baspar Aria produces polymer valves including single-stroke metal-handle ball valves, but no manufacturer SKU mapping was published for these two sizes."
+    },
+    {
+      "source": "Mirab Saze Vispar catalog/product listings",
+      "result": "Confirms the product family exists as a selectable multi-variant item, but public listing does not expose authoritative manufacturer SKU values for the two target variants."
+    },
+    {
+      "source": "Amjadshop/Amjadpipe Vispar listings",
+      "result": "Confirms related Vispar metal-handle/single-stroke valve families and size tables, but no authoritative SKU mapping for product IDs 140654/140655."
+    },
+    {
+      "source": "Exact public web search for SKU 430000300-2",
+      "result": "No authoritative manufacturer source found that assigns this code to one target product and a different code to the other."
+    }
+  ],
+  "conclusion": "SOURCE_CONFIRMATION_REQUIRED",
+  "site_mutation": false,
+  "reason": "Changing either SKU without an authoritative manufacturer/catalog source would be a guess and would corrupt Product Truth, schema identifiers, and downstream feeds.",
+  "next_required_evidence": "Manufacturer catalog, invoice, supplier master list, packaging label, or another first-party Vispar/Paya Baspar Aria source that maps the exact 3/4-inch and 1-1/4-inch variants to distinct product codes."
+}
