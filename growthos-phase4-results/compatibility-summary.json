@@ -1,0 +1,68 @@
+{
+  "ok": true,
+  "phase": 4,
+  "version": "growthos-compatibility-knowledge-graph-v1",
+  "generated_at_utc": "2026-09-24T06:43:02.598077+00:00",
+  "status": "PASS_FOUNDATION_WITH_GOVERNED_EVIDENCE_GAPS",
+  "summary": {
+    "published_products": 652,
+    "nodes": 652,
+    "node_coverage_percent": 100.0,
+    "family_counts": {
+      "drip_tape": 38,
+      "other_irrigation": 325,
+      "fitting": 217,
+      "layflat_rain": 12,
+      "valve": 44,
+      "sprinkler": 5,
+      "filter": 6,
+      "fertigation": 2,
+      "pipe": 3
+    },
+    "exact_dimension_ready_by_family": {
+      "valve": 8,
+      "fitting": 4
+    },
+    "products_exact_dimension_ready": 12,
+    "products_with_required_dimension_gaps": 640,
+    "missing_dimension_counts": {
+      "length": 49,
+      "emitter_spacing": 37,
+      "filtration_requirement": 38,
+      "nominal_size": 307,
+      "connection_type": 575,
+      "material": 207,
+      "pressure_class": 264,
+      "connection_size": 1,
+      "flow_rate": 11,
+      "pressure_requirement": 7,
+      "filtration_grade": 6
+    },
+    "edge_count": 2028,
+    "relation_counts": {
+      "explicitReference": 2005,
+      "sameSizeCandidate": 23
+    },
+    "edge_status_counts": {
+      "VERIFIED_REFERENCE": 2005,
+      "CANDIDATE_ONLY": 23
+    },
+    "verified_technical_compatibility_edges": 0,
+    "candidate_only_edges": 23,
+    "verified_reference_edges": 2005,
+    "verified_variant_edges": 0,
+    "hard_fabrications": 0,
+    "site_writes": 0
+  },
+  "acceptance": {
+    "all_published_products_covered": true,
+    "relation_vocabulary_declared": true,
+    "every_edge_has_evidence_and_status": true,
+    "same_size_candidates_never_promoted": true,
+    "variant_edges_only_from_direct_structure": true,
+    "verification_backlog_generated": true,
+    "no_price_or_stock_mutation": true,
+    "hard_fabrications_zero": true
+  },
+  "next_gate": "Before automatic product-to-product recommendation (Phase 18), fill exact missing dimensions and add exact manufacturer/source evidence for fits/worksWith/needs relations."
+}
