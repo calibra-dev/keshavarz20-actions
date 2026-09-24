@@ -177,7 +177,21 @@ def technical_dimensions(p, truth_rec):
     attrs = attrs_map(p)
     specs = spec_map(p)
     dims = {}
-    size_patterns = [r'^سایز
+    size_patterns = [r'^سایز$', r'^قطر$', r'diameter', r'^size$', r'سایز.*قطر']
+    dims['nominal_size'] = direct_attr(attrs, size_patterns) or spec_attr(specs, size_patterns) or title_declared_size(p.get('name'))
+    dims['connection_size'] = direct_attr(attrs, [r'سایز اتصال', r'قطر اتصال']) or spec_attr(specs, [r'سایز اتصال', r'قطر اتصال']) or dims['nominal_size']
+    dims['connection_type'] = direct_attr(attrs, [r'نوع اتصال', r'رزوه', r'connection', r'thread']) or spec_attr(specs, [r'نوع اتصال', r'رزوه', r'connection', r'thread'])
+    dims['material'] = truth_field(truth_rec, 'material') or direct_attr(attrs, [r'^جنس$', r'material']) or spec_attr(specs, [r'^جنس$', r'material'])
+    dims['pressure_class'] = direct_attr(attrs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn$', r'^sdr$']) or spec_attr(specs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn$', r'^sdr$'])
+    dims['pressure_requirement'] = direct_attr(attrs, [r'نیاز فشار', r'فشار مورد نیاز', r'pressure requirement']) or spec_attr(specs, [r'نیاز فشار', r'فشار مورد نیاز', r'pressure requirement']) or dims['pressure_class']
+    dims['flow_rate'] = direct_attr(attrs, [r'^دبی', r'flow']) or spec_attr(specs, [r'^دبی', r'flow'])
+    dims['filtration_grade'] = direct_attr(attrs, [r'میکرون', r'مش', r'mesh', r'filtration grade']) or spec_attr(specs, [r'میکرون', r'مش', r'mesh', r'filtration grade'])
+    dims['filtration_requirement'] = direct_attr(attrs, [r'نیاز فیلتراسیون', r'الزام فیلتراسیون', r'filtration requirement']) or spec_attr(specs, [r'نیاز فیلتراسیون', r'الزام فیلتراسیون', r'filtration requirement'])
+    dims['emitter_spacing'] = direct_attr(attrs, [r'فاصله قطره', r'فاصله خروجی', r'emitter spacing']) or spec_attr(specs, [r'فاصله قطره', r'فاصله خروجی', r'emitter spacing'])
+    dims['length'] = direct_attr(attrs, [r'^طول$', r'طول رول', r'length']) or spec_attr(specs, [r'^طول$', r'طول رول', r'length'])
+    dims['capacity'] = direct_attr(attrs, [r'^ظرفیت$', r'capacity']) or spec_attr(specs, [r'^ظرفیت$', r'capacity'])
+    return {k: (v if v else {'status': 'UNKNOWN', 'value': None}) for k, v in dims.items()}
+
 
 def edge_key(e):
     return (str(e.get('source_product_id') or ''), str(e.get('target_product_id') or ''), e.get('relation'), e.get('status'))
