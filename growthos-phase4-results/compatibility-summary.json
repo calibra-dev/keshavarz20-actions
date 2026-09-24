@@ -2,7 +2,7 @@
   "ok": true,
   "phase": 4,
   "version": "growthos-compatibility-knowledge-graph-v2",
-  "generated_at_utc": "2026-09-24T07:19:12.258258+00:00",
+  "generated_at_utc": "2026-09-24T07:19:45.389481+00:00",
   "status": "PASS_RESCOPED_WITH_GOVERNED_EVIDENCE_GAPS",
   "summary": {
     "published_products": 652,
@@ -27,35 +27,43 @@
       "drip_tape_component": 3
     },
     "exact_dimension_ready_by_family": {
-      "fitting": 125,
+      "fitting": 130,
       "washer_clamp": 22,
+      "layflat_rain": 11,
+      "filter": 1,
       "pipe": 8,
-      "valve": 8,
+      "valve": 22,
       "installation_tool": 4,
       "drip_tape_component": 2,
-      "layflat_rain": 1,
       "riser": 6
     },
-    "products_data_dimension_ready": 176,
-    "products_exact_dimension_ready": 20,
-    "products_with_required_dimension_gaps": 210,
+    "products_data_dimension_ready": 206,
+    "products_exact_dimension_ready": 22,
+    "products_with_required_dimension_gaps": 180,
     "excluded_non_irrigation_products": 262,
     "unmodeled_irrigation_products": 4,
     "missing_dimension_counts": {
       "length": 5,
-      "pressure_class": 56,
-      "material": 93,
-      "connection_type": 113,
+      "pressure_class": 32,
+      "material": 78,
+      "connection_type": 101,
       "nominal_size": 39,
-      "connection_size": 4,
+      "connection_size": 3,
       "head": 3,
       "power": 8,
       "filtration_requirement": 4,
       "flow_rate": 10,
-      "pressure_requirement": 5,
-      "filtration_grade": 6,
+      "pressure_requirement": 3,
+      "filtration_grade": 5,
       "tool_size": 3
     },
+    "external_evidence_sources": 11,
+    "external_evidence_rules": 11,
+    "external_fill_counts": {
+      "SECONDARY_VERIFIED": 35,
+      "MANUFACTURER_VERIFIED": 22
+    },
+    "external_conflicts": 34,
     "edge_count": 2028,
     "relation_counts": {
       "explicitReference": 2005,
@@ -80,7 +88,1012 @@
     "variant_edges_only_from_direct_structure": true,
     "verification_backlog_generated": true,
     "no_price_or_stock_mutation": true,
-    "hard_fabrications_zero": true
+    "hard_fabrications_zero": true,
+    "external_evidence_conflicts_preserved_for_review": true
+  },
+  "external_evidence": {
+    "version": "growthos-phase4-external-evidence-v1",
+    "researched_at_utc": "2026-09-24T07:18:00Z",
+    "source_count": 11,
+    "rule_count": 11,
+    "fill_counts": {
+      "SECONDARY_VERIFIED": 35,
+      "MANUFACTURER_VERIFIED": 22
+    },
+    "conflicts": [
+      {
+        "product_id": 140661,
+        "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۴ اینچ (۱۱۰ میلی‌متر)",
+        "family": "valve",
+        "field": "pressure_class",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "۶ بار",
+          "source": "woocommerce_attribute",
+          "evidence": {
+            "attribute": "فشار کاری / کلاس فشار"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "6 bar",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-pressure",
+            "source_id": "vispar-official-telegram-ball-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?after=888",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140661,
+        "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۴ اینچ (۱۱۰ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "دنده‌ای",
+          "source": "woocommerce_attribute",
+          "evidence": {
+            "attribute": "نوع اتصال"
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140657,
+        "name": "شیر توپی دسته فلزی ویسپار ۴ اینچ (۱۱۰ میلی‌متر)",
+        "family": "valve",
+        "field": "pressure_class",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "۶ بار",
+          "source": "woocommerce_attribute",
+          "evidence": {
+            "attribute": "فشار کاری / کلاس فشار"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "6 bar",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-pressure",
+            "source_id": "vispar-official-telegram-ball-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?after=888",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140657,
+        "name": "شیر توپی دسته فلزی ویسپار ۴ اینچ (۱۱۰ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "دنده‌ای",
+          "source": "woocommerce_attribute",
+          "evidence": {
+            "attribute": "نوع اتصال"
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140656,
+        "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۳ اینچ (۹۰ میلی‌متر)",
+        "family": "valve",
+        "field": "pressure_class",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "۶ بار",
+          "source": "woocommerce_attribute",
+          "evidence": {
+            "attribute": "فشار کاری / کلاس فشار"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "6 bar",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-pressure",
+            "source_id": "vispar-official-telegram-ball-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?after=888",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140656,
+        "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۳ اینچ (۹۰ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "دنده‌ای",
+          "source": "woocommerce_attribute",
+          "evidence": {
+            "attribute": "نوع اتصال"
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140638,
+        "name": "مغزی u-pvc پلیمری 3/4 اینچ ویسپار (پایا)",
+        "family": "fitting",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "male_male_threaded",
+          "source": "product_type_semantics",
+          "evidence": {
+            "field": "connection_type",
+            "title": "مغزی u-pvc پلیمری 3/4 اینچ ویسپار (پایا)",
+            "rule": "مغزی"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-threaded-upvc",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140637,
+        "name": "مغزی u-pvc پلیمری 1.1/4 اینچ ویسپار (پایا)",
+        "family": "fitting",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "male_male_threaded",
+          "source": "product_type_semantics",
+          "evidence": {
+            "field": "connection_type",
+            "title": "مغزی u-pvc پلیمری 1.1/4 اینچ ویسپار (پایا)",
+            "rule": "مغزی"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-threaded-upvc",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140636,
+        "name": "مغزی u-pvc پلیمری 3 اینچ ویسپار (پایا)",
+        "family": "fitting",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "male_male_threaded",
+          "source": "product_type_semantics",
+          "evidence": {
+            "field": "connection_type",
+            "title": "مغزی u-pvc پلیمری 3 اینچ ویسپار (پایا)",
+            "rule": "مغزی"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-threaded-upvc",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140635,
+        "name": "مغزی u-pvc پلیمری 2 اینچ ویسپار (پایا)",
+        "family": "fitting",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "male_male_threaded",
+          "source": "product_type_semantics",
+          "evidence": {
+            "field": "connection_type",
+            "title": "مغزی u-pvc پلیمری 2 اینچ ویسپار (پایا)",
+            "rule": "مغزی"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-threaded-upvc",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140633,
+        "name": "مغزی u-pvc پلیمری 1 اینچ ویسپار (پایا)",
+        "family": "fitting",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "male_male_threaded",
+          "source": "product_type_semantics",
+          "evidence": {
+            "field": "connection_type",
+            "title": "مغزی u-pvc پلیمری 1 اینچ ویسپار (پایا)",
+            "rule": "مغزی"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-threaded-upvc",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140569,
+        "name": "فلنچ پلی‌اتیلن جوشی گلو بلند ۵ اینچ (۱۲۵ میلی‌متر) پلی‌رود",
+        "family": "fitting",
+        "field": "material",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "material",
+            "title": "فلنچ پلی‌اتیلن جوشی گلو بلند ۵ اینچ (۱۲۵ میلی‌متر) پلی‌رود"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "PE100",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "polyrod-welded-pe100",
+            "source_id": "polyrod-official-telegram-2026",
+            "publisher": "Poli Rood Etteصال",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/polirood?before=854",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140496,
+        "name": "زانو پلیمری دوسر ماده پایا 3/4 اینچ 25 میلیمتر",
+        "family": "fitting",
+        "field": "material",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "polymeric_unspecified",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "material",
+            "title": "زانو پلیمری دوسر ماده پایا 3/4 اینچ 25 میلیمتر"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "uPVC",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-threaded-upvc",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140495,
+        "name": "زانو پلیمری دوسر ماده پایا 1/2 اینچ (20 میلیمتر)",
+        "family": "fitting",
+        "field": "material",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "polymeric_unspecified",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "material",
+            "title": "زانو پلیمری دوسر ماده پایا 1/2 اینچ (20 میلیمتر)"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "uPVC",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-threaded-upvc",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140494,
+        "name": "زانو پلیمری دوسر ماده پایا 1 اینچ (32 میلیمتر)",
+        "family": "fitting",
+        "field": "material",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "polymeric_unspecified",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "material",
+            "title": "زانو پلیمری دوسر ماده پایا 1 اینچ (32 میلیمتر)"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "uPVC",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-threaded-upvc",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140009,
+        "name": "زانو پلیمری دوسر ماده پایا 3 اینچ 90 میلیمتر",
+        "family": "fitting",
+        "field": "material",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "polymeric_unspecified",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "material",
+            "title": "زانو پلیمری دوسر ماده پایا 3 اینچ 90 میلیمتر"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "uPVC",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-threaded-upvc",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140008,
+        "name": "زانو پلیمری دوسر ماده پایا 2.1/2 اینچ ۷۵ میلیمتر",
+        "family": "fitting",
+        "field": "material",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "polymeric_unspecified",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "material",
+            "title": "زانو پلیمری دوسر ماده پایا 2.1/2 اینچ ۷۵ میلیمتر"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "uPVC",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-threaded-upvc",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140007,
+        "name": "زانو پلیمری دوسر ماده پایا 2 اینچ 63 میلیمتر",
+        "family": "fitting",
+        "field": "material",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "polymeric_unspecified",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "material",
+            "title": "زانو پلیمری دوسر ماده پایا 2 اینچ 63 میلیمتر"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "uPVC",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-threaded-upvc",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 140006,
+        "name": "زانو پلیمری دوسر ماده پایا 1.1/2 اینچ 50 میلیمتر",
+        "family": "fitting",
+        "field": "material",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "polymeric_unspecified",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "material",
+            "title": "زانو پلیمری دوسر ماده پایا 1.1/2 اینچ 50 میلیمتر"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "uPVC",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-threaded-upvc",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135106,
+        "name": "فلنچ پلی‌اتیلن جوشی گلو بلند ۳ اینچ (۹۰ میلی‌متر) پلی‌رود",
+        "family": "fitting",
+        "field": "material",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "polyethylene",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "material",
+            "title": "فلنچ پلی‌اتیلن جوشی گلو بلند ۳ اینچ (۹۰ میلی‌متر) پلی‌رود"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "PE100",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "polyrod-welded-pe100",
+            "source_id": "polyrod-official-telegram-2026",
+            "publisher": "Poli Rood Etteصال",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/polirood?before=854",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135349,
+        "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۲ اینچ (۶۳ میلی‌متر)",
+        "family": "valve",
+        "field": "pressure_class",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "۶ بار",
+          "source": "woocommerce_attribute",
+          "evidence": {
+            "attribute": "فشار کاری / کلاس فشار"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "6 bar",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-pressure",
+            "source_id": "vispar-official-telegram-ball-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?after=888",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135349,
+        "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۲ اینچ (۶۳ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "دنده‌ای",
+          "source": "woocommerce_attribute",
+          "evidence": {
+            "attribute": "نوع اتصال"
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135343,
+        "name": "شیر پروانه‌ای پلیمری ویسپار ۶ اینچ با دسته فلزی (160 میلی‌متر)",
+        "family": "valve",
+        "field": "material",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "polymeric_unspecified",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "material",
+            "title": "شیر پروانه‌ای پلیمری ویسپار ۶ اینچ با دسته فلزی (160 میلی‌متر)"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "uPVC",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-butterfly",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135341,
+        "name": "شیر پروانه‌ای پلیمری ویسپار ۵ اینچ با دسته فلزی (۱۲۵ میلی‌متر)",
+        "family": "valve",
+        "field": "pressure_class",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "۶ بار",
+          "source": "woocommerce_attribute",
+          "evidence": {
+            "attribute": "فشار کاری / کلاس فشار"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "6 bar",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-butterfly",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135339,
+        "name": "شیر پروانه‌ای پلیمری ویسپار ۴ اینچ با دسته فلزی (110 میلی‌متر)",
+        "family": "valve",
+        "field": "pressure_class",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "۶ بار",
+          "source": "woocommerce_attribute",
+          "evidence": {
+            "attribute": "فشار کاری / کلاس فشار"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "6 bar",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-butterfly",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135337,
+        "name": "شیر پروانه‌ای پلیمری ویسپار ۳ اینچ با دسته فلزی (90 میلی‌متر)",
+        "family": "valve",
+        "field": "material",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "polymeric_unspecified",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "material",
+            "title": "شیر پروانه‌ای پلیمری ویسپار ۳ اینچ با دسته فلزی (90 میلی‌متر)"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "uPVC",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-butterfly",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135331,
+        "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۲ و ۱/۲ اینچ (۷۵ میلی‌متر)",
+        "family": "valve",
+        "field": "pressure_class",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "۶ بار",
+          "source": "woocommerce_attribute",
+          "evidence": {
+            "attribute": "فشار کاری / کلاس فشار"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "6 bar",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-pressure",
+            "source_id": "vispar-official-telegram-ball-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?after=888",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135331,
+        "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۲ و ۱/۲ اینچ (۷۵ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "دنده‌ای",
+          "source": "woocommerce_attribute",
+          "evidence": {
+            "attribute": "نوع اتصال"
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135323,
+        "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ اینچ (۳۲ میلی‌متر)",
+        "family": "valve",
+        "field": "pressure_class",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "۶ بار",
+          "source": "woocommerce_attribute",
+          "evidence": {
+            "attribute": "فشار کاری / کلاس فشار"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "6 bar",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-pressure",
+            "source_id": "vispar-official-telegram-ball-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?after=888",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135323,
+        "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ اینچ (۳۲ میلی‌متر)",
+        "family": "valve",
+        "field": "connection_type",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "دنده‌ای",
+          "source": "woocommerce_attribute",
+          "evidence": {
+            "attribute": "نوع اتصال"
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-ball-thread-secondary",
+            "source_id": "vispar-ball-secondary",
+            "publisher": "Mirab Sazeh",
+            "source_tier": "secondary",
+            "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135311,
+        "name": "لوله نخدار ۲.۵ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+        "family": "layflat_rain",
+        "field": "material",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "پلی‌اتیلن تقویت‌شده با نخ",
+          "source": "woocommerce_attribute:جنس"
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "polyethylene reinforced five-layer",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "asayesh-five-layer-standard",
+            "source_id": "asayesh-current-specialist-index",
+            "publisher": "Abyari Ghatrei",
+            "source_tier": "secondary",
+            "url": "https://abyarighatrei.com/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135311,
+        "name": "لوله نخدار ۲.۵ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+        "family": "layflat_rain",
+        "field": "pressure_class",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "۱.۵ بار؛ لیبل کلاف تحویلی در پروژه‌های حساس کنترل شود",
+          "source": "woocommerce_attribute",
+          "evidence": {
+            "attribute": "فشار کاری"
+          }
+        },
+        "incoming": {
+          "status": "SECONDARY_VERIFIED",
+          "value": "1.5 bar",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "asayesh-five-layer-standard",
+            "source_id": "asayesh-current-specialist-index",
+            "publisher": "Abyari Ghatrei",
+            "source_tier": "secondary",
+            "url": "https://abyarighatrei.com/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135627,
+        "name": "سه راه ماده پلیمری پایا 2 اینچ",
+        "family": "fitting",
+        "field": "material",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "polymeric_unspecified",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "material",
+            "title": "سه راه ماده پلیمری پایا 2 اینچ"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "uPVC",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-threaded-upvc",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      },
+      {
+        "product_id": 135627,
+        "name": "سه راه ماده پلیمری پایا 2 اینچ",
+        "family": "fitting",
+        "field": "connection_type",
+        "existing": {
+          "status": "SITE_DECLARED",
+          "value": "female_threaded",
+          "source": "product_type_semantics",
+          "evidence": {
+            "field": "connection_type",
+            "title": "سه راه ماده پلیمری پایا 2 اینچ",
+            "rule": "اتصال\\s*ماده|سه\\s*راه\\s*ماده|زانو.*ماده|یکسر\\s*ماده"
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "threaded",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-threaded-upvc",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; external evidence retained for review"
+      }
+    ],
+    "non_applied_family_evidence": [
+      {
+        "topic": "Farat Polymer drip tape",
+        "source_id": "farat-driptape-secondary",
+        "claims": {
+          "emitter_spacing_options_cm": [
+            10,
+            20,
+            30
+          ],
+          "pressure_ideal_atm": 0.6,
+          "pressure_min_atm": 0.4,
+          "pressure_max_atm": 1,
+          "filtration_requirement": "prevent particles larger than 100 microns from entering network",
+          "flow_rate_lph": "1.6-2"
+        },
+        "reason": "K20 drip-tape SKUs in the current backlog are not all explicitly branded Farat Polymer, so family data is not assigned automatically."
+      }
+    ]
   },
   "next_gate": "Before automatic product-to-product recommendation (Phase 18), fill exact missing dimensions and add exact manufacturer/source evidence for fits/worksWith/needs relations."
 }
