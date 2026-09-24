@@ -2,7 +2,7 @@
   "ok": true,
   "phase": 4,
   "version": "growthos-compatibility-knowledge-graph-v2",
-  "generated_at_utc": "2026-09-24T07:37:40.994452+00:00",
+  "generated_at_utc": "2026-09-24T07:46:25.293432+00:00",
   "status": "PASS_RESCOPED_WITH_GOVERNED_EVIDENCE_GAPS",
   "summary": {
     "published_products": 652,
@@ -64,12 +64,12 @@
     "external_evidence_sources": 13,
     "external_evidence_rules": 13,
     "external_fill_counts": {
-      "MANUFACTURER_REFINED": 61,
+      "MANUFACTURER_REFINED": 59,
       "SECONDARY_VERIFIED": 24,
-      "MANUFACTURER_VERIFIED": 28,
-      "CORROBORATED": 18
+      "MANUFACTURER_VERIFIED": 26,
+      "CORROBORATED": 20
     },
-    "external_conflicts": 12,
+    "external_conflicts": 14,
     "edge_count": 2028,
     "relation_counts": {
       "explicitReference": 2005,
@@ -103,10 +103,10 @@
     "source_count": 13,
     "rule_count": 13,
     "fill_counts": {
-      "MANUFACTURER_REFINED": 61,
+      "MANUFACTURER_REFINED": 59,
       "SECONDARY_VERIFIED": 24,
-      "MANUFACTURER_VERIFIED": 28,
-      "CORROBORATED": 18
+      "MANUFACTURER_VERIFIED": 26,
+      "CORROBORATED": 20
     },
     "conflicts": [
       {
@@ -419,6 +419,64 @@
             "publisher": "Mirab Sazeh",
             "source_tier": "secondary",
             "url": "https://www.mirabsaze.com/product/%D8%B4%DB%8C%D8%B1-%D8%AA%D9%88%D9%BE%DB%8C-%D9%BE%D9%84%DB%8C%D9%85%D8%B1%DB%8C/",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; true semantic conflict retained for review"
+      },
+      {
+        "product_id": 135343,
+        "name": "شیر پروانه‌ای پلیمری ویسپار ۶ اینچ با دسته فلزی (160 میلی‌متر)",
+        "family": "valve",
+        "field": "material",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "UPVC جنس دیسک ABS جنس آب‌بند EPDM نوع دسته فلزی دستی کاربرد",
+          "source": "woocommerce_product_prose",
+          "evidence": {
+            "field": "material",
+            "matched_snippet": " ۶ اینچ (160 میلی‌متر) نوع اتصال ویفری فشار اسمی ۶ بار جنس بدنه UPVC جنس دیسک ABS جنس آب‌بند EPDM نوع دسته فلزی دستی کاربرد خطوط آبیاری و انتقال آب مزایای این محصول مقاومت مناسب در برابر زنگ‌زدگی و رطوبت نصب آسان "
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "uPVC",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-butterfly",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; true semantic conflict retained for review"
+      },
+      {
+        "product_id": 135337,
+        "name": "شیر پروانه‌ای پلیمری ویسپار ۳ اینچ با دسته فلزی (90 میلی‌متر)",
+        "family": "valve",
+        "field": "material",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "UPVC جنس دیسک ABS جنس آب‌بند EPDM نوع دسته فلزی دستی کاربرد",
+          "source": "woocommerce_product_prose",
+          "evidence": {
+            "field": "material",
+            "matched_snippet": "ز ۳ اینچ (90 میلی‌متر) نوع اتصال ویفری فشار اسمی ۶ بار جنس بدنه UPVC جنس دیسک ABS جنس آب‌بند EPDM نوع دسته فلزی دستی کاربرد آبیاری و انتقال آب مزایای محصول ابعاد مناسب برای خطوط 90 میلی‌متری مقاومت مناسب در برابر "
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "uPVC",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-butterfly",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
             "retrieved_at": "2026-09-24"
           }
         },

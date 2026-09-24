@@ -2,7 +2,7 @@
   "ok": true,
   "phase": 4,
   "version": "growthos-compatibility-knowledge-graph-v2",
-  "generated_at_utc": "2026-09-24T07:37:40.994452+00:00",
+  "generated_at_utc": "2026-09-24T07:46:25.293432+00:00",
   "execution_mode": "read-only-evidence-graph",
   "status": "PASS_RESCOPED_WITH_GOVERNED_EVIDENCE_GAPS",
   "relation_vocabulary": {
@@ -104,10 +104,10 @@
     "source_count": 13,
     "rule_count": 13,
     "fill_counts": {
-      "MANUFACTURER_REFINED": 61,
+      "MANUFACTURER_REFINED": 59,
       "SECONDARY_VERIFIED": 24,
-      "MANUFACTURER_VERIFIED": 28,
-      "CORROBORATED": 18
+      "MANUFACTURER_VERIFIED": 26,
+      "CORROBORATED": 20
     },
     "conflicts": [
       {
@@ -426,6 +426,64 @@
         "resolution": "kept_existing_value; true semantic conflict retained for review"
       },
       {
+        "product_id": 135343,
+        "name": "شیر پروانه‌ای پلیمری ویسپار ۶ اینچ با دسته فلزی (160 میلی‌متر)",
+        "family": "valve",
+        "field": "material",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "UPVC جنس دیسک ABS جنس آب‌بند EPDM نوع دسته فلزی دستی کاربرد",
+          "source": "woocommerce_product_prose",
+          "evidence": {
+            "field": "material",
+            "matched_snippet": " ۶ اینچ (160 میلی‌متر) نوع اتصال ویفری فشار اسمی ۶ بار جنس بدنه UPVC جنس دیسک ABS جنس آب‌بند EPDM نوع دسته فلزی دستی کاربرد خطوط آبیاری و انتقال آب مزایای این محصول مقاومت مناسب در برابر زنگ‌زدگی و رطوبت نصب آسان "
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "uPVC",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-butterfly",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; true semantic conflict retained for review"
+      },
+      {
+        "product_id": 135337,
+        "name": "شیر پروانه‌ای پلیمری ویسپار ۳ اینچ با دسته فلزی (90 میلی‌متر)",
+        "family": "valve",
+        "field": "material",
+        "existing": {
+          "status": "VERIFIED",
+          "value": "UPVC جنس دیسک ABS جنس آب‌بند EPDM نوع دسته فلزی دستی کاربرد",
+          "source": "woocommerce_product_prose",
+          "evidence": {
+            "field": "material",
+            "matched_snippet": "ز ۳ اینچ (90 میلی‌متر) نوع اتصال ویفری فشار اسمی ۶ بار جنس بدنه UPVC جنس دیسک ABS جنس آب‌بند EPDM نوع دسته فلزی دستی کاربرد آبیاری و انتقال آب مزایای محصول ابعاد مناسب برای خطوط 90 میلی‌متری مقاومت مناسب در برابر "
+          }
+        },
+        "incoming": {
+          "status": "MANUFACTURER_VERIFIED",
+          "value": "uPVC",
+          "source": "external_research_evidence",
+          "evidence": {
+            "rule_id": "vispar-butterfly",
+            "source_id": "vispar-official-telegram-2026",
+            "publisher": "Vispar / Paya Baspar Aria",
+            "source_tier": "manufacturer",
+            "url": "https://t.me/s/vispar_co?before=889",
+            "retrieved_at": "2026-09-24"
+          }
+        },
+        "resolution": "kept_existing_value; true semantic conflict retained for review"
+      },
+      {
         "product_id": 135329,
         "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۲ اینچ (۶۳ میلی‌متر)",
         "family": "valve",
@@ -617,12 +675,12 @@
     "external_evidence_sources": 13,
     "external_evidence_rules": 13,
     "external_fill_counts": {
-      "MANUFACTURER_REFINED": 61,
+      "MANUFACTURER_REFINED": 59,
       "SECONDARY_VERIFIED": 24,
-      "MANUFACTURER_VERIFIED": 28,
-      "CORROBORATED": 18
+      "MANUFACTURER_VERIFIED": 26,
+      "CORROBORATED": 20
     },
-    "external_conflicts": 12,
+    "external_conflicts": 14,
     "edge_count": 2028,
     "relation_counts": {
       "explicitReference": 2005,
@@ -13994,15 +14052,12 @@
           "value": null
         },
         "length": {
-          "status": "SITE_DECLARED",
-          "value": [
-            "۱۰۰ متری",
-            "۱۰۰ متر"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱۰۰ متر",
+          "source": "woocommerce_product_prose",
           "evidence": {
             "field": "length",
-            "title": "لوله نخدار ۸ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری"
+            "matched_snippet": "سال بررسی شود. ویژگی‌های محصول سایز: ۸ اینچ / سایز ۲۰۰ طول رول: ۱۰۰ متر ساختار: ۵ لایه نخدار برند: آسایش آذربایجان مناسب برای انتقال آب در باغ، مزرعه و زمین‌های "
           }
         },
         "capacity": {
@@ -16798,12 +16853,12 @@
           }
         },
         "connection_size": {
-          "status": "SITE_DECLARED",
+          "status": "VERIFIED",
           "value": "۲ اینچ",
-          "source": "woocommerce_product_title",
+          "source": "woocommerce_product_prose",
           "evidence": {
-            "field": "nominal_size",
-            "title": "مینی فیلتر دیسکی ۲ اینچ فرات پلیمر"
+            "field": "connection_size",
+            "matched_snippet": " بگیرید؛ شن سنگین، لای و مواد آلی رفتار یکسانی ندارند. ورودی و خروجی ۲ اینچ را با اتصالات موجود تطبیق دهید. برای بازکردن فیلتر و شست‌وشوی دیسک‌ها فضای کافی باقی بگذا"
           }
         },
         "connection_type": {
@@ -33076,10 +33131,11 @@
         },
         "connection_size": {
           "status": "VERIFIED",
-          "value": "لوله اصلی ۶۳ میلی‌متر / خروجی ۲ اینچ",
-          "source": "woocommerce_attribute",
+          "value": "۲ اینچ",
+          "source": "woocommerce_product_prose",
           "evidence": {
-            "attribute": "سایز / قطر اسمی"
+            "field": "connection_size",
+            "matched_snippet": " ۲ اینچ قطر لوله اصلی ۶۳ میلی‌متر نوع خروجی رزوه مادگی سایز خروجی ۲ اینچ اتصال بعدی شیر، رابط یا تجهیز دارای رزوه نر ۲ اینچ روش نصب دو تکه پیچی روی لوله روش آب‌بن"
           }
         },
         "connection_type": {
@@ -34187,12 +34243,12 @@
           }
         },
         "material": {
-          "status": "SITE_DECLARED",
-          "value": "polyethylene",
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "پلیمری",
+          "source": "woocommerce_product_prose",
           "evidence": {
             "field": "material",
-            "title": "کمربند پلی‌اتیلن ۱۲۵ × ۵۰ میلی‌متر | انشعاب لوله ۵۰ میلی‌متر"
+            "matched_snippet": "فرعی آبیاری و انتقال آب فشار کاری طبق مشخصات فنی محصول جنس بدنه پلیمری؛ مطابق مشخصات سازنده کاربردهای اصلی گرفتن خروجی ۵۰ میلی‌متری از خط اصلی ۱۲۵ تغذیه خطوط فر"
           }
         },
         "pressure_class": {
@@ -34582,12 +34638,12 @@
           }
         },
         "material": {
-          "status": "SITE_DECLARED",
-          "value": "polyethylene",
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "پلیمری موارد مصرف نصب شیر یک اینچ روی لوله ۱۱۰ ایجاد خط فرعی",
+          "source": "woocommerce_product_prose",
           "evidence": {
             "field": "material",
-            "title": "کمربند پلی‌اتیلن ۱۱۰ × ۱ اینچ | انشعاب لوله ۳۲ میلی‌متر"
+            "matched_snippet": " تجهیزات جانبی فشار قابل استفاده بر اساس مشخصات سازنده جنس بدنه پلیمری موارد مصرف نصب شیر یک اینچ روی لوله ۱۱۰ ایجاد خط فرعی اسمی ۳۲ میلی‌متر نصب رایزر یا آبپاش اتصال فشارسنج یا تجهیزات کنترل گرفتن انشعاب برای آبیار"
           }
         },
         "pressure_class": {
@@ -35941,12 +35997,12 @@
           }
         },
         "connection_size": {
-          "status": "SITE_DECLARED",
+          "status": "VERIFIED",
           "value": "2 اینچ",
-          "source": "woocommerce_product_title",
+          "source": "woocommerce_product_prose",
           "evidence": {
-            "field": "nominal_size",
-            "title": "شیر خودکار پلیمری ویسپار 2 اینچ"
+            "field": "connection_size",
+            "matched_snippet": "، آبپاش و افت‌های کل شبکه وابسته است. چک قبل از سفارش: سایز اتصال 2 اینچ، نوع رزوه و قطعه زیر شیر، رایزر یا کلید سازگار و شرایط کاری شبکه را با قطعات موجود تطبیق "
           }
         },
         "connection_type": {
@@ -43658,10 +43714,11 @@
         },
         "connection_size": {
           "status": "VERIFIED",
-          "value": "ورودی و خروجی ۱ اینچ",
-          "source": "woocommerce_attribute",
+          "value": "۱ اینچ",
+          "source": "woocommerce_product_prose",
           "evidence": {
-            "attribute": "سایز / قطر اسمی"
+            "field": "connection_size",
+            "matched_snippet": "ستر، بدنه با ورق ۳ میلی‌متر، فرم عدسی در بالا و پایین، ورودی و خروجی ۱ اینچ و عبارت «دارای تأییدیه رسمی جهاد کشاورزی» را ثبت کرده بود؛ برای خرید حرفه‌ای، مشخصات حک‌ش"
           }
         },
         "connection_type": {
@@ -43777,10 +43834,11 @@
         },
         "connection_size": {
           "status": "VERIFIED",
-          "value": "ورودی و خروجی ۳/۴ اینچ",
-          "source": "woocommerce_attribute",
+          "value": "۳/۴ اینچ",
+          "source": "woocommerce_product_prose",
           "evidence": {
-            "attribute": "سایز / قطر اسمی"
+            "field": "connection_size",
+            "matched_snippet": "ستر، بدنه با ورق ۳ میلی‌متر، فرم عدسی در بالا و پایین، ورودی و خروجی ۳/۴ اینچ و عبارت «دارای تأییدیه رسمی جهاد» را ثبت کرده بود؛ برای خرید حرفه‌ای، مشخصات حک‌شده یا مد"
           }
         },
         "connection_type": {
@@ -60965,12 +61023,12 @@
           }
         },
         "connection_size": {
-          "status": "SITE_DECLARED",
+          "status": "VERIFIED",
           "value": "1 اینچ",
-          "source": "woocommerce_product_title",
+          "source": "woocommerce_product_prose",
           "evidence": {
-            "field": "nominal_size",
-            "title": "شیر تخلیه هوا 1 اینچ"
+            "field": "connection_size",
+            "matched_snippet": "اطی نصب می‌شوند که احتمال تجمع هوا بیشتر است. این صفحه سایز اتصال 1 اینچ را مشخص می‌کند، اما نوع دقیق عملکرد شیر هوا و رده فشار آن باید پیش از سفارش جداگانه تأیید"
           }
         },
         "connection_type": {
@@ -64067,43 +64125,51 @@
           }
         },
         "material": {
-          "status": "MANUFACTURER_VERIFIED",
-          "value": "uPVC",
-          "source": "external_research_evidence",
+          "status": "VERIFIED",
+          "value": "UPVC جنس دیسک ABS جنس آب‌بند EPDM نوع دسته فلزی دستی کاربرد",
+          "source": "woocommerce_product_prose",
           "evidence": {
-            "rule_id": "vispar-butterfly",
-            "source_id": "vispar-official-telegram-2026",
-            "publisher": "Vispar / Paya Baspar Aria",
-            "source_tier": "manufacturer",
-            "url": "https://t.me/s/vispar_co?before=889",
-            "retrieved_at": "2026-09-24",
-            "corroborates": {
-              "status": "SITE_DECLARED",
-              "value": "polymeric_unspecified",
-              "source": "woocommerce_product_title",
-              "evidence": {
-                "field": "material",
-                "title": "شیر پروانه‌ای پلیمری ویسپار ۶ اینچ با دسته فلزی (160 میلی‌متر)"
-              }
-            }
+            "field": "material",
+            "matched_snippet": " ۶ اینچ (160 میلی‌متر) نوع اتصال ویفری فشار اسمی ۶ بار جنس بدنه UPVC جنس دیسک ABS جنس آب‌بند EPDM نوع دسته فلزی دستی کاربرد خطوط آبیاری و انتقال آب مزایای این محصول مقاومت مناسب در برابر زنگ‌زدگی و رطوبت نصب آسان "
           }
         },
         "pressure_class": {
-          "status": "MANUFACTURER_VERIFIED",
-          "value": "6 bar",
-          "source": "external_research_evidence",
+          "status": "MANUFACTURER_CORROBORATED",
+          "value": "۶ بار",
+          "source": "woocommerce_product_prose",
           "evidence": {
-            "rule_id": "vispar-butterfly",
-            "source_id": "vispar-official-telegram-2026",
-            "publisher": "Vispar / Paya Baspar Aria",
-            "source_tier": "manufacturer",
-            "url": "https://t.me/s/vispar_co?before=889",
-            "retrieved_at": "2026-09-24"
+            "field": "pressure_class",
+            "matched_snippet": "برند ویسپار سایز ۶ اینچ (160 میلی‌متر) نوع اتصال ویفری فشار اسمی ۶ بار جنس بدنه UPVC جنس دیسک ABS جنس آب‌بند EPDM نوع دسته فلزی دستی کاربرد خطوط آبیاری و انتقال",
+            "corroboration": [
+              {
+                "rule_id": "vispar-butterfly",
+                "source_id": "vispar-official-telegram-2026",
+                "publisher": "Vispar / Paya Baspar Aria",
+                "source_tier": "manufacturer",
+                "url": "https://t.me/s/vispar_co?before=889",
+                "retrieved_at": "2026-09-24"
+              }
+            ]
           }
         },
         "pressure_requirement": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "MANUFACTURER_CORROBORATED",
+          "value": "۶ بار",
+          "source": "woocommerce_product_prose",
+          "evidence": {
+            "field": "pressure_class",
+            "matched_snippet": "برند ویسپار سایز ۶ اینچ (160 میلی‌متر) نوع اتصال ویفری فشار اسمی ۶ بار جنس بدنه UPVC جنس دیسک ABS جنس آب‌بند EPDM نوع دسته فلزی دستی کاربرد خطوط آبیاری و انتقال",
+            "corroboration": [
+              {
+                "rule_id": "vispar-butterfly",
+                "source_id": "vispar-official-telegram-2026",
+                "publisher": "Vispar / Paya Baspar Aria",
+                "source_tier": "manufacturer",
+                "url": "https://t.me/s/vispar_co?before=889",
+                "retrieved_at": "2026-09-24"
+              }
+            ]
+          }
         },
         "flow_rate": {
           "status": "UNKNOWN",
@@ -64509,43 +64575,51 @@
           }
         },
         "material": {
-          "status": "MANUFACTURER_VERIFIED",
-          "value": "uPVC",
-          "source": "external_research_evidence",
+          "status": "VERIFIED",
+          "value": "UPVC جنس دیسک ABS جنس آب‌بند EPDM نوع دسته فلزی دستی کاربرد",
+          "source": "woocommerce_product_prose",
           "evidence": {
-            "rule_id": "vispar-butterfly",
-            "source_id": "vispar-official-telegram-2026",
-            "publisher": "Vispar / Paya Baspar Aria",
-            "source_tier": "manufacturer",
-            "url": "https://t.me/s/vispar_co?before=889",
-            "retrieved_at": "2026-09-24",
-            "corroborates": {
-              "status": "SITE_DECLARED",
-              "value": "polymeric_unspecified",
-              "source": "woocommerce_product_title",
-              "evidence": {
-                "field": "material",
-                "title": "شیر پروانه‌ای پلیمری ویسپار ۳ اینچ با دسته فلزی (90 میلی‌متر)"
-              }
-            }
+            "field": "material",
+            "matched_snippet": "ز ۳ اینچ (90 میلی‌متر) نوع اتصال ویفری فشار اسمی ۶ بار جنس بدنه UPVC جنس دیسک ABS جنس آب‌بند EPDM نوع دسته فلزی دستی کاربرد آبیاری و انتقال آب مزایای محصول ابعاد مناسب برای خطوط 90 میلی‌متری مقاومت مناسب در برابر "
           }
         },
         "pressure_class": {
-          "status": "MANUFACTURER_VERIFIED",
-          "value": "6 bar",
-          "source": "external_research_evidence",
+          "status": "MANUFACTURER_CORROBORATED",
+          "value": "۶ بار",
+          "source": "woocommerce_product_prose",
           "evidence": {
-            "rule_id": "vispar-butterfly",
-            "source_id": "vispar-official-telegram-2026",
-            "publisher": "Vispar / Paya Baspar Aria",
-            "source_tier": "manufacturer",
-            "url": "https://t.me/s/vispar_co?before=889",
-            "retrieved_at": "2026-09-24"
+            "field": "pressure_class",
+            "matched_snippet": " برند ویسپار سایز ۳ اینچ (90 میلی‌متر) نوع اتصال ویفری فشار اسمی ۶ بار جنس بدنه UPVC جنس دیسک ABS جنس آب‌بند EPDM نوع دسته فلزی دستی کاربرد آبیاری و انتقال آب م",
+            "corroboration": [
+              {
+                "rule_id": "vispar-butterfly",
+                "source_id": "vispar-official-telegram-2026",
+                "publisher": "Vispar / Paya Baspar Aria",
+                "source_tier": "manufacturer",
+                "url": "https://t.me/s/vispar_co?before=889",
+                "retrieved_at": "2026-09-24"
+              }
+            ]
           }
         },
         "pressure_requirement": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "MANUFACTURER_CORROBORATED",
+          "value": "۶ بار",
+          "source": "woocommerce_product_prose",
+          "evidence": {
+            "field": "pressure_class",
+            "matched_snippet": " برند ویسپار سایز ۳ اینچ (90 میلی‌متر) نوع اتصال ویفری فشار اسمی ۶ بار جنس بدنه UPVC جنس دیسک ABS جنس آب‌بند EPDM نوع دسته فلزی دستی کاربرد آبیاری و انتقال آب م",
+            "corroboration": [
+              {
+                "rule_id": "vispar-butterfly",
+                "source_id": "vispar-official-telegram-2026",
+                "publisher": "Vispar / Paya Baspar Aria",
+                "source_tier": "manufacturer",
+                "url": "https://t.me/s/vispar_co?before=889",
+                "retrieved_at": "2026-09-24"
+              }
+            ]
+          }
         },
         "flow_rate": {
           "status": "UNKNOWN",
@@ -65387,15 +65461,12 @@
           "value": null
         },
         "length": {
-          "status": "SITE_DECLARED",
-          "value": [
-            "۱۰۰ متری",
-            "۱۰۰ متر"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱۰۰ متر",
+          "source": "woocommerce_product_prose",
           "evidence": {
             "field": "length",
-            "title": "لوله نخدار ۴.۵ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری"
+            "matched_snippet": " اهمیت دارد. ویژگی‌های محصول سایز: ۴.۵ اینچ / سایز ۱۱۰ طول رول: ۱۰۰ متر ساختار: ۵ لایه نخدار برند: آسایش آذربایجان مناسب برای انتقال آب در باغ، مزرعه و زمین‌های "
           }
         },
         "capacity": {
@@ -66099,15 +66170,12 @@
           "value": null
         },
         "length": {
-          "status": "SITE_DECLARED",
-          "value": [
-            "۱۰۰ متری",
-            "۱۰۰ متر"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱۰۰ متر",
+          "source": "woocommerce_product_prose",
           "evidence": {
             "field": "length",
-            "title": "لوله نخدار ۲.۵ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری"
+            "matched_snippet": "، سایز اسمی بازار ۲.۵ اینچ با قطر درج‌شده ۶۳ میلی‌متر، طول کلاف ۱۰۰ متر و ساختار ۵ لایه ثبت شده است. در منبع تخصصیِ دقیق همین مدل، فشار کاری ۱.۵ بار و وزن حدود ۱"
           }
         },
         "capacity": {
@@ -66565,10 +66633,11 @@
         },
         "connection_size": {
           "status": "VERIFIED",
-          "value": "لوله اصلی ۹۰ میلی‌متر / خروجی ۱ اینچ",
-          "source": "woocommerce_attribute",
+          "value": "۱ اینچ",
+          "source": "woocommerce_product_prose",
           "evidence": {
-            "attribute": "سایز / قطر اسمی"
+            "field": "connection_size",
+            "matched_snippet": "ب کرد. مشخصه مقدار یا توضیح سایز لوله اصلی ۹۰ میلی‌متر سایز خروجی ۱ اینچ معادل اسمی خروجی ۳۲ میلی‌متر جنس پلیمری؛ مطابق مشخصات محصول موجود آب‌بندی واشر داخلی در م"
           }
         },
         "connection_type": {
@@ -67208,15 +67277,12 @@
           }
         },
         "connection_size": {
-          "status": "SITE_DECLARED",
-          "value": [
-            "۱/۲ اینچ",
-            "۲۰ میلی‌متر"
-          ],
-          "source": "woocommerce_product_title",
+          "status": "VERIFIED",
+          "value": "۱/۲ اینچ",
+          "source": "woocommerce_product_prose",
           "evidence": {
-            "field": "nominal_size",
-            "title": "کمربند پلی‌اتیلن ۳۲ × ۱/۲ اینچ | انشعاب لوله ۲۰ میلی‌متر"
+            "field": "connection_size",
+            "matched_snippet": "رد. مشخصات محصول ویژگی مقدار قطر لوله اصلی ۳۲ میلی‌متر سایز خروجی ۱/۲ اینچ معادل اسمی خروجی ۲۰ میلی‌متر نحوه نصب دو تکه و پیچ و مهره‌ای کاربری انشعاب کوچک در شبکه آ"
           }
         },
         "connection_type": {
