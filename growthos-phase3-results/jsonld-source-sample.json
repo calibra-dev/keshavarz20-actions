@@ -1,0 +1,155 @@
+{
+  "http": 200,
+  "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-502-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+  "ld_json_blocks": 2,
+  "blocks": [
+    {
+      "index": 0,
+      "attrs": {
+        "type": "application/ld+json",
+        "class": "yoast-schema-graph"
+      },
+      "json_valid": true,
+      "nodes": [
+        {
+          "path": "$.@graph[0]",
+          "@type": "WebPage",
+          "@id": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-502-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "sku": null,
+          "brand": null,
+          "seller": null,
+          "has_offers": false,
+          "keys": [
+            "@id",
+            "@type",
+            "breadcrumb",
+            "dateModified",
+            "datePublished",
+            "description",
+            "image",
+            "inLanguage",
+            "isPartOf",
+            "name",
+            "potentialAction",
+            "primaryImageOfPage",
+            "thumbnailUrl",
+            "url"
+          ]
+        },
+        {
+          "path": "$.@graph[2]",
+          "@type": "BreadcrumbList",
+          "@id": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-502-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/#breadcrumb",
+          "sku": null,
+          "brand": null,
+          "seller": null,
+          "has_offers": false,
+          "keys": [
+            "@id",
+            "@type",
+            "itemListElement"
+          ]
+        },
+        {
+          "path": "$.@graph[4]",
+          "@type": "Organization",
+          "@id": "https://keshavarz20.com/#organization",
+          "sku": null,
+          "brand": null,
+          "seller": null,
+          "has_offers": false,
+          "keys": [
+            "@id",
+            "@type",
+            "actionableFeedbackPolicy",
+            "address",
+            "alternateName",
+            "description",
+            "email",
+            "foundingDate",
+            "hasMerchantReturnPolicy",
+            "hasShippingService",
+            "image",
+            "legalName",
+            "logo",
+            "name",
+            "numberOfEmployees",
+            "ownershipFundingInfo",
+            "publishingPrinciples",
+            "sameAs",
+            "taxID",
+            "telephone",
+            "url",
+            "vatID"
+          ]
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "attrs": {
+        "type": "application/ld+json"
+      },
+      "json_valid": true,
+      "nodes": [
+        {
+          "path": "$.@graph[0]",
+          "@type": "BreadcrumbList",
+          "@id": null,
+          "sku": null,
+          "brand": null,
+          "seller": null,
+          "has_offers": false,
+          "keys": [
+            "@context",
+            "@type",
+            "itemListElement"
+          ]
+        },
+        {
+          "path": "$.@graph[1]",
+          "@type": "Product",
+          "@id": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-502-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/#product",
+          "sku": "10205020000",
+          "brand": null,
+          "seller": null,
+          "has_offers": true,
+          "keys": [
+            "@context",
+            "@id",
+            "@type",
+            "description",
+            "image",
+            "name",
+            "offers",
+            "sku",
+            "url"
+          ]
+        },
+        {
+          "path": "$.@graph[1].offers[0]",
+          "@type": "Offer",
+          "@id": null,
+          "sku": null,
+          "brand": null,
+          "seller": {
+            "@id": "https://keshavarz20.com/#organization"
+          },
+          "has_offers": false,
+          "keys": [
+            "@type",
+            "availability",
+            "hasMerchantReturnPolicy",
+            "price",
+            "priceCurrency",
+            "priceSpecification",
+            "priceValidUntil",
+            "seller",
+            "shippingDetails",
+            "url"
+          ]
+        }
+      ]
+    }
+  ]
+}
