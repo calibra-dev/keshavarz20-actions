@@ -2,7 +2,7 @@
   "ok": true,
   "phase": 4,
   "version": "growthos-compatibility-knowledge-graph-v2",
-  "generated_at_utc": "2026-09-24T07:46:25.293432+00:00",
+  "generated_at_utc": "2026-09-24T07:50:21.850813+00:00",
   "execution_mode": "read-only-evidence-graph",
   "status": "PASS_RESCOPED_WITH_GOVERNED_EVIDENCE_GAPS",
   "relation_vocabulary": {
@@ -627,12 +627,12 @@
       "layflat_component": 11,
       "pump": 10,
       "drip_tape": 4,
-      "valve": 42,
+      "valve": 41,
       "sprinkler": 5,
       "filter": 6,
       "pipe": 9,
       "drip_tape_component": 12,
-      "drip_line_component": 6,
+      "drip_line_component": 7,
       "installation_tool": 8,
       "emitter": 8,
       "riser": 8,
@@ -647,22 +647,22 @@
       "pipe": 8,
       "valve": 25,
       "drip_tape_component": 12,
-      "drip_line_component": 6,
+      "drip_line_component": 7,
       "installation_tool": 8,
       "emitter": 1,
       "branch_connector": 2,
       "riser": 6
     },
-    "products_data_dimension_ready": 329,
+    "products_data_dimension_ready": 330,
     "products_exact_dimension_ready": 25,
-    "products_with_required_dimension_gaps": 61,
+    "products_with_required_dimension_gaps": 60,
     "excluded_non_irrigation_products": 262,
     "unmodeled_irrigation_products": 0,
     "missing_dimension_counts": {
-      "pressure_class": 27,
+      "pressure_class": 26,
       "material": 8,
       "length": 5,
-      "connection_type": 20,
+      "connection_type": 17,
       "connection_size": 3,
       "head": 3,
       "power": 8,
@@ -36612,8 +36612,13 @@
           "value": null
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "fit_on_16mm_line",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "connection_type",
+            "title": "سه‌راه قطره‌چکان تنظیمی زلال‌رود مخصوص لوله ۱۶"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -36677,8 +36682,7 @@
         "connection_type"
       ],
       "missing_required_dimensions": [
-        "flow_rate",
-        "connection_type"
+        "flow_rate"
       ],
       "compatibility_scope": "in_scope",
       "data_dimension_ready": false,
@@ -36709,8 +36713,13 @@
           "value": null
         },
         "connection_type": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "fit_on_16mm_line",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "connection_type",
+            "title": "سه‌راه قطره‌چکان تنظیمی زلال‌رود سر بزرگ مخصوص لوله ۱۶"
+          }
         },
         "material": {
           "status": "UNKNOWN",
@@ -36774,8 +36783,7 @@
         "connection_type"
       ],
       "missing_required_dimensions": [
-        "flow_rate",
-        "connection_type"
+        "flow_rate"
       ],
       "compatibility_scope": "in_scope",
       "data_dimension_ready": false,
@@ -58088,7 +58096,7 @@
           "slug": "%d8%b2%d9%84%d8%a7%d9%84-%d8%b1%d9%88%d8%af-%d8%a7%d8%aa%d8%b5%d8%a7%d9%84"
         }
       ],
-      "family": "valve",
+      "family": "drip_line_component",
       "product_type": "simple",
       "technical_dimensions": {
         "nominal_size": {
@@ -58166,8 +58174,13 @@
           "value": null
         },
         "interface_signature": {
-          "status": "UNKNOWN",
-          "value": null
+          "status": "SITE_DECLARED",
+          "value": "line16<->thread_1/2",
+          "source": "woocommerce_product_title",
+          "evidence": {
+            "field": "interface_signature",
+            "title": "شیر انشعاب ۱۶ به ۱/۲"
+          }
         },
         "head": {
           "status": "UNKNOWN",
@@ -58179,16 +58192,11 @@
         }
       },
       "required_dimensions": [
-        "nominal_size",
-        "connection_type",
-        "pressure_class"
+        "interface_signature"
       ],
-      "missing_required_dimensions": [
-        "connection_type",
-        "pressure_class"
-      ],
+      "missing_required_dimensions": [],
       "compatibility_scope": "in_scope",
-      "data_dimension_ready": false,
+      "data_dimension_ready": true,
       "exact_compatibility_dimension_ready": false,
       "evidence_policy": "VERIFIED/MANUFACTURER_VERIFIED can support exact compatibility. SITE_DECLARED is retailer first-party evidence and must not be silently upgraded to manufacturer proof."
     },
