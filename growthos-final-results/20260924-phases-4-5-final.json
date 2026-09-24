@@ -1,58 +1,91 @@
 {
   "program": "Keshavarz20 AI Growth OS",
-  "scope": "phases 4 and 5",
-  "finalized_at_utc": "2026-09-24T06:51:00Z",
-  "execution_path": "ChatGPT -> GitHub -> calibra-dev/keshavarz20-actions -> read-only WooCommerce/Search Console evidence pipelines",
+  "scope": "Phase 4 Compatibility Knowledge Graph + Phase 5 Central Intent Registry",
+  "finalized_at_utc": "2026-09-24T08:38:00Z",
+  "execution_path": "ChatGPT -> GitHub -> calibra-dev/keshavarz20-actions -> WooCommerce/WordPress read-only evidence pipelines",
   "wpvibe_used": false,
   "site_writes": 0,
+  "price_stock_writes": 0,
   "phase4": {
-    "name": "Compatibility Knowledge Graph",
-    "execution_status": "COMPLETED_SUCCESS",
-    "semantic_status": "PASS_FOUNDATION_WITH_GOVERNED_EVIDENCE_GAPS",
-    "run_id": 35966370535,
-    "result_commit": "ffbca1aea6af04fed01b32fd8dda53c00a649c90",
-    "evidence": "growthos-phase4-results/compatibility-summary.json",
-    "outputs": [
-      "growthos-phase4-results/compatibility-knowledge-graph.json",
-      "growthos-phase4-results/compatibility-summary.json",
-      "growthos-phase4-results/verification-backlog.json"
-    ],
-    "published_products": 652,
-    "nodes": 652,
+    "status": "PASS_PUBLIC_RESEARCH_COMPLETE_WITH_SOURCE_BOUND_GAPS",
+    "workflow_run_id": 35976196364,
+    "result_commit": "755951cfc4a7efd006e4ca72857feef387b4ed19",
+    "products_published": 652,
+    "graph_nodes": 652,
     "node_coverage_percent": 100,
-    "products_exact_dimension_ready": 13,
-    "products_with_required_dimension_gaps": 623,
-    "verified_reference_edges": 2005,
-    "candidate_only_edges": 23,
-    "verified_technical_compatibility_edges": 0,
+    "products_data_dimension_ready": 341,
+    "products_exact_dimension_ready": 25,
+    "source_bound_products": 49,
+    "unmodeled_irrigation_products": 0,
+    "excluded_non_irrigation_products": 262,
+    "external_evidence_sources": 15,
+    "external_evidence_rules": 15,
+    "external_conflicts": 0,
     "hard_fabrications": 0,
-    "safety_note": "Internal references and same-size candidates were not promoted to fits/worksWith. Exact compatibility still requires explicit manufacturer/first-party evidence."
+    "verified_reference_edges": 2005,
+    "candidate_only_same_size_edges": 23,
+    "verified_technical_compatibility_edges": 0,
+    "manifests": {
+      "summary": "growthos-phase4-results/compatibility-summary.json",
+      "graph": "growthos-phase4-results/compatibility-knowledge-graph.json",
+      "source_bound_acquisition": "growthos-phase4-results/source-bound-acquisition-manifest.json",
+      "catalog_quality_flags": "growthos-phase4-results/catalog-quality-flags.json"
+    },
+    "source_bound_dispositions": {
+      "MOUJ_EXACT_DATASHEET_OR_ROLL_LABEL_REQUIRED": 6,
+      "EXACT_FITTING_INTERFACE_OR_MATERIAL_REQUIRED": 4,
+      "EXACT_PUMP_MODEL_DATASHEET_OR_NAMEPLATE_REQUIRED": 2,
+      "EXACT_PUMP_CONTROLLER_LABEL_REQUIRED": 1,
+      "EXACT_TAPE_MANUFACTURER_OR_LABEL_REQUIRED": 4,
+      "CAST_IRON_VALVE_MODEL_PN_AND_CONNECTION_REQUIRED": 5,
+      "EXACT_SPRINKLER_NOZZLE_FLOW_TABLE_REQUIRED": 5,
+      "EXACT_FILTER_ELEMENT_GRADE_REQUIRED": 3,
+      "EXACT_EMITTER_FLOW_OR_INTERFACE_SPEC_REQUIRED": 7,
+      "ABAFARIN_EXACT_PRESSURE_DATASHEET_REQUIRED": 9,
+      "EXACT_PIPE_PN_SDR_MARKING_REQUIRED": 1,
+      "EXACT_VALVE_PRESSURE_OR_CONNECTION_DATASHEET_REQUIRED": 2
+    },
+    "catalog_quality_flags": {
+      "total_flags": 36,
+      "affected_products": 26,
+      "TITLE_BRAND_TAXONOMY_MISMATCH_CANDIDATE": 20,
+      "TECHNICAL_SERIES_BRAND_TAXONOMY_MISSING": 14,
+      "TITLE_MATERIAL_CATEGORY_MISMATCH_CANDIDATE": 2,
+      "site_mutations_performed": 0
+    },
+    "completion_definition": "Public-source research, exact K20 fields, safe technical Woo meta, classification, evidence governance, source-bound disposition and acquisition manifests are complete. The 49 remaining fields are evidence-acquisition-only and cannot be safely inferred without exact SKU labels/datasheets.",
+    "next_gate": "Acquire exact SKU/manufacturer label/datasheet evidence for any of the 49 source-bound items only when needed for verified technical compatibility; do not inherit specifications from similar products."
   },
   "phase5": {
-    "name": "Query Fan-out and Search Intent Graph",
-    "execution_status": "COMPLETED_SUCCESS",
-    "semantic_status": "PASS_WITH_CANONICAL_CONFLICT_BACKLOG",
-    "run_id": 35966409720,
-    "result_commit": "455fa801cb5d53badb9270c34023f11105031cfa",
-    "source": "Fresh Google Search Console 28-day snapshot via Windsor.ai",
-    "evidence": "growthos-phase5-results/intent-summary.json",
+    "status": "PASS_RESOLVED_OWNER_MAP",
+    "workflow_run_id": 35969373694,
+    "result_commit": "488921ad5d3e",
+    "gsc_raw_rows": 437,
+    "irrigation_rows": 186,
+    "central_intents": 82,
+    "active_intents": 82,
+    "resolved_multi_url_groups": 28,
+    "unresolved_owners": 0,
+    "review_required_conflicts": 0,
+    "new_pages_created": 0,
+    "site_writes": 0,
+    "measurement": {
+      "google_search_console": "measured_last_28d_2026-09-24",
+      "bing_webmaster": "connected_but_ThrottleIP_error_17",
+      "bing_interpretation": "measurement gap, not zero visibility"
+    },
     "outputs": [
       "growthos-phase5-results/central-intent-registry.json",
       "growthos-phase5-results/cannibalization-report.json",
       "growthos-phase5-results/intent-summary.json"
     ],
-    "source_raw_rows": 437,
-    "filtered_irrigation_rows": 186,
-    "central_intents": 78,
-    "active_intents": 67,
-    "review_required_canonical_conflicts": 11,
-    "new_pages_created": 0,
-    "site_writes": 0,
-    "safety_note": "Shared intents are merged by semantic entity focus; multi-URL conflicts remain REVIEW_REQUIRED. No automatic page, redirect, canonical, or content mutation was made."
+    "next_gate": "Phase 6 must consume the resolved owner map and must not create duplicate pages for intents already owned."
   },
-  "overall_status": "EXECUTION_COMPLETE__PHASE4_EVIDENCE_GAPS_AND_PHASE5_CANONICAL_BACKLOG_REMAIN",
-  "next_gate": [
-    "Phase 4: acquire exact technical dimensions and manufacturer/first-party evidence before automatic product-to-product compatibility recommendations.",
-    "Phase 5: resolve the 11 REVIEW_REQUIRED URL/intent overlaps before creating overlapping Phase 6 hub/support pages."
-  ]
+  "overall_status": "PHASE4_PUBLIC_RESEARCH_COMPLETE__49_EXACT_SKU_SOURCE_BOUND__PHASE5_COMPLETE",
+  "safety": {
+    "inferred_missing_technical_values": 0,
+    "automatic_redirects_or_canonicals": 0,
+    "wpvibe_used": false,
+    "price_or_stock_changes": 0
+  }
 }
