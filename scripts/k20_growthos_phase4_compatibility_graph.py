@@ -842,6 +842,126 @@ def technical_dimensions(p, truth_rec):
     return {k: (v if v else {'status': 'UNKNOWN', 'value': None}) for k, v in dims.items()}
 
 
+
+def normalize_evidence_value(field, value):
+    s = str(value or '').strip().lower()
+    fa = '۰۱۲۳۴۵۶۷۸۹'
+    en = '0123456789'
+    s = s.translate(str.maketrans(fa, en))
+    s = s.replace('‌', ' ')
+    s = re.sub(r'\s+', ' ', s)
+    if field in ('pressure_class', 'pressure_requirement'):
+        m = re.search(r'([0-9]+(?:[./][0-9]+)?)\s*(بار|bar|اتمسفر|atm)', s, re.I)
+        if m:
+            num = m.group(1).replace('/', '.')
+            unit = m.group(2).lower()
+            unit = 'bar' if unit in ('بار','bar') else 'atm'
+            return f'{num}:{unit}'
+    if field == 'connection_type':
+        aliases = {
+            'دنده ای':'threaded','دنده‌ای':'threaded','رزوه ای':'threaded','رزوه‌ای':'threaded',
+            'threaded':'threaded','male_male_threaded':'threaded','female_threaded':'threaded',
+            'male_threaded':'threaded'
+        }
+        if s in aliases:
+            return aliases[s]
+    if field == 'material':
+        if 'upvc' in s or 'u-pvc' in s or 'u pvc' in s:
+            return 'upvc'
+        aliases = {
+            'پلی اتیلن':'polyethylene','پلی‌اتیلن':'polyethylene','polyethylene':'polyethylene',
+            'polymeric_unspecified':'polymeric','polymeric':'polymeric','pe100':'pe100'
+        }
+        if s in aliases:
+            return aliases[s]
+        if 'پلی' in s and 'اتیلن' in s and 'نخ' in s:
+            return 'reinforced_polyethylene'
+        if 'polyethylene' in s and 'reinforced' in s:
+            return 'reinforced_polyethylene'
+    return re.sub(r'[^0-9a-zآ-ی]+', '', s)
+
+
+def values_compatible(field, current, incoming):
+    a = normalize_evidence_value(field, current)
+    b = normalize_evidence_value(field, incoming)
+    if a == b:
+        return True
+    if field == 'connection_type' and a == 'threaded' and b == 'threaded':
+        return True
+    if field == 'material':
+        if {a,b} == {'polyethylene','pe100'}:
+            return True
+        if {a,b} == {'polymeric','upvc'}:
+            return True
+        if a == b == 'reinforced_polyethylene':
+            return True
+    return False
+
+
+def apply_external_evidence(p, family, dims, pack, fill_counts, conflicts):
+    name = p.get('name') or ''
+    source_map = {s.get('id'): s for s in (pack.get('sources') or []) if s.get('id')}
+    for rule in pack.get('rules') or []:
+        allowed = rule.get('family') or []
+        if family not in allowed:
+            continue
+        try:
+            matched = re.search(rule.get('name_regex') or r'$.', name, re.I)
+        except re.error:
+            continue
+        if not matched:
+            continue
+        source_id = rule.get('source_id')
+        source = source_map.get(source_id, {})
+        for field, spec in (rule.get('fields') or {}).items():
+            incoming = {
+                'status': spec.get('status') or ('MANUFACTURER_VERIFIED' if source.get('tier') == 'manufacturer' else 'SECONDARY_VERIFIED'),
+                'value': spec.get('value'),
+                'source': 'external_research_evidence',
+                'evidence': {
+                    'rule_id': rule.get('id'),
+                    'source_id': source_id,
+                    'publisher': source.get('publisher'),
+                    'source_tier': source.get('tier'),
+                    'url': source.get('url'),
+                    'retrieved_at': source.get('retrieved_at')
+                }
+            }
+            current = dims.get(field) or {'status':'UNKNOWN','value':None}
+            if current.get('status') == 'UNKNOWN' or current.get('value') in (None, '', [], {}):
+                dims[field] = incoming
+                fill_counts[incoming['status']] += 1
+                continue
+
+            if values_compatible(field, current.get('value'), incoming.get('value')):
+                if incoming['status'] == 'MANUFACTURER_VERIFIED' and current.get('status') == 'SITE_DECLARED':
+                    old = current
+                    dims[field] = dict(incoming)
+                    dims[field]['evidence'] = dict(incoming['evidence'])
+                    dims[field]['evidence']['corroborates'] = old
+                    fill_counts['MANUFACTURER_REFINED'] += 1
+                else:
+                    ev = dict(current.get('evidence') or {})
+                    ev.setdefault('corroboration', []).append(incoming['evidence'])
+                    current['evidence'] = ev
+                    if incoming['status'] == 'MANUFACTURER_VERIFIED' and current.get('status') in ('VERIFIED','SOURCE-CONFIRMED','USER-CONFIRMED'):
+                        current['status'] = 'MANUFACTURER_CORROBORATED'
+                    dims[field] = current
+                    fill_counts['CORROBORATED'] += 1
+                continue
+
+            conflicts.append({
+                'product_id': p.get('id'),
+                'name': name,
+                'family': family,
+                'field': field,
+                'existing': current,
+                'incoming': incoming,
+                'resolution': 'kept_existing_value; true semantic conflict retained for review'
+            })
+    return dims
+
+
 def research_disposition(p, family, missing):
     name = str(p.get('name') or '')
     fields = list(missing or [])
