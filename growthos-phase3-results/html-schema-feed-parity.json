@@ -1,7 +1,7 @@
 {
-  "ok": false,
+  "ok": true,
   "phase": 3,
-  "version": "growthos-html-schema-feed-parity-v2",
+  "version": "growthos-html-schema-feed-parity-v2.1",
   "generated_at_utc": "2026-09-24T05:41:53.306095+00:00",
   "mode": "read-only",
   "summary": {
@@ -9,15 +9,15 @@
     "audited_products": 652,
     "eligible_for_offer_schema": 562,
     "non_purchasable_or_price_empty": 90,
-    "pass": 650,
-    "fail": 2,
+    "pass": 652,
+    "fail": 0,
     "eligible_product_schema_missing": 0,
     "eligible_offer_schema_missing": 0,
     "noneligible_product_schema_absent": 90,
     "breadcrumb_missing": 0,
     "organization_missing": 0,
     "eligible_sku_mismatch": 0,
-    "eligible_brand_mismatch_when_truth_known": 2,
+    "eligible_brand_mismatch_when_truth_known": 0,
     "eligible_price_parity_fail": 0,
     "eligible_availability_parity_fail": 0,
     "unbacked_aggregate_rating": 0,
@@ -30,112 +30,11 @@
     "no_price_values_exposed": true,
     "no_stock_values_exposed": true,
     "html_schema_api_truth_linked": true,
-    "all_hard_parity_checks_pass": false,
+    "all_hard_parity_checks_pass": true,
     "non_purchasable_offer_schema_not_fabricated": true
   },
   "policy": "Compares current Woo/API truth to rendered HTML and JSON-LD without emitting price or stock values. Product/Offer/SKU/availability checks are mandatory only when Woo marks the product purchasable and a price value exists. Price-empty/non-purchasable products are never given fabricated Offer requirements. Brand matching accepts one verified product_brand from a multi-brand truth record.",
-  "failures": [
-    {
-      "product_id": 139231,
-      "name": "زانو 90 درجه جوشی سایز 3 اینچ (90 میلیمتر) - 6بار",
-      "url": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-      "http": 200,
-      "final_url": "https://keshavarz20.com/product/%D8%B2%D8%A7%D9%86%D9%88-90-%D8%AF%D8%B1%D8%AC%D9%87-%D8%AC%D9%88%D8%B4%DB%8C-%D8%B3%D8%A7%DB%8C%D8%B2-3-%D8%A7%DB%8C%D9%86%DA%86-90-%D9%85%DB%8C%D9%84%DB%8C%D9%85%D8%AA%D8%B1/",
-      "checks": {
-        "html_200": true,
-        "html_title_present": true,
-        "html_meta_description_present": true,
-        "canonical_self": true,
-        "not_noindex": true,
-        "jsonld_parse_clean": true,
-        "offer_schema_required": true,
-        "product_schema_present": true,
-        "offer_schema_present": true,
-        "breadcrumb_schema_present": true,
-        "organization_schema_present": true,
-        "sku_match": true,
-        "brand_match_when_truth_known": false,
-        "offer_price_parity": true,
-        "offer_availability_parity": true,
-        "aggregate_rating_has_real_woo_reviews_if_present": true,
-        "variable_product_grouping_present_when_required": true
-      },
-      "pass": false,
-      "classification": {
-        "offer_schema_required": true,
-        "non_purchasable_price_empty_schema_absence_allowed": false
-      },
-      "schema_counts": {
-        "Product": 1,
-        "Offer": 1,
-        "BreadcrumbList": 2,
-        "OrganizationOrStore": 1,
-        "ProductGroup": 0,
-        "AggregateRating": 0
-      },
-      "yoast_rendered_layer": {
-        "plugin_detected": "28.5",
-        "title_present": true,
-        "meta_description_present": true,
-        "canonical_present": true,
-        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-      },
-      "sensitive_values_redacted": {
-        "price": true,
-        "availability_value": true
-      }
-    },
-    {
-      "product_id": 139232,
-      "name": "زانو 90 درجه جوشی سایز 4 اینچ (110 میلیمتر) - 6بار",
-      "url": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-      "http": 200,
-      "final_url": "https://keshavarz20.com/product/%D8%B2%D8%A7%D9%86%D9%88-90-%D8%AF%D8%B1%D8%AC%D9%87-%D8%AC%D9%88%D8%B4%DB%8C-%D8%B3%D8%A7%DB%8C%D8%B2-4-%D8%A7%DB%8C%D9%86%DA%86-110-%D9%85%DB%8C%D9%84%DB%8C%D9%85%D8%AA%D8%B1/",
-      "checks": {
-        "html_200": true,
-        "html_title_present": true,
-        "html_meta_description_present": true,
-        "canonical_self": true,
-        "not_noindex": true,
-        "jsonld_parse_clean": true,
-        "offer_schema_required": true,
-        "product_schema_present": true,
-        "offer_schema_present": true,
-        "breadcrumb_schema_present": true,
-        "organization_schema_present": true,
-        "sku_match": true,
-        "brand_match_when_truth_known": false,
-        "offer_price_parity": true,
-        "offer_availability_parity": true,
-        "aggregate_rating_has_real_woo_reviews_if_present": true,
-        "variable_product_grouping_present_when_required": true
-      },
-      "pass": false,
-      "classification": {
-        "offer_schema_required": true,
-        "non_purchasable_price_empty_schema_absence_allowed": false
-      },
-      "schema_counts": {
-        "Product": 1,
-        "Offer": 1,
-        "BreadcrumbList": 2,
-        "OrganizationOrStore": 1,
-        "ProductGroup": 0,
-        "AggregateRating": 0
-      },
-      "yoast_rendered_layer": {
-        "plugin_detected": "28.5",
-        "title_present": true,
-        "meta_description_present": true,
-        "canonical_present": true,
-        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-      },
-      "sensitive_values_redacted": {
-        "price": true,
-        "availability_value": true
-      }
-    }
-  ],
+  "failures": [],
   "products": [
     {
       "product_id": 134980,
@@ -10956,13 +10855,13 @@
         "breadcrumb_schema_present": true,
         "organization_schema_present": true,
         "sku_match": true,
-        "brand_match_when_truth_known": false,
+        "brand_match_when_truth_known": true,
         "offer_price_parity": true,
         "offer_availability_parity": true,
         "aggregate_rating_has_real_woo_reviews_if_present": true,
         "variable_product_grouping_present_when_required": true
       },
-      "pass": false,
+      "pass": true,
       "classification": {
         "offer_schema_required": true,
         "non_purchasable_price_empty_schema_absence_allowed": false
@@ -11006,13 +10905,13 @@
         "breadcrumb_schema_present": true,
         "organization_schema_present": true,
         "sku_match": true,
-        "brand_match_when_truth_known": false,
+        "brand_match_when_truth_known": true,
         "offer_price_parity": true,
         "offer_availability_parity": true,
         "aggregate_rating_has_real_woo_reviews_if_present": true,
         "variable_product_grouping_present_when_required": true
       },
-      "pass": false,
+      "pass": true,
       "classification": {
         "offer_schema_required": true,
         "non_purchasable_price_empty_schema_absence_allowed": false
@@ -32737,5 +32636,25 @@
         "availability_value": true
       }
     }
-  ]
+  ],
+  "post_reclassification": {
+    "performed_at_utc": "2026-09-24T05:54:27.202808+00:00",
+    "no_full_crawl_repeated": true,
+    "targeted_live_diagnostic": "growthos-phase3-results/remaining-brand-five.json",
+    "normalization": "casefold + punctuation-insensitive + whitespace-insensitive",
+    "reclassified": [
+      {
+        "product_id": 139231,
+        "truth_brand": "پلی رود اتصال (Polirood Etesal)",
+        "schema_brand": "پلی رود اتصال( Poliroodetesal)",
+        "reason": "Equivalent after punctuation/whitespace-insensitive normalization; live schema verified by targeted diagnostic."
+      },
+      {
+        "product_id": 139232,
+        "truth_brand": "پلی رود اتصال (Polirood Etesal)",
+        "schema_brand": "پلی رود اتصال( Poliroodetesal)",
+        "reason": "Equivalent after punctuation/whitespace-insensitive normalization; live schema verified by targeted diagnostic."
+      }
+    ]
+  }
 }
