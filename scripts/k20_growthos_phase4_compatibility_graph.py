@@ -161,6 +161,48 @@ def attrs_map(p):
     return out
 
 
+
+def safe_technical_meta_map(p):
+    """Read only explicitly technical scalar Woo meta; never ingest price/stock/auth/plugin secrets."""
+    out = {}
+    allowed_key = re.compile(
+        r'(pressure|pn|sdr|mesh|micron|filter|flow|debi|head|power|kw|hp|'
+        r'connection|thread|diameter|size|length|material|فشار|مش|میکرون|'
+        r'دبی|آبدهی|آب_دهی|هد|توان|اتصال|رزوه|قطر|سایز|طول|جنس|فیلتراسیون)',
+        re.I
+    )
+    blocked_key = re.compile(
+        r'(price|regular_price|sale_price|stock|cost|coupon|password|secret|token|'
+        r'key|auth|user|order|customer|session|nonce|قیمت|موجودی)',
+        re.I
+    )
+    for m in (p.get('meta_data') or []):
+        key = str(m.get('key') or '').strip()
+        if not key or blocked_key.search(key) or not allowed_key.search(key):
+            continue
+        value = m.get('value')
+        if isinstance(value, (dict, list)):
+            continue
+        value = str(value or '').strip()
+        if not value or len(value) > 180:
+            continue
+        out[key] = value
+    return out
+
+
+def technical_meta_attr(meta, patterns):
+    for key, value in meta.items():
+        k = key.lower()
+        if any(re.search(pat, k, re.I) for pat in patterns):
+            return {
+                'status': 'VERIFIED',
+                'value': value,
+                'source': 'woocommerce_technical_meta',
+                'evidence': {'meta_key': key}
+            }
+    return None
+
+
 def spec_map(p):
     out = {}
     raw = (p.get('description') or '') + '\n' + (p.get('short_description') or '')
@@ -680,14 +722,16 @@ def prose_length(p):
 def technical_dimensions(p, truth_rec):
     attrs = attrs_map(p)
     specs = spec_map(p)
+    meta = safe_technical_meta_map(p)
     name = p.get('name') or ''
     dims = {}
     cat = category_semantics(p)
     size_patterns = [r'^سایز$', r'^قطر$', r'diameter', r'^size$', r'سایز.*قطر']
-    dims['nominal_size'] = direct_attr(attrs, size_patterns) or spec_attr(specs, size_patterns) or prose_nominal_size(p) or title_declared_size(name) or quoted_inch_size(name) or implicit_fraction_size(name) or fitting_pair_size(name)
+    dims['nominal_size'] = direct_attr(attrs, size_patterns) or spec_attr(specs, size_patterns) or technical_meta_attr(meta, size_patterns) or prose_nominal_size(p) or title_declared_size(name) or quoted_inch_size(name) or implicit_fraction_size(name) or fitting_pair_size(name)
     dims['connection_size'] = (
         direct_attr(attrs, [r'سایز اتصال', r'قطر اتصال'])
         or spec_attr(specs, [r'سایز اتصال', r'قطر اتصال'])
+        or technical_meta_attr(meta, [r'connection.*size', r'سایز.*اتصال', r'قطر.*اتصال'])
         or prose_connection_size(p)
         or title_declared_connection_size(name)
         or dims['nominal_size']
@@ -695,6 +739,7 @@ def technical_dimensions(p, truth_rec):
     dims['connection_type'] = (
         direct_attr(attrs, [r'نوع اتصال', r'رزوه', r'connection', r'thread'])
         or spec_attr(specs, [r'نوع اتصال', r'رزوه', r'connection', r'thread'])
+        or technical_meta_attr(meta, [r'connection.*type', r'thread', r'نوع.*اتصال', r'رزوه'])
         or prose_connection_type(p)
         or title_declared_connection_type(name)
         or semantic_connection_type(name)
@@ -703,8 +748,7 @@ def technical_dimensions(p, truth_rec):
     )
     dims['material'] = (
         truth_field(truth_rec, 'material')
-        or direct_attr(attrs, [r'^جنس$', r'material'])
-        or spec_attr(specs, [r'^جنس$', r'material'])
+        or direct_attr(attrs, [r'^جنس
         or prose_material(p)
         or title_declared_material(name)
         or title_declared_aluminum(name)
@@ -712,40 +756,43 @@ def technical_dimensions(p, truth_rec):
         or cat.get('material')
     )
     dims['pressure_class'] = (
-        direct_attr(attrs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn$', r'^sdr$'])
-        or spec_attr(specs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn$', r'^sdr$'])
+        direct_attr(attrs, [r'فشار کاری', r'کلاس فشار', r'pressure', r'^pn
         or prose_pressure(p)
         or title_declared_pressure(name)
     )
     dims['pressure_requirement'] = (
         direct_attr(attrs, [r'نیاز فشار', r'فشار مورد نیاز', r'pressure requirement'])
         or spec_attr(specs, [r'نیاز فشار', r'فشار مورد نیاز', r'pressure requirement'])
+        or technical_meta_attr(meta, [r'pressure.*require', r'working.*pressure', r'فشار'])
         or dims['pressure_class']
     )
     dims['flow_rate'] = (
         direct_attr(attrs, [r'^دبی', r'flow'])
         or spec_attr(specs, [r'^دبی', r'flow'])
+        or technical_meta_attr(meta, [r'flow', r'debi', r'دبی', r'آبدهی', r'آب_دهی'])
         or prose_flow_rate(p)
         or title_declared_flow_rate(name)
     )
     dims['filtration_grade'] = (
         direct_attr(attrs, [r'میکرون', r'مش', r'mesh', r'filtration grade'])
         or spec_attr(specs, [r'میکرون', r'مش', r'mesh', r'filtration grade'])
+        or technical_meta_attr(meta, [r'mesh', r'micron', r'filter.*grade', r'مش', r'میکرون'])
         or prose_filtration_grade(p)
     )
     dims['filtration_requirement'] = (
         direct_attr(attrs, [r'نیاز فیلتراسیون', r'الزام فیلتراسیون', r'filtration requirement'])
         or spec_attr(specs, [r'نیاز فیلتراسیون', r'الزام فیلتراسیون', r'filtration requirement'])
+        or technical_meta_attr(meta, [r'filtration.*require', r'filter.*require', r'فیلتراسیون'])
         or prose_filtration_requirement(p)
     )
     dims['emitter_spacing'] = (
         direct_attr(attrs, [r'فاصله قطره', r'فاصله خروجی', r'emitter spacing'])
         or spec_attr(specs, [r'فاصله قطره', r'فاصله خروجی', r'emitter spacing'])
+        or technical_meta_attr(meta, [r'emitter.*spacing', r'فاصله.*قطره', r'فاصله.*خروجی'])
         or title_declared_emitter_spacing(name)
     )
     dims['length'] = (
-        direct_attr(attrs, [r'^طول$', r'طول رول', r'length'])
-        or spec_attr(specs, [r'^طول$', r'طول رول', r'length'])
+        direct_attr(attrs, [r'^طول
         or prose_length(p)
         or title_declared_length(name)
         or title_declared_length_cm(name)
@@ -755,8 +802,8 @@ def technical_dimensions(p, truth_rec):
     dims['tool_size'] = nominal if nominal.get('status') != 'UNKNOWN' else (installation_tool_size(name) or {'status':'UNKNOWN','value':None})
     dims['component_type'] = component_type_from_title(name)
     dims['interface_signature'] = interface_signature_from_title(name)
-    dims['head'] = direct_attr(attrs, [r'هد', r'ارتفاع']) or spec_attr(specs, [r'هد', r'ارتفاع']) or prose_head(p) or title_declared_head(name)
-    dims['power'] = direct_attr(attrs, [r'توان', r'اسب']) or spec_attr(specs, [r'توان', r'اسب']) or prose_power(p) or title_declared_power(name)
+    dims['head'] = direct_attr(attrs, [r'هد', r'ارتفاع']) or spec_attr(specs, [r'هد', r'ارتفاع']) or technical_meta_attr(meta, [r'head', r'هد', r'ارتفاع']) or prose_head(p) or title_declared_head(name)
+    dims['power'] = direct_attr(attrs, [r'توان', r'اسب']) or spec_attr(specs, [r'توان', r'اسب']) or technical_meta_attr(meta, [r'power', r'kw', r'hp', r'توان', r'اسب']) or prose_power(p) or title_declared_power(name)
     connection = dims.get('connection_type') or {'status':'UNKNOWN','value':None}
     if re.search(r'بابلر|دریپر|قطره[\s‌-]*چکان', name, re.I) and connection.get('status') == 'UNKNOWN':
         dims['connection_type'] = emitter_connection_type(name) or connection
