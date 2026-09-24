@@ -1128,6 +1128,7 @@ def main():
     external_fill_counts = Counter()
     external_conflicts = []
     quality_flag_counts = Counter()
+    quality_rows = []
 
     for p in products:
         pid = int(p['id'])
@@ -1138,6 +1139,16 @@ def main():
         quality_flags = catalog_quality_flags(p, family)
         for qf in quality_flags:
             quality_flag_counts[qf.get('code')] += 1
+        if quality_flags:
+            quality_rows.append({
+                'product_id': pid,
+                'name': p.get('name'),
+                'sku': p.get('sku'),
+                'family': family,
+                'brands': [{'id': b.get('id'), 'name': b.get('name'), 'slug': b.get('slug')} for b in (p.get('brands') or [])],
+                'categories': [{'id': x.get('id'), 'name': x.get('name'), 'slug': x.get('slug')} for x in (p.get('categories') or [])],
+                'flags': quality_flags
+            })
         required = RULES.get(family, [])
         in_scope = family != 'excluded_non_irrigation'
         missing = [k for k in required if dims.get(k, {}).get('status') == 'UNKNOWN']
@@ -1355,6 +1366,36 @@ def main():
         'phase': 4, 'generated_at_utc': NOW, 'count': len(backlog), 'items': backlog,
         'rule': 'Every remaining item is source-bound with an explicit research disposition. The backlog is evidence acquisition work, not permission to infer values.'
     }, ensure_ascii=False, indent=2), encoding='utf-8')
+
+    (OUTDIR / 'source-bound-acquisition-manifest.json').write_text(json.dumps({
+        'phase': 4,
+        'generated_at_utc': NOW,
+        'status': 'EVIDENCE_ACQUISITION_ONLY',
+        'count': len(backlog),
+        'items': [{
+            'product_id': x.get('product_id'),
+            'name': x.get('name'),
+            'sku': x.get('sku'),
+            'family': x.get('family'),
+            'missing_required_dimensions': x.get('missing_required_dimensions'),
+            'brands': x.get('brands'),
+            'image_evidence_candidates': x.get('image_evidence_candidates'),
+            'research_disposition': x.get('research_disposition')
+        } for x in backlog],
+        'rule': 'Do not infer these fields. Close an item only with exact-SKU manufacturer/first-party evidence, readable exact-SKU packaging/nameplate, or an explicit verified K20 technical field.'
+    }, ensure_ascii=False, indent=2), encoding='utf-8')
+
+    quality_rows.sort(key=lambda x: (x.get('family') or '', int(x.get('product_id') or 0)))
+    (OUTDIR / 'catalog-quality-flags.json').write_text(json.dumps({
+        'phase': 4,
+        'generated_at_utc': NOW,
+        'count': sum(len(x.get('flags') or []) for x in quality_rows),
+        'products': len(quality_rows),
+        'flag_counts': dict(quality_flag_counts),
+        'items': quality_rows,
+        'rule': 'These are catalog QA candidates only. No taxonomy/brand/category changes are performed by Phase 4.'
+    }, ensure_ascii=False, indent=2), encoding='utf-8')
+
     print('GROWTHOS_PHASE4_COMPATIBILITY_OK', json.dumps({'status': graph['status'], 'summary': summary, 'acceptance': acceptance}, ensure_ascii=False))
 
 
