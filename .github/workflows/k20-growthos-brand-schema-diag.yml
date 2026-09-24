@@ -1,0 +1,100 @@
+name: K20 GrowthOS Brand Schema Activation Diagnostic
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'growthos-brand-schema-diag-ops/*.json'
+permissions:
+  contents: write
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install requests
+      - name: Inspect exact snippet and live sample
+        shell: python
+        run: |
+          import json, os, pathlib, requests
+          from html import unescape
+          from html.parser import HTMLParser
+
+          base=os.environ['WP_BASE_URL'].rstrip('/')
+          s=requests.Session(); s.auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD'])
+          name='K20 GrowthOS Product Brand Schema v1'
+          lr=s.get(base+'/wp-json/code-snippets/v1/snippets',params={'per_page':100},timeout=90); lr.raise_for_status()
+          payload=lr.json()
+          items=payload if isinstance(payload,list) else (payload.get('snippets') or payload.get('data') or [])
+          matches=[]
+          for item in items if isinstance(items,list) else []:
+              if str(item.get('name') or '').strip()==name:
+                  sid=int(item['id'])
+                  rr=s.get(f"{base}/wp-json/code-snippets/v1/snippets/{sid}",timeout=90); rr.raise_for_status()
+                  x=rr.json()
+                  matches.append({
+                    'id':sid,'name':x.get('name'),'active':x.get('active'),
+                    'active_type':type(x.get('active')).__name__,
+                    'scope':x.get('scope'),'priority':x.get('priority'),
+                    'code_error':x.get('code_error'),'code_error_trace':x.get('code_error_trace'),
+                    'last_active':x.get('last_active'),'modified':x.get('modified'),
+                    'code_sha256':__import__('hashlib').sha256(str(x.get('code') or '').encode()).hexdigest()
+                  })
+
+          class P(HTMLParser):
+              def __init__(self):
+                  super().__init__(); self.on=False; self.buf=[]; self.blocks=[]
+              def handle_starttag(self,tag,attrs):
+                  if tag.lower()=='script' and (dict(attrs).get('type') or '').lower()=='application/ld+json':
+                      self.on=True; self.buf=[]
+              def handle_endtag(self,tag):
+                  if tag.lower()=='script' and self.on:
+                      self.blocks.append(''.join(self.buf)); self.on=False; self.buf=[]
+              def handle_data(self,d):
+                  if self.on:self.buf.append(d)
+          def walk(x):
+              if isinstance(x,dict):
+                  yield x
+                  for v in x.values(): yield from walk(v)
+              elif isinstance(x,list):
+                  for v in x: yield from walk(v)
+
+          url='https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-502-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/'
+          page=requests.get(url,timeout=90,headers={'User-Agent':'K20-BrandSchema-Diag/1.0','Cache-Control':'no-cache'})
+          p=P(); p.feed(page.text)
+          product_nodes=[]
+          for raw in p.blocks:
+              try:data=json.loads(unescape(raw))
+              except Exception:continue
+              for n in walk(data):
+                  if not isinstance(n,dict):continue
+                  t=n.get('@type'); ts=t if isinstance(t,list) else [t]
+                  if 'Product' in ts:
+                      product_nodes.append({'sku':n.get('sku'),'brand':n.get('brand'),'keys':sorted(n.keys())})
+
+          result={'matching_snippets':matches,'sample':{'http':page.status_code,'product_nodes':product_nodes}}
+          pathlib.Path('growthos-phase3-results').mkdir(exist_ok=True)
+          pathlib.Path('growthos-phase3-results/brand-schema-activation-diagnostic.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(result,ensure_ascii=False))
+      - name: Commit sanitized diagnostic
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f growthos-phase3-results/brand-schema-activation-diagnostic.json
+          git diff --cached --quiet && exit 0
+          git commit -m "growthos phase3: record brand schema activation diagnostic"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
