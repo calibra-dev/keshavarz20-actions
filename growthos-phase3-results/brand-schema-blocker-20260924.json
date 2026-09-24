@@ -1,0 +1,19 @@
+{
+  "phase": 3,
+  "status": "BLOCKED_BY_REQUIRED_SITE_COMPONENT",
+  "issue": "brand_schema_injection",
+  "verified_at_utc": "2026-09-24T04:17:00Z",
+  "attempted_path": "GitHub -> authenticated WPVibe REST code-snippet route",
+  "route": "/wp-json/wpvibe/v1/code-snippet",
+  "result": {
+    "code": "wpcode_missing",
+    "status": 501,
+    "cause": "not_supported",
+    "retry_ok": false,
+    "user_is_admin": true
+  },
+  "why_fallback_was_needed": "Bridge v3.2 intentionally does not permit arbitrary PHP/code execution. Product Brand JSON-LD requires a narrow WooCommerce structured-data hook.",
+  "write_effect": "none",
+  "next_required_action": "Install and activate WPCode on the site, then create the guarded snippet disabled, review it, enable it, and rerun parity.",
+  "scope_guard": "Only add Product.brand from existing product_brand terms when Product JSON-LD has no brand. No price, stock, customer, order, payment, role, or credential changes."
+}
