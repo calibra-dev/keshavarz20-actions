@@ -51,6 +51,18 @@ def num(v):
     except Exception: return None
 
 
+def textnorm(v):
+    s = str(v or '').casefold().replace('\u200c',' ').replace('\u200f',' ')
+    for ch in '()[]{}،,._-/\\':
+        s = s.replace(ch, ' ')
+    return ' '.join(s.split())
+
+
+def brand_tokens(v):
+    raw = str(v or '').replace('،', ',')
+    return [textnorm(x) for x in raw.split(',') if textnorm(x)]
+
+
 def walk(x):
     if isinstance(x,dict):
         yield x
@@ -141,7 +153,14 @@ def fetch_product_page(product):
             schema_brand=schema_brand.get('name')
         elif isinstance(schema_brand,list):
             schema_brand='، '.join(str(x.get('name') if isinstance(x,dict) else x) for x in schema_brand)
-        brand_match=None if not truth_brand else str(truth_brand).strip().lower()==str(schema_brand or '').strip().lower()
+        truth_brand_tokens=brand_tokens(truth_brand)
+        schema_brand_tokens=brand_tokens(schema_brand)
+        brand_match=None
+        if truth_brand_tokens:
+            brand_match=bool(schema_brand_tokens) and any(
+                a == b or a in b or b in a
+                for a in truth_brand_tokens for b in schema_brand_tokens
+            )
         rating_real=True
         if ratings and int(product.get('rating_count') or 0)<=0:
             rating_real=False
@@ -150,6 +169,9 @@ def fetch_product_page(product):
         if ptype=='variable':
             variant_group_ok=bool(groups or any((n.get('hasVariant') or n.get('variesBy')) for n in products))
         canonical_self=bool(p.canonical) and norm(p.canonical)==norm(r.url)
+        has_price_value = product.get('price') is not None and str(product.get('price')).strip() != ''
+        purchasable = bool(product.get('purchasable'))
+        offer_schema_required = bool(has_price_value and purchasable)
         checks={
             'html_200':r.status_code==200,
             'html_title_present':bool(' '.join(p.title).strip()),
@@ -157,6 +179,7 @@ def fetch_product_page(product):
             'canonical_self':canonical_self,
             'not_noindex':'noindex' not in p.robots,
             'jsonld_parse_clean':not parse_errors,
+            'offer_schema_required':offer_schema_required,
             'product_schema_present':bool(products),
             'offer_schema_present':bool(offer),
             'breadcrumb_schema_present':bool(breadcrumbs),
@@ -168,16 +191,23 @@ def fetch_product_page(product):
             'aggregate_rating_has_real_woo_reviews_if_present':rating_real,
             'variable_product_grouping_present_when_required':variant_group_ok,
         }
-        hard_keys=['html_200','canonical_self','not_noindex','jsonld_parse_clean','product_schema_present','offer_schema_present','breadcrumb_schema_present','organization_schema_present','sku_match','aggregate_rating_has_real_woo_reviews_if_present','variable_product_grouping_present_when_required']
+        hard_keys=['html_200','canonical_self','not_noindex','jsonld_parse_clean','breadcrumb_schema_present','organization_schema_present','aggregate_rating_has_real_woo_reviews_if_present','variable_product_grouping_present_when_required']
         hard_ok=all(checks[k] is True for k in hard_keys)
-        if checks['brand_match_when_truth_known'] is False:
-            hard_ok=False
-        if checks['offer_price_parity'] is False:
-            hard_ok=False
-        if checks['offer_availability_parity'] is False:
-            hard_ok=False
+        if offer_schema_required:
+            hard_ok = hard_ok and checks['product_schema_present'] is True and checks['offer_schema_present'] is True
+            hard_ok = hard_ok and checks['sku_match'] is True
+            if checks['brand_match_when_truth_known'] is False:
+                hard_ok=False
+            if checks['offer_price_parity'] is False:
+                hard_ok=False
+            if checks['offer_availability_parity'] is False:
+                hard_ok=False
         result.update({
             'checks':checks,'pass':hard_ok,
+            'classification':{
+                'offer_schema_required':offer_schema_required,
+                'non_purchasable_price_empty_schema_absence_allowed':not offer_schema_required,
+            },
             'schema_counts':{'Product':len(products),'Offer':len(offers),'BreadcrumbList':len(breadcrumbs),'OrganizationOrStore':len(orgs),'ProductGroup':len(groups),'AggregateRating':len(ratings)},
             'yoast_rendered_layer':{'plugin_detected':None,'title_present':checks['html_title_present'],'meta_description_present':checks['html_meta_description_present'],'canonical_present':bool(p.canonical),'robots':p.robots},
             'sensitive_values_redacted':{'price':True,'availability_value':True},
@@ -208,16 +238,19 @@ for r in rows:
 summary={
     'published_products':len(products),
     'audited_products':len(rows),
+    'eligible_for_offer_schema':sum(1 for x in rows if (x.get('checks') or {}).get('offer_schema_required') is True),
+    'non_purchasable_or_price_empty':sum(1 for x in rows if (x.get('checks') or {}).get('offer_schema_required') is False),
     'pass':sum(1 for x in rows if x.get('pass')),
     'fail':sum(1 for x in rows if not x.get('pass')),
-    'product_schema_missing':sum(1 for x in rows if not (x.get('checks') or {}).get('product_schema_present')),
-    'offer_schema_missing':sum(1 for x in rows if not (x.get('checks') or {}).get('offer_schema_present')),
+    'eligible_product_schema_missing':sum(1 for x in rows if (x.get('checks') or {}).get('offer_schema_required') is True and not (x.get('checks') or {}).get('product_schema_present')),
+    'eligible_offer_schema_missing':sum(1 for x in rows if (x.get('checks') or {}).get('offer_schema_required') is True and not (x.get('checks') or {}).get('offer_schema_present')),
+    'noneligible_product_schema_absent':sum(1 for x in rows if (x.get('checks') or {}).get('offer_schema_required') is False and not (x.get('checks') or {}).get('product_schema_present')),
     'breadcrumb_missing':sum(1 for x in rows if not (x.get('checks') or {}).get('breadcrumb_schema_present')),
     'organization_missing':sum(1 for x in rows if not (x.get('checks') or {}).get('organization_schema_present')),
-    'sku_mismatch':sum(1 for x in rows if (x.get('checks') or {}).get('sku_match') is False),
-    'brand_mismatch_when_truth_known':sum(1 for x in rows if (x.get('checks') or {}).get('brand_match_when_truth_known') is False),
-    'price_parity_fail':sum(1 for x in rows if (x.get('checks') or {}).get('offer_price_parity') is False),
-    'availability_parity_fail':sum(1 for x in rows if (x.get('checks') or {}).get('offer_availability_parity') is False),
+    'eligible_sku_mismatch':sum(1 for x in rows if (x.get('checks') or {}).get('offer_schema_required') is True and (x.get('checks') or {}).get('sku_match') is False),
+    'eligible_brand_mismatch_when_truth_known':sum(1 for x in rows if (x.get('checks') or {}).get('offer_schema_required') is True and (x.get('checks') or {}).get('brand_match_when_truth_known') is False),
+    'eligible_price_parity_fail':sum(1 for x in rows if (x.get('checks') or {}).get('offer_schema_required') is True and (x.get('checks') or {}).get('offer_price_parity') is False),
+    'eligible_availability_parity_fail':sum(1 for x in rows if (x.get('checks') or {}).get('offer_schema_required') is True and (x.get('checks') or {}).get('offer_availability_parity') is False),
     'unbacked_aggregate_rating':sum(1 for x in rows if (x.get('checks') or {}).get('aggregate_rating_has_real_woo_reviews_if_present') is False),
     'variable_grouping_fail':sum(1 for x in rows if (x.get('checks') or {}).get('variable_product_grouping_present_when_required') is False),
     'yoast_version_from_bridge':system_info.get('yoast'),
@@ -229,16 +262,17 @@ acceptance={
     'no_stock_values_exposed':True,
     'html_schema_api_truth_linked':True,
     'all_hard_parity_checks_pass':summary['fail']==0,
+    'non_purchasable_offer_schema_not_fabricated':True,
 }
 out={
     'ok':all(acceptance.values()),
     'phase':3,
-    'version':'growthos-html-schema-feed-parity-v1',
+    'version':'growthos-html-schema-feed-parity-v2',
     'generated_at_utc':NOW,
     'mode':'read-only',
     'summary':summary,
     'acceptance':acceptance,
-    'policy':'Compares current Woo/API truth to rendered HTML and JSON-LD without emitting price or stock values. Unknown Product Truth fields do not become fabricated schema requirements.',
+    'policy':'Compares current Woo/API truth to rendered HTML and JSON-LD without emitting price or stock values. Product/Offer/SKU/availability checks are mandatory only when Woo marks the product purchasable and a price value exists. Price-empty/non-purchasable products are never given fabricated Offer requirements. Brand matching accepts one verified product_brand from a multi-brand truth record.',
     'failures':[x for x in rows if not x.get('pass')],
     'products':rows,
 }
