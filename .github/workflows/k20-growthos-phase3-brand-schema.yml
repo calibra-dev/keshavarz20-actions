@@ -1,0 +1,91 @@
+name: K20 GrowthOS Phase 3 Brand Schema Snippet
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'growthos-phase3-brand-schema-ops/*.json'
+
+permissions:
+  contents: write
+
+jobs:
+  request:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Request guarded WPCode snippet through WPVibe route
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $base=$env:WP_BASE_URL.TrimEnd('/')
+          $auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"))
+          $headers=@{Authorization="Basic $auth";Accept='application/json'}
+          $code=@'
+          add_filter( 'woocommerce_structured_data_product', function ( $markup, $product ) {
+              if ( ! is_array( $markup ) || ! ( $product instanceof WC_Product ) ) {
+                  return $markup;
+              }
+              if ( ! empty( $markup['brand'] ) ) {
+                  return $markup;
+              }
+              $brands = get_the_terms( $product->get_id(), 'product_brand' );
+              if ( is_wp_error( $brands ) || empty( $brands ) || ! is_array( $brands ) ) {
+                  return $markup;
+              }
+              $brand = reset( $brands );
+              if ( ! $brand || empty( $brand->name ) ) {
+                  return $markup;
+              }
+              $markup['brand'] = array(
+                  '@type' => 'Brand',
+                  'name'  => wp_strip_all_tags( $brand->name ),
+              );
+              if ( function_exists( 'wc_get_brand_thumbnail_url' ) ) {
+                  $logo = wc_get_brand_thumbnail_url( $brand->term_id, 'full' );
+                  if ( $logo ) {
+                      $markup['brand']['logo'] = esc_url_raw( $logo );
+                  }
+              }
+              return $markup;
+          }, 30, 2 );
+          '@
+          $body=[ordered]@{
+            action='create'
+            code=$code
+            title='K20 GrowthOS - Woo Product Brand Schema'
+            code_type='php'
+            location='everywhere'
+            insert_method='auto'
+          } | ConvertTo-Json -Depth 10
+          $result=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/code-snippet" -Headers $headers -Method POST -ContentType 'application/json' -Body $body -TimeoutSec 180
+          $safe=[ordered]@{
+            requested_at_utc=[DateTime]::UtcNow.ToString('o')
+            route='/wpvibe/v1/code-snippet'
+            result=$result
+          }
+          $safe | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath "$env:RUNNER_TEMP/brand-schema-snippet.json" -Encoding utf8
+      - name: Persist sanitized request result
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p growthos-phase3-results
+          cp "$RUNNER_TEMP/brand-schema-snippet.json" growthos-phase3-results/brand-schema-snippet-request.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f growthos-phase3-results/brand-schema-snippet-request.json
+          git diff --cached --quiet && exit 0
+          git commit -m "growthos phase3: record brand schema snippet request"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
