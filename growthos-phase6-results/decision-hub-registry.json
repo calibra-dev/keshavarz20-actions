@@ -1,0 +1,59 @@
+{
+  "phase": 6,
+  "version": "growthos-decision-hub-registry-v1",
+  "generated_at_utc": "2026-09-25T21:11:00Z",
+  "architecture_rule": "Reuse existing WooCommerce category owners; do not create parallel money URLs.",
+  "hubs": [
+    {
+      "key": "drip_tape",
+      "category_id": 755,
+      "category_name": "نوار تیپ",
+      "write_result": "results/20260926-growthos-phase6-drip-755.json",
+      "readback": "results/category-audit-20260926-growthos-phase6-readback-drip.json"
+    },
+    {
+      "key": "layflat_hose",
+      "category_id": 768,
+      "category_name": "لوله نخدار",
+      "write_result": "results/20260926-growthos-phase6-lay-768.json",
+      "readback": "results/category-audit-20260926-growthos-phase6-readback-lay.json"
+    },
+    {
+      "key": "tape_layflat_fittings",
+      "category_id": 761,
+      "category_name": "انشعابات و بست ها",
+      "write_result": "results/20260926-growthos-phase6-fit-761.json",
+      "readback": "results/category-audit-20260926-growthos-phase6-readback-fit.json"
+    },
+    {
+      "key": "pe_pipe_fittings",
+      "category_id": 754,
+      "category_name": "لوله پلی اتیلن",
+      "write_result": "results/20260926-growthos-phase6-pe-754.json",
+      "readback": "results/category-audit-20260926-growthos-phase6-readback-pe.json"
+    },
+    {
+      "key": "filtration",
+      "category_id": 825,
+      "category_name": "فیلتر و فیلتراسیون",
+      "write_result": "results/20260926-growthos-phase6-filter-825.json",
+      "readback": "results/category-audit-20260926-growthos-phase6-readback-filter.json"
+    }
+  ],
+  "section_contract": [
+    "direct decision answer",
+    "quick selection criteria",
+    "suitable/not-suitable guard",
+    "compatibility fail-closed rule",
+    "tool/selector links",
+    "common error patterns",
+    "FAQ",
+    "consultation/proforma CTA"
+  ],
+  "safety": {
+    "new_money_urls_created": 0,
+    "price_stock_discount_mutations": 0,
+    "unsupported_technical_compatibility_claims": 0,
+    "existing_description_preservation": "append marker block; reruns replace only own marker"
+  }
+}
