@@ -1,0 +1,48 @@
+{
+  "version": "growthos-phase7-data-dictionary-v1",
+  "generated_at_utc": "2026-09-25T21:10:00Z",
+  "fields": [
+    {
+      "field": "canonical_intent_id",
+      "meaning": "شناسه پایدار Intent",
+      "source": "Phase 5 Central Intent Registry",
+      "rule": "unique and traceable"
+    },
+    {
+      "field": "canonical_url",
+      "meaning": "مالک URL برای Intent",
+      "source": "Phase 5 owner map",
+      "rule": "reuse existing owner; no duplicate money URL"
+    },
+    {
+      "field": "family",
+      "meaning": "خانواده فنی سطح کاتالوگ",
+      "source": "Phase 4",
+      "rule": "classification only; not proof of compatibility"
+    },
+    {
+      "field": "data_dimension_ready",
+      "meaning": "حداقل داده لازم برای مدل‌سازی خانواده موجود است",
+      "source": "Phase 4",
+      "rule": "does not mean verified fits/worksWith"
+    },
+    {
+      "field": "verified_technical_compatibility",
+      "meaning": "رابطه فنی قطعی دو SKU/مدل",
+      "source": "exact evidence only",
+      "rule": "never infer from same size/category/internal links"
+    },
+    {
+      "field": "unknown",
+      "meaning": "داده تأییدنشده",
+      "source": "Phase 2/4",
+      "rule": "remain unknown until evidence arrives"
+    },
+    {
+      "field": "hub_category_id",
+      "meaning": "دسته موجود WooCommerce که Decision Hub روی آن سوار است",
+      "source": "live category audit",
+      "rule": "no new duplicate commercial URL"
+    }
+  ]
+}
