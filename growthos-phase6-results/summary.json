@@ -1,0 +1,80 @@
+{
+  "ok": true,
+  "phase": 6,
+  "version": "growthos-decision-hubs-v1",
+  "generated_at_utc": "2026-09-25T21:15:00Z",
+  "status": "PASS_VERIFIED_WRITE_ALL_5_HUBS",
+  "architecture": "Existing WooCommerce category owners upgraded in place; no parallel commercial URLs created.",
+  "hubs": [
+    {
+      "key": "drip_tape",
+      "category_id": 755,
+      "name": "نوار تیپ",
+      "write_result": "results/20260926-growthos-phase6-drip-755.json",
+      "readback": "results/category-audit-20260926-growthos-phase6-readback-drip.json",
+      "marker": true,
+      "marker_count": 1,
+      "previous_content_preserved": true
+    },
+    {
+      "key": "layflat_hose",
+      "category_id": 768,
+      "name": "لوله نخدار",
+      "write_result": "results/20260926-growthos-phase6-lay-768.json",
+      "readback": "results/category-audit-20260926-growthos-phase6-readback-lay.json",
+      "marker": true,
+      "marker_count": 1,
+      "previous_content_preserved": true
+    },
+    {
+      "key": "tape_layflat_fittings",
+      "category_id": 761,
+      "name": "انشعابات و بست ها",
+      "write_result": "results/20260926-growthos-phase6-fit-761.json",
+      "readback": "results/category-audit-20260926-growthos-phase6-readback-fit-v2.json",
+      "marker": true,
+      "marker_count": 1,
+      "previous_content_preserved": true,
+      "preservation_check": "normalized text: 25/25 prior sentence blocks retained; raw HTML serialization normalized by WordPress"
+    },
+    {
+      "key": "pe_pipe_fittings",
+      "category_id": 754,
+      "name": "لوله پلی اتیلن",
+      "write_result": "results/20260926-growthos-phase6-pe-754.json",
+      "readback": "results/category-audit-20260926-growthos-phase6-readback-pe.json",
+      "marker": true,
+      "marker_count": 1,
+      "previous_content_preserved": true,
+      "preservation_check": "normalized text: 36/36 prior sentence blocks retained; raw HTML serialization normalized by WordPress"
+    },
+    {
+      "key": "filtration",
+      "category_id": 825,
+      "name": "فیلتر و فیلتراسیون",
+      "write_result": "results/20260926-growthos-phase6-filter-825.json",
+      "readback": "results/category-audit-20260926-growthos-phase6-readback-filter.json",
+      "marker": true,
+      "marker_count": 1,
+      "previous_content_preserved": true
+    }
+  ],
+  "content_contract": [
+    "direct answer",
+    "quick selection table",
+    "suitable/not-suitable guard",
+    "compatibility fail-closed rule",
+    "existing tool/selector links",
+    "common mistakes/problems",
+    "FAQ",
+    "consultation/proforma CTA",
+    "review date"
+  ],
+  "safety": {
+    "new_money_urls_created": 0,
+    "price_stock_discount_mutations": 0,
+    "hard_fabrications": 0,
+    "unsupported_verified_compatibility_claims": 0
+  },
+  "verification": "All five exact live categories read back after write with K20-GROWTHOS-PHASE6 marker present exactly once."
+}
