@@ -2,8 +2,12 @@
 import json,os,requests
 from datetime import datetime,timezone
 from urllib.parse import urljoin
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 BASE=os.environ['WP_BASE_URL'].rstrip('/');AUTH=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD'])
 S=requests.Session();S.auth=AUTH;S.headers.update({'Accept':'application/json','User-Agent':'k20-growthos-phase9-readback/1.0'})
+retry=Retry(total=5,connect=5,read=5,status=5,backoff_factor=1.5,status_forcelist=[429,500,502,503,504],allowed_methods=frozenset(['GET','POST','PUT']))
+S.mount('https://',HTTPAdapter(max_retries=retry));S.mount('http://',HTTPAdapter(max_retries=retry))
 START='<!-- K20-GROWTHOS-PHASE9-FLOW-START -->';RSTART='<!-- K20-GROWTHOS-PHASE9-ROUTE-START -->'
 TOOLS=[('post',143698,'drip-tape-length-fittings-calculator'),('page',144236,'layflat-length-fittings-calculator'),('page',144238,'irrigation-filter-selector'),('page',144239,'irrigation-fittings-compatibility-selector'),('page',144266,'irrigation-pipe-size-selector'),('page',145233,'one-hectare-drip-irrigation-basket'),('page',145234,'irrigation-product-comparator'),('page',145286,'request-proforma')]
 HUBS=[(755,'نوار تیپ'),(768,'لوله نخدار'),(761,'انشعابات و بست ها'),(754,'لوله پلی اتیلن'),(825,'فیلتر و فیلتراسیون')]
