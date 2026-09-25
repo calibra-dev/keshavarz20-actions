@@ -1,0 +1,41 @@
+{
+  "version": "growthos-phase7-source-manifest-v1",
+  "generated_at_utc": "2026-09-25T21:10:00Z",
+  "sources": [
+    {
+      "path": "growthos-phase5-results/central-intent-registry.json",
+      "git_blob_sha": "43c07bb90c80f5bbfa964532839f802a6bf6db14",
+      "snapshot": "last_28d_at_2026-09-24",
+      "role": "intent demand + owner map",
+      "limitation": "Google Search Console snapshot; Bing was connected but temporarily throttled"
+    },
+    {
+      "path": "growthos-phase4-results/compatibility-summary.json",
+      "git_blob_sha": "8b003c593086f8fd1beff5820e03a194a378ac6d",
+      "generated_at_utc": "2026-09-24T08:36:16.195726+00:00",
+      "role": "catalog coverage + evidence gaps + compatibility state",
+      "limitation": "family readiness is not SKU-to-SKU compatibility proof"
+    },
+    {
+      "path": "results/category-audit-20260926-growthos-phase6-drip-tape.json",
+      "role": "live category evidence for drip hub"
+    },
+    {
+      "path": "results/category-audit-20260926-growthos-phase6-layflat.json",
+      "role": "live category evidence for layflat hub"
+    },
+    {
+      "path": "results/category-audit-20260915-branches-clamps-inventory-v1.json",
+      "role": "last successful category evidence for fittings hub"
+    },
+    {
+      "path": "results/category-audit-20260918-phase2-pe-pipe-hub-live-audit-v2.json",
+      "role": "last successful category evidence for PE hub"
+    },
+    {
+      "path": "results/category-audit-20260921-seogod1-phase07-filter.json",
+      "role": "last successful category evidence for filtration hub"
+    }
+  ],
+  "provenance_rule": "Every derived claim must remain traceable to these sources. Unknown technical values are not imputed."
+}
