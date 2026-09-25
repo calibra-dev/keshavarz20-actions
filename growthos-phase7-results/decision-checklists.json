@@ -1,0 +1,56 @@
+{
+  "version": "growthos-phase7-decision-checklists-v1",
+  "generated_at_utc": "2026-09-25T21:10:00Z",
+  "sources": [
+    "growthos-phase4-results/compatibility-summary.json",
+    "growthos-phase5-results/central-intent-registry.json"
+  ],
+  "global_rule": "If exact SKU/model evidence is missing, fail closed and keep compatibility/technical value unknown.",
+  "checklists": {
+    "drip_tape": [
+      "طول و تعداد ردیف",
+      "فاصله کشت",
+      "کیفیت آب",
+      "فشار/دبی واقعی",
+      "مشخصات همان رول",
+      "فیلتراسیون",
+      "شیر/رابط/واشر/انتهایی/ابزار پانچ"
+    ],
+    "layflat_hose": [
+      "قطر واقعی",
+      "طول مسیر",
+      "دبی",
+      "فشار مجاز همان مدل",
+      "اختلاف ارتفاع",
+      "انشعاب‌ها",
+      "رابط/بست/واشر/ابزار پانچ"
+    ],
+    "tape_layflat_fittings": [
+      "قطعه مبدا",
+      "قطعه مقصد",
+      "سایز واقعی",
+      "نوع آب‌بندی",
+      "واشر",
+      "قطر پانچ",
+      "Evidence سازگاری"
+    ],
+    "pe_pipe_fittings": [
+      "قطر",
+      "مارکینگ PN/SDR",
+      "دبی",
+      "طول مسیر",
+      "اختلاف ارتفاع",
+      "نوع اتصال",
+      "اورینگ/بوش/ترتیب مونتاژ"
+    ],
+    "filtration": [
+      "منبع آب",
+      "نوع آلودگی",
+      "دبی",
+      "درجه فیلتراسیون همان مدل",
+      "اتصال",
+      "روش سرویس",
+      "سیستم پایین‌دست"
+    ]
+  }
+}
