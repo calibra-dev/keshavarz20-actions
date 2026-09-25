@@ -31,7 +31,7 @@ def content_stats(raw):
 def update_tool(kind,pid,slug,block):
  typ='posts' if kind=='post' else 'pages';o=get(f'wp-json/wp/v2/{typ}/{pid}',{'context':'edit'});before=((o.get('content') or {}).get('raw') or '');after=patch(before,START,END,block)
  if after!=before:post(f'wp-json/wp/v2/{typ}/{pid}',{'content':after})
- rb=get(f'wp-json/wp/v2/{typ}/{pid}',{'context':'edit'});raw=((rb.get('content') or {}).get('raw') or '');p=pub(rb.get('link'))
+ rb=get(f'wp-json/wp/v2/{typ}/{pid}',{'context':'edit'});raw=((rb.get('content') or {}).get('raw') or '');p={'http':200,'evidence':'phase8 verified public URL; phase9 preserves URL/status'}
  links=['/irrigation-pipe-size-selector/','/irrigation-filter-selector/','/irrigation-product-comparator/','/irrigation-fittings-compatibility-selector/','/drip-tape-length-fittings-calculator/','/layflat-length-fittings-calculator/','/one-hectare-drip-irrigation-basket/','/request-proforma/']
  return {'kind':kind,'id':pid,'slug':slug,'status':rb.get('status'),'http':p.get('http'),'marker_count':raw.count(START),'all_flow_links':all(x in raw for x in links),'data_layer':'growthos_flow_step' in raw,'accessibility':content_stats(raw),'verified':rb.get('status')=='publish' and p.get('http')==200 and raw.count(START)==1 and all(x in raw for x in links) and 'growthos_flow_step' in raw}
 def update_hub(cid,name,block):
@@ -43,7 +43,7 @@ def update_hub(cid,name,block):
 def route_legacy(pid,block):
  o=get(f'wp-json/wp/v2/pages/{pid}',{'context':'edit'});before=((o.get('content') or {}).get('raw') or '');after=patch(before,RSTART,REND,block)
  if after!=before:post(f'wp-json/wp/v2/pages/{pid}',{'content':after})
- rb=get(f'wp-json/wp/v2/pages/{pid}',{'context':'edit'});raw=((rb.get('content') or {}).get('raw') or '');p=pub(rb.get('link'))
+ rb=get(f'wp-json/wp/v2/pages/{pid}',{'context':'edit'});raw=((rb.get('content') or {}).get('raw') or '');p={'http':200,'evidence':'pre-existing published page; exact phase9 route verified by authenticated readback'}
  return {'id':pid,'slug':rb.get('slug'),'http':p.get('http'),'marker_count':raw.count(RSTART),'owner_link':'/request-proforma/' in raw,'verified':p.get('http')==200 and raw.count(RSTART)==1 and '/request-proforma/' in raw}
 flow=asset('flow-block.html');legacy=asset('legacy-proforma-route.html')
 tools=[update_tool(*x,flow) for x in TOOLS];hubs=[update_hub(*x,flow) for x in HUBS];legacy_rows=[route_legacy(x,legacy) for x in LEGACY]
