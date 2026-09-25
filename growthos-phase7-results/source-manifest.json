@@ -1,6 +1,6 @@
 {
   "version": "growthos-phase7-source-manifest-v1",
-  "generated_at_utc": "2026-09-25T21:10:00Z",
+  "generated_at_utc": "2026-09-25T21:15:00Z",
   "sources": [
     {
       "path": "growthos-phase5-results/central-intent-registry.json",
@@ -37,5 +37,28 @@
       "role": "last successful category evidence for filtration hub"
     }
   ],
-  "provenance_rule": "Every derived claim must remain traceable to these sources. Unknown technical values are not imputed."
+  "provenance_rule": "Every derived claim must remain traceable to these sources. Unknown technical values are not imputed.",
+  "phase6_live_readbacks": [
+    {
+      "category_id": 755,
+      "path": "results/category-audit-20260926-growthos-phase6-readback-drip.json"
+    },
+    {
+      "category_id": 768,
+      "path": "results/category-audit-20260926-growthos-phase6-readback-lay.json"
+    },
+    {
+      "category_id": 761,
+      "path": "results/category-audit-20260926-growthos-phase6-readback-fit-v2.json"
+    },
+    {
+      "category_id": 754,
+      "path": "results/category-audit-20260926-growthos-phase6-readback-pe.json"
+    },
+    {
+      "category_id": 825,
+      "path": "results/category-audit-20260926-growthos-phase6-readback-filter.json"
+    }
+  ],
+  "phase6_verification_rule": "Use post-write exact category readbacks; marker must be present once and prior visible content must remain semantically intact."
 }
