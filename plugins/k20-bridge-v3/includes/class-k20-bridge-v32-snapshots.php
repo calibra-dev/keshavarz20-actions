@@ -86,6 +86,19 @@ final class K20_Bridge_V32_Snapshots {
                 if (count($u)>1) wp_update_post($u);
             }
             if (array_key_exists('alt_text',$decoded)) update_post_meta($object_id,'_wp_attachment_image_alt',$decoded['alt_text']);
+        } elseif ($kind==='snippet') {
+            $decoded=json_decode($raw,true);
+            if (!is_array($decoded)) return new WP_Error('snapshot_corrupt','Snippet snapshot is invalid.',['status'=>500]);
+            $payload=[];
+            foreach (['name','desc','code','tags','scope','priority','locked','trashed'] as $key) if (array_key_exists($key,$decoded)) $payload[$key]=$decoded[$key];
+            $payload['active']=false;
+            $payload['network']=false;
+            $req=new WP_REST_Request('PUT','/code-snippets/v1/snippets/'.$object_id);
+            $req->set_body_params($payload);
+            $res=rest_do_request($req);
+            if (is_wp_error($res)) return $res;
+            $status=$res->get_status();
+            if ($status<200 || $status>=300) return new WP_Error('snippet_rollback_failed','Snippet rollback request failed.',['status'=>$status]);
         } else {
             return new WP_Error('snapshot_kind_unsupported','Snapshot kind cannot be rolled back.',['status'=>400]);
         }

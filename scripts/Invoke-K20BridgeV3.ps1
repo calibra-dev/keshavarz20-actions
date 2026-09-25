@@ -12,6 +12,7 @@ $siteActions=@(
   'content.search','content.patch','content.block.inspect','content.block.patch',
   'elementor.inspect','elementor.search','elementor.edit','elementor.structure',
   'media.import','media.transform','media.metadata','media.hash','media.duplicates','media.optimize','media.focal_crop','media.watermark',
+  'asset.featured.set','asset.gallery.append','asset.gallery.replace','asset.content.insert',
   'cache.status','cache.purge','audit.tail','batch',
   'job.create','job.status','job.run','job.retry_failed',
   'snapshot.list','snapshot.rollback',
@@ -68,10 +69,10 @@ if([string]::IsNullOrWhiteSpace([string]$request.request_id)){
 if($githubActions -contains $action){
   if($action -eq 'gitops.profile'){
     Write-Result ([ordered]@{
-      ok=$true;schema_version='3.2';action=$action;request_id=[string]$request.request_id;profile='keshavarz20-git-ops';
+      ok=$true;schema_version='3.3';action=$action;request_id=[string]$request.request_id;profile='keshavarz20-git-ops';
       primary_path='ChatGPT -> GitHub -> guarded gateway -> WordPress/WooCommerce/K20 Bridge';
       engines=@('question','news','article','social');
-      hard_guards=@('no price/discount/coupon/payment mutation','no users/roles/capabilities','no credentials/secrets','no arbitrary code/SQL/shell');
+      hard_guards=@('no price/discount/coupon/payment mutation','no users/roles/capabilities','no credentials/secrets','no arbitrary code/SQL/shell','sensitive snippet/code actions use secure relay');
       executed_at_utc=[DateTime]::UtcNow.ToString('o')
     })
     exit 0
@@ -81,7 +82,7 @@ if($githubActions -contains $action){
     if([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($name))){ Fail "Missing GitHub runtime variable: $name" }
   }
   $engine=Get-Engine ([string]$request.engine)
-  $headers=@{Authorization="Bearer $env:GH_TOKEN";Accept='application/vnd.github+json';'X-GitHub-Api-Version'='2022-11-28';'User-Agent'='k20-bridge-v32-engine-router'}
+  $headers=@{Authorization="Bearer $env:GH_TOKEN";Accept='application/vnd.github+json';'X-GitHub-Api-Version'='2022-11-28';'User-Agent'='k20-bridge-v33-engine-router'}
   $workflow=[Uri]::EscapeDataString([string]$engine.workflow)
 
   if($action -eq 'engine.status'){
@@ -96,7 +97,7 @@ if($githubActions -contains $action){
       }
     }
     Write-Result ([ordered]@{
-      ok=$true;schema_version='3.2';action=$action;engine=[string]$request.engine;engine_label=$engine.label;
+      ok=$true;schema_version='3.3';action=$action;engine=[string]$request.engine;engine_label=$engine.label;
       workflow=$engine.workflow;state=if($items.Count -gt 0){$items[0].state}else{'unknown'};runs=$items;executed_at_utc=[DateTime]::UtcNow.ToString('o')
     })
     exit 0
@@ -136,7 +137,7 @@ if($githubActions -contains $action){
   $resp=Invoke-WebRequest -Method Post -Uri $uri -Headers $headers -ContentType 'application/json' -Body $payload -TimeoutSec 60 -SkipHttpErrorCheck
   if([int]$resp.StatusCode -ne 204){ Fail "Engine dispatch failed with HTTP $([int]$resp.StatusCode)" }
   Write-Result ([ordered]@{
-    ok=$true;schema_version='3.2';action=$action;engine=[string]$request.engine;engine_label=$engine.label;
+    ok=$true;schema_version='3.3';action=$action;engine=[string]$request.engine;engine_label=$engine.label;
     workflow=$engine.workflow;state='accepted';started_at=[DateTime]::UtcNow.ToString('o');finished_at=$null;
     changed_ids=@();errors=@();artifact=$null;next_action='engine.status';inputs=$inputs;executed_at_utc=[DateTime]::UtcNow.ToString('o')
   })
@@ -183,7 +184,7 @@ if($parsed -and $parsed.result){
     'woocommerce','yoast','elementor','object_cache','method','path','job_id','cursor','total','success','failed','retrying','dead_letter',
     'matches','changed','before_sha256','after_sha256','source_attachment_id','new_attachment_id','approval_id','fingerprint','rolled_back',
     'current_version','available_version','update_available','staged','applied','installed_file_version','schema_version',
-    'description','focus_keyword','canonical','noindex'
+    'description','focus_keyword','canonical','noindex','attachment_id','attachment_ids','featured_attachment_id','gallery_image_ids','before_gallery_image_ids','target_id','product_id','snapshot_id','sha256','mime','bytes','width','height','previous_attachment_id'
   )){
     $p=$result.PSObject.Properties[$name]; if($p){ $safe[$name]=$p.Value }
   }
@@ -196,4 +197,4 @@ if($parsed -and $parsed.result){
 }
 Write-Result $record
 if(-not $record.ok){ Fail "K20 Bridge v3 request failed with HTTP $status" }
-Write-Host "K20_BRIDGE_V32_OK action=$action request_id=$($request.request_id)"
+Write-Host "K20_BRIDGE_V33_OK action=$action request_id=$($request.request_id)"
