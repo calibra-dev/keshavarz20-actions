@@ -1,0 +1,255 @@
+{
+  "phase": 9,
+  "version": "growthos-agent-flow-v1",
+  "generated_at_utc": "2026-09-25T21:58:41.684670+00:00",
+  "flow": [
+    "question/context",
+    "selection",
+    "filtration",
+    "comparison",
+    "compatibility",
+    "calculation",
+    "basket",
+    "proforma/expert-review",
+    "purchase"
+  ],
+  "tools": [
+    {
+      "kind": "post",
+      "id": 143698,
+      "slug": "drip-tape-length-fittings-calculator",
+      "status": "publish",
+      "http": 200,
+      "marker_count": 1,
+      "all_flow_links": true,
+      "data_layer": true,
+      "accessibility": {
+        "controls_with_id": 10,
+        "label_for_count": 10,
+        "unlabeled_ids": []
+      },
+      "verified": true
+    },
+    {
+      "kind": "page",
+      "id": 144236,
+      "slug": "layflat-length-fittings-calculator",
+      "status": "publish",
+      "http": 200,
+      "marker_count": 1,
+      "all_flow_links": true,
+      "data_layer": true,
+      "accessibility": {
+        "controls_with_id": 5,
+        "label_for_count": 0,
+        "unlabeled_ids": [
+          "lf_len",
+          "lf_roll",
+          "lf_out",
+          "lf_end",
+          "lf_res"
+        ]
+      },
+      "verified": true
+    },
+    {
+      "kind": "page",
+      "id": 144238,
+      "slug": "irrigation-filter-selector",
+      "status": "publish",
+      "http": 200,
+      "marker_count": 1,
+      "all_flow_links": true,
+      "data_layer": true,
+      "accessibility": {
+        "controls_with_id": 5,
+        "label_for_count": 0,
+        "unlabeled_ids": [
+          "fs_source",
+          "fs_use",
+          "fs_flow",
+          "fs_micron",
+          "fs_conn"
+        ]
+      },
+      "verified": true
+    },
+    {
+      "kind": "page",
+      "id": 144239,
+      "slug": "irrigation-fittings-compatibility-selector",
+      "status": "publish",
+      "http": 200,
+      "marker_count": 1,
+      "all_flow_links": true,
+      "data_layer": true,
+      "accessibility": {
+        "controls_with_id": 5,
+        "label_for_count": 0,
+        "unlabeled_ids": [
+          "ic_system",
+          "ic_size",
+          "ic_task",
+          "ic_out",
+          "ic_valve"
+        ]
+      },
+      "verified": true
+    },
+    {
+      "kind": "page",
+      "id": 144266,
+      "slug": "irrigation-pipe-size-selector",
+      "status": "publish",
+      "http": 200,
+      "marker_count": 1,
+      "all_flow_links": true,
+      "data_layer": true,
+      "accessibility": {
+        "controls_with_id": 16,
+        "label_for_count": 16,
+        "unlabeled_ids": []
+      },
+      "verified": true
+    },
+    {
+      "kind": "page",
+      "id": 145233,
+      "slug": "one-hectare-drip-irrigation-basket",
+      "status": "publish",
+      "http": 200,
+      "marker_count": 1,
+      "all_flow_links": true,
+      "data_layer": true,
+      "accessibility": {
+        "controls_with_id": 6,
+        "label_for_count": 6,
+        "unlabeled_ids": []
+      },
+      "verified": true
+    },
+    {
+      "kind": "page",
+      "id": 145234,
+      "slug": "irrigation-product-comparator",
+      "status": "publish",
+      "http": 200,
+      "marker_count": 1,
+      "all_flow_links": true,
+      "data_layer": true,
+      "accessibility": {
+        "controls_with_id": 1,
+        "label_for_count": 1,
+        "unlabeled_ids": []
+      },
+      "verified": true
+    },
+    {
+      "kind": "page",
+      "id": 145286,
+      "slug": "request-proforma",
+      "status": "publish",
+      "http": 200,
+      "marker_count": 1,
+      "all_flow_links": true,
+      "data_layer": true,
+      "accessibility": {
+        "controls_with_id": 9,
+        "label_for_count": 9,
+        "unlabeled_ids": []
+      },
+      "verified": true
+    }
+  ],
+  "hubs": [
+    {
+      "id": 755,
+      "name": "نوار تیپ",
+      "marker_count": 1,
+      "all_flow_links": true,
+      "taxonomy_sanitized_data_attributes": true,
+      "verified": true
+    },
+    {
+      "id": 768,
+      "name": "لوله نخدار",
+      "marker_count": 1,
+      "all_flow_links": true,
+      "taxonomy_sanitized_data_attributes": true,
+      "verified": true
+    },
+    {
+      "id": 761,
+      "name": "انشعابات و بست ها",
+      "marker_count": 1,
+      "all_flow_links": true,
+      "taxonomy_sanitized_data_attributes": true,
+      "verified": true
+    },
+    {
+      "id": 754,
+      "name": "لوله پلی اتیلن",
+      "marker_count": 1,
+      "all_flow_links": true,
+      "taxonomy_sanitized_data_attributes": true,
+      "verified": true
+    },
+    {
+      "id": 825,
+      "name": "فیلتر و فیلتراسیون",
+      "marker_count": 1,
+      "all_flow_links": true,
+      "taxonomy_sanitized_data_attributes": true,
+      "verified": true
+    }
+  ],
+  "legacy_proforma_routes": [
+    {
+      "id": 143710,
+      "slug": "request-quotation",
+      "http": 200,
+      "marker_count": 1,
+      "owner_link": true,
+      "verified": true
+    },
+    {
+      "id": 140667,
+      "slug": "%d9%be%db%8c%d8%b4-%d9%81%d8%a7%da%a9%d8%aa%d9%88%d8%b1-%d8%b3%d8%a8%d8%af-%d8%ae%d8%b1%db%8c%d8%af",
+      "http": 200,
+      "marker_count": 1,
+      "owner_link": true,
+      "verified": true
+    }
+  ],
+  "qa": {
+    "tools_verified": 8,
+    "tools_total": 8,
+    "hubs_verified": 5,
+    "hubs_total": 5,
+    "legacy_routes_verified": 2,
+    "legacy_routes_total": 2,
+    "tool_unlabeled_controls": {
+      "layflat-length-fittings-calculator": [
+        "lf_len",
+        "lf_roll",
+        "lf_out",
+        "lf_end",
+        "lf_res"
+      ],
+      "irrigation-filter-selector": [
+        "fs_source",
+        "fs_use",
+        "fs_flow",
+        "fs_micron",
+        "fs_conn"
+      ],
+      "irrigation-fittings-compatibility-selector": [
+        "ic_system",
+        "ic_size",
+        "ic_task",
+        "ic_out",
+        "ic_valve"
+      ]
+    }
+  }
+}
