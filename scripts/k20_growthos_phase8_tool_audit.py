@@ -76,10 +76,20 @@ for subtype in ("pages","posts"):
     except Exception:
         rows=[]
     for o in rows:
+        raw=((o.get("content") or {}).get("raw") or "")
         search_hits.append({
             "type":subtype[:-1],"id":o.get("id"),"slug":o.get("slug"),
             "status":o.get("status"),"link":o.get("link"),
-            "title":((o.get("title") or {}).get("raw") or (o.get("title") or {}).get("rendered"))
+            "title":((o.get("title") or {}).get("raw") or (o.get("title") or {}).get("rendered")),
+            "chars":len(raw),
+            "has_form":"<form" in raw.lower(),
+            "has_script":"<script" in raw.lower(),
+            "has_inputs":"<input" in raw.lower() or "<select" in raw.lower() or "<textarea" in raw.lower(),
+            "has_whatsapp":"wa.me/" in raw,
+            "has_data_layer":"dataLayer" in raw or "gtag(" in raw,
+            "has_phase8_marker":"K20-GROWTHOS-PHASE8" in raw,
+            "has_phase9_marker":"K20-GROWTHOS-PHASE9" in raw,
+            "public":public(o.get("link"))
         })
 
 try:
