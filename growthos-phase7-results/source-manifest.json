@@ -1,6 +1,6 @@
 {
   "version": "growthos-phase7-source-manifest-v1",
-  "generated_at_utc": "2026-09-25T21:15:00Z",
+  "generated_at_utc": "2026-09-25T21:18:00Z",
   "sources": [
     {
       "path": "growthos-phase5-results/central-intent-registry.json",
@@ -60,5 +60,19 @@
       "path": "results/category-audit-20260926-growthos-phase6-readback-filter.json"
     }
   ],
-  "phase6_verification_rule": "Use post-write exact category readbacks; marker must be present once and prior visible content must remain semantically intact."
+  "phase6_verification_rule": "Use post-write exact category readbacks; marker must be present once and prior visible content must remain semantically intact.",
+  "additional_sources": [
+    {
+      "source": "project user-provided nominal layflat size mapping",
+      "source_date": "2026-09-23",
+      "role": "nominal inch-to-mm catalog mapping",
+      "limitation": "project mapping only; not universal physical conversion; 8-inch mm mapping not supplied and remains unknown"
+    },
+    {
+      "source": "results/category-audit-20260926-growthos-phase6-readback-lay.json",
+      "source_date": "2026-09-25",
+      "role": "exact live product titles used for layflat catalog size index",
+      "limitation": "title size label only; does not prove physical diameter/pressure/compatibility"
+    }
+  ]
 }
