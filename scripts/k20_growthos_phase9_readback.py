@@ -22,7 +22,7 @@ for kind,pid,slug in TOOLS:
 hubs=[]
 for cid,name in HUBS:
  c=get(f'wp-json/wc/v3/products/categories/{cid}');raw=c.get('description') or ''
- hubs.append({'id':cid,'name':name,'marker_count':raw.count(START),'flow_links':raw.count('data-growthos-step='),'verified':raw.count(START)==1 and raw.count('data-growthos-step=')>=8})
+ hubs.append({'id':cid,'name':name,'marker_count':raw.count(START),'all_flow_links':all(x in raw for x in LINKS),'taxonomy_sanitized_data_attributes':raw.count('data-growthos-step=')==0,'verified':raw.count(START)==1 and all(x in raw for x in LINKS)})
 legacy=[]
 for pid in LEGACY:
  o=get(f'wp-json/wp/v2/pages/{pid}',{'context':'edit'});raw=((o.get('content') or {}).get('raw') or '')
