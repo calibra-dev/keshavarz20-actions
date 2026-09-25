@@ -2,7 +2,7 @@
   "ok": false,
   "phase": 9,
   "version": "growthos-phase9-independent-readback-v1",
-  "generated_at_utc": "2026-09-25T21:50:33.197520+00:00",
+  "generated_at_utc": "2026-09-25T21:54:04.007622+00:00",
   "status": "PARTIAL",
   "tools": [
     {
@@ -91,35 +91,40 @@
       "id": 755,
       "name": "نوار تیپ",
       "marker_count": 1,
-      "flow_links": 0,
-      "verified": false
+      "all_flow_links": true,
+      "taxonomy_sanitized_data_attributes": true,
+      "verified": true
     },
     {
       "id": 768,
       "name": "لوله نخدار",
       "marker_count": 0,
-      "flow_links": 0,
+      "all_flow_links": false,
+      "taxonomy_sanitized_data_attributes": true,
       "verified": false
     },
     {
       "id": 761,
       "name": "انشعابات و بست ها",
       "marker_count": 0,
-      "flow_links": 0,
+      "all_flow_links": false,
+      "taxonomy_sanitized_data_attributes": true,
       "verified": false
     },
     {
       "id": 754,
       "name": "لوله پلی اتیلن",
       "marker_count": 0,
-      "flow_links": 0,
+      "all_flow_links": false,
+      "taxonomy_sanitized_data_attributes": true,
       "verified": false
     },
     {
       "id": 825,
       "name": "فیلتر و فیلتراسیون",
       "marker_count": 0,
-      "flow_links": 0,
+      "all_flow_links": false,
+      "taxonomy_sanitized_data_attributes": true,
       "verified": false
     }
   ],
@@ -144,7 +149,7 @@
   "qa": {
     "tools_verified": 8,
     "tools_total": 8,
-    "hubs_verified": 0,
+    "hubs_verified": 1,
     "hubs_total": 5,
     "legacy_verified": 0,
     "legacy_total": 2
