@@ -14,7 +14,7 @@ def get(path,params=None):
 def post(path,body):
  r=S.post(urljoin(BASE+'/',path.lstrip('/')),json=body,timeout=180);r.raise_for_status();return r.json()
 def put(path,body):
- r=S.put(urljoin(BASE+'/',path.lstrip('/')),json=body,timeout=180);r.raise_for_status();return r.json()
+ r=S.put(urljoin(BASE+'/',path.lstrip('/')),json=body,timeout=180);r.raise_for_status();return {'http':r.status_code}
 def pub(url):
  try:
   r=requests.get(url,timeout=60,headers={'User-Agent':'k20-growthos-phase9/1.0','Cache-Control':'no-cache'},allow_redirects=True);return {'http':r.status_code,'bytes':len(r.content),'final_url':r.url}
