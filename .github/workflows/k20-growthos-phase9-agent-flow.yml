@@ -12,7 +12,7 @@ permissions:
   contents: write
 concurrency:
   group: k20-growthos-phase9-agent-flow
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   execute:
     runs-on: ubuntu-latest
