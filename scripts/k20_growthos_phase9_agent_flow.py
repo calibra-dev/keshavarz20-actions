@@ -38,7 +38,8 @@ def update_hub(cid,name,block):
  c=get(f'wp-json/wc/v3/products/categories/{cid}');before=c.get('description') or '';after=patch(before,START,END,block)
  if after!=before:put(f'wp-json/wc/v3/products/categories/{cid}',{'description':after})
  rb=get(f'wp-json/wc/v3/products/categories/{cid}');raw=rb.get('description') or ''
- return {'id':cid,'name':name,'marker_count':raw.count(START),'flow_links':raw.count('data-growthos-step='),'verified':raw.count(START)==1 and raw.count('data-growthos-step=')>=8}
+ links=['/irrigation-pipe-size-selector/','/irrigation-filter-selector/','/irrigation-product-comparator/','/irrigation-fittings-compatibility-selector/','/drip-tape-length-fittings-calculator/','/layflat-length-fittings-calculator/','/one-hectare-drip-irrigation-basket/','/request-proforma/']
+ return {'id':cid,'name':name,'marker_count':raw.count(START),'all_flow_links':all(x in raw for x in links),'taxonomy_sanitized_data_attributes':raw.count('data-growthos-step=')==0,'verified':raw.count(START)==1 and all(x in raw for x in links)}
 def route_legacy(pid,block):
  o=get(f'wp-json/wp/v2/pages/{pid}',{'context':'edit'});before=((o.get('content') or {}).get('raw') or '');after=patch(before,RSTART,REND,block)
  if after!=before:post(f'wp-json/wp/v2/pages/{pid}',{'content':after})
