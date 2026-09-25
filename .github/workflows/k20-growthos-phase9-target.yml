@@ -1,0 +1,55 @@
+name: K20 GrowthOS Phase 9 Target
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'growthos-phase9-target-ops/*.json'
+      - 'scripts/k20_growthos_phase9_target.py'
+      - 'growthos-phase9-assets/*.html'
+      - '.github/workflows/k20-growthos-phase9-target.yml'
+permissions:
+  contents: write
+concurrency:
+  group: k20-growthos-phase9-target
+  cancel-in-progress: false
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install requests
+      - run: python -m py_compile scripts/k20_growthos_phase9_target.py
+      - name: Execute changed targets
+        shell: bash
+        run: |
+          set -euo pipefail
+          before='${{ github.event.before }}'; current='${{ github.sha }}'; zero='0000000000000000000000000000000000000000'
+          if [ -n "$before" ] && [ "$before" != "$zero" ]; then
+            mapfile -t files < <(git diff --name-only "$before" "$current" -- 'growthos-phase9-target-ops/*.json')
+          else
+            mapfile -t files < <(git show --pretty='' --name-only "$current" -- 'growthos-phase9-target-ops/*.json')
+          fi
+          if [ "${#files[@]}" -eq 0 ]; then exit 0; fi
+          for f in "${files[@]}"; do python scripts/k20_growthos_phase9_target.py "$f"; done
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f growthos-phase9-results/targets/*.json || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "growthos phase9: record isolated target readback"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
