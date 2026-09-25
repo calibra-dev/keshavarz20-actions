@@ -1,0 +1,23 @@
+<!-- K20-GROWTHOS-PHASE8-PIPE-START -->
+<section class="growthos-tool growthos-pipe-selector" dir="rtl" aria-labelledby="growthos-pipe-title">
+<style>
+.growthos-tool{border:1px solid #dfe7e2;border-radius:16px;padding:18px;margin:24px 0;background:#fff;line-height:1.9}.growthos-tool h2{margin-top:0}.growthos-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.growthos-field label{display:block;font-weight:700;margin-bottom:4px}.growthos-field input,.growthos-field select{width:100%;box-sizing:border-box;padding:10px;border:1px solid #ccd7d0;border-radius:10px;background:#fff}.growthos-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.growthos-actions button,.growthos-actions a{display:inline-block;padding:10px 14px;border-radius:10px;border:1px solid #2f6f49;background:#2f6f49;color:#fff;text-decoration:none;cursor:pointer}.growthos-result{margin-top:14px;padding:14px;border-radius:12px;background:#f6faf7}.growthos-note{font-size:.92em;color:#42534a}@media(max-width:720px){.growthos-grid{grid-template-columns:1fr}}
+</style>
+<h2 id="growthos-pipe-title">برآورد اولیه قطر داخلی لوله آبیاری</h2>
+<p>این ابزار فقط <strong>حداقل قطر داخلی هیدرولیکی</strong> را از روی دبی و سقف سرعت ۱٫۵ متر بر ثانیه برآورد می‌کند. انتخاب سایز اسمی، PN/SDR، افت فشار و SKU نهایی باید با مشخصات واقعی همان لوله بررسی شود.</p>
+<form id="growthos-pipe-form" novalidate>
+<div class="growthos-grid">
+<div class="growthos-field"><label for="go-flow">دبی طراحی (مترمکعب بر ساعت)</label><input id="go-flow" name="flow" type="number" min="0.01" step="0.01" required inputmode="decimal"></div>
+<div class="growthos-field"><label for="go-length">طول مسیر (متر)</label><input id="go-length" name="length" type="number" min="0" step="1" inputmode="decimal"></div>
+<div class="growthos-field"><label for="go-elevation">اختلاف ارتفاع (متر)</label><input id="go-elevation" name="elevation" type="number" step="0.1" inputmode="decimal"></div>
+<div class="growthos-field"><label for="go-pressure">فشار موجود در ابتدای خط (بار)</label><input id="go-pressure" name="pressure" type="number" min="0" step="0.1" inputmode="decimal"></div>
+<div class="growthos-field"><label for="go-system">نوع سیستم</label><select id="go-system" name="system"><option value="drip">قطره‌ای / نوار تیپ</option><option value="sprinkler">بارانی</option><option value="transfer">انتقال آب</option><option value="other">سایر</option></select></div>
+<div class="growthos-field"><label for="go-outlets">تعداد خروجی یا زون فعال</label><input id="go-outlets" name="outlets" type="number" min="1" step="1" inputmode="numeric"></div>
+</div>
+<div class="growthos-actions"><button type="submit">محاسبه قطر اولیه</button><a href="/product-category/agricultural-equipment-supplies/irrigation-pipes/polyethylene-pipe/">مشاهده لوله‌های پلی‌اتیلن</a><a href="/irrigation-fittings-compatibility-selector/">بررسی سازگاری اتصالات</a></div>
+<div id="go-pipe-result" class="growthos-result" role="status" aria-live="polite">دبی را وارد کنید تا برآورد اولیه نمایش داده شود.</div>
+</form>
+<p class="growthos-note">مبنای سرعت: راهنمای FAO برای لوله‌های پلاستیکی در سامانه‌های آبیاری فشاری؛ این ابزار برای محافظه‌کاری ۱٫۵ متر بر ثانیه را به‌کار می‌برد. خروجی جای طراحی هیدرولیکی و کنترل افت فشار را نمی‌گیرد.</p>
+<script>(function(){var f=document.getElementById('growthos-pipe-form');if(!f)return;var r=document.getElementById('go-pipe-result');f.addEventListener('submit',function(e){e.preventDefault();var q=parseFloat(document.getElementById('go-flow').value||'0'),l=parseFloat(document.getElementById('go-length').value||'0'),h=document.getElementById('go-elevation').value,p=document.getElementById('go-pressure').value;if(!(q>0)){r.textContent='دبی باید بیشتر از صفر باشد.';return;}var v=1.5,d=Math.sqrt((4*(q/3600))/(Math.PI*v))*1000,m=[];if(!(l>0))m.push('طول مسیر');if(h==='')m.push('اختلاف ارتفاع');if(p==='')m.push('فشار موجود');var t='حداقل قطر داخلی هیدرولیکی برآوردی: '+d.toFixed(1)+' میلی‌متر. این عدد قطر داخلی است و مستقیماً معادل سایز اسمی فروشگاهی نیست. ';t+=m.length?'برای انتخاب فنی هنوز این داده‌ها لازم است: '+m.join('، ')+'؛ همچنین PN/SDR و افت فشار باید کنترل شود.':'داده‌های پایه کامل‌تر است، اما PN/SDR، افت فشار، ضربه قوچ و مشخصات محصول واقعی همچنان باید تأیید شود.';r.textContent=t;window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'growthos_tool_result',tool:'pipe_size_selector',step:'calculate',flow_m3h:q,dmin_mm:Number(d.toFixed(1)),data_complete:m.length===0});});})();</script>
+</section>
+<!-- K20-GROWTHOS-PHASE8-PIPE-END -->
