@@ -1,0 +1,36 @@
+{
+  "ok": true,
+  "phase": 7,
+  "version": "growthos-original-evidence-assets-v1",
+  "generated_at_utc": "2026-09-25T21:10:00Z",
+  "status": "PASS_REPRODUCIBLE_DATA_ASSETS_BUILT",
+  "phase4_reference": {
+    "published_products": 652,
+    "products_data_dimension_ready": 341,
+    "products_exact_dimension_ready": 25,
+    "source_bound_unresolved_products": 49,
+    "edge_count": 2028,
+    "verified_technical_compatibility_edges": 0,
+    "candidate_only_edges": 23,
+    "hard_fabrications": 0
+  },
+  "phase5_reference": {
+    "raw_gsc_rows": 437,
+    "filtered_irrigation_rows": 186,
+    "central_intents": 82,
+    "resolved_multi_url_groups": 28,
+    "unresolved_owners": 0,
+    "new_pages_created": 0
+  },
+  "assets": [
+    "growthos-phase7-results/hub-demand-summary.csv",
+    "growthos-phase7-results/catalog-coverage-by-family.csv",
+    "growthos-phase7-results/evidence-gaps.csv",
+    "growthos-phase7-results/data-dictionary.json",
+    "growthos-phase7-results/decision-checklists.json",
+    "growthos-phase7-results/source-manifest.json",
+    "growthos-phase7-results/methodology.md"
+  ],
+  "limitations_recorded": true,
+  "note": "Zero verified technical compatibility edges is intentionally preserved as fail-closed evidence; no compatibility was fabricated."
+}
