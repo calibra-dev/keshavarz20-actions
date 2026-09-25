@@ -2,8 +2,12 @@
 import json,os,re,requests
 from datetime import datetime,timezone
 from urllib.parse import urljoin
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 BASE=os.environ['WP_BASE_URL'].rstrip('/'); AUTH=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD'])
 S=requests.Session();S.auth=AUTH;S.headers.update({'Accept':'application/json','User-Agent':'k20-growthos-phase9/1.0','Cache-Control':'no-cache'})
+retry=Retry(total=5,connect=5,read=5,status=5,backoff_factor=1.5,status_forcelist=[429,500,502,503,504],allowed_methods=frozenset(['GET','POST','PUT']))
+S.mount('https://',HTTPAdapter(max_retries=retry));S.mount('http://',HTTPAdapter(max_retries=retry))
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 START='<!-- K20-GROWTHOS-PHASE9-FLOW-START -->';END='<!-- K20-GROWTHOS-PHASE9-FLOW-END -->';RSTART='<!-- K20-GROWTHOS-PHASE9-ROUTE-START -->';REND='<!-- K20-GROWTHOS-PHASE9-ROUTE-END -->'
 TOOLS=[('post',143698,'drip-tape-length-fittings-calculator'),('page',144236,'layflat-length-fittings-calculator'),('page',144238,'irrigation-filter-selector'),('page',144239,'irrigation-fittings-compatibility-selector'),('page',144266,'irrigation-pipe-size-selector'),('page',145233,'one-hectare-drip-irrigation-basket'),('page',145234,'irrigation-product-comparator'),('page',145286,'request-proforma')]
