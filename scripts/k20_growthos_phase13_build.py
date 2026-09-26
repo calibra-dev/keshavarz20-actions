@@ -96,8 +96,14 @@ for kind,pid,slug,expected in TARGETS:
     public=requests.get(rb.get("link"),timeout=60,headers={"User-Agent":"k20-growthos-phase13-public/1.0","Cache-Control":"no-cache"},allow_redirects=True)
     public_text=public.text
     origin_header=bool(public.headers.get("Origin-Trial"))
-    origin_meta=bool(re.search(r'<meta[^>]+http-equiv=["\']origin-trial["\']',public_text,re.I))
-    origin_trial_any=origin_trial_any or origin_header or origin_meta
+    origin_meta_static=bool(re.search(r'<meta[^>]+http-equiv=["\\']origin-trial["\\']',public_text,re.I))
+    origin_meta_runtime=(
+        'otMeta.httpEquiv="origin-trial"' in public_text
+        and 'data-k20-webmcp' in public_text
+        and 'otMeta.content=' in public_text
+    )
+    origin_trial_detected=origin_header or origin_meta_static or origin_meta_runtime
+    origin_trial_any=origin_trial_any or origin_trial_detected
     tools_ok=all(('name:"'+x+'"') in raw for x in expected)
     public_signal=("__k20WebMCPPhase13" in public_text and all(x in public_text for x in expected))
     results.append({
@@ -106,7 +112,8 @@ for kind,pid,slug,expected in TARGETS:
       "phase10_marker_count":raw.count("K20-GROWTHOS-PHASE10-MEASUREMENT-START"),
       "expected_tools":expected,"tools_in_readback":tools_ok,
       "public_http":public.status_code,"public_marker_comment":START in public_text,"public_webmcp_signal":public_signal,
-      "origin_trial_header":origin_header,"origin_trial_meta":origin_meta,
+      "origin_trial_header":origin_header,"origin_trial_meta_static":origin_meta_static,
+      "origin_trial_meta_runtime":origin_meta_runtime,"origin_trial_detected":origin_trial_detected,
       "verified":rb.get("status")=="publish" and raw.count(START)==1 and tools_ok and public.status_code==200 and public_signal
     })
 
