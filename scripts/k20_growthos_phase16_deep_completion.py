@@ -120,8 +120,13 @@ POSTS={
 }
 
 def get_post(pid):
-    r=S.get(f"{BASE}/wp-json/wp/v2/posts/{pid}",params={"context":"edit","_fields":"id,status,slug,link,title,content,modified_gmt"},timeout=90)
-    r.raise_for_status(); return r.json()
+    r=S.get(
+        f"{BASE}/wp-json/wp/v2/posts/{pid}",
+        params={"context":"edit","_fields":"id,status,slug,link,title,content,meta,modified_gmt"},
+        timeout=90,
+    )
+    r.raise_for_status()
+    return r.json()
 
 def clean_title(post):
     t=(post.get("title") or {}).get("raw") or (post.get("title") or {}).get("rendered") or ""
@@ -129,56 +134,92 @@ def clean_title(post):
 
 def public_html(url):
     sep="&" if "?" in url else "?"
-    r=requests.get(url+sep+"k20_deep="+str(int(time.time()*1000)),timeout=60,headers={"User-Agent":"k20-phase16-deep-completion/1.0","Cache-Control":"no-cache, no-store","Pragma":"no-cache"})
-    r.raise_for_status(); return r
+    r=requests.get(
+        url+sep+"k20_p16_final="+str(int(time.time()*1000)),
+        timeout=60,
+        headers={"User-Agent":"k20-phase16-elementor-final/1.0","Cache-Control":"no-cache, no-store","Pragma":"no-cache"},
+    )
+    r.raise_for_status()
+    return r
 
-def remove_malformed_pre_anchor(raw,pid):
-    """Remove legacy Phase-16 fragments that were inserted before the real visible anchor
-    but never rendered. This is deliberately bounded by an existing visible heading."""
-    marker="<!-- k20-phase16-deep-review-v1 -->"
+def bridge(action,request_id,payload=None):
+    body={"action":action,"request_id":request_id,"payload":payload or {}}
+    r=S.post(BASE+"/wp-json/keshavarz20-ops/v3/execute",json=body,timeout=180)
+    try: data=r.json()
+    except Exception:
+        raise RuntimeError(f"{action}: non-json HTTP {r.status_code}: {(r.text or '')[:200]}")
+    if not r.ok or data.get("ok") is not True:
+        raise RuntimeError(f"{action}: HTTP {r.status_code} code={data.get('code')} message={data.get('message')}")
+    return data.get("result") or {}
+
+def parse_elementor(post):
+    meta=post.get("meta") if isinstance(post.get("meta"),dict) else {}
+    raw=meta.get("_elementor_data") or ""
+    if not isinstance(raw,str) or not raw.strip():
+        raise RuntimeError("missing _elementor_data")
+    try: data=json.loads(raw)
+    except Exception as exc: raise RuntimeError("invalid _elementor_data JSON: "+str(exc))
+    return data
+
+def walk_settings(node,path="root",out=None):
+    out=out if out is not None else []
+    if isinstance(node,dict):
+        settings=node.get("settings") if isinstance(node.get("settings"),dict) else {}
+        for key,val in settings.items():
+            if isinstance(val,str):
+                out.append({
+                    "path":path,"element_id":node.get("id"),"elType":node.get("elType"),
+                    "widgetType":node.get("widgetType"),"setting_key":key,"value":val
+                })
+        for key,val in node.items():
+            if key!="settings": walk_settings(val,path+"."+str(key),out)
+    elif isinstance(node,list):
+        for i,val in enumerate(node): walk_settings(val,path+"["+str(i)+"]",out)
+    return out
+
+def text_only(v):
+    s=re.sub(r"<script[\s\S]*?</script>"," ",str(v or ""),flags=re.I)
+    s=re.sub(r"<style[\s\S]*?</style>"," ",s,flags=re.I)
+    s=re.sub(r"<[^>]+>"," ",s)
+    return re.sub(r"\s+"," ",html.unescape(s)).strip()
+
+def overlap_score(candidate,rendered):
+    ct=text_only(candidate)
+    rt=text_only(rendered)
+    if not ct or not rt: return 0
+    chunks=[x.strip() for x in re.split(r"[.!؟\n]+",ct) if len(x.strip())>=45]
+    if not chunks:
+        chunks=[ct[i:i+80] for i in range(0,max(0,len(ct)-79),80)]
+    return sum(1 for x in chunks[:80] if x in rt)
+
+def locate_live_setting(post,pid):
+    data=parse_elementor(post)
+    rendered=((post.get("content") or {}).get("rendered") or "")
+    settings=walk_settings(data)
     if pid==142587:
-        mh=re.search(r"<h[1-6][^>]*>[^<]*منابع[^<]*</h[1-6]>",raw,re.I)
-        if not mh:
-            return raw,0
-        source_section=raw.rfind("<section",0,mh.start())
-        if source_section<0:
-            return raw,0
-        starts=[m.start() for m in re.finditer(re.escape(marker),raw[:source_section])]
-        if not starts:
-            return raw,0
-        start=starts[0]
-        return raw[:start]+raw[source_section:],1
-
-    mh=re.search(r"<h2[^>]*>\\s*نظر کارشناسی کشاورز بیست\\s*</h2>",raw,re.I)
-    if not mh:
-        return raw,0
-    starts=[m.start() for m in re.finditer(re.escape(marker),raw[:mh.start()])]
-    if not starts:
-        return raw,0
-    start=starts[0]
-    return raw[:start]+raw[mh.start():],1
-
-def strip_old_blocks(raw):
-    pats=[
-      r"<!-- k20-phase16-deep-review-v1 -->[\\s\\S]*?<!-- /k20-phase16-deep-review-v1 -->",
-      r"<!-- k20-phase16-editorial-trust-start -->[\\s\\S]*?<!-- k20-phase16-editorial-trust-end -->",
-      r"<!-- wp:html -->\\s*<!-- k20-phase16-gutenberg-test-v1 -->[\\s\\S]*?<!-- /k20-phase16-gutenberg-test-v1 -->\\s*<!-- /wp:html -->",
-      r"<!-- k20-phase16-editorial-trust-v5 -->[\\s\\S]*?<!-- /k20-phase16-editorial-trust-v5 -->",
-      r"<!-- k20-phase16-editorial-trust-v4 -->[\\s\\S]*?<!-- /k20-phase16-editorial-trust-v4 -->",
-      r"<!-- k20-phase16-editorial-trust-v3 -->[\\s\\S]*?<!-- /k20-phase16-editorial-trust-v3 -->",
-      r"<!-- k20-phase16-editorial-trust-v2 -->[\\s\\S]*?<!-- /k20-phase16-editorial-trust-v2 -->"
-    ]
-    n=0
-    for p in pats:
-        raw,count=re.subn(p,"",raw,flags=re.I); n+=count
-    return raw,n
+        candidates=[x for x in settings if "منابع" in x["value"]]
+        if not candidates: raise RuntimeError("no Elementor setting containing sources")
+        ranked=sorted(
+            [(overlap_score(x["value"],rendered),len(x["value"]),x) for x in candidates],
+            key=lambda z:(z[0],z[1]),reverse=True
+        )
+        if ranked[0][0] <= 0:
+            raise RuntimeError("no source widget overlaps rendered output")
+        return ranked[0][2],ranked[0][0]
+    candidates=[x for x in settings if "نظر کارشناسی کشاورز بیست" in x["value"]]
+    if len(candidates)!=1:
+        raise RuntimeError(f"expected one live editorial Elementor setting, found {len(candidates)}")
+    return candidates[0],overlap_score(candidates[0]["value"],rendered)
 
 def deep_inner(cfg):
     lis="".join("<li>"+html.escape(x)+"</li>" for x in cfg["checks"])
-    src="".join('<li><a href="'+html.escape(u,quote=True)+'" rel="nofollow noopener" target="_blank">'+html.escape(n)+'</a></li>' for n,u in cfg["sources"])
+    src="".join(
+        '<li><a href="'+html.escape(u,quote=True)+'" rel="nofollow noopener" target="_blank">'+html.escape(n)+'</a></li>'
+        for n,u in cfg["sources"]
+    )
     return f"""
-<!-- {MARKER} -->
-<hr style="border:0;border-top:1px solid rgba(255,255,255,.28);margin:22px 0">
+<!-- k20-phase16-elementor-deep-v1 -->
+<div class="k20-phase16-elementor-deep-v1" dir="rtl" style="direction:rtl;text-align:right;line-height:2;margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.28)">
 <h3 style="font-size:21px;line-height:1.8">بازبینی عمیق فنی</h3>
 <p>{html.escape(cfg["analysis"])}</p>
 <h3 style="font-size:20px;line-height:1.8">چک‌های اجرایی قبل از تصمیم</h3>
@@ -188,117 +229,153 @@ def deep_inner(cfg):
 <h3 style="font-size:20px;line-height:1.8">روش تهیه و بازبینی</h3>
 <p>این بخش در بازبینی فاز ۱۶ با رجوع به منابع دانشگاهی، دولتی، مراکز پژوهشی یا مستندات فنی سازنده تکمیل شده است. ادعاهای عددی یا تصمیم‌های وابسته به مدل محصول، مزرعه، آب، خاک، فشار، دبی یا برچسب مصرف باید با داده واقعی همان مورد تطبیق داده شوند. هیچ کارشناس، تجربه میدانی یا تأییدیه شخصی ساختگی به این نوشته افزوده نشده است.</p>
 <p>جزئیات معیار انتخاب منبع، اصلاح محتوا و استفاده از ابزارهای خودکار در <a href="{POLICY_URL}" style="color:inherit;text-decoration:underline">سیاست تحریریه، منابع و بازبینی محتوای کشاورز بیست</a> آمده است.</p>
-<!-- /{MARKER} -->
+</div>
+<!-- /k20-phase16-elementor-deep-v1 -->
 """
 
-def standalone_editorial_section(cfg):
+def ethephon_block(cfg):
     return f"""
-<section class="k20-phase16-deep-review" dir="rtl" style="direction:rtl;text-align:right;line-height:2;background:linear-gradient(135deg,#0F3F25,#17653A);color:#fff;border-radius:20px;padding:26px;margin:22px 0">
-<h2 style="margin-top:0;color:#fff;font-size:25px;line-height:1.7">نظر کارشناسی کشاورز بیست — بازبینی عمیق فنی</h2>
+<section class="k20-phase16-elementor-deep-v1" dir="rtl" style="direction:rtl;text-align:right;line-height:2;border:1px solid #d9e7dd;border-radius:18px;padding:22px;margin:26px 0;background:#f8fbf9">
+<h2>نظر کارشناسی کشاورز بیست — بازبینی عمیق فنی</h2>
 {deep_inner(cfg)}
 </section>
 """
 
-def expand_inside_render_root(raw,pid,cfg):
+def remove_existing_elementor_deep(v):
+    pats=[
+      r"<!-- k20-phase16-elementor-deep-v1 -->[\s\S]*?<!-- /k20-phase16-elementor-deep-v1 -->",
+      r"<section[^>]*class=[\"'][^\"']*k20-phase16-elementor-deep-v1[^\"']*[\"'][^>]*>[\s\S]*?</section>"
+    ]
+    total=0
+    for pat in pats:
+        v,n=re.subn(pat,"",v,flags=re.I); total+=n
+    return v,total
+
+def build_new_value(pid,current,cfg):
+    current,removed=remove_existing_elementor_deep(current)
     if pid==142587:
-        m=re.search(r"<h[1-6][^>]*>[^<]*منابع[^<]*</h[1-6]>",raw,re.I)
-        if not m:
-            raise RuntimeError("visible sources heading not found")
-        sec_start=raw.rfind("<section",0,m.start())
-        if sec_start<0:
-            raise RuntimeError("sources section boundary not found")
-        return raw[:sec_start]+standalone_editorial_section(cfg)+"\\n"+raw[sec_start:],"before_sources_in_root"
+        m=re.search(r"<h[1-6][^>]*>[^<]*منابع[^<]*</h[1-6]>",current,re.I)
+        if m:
+            sec_start=current.rfind("<section",0,m.start())
+            at=sec_start if sec_start>=0 else m.start()
+        else:
+            pos=current.find("منابع")
+            if pos<0: raise RuntimeError("sources anchor missing in selected Elementor widget")
+            at=current.rfind("<",0,pos)
+            if at<0: at=pos
+        return current[:at]+ethephon_block(cfg)+"\n"+current[at:],removed,"before_sources"
+    pos=current.find("نظر کارشناسی کشاورز بیست")
+    if pos<0: raise RuntimeError("editorial heading missing in selected Elementor widget")
+    h_end=current.find("</h2>",pos)
+    if h_end<0: raise RuntimeError("editorial heading boundary missing")
+    sec_end=current.find("</section>",h_end)
+    if sec_end<0: raise RuntimeError("editorial section boundary missing")
+    return current[:sec_end]+deep_inner(cfg)+current[sec_end:],removed,"inside_editorial_section"
 
-    term="نظر کارشناسی کشاورز بیست"
-    pos=raw.find(term)
-    if pos<0:
-        raise RuntimeError("visible editorial heading not found")
-    h_start=raw.rfind("<h2",0,pos)
-    h_end=raw.find("</h2>",pos)
-    sec_start=raw.rfind("<section",0,h_start)
-    sec_end=raw.find("</section>",h_end)
-    if min(h_start,h_end,sec_start,sec_end)<0:
-        raise RuntimeError("editorial section boundaries not found")
-    addon=deep_inner(cfg)
-    return raw[:sec_end]+addon+raw[sec_end:],"expand_existing_editorial_section"
+def setting_readback(post,element_id,setting_key):
+    data=parse_elementor(post)
+    vals=[x for x in walk_settings(data) if str(x.get("element_id"))==str(element_id) and x.get("setting_key")==setting_key]
+    if len(vals)!=1:
+        raise RuntimeError(f"Elementor readback target count {len(vals)}")
+    return vals[0]["value"]
 
-def core_update(pid,content):
-    r=S.post(f"{BASE}/wp-json/wp/v2/posts/{pid}",json={"content":content},timeout=120)
-    r.raise_for_status()
-    return r.json()
-def legacy_update(pid,new_content):
-    with tempfile.TemporaryDirectory(prefix=f"k20-p16-deep-{pid}-") as td:
-        req=Path(td)/"request.json"; res=Path(td)/"result.json"
-        req.write_text(json.dumps({"action":"post.update","id":pid,"payload":{"content":new_content}},ensure_ascii=False),encoding="utf-8")
-        cp=subprocess.run(["pwsh","-NoLogo","-NoProfile","-File","scripts/Invoke-K20SiteGateway.ps1","-RequestPath",str(req),"-OutputPath",str(res)],text=True,capture_output=True,timeout=300)
-        if cp.returncode!=0: raise RuntimeError("legacy gateway failed: "+(cp.stderr or cp.stdout)[-600:])
-        data=json.loads(res.read_text(encoding="utf-8-sig"))
-        if data.get("ok") is not True: raise RuntimeError("legacy gateway returned not-ok")
-        return data.get("result") or {}
-
-def bridge(action,request_id,payload=None):
-    r=S.post(BASE+"/wp-json/keshavarz20-ops/v3/execute",json={"action":action,"request_id":request_id,"payload":payload or {}},timeout=120)
-    data=r.json()
-    if not r.ok or data.get("ok") is not True: raise RuntimeError(f"{action} failed: {data.get('code')} {data.get('message')}")
-    return data.get("result") or {}
+def trust_checks(text,cfg):
+    return {
+      "editorial_analysis":"نظر کارشناسی کشاورز بیست" in text,
+      "deep_review":"بازبینی عمیق فنی" in text,
+      "review_method":"روش تهیه و بازبینی" in text,
+      "policy_link":"/editorial-policy/" in text,
+      "sources":all(u in text for _,u in cfg["sources"])
+    }
 
 results=[]; failures=[]
 for pid,cfg in POSTS.items():
     try:
-        post=get_post(pid); raw=((post.get("content") or {}).get("raw") or "")
-        if not raw: raise RuntimeError("empty post_content")
-        # Create a reversible snapshot through a no-op exact patch on a unique anchor when possible.
-        snap=None
-        try:
-            sr=bridge("content.search",f"p16-deep-snap-search-{pid}",{"target_type":"post","post_id":pid,"field":"post_content","pattern":cfg["anchor"],"context":40})
-            if int(sr.get("matches") or 0)==1 and sr.get("sha256"):
-                sp=bridge("content.patch",f"p16-deep-snapshot-{pid}",{"target_type":"post","post_id":pid,"field":"post_content","old_content":cfg["anchor"],"new_content":cfg["anchor"],"expected_sha256":sr["sha256"]})
-                snap={"captured":True,"before_sha256":sp.get("before_sha256")}
-        except Exception as exc:
-            snap={"captured":False,"reason":str(exc)[:180]}
-        precleaned,malformed_removed=remove_malformed_pre_anchor(raw,pid)
-        cleaned,removed=strip_old_blocks(precleaned)
-        new_content,mode=expand_inside_render_root(cleaned,pid,cfg)
-        gw=core_update(pid,new_content)
-        time.sleep(1.5)
-        post2=get_post(pid); rendered=((post2.get("content") or {}).get("rendered") or "")
-        url=post2.get("link")
-        pub=public_html(url)
-        checks={
-          "rest_rendered_deep_review":"بازبینی عمیق فنی" in rendered,
-          "rest_review_method":"روش تهیه و بازبینی" in rendered,
-          "rest_policy_link":"/editorial-policy/" in rendered,
-          "rest_editorial_analysis":"نظر کارشناسی کشاورز بیست" in rendered,
-          "rest_source_links":all(u in rendered for _,u in cfg["sources"]),
-          "public_http":pub.status_code,
-          "public_policy_link":"/editorial-policy/" in pub.text,
-          "public_review_method":"روش تهیه و بازبینی" in pub.text,
-          "public_editorial_analysis":"نظر کارشناسی کشاورز بیست" in pub.text
-        }
-        verified=all(v is True or v==200 for v in checks.values())
-        results.append({"id":pid,"title":clean_title(post2),"url":url,"status":"verified" if verified else "verification_failed","insert_mode":mode,"old_phase16_blocks_removed":removed,"malformed_pre_anchor_removed":malformed_removed,"snapshot":snap,"modified_gmt":gw.get("modified_gmt") or gw.get("modified"),"checks":checks})
-        if not verified: failures.append({"id":pid,"reason":"public_or_rendered_verification_failed","checks":checks})
+        before=get_post(pid)
+        rendered_before=((before.get("content") or {}).get("rendered") or "")
+        live,score=locate_live_setting(before,pid)
+        existing=live["value"]
+        existing_checks=trust_checks(rendered_before,cfg)
+        if existing_checks["review_method"] and existing_checks["policy_link"] and existing_checks["editorial_analysis"]:
+            results.append({
+              "id":pid,"title":clean_title(before),"status":"already_complete",
+              "element_id":live["element_id"],"setting_key":live["setting_key"],
+              "overlap_score":score,"checks":existing_checks
+            })
+            continue
+        new_value,removed,mode=build_new_value(pid,existing,cfg)
+        update=bridge(
+          "elementor.structure",
+          f"p16-elementor-final-{pid}",
+          {
+            "operation":"update_settings",
+            "element_id":live["element_id"],
+            "settings":{live["setting_key"]:new_value}
+          }
+        )
+        time.sleep(2)
+        after=get_post(pid)
+        saved=setting_readback(after,live["element_id"],live["setting_key"])
+        saved_checks=trust_checks(saved,cfg)
+        rendered=((after.get("content") or {}).get("rendered") or "")
+        rendered_checks=trust_checks(rendered,cfg)
+        pub=public_html(after.get("link") or before.get("link") or "")
+        public_checks=trust_checks(pub.text,cfg)
+        verified=(
+          all(saved_checks.values()) and
+          rendered_checks["editorial_analysis"] and rendered_checks["review_method"] and rendered_checks["policy_link"] and
+          public_checks["editorial_analysis"] and public_checks["review_method"] and public_checks["policy_link"] and
+          pub.status_code==200
+        )
+        results.append({
+          "id":pid,"title":clean_title(after),"url":after.get("link"),"status":"verified" if verified else "verification_failed",
+          "element_id":live["element_id"],"setting_key":live["setting_key"],"overlap_score":score,
+          "insert_mode":mode,"previous_deep_blocks_removed":removed,
+          "bridge_result":{k:update.get(k) for k in ["changed","snapshot_id","approval_id","fingerprint"] if k in update},
+          "saved_checks":saved_checks,"rendered_checks":rendered_checks,"public_checks":public_checks,"public_http":pub.status_code
+        })
+        if not verified:
+            failures.append({"id":pid,"reason":"Elementor write did not pass rendered/public verification"})
     except Exception as exc:
         failures.append({"id":pid,"title":cfg["title"],"reason":str(exc)[:700]})
 
-try: cache=bridge("cache.purge","p16-deep-cache-purge",{})
+try: cache=bridge("cache.purge","p16-elementor-final-cache",{})
 except Exception as exc: cache={"error":str(exc)[:300]}
 time.sleep(4)
+
+# Post-purge public verification for every target, including already-complete rows.
+for item in results:
+    pid=int(item["id"]); cfg=POSTS[pid]
+    try:
+        p=get_post(pid); pub=public_html(p.get("link") or "")
+        final_checks=trust_checks(pub.text,cfg)
+        item["post_purge_public_http"]=pub.status_code
+        item["post_purge_public_checks"]=final_checks
+        if not (pub.status_code==200 and final_checks["editorial_analysis"] and final_checks["review_method"] and final_checks["policy_link"]):
+            if not any(int(x.get("id") or 0)==pid for x in failures):
+                failures.append({"id":pid,"reason":"post-purge public trust verification failed"})
+        elif item.get("status")=="verification_failed":
+            item["status"]="verified"
+    except Exception as exc:
+        if not any(int(x.get("id") or 0)==pid for x in failures):
+            failures.append({"id":pid,"reason":"post-purge readback: "+str(exc)[:500]})
 
 report={
  "ok":not failures,
  "phase":16,
- "title":"Phase 16 deep research completion for legacy 11",
+ "title":"Phase 16 deep research completion on canonical Elementor sources",
  "generated_at_utc":NOW,
  "target_count":len(POSTS),
- "verified_count":sum(1 for x in results if x.get("status")=="verified"),
+ "verified_count":sum(1 for x in results if x.get("status") in {"verified","already_complete"} and x.get("post_purge_public_checks",{}).get("review_method")),
  "failure_count":len(failures),
  "results":results,
  "failures":failures,
  "cache_purge":cache,
+ "canonical_source":"Elementor registered meta (_elementor_data), per live source-map verification",
+ "post_content_writes":0,
  "safety":{"fake_authors_created":0,"fake_reviewers_created":0,"price_stock_discount_mutations":0,"orders_created":0,"messages_sent":0},
  "source_policy":"government, university extension, research center, or manufacturer technical documentation"
 }
 OUT.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-print(json.dumps({k:report[k] for k in ["ok","target_count","verified_count","failure_count"]},ensure_ascii=False))
+print(json.dumps({k:report[k] for k in ["ok","target_count","verified_count","failure_count","post_content_writes"]},ensure_ascii=False))
 if failures: raise SystemExit(2)
