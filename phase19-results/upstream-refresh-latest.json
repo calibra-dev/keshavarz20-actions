@@ -1,0 +1,53 @@
+{
+  "phase": 19,
+  "version": "phase19-v2-upstream-refresh-evidence",
+  "source_run_id": 36274445056,
+  "component_run_ids": {
+    "phase11": 36274445056,
+    "phase12": 36274509749,
+    "phase14": 36273800257,
+    "phase15": 36274435513,
+    "phase17": 36274522180
+  },
+  "observed_from_successful_steps": true,
+  "observed_at_utc": "2026-09-26T21:55:10Z",
+  "phase11": {
+    "status": "PASS_GUARDED_FEED_READY_PARTNER_APPROVAL_REQUIRED",
+    "candidate_rows": 652,
+    "ready_rows": 524,
+    "ready_percent": 80.37,
+    "direct_feed_submitted": false,
+    "direct_feed_partner_access_proven": false
+  },
+  "phase12": {
+    "status": "PASS_ARCHITECTURE_READY_POLICY_GUARD",
+    "candidate_rows": 652,
+    "ready_rows": 524,
+    "merchant_submission_attempted": false,
+    "fake_country_or_address_used": false,
+    "ucp_public_profile_published": false,
+    "ucp_live_adapter_claimed": false
+  },
+  "phase14": {
+    "status": "PASS_GUARDED_NO_VERIFIED_GS1_IDS",
+    "published_products": 652,
+    "source_verified_gtins": 0,
+    "gtins_fabricated": 0,
+    "skus_promoted_to_gtin": 0
+  },
+  "phase15": {
+    "status": "PASS_ENTITY_OS_WITH_SOURCE_GAPS",
+    "published_products": 652,
+    "source_verified_truth_brand_products": 577,
+    "products_without_woo_brand": 0,
+    "external_brand_truth_gap_products": 75,
+    "pseudo_brand_products": 75,
+    "brand_truth_mismatches": 0,
+    "identity_fields_fabricated": 0,
+    "sameAs_links_fabricated": 0,
+    "glns_fabricated": 0,
+    "seller_entity_found": true,
+    "seller_name_consistent": true
+  },
+  "note": "Phase 14 values were freshly re-audited successfully in run 36273800257 before a downstream Phase 19 validator failure; Phase 11/12/15 were subsequently refreshed and persisted after pseudo-brand semantics were corrected."
+}
