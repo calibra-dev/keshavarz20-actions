@@ -31,7 +31,8 @@ assert m.watchdog_reason(cfg,state,{"pending_generated":0,"unexpected_types":["r
 
 # The pending watchdog is rolling-window based so a historical moderation
 # backlog cannot permanently stop a healthy continuous campaign.
-_orig_recent=q.recent_generated_comments
+_had_recent=hasattr(q,"recent_generated_comments")
+_orig_recent=getattr(q,"recent_generated_comments",None)
 _orig_now=q.b.now_utc
 try:
     fixed=dt.datetime(2026,9,26,6,0,0,tzinfo=dt.timezone.utc)
@@ -44,7 +45,10 @@ try:
     assert snap["pending_generated"]==1,snap
     assert snap["pending_window_hours"]==24,snap
 finally:
-    q.recent_generated_comments=_orig_recent
+    if _had_recent:
+        q.recent_generated_comments=_orig_recent
+    else:
+        delattr(q,"recent_generated_comments")
     q.b.now_utc=_orig_now
 
 ok,reason=q.consistency_guard(p,{"intent":"answer_memory_followup","key":"bad"},"برای ادامه بررسی چه اطلاعاتی لازمه؟")
