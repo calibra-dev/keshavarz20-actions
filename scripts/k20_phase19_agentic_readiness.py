@@ -145,7 +145,7 @@ def main(result_path, projection_path):
         "google_compatible_feed_fail_closed":gg.get("enabled_for_submission") is False,
         "ucp_fail_closed_until_authorized":gu.get("public_profile_publish_authorized") is False and gu.get("live_adapter_authorized") is False,
         "identifier_truth_preserved":int(p14.get("gtins_fabricated") or 0)==0 and int(p14.get("skus_promoted_to_gtin") or 0)==0,
-        "entity_truth_preserved":int(p15.get("brand_truth_mismatches") or 99)==0,
+        "entity_truth_preserved":int(p15.get("brand_truth_mismatches",99))==0,
         "external_submission":False,
         "payment_checkout_mutations":0
       },
