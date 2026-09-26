@@ -26,7 +26,7 @@ before1=req("GET",f"wp-json/wc/v3/products/{P1}")
 before2=req("GET",f"wp-json/wc/v3/products/{P2}")
 
 conflicts=req("GET","wp-json/wc/v3/products",params={"sku":SKU2,"per_page":100})
-conflict_ids=[int(x["id"]) for x in conflicts if int(x["id"])!=P2]
+conflict_ids=[int(x["id"]) for x in conflicts if str(x.get("sku") or "")==SKU2 and int(x["id"])!=P2]
 if conflict_ids:
     raise SystemExit(f"Target SKU {SKU2} already belongs to other product ids: {conflict_ids}")
 
