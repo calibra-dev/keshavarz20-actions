@@ -1,0 +1,80 @@
+{
+  "program": "Keshavarz20 AI Growth OS",
+  "phase": 13,
+  "title": "WebMCP",
+  "generated_at_utc": "2026-09-26T06:35:22.497Z",
+  "status": "PASS_IMPLEMENTED_ORIGIN_TRIAL_GATE",
+  "workflow_run": 36224050560,
+  "implementation": {
+    "api": "document.modelContext.registerTool",
+    "compatibility_fallback": "navigator.modelContext",
+    "progressive_enhancement": true,
+    "public_pages_verified": 4,
+    "public_pages_total": 4,
+    "public_http_200": true,
+    "public_webmcp_signal": true,
+    "origin_trial_token_detected": false
+  },
+  "tools": [
+    {
+      "name": "calculate_drip_tape",
+      "page_id": 143698,
+      "slug": "drip-tape-length-fittings-calculator",
+      "mode": "executes existing live calculator UI"
+    },
+    {
+      "name": "check_connector_compatibility",
+      "page_id": 144239,
+      "slug": "irrigation-fittings-compatibility-selector",
+      "mode": "executes existing live compatibility UI; no verified-fit fabrication"
+    },
+    {
+      "name": "build_irrigation_cart",
+      "page_id": 145233,
+      "slug": "one-hectare-drip-irrigation-basket",
+      "mode": "draft basket only; no Woo cart/order mutation"
+    },
+    {
+      "name": "request_proforma_invoice",
+      "page_id": 145286,
+      "slug": "request-proforma",
+      "mode": "local draft only; no send/order/invoice issuance"
+    },
+    {
+      "name": "estimate_shipping",
+      "pages": [
+        143698,
+        144239,
+        145233,
+        145286
+      ],
+      "mode": "read-only policy; amount null when carrier price is unknown"
+    }
+  ],
+  "shipping": {
+    "enabled_method": "ارسال با باربری یا تیپاکس به سراسر کشور (هزینه حمل پس‌کرایه)",
+    "estimated_amount": null,
+    "requires_manual_confirmation": true
+  },
+  "regression": {
+    "phase9_marker_preserved": "4/4",
+    "phase10_marker_preserved": "4/4",
+    "human_ui_preserved": true,
+    "cache_purged": true,
+    "bridge_version": "3.3.0"
+  },
+  "safety": {
+    "new_public_urls_created": 0,
+    "price_stock_discount_mutations": 0,
+    "orders_created": 0,
+    "messages_sent": 0,
+    "arbitrary_fetch_exposed": false,
+    "credentials_exposed": false,
+    "customer_order_exports": 0
+  },
+  "external_gate": {
+    "type": "CHROME_ORIGIN_TRIAL",
+    "reason": "WebMCP is experimental. Site code is live and verified, but no Origin-Trial token is currently present.",
+    "user_action_if_broad_chrome_live_testing_is_wanted": "Enroll https://keshavarz20.com in the Chrome WebMCP origin trial and provide/install the issued Origin-Trial token."
+  }
+}
