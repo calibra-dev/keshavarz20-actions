@@ -17,7 +17,7 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 45
     env:
       WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
       WP_USERNAME: ${{ secrets.WP_USERNAME }}
@@ -29,26 +29,36 @@ jobs:
         with: { python-version: '3.12' }
       - name: Install dependencies
         run: python -m pip install requests
-      - name: Refresh live page schema feed parity
-        run: python scripts/k20_phase3_page_schema_feed_parity.py
-      - name: Refresh canonical PIM read model
-        run: python scripts/k20_phase9_canonical_pim.py
-      - name: Validate agentic readiness without external submission
+      - name: Compile full-catalog readiness chain
         run: |
+          python -m py_compile scripts/k20_growthos_phase11_chatgpt_search.py
+          python -m py_compile scripts/k20_growthos_phase12_merchant_ucp.py
+          python -m py_compile scripts/k20_growthos_phase14_gs1.py
+          python -m py_compile scripts/k20_growthos_phase15_entity_os.py
           python -m py_compile scripts/k20_phase19_agentic_readiness.py
+      - name: Refresh Phase 11 full catalog and OpenAI readiness
+        run: python scripts/k20_growthos_phase11_chatgpt_search.py
+      - name: Refresh Phase 12 Merchant and UCP policy readiness
+        run: python scripts/k20_growthos_phase12_merchant_ucp.py
+      - name: Refresh Phase 14 identifier truth
+        run: python scripts/k20_growthos_phase14_gs1.py
+      - name: Refresh Phase 15 brand and seller truth
+        run: python scripts/k20_growthos_phase15_entity_os.py
+      - name: Validate Phase 19 v2 full catalog readiness
+        run: |
           python scripts/k20_phase19_agentic_readiness.py phase19-results/agentic-readiness-latest.json phase19-results/product-discovery-readiness-feed.json
-      - name: Persist fresh read-only evidence
+      - name: Persist sanitized read-only evidence
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f phase3-results/top30-product-feed.json phase3-results/page-schema-feed-parity.json phase9-results/canonical-pim.json phase9-results/acceptance.json phase19-results/agentic-readiness-latest.json phase19-results/product-discovery-readiness-feed.json
+          git add -f             growthos-phase11-results/chatgpt-search-crawl-audit.json             growthos-phase11-results/openai-product-feed-readiness.json             growthos-phase11-results/summary.json             growthos-phase12-results/merchant-field-map.json             growthos-phase12-results/ucp-readiness-contract.json             growthos-phase12-results/summary.json             growthos-phase14-results/digital-link-contract.json             growthos-phase14-results/identifier-registry.json             growthos-phase14-results/summary.json             growthos-phase15-results/brand-entity-registry.json             growthos-phase15-results/entity-graph.json             growthos-phase15-results/entity-parity-audit.json             growthos-phase15-results/seller-entity-registry.json             growthos-phase15-results/summary.json             phase19-results/agentic-readiness-latest.json             phase19-results/product-discovery-readiness-feed.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "phase19: record fresh feed API agentic readiness"
-          for attempt in 1 2 3 4; do
-            git pull --rebase origin main
-            if git push origin main; then exit 0; fi
+          git commit -m "phase19 v2: record full catalog agentic readiness"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
             sleep $((attempt * 2))
           done
           exit 1
