@@ -1,0 +1,38 @@
+{
+  "phase": 17,
+  "version": "v2",
+  "researched_on": "2026-09-26",
+  "sources": [
+    {
+      "id": "google-helpful-content",
+      "authority": "official_primary",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      "applied_rule": "Require clear sourcing, evidence, Who/How/Why, explicit limits, and no unsupported expert identity."
+    },
+    {
+      "id": "google-high-quality-reviews",
+      "authority": "official_primary",
+      "url": "https://developers.google.com/search/docs/specialty/ecommerce/write-high-quality-reviews",
+      "applied_rule": "Reviews should demonstrate expertise/experience and evidence; do not publish thin or invented review claims."
+    },
+    {
+      "id": "google-ai-search-guide",
+      "authority": "official_primary",
+      "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+      "applied_rule": "Prefer unique, non-commodity, people-first information with firsthand or source-backed value for AI search."
+    },
+    {
+      "id": "google-qapage",
+      "authority": "official_primary",
+      "url": "https://developers.google.com/search/docs/appearance/structured-data/qapage",
+      "applied_rule": "Do not use QAPage for static editorial FAQ/Q&A where users cannot submit alternative answers."
+    },
+    {
+      "id": "schema-review",
+      "authority": "official_primary",
+      "url": "https://schema.org/Review",
+      "applied_rule": "Review markup must represent a real review and connect the review body/author/item reviewed; ratings are not invented."
+    }
+  ],
+  "scope_note": "These sources define editorial/structured-data guardrails. They do not prove agricultural product specifications or customer outcomes."
+}
