@@ -24,5 +24,5 @@ for i in raw_idx:
         chunk=raw[a:b]
         candidates.append({"span":span,"in_rendered":chunk in rendered})
     rows.append({"index":i,"snippet":snip(raw,i,700),"candidates":candidates})
-out={"raw_indices":raw_idx,"rendered_indices":ren_idx,"raw_occurrences":rows,"rendered_snippets":[snip(rendered,i,900) for i in ren_idx],"raw_len":len(raw),"rendered_len":len(rendered)}
+proof="بازبینی عمیق فنی"\nproof_raw=raw.find(proof); proof_ren=rendered.find(proof)\nheading=raw.find("<h2", max(0, raw.find("نظر کارشناسی کشاورز بیست")-500))\nblock_before=raw.rfind("<!-- wp:",0,max(0,heading))\nblock_after=raw.find("<!-- /wp:",max(0,heading))\nout={"raw_indices":raw_idx,"rendered_indices":ren_idx,"raw_occurrences":rows,"rendered_snippets":[snip(rendered,i,900) for i in ren_idx],"raw_len":len(raw),"rendered_len":len(rendered),"proof_raw_index":proof_raw,"proof_rendered_index":proof_ren,"proof_raw_snippet":snip(raw,proof_raw,1400) if proof_raw>=0 else None,"block_before":block_before,"block_after":block_after,"block_context":raw[max(0,block_before):min(len(raw),block_after+300)] if block_before>=0 and block_after>=0 else None}
 print(json.dumps(out,ensure_ascii=False))
