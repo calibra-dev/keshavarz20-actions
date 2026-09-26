@@ -1,10 +1,12 @@
 {
   "ok": true,
-  "temporary_news_id": 145297,
-  "temporary_media_id": 145296,
+  "run_id": 36267402257,
+  "publisher_version": "v3",
+  "temporary_news_id": 146207,
+  "temporary_media_id": 146206,
   "steps": [
     {
-      "step": "validate_payload",
+      "step": "validate_payload_v3",
       "ok": true
     },
     {
@@ -12,18 +14,19 @@
       "ok": true
     },
     {
-      "step": "render_webp",
-      "ok": true
+      "step": "render_v3_cover",
+      "ok": true,
+      "renderer": "k20-news-cover-v3-cinematic-deterministic-persian"
     },
     {
       "step": "upload_media",
       "ok": true,
-      "media_id": 145296
+      "media_id": 146206
     },
     {
       "step": "create_draft",
       "ok": true,
-      "post_id": 145297
+      "post_id": 146207
     },
     {
       "step": "verify",
@@ -44,5 +47,6 @@
   "cleanup_verified": {
     "post": true,
     "media": true
-  }
+  },
+  "persisted_from_successful_run_log": true
 }
