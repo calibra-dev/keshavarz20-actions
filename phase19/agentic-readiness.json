@@ -1,39 +1,67 @@
 {
   "phase": 19,
+  "version": "phase19-agentic-readiness-v2",
   "title": "Feeds, APIs & Agentic Readiness",
-  "mode": "readiness_only_no_external_submission",
-  "verified_official_sources_at_utc": "2026-09-19T05:00:00Z",
+  "mode": "full_catalog_readiness_only_no_external_submission",
+  "verified_official_sources_date": "2026-09-26",
   "sources": {
+    "openai_file_upload_overview": "https://developers.openai.com/commerce/specs/file-upload/overview",
     "openai_product_feed_spec": "https://developers.openai.com/commerce/specs/file-upload/products",
     "openai_merchant_feed_terms": "https://openai.com/policies/merchant-feed-terms-of-service/",
-    "google_ucp_merchant_center": "https://developers.google.com/merchant/ucp/guides/tools/merchant-center/overview"
+    "openai_commerce_policies": "https://openai.com/policies/commerce-policies/",
+    "google_ucp_overview": "https://developers.google.com/merchant/ucp/guides/overview",
+    "google_ucp_merchant_center": "https://developers.google.com/merchant/ucp/guides/tools/merchant-center/overview",
+    "google_ucp_profile": "https://developers.google.com/merchant/ucp/guides/overview/ucp-profile"
   },
-  "current_external_gates": {
-    "openai": {
-      "product_feed_required_fields": [
-        "item_id",
-        "title",
-        "description",
-        "url",
-        "brand",
-        "seller_name",
-        "image_url",
-        "availability",
-        "price"
-      ],
-      "unknown_optional_values_must_be_omitted_not_fabricated": true,
-      "current_price_and_availability_required": true,
-      "merchant_acceptance_or_feed_submission_claimed": false,
-      "checkout_claimed": false,
-      "legal_and_trade_compliance_review_required_before_submission": true
-    },
-    "google_ucp": {
-      "observed_scope": "UCP integration hub gradually rolling out in the United States; scope applies only to products sold within the United States",
-      "observed_checkout_gate": "checkout is early access for select participating merchants",
-      "merchant_center_participation_claimed": false,
-      "us_product_scope_claimed": false,
-      "checkout_claimed": false
-    }
+  "openai_stable_feed": {
+    "required_fields": [
+      "item_id",
+      "title",
+      "description",
+      "url",
+      "brand",
+      "seller_name",
+      "image_url",
+      "availability",
+      "price"
+    ],
+    "delivery_model": "full_snapshot",
+    "recommended_cadence": "at_least_daily",
+    "delivery_channel": "SFTP after OpenAI-agreed onboarding",
+    "preferred_format": "parquet",
+    "supported_alternates": [
+      "jsonl.gz",
+      "csv.gz",
+      "tsv.gz"
+    ],
+    "stable_filename_required": true,
+    "price_requires_iso4217_major_units": true,
+    "standard_openai_format_default_market": "US",
+    "additional_markets_require_openai_confirmation": true,
+    "current_price_and_availability_required": true,
+    "optional_unknowns_must_be_omitted_not_fabricated": true,
+    "merchant_acceptance_or_feed_submission_claimed": false,
+    "checkout_claimed": false
+  },
+  "google_compatible_feed": {
+    "enabled_for_submission": false,
+    "reason": "Identifier truth and feed-specific market acceptance are not proven. Do not promote Woo SKU to GTIN/MPN and do not set identifier_exists=false without source evidence.",
+    "gtin_must_be_source_verified": true,
+    "mpn_must_be_manufacturer_part_number_if_used": true,
+    "identifier_exists_false_requires_truth_evidence": true
+  },
+  "google_ucp": {
+    "current_scope": "UCP integration hub is rolling out in the United States and applies to products sold within the United States; checkout is early access/select merchants.",
+    "merchant_center_participation_claimed": false,
+    "us_product_scope_claimed": false,
+    "checkout_claimed": false,
+    "public_profile_publish_authorized": false,
+    "live_adapter_authorized": false
+  },
+  "legal_policy_gate": {
+    "openai_merchant_terms_acceptance_claimed": false,
+    "commerce_policy_review_complete_claimed": false,
+    "legal_and_trade_compliance_complete_claimed": false
   },
   "payment_checkout": {
     "authorized": false,
