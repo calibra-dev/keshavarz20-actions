@@ -1,0 +1,22 @@
+name: K20 Phase16 Filter Isolation
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/k20_phase16_filter_isolation.py'
+      - '.github/workflows/k20-phase16-filter-isolation.yml'
+jobs:
+  isolate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install requests
+      - run: python -m py_compile scripts/k20_phase16_filter_isolation.py
+      - run: python scripts/k20_phase16_filter_isolation.py
