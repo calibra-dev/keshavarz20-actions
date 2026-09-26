@@ -1,0 +1,37 @@
+{
+  "phase": 15,
+  "generated_at_utc": "2026-09-26T07:48:03.189021+00:00",
+  "hard_checks": {
+    "homepage_http_200": true,
+    "homepage_jsonld_parse_clean": true,
+    "principal_seller_entity_found": true,
+    "principal_name_is_keshavarz20": true,
+    "principal_url_same_origin_when_declared": true,
+    "phase3_all_published_products_have_organization": true,
+    "phase3_brand_parity_hard_pass": true,
+    "phase3_catalog_parity_hard_pass": true,
+    "phase11_seller_name_consistent": true,
+    "phase12_no_conflicting_seller_identity": true,
+    "current_truth_brand_mismatch_zero": true
+  },
+  "hard_pass": true,
+  "soft_gaps": {
+    "online_store_subtype_present": false,
+    "principal_logo_present": true,
+    "phase12_seller_mapping_explicit": false,
+    "declared_sameAs_count": 1,
+    "products_without_woo_brand": 158,
+    "duplicate_normalized_brand_groups": 0,
+    "multi_brand_products": 12,
+    "note": "Soft gaps are enrichment/backlog items only. They do not justify fabricated identity, brand, GLN, legal registration, or sameAs data."
+  },
+  "phase3_evidence": {
+    "audited_products": 652,
+    "pass": 652,
+    "fail": 0,
+    "organization_missing": 0,
+    "eligible_brand_mismatch_when_truth_known": 0
+  },
+  "homepage_schema_entity_count": 1,
+  "homepage_parse_errors": []
+}

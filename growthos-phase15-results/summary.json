@@ -1,0 +1,24 @@
+{
+  "ok": true,
+  "phase": 15,
+  "title": "Brand & Seller Entity OS",
+  "generated_at_utc": "2026-09-26T07:48:03.189021+00:00",
+  "status": "PASS_ENTITY_OS_WITH_SOURCE_GAPS",
+  "published_products": 652,
+  "seller_entity_found": true,
+  "seller_name_consistent": true,
+  "phase3_catalog_hard_parity_pass": true,
+  "brand_terms": 22,
+  "source_verified_truth_brand_products": 494,
+  "brand_truth_mismatches": 0,
+  "products_without_woo_brand": 158,
+  "identity_fields_fabricated": 0,
+  "sameAs_links_fabricated": 0,
+  "glns_fabricated": 0,
+  "schema_site_writes": 0,
+  "next_backlog": [
+    "Fill only source-backed missing product brands.",
+    "Verify official external brand/seller profiles before adding sameAs.",
+    "Consider OnlineStore subtype at the canonical schema source only if it can be changed without duplicating Organization."
+  ]
+}
