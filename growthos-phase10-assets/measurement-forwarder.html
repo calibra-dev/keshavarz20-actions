@@ -1,0 +1,29 @@
+<!-- K20-GROWTHOS-PHASE10-MEASUREMENT-START -->
+<script>
+(function(){
+  if(window.__k20GrowthOSMeasurementV1){return;}
+  window.__k20GrowthOSMeasurementV1=true;
+  window.dataLayer=window.dataLayer||[];
+  var nativePush=window.dataLayer.push.bind(window.dataLayer);
+  window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
+  window.dataLayer.push=function(){
+    for(var i=0;i<arguments.length;i++){
+      var item=arguments[i];
+      if(item && Object.prototype.toString.call(item)==='[object Object]' && /^growthos_/.test(String(item.event||''))){
+        var eventName=String(item.event),params={};
+        Object.keys(item).forEach(function(k){if(k!=='event'){params[k]=item[k];}});
+        setTimeout(function(n,p){return function(){try{window.gtag('event',n,p);}catch(e){}};}(eventName,params),0);
+      }
+    }
+    return nativePush.apply(null,arguments);
+  };
+  try{
+    window.gtag('event','growthos_measurement_ready',{
+      phase:10,
+      page_path:window.location.pathname,
+      transport_type:'beacon'
+    });
+  }catch(e){}
+})();
+</script>
+<!-- K20-GROWTHOS-PHASE10-MEASUREMENT-END -->
