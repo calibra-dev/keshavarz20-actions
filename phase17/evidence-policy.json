@@ -1,6 +1,6 @@
 {
   "phase": 17,
-  "version": "phase17-evidence-expert-case-v1",
+  "version": "phase17-evidence-expert-case-v2",
   "principles": {
     "impersonated_customer_forbidden": true,
     "invented_review_forbidden": true,
@@ -8,9 +8,33 @@
     "negative_valid_review_suppression_forbidden": true,
     "method_date_limits_required": true,
     "consent_required_for_identifiable_case_study": true,
-    "ai_image_cannot_substitute_for_technical_evidence": true
+    "ai_image_cannot_substitute_for_technical_evidence": true,
+    "unsupported_expert_identity_forbidden": true,
+    "sku_must_not_be_promoted_to_gtin_without_source": true,
+    "evidence_gap_must_remain_explicit": true,
+    "static_editorial_qa_must_not_be_marked_qapage": true
+  },
+  "evidence_card_required_fields": [
+    "evidence_id",
+    "claim",
+    "method",
+    "observed_at_utc",
+    "source_refs",
+    "limits",
+    "status",
+    "evidence_grade",
+    "source_type",
+    "freshness",
+    "scope"
+  ],
+  "evidence_grades": {
+    "A": "First-party live readback, deterministic execution result, or authoritative source directly proving the claim.",
+    "B": "Strong indirect evidence with explicit scope/limitations.",
+    "C": "Context only; not sufficient by itself for a publishable factual claim."
   },
   "expert_qa_required_fields": [
+    "template_id",
+    "status",
     "question",
     "direct_answer",
     "method_or_basis",
@@ -19,17 +43,21 @@
     "limits",
     "suitable_for",
     "not_suitable_for",
-    "reviewer"
+    "reviewer",
+    "structured_data_policy"
   ],
-  "evidence_card_required_fields": [
-    "evidence_id",
-    "claim",
-    "method",
-    "observed_at_utc",
-    "source_refs",
-    "limits",
-    "status"
-  ],
-  "case_gate_source": "phase2/case-study-evidence-policy.json",
+  "structured_data_guards": {
+    "qapage_requires_single_question_focus": true,
+    "qapage_requires_user_answer_submission": true,
+    "static_editorial_qa_qapage_forbidden": true,
+    "review_schema_requires_authentic_review": true,
+    "fabricated_aggregate_rating_forbidden": true,
+    "faq_rich_result_eligibility_not_assumed": true,
+    "persian_reviews_system_language_coverage_not_assumed": true,
+    "person_author_or_reviewer_identity_must_be_verified": true
+  },
+  "case_gate_source": "phase2-results/case-study-gate.json",
+  "case_requirements_source": "phase17/case-study-requirements.json",
+  "research_manifest_source": "phase17/research-manifest.json",
   "review_policy": "Publish only authentic reviews as received subject to moderation for privacy, abuse, illegality, spam, or irrelevant content; do not suppress a valid negative review because it is negative."
 }
