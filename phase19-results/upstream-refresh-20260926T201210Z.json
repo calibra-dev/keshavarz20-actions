@@ -1,0 +1,53 @@
+{
+  "phase": 19,
+  "version": "phase19-v2-upstream-refresh-evidence",
+  "source_run_id": 36268168313,
+  "observed_from_successful_steps": true,
+  "observed_at_utc": "2026-09-26T20:12:10Z",
+  "phase11": {
+    "status": "PASS_GUARDED_FEED_READY_PARTNER_APPROVAL_REQUIRED",
+    "generated_at_utc": "2026-09-26T20:04:53.137819+00:00",
+    "candidate_rows": 652,
+    "ready_rows": 471,
+    "ready_percent": 72.24,
+    "oai_searchbot_allowed": true,
+    "core_citable_surfaces": "13/13",
+    "direct_feed_submitted": false,
+    "direct_feed_partner_access_proven": false
+  },
+  "phase12": {
+    "status": "PASS_ARCHITECTURE_READY_POLICY_GUARD",
+    "generated_at_utc": "2026-09-26T20:05:49.934823+00:00",
+    "candidate_rows": 652,
+    "ready_rows": 471,
+    "merchant_submission_attempted": false,
+    "fake_country_or_address_used": false,
+    "ucp_public_profile_published": false,
+    "ucp_live_adapter_claimed": false,
+    "woo_store_products_public": true,
+    "woo_store_cart_public": true
+  },
+  "phase14": {
+    "status": "PASS_GUARDED_NO_VERIFIED_GS1_IDS",
+    "generated_at_utc": "2026-09-26T20:05:50.085132+00:00",
+    "published_products": 652,
+    "source_verified_gtins": 0,
+    "gtins_fabricated": 0,
+    "skus_promoted_to_gtin": 0,
+    "public_resolver_urls_created": 0
+  },
+  "phase15": {
+    "status": "PASS_ENTITY_OS_WITH_SOURCE_GAPS",
+    "generated_at_utc": "2026-09-26T20:12:04.034537+00:00",
+    "published_products": 652,
+    "source_verified_truth_brand_products": 494,
+    "products_without_woo_brand": 158,
+    "brand_truth_mismatches": 0,
+    "identity_fields_fabricated": 0,
+    "sameAs_links_fabricated": 0,
+    "glns_fabricated": 0,
+    "seller_entity_found": true,
+    "seller_name_consistent": true
+  },
+  "note": "Persisted from the successful upstream refresh steps of GitHub Actions run 36268168313. The run failed only in the downstream Phase 19 validator."
+}
