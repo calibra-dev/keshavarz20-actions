@@ -64,7 +64,7 @@ body="<p>"+filler+"</p>"*1
 body="".join(f"<p>{filler}</p>" for _ in range(38))
 body+=(
  '<h2>تصمیم و محدودیت</h2><p>این متن فقط transport test است و برای استفاده عمومی یا تصمیم کشاورزی نوشته نشده است. '
- '<a href="https://keshavarz20.com/">صفحه اصلی کشاورز بیست</a> و '
+ '<a href="https://keshavarz20.com/irrigation-pipe-size-selector/">انتخابگر سایز لوله کشاورز بیست</a> و '
  '<a href="https://keshavarz20.com/editorial-policy/">سیاست تحریریه کشاورز بیست</a> فقط برای کنترل لینک داخلی در payload آمده‌اند.</p>'
  '<h2>جمع‌بندی</h2><p>این پیش‌نویس موقت باید بعد از readback حذف شود و نباید منتشر شود.</p>'
  '<h2>نظر کارشناسی کشاورز بیست</h2><p>هیچ نظر کارشناسی واقعی یا نتیجه فنی از این تست استخراج نمی‌شود.</p>'
