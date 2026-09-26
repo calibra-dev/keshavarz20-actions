@@ -99,5 +99,12 @@ jobs:
           git add -f "$RESULT_PATH"
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "questions: record ${{ steps.resolve.outputs.action }} result"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          echo "::error::Failed to persist question-engine result after 5 rebase/push attempts"
+          exit 1
