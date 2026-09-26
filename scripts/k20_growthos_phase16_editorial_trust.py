@@ -202,8 +202,8 @@ contract_checks={
   "news_prompt_requires_review_method":"روش تهیه و بازبینی" in news_prompt,
   "article_validator_requires_editorial_disclosure":"editorial_disclosure" in article_validator,
   "news_validator_requires_editorial_disclosure":"editorial_disclosure" in news_validator,
-  "article_validator_requires_human_review_gate":"human_review_required_before_publish" in article_validator,
-  "news_validator_requires_human_review_gate":"human_review_required_before_publish" in news_validator,
+  "article_validator_requires_human_review_gate":all(x in article_validator for x in ["EDITORIAL_POLICY","review_status","required_review_status","expected_review"]),
+  "news_validator_requires_human_review_gate":all(x in news_validator for x in ["EDITORIAL_POLICY","review_status","required_review_status","expected_review"]),
   "fake_authors_forbidden":bool(policy.get("principles",{}).get("fake_authors_forbidden")),
   "fake_reviewers_forbidden":bool(policy.get("principles",{}).get("fake_reviewers_forbidden")),
   "automatic_output_is_draft":policy.get("publication_gate",{}).get("automatic_engine_output_status")=="draft"
@@ -256,6 +256,7 @@ summary={
   ]
 }
 (outdir/"summary.json").write_text(json.dumps(summary,ensure_ascii=False,indent=2),encoding="utf-8")
+print("GROWTHOS_PHASE16_CHECKS",json.dumps(contract_checks,ensure_ascii=False))
 print("GROWTHOS_PHASE16",json.dumps(summary,ensure_ascii=False))
 if not hard_pass:
     raise SystemExit("Phase 16 editorial trust hard gate failed")
