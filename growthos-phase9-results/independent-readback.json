@@ -1,9 +1,9 @@
 {
-  "ok": false,
+  "ok": true,
   "phase": 9,
   "version": "growthos-phase9-independent-readback-v1",
-  "generated_at_utc": "2026-09-25T21:54:04.007622+00:00",
-  "status": "PARTIAL",
+  "generated_at_utc": "2026-09-26T04:39:32.624024+00:00",
+  "status": "PASS_VERIFIED_READBACK",
   "tools": [
     {
       "kind": "post",
@@ -98,34 +98,34 @@
     {
       "id": 768,
       "name": "لوله نخدار",
-      "marker_count": 0,
-      "all_flow_links": false,
+      "marker_count": 1,
+      "all_flow_links": true,
       "taxonomy_sanitized_data_attributes": true,
-      "verified": false
+      "verified": true
     },
     {
       "id": 761,
       "name": "انشعابات و بست ها",
-      "marker_count": 0,
-      "all_flow_links": false,
+      "marker_count": 1,
+      "all_flow_links": true,
       "taxonomy_sanitized_data_attributes": true,
-      "verified": false
+      "verified": true
     },
     {
       "id": 754,
       "name": "لوله پلی اتیلن",
-      "marker_count": 0,
-      "all_flow_links": false,
+      "marker_count": 1,
+      "all_flow_links": true,
       "taxonomy_sanitized_data_attributes": true,
-      "verified": false
+      "verified": true
     },
     {
       "id": 825,
       "name": "فیلتر و فیلتراسیون",
-      "marker_count": 0,
-      "all_flow_links": false,
+      "marker_count": 1,
+      "all_flow_links": true,
       "taxonomy_sanitized_data_attributes": true,
-      "verified": false
+      "verified": true
     }
   ],
   "legacy": [
@@ -133,25 +133,25 @@
       "id": 143710,
       "slug": "request-quotation",
       "status": "publish",
-      "marker_count": 0,
-      "owner_link": false,
-      "verified": false
+      "marker_count": 1,
+      "owner_link": true,
+      "verified": true
     },
     {
       "id": 140667,
       "slug": "%d9%be%db%8c%d8%b4-%d9%81%d8%a7%da%a9%d8%aa%d9%88%d8%b1-%d8%b3%d8%a8%d8%af-%d8%ae%d8%b1%db%8c%d8%af",
       "status": "publish",
-      "marker_count": 0,
-      "owner_link": false,
-      "verified": false
+      "marker_count": 1,
+      "owner_link": true,
+      "verified": true
     }
   ],
   "qa": {
     "tools_verified": 8,
     "tools_total": 8,
-    "hubs_verified": 1,
+    "hubs_verified": 5,
     "hubs_total": 5,
-    "legacy_verified": 0,
+    "legacy_verified": 2,
     "legacy_total": 2
   },
   "evidence_note": "Exact authenticated WordPress/WooCommerce readback. No writes in this workflow."
