@@ -1,0 +1,732 @@
+{
+  "phase": 13,
+  "generated_at_utc": "2026-09-26T06:25:41.808332+00:00",
+  "targets": [
+    {
+      "tool": "calculate_drip_tape",
+      "kind": "post",
+      "id": 143698,
+      "slug": "drip-tape-length-fittings-calculator",
+      "status": "publish",
+      "link": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
+      "controls": [
+        {
+          "tag": "input",
+          "id": "tc-line-count",
+          "name": "",
+          "type": "number",
+          "value": "50",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "tc-line-length",
+          "name": "",
+          "type": "number",
+          "value": "100",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "tc-reserve-percent",
+          "name": "",
+          "type": "number",
+          "value": "3",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "tc-roll-length",
+          "name": "",
+          "type": "number",
+          "value": "1000",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "tc-fitting-spare",
+          "name": "",
+          "type": "number",
+          "value": "3",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "tc-active-lines",
+          "name": "",
+          "type": "number",
+          "value": "10",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "tc-emitter-spacing",
+          "name": "",
+          "type": "number",
+          "value": "20",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "tc-emitter-flow",
+          "name": "",
+          "type": "number",
+          "value": "0.8",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "tc-row-spacing",
+          "name": "",
+          "type": "number",
+          "value": "1.5",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "tc-irrigation-hours",
+          "name": "",
+          "type": "number",
+          "value": "2",
+          "placeholder": null,
+          "required": false
+        }
+      ],
+      "buttons": [
+        {
+          "id": "tc-calculate",
+          "type": "button",
+          "text": "محاسبه متراژ و دبی"
+        },
+        {
+          "id": "tc-reset",
+          "type": "button",
+          "text": "بازنشانی مقادیر"
+        },
+        {
+          "id": "tc-copy",
+          "type": "button",
+          "text": "کپی خلاصه نتیجه"
+        }
+      ],
+      "script_result_ids": [],
+      "has_phase9": true,
+      "has_phase10": true,
+      "has_existing_webmcp": false,
+      "chars": 65519
+    },
+    {
+      "tool": "check_connector_compatibility",
+      "kind": "page",
+      "id": 144239,
+      "slug": "irrigation-fittings-compatibility-selector",
+      "status": "publish",
+      "link": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+      "controls": [
+        {
+          "tag": "select",
+          "id": "ic_system",
+          "name": "",
+          "type": "select",
+          "value": null,
+          "placeholder": null,
+          "required": false,
+          "options": [
+            {
+              "value": "pe",
+              "label": "لوله پلی‌اتیلن"
+            },
+            {
+              "value": "layflat",
+              "label": "لوله نخدار / لی‌فلت"
+            }
+          ]
+        },
+        {
+          "tag": "select",
+          "id": "ic_size",
+          "name": "",
+          "type": "select",
+          "value": null,
+          "placeholder": null,
+          "required": false,
+          "options": [
+            {
+              "value": "63",
+              "label": "۶۳ میلی‌متر / ۲ اینچ"
+            },
+            {
+              "value": "75",
+              "label": "۷۵ میلی‌متر / ۲½ اینچ"
+            },
+            {
+              "value": "90",
+              "label": "۹۰ میلی‌متر / ۳ اینچ"
+            },
+            {
+              "value": "110",
+              "label": "۱۱۰ میلی‌متر / ۴ اینچ"
+            }
+          ]
+        },
+        {
+          "tag": "select",
+          "id": "ic_task",
+          "name": "",
+          "type": "select",
+          "value": null,
+          "placeholder": null,
+          "required": false,
+          "options": [
+            {
+              "value": "branch",
+              "label": "گرفتن انشعاب از خط اصلی"
+            },
+            {
+              "value": "valve",
+              "label": "قطع و وصل جریان با شیر"
+            },
+            {
+              "value": "hose",
+              "label": "اتصال به شلنگ / مسیر انعطاف‌پذیر"
+            },
+            {
+              "value": "tape",
+              "label": "اتصال لی‌فلت به نوار تیپ"
+            },
+            {
+              "value": "end",
+              "label": "بستن انتهای لی‌فلت"
+            }
+          ]
+        },
+        {
+          "tag": "select",
+          "id": "ic_out",
+          "name": "",
+          "type": "select",
+          "value": null,
+          "placeholder": null,
+          "required": false,
+          "options": [
+            {
+              "value": "20",
+              "label": "۱/۲ اینچ / ۲۰ میلی‌متر"
+            },
+            {
+              "value": "25",
+              "label": "۳/۴ اینچ / ۲۵ میلی‌متر"
+            },
+            {
+              "value": "32",
+              "label": "۱ اینچ / ۳۲ میلی‌متر"
+            },
+            {
+              "value": "63",
+              "label": "۲ اینچ / ۶۳ میلی‌متر"
+            },
+            {
+              "value": "75",
+              "label": "۲½ اینچ / ۷۵ میلی‌متر"
+            },
+            {
+              "value": "same",
+              "label": "هم‌سایز خط اصلی"
+            }
+          ]
+        },
+        {
+          "tag": "select",
+          "id": "ic_valve",
+          "name": "",
+          "type": "select",
+          "value": null,
+          "placeholder": null,
+          "required": false,
+          "options": [
+            {
+              "value": "ball_poly",
+              "label": "توپی ویسپار، دسته پلیمری"
+            },
+            {
+              "value": "ball_metal",
+              "label": "توپی ویسپار، دسته فلزی"
+            },
+            {
+              "value": "butterfly",
+              "label": "پروانه‌ای پلیمری ویسپار"
+            }
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "id": null,
+          "type": "button",
+          "text": "نمایش مسیر خرید و قطعات"
+        }
+      ],
+      "script_result_ids": [
+        "ic_out_wrap",
+        "ic_valve_wrap",
+        "ic_result"
+      ],
+      "has_phase9": true,
+      "has_phase10": true,
+      "has_existing_webmcp": false,
+      "chars": 17943
+    },
+    {
+      "tool": "build_irrigation_cart",
+      "kind": "page",
+      "id": 145233,
+      "slug": "one-hectare-drip-irrigation-basket",
+      "status": "publish",
+      "link": "https://keshavarz20.com/one-hectare-drip-irrigation-basket/",
+      "controls": [
+        {
+          "tag": "input",
+          "id": "k20-area",
+          "name": "",
+          "type": "number",
+          "value": "10000",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "k20-row-length",
+          "name": "",
+          "type": "number",
+          "value": "100",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "k20-row-spacing",
+          "name": "",
+          "type": "number",
+          "value": "1",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "k20-roll-length",
+          "name": "",
+          "type": "number",
+          "value": "1000",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "k20-waste",
+          "name": "",
+          "type": "number",
+          "value": "5",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "k20-spare",
+          "name": "",
+          "type": "number",
+          "value": "5",
+          "placeholder": null,
+          "required": false
+        }
+      ],
+      "buttons": [
+        {
+          "id": "k20-calc",
+          "type": "button",
+          "text": "محاسبه سبد اولیه"
+        }
+      ],
+      "script_result_ids": [
+        "k20-result",
+        "k20-quote"
+      ],
+      "has_phase9": true,
+      "has_phase10": true,
+      "has_existing_webmcp": false,
+      "chars": 10142
+    },
+    {
+      "tool": "request_proforma_invoice",
+      "kind": "page",
+      "id": 145286,
+      "slug": "request-proforma",
+      "status": "publish",
+      "link": "https://keshavarz20.com/request-proforma/",
+      "controls": [
+        {
+          "tag": "input",
+          "id": "gp-project",
+          "name": "project",
+          "type": "input",
+          "value": null,
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "gp-crop",
+          "name": "crop",
+          "type": "input",
+          "value": null,
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "gp-area",
+          "name": "area",
+          "type": "input",
+          "value": null,
+          "placeholder": "مثلاً ۱ هکتار",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "gp-province",
+          "name": "province",
+          "type": "input",
+          "value": null,
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "select",
+          "id": "gp-water",
+          "name": "water",
+          "type": "select",
+          "value": null,
+          "placeholder": null,
+          "required": false,
+          "options": [
+            {
+              "value": "",
+              "label": "انتخاب کنید"
+            },
+            {
+              "value": "چاه",
+              "label": "چاه"
+            },
+            {
+              "value": "استخر",
+              "label": "استخر"
+            },
+            {
+              "value": "کانال",
+              "label": "کانال"
+            },
+            {
+              "value": "شبکه تحت فشار",
+              "label": "شبکه تحت فشار"
+            },
+            {
+              "value": "سایر",
+              "label": "سایر"
+            }
+          ]
+        },
+        {
+          "tag": "input",
+          "id": "gp-flow",
+          "name": "flow",
+          "type": "number",
+          "value": null,
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "gp-pressure",
+          "name": "pressure",
+          "type": "number",
+          "value": null,
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "gp-length",
+          "name": "length",
+          "type": "number",
+          "value": null,
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "input",
+          "value": "نوار تیپ",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "number",
+          "value": null,
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "input",
+          "value": "متر",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "input",
+          "value": null,
+          "placeholder": "مدل/فاصله خروجی در صورت مشخص بودن",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "input",
+          "value": "لوله نخدار / لی‌فلت",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "number",
+          "value": null,
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "input",
+          "value": "متر",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "input",
+          "value": null,
+          "placeholder": "سایز در صورت مشخص بودن",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "input",
+          "value": "اتصالات و شیرآلات",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "number",
+          "value": null,
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "input",
+          "value": "عدد",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "input",
+          "value": null,
+          "placeholder": "قطعه مبدا و مقصد",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "input",
+          "value": "فیلتر آبیاری",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "number",
+          "value": null,
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "input",
+          "value": "عدد",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "input",
+          "value": null,
+          "placeholder": "دبی/درجه فیلتراسیون اگر تأیید شده",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "input",
+          "value": "لوله پلی‌اتیلن",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "number",
+          "value": null,
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "input",
+          "value": "متر",
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "input",
+          "value": null,
+          "placeholder": "قطر/PN/SDR اگر مشخص است",
+          "required": false
+        },
+        {
+          "tag": "textarea",
+          "id": "gp-assumptions",
+          "name": "",
+          "type": "textarea",
+          "value": null,
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "input",
+          "value": null,
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "number",
+          "value": null,
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "input",
+          "value": null,
+          "placeholder": null,
+          "required": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "name": "",
+          "type": "input",
+          "value": null,
+          "placeholder": null,
+          "required": false
+        }
+      ],
+      "buttons": [
+        {
+          "id": "gp-add",
+          "type": "button",
+          "text": "افزودن ردیف"
+        },
+        {
+          "id": "gp-build",
+          "type": "button",
+          "text": "ساخت پیش‌نویس"
+        },
+        {
+          "id": "gp-print",
+          "type": "button",
+          "text": "چاپ / ذخیره PDF"
+        },
+        {
+          "id": "gp-whatsapp",
+          "type": "button",
+          "text": "ارسال برای بررسی در واتساپ"
+        }
+      ],
+      "script_result_ids": [
+        "growthos-proforma-form",
+        "gp-items",
+        "gp-summary"
+      ],
+      "has_phase9": true,
+      "has_phase10": true,
+      "has_existing_webmcp": false,
+      "chars": 14153
+    }
+  ]
+}
