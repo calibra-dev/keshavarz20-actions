@@ -1,0 +1,98 @@
+{
+  "program": "Keshavarz20 AI Growth OS",
+  "scope": "phases 11-12",
+  "generated_at_utc": "2026-09-26T05:01:22.206Z",
+  "overall_status": "PASS_WITH_EXTERNAL_AUTHORIZATION_AND_POLICY_GATES",
+  "phase11": {
+    "title": "ChatGPT Search",
+    "status": "PASS_GUARDED_FEED_READY_PARTNER_APPROVAL_REQUIRED",
+    "workflow_run": 36219373148,
+    "result_commit": "a6774c8d158bc65f580b533ff9235f6f37036eff",
+    "oai_searchbot_allowed": true,
+    "core_citable_surfaces": {
+      "verified": 13,
+      "total": 13
+    },
+    "openai_product_feed": {
+      "candidate_rows": 652,
+      "fully_ready_rows": 471,
+      "ready_percent": 72.24,
+      "complete_counts": {
+        "item_id": 652,
+        "title": 652,
+        "description": 652,
+        "url": 652,
+        "brand": 494,
+        "seller_name": 652,
+        "image_url": 652,
+        "availability": 652,
+        "price": 562
+      },
+      "stable_identity": "k20_<product_id> / k20v_<variation_id>",
+      "direct_submission_attempted": false,
+      "approved_partner_access_proven": false
+    },
+    "known_source_sku_conflict": {
+      "sku": "430000300-2",
+      "product_ids": [
+        140654,
+        140655
+      ],
+      "state": "SOURCE_CONFIRMATION_REQUIRED",
+      "product_mutation": false,
+      "feed_identity_impact": "none_after_stable_id_mapping"
+    }
+  },
+  "phase12": {
+    "title": "Google Merchant / UCP",
+    "status": "PASS_ARCHITECTURE_READY_POLICY_GUARD",
+    "workflow_run": 36219437255,
+    "result_commit": "fcf532cb7980a09f8431bb1cb0170927de7e0b70",
+    "merchant_center": {
+      "country": "IR",
+      "available": false,
+      "account_creation_attempted": false,
+      "feed_submission_attempted": false,
+      "fake_country_or_address_used": false,
+      "basic_ready_rows": 471,
+      "candidate_rows": 652
+    },
+    "ucp": {
+      "spec_version": "2026-04-08",
+      "well_known_path": "/.well-known/ucp",
+      "current_http": 404,
+      "public_profile_published": false,
+      "live_adapter_claimed": false,
+      "existing_woo_primitives": {
+        "products_http_200": true,
+        "cart_http_200": true,
+        "checkout_route_present": true
+      },
+      "readiness": {
+        "product_discovery": "DATA_MODEL_READY_PARTIAL",
+        "cart_transfer": "ADAPTER_REQUIRED",
+        "native_checkout": "NOT_IMPLEMENTED_AS_UCP",
+        "order_lifecycle": "NOT_IMPLEMENTED_AS_UCP",
+        "identity_linking": "NOT_IMPLEMENTED"
+      }
+    }
+  },
+  "safeguards": {
+    "wpvibe_used": false,
+    "product_price_mutations": 0,
+    "product_stock_mutations": 0,
+    "discount_coupon_mutations": 0,
+    "product_identifier_guesses": 0,
+    "fake_reviews": 0,
+    "fake_country_or_business_identity": false,
+    "openai_feed_falsely_claimed_submitted": false,
+    "ucp_falsely_claimed_live": false,
+    "customer_or_order_data_persisted": false
+  },
+  "remaining_external_gates": [
+    "OpenAI direct product-feed onboarding requires actual approved-partner access.",
+    "Google Merchant Center is not available to retailers in Iran under the current official country restriction.",
+    "UCP publication requires real program authorization/eligibility and a tested authenticated adapter; ordinary Woo cart/checkout routes are not claimed as UCP."
+  ],
+  "next_phase_gate": "Phase 13 may start without bypassing these external gates; Phase 11/12 internal implementation is closed at the maximum safe verifiable state."
+}
