@@ -1,0 +1,9 @@
+{
+  "phase": 15,
+  "action": "build_brand_and_seller_entity_os",
+  "scope": "seller_homepage_plus_all_published_product_brand_assignments_plus_phase3_catalog_parity",
+  "mode": "read-only-entity-registry",
+  "prerequisite": "phase14 PASS",
+  "no_identity_inference": true,
+  "no_schema_write": true
+}
