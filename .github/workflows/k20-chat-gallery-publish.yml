@@ -55,7 +55,7 @@ jobs:
           done
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add gallery-chat-results/
+          git add -f gallery-chat-results/
           if ! git diff --cached --quiet; then
             git commit -m "gallery-chat: record publish results"
             git push
