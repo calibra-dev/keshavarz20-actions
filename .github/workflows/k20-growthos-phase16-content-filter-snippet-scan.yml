@@ -1,0 +1,75 @@
+name: K20 Phase16 Content Filter Snippet Scan
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'growthos-phase16-ops/20260926-content-filter-snippet-scan.json'
+permissions:
+  contents: write
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install requests
+      - name: Scan active Code Snippets for content rendering hooks
+        shell: python
+        run: |
+          import json, os, pathlib, requests, re
+          base=os.environ['WP_BASE_URL'].rstrip('/')
+          s=requests.Session(); s.auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD'])
+          r=s.get(base+'/wp-json/code-snippets/v1/snippets',params={'per_page':100,'status':'active'},timeout=90)
+          r.raise_for_status()
+          payload=r.json()
+          items=payload if isinstance(payload,list) else (payload.get('snippets') or payload.get('data') or [])
+          if not isinstance(items,list): items=[]
+          needles=[
+            'the_content','rest_prepare_post','wp_insert_post_data','content.rendered','post_content',
+            'نظر کارشناسی کشاورز بیست','box-shadow','145235','phase16','k20',
+            'render_block','the_posts','posts_results','pre_get_posts','wp_update_post'
+          ]
+          hits=[]
+          for x in items:
+              if not x.get('active'): continue
+              sid=x.get('id')
+              d=s.get(f"{base}/wp-json/code-snippets/v1/snippets/{sid}",timeout=90); d.raise_for_status()
+              y=d.json(); code=str(y.get('code') or '')
+              matched=[n for n in needles if n.lower() in code.lower()]
+              if matched:
+                  lines=code.splitlines()
+                  excerpts=[]
+                  for i,line in enumerate(lines):
+                      if any(n.lower() in line.lower() for n in matched):
+                          a=max(0,i-2); b=min(len(lines),i+3)
+                          excerpts.append({'line':i+1,'context':'\n'.join(lines[a:b])[:1800]})
+                  hits.append({
+                    'id':sid,'name':y.get('name'),'active':y.get('active'),'scope':y.get('scope'),
+                    'priority':y.get('priority'),'matched':matched,'excerpts':excerpts[:40]
+                  })
+          result={'active_snippets_scanned':sum(1 for x in items if x.get('active')),'hits':hits}
+          pathlib.Path('growthos-phase16-results').mkdir(exist_ok=True)
+          pathlib.Path('growthos-phase16-results/content-filter-snippet-scan.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(result,ensure_ascii=False))
+      - name: Commit sanitized scan
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f growthos-phase16-results/content-filter-snippet-scan.json
+          git diff --cached --quiet && exit 0
+          git commit -m "growthos phase16: record content filter snippet scan"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
