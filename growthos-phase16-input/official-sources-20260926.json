@@ -1,0 +1,35 @@
+{
+  "phase": 16,
+  "generated_at_utc": "2026-09-26T08:30:00Z",
+  "title": "Human Expertise & Editorial Trust",
+  "sources": [
+    {
+      "name": "Google Search Central — Creating helpful, reliable, people-first content",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      "facts": [
+        "Google recommends content that is helpful, reliable and created primarily for people.",
+        "Google strongly encourages accurate authorship information and bylines where readers would expect them.",
+        "Background about authors or the publishing site and clear sourcing can help users judge trust.",
+        "Disclosing how automation or AI was used can be useful when readers would reasonably expect that context.",
+        "Google says trust is the most important aspect within E-E-A-T."
+      ]
+    },
+    {
+      "name": "Google Search Central — Article structured data",
+      "url": "https://developers.google.com/search/docs/appearance/structured-data/article",
+      "facts": [
+        "Article author may be a Person or Organization.",
+        "Google recommends author type plus url or sameAs to help disambiguate authors.",
+        "datePublished and dateModified are recommended where applicable."
+      ]
+    },
+    {
+      "name": "Schema.org — reviewedBy",
+      "url": "https://schema.org/reviewedBy",
+      "facts": [
+        "reviewedBy represents a Person or Organization that reviewed a WebPage for accuracy or completeness.",
+        "Keshavarz20 will not emit reviewedBy without a real verified reviewer."
+      ]
+    }
+  ]
+}
