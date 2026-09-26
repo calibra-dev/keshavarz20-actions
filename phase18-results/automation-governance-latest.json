@@ -1,13 +1,35 @@
 {
   "phase": 18,
-  "status": "PASS",
+  "version": "phase18-automation-governance-v2",
+  "title": "Automation Governance - News / Article / Q&A",
+  "status": "PASS_V2",
   "checks": [
     {
-      "name": "news_schedule_0800_tehran",
+      "name": "manifest_v2",
       "pass": true
     },
     {
-      "name": "article_schedule_0820_tehran",
+      "name": "live_news_primary_enabled_0800",
+      "pass": true
+    },
+    {
+      "name": "live_news_recovery_enabled_0815",
+      "pass": true
+    },
+    {
+      "name": "live_article_primary_enabled_0900",
+      "pass": true
+    },
+    {
+      "name": "live_article_recovery_enabled_0920",
+      "pass": true
+    },
+    {
+      "name": "manifest_live_schedule_parity",
+      "pass": true
+    },
+    {
+      "name": "policy_schedule_parity",
       "pass": true
     },
     {
@@ -27,6 +49,18 @@
       "pass": true
     },
     {
+      "name": "news_current_publisher_v3",
+      "pass": true
+    },
+    {
+      "name": "news_v3_keeps_v2_validation",
+      "pass": true
+    },
+    {
+      "name": "news_v3_deterministic_persian",
+      "pass": true
+    },
+    {
       "name": "article_queue_push_main_only",
       "pass": true
     },
@@ -39,7 +73,19 @@
       "pass": true
     },
     {
-      "name": "article_v3_keeps_v2_validation",
+      "name": "article_current_publisher_v5",
+      "pass": true
+    },
+    {
+      "name": "article_v5_chain_preserved",
+      "pass": true
+    },
+    {
+      "name": "article_adaptive_faq",
+      "pass": true
+    },
+    {
+      "name": "article_v5_deterministic_persian",
       "pass": true
     },
     {
@@ -56,6 +102,10 @@
     },
     {
       "name": "question_interval_truthful",
+      "pass": true
+    },
+    {
+      "name": "question_live_runtime_evidence",
       "pass": true
     },
     {
@@ -79,15 +129,31 @@
       "pass": true
     },
     {
-      "name": "news_no_broken_rest_cpt_route",
+      "name": "news_current_guarded_writer",
       "pass": true
     },
     {
-      "name": "news_writer_uses_wp_native_guarded_route",
+      "name": "news_v3_e2e_render",
       "pass": true
     },
     {
-      "name": "news_publisher_e2e_cleanup",
+      "name": "news_e2e_draft_readback",
+      "pass": true
+    },
+    {
+      "name": "news_e2e_cleanup",
+      "pass": true
+    },
+    {
+      "name": "article_v5_e2e_render",
+      "pass": true
+    },
+    {
+      "name": "article_e2e_draft_readback",
+      "pass": true
+    },
+    {
+      "name": "article_e2e_cleanup",
       "pass": true
     },
     {
@@ -103,30 +169,79 @@
       "pass": true
     },
     {
+      "name": "routing_guards_present",
+      "pass": true
+    },
+    {
       "name": "news_result_evidence",
       "pass": true
     },
     {
       "name": "article_result_evidence",
       "pass": true
+    },
+    {
+      "name": "no_secret_persistence",
+      "pass": true
+    },
+    {
+      "name": "commerce_out_of_scope",
+      "pass": true
     }
   ],
+  "check_count": 46,
+  "passed_checks": 46,
+  "failed_checks": [],
   "acceptance": {
-    "news_0800_architecture_current_and_tested": true,
-    "article_schedule_validated": true,
-    "question_cadence_truthful": true,
-    "skip_day_supported": true,
-    "duplicate_drafts_guarded": true
+    "live_schedules_enabled_and_aligned": true,
+    "news_current_v3_governed": true,
+    "article_current_v5_governed": true,
+    "question_v18_runtime_governed": true,
+    "draft_only_human_review": true,
+    "duplicate_drafts_guarded": true,
+    "temporary_e2e_cleanup_verified": true
+  },
+  "live_schedule_readback": {
+    "phase": 18,
+    "version": "v2",
+    "observed_at_utc": "2026-09-26T19:40:00Z",
+    "timezone": "Asia/Tehran",
+    "news": {
+      "primary": {
+        "enabled": true,
+        "time": "08:00"
+      },
+      "recovery": {
+        "enabled": true,
+        "time": "08:15"
+      }
+    },
+    "article": {
+      "primary": {
+        "enabled": true,
+        "time": "09:00"
+      },
+      "recovery": {
+        "enabled": true,
+        "time": "09:20"
+      }
+    },
+    "question": {
+      "engine": "v18",
+      "continuous": true,
+      "scheduler_run_id": 36265709695,
+      "control_run_id": 36265698336,
+      "heartbeat_run_id": 36255859092
+    },
+    "note": "Read back from live automation configuration and current GitHub Actions runtime. No schedule was duplicated; previously disabled existing recovery/news tasks were re-enabled."
   },
   "runtime_evidence": {
-    "article_success_run_id": 35309190730,
-    "news_read_probe_success_run_id": 35573897572,
-    "news_cli_capability_success_run_id": 35574370226,
-    "news_writer_smoke_success_run_id": 35575147724,
-    "question_engine_success_run_id": 35566433455,
+    "question_scheduler_success_run_id": 36265709695,
+    "question_control_success_run_id": 36265698336,
+    "question_heartbeat_success_run_id": 36255859092,
     "news_writer_path": "WP REST media + guarded WPVibe WP-native CLI for custom news CPT",
-    "legacy_xmlrpc_status": "retired_from_primary_news_publisher_after_live_403_on_2026-09-21",
-    "news_publisher_e2e_success_run_id": 35575161509
+    "article_writer_path": "WordPress REST posts/media via publish_queue_v5 -> v4 -> v3",
+    "legacy_xmlrpc_status": "not_primary_for_current_news_or_article_publishers"
   },
   "news_read_probe": {
     "ok": true,
@@ -172,11 +287,13 @@
   },
   "news_publisher_e2e": {
     "ok": true,
-    "temporary_news_id": 145297,
-    "temporary_media_id": 145296,
+    "run_id": 36267402257,
+    "publisher_version": "v3",
+    "temporary_news_id": 146207,
+    "temporary_media_id": 146206,
     "steps": [
       {
-        "step": "validate_payload",
+        "step": "validate_payload_v3",
         "ok": true
       },
       {
@@ -184,18 +301,19 @@
         "ok": true
       },
       {
-        "step": "render_webp",
-        "ok": true
+        "step": "render_v3_cover",
+        "ok": true,
+        "renderer": "k20-news-cover-v3-cinematic-deterministic-persian"
       },
       {
         "step": "upload_media",
         "ok": true,
-        "media_id": 145296
+        "media_id": 146206
       },
       {
         "step": "create_draft",
         "ok": true,
-        "post_id": 145297
+        "post_id": 146207
       },
       {
         "step": "verify",
@@ -216,9 +334,82 @@
     "cleanup_verified": {
       "post": true,
       "media": true
-    }
+    },
+    "persisted_from_successful_run_log": true
+  },
+  "article_publisher_e2e": {
+    "ok": true,
+    "temporary_post_id": 146203,
+    "temporary_media_id": 146200,
+    "publisher_version": "v5",
+    "transport": "wordpress_rest",
+    "steps": [
+      {
+        "step": "validate_payload_v5_chain",
+        "ok": true
+      },
+      {
+        "step": "duplicate_guard",
+        "ok": true
+      },
+      {
+        "step": "existing_category",
+        "ok": true,
+        "category_id": 1030
+      },
+      {
+        "step": "commons_search",
+        "ok": true,
+        "license": "Public domain"
+      },
+      {
+        "step": "render_v5_cover",
+        "ok": true,
+        "renderer": "k20-cover-v5-cinematic-deterministic-persian"
+      },
+      {
+        "step": "upload_media_rest",
+        "ok": true,
+        "media_id": 146200
+      },
+      {
+        "step": "create_draft_rest",
+        "ok": true,
+        "post_id": 146203
+      },
+      {
+        "step": "verify_readback",
+        "ok": true,
+        "status": "draft",
+        "type": "post",
+        "featured_media": true
+      },
+      {
+        "step": "cleanup",
+        "ok": true,
+        "post_deleted": true,
+        "media_deleted": true
+      }
+    ],
+    "cleanup_verified": {
+      "post": true,
+      "media": true
+    },
+    "published": false,
+    "commerce_mutations": 0
+  },
+  "input_sha256": {
+    "phase18/automation-governance.json": "2c1802007ab2dad97d1909391ec40a803a6832fae11f3a7fcf91f6394ef148b7",
+    "phase18/live-schedule-readback.json": "df529cd6a5ab4dabd1cb0ec396e9cab94a5ca0c85f629325d3fa30ca223ef219",
+    "automation-policy/seo-god-2026.json": "de7e78c0720c58717b6ade8e1de8d719c4494106513856cd3da53e61c300477c",
+    "question-engine/config.json": "45776d064f16df7e64c66988db8eeb907a28e0368a213ef0408a93fd618b80bf",
+    "phase18-results/news-publisher-e2e-latest.json": "77bb0ca57e10ec6b79c42eccf8eec7e636979e5055853fa70c7eb21b0a0d913c",
+    "phase18-results/article-publisher-e2e-latest.json": "be287c7eb373e7c454a72cf55f44a277b14c0ef81db29de6dd405fc0673d6474"
   },
   "site_mutations_by_acceptance_workflow": 0,
+  "temporary_e2e_mutations_cleaned": true,
   "commerce_mutations": 0,
+  "price_stock_discount_mutations": 0,
+  "orders_payments_users_mutations": 0,
   "secret_values_persisted": false
 }
