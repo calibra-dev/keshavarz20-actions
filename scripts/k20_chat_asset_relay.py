@@ -108,11 +108,27 @@ def main() -> None:
         if not isinstance(item, dict):
             fail("asset entry must be an object")
         blob_sha = str(item.get("blob_sha") or "")
+        chunk_shas = item.get("base64_chunk_blob_shas") or []
         filename = str(item.get("filename") or f"k20-chat-{index}.webp")
         mime_type = str(item.get("mime_type") or "image/webp")
         if mime_type not in ALLOWED_MIMES:
             fail("asset mime_type is not allowed")
-        raw = load_blob(gh, repo, blob_sha)
+        if blob_sha and chunk_shas:
+            fail("asset must use blob_sha or base64_chunk_blob_shas, not both")
+        if chunk_shas:
+            if not isinstance(chunk_shas, list) or not (1 <= len(chunk_shas) <= 32):
+                fail("base64_chunk_blob_shas must contain 1..32 items")
+            encoded = b"".join(load_blob(gh, repo, str(sha)) for sha in chunk_shas)
+            try:
+                raw = base64.b64decode(encoded, validate=True)
+            except Exception as exc:
+                raise RuntimeError("invalid base64 chat asset chunks") from exc
+            if not raw or len(raw) > MAX_BYTES:
+                fail("decoded asset size is outside the 1 byte..20 MiB limit")
+        else:
+            if not blob_sha:
+                fail("asset requires blob_sha or base64_chunk_blob_shas")
+            raw = load_blob(gh, repo, blob_sha)
         expected_sha256 = str(item.get("sha256") or "").lower()
         actual_sha256 = hashlib.sha256(raw).hexdigest()
         if expected_sha256 and expected_sha256 != actual_sha256:
