@@ -1,0 +1,76 @@
+{
+  "phase": 13,
+  "version": "growthos-webmcp-v1",
+  "generated_at_utc": "2026-09-26T06:29:17.068033+00:00",
+  "standard": {
+    "api": "document.modelContext.registerTool",
+    "fallback_alias": "navigator.modelContext",
+    "secure_context_required": true,
+    "permissions_policy_default": "self",
+    "browser_status": "WebMCP is experimental/origin-trial technology; progressive enhancement only"
+  },
+  "tools": [
+    {
+      "name": "calculate_drip_tape",
+      "canonical_page": "/drip-tape-length-fittings-calculator/",
+      "effect": "mutates only local form/result state",
+      "real_order": false,
+      "consequential": false
+    },
+    {
+      "name": "check_connector_compatibility",
+      "canonical_page": "/irrigation-fittings-compatibility-selector/",
+      "effect": "mutates only local selector/result state",
+      "verified_fit_claim": false,
+      "consequential": false
+    },
+    {
+      "name": "build_irrigation_cart",
+      "canonical_page": "/one-hectare-drip-irrigation-basket/",
+      "effect": "builds draft basket only",
+      "woocommerce_cart_mutation": false,
+      "consequential": false
+    },
+    {
+      "name": "request_proforma_invoice",
+      "canonical_page": "/request-proforma/",
+      "effect": "builds local draft only",
+      "message_sent": false,
+      "invoice_issued": false,
+      "order_created": false,
+      "consequential": false
+    },
+    {
+      "name": "estimate_shipping",
+      "canonical_pages": [
+        "drip-tape-length-fittings-calculator",
+        "irrigation-fittings-compatibility-selector",
+        "one-hectare-drip-irrigation-basket",
+        "request-proforma"
+      ],
+      "effect": "read-only policy result; no numeric price fabrication",
+      "estimated_amount": null,
+      "consequential": false
+    }
+  ],
+  "shipping_observed": {
+    "enabled_methods": [
+      {
+        "zone_id": 1,
+        "method_id": "flat_rate",
+        "title": "ارسال با باربری یا تیپاکس به سراسر کشور (هزینه حمل پس‌کرایه)"
+      }
+    ],
+    "pricing": "پس‌کرایه/نیازمند تأیید حامل",
+    "amount_known": false
+  },
+  "security": {
+    "no_arbitrary_fetch": true,
+    "no_credentials": true,
+    "no_customer_order_export": true,
+    "no_price_stock_write": true,
+    "no_auto_purchase": true,
+    "no_auto_message_send": true,
+    "input_schemas_closed_with_additionalProperties_false": true
+  }
+}
