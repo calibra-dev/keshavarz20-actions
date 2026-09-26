@@ -15,7 +15,7 @@ def main(result_path, projection_path):
     p12u=load("growthos-phase12-results/ucp-readiness-contract.json")
     p14=load("growthos-phase14-results/summary.json")
     p15=load("growthos-phase15-results/summary.json")
-    fresh=load("phase19-results/upstream-refresh-20260926T201210Z.json")
+    fresh=load("phase19-results/upstream-refresh-latest.json")
 
     candidates=int(p11f.get("candidate_feed_rows") or 0)
     ready=int(p11f.get("fully_ready_rows") or 0)
@@ -28,7 +28,7 @@ def main(result_path, projection_path):
     checks=[]
     def add(name,v): checks.append({"name":name,"pass":bool(v)})
 
-    add("fresh_upstream_run_recorded",fresh.get("source_run_id")==36268168313 and fresh.get("observed_from_successful_steps") is True)
+    add("fresh_upstream_run_recorded",int(fresh.get("source_run_id") or 0)>0 and fresh.get("observed_from_successful_steps") is True)
     add("fresh_upstream_counts_match_persisted",int((fresh.get("phase11") or {}).get("candidate_rows") or 0)==candidates and int((fresh.get("phase11") or {}).get("ready_rows") or 0)==ready and int((fresh.get("phase15") or {}).get("source_verified_truth_brand_products") or 0)==int(counts.get("brand") or 0))
     add("fresh_upstream_statuses_pass",all(str((fresh.get(k) or {}).get("status","")).startswith("PASS_") for k in ["phase11","phase12","phase14","phase15"]))
     add("phase11_guarded_pass",p11s.get("ok") is True and str(p11s.get("status","")).startswith("PASS_"))
@@ -158,7 +158,7 @@ def main(result_path, projection_path):
         "growthos-phase12-results/summary.json":sha("growthos-phase12-results/summary.json"),
         "growthos-phase14-results/summary.json":sha("growthos-phase14-results/summary.json"),
         "growthos-phase15-results/summary.json":sha("growthos-phase15-results/summary.json"),
-        "phase19-results/upstream-refresh-20260926T201210Z.json":sha("phase19-results/upstream-refresh-20260926T201210Z.json")
+        "phase19-results/upstream-refresh-latest.json":sha("phase19-results/upstream-refresh-latest.json")
       },
       "external_submission":False,
       "site_mutations":0,
