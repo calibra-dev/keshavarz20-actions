@@ -6,9 +6,9 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 NEWS=ROOT/"daily-agri-news"
 
-spec=importlib.util.spec_from_file_location("news_v2",NEWS/"publish_queue_v2.py")
-v2=importlib.util.module_from_spec(spec); spec.loader.exec_module(v2)
-base=v2.base
+spec=importlib.util.spec_from_file_location("news_v3",NEWS/"publish_queue_v3.py")
+v3=importlib.util.module_from_spec(spec); spec.loader.exec_module(v3)
+base=v3.base
 
 out=Path(sys.argv[1]); out.parent.mkdir(parents=True,exist_ok=True)
 post_id=None; media_id=None
@@ -20,7 +20,8 @@ body=(
     "هدف، بررسی مسیر فنی ساخت پیش‌نویس، تصویر، متادیتا، دسته‌بندی و خواندن مجدد است.</p>"*10
     +"<h2>جمع‌بندی</h2><p>این یک تست فنی موقت است و پس از readback به زباله‌دان منتقل می‌شود.</p>"
     +"<h2>نظر کارشناسی کشاورز بیست</h2><p>هیچ نتیجه تجاری یا فنی از این تست استخراج نمی‌شود.</p>"
-    +'<h2>منابع</h2><p><a href="https://example.org/a">منبع آزمایشی اول</a> و <a href="https://example.edu/b">منبع آزمایشی دوم</a></p>'
+    +'<h2>منابع</h2><p><a href="https://www.fao.org/">FAO</a> و <a href="https://www.nrcs.usda.gov/">USDA NRCS</a></p>'
+    +'<h2>روش تهیه و بازبینی</h2><p>این payload فقط برای آزمون فنی است، پیش‌نویس می‌ماند و پس از readback حذف می‌شود. <a href="https://keshavarz20.com/editorial-policy/">سیاست تحریریه کشاورز بیست</a>.</p>'
 )
 p={
     "content_type":"news",
@@ -34,19 +35,24 @@ p={
     "seo_title":"آزمون موقت چرخه کامل موتور خبر کشاورز بیست",
     "meta_description":"این صفحه فقط پیش‌نویس موقت برای آزمون فنی چرخه موتور خبر کشاورز بیست است و پس از بررسی readback به زباله‌دان منتقل می‌شود.",
     "tags":["کشاورزی","آبیاری","آموزش"],
-    "source_urls":["https://example.org/a","https://example.edu/b"],
-    "source_names":["Example Org","Example EDU"],
+    "source_urls":["https://www.fao.org/","https://www.nrcs.usda.gov/"],
+    "source_names":["FAO","USDA NRCS"],
     "image_search_query":"agriculture farm",
     "image_title":"آزمون موقت موتور خبر",
     "alt_text":"تصویر آزمایشی کشاورزی برای تست موتور خبر",
     "selection_reason":"این payload فقط برای آزمون end-to-end مسیر فنی Publisher است و هیچ انتخاب خبری واقعی یا ادعای انتشار عمومی ندارد.",
-    "fact_check_notes":"هیچ ادعای خبری واقعی در این payload وجود ندارد؛ تنها مسیر فنی ساخت و readback بررسی می‌شود."
+    "fact_check_notes":"هیچ ادعای خبری واقعی در این payload وجود ندارد؛ تنها مسیر فنی ساخت و readback بررسی می‌شود.",
+    "editorial_disclosure":"این خروجی صرفاً آزمون فنی خودکار است، draft-only باقی می‌ماند، هیچ نویسنده یا بازبین انسانی ساختگی ندارد و پس از readback حذف می‌شود.",
+    "review_status":"human_review_required_before_publish",
+    "cover_title":"آزمون فنی موتور خبر",
+    "cover_subtitle":"پیش‌نویس موقت و حذف خودکار"
 }
 
 try:
-    v2.validate_payload_v2(p); steps.append({"step":"validate_payload","ok":True})
+    v3.validate_payload_v3(p); steps.append({"step":"validate_payload_v3","ok":True})
     source=base.commons_search(p["image_search_query"]); steps.append({"step":"commons_search","ok":True})
-    image_path=base.make_editorial_image(source); steps.append({"step":"render_webp","ok":image_path.exists()})
+    image_path=base.make_editorial_image(source); manifest=json.loads((base.OUT/"cover-render-manifest.json").read_text(encoding="utf-8")); visual_ok=image_path.exists() and manifest.get("qa_passed") is True and manifest.get("ai_text_rendering") is False; steps.append({"step":"render_v3_cover","ok":visual_ok,"renderer":manifest.get("renderer")});
+    if not visual_ok: raise RuntimeError("News v3 visual gate did not pass")
     media_id=base.upload_wp_image(None,image_path,p,source); steps.append({"step":"upload_media","ok":True,"media_id":media_id})
     post_id=base.create_draft(None,p,media_id,source); steps.append({"step":"create_draft","ok":True,"post_id":post_id})
     verified=base.verify(None,post_id)
