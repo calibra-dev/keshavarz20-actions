@@ -65,7 +65,7 @@ jobs:
           set -euo pipefail
           python engine-gallery-product-creator/scripts/generate_preview.py "${{ steps.req.outputs.path }}"
 
-      - name: Validate five preview assets
+      - name: Validate preview assets
         shell: bash
         run: |
           set -euo pipefail
