@@ -17,6 +17,29 @@ def slen(v):
     except:return -1
 content=edit.get("content") or {}
 meta=edit.get("meta") if isinstance(edit.get("meta"),dict) else {}
+edata_raw=meta.get("_elementor_data") or ""
+try:
+    edata=json.loads(edata_raw) if isinstance(edata_raw,str) and edata_raw.strip() else edata_raw
+except Exception:
+    edata=None
+elementor_hits=[]
+terms=["نظر کارشناسی","اگر چند ردیف","جمع‌بندی"]
+def walk_elementor(node,path="root"):
+    if isinstance(node,dict):
+        settings=node.get("settings") if isinstance(node.get("settings"),dict) else {}
+        for key,val in settings.items():
+            if isinstance(val,str) and any(t in val for t in terms):
+                elementor_hits.append({
+                    "path":path,"id":node.get("id"),"elType":node.get("elType"),
+                    "widgetType":node.get("widgetType"),"setting":key,
+                    "length":len(val),"terms":[t for t in terms if t in val],
+                    "preview":re.sub(r"\\s+"," ",val)[:1200]
+                })
+        for key,val in node.items():
+            if key!="settings": walk_elementor(val,path+"."+str(key))
+    elif isinstance(node,list):
+        for i,val in enumerate(node): walk_elementor(val,path+"["+str(i)+"]")
+walk_elementor(edata)
 report={
  "id":PID,
  "top_level_fields":sorted(edit.keys()),
@@ -33,6 +56,8 @@ report={
  },
  "view_content":{"len":len(((view.get("content") or {}).get("rendered") or "")),"sha":h(((view.get("content") or {}).get("rendered") or ""))},
  "revisions":[{"id":x.get("id"),"modified_gmt":x.get("modified_gmt"),"raw_len":len(((x.get("content") or {}).get("raw") or "")),"raw_sha":h(((x.get("content") or {}).get("raw") or "")),"rendered_len":len(((x.get("content") or {}).get("rendered") or "")),"rendered_sha":h(((x.get("content") or {}).get("rendered") or ""))} for x in revs],
- "links_keys":sorted((edit.get("_links") or {}).keys())
+ "links_keys":sorted((edit.get("_links") or {}).keys()),
+ "elementor_hits":elementor_hits,
+ "elementor_hit_count":len(elementor_hits)
 }
 print(json.dumps(report,ensure_ascii=False))
