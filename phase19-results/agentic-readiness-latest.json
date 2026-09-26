@@ -1,50 +1,68 @@
 {
   "phase": 19,
-  "status": "PASS",
-  "generated_at_utc": "2026-09-19T05:06:12.596969+00:00",
-  "acceptance": {
-    "page_feed_schema_parity": {
-      "products": 30,
-      "parity_pass": 30,
-      "parity_fail": 0,
-      "schema_missing": 0,
-      "offer_missing": 0,
-      "sku_mismatch": 0,
-      "availability_mismatch": 0,
-      "price_mismatch": 0,
-      "store_currency": "IRT"
-    },
-    "feed_api_specs_and_region_gates_documented": true,
-    "external_eligibility_not_invented": true,
-    "payment_checkout_untouched": true
-  },
+  "version": "phase19-agentic-readiness-v2",
+  "title": "Feeds, APIs & Agentic Readiness",
+  "status": "PASS_V2_FULL_CATALOG_GUARDED",
+  "generated_at_utc": "2026-09-26T20:14:15.840006+00:00",
+  "check_count": 39,
+  "passed_checks": 39,
+  "failed_checks": [],
   "readiness": {
-    "product_count": 30,
-    "openai_discovery_rows_fully_ready": 0,
-    "rows_missing_brand": 8,
-    "rows_with_unresolved_irt_to_iso4217_price_mapping": 30,
-    "description_layer_required_before_openai_submission": true,
-    "external_submission_blocked_until_required_fields_and_legal_program_gates_are_satisfied": true
+    "candidate_rows": 652,
+    "fully_ready_rows": 471,
+    "ready_percent": 72.24,
+    "rows_missing_brand": 158,
+    "rows_missing_price": 90,
+    "rows_missing_description": 0,
+    "rows_missing_image": 0,
+    "source_verified_gtins": 0,
+    "products_without_woo_brand": 158
+  },
+  "acceptance": {
+    "full_catalog_governed": true,
+    "openai_feed_architecture_ready_partial": true,
+    "google_compatible_feed_fail_closed": true,
+    "ucp_fail_closed_until_authorized": true,
+    "identifier_truth_preserved": true,
+    "entity_truth_preserved": false,
+    "external_submission": false,
+    "payment_checkout_mutations": 0
   },
   "checks": [
     {
-      "name": "internal_feed_nonempty",
+      "name": "fresh_upstream_run_recorded",
       "pass": true
     },
     {
-      "name": "page_feed_schema_parity_all_pass",
+      "name": "fresh_upstream_counts_match_persisted",
       "pass": true
     },
     {
-      "name": "schema_offer_sku_availability_price_mismatches_zero",
+      "name": "fresh_upstream_statuses_pass",
       "pass": true
     },
     {
-      "name": "phase9_canonical_pim_pass",
+      "name": "phase11_guarded_pass",
       "pass": true
     },
     {
-      "name": "stable_ids_complete",
+      "name": "full_catalog_scope",
+      "pass": true
+    },
+    {
+      "name": "stable_item_ids_complete",
+      "pass": true
+    },
+    {
+      "name": "stable_item_ids_unique",
+      "pass": true
+    },
+    {
+      "name": "titles_complete",
+      "pass": true
+    },
+    {
+      "name": "descriptions_complete",
       "pass": true
     },
     {
@@ -52,19 +70,103 @@
       "pass": true
     },
     {
-      "name": "unknown_identifiers_not_fabricated",
+      "name": "images_complete",
       "pass": true
     },
     {
-      "name": "openai_submission_not_claimed",
+      "name": "availability_complete",
       "pass": true
     },
     {
-      "name": "openai_checkout_not_claimed",
+      "name": "seller_name_complete",
       "pass": true
     },
     {
-      "name": "google_ucp_participation_not_invented",
+      "name": "readiness_math_consistent",
+      "pass": true
+    },
+    {
+      "name": "known_sku_conflict_not_feed_identity",
+      "pass": true
+    },
+    {
+      "name": "phase11_external_feed_not_submitted",
+      "pass": true
+    },
+    {
+      "name": "phase11_partner_access_not_invented",
+      "pass": true
+    },
+    {
+      "name": "phase12_policy_guard_pass",
+      "pass": true
+    },
+    {
+      "name": "phase12_no_fake_country_address",
+      "pass": true
+    },
+    {
+      "name": "phase12_ucp_profile_not_published",
+      "pass": true
+    },
+    {
+      "name": "phase12_ucp_adapter_not_claimed",
+      "pass": true
+    },
+    {
+      "name": "phase12_catalog_count_matches",
+      "pass": true
+    },
+    {
+      "name": "phase14_no_gtin_fabrication",
+      "pass": true
+    },
+    {
+      "name": "phase14_verified_gtin_truth_preserved",
+      "pass": true
+    },
+    {
+      "name": "phase14_no_fake_resolver",
+      "pass": true
+    },
+    {
+      "name": "phase15_entity_pass",
+      "pass": true
+    },
+    {
+      "name": "phase15_brand_truth_consistent",
+      "pass": true
+    },
+    {
+      "name": "phase15_brand_counts_match",
+      "pass": true
+    },
+    {
+      "name": "phase15_no_identity_fabrication",
+      "pass": true
+    },
+    {
+      "name": "openai_required_field_contract_current",
+      "pass": true
+    },
+    {
+      "name": "openai_snapshot_delivery_guarded",
+      "pass": true
+    },
+    {
+      "name": "openai_no_submission_claim",
+      "pass": true
+    },
+    {
+      "name": "openai_no_checkout_claim",
+      "pass": true
+    },
+    {
+      "name": "google_feed_submission_guarded",
+      "pass": true
+    },
+    {
+      "name": "google_ucp_access_not_invented",
       "pass": true
     },
     {
@@ -72,36 +174,156 @@
       "pass": true
     },
     {
+      "name": "legal_terms_not_falsely_accepted",
+      "pass": true
+    },
+    {
       "name": "payment_checkout_untouched",
+      "pass": true
+    },
+    {
+      "name": "secrets_not_persisted",
       "pass": true
     }
   ],
-  "protocol_gates": {
-    "openai": {
-      "product_feed_required_fields": [
-        "item_id",
-        "title",
-        "description",
-        "url",
-        "brand",
-        "seller_name",
-        "image_url",
-        "availability",
-        "price"
-      ],
-      "unknown_optional_values_must_be_omitted_not_fabricated": true,
-      "current_price_and_availability_required": true,
-      "merchant_acceptance_or_feed_submission_claimed": false,
-      "checkout_claimed": false,
-      "legal_and_trade_compliance_review_required_before_submission": true
+  "source_summaries": {
+    "phase11": {
+      "ok": true,
+      "phase": 11,
+      "title": "ChatGPT Search",
+      "generated_at_utc": "2026-09-26T04:58:50.513905+00:00",
+      "status": "PASS_GUARDED_FEED_READY_PARTNER_APPROVAL_REQUIRED",
+      "oai_searchbot_allowed": true,
+      "core_citable_surfaces": "13/13",
+      "openai_feed_ready_rows": 471,
+      "openai_feed_candidate_rows": 652,
+      "openai_feed_ready_percent": 72.24,
+      "direct_feed_submitted": false,
+      "direct_feed_partner_access_proven": false,
+      "fabricated_product_fields": 0,
+      "new_public_urls_created": 0,
+      "next_gate": "Improve only source-backed catalog gaps; submit a direct OpenAI feed only after approved partner access is actually granted."
     },
-    "google_ucp": {
-      "observed_scope": "UCP integration hub gradually rolling out in the United States; scope applies only to products sold within the United States",
-      "observed_checkout_gate": "checkout is early access for select participating merchants",
-      "merchant_center_participation_claimed": false,
-      "us_product_scope_claimed": false,
-      "checkout_claimed": false
+    "phase12": {
+      "ok": true,
+      "phase": 12,
+      "title": "Google Merchant / UCP",
+      "generated_at_utc": "2026-09-26T05:00:17.329127+00:00",
+      "status": "PASS_ARCHITECTURE_READY_POLICY_GUARD",
+      "merchant_center_iran_restriction_respected": true,
+      "merchant_center_submission_attempted": false,
+      "fake_country_or_address_used": false,
+      "ucp_spec_version": "2026-04-08",
+      "ucp_public_profile_published": false,
+      "ucp_live_adapter_claimed": false,
+      "merchant_basic_ready_rows": 471,
+      "merchant_candidate_rows": 652,
+      "woo_store_products_public": true,
+      "woo_store_cart_public": true,
+      "next_gate": "Only activate Merchant/UCP publication after real eligibility/authorization and a tested authenticated UCP adapter; until then keep architecture ready and public claims off."
+    },
+    "phase14": {
+      "ok": true,
+      "phase": 14,
+      "title": "GS1 / GS1 Digital Link",
+      "generated_at_utc": "2026-09-26T07:34:08.792855+00:00",
+      "status": "PASS_GUARDED_NO_VERIFIED_GS1_IDS",
+      "published_products": 652,
+      "source_verified_gtins": 0,
+      "woo_identifier_candidate_products": 0,
+      "schema_gtin_candidate_products": 0,
+      "unbacked_schema_gtin_products": 0,
+      "digital_links_emitted": 0,
+      "gtins_fabricated": 0,
+      "skus_promoted_to_gtin": 0,
+      "public_resolver_urls_created": 0,
+      "next_external_gate": "Obtain manufacturer/GS1-issued GTIN evidence for products that actually have a GTIN; do not infer identifiers from SKU."
+    },
+    "phase15": {
+      "ok": true,
+      "phase": 15,
+      "title": "Brand & Seller Entity OS",
+      "generated_at_utc": "2026-09-26T07:48:03.189021+00:00",
+      "status": "PASS_ENTITY_OS_WITH_SOURCE_GAPS",
+      "published_products": 652,
+      "seller_entity_found": true,
+      "seller_name_consistent": true,
+      "phase3_catalog_hard_parity_pass": true,
+      "brand_terms": 22,
+      "source_verified_truth_brand_products": 494,
+      "brand_truth_mismatches": 0,
+      "products_without_woo_brand": 158,
+      "identity_fields_fabricated": 0,
+      "sameAs_links_fabricated": 0,
+      "glns_fabricated": 0,
+      "schema_site_writes": 0,
+      "next_backlog": [
+        "Fill only source-backed missing product brands.",
+        "Verify official external brand/seller profiles before adding sameAs.",
+        "Consider OnlineStore subtype at the canonical schema source only if it can be changed without duplicating Organization."
+      ]
     }
+  },
+  "fresh_upstream_refresh_evidence": {
+    "phase": 19,
+    "version": "phase19-v2-upstream-refresh-evidence",
+    "source_run_id": 36268168313,
+    "observed_from_successful_steps": true,
+    "observed_at_utc": "2026-09-26T20:12:10Z",
+    "phase11": {
+      "status": "PASS_GUARDED_FEED_READY_PARTNER_APPROVAL_REQUIRED",
+      "generated_at_utc": "2026-09-26T20:04:53.137819+00:00",
+      "candidate_rows": 652,
+      "ready_rows": 471,
+      "ready_percent": 72.24,
+      "oai_searchbot_allowed": true,
+      "core_citable_surfaces": "13/13",
+      "direct_feed_submitted": false,
+      "direct_feed_partner_access_proven": false
+    },
+    "phase12": {
+      "status": "PASS_ARCHITECTURE_READY_POLICY_GUARD",
+      "generated_at_utc": "2026-09-26T20:05:49.934823+00:00",
+      "candidate_rows": 652,
+      "ready_rows": 471,
+      "merchant_submission_attempted": false,
+      "fake_country_or_address_used": false,
+      "ucp_public_profile_published": false,
+      "ucp_live_adapter_claimed": false,
+      "woo_store_products_public": true,
+      "woo_store_cart_public": true
+    },
+    "phase14": {
+      "status": "PASS_GUARDED_NO_VERIFIED_GS1_IDS",
+      "generated_at_utc": "2026-09-26T20:05:50.085132+00:00",
+      "published_products": 652,
+      "source_verified_gtins": 0,
+      "gtins_fabricated": 0,
+      "skus_promoted_to_gtin": 0,
+      "public_resolver_urls_created": 0
+    },
+    "phase15": {
+      "status": "PASS_ENTITY_OS_WITH_SOURCE_GAPS",
+      "generated_at_utc": "2026-09-26T20:12:04.034537+00:00",
+      "published_products": 652,
+      "source_verified_truth_brand_products": 494,
+      "products_without_woo_brand": 158,
+      "brand_truth_mismatches": 0,
+      "identity_fields_fabricated": 0,
+      "sameAs_links_fabricated": 0,
+      "glns_fabricated": 0,
+      "seller_entity_found": true,
+      "seller_name_consistent": true
+    },
+    "note": "Persisted from the successful upstream refresh steps of GitHub Actions run 36268168313. The run failed only in the downstream Phase 19 validator."
+  },
+  "input_sha256": {
+    "phase19/agentic-readiness.json": "7ed2719c0687de4c03e2aca0413b60f40836a56204c87cca44b843d4f66d8b6f",
+    "growthos-phase11-results/openai-product-feed-readiness.json": "ead61ccbd84071b72f8755fe50147f7e16d0585b824814f642d7badbed29fe12",
+    "growthos-phase12-results/summary.json": "f95526e589cfedc43ba31eaf86795efc94c431aa8b533bce69d713b2a396822b",
+    "growthos-phase14-results/summary.json": "e76501d6f24390fdbe98e920474b724134cbc09bf1fdb367d88817eb982a52f5",
+    "growthos-phase15-results/summary.json": "c5a88bd1322c4c49eaa81fd4d5cdf8229623f329c6a356e32d5801775228f025",
+    "phase19-results/upstream-refresh-20260926T201210Z.json": "9ae57c16fa7e03caf2101bc9d4d21287cb2c0af86448312de5bc726d895b2058"
   },
   "external_submission": false,
   "site_mutations": 0,
