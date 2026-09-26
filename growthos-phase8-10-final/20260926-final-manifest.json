@@ -1,0 +1,95 @@
+{
+  "program": "Keshavarz20 AI Growth OS",
+  "scope": "phases 8-10",
+  "generated_at_utc": "2026-09-26T04:45:18.205Z",
+  "overall_status": "PASS_WITH_RECORDED_EXTERNAL_MEASUREMENT_GAPS",
+  "phase8": {
+    "status": "PASS_VERIFIED_WRITE",
+    "reused_existing_tools": 6,
+    "enhanced_existing_pages": [
+      {
+        "id": 144266,
+        "slug": "irrigation-pipe-size-selector"
+      },
+      {
+        "id": 145286,
+        "slug": "request-proforma"
+      }
+    ],
+    "formula_qa": {
+      "flow_m3h": 10,
+      "velocity_m_s": 1.5,
+      "dmin_mm": 48.558,
+      "pass": true
+    },
+    "new_urls_created": 0
+  },
+  "phase9": {
+    "status": "PASS_VERIFIED_COMPLETE",
+    "tools": "8/8",
+    "hubs": "5/5",
+    "legacy_proforma_routes": "2/2",
+    "accessibility_controls": "15/15",
+    "canonical_proforma_owner": {
+      "id": 145286,
+      "slug": "request-proforma"
+    },
+    "new_urls_created": 0,
+    "redirects_created": 0
+  },
+  "phase10": {
+    "status": "PASS_MEASUREMENT_SYSTEM_ACTIVE_WITH_EXTERNAL_ENGINE_GAPS",
+    "prompt_bank": 200,
+    "instrumentation": "8/8",
+    "search_console": {
+      "date_min": "2026-08-29",
+      "date_max": "2026-09-25",
+      "visible_rows": 2685,
+      "visible_clicks": 240,
+      "visible_impressions": 6383,
+      "irrigation_rows": 954,
+      "irrigation_clicks": 41,
+      "irrigation_impressions": 1934
+    },
+    "ga4": {
+      "sessions": 1269,
+      "engaged_sessions": 520,
+      "key_events": 41,
+      "add_to_cart": 20,
+      "begin_checkout": 15,
+      "purchases_observed": 0,
+      "ai_referral_sessions": 2
+    },
+    "canonical_tool_visibility": {
+      "drip_calculator": {
+        "clicks": 32,
+        "impressions": 584
+      },
+      "other_new_tool_urls": {
+        "clicks": 0,
+        "impressions": 0,
+        "note": "exact-URL snapshot only; not zero intent demand"
+      }
+    },
+    "measurement_events": [
+      "growthos_measurement_ready",
+      "growthos_flow_step",
+      "growthos_tool_result",
+      "growthos_tool_step",
+      "add_to_cart",
+      "begin_checkout",
+      "purchase"
+    ],
+    "google_generative_ai": "Official first-party report exists, but dedicated report data is not exposed through the connected connector in this run.",
+    "bing_ai": "Official AI Performance metrics exist; connected Bing data remained temporarily unavailable with ThrottleIP after retry.",
+    "fabricated_citation_counts": 0
+  },
+  "safeguards": {
+    "prices_changed": false,
+    "stock_changed": false,
+    "discounts_changed": false,
+    "users_roles_changed": false,
+    "wpvibe_used": false
+  },
+  "next_observation_gate": "After real traffic reaches the updated tools, verify growthos_* event arrival in GA4 and populate AI prompt-bank result fields only from direct engine observations or first-party AI reports."
+}
