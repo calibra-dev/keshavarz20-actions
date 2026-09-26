@@ -21,8 +21,9 @@ def main():
     assert m["approval_required"] is True
     assert m["publish_ready"] is False
     assert m["gallery_write_performed"] is False
-    assert m["asset_count"] == 5
-    assert len(m["assets"]) == 5
+    expected_count = int(m["asset_count"])
+    assert expected_count in (5, 8)
+    assert len(m["assets"]) == expected_count
     hashes=[]
     for i, asset in enumerate(m["assets"],1):
         p=d/asset["file"]
@@ -33,6 +34,6 @@ def main():
         digest=sha256(p)
         assert digest==asset["sha256"], (p,digest,asset["sha256"])
         hashes.append(digest)
-    assert len(set(hashes))==5, "duplicate slide binaries detected"
-    print(json.dumps({"ok":True,"batch_id":a.batch_id,"product_id":m["product_id"],"asset_count":5,"gallery_write_performed":False},ensure_ascii=False))
+    assert len(set(hashes))==expected_count, "duplicate slide binaries detected"
+    print(json.dumps({"ok":True,"batch_id":a.batch_id,"product_id":m["product_id"],"asset_count":expected_count,"gallery_write_performed":False},ensure_ascii=False))
 if __name__=="__main__": main()
