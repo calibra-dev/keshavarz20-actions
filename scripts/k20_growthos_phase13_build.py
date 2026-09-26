@@ -99,14 +99,15 @@ for kind,pid,slug,expected in TARGETS:
     origin_meta=bool(re.search(r'<meta[^>]+http-equiv=["\']origin-trial["\']',public_text,re.I))
     origin_trial_any=origin_trial_any or origin_header or origin_meta
     tools_ok=all(('name:"'+x+'"') in raw for x in expected)
+    public_signal=("__k20WebMCPPhase13" in public_text and all(x in public_text for x in expected))
     results.append({
       "kind":kind,"id":pid,"slug":slug,"status":rb.get("status"),"changed":changed,
       "marker_count":raw.count(START),"phase9_marker_count":raw.count("K20-GROWTHOS-PHASE9-FLOW-START"),
       "phase10_marker_count":raw.count("K20-GROWTHOS-PHASE10-MEASUREMENT-START"),
       "expected_tools":expected,"tools_in_readback":tools_ok,
-      "public_http":public.status_code,"public_marker":START in public_text,
+      "public_http":public.status_code,"public_marker_comment":START in public_text,"public_webmcp_signal":public_signal,
       "origin_trial_header":origin_header,"origin_trial_meta":origin_meta,
-      "verified":rb.get("status")=="publish" and raw.count(START)==1 and tools_ok and public.status_code==200 and START in public_text
+      "verified":rb.get("status")=="publish" and raw.count(START)==1 and tools_ok and public.status_code==200 and public_signal
     })
 
 tool_contract={
