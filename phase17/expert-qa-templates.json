@@ -6,11 +6,12 @@
     "direct_answer": "پاسخ فقط پس از مشخص شدن کاربرد، ابعاد/دبی/فشار یا مشخصات فنی مرتبط داده شود؛ حدس ممنوع است.",
     "method_or_basis": "مشخصات واقعی محصول + شرایط کاربر + جدول سازگاری/محاسبه معتبر",
     "evidence_sources": [],
-    "as_of_date": "2026-09-18",
+    "as_of_date": "2026-09-26",
     "limits": "بدون داده فنی کافی، پاسخ باید محدودیت را صریح اعلام کند.",
     "suitable_for": "پاسخ کارشناسی مبتنی بر داده واقعی",
     "not_suitable_for": "توصیه قطعی بدون داده یا صرفاً بر اساس کلمات کلیدی",
-    "reviewer": "real_expert_required_before_publication"
+    "reviewer": "real_expert_required_before_publication",
+    "structured_data_policy": "editorial_template_only_no_qapage"
   },
   {
     "template_id": "expert-qa-02",
@@ -19,10 +20,71 @@
     "direct_answer": "نتیجه باید با ورودی واقعی دوباره بررسی شود و خروجی تخمینی نباید جای طراحی هیدرولیکی را بگیرد.",
     "method_or_basis": "واحدها، فرض‌ها، محدودیت‌های ابزار و داده فنی پروژه",
     "evidence_sources": [],
-    "as_of_date": "2026-09-18",
+    "as_of_date": "2026-09-26",
     "limits": "برای طراحی شبکه، اختلاف ارتفاع، طول مسیر، افت فشار و زون‌بندی نیاز به بررسی تخصصی دارد.",
     "suitable_for": "شفاف‌کردن مرز تخمین و طراحی",
     "not_suitable_for": "تضمین عملکرد پروژه بدون داده میدانی",
-    "reviewer": "real_expert_required_before_publication"
+    "reviewer": "real_expert_required_before_publication",
+    "structured_data_policy": "editorial_template_only_no_qapage"
+  },
+  {
+    "template_id": "expert-qa-03",
+    "status": "template_only",
+    "question": "آیا این دو اتصال یا قطعه واقعاً با هم سازگارند؟",
+    "direct_answer": "سازگاری فقط با مشخصات منبع‌تاییدشده مانند سایز واقعی، نوع رزوه/اتصال، فشار کاری و دیتاشیت دو طرف تایید شود؛ هم‌نام بودن سایز کافی نیست.",
+    "method_or_basis": "دیتاشیت سازنده + ابعاد واقعی + نوع اتصال + فشار کاری + evidence registry",
+    "evidence_sources": [],
+    "as_of_date": "2026-09-26",
+    "limits": "بدون edge سازگاری تاییدشده، پاسخ باید «نیازمند تأیید» بماند.",
+    "suitable_for": "کنترل سازگاری فنی قبل از خرید",
+    "not_suitable_for": "استنتاج سازگاری از نام یا سایز اسمی",
+    "reviewer": "real_expert_required_before_publication",
+    "structured_data_policy": "editorial_template_only_no_qapage"
+  },
+  {
+    "template_id": "expert-qa-04",
+    "status": "template_only",
+    "question": "برای این آب و دبی چه فیلتری مناسب است؟",
+    "direct_answer": "انتخاب فیلتر باید از منبع آب، نوع و بار ذرات، دبی، نیاز میکرون، افت فشار مجاز و مشخصات سازنده شروع شود؛ یک مدل عمومی برای همه شرایط توصیه نمی‌شود.",
+    "method_or_basis": "آنالیز آب/شرایط منبع + دبی واقعی + نیاز سیستم + مشخصات معتبر فیلتر",
+    "evidence_sources": [],
+    "as_of_date": "2026-09-26",
+    "limits": "بدون داده آب و دبی، پیشنهاد فقط می‌تواند مقدماتی باشد.",
+    "suitable_for": "انتخاب مرحله‌ای و داده‌محور فیلتراسیون",
+    "not_suitable_for": "توصیه قطعی صرفاً بر اساس قطر اتصال",
+    "reviewer": "real_expert_required_before_publication",
+    "structured_data_policy": "editorial_template_only_no_qapage"
+  },
+  {
+    "template_id": "expert-qa-05",
+    "status": "template_only",
+    "question": "چند متر نوار تیپ و چند رول لازم دارم؟",
+    "direct_answer": "ابتدا هندسه مزرعه و تعداد ردیف‌ها محاسبه می‌شود؛ سپس طول هر لترال باید جداگانه با محدودیت هیدرولیکی همان تیپ کنترل شود.",
+    "method_or_basis": "هندسه مزرعه + خروجی deterministic calculator + جدول فنی همان محصول",
+    "evidence_sources": [
+      "phase17-evidence-001"
+    ],
+    "as_of_date": "2026-09-26",
+    "limits": "محاسبه متراژ به‌تنهایی فشار، افت و یکنواختی آبیاری را تضمین نمی‌کند.",
+    "suitable_for": "برآورد اولیه متراژ و تعداد رول",
+    "not_suitable_for": "طراحی نهایی هیدرولیکی بدون مشخصات شبکه",
+    "reviewer": "real_expert_required_before_publication",
+    "structured_data_policy": "editorial_template_only_no_qapage"
+  },
+  {
+    "template_id": "expert-qa-06",
+    "status": "template_only",
+    "question": "آیا SKU، بارکد یا شناسه این محصول را می‌توان به‌عنوان GTIN منتشر کرد؟",
+    "direct_answer": "فقط وقتی مدرک معتبر سازنده یا GS1 همان شناسه را به‌عنوان GTIN تایید کند؛ SKU داخلی یا حدس از روی الگو نباید به GTIN تبدیل شود.",
+    "method_or_basis": "مدرک رسمی سازنده/GS1 + تطبیق با محصول دقیق",
+    "evidence_sources": [
+      "phase17-evidence-005"
+    ],
+    "as_of_date": "2026-09-26",
+    "limits": "نبود مدرک فعلی به معنی نبود دائمی GTIN نیست؛ وضعیت باید با منبع جدید بازبینی شود.",
+    "suitable_for": "کنترل حقیقت شناسه محصول",
+    "not_suitable_for": "ساخت یا استنتاج GTIN از SKU",
+    "reviewer": "real_expert_required_before_publication",
+    "structured_data_policy": "editorial_template_only_no_qapage"
   }
 ]
