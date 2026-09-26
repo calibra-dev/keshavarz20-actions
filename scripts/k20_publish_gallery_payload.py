@@ -80,21 +80,35 @@ def main():
             uploaded.append({"id": mid, "url": media.get("source_url"), "file": filename})
 
         new_ids = [x["id"] for x in uploaded]
-        merged_ids = before_ids + [i for i in new_ids if i not in before_ids]
-        wp("PUT", f"/wc/v3/products/{product_id}", json={"images": [{"id": i} for i in merged_ids]})
+        bind_body = {
+            "action": "asset.gallery.append",
+            "request_id": req_path.stem + "-bind",
+            "payload": {"product_id": product_id, "attachment_ids": new_ids},
+        }
+        br = requests.post(
+            SITE + "/wp-json/keshavarz20-ops/v3/execute",
+            auth=AUTH,
+            json=bind_body,
+            timeout=180,
+        )
+        bind_payload = br.json() if br.content else {}
+        if br.status_code < 200 or br.status_code >= 300 or not bind_payload.get("ok"):
+            raise RuntimeError(
+                f"Bridge gallery append failed: http={br.status_code} "
+                f"code={bind_payload.get('code')} message={bind_payload.get('message')}"
+            )
 
         final_ids = []
         verified = False
-        for _ in range(12):
+        for attempt in range(12):
             time.sleep(3)
-            final = wp("GET", f"/wc/v3/products/{product_id}")
+            final = wp("GET", f"/wc/v3/products/{product_id}?context=edit&_cb={int(time.time())}-{attempt}")
             final_ids = [int(x["id"]) for x in final.get("images", [])]
             if all(i in final_ids for i in before_ids) and all(i in final_ids for i in new_ids):
                 verified = True
                 break
 
         if not verified:
-            wp("PUT", f"/wc/v3/products/{product_id}", json={"images": [{"id": i} for i in before_ids]})
             result = {
                 "ok": False,
                 "verified": False,
@@ -103,8 +117,8 @@ def main():
                 "before_image_ids": before_ids,
                 "uploaded": uploaded,
                 "final_image_ids": final_ids,
-                "restored_previous_gallery": True,
-                "error": "gallery readback missing one or more expected ids",
+                "binding": bind_payload.get("result"),
+                "error": "Bridge append returned OK but gallery readback did not confirm all expected ids",
             }
             result_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
             print(json.dumps(result, ensure_ascii=False, indent=2))
@@ -124,6 +138,7 @@ def main():
             "format": "webp",
             "dimensions": "640x640",
             "source_mode": "urls" if req.get("source_urls") else "payload_dir",
+            "binding_method": "bridge-v3.3-asset.gallery.append",
             "published_at_epoch": int(time.time()),
         }
         result_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
