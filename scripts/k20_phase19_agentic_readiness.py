@@ -58,7 +58,10 @@ def main(result_path, projection_path):
 
     add("phase15_entity_pass",p15.get("ok") is True and p15.get("seller_entity_found") is True and p15.get("seller_name_consistent") is True)
     add("phase15_brand_truth_consistent",int(p15.get("brand_truth_mismatches",99))==0)
-    add("phase15_brand_counts_match",int(p15.get("source_verified_truth_brand_products") or 0)==int(counts.get("brand") or 0) and int(p15.get("products_without_woo_brand") or 0)==missing_brand)
+    add("phase15_brand_counts_match",
+    int(p15.get("source_verified_truth_brand_products") or 0)==int(counts.get("brand") or 0)
+    and int(p15.get("external_brand_truth_gap_products") or 0)==missing_brand
+    and int(p15.get("products_without_woo_brand") or 0)==0)
     add("phase15_no_identity_fabrication",int(p15.get("identity_fields_fabricated",99))==0 and int(p15.get("sameAs_links_fabricated",99))==0 and int(p15.get("glns_fabricated",99))==0)
 
     oa=cfg["openai_stable_feed"]; gu=cfg["google_ucp"]; gg=cfg["google_compatible_feed"]; lg=cfg["legal_policy_gate"]
@@ -137,7 +140,9 @@ def main(result_path, projection_path):
         "rows_missing_description":missing_description,
         "rows_missing_image":missing_image,
         "source_verified_gtins":int(p14.get("source_verified_gtins") or 0),
-        "products_without_woo_brand":int(p15.get("products_without_woo_brand") or 0)
+        "products_without_woo_brand":int(p15.get("products_without_woo_brand") or 0),
+        "external_brand_truth_gap_products":int(p15.get("external_brand_truth_gap_products") or 0),
+        "pseudo_brand_products":int(p15.get("pseudo_brand_products") or 0)
       },
       "acceptance":{
         "full_catalog_governed":all(x["pass"] for x in checks if x["name"] in ["full_catalog_scope","stable_item_ids_complete","stable_item_ids_unique","titles_complete","descriptions_complete","canonical_urls_complete","images_complete","availability_complete","seller_name_complete"]),
