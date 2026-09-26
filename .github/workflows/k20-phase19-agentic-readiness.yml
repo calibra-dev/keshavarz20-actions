@@ -93,6 +93,8 @@ jobs:
               "published_products":p15.get("published_products"),
               "source_verified_truth_brand_products":p15.get("source_verified_truth_brand_products"),
               "products_without_woo_brand":p15.get("products_without_woo_brand"),
+              "external_brand_truth_gap_products":p15.get("external_brand_truth_gap_products"),
+              "pseudo_brand_products":p15.get("pseudo_brand_products"),
               "brand_truth_mismatches":p15.get("brand_truth_mismatches"),
               "identity_fields_fabricated":p15.get("identity_fields_fabricated"),
               "sameAs_links_fabricated":p15.get("sameAs_links_fabricated"),
@@ -106,14 +108,14 @@ jobs:
           PY
       - name: Validate Phase 19 v2 full catalog readiness
         run: |
-          python scripts/k20_phase19_agentic_readiness.py phase19-results/agentic-readiness-latest.json phase19-results/product-discovery-readiness-feed.json             phase19-results/upstream-refresh-latest.json
+          python scripts/k20_phase19_agentic_readiness.py phase19-results/agentic-readiness-latest.json phase19-results/product-discovery-readiness-feed.json
       - name: Persist sanitized read-only evidence
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f             growthos-phase11-results/chatgpt-search-crawl-audit.json             growthos-phase11-results/openai-product-feed-readiness.json             growthos-phase11-results/summary.json             growthos-phase12-results/merchant-field-map.json             growthos-phase12-results/ucp-readiness-contract.json             growthos-phase12-results/summary.json             growthos-phase14-results/digital-link-contract.json             growthos-phase14-results/identifier-registry.json             growthos-phase14-results/summary.json             growthos-phase15-results/brand-entity-registry.json             growthos-phase15-results/entity-graph.json             growthos-phase15-results/entity-parity-audit.json             growthos-phase15-results/seller-entity-registry.json             growthos-phase15-results/summary.json             phase19-results/agentic-readiness-latest.json             phase19-results/product-discovery-readiness-feed.json
+          git add -f             growthos-phase11-results/chatgpt-search-crawl-audit.json             growthos-phase11-results/openai-product-feed-readiness.json             growthos-phase11-results/summary.json             growthos-phase12-results/merchant-field-map.json             growthos-phase12-results/ucp-readiness-contract.json             growthos-phase12-results/summary.json             growthos-phase14-results/digital-link-contract.json             growthos-phase14-results/identifier-registry.json             growthos-phase14-results/summary.json             growthos-phase15-results/brand-entity-registry.json             growthos-phase15-results/entity-graph.json             growthos-phase15-results/entity-parity-audit.json             growthos-phase15-results/seller-entity-registry.json             growthos-phase15-results/summary.json             phase19-results/agentic-readiness-latest.json             phase19-results/product-discovery-readiness-feed.json             phase19-results/upstream-refresh-latest.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "phase19 v2: record full catalog agentic readiness"
           for attempt in 1 2 3 4 5; do
