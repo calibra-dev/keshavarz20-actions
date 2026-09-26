@@ -19,4 +19,7 @@ for name,text in [("raw",raw),("rendered",rendered),("public",pub.text)]:
       "itrc":"https://itrc.org/projects/evals.htm" in text
     }
 checks["public_http"]=pub.status_code
+for term in ["نظر کارشناسی کشاورز بیست","k20-phase16-deep-review-v1","k20-phase16-gutenberg-test-v1"]:
+    i=raw.find(term)
+    checks["snippet_"+term]=raw[max(0,i-1500):i+3000] if i>=0 else None
 print(json.dumps(checks,ensure_ascii=False))
