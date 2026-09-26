@@ -46,6 +46,11 @@ for k,v in (data.get("meta") or {}).items():
             walk_dec(parsed)
             row["json_parse"]=True
             row["decoded_hits"]=found[:20]
+            try:
+                node=parsed[0]["elements"][0]["elements"][0]
+                row["target_node"]={"id":node.get("id"),"elType":node.get("elType"),"widgetType":node.get("widgetType"),"settings_keys":sorted(list((node.get("settings") or {}).keys()))}
+            except Exception:
+                row["target_node"]=None
         except Exception:
             row["json_parse"]=False
     elif isinstance(v,(dict,list)):
