@@ -1,0 +1,870 @@
+{
+  "active_snippets_scanned": 24,
+  "hits": [
+    {
+      "id": 5,
+      "name": "K20 - Professional Product Sorting",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "matched": [
+        "k20"
+      ],
+      "excerpts": [
+        {
+          "line": 6,
+          "context": " */\n\nfunction k20_catalog_sorting_options( $options ) {\n\n    return array("
+        },
+        {
+          "line": 19,
+          "context": "add_filter(\n    'woocommerce_default_catalog_orderby_options',\n    'k20_catalog_sorting_options',\n    999\n);"
+        },
+        {
+          "line": 25,
+          "context": "add_filter(\n    'woocommerce_catalog_orderby',\n    'k20_catalog_sorting_options',\n    999\n);"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "K20 - LiteSpeed Shop Public Cache",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "matched": [
+        "k20"
+      ],
+      "excerpts": [
+        {
+          "line": 2,
+          "context": "/**\n * K20 - Safe LiteSpeed public cache override for main Shop page\n *\n * Scope:"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "K20 - WooCommerce LCP Images",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "matched": [
+        "k20"
+      ],
+      "excerpts": [
+        {
+          "line": 2,
+          "context": "/**\n * K20 - WooCommerce LCP / Above The Fold Images\n *\n * هدف:"
+        },
+        {
+          "line": 50,
+          "context": "         * در Mobile فقط 1-2 عددشان عملاً داخل Viewport قرار می‌گیرند.\n         */\n        static $k20_product_image_index = 0;\n\n        $k20_product_image_index++;"
+        },
+        {
+          "line": 52,
+          "context": "        static $k20_product_image_index = 0;\n\n        $k20_product_image_index++;\n\n        if ( $k20_product_image_index <= 5 ) {"
+        },
+        {
+          "line": 54,
+          "context": "        $k20_product_image_index++;\n\n        if ( $k20_product_image_index <= 5 ) {\n\n            /*"
+        },
+        {
+          "line": 71,
+          "context": "             * بالاترین اولویت دانلود را بگیرد.\n             */\n            if ( $k20_product_image_index === 1 ) {\n                $attr['fetchpriority'] = 'high';\n            } else {"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Merchant Return Policy Schema - Keshavarz20",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "matched": [
+        "k20"
+      ],
+      "excerpts": [
+        {
+          "line": 11,
+          "context": " */\n\nfunction k20_merchant_return_policy_id() {\n    return 'https://keshavarz20.com/refund_returns/#merchant-return-policy';\n}"
+        },
+        {
+          "line": 15,
+          "context": "}\n\nfunction k20_merchant_return_policy_object() {\n    return array(\n        '@type'              => 'MerchantReturnPolicy',"
+        },
+        {
+          "line": 18,
+          "context": "    return array(\n        '@type'              => 'MerchantReturnPolicy',\n        '@id'                => k20_merchant_return_policy_id(),\n        'merchantReturnLink' => 'https://keshavarz20.com/refund_returns/',\n    );"
+        },
+        {
+          "line": 29,
+          "context": "    }\n\n    $data['hasMerchantReturnPolicy'] = k20_merchant_return_policy_object();\n    return $data;\n}, 20, 2 );"
+        },
+        {
+          "line": 43,
+          "context": "\n    $offer['hasMerchantReturnPolicy'] = array(\n        '@id' => k20_merchant_return_policy_id(),\n    );\n    return $offer;"
+        },
+        {
+          "line": 54,
+          "context": "\n    $offer['hasMerchantReturnPolicy'] = array(\n        '@id' => k20_merchant_return_policy_id(),\n    );\n    return $offer;"
+        },
+        {
+          "line": 74,
+          "context": "            if ( in_array( 'Offer', $types, true ) ) {\n                $node['hasMerchantReturnPolicy'] = array(\n                    '@id' => k20_merchant_return_policy_id(),\n                );\n            }"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "name": "کشاورز بیست — همراه بوت‌استرپ IndexNow 1.0.0",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "matched": [
+        "k20"
+      ],
+      "excerpts": [
+        {
+          "line": 12,
+          "context": "}\n\nconst K20_INDEXNOW_BOOTSTRAP_VERSION = '1.0.0';\nconst K20_INDEXNOW_RESULT_OPTION = 'k20_indexnow_bootstrap_last_result';\nconst K20_INDEXNOW_HISTORY_OPTION = 'k20_indexnow_bootstrap_history';"
+        },
+        {
+          "line": 13,
+          "context": "\nconst K20_INDEXNOW_BOOTSTRAP_VERSION = '1.0.0';\nconst K20_INDEXNOW_RESULT_OPTION = 'k20_indexnow_bootstrap_last_result';\nconst K20_INDEXNOW_HISTORY_OPTION = 'k20_indexnow_bootstrap_history';\nconst K20_INDEXNOW_CRON_HOOK = 'k20_indexnow_bootstrap_cron';"
+        },
+        {
+          "line": 14,
+          "context": "const K20_INDEXNOW_BOOTSTRAP_VERSION = '1.0.0';\nconst K20_INDEXNOW_RESULT_OPTION = 'k20_indexnow_bootstrap_last_result';\nconst K20_INDEXNOW_HISTORY_OPTION = 'k20_indexnow_bootstrap_history';\nconst K20_INDEXNOW_CRON_HOOK = 'k20_indexnow_bootstrap_cron';\nconst K20_INDEXNOW_MAX_URLS_PER_BATCH = 10000;"
+        },
+        {
+          "line": 15,
+          "context": "const K20_INDEXNOW_RESULT_OPTION = 'k20_indexnow_bootstrap_last_result';\nconst K20_INDEXNOW_HISTORY_OPTION = 'k20_indexnow_bootstrap_history';\nconst K20_INDEXNOW_CRON_HOOK = 'k20_indexnow_bootstrap_cron';\nconst K20_INDEXNOW_MAX_URLS_PER_BATCH = 10000;\nconst K20_INDEXNOW_MAX_SITEMAPS = 100;"
+        },
+        {
+          "line": 16,
+          "context": "const K20_INDEXNOW_HISTORY_OPTION = 'k20_indexnow_bootstrap_history';\nconst K20_INDEXNOW_CRON_HOOK = 'k20_indexnow_bootstrap_cron';\nconst K20_INDEXNOW_MAX_URLS_PER_BATCH = 10000;\nconst K20_INDEXNOW_MAX_SITEMAPS = 100;\n"
+        },
+        {
+          "line": 17,
+          "context": "const K20_INDEXNOW_CRON_HOOK = 'k20_indexnow_bootstrap_cron';\nconst K20_INDEXNOW_MAX_URLS_PER_BATCH = 10000;\nconst K20_INDEXNOW_MAX_SITEMAPS = 100;\n\nfunction k20_indexnow_active_plugin_file() {"
+        },
+        {
+          "line": 19,
+          "context": "const K20_INDEXNOW_MAX_SITEMAPS = 100;\n\nfunction k20_indexnow_active_plugin_file() {\n\t$active = (array) get_option( 'active_plugins', array() );\n\tforeach ( $active as $plugin_file ) {"
+        },
+        {
+          "line": 29,
+          "context": "}\n\nfunction k20_indexnow_get_key_state() {\n\t$encoded = get_option( 'indexnow-admin_api_key', '' );\n\t$key = is_string( $encoded ) && '' !== $encoded ? base64_decode( $encoded, true ) : '';"
+        },
+        {
+          "line": 45,
+          "context": "}\n\nfunction k20_indexnow_http_get( $url, $timeout = 30 ) {\n\t$response = wp_remote_get(\n\t\t$url,"
+        },
+        {
+          "line": 51,
+          "context": "\t\t\t'timeout' => $timeout,\n\t\t\t'redirection' => 5,\n\t\t\t'user-agent' => 'Keshavarz20-IndexNow-Bootstrap/' . K20_INDEXNOW_BOOTSTRAP_VERSION,\n\t\t)\n\t);"
+        },
+        {
+          "line": 73,
+          "context": "}\n\nfunction k20_indexnow_extract_locs( $xml_string ) {\n\t$locs = array();\n\t$xml_string = (string) $xml_string;"
+        },
+        {
+          "line": 110,
+          "context": "}\n\nfunction k20_indexnow_xml_root_name( $xml_string ) {\n\tif ( preg_match( '#<\\s*(sitemapindex|urlset)\\b#i', (string) $xml_string, $match ) ) {\n\t\treturn strtolower( $match[1] );"
+        },
+        {
+          "line": 117,
+          "context": "}\n\nfunction k20_indexnow_same_site_url( $url, $site_host ) {\n\t$parts = wp_parse_url( $url );\n\tif ( ! is_array( $parts ) || empty( $parts['host'] ) || empty( $parts['scheme'] ) ) {"
+        },
+        {
+          "line": 128,
+          "context": "}\n\nfunction k20_indexnow_discover_urls( $candidate_sitemaps = array() ) {\n\t$home = home_url( '/' );\n\t$home_parts = wp_parse_url( $home );"
+        },
+        {
+          "line": 145,
+          "context": "\t$sources = array();\n\n\twhile ( ! empty( $queue ) && count( $seen ) < K20_INDEXNOW_MAX_SITEMAPS ) {\n\t\t$sitemap_url = array_shift( $queue );\n\t\tif ( isset( $seen[ $sitemap_url ] ) ) {"
+        },
+        {
+          "line": 152,
+          "context": "\t\t$seen[ $sitemap_url ] = true;\n\n\t\t$fetch = k20_indexnow_http_get( $sitemap_url, 45 );\n\t\t$source = array(\n\t\t\t'url' => $sitemap_url,"
+        },
+        {
+          "line": 167,
+          "context": "\t\t}\n\n\t\t$root = k20_indexnow_xml_root_name( $fetch['body'] );\n\t\t$locs = k20_indexnow_extract_locs( $fetch['body'] );\n\t\t$source['root'] = $root;"
+        },
+        {
+          "line": 168,
+          "context": "\n\t\t$root = k20_indexnow_xml_root_name( $fetch['body'] );\n\t\t$locs = k20_indexnow_extract_locs( $fetch['body'] );\n\t\t$source['root'] = $root;\n\t\t$source['loc_count'] = count( $locs );"
+        },
+        {
+          "line": 175,
+          "context": "\t\tif ( 'sitemapindex' === $root ) {\n\t\t\tforeach ( $locs as $loc ) {\n\t\t\t\tif ( k20_indexnow_same_site_url( $loc, $site_host ) && ! isset( $seen[ $loc ] ) ) {\n\t\t\t\t\t$queue[] = $loc;\n\t\t\t\t}"
+        },
+        {
+          "line": 181,
+          "context": "\t\t} elseif ( 'urlset' === $root ) {\n\t\t\tforeach ( $locs as $loc ) {\n\t\t\t\tif ( k20_indexnow_same_site_url( $loc, $site_host ) ) {\n\t\t\t\t\t$urls[ $loc ] = true;\n\t\t\t\t}"
+        },
+        {
+          "line": 199,
+          "context": "}\n\nfunction k20_indexnow_submit_batch( $urls, $key ) {\n\t$home = home_url( '/' );\n\t$parts = wp_parse_url( $home );"
+        },
+        {
+          "line": 221,
+          "context": "\t\t\t'headers' => array(\n\t\t\t\t'Content-Type' => 'application/json; charset=utf-8',\n\t\t\t\t'User-Agent' => 'Keshavarz20-IndexNow-Bootstrap/' . K20_INDEXNOW_BOOTSTRAP_VERSION,\n\t\t\t),\n\t\t\t'body' => $payload,"
+        },
+        {
+          "line": 243,
+          "context": "}\n\nfunction k20_indexnow_store_result( $result ) {\n\tupdate_option( K20_INDEXNOW_RESULT_OPTION, $result, false );\n\t$history = get_option( K20_INDEXNOW_HISTORY_OPTION, array() );"
+        },
+        {
+          "line": 244,
+          "context": "\nfunction k20_indexnow_store_result( $result ) {\n\tupdate_option( K20_INDEXNOW_RESULT_OPTION, $result, false );\n\t$history = get_option( K20_INDEXNOW_HISTORY_OPTION, array() );\n\tif ( ! is_array( $history ) ) {"
+        },
+        {
+          "line": 245,
+          "context": "function k20_indexnow_store_result( $result ) {\n\tupdate_option( K20_INDEXNOW_RESULT_OPTION, $result, false );\n\t$history = get_option( K20_INDEXNOW_HISTORY_OPTION, array() );\n\tif ( ! is_array( $history ) ) {\n\t\t$history = array();"
+        },
+        {
+          "line": 251,
+          "context": "\tarray_unshift( $history, $result );\n\t$history = array_slice( $history, 0, 5 );\n\tupdate_option( K20_INDEXNOW_HISTORY_OPTION, $history, false );\n}\n"
+        },
+        {
+          "line": 254,
+          "context": "}\n\nfunction k20_indexnow_run_bootstrap() {\n\t$started = gmdate( 'c' );\n\t$key_state = k20_indexnow_get_key_state();"
+        },
+        {
+          "line": 256,
+          "context": "function k20_indexnow_run_bootstrap() {\n\t$started = gmdate( 'c' );\n\t$key_state = k20_indexnow_get_key_state();\n\t$plugin_file = k20_indexnow_active_plugin_file();\n\t$robots = k20_indexnow_http_get( home_url( '/robots.txt' ), 30 );"
+        },
+        {
+          "line": 257,
+          "context": "\t$started = gmdate( 'c' );\n\t$key_state = k20_indexnow_get_key_state();\n\t$plugin_file = k20_indexnow_active_plugin_file();\n\t$robots = k20_indexnow_http_get( home_url( '/robots.txt' ), 30 );\n\t$sitemap_probe = k20_indexnow_http_get( home_url( '/sitemap_index.xml' ), 45 );"
+        },
+        {
+          "line": 258,
+          "context": "\t$key_state = k20_indexnow_get_key_state();\n\t$plugin_file = k20_indexnow_active_plugin_file();\n\t$robots = k20_indexnow_http_get( home_url( '/robots.txt' ), 30 );\n\t$sitemap_probe = k20_indexnow_http_get( home_url( '/sitemap_index.xml' ), 45 );\n"
+        },
+        {
+          "line": 259,
+          "context": "\t$plugin_file = k20_indexnow_active_plugin_file();\n\t$robots = k20_indexnow_http_get( home_url( '/robots.txt' ), 30 );\n\t$sitemap_probe = k20_indexnow_http_get( home_url( '/sitemap_index.xml' ), 45 );\n\n\t$result = array("
+        },
+        {
+          "line": 263,
+          "context": "\t$result = array(\n\t\t'ok' => false,\n\t\t'version' => K20_INDEXNOW_BOOTSTRAP_VERSION,\n\t\t'started_utc' => $started,\n\t\t'completed_utc' => null,"
+        },
+        {
+          "line": 296,
+          "context": "\tif ( $result['api_key_present'] ) {\n\t\t$key_url = home_url( '/' . rawurlencode( $key_state['key'] ) . '.txt' );\n\t\t$key_fetch = k20_indexnow_http_get( $key_url, 30 );\n\t\t$result['key_file_http'] = (int) $key_fetch['http_code'];\n\t\t$result['key_file_verified'] = $key_fetch['ok'] && hash_equals( $key_state['key'], trim( (string) $key_fetch['body'] ) );"
+        },
+        {
+          "line": 304,
+          "context": "\t}\n\n\t$discovery = k20_indexnow_discover_urls();\n\t$result['sitemaps_seen'] = (int) $discovery['sitemaps_seen'];\n\t$result['sitemap_sources'] = $discovery['sources'];"
+        },
+        {
+          "line": 315,
+          "context": "\n\tif ( $preflight_ok ) {\n\t\t$chunks = array_chunk( $discovery['urls'], K20_INDEXNOW_MAX_URLS_PER_BATCH );\n\t\tforeach ( $chunks as $index => $chunk ) {\n\t\t\t$batch = k20_indexnow_submit_batch( $chunk, $key_state['key'] );"
+        },
+        {
+          "line": 317,
+          "context": "\t\t$chunks = array_chunk( $discovery['urls'], K20_INDEXNOW_MAX_URLS_PER_BATCH );\n\t\tforeach ( $chunks as $index => $chunk ) {\n\t\t\t$batch = k20_indexnow_submit_batch( $chunk, $key_state['key'] );\n\t\t\t$result['batches'][] = array(\n\t\t\t\t'batch' => $index + 1,"
+        },
+        {
+          "line": 343,
+          "context": "\t$result['ok'] = $preflight_ok && $all_batches_ok && $result['submitted_urls'] === $result['discovered_urls'];\n\t$result['completed_utc'] = gmdate( 'c' );\n\tk20_indexnow_store_result( $result );\n\n\treturn $result;"
+        },
+        {
+          "line": 348,
+          "context": "}\n\nfunction k20_indexnow_cron_callback() {\n\tk20_indexnow_run_bootstrap();\n}"
+        },
+        {
+          "line": 349,
+          "context": "\nfunction k20_indexnow_cron_callback() {\n\tk20_indexnow_run_bootstrap();\n}\nadd_action( K20_INDEXNOW_CRON_HOOK, 'k20_indexnow_cron_callback' );"
+        },
+        {
+          "line": 351,
+          "context": "\tk20_indexnow_run_bootstrap();\n}\nadd_action( K20_INDEXNOW_CRON_HOOK, 'k20_indexnow_cron_callback' );\n\nfunction k20_indexnow_activation() {"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "name": "K20 K21 Crawl Hygiene Guard v1",
+      "active": true,
+      "scope": "global",
+      "priority": 20,
+      "matched": [
+        "k20"
+      ],
+      "excerpts": [
+        {
+          "line": 3,
+          "context": "if ( ! defined( 'ABSPATH' ) ) { exit; }\n\nfunction k20_k21_is_ephemeral_query() {\n    if ( empty( $_GET ) ) { return false; }\n    $exact = array( 'orderby', 'min_price', 'max_price', 'rating_filter', 'product-page', 'product_count', 'product_view', 'product_columns' );"
+        },
+        {
+          "line": 13,
+          "context": "}\n\nfunction k20_k21_low_value_object() {\n    if ( is_singular( array( 'slider', 'group_attribute' ) ) ) { return true; }\n    if ( is_page( array( 141224, 141814, 142226, 142501, 143255, 143320 ) ) ) { return true; }"
+        },
+        {
+          "line": 19,
+          "context": "}\n\nfunction k20_k21_robots_array( $robots ) {\n    if ( k20_k21_low_value_object() || is_search() || k20_k21_is_ephemeral_query() ) {\n        $robots['index'] = 'noindex';"
+        },
+        {
+          "line": 20,
+          "context": "\nfunction k20_k21_robots_array( $robots ) {\n    if ( k20_k21_low_value_object() || is_search() || k20_k21_is_ephemeral_query() ) {\n        $robots['index'] = 'noindex';\n        $robots['follow'] = 'follow';"
+        },
+        {
+          "line": 26,
+          "context": "    return $robots;\n}\nadd_filter( 'wpseo_robots_array', 'k20_k21_robots_array', 99 );\nadd_filter( 'wp_robots', 'k20_k21_robots_array', 99 );\n"
+        },
+        {
+          "line": 27,
+          "context": "}\nadd_filter( 'wpseo_robots_array', 'k20_k21_robots_array', 99 );\nadd_filter( 'wp_robots', 'k20_k21_robots_array', 99 );\n\nfunction k20_k21_canonical( $canonical ) {"
+        },
+        {
+          "line": 29,
+          "context": "add_filter( 'wp_robots', 'k20_k21_robots_array', 99 );\n\nfunction k20_k21_canonical( $canonical ) {\n    if ( ! k20_k21_is_ephemeral_query() ) { return $canonical; }\n    $keys = array();"
+        },
+        {
+          "line": 30,
+          "context": "\nfunction k20_k21_canonical( $canonical ) {\n    if ( ! k20_k21_is_ephemeral_query() ) { return $canonical; }\n    $keys = array();\n    foreach ( array_keys( $_GET ) as $key ) {"
+        },
+        {
+          "line": 39,
+          "context": "    return esc_url_raw( remove_query_arg( $keys, $base ) );\n}\nadd_filter( 'wpseo_canonical', 'k20_k21_canonical', 99 );\n\nfunction k20_k21_sitemap_excluded_ids( $ids ) {"
+        },
+        {
+          "line": 41,
+          "context": "add_filter( 'wpseo_canonical', 'k20_k21_canonical', 99 );\n\nfunction k20_k21_sitemap_excluded_ids( $ids ) {\n    $ids = is_array( $ids ) ? $ids : array();\n    $extra = get_posts( array( 'post_type' => array( 'slider', 'group_attribute' ), 'post_status' => 'publish', 'numberposts' => -1, 'fields' => 'ids', 'no_found_rows' => true ) );"
+        },
+        {
+          "line": 47,
+          "context": "    return array_values( array_unique( array_map( 'intval', array_merge( $ids, $extra ) ) ) );\n}\nadd_filter( 'wpseo_exclude_from_sitemap_by_post_ids', 'k20_k21_sitemap_excluded_ids', 99 );\n\nfunction k20_k21_sitemap_entry_guard( $url, $type, $object ) {"
+        },
+        {
+          "line": 49,
+          "context": "add_filter( 'wpseo_exclude_from_sitemap_by_post_ids', 'k20_k21_sitemap_excluded_ids', 99 );\n\nfunction k20_k21_sitemap_entry_guard( $url, $type, $object ) {\n    if ( 'post' === $type && is_object( $object ) && isset( $object->post_status ) && 'publish' !== $object->post_status ) { return false; }\n    if ( 'post' === $type && is_object( $object ) && isset( $object->post_type ) && in_array( $object->post_type, array( 'slider', 'group_attribute' ), true ) ) { return false; }"
+        },
+        {
+          "line": 54,
+          "context": "    return $url;\n}\nadd_filter( 'wpseo_sitemap_entry', 'k20_k21_sitemap_entry_guard', 99, 3 );\n\nfunction k20_k21_fetch_sitemap_audit() {"
+        },
+        {
+          "line": 56,
+          "context": "add_filter( 'wpseo_sitemap_entry', 'k20_k21_sitemap_entry_guard', 99, 3 );\n\nfunction k20_k21_fetch_sitemap_audit() {\n    global $wpdb;\n    $url = add_query_arg( 'k20audit', time(), home_url( '/product-sitemap.xml' ) );"
+        },
+        {
+          "line": 58,
+          "context": "function k20_k21_fetch_sitemap_audit() {\n    global $wpdb;\n    $url = add_query_arg( 'k20audit', time(), home_url( '/product-sitemap.xml' ) );\n    $response = wp_remote_get( $url, array( 'timeout' => 60, 'redirection' => 3, 'user-agent' => 'K20-K21-Sitemap-Audit/1.0' ) );\n    if ( is_wp_error( $response ) ) { return new WP_Error( 'fetch_failed', $response->get_error_message() ); }"
+        },
+        {
+          "line": 59,
+          "context": "    global $wpdb;\n    $url = add_query_arg( 'k20audit', time(), home_url( '/product-sitemap.xml' ) );\n    $response = wp_remote_get( $url, array( 'timeout' => 60, 'redirection' => 3, 'user-agent' => 'K20-K21-Sitemap-Audit/1.0' ) );\n    if ( is_wp_error( $response ) ) { return new WP_Error( 'fetch_failed', $response->get_error_message() ); }\n    $code = (int) wp_remote_retrieve_response_code( $response );"
+        },
+        {
+          "line": 83,
+          "context": "}\n\nfunction k20_k21_register_health_route() {\n    register_rest_route( 'k20-k21/v1', '/sitemap-audit', array( 'methods' => WP_REST_Server::READABLE, 'callback' => 'k20_k21_fetch_sitemap_audit', 'permission_callback' => static function() { return current_user_can( 'manage_options' ); } ) );\n}"
+        },
+        {
+          "line": 84,
+          "context": "\nfunction k20_k21_register_health_route() {\n    register_rest_route( 'k20-k21/v1', '/sitemap-audit', array( 'methods' => WP_REST_Server::READABLE, 'callback' => 'k20_k21_fetch_sitemap_audit', 'permission_callback' => static function() { return current_user_can( 'manage_options' ); } ) );\n}\nadd_action( 'rest_api_init', 'k20_k21_register_health_route' );"
+        },
+        {
+          "line": 86,
+          "context": "    register_rest_route( 'k20-k21/v1', '/sitemap-audit', array( 'methods' => WP_REST_Server::READABLE, 'callback' => 'k20_k21_fetch_sitemap_audit', 'permission_callback' => static function() { return current_user_can( 'manage_options' ); } ) );\n}\nadd_action( 'rest_api_init', 'k20_k21_register_health_route' );"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "name": "K20 Irrigation Tools UI Runtime v1",
+      "active": true,
+      "scope": "global",
+      "priority": 20,
+      "matched": [
+        "box-shadow",
+        "k20"
+      ],
+      "excerpts": [
+        {
+          "line": 3,
+          "context": "if ( ! defined( 'ABSPATH' ) ) { exit; }\n\nfunction k20_irrigation_tool_page_id() {\n    return is_singular() ? (int) get_queried_object_id() : 0;\n}"
+        },
+        {
+          "line": 7,
+          "context": "}\n\nfunction k20_irrigation_tool_is_supported() {\n    return in_array( k20_irrigation_tool_page_id(), array( 143698, 144236, 144238, 144239 ), true );\n}"
+        },
+        {
+          "line": 8,
+          "context": "\nfunction k20_irrigation_tool_is_supported() {\n    return in_array( k20_irrigation_tool_page_id(), array( 143698, 144236, 144238, 144239 ), true );\n}\n"
+        },
+        {
+          "line": 12,
+          "context": "\nadd_action( 'wp_enqueue_scripts', function() {\n    if ( ! k20_irrigation_tool_is_supported() ) { return; }\n    wp_register_style( 'k20-irrigation-tools-ui', false, array(), '1.0.0' );\n    wp_enqueue_style( 'k20-irrigation-tools-ui' );"
+        },
+        {
+          "line": 13,
+          "context": "add_action( 'wp_enqueue_scripts', function() {\n    if ( ! k20_irrigation_tool_is_supported() ) { return; }\n    wp_register_style( 'k20-irrigation-tools-ui', false, array(), '1.0.0' );\n    wp_enqueue_style( 'k20-irrigation-tools-ui' );\n    $css = <<<'CSS'"
+        },
+        {
+          "line": 14,
+          "context": "    if ( ! k20_irrigation_tool_is_supported() ) { return; }\n    wp_register_style( 'k20-irrigation-tools-ui', false, array(), '1.0.0' );\n    wp_enqueue_style( 'k20-irrigation-tools-ui' );\n    $css = <<<'CSS'\n.keshavarz20-tape-calculator-guide,.post-144236 .post-content>div[dir=rtl],.post-144238 .post-content>div[dir=rtl],.post-144239 .post-content>div[dir=rtl]{--tc-green:#17663a;--tc-green-dark:#104a2b;--tc-green-soft:#eef8f2;--tc-orange:#ed7b22;--tc-orange-dark:#c95e0d;--tc-blue:#126ea8;--tc-blue-soft:#f1f7fc;--tc-red:#b63b3b;--tc-text:#26332d;--tc-muted:#5f6f67;--tc-border:#dfe8e3;direction:rtl;text-align:right;max-width:980px;margin:0 auto;color:var(--tc-text);font-family:inherit;font-size:17px;line-height:2.05}"
+        },
+        {
+          "line": 21,
+          "context": ".post-144236 .post-content>div[dir=rtl]>h1,.post-144238 .post-content>div[dir=rtl]>h1,.post-144239 .post-content>div[dir=rtl]>h1{display:none}\n.tc-lead,.tc-summary,.tc-toc,.tc-note,.tc-warning,.tc-expert-note,.tc-critical{border-radius:15px;padding:18px 20px;margin:22px 0}.tc-lead,.tc-summary{background:#f7fbf8;border:1px solid var(--tc-border);border-right:5px solid var(--tc-green)}.tc-note{background:var(--tc-blue-soft);border:1px solid #cddff5;border-right:5px solid var(--tc-blue)}.tc-warning{background:#fff8ee;border:1px solid #f0d5af;border-right:5px solid var(--tc-orange)}.tc-critical{background:#fff5f5;border:1px solid #f0cccc;border-right:5px solid var(--tc-red)}\n.tc-calculator,.post-144236 .post-content>div[dir=rtl]>div[style*=\"border\"],.post-144238 .post-content>div[dir=rtl]>div[style*=\"border\"],.post-144239 .post-content>div[dir=rtl]>div[style*=\"border\"]{background:#fff!important;border:1px solid #cadfd2!important;border-radius:22px!important;padding:24px!important;margin:26px 0 35px!important;box-shadow:0 14px 35px rgba(16,74,43,.09)}\n.tc-input-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.tc-field{display:flex;flex-direction:column;gap:6px}.tc-field label,.post-144236 label,.post-144238 label,.post-144239 label{font-weight:850;color:var(--tc-text)}.tc-field small{color:var(--tc-muted);font-size:12px;line-height:1.7}.tc-field input,.tc-field select,.post-144236 input,.post-144236 select,.post-144238 input,.post-144238 select,.post-144239 input,.post-144239 select{width:100%;min-height:48px;border:1px solid #cbd8d1!important;border-radius:11px!important;padding:9px 12px!important;background:#fff;color:var(--tc-text);font-family:inherit;font-size:15px;outline:none;margin:4px 0 12px}.tc-field input:focus,.tc-field select:focus,.post-"
+        },
+        {
+          "line": 22,
+          "context": ".tc-lead,.tc-summary,.tc-toc,.tc-note,.tc-warning,.tc-expert-note,.tc-critical{border-radius:15px;padding:18px 20px;margin:22px 0}.tc-lead,.tc-summary{background:#f7fbf8;border:1px solid var(--tc-border);border-right:5px solid var(--tc-green)}.tc-note{background:var(--tc-blue-soft);border:1px solid #cddff5;border-right:5px solid var(--tc-blue)}.tc-warning{background:#fff8ee;border:1px solid #f0d5af;border-right:5px solid var(--tc-orange)}.tc-critical{background:#fff5f5;border:1px solid #f0cccc;border-right:5px solid var(--tc-red)}\n.tc-calculator,.post-144236 .post-content>div[dir=rtl]>div[style*=\"border\"],.post-144238 .post-content>div[dir=rtl]>div[style*=\"border\"],.post-144239 .post-content>div[dir=rtl]>div[style*=\"border\"]{background:#fff!important;border:1px solid #cadfd2!important;border-radius:22px!important;padding:24px!important;margin:26px 0 35px!important;box-shadow:0 14px 35px rgba(16,74,43,.09)}\n.tc-input-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.tc-field{display:flex;flex-direction:column;gap:6px}.tc-field label,.post-144236 label,.post-144238 label,.post-144239 label{font-weight:850;color:var(--tc-text)}.tc-field small{color:var(--tc-muted);font-size:12px;line-height:1.7}.tc-field input,.tc-field select,.post-144236 input,.post-144236 select,.post-144238 input,.post-144238 select,.post-144239 input,.post-144239 select{width:100%;min-height:48px;border:1px solid #cbd8d1!important;border-radius:11px!important;padding:9px 12px!important;background:#fff;color:var(--tc-text);font-family:inherit;font-size:15px;outline:none;margin:4px 0 12px}.tc-field input:focus,.tc-field select:focus,.post-144236 input:focus,.post-144238 input:focus,.post-144239 select:focus{border-color:var(--tc-green)!important;box-shadow:0 0 0 3px rgba(23,102,5"
+        },
+        {
+          "line": 23,
+          "context": ".tc-calculator,.post-144236 .post-content>div[dir=rtl]>div[style*=\"border\"],.post-144238 .post-content>div[dir=rtl]>div[style*=\"border\"],.post-144239 .post-content>div[dir=rtl]>div[style*=\"border\"]{background:#fff!important;border:1px solid #cadfd2!important;border-radius:22px!important;padding:24px!important;margin:26px 0 35px!important;box-shadow:0 14px 35px rgba(16,74,43,.09)}\n.tc-input-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.tc-field{display:flex;flex-direction:column;gap:6px}.tc-field label,.post-144236 label,.post-144238 label,.post-144239 label{font-weight:850;color:var(--tc-text)}.tc-field small{color:var(--tc-muted);font-size:12px;line-height:1.7}.tc-field input,.tc-field select,.post-144236 input,.post-144236 select,.post-144238 input,.post-144238 select,.post-144239 input,.post-144239 select{width:100%;min-height:48px;border:1px solid #cbd8d1!important;border-radius:11px!important;padding:9px 12px!important;background:#fff;color:var(--tc-text);font-family:inherit;font-size:15px;outline:none;margin:4px 0 12px}.tc-field input:focus,.tc-field select:focus,.post-144236 input:focus,.post-144238 input:focus,.post-144239 select:focus{border-color:var(--tc-green)!important;box-shadow:0 0 0 3px rgba(23,102,58,.1)}\n.tc-calc-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.tc-calc-button,.post-144236 button,.post-144238 button,.post-144239 button{min-height:46px;border:0!important;border-radius:12px!important;padding:10px 19px!important;font-family:inherit;font-size:15px;font-weight:900;cursor:pointer}.tc-calc-primary,.post-144236 button,.post-144238 button,.post-144239 button{color:#fff;background:linear-gradient(135deg,var(--tc-orange),#f59b3c)!important;box-shadow:0 8px 18px rgba(237,123,34,.22)}.tc-calc-secondary{color:"
+        },
+        {
+          "line": 29,
+          "context": "@media(max-width:767px){.keshavarz20-tape-calculator-guide,.post-144236 .post-content>div[dir=rtl],.post-144238 .post-content>div[dir=rtl],.post-144239 .post-content>div[dir=rtl]{font-size:15.5px}.tc-input-grid,.tc-product-grid,.tc-check-grid,.tc-fact-grid{grid-template-columns:1fr}.tc-result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tc-result-wide{grid-column:span 2}.tc-calc-actions{display:grid;grid-template-columns:1fr}.tc-calc-button{width:100%}}\nCSS;\n    wp_add_inline_style( 'k20-irrigation-tools-ui', $css );\n\n    if ( 143698 === k20_irrigation_tool_page_id() ) {"
+        },
+        {
+          "line": 31,
+          "context": "    wp_add_inline_style( 'k20-irrigation-tools-ui', $css );\n\n    if ( 143698 === k20_irrigation_tool_page_id() ) {\n        wp_enqueue_script( 'jquery' );\n        $js = <<<'JS'"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "name": "K20 K21 Money Page Decision Tools v1",
+      "active": true,
+      "scope": "global",
+      "priority": 20,
+      "matched": [
+        "box-shadow",
+        "k20"
+      ],
+      "excerpts": [
+        {
+          "line": 48,
+          "context": "    if ( empty( $map[ $id ] ) ) { return; }\n    $item = $map[ $id ];\n    echo '<section class=\"k20-decision-tools\" dir=\"rtl\" aria-label=\"ابزارهای تصمیم‌گیری کشاورز بیست\">';\n    echo '<strong>' . esc_html( $item['title'] ) . '</strong><p>' . esc_html( $item['text'] ) . '</p><div class=\"k20-decision-links\">';\n    foreach ( $item['links'] as $label => $url ) { echo '<a href=\"' . esc_url( $url ) . '\">' . esc_html( $label ) . '</a>'; }"
+        },
+        {
+          "line": 49,
+          "context": "    $item = $map[ $id ];\n    echo '<section class=\"k20-decision-tools\" dir=\"rtl\" aria-label=\"ابزارهای تصمیم‌گیری کشاورز بیست\">';\n    echo '<strong>' . esc_html( $item['title'] ) . '</strong><p>' . esc_html( $item['text'] ) . '</p><div class=\"k20-decision-links\">';\n    foreach ( $item['links'] as $label => $url ) { echo '<a href=\"' . esc_url( $url ) . '\">' . esc_html( $label ) . '</a>'; }\n    echo '</div></section>';"
+        },
+        {
+          "line": 56,
+          "context": "add_action( 'wp_enqueue_scripts', function() {\n    if ( ! is_product_category( array( 754, 755, 768, 826 ) ) ) { return; }\n    wp_register_style( 'k20-money-page-tools', false, array(), '1.0.0' );\n    wp_enqueue_style( 'k20-money-page-tools' );\n    wp_add_inline_style( 'k20-money-page-tools', '.k20-decision-tools{direction:rtl;text-align:right;background:linear-gradient(135deg,#eef8f2,#fff);border:1px solid #cfe6d7;border-right:5px solid #17663a;border-radius:16px;padding:18px 20px;margin:18px 0 28px;box-shadow:0 8px 24px rgba(16,74,43,.06)}.k20-decision-tools>strong{display:block;color:#104a2b;font-size:19px;font-weight:900;margin-bottom:6px}.k20-decision-tools p{margin:0 0 13px;line-height:1.9}.k20-decision-links{display:flex;flex-wrap:wrap;gap:9px}.k20-decision-links a{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:8px 14px;border-radius:10px;background:#fff;border:1px solid #bdd9c7;color:#104a2b;text-decoration:none;font-weight:800}@media(max-width:767px){.k20-decision-links{display:grid;grid-template-columns:1fr}.k20-decision-links a{width:100%}}' );"
+        },
+        {
+          "line": 57,
+          "context": "    if ( ! is_product_category( array( 754, 755, 768, 826 ) ) ) { return; }\n    wp_register_style( 'k20-money-page-tools', false, array(), '1.0.0' );\n    wp_enqueue_style( 'k20-money-page-tools' );\n    wp_add_inline_style( 'k20-money-page-tools', '.k20-decision-tools{direction:rtl;text-align:right;background:linear-gradient(135deg,#eef8f2,#fff);border:1px solid #cfe6d7;border-right:5px solid #17663a;border-radius:16px;padding:18px 20px;margin:18px 0 28px;box-shadow:0 8px 24px rgba(16,74,43,.06)}.k20-decision-tools>strong{display:block;color:#104a2b;font-size:19px;font-weight:900;margin-bottom:6px}.k20-decision-tools p{margin:0 0 13px;line-height:1.9}.k20-decision-links{display:flex;flex-wrap:wrap;gap:9px}.k20-decision-links a{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:8px 14px;border-radius:10px;background:#fff;border:1px solid #bdd9c7;color:#104a2b;text-decoration:none;font-weight:800}@media(max-width:767px){.k20-decision-links{display:grid;grid-template-columns:1fr}.k20-decision-links a{width:100%}}' );\n}, 20 );"
+        },
+        {
+          "line": 58,
+          "context": "    wp_register_style( 'k20-money-page-tools', false, array(), '1.0.0' );\n    wp_enqueue_style( 'k20-money-page-tools' );\n    wp_add_inline_style( 'k20-money-page-tools', '.k20-decision-tools{direction:rtl;text-align:right;background:linear-gradient(135deg,#eef8f2,#fff);border:1px solid #cfe6d7;border-right:5px solid #17663a;border-radius:16px;padding:18px 20px;margin:18px 0 28px;box-shadow:0 8px 24px rgba(16,74,43,.06)}.k20-decision-tools>strong{display:block;color:#104a2b;font-size:19px;font-weight:900;margin-bottom:6px}.k20-decision-tools p{margin:0 0 13px;line-height:1.9}.k20-decision-links{display:flex;flex-wrap:wrap;gap:9px}.k20-decision-links a{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:8px 14px;border-radius:10px;background:#fff;border:1px solid #bdd9c7;color:#104a2b;text-decoration:none;font-weight:800}@media(max-width:767px){.k20-decision-links{display:grid;grid-template-columns:1fr}.k20-decision-links a{width:100%}}' );\n}, 20 );"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "name": "K20 K21 Top-30 Product Decision Layer v1",
+      "active": true,
+      "scope": "global",
+      "priority": 20,
+      "matched": [
+        "k20"
+      ],
+      "excerpts": [
+        {
+          "line": 3,
+          "context": "if ( ! defined( 'ABSPATH' ) ) { exit; }\n\nfunction k20_k21_priority_product_ids() {\n    return array( 135323,135337,135339,135341,135343,135349,135383,135385,139231,140502,140656,140657,140661,140718,140734,140758,140790,140793,140854,140856,141002,141003,141513,141527,141528,141536,141710,141803,142438,142445 );\n}"
+        },
+        {
+          "line": 7,
+          "context": "}\n\nfunction k20_k21_priority_irrigation_ids() {\n    return array( 135323,135337,135339,135341,135343,135349,135383,135385,139231,140502,140656,140657,140661,141513,141527,141528,141536,141710 );\n}"
+        },
+        {
+          "line": 14,
+          "context": "    if ( ! is_product() ) { return; }\n    $id = (int) get_queried_object_id();\n    if ( ! in_array( $id, k20_k21_priority_product_ids(), true ) ) { return; }\n    $product = wc_get_product( $id );\n    if ( ! $product ) { return; }"
+        },
+        {
+          "line": 18,
+          "context": "    if ( ! $product ) { return; }\n    $sku = trim( (string) $product->get_sku() );\n    echo '<section class=\"k20-product-decision\" dir=\"rtl\" aria-label=\"راهنمای تصمیم خرید کشاورز بیست\">';\n    echo '<strong>قبل از ثبت سفارش این سه مورد را تطبیق دهید</strong>';\n    echo '<ul><li>نام و مدل همین محصول را با نیاز واقعی پروژه یا برچسب مصرف تطبیق دهید.</li>';"
+        },
+        {
+          "line": 23,
+          "context": "    if ( '' !== $sku ) { echo '<li>شناسه کالا در کشاورز بیست: <b>' . esc_html( $sku ) . '</b></li>'; } else { echo '<li>شناسه داخلی کالا هنوز تکمیل نشده است؛ برای سفارش عمده نام کامل محصول را اعلام کنید.</li>'; }\n    echo '<li>قیمت، موجودی و اطلاعات فنی را در زمان سفارش از همین صفحه یا پشتیبانی تأیید کنید.</li></ul>';\n    if ( in_array( $id, k20_k21_priority_irrigation_ids(), true ) ) {\n        echo '<div class=\"k20-product-decision-links\"><a href=\"' . esc_url( home_url( '/irrigation-fittings-compatibility-selector/' ) ) . '\">بررسی سازگاری اتصالات</a><a href=\"' . esc_url( home_url( '/irrigation-filter-selector/' ) ) . '\">بررسی فیلتراسیون</a></div>';\n    }"
+        },
+        {
+          "line": 24,
+          "context": "    echo '<li>قیمت، موجودی و اطلاعات فنی را در زمان سفارش از همین صفحه یا پشتیبانی تأیید کنید.</li></ul>';\n    if ( in_array( $id, k20_k21_priority_irrigation_ids(), true ) ) {\n        echo '<div class=\"k20-product-decision-links\"><a href=\"' . esc_url( home_url( '/irrigation-fittings-compatibility-selector/' ) ) . '\">بررسی سازگاری اتصالات</a><a href=\"' . esc_url( home_url( '/irrigation-filter-selector/' ) ) . '\">بررسی فیلتراسیون</a></div>';\n    }\n    if ( comments_open( $id ) && 'yes' === get_option( 'woocommerce_enable_reviews' ) ) {"
+        },
+        {
+          "line": 27,
+          "context": "    }\n    if ( comments_open( $id ) && 'yes' === get_option( 'woocommerce_enable_reviews' ) ) {\n        echo '<p class=\"k20-real-review\"><b>این محصول را خریده‌اید؟</b> تجربه واقعی‌تان از نصب، مصرف یا کیفیت محصول را در بخش دیدگاه‌ها ثبت کنید. امتیاز و متن شما فقط در صورت ثبت واقعی در WooCommerce وارد Review Schema می‌شود. <a href=\"#reviews\">ثبت تجربه خرید</a></p>';\n    }\n    echo '</section>';"
+        },
+        {
+          "line": 33,
+          "context": "\nadd_action( 'wp_enqueue_scripts', function() {\n    if ( ! is_product() || ! in_array( (int) get_queried_object_id(), k20_k21_priority_product_ids(), true ) ) { return; }\n    wp_register_style( 'k20-priority-product-layer', false, array(), '1.0.0' );\n    wp_enqueue_style( 'k20-priority-product-layer' );"
+        },
+        {
+          "line": 34,
+          "context": "add_action( 'wp_enqueue_scripts', function() {\n    if ( ! is_product() || ! in_array( (int) get_queried_object_id(), k20_k21_priority_product_ids(), true ) ) { return; }\n    wp_register_style( 'k20-priority-product-layer', false, array(), '1.0.0' );\n    wp_enqueue_style( 'k20-priority-product-layer' );\n    wp_add_inline_style( 'k20-priority-product-layer', '.k20-product-decision{direction:rtl;text-align:right;clear:both;background:linear-gradient(135deg,#f7fbf8,#fff);border:1px solid #dfe8e3;border-right:5px solid #17663a;border-radius:16px;padding:18px 20px;margin:24px 0;line-height:1.95}.k20-product-decision>strong{display:block;color:#104a2b;font-size:19px;font-weight:900;margin-bottom:8px}.k20-product-decision ul{margin:6px 0 14px;padding-right:22px}.k20-product-decision-links{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.k20-product-decision-links a,.k20-real-review a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:7px 13px;border:1px solid #bdd9c7;border-radius:10px;background:#fff;color:#104a2b;text-decoration:none;font-weight:800}.k20-real-review{margin:14px 0 0;padding-top:13px;border-top:1px solid #dfe8e3}.k20-real-review b{color:#104a2b}@media(max-width:767px){.k20-product-decision-links{display:grid;grid-template-columns:1fr}.k20-product-decision-links a{width:100%}}' );"
+        },
+        {
+          "line": 35,
+          "context": "    if ( ! is_product() || ! in_array( (int) get_queried_object_id(), k20_k21_priority_product_ids(), true ) ) { return; }\n    wp_register_style( 'k20-priority-product-layer', false, array(), '1.0.0' );\n    wp_enqueue_style( 'k20-priority-product-layer' );\n    wp_add_inline_style( 'k20-priority-product-layer', '.k20-product-decision{direction:rtl;text-align:right;clear:both;background:linear-gradient(135deg,#f7fbf8,#fff);border:1px solid #dfe8e3;border-right:5px solid #17663a;border-radius:16px;padding:18px 20px;margin:24px 0;line-height:1.95}.k20-product-decision>strong{display:block;color:#104a2b;font-size:19px;font-weight:900;margin-bottom:8px}.k20-product-decision ul{margin:6px 0 14px;padding-right:22px}.k20-product-decision-links{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.k20-product-decision-links a,.k20-real-review a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:7px 13px;border:1px solid #bdd9c7;border-radius:10px;background:#fff;color:#104a2b;text-decoration:none;font-weight:800}.k20-real-review{margin:14px 0 0;padding-top:13px;border-top:1px solid #dfe8e3}.k20-real-review b{color:#104a2b}@media(max-width:767px){.k20-product-decision-links{display:grid;grid-template-columns:1fr}.k20-product-decision-links a{width:100%}}' );\n}, 20 );"
+        },
+        {
+          "line": 36,
+          "context": "    wp_register_style( 'k20-priority-product-layer', false, array(), '1.0.0' );\n    wp_enqueue_style( 'k20-priority-product-layer' );\n    wp_add_inline_style( 'k20-priority-product-layer', '.k20-product-decision{direction:rtl;text-align:right;clear:both;background:linear-gradient(135deg,#f7fbf8,#fff);border:1px solid #dfe8e3;border-right:5px solid #17663a;border-radius:16px;padding:18px 20px;margin:24px 0;line-height:1.95}.k20-product-decision>strong{display:block;color:#104a2b;font-size:19px;font-weight:900;margin-bottom:8px}.k20-product-decision ul{margin:6px 0 14px;padding-right:22px}.k20-product-decision-links{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.k20-product-decision-links a,.k20-real-review a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:7px 13px;border:1px solid #bdd9c7;border-radius:10px;background:#fff;color:#104a2b;text-decoration:none;font-weight:800}.k20-real-review{margin:14px 0 0;padding-top:13px;border-top:1px solid #dfe8e3}.k20-real-review b{color:#104a2b}@media(max-width:767px){.k20-product-decision-links{display:grid;grid-template-columns:1fr}.k20-product-decision-links a{width:100%}}' );\n}, 20 );"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "name": "K20 K21 Verified Review Capture v1",
+      "active": true,
+      "scope": "global",
+      "priority": 20,
+      "matched": [
+        "k20"
+      ],
+      "excerpts": [
+        {
+          "line": 3,
+          "context": "if ( ! defined( 'ABSPATH' ) ) { exit; }\n\nfunction k20_k21_review_context_fields() {\n    if ( ! function_exists( 'is_product' ) || ! is_product() ) { return; }\n    wp_nonce_field( 'k20_k21_review_context', 'k20_k21_review_nonce' );"
+        },
+        {
+          "line": 5,
+          "context": "function k20_k21_review_context_fields() {\n    if ( ! function_exists( 'is_product' ) || ! is_product() ) { return; }\n    wp_nonce_field( 'k20_k21_review_context', 'k20_k21_review_nonce' );\n    echo '<fieldset class=\"k20-review-context\"><legend>تجربه واقعی شما از این محصول <small>(اختیاری)</small></legend>';\n    echo '<p class=\"k20-review-hint\">اگر محصول را استفاده کرده‌اید، این چند مورد کمک می‌کند نظر شما برای کشاورزان دیگر کاربردی‌تر باشد. فقط تجربه واقعی خودتان را بنویسید.</p>';"
+        },
+        {
+          "line": 6,
+          "context": "    if ( ! function_exists( 'is_product' ) || ! is_product() ) { return; }\n    wp_nonce_field( 'k20_k21_review_context', 'k20_k21_review_nonce' );\n    echo '<fieldset class=\"k20-review-context\"><legend>تجربه واقعی شما از این محصول <small>(اختیاری)</small></legend>';\n    echo '<p class=\"k20-review-hint\">اگر محصول را استفاده کرده‌اید، این چند مورد کمک می‌کند نظر شما برای کشاورزان دیگر کاربردی‌تر باشد. فقط تجربه واقعی خودتان را بنویسید.</p>';\n    echo '<p><label for=\"k20_review_crop\">نوع کشت یا کاربرد</label><input id=\"k20_review_crop\" name=\"k20_review_crop\" type=\"text\" maxlength=\"120\" placeholder=\"مثلاً گوجه فضای باز، باغ، گلخانه یا خط انتقال آب\"></p>';"
+        },
+        {
+          "line": 7,
+          "context": "    wp_nonce_field( 'k20_k21_review_context', 'k20_k21_review_nonce' );\n    echo '<fieldset class=\"k20-review-context\"><legend>تجربه واقعی شما از این محصول <small>(اختیاری)</small></legend>';\n    echo '<p class=\"k20-review-hint\">اگر محصول را استفاده کرده‌اید، این چند مورد کمک می‌کند نظر شما برای کشاورزان دیگر کاربردی‌تر باشد. فقط تجربه واقعی خودتان را بنویسید.</p>';\n    echo '<p><label for=\"k20_review_crop\">نوع کشت یا کاربرد</label><input id=\"k20_review_crop\" name=\"k20_review_crop\" type=\"text\" maxlength=\"120\" placeholder=\"مثلاً گوجه فضای باز، باغ، گلخانه یا خط انتقال آب\"></p>';\n    echo '<p><label for=\"k20_review_area\">مساحت یا مقیاس استفاده</label><input id=\"k20_review_area\" name=\"k20_review_area\" type=\"text\" maxlength=\"80\" placeholder=\"مثلاً ۲ هکتار یا ۲۰۰ متر خط\"></p>';"
+        },
+        {
+          "line": 8,
+          "context": "    echo '<fieldset class=\"k20-review-context\"><legend>تجربه واقعی شما از این محصول <small>(اختیاری)</small></legend>';\n    echo '<p class=\"k20-review-hint\">اگر محصول را استفاده کرده‌اید، این چند مورد کمک می‌کند نظر شما برای کشاورزان دیگر کاربردی‌تر باشد. فقط تجربه واقعی خودتان را بنویسید.</p>';\n    echo '<p><label for=\"k20_review_crop\">نوع کشت یا کاربرد</label><input id=\"k20_review_crop\" name=\"k20_review_crop\" type=\"text\" maxlength=\"120\" placeholder=\"مثلاً گوجه فضای باز، باغ، گلخانه یا خط انتقال آب\"></p>';\n    echo '<p><label for=\"k20_review_area\">مساحت یا مقیاس استفاده</label><input id=\"k20_review_area\" name=\"k20_review_area\" type=\"text\" maxlength=\"80\" placeholder=\"مثلاً ۲ هکتار یا ۲۰۰ متر خط\"></p>';\n    echo '<p><label for=\"k20_review_location\">استان یا منطقه</label><input id=\"k20_review_location\" name=\"k20_review_location\" type=\"text\" maxlength=\"80\" placeholder=\"مثلاً فارس\"></p>';"
+        },
+        {
+          "line": 9,
+          "context": "    echo '<p class=\"k20-review-hint\">اگر محصول را استفاده کرده‌اید، این چند مورد کمک می‌کند نظر شما برای کشاورزان دیگر کاربردی‌تر باشد. فقط تجربه واقعی خودتان را بنویسید.</p>';\n    echo '<p><label for=\"k20_review_crop\">نوع کشت یا کاربرد</label><input id=\"k20_review_crop\" name=\"k20_review_crop\" type=\"text\" maxlength=\"120\" placeholder=\"مثلاً گوجه فضای باز، باغ، گلخانه یا خط انتقال آب\"></p>';\n    echo '<p><label for=\"k20_review_area\">مساحت یا مقیاس استفاده</label><input id=\"k20_review_area\" name=\"k20_review_area\" type=\"text\" maxlength=\"80\" placeholder=\"مثلاً ۲ هکتار یا ۲۰۰ متر خط\"></p>';\n    echo '<p><label for=\"k20_review_location\">استان یا منطقه</label><input id=\"k20_review_location\" name=\"k20_review_location\" type=\"text\" maxlength=\"80\" placeholder=\"مثلاً فارس\"></p>';\n    echo '<p><label for=\"k20_review_duration\">مدت استفاده</label><select id=\"k20_review_duration\" name=\"k20_review_duration\"><option value=\"\">انتخاب نشده</option><option value=\"کمتر از یک ماه\">کمتر از یک ماه</option><option value=\"۱ تا ۳ ماه\">۱ تا ۳ ماه</option><option value=\"۳ تا ۶ ماه\">۳ تا ۶ ماه</option><option value=\"۶ ماه تا یک فصل کامل\">۶ ماه تا یک فصل کامل</option><option value=\"بیش از یک فصل\">بیش از یک فصل</option></select></p>';"
+        },
+        {
+          "line": 10,
+          "context": "    echo '<p><label for=\"k20_review_crop\">نوع کشت یا کاربرد</label><input id=\"k20_review_crop\" name=\"k20_review_crop\" type=\"text\" maxlength=\"120\" placeholder=\"مثلاً گوجه فضای باز، باغ، گلخانه یا خط انتقال آب\"></p>';\n    echo '<p><label for=\"k20_review_area\">مساحت یا مقیاس استفاده</label><input id=\"k20_review_area\" name=\"k20_review_area\" type=\"text\" maxlength=\"80\" placeholder=\"مثلاً ۲ هکتار یا ۲۰۰ متر خط\"></p>';\n    echo '<p><label for=\"k20_review_location\">استان یا منطقه</label><input id=\"k20_review_location\" name=\"k20_review_location\" type=\"text\" maxlength=\"80\" placeholder=\"مثلاً فارس\"></p>';\n    echo '<p><label for=\"k20_review_duration\">مدت استفاده</label><select id=\"k20_review_duration\" name=\"k20_review_duration\"><option value=\"\">انتخاب نشده</option><option value=\"کمتر از یک ماه\">کمتر از یک ماه</option><option value=\"۱ تا ۳ ماه\">۱ تا ۳ ماه</option><option value=\"۳ تا ۶ ماه\">۳ تا ۶ ماه</option><option value=\"۶ ماه تا یک فصل کامل\">۶ ماه تا یک فصل کامل</option><option value=\"بیش از یک فصل\">بیش از یک فصل</option></select></p>';\n    echo '<p><label for=\"k20_review_pros\">مهم‌ترین نقطه قوت</label><input id=\"k20_review_pros\" name=\"k20_review_pros\" type=\"text\" maxlength=\"180\"></p>';"
+        },
+        {
+          "line": 11,
+          "context": "    echo '<p><label for=\"k20_review_area\">مساحت یا مقیاس استفاده</label><input id=\"k20_review_area\" name=\"k20_review_area\" type=\"text\" maxlength=\"80\" placeholder=\"مثلاً ۲ هکتار یا ۲۰۰ متر خط\"></p>';\n    echo '<p><label for=\"k20_review_location\">استان یا منطقه</label><input id=\"k20_review_location\" name=\"k20_review_location\" type=\"text\" maxlength=\"80\" placeholder=\"مثلاً فارس\"></p>';\n    echo '<p><label for=\"k20_review_duration\">مدت استفاده</label><select id=\"k20_review_duration\" name=\"k20_review_duration\"><option value=\"\">انتخاب نشده</option><option value=\"کمتر از یک ماه\">کمتر از یک ماه</option><option value=\"۱ تا ۳ ماه\">۱ تا ۳ ماه</option><option value=\"۳ تا ۶ ماه\">۳ تا ۶ ماه</option><option value=\"۶ ماه تا یک فصل کامل\">۶ ماه تا یک فصل کامل</option><option value=\"بیش از یک فصل\">بیش از یک فصل</option></select></p>';\n    echo '<p><label for=\"k20_review_pros\">مهم‌ترین نقطه قوت</label><input id=\"k20_review_pros\" name=\"k20_review_pros\" type=\"text\" maxlength=\"180\"></p>';\n    echo '<p><label for=\"k20_review_limits\">محدودیت یا نکته‌ای که قبل از خرید باید بدانند</label><input id=\"k20_review_limits\" name=\"k20_review_limits\" type=\"text\" maxlength=\"180\"></p>';"
+        },
+        {
+          "line": 12,
+          "context": "    echo '<p><label for=\"k20_review_location\">استان یا منطقه</label><input id=\"k20_review_location\" name=\"k20_review_location\" type=\"text\" maxlength=\"80\" placeholder=\"مثلاً فارس\"></p>';\n    echo '<p><label for=\"k20_review_duration\">مدت استفاده</label><select id=\"k20_review_duration\" name=\"k20_review_duration\"><option value=\"\">انتخاب نشده</option><option value=\"کمتر از یک ماه\">کمتر از یک ماه</option><option value=\"۱ تا ۳ ماه\">۱ تا ۳ ماه</option><option value=\"۳ تا ۶ ماه\">۳ تا ۶ ماه</option><option value=\"۶ ماه تا یک فصل کامل\">۶ ماه تا یک فصل کامل</option><option value=\"بیش از یک فصل\">بیش از یک فصل</option></select></p>';\n    echo '<p><label for=\"k20_review_pros\">مهم‌ترین نقطه قوت</label><input id=\"k20_review_pros\" name=\"k20_review_pros\" type=\"text\" maxlength=\"180\"></p>';\n    echo '<p><label for=\"k20_review_limits\">محدودیت یا نکته‌ای که قبل از خرید باید بدانند</label><input id=\"k20_review_limits\" name=\"k20_review_limits\" type=\"text\" maxlength=\"180\"></p>';\n    echo '</fieldset>';"
+        },
+        {
+          "line": 13,
+          "context": "    echo '<p><label for=\"k20_review_duration\">مدت استفاده</label><select id=\"k20_review_duration\" name=\"k20_review_duration\"><option value=\"\">انتخاب نشده</option><option value=\"کمتر از یک ماه\">کمتر از یک ماه</option><option value=\"۱ تا ۳ ماه\">۱ تا ۳ ماه</option><option value=\"۳ تا ۶ ماه\">۳ تا ۶ ماه</option><option value=\"۶ ماه تا یک فصل کامل\">۶ ماه تا یک فصل کامل</option><option value=\"بیش از یک فصل\">بیش از یک فصل</option></select></p>';\n    echo '<p><label for=\"k20_review_pros\">مهم‌ترین نقطه قوت</label><input id=\"k20_review_pros\" name=\"k20_review_pros\" type=\"text\" maxlength=\"180\"></p>';\n    echo '<p><label for=\"k20_review_limits\">محدودیت یا نکته‌ای که قبل از خرید باید بدانند</label><input id=\"k20_review_limits\" name=\"k20_review_limits\" type=\"text\" maxlength=\"180\"></p>';\n    echo '</fieldset>';\n}"
+        },
+        {
+          "line": 16,
+          "context": "    echo '</fieldset>';\n}\nadd_action( 'comment_form_after_fields', 'k20_k21_review_context_fields' );\nadd_action( 'comment_form_logged_in_after', 'k20_k21_review_context_fields' );\n"
+        },
+        {
+          "line": 17,
+          "context": "}\nadd_action( 'comment_form_after_fields', 'k20_k21_review_context_fields' );\nadd_action( 'comment_form_logged_in_after', 'k20_k21_review_context_fields' );\n\nadd_action( 'comment_post', function( $comment_id, $approved, $commentdata ) {"
+        },
+        {
+          "line": 22,
+          "context": "    $post_id = isset( $commentdata['comment_post_ID'] ) ? (int) $commentdata['comment_post_ID'] : 0;\n    if ( ! $post_id || 'product' !== get_post_type( $post_id ) ) { return; }\n    if ( empty( $_POST['k20_k21_review_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['k20_k21_review_nonce'] ) ), 'k20_k21_review_context' ) ) { return; }\n    $fields = array(\n        'k20_review_crop' => '_k20_review_crop',"
+        },
+        {
+          "line": 24,
+          "context": "    if ( empty( $_POST['k20_k21_review_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['k20_k21_review_nonce'] ) ), 'k20_k21_review_context' ) ) { return; }\n    $fields = array(\n        'k20_review_crop' => '_k20_review_crop',\n        'k20_review_area' => '_k20_review_area',\n        'k20_review_location' => '_k20_review_location',"
+        },
+        {
+          "line": 25,
+          "context": "    $fields = array(\n        'k20_review_crop' => '_k20_review_crop',\n        'k20_review_area' => '_k20_review_area',\n        'k20_review_location' => '_k20_review_location',\n        'k20_review_duration' => '_k20_review_duration',"
+        },
+        {
+          "line": 26,
+          "context": "        'k20_review_crop' => '_k20_review_crop',\n        'k20_review_area' => '_k20_review_area',\n        'k20_review_location' => '_k20_review_location',\n        'k20_review_duration' => '_k20_review_duration',\n        'k20_review_pros' => '_k20_review_pros',"
+        },
+        {
+          "line": 27,
+          "context": "        'k20_review_area' => '_k20_review_area',\n        'k20_review_location' => '_k20_review_location',\n        'k20_review_duration' => '_k20_review_duration',\n        'k20_review_pros' => '_k20_review_pros',\n        'k20_review_limits' => '_k20_review_limits',"
+        },
+        {
+          "line": 28,
+          "context": "        'k20_review_location' => '_k20_review_location',\n        'k20_review_duration' => '_k20_review_duration',\n        'k20_review_pros' => '_k20_review_pros',\n        'k20_review_limits' => '_k20_review_limits',\n    );"
+        },
+        {
+          "line": 29,
+          "context": "        'k20_review_duration' => '_k20_review_duration',\n        'k20_review_pros' => '_k20_review_pros',\n        'k20_review_limits' => '_k20_review_limits',\n    );\n    foreach ( $fields as $input => $meta ) {"
+        },
+        {
+          "line": 42,
+          "context": "    if ( ! $comment instanceof WP_Comment ) { return; }\n    $labels = array(\n        '_k20_review_crop' => 'کشت/کاربرد',\n        '_k20_review_area' => 'مقیاس استفاده',\n        '_k20_review_location' => 'منطقه',"
+        },
+        {
+          "line": 43,
+          "context": "    $labels = array(\n        '_k20_review_crop' => 'کشت/کاربرد',\n        '_k20_review_area' => 'مقیاس استفاده',\n        '_k20_review_location' => 'منطقه',\n        '_k20_review_duration' => 'مدت استفاده',"
+        },
+        {
+          "line": 44,
+          "context": "        '_k20_review_crop' => 'کشت/کاربرد',\n        '_k20_review_area' => 'مقیاس استفاده',\n        '_k20_review_location' => 'منطقه',\n        '_k20_review_duration' => 'مدت استفاده',\n        '_k20_review_pros' => 'نقطه قوت',"
+        },
+        {
+          "line": 45,
+          "context": "        '_k20_review_area' => 'مقیاس استفاده',\n        '_k20_review_location' => 'منطقه',\n        '_k20_review_duration' => 'مدت استفاده',\n        '_k20_review_pros' => 'نقطه قوت',\n        '_k20_review_limits' => 'محدودیت/نکته خرید',"
+        },
+        {
+          "line": 46,
+          "context": "        '_k20_review_location' => 'منطقه',\n        '_k20_review_duration' => 'مدت استفاده',\n        '_k20_review_pros' => 'نقطه قوت',\n        '_k20_review_limits' => 'محدودیت/نکته خرید',\n    );"
+        },
+        {
+          "line": 47,
+          "context": "        '_k20_review_duration' => 'مدت استفاده',\n        '_k20_review_pros' => 'نقطه قوت',\n        '_k20_review_limits' => 'محدودیت/نکته خرید',\n    );\n    $rows = array();"
+        },
+        {
+          "line": 54,
+          "context": "        if ( '' !== $value ) { $rows[] = '<span><strong>' . esc_html( $label ) . ':</strong> ' . esc_html( $value ) . '</span>'; }\n    }\n    if ( $rows ) { echo '<div class=\"k20-review-facts\">' . implode( '', $rows ) . '</div>'; }\n}, 20 );\n"
+        },
+        {
+          "line": 57,
+          "context": "}, 20 );\n\nfunction k20_k21_order_review_links( $order ) {\n    if ( ! $order instanceof WC_Order ) { return array(); }\n    $links = array();"
+        },
+        {
+          "line": 70,
+          "context": "add_action( 'woocommerce_order_details_after_order_table', function( $order ) {\n    if ( ! $order instanceof WC_Order || ! $order->has_status( 'completed' ) ) { return; }\n    $links = k20_k21_order_review_links( $order );\n    if ( ! $links ) { return; }\n    echo '<section class=\"k20-order-review-cta\"><h2>تجربه خریدتان را ثبت کنید</h2><p>اگر محصولات این سفارش را استفاده کرده‌اید، تجربه واقعی شما به خریداران بعدی کمک می‌کند انتخاب دقیق‌تری داشته باشند.</p><ul><li>' . implode( '</li><li>', $links ) . '</li></ul></section>';"
+        },
+        {
+          "line": 72,
+          "context": "    $links = k20_k21_order_review_links( $order );\n    if ( ! $links ) { return; }\n    echo '<section class=\"k20-order-review-cta\"><h2>تجربه خریدتان را ثبت کنید</h2><p>اگر محصولات این سفارش را استفاده کرده‌اید، تجربه واقعی شما به خریداران بعدی کمک می‌کند انتخاب دقیق‌تری داشته باشند.</p><ul><li>' . implode( '</li><li>', $links ) . '</li></ul></section>';\n} );\n"
+        },
+        {
+          "line": 77,
+          "context": "add_action( 'woocommerce_email_after_order_table', function( $order, $sent_to_admin, $plain_text, $email ) {\n    if ( $sent_to_admin || ! $order instanceof WC_Order || ! $email || 'customer_completed_order' !== $email->id ) { return; }\n    $links = k20_k21_order_review_links( $order );\n    if ( ! $links ) { return; }\n    if ( $plain_text ) {"
+        },
+        {
+          "line": 88,
+          "context": "add_action( 'wp_head', function() {\n    if ( ! ( function_exists( 'is_product' ) && is_product() ) && ! is_account_page() ) { return; }\n    echo '<style>.k20-review-context{border:1px solid #dfe8e3;border-radius:14px;padding:16px;margin:18px 0;background:#f7fbf8}.k20-review-context legend{font-weight:800;color:#104a2b;padding:0 8px}.k20-review-context p{margin:10px 0}.k20-review-context label{display:block;font-weight:700;margin-bottom:5px}.k20-review-context input,.k20-review-context select{width:100%;min-height:44px;border:1px solid #cbd8d1;border-radius:9px;padding:8px 10px;background:#fff}.k20-review-hint{color:#5f6f67}.k20-review-facts{display:grid;gap:5px;margin-top:12px;padding:12px;background:#f7fbf8;border-radius:10px;font-size:13px}.k20-review-facts span{display:block}.k20-order-review-cta{margin:24px 0;padding:18px;border:1px solid #dfe8e3;border-radius:14px;background:#f7fbf8}.k20-order-review-cta h2{color:#104a2b}</style>';\n} );"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "name": "K20 K21 Drip Tape Smart Basket v1",
+      "active": true,
+      "scope": "global",
+      "priority": 30,
+      "matched": [
+        "the_content",
+        "k20"
+      ],
+      "excerpts": [
+        {
+          "line": 3,
+          "context": "if ( ! defined( 'ABSPATH' ) ) { exit; }\n\nfunction k20_k21_tape_basket_products() {\n    return array(\n        'tape_open_20' => 135233,"
+        },
+        {
+          "line": 13,
+          "context": "}\n\nadd_filter( 'the_content', function( $content ) {\n    if ( ! is_singular() || 143698 !== (int) get_queried_object_id() || ! in_the_loop() || ! is_main_query() ) { return $content; }\n    $p = k20_k21_tape_basket_products();"
+        },
+        {
+          "line": 15,
+          "context": "add_filter( 'the_content', function( $content ) {\n    if ( ! is_singular() || 143698 !== (int) get_queried_object_id() || ! in_the_loop() || ! is_main_query() ) { return $content; }\n    $p = k20_k21_tape_basket_products();\n    $options = array();\n    foreach ( array( 'tape_open_20' => 'نوار تیپ ۲۰ سانتی‌متری کشت باز', 'tape_plastic_20' => 'نوار تیپ ۲۰ سانتی‌متری زیر پلاستیک' ) as $key => $label ) {"
+        },
+        {
+          "line": 23,
+          "context": "        }\n    }\n    $html = '<section id=\"k20-smart-basket\" class=\"tc-calculator k20-smart-basket\" dir=\"rtl\" aria-labelledby=\"k20-basket-title\">';\n    $html .= '<h2 id=\"k20-basket-title\">سبد پیشنهادی بر اساس محاسبه شما</h2>';\n    $html .= '<p class=\"tc-note\">این سبد یک <strong>برآورد اولیه</strong> است. تعداد رول و اتصالات از محاسبه‌گر همین صفحه خوانده می‌شود. انتخاب نوع اتصال شروع باید با خط اصلی واقعی شما تطبیق داده شود؛ برای مسیرهای شیب‌دار، فشار متغیر یا اطلاعات ناقص، بازبینی کارشناس لازم است.</p>';"
+        },
+        {
+          "line": 24,
+          "context": "    }\n    $html = '<section id=\"k20-smart-basket\" class=\"tc-calculator k20-smart-basket\" dir=\"rtl\" aria-labelledby=\"k20-basket-title\">';\n    $html .= '<h2 id=\"k20-basket-title\">سبد پیشنهادی بر اساس محاسبه شما</h2>';\n    $html .= '<p class=\"tc-note\">این سبد یک <strong>برآورد اولیه</strong> است. تعداد رول و اتصالات از محاسبه‌گر همین صفحه خوانده می‌شود. انتخاب نوع اتصال شروع باید با خط اصلی واقعی شما تطبیق داده شود؛ برای مسیرهای شیب‌دار، فشار متغیر یا اطلاعات ناقص، بازبینی کارشناس لازم است.</p>';\n    $html .= '<div class=\"tc-input-grid\"><div class=\"tc-field\"><label for=\"k20-basket-tape\">نوع نوار تیپ</label><select id=\"k20-basket-tape\">' . implode( '', $options ) . '</select><small>فقط محصولاتی که در فروشگاه منتشر شده‌اند نمایش داده می‌شوند.</small></div>';"
+        },
+        {
+          "line": 26,
+          "context": "    $html .= '<h2 id=\"k20-basket-title\">سبد پیشنهادی بر اساس محاسبه شما</h2>';\n    $html .= '<p class=\"tc-note\">این سبد یک <strong>برآورد اولیه</strong> است. تعداد رول و اتصالات از محاسبه‌گر همین صفحه خوانده می‌شود. انتخاب نوع اتصال شروع باید با خط اصلی واقعی شما تطبیق داده شود؛ برای مسیرهای شیب‌دار، فشار متغیر یا اطلاعات ناقص، بازبینی کارشناس لازم است.</p>';\n    $html .= '<div class=\"tc-input-grid\"><div class=\"tc-field\"><label for=\"k20-basket-tape\">نوع نوار تیپ</label><select id=\"k20-basket-tape\">' . implode( '', $options ) . '</select><small>فقط محصولاتی که در فروشگاه منتشر شده‌اند نمایش داده می‌شوند.</small></div>';\n    $html .= '<div class=\"tc-field\"><label for=\"k20-basket-start\">اتصال شروع خط</label><select id=\"k20-basket-start\"><option value=\"135132\">شیر انشعاب ۱۶ به نوار تیپ پیچی</option><option value=\"135357\">شیر انشعاب لی‌فلت به تیپ فرات پلیمر</option><option value=\"none\">فعلاً انتخاب نمی‌کنم</option></select><small>این انتخاب را بر اساس نوع خط اصلی انجام دهید؛ سیستم آن را حدس نمی‌زند.</small></div></div>';\n    $html .= '<div id=\"k20-basket-items\" class=\"tc-product-grid\" aria-live=\"polite\"></div>';"
+        },
+        {
+          "line": 27,
+          "context": "    $html .= '<p class=\"tc-note\">این سبد یک <strong>برآورد اولیه</strong> است. تعداد رول و اتصالات از محاسبه‌گر همین صفحه خوانده می‌شود. انتخاب نوع اتصال شروع باید با خط اصلی واقعی شما تطبیق داده شود؛ برای مسیرهای شیب‌دار، فشار متغیر یا اطلاعات ناقص، بازبینی کارشناس لازم است.</p>';\n    $html .= '<div class=\"tc-input-grid\"><div class=\"tc-field\"><label for=\"k20-basket-tape\">نوع نوار تیپ</label><select id=\"k20-basket-tape\">' . implode( '', $options ) . '</select><small>فقط محصولاتی که در فروشگاه منتشر شده‌اند نمایش داده می‌شوند.</small></div>';\n    $html .= '<div class=\"tc-field\"><label for=\"k20-basket-start\">اتصال شروع خط</label><select id=\"k20-basket-start\"><option value=\"135132\">شیر انشعاب ۱۶ به نوار تیپ پیچی</option><option value=\"135357\">شیر انشعاب لی‌فلت به تیپ فرات پلیمر</option><option value=\"none\">فعلاً انتخاب نمی‌کنم</option></select><small>این انتخاب را بر اساس نوع خط اصلی انجام دهید؛ سیستم آن را حدس نمی‌زند.</small></div></div>';\n    $html .= '<div id=\"k20-basket-items\" class=\"tc-product-grid\" aria-live=\"polite\"></div>';\n    $html .= '<div class=\"tc-calc-actions\"><button type=\"button\" class=\"tc-calc-button tc-calc-primary\" id=\"k20-basket-refresh\">ساخت/به‌روزرسانی سبد</button><button type=\"button\" class=\"tc-calc-button tc-calc-secondary\" id=\"k20-basket-copy\">کپی سبد و فرضیات</button><a class=\"tc-btn tc-btn-secondary\" id=\"k20-basket-whatsapp\" href=\"#\" target=\"_blank\" rel=\"nofollow noopener\">ارسال برای پیش‌فاکتور</a></div>';"
+        },
+        {
+          "line": 28,
+          "context": "    $html .= '<div class=\"tc-input-grid\"><div class=\"tc-field\"><label for=\"k20-basket-tape\">نوع نوار تیپ</label><select id=\"k20-basket-tape\">' . implode( '', $options ) . '</select><small>فقط محصولاتی که در فروشگاه منتشر شده‌اند نمایش داده می‌شوند.</small></div>';\n    $html .= '<div class=\"tc-field\"><label for=\"k20-basket-start\">اتصال شروع خط</label><select id=\"k20-basket-start\"><option value=\"135132\">شیر انشعاب ۱۶ به نوار تیپ پیچی</option><option value=\"135357\">شیر انشعاب لی‌فلت به تیپ فرات پلیمر</option><option value=\"none\">فعلاً انتخاب نمی‌کنم</option></select><small>این انتخاب را بر اساس نوع خط اصلی انجام دهید؛ سیستم آن را حدس نمی‌زند.</small></div></div>';\n    $html .= '<div id=\"k20-basket-items\" class=\"tc-product-grid\" aria-live=\"polite\"></div>';\n    $html .= '<div class=\"tc-calc-actions\"><button type=\"button\" class=\"tc-calc-button tc-calc-primary\" id=\"k20-basket-refresh\">ساخت/به‌روزرسانی سبد</button><button type=\"button\" class=\"tc-calc-button tc-calc-secondary\" id=\"k20-basket-copy\">کپی سبد و فرضیات</button><a class=\"tc-btn tc-btn-secondary\" id=\"k20-basket-whatsapp\" href=\"#\" target=\"_blank\" rel=\"nofollow noopener\">ارسال برای پیش‌فاکتور</a></div>';\n    $html .= '<p class=\"tc-result-disclaimer\">قیمت و موجودی نهایی از خود صفحه محصول/فروشگاه گرفته می‌شود. این ابزار قیمت، موجودی یا سازگاری فنی را جعل نمی‌کند و برای فیلتر، لوله اصلی و مته بدون داده پروژه محصول مشخصی را خودکار انتخاب نمی‌کند.</p>';"
+        },
+        {
+          "line": 29,
+          "context": "    $html .= '<div class=\"tc-field\"><label for=\"k20-basket-start\">اتصال شروع خط</label><select id=\"k20-basket-start\"><option value=\"135132\">شیر انشعاب ۱۶ به نوار تیپ پیچی</option><option value=\"135357\">شیر انشعاب لی‌فلت به تیپ فرات پلیمر</option><option value=\"none\">فعلاً انتخاب نمی‌کنم</option></select><small>این انتخاب را بر اساس نوع خط اصلی انجام دهید؛ سیستم آن را حدس نمی‌زند.</small></div></div>';\n    $html .= '<div id=\"k20-basket-items\" class=\"tc-product-grid\" aria-live=\"polite\"></div>';\n    $html .= '<div class=\"tc-calc-actions\"><button type=\"button\" class=\"tc-calc-button tc-calc-primary\" id=\"k20-basket-refresh\">ساخت/به‌روزرسانی سبد</button><button type=\"button\" class=\"tc-calc-button tc-calc-secondary\" id=\"k20-basket-copy\">کپی سبد و فرضیات</button><a class=\"tc-btn tc-btn-secondary\" id=\"k20-basket-whatsapp\" href=\"#\" target=\"_blank\" rel=\"nofollow noopener\">ارسال برای پیش‌فاکتور</a></div>';\n    $html .= '<p class=\"tc-result-disclaimer\">قیمت و موجودی نهایی از خود صفحه محصول/فروشگاه گرفته می‌شود. این ابزار قیمت، موجودی یا سازگاری فنی را جعل نمی‌کند و برای فیلتر، لوله اصلی و مته بدون داده پروژه محصول مشخصی را خودکار انتخاب نمی‌کند.</p>';\n    $html .= '</section>';"
+        },
+        {
+          "line": 39,
+          "context": "    wp_enqueue_script( 'jquery' );\n    $products = array();\n    foreach ( k20_k21_tape_basket_products() as $key => $id ) {\n        $product = wc_get_product( $id );\n        if ( ! $product ) { continue; }"
+        },
+        {
+          "line": 50,
+          "context": "        );\n    }\n    wp_localize_script( 'jquery', 'K20TapeBasketData', array(\n        'products' => $products,\n        'whatsapp' => '989179197005',"
+        },
+        {
+          "line": 55,
+          "context": "    ) );\n    $js = <<<'JS'\n(function(){'use strict';function el(id){return document.getElementById(id)}function numFrom(id){var node=el(id);if(!node)return 0;var t=(node.textContent||'').replace(/[۰-۹]/g,function(d){return '۰۱۲۳۴۵۶۷۸۹'.indexOf(d)}).replace(/[^0-9.]/g,'');return parseFloat(t)||0}function fa(n){return new Intl.NumberFormat('fa-IR',{maximumFractionDigits:0}).format(n||0)}function productById(id){var data=(window.K20TapeBasketData||{}).products||{};var keys=Object.keys(data);for(var i=0;i<keys.length;i++){if(String(data[keys[i]].id)===String(id))return data[keys[i]]}return null}function card(p,qty,note){if(!p)return '';var stock=p.stock==='instock'?'موجود':'ناموجود/نیازمند استعلام';var price=p.price_html?' — '+p.price_html:'';return '<article class=\"tc-product-card\"><strong>'+p.name+'</strong><p>تعداد برآوردی: <b>'+fa(qty)+'</b></p><p>'+stock+price+'</p>'+(note?'<small>'+note+'</small>':'')+'<p><a class=\"tc-btn tc-btn-secondary\" href=\"'+p.url+'\">مشاهده محصول</a></p></article>'}function build(){var root=el('k20-basket-items');if(!root||!window.K20TapeBasketData)return;var rolls=Math.max(1,Math.ceil(numFrom('tc-result-rolls'))),starts=Math.max(1,Math.ceil(numFrom('tc-result-start-fittings'))),ends=Math.max(1,Math.ceil(numFrom('tc-result-end-fittings')));var tapeKey=(el('k20-basket-tape')||{}).value||'tape_open_20';var tape=window.K20TapeBasketData.products[tapeKey];var startId=(el('k20-basket-start')||{}).value||'none';var start=startId==='none'?null:productById(startId);var joiner=window.K20TapeBasketData.products.tape_to_tape;var html='';html+=card(tape,rolls,'تعداد رول از خروجی محاسبه‌گر خوانده شده است.');if(start)html+=card(start,starts,'نوع اتصال شروع را شما انتخاب کرده‌اید؛ تعداد از تعداد خطوط + ذخیره محاسبه‌گر می‌آید.');html+=card(joiner,Math.max(1,Mat"
+        },
+        {
+          "line": 61,
+          "context": "':'')+'قطعات انتهایی موردنیاز طبق محاسبه‌گر: '+fa(ends)+' عدد\n\nفرضیات: تعدادها از محاسبه‌گر همین صفحه گرفته شده‌اند. فیلتر، لوله اصلی و ابزار پانچ بدون داده پروژه به‌صورت خودکار انتخاب نشده‌اند.';window.K20BasketSummary=summary;var wa=el('k20-basket-whatsapp');if(wa)wa.href='https://wa.me/'+K20TapeBasketData.whatsapp+'?text='+encodeURIComponent('سلام. برای بررسی و پیش‌فاکتور این سبد آبیاری کمک می‌خواهم:\n\n'+summary)}function copy(){build();var text=window.K20BasketSummary||'';if(!text)return;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text)}else{var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove()}var b=el('k20-basket-copy');if(b){var old=b.textContent;b.textContent='سبد کپی شد';setTimeout(function(){b.textContent=old},1400)}}document.addEventListener('DOMContentLoaded',function(){var r=el('k20-basket-refresh'),c=el('k20-basket-copy'),t=el('k20-basket-tape'),s=el('k20-basket-start');if(r)r.addEventListener('click',build);if(c)c.addEventListener('click',copy);if(t)t.addEventListener('change',build);if(s)s.addEventListener('change',build);var calc=el('tc-calculate');if(calc)calc.addEventListener('click',function(){setTimeout(build,0)});build()})})();"
+        },
+        {
+          "line": 63,
+          "context": "فرضیات: تعدادها از محاسبه‌گر همین صفحه گرفته شده‌اند. فیلتر، لوله اصلی و ابزار پانچ بدون داده پروژه به‌صورت خودکار انتخاب نشده‌اند.';window.K20BasketSummary=summary;var wa=el('k20-basket-whatsapp');if(wa)wa.href='https://wa.me/'+K20TapeBasketData.whatsapp+'?text='+encodeURIComponent('سلام. برای بررسی و پیش‌فاکتور این سبد آبیاری کمک می‌خواهم:\n\n'+summary)}function copy(){build();var text=window.K20BasketSummary||'';if(!text)return;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text)}else{var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove()}var b=el('k20-basket-copy');if(b){var old=b.textContent;b.textContent='سبد کپی شد';setTimeout(function(){b.textContent=old},1400)}}document.addEventListener('DOMContentLoaded',function(){var r=el('k20-basket-refresh'),c=el('k20-basket-copy'),t=el('k20-basket-tape'),s=el('k20-basket-start');if(r)r.addEventListener('click',build);if(c)c.addEventListener('click',copy);if(t)t.addEventListener('change',build);if(s)s.addEventListener('change',build);var calc=el('tc-calculate');if(calc)calc.addEventListener('click',function(){setTimeout(build,0)});build()})})();\nJS;\n    wp_add_inline_script( 'jquery', $js, 'after' );"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "name": "K20 K21 Price Inquiry Fallback v1",
+      "active": true,
+      "scope": "global",
+      "priority": 20,
+      "matched": [
+        "k20"
+      ],
+      "excerpts": [
+        {
+          "line": 13,
+          "context": "        'product'    => $product->get_name(),\n    ), home_url( '/send-message/' ) );\n    echo '<div class=\"k20-price-inquiry\" role=\"note\" aria-label=\"استعلام قیمت محصول\">';\n    echo '<strong>قیمت فعلی نیازمند استعلام است</strong>';\n    echo '<p>برای این محصول قیمت تأییدشده‌ای در فروشگاه ثبت نشده است. قبل از سفارش، قیمت و امکان تأمین را از کشاورز بیست استعلام کنید.</p>';"
+        },
+        {
+          "line": 23,
+          "context": "add_action( 'wp_head', function() {\n    if ( ! is_product() ) { return; }\n    echo '<style>.k20-price-inquiry{margin:18px 0;padding:16px 18px;border:1px solid #dfe8e3;border-right:5px solid #ed7b22;border-radius:14px;background:#fff8ee;line-height:1.9}.k20-price-inquiry>strong{display:block;color:#104a2b;font-size:17px}.k20-price-inquiry p{margin:8px 0 12px}.k20-price-inquiry small{display:block;margin-top:8px;color:#5f6f67}.k20-price-inquiry .button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border-radius:10px}</style>';\n} );"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "name": "K20 K21 Pipe Size Selector Runtime v1",
+      "active": true,
+      "scope": "global",
+      "priority": 20,
+      "matched": [
+        "box-shadow",
+        "k20"
+      ],
+      "excerpts": [
+        {
+          "line": 4,
+          "context": "add_action( 'wp_enqueue_scripts', function() {\n    if ( ! is_page( 144266 ) ) { return; }\n    wp_register_style( 'k20-pipe-selector-ui', false, array(), '1.0.0' );\n    wp_enqueue_style( 'k20-pipe-selector-ui' );\n    wp_add_inline_style( 'k20-pipe-selector-ui', '.k20-pipe-size-selector-guide{--g:#17663a;--gd:#104a2b;--o:#ed7b22;--t:#26332d;--m:#5f6f67;--b:#dfe8e3;max-width:980px;margin:0 auto;direction:rtl;text-align:right;color:var(--t);line-height:2}.k20-pipe-size-selector-guide *{box-sizing:border-box}.tc-lead,.tc-note,.tc-warning,.tc-cta,.tc-calculator{border-radius:16px;padding:18px 20px;margin:20px 0}.tc-lead{background:#f7fbf8;border:1px solid var(--b);border-right:5px solid var(--g)}.tc-warning{background:#fff8ee;border:1px solid #f0d5af;border-right:5px solid var(--o)}.tc-note{background:#f1f7fc;border:1px solid #cddff5}.tc-cta{background:#f7fbf8;border:1px solid var(--b)}.tc-calculator{background:#fff;border:1px solid #cadfd2;box-shadow:0 14px 35px rgba(16,74,43,.08)}.tc-input-grid,.tc-check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.tc-field{display:flex;flex-direction:column}.tc-field label{font-weight:800}.tc-field small{color:var(--m)}.tc-field input,.tc-field select{width:100%;min-height:48px;border:1px solid #cbd8d1;border-radius:11px;padding:9px 12px;background:#fff}.tc-calc-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.tc-calc-button,.tc-btn{min-height:44px;border-radius:11px;padding:9px 16px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.tc-calc-button{border:0;cursor:pointer}.tc-calc-primary,.tc-btn-primary{background:linear-gradient(135deg,var(--o),#f39a3e);color:#fff}.tc-calc-secondary,.tc-btn-secondary{background:#fff;border:1px solid #bdd9c7;color:v"
+        },
+        {
+          "line": 5,
+          "context": "    if ( ! is_page( 144266 ) ) { return; }\n    wp_register_style( 'k20-pipe-selector-ui', false, array(), '1.0.0' );\n    wp_enqueue_style( 'k20-pipe-selector-ui' );\n    wp_add_inline_style( 'k20-pipe-selector-ui', '.k20-pipe-size-selector-guide{--g:#17663a;--gd:#104a2b;--o:#ed7b22;--t:#26332d;--m:#5f6f67;--b:#dfe8e3;max-width:980px;margin:0 auto;direction:rtl;text-align:right;color:var(--t);line-height:2}.k20-pipe-size-selector-guide *{box-sizing:border-box}.tc-lead,.tc-note,.tc-warning,.tc-cta,.tc-calculator{border-radius:16px;padding:18px 20px;margin:20px 0}.tc-lead{background:#f7fbf8;border:1px solid var(--b);border-right:5px solid var(--g)}.tc-warning{background:#fff8ee;border:1px solid #f0d5af;border-right:5px solid var(--o)}.tc-note{background:#f1f7fc;border:1px solid #cddff5}.tc-cta{background:#f7fbf8;border:1px solid var(--b)}.tc-calculator{background:#fff;border:1px solid #cadfd2;box-shadow:0 14px 35px rgba(16,74,43,.08)}.tc-input-grid,.tc-check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.tc-field{display:flex;flex-direction:column}.tc-field label{font-weight:800}.tc-field small{color:var(--m)}.tc-field input,.tc-field select{width:100%;min-height:48px;border:1px solid #cbd8d1;border-radius:11px;padding:9px 12px;background:#fff}.tc-calc-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.tc-calc-button,.tc-btn{min-height:44px;border-radius:11px;padding:9px 16px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.tc-calc-button{border:0;cursor:pointer}.tc-calc-primary,.tc-btn-primary{background:linear-gradient(135deg,var(--o),#f39a3e);color:#fff}.tc-calc-secondary,.tc-btn-secondary{background:#fff;border:1px solid #bdd9c7;color:var(--gd)}.tc-error{display:none;color:#932d2d;b"
+        },
+        {
+          "line": 6,
+          "context": "    wp_register_style( 'k20-pipe-selector-ui', false, array(), '1.0.0' );\n    wp_enqueue_style( 'k20-pipe-selector-ui' );\n    wp_add_inline_style( 'k20-pipe-selector-ui', '.k20-pipe-size-selector-guide{--g:#17663a;--gd:#104a2b;--o:#ed7b22;--t:#26332d;--m:#5f6f67;--b:#dfe8e3;max-width:980px;margin:0 auto;direction:rtl;text-align:right;color:var(--t);line-height:2}.k20-pipe-size-selector-guide *{box-sizing:border-box}.tc-lead,.tc-note,.tc-warning,.tc-cta,.tc-calculator{border-radius:16px;padding:18px 20px;margin:20px 0}.tc-lead{background:#f7fbf8;border:1px solid var(--b);border-right:5px solid var(--g)}.tc-warning{background:#fff8ee;border:1px solid #f0d5af;border-right:5px solid var(--o)}.tc-note{background:#f1f7fc;border:1px solid #cddff5}.tc-cta{background:#f7fbf8;border:1px solid var(--b)}.tc-calculator{background:#fff;border:1px solid #cadfd2;box-shadow:0 14px 35px rgba(16,74,43,.08)}.tc-input-grid,.tc-check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.tc-field{display:flex;flex-direction:column}.tc-field label{font-weight:800}.tc-field small{color:var(--m)}.tc-field input,.tc-field select{width:100%;min-height:48px;border:1px solid #cbd8d1;border-radius:11px;padding:9px 12px;background:#fff}.tc-calc-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.tc-calc-button,.tc-btn{min-height:44px;border-radius:11px;padding:9px 16px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.tc-calc-button{border:0;cursor:pointer}.tc-calc-primary,.tc-btn-primary{background:linear-gradient(135deg,var(--o),#f39a3e);color:#fff}.tc-calc-secondary,.tc-btn-secondary{background:#fff;border:1px solid #bdd9c7;color:var(--gd)}.tc-error{display:none;color:#932d2d;background:#fff2f2;border:1px solid #efcaca;"
+        },
+        {
+          "line": 9,
+          "context": "    wp_enqueue_script( 'jquery' );\n    $js = <<<'JS'\n(function(){'use strict';function e(i){return document.getElementById(i)}function v(i){var x=parseFloat((e(i)||{}).value);return Number.isFinite(x)?x:NaN}function f(x,d){return new Intl.NumberFormat('fa-IR',{maximumFractionDigits:d==null?2:d}).format(x)}function peid(od,sdr){return od-2*(od/sdr)}function loss(q,L,d,C){var Q=q/3600,D=d/1000;return 10.67*L*Math.pow(Q,1.852)/(Math.pow(C,1.852)*Math.pow(D,4.87))}function speed(q,d){var Q=q/3600,A=Math.PI*Math.pow(d/1000,2)/4;return Q/A}function error(m){var x=e('k20-pipe-error');x.textContent=m;x.style.display='block';e('k20-pipe-results').style.display='none'}function clear(){e('k20-pipe-error').style.display='none'}var pe=[20,25,32,40,50,63,75,90,110,125,140,160,180,200,225,250,280,315],lf=[63.5,76.2,88.9,101.6,114.3,127,152.4];function calc(){clear();var fam=e('k20-pipe-family').value,q=v('k20-pipe-flow'),L=v('k20-pipe-length'),z=v('k20-pipe-elevation'),pi=v('k20-pipe-inlet-pressure'),po=v('k20-pipe-end-pressure'),vm=v('k20-pipe-max-velocity'),C=v('k20-pipe-hw-c'),r=v('k20-pipe-reserve'),sdr=v('k20-pipe-sdr');if([q,L,z,pi,po,vm,C,r].some(function(x){return !Number.isFinite(x)})){error('لطفاً همه فیلدها را با عدد معتبر تکمیل کنید.');return}if(q<=0||L<=0||pi<=0||po<0||vm<=0||C<=0||r<0){error('مقادیر اصلی باید در محدوده معتبر باشند.');return}var minD=Math.sqrt((4*(q/3600))/(Math.PI*vm))*1000,sizes=fam==='pe'?pe:lf,req=po*10.197*(1+r/100),rows=[],chosen=null;for(var i=0;i<sizes.length;i++){var no=sizes[i],id=fam==='pe'?peid(no,sdr):no,sp=speed(q,id),hl=loss(q,L,id,C),end=pi*10.197-z-hl,pass=sp<=vm&&end>=req,row={no:no,id:id,sp:sp,hl:hl,bar:end/10.197,margin:(end-req)/10.197,pass:pass};rows.push(row);if(!chosen&&pass)chosen=row}var tb=e('k20-pipe-comparison');tb.innerHTML='"
+        },
+        {
+          "line": 23,
+          "context": "فشار انتهایی: '+f(chosen.bar,2)+' bar':'')+'\n\nاین خروجی برآورد اولیه است و باید با SDR/PN، قطر داخلی واقعی، اتصالات و مشخصات سازنده تطبیق داده شود.';e('k20-pipe-whatsapp').href='https://wa.me/989179197005?text='+encodeURIComponent('سلام. لطفاً این نتیجه انتخاب سایز لوله را بررسی کنید:\n\n'+window.K20PipeSelectorSummary);e('k20-pipe-results').style.display='block'}function toggle(){e('k20-sdr-field').style.display=e('k20-pipe-family').value==='pe'?'flex':'none'}function reset(){e('k20-pipe-family').value='pe';e('k20-pipe-flow').value='20';e('k20-pipe-length').value='300';e('k20-pipe-elevation').value='0';e('k20-pipe-inlet-pressure').value='3';e('k20-pipe-end-pressure').value='1';e('k20-pipe-max-velocity').value='1.5';e('k20-pipe-sdr').value='17';e('k20-pipe-hw-c').value='140';e('k20-pipe-reserve').value='10';toggle();calc()}function copy(){if(!window.K20PipeSelectorSummary)calc();var t=window.K20PipeSelectorSummary||'';if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t)}else{var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove()}}function init(){var c=e('k20-pipe-calculate'),r=e('k20-pipe-reset'),p=e('k20-pipe-copy'),fam=e('k20-pipe-family');if(!c||!r||!p||!fam)return;c.addEventListener('click',calc);r.addEventListener('click',reset);p.addEventListener('click',copy);fam.addEventListener('change',function(){toggle();calc()});toggle();calc()}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init)}else{init()}})();"
+        },
+        {
+          "line": 25,
+          "context": "این خروجی برآورد اولیه است و باید با SDR/PN، قطر داخلی واقعی، اتصالات و مشخصات سازنده تطبیق داده شود.';e('k20-pipe-whatsapp').href='https://wa.me/989179197005?text='+encodeURIComponent('سلام. لطفاً این نتیجه انتخاب سایز لوله را بررسی کنید:\n\n'+window.K20PipeSelectorSummary);e('k20-pipe-results').style.display='block'}function toggle(){e('k20-sdr-field').style.display=e('k20-pipe-family').value==='pe'?'flex':'none'}function reset(){e('k20-pipe-family').value='pe';e('k20-pipe-flow').value='20';e('k20-pipe-length').value='300';e('k20-pipe-elevation').value='0';e('k20-pipe-inlet-pressure').value='3';e('k20-pipe-end-pressure').value='1';e('k20-pipe-max-velocity').value='1.5';e('k20-pipe-sdr').value='17';e('k20-pipe-hw-c').value='140';e('k20-pipe-reserve').value='10';toggle();calc()}function copy(){if(!window.K20PipeSelectorSummary)calc();var t=window.K20PipeSelectorSummary||'';if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t)}else{var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove()}}function init(){var c=e('k20-pipe-calculate'),r=e('k20-pipe-reset'),p=e('k20-pipe-copy'),fam=e('k20-pipe-family');if(!c||!r||!p||!fam)return;c.addEventListener('click',calc);r.addEventListener('click',reset);p.addEventListener('click',copy);fam.addEventListener('change',function(){toggle();calc()});toggle();calc()}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init)}else{init()}})();\nJS;\n    wp_add_inline_script( 'jquery', $js, 'after' );"
+        },
+        {
+          "line": 35,
+          "context": "    $cats = wp_get_post_terms( $product->get_id(), 'product_cat', array( 'fields' => 'ids' ) );\n    if ( ! array_intersect( array( 754, 768 ), $cats ) ) { return; }\n    echo '<div class=\"k20-product-pipe-selector-link\" style=\"margin:14px 0;padding:12px 14px;border:1px solid #dfe8e3;border-radius:12px;background:#f7fbf8\"><strong>قبل از خرید سایز را کنترل کنید</strong><p style=\"margin:5px 0 9px\">دبی، طول مسیر و اختلاف ارتفاع پروژه را وارد کنید تا سایز اولیه و افت فشار را مقایسه کنید.</p><a class=\"button\" href=\"' . esc_url( home_url( '/irrigation-pipe-size-selector/' ) ) . '\">انتخابگر سایز لوله</a></div>';\n}, 32 );"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "name": "K20 K21 Pipe Selector Category Links v1",
+      "active": true,
+      "scope": "global",
+      "priority": 20,
+      "matched": [
+        "k20"
+      ],
+      "excerpts": [
+        {
+          "line": 4,
+          "context": "add_action( 'woocommerce_before_shop_loop', function() {\n    if ( ! is_product_category( array( 754, 768 ) ) ) { return; }\n    echo '<section class=\"k20-pipe-selector-category-cta\" dir=\"rtl\" aria-label=\"انتخاب سایز لوله\"><strong>قبل از سفارش، سایز لوله را با دبی و مسیر کنترل کنید</strong><p>دبی، طول مسیر، اختلاف ارتفاع و فشار را وارد کنید تا سرعت جریان، افت فشار و سایز اولیه مقایسه شود.</p><a href=\"' . esc_url( home_url( '/irrigation-pipe-size-selector/' ) ) . '\">باز کردن انتخابگر سایز لوله</a></section>';\n}, 5 );\nadd_action( 'wp_head', function() {"
+        },
+        {
+          "line": 8,
+          "context": "add_action( 'wp_head', function() {\n    if ( ! is_product_category( array( 754, 768 ) ) ) { return; }\n    echo '<style>.k20-pipe-selector-category-cta{direction:rtl;text-align:right;background:#fff8ee;border:1px solid #f0d5af;border-right:5px solid #ed7b22;border-radius:14px;padding:16px 18px;margin:14px 0 24px}.k20-pipe-selector-category-cta>strong{display:block;color:#104a2b;font-size:18px}.k20-pipe-selector-category-cta p{margin:5px 0 10px}.k20-pipe-selector-category-cta a{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:7px 14px;border-radius:10px;background:#17663a;color:#fff;text-decoration:none;font-weight:800}</style>';\n} );"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "name": "K20 K21 Pipe Basket Proforma v1",
+      "active": true,
+      "scope": "global",
+      "priority": 20,
+      "matched": [
+        "the_content",
+        "k20"
+      ],
+      "excerpts": [
+        {
+          "line": 2,
+          "context": "if ( ! defined( 'ABSPATH' ) ) { exit; }\nadd_filter( 'the_content', function( $content ) {\n if ( ! is_page( 144266 ) || ! in_the_loop() || ! is_main_query() ) return $content;\n $html = '<section id=\"k20-pipe-bundle\" class=\"tc-calculator\" dir=\"rtl\"><h2>سبد پروژه و پیش‌فاکتور اولیه</h2><p class=\"tc-note\"><strong>این سبد فقط تطابق سایز اسمی را بررسی می‌کند.</strong> فشار کاری، نوع اتصال، SDR/PN، رزوه و سازگاری نهایی باید قبل از خرید تأیید شود.</p><div class=\"tc-input-grid\"><div class=\"tc-field\"><label for=\"k20-bundle-family\">خانواده</label><select id=\"k20-bundle-family\"><option value=\"pe\">پلی‌اتیلن</option><option value=\"lf\">نخدار / لی‌فلت</option></select></div><div class=\"tc-field\"><label for=\"k20-bundle-size\">سایز</label><select id=\"k20-bundle-size\"></select></div><div class=\"tc-field\"><label for=\"k20-bundle-pipe\">لوله</label><select id=\"k20-bundle-pipe\"></select></div><div class=\"tc-field\"><label for=\"k20-bundle-rolls\">تعداد رول/کلاف</label><input id=\"k20-bundle-rolls\" type=\"number\" min=\"1\" value=\"1\"></div></div><div class=\"tc-calc-actions\"><button type=\"button\" class=\"tc-calc-button tc-calc-primary\" id=\"k20-bundle-build\">ساخت سبد</button><button type=\"button\" class=\"tc-calc-button tc-calc-secondary\" id=\"k20-bundle-copy\">کپی</button><button type=\"button\" class=\"tc-calc-button tc-calc-secondary\" id=\"k20-bundle-print\">چاپ</button><a class=\"tc-btn tc-btn-secondary\" id=\"k20-bundle-wa\" href=\"#\" target=\"_blank\" rel=\"nofollow noopener\">درخواست پیش‌فاکتور</a></div><div id=\"k20-bundle-output\"></div><p class=\"tc-result-disclaimer\">قیمت فقط از WooCommerce زنده خوانده می‌شود؛ محصول بدون قیمت با «استعلام» نمایش داده می‌شود. هزینه حمل جداست.</p></section>';"
+        },
+        {
+          "line": 4,
+          "context": "add_filter( 'the_content', function( $content ) {\n if ( ! is_page( 144266 ) || ! in_the_loop() || ! is_main_query() ) return $content;\n $html = '<section id=\"k20-pipe-bundle\" class=\"tc-calculator\" dir=\"rtl\"><h2>سبد پروژه و پیش‌فاکتور اولیه</h2><p class=\"tc-note\"><strong>این سبد فقط تطابق سایز اسمی را بررسی می‌کند.</strong> فشار کاری، نوع اتصال، SDR/PN، رزوه و سازگاری نهایی باید قبل از خرید تأیید شود.</p><div class=\"tc-input-grid\"><div class=\"tc-field\"><label for=\"k20-bundle-family\">خانواده</label><select id=\"k20-bundle-family\"><option value=\"pe\">پلی‌اتیلن</option><option value=\"lf\">نخدار / لی‌فلت</option></select></div><div class=\"tc-field\"><label for=\"k20-bundle-size\">سایز</label><select id=\"k20-bundle-size\"></select></div><div class=\"tc-field\"><label for=\"k20-bundle-pipe\">لوله</label><select id=\"k20-bundle-pipe\"></select></div><div class=\"tc-field\"><label for=\"k20-bundle-rolls\">تعداد رول/کلاف</label><input id=\"k20-bundle-rolls\" type=\"number\" min=\"1\" value=\"1\"></div></div><div class=\"tc-calc-actions\"><button type=\"button\" class=\"tc-calc-button tc-calc-primary\" id=\"k20-bundle-build\">ساخت سبد</button><button type=\"button\" class=\"tc-calc-button tc-calc-secondary\" id=\"k20-bundle-copy\">کپی</button><button type=\"button\" class=\"tc-calc-button tc-calc-secondary\" id=\"k20-bundle-print\">چاپ</button><a class=\"tc-btn tc-btn-secondary\" id=\"k20-bundle-wa\" href=\"#\" target=\"_blank\" rel=\"nofollow noopener\">درخواست پیش‌فاکتور</a></div><div id=\"k20-bundle-output\"></div><p class=\"tc-result-disclaimer\">قیمت فقط از WooCommerce زنده خوانده می‌شود؛ محصول بدون قیمت با «استعلام» نمایش داده می‌شود. هزینه حمل جداست.</p></section>';\n return $content . $html;\n}, 55 );"
+        },
+        {
+          "line": 15,
+          "context": " );\n $products = array(); foreach ( $map as $sizes ) foreach ( $sizes as $id ) { $p=wc_get_product($id); if($p) $products[$id]=array('id'=>$id,'name'=>$p->get_name(),'url'=>get_permalink($id),'stock'=>$p->get_stock_status(),'price'=>''===(string)$p->get_price()?null:(float)$p->get_price(),'price_html'=>wp_strip_all_tags($p->get_price_html())); }\n wp_localize_script( 'jquery', 'K20PipeBundle', array('map'=>$map,'products'=>$products,'wa'=>'989179197005') );\n $js = \"(function(){function e(i){return document.getElementById(i)}function money(x){return new Intl.NumberFormat('fa-IR').format(x)+' تومان'}function fill(){var f=e('k20-bundle-family').value,m=K20PipeBundle.map[f],s=e('k20-bundle-size');s.innerHTML='';Object.keys(m).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=f==='pe'?k+' میلی‌متر':k+' اینچ';s.appendChild(o)});pipe()}function pipe(){var f=e('k20-bundle-family').value,k=e('k20-bundle-size').value,id=K20PipeBundle.map[f][k],p=K20PipeBundle.products[id],s=e('k20-bundle-pipe');s.innerHTML='';if(p){var o=document.createElement('option');o.value=id;o.textContent=p.name+(p.price_html?' — '+p.price_html:' — قیمت استعلامی');s.appendChild(o)}build()}function build(){var id=e('k20-bundle-pipe').value,p=K20PipeBundle.products[id],q=Math.max(1,parseInt(e('k20-bundle-rolls').value||1,10));if(!p)return;var sub=p.price===null?null:p.price*q,stock=p.stock==='instock'?'موجود':'ناموجود/استعلام',txt='سبد اولیه کشاورز بیست\\n'+p.name+' × '+q+'\\n'+(sub===null?'قیمت: استعلام':'جمع: '+money(sub))+'\\nوضعیت: '+stock+'\\nهزینه حمل: جداگانه\\nاین سبد فقط بر اساس سایز اسمی است و سازگاری فنی نهایی باید تأیید شود.';e('k20-bundle-output').innerHTML='<div class=\\\"k20-bundle-total\\\"><strong>'+p.name+'</strong><p>تعداد: '+q+'</p><p>وضعیت: '+stock+'</p><p>'+(sub==="
+        },
+        {
+          "line": 16,
+          "context": " $products = array(); foreach ( $map as $sizes ) foreach ( $sizes as $id ) { $p=wc_get_product($id); if($p) $products[$id]=array('id'=>$id,'name'=>$p->get_name(),'url'=>get_permalink($id),'stock'=>$p->get_stock_status(),'price'=>''===(string)$p->get_price()?null:(float)$p->get_price(),'price_html'=>wp_strip_all_tags($p->get_price_html())); }\n wp_localize_script( 'jquery', 'K20PipeBundle', array('map'=>$map,'products'=>$products,'wa'=>'989179197005') );\n $js = \"(function(){function e(i){return document.getElementById(i)}function money(x){return new Intl.NumberFormat('fa-IR').format(x)+' تومان'}function fill(){var f=e('k20-bundle-family').value,m=K20PipeBundle.map[f],s=e('k20-bundle-size');s.innerHTML='';Object.keys(m).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=f==='pe'?k+' میلی‌متر':k+' اینچ';s.appendChild(o)});pipe()}function pipe(){var f=e('k20-bundle-family').value,k=e('k20-bundle-size').value,id=K20PipeBundle.map[f][k],p=K20PipeBundle.products[id],s=e('k20-bundle-pipe');s.innerHTML='';if(p){var o=document.createElement('option');o.value=id;o.textContent=p.name+(p.price_html?' — '+p.price_html:' — قیمت استعلامی');s.appendChild(o)}build()}function build(){var id=e('k20-bundle-pipe').value,p=K20PipeBundle.products[id],q=Math.max(1,parseInt(e('k20-bundle-rolls').value||1,10));if(!p)return;var sub=p.price===null?null:p.price*q,stock=p.stock==='instock'?'موجود':'ناموجود/استعلام',txt='سبد اولیه کشاورز بیست\\n'+p.name+' × '+q+'\\n'+(sub===null?'قیمت: استعلام':'جمع: '+money(sub))+'\\nوضعیت: '+stock+'\\nهزینه حمل: جداگانه\\nاین سبد فقط بر اساس سایز اسمی است و سازگاری فنی نهایی باید تأیید شود.';e('k20-bundle-output').innerHTML='<div class=\\\"k20-bundle-total\\\"><strong>'+p.name+'</strong><p>تعداد: '+q+'</p><p>وضعیت: '+stock+'</p><p>'+(sub===null"
+        },
+        {
+          "line": 18,
+          "context": " $js = \"(function(){function e(i){return document.getElementById(i)}function money(x){return new Intl.NumberFormat('fa-IR').format(x)+' تومان'}function fill(){var f=e('k20-bundle-family').value,m=K20PipeBundle.map[f],s=e('k20-bundle-size');s.innerHTML='';Object.keys(m).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=f==='pe'?k+' میلی‌متر':k+' اینچ';s.appendChild(o)});pipe()}function pipe(){var f=e('k20-bundle-family').value,k=e('k20-bundle-size').value,id=K20PipeBundle.map[f][k],p=K20PipeBundle.products[id],s=e('k20-bundle-pipe');s.innerHTML='';if(p){var o=document.createElement('option');o.value=id;o.textContent=p.name+(p.price_html?' — '+p.price_html:' — قیمت استعلامی');s.appendChild(o)}build()}function build(){var id=e('k20-bundle-pipe').value,p=K20PipeBundle.products[id],q=Math.max(1,parseInt(e('k20-bundle-rolls').value||1,10));if(!p)return;var sub=p.price===null?null:p.price*q,stock=p.stock==='instock'?'موجود':'ناموجود/استعلام',txt='سبد اولیه کشاورز بیست\\n'+p.name+' × '+q+'\\n'+(sub===null?'قیمت: استعلام':'جمع: '+money(sub))+'\\nوضعیت: '+stock+'\\nهزینه حمل: جداگانه\\nاین سبد فقط بر اساس سایز اسمی است و سازگاری فنی نهایی باید تأیید شود.';e('k20-bundle-output').innerHTML='<div class=\\\"k20-bundle-total\\\"><strong>'+p.name+'</strong><p>تعداد: '+q+'</p><p>وضعیت: '+stock+'</p><p>'+(sub===null?'قیمت نیازمند استعلام':'جمع فعلی: '+money(sub))+'</p><p><a href=\\\"'+p.url+'\\\">مشاهده محصول</a></p></div>';window.K20BundleText=txt;e('k20-bundle-wa').href='https://wa.me/'+K20PipeBundle.wa+'?text='+encodeURIComponent('سلام. لطفاً این سبد را برای پیش‌فاکتور و تأیید فنی بررسی کنید:\\n\\n'+txt)}function copy(){build();navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(window.K20BundleText||''):null}document.addEventListener('DO"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "name": "K20 Seller Organization Entity Link v1",
+      "active": true,
+      "scope": "global",
+      "priority": 10,
+      "matched": [
+        "k20"
+      ],
+      "excerpts": [
+        {
+          "line": 2,
+          "context": "/**\n * K20 Seller Organization Entity Link v1\n * P0-C schema consistency fix.\n * Reuses the canonical Yoast Organization entity for Offer.seller."
+        },
+        {
+          "line": 7,
+          "context": " */\n\nfunction k20_canonical_seller_reference() {\n    return array(\n        '@id' => 'https://keshavarz20.com/#organization',"
+        },
+        {
+          "line": 18,
+          "context": "    }\n\n    $offer['seller'] = k20_canonical_seller_reference();\n    return $offer;\n}, 10000, 2 );"
+        },
+        {
+          "line": 27,
+          "context": "    }\n\n    $offer['seller'] = k20_canonical_seller_reference();\n    return $offer;\n}, 10000, 3 );"
+        }
+      ]
+    }
+  ]
+}
