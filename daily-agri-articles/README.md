@@ -6,7 +6,7 @@ This is the separate long-form «نوشته‌ها» engine for keshavarz20.com.
 
 `ChatGPT Scheduled Task (09:00 Asia/Tehran)` → `daily-agri-articles/queue/YYYY-MM-DD.json` → `k20-article-queue-publisher.yml` → `publish_queue_v5.py` → WordPress **post draft**.
 
-The scheduled research/writing task must read `automation-policy/seo-god-2026.json` and `SCHEDULED_TASK_PROMPT.md`. GitHub Actions is the deterministic validator/publisher; it does not need an OpenAI API key for this queue path.
+The scheduled research/writing task must read `automation-policy/seo-god-2026.json`, `automation-policy/editorial-trust-2026.json`, and `SCHEDULED_TASK_PROMPT.md`. GitHub Actions is the deterministic validator/publisher; it does not need an OpenAI API key for this queue path.
 
 ## Editorial contract
 
@@ -23,7 +23,9 @@ Each run must:
 9. connect naturally to water, compatibility, total cost, installation, maintenance or practical risk when relevant;
 10. include `جمع‌بندی` and clearly separated `نظر کارشناسی کشاورز بیست`;
 11. use **adaptive FAQ**: none when unnecessary, otherwise 3–8 substantive visible Q&As;
-12. create draft only, never auto-publish.
+12. create draft only, never auto-publish;
+13. visibly include `منابع`, `روش تهیه و بازبینی`, and a link to the public editorial policy;
+14. never invent a human author, reviewer, credential, field experience or review event.
 
 Missing a day is better than a weak article.
 
@@ -49,6 +51,8 @@ Core fields:
   "source_urls": ["https://source-one.example/...", "https://source-two.example/...", "https://source-three.example/..."],
   "source_names": ["Source One", "Source Two", "Source Three"],
   "research_summary": "Why the topic passed the evidence and farmer-decision gate, including uncertainty.",
+  "editorial_disclosure": "Truthful explanation of how sources, automation and review are handled.",
+  "review_status": "human_review_required_before_publish",
   "image_search_query": "precise factual agriculture editorial photo query",
   "image_title": "عنوان رسانه",
   "cover_title": "تیتر کوتاه 2 تا 8 کلمه برای کاور",
@@ -68,6 +72,8 @@ Core fields:
 - minimum long-form content threshold
 - at least three direct research URLs and at least two independent domains
 - source_names/source_urls alignment
+- Phase 16 editorial disclosure + human-review gate
+- visible sources, review-method block and editorial-policy link
 - adaptive FAQ instead of quota-driven FAQ
 - at least two useful internal Keshavarz20 links
 - Yoast title/description/focus keyphrase/primary category fields
