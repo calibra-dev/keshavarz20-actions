@@ -6,7 +6,7 @@ Daily editorial automation for the `news` post type on keshavarz20.com.
 
 `ChatGPT Scheduled Task (08:00 Asia/Tehran)` → live deep research → `daily-agri-news/queue/YYYY-MM-DD.json` → `k20-news-queue-publisher.yml` → `publish_queue_v3.py` → WordPress **news draft**.
 
-The automatic research task must read `automation-policy/seo-god-2026.json`. The queue publisher is deterministic and does not call an LLM. The old API-mode workflow remains available as a **manual fallback only** and has no daily cron, preventing duplicate daily drafts and avoiding unnecessary API dependence.
+The automatic research task must read `automation-policy/seo-god-2026.json` and `automation-policy/editorial-trust-2026.json`. The queue publisher is deterministic and does not call an LLM. The old API-mode workflow remains available as a **manual fallback only** and has no daily cron, preventing duplicate daily drafts and avoiding unnecessary API dependence.
 
 ## Daily research contract
 
@@ -72,6 +72,8 @@ The scheduled task supplies:
 - `alt_text`
 - `selection_reason`
 - `fact_check_notes`
+- `editorial_disclosure`
+- `review_status` = `human_review_required_before_publish`
 
 ## Publisher safeguards
 
@@ -84,7 +86,9 @@ The scheduled task supplies:
 - matching source names
 - duplicate and near-duplicate title/topic protection
 - minimum useful content threshold
-- required `جمع‌بندی`, `نظر کارشناسی کشاورز بیست` and `منابع`
+- required `جمع‌بندی`, `نظر کارشناسی کشاورز بیست`, `منابع`, and `روش تهیه و بازبینی`
+- required visible link to `https://keshavarz20.com/editorial-policy/`
+- named human author/reviewer only when identity and role are verified
 - open-license Wikimedia factual background selection + controlled cinematic 1280×720 WebP treatment
 - deterministic Persian overlay; image models never typeset Persian
 - Noto Arabic + Pillow + arabic-reshaper + python-bidi; fail closed if unavailable
