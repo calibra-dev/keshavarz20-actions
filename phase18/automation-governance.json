@@ -1,41 +1,59 @@
 {
   "phase": 18,
+  "version": "phase18-automation-governance-v2",
   "title": "Automation Governance - News / Article / Q&A",
+  "refreshed_at_utc": "2026-09-26T19:40:00Z",
   "schedule_readback": {
+    "source": "live ChatGPT automation readback + repository policy/readme",
     "news": {
       "enabled": true,
       "timezone": "Asia/Tehran",
-      "local_time": "08:00",
+      "primary_local_time": "08:00",
+      "recovery_enabled": true,
+      "recovery_local_time": "08:15",
       "cadence": "daily"
     },
     "article": {
       "enabled": true,
       "timezone": "Asia/Tehran",
-      "local_time": "08:20",
+      "primary_local_time": "09:00",
+      "recovery_enabled": true,
+      "recovery_local_time": "09:20",
       "cadence": "daily"
+    },
+    "question": {
+      "enabled": true,
+      "mode": "continuous",
+      "engine": "v18",
+      "heartbeat_plus_watchdog": true,
+      "min_interval_seconds": 1080,
+      "max_interval_seconds": 1559
     }
   },
   "publication_policy": {
     "news": "draft_only",
     "article": "draft_only",
     "human_review_required": true,
-    "skip_day_allowed": true
+    "skip_day_allowed": true,
+    "direct_publish_for_generated_editorial_content": false
   },
-  "question_engine": {
-    "engine": "v18",
-    "continuous_mode": true,
-    "min_interval_seconds": 1080,
-    "max_interval_seconds": 1559
+  "publisher_versions": {
+    "news": "publish_queue_v3.py",
+    "article": "publish_queue_v5.py",
+    "question": "engine_v18.py"
   },
   "observed_runtime": {
-    "article_success_run_id": 35309190730,
-    "news_read_probe_success_run_id": 35573897572,
-    "news_cli_capability_success_run_id": 35574370226,
-    "news_writer_smoke_success_run_id": 35575147724,
-    "question_engine_success_run_id": 35566433455,
+    "question_scheduler_success_run_id": 36265709695,
+    "question_control_success_run_id": 36265698336,
+    "question_heartbeat_success_run_id": 36255859092,
     "news_writer_path": "WP REST media + guarded WPVibe WP-native CLI for custom news CPT",
-    "legacy_xmlrpc_status": "retired_from_primary_news_publisher_after_live_403_on_2026-09-21",
-    "news_publisher_e2e_success_run_id": 35575161509
+    "article_writer_path": "WordPress REST posts/media via publish_queue_v5 -> v4 -> v3",
+    "legacy_xmlrpc_status": "not_primary_for_current_news_or_article_publishers"
   },
-  "secret_values_persisted": false
+  "safety": {
+    "secret_values_persisted": false,
+    "prices_stock_discounts_out_of_scope": true,
+    "orders_payments_users_out_of_scope": true,
+    "test_content_must_be_cleanup_verified": true
+  }
 }
