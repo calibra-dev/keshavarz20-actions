@@ -5,9 +5,10 @@ This is the canonical automatic prompt for the daily `news` engine.
 ## Read first
 
 1. `automation-policy/seo-god-2026.json`
-2. this file
-3. `daily-agri-news/README.md`
-4. `daily-agri-news/DESIGN_SYSTEM.md`
+2. `automation-policy/editorial-trust-2026.json`
+3. this file
+4. `daily-agri-news/README.md`
+5. `daily-agri-news/DESIGN_SYSTEM.md`
 
 Use the stricter rule on conflict.
 
@@ -23,7 +24,7 @@ Reject rumor, advertorial, source-less reposts, sensationalism, filler and dupli
 
 ## Required structure
 
-Use original human-first Persian with an accurate headline, concise lead, what happened, confirmed facts, verified numbers only, uncertainty, `این خبر برای کشاورزان چه معنایی دارد؟`, practical watch-point, `جمع‌بندی`, clearly labelled `نظر کارشناسی کشاورز بیست`, and `منابع`.
+Use original human-first Persian with an accurate headline, concise lead, what happened, confirmed facts, verified numbers only, uncertainty, `این خبر برای کشاورزان چه معنایی دارد؟`, practical watch-point, `جمع‌بندی`, clearly labelled `نظر کارشناسی کشاورز بیست`, `منابع`, and a visible `روش تهیه و بازبینی` block linking to `https://keshavarz20.com/editorial-policy/`. Never name a human author or reviewer unless the identity and role are actually verified.
 
 ## Queue contract
 
