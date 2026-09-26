@@ -1,7 +1,7 @@
 {
   "phase": 11,
   "version": "openai-stable-feed-readiness-v1",
-  "generated_at_utc": "2026-09-26T04:57:09.568983+00:00",
+  "generated_at_utc": "2026-09-26T04:58:50.513606+00:00",
   "spec_required_fields": [
     "item_id",
     "title",
@@ -805,16 +805,23 @@
       }
     ]
   },
-  "duplicate_item_id_count": 1,
-  "duplicate_item_id_samples": [
-    "430000300-2"
-  ],
+  "duplicate_item_id_count": 0,
+  "duplicate_item_id_samples": [],
+  "known_source_sku_conflict": {
+    "sku": "430000300-2",
+    "product_ids": [
+      140654,
+      140655
+    ],
+    "status": "SOURCE_CONFIRMATION_REQUIRED",
+    "feed_identity_impact": "none_after_stable_id_mapping"
+  },
   "feed_submission_attempted": false,
   "partner_onboarding_gate": true,
   "price_values_persisted": false,
   "stock_values_persisted": false,
   "mapping": {
-    "item_id": "Woo SKU when present; otherwise stable candidate k20_<product_id> / k20v_<variation_id>",
+    "item_id": "Stable Keshavarz20 ID derived from immutable Woo entity ID: k20_<product_id> / k20v_<variation_id>; Woo SKU remains a separate source field and is not used as the feed primary key.",
     "title": "Woo product name plus selected variation options where applicable",
     "description": "variation description -> short description -> product description, plain text",
     "url": "canonical Woo product permalink",
