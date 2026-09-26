@@ -1,0 +1,38 @@
+name: K20 GrowthOS Phase 10 Measurement
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'growthos-phase10-measure-ops/*.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: k20-growthos-phase10-measure
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install requests
+      - run: python -m py_compile scripts/k20_growthos_phase10_measurement.py
+      - run: python scripts/k20_growthos_phase10_measurement.py
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f growthos-phase10-results/prompt-bank-200.json growthos-phase10-results/measurement-dashboard.json growthos-phase10-results/event-taxonomy.json growthos-phase10-results/measurement-gaps.json growthos-phase10-results/measurement-contract.json growthos-phase10-results/instrumentation-audit.json growthos-phase10-results/summary.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "growthos phase10: record citation and funnel measurement system"
+          git pull --rebase origin main
+          git push origin main
