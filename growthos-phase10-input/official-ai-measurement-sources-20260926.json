@@ -1,0 +1,30 @@
+{
+  "generated_at_utc": "2026-09-26T04:38:46.987Z",
+  "google": {
+    "source": "Google Search Central / Search Console Help",
+    "blog": "https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports",
+    "help": "https://support.google.com/webmasters/answer/16984139?hl=en",
+    "facts": [
+      "Dedicated Search Generative AI performance reports cover visibility in generative AI features on Search, including AI Overviews and AI Mode.",
+      "Google states the insights were rolled out worldwide as of 2026-08-31.",
+      "The report exposes generative AI impressions and breakdowns such as pages, device, and country; ordinary Search performance remains a separate aggregate view."
+    ]
+  },
+  "bing": {
+    "source": "Bing Webmaster Tools / Bing Search Blog",
+    "help": "https://www.bing.com/webmasters/help/ai-performance-9f8e7d6c",
+    "blog": "https://blogs.bing.com/search/2026/6/New-AI-Visibility-Insights-in-Bing-Webmaster-Tools-Intents-Topics-Citation-Share-Compare/",
+    "facts": [
+      "AI Performance reports citation activity across Microsoft Copilot, Bing AI-generated summaries, and select partner AI integrations.",
+      "Core views include cited pages, grounding queries, citation activity over time, and page-query mapping.",
+      "Preview capabilities add Intents, Topics, Citation Share, and Compare.",
+      "Bing documents the data as aggregated/sampled trend data rather than a complete log of every AI answer."
+    ]
+  },
+  "measurement_policy": [
+    "Do not infer citation counts from ordinary Google Search clicks/impressions.",
+    "Do not treat missing or throttled Bing data as zero citations.",
+    "Do not treat GA4 AI referrals as a complete citation count; referrals measure visits that reached the site.",
+    "Only populate prompt-level citation observations from direct engine observations or first-party AI visibility reports."
+  ]
+}
