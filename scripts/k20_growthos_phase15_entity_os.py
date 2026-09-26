@@ -218,6 +218,11 @@ for p in products:
     if not ok:
         truth_mismatch.append({"product_id":pid,"truth_brand":tv,"woo_brands":observed})
 
+multi_brand_ids={int(x["product_id"]) for x in multi_brand}
+pseudo_brand_ids=set(operator_pseudo_brands)
+external_brand_gap_ids=multi_brand_ids | pseudo_brand_ids
+external_single_brand_ready_ids={pid for pid in truth_brands if pid not in external_brand_gap_ids}
+
 # Cross-phase seller naming contracts.
 phase11_seller=None
 if P11.exists():
@@ -298,15 +303,18 @@ brand_registry={
   "brand_term_count":len(registry),
   "products_with_any_woo_brand":len(products)-len(unbranded),
   "products_without_woo_brand":len(unbranded),
-  "external_brand_truth_gap_products":len(operator_pseudo_brands),
+  "external_brand_truth_gap_products":len(external_brand_gap_ids),
   "pseudo_brand_products":len(operator_pseudo_brands),
+  "multi_brand_ambiguous_products":len(multi_brand_ids),
   "unbranded_products":unbranded,
   "phase2_truth_brand_products":len(phase2_truth_brands),
   "user_confirmed_brand_assignment_products":len(operator_assignments),
   "user_confirmed_real_brand_products":len(operator_real_brands),
   "pseudo_brand_products":len(operator_pseudo_brands),
   "pseudo_brand_names":sorted(PSEUDO_BRANDS),
-  "external_brand_truth_gap_products":len(operator_pseudo_brands),
+  "multi_brand_ambiguous_products":len(multi_brand_ids),
+  "external_brand_truth_gap_products":len(external_brand_gap_ids),
+  "external_single_brand_ready_products":len(external_single_brand_ready_ids),
   "source_verified_truth_brand_products":truth_known,
   "truth_source_conflicts":truth_conflicts,
   "user_confirmed_assignment_mismatches":operator_assignment_mismatch,
@@ -362,7 +370,7 @@ summary={
   "phase":15,
   "title":"Brand & Seller Entity OS",
   "generated_at_utc":NOW,
-  "status":"PASS_ENTITY_OS_WITH_SOURCE_GAPS" if hard_pass and (len(operator_pseudo_brands)>0 or len(unbranded)>0 or not soft_gaps["online_store_subtype_present"]) else ("PASS_ENTITY_OS" if hard_pass else "FAIL"),
+  "status":"PASS_ENTITY_OS_WITH_SOURCE_GAPS" if hard_pass and (len(external_brand_gap_ids)>0 or len(unbranded)>0 or not soft_gaps["online_store_subtype_present"]) else ("PASS_ENTITY_OS" if hard_pass else "FAIL"),
   "published_products":len(products),
   "seller_entity_found":principal is not None,
   "seller_name_consistent":name_ok and seller_feed_ok,
@@ -372,7 +380,9 @@ summary={
   "user_confirmed_brand_assignment_products":len(operator_assignments),
   "user_confirmed_real_brand_products":len(operator_real_brands),
   "pseudo_brand_products":len(operator_pseudo_brands),
-  "external_brand_truth_gap_products":len(operator_pseudo_brands),
+  "multi_brand_ambiguous_products":len(multi_brand_ids),
+  "external_brand_truth_gap_products":len(external_brand_gap_ids),
+  "external_single_brand_ready_products":len(external_single_brand_ready_ids),
   "source_verified_truth_brand_products":truth_known,
   "brand_truth_mismatches":len(truth_mismatch),
   "operator_assignment_mismatches":len(operator_assignment_mismatch),
@@ -383,7 +393,7 @@ summary={
   "glns_fabricated":0,
   "schema_site_writes":0,
   "next_backlog":[
-    "Resolve the 75 internal pseudo-brand «متفرقه» products only when a real manufacturer/brand source is available; never export «متفرقه» as a commerce brand.",
+    "Resolve 75 internal pseudo-brand «متفرقه» products and 12 multi-brand ambiguities only when a real manufacturer/brand source is available; never export pseudo or ambiguous brand as a single commerce brand.",
     "Verify official external brand/seller profiles before adding sameAs.",
     "Consider OnlineStore subtype at the canonical schema source only if it can be changed without duplicating Organization."
   ]
