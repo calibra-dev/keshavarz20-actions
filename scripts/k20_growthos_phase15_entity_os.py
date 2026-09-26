@@ -20,6 +20,7 @@ P2=Path("growthos-phase2-results/product-truth-registry.json")
 P3S=Path("growthos-phase3-results/html-schema-feed-parity-summary.json")
 P11=Path("growthos-phase11-results/openai-product-feed-readiness.json")
 P12=Path("growthos-phase12-results/merchant-field-map.json")
+PASSIGN=Path("brand-assignment-results/apply-all-158.json")
 
 def api(path,params=None):
     r=S.get(urljoin(BASE+"/",path.lstrip("/")),params=params,timeout=120)
@@ -83,7 +84,7 @@ def safe_entity(n):
       "address_present":bool(n.get("address"))
     }
 
-def truth_brand_map():
+def phase2_truth_brand_map():
     if not P2.exists(): return {}
     data=json.loads(P2.read_text(encoding="utf-8"))
     out={}
@@ -93,13 +94,43 @@ def truth_brand_map():
             out[int(rec["product_id"])]=str(f["value"]).strip()
     return out
 
+def operator_assignment_map():
+    if not PASSIGN.exists():
+        return {},{"valid":False,"reason":"missing_assignment_artifact"}
+    data=json.loads(PASSIGN.read_text(encoding="utf-8"))
+    valid=(
+        data.get("ok") is True
+        and int(data.get("source_count") or 0)==158
+        and int(data.get("mapping_count") or 0)==158
+        and not (data.get("failures") or [])
+        and len(data.get("results") or [])==158
+        and all(x.get("ok") is True for x in (data.get("results") or []))
+    )
+    out={}
+    if valid:
+        for rec in data.get("results") or []:
+            out[int(rec["product_id"])]=str(rec.get("requested_brand") or "").strip()
+    return out,{"valid":valid,"artifact_count":len(out)}
+
 if not P14.exists(): raise SystemExit("Missing Phase 14 summary")
 p14=json.loads(P14.read_text(encoding="utf-8"))
 if not (p14.get("ok") and str(p14.get("status") or "").startswith("PASS")):
     raise SystemExit("Phase 14 prerequisite is not PASS")
 
 products=all_products()
-truth_brands=truth_brand_map()
+phase2_truth_brands=phase2_truth_brand_map()
+operator_assignments,operator_meta=operator_assignment_map()
+PSEUDO_BRANDS={"متفرقه"}
+operator_real_brands={pid:b for pid,b in operator_assignments.items() if b not in PSEUDO_BRANDS}
+operator_pseudo_brands={pid:b for pid,b in operator_assignments.items() if b in PSEUDO_BRANDS}
+truth_brands=dict(phase2_truth_brands)
+truth_conflicts=[]
+for pid,b in operator_real_brands.items():
+    old=truth_brands.get(pid)
+    if old and not (norm_text(old)==norm_text(b) or norm_text(old) in norm_text(b) or norm_text(b) in norm_text(old)):
+        truth_conflicts.append({"product_id":pid,"phase2_brand":old,"operator_brand":b})
+    else:
+        truth_brands[pid]=b
 
 # Reuse the already-complete Phase 3 all-catalog parity audit rather than rerunning it.
 p3=json.loads(P3S.read_text(encoding="utf-8")) if P3S.exists() else {}
@@ -162,7 +193,18 @@ duplicate_name_groups=[
  for k,v in normalized_to_ids.items() if k and len(v)>1
 ]
 
-# Compare current Woo brand assignments with source-backed Phase 2 truth.
+# Verify all user-confirmed assignments against current Woo brand state.
+operator_assignment_mismatch=[]
+by_product_id={int(p["id"]):p for p in products}
+for pid,expected in operator_assignments.items():
+    p=by_product_id.get(pid) or {}
+    observed=[str(b.get("name") or "").strip() for b in (p.get("brands") or []) if isinstance(b,dict)]
+    en=norm_text(expected)
+    ok=any(en and (en==norm_text(x) or en in norm_text(x) or norm_text(x) in en) for x in observed)
+    if not ok:
+        operator_assignment_mismatch.append({"product_id":pid,"expected_brand":expected,"woo_brands":observed})
+
+# Compare current Woo brand assignments with source-backed truth (Phase 2 + explicit user-confirmed real brands).
 truth_mismatch=[]
 truth_known=0
 for p in products:
@@ -217,6 +259,9 @@ hard_checks={
   "phase3_catalog_parity_hard_pass":phase3_all_hard,
   "phase11_seller_name_consistent":seller_feed_ok,
   "phase12_no_conflicting_seller_identity":len(phase12_seller_conflicts)==0,
+  "assignment_artifact_valid":operator_meta.get("valid") is True,
+  "user_confirmed_assignment_mismatch_zero":len(operator_assignment_mismatch)==0,
+  "combined_truth_conflict_zero":len(truth_conflicts)==0,
   "current_truth_brand_mismatch_zero":len(truth_mismatch)==0
 }
 hard_pass=all(hard_checks.values())
@@ -253,8 +298,18 @@ brand_registry={
   "brand_term_count":len(registry),
   "products_with_any_woo_brand":len(products)-len(unbranded),
   "products_without_woo_brand":len(unbranded),
+  "external_brand_truth_gap_products":len(operator_pseudo_brands),
+  "pseudo_brand_products":len(operator_pseudo_brands),
   "unbranded_products":unbranded,
+  "phase2_truth_brand_products":len(phase2_truth_brands),
+  "user_confirmed_brand_assignment_products":len(operator_assignments),
+  "user_confirmed_real_brand_products":len(operator_real_brands),
+  "pseudo_brand_products":len(operator_pseudo_brands),
+  "pseudo_brand_names":sorted(PSEUDO_BRANDS),
+  "external_brand_truth_gap_products":len(operator_pseudo_brands),
   "source_verified_truth_brand_products":truth_known,
+  "truth_source_conflicts":truth_conflicts,
+  "user_confirmed_assignment_mismatches":operator_assignment_mismatch,
   "truth_brand_assignment_mismatches":truth_mismatch,
   "multi_brand_products":multi_brand,
   "duplicate_normalized_brand_name_groups":duplicate_name_groups,
@@ -307,21 +362,28 @@ summary={
   "phase":15,
   "title":"Brand & Seller Entity OS",
   "generated_at_utc":NOW,
-  "status":"PASS_ENTITY_OS_WITH_SOURCE_GAPS" if hard_pass and (len(unbranded)>0 or not soft_gaps["online_store_subtype_present"]) else ("PASS_ENTITY_OS" if hard_pass else "FAIL"),
+  "status":"PASS_ENTITY_OS_WITH_SOURCE_GAPS" if hard_pass and (len(operator_pseudo_brands)>0 or len(unbranded)>0 or not soft_gaps["online_store_subtype_present"]) else ("PASS_ENTITY_OS" if hard_pass else "FAIL"),
   "published_products":len(products),
   "seller_entity_found":principal is not None,
   "seller_name_consistent":name_ok and seller_feed_ok,
   "phase3_catalog_hard_parity_pass":phase3_all_hard,
   "brand_terms":len(registry),
+  "phase2_truth_brand_products":len(phase2_truth_brands),
+  "user_confirmed_brand_assignment_products":len(operator_assignments),
+  "user_confirmed_real_brand_products":len(operator_real_brands),
+  "pseudo_brand_products":len(operator_pseudo_brands),
+  "external_brand_truth_gap_products":len(operator_pseudo_brands),
   "source_verified_truth_brand_products":truth_known,
   "brand_truth_mismatches":len(truth_mismatch),
+  "operator_assignment_mismatches":len(operator_assignment_mismatch),
+  "truth_source_conflicts":len(truth_conflicts),
   "products_without_woo_brand":len(unbranded),
   "identity_fields_fabricated":0,
   "sameAs_links_fabricated":0,
   "glns_fabricated":0,
   "schema_site_writes":0,
   "next_backlog":[
-    "Fill only source-backed missing product brands.",
+    "Resolve the 75 internal pseudo-brand «متفرقه» products only when a real manufacturer/brand source is available; never export «متفرقه» as a commerce brand.",
     "Verify official external brand/seller profiles before adding sameAs.",
     "Consider OnlineStore subtype at the canonical schema source only if it can be changed without duplicating Organization."
   ]
