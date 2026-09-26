@@ -15,6 +15,7 @@ base = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(base)
 
 POLICY = json.loads((REPO_ROOT / "automation-policy" / "seo-god-2026.json").read_text(encoding="utf-8"))
+EDITORIAL_POLICY = json.loads((REPO_ROOT / "automation-policy" / "editorial-trust-2026.json").read_text(encoding="utf-8"))
 
 
 def _registrableish_host(url: str) -> str:
@@ -28,7 +29,8 @@ def validate_payload_v2(p):
     required = [
         "content_type", "title", "slug", "excerpt", "content_html", "focus_keyphrase", "seo_title",
         "meta_description", "related_keyphrases", "category_name", "tags", "source_urls",
-        "source_names", "research_summary", "image_search_query", "image_title", "alt_text",
+        "source_names", "research_summary", "editorial_disclosure", "review_status",
+        "image_search_query", "image_title", "alt_text",
     ]
     missing = [k for k in required if not p.get(k)]
     if missing:
@@ -45,9 +47,20 @@ def validate_payload_v2(p):
     if len(text) < 4500:
         raise base.QueuePublishError("Article is too short for the K20 long-form article engine")
 
-    for section in ("جمع‌بندی", "نظر کارشناسی کشاورز بیست"):
+    for section in ("جمع‌بندی", "نظر کارشناسی کشاورز بیست", "منابع", "روش تهیه و بازبینی"):
         if section not in str(p["content_html"]):
             raise base.QueuePublishError(f"Required section missing: {section}")
+
+    if "/editorial-policy/" not in str(p["content_html"]):
+        raise base.QueuePublishError("Phase 16 requires a visible link to the Keshavarz20 editorial policy")
+
+    expected_review = str(EDITORIAL_POLICY["publication_gate"]["required_review_status"])
+    if str(p.get("review_status") or "").strip() != expected_review:
+        raise base.QueuePublishError(f"review_status must be {expected_review}")
+
+    disclosure = base.strip_html(str(p.get("editorial_disclosure") or "")).strip()
+    if len(disclosure) < 60:
+        raise base.QueuePublishError("editorial_disclosure is too thin for the Phase 16 provenance gate")
 
     # 2026 SEO-God rule: FAQ is useful content, not a quota. It may be absent.
     # When present, keep it compact and substantive instead of forcing 15 repeated Q&As.
