@@ -1,0 +1,21 @@
+name: K20 Phase16 XMLRPC Render Source Probe
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/k20_phase16_xmlrpc_render_source_probe.py'
+      - '.github/workflows/k20-phase16-xmlrpc-render-source-probe.yml'
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m py_compile scripts/k20_phase16_xmlrpc_render_source_probe.py
+      - run: python scripts/k20_phase16_xmlrpc_render_source_probe.py
