@@ -12,9 +12,23 @@ SITE = os.environ.get("WP_BASE_URL", "https://keshavarz20.com").rstrip("/")
 AUTH = (os.environ["WP_USERNAME"], os.environ["WP_APP_PASSWORD"])
 
 def wp(method: str, path: str, **kwargs):
-    r = requests.request(method, SITE + "/wp-json" + path, auth=AUTH, timeout=180, **kwargs)
-    r.raise_for_status()
-    return r.json()
+    last = None
+    for attempt in range(4):
+        r = requests.request(method, SITE + "/wp-json" + path, auth=AUTH, timeout=180, **kwargs)
+        last = r
+        if r.status_code >= 500:
+            time.sleep(2 * (attempt + 1))
+            continue
+        r.raise_for_status()
+        try:
+            return r.json()
+        except Exception:
+            if attempt < 3:
+                time.sleep(2 * (attempt + 1))
+                continue
+            raise RuntimeError(f"non-JSON WordPress response: http={r.status_code} path={path}")
+    last.raise_for_status()
+    return last.json()
 
 def build_assets(req: dict, expected_count: int):
     source_urls = req.get("source_urls") or []
@@ -65,9 +79,14 @@ def main():
     before_ids = [int(x["id"]) for x in before.get("images", [])]
     product_name = before.get("name") or req.get("product_name") or f"Product {product_id}"
 
+    existing_attachment_ids = [int(x) for x in (req.get("existing_attachment_ids") or [])]
+    if len(existing_attachment_ids) > expected_count:
+        raise RuntimeError("existing_attachment_ids exceeds expected_count")
     uploaded = []
     try:
         for idx, (_, data) in enumerate(assets, 1):
+            if idx <= len(existing_attachment_ids):
+                continue
             filename = f"k20-p{product_id}-gallery-{idx:02d}.webp"
             headers = {
                 "Content-Type": "image/webp",
@@ -79,7 +98,7 @@ def main():
             wp("POST", f"/wp/v2/media/{mid}", json={"title": title, "alt_text": title})
             uploaded.append({"id": mid, "url": media.get("source_url"), "file": filename})
 
-        new_ids = [x["id"] for x in uploaded]
+        new_ids = existing_attachment_ids + [x["id"] for x in uploaded]
         bind_body = {
             "action": "asset.gallery.append",
             "request_id": req_path.stem + "-bind",
@@ -116,6 +135,7 @@ def main():
                 "product_name": product_name,
                 "before_image_ids": before_ids,
                 "uploaded": uploaded,
+            "existing_attachment_ids": existing_attachment_ids,
                 "final_image_ids": final_ids,
                 "binding": bind_payload.get("result"),
                 "error": "Bridge append returned OK but gallery readback did not confirm all expected ids",
@@ -131,6 +151,7 @@ def main():
             "product_name": product_name,
             "before_image_ids": before_ids,
             "uploaded": uploaded,
+            "existing_attachment_ids": existing_attachment_ids,
             "final_image_ids": final_ids,
             "append_only": True,
             "featured_preserved": bool(before_ids and final_ids and before_ids[0] == final_ids[0]),
