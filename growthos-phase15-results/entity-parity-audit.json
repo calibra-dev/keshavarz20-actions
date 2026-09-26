@@ -1,6 +1,6 @@
 {
   "phase": 15,
-  "generated_at_utc": "2026-09-26T20:27:03.184184+00:00",
+  "generated_at_utc": "2026-09-26T21:53:12.636322+00:00",
   "hard_checks": {
     "homepage_http_200": true,
     "homepage_jsonld_parse_clean": true,
@@ -12,6 +12,9 @@
     "phase3_catalog_parity_hard_pass": true,
     "phase11_seller_name_consistent": true,
     "phase12_no_conflicting_seller_identity": true,
+    "assignment_artifact_valid": true,
+    "user_confirmed_assignment_mismatch_zero": true,
+    "combined_truth_conflict_zero": true,
     "current_truth_brand_mismatch_zero": true
   },
   "hard_pass": true,
@@ -20,7 +23,7 @@
     "principal_logo_present": true,
     "phase12_seller_mapping_explicit": false,
     "declared_sameAs_count": 1,
-    "products_without_woo_brand": 158,
+    "products_without_woo_brand": 0,
     "duplicate_normalized_brand_groups": 0,
     "multi_brand_products": 12,
     "note": "Soft gaps are enrichment/backlog items only. They do not justify fabricated identity, brand, GLN, legal registration, or sameAs data."
