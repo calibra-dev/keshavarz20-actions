@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import datetime as dt
 import importlib.util, json, os, re
 from urllib import parse
 
@@ -212,10 +213,30 @@ def write_state_v9(cfg,state):
 def watchdog_snapshot(cfg):
     if not cfg.get("watchdog_enabled",True):
         return {"enabled":False,"pending_generated":0,"unexpected_types":[]}
-    rows=q.recent_generated_comments(cfg,limit=100)
-    pending=sum(1 for c in rows if c.get("status")=="hold")
+
+    # The engine intentionally stores generated questions as moderation-held
+    # comments. Counting the entire historical moderation backlog permanently
+    # paused an otherwise healthy six-month campaign once it reached 60 items.
+    # Guard against *runaway recent generation* instead: at the normal 18-26
+    # minute cadence fewer than 90 questions can be created in any 24h window.
+    window_hours=max(1,min(168,int(cfg.get("watchdog_pending_window_hours",24))))
+    max_pending=max(1,int(cfg.get("watchdog_max_pending",90)))
+    rows=q.recent_generated_comments(cfg,limit=max(100,min(500,max_pending+20)))
+    cutoff=q.b.now_utc()-dt.timedelta(hours=window_hours)
+    pending=0
+    for c in rows:
+        if c.get("status")!="hold":
+            continue
+        when=q.b.parse_dt(c.get("date_gmt") or c.get("date"))
+        if when and when>=cutoff:
+            pending+=1
     unexpected=sorted({str(c.get("type") or "") for c in rows if str(c.get("type") or "comment")!="comment"})
-    return {"enabled":True,"pending_generated":pending,"unexpected_types":unexpected}
+    return {
+        "enabled":True,
+        "pending_generated":pending,
+        "pending_window_hours":window_hours,
+        "unexpected_types":unexpected,
+    }
 
 
 def watchdog_reason(cfg,state,snap,scheduled=True):
