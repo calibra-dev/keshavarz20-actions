@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import datetime as dt
 import importlib.util, os, random
 ROOT=os.path.dirname(os.path.abspath(__file__))
 spec=importlib.util.spec_from_file_location("qe9",os.path.join(ROOT,"engine_v9.py")); m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
@@ -26,6 +27,25 @@ assert m.watchdog_reason(cfg,state,{"pending_generated":59,"unexpected_types":[]
 assert m.watchdog_reason(cfg,state,{"pending_generated":60,"unexpected_types":[]},True)=="pending-queue-limit"
 assert m.watchdog_reason(cfg,{"watchdog":{"consecutive_failures":3}},{"pending_generated":0,"unexpected_types":[]},True)=="consecutive-failures"
 assert m.watchdog_reason(cfg,state,{"pending_generated":0,"unexpected_types":["review"]},True)=="unexpected-comment-type"
+
+
+# The pending watchdog is rolling-window based so a historical moderation
+# backlog cannot permanently stop a healthy continuous campaign.
+_orig_recent=q.recent_generated_comments
+_orig_now=q.b.now_utc
+try:
+    fixed=dt.datetime(2026,9,26,6,0,0,tzinfo=dt.timezone.utc)
+    q.b.now_utc=lambda: fixed
+    q.recent_generated_comments=lambda cfg,limit=100: [
+        {"status":"hold","type":"comment","date_gmt":"2026-09-26T05:00:00Z"},
+        {"status":"hold","type":"comment","date_gmt":"2026-09-24T05:00:00Z"},
+    ]
+    snap=m.watchdog_snapshot({"watchdog_enabled":True,"watchdog_pending_window_hours":24,"watchdog_max_pending":90})
+    assert snap["pending_generated"]==1,snap
+    assert snap["pending_window_hours"]==24,snap
+finally:
+    q.recent_generated_comments=_orig_recent
+    q.b.now_utc=_orig_now
 
 ok,reason=q.consistency_guard(p,{"intent":"answer_memory_followup","key":"bad"},"برای ادامه بررسی چه اطلاعاتی لازمه؟")
 assert not ok and "followup" in reason,(ok,reason)
