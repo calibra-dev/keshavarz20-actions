@@ -1,0 +1,119 @@
+{
+  "phase": 9,
+  "version": "growthos-phase9-a11y-v1",
+  "generated_at_utc": "2026-09-26T04:40:45.141951+00:00",
+  "status": "PASS_VERIFIED_WRITE",
+  "results": [
+    {
+      "id": 144236,
+      "slug": "layflat-length-fittings-calculator",
+      "changed": true,
+      "changes": {
+        "lf_len": {
+          "changed": true,
+          "state": "added"
+        },
+        "lf_roll": {
+          "changed": true,
+          "state": "added"
+        },
+        "lf_out": {
+          "changed": true,
+          "state": "added"
+        },
+        "lf_end": {
+          "changed": true,
+          "state": "added"
+        },
+        "lf_res": {
+          "changed": true,
+          "state": "added"
+        }
+      },
+      "verify": {
+        "lf_len": true,
+        "lf_roll": true,
+        "lf_out": true,
+        "lf_end": true,
+        "lf_res": true
+      },
+      "verified": true
+    },
+    {
+      "id": 144238,
+      "slug": "irrigation-filter-selector",
+      "changed": true,
+      "changes": {
+        "fs_source": {
+          "changed": true,
+          "state": "added"
+        },
+        "fs_use": {
+          "changed": true,
+          "state": "added"
+        },
+        "fs_flow": {
+          "changed": true,
+          "state": "added"
+        },
+        "fs_micron": {
+          "changed": true,
+          "state": "added"
+        },
+        "fs_conn": {
+          "changed": true,
+          "state": "added"
+        }
+      },
+      "verify": {
+        "fs_source": true,
+        "fs_use": true,
+        "fs_flow": true,
+        "fs_micron": true,
+        "fs_conn": true
+      },
+      "verified": true
+    },
+    {
+      "id": 144239,
+      "slug": "irrigation-fittings-compatibility-selector",
+      "changed": true,
+      "changes": {
+        "ic_system": {
+          "changed": true,
+          "state": "added"
+        },
+        "ic_size": {
+          "changed": true,
+          "state": "added"
+        },
+        "ic_task": {
+          "changed": true,
+          "state": "added"
+        },
+        "ic_out": {
+          "changed": true,
+          "state": "added"
+        },
+        "ic_valve": {
+          "changed": true,
+          "state": "added"
+        }
+      },
+      "verify": {
+        "ic_system": true,
+        "ic_size": true,
+        "ic_task": true,
+        "ic_out": true,
+        "ic_valve": true
+      },
+      "verified": true
+    }
+  ],
+  "qa": {
+    "targets": 3,
+    "verified": 3,
+    "controls": 15,
+    "controls_verified": 15
+  }
+}
