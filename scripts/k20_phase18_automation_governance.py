@@ -104,7 +104,7 @@ def main(outpath):
     ]))
     add("news_result_evidence",all(x in news_base for x in ['"source_urls"','"fields_written"','"qa_score"','"readback"']))
     add("article_result_evidence",all(x in article_base for x in ['"source_urls"','"fields_written"','"qa_score"','"readback"']))
-    add("no_secret_persistence",m.get("secret_values_persisted") is False and policy["automation"]["no_secret_values_in_logs"] is True)
+    add("no_secret_persistence",(m.get("safety") or {}).get("secret_values_persisted") is False and policy["automation"]["no_secret_values_in_logs"] is True)
     add("commerce_out_of_scope",article_e2e.get("commerce_mutations")==0)
 
     passed=all(x["pass"] for x in checks)
