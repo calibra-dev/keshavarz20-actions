@@ -27,14 +27,15 @@ jobs:
         with: { fetch-depth: 2 }
       - uses: actions/setup-python@v5
         with: { python-version: '3.12' }
-      - name: Install news dependencies
+      - name: Install governed engine dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r daily-agri-news/requirements.txt
+          pip install -r daily-agri-articles/requirements.txt
       - name: Compile governed engines
         run: |
-          python -m py_compile daily-agri-news/publish_queue.py daily-agri-news/publish_queue_v2.py
-          python -m py_compile daily-agri-articles/publish_queue.py daily-agri-articles/publish_queue_v2.py daily-agri-articles/publish_queue_v3.py
+          python -m py_compile daily-agri-news/publish_queue.py daily-agri-news/publish_queue_v2.py daily-agri-news/publish_queue_v3.py
+          python -m py_compile daily-agri-articles/publish_queue.py daily-agri-articles/publish_queue_v2.py daily-agri-articles/publish_queue_v3.py daily-agri-articles/publish_queue_v4.py daily-agri-articles/publish_queue_v5.py
           python -m py_compile question-engine/engine_v18.py
           python -m py_compile scripts/k20_phase18_news_read_probe.py scripts/k20_phase18_automation_governance.py
       - name: Test live read-only news duplicate path
