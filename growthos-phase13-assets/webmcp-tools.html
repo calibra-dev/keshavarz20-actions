@@ -2,6 +2,15 @@
 <script>
 (function(){
   "use strict";
+  // First-party Chrome Origin Trial token for WebMCP on https://keshavarz20.com.
+  // Origin-trial tokens are intentionally public and origin-scoped.
+  if(!document.querySelector('meta[http-equiv="origin-trial"][data-k20-webmcp="1"]')){
+    var otMeta=document.createElement("meta");
+    otMeta.httpEquiv="origin-trial";
+    otMeta.content="An0Yyj4joK4Xf9PyjWyVByBVdRLQNfYmO7W11AvFPwfiEI5mZrjLzW51QakAmgYMfhiMncF/mkp+rcHePdJ2Dw0AAABPeyJvcmlnaW4iOiJodHRwczovL2tlc2hhdmFyejIwLmNvbTo0NDMiLCJmZWF0dXJlIjoiV2ViTUNQIiwiZXhwaXJ5IjoxNzk0ODczNjAwfQ==";
+    otMeta.setAttribute("data-k20-webmcp","1");
+    document.head.appendChild(otMeta);
+  }
   if(window.__k20WebMCPPhase13){return;}
   window.__k20WebMCPPhase13={version:"1.0.0",registered:[],errors:[]};
 
