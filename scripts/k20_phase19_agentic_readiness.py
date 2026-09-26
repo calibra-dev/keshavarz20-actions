@@ -29,7 +29,7 @@ def main(result_path, projection_path):
     def add(name,v): checks.append({"name":name,"pass":bool(v)})
 
     add("fresh_upstream_run_recorded",int(fresh.get("source_run_id") or 0)>0 and fresh.get("observed_from_successful_steps") is True)
-    add("fresh_upstream_counts_match_persisted",int((fresh.get("phase11") or {}).get("candidate_rows") or 0)==candidates and int((fresh.get("phase11") or {}).get("ready_rows") or 0)==ready and int((fresh.get("phase15") or {}).get("source_verified_truth_brand_products") or 0)==int(counts.get("brand") or 0))
+    add("fresh_upstream_counts_match_persisted",int((fresh.get("phase11") or {}).get("candidate_rows") or 0)==candidates and int((fresh.get("phase11") or {}).get("ready_rows") or 0)==ready and int((fresh.get("phase15") or {}).get("external_single_brand_ready_products") or 0)==int(counts.get("brand") or 0))
     add("fresh_upstream_statuses_pass",all(str((fresh.get(k) or {}).get("status","")).startswith("PASS_") for k in ["phase11","phase12","phase14","phase15"]))
     add("phase11_guarded_pass",p11s.get("ok") is True and str(p11s.get("status","")).startswith("PASS_"))
     add("full_catalog_scope",candidates==int(p11f.get("published_parent_products") or 0) and candidates>=600)
