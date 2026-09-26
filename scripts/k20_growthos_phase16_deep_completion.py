@@ -132,6 +132,32 @@ def public_html(url):
     r=requests.get(url+sep+"k20_deep="+str(int(time.time()*1000)),timeout=60,headers={"User-Agent":"k20-phase16-deep-completion/1.0","Cache-Control":"no-cache, no-store","Pragma":"no-cache"})
     r.raise_for_status(); return r
 
+def remove_malformed_pre_anchor(raw,pid):
+    """Remove legacy Phase-16 fragments that were inserted before the real visible anchor
+    but never rendered. This is deliberately bounded by an existing visible heading."""
+    marker="<!-- k20-phase16-deep-review-v1 -->"
+    if pid==142587:
+        mh=re.search(r"<h[1-6][^>]*>[^<]*منابع[^<]*</h[1-6]>",raw,re.I)
+        if not mh:
+            return raw,0
+        source_section=raw.rfind("<section",0,mh.start())
+        if source_section<0:
+            return raw,0
+        starts=[m.start() for m in re.finditer(re.escape(marker),raw[:source_section])]
+        if not starts:
+            return raw,0
+        start=starts[0]
+        return raw[:start]+raw[source_section:],1
+
+    mh=re.search(r"<h2[^>]*>\\s*نظر کارشناسی کشاورز بیست\\s*</h2>",raw,re.I)
+    if not mh:
+        return raw,0
+    starts=[m.start() for m in re.finditer(re.escape(marker),raw[:mh.start()])]
+    if not starts:
+        return raw,0
+    start=starts[0]
+    return raw[:start]+raw[mh.start():],1
+
 def strip_old_blocks(raw):
     pats=[
       r"<!-- k20-phase16-deep-review-v1 -->[\\s\\S]*?<!-- /k20-phase16-deep-review-v1 -->",
@@ -230,7 +256,8 @@ for pid,cfg in POSTS.items():
                 snap={"captured":True,"before_sha256":sp.get("before_sha256")}
         except Exception as exc:
             snap={"captured":False,"reason":str(exc)[:180]}
-        cleaned,removed=strip_old_blocks(raw)
+        precleaned,malformed_removed=remove_malformed_pre_anchor(raw,pid)
+        cleaned,removed=strip_old_blocks(precleaned)
         new_content,mode=expand_inside_render_root(cleaned,pid,cfg)
         gw=core_update(pid,new_content)
         time.sleep(1.5)
@@ -249,7 +276,7 @@ for pid,cfg in POSTS.items():
           "public_editorial_analysis":"نظر کارشناسی کشاورز بیست" in pub.text
         }
         verified=all(v is True or v==200 for v in checks.values())
-        results.append({"id":pid,"title":clean_title(post2),"url":url,"status":"verified" if verified else "verification_failed","insert_mode":mode,"old_phase16_blocks_removed":removed,"snapshot":snap,"modified_gmt":gw.get("modified_gmt") or gw.get("modified"),"checks":checks})
+        results.append({"id":pid,"title":clean_title(post2),"url":url,"status":"verified" if verified else "verification_failed","insert_mode":mode,"old_phase16_blocks_removed":removed,"malformed_pre_anchor_removed":malformed_removed,"snapshot":snap,"modified_gmt":gw.get("modified_gmt") or gw.get("modified"),"checks":checks})
         if not verified: failures.append({"id":pid,"reason":"public_or_rendered_verification_failed","checks":checks})
     except Exception as exc:
         failures.append({"id":pid,"title":cfg["title"],"reason":str(exc)[:700]})
