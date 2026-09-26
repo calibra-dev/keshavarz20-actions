@@ -43,7 +43,7 @@ def write(kind,pid,content):
 
 def patch(raw,block):
     p=re.compile(re.escape(START)+r"[\s\S]*?"+re.escape(END))
-    return p.sub(block,raw,count=1) if p.search(raw) else raw.rstrip()+"\n\n"+block+"\n"
+    return p.sub(lambda _m:block,raw,count=1) if p.search(raw) else raw.rstrip()+"\n\n"+block+"\n"
 
 # Guard prior phases.
 for rel in ["growthos-phase9-results/final-summary.json","growthos-phase10-results/summary.json","growthos-phase11-results/summary.json","growthos-phase12-results/summary.json"]:
