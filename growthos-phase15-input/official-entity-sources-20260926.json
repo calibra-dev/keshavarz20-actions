@@ -1,0 +1,31 @@
+{
+  "generated_at_utc": "2026-09-26T07:43:00Z",
+  "phase": 15,
+  "title": "Brand & Seller Entity OS",
+  "official_sources": [
+    {
+      "source": "Google Search Central — Organization structured data",
+      "url": "https://developers.google.com/search/docs/appearance/structured-data/organization",
+      "facts": [
+        "Organization structured data on the home page can help Google disambiguate an organization.",
+        "For ecommerce sites Google recommends the OnlineStore subtype where appropriate.",
+        "Useful identity fields include name, alternateName, url, logo, address, telephone and other applicable properties.",
+        "There are no universally required Organization properties; add only relevant real information."
+      ]
+    },
+    {
+      "source": "Schema.org — OnlineStore",
+      "url": "https://schema.org/OnlineStore",
+      "facts": [
+        "OnlineStore is a subtype of Organization through OnlineBusiness.",
+        "OnlineStore represents an ecommerce site."
+      ]
+    }
+  ],
+  "implementation_policy": [
+    "Seller and manufacturer/brand are separate entity roles.",
+    "Do not invent legal name, GLN, registration IDs, sameAs URLs or external profiles.",
+    "Reuse Phase 3 all-catalog parity evidence instead of repeating completed schema remediation.",
+    "Missing source-backed brand is a backlog item, not permission to infer a brand."
+  ]
+}
