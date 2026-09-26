@@ -2,7 +2,7 @@
   "ok": true,
   "phase": 15,
   "title": "Brand & Seller Entity OS",
-  "generated_at_utc": "2026-09-26T21:53:12.636322+00:00",
+  "generated_at_utc": "2026-09-26T21:59:28.350835+00:00",
   "status": "PASS_ENTITY_OS_WITH_SOURCE_GAPS",
   "published_products": 652,
   "seller_entity_found": true,
@@ -13,7 +13,9 @@
   "user_confirmed_brand_assignment_products": 158,
   "user_confirmed_real_brand_products": 83,
   "pseudo_brand_products": 75,
-  "external_brand_truth_gap_products": 75,
+  "multi_brand_ambiguous_products": 12,
+  "external_brand_truth_gap_products": 87,
+  "external_single_brand_ready_products": 565,
   "source_verified_truth_brand_products": 577,
   "brand_truth_mismatches": 0,
   "operator_assignment_mismatches": 0,
@@ -24,7 +26,7 @@
   "glns_fabricated": 0,
   "schema_site_writes": 0,
   "next_backlog": [
-    "Resolve the 75 internal pseudo-brand «متفرقه» products only when a real manufacturer/brand source is available; never export «متفرقه» as a commerce brand.",
+    "Resolve 75 internal pseudo-brand «متفرقه» products and 12 multi-brand ambiguities only when a real manufacturer/brand source is available; never export pseudo or ambiguous brand as a single commerce brand.",
     "Verify official external brand/seller profiles before adding sameAs.",
     "Consider OnlineStore subtype at the canonical schema source only if it can be changed without duplicating Organization."
   ]
