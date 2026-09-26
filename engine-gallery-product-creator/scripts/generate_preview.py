@@ -168,6 +168,9 @@ def build_slides(product: dict, rules: dict, request: dict, product_im: Image.Im
     out_cfg = rules["output"]
     cat = rules["categories"].get(request.get("category_key"), rules["categories"]["default"])
     batch_id = request["batch_id"]
+    requested_slides = int(request.get("slide_count") or out_cfg.get("slides_per_product") or 5)
+    if requested_slides not in (5, 8):
+        raise SystemExit("slide_count must be 5 or 8")
     outdir = PREVIEWS / batch_id
     outdir.mkdir(parents=True, exist_ok=True)
 
@@ -232,6 +235,49 @@ def build_slides(product: dict, rules: dict, request: dict, product_im: Image.Im
     p5 = outdir / "slide-05.webp"; save_webp(c, p5, out_cfg["quality"])
 
     files = [p1, p2, p3, p4, p5]
+
+    if requested_slides == 8:
+        # Slide 6: category-specific size identity; only uses an explicit approved rule.
+        c = background(1000, 1000); d = ImageDraw.Draw(c)
+        center_text(d, "سایز و تطبیق اتصال", 55, font(48, True), WHITE)
+        size_note = "سایز درج‌شده روی همین محصول را با اتصال پروژه تطبیق دهید."
+        if request.get("category_key") == "threaded-layflat":
+            product_name = normalize_text(product.get("name", ""))
+            size_map = rules.get("threaded_layflat_only_outer_inch_to_inner_mm") or {}
+            matched = None
+            for inch, mm in size_map.items():
+                if f"{inch} اینچ" in product_name or f"{inch}اینچ" in product_name:
+                    matched = (inch, mm)
+                    break
+            if matched:
+                size_note = f"سایز این دسته: {matched[0]} اینچ | مقدار مرجع دسته: {matched[1]} میلی‌متر"
+        c.alpha_composite(fit_product(product_im, 640, 430), (0, 190))
+        card(c, (85, 665, 915, 845), "تطبیق سایز", size_note, GOLD)
+        center_text(d, "قبل از سفارش، اتصال مقابل و اندازه واقعی پروژه کنترل شود", 885, font(25, True), MUTED, width_chars=38)
+        p6 = outdir / "slide-06.webp"; save_webp(c, p6, out_cfg["quality"]); files.append(p6)
+
+        # Slide 7: reinforced construction without inventing pressure or performance figures.
+        c = background(1000, 1000); d = ImageDraw.Draw(c)
+        center_text(d, "ساختار نخدار و استحکام", 55, font(48, True), WHITE)
+        c.alpha_composite(fit_product(product_im, 620, 420), (0, 175))
+        structure = "این محصول در نام ثبت‌شده به‌عنوان لوله نخدار ۵ لایه معرفی شده است. عدد فشار، ضخامت یا دبی بدون سند همین مدل نمایش داده نمی‌شود."
+        card(c, (75, 635, 925, 865), "داده تاییدشده", structure, GREEN)
+        p7 = outdir / "slide-07.webp"; save_webp(c, p7, out_cfg["quality"]); files.append(p7)
+
+        # Slide 8: installation and pre-purchase checklist.
+        c = background(1000, 1000); d = ImageDraw.Draw(c)
+        center_text(d, "چک‌لیست نصب و خرید", 55, font(48, True), LIME)
+        checks = [
+            ("۱", "رول را بدون پیچ‌خوردگی و کشش موضعی باز کنید."),
+            ("۲", "سرشلنگی، رابط و بست را با سایز واقعی همان خط تطبیق دهید."),
+            ("۳", "فشار و دبی پروژه را از داده واقعی شبکه بگیرید؛ عدد حدسی وارد تصمیم نکنید."),
+        ]
+        y = 210
+        for n, b in checks:
+            card(c, (70, y, 930, y + 185), n, b, GOLD if n == "۲" else GREEN)
+            y += 215
+        p8 = outdir / "slide-08.webp"; save_webp(c, p8, out_cfg["quality"]); files.append(p8)
+
     return outdir, files, cat
 
 
