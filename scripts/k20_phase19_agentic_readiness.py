@@ -30,14 +30,14 @@ def main(result_path, projection_path):
     add("phase11_guarded_pass",p11s.get("ok") is True and str(p11s.get("status","")).startswith("PASS_"))
     add("full_catalog_scope",candidates==int(p11f.get("published_parent_products") or 0) and candidates>=600)
     add("stable_item_ids_complete",int(counts.get("item_id") or 0)==candidates)
-    add("stable_item_ids_unique",int(p11f.get("duplicate_item_id_count") or 99)==0)
+    add("stable_item_ids_unique",int(p11f.get("duplicate_item_id_count",99))==0)
     add("titles_complete",int(counts.get("title") or 0)==candidates)
     add("descriptions_complete",int(counts.get("description") or 0)==candidates)
     add("canonical_urls_complete",int(counts.get("url") or 0)==candidates)
     add("images_complete",int(counts.get("image_url") or 0)==candidates)
     add("availability_complete",int(counts.get("availability") or 0)==candidates)
     add("seller_name_complete",int(counts.get("seller_name") or 0)==candidates)
-    add("readiness_math_consistent",ready==min(int(counts.get("brand") or 0),int(counts.get("price") or 0)) and ready<=candidates)
+    add("readiness_math_consistent",ready==int(p11s.get("openai_feed_ready_rows") or -1) and ready<=int(counts.get("brand") or 0) and ready<=int(counts.get("price") or 0) and ready<=candidates)
     add("known_sku_conflict_not_feed_identity",((p11f.get("known_source_sku_conflict") or {}).get("feed_identity_impact")=="none_after_stable_id_mapping"))
     add("phase11_external_feed_not_submitted",p11s.get("direct_feed_submitted") is False and p11f.get("feed_submission_attempted") is False)
     add("phase11_partner_access_not_invented",p11s.get("direct_feed_partner_access_proven") is False)
@@ -53,9 +53,9 @@ def main(result_path, projection_path):
     add("phase14_no_fake_resolver",int(p14.get("public_resolver_urls_created") or 0)==0)
 
     add("phase15_entity_pass",p15.get("ok") is True and p15.get("seller_entity_found") is True and p15.get("seller_name_consistent") is True)
-    add("phase15_brand_truth_consistent",int(p15.get("brand_truth_mismatches") or 99)==0)
+    add("phase15_brand_truth_consistent",int(p15.get("brand_truth_mismatches",99))==0)
     add("phase15_brand_counts_match",int(p15.get("source_verified_truth_brand_products") or 0)==int(counts.get("brand") or 0) and int(p15.get("products_without_woo_brand") or 0)==missing_brand)
-    add("phase15_no_identity_fabrication",int(p15.get("identity_fields_fabricated") or 99)==0 and int(p15.get("sameAs_links_fabricated") or 99)==0 and int(p15.get("glns_fabricated") or 99)==0)
+    add("phase15_no_identity_fabrication",int(p15.get("identity_fields_fabricated",99))==0 and int(p15.get("sameAs_links_fabricated",99))==0 and int(p15.get("glns_fabricated",99))==0)
 
     oa=cfg["openai_stable_feed"]; gu=cfg["google_ucp"]; gg=cfg["google_compatible_feed"]; lg=cfg["legal_policy_gate"]
     add("openai_required_field_contract_current",oa.get("required_fields")==["item_id","title","description","url","brand","seller_name","image_url","availability","price"])
