@@ -1,34 +1,111 @@
 {
   "phase": 17,
+  "version": "phase17-evidence-expert-case-v2",
   "title": "Evidence, Expert Q&A & Case Studies",
-  "generated_at_utc": "2026-09-21T07:30:09.512252+00:00",
-  "status": "PASS",
-  "verified_evidence_cards": 3,
+  "generated_at_utc": "2026-09-26T19:30:54.821008+00:00",
+  "status": "PASS_V2",
+  "verified_evidence_cards": 7,
+  "grade_a_evidence_cards": 7,
   "evidence_cards": [
     {
       "evidence_id": "phase17-evidence-001",
+      "grade": "A",
+      "source_type": "first_party_deterministic_test",
       "missing": [],
       "valid": true
     },
     {
       "evidence_id": "phase17-evidence-002",
+      "grade": "A",
+      "source_type": "first_party_live_readback",
       "missing": [],
       "valid": true
     },
     {
       "evidence_id": "phase17-evidence-003",
+      "grade": "A",
+      "source_type": "first_party_reversible_ab_test",
+      "missing": [],
+      "valid": true
+    },
+    {
+      "evidence_id": "phase17-evidence-004",
+      "grade": "A",
+      "source_type": "first_party_live_readback",
+      "missing": [],
+      "valid": true
+    },
+    {
+      "evidence_id": "phase17-evidence-005",
+      "grade": "A",
+      "source_type": "first_party_catalog_audit",
+      "missing": [],
+      "valid": true
+    },
+    {
+      "evidence_id": "phase17-evidence-006",
+      "grade": "A",
+      "source_type": "first_party_entity_audit",
+      "missing": [],
+      "valid": true
+    },
+    {
+      "evidence_id": "phase17-evidence-007",
+      "grade": "A",
+      "source_type": "first_party_editorial_audit",
       "missing": [],
       "valid": true
     }
   ],
-  "expert_qa_templates": 2,
-  "expert_qa_valid": 2,
+  "expert_qa_templates": 6,
+  "expert_qa_valid": 6,
+  "official_primary_research_sources": 5,
+  "research_manifest_valid": true,
+  "structured_data_guard": true,
+  "anti_fake_review_policy": true,
   "case_templates": 4,
   "case_publication_ready": 0,
   "case_blocked_real_evidence": 4,
   "case_gate_preserved": true,
-  "anti_fake_review_policy": true,
-  "publication_note": "No customer identity, review, testimonial, project outcome, or case-study metric was invented. Case slots remain blocked until real evidence, consent and privacy review exist.",
+  "cross_phase_evidence_valid": true,
+  "cross_phase_inputs": {
+    "13": {
+      "path": "growthos-phase13-results/summary.json",
+      "status": "PASS_LIVE_ORIGIN_TRIAL",
+      "valid": true,
+      "sha256": "9c84fa42b7b901c101f78955c8d5c44bc4e21824ae7735ef573ae0ee89782d8b"
+    },
+    "14": {
+      "path": "growthos-phase14-results/summary.json",
+      "status": "PASS_GUARDED_NO_VERIFIED_GS1_IDS",
+      "valid": true,
+      "sha256": "e76501d6f24390fdbe98e920474b724134cbc09bf1fdb367d88817eb982a52f5"
+    },
+    "15": {
+      "path": "growthos-phase15-results/summary.json",
+      "status": "PASS_ENTITY_OS_WITH_SOURCE_GAPS",
+      "valid": true,
+      "sha256": "c5a88bd1322c4c49eaa81fd4d5cdf8229623f329c6a356e32d5801775228f025"
+    },
+    "16": {
+      "path": "growthos-phase16-results/summary.json",
+      "status": "PASS_EDITORIAL_TRUST_OS",
+      "valid": true,
+      "sha256": "482e6bfe544a0d47017703f67513ab86885099f49de4c02c8bfc20920201602f"
+    }
+  },
+  "input_sha256": {
+    "phase17/evidence-policy.json": "5ca39dbf2a3682e86b4337366c18f550b0cb879c860c880214b4c1f71a80a626",
+    "phase17/evidence-cards.json": "bb5346e5e6312a4201aa969101fcb8edab27f95789409206ace0e98a8b6b070c",
+    "phase17/expert-qa-templates.json": "fa838a7f5a24f31c89d93cd30078fac8b5fbf874e05c50e53d3146f318f984fa",
+    "phase17/research-manifest.json": "eb5c2bb01f15c36384fb05767e21882faa61bf7b81f519cdd2d6235f3b416e02",
+    "phase17/case-study-requirements.json": "5f7b3c37540a021797bdbec2f588a0bb7bca84eba149a47a10357217527c5c93",
+    "phase2-results/case-study-gate.json": "417d8e44a9a31b71dcd999b1f8dd8353eece6a0c971eafe7f7642468f4a0373a"
+  },
   "site_mutations": 0,
+  "price_stock_discount_mutations": 0,
+  "orders_created": 0,
+  "messages_sent": 0,
+  "publication_note": "No customer identity, review, testimonial, expert identity, project outcome, rating, GTIN, or case-study metric was invented. Static editorial Q&A remains non-QAPage. Case slots remain blocked until real evidence, consent, privacy review, measurement method, dates, limitations and verified reviewer identity exist.",
   "review_policy": "Publish only authentic reviews as received subject to moderation for privacy, abuse, illegality, spam, or irrelevant content; do not suppress a valid negative review because it is negative."
 }
