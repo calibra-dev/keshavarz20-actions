@@ -1,0 +1,41 @@
+{
+  "generated_at_utc": "2026-09-26T06:31:48.686Z",
+  "phase": 13,
+  "title": "WebMCP",
+  "official_sources": [
+    {
+      "source": "W3C Web Machine Learning Community Group — WebMCP Draft",
+      "url": "https://webmachinelearning.github.io/webmcp/",
+      "facts": [
+        "Current API surface is document.modelContext.",
+        "Tools are registered with document.modelContext.registerTool().",
+        "ModelContextTool supports name, title, description, inputSchema, execute and annotations.",
+        "Tool annotations include readOnlyHint, untrustedContentHint, consequentialHint and debugging.",
+        "The tools permission-policy feature defaults to self."
+      ]
+    },
+    {
+      "source": "Chrome for Developers — WebMCP",
+      "url": "https://developer.chrome.com/docs/ai/webmcp",
+      "facts": [
+        "WebMCP is an experimental proposed web standard and progressive enhancement.",
+        "Chrome exposes WebMCP through an origin trial starting in Chrome 149.",
+        "Local testing can use chrome://flags/#enable-webmcp-testing."
+      ]
+    },
+    {
+      "source": "Chrome for Developers — Imperative API",
+      "url": "https://developer.chrome.com/docs/ai/webmcp/imperative-api",
+      "facts": [
+        "The imperative API supports form input, navigation, state management and other page-side functions.",
+        "Agents can discover registered tools and execute them through the ModelContext interface."
+      ]
+    }
+  ],
+  "implementation_policy": [
+    "Use document.modelContext as the primary API; navigator.modelContext is compatibility fallback only.",
+    "Expose only existing Keshavarz20 UI logic; do not invent parallel hydraulic or compatibility logic.",
+    "Do not let browser agents place real orders, send messages, alter price/stock or issue invoices in Phase 13.",
+    "Shipping amount stays null when the current carrier method is pay-on-delivery and no source-backed rate formula exists."
+  ]
+}
