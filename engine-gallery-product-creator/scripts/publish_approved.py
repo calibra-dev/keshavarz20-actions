@@ -52,8 +52,9 @@ def main():
         raise SystemExit("approval/manifest identity mismatch")
     if manifest.get("preview_only") is not True or manifest.get("approval_required") is not True:
         raise SystemExit("manifest safety flags invalid")
-    if len(manifest.get("assets") or [])!=5:
-        raise SystemExit("manifest must contain exactly five assets")
+    asset_count=len(manifest.get("assets") or [])
+    if asset_count not in (5,8):
+        raise SystemExit("manifest must contain five or eight assets")
 
     expected=list(approval.get("asset_sha256") or [])
     actual=[]
@@ -90,7 +91,7 @@ def main():
             }
             media=wp("POST","/wp/v2/media",headers=headers,data=p.read_bytes())
             mid=int(media["id"])
-            alt=f"{manifest['product_name']} – اینفوگرافیک {idx} از 5"
+            alt=f"{manifest['product_name']} – اینفوگرافیک {idx} از {asset_count}"
             wp("POST",f"/wp/v2/media/{mid}",json={"title":alt,"alt_text":alt})
             uploaded.append({"id":mid,"url":media.get("source_url"),"sha256":asset["sha256"]})
 
