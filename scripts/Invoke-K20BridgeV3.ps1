@@ -12,6 +12,7 @@ $siteActions=@(
   'content.search','content.patch','content.block.inspect','content.block.patch',
   'elementor.inspect','elementor.search','elementor.edit','elementor.structure',
   'media.import','media.transform','media.metadata','media.hash','media.duplicates','media.optimize','media.focal_crop','media.watermark',
+  'asset.featured.set','asset.gallery.append','asset.gallery.replace','asset.content.insert',
   'cache.status','cache.purge','audit.tail','batch',
   'job.create','job.status','job.run','job.retry_failed',
   'snapshot.list','snapshot.rollback',
