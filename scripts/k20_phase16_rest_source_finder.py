@@ -21,12 +21,24 @@ def walk(x,path="$"):
         if TERM in x:
             hits.append({"path":path,"length":len(x),"term_count":x.count(TERM)})
 walk(data)
+raw=((data.get("content") or {}).get("raw") or "")
+rendered=((data.get("content") or {}).get("rendered") or "")
+def around(s,term,n=1400):
+    i=s.find(term)
+    return s[max(0,i-n):min(len(s),i+n)] if i>=0 else None
 summary={
  "top_level_keys":sorted(data.keys()),
  "has_meta":isinstance(data.get("meta"),dict),
  "meta_keys":sorted(list((data.get("meta") or {}).keys())) if isinstance(data.get("meta"),dict) else [],
  "template":data.get("template"),
  "format":data.get("format"),
- "hits":hits
+ "hits":hits,
+ "raw_deep":"بازبینی عمیق فنی" in raw,
+ "rendered_deep":"بازبینی عمیق فنی" in rendered,
+ "raw_review":"روش تهیه و بازبینی" in raw,
+ "rendered_review":"روش تهیه و بازبینی" in rendered,
+ "raw_term_snippet":around(raw,TERM),
+ "rendered_term_snippet":around(rendered,TERM),
+ "raw_deep_snippet":around(raw,"بازبینی عمیق فنی")
 }
 print(json.dumps(summary,ensure_ascii=False))
