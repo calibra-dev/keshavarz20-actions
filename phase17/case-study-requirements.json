@@ -1,0 +1,33 @@
+{
+  "phase": 17,
+  "version": "v2",
+  "publication_required_fields": [
+    "case_id",
+    "real_world_subject",
+    "consent_status",
+    "privacy_review",
+    "evidence_sources",
+    "baseline_or_before_state",
+    "intervention_or_change",
+    "after_state",
+    "measurement_method",
+    "measurement_dates",
+    "limitations",
+    "reviewer_identity_status"
+  ],
+  "gates": {
+    "real_evidence_required": true,
+    "consent_required_if_identifiable": true,
+    "privacy_review_required": true,
+    "before_after_metrics_must_be_source_backed": true,
+    "reviewer_identity_must_be_verified": true,
+    "ai_generated_visuals_cannot_count_as_outcome_evidence": true,
+    "testimonial_or_customer_identity_must_not_be_invented": true
+  },
+  "allowed_statuses": [
+    "needs_real_evidence",
+    "evidence_collected_pending_review",
+    "publication_ready"
+  ],
+  "current_policy": "A blocked case slot is a correct safe outcome until every publication gate is satisfied."
+}
