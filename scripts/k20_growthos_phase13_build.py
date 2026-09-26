@@ -50,7 +50,8 @@ for rel in ["growthos-phase9-results/final-summary.json","growthos-phase10-resul
     path=os.path.join(ROOT,rel)
     if not os.path.exists(path): raise SystemExit("Missing prerequisite "+rel)
     data=json.load(open(path,encoding="utf-8"))
-    status=str(data.get("status") or "")\n    if not (data.get("ok") is True or status.startswith("PASS")): raise SystemExit("Prerequisite not PASS: "+rel+" status="+status)
+    status=str(data.get("status") or "")
+    if not (data.get("ok") is True or status.startswith("PASS")): raise SystemExit("Prerequisite not PASS: "+rel+" status="+status)
 
 # Current shipping configuration, titles only; no rates/customer data.
 shipping=[]
