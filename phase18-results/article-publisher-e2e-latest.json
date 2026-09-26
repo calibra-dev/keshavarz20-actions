@@ -1,0 +1,61 @@
+{
+  "ok": true,
+  "temporary_post_id": 146203,
+  "temporary_media_id": 146200,
+  "publisher_version": "v5",
+  "transport": "wordpress_rest",
+  "steps": [
+    {
+      "step": "validate_payload_v5_chain",
+      "ok": true
+    },
+    {
+      "step": "duplicate_guard",
+      "ok": true
+    },
+    {
+      "step": "existing_category",
+      "ok": true,
+      "category_id": 1030
+    },
+    {
+      "step": "commons_search",
+      "ok": true,
+      "license": "Public domain"
+    },
+    {
+      "step": "render_v5_cover",
+      "ok": true,
+      "renderer": "k20-cover-v5-cinematic-deterministic-persian"
+    },
+    {
+      "step": "upload_media_rest",
+      "ok": true,
+      "media_id": 146200
+    },
+    {
+      "step": "create_draft_rest",
+      "ok": true,
+      "post_id": 146203
+    },
+    {
+      "step": "verify_readback",
+      "ok": true,
+      "status": "draft",
+      "type": "post",
+      "featured_media": true
+    },
+    {
+      "step": "cleanup",
+      "ok": true,
+      "post_deleted": true,
+      "media_deleted": true
+    }
+  ],
+  "cleanup_verified": {
+    "post": true,
+    "media": true
+  },
+  "published": false,
+  "commerce_mutations": 0
+}
