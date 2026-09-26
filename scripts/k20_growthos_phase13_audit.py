@@ -56,7 +56,7 @@ for kind,pid,slug,tool in TARGETS:
    result_ids.append(x)
  rows.append({
   "tool":tool,"kind":kind,"id":pid,"slug":slug,"status":o.get("status"),"link":o.get("link"),
-  "controls":controls,"buttons":buttons,"script_result_ids":result_ids,
+  "controls":controls,"buttons":buttons,"script_result_ids":result_ids,"all_ids":list(dict.fromkeys(re.findall(r'\\bid=["\\\']([^"\\\']+)["\\\']',raw,re.I))),
   "has_phase9":raw.count("K20-GROWTHOS-PHASE9-FLOW-START")==1,
   "has_phase10":raw.count("K20-GROWTHOS-PHASE10-MEASUREMENT-START")==1,
   "has_existing_webmcp":"modelContext" in raw or "toolname=" in raw.lower(),
