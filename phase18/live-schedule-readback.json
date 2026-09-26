@@ -1,0 +1,34 @@
+{
+  "phase": 18,
+  "version": "v2",
+  "observed_at_utc": "2026-09-26T19:40:00Z",
+  "timezone": "Asia/Tehran",
+  "news": {
+    "primary": {
+      "enabled": true,
+      "time": "08:00"
+    },
+    "recovery": {
+      "enabled": true,
+      "time": "08:15"
+    }
+  },
+  "article": {
+    "primary": {
+      "enabled": true,
+      "time": "09:00"
+    },
+    "recovery": {
+      "enabled": true,
+      "time": "09:20"
+    }
+  },
+  "question": {
+    "engine": "v18",
+    "continuous": true,
+    "scheduler_run_id": 36265709695,
+    "control_run_id": 36265698336,
+    "heartbeat_run_id": 36255859092
+  },
+  "note": "Read back from live automation configuration and current GitHub Actions runtime. No schedule was duplicated; previously disabled existing recovery/news tasks were re-enabled."
+}
