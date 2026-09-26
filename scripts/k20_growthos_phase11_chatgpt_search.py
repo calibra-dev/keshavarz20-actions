@@ -14,6 +14,7 @@ S.headers.update({'Accept':'application/json','User-Agent':'k20-growthos-phase11
 TOOLS=[('post',143698,'drip-tape-length-fittings-calculator'),('page',144236,'layflat-length-fittings-calculator'),('page',144238,'irrigation-filter-selector'),('page',144239,'irrigation-fittings-compatibility-selector'),('page',144266,'irrigation-pipe-size-selector'),('page',145233,'one-hectare-drip-irrigation-basket'),('page',145234,'irrigation-product-comparator'),('page',145286,'request-proforma')]
 HUBS=[(755,'نوار تیپ'),(768,'لوله نخدار'),(761,'انشعابات و بست ها'),(754,'لوله پلی اتیلن'),(825,'فیلتر و فیلتراسیون')]
 REQ=['item_id','title','description','url','brand','seller_name','image_url','availability','price']
+PSEUDO_BRANDS={'متفرقه'}
 
 def get(path,params=None,auth=True,timeout=90):
     sess=S if auth else requests
@@ -56,12 +57,18 @@ def brand_of(p):
     b=p.get('brands')
     if isinstance(b,list) and b:
         for x in b:
-            if isinstance(x,dict) and str(x.get('name') or '').strip(): return str(x['name']).strip()
+            if isinstance(x,dict) and str(x.get('name') or '').strip():
+                v=str(x['name']).strip()
+                if v in PSEUDO_BRANDS: return ''
+                return v
     for a in p.get('attributes') or []:
         n=str(a.get('name') or '').strip().lower()
         if n in ('brand','برند','نام برند') or 'برند' in n:
             opts=a.get('options') or []
-            if opts and str(opts[0]).strip(): return str(opts[0]).strip()
+            if opts and str(opts[0]).strip():
+                v=str(opts[0]).strip()
+                if v in PSEUDO_BRANDS: return ''
+                return v
     return ''
 
 def availability_of(p):
@@ -160,13 +167,14 @@ feed={
  'missing_samples':missing,'duplicate_item_id_count':len(duplicate_item_ids),'duplicate_item_id_samples':duplicate_item_ids[:50],
  'known_source_sku_conflict':{'sku':'430000300-2','product_ids':[140654,140655],'status':'SOURCE_CONFIRMATION_REQUIRED','feed_identity_impact':'none_after_stable_id_mapping'},
  'feed_submission_attempted':False,'partner_onboarding_gate':True,
+ 'pseudo_brand_names_excluded_from_external_feed':sorted(PSEUDO_BRANDS),
  'price_values_persisted':False,'stock_values_persisted':False,
  'mapping':{
    'item_id':'Stable Keshavarz20 ID derived from immutable Woo entity ID: k20_<product_id> / k20v_<variation_id>; Woo SKU remains a separate source field and is not used as the feed primary key.',
    'title':'Woo product name plus selected variation options where applicable',
    'description':'variation description -> short description -> product description, plain text',
    'url':'canonical Woo product permalink',
-   'brand':'Woo brands field or explicit brand attribute only; no inference',
+   'brand':'Woo product_brand / explicit brand only; internal pseudo-brand «متفرقه» is intentionally treated as missing for external feeds; no inference',
    'seller_name':'کشاورز بیست',
    'image_url':'variation image, otherwise main product image',
    'availability':'Woo stock_status mapped to OpenAI availability vocabulary',
