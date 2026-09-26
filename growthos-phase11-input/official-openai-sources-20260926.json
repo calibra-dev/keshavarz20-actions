@@ -1,0 +1,51 @@
+{
+  "generated_at_utc": "2026-09-26T04:54:25.469Z",
+  "phase": 11,
+  "topic": "ChatGPT Search + OpenAI ACP discovery readiness",
+  "official_sources": [
+    {
+      "source": "OpenAI Crawlers",
+      "url": "https://developers.openai.com/api/docs/bots",
+      "facts": [
+        "OAI-SearchBot controls inclusion in ChatGPT search features independently from GPTBot training controls.",
+        "Sites opted out of OAI-SearchBot are not shown in ChatGPT search answers, although navigational links may still appear.",
+        "Robots changes can take about 24 hours to be reflected."
+      ]
+    },
+    {
+      "source": "OpenAI Agentic Commerce Get Started",
+      "url": "https://developers.openai.com/commerce/guides/get-started",
+      "facts": [
+        "Product feed onboarding is currently available to approved partners.",
+        "The first integration step is a structured product feed."
+      ]
+    },
+    {
+      "source": "OpenAI Product Feed Stable Spec",
+      "url": "https://developers.openai.com/commerce/specs/file-upload/products",
+      "required_basic_fields": [
+        "item_id",
+        "title",
+        "description",
+        "url",
+        "brand",
+        "seller_name",
+        "image_url",
+        "availability",
+        "price"
+      ],
+      "facts": [
+        "Use Stable for supported file-upload integrations.",
+        "One row is required per purchasable item or variant.",
+        "Unknown optional values should be omitted rather than fabricated.",
+        "Checkout requires separately enabled integration."
+      ]
+    }
+  ],
+  "policy": [
+    "Do not fabricate GTIN, MPN, brand, availability, price or merchant eligibility.",
+    "Do not submit a direct OpenAI feed unless partner access is actually approved.",
+    "Do not equate ordinary ChatGPT referral traffic with product-feed onboarding.",
+    "Keep GPTBot training choice independent from OAI-SearchBot search accessibility."
+  ]
+}
