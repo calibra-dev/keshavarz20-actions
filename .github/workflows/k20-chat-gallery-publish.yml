@@ -58,6 +58,15 @@ jobs:
           git add -f gallery-chat-results/
           if ! git diff --cached --quiet; then
             git commit -m "gallery-chat: record publish results"
-            git push
+            for attempt in 1 2 3 4 5; do
+              if git pull --rebase origin main && git push origin HEAD:main; then
+                break
+              fi
+              git rebase --abort >/dev/null 2>&1 || true
+              sleep $((attempt * 2))
+              if [[ "$attempt" -eq 5 ]]; then
+                exit 1
+              fi
+            done
           fi
           exit "$failed"
