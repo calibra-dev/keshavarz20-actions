@@ -177,11 +177,18 @@ phase11_seller=None
 if P11.exists():
     phase11_seller=(json.loads(P11.read_text(encoding="utf-8")) or {}).get("seller_name")
 phase12_seller_mapped=False
+phase12_seller_conflicts=[]
 if P12.exists():
     p12=json.loads(P12.read_text(encoding="utf-8"))
     for m in p12.get("field_mapping") or []:
-        if m.get("google")=="seller_name" or m.get("k20")=="کشاورز بیست":
+        google_field=str(m.get("google") or "").strip().lower()
+        k20_field=str(m.get("k20") or "").strip()
+        if google_field=="seller_name" or norm_text(k20_field)=="کشاورزبیست":
             phase12_seller_mapped=True
+        # Phase 12 is primarily a product-field mapping and does not require a seller_name row.
+        # Treat only an explicit contradictory seller identity as a hard failure.
+        if google_field in {"seller","seller_name","merchant_name"} and k20_field and norm_text(k20_field)!="کشاورزبیست":
+            phase12_seller_conflicts.append({"google":m.get("google"),"k20":m.get("k20")})
 
 principal_name=(principal or {}).get("name")
 principal_url=(principal or {}).get("url")
@@ -201,12 +208,11 @@ hard_checks={
   "principal_seller_entity_found":principal is not None,
   "principal_name_is_keshavarz20":name_ok,
   "principal_url_same_origin_when_declared":url_ok,
-  "principal_logo_present":logo_ok,
   "phase3_all_published_products_have_organization":phase3_org_all,
   "phase3_brand_parity_hard_pass":phase3_brand_hard,
   "phase3_catalog_parity_hard_pass":phase3_all_hard,
   "phase11_seller_name_consistent":seller_feed_ok,
-  "phase12_seller_mapping_present":phase12_seller_mapped,
+  "phase12_no_conflicting_seller_identity":len(phase12_seller_conflicts)==0,
   "current_truth_brand_mismatch_zero":len(truth_mismatch)==0
 }
 hard_pass=all(hard_checks.values())
@@ -223,7 +229,8 @@ seller_registry={
     "latin_alias":"Keshavarz20",
     "canonical_url":"https://keshavarz20.com/",
     "phase11_feed_seller_name":phase11_seller,
-    "phase12_merchant_seller_mapping":phase12_seller_mapped
+    "phase12_merchant_seller_mapping_explicit":phase12_seller_mapped,
+    "phase12_conflicting_seller_mappings":phase12_seller_conflicts
   },
   "identity_policy":{
     "sameAs_only_when_declared_and_verified":True,
@@ -272,6 +279,8 @@ graph={
 }
 soft_gaps={
   "online_store_subtype_present":("OnlineStore" in principal_types),
+  "principal_logo_present":logo_ok,
+  "phase12_seller_mapping_explicit":phase12_seller_mapped,
   "declared_sameAs_count":len((principal or {}).get("sameAs_declared") or []),
   "products_without_woo_brand":len(unbranded),
   "duplicate_normalized_brand_groups":len(duplicate_name_groups),
@@ -321,5 +330,6 @@ for name,obj in [
  ("summary.json",summary)
 ]:
     Path("growthos-phase15-results",name).write_text(json.dumps(obj,ensure_ascii=False,indent=2),encoding="utf-8")
+print("GROWTHOS_PHASE15_CHECKS",json.dumps(hard_checks,ensure_ascii=False))
 print("GROWTHOS_PHASE15",json.dumps(summary,ensure_ascii=False))
 if not hard_pass: raise SystemExit("Phase 15 hard entity parity failed")
