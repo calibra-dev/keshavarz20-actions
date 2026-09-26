@@ -1,0 +1,162 @@
+{
+  "version": "growthos-google-merchant-field-map-v1",
+  "generated_at_utc": "2026-09-26T05:00:17.329084+00:00",
+  "policy_gate": {
+    "merchant_center_country": "IR",
+    "merchant_center_available": false,
+    "account_creation_attempted": false,
+    "feed_submission_attempted": false,
+    "fake_country_or_address_used": false
+  },
+  "catalog": {
+    "candidate_rows_from_phase11": 652,
+    "basic_required_rows_ready": 471,
+    "ready_percent": 72.24,
+    "currency_code_observed": "IRT",
+    "actual_price_values_persisted": false,
+    "actual_stock_values_persisted": false
+  },
+  "field_mapping": [
+    {
+      "google": "id",
+      "k20": "stable Woo SKU else k20_<product_id>/k20v_<variation_id>",
+      "status": "mapped"
+    },
+    {
+      "google": "title",
+      "k20": "Woo product/variant title",
+      "status": "mapped"
+    },
+    {
+      "google": "description",
+      "k20": "plain-text Woo description",
+      "status": "mapped_when_present"
+    },
+    {
+      "google": "link",
+      "k20": "canonical Woo permalink",
+      "status": "mapped"
+    },
+    {
+      "google": "image_link",
+      "k20": "variation image else primary product image",
+      "status": "mapped_when_present"
+    },
+    {
+      "google": "availability",
+      "k20": "Woo stock_status vocabulary mapping",
+      "status": "mapped"
+    },
+    {
+      "google": "price",
+      "k20": "current Woo price + Woo currency",
+      "status": "mapped_when_present_not_exported_here"
+    },
+    {
+      "google": "brand",
+      "k20": "Woo product_brand / explicit brand only",
+      "status": "mapped_when_verified"
+    },
+    {
+      "google": "item_group_id",
+      "k20": "stable parent product ID for real variants only",
+      "status": "mapped_for_variants"
+    }
+  ],
+  "policy_pages": [
+    {
+      "id": 145319,
+      "slug": "shipping",
+      "status": "publish",
+      "link": "https://keshavarz20.com/shipping/",
+      "title": "روش‌های ارسال سفارش"
+    },
+    {
+      "id": 145288,
+      "slug": "reviews-qa-ugc-policy",
+      "status": "publish",
+      "link": "https://keshavarz20.com/reviews-qa-ugc-policy/",
+      "title": "سیاست نظر مشتری، پرسش‌وپاسخ و محتوای ارسالی"
+    },
+    {
+      "id": 143320,
+      "slug": "elementor-143320",
+      "status": "publish",
+      "link": "https://keshavarz20.com/elementor-143320/",
+      "title": "ارسال سفارشات"
+    },
+    {
+      "id": 139997,
+      "slug": "send-message",
+      "status": "publish",
+      "link": "https://keshavarz20.com/send-message/",
+      "title": "ارسال پیام"
+    },
+    {
+      "id": 13,
+      "slug": "refund_returns",
+      "status": "publish",
+      "link": "https://keshavarz20.com/refund_returns/",
+      "title": "مرجوعی و مغایرت کالا"
+    },
+    {
+      "id": 145247,
+      "slug": "privacy-policy",
+      "status": "publish",
+      "link": "https://keshavarz20.com/privacy-policy/",
+      "title": "حریم خصوصی"
+    },
+    {
+      "id": 143353,
+      "slug": "%d9%82%d9%88%d8%a7%d9%86%db%8c%d9%86-%d9%88-%d9%85%d9%82%d8%b1%d8%b1%d8%a7%d8%aa-%d8%ae%d8%b1%db%8c%d8%af",
+      "status": "publish",
+      "link": "https://keshavarz20.com/%d9%82%d9%88%d8%a7%d9%86%db%8c%d9%86-%d9%88-%d9%85%d9%82%d8%b1%d8%b1%d8%a7%d8%aa-%d8%ae%d8%b1%db%8c%d8%af/",
+      "title": "قوانین و مقررات خرید"
+    },
+    {
+      "id": 145286,
+      "slug": "request-proforma",
+      "status": "publish",
+      "link": "https://keshavarz20.com/request-proforma/",
+      "title": "درخواست پیش‌فاکتور و سفارش پروژه‌ای"
+    },
+    {
+      "id": 143710,
+      "slug": "request-quotation",
+      "status": "publish",
+      "link": "https://keshavarz20.com/request-quotation/",
+      "title": "دریافت پیش‌فاکتور کامل تجهیزات کشاورزی"
+    },
+    {
+      "id": 140667,
+      "slug": "%d9%be%db%8c%d8%b4-%d9%81%d8%a7%da%a9%d8%aa%d9%88%d8%b1-%d8%b3%d8%a8%d8%af-%d8%ae%d8%b1%db%8c%d8%af",
+      "status": "publish",
+      "link": "https://keshavarz20.com/%d9%be%db%8c%d8%b4-%d9%81%d8%a7%da%a9%d8%aa%d9%88%d8%b1-%d8%b3%d8%a8%d8%af-%d8%ae%d8%b1%db%8c%d8%af/",
+      "title": "پیش فاکتور سبد خرید"
+    }
+  ],
+  "shipping_methods": [
+    {
+      "zone_id": 1,
+      "method_id": "free_shipping",
+      "instance_id": 1,
+      "title": "حمل و نقل رایگان",
+      "enabled": false
+    },
+    {
+      "zone_id": 1,
+      "method_id": "flat_rate",
+      "instance_id": 2,
+      "title": "ارسال با باربری یا تیپاکس به سراسر کشور (هزینه حمل پس‌کرایه)",
+      "enabled": true
+    },
+    {
+      "zone_id": 1,
+      "method_id": "local_pickup",
+      "instance_id": 3,
+      "title": "تحویل محلی",
+      "enabled": false
+    }
+  ],
+  "note": "Architecture is Merchant-ready where source data exists, but Google Merchant Center submission is intentionally blocked by the Iran country restriction."
+}

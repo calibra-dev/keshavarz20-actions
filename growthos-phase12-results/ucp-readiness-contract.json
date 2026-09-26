@@ -1,0 +1,106 @@
+{
+  "version": "growthos-ucp-readiness-v1",
+  "ucp_spec_version": "2026-04-08",
+  "generated_at_utc": "2026-09-26T05:00:17.329106+00:00",
+  "public_profile": {
+    "http": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "bytes": 167265,
+    "published_profile_detected": false
+  },
+  "publication_gate": {
+    "publish_now": false,
+    "reason_codes": [
+      "MERCHANT_ELIGIBILITY_NOT_PROVEN",
+      "UCP_PROGRAM_ACCESS_NOT_PROVEN",
+      "NO_UCP_AUTHENTICATED_ADAPTER_ENDPOINT"
+    ],
+    "well_known_path": "/.well-known/ucp",
+    "required_before_publish": [
+      "authorized Google/UCP participation",
+      "real HTTPS UCP service endpoint",
+      "authentication/security implementation",
+      "cart/checkout/order contract tests",
+      "customer-data/privacy review"
+    ]
+  },
+  "existing_site_primitives": {
+    "products": {
+      "http": 200,
+      "ok": true,
+      "bytes": 29115
+    },
+    "cart": {
+      "http": 200,
+      "ok": true,
+      "bytes": 1243
+    },
+    "routes": {
+      "http": 200,
+      "ok": true,
+      "bytes": 2674680,
+      "has_checkout_route": true,
+      "has_cart_route": true,
+      "has_product_route": true
+    }
+  },
+  "capabilities": {
+    "product_discovery": {
+      "state": "DATA_MODEL_READY_PARTIAL",
+      "evidence": "Phase 11 product-feed readiness + Product/Offer schema parity"
+    },
+    "cart_transfer": {
+      "state": "ADAPTER_REQUIRED",
+      "woo_store_cart_route": true
+    },
+    "native_checkout": {
+      "state": "NOT_IMPLEMENTED_AS_UCP",
+      "woo_checkout_route": true
+    },
+    "order_lifecycle": {
+      "state": "NOT_IMPLEMENTED_AS_UCP",
+      "reason": "No UCP order/webhook contract is exposed; no customer/order data persisted in repo."
+    },
+    "identity_linking": {
+      "state": "NOT_IMPLEMENTED"
+    },
+    "returns": {
+      "state": "POLICY_SURFACE_AVAILABLE_IF_MATCHED",
+      "policy_page_count": 10
+    },
+    "shipping": {
+      "state": "WOO_METHODS_OBSERVED_NOT_UCP_CONTRACT",
+      "enabled_method_count": 1
+    }
+  },
+  "adapter_contract": {
+    "future_service_base": "not_assigned_until_authorized",
+    "future_endpoints": [
+      {
+        "method": "POST",
+        "path": "/carts",
+        "purpose": "UCP cart transfer",
+        "live_now": false
+      },
+      {
+        "method": "POST",
+        "path": "/checkout-sessions",
+        "purpose": "UCP native checkout session",
+        "live_now": false
+      },
+      {
+        "method": "GET",
+        "path": "/checkout-sessions/{id}",
+        "purpose": "UCP checkout state",
+        "live_now": false
+      },
+      {
+        "method": "webhook",
+        "path": "order lifecycle endpoint",
+        "purpose": "authorized order updates",
+        "live_now": false
+      }
+    ],
+    "implementation_rule": "Build an adapter over Woo commerce primitives only after authorization; never expose ordinary Woo REST credentials or customer/order data."
+  }
+}
