@@ -1,0 +1,44 @@
+{
+  "version": "k20-editorial-trust-2026-v1",
+  "generated_at_utc": "2026-09-26T08:30:00Z",
+  "public_policy_url": "https://keshavarz20.com/editorial-policy/",
+  "principles": {
+    "people_first": true,
+    "source_backed_claims": true,
+    "distinguish_fact_from_editorial_analysis": true,
+    "disclose_material_automation_use": true,
+    "accurate_authorship_only": true,
+    "fake_authors_forbidden": true,
+    "fake_reviewers_forbidden": true,
+    "fake_experience_forbidden": true,
+    "date_refresh_without_material_change_forbidden": true
+  },
+  "source_hierarchy": [
+    "official_or_regulator_or_standard",
+    "university_extension_peer_reviewed_or_primary_dataset",
+    "manufacturer_primary_datasheet_for_own_product_claims",
+    "recognized_industry_body_or_reputable_agriculture_publication",
+    "secondary_analysis_with_primary_citations"
+  ],
+  "publication_gate": {
+    "automatic_engine_output_status": "draft",
+    "required_review_status": "human_review_required_before_publish",
+    "human_review_required_before_publication": true
+  },
+  "authorship": {
+    "default_responsible_entity": "تحریریه کشاورز بیست",
+    "entity_type": "Organization",
+    "named_person_only_when_identity_and_role_are_verified": true,
+    "author_profile_link_when_named_person_is_used": true,
+    "reviewedBy_only_when_real_reviewer_is_verified": true
+  },
+  "future_content_required_sections": [
+    "منابع",
+    "نظر کارشناسی کشاورز بیست",
+    "روش تهیه و بازبینی"
+  ],
+  "future_queue_required_fields": [
+    "editorial_disclosure",
+    "review_status"
+  ]
+}
