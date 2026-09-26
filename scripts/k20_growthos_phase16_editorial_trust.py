@@ -23,14 +23,41 @@ def api(path,params=None):
     r.raise_for_status()
     return r.json()
 
+def public_json(route,params=None,tries=5):
+    url=urljoin(BASE+"/",route.lstrip("/"))
+    last=None
+    for attempt in range(1,tries+1):
+        try:
+            r=requests.get(
+                url,params=params,timeout=90,
+                headers={
+                    "Accept":"application/json",
+                    "User-Agent":"k20-growthos-phase16-editorial-trust/1.1",
+                    "Cache-Control":"no-cache",
+                },
+            )
+            r.raise_for_status()
+            ctype=(r.headers.get("Content-Type") or "").lower()
+            if "json" not in ctype:
+                raise ValueError("non_json_content_type:"+ctype+" sample="+repr((r.text or "")[:80]))
+            return r.json()
+        except Exception as e:
+            last=e
+            if attempt<tries:
+                __import__("time").sleep(attempt*2)
+    raise RuntimeError("public REST JSON failed after retries: "+str(last))
+
 def paged(route,params=None):
     out=[]; params=dict(params or {})
     for page in range(1,30):
         q=dict(params); q.update({"per_page":100,"page":page})
-        r=S.get(urljoin(BASE+"/",route.lstrip("/")),params=q,timeout=90)
-        if r.status_code==400 and page>1: break
-        r.raise_for_status()
-        rows=r.json()
+        try:
+            rows=public_json(route,q)
+        except RuntimeError as e:
+            # WordPress returns rest_post_invalid_page_number for a page beyond the collection.
+            if page>1 and "400" in str(e):
+                break
+            raise
         if not isinstance(rows,list) or not rows: break
         out.extend(rows)
         if len(rows)<100: break
@@ -132,17 +159,26 @@ if not (p15.get("ok") and str(p15.get("status") or "").startswith("PASS")):
     raise SystemExit("Phase 15 prerequisite is not PASS")
 policy=json.loads(POLICY.read_text(encoding="utf-8"))
 
-pages=paged("wp-json/wp/v2/pages",{"status":"publish","context":"edit"})
-policy_pages=[p for p in pages if str(p.get("slug") or "")=="editorial-policy"]
-policy_page=policy_pages[0] if policy_pages else None
-policy_content=((policy_page.get("content") or {}).get("raw") or (policy_page.get("content") or {}).get("rendered") or "") if policy_page else ""
-policy_url=(policy_page or {}).get("link")
+policy_page=public_json(
+    "wp-json/wp/v2/pages/145910",
+    {"_fields":"id,slug,status,link,content"},
+)
+if str(policy_page.get("slug") or "")!="editorial-policy":
+    raise SystemExit("Editorial policy page ID 145910 no longer resolves to the expected slug")
+policy_content=((policy_page.get("content") or {}).get("rendered") or "")
+policy_url=policy_page.get("link")
 policy_public_http=0
 if policy_url:
     try: policy_public_http=requests.get(policy_url,timeout=60,headers={"User-Agent":"k20-growthos-phase16-editorial-trust/1.0","Cache-Control":"no-cache"}).status_code
     except Exception: policy_public_http=0
 
-posts=paged("wp-json/wp/v2/posts",{"status":"publish","context":"edit"})
+posts=paged(
+    "wp-json/wp/v2/posts",
+    {
+      "status":"publish",
+      "_fields":"id,title,link,date_gmt,modified_gmt,content",
+    },
+)
 rows=[]
 with ThreadPoolExecutor(max_workers=8) as pool:
     futs=[pool.submit(audit_post,p) for p in posts]
