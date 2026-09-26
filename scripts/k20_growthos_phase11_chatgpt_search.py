@@ -72,7 +72,7 @@ def product_row(p,parent=None):
     base=parent or p
     pid=p.get('id')
     sku=str(p.get('sku') or '').strip()
-    item_id=sku or (('k20v_' if parent else 'k20_')+str(pid))
+    item_id=('k20v_' if parent else 'k20_')+str(pid)
     title=str(base.get('name') or '').strip()
     if parent:
         attrs=[]
@@ -158,10 +158,11 @@ feed={
  'fully_ready_rows':ready,'ready_percent':round(ready*100/len(candidate),2) if candidate else 0,
  'field_complete_counts':{k:len(candidate)-sum(1 for _,_,_,row in candidate if not row[k]) for k in REQ},
  'missing_samples':missing,'duplicate_item_id_count':len(duplicate_item_ids),'duplicate_item_id_samples':duplicate_item_ids[:50],
+ 'known_source_sku_conflict':{'sku':'430000300-2','product_ids':[140654,140655],'status':'SOURCE_CONFIRMATION_REQUIRED','feed_identity_impact':'none_after_stable_id_mapping'},
  'feed_submission_attempted':False,'partner_onboarding_gate':True,
  'price_values_persisted':False,'stock_values_persisted':False,
  'mapping':{
-   'item_id':'Woo SKU when present; otherwise stable candidate k20_<product_id> / k20v_<variation_id>',
+   'item_id':'Stable Keshavarz20 ID derived from immutable Woo entity ID: k20_<product_id> / k20v_<variation_id>; Woo SKU remains a separate source field and is not used as the feed primary key.',
    'title':'Woo product name plus selected variation options where applicable',
    'description':'variation description -> short description -> product description, plain text',
    'url':'canonical Woo product permalink',
