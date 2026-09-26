@@ -1,0 +1,54 @@
+{
+  "generated_at_utc": "2026-09-26T04:55:44.048Z",
+  "phase": 12,
+  "topic": "Google Merchant / UCP readiness",
+  "official_sources": [
+    {
+      "source": "Google Merchant Center country restrictions",
+      "url": "https://support.google.com/merchants/answer/11915823?hl=en",
+      "facts": [
+        "Merchant Center is not available to retailers in Iran.",
+        "Businesses from a restricted country are not supported even when targeting non-restricted countries."
+      ]
+    },
+    {
+      "source": "Google UCP profile",
+      "url": "https://developers.google.com/merchant/ucp/implementation/2026-04-08/publish-profile",
+      "current_version": "2026-04-08",
+      "facts": [
+        "A participating merchant publishes discovery metadata at /.well-known/ucp.",
+        "The profile declares shopping services, transport, endpoint, schema and supported capabilities."
+      ]
+    },
+    {
+      "source": "Google UCP Cart API",
+      "url": "https://developers.google.com/merchant/ucp/implementation/2026-04-08/cart-api",
+      "facts": [
+        "CreateCart uses POST /carts and returns a continue_url to the merchant site.",
+        "The cart capability is designed for transferring a cart from Google surfaces to the merchant."
+      ]
+    },
+    {
+      "source": "Google UCP Native Checkout API",
+      "url": "https://developers.google.com/merchant/ucp/implementation/2026-04-08/native-checkout-api",
+      "facts": [
+        "Native checkout uses dedicated authenticated checkout-session endpoints.",
+        "A normal WooCommerce checkout page is not by itself a UCP native-checkout integration."
+      ]
+    },
+    {
+      "source": "Google Merchant API latest updates",
+      "url": "https://developers.google.com/merchant/api/latest-updates",
+      "facts": [
+        "Content API for Shopping sunset on 2026-08-18; Merchant API is the current API path.",
+        "UCP account integration support was added with limited access."
+      ]
+    }
+  ],
+  "policy": [
+    "Do not create a Merchant Center account using a fake country, address or business identity.",
+    "Do not publish /.well-known/ucp until a real UCP service endpoint and permitted integration exist.",
+    "Do not claim UCP checkout/cart/order support merely because WooCommerce has cart and checkout pages.",
+    "Keep product IDs, variants, price, stock, shipping, returns, cart and order contracts ready for future authorized integration."
+  ]
+}
