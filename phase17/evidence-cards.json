@@ -82,18 +82,20 @@
   },
   {
     "evidence_id": "phase17-evidence-006",
-    "claim": "فاز ۱۵ از 652 محصول، 494 محصول را با برند منبع‌تاییدشده ثبت کرده، mismatch برند صفر داشته و 158 محصول بدون Woo brand را به‌عنوان gap نگه داشته؛ identity/sameAs/GLN ساختگی نیز صفر بوده است.",
-    "method": "Current GrowthOS Phase 15 entity truth audit",
-    "observed_at_utc": "2026-09-26T07:48:03.189021Z",
+    "claim": "فاز ۱۵ روی 652 محصول، 652/652 تخصیص Woo brand را ثبت کرده است. از این میان 577 محصول دارای حقیقت برند قابل‌استفاده در لایه خارجی هستند و 75 محصول با برچسب داخلی «متفرقه» عمداً به‌عنوان pseudo-brand نگه داشته می‌شوند و برای feed خارجی برند معتبر محسوب نمی‌شوند. mismatch برند، conflict منبع، جعل identity/sameAs/GLN و محصول بدون Woo brand همگی صفر هستند.",
+    "method": "Current GrowthOS Phase 15 entity truth audit + verified 158-product user-confirmed brand assignment artifact",
+    "observed_at_utc": "2026-09-26T21:53:12.636322+00:00",
     "source_refs": [
-      "repo:growthos-phase15-results/summary.json"
+      "repo:growthos-phase15-results/summary.json",
+      "repo:brand-assignment-results/apply-all-158.json",
+      "run:36271460992"
     ],
-    "limits": "158 محصول هنوز نیازمند منبع معتبر برند هستند؛ این مدرک برند آن‌ها را حدس نمی‌زند.",
+    "limits": "75 محصول «متفرقه» فقط یک گروه‌بندی داخلی‌اند؛ تا زمانی که برند/سازنده واقعی با منبع معتبر مشخص نشود نباید به‌عنوان brand در OpenAI/Merchant یا سایر feedهای خارجی صادر شوند.",
     "status": "verified",
     "evidence_grade": "A",
-    "source_type": "first_party_entity_audit",
+    "source_type": "first_party_entity_audit_plus_user_confirmed_assignment",
     "freshness": "current_2026-09-26",
-    "scope": "Brand & Seller Entity OS برای کاتالوگ 652 محصول"
+    "scope": "Brand & Seller Entity OS برای کاتالوگ 652 محصول با تفکیک real brand از pseudo-brand"
   },
   {
     "evidence_id": "phase17-evidence-007",
