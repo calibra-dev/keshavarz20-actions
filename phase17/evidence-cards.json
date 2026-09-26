@@ -4,26 +4,110 @@
     "claim": "آزمون قطعی محاسبه نوار تیپ با ورودی 10000 مترمربع، طول ردیف 100 متر، فاصله 1 متر، ذخیره 5 درصد و رول 1000 متر برابر 100 ردیف، 10000 متر پایه، 10500 متر کل و 11 رول است.",
     "method": "GitHub-hosted deterministic acceptance test for Phase 14 decision tool",
     "observed_at_utc": "2026-09-18T18:41:22Z",
-    "source_refs": ["run:35381640927","commit:9a824066432b554225fb6f9dd6a710a9f4de9426"],
+    "source_refs": [
+      "run:35381640927",
+      "commit:9a824066432b554225fb6f9dd6a710a9f4de9426"
+    ],
     "limits": "آزمون محاسباتی است؛ طراحی هیدرولیکی، فشار، افت، زون‌بندی و سازگاری قطعات را اثبات نمی‌کند.",
-    "status": "verified"
+    "status": "verified",
+    "evidence_grade": "A",
+    "source_type": "first_party_deterministic_test",
+    "freshness": "historical_verified_2026-09-18",
+    "scope": "فقط خروجی همین محاسبه‌گر و همین ورودی‌ها"
   },
   {
     "evidence_id": "phase17-evidence-002",
     "claim": "سه رسانه محافظت‌شده 141437، 141441 و 142597 در خوانش زنده موجود بودند و بدون تغییر باقی ماندند.",
     "method": "Bridge-backed read-only attachment inspection",
     "observed_at_utc": "2026-09-18T18:44:37Z",
-    "source_refs": ["run:35381812221","run:35381877582","run:35381936185","commit:2545f6bf1466f628ba53ac1c82ce9f6fdb38ccea"],
+    "source_refs": [
+      "run:35381812221",
+      "run:35381877582",
+      "run:35381936185",
+      "commit:2545f6bf1466f628ba53ac1c82ce9f6fdb38ccea"
+    ],
     "limits": "این شواهد فقط موجودبودن و مشخصات فایل‌ها را تایید می‌کند و کیفیت فنی محتوای تصویر را تایید نمی‌کند.",
-    "status": "verified"
+    "status": "verified",
+    "evidence_grade": "A",
+    "source_type": "first_party_live_readback",
+    "freshness": "historical_verified_2026-09-18",
+    "scope": "وجود و عدم تغییر همان سه رسانه"
   },
   {
     "evidence_id": "phase17-evidence-003",
     "claim": "در آزمون A/B روی نوشته 143698، بستن دیدگاه‌ها مسیر cache را تغییر داد و بازگرداندن دیدگاه‌ها به open رفتار no-cache را بازگرداند.",
     "method": "Reversible production diagnostic A/B with readback",
     "observed_at_utc": "2026-09-18T18:50:00Z",
-    "source_refs": ["commit:62c9ed51d891c91bcc38d6cf5ff6d8daeb67cad6","commit:357142c6c15fe84c585c6bf5cde570354cc5a4d7"],
+    "source_refs": [
+      "commit:62c9ed51d891c91bcc38d6cf5ff6d8daeb67cad6",
+      "commit:357142c6c15fe84c585c6bf5cde570354cc5a4d7"
+    ],
     "limits": "Trigger رفتاری تایید شده ولی callback دقیق third-party بدون instrumentation اجرایی نسبت داده نشده است.",
-    "status": "verified"
+    "status": "verified",
+    "evidence_grade": "A",
+    "source_type": "first_party_reversible_ab_test",
+    "freshness": "historical_verified_2026-09-18",
+    "scope": "رفتار cache همان نوشته و همان آزمایش"
+  },
+  {
+    "evidence_id": "phase17-evidence-004",
+    "claim": "فاز ۱۳ WebMCP در readback زنده 4 از 4 صفحه و 5 ابزار را با Origin Trial فعال تایید کرده و هیچ تغییر قیمت/موجودی/تخفیف، سفارش یا پیام ایجاد نکرده است.",
+    "method": "Current GrowthOS Phase 13 persisted summary after live public readback",
+    "observed_at_utc": "2026-09-26T12:39:39.918727Z",
+    "source_refs": [
+      "repo:growthos-phase13-results/summary.json",
+      "run:36242604145"
+    ],
+    "limits": "این مدرک فعال‌بودن سطح ثبت‌شده WebMCP را تایید می‌کند؛ رفتار همه مرورگرها/کلاینت‌های آینده را تضمین نمی‌کند.",
+    "status": "verified",
+    "evidence_grade": "A",
+    "source_type": "first_party_live_readback",
+    "freshness": "current_2026-09-26",
+    "scope": "فاز ۱۳ و چهار صفحه/پنج ابزار ثبت‌شده"
+  },
+  {
+    "evidence_id": "phase17-evidence-005",
+    "claim": "فاز ۱۴ برای 652 محصول هیچ GTIN منبع‌تاییدشده پیدا نکرد و در نتیجه صفر GTIN، صفر Digital Link و صفر تبدیل SKU به GTIN ساختگی منتشر کرد.",
+    "method": "Current GrowthOS Phase 14 guarded identifier audit",
+    "observed_at_utc": "2026-09-26T07:34:08.792855Z",
+    "source_refs": [
+      "repo:growthos-phase14-results/summary.json"
+    ],
+    "limits": "نبود GTIN در داده فعلی به معنی نداشتن GTIN واقعی برای همیشه نیست؛ با مدرک سازنده/GS1 می‌تواند تغییر کند.",
+    "status": "verified",
+    "evidence_grade": "A",
+    "source_type": "first_party_catalog_audit",
+    "freshness": "current_2026-09-26",
+    "scope": "652 محصول منتشرشده در audit فاز ۱۴"
+  },
+  {
+    "evidence_id": "phase17-evidence-006",
+    "claim": "فاز ۱۵ از 652 محصول، 494 محصول را با برند منبع‌تاییدشده ثبت کرده، mismatch برند صفر داشته و 158 محصول بدون Woo brand را به‌عنوان gap نگه داشته؛ identity/sameAs/GLN ساختگی نیز صفر بوده است.",
+    "method": "Current GrowthOS Phase 15 entity truth audit",
+    "observed_at_utc": "2026-09-26T07:48:03.189021Z",
+    "source_refs": [
+      "repo:growthos-phase15-results/summary.json"
+    ],
+    "limits": "158 محصول هنوز نیازمند منبع معتبر برند هستند؛ این مدرک برند آن‌ها را حدس نمی‌زند.",
+    "status": "verified",
+    "evidence_grade": "A",
+    "source_type": "first_party_entity_audit",
+    "freshness": "current_2026-09-26",
+    "scope": "Brand & Seller Entity OS برای کاتالوگ 652 محصول"
+  },
+  {
+    "evidence_id": "phase17-evidence-007",
+    "claim": "فاز ۱۶ در audit نهایی 51 نوشته منتشرشده را با 51/51 full provenance و backlog صفر تایید کرده و نویسنده، بازبین یا کارشناس جعلی ایجاد نشده است.",
+    "method": "Current GrowthOS Phase 16 editorial trust audit with persisted result",
+    "observed_at_utc": "2026-09-26T19:12:55.194554Z",
+    "source_refs": [
+      "repo:growthos-phase16-results/summary.json"
+    ],
+    "limits": "وجود author schema به‌تنهایی هویت انسانی مستقل را اثبات نمی‌کند؛ Person identity URL تا زمان احراز واقعی اضافه نمی‌شود.",
+    "status": "verified",
+    "evidence_grade": "A",
+    "source_type": "first_party_editorial_audit",
+    "freshness": "current_2026-09-26",
+    "scope": "51 نوشته عادی منتشرشده در audit فاز ۱۶"
   }
 ]
