@@ -1,7 +1,7 @@
 {
   "phase": 11,
   "version": "openai-stable-feed-readiness-v1",
-  "generated_at_utc": "2026-09-26T21:53:52.571094+00:00",
+  "generated_at_utc": "2026-09-26T22:00:20.019529+00:00",
   "spec_required_fields": [
     "item_id",
     "title",
@@ -19,14 +19,14 @@
   "candidate_feed_rows": 652,
   "variable_parent_products": 0,
   "variation_rows": 0,
-  "fully_ready_rows": 524,
-  "ready_percent": 80.37,
+  "fully_ready_rows": 512,
+  "ready_percent": 78.53,
   "field_complete_counts": {
     "item_id": 652,
     "title": 652,
     "description": 652,
     "url": 652,
-    "brand": 577,
+    "brand": 565,
     "seller_name": 652,
     "image_url": 652,
     "availability": 652,
@@ -39,11 +39,35 @@
     "url": [],
     "brand": [
       {
+        "product_id": 134980,
+        "variation_id": null
+      },
+      {
+        "product_id": 134982,
+        "variation_id": null
+      },
+      {
+        "product_id": 135138,
+        "variation_id": null
+      },
+      {
+        "product_id": 135140,
+        "variation_id": null
+      },
+      {
+        "product_id": 135142,
+        "variation_id": null
+      },
+      {
         "product_id": 135233,
         "variation_id": null
       },
       {
         "product_id": 135235,
+        "variation_id": null
+      },
+      {
+        "product_id": 135363,
         "variation_id": null
       },
       {
@@ -59,7 +83,27 @@
         "variation_id": null
       },
       {
+        "product_id": 135479,
+        "variation_id": null
+      },
+      {
+        "product_id": 135481,
+        "variation_id": null
+      },
+      {
+        "product_id": 135483,
+        "variation_id": null
+      },
+      {
+        "product_id": 135499,
+        "variation_id": null
+      },
+      {
         "product_id": 135627,
+        "variation_id": null
+      },
+      {
+        "product_id": 135848,
         "variation_id": null
       },
       {
@@ -212,6 +256,10 @@
       },
       {
         "product_id": 140155,
+        "variation_id": null
+      },
+      {
+        "product_id": 140374,
         "variation_id": null
       },
       {
@@ -721,6 +769,7 @@
   "pseudo_brand_names_excluded_from_external_feed": [
     "متفرقه"
   ],
+  "multi_brand_products_excluded_from_external_feed": true,
   "price_values_persisted": false,
   "stock_values_persisted": false,
   "mapping": {
@@ -728,7 +777,7 @@
     "title": "Woo product name plus selected variation options where applicable",
     "description": "variation description -> short description -> product description, plain text",
     "url": "canonical Woo product permalink",
-    "brand": "Woo product_brand / explicit brand only; internal pseudo-brand «متفرقه» is intentionally treated as missing for external feeds; no inference",
+    "brand": "Exactly one unambiguous Woo product_brand / explicit brand only; internal pseudo-brand «متفرقه» and multi-brand ambiguity are intentionally treated as missing for external feeds; no inference",
     "seller_name": "کشاورز بیست",
     "image_url": "variation image, otherwise main product image",
     "availability": "Woo stock_status mapped to OpenAI availability vocabulary",
