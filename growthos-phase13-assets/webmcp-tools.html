@@ -1,0 +1,253 @@
+<!-- K20-GROWTHOS-PHASE13-WEBMCP-START -->
+<script>
+(function(){
+  "use strict";
+  if(window.__k20WebMCPPhase13){return;}
+  window.__k20WebMCPPhase13={version:"1.0.0",registered:[],errors:[]};
+
+  var mc=(document.modelContext)||(window.navigator&&window.navigator.modelContext);
+  if(!mc||typeof mc.registerTool!=="function"){
+    window.__k20WebMCPPhase13.supported=false;
+    window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push({event:"growthos_webmcp_status",phase:13,status:"browser_api_unavailable",page_path:location.pathname});
+    return;
+  }
+  window.__k20WebMCPPhase13.supported=true;
+
+  function setValue(id,value){
+    var el=document.getElementById(id);
+    if(!el||value===undefined||value===null){return false;}
+    el.value=String(value);
+    el.dispatchEvent(new Event("input",{bubbles:true}));
+    el.dispatchEvent(new Event("change",{bubbles:true}));
+    return true;
+  }
+  function clickId(id){
+    var el=document.getElementById(id);
+    if(!el){return false;}
+    el.click(); return true;
+  }
+  function clickText(text){
+    var all=document.querySelectorAll("button");
+    for(var i=0;i<all.length;i++){
+      if((all[i].textContent||"").trim()===text){all[i].click();return true;}
+    }
+    return false;
+  }
+  function wait(ms){return new Promise(function(resolve){setTimeout(resolve,ms||80);});}
+  function clean(s){return String(s||"").replace(/\s+/g," ").trim();}
+  function textId(id){
+    var el=document.getElementById(id);
+    return el?clean(el.innerText||el.textContent||""):"";
+  }
+  function collectPrefix(prefix){
+    var out={};
+    document.querySelectorAll('[id^="'+prefix+'"]').forEach(function(el){
+      if(/^(INPUT|SELECT|TEXTAREA|BUTTON)$/.test(el.tagName)){return;}
+      var t=clean(el.innerText||el.textContent||"");
+      if(t){out[el.id]=t;}
+    });
+    return out;
+  }
+  function track(name,status){
+    window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push({event:"growthos_webmcp_tool",phase:13,tool:name,status:status,page_path:location.pathname});
+  }
+  function register(tool){
+    mc.registerTool(tool).then(function(){
+      window.__k20WebMCPPhase13.registered.push(tool.name);
+      track(tool.name,"registered");
+    }).catch(function(err){
+      window.__k20WebMCPPhase13.errors.push({tool:tool.name,error:String(err&&err.message||err)});
+      track(tool.name,"registration_failed");
+    });
+  }
+
+  if(document.getElementById("tc-calculate")){
+    register({
+      name:"calculate_drip_tape",
+      title:"محاسبه نوار تیپ و دبی",
+      description:"ماشین‌حساب زنده کشاورز بیست را با ورودی‌های پروژه اجرا می‌کند و نتیجه همان UI را برمی‌گرداند. این ابزار طراحی هیدرولیکی تأییدشده نیست و قیمت یا موجودی را تغییر نمی‌دهد.",
+      inputSchema:{
+        type:"object",
+        properties:{
+          line_count:{type:"number",minimum:1,description:"تعداد ردیف‌های کشت"},
+          line_length_m:{type:"number",exclusiveMinimum:0,description:"طول هر ردیف به متر"},
+          reserve_percent:{type:"number",minimum:0,maximum:30,description:"درصد ذخیره نوار تیپ"},
+          roll_length_m:{type:"number",exclusiveMinimum:0,description:"طول هر رول نوار تیپ به متر"},
+          fitting_spare_percent:{type:"number",minimum:0,maximum:30,description:"درصد قطعات یدکی"},
+          active_lines:{type:"number",minimum:1,description:"تعداد ردیف‌های همزمان فعال"},
+          emitter_spacing_cm:{type:"number",exclusiveMinimum:0,description:"فاصله خروجی‌ها به سانتی‌متر"},
+          emitter_flow_lph:{type:"number",exclusiveMinimum:0,description:"آبدهی هر خروجی به لیتر بر ساعت"},
+          row_spacing_m:{type:"number",exclusiveMinimum:0,description:"فاصله ردیف‌ها به متر"},
+          irrigation_hours:{type:"number",exclusiveMinimum:0,description:"مدت آبیاری به ساعت"}
+        },
+        required:["line_count","line_length_m"],
+        additionalProperties:false
+      },
+      annotations:{readOnlyHint:false,untrustedContentHint:false,consequentialHint:false,debugging:false},
+      execute:async function(a){
+        setValue("tc-line-count",a.line_count); setValue("tc-line-length",a.line_length_m);
+        setValue("tc-reserve-percent",a.reserve_percent); setValue("tc-roll-length",a.roll_length_m);
+        setValue("tc-fitting-spare",a.fitting_spare_percent); setValue("tc-active-lines",a.active_lines);
+        setValue("tc-emitter-spacing",a.emitter_spacing_cm); setValue("tc-emitter-flow",a.emitter_flow_lph);
+        setValue("tc-row-spacing",a.row_spacing_m); setValue("tc-irrigation-hours",a.irrigation_hours);
+        if(!clickId("tc-calculate")){return {ok:false,error:"calculator_button_not_found"};}
+        await wait(120);
+        var result=collectPrefix("tc-");
+        track("calculate_drip_tape","executed");
+        return {ok:true,source:"live_keshavarz20_calculator",result:result,disclaimer:"راهنمای تصمیم‌گیری است؛ طراحی هیدرولیکی تأییدشده نیست."};
+      }
+    });
+  }
+
+  if(document.getElementById("ic_system")){
+    register({
+      name:"check_connector_compatibility",
+      title:"بررسی سازگاری اتصال آبیاری",
+      description:"انتخاب‌گر زنده سازگاری کشاورز بیست را اجرا می‌کند. خروجی فقط مسیر انتخاب/نیاز به بررسی را نشان می‌دهد و هم‌سایز بودن را به‌تنهایی سازگاری قطعی فرض نمی‌کند.",
+      inputSchema:{
+        type:"object",
+        properties:{
+          system:{type:"string",enum:["pe","layflat"],description:"pe برای پلی‌اتیلن یا layflat برای لوله نخدار/لی‌فلت"},
+          size_mm:{type:"string",enum:["63","75","90","110"],description:"سایز خط اصلی"},
+          task:{type:"string",enum:["branch","valve","hose","tape","end"],description:"کار موردنیاز"},
+          outlet_size:{type:"string",enum:["20","25","32","63","75","same"],description:"سایز خروجی در صورت نیاز"},
+          valve_type:{type:"string",enum:["ball_poly","ball_metal","butterfly"],description:"نوع شیر در صورت نیاز"}
+        },
+        required:["system","size_mm","task"],
+        additionalProperties:false
+      },
+      annotations:{readOnlyHint:false,untrustedContentHint:false,consequentialHint:false,debugging:false},
+      execute:async function(a){
+        setValue("ic_system",a.system); setValue("ic_size",a.size_mm); setValue("ic_task",a.task);
+        setValue("ic_out",a.outlet_size); setValue("ic_valve",a.valve_type);
+        if(!clickText("نمایش مسیر خرید و قطعات")){return {ok:false,error:"compatibility_button_not_found"};}
+        await wait(120);
+        var txt=textId("ic_result");
+        track("check_connector_compatibility","executed");
+        return {ok:!!txt,result:txt||null,source:"live_keshavarz20_selector",verified_fit:false,rule:"اگر مدل/رابط دقیق تأیید نشده باشد نتیجه باید نیازمند بررسی بماند."};
+      }
+    });
+  }
+
+  if(document.getElementById("k20-calc")){
+    register({
+      name:"build_irrigation_cart",
+      title:"ساخت سبد اولیه آبیاری",
+      description:"سبد اولیه یک پروژه آبیاری را با همان ابزار زنده کشاورز بیست می‌سازد. این ابزار محصولی را به سبد خرید WooCommerce اضافه نمی‌کند و سفارش ثبت نمی‌کند.",
+      inputSchema:{
+        type:"object",
+        properties:{
+          area_m2:{type:"number",exclusiveMinimum:0,description:"مساحت زمین به مترمربع"},
+          row_length_m:{type:"number",exclusiveMinimum:0,description:"طول هر ردیف به متر"},
+          row_spacing_m:{type:"number",exclusiveMinimum:0,description:"فاصله ردیف‌ها به متر"},
+          roll_length_m:{type:"number",exclusiveMinimum:0,description:"طول رول نوار تیپ به متر"},
+          waste_percent:{type:"number",minimum:0,maximum:30,description:"درصد پرت"},
+          spare_percent:{type:"number",minimum:0,maximum:30,description:"درصد قطعات یدکی"}
+        },
+        required:["area_m2","row_length_m","row_spacing_m"],
+        additionalProperties:false
+      },
+      annotations:{readOnlyHint:false,untrustedContentHint:false,consequentialHint:false,debugging:false},
+      execute:async function(a){
+        setValue("k20-area",a.area_m2); setValue("k20-row-length",a.row_length_m); setValue("k20-row-spacing",a.row_spacing_m);
+        setValue("k20-roll-length",a.roll_length_m); setValue("k20-waste",a.waste_percent); setValue("k20-spare",a.spare_percent);
+        if(!clickId("k20-calc")){return {ok:false,error:"basket_button_not_found"};}
+        await wait(120);
+        var result=textId("k20-result"),quote=textId("k20-quote");
+        track("build_irrigation_cart","executed");
+        return {ok:!!(result||quote),result:result||null,quote:quote||null,creates_real_cart:false,creates_order:false};
+      }
+    });
+  }
+
+  if(document.getElementById("growthos-proforma-form")){
+    register({
+      name:"request_proforma_invoice",
+      title:"ساخت پیش‌نویس درخواست پیش‌فاکتور",
+      description:"اطلاعات پروژه را در فرم زنده پیش‌فاکتور کشاورز بیست وارد می‌کند و فقط پیش‌نویس محلی می‌سازد. این ابزار پیام ارسال نمی‌کند، فاکتور رسمی صادر نمی‌کند، سفارش ثبت نمی‌کند و قیمت یا موجودی را تغییر نمی‌دهد.",
+      inputSchema:{
+        type:"object",
+        properties:{
+          project:{type:"string",maxLength:160,description:"نام یا عنوان پروژه"},
+          crop:{type:"string",maxLength:120,description:"نوع کشت"},
+          area:{type:"string",maxLength:80,description:"مساحت به صورت متنی، مثلاً ۱ هکتار"},
+          province:{type:"string",maxLength:120,description:"استان یا شهر پروژه"},
+          water_source:{type:"string",enum:["چاه","استخر","کانال","شبکه تحت فشار","سایر"],description:"منبع آب"},
+          flow_m3h:{type:"number",minimum:0,description:"دبی موجود"},
+          pressure_bar:{type:"number",minimum:0,description:"فشار موجود"},
+          main_length_m:{type:"number",minimum:0,description:"طول مسیر اصلی"},
+          assumptions:{type:"string",maxLength:2000,description:"فرضیات و نکات پروژه"},
+          items:{
+            type:"array",maxItems:30,
+            items:{type:"object",properties:{
+              item:{type:"string",maxLength:160},qty:{type:"number",minimum:0},unit:{type:"string",maxLength:40},note:{type:"string",maxLength:300}
+            },required:["item"],additionalProperties:false}
+          }
+        },
+        additionalProperties:false
+      },
+      annotations:{readOnlyHint:false,untrustedContentHint:false,consequentialHint:false,debugging:false},
+      execute:async function(a){
+        setValue("gp-project",a.project);setValue("gp-crop",a.crop);setValue("gp-area",a.area);setValue("gp-province",a.province);
+        setValue("gp-water",a.water_source);setValue("gp-flow",a.flow_m3h);setValue("gp-pressure",a.pressure_bar);setValue("gp-length",a.main_length_m);setValue("gp-assumptions",a.assumptions);
+        if(Array.isArray(a.items)&&a.items.length){
+          var body=document.getElementById("gp-items");
+          while(body&&body.querySelectorAll("tr").length<a.items.length){if(!clickId("gp-add")){break;}}
+          if(body){
+            var rows=body.querySelectorAll("tr");
+            a.items.forEach(function(item,i){
+              if(!rows[i]){return;}
+              var ins=rows[i].querySelectorAll("input");
+              if(ins[0]){ins[0].value=item.item||"";}
+              if(ins[1]&&item.qty!==undefined){ins[1].value=String(item.qty);}
+              if(ins[2]){ins[2].value=item.unit||"";}
+              if(ins[3]){ins[3].value=item.note||"";}
+            });
+          }
+        }
+        if(!clickId("gp-build")){return {ok:false,error:"proforma_build_button_not_found"};}
+        await wait(120);
+        var summary=textId("gp-summary");
+        track("request_proforma_invoice","executed");
+        return {ok:!!summary,draft:summary||null,submitted:false,message_sent:false,invoice_issued:false,order_created:false,requires_expert_confirmation:true};
+      }
+    });
+  }
+
+  register({
+    name:"estimate_shipping",
+    title:"بررسی وضعیت هزینه ارسال",
+    description:"روش ارسال فعلی کشاورز بیست را گزارش می‌کند. چون هزینه حمل فعلی پس‌کرایه و وابسته به مقصد/حامل است، مبلغ ساختگی تولید نمی‌کند و برای مبلغ نهایی تأیید انسانی لازم است.",
+    inputSchema:{
+      type:"object",
+      properties:{
+        province:{type:"string",maxLength:120,description:"استان مقصد"},
+        city:{type:"string",maxLength:120,description:"شهر مقصد"},
+        postal_code:{type:"string",maxLength:20,description:"کدپستی در صورت وجود"}
+      },
+      additionalProperties:false
+    },
+    annotations:{readOnlyHint:true,untrustedContentHint:false,consequentialHint:false,debugging:false},
+    execute:async function(a){
+      track("estimate_shipping","executed");
+      return {
+        ok:true,
+        destination:{province:a.province||null,city:a.city||null,postal_code:a.postal_code||null},
+        method:__K20_SHIPPING_METHOD_JSON__,
+        estimated_amount:null,
+        currency:null,
+        payment_timing:"پس‌کرایه",
+        requires_manual_confirmation:true,
+        observed_at_utc:"__K20_SHIPPING_OBSERVED_AT__",
+        note:"برای مبلغ دقیق باید مقصد، وزن/حجم و نرخ حامل در زمان ارسال تأیید شود."
+      };
+    }
+  });
+
+  window.dataLayer=window.dataLayer||[];
+  window.dataLayer.push({event:"growthos_webmcp_status",phase:13,status:"registration_started",page_path:location.pathname});
+})();
+</script>
+<!-- K20-GROWTHOS-PHASE13-WEBMCP-END -->
