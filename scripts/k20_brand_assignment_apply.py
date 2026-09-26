@@ -121,7 +121,16 @@ for brand in requested:
     # reuse that exact existing term instead of creating a duplicate.
     rr=S.post(BASE+"/wp-json/wp/v2/product_brand",json={"name":brand},timeout=90)
     if rr.ok:
-        t=rr.json()
+        try:
+            t=rr.json()
+        except Exception:
+            # Some WP stacks return an empty/non-JSON success body for taxonomy creation.
+            # Resolve the created term by exact normalized name via a fresh taxonomy read.
+            fresh=all_terms()
+            exact=[x for x in fresh if norm(x.get("name"))==norm(brand)]
+            if len(exact)!=1:
+                raise RuntimeError(f"Brand create returned success without JSON and exact readback is ambiguous for {brand}: {[(x.get('id'),x.get('name')) for x in exact]}")
+            t=exact[0]
         brand_terms[brand]={"id":int(t["id"]),"name":t.get("name"),"created":True}
         created.append({"requested":brand,"id":int(t["id"]),"name":t.get("name")})
         by_norm.setdefault(norm(t.get("name")),[]).append(t)
