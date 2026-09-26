@@ -22,4 +22,15 @@ checks["public_http"]=pub.status_code
 for term in ["نظر کارشناسی کشاورز بیست","k20-phase16-deep-review-v1","k20-phase16-gutenberg-test-v1"]:
     i=raw.find(term)
     checks["snippet_"+term]=raw[max(0,i-1500):i+3000] if i>=0 else None
+checks["structure"]={
+ "raw_len":len(raw),"rendered_len":len(rendered),"public_len":len(pub.text),
+ "deep_index":raw.find("k20-phase16-deep-review-v1"),
+ "editorial_indices":[i for i in range(len(raw)) if raw.startswith("نظر کارشناسی کشاورز بیست",i)][:10],
+ "nextpage_indices":[i for i in range(len(raw)) if raw.startswith("<!--nextpage-->",i)],
+ "more_indices":[i for i in range(len(raw)) if raw.startswith("<!--more-->",i)],
+ "trust_start_index":raw.find("k20-phase16-editorial-trust-start"),
+ "gutenberg_test_index":raw.find("k20-phase16-gutenberg-test-v1"),
+ "raw_tail":raw[-2500:],
+ "rendered_tail":rendered[-2500:]
+}
 print(json.dumps(checks,ensure_ascii=False))
