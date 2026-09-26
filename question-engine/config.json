@@ -22,7 +22,7 @@
   "quality_retry_candidates": 24,
   "quality_retry_wraps": 2,
   "watchdog_enabled": true,
-  "watchdog_max_pending": 60,
+  "watchdog_max_pending": 90,
   "watchdog_max_consecutive_failures": 3,
   "answer_memory_enabled": true,
   "answer_memory_max_comments_per_product": 200,
@@ -32,5 +32,6 @@
   "engine_version": "v18",
   "production_mode": true,
   "persistent_mode": true,
-  "scheduler_watchdog_enabled": true
+  "scheduler_watchdog_enabled": true,
+  "watchdog_pending_window_hours": 24
 }
