@@ -29,6 +29,8 @@ long_body = (
     + '<p><a href="https://keshavarz20.com/a/">راهنمای اول</a> و <a href="https://keshavarz20.com/b/">راهنمای دوم</a></p>'
     + "<h2>جمع‌بندی</h2><p>نتیجه آزمایشی.</p>"
     + "<h2>نظر کارشناسی کشاورز بیست</h2><p>این بخش صرفاً تحلیل تحریریه آزمایشی است.</p>"
+    + '<h2>منابع</h2><p><a href="https://example.org/a">منبع اول</a> <a href="https://example.edu/b">منبع دوم</a></p>'
+    + '<h2>روش تهیه و بازبینی</h2><p>این payload با منابع آزمایشی ساخته شده و برای انتشار نیازمند بازبینی انسانی است. <a href="https://keshavarz20.com/editorial-policy/">سیاست تحریریه</a></p>'
 )
 
 article_payload = {
@@ -47,6 +49,8 @@ article_payload = {
     "source_urls": ["https://example.org/a", "https://example.edu/b", "https://example.org/c"],
     "source_names": ["Example Org", "Example EDU", "Example Org 2"],
     "research_summary": "این payload فقط برای اثبات گیت‌های ساختاری است: چند منبع، دامنه مستقل، لینک داخلی، طول محتوا و FAQ تطبیقی بررسی می‌شوند و هیچ نوشته‌ای منتشر نمی‌شود.",
+    "editorial_disclosure": "این payload آزمایشی با منابع نمونه و کنترل خودکار ساخته شده و هر خروجی واقعی پیش از انتشار نیازمند بازبینی انسانی است.",
+    "review_status": "human_review_required_before_publish",
     "image_search_query": "agriculture irrigation field factual editorial photo",
     "image_title": "آزمون کاور",
     "alt_text": "تصویر آزمایشی مزرعه و آبیاری",
@@ -86,6 +90,7 @@ news_body = (
     + "<h2>جمع‌بندی</h2><p>جمع‌بندی آزمایشی.</p>"
     + "<h2>نظر کارشناسی کشاورز بیست</h2><p>تحلیل تحریریه آزمایشی.</p>"
     + '<h2>منابع</h2><p><a href="https://example.org/news">منبع اول</a> <a href="https://example.edu/news">منبع دوم</a></p>'
+    + '<h2>روش تهیه و بازبینی</h2><p>این خبر آزمایشی از دو منبع نمونه ساخته شده و انتشار واقعی نیازمند بازبینی انسانی است. <a href="https://keshavarz20.com/editorial-policy/">سیاست تحریریه</a></p>'
 )
 news_payload = {
     "content_type": "news",
@@ -104,6 +109,8 @@ news_payload = {
     "alt_text": "تصویر آزمایشی کشاورزی",
     "selection_reason": "این متن فقط برای تست ساختاری است و نشان می‌دهد دلیل انتخاب باید مستند و بیش از یک عبارت کوتاه باشد.",
     "fact_check_notes": "این تست هیچ ادعای خبری واقعی ندارد و فقط کنترل چندمنبعی بودن و ساختار payload را بررسی می‌کند.",
+    "editorial_disclosure": "این payload خبر صرفاً برای تست ساختاری ساخته شده و هر خروجی واقعی موتور خبر پیش از انتشار نیازمند بازبینی انسانی است.",
+    "review_status": "human_review_required_before_publish",
 }
 news.validate_payload_v2(dict(news_payload))
 
