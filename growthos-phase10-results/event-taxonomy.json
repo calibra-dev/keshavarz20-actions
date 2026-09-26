@@ -1,0 +1,64 @@
+{
+  "version": "growthos-event-taxonomy-v1",
+  "events": [
+    {
+      "event": "growthos_measurement_ready",
+      "surface": "all eight canonical tools",
+      "purpose": "prove Phase 10 measurement forwarding is active",
+      "required_params": [
+        "phase",
+        "page_path"
+      ]
+    },
+    {
+      "event": "growthos_flow_step",
+      "surface": "all eight tools + decision hubs",
+      "purpose": "stage-to-stage navigation",
+      "required_params": [
+        "step",
+        "target",
+        "source_path"
+      ]
+    },
+    {
+      "event": "growthos_tool_result",
+      "surface": "pipe size selector",
+      "purpose": "calculation completed",
+      "required_params": [
+        "tool",
+        "step",
+        "flow_m3h",
+        "dmin_mm",
+        "data_complete"
+      ]
+    },
+    {
+      "event": "growthos_tool_step",
+      "surface": "smart proforma",
+      "purpose": "draft/add row/print/whatsapp actions",
+      "required_params": [
+        "tool",
+        "step"
+      ]
+    },
+    {
+      "event": "add_to_cart",
+      "surface": "WooCommerce/GA4",
+      "purpose": "basket conversion",
+      "required_params": []
+    },
+    {
+      "event": "begin_checkout",
+      "surface": "WooCommerce/GA4",
+      "purpose": "checkout start",
+      "required_params": []
+    },
+    {
+      "event": "purchase",
+      "surface": "WooCommerce/GA4",
+      "purpose": "transaction completion",
+      "required_params": []
+    }
+  ],
+  "delivery_note": "Custom GrowthOS events are present in page code/dataLayer. GA4 reporting of custom events requires the site tag/GTM to forward or collect them; this phase does not assume that mapping exists until observed in GA4."
+}

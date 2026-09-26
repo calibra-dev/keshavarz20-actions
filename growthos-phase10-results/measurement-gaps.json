@@ -1,0 +1,170 @@
+{
+  "official_sources": {
+    "generated_at_utc": "2026-09-26T04:38:46.987Z",
+    "google": {
+      "source": "Google Search Central / Search Console Help",
+      "blog": "https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports",
+      "help": "https://support.google.com/webmasters/answer/16984139?hl=en",
+      "facts": [
+        "Dedicated Search Generative AI performance reports cover visibility in generative AI features on Search, including AI Overviews and AI Mode.",
+        "Google states the insights were rolled out worldwide as of 2026-08-31.",
+        "The report exposes generative AI impressions and breakdowns such as pages, device, and country; ordinary Search performance remains a separate aggregate view."
+      ]
+    },
+    "bing": {
+      "source": "Bing Webmaster Tools / Bing Search Blog",
+      "help": "https://www.bing.com/webmasters/help/ai-performance-9f8e7d6c",
+      "blog": "https://blogs.bing.com/search/2026/6/New-AI-Visibility-Insights-in-Bing-Webmaster-Tools-Intents-Topics-Citation-Share-Compare/",
+      "facts": [
+        "AI Performance reports citation activity across Microsoft Copilot, Bing AI-generated summaries, and select partner AI integrations.",
+        "Core views include cited pages, grounding queries, citation activity over time, and page-query mapping.",
+        "Preview capabilities add Intents, Topics, Citation Share, and Compare.",
+        "Bing documents the data as aggregated/sampled trend data rather than a complete log of every AI answer."
+      ]
+    },
+    "measurement_policy": [
+      "Do not infer citation counts from ordinary Google Search clicks/impressions.",
+      "Do not treat missing or throttled Bing data as zero citations.",
+      "Do not treat GA4 AI referrals as a complete citation count; referrals measure visits that reached the site.",
+      "Only populate prompt-level citation observations from direct engine observations or first-party AI visibility reports."
+    ]
+  },
+  "google_generative_ai": {
+    "official_report_exists": true,
+    "available_globally_since": "2026-08-31",
+    "connected_search_appearance_snapshot": {
+      "generated_at_utc": "2026-09-26T04:39:56.606Z",
+      "source": "Windsor.ai Search Console",
+      "account": "sc-domain:keshavarz20.com",
+      "requested_range": "last_28dT",
+      "rows": [
+        {
+          "search_appearance": "PRODUCT_SNIPPETS",
+          "clicks": 52,
+          "impressions": 582
+        }
+      ],
+      "generative_ai_specific_row_observed": false,
+      "interpretation": "The connected Search Console data surface exposed only PRODUCT_SNIPPETS for search_appearance in this query. This does not prove zero Google Generative AI visibility; the dedicated Google Generative AI report is a separate first-party view."
+    },
+    "connector_status": "dedicated Generative AI report not exposed through the connected Search Console connector in this run",
+    "action": "Use/export the first-party Generative AI report when a connector exposes it; never infer AI Overview/AI Mode impressions from ordinary web Search rows."
+  },
+  "bing_ai_performance": {
+    "official_capabilities": [
+      "citations",
+      "grounding queries",
+      "intents",
+      "topics",
+      "citation share",
+      "compare"
+    ],
+    "current_connector_status": "temporarily_unavailable",
+    "error": "ThrottleIP",
+    "interpretation": "measurement gap, not zero visibility"
+  },
+  "chatgpt_search": {
+    "prompt_level_citation_api": "not available in current connected tools",
+    "ga4_observed_referrals": {
+      "rows": 2,
+      "sessions": 2,
+      "engaged_sessions": 2,
+      "key_events": 0,
+      "add_to_carts": 0,
+      "checkouts": 0,
+      "purchases": 0,
+      "purchase_revenue": 0
+    },
+    "interpretation": "referral sessions are observed outcomes, not a full citation count"
+  },
+  "custom_growthos_events": {
+    "historical_ga4_snapshot": {
+      "generated_at_utc": "2026-09-26T04:39:56.606Z",
+      "source": "Windsor.ai GA4",
+      "account": "456208539",
+      "requested_range": "last_28dT",
+      "event_count_rows": [
+        {
+          "event_name": "page_view",
+          "event_count": 1747
+        },
+        {
+          "event_name": "session_start",
+          "event_count": 1251
+        },
+        {
+          "event_name": "first_visit",
+          "event_count": 1087
+        },
+        {
+          "event_name": "user_engagement",
+          "event_count": 858
+        },
+        {
+          "event_name": "view_item",
+          "event_count": 586
+        },
+        {
+          "event_name": "scroll",
+          "event_count": 205
+        },
+        {
+          "event_name": "ads_conversion_Shopping_Cart_1",
+          "event_count": 27
+        },
+        {
+          "event_name": "click",
+          "event_count": 23
+        },
+        {
+          "event_name": "ads_conversion_Checkout_1",
+          "event_count": 15
+        },
+        {
+          "event_name": "begin_checkout",
+          "event_count": 15
+        },
+        {
+          "event_name": "form_start",
+          "event_count": 32
+        },
+        {
+          "event_name": "NinjaTeam WhatsApp",
+          "event_count": 8
+        },
+        {
+          "event_name": "add_to_cart",
+          "event_count": 20
+        },
+        {
+          "event_name": "form_submit",
+          "event_count": 24
+        },
+        {
+          "event_name": "view_search_results",
+          "event_count": 12
+        },
+        {
+          "event_name": "click_whatsapp",
+          "event_count": 8
+        },
+        {
+          "event_name": "remove_from_cart",
+          "event_count": 4
+        }
+      ],
+      "growthos_custom_events_observed": [],
+      "ecommerce_observed": {
+        "add_to_cart": 20,
+        "begin_checkout": 15,
+        "purchase": 0
+      },
+      "interpretation": "No growthos_* custom events were present in this historical GA4 event-name snapshot. Their absence is a measurement/configuration finding, not evidence that the tools were unused."
+    },
+    "interpretation": "No growthos_* events were observed before Phase 10 activation; activation now forwards these events through the installed Google tag when available. Future collection must be verified from GA4 after traffic occurs."
+  },
+  "purchases": {
+    "observed": 0.0,
+    "interpretation": "GA4 returned zero purchases in this window; this alone does not prove zero real orders or perfect purchase tracking."
+  }
+}

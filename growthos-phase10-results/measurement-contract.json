@@ -1,0 +1,72 @@
+{
+  "version": "growthos-measurement-contract-v1",
+  "layers": [
+    {
+      "layer": "google_search",
+      "metrics": [
+        "clicks",
+        "impressions",
+        "ctr",
+        "position",
+        "tool_url_metrics"
+      ]
+    },
+    {
+      "layer": "google_generative_ai",
+      "metrics": [
+        "generative_ai_impressions",
+        "pages",
+        "device",
+        "country"
+      ],
+      "status": "first-party report exists; connector gap recorded"
+    },
+    {
+      "layer": "bing_ai",
+      "metrics": [
+        "total_citations",
+        "cited_pages",
+        "grounding_queries",
+        "citation_share",
+        "intents",
+        "topics"
+      ],
+      "status": "temporarily_unavailable"
+    },
+    {
+      "layer": "ai_referral",
+      "metrics": [
+        "sessions",
+        "engaged_sessions",
+        "key_events",
+        "cart",
+        "checkout",
+        "purchase"
+      ]
+    },
+    {
+      "layer": "growthos_tools",
+      "metrics": [
+        "measurement_ready",
+        "flow_step",
+        "tool_result",
+        "tool_step"
+      ]
+    },
+    {
+      "layer": "commerce",
+      "metrics": [
+        "add_to_cart",
+        "begin_checkout",
+        "purchase",
+        "purchase_revenue"
+      ]
+    }
+  ],
+  "rules": [
+    "missing connector data is unknown, not zero",
+    "ordinary search impressions are not AI citations",
+    "GA4 referrals are not citation counts",
+    "prompt-bank observations require direct evidence"
+  ]
+}
