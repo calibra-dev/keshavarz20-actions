@@ -1,0 +1,827 @@
+{
+  "phase": 11,
+  "version": "openai-stable-feed-readiness-v1",
+  "generated_at_utc": "2026-09-26T04:57:09.568983+00:00",
+  "spec_required_fields": [
+    "item_id",
+    "title",
+    "description",
+    "url",
+    "brand",
+    "seller_name",
+    "image_url",
+    "availability",
+    "price"
+  ],
+  "seller_name": "کشاورز بیست",
+  "currency_code_observed": "IRT",
+  "published_parent_products": 652,
+  "candidate_feed_rows": 652,
+  "variable_parent_products": 0,
+  "variation_rows": 0,
+  "fully_ready_rows": 471,
+  "ready_percent": 72.24,
+  "field_complete_counts": {
+    "item_id": 652,
+    "title": 652,
+    "description": 652,
+    "url": 652,
+    "brand": 494,
+    "seller_name": 652,
+    "image_url": 652,
+    "availability": 652,
+    "price": 562
+  },
+  "missing_samples": {
+    "item_id": [],
+    "title": [],
+    "description": [],
+    "url": [],
+    "brand": [
+      {
+        "product_id": 135205,
+        "variation_id": null
+      },
+      {
+        "product_id": 135209,
+        "variation_id": null
+      },
+      {
+        "product_id": 135211,
+        "variation_id": null
+      },
+      {
+        "product_id": 135213,
+        "variation_id": null
+      },
+      {
+        "product_id": 135215,
+        "variation_id": null
+      },
+      {
+        "product_id": 135217,
+        "variation_id": null
+      },
+      {
+        "product_id": 135219,
+        "variation_id": null
+      },
+      {
+        "product_id": 135221,
+        "variation_id": null
+      },
+      {
+        "product_id": 135233,
+        "variation_id": null
+      },
+      {
+        "product_id": 135235,
+        "variation_id": null
+      },
+      {
+        "product_id": 135369,
+        "variation_id": null
+      },
+      {
+        "product_id": 135373,
+        "variation_id": null
+      },
+      {
+        "product_id": 135375,
+        "variation_id": null
+      },
+      {
+        "product_id": 135627,
+        "variation_id": null
+      },
+      {
+        "product_id": 136067,
+        "variation_id": null
+      },
+      {
+        "product_id": 136069,
+        "variation_id": null
+      },
+      {
+        "product_id": 136071,
+        "variation_id": null
+      },
+      {
+        "product_id": 136073,
+        "variation_id": null
+      },
+      {
+        "product_id": 136075,
+        "variation_id": null
+      },
+      {
+        "product_id": 136077,
+        "variation_id": null
+      },
+      {
+        "product_id": 136079,
+        "variation_id": null
+      },
+      {
+        "product_id": 136081,
+        "variation_id": null
+      },
+      {
+        "product_id": 136084,
+        "variation_id": null
+      },
+      {
+        "product_id": 136086,
+        "variation_id": null
+      },
+      {
+        "product_id": 136088,
+        "variation_id": null
+      },
+      {
+        "product_id": 136090,
+        "variation_id": null
+      },
+      {
+        "product_id": 136092,
+        "variation_id": null
+      },
+      {
+        "product_id": 136172,
+        "variation_id": null
+      },
+      {
+        "product_id": 136176,
+        "variation_id": null
+      },
+      {
+        "product_id": 136179,
+        "variation_id": null
+      },
+      {
+        "product_id": 136182,
+        "variation_id": null
+      },
+      {
+        "product_id": 136185,
+        "variation_id": null
+      },
+      {
+        "product_id": 136187,
+        "variation_id": null
+      },
+      {
+        "product_id": 136206,
+        "variation_id": null
+      },
+      {
+        "product_id": 136209,
+        "variation_id": null
+      },
+      {
+        "product_id": 136212,
+        "variation_id": null
+      },
+      {
+        "product_id": 136215,
+        "variation_id": null
+      },
+      {
+        "product_id": 136218,
+        "variation_id": null
+      },
+      {
+        "product_id": 136220,
+        "variation_id": null
+      },
+      {
+        "product_id": 136225,
+        "variation_id": null
+      },
+      {
+        "product_id": 136227,
+        "variation_id": null
+      },
+      {
+        "product_id": 136230,
+        "variation_id": null
+      },
+      {
+        "product_id": 136234,
+        "variation_id": null
+      },
+      {
+        "product_id": 136236,
+        "variation_id": null
+      },
+      {
+        "product_id": 136258,
+        "variation_id": null
+      },
+      {
+        "product_id": 136270,
+        "variation_id": null
+      },
+      {
+        "product_id": 136278,
+        "variation_id": null
+      },
+      {
+        "product_id": 136292,
+        "variation_id": null
+      },
+      {
+        "product_id": 136304,
+        "variation_id": null
+      },
+      {
+        "product_id": 136343,
+        "variation_id": null
+      },
+      {
+        "product_id": 136346,
+        "variation_id": null
+      },
+      {
+        "product_id": 139233,
+        "variation_id": null
+      },
+      {
+        "product_id": 139234,
+        "variation_id": null
+      },
+      {
+        "product_id": 139236,
+        "variation_id": null
+      },
+      {
+        "product_id": 139241,
+        "variation_id": null
+      },
+      {
+        "product_id": 140155,
+        "variation_id": null
+      },
+      {
+        "product_id": 140215,
+        "variation_id": null
+      },
+      {
+        "product_id": 140216,
+        "variation_id": null
+      },
+      {
+        "product_id": 140217,
+        "variation_id": null
+      },
+      {
+        "product_id": 140218,
+        "variation_id": null
+      },
+      {
+        "product_id": 140219,
+        "variation_id": null
+      },
+      {
+        "product_id": 140220,
+        "variation_id": null
+      },
+      {
+        "product_id": 140221,
+        "variation_id": null
+      },
+      {
+        "product_id": 140222,
+        "variation_id": null
+      },
+      {
+        "product_id": 140223,
+        "variation_id": null
+      },
+      {
+        "product_id": 140224,
+        "variation_id": null
+      },
+      {
+        "product_id": 140225,
+        "variation_id": null
+      },
+      {
+        "product_id": 140226,
+        "variation_id": null
+      },
+      {
+        "product_id": 140227,
+        "variation_id": null
+      },
+      {
+        "product_id": 140228,
+        "variation_id": null
+      },
+      {
+        "product_id": 140229,
+        "variation_id": null
+      },
+      {
+        "product_id": 140230,
+        "variation_id": null
+      },
+      {
+        "product_id": 140289,
+        "variation_id": null
+      },
+      {
+        "product_id": 140290,
+        "variation_id": null
+      },
+      {
+        "product_id": 140293,
+        "variation_id": null
+      },
+      {
+        "product_id": 140294,
+        "variation_id": null
+      },
+      {
+        "product_id": 140300,
+        "variation_id": null
+      },
+      {
+        "product_id": 140301,
+        "variation_id": null
+      },
+      {
+        "product_id": 140302,
+        "variation_id": null
+      },
+      {
+        "product_id": 140305,
+        "variation_id": null
+      },
+      {
+        "product_id": 140306,
+        "variation_id": null
+      },
+      {
+        "product_id": 140315,
+        "variation_id": null
+      },
+      {
+        "product_id": 140316,
+        "variation_id": null
+      },
+      {
+        "product_id": 140320,
+        "variation_id": null
+      },
+      {
+        "product_id": 140321,
+        "variation_id": null
+      },
+      {
+        "product_id": 140385,
+        "variation_id": null
+      },
+      {
+        "product_id": 140387,
+        "variation_id": null
+      },
+      {
+        "product_id": 140389,
+        "variation_id": null
+      },
+      {
+        "product_id": 140429,
+        "variation_id": null
+      },
+      {
+        "product_id": 140434,
+        "variation_id": null
+      },
+      {
+        "product_id": 140435,
+        "variation_id": null
+      },
+      {
+        "product_id": 140436,
+        "variation_id": null
+      },
+      {
+        "product_id": 140437,
+        "variation_id": null
+      },
+      {
+        "product_id": 140462,
+        "variation_id": null
+      },
+      {
+        "product_id": 140463,
+        "variation_id": null
+      },
+      {
+        "product_id": 140465,
+        "variation_id": null
+      },
+      {
+        "product_id": 140559,
+        "variation_id": null
+      },
+      {
+        "product_id": 140625,
+        "variation_id": null
+      },
+      {
+        "product_id": 140626,
+        "variation_id": null
+      },
+      {
+        "product_id": 141356,
+        "variation_id": null
+      }
+    ],
+    "seller_name": [],
+    "image_url": [],
+    "availability": [],
+    "price": [
+      {
+        "product_id": 136067,
+        "variation_id": null
+      },
+      {
+        "product_id": 136069,
+        "variation_id": null
+      },
+      {
+        "product_id": 136071,
+        "variation_id": null
+      },
+      {
+        "product_id": 136073,
+        "variation_id": null
+      },
+      {
+        "product_id": 136075,
+        "variation_id": null
+      },
+      {
+        "product_id": 136077,
+        "variation_id": null
+      },
+      {
+        "product_id": 136079,
+        "variation_id": null
+      },
+      {
+        "product_id": 136081,
+        "variation_id": null
+      },
+      {
+        "product_id": 136084,
+        "variation_id": null
+      },
+      {
+        "product_id": 136086,
+        "variation_id": null
+      },
+      {
+        "product_id": 136088,
+        "variation_id": null
+      },
+      {
+        "product_id": 136090,
+        "variation_id": null
+      },
+      {
+        "product_id": 136092,
+        "variation_id": null
+      },
+      {
+        "product_id": 136172,
+        "variation_id": null
+      },
+      {
+        "product_id": 136176,
+        "variation_id": null
+      },
+      {
+        "product_id": 136179,
+        "variation_id": null
+      },
+      {
+        "product_id": 136182,
+        "variation_id": null
+      },
+      {
+        "product_id": 136185,
+        "variation_id": null
+      },
+      {
+        "product_id": 136187,
+        "variation_id": null
+      },
+      {
+        "product_id": 136206,
+        "variation_id": null
+      },
+      {
+        "product_id": 136209,
+        "variation_id": null
+      },
+      {
+        "product_id": 136212,
+        "variation_id": null
+      },
+      {
+        "product_id": 136215,
+        "variation_id": null
+      },
+      {
+        "product_id": 136218,
+        "variation_id": null
+      },
+      {
+        "product_id": 136220,
+        "variation_id": null
+      },
+      {
+        "product_id": 136225,
+        "variation_id": null
+      },
+      {
+        "product_id": 136227,
+        "variation_id": null
+      },
+      {
+        "product_id": 136230,
+        "variation_id": null
+      },
+      {
+        "product_id": 136234,
+        "variation_id": null
+      },
+      {
+        "product_id": 136236,
+        "variation_id": null
+      },
+      {
+        "product_id": 136258,
+        "variation_id": null
+      },
+      {
+        "product_id": 136270,
+        "variation_id": null
+      },
+      {
+        "product_id": 136278,
+        "variation_id": null
+      },
+      {
+        "product_id": 136292,
+        "variation_id": null
+      },
+      {
+        "product_id": 136304,
+        "variation_id": null
+      },
+      {
+        "product_id": 136343,
+        "variation_id": null
+      },
+      {
+        "product_id": 136346,
+        "variation_id": null
+      },
+      {
+        "product_id": 140215,
+        "variation_id": null
+      },
+      {
+        "product_id": 140216,
+        "variation_id": null
+      },
+      {
+        "product_id": 140217,
+        "variation_id": null
+      },
+      {
+        "product_id": 140218,
+        "variation_id": null
+      },
+      {
+        "product_id": 140219,
+        "variation_id": null
+      },
+      {
+        "product_id": 140220,
+        "variation_id": null
+      },
+      {
+        "product_id": 140221,
+        "variation_id": null
+      },
+      {
+        "product_id": 140222,
+        "variation_id": null
+      },
+      {
+        "product_id": 140223,
+        "variation_id": null
+      },
+      {
+        "product_id": 140224,
+        "variation_id": null
+      },
+      {
+        "product_id": 140225,
+        "variation_id": null
+      },
+      {
+        "product_id": 140226,
+        "variation_id": null
+      },
+      {
+        "product_id": 140227,
+        "variation_id": null
+      },
+      {
+        "product_id": 140228,
+        "variation_id": null
+      },
+      {
+        "product_id": 140229,
+        "variation_id": null
+      },
+      {
+        "product_id": 140230,
+        "variation_id": null
+      },
+      {
+        "product_id": 140289,
+        "variation_id": null
+      },
+      {
+        "product_id": 140290,
+        "variation_id": null
+      },
+      {
+        "product_id": 140293,
+        "variation_id": null
+      },
+      {
+        "product_id": 140294,
+        "variation_id": null
+      },
+      {
+        "product_id": 140300,
+        "variation_id": null
+      },
+      {
+        "product_id": 140301,
+        "variation_id": null
+      },
+      {
+        "product_id": 140302,
+        "variation_id": null
+      },
+      {
+        "product_id": 140305,
+        "variation_id": null
+      },
+      {
+        "product_id": 140306,
+        "variation_id": null
+      },
+      {
+        "product_id": 140315,
+        "variation_id": null
+      },
+      {
+        "product_id": 140316,
+        "variation_id": null
+      },
+      {
+        "product_id": 140320,
+        "variation_id": null
+      },
+      {
+        "product_id": 140321,
+        "variation_id": null
+      },
+      {
+        "product_id": 140742,
+        "variation_id": null
+      },
+      {
+        "product_id": 140750,
+        "variation_id": null
+      },
+      {
+        "product_id": 140751,
+        "variation_id": null
+      },
+      {
+        "product_id": 140767,
+        "variation_id": null
+      },
+      {
+        "product_id": 140773,
+        "variation_id": null
+      },
+      {
+        "product_id": 140820,
+        "variation_id": null
+      },
+      {
+        "product_id": 140854,
+        "variation_id": null
+      },
+      {
+        "product_id": 140860,
+        "variation_id": null
+      },
+      {
+        "product_id": 140878,
+        "variation_id": null
+      },
+      {
+        "product_id": 140892,
+        "variation_id": null
+      },
+      {
+        "product_id": 140934,
+        "variation_id": null
+      },
+      {
+        "product_id": 140937,
+        "variation_id": null
+      },
+      {
+        "product_id": 140938,
+        "variation_id": null
+      },
+      {
+        "product_id": 141217,
+        "variation_id": null
+      },
+      {
+        "product_id": 141220,
+        "variation_id": null
+      },
+      {
+        "product_id": 141726,
+        "variation_id": null
+      },
+      {
+        "product_id": 142075,
+        "variation_id": null
+      },
+      {
+        "product_id": 142913,
+        "variation_id": null
+      },
+      {
+        "product_id": 142919,
+        "variation_id": null
+      },
+      {
+        "product_id": 142980,
+        "variation_id": null
+      },
+      {
+        "product_id": 142985,
+        "variation_id": null
+      },
+      {
+        "product_id": 143020,
+        "variation_id": null
+      },
+      {
+        "product_id": 143029,
+        "variation_id": null
+      },
+      {
+        "product_id": 143032,
+        "variation_id": null
+      }
+    ]
+  },
+  "duplicate_item_id_count": 1,
+  "duplicate_item_id_samples": [
+    "430000300-2"
+  ],
+  "feed_submission_attempted": false,
+  "partner_onboarding_gate": true,
+  "price_values_persisted": false,
+  "stock_values_persisted": false,
+  "mapping": {
+    "item_id": "Woo SKU when present; otherwise stable candidate k20_<product_id> / k20v_<variation_id>",
+    "title": "Woo product name plus selected variation options where applicable",
+    "description": "variation description -> short description -> product description, plain text",
+    "url": "canonical Woo product permalink",
+    "brand": "Woo brands field or explicit brand attribute only; no inference",
+    "seller_name": "کشاورز بیست",
+    "image_url": "variation image, otherwise main product image",
+    "availability": "Woo stock_status mapped to OpenAI availability vocabulary",
+    "price": "current Woo price with observed Woo currency; audited for presence but value not committed"
+  }
+}
