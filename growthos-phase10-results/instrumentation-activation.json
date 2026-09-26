@@ -1,0 +1,95 @@
+{
+  "phase": 10,
+  "version": "growthos-measurement-activation-v1",
+  "generated_at_utc": "2026-09-26T04:43:56.404115+00:00",
+  "status": "PASS_VERIFIED_WRITE",
+  "results": [
+    {
+      "key": "drip_calculator",
+      "id": 143698,
+      "status": "publish",
+      "changed": true,
+      "marker_count": 1,
+      "phase9_marker_count": 1,
+      "forwarder_present": true,
+      "verified": true
+    },
+    {
+      "key": "layflat_calculator",
+      "id": 144236,
+      "status": "publish",
+      "changed": true,
+      "marker_count": 1,
+      "phase9_marker_count": 1,
+      "forwarder_present": true,
+      "verified": true
+    },
+    {
+      "key": "filter_selector",
+      "id": 144238,
+      "status": "publish",
+      "changed": true,
+      "marker_count": 1,
+      "phase9_marker_count": 1,
+      "forwarder_present": true,
+      "verified": true
+    },
+    {
+      "key": "compatibility_checker",
+      "id": 144239,
+      "status": "publish",
+      "changed": true,
+      "marker_count": 1,
+      "phase9_marker_count": 1,
+      "forwarder_present": true,
+      "verified": true
+    },
+    {
+      "key": "pipe_size_selector",
+      "id": 144266,
+      "status": "publish",
+      "changed": true,
+      "marker_count": 1,
+      "phase9_marker_count": 1,
+      "forwarder_present": true,
+      "verified": true
+    },
+    {
+      "key": "basket_builder",
+      "id": 145233,
+      "status": "publish",
+      "changed": true,
+      "marker_count": 1,
+      "phase9_marker_count": 1,
+      "forwarder_present": true,
+      "verified": true
+    },
+    {
+      "key": "product_comparator",
+      "id": 145234,
+      "status": "publish",
+      "changed": true,
+      "marker_count": 1,
+      "phase9_marker_count": 1,
+      "forwarder_present": true,
+      "verified": true
+    },
+    {
+      "key": "smart_proforma",
+      "id": 145286,
+      "status": "publish",
+      "changed": true,
+      "marker_count": 1,
+      "phase9_marker_count": 1,
+      "forwarder_present": true,
+      "verified": true
+    }
+  ],
+  "qa": {
+    "targets": 8,
+    "verified": 8,
+    "changed": 8
+  },
+  "behavior": "Forwards existing growthos_* dataLayer events to the installed Google tag through gtag when available and emits growthos_measurement_ready on each tool page.",
+  "prices_stock_changed": false
+}
