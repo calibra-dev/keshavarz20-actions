@@ -96,7 +96,7 @@ for kind,pid,slug,expected in TARGETS:
     public=requests.get(rb.get("link"),timeout=60,headers={"User-Agent":"k20-growthos-phase13-public/1.0","Cache-Control":"no-cache"},allow_redirects=True)
     public_text=public.text
     origin_header=bool(public.headers.get("Origin-Trial"))
-    origin_meta_static=bool(re.search(r'<meta[^>]+http-equiv=["\\']origin-trial["\\']',public_text,re.I))
+    origin_meta_static=bool(re.search(r"<meta[^>]+http-equiv=[\\\"']origin-trial[\\\"']",public_text,re.I))
     origin_meta_runtime=(
         'otMeta.httpEquiv="origin-trial"' in public_text
         and 'data-k20-webmcp' in public_text
