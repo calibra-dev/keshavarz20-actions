@@ -134,57 +134,72 @@ def public_html(url):
 
 def strip_old_blocks(raw):
     pats=[
-      r"<!-- k20-phase16-deep-review-v1 -->[\s\S]*?<!-- /k20-phase16-deep-review-v1 -->",
-      r"<!-- k20-phase16-editorial-trust-v5 -->[\s\S]*?<!-- /k20-phase16-editorial-trust-v5 -->",
-      r"<!-- k20-phase16-editorial-trust-v4 -->[\s\S]*?<!-- /k20-phase16-editorial-trust-v4 -->",
-      r"<!-- k20-phase16-editorial-trust-v3 -->[\s\S]*?<!-- /k20-phase16-editorial-trust-v3 -->",
-      r"<!-- k20-phase16-editorial-trust-v2 -->[\s\S]*?<!-- /k20-phase16-editorial-trust-v2 -->"
+      r"<!-- k20-phase16-deep-review-v1 -->[\\s\\S]*?<!-- /k20-phase16-deep-review-v1 -->",
+      r"<!-- k20-phase16-editorial-trust-start -->[\\s\\S]*?<!-- k20-phase16-editorial-trust-end -->",
+      r"<!-- wp:html -->\\s*<!-- k20-phase16-gutenberg-test-v1 -->[\\s\\S]*?<!-- /k20-phase16-gutenberg-test-v1 -->\\s*<!-- /wp:html -->",
+      r"<!-- k20-phase16-editorial-trust-v5 -->[\\s\\S]*?<!-- /k20-phase16-editorial-trust-v5 -->",
+      r"<!-- k20-phase16-editorial-trust-v4 -->[\\s\\S]*?<!-- /k20-phase16-editorial-trust-v4 -->",
+      r"<!-- k20-phase16-editorial-trust-v3 -->[\\s\\S]*?<!-- /k20-phase16-editorial-trust-v3 -->",
+      r"<!-- k20-phase16-editorial-trust-v2 -->[\\s\\S]*?<!-- /k20-phase16-editorial-trust-v2 -->"
     ]
     n=0
     for p in pats:
-        raw,c=re.subn(p,"",raw,flags=re.I); n+=c
+        raw,count=re.subn(p,"",raw,flags=re.I); n+=count
     return raw,n
 
-def block(cfg):
+def deep_inner(cfg):
     lis="".join("<li>"+html.escape(x)+"</li>" for x in cfg["checks"])
     src="".join('<li><a href="'+html.escape(u,quote=True)+'" rel="nofollow noopener" target="_blank">'+html.escape(n)+'</a></li>' for n,u in cfg["sources"])
     return f"""
 <!-- {MARKER} -->
-<section class="k20-phase16-deep-review" dir="rtl" style="direction:rtl;text-align:right;line-height:2;border:1px solid #d9e7dd;border-radius:16px;padding:20px;margin:26px 0;background:#fbfdfb">
-<h2>نظر کارشناسی کشاورز بیست — بازبینی عمیق فنی</h2>
+<hr style="border:0;border-top:1px solid rgba(255,255,255,.28);margin:22px 0">
+<h3 style="font-size:21px;line-height:1.8">بازبینی عمیق فنی</h3>
 <p>{html.escape(cfg["analysis"])}</p>
-<h3>چک‌های اجرایی قبل از تصمیم</h3>
+<h3 style="font-size:20px;line-height:1.8">چک‌های اجرایی قبل از تصمیم</h3>
 <ul>{lis}</ul>
-<h3>منابع مرجع تکمیلی</h3>
+<h3 style="font-size:20px;line-height:1.8">منابع مرجع تکمیلی</h3>
 <ul>{src}</ul>
-<h3>روش تهیه و بازبینی</h3>
-<p>این بخش در بازبینی فاز ۱۶ با رجوع به منابع دانشگاهی، دولتی یا مستندات فنی سازنده تکمیل شده است. ادعاهای عددی یا تصمیم‌های وابسته به مدل محصول، مزرعه، آب، خاک، فشار، دبی یا برچسب مصرف باید با داده واقعی همان مورد تطبیق داده شوند. هیچ کارشناس، تجربه میدانی یا تأییدیه شخصی ساختگی به این نوشته افزوده نشده است.</p>
-<p>جزئیات معیار انتخاب منبع، اصلاح محتوا و استفاده از ابزارهای خودکار در <a href="{POLICY_URL}">سیاست تحریریه، منابع و بازبینی محتوای کشاورز بیست</a> آمده است.</p>
-</section>
+<h3 style="font-size:20px;line-height:1.8">روش تهیه و بازبینی</h3>
+<p>این بخش در بازبینی فاز ۱۶ با رجوع به منابع دانشگاهی، دولتی، مراکز پژوهشی یا مستندات فنی سازنده تکمیل شده است. ادعاهای عددی یا تصمیم‌های وابسته به مدل محصول، مزرعه، آب، خاک، فشار، دبی یا برچسب مصرف باید با داده واقعی همان مورد تطبیق داده شوند. هیچ کارشناس، تجربه میدانی یا تأییدیه شخصی ساختگی به این نوشته افزوده نشده است.</p>
+<p>جزئیات معیار انتخاب منبع، اصلاح محتوا و استفاده از ابزارهای خودکار در <a href="{POLICY_URL}" style="color:inherit;text-decoration:underline">سیاست تحریریه، منابع و بازبینی محتوای کشاورز بیست</a> آمده است.</p>
 <!-- /{MARKER} -->
 """
 
-def insert_before_visible_heading(raw,anchor,newblock):
-    esc=re.escape(anchor)
-    patterns=[
-      re.compile(r"<h[1-6][^>]*>[^<]*"+esc+r"[\s\S]*?</h[1-6]>",re.I),
-      re.compile(r"<strong[^>]*>[^<]*"+esc+r"[\s\S]*?</strong>",re.I)
-    ]
-    for p in patterns:
-        m=p.search(raw)
-        if m:
-            start=m.start()
-            comment=raw.rfind("<!-- wp:",max(0,start-300),start)
-            if comment>=0: start=comment
-            return raw[:start]+newblock+"\n"+raw[start:],"heading"
-    pos=raw.find(anchor)
-    if pos>=0:
-        start=raw.rfind("<!-- wp:",max(0,pos-500),pos)
-        if start<0: start=raw.rfind("<",max(0,pos-300),pos)
-        if start<0: start=pos
-        return raw[:start]+newblock+"\n"+raw[start:],"text_fallback"
-    raise RuntimeError("visible anchor not found in raw content")
+def standalone_editorial_section(cfg):
+    return f"""
+<section class="k20-phase16-deep-review" dir="rtl" style="direction:rtl;text-align:right;line-height:2;background:linear-gradient(135deg,#0F3F25,#17653A);color:#fff;border-radius:20px;padding:26px;margin:22px 0">
+<h2 style="margin-top:0;color:#fff;font-size:25px;line-height:1.7">نظر کارشناسی کشاورز بیست — بازبینی عمیق فنی</h2>
+{deep_inner(cfg)}
+</section>
+"""
 
+def expand_inside_render_root(raw,pid,cfg):
+    if pid==142587:
+        m=re.search(r"<h[1-6][^>]*>[^<]*منابع[^<]*</h[1-6]>",raw,re.I)
+        if not m:
+            raise RuntimeError("visible sources heading not found")
+        sec_start=raw.rfind("<section",0,m.start())
+        if sec_start<0:
+            raise RuntimeError("sources section boundary not found")
+        return raw[:sec_start]+standalone_editorial_section(cfg)+"\\n"+raw[sec_start:],"before_sources_in_root"
+
+    term="نظر کارشناسی کشاورز بیست"
+    pos=raw.find(term)
+    if pos<0:
+        raise RuntimeError("visible editorial heading not found")
+    h_start=raw.rfind("<h2",0,pos)
+    h_end=raw.find("</h2>",pos)
+    sec_start=raw.rfind("<section",0,h_start)
+    sec_end=raw.find("</section>",h_end)
+    if min(h_start,h_end,sec_start,sec_end)<0:
+        raise RuntimeError("editorial section boundaries not found")
+    addon=deep_inner(cfg)
+    return raw[:sec_end]+addon+raw[sec_end:],"expand_existing_editorial_section"
+
+def core_update(pid,content):
+    r=S.post(f"{BASE}/wp-json/wp/v2/posts/{pid}",json={"content":content},timeout=120)
+    r.raise_for_status()
+    return r.json()
 def legacy_update(pid,new_content):
     with tempfile.TemporaryDirectory(prefix=f"k20-p16-deep-{pid}-") as td:
         req=Path(td)/"request.json"; res=Path(td)/"result.json"
@@ -216,13 +231,14 @@ for pid,cfg in POSTS.items():
         except Exception as exc:
             snap={"captured":False,"reason":str(exc)[:180]}
         cleaned,removed=strip_old_blocks(raw)
-        new_content,mode=insert_before_visible_heading(cleaned,cfg["anchor"],block(cfg))
-        gw=legacy_update(pid,new_content)
+        new_content,mode=expand_inside_render_root(cleaned,pid,cfg)
+        gw=core_update(pid,new_content)
+        time.sleep(1.5)
         post2=get_post(pid); rendered=((post2.get("content") or {}).get("rendered") or "")
         url=post2.get("link")
         pub=public_html(url)
         checks={
-          "rest_rendered_marker":MARKER in rendered,
+          "rest_rendered_deep_review":"بازبینی عمیق فنی" in rendered,
           "rest_review_method":"روش تهیه و بازبینی" in rendered,
           "rest_policy_link":"/editorial-policy/" in rendered,
           "rest_editorial_analysis":"نظر کارشناسی کشاورز بیست" in rendered,
@@ -233,7 +249,7 @@ for pid,cfg in POSTS.items():
           "public_editorial_analysis":"نظر کارشناسی کشاورز بیست" in pub.text
         }
         verified=all(v is True or v==200 for v in checks.values())
-        results.append({"id":pid,"title":clean_title(post2),"url":url,"status":"verified" if verified else "verification_failed","insert_mode":mode,"old_phase16_blocks_removed":removed,"snapshot":snap,"modified_gmt":gw.get("modified_gmt"),"checks":checks})
+        results.append({"id":pid,"title":clean_title(post2),"url":url,"status":"verified" if verified else "verification_failed","insert_mode":mode,"old_phase16_blocks_removed":removed,"snapshot":snap,"modified_gmt":gw.get("modified_gmt") or gw.get("modified"),"checks":checks})
         if not verified: failures.append({"id":pid,"reason":"public_or_rendered_verification_failed","checks":checks})
     except Exception as exc:
         failures.append({"id":pid,"title":cfg["title"],"reason":str(exc)[:700]})
