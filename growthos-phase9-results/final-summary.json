@@ -1,0 +1,40 @@
+{
+  "phase": 9,
+  "generated_at_utc": "2026-09-26T04:42:06.285Z",
+  "status": "PASS_VERIFIED_COMPLETE",
+  "evidence": {
+    "route_write": {
+      "status": "PASS_VERIFIED_WRITE",
+      "tools_verified": 8,
+      "tools_total": 8,
+      "hubs_verified": 5,
+      "hubs_total": 5,
+      "legacy_routes_verified": 2,
+      "legacy_routes_total": 2
+    },
+    "independent_readback": {
+      "status": "PASS_VERIFIED_READBACK",
+      "tools_verified": 8,
+      "hubs_verified": 5,
+      "legacy_verified": 2
+    },
+    "accessibility": {
+      "status": "PASS_VERIFIED_WRITE",
+      "targets_verified": 3,
+      "targets_total": 3,
+      "controls_verified": 15,
+      "controls_total": 15
+    }
+  },
+  "canonical_proforma_owner": {
+    "id": 145286,
+    "slug": "request-proforma"
+  },
+  "safeguards": {
+    "new_urls_created": 0,
+    "redirects_created": 0,
+    "prices_stock_changed": false,
+    "compatibility_inferred": false
+  },
+  "note": "Phase 9 is closed. The stale partial readback from before the final write is superseded by the 2026-09-26 PASS_VERIFIED_READBACK file and the accessibility completion evidence."
+}
