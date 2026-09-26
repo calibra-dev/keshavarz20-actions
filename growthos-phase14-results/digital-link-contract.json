@@ -1,0 +1,31 @@
+{
+  "phase": 14,
+  "version": "growthos-gs1-digital-link-v1",
+  "generated_at_utc": "2026-09-26T07:34:08.792855+00:00",
+  "standard": {
+    "uri_syntax": "GS1 Digital Link URI Syntax 1.7.0",
+    "gtin_path_ai": "01",
+    "gtin_new_implementation_format": "14 digits",
+    "canonical_reference_domain": "https://id.gs1.org"
+  },
+  "policy": {
+    "never_treat_sku_as_gtin": true,
+    "never_generate_gtin": true,
+    "checksum_is_not_ownership_proof": true,
+    "digital_link_requires_source_verified_gtin": true,
+    "qr_publication_requires_existing_verified_gtin": true,
+    "no_fake_authenticity_claim": true
+  },
+  "future_resolver_contract": {
+    "reference_pattern": "https://id.gs1.org/01/{gtin14}",
+    "k20_owned_resolver_pattern": "https://keshavarz20.com/id/01/{gtin14}",
+    "create_public_resolver_now": false,
+    "intended_link_targets": [
+      "canonical_product",
+      "verified_specifications",
+      "installation_instructions",
+      "warranty_return_policy",
+      "traceability_when_source_backed"
+    ]
+  }
+}
