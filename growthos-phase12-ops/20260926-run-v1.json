@@ -1,0 +1,10 @@
+{
+  "run": "phase12-merchant-ucp",
+  "requires": {
+    "phase11": "PASS_GUARDED_FEED_READY_PARTNER_APPROVAL_REQUIRED"
+  },
+  "architecture_only": true,
+  "merchant_country": "IR",
+  "fake_country_or_address": false,
+  "publish_ucp_profile": false
+}
