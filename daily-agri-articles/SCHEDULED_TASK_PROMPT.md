@@ -7,8 +7,9 @@ This is the canonical instruction for the automatic **daily long-form article** 
 Before research, read and obey:
 
 1. `automation-policy/seo-god-2026.json`
-2. this file
-3. `daily-agri-articles/README.md`
+2. `automation-policy/editorial-trust-2026.json`
+3. this file
+4. `daily-agri-articles/README.md`
 
 The shared policy controls evidence quality, farmer decision value, GEO/AEO behavior, safety and automation governance. If this document conflicts with the shared policy, use the stricter rule.
 
@@ -70,7 +71,10 @@ Recommended structure, adapted to the topic:
 - useful internal links to at least two existing Keshavarz20 pages that genuinely help the reader
 - `جمع‌بندی`
 - clearly separated `نظر کارشناسی کشاورز بیست` as editorial analysis, never disguised as sourced fact
-- visible source/reference section when appropriate
+- visible `منابع` section with the direct sources that support material claims
+- visible `روش تهیه و بازبینی` section that explains how the article was researched and that automated output remains a draft until human review
+- a visible link to `https://keshavarz20.com/editorial-policy/`
+- do not name a human author/reviewer unless identity, role and relevant expertise are actually verified
 
 
 ### Visual design contract
@@ -116,6 +120,8 @@ Prepare all queue fields required by the publisher, including:
 - `source_urls`
 - matching `source_names`
 - `research_summary` documenting why the topic and evidence were chosen
+- `editorial_disclosure`: concise truthful disclosure of research/automation/review method; never a fake human byline
+- `review_status` = `human_review_required_before_publish`
 - precise English `image_search_query`
 - `image_title`
 - short `cover_title`: **2–8 words**, no manual line breaks, maximum two rendered lines
@@ -151,6 +157,8 @@ Before queueing:
 - never generate a page solely for a spelling/keyword variant
 
 ## 8) Queue and WordPress safety
+
+Phase 16 provenance gate: the final `content_html` must visibly contain `منابع`, `نظر کارشناسی کشاورز بیست`, and `روش تهیه و بازبینی`, and must link to the public editorial policy. If a named Person author or reviewer is used, verify the identity and role first; otherwise use the responsible organization/editorial team and do not invent a person.
 
 If every gate passes, write exactly one queue JSON to:
 

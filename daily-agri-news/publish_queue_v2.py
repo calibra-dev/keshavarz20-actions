@@ -15,6 +15,7 @@ base = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(base)
 
 POLICY = json.loads((REPO_ROOT / "automation-policy" / "seo-god-2026.json").read_text(encoding="utf-8"))
+EDITORIAL_POLICY = json.loads((REPO_ROOT / "automation-policy" / "editorial-trust-2026.json").read_text(encoding="utf-8"))
 
 
 def _host(url: str) -> str:
@@ -33,7 +34,8 @@ def validate_payload_v2(p):
     required = [
         "content_type", "title", "slug", "excerpt", "content_html", "focus_keyphrase",
         "seo_title", "meta_description", "tags", "related_keyphrases",
-        "source_urls", "source_names", "image_search_query", "alt_text",
+        "source_urls", "source_names", "selection_reason", "fact_check_notes",
+        "editorial_disclosure", "review_status", "image_search_query", "alt_text",
     ]
     missing = [k for k in required if not p.get(k)]
     if missing:
@@ -45,9 +47,20 @@ def validate_payload_v2(p):
     text = base.strip_html(str(p["content_html"]))
     if len(text) < 900:
         raise base.QueuePublishError("News draft is too short; refusing to create a draft")
-    for section in ("جمع‌بندی", "نظر کارشناسی کشاورز بیست", "منابع"):
+    for section in ("جمع‌بندی", "نظر کارشناسی کشاورز بیست", "منابع", "روش تهیه و بازبینی"):
         if section not in str(p["content_html"]):
             raise base.QueuePublishError(f"Required section missing: {section}")
+
+    if "/editorial-policy/" not in str(p["content_html"]):
+        raise base.QueuePublishError("Phase 16 requires a visible link to the Keshavarz20 editorial policy")
+
+    expected_review = str(EDITORIAL_POLICY["publication_gate"]["required_review_status"])
+    if str(p.get("review_status") or "").strip() != expected_review:
+        raise base.QueuePublishError(f"review_status must be {expected_review}")
+
+    disclosure = base.strip_html(str(p.get("editorial_disclosure") or "")).strip()
+    if len(disclosure) < 60:
+        raise base.QueuePublishError("editorial_disclosure is too thin for the Phase 16 provenance gate")
 
     if not isinstance(p["tags"], list) or not (3 <= len(p["tags"]) <= 10):
         raise base.QueuePublishError("tags must contain 3 to 10 items")
