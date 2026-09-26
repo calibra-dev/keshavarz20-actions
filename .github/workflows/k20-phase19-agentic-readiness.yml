@@ -44,9 +44,69 @@ jobs:
         run: python scripts/k20_growthos_phase14_gs1.py
       - name: Refresh Phase 15 brand and seller truth
         run: python scripts/k20_growthos_phase15_entity_os.py
+      - name: Record rolling upstream refresh evidence
+        env:
+          GITHUB_RUN_ID_VALUE: ${{ github.run_id }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          def load(p):
+              return json.loads(Path(p).read_text(encoding="utf-8"))
+          p11=load("growthos-phase11-results/summary.json")
+          p12=load("growthos-phase12-results/summary.json")
+          p14=load("growthos-phase14-results/summary.json")
+          p15=load("growthos-phase15-results/summary.json")
+          out={
+            "phase":19,
+            "version":"phase19-v2-upstream-refresh-evidence",
+            "source_run_id":int(os.environ["GITHUB_RUN_ID_VALUE"]),
+            "observed_from_successful_steps":True,
+            "observed_at_utc":datetime.now(timezone.utc).isoformat(),
+            "phase11":{
+              "status":p11.get("status"),
+              "candidate_rows":p11.get("openai_feed_candidate_rows"),
+              "ready_rows":p11.get("openai_feed_ready_rows"),
+              "ready_percent":p11.get("openai_feed_ready_percent"),
+              "direct_feed_submitted":p11.get("direct_feed_submitted"),
+              "direct_feed_partner_access_proven":p11.get("direct_feed_partner_access_proven")
+            },
+            "phase12":{
+              "status":p12.get("status"),
+              "candidate_rows":p12.get("merchant_candidate_rows"),
+              "ready_rows":p12.get("merchant_basic_ready_rows"),
+              "merchant_submission_attempted":p12.get("merchant_center_submission_attempted"),
+              "fake_country_or_address_used":p12.get("fake_country_or_address_used"),
+              "ucp_public_profile_published":p12.get("ucp_public_profile_published"),
+              "ucp_live_adapter_claimed":p12.get("ucp_live_adapter_claimed")
+            },
+            "phase14":{
+              "status":p14.get("status"),
+              "published_products":p14.get("published_products"),
+              "source_verified_gtins":p14.get("source_verified_gtins"),
+              "gtins_fabricated":p14.get("gtins_fabricated"),
+              "skus_promoted_to_gtin":p14.get("skus_promoted_to_gtin")
+            },
+            "phase15":{
+              "status":p15.get("status"),
+              "published_products":p15.get("published_products"),
+              "source_verified_truth_brand_products":p15.get("source_verified_truth_brand_products"),
+              "products_without_woo_brand":p15.get("products_without_woo_brand"),
+              "brand_truth_mismatches":p15.get("brand_truth_mismatches"),
+              "identity_fields_fabricated":p15.get("identity_fields_fabricated"),
+              "sameAs_links_fabricated":p15.get("sameAs_links_fabricated"),
+              "glns_fabricated":p15.get("glns_fabricated"),
+              "seller_entity_found":p15.get("seller_entity_found"),
+              "seller_name_consistent":p15.get("seller_name_consistent")
+            }
+          }
+          Path("phase19-results/upstream-refresh-latest.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(out,ensure_ascii=False))
+          PY
       - name: Validate Phase 19 v2 full catalog readiness
         run: |
-          python scripts/k20_phase19_agentic_readiness.py phase19-results/agentic-readiness-latest.json phase19-results/product-discovery-readiness-feed.json
+          python scripts/k20_phase19_agentic_readiness.py phase19-results/agentic-readiness-latest.json phase19-results/product-discovery-readiness-feed.json             phase19-results/upstream-refresh-latest.json
       - name: Persist sanitized read-only evidence
         shell: bash
         run: |
