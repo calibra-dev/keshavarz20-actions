@@ -56,19 +56,22 @@ def all_variations(pid):
 def brand_of(p):
     b=p.get('brands')
     if isinstance(b,list) and b:
+        real=[]
         for x in b:
             if isinstance(x,dict) and str(x.get('name') or '').strip():
                 v=str(x['name']).strip()
-                if v in PSEUDO_BRANDS: return ''
-                return v
+                if v not in PSEUDO_BRANDS:
+                    real.append(v)
+        # External commerce needs one unambiguous brand. Multiple Woo brands are
+        # preserved on-site but intentionally fail closed until source truth picks one.
+        if len(real)==1: return real[0]
+        if len(real)!=1: return ''
     for a in p.get('attributes') or []:
         n=str(a.get('name') or '').strip().lower()
         if n in ('brand','برند','نام برند') or 'برند' in n:
-            opts=a.get('options') or []
-            if opts and str(opts[0]).strip():
-                v=str(opts[0]).strip()
-                if v in PSEUDO_BRANDS: return ''
-                return v
+            opts=[str(v).strip() for v in (a.get('options') or []) if str(v).strip() and str(v).strip() not in PSEUDO_BRANDS]
+            if len(opts)==1: return opts[0]
+            if len(opts)!=1: return ''
     return ''
 
 def availability_of(p):
@@ -168,13 +171,14 @@ feed={
  'known_source_sku_conflict':{'sku':'430000300-2','product_ids':[140654,140655],'status':'SOURCE_CONFIRMATION_REQUIRED','feed_identity_impact':'none_after_stable_id_mapping'},
  'feed_submission_attempted':False,'partner_onboarding_gate':True,
  'pseudo_brand_names_excluded_from_external_feed':sorted(PSEUDO_BRANDS),
+ 'multi_brand_products_excluded_from_external_feed':True,
  'price_values_persisted':False,'stock_values_persisted':False,
  'mapping':{
    'item_id':'Stable Keshavarz20 ID derived from immutable Woo entity ID: k20_<product_id> / k20v_<variation_id>; Woo SKU remains a separate source field and is not used as the feed primary key.',
    'title':'Woo product name plus selected variation options where applicable',
    'description':'variation description -> short description -> product description, plain text',
    'url':'canonical Woo product permalink',
-   'brand':'Woo product_brand / explicit brand only; internal pseudo-brand «متفرقه» is intentionally treated as missing for external feeds; no inference',
+   'brand':'Exactly one unambiguous Woo product_brand / explicit brand only; internal pseudo-brand «متفرقه» and multi-brand ambiguity are intentionally treated as missing for external feeds; no inference',
    'seller_name':'کشاورز بیست',
    'image_url':'variation image, otherwise main product image',
    'availability':'Woo stock_status mapped to OpenAI availability vocabulary',
