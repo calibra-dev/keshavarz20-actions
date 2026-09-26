@@ -125,7 +125,11 @@ unbranded=[]
 for p in products:
     bs=[b for b in (p.get("brands") or []) if isinstance(b,dict) and b.get("id")]
     if not bs:
-        unbranded.append(int(p["id"]))
+        unbranded.append({
+          "product_id":int(p["id"]),
+          "title":str(p.get("name") or "").strip(),
+          "sku":str(p.get("sku") or "").strip() or None
+        })
     if len(bs)>1:
         multi_brand.append({"product_id":int(p["id"]),"brand_ids":[int(b["id"]) for b in bs]})
     for b in bs:
@@ -249,6 +253,7 @@ brand_registry={
   "brand_term_count":len(registry),
   "products_with_any_woo_brand":len(products)-len(unbranded),
   "products_without_woo_brand":len(unbranded),
+  "unbranded_products":unbranded,
   "source_verified_truth_brand_products":truth_known,
   "truth_brand_assignment_mismatches":truth_mismatch,
   "multi_brand_products":multi_brand,
