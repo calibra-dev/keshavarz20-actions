@@ -1,0 +1,32 @@
+{
+  "generated_at_utc": "2026-09-26T07:35:00Z",
+  "phase": 14,
+  "title": "GS1 / GS1 Digital Link",
+  "official_sources": [
+    {
+      "source": "GS1 Digital Link Standard: URI Syntax",
+      "version": "1.7.0",
+      "url": "https://ref.gs1.org/standards/digital-link/uri-syntax/1.7.0/",
+      "facts": [
+        "Ratified Aug 2026.",
+        "New implementations express GTIN as 14 digits.",
+        "Canonical reference GS1 Digital Link URIs use HTTPS and id.gs1.org.",
+        "GS1 Digital Link can connect GS1 identifiers to online information and services."
+      ]
+    },
+    {
+      "source": "GS1 Standards Repository",
+      "url": "https://ref.gs1.org/standards/",
+      "facts": [
+        "GS1 Digital Link URI Syntax current version is 1.7.0.",
+        "Last modified 7 Aug 2026."
+      ]
+    }
+  ],
+  "implementation_constraints": [
+    "Do not fabricate GTIN.",
+    "Do not treat Keshavarz20 SKU as GTIN.",
+    "A checksum-valid number is not proof that GS1 assigned it.",
+    "Only source-verified GTINs may produce live Digital Link mappings."
+  ]
+}
