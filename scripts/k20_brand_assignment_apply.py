@@ -117,12 +117,27 @@ for brand in requested:
         brand_terms[brand]={"id":int(t["id"]),"name":t.get("name"),"created":False}
         reused.append({"requested":brand,"id":int(t["id"]),"name":t.get("name")})
         continue
-    # Create exact requested brand name. This intentionally creates "زلال رود"
-    # rather than reusing the different existing entity "زلال رود اتصال".
-    t=req("POST","/wp-json/wp/v2/product_brand",json={"name":brand})
-    brand_terms[brand]={"id":int(t["id"]),"name":t.get("name"),"created":True}
-    created.append({"requested":brand,"id":int(t["id"]),"name":t.get("name")})
-    by_norm.setdefault(norm(t.get("name")),[]).append(t)
+    # Create exact requested brand name. If WordPress reports term_exists,
+    # reuse that exact existing term instead of creating a duplicate.
+    rr=S.post(BASE+"/wp-json/wp/v2/product_brand",json={"name":brand},timeout=90)
+    if rr.ok:
+        t=rr.json()
+        brand_terms[brand]={"id":int(t["id"]),"name":t.get("name"),"created":True}
+        created.append({"requested":brand,"id":int(t["id"]),"name":t.get("name")})
+        by_norm.setdefault(norm(t.get("name")),[]).append(t)
+    elif rr.status_code==400:
+        err=rr.json()
+        if err.get("code")!="term_exists":
+            raise RuntimeError(f"POST product_brand {brand} -> {rr.status_code}: {rr.text[:700]}")
+        term_id=int(((err.get("data") or {}).get("term_id")) or (err.get("additional_data") or [0])[0])
+        if not term_id:
+            raise RuntimeError(f"term_exists without term_id for {brand}")
+        t=req("GET",f"/wp-json/wp/v2/product_brand/{term_id}",params={"context":"edit"})
+        brand_terms[brand]={"id":term_id,"name":t.get("name"),"created":False}
+        reused.append({"requested":brand,"id":term_id,"name":t.get("name"),"source":"term_exists"})
+        by_norm.setdefault(norm(t.get("name")),[]).append(t)
+    else:
+        raise RuntimeError(f"POST product_brand {brand} -> {rr.status_code}: {rr.text[:700]}")
 
 results=[]
 failures=[]
