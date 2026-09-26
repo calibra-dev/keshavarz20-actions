@@ -1,0 +1,15 @@
+{
+  "phase": 16,
+  "action": "complete_legacy_provenance_via_direct_bridge",
+  "generated_at_utc": "2026-09-26T09:01:00Z",
+  "scope": "all current Phase16 legacy backlog posts still missing provenance",
+  "route": "GitHub Actions -> Bridge v3 content.search -> content.patch -> readback",
+  "policy": {
+    "append_only": true,
+    "live_sha_from_bridge_before_each_patch": true,
+    "snapshot_per_patch": true,
+    "skip_if_marker_present": true,
+    "no_fake_named_human": true,
+    "no_technical_claim_rewrite": true
+  }
+}
