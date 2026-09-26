@@ -82,20 +82,22 @@
   },
   {
     "evidence_id": "phase17-evidence-006",
-    "claim": "فاز ۱۵ روی 652 محصول، 652/652 تخصیص Woo brand را ثبت کرده است. از این میان 577 محصول دارای حقیقت برند قابل‌استفاده در لایه خارجی هستند و 75 محصول با برچسب داخلی «متفرقه» عمداً به‌عنوان pseudo-brand نگه داشته می‌شوند و برای feed خارجی برند معتبر محسوب نمی‌شوند. mismatch برند، conflict منبع، جعل identity/sameAs/GLN و محصول بدون Woo brand همگی صفر هستند.",
-    "method": "Current GrowthOS Phase 15 entity truth audit + verified 158-product user-confirmed brand assignment artifact",
-    "observed_at_utc": "2026-09-26T21:53:12.636322+00:00",
+    "claim": "فاز ۱۵ روی 652 محصول، 652/652 تخصیص Woo brand را حفظ کرده است؛ برای لایه خارجی 565 محصول یک برند واحد و قابل‌استفاده دارند، 75 محصول با برچسب داخلی «متفرقه» pseudo-brand هستند و 12 محصول چندبرندی به‌دلیل ابهام عمداً برای feed خارجی بدون brand واحد می‌مانند. mismatch برند، conflict منبع، محصول بدون Woo brand و جعل identity/sameAs/GLN همگی صفر هستند.",
+    "method": "Current GrowthOS Phase 15 entity truth audit + verified 158-product user-confirmed assignment + read-only 12-product multi-brand truth audit",
+    "observed_at_utc": "2026-09-26T21:59:28.350835+00:00",
     "source_refs": [
       "repo:growthos-phase15-results/summary.json",
       "repo:brand-assignment-results/apply-all-158.json",
-      "run:36271460992"
+      "repo:refresh-results/multibrand-audit.json",
+      "run:36271460992",
+      "run:36274677007"
     ],
-    "limits": "75 محصول «متفرقه» فقط یک گروه‌بندی داخلی‌اند؛ تا زمانی که برند/سازنده واقعی با منبع معتبر مشخص نشود نباید به‌عنوان brand در OpenAI/Merchant یا سایر feedهای خارجی صادر شوند.",
+    "limits": "75 محصول «متفرقه» و 12 محصول چندبرندی تا زمان مشخص‌شدن یک برند واقعی واحد با منبع معتبر نباید به‌عنوان brand واحد در OpenAI/Merchant یا سایر feedهای خارجی صادر شوند.",
     "status": "verified",
     "evidence_grade": "A",
     "source_type": "first_party_entity_audit_plus_user_confirmed_assignment",
     "freshness": "current_2026-09-26",
-    "scope": "Brand & Seller Entity OS برای کاتالوگ 652 محصول با تفکیک real brand از pseudo-brand"
+    "scope": "Brand & Seller Entity OS برای 652 محصول با fail-closed روی pseudo-brand و multi-brand ambiguity"
   },
   {
     "evidence_id": "phase17-evidence-007",
