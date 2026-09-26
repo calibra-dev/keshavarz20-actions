@@ -40,4 +40,4 @@ out={
  "candidate_meta_count":len(rows),
  "candidate_meta":rows
 }
-print(json.dumps(out,ensure_ascii=False))
+print(json.dumps(out,ensure_ascii=False,default=str))
