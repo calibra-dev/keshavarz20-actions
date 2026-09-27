@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Keshavarz20 Bridge v3
  * Description: GitHub-first guarded execution bridge for Keshavarz20.
- * Version: 3.2.1
+ * Version: 3.3.0
  * Author: Keshavarz20
  */
 
 if (!defined('ABSPATH')) exit;
-if (!defined('K20_BRIDGE_RUNTIME_VERSION')) define('K20_BRIDGE_RUNTIME_VERSION','3.2.1');
+if (!defined('K20_BRIDGE_RUNTIME_VERSION')) define('K20_BRIDGE_RUNTIME_VERSION','3.3.0');
 
 require_once __DIR__.'/includes/class-k20-bridge-v31-content.php';
 require_once __DIR__.'/includes/class-k20-bridge-v31-media.php';
@@ -18,10 +18,13 @@ require_once __DIR__.'/includes/class-k20-bridge-v32-media.php';
 require_once __DIR__.'/includes/class-k20-bridge-v32-jobs.php';
 require_once __DIR__.'/includes/class-k20-bridge-v32-updater.php';
 require_once __DIR__.'/includes/class-k20-bridge-v32-observability.php';
+require_once __DIR__.'/includes/class-k20-bridge-v33-assets.php';
+require_once __DIR__.'/includes/class-k20-bridge-v33-snippets.php';
+require_once __DIR__.'/includes/class-k20-bridge-v33-code.php';
 
 final class K20_Bridge_V3 {
-    private const VERSION='3.2.1';
-    private const CONTRACT='3.2';
+    private const VERSION='3.3.0';
+    private const CONTRACT='3.3';
     private const NS='keshavarz20-ops/v3';
     private const AUDIT_OPTION='k20_bridge_v3_audit';
     private const AUDIT_LIMIT=400;
@@ -44,6 +47,7 @@ final class K20_Bridge_V3 {
             register_rest_route(self::NS,$route,['methods'=>'GET','callback'=>[__CLASS__,$method],'permission_callback'=>[__CLASS__,'can_read']]);
         }
         register_rest_route(self::NS,'/execute',['methods'=>'POST','callback'=>[__CLASS__,'execute'],'permission_callback'=>[__CLASS__,'can_write']]);
+        register_rest_route(self::NS,'/asset',['methods'=>'POST','callback'=>['K20_Bridge_V33_Assets','upload_route'],'permission_callback'=>[__CLASS__,'can_write']]);
     }
 
     public static function can_read(): bool { return is_user_logged_in() && current_user_can('edit_posts'); }
@@ -52,7 +56,7 @@ final class K20_Bridge_V3 {
     public static function index(): WP_REST_Response {
         return self::response([
             'ok'=>true,'plugin'=>'Keshavarz20 Bridge v3','version'=>self::VERSION,
-            'contract'=>self::CONTRACT,'namespace'=>self::NS,'routes'=>['/','/health','/capabilities','/execute']
+            'contract'=>self::CONTRACT,'namespace'=>self::NS,'routes'=>['/','/health','/capabilities','/execute','/asset']
         ]);
     }
 
@@ -70,6 +74,9 @@ final class K20_Bridge_V3 {
             'approval_engine'=>class_exists('K20_Bridge_V32_Approval'),
             'updater_engine'=>class_exists('K20_Bridge_V32_Updater'),
             'observability_engine'=>class_exists('K20_Bridge_V32_Observability'),
+            'asset_engine'=>class_exists('K20_Bridge_V33_Assets'),
+            'snippet_engine'=>class_exists('K20_Bridge_V33_Snippets'),
+            'code_reader_engine'=>class_exists('K20_Bridge_V33_Code'),
             'pending_update_verification'=>is_array($pending)&&!empty($pending)
         ]);
     }
@@ -80,6 +87,8 @@ final class K20_Bridge_V3 {
             'methods'=>['GET','POST','PUT'],'supports_dry_run'=>true,'supports_idempotency'=>true,
             'supports_snapshots'=>true,'supports_rollback'=>true,'supports_two_phase_approval'=>true,
             'supports_dead_letter'=>true,'supports_self_update'=>true,'supports_observability'=>true,
+            'supports_chat_asset_relay'=>true,'supports_secure_payload_relay'=>true,
+            'supports_snippet_draft_write'=>true,'supports_guarded_code_read'=>true,'asset_route'=>'/asset',
             'batch_max'=>self::BATCH_MAX,'background_job_item_max'=>500,'audit_limit'=>self::AUDIT_LIMIT,
             'hard_denies'=>self::$blocked_keys,
             'github_side_actions'=>['engine.status','engine.run','gitops.profile']
@@ -93,6 +102,9 @@ final class K20_Bridge_V3 {
             'content.search','content.patch','content.block.inspect','content.block.patch',
             'elementor.inspect','elementor.search','elementor.edit','elementor.structure',
             'media.import','media.transform','media.metadata','media.hash','media.duplicates','media.optimize','media.focal_crop','media.watermark',
+            'asset.featured.set','asset.gallery.append','asset.gallery.replace','asset.content.insert',
+            'snippet.list','snippet.read','snippet.validate','snippet.create_draft','snippet.update_draft','snippet.deactivate',
+            'code.read','code.search',
             'cache.status','cache.purge','audit.tail','batch',
             'job.create','job.status','job.run','job.retry_failed',
             'snapshot.list','snapshot.rollback',
@@ -182,6 +194,21 @@ final class K20_Bridge_V3 {
             case 'media.focal_crop': return K20_Bridge_V32_Media::focal_crop($body,$dry);
             case 'media.watermark': return K20_Bridge_V32_Media::watermark($body,$dry);
 
+            case 'asset.featured.set': return K20_Bridge_V33_Assets::featured_set($body,$dry);
+            case 'asset.gallery.append': return K20_Bridge_V33_Assets::gallery_append($body,$dry);
+            case 'asset.gallery.replace': return K20_Bridge_V33_Assets::gallery_replace($body,$dry);
+            case 'asset.content.insert': return K20_Bridge_V33_Assets::content_insert($body,$dry);
+
+            case 'snippet.list': return K20_Bridge_V33_Snippets::list($body);
+            case 'snippet.read': return K20_Bridge_V33_Snippets::read($body);
+            case 'snippet.validate': return K20_Bridge_V33_Snippets::validate($body);
+            case 'snippet.create_draft': return K20_Bridge_V33_Snippets::create_draft($body,$dry);
+            case 'snippet.update_draft': return K20_Bridge_V33_Snippets::update_draft($body,$dry);
+            case 'snippet.deactivate': return K20_Bridge_V33_Snippets::deactivate($body,$dry);
+
+            case 'code.read': return K20_Bridge_V33_Code::read($body);
+            case 'code.search': return K20_Bridge_V33_Code::search($body);
+
             case 'cache.status': return self::cache_status();
             case 'cache.purge': return self::cache_purge($dry);
             case 'audit.tail': return self::audit_tail((array)($body['payload']??[]));
@@ -212,11 +239,13 @@ final class K20_Bridge_V3 {
     private static function api_contract(): array {
         return [
             'schema_version'=>self::CONTRACT,'plugin_version'=>self::VERSION,'namespace'=>self::NS,
-            'request_compatibility_min'=>'3.1','response_current'=>'3.2',
+            'request_compatibility_min'=>'3.1','response_current'=>'3.3',
             'actions'=>self::actions(),
             'guarantees'=>[
                 'v3.1 action names remain valid','writes are allow-listed','high-impact actions use two-phase approval',
-                'content and bridge updates have bounded rollback paths'
+                'content and bridge updates have bounded rollback paths',
+                'chat-generated images can be relayed without public media URLs',
+                'snippet code writes are draft-only and sensitive code reads use the secure GitHub relay'
             ]
         ];
     }
