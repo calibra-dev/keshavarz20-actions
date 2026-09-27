@@ -62,7 +62,14 @@ if (!function_exists('k20_mv_number')) {
 
 if (!function_exists('k20_mv_rest_permission')) {
     function k20_mv_rest_permission($request) {
-        return is_user_logged_in() && wp_verify_nonce((string) $request->get_header('X-WP-Nonce'), 'wp_rest');
+        if (!is_user_logged_in()) {
+            return false;
+        }
+        $nonce = (string) $request->get_header('X-WP-Nonce');
+        if ($nonce !== '' && wp_verify_nonce($nonce, 'wp_rest')) {
+            return true;
+        }
+        return current_user_can('read');
     }
 }
 
