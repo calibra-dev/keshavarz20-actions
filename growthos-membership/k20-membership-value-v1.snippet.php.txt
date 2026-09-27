@@ -190,64 +190,60 @@ if (!function_exists('k20_mv_dashboard')) {
         $state = k20_mv_state($uid);
         $nonce = wp_create_nonce('wp_rest');
         $endpoint = esc_url_raw(rest_url('k20-member/v1'));
-        ?>
-        <section class="k20-member-value" dir="rtl" aria-labelledby="k20-member-value-title">
-            <h2 id="k20-member-value-title">پروژه‌ها و محاسبات ذخیره‌شده</h2>
-            <p>اطلاعات این بخش فقط برای ادامه تصمیم‌گیری فنی شما ذخیره می‌شود. اطلاعات قیمت، سفارش یا پرداخت در این بخش ذخیره نمی‌شود.</p>
 
-            <form id="k20-project-form">
-                <p><label>نام پروژه <input name="name" required maxlength="100"></label></p>
-                <p><label>کشت <input name="crop" maxlength="80"></label></p>
-                <p><label>استان <input name="province" maxlength="80"></label></p>
-                <p><label>مساحت (هکتار) <input name="area_ha" type="number" min="0" step="0.01"></label></p>
-                <p><label>منبع آب <input name="water_source" maxlength="80"></label></p>
-                <p><label>فشار تقریبی (bar) <input name="pressure_bar" type="number" min="0" step="0.1"></label></p>
-                <p><button type="submit">ذخیره پروژه</button></p>
-                <p class="k20-feedback" role="status" aria-live="polite"></p>
-            </form>
+        echo '<section class="k20-member-value" dir="rtl" aria-labelledby="k20-member-value-title">';
+        echo '<h2 id="k20-member-value-title">پروژه‌ها و محاسبات ذخیره‌شده</h2>';
+        echo '<p>اطلاعات این بخش فقط برای ادامه تصمیم‌گیری فنی شما ذخیره می‌شود. اطلاعات قیمت، سفارش یا پرداخت در این بخش ذخیره نمی‌شود.</p>';
+        echo '<form id="k20-project-form">';
+        echo '<p><label>نام پروژه <input name="name" required maxlength="100"></label></p>';
+        echo '<p><label>کشت <input name="crop" maxlength="80"></label></p>';
+        echo '<p><label>استان <input name="province" maxlength="80"></label></p>';
+        echo '<p><label>مساحت (هکتار) <input name="area_ha" type="number" min="0" step="0.01"></label></p>';
+        echo '<p><label>منبع آب <input name="water_source" maxlength="80"></label></p>';
+        echo '<p><label>فشار تقریبی (bar) <input name="pressure_bar" type="number" min="0" step="0.1"></label></p>';
+        echo '<p><button type="submit">ذخیره پروژه</button></p>';
+        echo '<p class="k20-feedback" role="status" aria-live="polite"></p>';
+        echo '</form>';
 
-            <h3>پروژه‌های من</h3>
-            <ul>
-            <?php foreach (array_reverse($state['projects']) as $project): ?>
-                <li><?php echo esc_html($project['name']); ?><?php if (!empty($project['crop'])): ?> — <?php echo esc_html($project['crop']); ?><?php endif; ?></li>
-            <?php endforeach; ?>
-            </ul>
-
-            <h3>محاسبات ذخیره‌شده</h3>
-            <ul>
-            <?php foreach (array_reverse($state['calculations']) as $calc): ?>
-                <li><?php echo esc_html($calc['label']); ?> — <?php echo esc_html($calc['tool']); ?></li>
-            <?php endforeach; ?>
-            </ul>
-        </section>
-        <script>
-        (function(){
-            var root=<?php echo wp_json_encode($endpoint); ?>;
-            var nonce=<?php echo wp_json_encode($nonce); ?>;
-            window.dataLayer=window.dataLayer||[];
-            var form=document.getElementById('k20-project-form');
-            if(form){
-                form.addEventListener('submit',function(e){
-                    e.preventDefault();
-                    var fd=new FormData(form), payload={};
-                    fd.forEach(function(v,k){payload[k]=v;});
-                    fetch(root+'/project',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json','X-WP-Nonce':nonce},body:JSON.stringify(payload)})
-                    .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
-                    .then(function(x){
-                        var box=form.querySelector('.k20-feedback');
-                        if(!x.ok){box.textContent=(x.j&&x.j.message)?x.j.message:'ذخیره پروژه انجام نشد.';return;}
-                        box.textContent='پروژه ذخیره شد.';
-                        window.dataLayer.push({event:'project_saved',source:'k20_member_value'});
-                    }).catch(function(){form.querySelector('.k20-feedback').textContent='خطا در ارتباط. دوباره تلاش کنید.';});
-                });
+        echo '<h3>پروژه‌های من</h3><ul>';
+        foreach (array_reverse($state['projects']) as $project) {
+            echo '<li>' . esc_html($project['name']);
+            if (!empty($project['crop'])) {
+                echo ' — ' . esc_html($project['crop']);
             }
-            <?php if ((int) get_user_meta($uid, '_k20_mv_registration_pending', true) === 1): ?>
-            window.dataLayer.push({event:'registration_completed',source:'k20_member_value'});
-            <?php delete_user_meta($uid, '_k20_mv_registration_pending'); ?>
-            <?php endif; ?>
-        })();
-        </script>
-        <?php
+            echo '</li>';
+        }
+        echo '</ul>';
+
+        echo '<h3>محاسبات ذخیره‌شده</h3><ul>';
+        foreach (array_reverse($state['calculations']) as $calc) {
+            echo '<li>' . esc_html($calc['label']) . ' — ' . esc_html($calc['tool']) . '</li>';
+        }
+        echo '</ul></section>';
+
+        $registration_pending = ((int) get_user_meta($uid, '_k20_mv_registration_pending', true) === 1);
+        if ($registration_pending) {
+            delete_user_meta($uid, '_k20_mv_registration_pending');
+        }
+        $js = "(function(){"
+            . "var root=" . wp_json_encode($endpoint) . ";"
+            . "var nonce=" . wp_json_encode($nonce) . ";"
+            . "window.dataLayer=window.dataLayer||[];"
+            . "var form=document.getElementById('k20-project-form');"
+            . "if(form){form.addEventListener('submit',function(e){e.preventDefault();"
+            . "var fd=new FormData(form),payload={};fd.forEach(function(v,k){payload[k]=v;});"
+            . "fetch(root+'/project',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json','X-WP-Nonce':nonce},body:JSON.stringify(payload)})"
+            . ".then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})"
+            . ".then(function(x){var box=form.querySelector('.k20-feedback');"
+            . "if(!x.ok){box.textContent=(x.j&&x.j.message)?x.j.message:'ذخیره پروژه انجام نشد.';return;}"
+            . "box.textContent='پروژه ذخیره شد.';window.dataLayer.push({event:'project_saved',source:'k20_member_value'});})"
+            . ".catch(function(){form.querySelector('.k20-feedback').textContent='خطا در ارتباط. دوباره تلاش کنید.';});"
+            . "});}";
+        if ($registration_pending) {
+            $js .= "window.dataLayer.push({event:'registration_completed',source:'k20_member_value'});";
+        }
+        $js .= "})();";
+        echo '<script>' . $js . '</script>';
     }
     add_action('woocommerce_account_dashboard', 'k20_mv_dashboard', 30);
 }
