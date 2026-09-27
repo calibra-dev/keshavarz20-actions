@@ -37,6 +37,13 @@ class Phase20IntentTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             mod.validate_phase20_metadata(p)
 
+    def test_ten_draft_dry_runs_validate_without_wordpress_write(self):
+        data = json.loads((ROOT / "growth-os" / "phase20-dry-run-drafts.json").read_text(encoding="utf-8"))
+        self.assertEqual(data["mode"], "draft-dry-run-no-wordpress-write")
+        self.assertEqual(len(data["drafts"]), 10)
+        for draft in data["drafts"]:
+            mod.validate_phase20_metadata(draft, registry={"intents": []})
+
     def test_shadow_pack_has_30_candidates(self):
         data = json.loads((ROOT / "growth-os" / "phase20-shadow-topics.json").read_text(encoding="utf-8"))
         self.assertEqual(len(data["candidates"]), 30)
