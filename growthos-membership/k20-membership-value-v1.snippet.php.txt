@@ -41,6 +41,40 @@ if (!function_exists('k20_mv_save_state')) {
     }
 }
 
+if (!function_exists('k20_mv_events')) {
+    function k20_mv_events($user_id) {
+        $events = get_user_meta($user_id, '_k20_member_events_v1', true);
+        return is_array($events) ? array_values($events) : array();
+    }
+}
+
+if (!function_exists('k20_mv_record_event')) {
+    function k20_mv_record_event($user_id, $event, $source = 'membership_value', $reference = '') {
+        $allowed = array(
+            'registration_completed',
+            'project_saved',
+            'calculation_saved',
+            'technical_question_submitted',
+            'proforma_requested'
+        );
+        $event = sanitize_key((string) $event);
+        if (!$user_id || !in_array($event, $allowed, true)) {
+            return false;
+        }
+        $events = k20_mv_events($user_id);
+        $events[] = array(
+            'event' => $event,
+            'source' => sanitize_key((string) $source),
+            'reference' => k20_mv_text($reference, 120),
+            'recorded_at' => k20_mv_now(),
+        );
+        $events = array_slice($events, -50);
+        update_user_meta($user_id, '_k20_member_events_v1', $events);
+        do_action('k20_member_value_event', $user_id, $event);
+        return true;
+    }
+}
+
 if (!function_exists('k20_mv_text')) {
     function k20_mv_text($value, $max = 120) {
         $value = sanitize_text_field((string) $value);
@@ -80,7 +114,13 @@ if (!function_exists('k20_mv_register_routes')) {
             'permission_callback' => 'k20_mv_rest_permission',
             'callback' => function() {
                 $uid = k20_mv_user_id();
-                return rest_ensure_response(array('ok'=>true, 'state'=>k20_mv_state($uid)));
+                $events = k20_mv_events($uid);
+                return rest_ensure_response(array(
+                    'ok'=>true,
+                    'state'=>k20_mv_state($uid),
+                    'events'=>$events,
+                    'event_count'=>count($events)
+                ));
             },
         ));
 
@@ -106,6 +146,7 @@ if (!function_exists('k20_mv_register_routes')) {
                 $state = k20_mv_state($uid);
                 $state['projects'][] = $project;
                 k20_mv_save_state($uid, $state);
+                k20_mv_record_event($uid, 'project_saved', 'rest', $project['id']);
                 return rest_ensure_response(array('ok'=>true,'event'=>'project_saved','project'=>$project));
             },
         ));
@@ -130,6 +171,7 @@ if (!function_exists('k20_mv_register_routes')) {
                 $state = k20_mv_state($uid);
                 $state['calculations'][] = $calc;
                 k20_mv_save_state($uid, $state);
+                k20_mv_record_event($uid, 'calculation_saved', 'rest', $calc['id']);
                 return rest_ensure_response(array('ok'=>true,'event'=>'calculation_saved','calculation'=>$calc));
             },
         ));
@@ -152,7 +194,34 @@ if (!function_exists('k20_mv_register_routes')) {
                 $state = k20_mv_state($uid);
                 $state['proforma_refs'][] = $row;
                 k20_mv_save_state($uid, $state);
+                k20_mv_record_event($uid, 'proforma_requested', 'rest', $row['id']);
                 return rest_ensure_response(array('ok'=>true,'event'=>'proforma_requested','reference'=>$row));
+            },
+        ));
+
+        register_rest_route('k20-member/v1', '/health', array(
+            'methods' => 'GET',
+            'permission_callback' => 'k20_mv_rest_permission',
+            'callback' => function() {
+                $uid = k20_mv_user_id();
+                $state = k20_mv_state($uid);
+                $events = k20_mv_events($uid);
+                $event_names = array();
+                foreach ($events as $event) {
+                    if (!empty($event['event'])) {
+                        $event_names[] = sanitize_key((string) $event['event']);
+                    }
+                }
+                return rest_ensure_response(array(
+                    'ok' => true,
+                    'version' => '1.1',
+                    'projects' => count($state['projects']),
+                    'calculations' => count($state['calculations']),
+                    'proforma_refs' => count($state['proforma_refs']),
+                    'question_refs' => count($state['question_refs']),
+                    'event_count' => count($events),
+                    'event_names' => array_values(array_unique($event_names)),
+                ));
             },
         ));
 
@@ -174,6 +243,7 @@ if (!function_exists('k20_mv_register_routes')) {
                 $state = k20_mv_state($uid);
                 $state['question_refs'][] = $row;
                 k20_mv_save_state($uid, $state);
+                k20_mv_record_event($uid, 'technical_question_submitted', 'rest', $row['id']);
                 return rest_ensure_response(array('ok'=>true,'event'=>'technical_question_submitted','reference'=>$row));
             },
         ));
@@ -184,7 +254,9 @@ if (!function_exists('k20_mv_register_routes')) {
 if (!function_exists('k20_mv_mark_registration')) {
     function k20_mv_mark_registration($customer_id) {
         if ($customer_id) {
-            update_user_meta((int) $customer_id, '_k20_mv_registration_pending', 1);
+            $customer_id = (int) $customer_id;
+            update_user_meta($customer_id, '_k20_mv_registration_pending', 1);
+            k20_mv_record_event($customer_id, 'registration_completed', 'woocommerce', 'customer_created');
         }
     }
     add_action('woocommerce_created_customer', 'k20_mv_mark_registration', 20, 1);
