@@ -4,7 +4,7 @@ This is the separate long-form «نوشته‌ها» engine for keshavarz20.com.
 
 ## Architecture
 
-`ChatGPT Scheduled Task (09:00 Asia/Tehran)` → `daily-agri-articles/queue/YYYY-MM-DD.json` → `k20-article-queue-publisher.yml` → `publish_queue_v5.py` → WordPress **post draft**.
+`ChatGPT Scheduled Task (09:00 Asia/Tehran)` → `daily-agri-articles/queue/YYYY-MM-DD.json` → `k20-article-queue-publisher.yml` → `publish_queue_v6.py` → WordPress **post draft**.
 
 The scheduled research/writing task must read `automation-policy/seo-god-2026.json`, `automation-policy/editorial-trust-2026.json`, and `SCHEDULED_TASK_PROMPT.md`. GitHub Actions is the deterministic validator/publisher; it does not need an OpenAI API key for this queue path.
 
@@ -25,7 +25,10 @@ Each run must:
 11. use **adaptive FAQ**: none when unnecessary, otherwise 3–8 substantive visible Q&As;
 12. create draft only, never auto-publish;
 13. visibly include `منابع`, `روش تهیه و بازبینی`, and a link to the public editorial policy;
-14. never invent a human author, reviewer, credential, field experience or review event.
+14. never invent a human author, reviewer, credential, field experience or review event;
+15. use the Phase 20 Iran Agriculture Intent Graph and Central Intent Registry before creating a new URL;
+16. require topic score >=85/100 with zero blockers for new Phase 20 queues;
+17. prefer update/merge when a canonical intent already has a strong URL.
 
 Missing a day is better than a weak article.
 
@@ -58,7 +61,27 @@ Core fields:
   "cover_title": "تیتر کوتاه 2 تا 8 کلمه برای کاور",
   "cover_subtitle": "زیرعنوان اختیاری، حداکثر 12 کلمه",
   "alt_text": "توضیح دقیق و طبیعی تصویر",
-  "faq_items": []
+  "faq_items": [],
+  "phase20_schema_version": "1",
+  "canonical_intent_id": "ir-intent-...",
+  "parent_hub": "...",
+  "scenario_dimensions": {
+    "crop": "",
+    "province_or_climate": "",
+    "season": "",
+    "area": "",
+    "water": "",
+    "soil": "",
+    "irrigation_system": "",
+    "problem": "",
+    "decision": ""
+  },
+  "source_strength": "primary+independent",
+  "question_engine_intents_covered": [],
+  "compatibility_rules_referenced": [],
+  "membership_cta_type": "save_project",
+  "update_triggers": [],
+  "topic_score": {"total": 85, "blockers": []}
 }
 ```
 
@@ -74,7 +97,9 @@ Core fields:
 - source_names/source_urls alignment
 - Phase 16 editorial disclosure + human-review gate
 - visible sources, review-method block and editorial-policy link
-- adaptive FAQ instead of quota-driven FAQ
+- adaptive FAQ instead of quota-driven FAQ; Phase 20 queues allow only 0 or 3–8 FAQ items
+- canonical intent registry gate and score >=85/100 with zero blockers
+- versioned backward compatibility for pre-Phase-20 historical queues
 - at least two useful internal Keshavarz20 links
 - Yoast title/description/focus keyphrase/primary category fields
 - existing category validation
