@@ -1,0 +1,26 @@
+{
+  "phase": 18,
+  "title": "Recommendation & Basket Intelligence",
+  "version": "growthos-recommendation-basket-guard-v1",
+  "source_phase4_status": "PASS_PUBLIC_RESEARCH_COMPLETE_WITH_SOURCE_BOUND_GAPS",
+  "verified_technical_compatibility_edges": 0,
+  "candidate_only_edges": 23,
+  "source_bound_unresolved_products": 49,
+  "policy": {
+    "exact_sku_recommendation_requires_verified_technical_edge": true,
+    "same_size_candidate_is_not_compatibility": true,
+    "explicit_reference_is_not_technical_compatibility": true,
+    "unknown_routes_to_expert_review": true,
+    "no_price_discount_or_stock_mutation": true
+  },
+  "runtime_mode": "GUARDED_EXPERT_REVIEW_ONLY",
+  "automatic_exact_sku_recommendation_enabled": false,
+  "acceptance": {
+    "candidate_edges_not_promoted": true,
+    "unsupported_exact_sku_recommendation_disabled": true,
+    "expert_review_fallback_active": true,
+    "phase4_source_gaps_preserved": true
+  },
+  "status": "PASS_GUARDED_NO_VERIFIED_TECHNICAL_EDGES",
+  "next_gate": "Acquire exact SKU/manufacturer interface evidence in Phase 4 before enabling automatic exact product-to-product basket recommendations."
+}
