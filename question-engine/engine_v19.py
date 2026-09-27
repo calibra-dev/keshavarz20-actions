@@ -99,7 +99,8 @@ def _extract_scenario(question):
 
 def _family_v19(p):
     name = _norm(p.get("name"))
-    if "پرلیت" in name:
+    categories = {_norm(x.get("name")) for x in (p.get("categories") or [])}
+    if "پرلیت" in name or "بستر کشت" in categories:
         return "growing_media"
     return orig_family(p)
 
