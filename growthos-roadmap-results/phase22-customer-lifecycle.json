@@ -1,0 +1,25 @@
+{
+  "roadmap_phase": 22,
+  "title": "Customer Lifecycle & Retention",
+  "reference_manifest": "2026-09-24",
+  "dependency_phase21_status": "BLOCKED_MEMBERSHIP_VALUE_ENGINE_NOT_IMPLEMENTED",
+  "required_triggers": [
+    "project_saved_but_no_proforma",
+    "proforma_created_but_no_purchase",
+    "purchase_completed_followup",
+    "seasonal_project_review_due"
+  ],
+  "consent_rules": {
+    "marketing_requires_consent": true,
+    "transactional_and_service_messages_separate": true,
+    "no_unsolicited_bulk_messaging": true,
+    "no_sensitive_profile_inference": true
+  },
+  "acceptance": {
+    "event_taxonomy_operational": false,
+    "member_to_purchase_loop_operational": false,
+    "consent_safe_trigger_execution_verified": false
+  },
+  "status": "BLOCKED_BY_PHASE21_AND_UNVERIFIED_RETENTION_EXECUTION",
+  "next_gate": "Implement Phase 21 account-backed value/events first, then verify consent-safe lifecycle triggers end-to-end."
+}
