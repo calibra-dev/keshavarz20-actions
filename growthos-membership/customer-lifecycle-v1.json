@@ -1,0 +1,74 @@
+{
+  "roadmap_phase": 22,
+  "version": "growthos-customer-lifecycle-v1",
+  "dependency": {
+    "phase21_required_status": "PASS_MEMBERSHIP_VALUE_LIVE",
+    "current_allowed_status": "DESIGN_READY_DEPENDENCY_BLOCKED"
+  },
+  "qualified_events": [
+    "registration_completed",
+    "project_saved",
+    "calculation_saved",
+    "technical_question_submitted",
+    "proforma_requested",
+    "add_to_cart",
+    "begin_checkout",
+    "purchase"
+  ],
+  "states": {
+    "member_no_project": {
+      "enter_when": ["registration_completed"],
+      "allowed_actions": ["show_in_account_project_value"],
+      "marketing_message_allowed": false
+    },
+    "project_saved_no_proforma": {
+      "enter_when": ["project_saved", "no_proforma_requested_after_project"],
+      "allowed_actions": ["show_in_account_proforma_cta", "service_reminder_if_user_returns"],
+      "marketing_message_allowed": false
+    },
+    "proforma_requested_no_purchase": {
+      "enter_when": ["proforma_requested", "no_purchase_after_proforma"],
+      "allowed_actions": ["service_status_followup"],
+      "marketing_message_allowed": false
+    },
+    "purchase_completed": {
+      "enter_when": ["purchase"],
+      "allowed_actions": ["transactional_installation_support", "service_followup"],
+      "marketing_message_allowed": false
+    },
+    "seasonal_project_review_due": {
+      "enter_when": ["project_saved", "seasonal_review_window_reached"],
+      "allowed_actions": ["in_account_review_prompt"],
+      "marketing_message_allowed": "requires_explicit_marketing_consent"
+    }
+  },
+  "consent_rules": {
+    "transactional_and_service_messages_separate_from_marketing": true,
+    "marketing_requires_explicit_consent": true,
+    "no_unsolicited_bulk_messaging": true,
+    "no_sensitive_profile_inference": true,
+    "no_health_religion_politics_or_other_sensitive_segmentation": true
+  },
+  "data_minimization": {
+    "allowed_for_lifecycle_logic": [
+      "qualified_event_name",
+      "event_timestamp",
+      "internal_project_reference",
+      "internal_proforma_reference",
+      "purchase_completion_boolean_when_provided_by_existing_commerce_analytics"
+    ],
+    "prohibited": [
+      "raw_payment_data",
+      "credentials",
+      "private_order_export",
+      "sensitive_inferred_profile"
+    ]
+  },
+  "acceptance": {
+    "state_machine_defined": true,
+    "consent_policy_defined": true,
+    "live_trigger_execution_verified": false,
+    "blocked_until_phase21_live": true
+  },
+  "status": "DESIGN_READY_DEPENDENCY_BLOCKED"
+}
