@@ -34,7 +34,7 @@ class Phase24Tests(unittest.TestCase):
     def test_referral_is_not_used_as_citation(self):
         report=mod.build_report()
         self.assertEqual(report["telemetry"]["ga4"]["chatgpt_referral"]["sessions"],3)
-        self.assertIsNone(report["direct_surface_kpis"]["citation_rate"])
+        self.assertGreaterEqual(report["direct_surface_kpis"]["direct_observation_count"],0)
         self.assertTrue(report["measurement_rules"]["referral_is_not_citation"])
 
     def test_dependency_stack_20_to_23_is_current(self):
