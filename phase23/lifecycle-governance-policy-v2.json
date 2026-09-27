@@ -1,0 +1,32 @@
+{
+  "policy_version": "k20-lifecycle-governance-v2",
+  "review_days": {
+    "posts": 180,
+    "pages": 365,
+    "products": 180
+  },
+  "governance_review_days": {
+    "intent_graph": 90,
+    "authority_network": 90,
+    "decision_model": 90
+  },
+  "rules": {
+    "stale_review_does_not_touch_dateModified": true,
+    "outofstock_is_not_discontinued": true,
+    "discontinued_requires_explicit_evidence": true,
+    "merge_requires_manual_canonical_redirect_plan": true,
+    "redirect_requires_explicit_target_and_readback": true,
+    "canonical_change_requires_explicit_ownership_decision": true,
+    "automatic_bulk_rewrite_for_freshness": false,
+    "stock_state_does_not_change_content_freshness_date": true,
+    "review_due_is_not_evidence_of_staleness_error": true
+  },
+  "transition_rules": {
+    "outofstock": "Keep URL. Verify availability copy/schema. Do not infer discontinuation.",
+    "onbackorder": "Keep URL and represent backorder accurately.",
+    "discontinued_explicit": "Requires explicit evidence and a separate keep/replace/redirect/410 decision.",
+    "stale_content": "Queue substantive review only; no dateModified write without real content change.",
+    "duplicate_or_superseded": "Requires canonical/redirect plan and post-write readback before any deprecation.",
+    "governance_asset": "Review when evidence, routing, compatibility model, or source validity materially changes."
+  }
+}
