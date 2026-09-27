@@ -1,0 +1,37 @@
+{
+  "phase": 3,
+  "generated_at_utc": "2026-09-27T12:16:59.744608+00:00",
+  "source_version": "growthos-html-schema-feed-parity-v2",
+  "ok": true,
+  "summary": {
+    "published_products": 652,
+    "audited_products": 652,
+    "eligible_for_offer_schema": 562,
+    "non_purchasable_or_price_empty": 90,
+    "pass": 652,
+    "fail": 0,
+    "eligible_product_schema_missing": 0,
+    "eligible_offer_schema_missing": 0,
+    "noneligible_product_schema_absent": 90,
+    "breadcrumb_missing": 0,
+    "organization_missing": 0,
+    "eligible_sku_mismatch": 0,
+    "eligible_brand_mismatch_when_truth_known": 0,
+    "eligible_price_parity_fail": 0,
+    "eligible_availability_parity_fail": 0,
+    "unbacked_aggregate_rating": 0,
+    "variable_grouping_fail": 0,
+    "yoast_version_from_bridge": "28.5"
+  },
+  "acceptance": {
+    "phase2_truth_registry_consumed": true,
+    "all_published_products_audited": true,
+    "no_price_values_exposed": true,
+    "no_stock_values_exposed": true,
+    "html_schema_api_truth_linked": true,
+    "all_hard_parity_checks_pass": true,
+    "non_purchasable_offer_schema_not_fabricated": true
+  },
+  "failure_count": 0,
+  "failures": []
+}
