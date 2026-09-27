@@ -1,0 +1,42 @@
+{
+  "phase": 22,
+  "title": "Farmer Decision Personalization v2",
+  "verified_at": "2026-09-27",
+  "status": "PASS_FUNCTIONAL_V2_GUARDED_DEPLOYMENT",
+  "dependencies": {
+    "phase20_intent_graph": "PASS_CANARY_DRAFT",
+    "phase21_authority_network": "PASS_IRAN_FIRST_AUTHORITY_V2",
+    "legacy_phase20_accessibility": "PARTIAL_NON_BLOCKING_FOR_MODEL_VALIDATION"
+  },
+  "model": {
+    "version": "farmer-decision-v2",
+    "validation_cases": 12,
+    "decision_tracks": [
+      "hydraulic",
+      "filtration",
+      "compatibility",
+      "agronomy"
+    ],
+    "intent_aware": true,
+    "authority_aware": true,
+    "privacy_safe_context_hash": true
+  },
+  "safeguards": {
+    "unknowns_preserved": true,
+    "no_sku_recommendation_without_verified_compatibility": true,
+    "no_certified_hydraulic_design_claim": true,
+    "no_agronomic_prescription_claim": true,
+    "no_price_stock_decision": true,
+    "candidate_only_compatibility_not_promoted": true,
+    "expert_escalation_for_high_risk_conditions": true
+  },
+  "deployment": {
+    "site_mutations": 0,
+    "commerce_mutations": 0,
+    "current_mode": "validated decision service contract; routes to existing live decision tools",
+    "live_tool_routes_source": "phase20-results/ux-a11y-live-latest.json",
+    "accessibility_gate_status": "PARTIAL",
+    "note": "Existing routed decision pages were previously live-readback HTTP 200. This phase does not mutate the theme or commerce data."
+  },
+  "completion_basis": "Decision engine v2 is functionally complete and CI-verified. Deployment remains intentionally guarded by existing accessibility issues, which do not invalidate model correctness."
+}
