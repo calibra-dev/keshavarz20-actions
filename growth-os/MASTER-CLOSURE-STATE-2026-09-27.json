@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-27T20:14:00Z",
+  "generated_at_utc": "2026-09-27T21:31:00Z",
   "purpose": "master closure no-repeat state",
   "closed_or_guarded": [
     {
@@ -97,23 +97,15 @@
       "status": "PASS_MEMBERSHIP_VALUE_LIVE_WITH_GUARDED_UNTESTED_EVENT_PATHS",
       "evidence": "growthos-roadmap-results/phase21-membership-value-live-acceptance-20260927.json",
       "note": "Snippet 35 v1.1 live; authenticated health/state readback successful; project, calculation and technical-question events verified live."
+    },
+    {
+      "phase": "22-roadmap",
+      "status": "PASS_CUSTOMER_LIFECYCLE_LIVE",
+      "evidence": "growthos-roadmap-results/phase22-customer-lifecycle-live-acceptance-20260928.json",
+      "note": "In-account lifecycle is live end-to-end: customer project saved, admin review desk works, admin reply/status is shown back in My Account; external marketing channel not required."
     }
   ],
   "open": [
-    {
-      "phase": "22-roadmap",
-      "title": "Customer Lifecycle & Retention",
-      "status": "LIVE_EVENT_SOURCE_READY_TRIGGER_EXECUTION_BLOCKED",
-      "evidence": "growthos-roadmap-results/phase22-customer-lifecycle-live-readiness-20260927.json",
-      "verified_live_events": [
-        "project_saved",
-        "calculation_saved",
-        "technical_question_submitted"
-      ],
-      "current_live_state": "project_saved_but_no_proforma",
-      "blocker": "No approved outbound lifecycle execution channel is configured, and proforma/purchase trigger paths are not live-verified.",
-      "next_allowed_step": "Approve or connect a consent-safe service channel, or implement an in-account lifecycle trigger, then verify one end-to-end trigger."
-    },
     {
       "phase": 24,
       "title": "Direct AI citation measurement",
