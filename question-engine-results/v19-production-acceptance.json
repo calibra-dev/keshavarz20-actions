@@ -1,0 +1,42 @@
+{
+  "phase": 17,
+  "engine_version": 19,
+  "status": "PASS_V19_PRODUCTION",
+  "checks": {
+    "config_engine_v19": true,
+    "runtime_enabled": true,
+    "dry_run_ok": true,
+    "dry_run_engine_v19": true,
+    "qa_catalog_652": true,
+    "qa_uncovered_zero": true,
+    "qa_blockers_zero": true,
+    "qa_duplicate_below_0_10": true,
+    "synthetic_evidence_preserved": true,
+    "dry_run_synthetic_evidence": true
+  },
+  "qa": {
+    "catalog_products": 652,
+    "products_covered": 652,
+    "approved_candidates": 3025,
+    "semantic_duplicate_rate_last_200": 0.017186,
+    "blocker_count": 0,
+    "uncovered_count": 0
+  },
+  "runtime_status": {
+    "enabled": true,
+    "state_sequence": 125,
+    "questions_total": 125,
+    "products_touched": 125,
+    "pending_generated": 17,
+    "consecutive_failures": 0
+  },
+  "dry_run": {
+    "product_id": 140316,
+    "family": "fertilizer",
+    "intent": "indoor",
+    "quality_score": 100,
+    "canonical_intent_id": "question-intent-fc13c7d55daa8612",
+    "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence"
+  },
+  "site_writes": 0
+}
