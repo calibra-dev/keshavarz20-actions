@@ -59,3 +59,11 @@ ok, reason = q.consistency_guard(p, bad, bad["core"])
 assert not ok and "experience" in reason
 
 print("PASS v19")
+
+
+# Perlite is a growing medium, never an irrigation fitting.
+perlite = product("پرلیت دانه ریز سایز 3-1 کیسه 15 کیلویی")
+assert q.fam_of(perlite) == "growing_media", q.fam_of(perlite)
+items = q.guarded_candidates(perlite, q.fam_of(perlite), "experienced", random.Random(191))
+blob = " ".join(str(x.get("core") or "") for x in items)
+assert "آب‌بندی" not in blob and "نوع اتصال دو طرف" not in blob, blob
