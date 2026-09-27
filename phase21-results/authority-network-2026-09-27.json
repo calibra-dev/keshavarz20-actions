@@ -1,0 +1,102 @@
+{
+  "phase": 21,
+  "version": "phase21-iran-authority-network-v2",
+  "generated_at_utc": "2026-09-27T04:05:00Z",
+  "status": "PASS_IRAN_FIRST_AUTHORITY_V2",
+  "completion_basis": "Controllable first-party authority and citation assets; manufacturer reply/backlink is optional, not an acceptance gate.",
+  "phase20_dependency": {
+    "intent_graph": "PASS",
+    "canonical_intents": 9,
+    "canary_draft_post_id": 146227,
+    "phase20_status": "PASS_CANARY_DRAFT"
+  },
+  "evidence_layer": {
+    "verified_grade_a_first_party_cards": 7,
+    "product_truth_records": 30,
+    "stable_ids": 30,
+    "verified_compatibility_edges": 3,
+    "candidate_only_compatibility_edges": 25,
+    "schema_feed_parity_pass": 30,
+    "hard_fabrications": 0,
+    "source_refs": [
+      "phase17/evidence-cards.json",
+      "phase9-results/canonical-pim.json",
+      "growth-os/intent-registry.json"
+    ]
+  },
+  "demand_layer": {
+    "source": "growthos-phase10-results/measurement-dashboard.json",
+    "date_min": "2026-08-29",
+    "date_max": "2026-09-25",
+    "search_console_rows": 2685,
+    "visible_clicks": 240,
+    "visible_impressions": 6383,
+    "irrigation_rows": 954,
+    "irrigation_clicks": 41,
+    "irrigation_impressions": 1934,
+    "current_gsc_wizard_tool_status": "payment_required_on_2026-09-27",
+    "policy": "Use persisted first-party Search Console evidence; do not claim a fresh live GSC read while the current connector is subscription-blocked."
+  },
+  "question_evidence_policy": {
+    "latest_registered_engine_snapshot": "question-engine-results/20260921T094817Z-status.json",
+    "generated_questions_total": 89,
+    "products_touched": 89,
+    "pending_generated": 46,
+    "classification": "synthetic_editorial_question_generator_not_customer_evidence",
+    "may_count_as_review": false,
+    "may_count_as_real_customer_question": false,
+    "use_allowed": "editorial intent discovery only"
+  },
+  "citation_assets": [
+    {
+      "asset_id": "authority-calculator-drip-tape",
+      "type": "deterministic_calculator_methodology",
+      "source_ref": "phase17-evidence-001",
+      "citable": true,
+      "limitation": "Valid only for the tested calculator inputs; not hydraulic design proof."
+    },
+    {
+      "asset_id": "authority-catalog-brand-truth",
+      "type": "catalog_entity_audit",
+      "source_ref": "phase17-evidence-006",
+      "citable": true,
+      "limitation": "Pseudo-brand and multi-brand ambiguity remain excluded from external brand truth."
+    },
+    {
+      "asset_id": "authority-editorial-provenance",
+      "type": "editorial_trust_audit",
+      "source_ref": "phase17-evidence-007",
+      "citable": true,
+      "limitation": "Does not create or imply a verified human Person identity."
+    },
+    {
+      "asset_id": "authority-pim-top30",
+      "type": "canonical_product_truth",
+      "source_ref": "phase9-results/canonical-pim.json",
+      "citable": true,
+      "limitation": "Missing compatibility/spec fields remain unknown; title-derived clues are candidate-only."
+    },
+    {
+      "asset_id": "authority-search-demand",
+      "type": "first_party_search_console_snapshot",
+      "source_ref": "growthos-phase10-results/measurement-dashboard.json",
+      "citable": true,
+      "limitation": "Snapshot is settled through 2026-09-25 and is not a live read on 2026-09-27."
+    }
+  ],
+  "outreach": {
+    "required": false,
+    "external_messages_sent": 0,
+    "manufacturer_reply_required": false,
+    "paid_placements": 0,
+    "note": "Historical Vispar fact-check target retained for opportunistic use only. Phase completion does not wait for a reply."
+  },
+  "prohibited": [
+    "Treating generated question-engine content as real customer evidence",
+    "Inventing manufacturer verification or endorsement",
+    "Promoting candidate-only compatibility as verified",
+    "Fabricating tests, field results, reviews, citations or backlinks",
+    "PBN, spam comments, paid fake mentions or duplicate advertorials"
+  ],
+  "next_measurement_trigger": "Refresh Search Console/GA4 snapshot when a working connector is available; do not reopen Phase 21 solely because GSC Wizard subscription is blocked."
+}
