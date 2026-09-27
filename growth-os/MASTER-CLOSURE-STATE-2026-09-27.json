@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-27T19:35:00Z",
+  "generated_at_utc": "2026-09-27T19:45:00Z",
   "purpose": "master closure no-repeat state",
   "closed_or_guarded": [
     {
@@ -108,7 +108,9 @@
         "readback_receipt": "bridge-v3-secure-receipts/20260927-membership-v1-readback.json"
       },
       "blocker": "Membership code is validated and present as Code Snippets ID 35 with active=false. Bridge 3.3 and the available WordPress automation tools intentionally do not expose PHP/snippet activation; activating through alternate REST/WP-CLI/WPVibe routes would bypass the execution guard.",
-      "next_allowed_step": "User reviews and activates snippet 35 in wp-admin; then rerun live My Account + event readback."
+      "next_allowed_step": "User reviews and activates snippet 35 in wp-admin; then rerun live My Account + event readback.",
+      "authorization": "APPROVED_BY_USER",
+      "execution_constraint": "Activation itself is still not exposed by Bridge 3.3 or WPVibe tools; user/admin click remains required."
     },
     {
       "phase": "22-roadmap",
@@ -135,9 +137,17 @@
         "Perplexity": 50
       },
       "blocker": "This chat has no direct logged-in ChatGPT Search, Microsoft Copilot/Bing answer-surface, or Perplexity answer-surface browser session. Available web search is a proxy and is excluded by the Phase 24 evidence contract. No direct Perplexity/Copilot plugin is installed or available for this task.",
-      "next_allowed_step": "Run the existing 130-item queue in ChatGPT Work Cloud Browser with real surface sessions; persist only DIRECT_SURFACE_CAPTURE observations with readback_verified=true."
+      "next_allowed_step": "Run the existing 130-item queue in ChatGPT Work Cloud Browser with real surface sessions; persist only DIRECT_SURFACE_CAPTURE observations with readback_verified=true.",
+      "authorization": "APPROVED_BY_USER",
+      "execution_constraint": "Authenticated direct-surface browser sessions are still not attached to this chat runtime."
     }
   ],
   "no_repeat_rule": "Continue only from the open entries above. Do not rerun closed or guarded phases unless an upstream dependency materially changes.",
-  "prompt_v2": "growth-os/MASTER-CLOSURE-PROMPT-V2-2026-09-27.md"
+  "prompt_v2": "growth-os/MASTER-CLOSURE-PROMPT-V2-2026-09-27.md",
+  "access_approval": {
+    "issue": 40,
+    "approved": true,
+    "approver": "calibra-dev",
+    "approval_record": "access-requests/k20-master-closure-access-20260927-approved.json"
+  }
 }
