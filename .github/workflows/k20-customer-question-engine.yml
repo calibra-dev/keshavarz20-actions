@@ -58,14 +58,14 @@ jobs:
               f.write(f'action={action}\n')
               f.write(f'op={op}\n')
 
-      - name: Run SEO God v18 engine
+      - name: Run SEO God v19 engine
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p question-engine-results
           stamp="$(date -u +%Y%m%dT%H%M%SZ)"
           out="question-engine-results/${stamp}-${{ steps.resolve.outputs.action }}.json"
-          python question-engine/engine_v18.py --action '${{ steps.resolve.outputs.action }}' --result "$out"
+          python question-engine/engine_v19.py --action '${{ steps.resolve.outputs.action }}' --result "$out"
           echo "RESULT_PATH=$out" >> "$GITHUB_ENV"
 
       - name: Validate engine regression tests
@@ -89,6 +89,7 @@ jobs:
           python question-engine/test_engine_v16.py
           python question-engine/test_engine_v17.py
           python question-engine/test_engine_v18.py
+          python question-engine/test_engine_v19.py
 
       - name: Commit manual-run result
         shell: bash
@@ -97,6 +98,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f "$RESULT_PATH"
+          git add -f growth-os/backlog/question-signals/*.json 2>/dev/null || true
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "questions: record ${{ steps.resolve.outputs.action }} result"
           for attempt in 1 2 3 4 5; do
