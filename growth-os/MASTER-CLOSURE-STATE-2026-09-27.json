@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-27T19:45:00Z",
+  "generated_at_utc": "2026-09-27T20:14:00Z",
   "purpose": "master closure no-repeat state",
   "closed_or_guarded": [
     {
@@ -91,34 +91,28 @@
       "status": "PASS_V19_PRODUCTION",
       "evidence": "question-engine-results/v19-production-acceptance.json",
       "note": "live acceptance PASS; 652/652 catalog covered; 3025 approved candidates; duplicate rate 0.017186; blockers=0; uncovered=0"
+    },
+    {
+      "phase": "21-roadmap",
+      "status": "PASS_MEMBERSHIP_VALUE_LIVE_WITH_GUARDED_UNTESTED_EVENT_PATHS",
+      "evidence": "growthos-roadmap-results/phase21-membership-value-live-acceptance-20260927.json",
+      "note": "Snippet 35 v1.1 live; authenticated health/state readback successful; project, calculation and technical-question events verified live."
     }
   ],
   "open": [
     {
-      "phase": "21-roadmap",
-      "title": "Membership Value Engine",
-      "status": "IMPLEMENTATION_READY_USER_ACTIVATION_REQUIRED",
-      "evidence": "growthos-roadmap-results/phase21-membership-value-latest.json",
-      "site_draft": {
-        "snippet_id": 35,
-        "active": false,
-        "forced_inactive": true,
-        "readback_verified": true,
-        "code_sha256": "a8c1d16df9b1d7d1a9e909726d495248803cb08a7ea803dd897b5c48bab9997e",
-        "readback_receipt": "bridge-v3-secure-receipts/20260927-membership-v1-readback.json"
-      },
-      "blocker": "Membership code is validated and present as Code Snippets ID 35 with active=false. Bridge 3.3 and the available WordPress automation tools intentionally do not expose PHP/snippet activation; activating through alternate REST/WP-CLI/WPVibe routes would bypass the execution guard.",
-      "next_allowed_step": "User reviews and activates snippet 35 in wp-admin; then rerun live My Account + event readback.",
-      "authorization": "APPROVED_BY_USER",
-      "execution_constraint": "Activation itself is still not exposed by Bridge 3.3 or WPVibe tools; user/admin click remains required."
-    },
-    {
       "phase": "22-roadmap",
       "title": "Customer Lifecycle & Retention",
-      "status": "DESIGN_READY_DEPENDENCY_BLOCKED",
-      "evidence": "growthos-roadmap-results/phase22-customer-lifecycle-latest.json",
-      "blocker": "Requires live Phase 21 activation and verified qualified-member events before lifecycle execution.",
-      "next_allowed_step": "After snippet 35 is user-activated, verify My Account save/read, event delivery, then execute consent-safe lifecycle acceptance."
+      "status": "LIVE_EVENT_SOURCE_READY_TRIGGER_EXECUTION_BLOCKED",
+      "evidence": "growthos-roadmap-results/phase22-customer-lifecycle-live-readiness-20260927.json",
+      "verified_live_events": [
+        "project_saved",
+        "calculation_saved",
+        "technical_question_submitted"
+      ],
+      "current_live_state": "project_saved_but_no_proforma",
+      "blocker": "No approved outbound lifecycle execution channel is configured, and proforma/purchase trigger paths are not live-verified.",
+      "next_allowed_step": "Approve or connect a consent-safe service channel, or implement an in-account lifecycle trigger, then verify one end-to-end trigger."
     },
     {
       "phase": 24,
