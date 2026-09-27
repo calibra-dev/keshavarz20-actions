@@ -1,0 +1,48 @@
+name: Phase 24 AI Citation Measurement v2
+
+on:
+  pull_request:
+    paths:
+      - 'phase24/**'
+      - 'phase24-results/**'
+      - 'growth-os/phase20-acceptance-2026-09-27.json'
+      - 'phase21-results/authority-network-2026-09-27.json'
+      - 'phase22-results/acceptance-v2-2026-09-27.json'
+      - 'phase23-results/lifecycle-freshness-v2-latest.json'
+      - 'tests/test_phase24_v2.py'
+      - '.github/workflows/k20-phase24-v2.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'phase24/**'
+      - 'phase24-results/**'
+      - 'tests/test_phase24_v2.py'
+      - '.github/workflows/k20-phase24-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-measurement-control-plane:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate prompt bank, evidence registry and KPI rules
+        run: |
+          python -m py_compile phase24/measurement_v2.py
+          python -m unittest tests.test_phase24_v2 -v
+          python phase24/measurement_v2.py --output /tmp/phase24-v2.json
+          python - <<'PY'
+          import json
+          p=json.load(open('/tmp/phase24-v2.json',encoding='utf-8'))
+          assert p['prompt_bank']['count']==200
+          assert p['direct_surface_kpis']['direct_observation_count']==0
+          assert p['direct_surface_kpis']['citation_rate'] is None
+          assert p['status']=='CONTROL_PLANE_COMPLETE_EXTERNAL_SURFACE_PENDING'
+          print(json.dumps({'status':p['status'],'prompts':200,'direct_observations':0},ensure_ascii=False))
+          PY
