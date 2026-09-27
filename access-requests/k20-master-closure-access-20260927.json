@@ -1,0 +1,42 @@
+{
+  "request_id": "k20-master-closure-access-20260927",
+  "created_at_utc": "2026-09-27T19:40:00Z",
+  "purpose": "Close the two remaining GrowthOS gates without bypassing security controls.",
+  "requested_access": [
+    {
+      "gate": "Roadmap Phase 21 Membership Value Engine",
+      "target": "Code Snippets ID 35 — K20 GrowthOS Membership Value Engine v1",
+      "requested_user_action": "Review and activate snippet 35 in WordPress admin.",
+      "current_state": {
+        "active": false,
+        "forced_inactive": true,
+        "validated": true,
+        "readback_verified": true,
+        "code_sha256": "a8c1d16df9b1d7d1a9e909726d495248803cb08a7ea803dd897b5c48bab9997e"
+      },
+      "after_access": "Run live My Account save/read tests and verify qualified-member events, then close Phase 21 and proceed to Phase 22 lifecycle acceptance."
+    },
+    {
+      "gate": "Phase 24 Direct AI Citation Measurement",
+      "requested_user_action": "Open an authenticated ChatGPT Work/Cloud Browser session and complete login/2FA yourself where required for ChatGPT Search, Microsoft Copilot/Bing and Perplexity.",
+      "scope": {
+        "ChatGPT Search": 30,
+        "Microsoft Copilot / Bing": 50,
+        "Perplexity": 50
+      },
+      "evidence_rule": "Only DIRECT_SURFACE_CAPTURE with readback_verified=true is accepted. No passwords, tokens, recovery codes or 2FA secrets are to be placed in GitHub or chat.",
+      "after_access": "Execute the existing 130-item queue, ingest observations, recompute KPIs and close Phase 24 at 200/200."
+    }
+  ],
+  "security_rules": [
+    "Do not place passwords, tokens, app passwords, recovery codes or 2FA secrets in GitHub issues, files or chat.",
+    "Do not bypass Bridge 3.3 snippet activation guard.",
+    "Do not substitute ordinary web search/referral telemetry for direct AI answer-surface evidence."
+  ],
+  "references": [
+    "growth-os/MASTER-CLOSURE-STATE-2026-09-27.json",
+    "growthos-roadmap-results/phase21-membership-value-latest.json",
+    "phase24-results/remaining-direct-surface-queue.json",
+    "phase24/WORK-CLOUD-BROWSER-EXECUTION.md"
+  ]
+}
