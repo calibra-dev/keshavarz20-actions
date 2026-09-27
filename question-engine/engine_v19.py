@@ -19,6 +19,7 @@ orig_quality = q.question_quality
 orig_public_plan = q.public_plan
 orig_run = q.run
 orig_family = q.b.family
+orig_ref_name = q.b.ref_name
 
 INTENT_ALIASES = {
     "water_efficiency": "selection",
@@ -105,6 +106,15 @@ def _family_v19(p):
     return orig_family(p)
 
 
+def _ref_name_v19(p):
+    name = re.sub(r"\s+", " ", str(p.get("name") or "")).strip()
+    if not name:
+        return orig_ref_name(p)
+    if len(name) <= 80:
+        return name
+    return name[:58].rstrip() + "…" + name[-18:].lstrip()
+
+
 def _v19_candidates(p, fam, style, rng):
     out = list(orig_candidates(p, fam, style, rng) or [])
     name = q.b.ref_name(p)
@@ -166,6 +176,18 @@ def _v19_candidates(p, fam, style, rng):
             "safety/risk",
             "v19:pesticide:diagnosis-label",
             f"قبل از تصمیم درباره {name} باید آفت یا بیماری دقیق، مرحله رشد، شرایط هوا و برچسب ثبت‌شده بررسی بشه تا کاربرد یا دوز از روی حدس گفته نشه؟",
+        )
+    elif fam == "growing_media":
+        crop = rng.choice(q.b.INDOOR if getattr(q.b, "INDOOR", None) else q.b.CROPS)
+        add(
+            "suitability",
+            "v19:growing-media:crop-rootzone-context",
+            f"اگر بخوام {name} رو برای {crop} یا بستر گلخانه‌ای بررسی کنم، قبل از انتخاب باید هدف اختلاط، نسبت زهکشی و نگهداشت آب، روش آبیاری و کیفیت آب رو مشخص کنم؟",
+        )
+        add(
+            "safety/risk",
+            "v19:growing-media:label-origin-sterility",
+            f"برای ارزیابی {name} چه اطلاعاتی از دانه‌بندی، منبع یا برند، وضعیت شست‌وشو یا استریل بودن و شرایط نگهداری باید از برچسب یا منبع معتبر بررسی بشه؟",
         )
     return out
 
@@ -254,6 +276,7 @@ def _run_v19(action, result_path):
 
 
 q.b.family = _family_v19
+q.b.ref_name = _ref_name_v19
 q.guarded_candidates = _v19_candidates
 q.consistency_guard = _guard_v19
 q.question_quality = _quality_v19
