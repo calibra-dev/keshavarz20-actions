@@ -62,15 +62,6 @@ jobs:
           python question-engine/test_engine_v19.py
       - name: Real catalog dry-run QA
         run: python question-engine/qa_v19_catalog.py
-      - name: Require full catalog coverage
-        run: |
-          python - <<'PY'
-          import json
-          x=json.load(open('question-engine-results/v19-catalog-qa.json',encoding='utf-8'))
-          assert x['catalog_products'] == x['products_covered']
-          assert x['acceptance']['all_catalog_products_covered'] is True
-          assert x['blocker_count'] == 0
-          PY
       - name: Persist sanitized QA
         shell: bash
         run: |
@@ -86,3 +77,13 @@ jobs:
             sleep $((attempt * 2))
           done
           exit 1
+
+      - name: Require full catalog coverage
+        run: |
+          python - <<'PY'
+          import json
+          x=json.load(open('question-engine-results/v19-catalog-qa.json',encoding='utf-8'))
+          assert x['catalog_products'] == x['products_covered'], (x['catalog_products'], x['products_covered'], x.get('uncovered_product_ids',[])[:50])
+          assert x['acceptance']['all_catalog_products_covered'] is True
+          assert x['blocker_count'] == 0
+          PY
