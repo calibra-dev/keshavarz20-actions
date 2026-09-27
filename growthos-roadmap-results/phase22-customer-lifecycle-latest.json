@@ -1,0 +1,18 @@
+{
+  "roadmap_phase": 22,
+  "title": "Customer Lifecycle & Retention",
+  "version": "growthos-customer-lifecycle-v1",
+  "verified_at_utc": "2026-09-27T18:45:00Z",
+  "status": "DESIGN_READY_DEPENDENCY_BLOCKED",
+  "contract": "growthos-membership/customer-lifecycle-v1.json",
+  "dependency": {
+    "roadmap_phase21_status": "IMPLEMENTATION_READY_ACTIVATION_BLOCKED",
+    "requires": "PASS_MEMBERSHIP_VALUE_LIVE"
+  },
+  "acceptance": {
+    "state_machine_defined": true,
+    "consent_policy_defined": true,
+    "live_trigger_execution_verified": false
+  },
+  "blocker": "Phase 21 must be activated and its qualified events verified before lifecycle triggers can be executed end-to-end."
+}
