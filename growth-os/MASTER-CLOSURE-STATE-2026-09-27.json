@@ -1,0 +1,141 @@
+{
+  "generated_at_utc": "2026-09-27T13:45:00Z",
+  "purpose": "master closure no-repeat state",
+  "closed_or_guarded": [
+    {
+      "phase": 2,
+      "status": "PASS",
+      "evidence": "growthos-phase2-results/product-truth-summary.json",
+      "note": "652/652 truth records; hard_fabrications=0"
+    },
+    {
+      "phase": 3,
+      "status": "PASS",
+      "evidence": "growthos-phase3-results/html-schema-feed-parity-summary-latest.json",
+      "note": "652/652 audited; fail=0"
+    },
+    {
+      "phase": 4,
+      "status": "PASS_GUARDED_SOURCE_GAPS",
+      "evidence": "growthos-phase4-results/compatibility-summary.json",
+      "note": "49 source-bound products; 0 verified technical compatibility edges; 23 candidate-only"
+    },
+    {
+      "phase": 5,
+      "status": "PASS",
+      "evidence": "growthos-phase5-results/cannibalization-report.json",
+      "note": "canonical conflicts previously reduced to 0"
+    },
+    {
+      "phase": 9,
+      "status": "PASS_VERIFIED_COMPLETE",
+      "evidence": "growthos-phase9-results/final-summary.json"
+    },
+    {
+      "phase": 10,
+      "status": "PASS_MEASUREMENT_SYSTEM_ACTIVE_WITH_EXTERNAL_ENGINE_GAPS",
+      "evidence": "growthos-phase10-results/summary.json"
+    },
+    {
+      "phase": 11,
+      "status": "PASS_GUARDED_FEED_READY_PARTNER_APPROVAL_REQUIRED",
+      "evidence": "growthos-phase11-results/summary.json",
+      "note": "512/652 feed-ready; no partner access fabricated"
+    },
+    {
+      "phase": 12,
+      "status": "PASS_ARCHITECTURE_READY_POLICY_GUARD",
+      "evidence": "growthos-phase12-results/summary.json",
+      "note": "Iran restriction respected; no fake country; UCP not falsely claimed"
+    },
+    {
+      "phase": 14,
+      "status": "PASS_GUARDED_NO_VERIFIED_GS1_IDS",
+      "evidence": "growthos-phase14-results/summary.json",
+      "note": "0 GTIN fabricated"
+    },
+    {
+      "phase": 15,
+      "status": "PASS_ENTITY_OS_WITH_SOURCE_GAPS",
+      "evidence": "growthos-phase15-results/summary.json",
+      "note": "87 external brand truth gaps; 0 fabricated identity links"
+    },
+    {
+      "phase": 18,
+      "status": "PASS_GUARDED_NO_VERIFIED_TECHNICAL_EDGES",
+      "evidence": "growthos-phase18-results/recommendation-basket-guard.json",
+      "note": "automatic exact-SKU recommendation disabled; expert review fallback active"
+    },
+    {
+      "phase": 20,
+      "status": "PASS_CANARY_DRAFT",
+      "evidence": "growth-os/phase20-acceptance-2026-09-27.json"
+    },
+    {
+      "phase": "21-current-stack",
+      "status": "PASS_IRAN_FIRST_AUTHORITY_V2",
+      "evidence": "phase21-results/authority-network-2026-09-27.json"
+    },
+    {
+      "phase": "22-current-stack",
+      "status": "PASS_FUNCTIONAL_V2_GUARDED_DEPLOYMENT",
+      "evidence": "phase22-results/acceptance-v2-2026-09-27.json"
+    },
+    {
+      "phase": "23-current-stack",
+      "status": "PASS_LIFECYCLE_GOVERNANCE_V2",
+      "evidence": "phase23-results/lifecycle-freshness-v2-latest.json"
+    }
+  ],
+  "open": [
+    {
+      "phase": 17,
+      "title": "Question Engine v19 production closure",
+      "status": "VERIFYING_FULL_CATALOG_AFTER_GROWING_MEDIA_FIX",
+      "evidence": [
+        "question-engine/engine_v19.py",
+        "question-engine/test_engine_v19.py",
+        "question-engine/qa_v19_catalog.py",
+        "question-engine-results/v19-catalog-qa.json"
+      ],
+      "completed": "v19 production runtime activated; status and dry-run readback succeeded; perlite ontology leak found and fixed; full-catalog 652/652 QA gate added",
+      "next_exact_action": "accept only after refreshed QA reports products_covered=652, blocker_count=0 and growing_media classification is observed for product 141442 or another category-800 product"
+    },
+    {
+      "phase": "21-roadmap",
+      "title": "Membership Value Engine",
+      "status": "BLOCKED_MEMBERSHIP_VALUE_ENGINE_NOT_IMPLEMENTED",
+      "evidence": "growthos-roadmap-results/phase21-membership-value.json",
+      "blocker": "no verified account-backed saved project/calculation/question/proforma history and all 5 required member events are missing",
+      "next_exact_action": "prepare draft/inactive Bridge 3.3 secure snippet or approved application implementation; activation requires allowed reviewed path"
+    },
+    {
+      "phase": "22-roadmap",
+      "title": "Customer Lifecycle & Retention",
+      "status": "BLOCKED_BY_PHASE21_AND_UNVERIFIED_RETENTION_EXECUTION",
+      "evidence": "growthos-roadmap-results/phase22-customer-lifecycle.json",
+      "blocker": "depends on roadmap Phase 21 qualified member events and consent-safe trigger execution"
+    },
+    {
+      "phase": 24,
+      "title": "Direct AI citation measurement",
+      "status": "CONTROL_PLANE_COMPLETE_EXTERNAL_SURFACE_PENDING",
+      "evidence": "phase24-results/acceptance-v2-latest.json",
+      "captured": 70,
+      "remaining": 130,
+      "remaining_surface_work": {
+        "ChatGPT Search": 30,
+        "Google AI Mode / AI Overviews": 0,
+        "Microsoft Copilot / Bing": 50,
+        "Perplexity": 50
+      },
+      "current_kpis": {
+        "citation_rate": 0.11428571428571428,
+        "brand_mention_rate": 0.14285714285714285,
+        "cited_page_coverage": 8
+      },
+      "blocker": "requires real DIRECT_SURFACE_CAPTURE on remaining named surfaces; ordinary web search/referral cannot substitute"
+    }
+  ],
+  "no_repeat_rule": "Do not rerun closed_or_guarded phases unless a listed upstream dependency materially changes. Continue only from open[].next_exact_action or an explicitly new blocker."
+}
