@@ -94,6 +94,52 @@ if (!function_exists('k20_mv_number')) {
     }
 }
 
+if (!function_exists('k20_mv_lifecycle_state')) {
+    function k20_mv_lifecycle_state($user_id) {
+        $state = k20_mv_state($user_id);
+        $events = k20_mv_events($user_id);
+        $event_names = array();
+        foreach ($events as $event) {
+            if (!empty($event['event'])) {
+                $event_names[] = sanitize_key((string) $event['event']);
+            }
+        }
+
+        $result = array(
+            'state' => 'member_no_project',
+            'reason' => 'no_saved_project',
+            'cta_key' => 'save_project',
+            'cta_label' => 'ذخیره اولین پروژه',
+            'marketing_message_allowed' => false,
+        );
+
+        if (count($state['projects']) > 0 && count($state['proforma_refs']) === 0) {
+            $result = array(
+                'state' => 'project_saved_but_no_proforma',
+                'reason' => 'saved_project_exists_and_no_proforma_reference',
+                'cta_key' => 'request_proforma',
+                'cta_label' => 'درخواست بررسی و پیش‌فاکتور برای پروژه',
+                'marketing_message_allowed' => false,
+            );
+        } elseif (count($state['proforma_refs']) > 0 && !in_array('purchase', $event_names, true)) {
+            $result = array(
+                'state' => 'proforma_created_but_no_purchase',
+                'reason' => 'proforma_reference_exists_and_no_purchase_event',
+                'cta_key' => 'review_proforma',
+                'cta_label' => 'بررسی وضعیت پیش‌فاکتور',
+                'marketing_message_allowed' => false,
+            );
+        }
+
+        $result['project_count'] = count($state['projects']);
+        $result['calculation_count'] = count($state['calculations']);
+        $result['proforma_count'] = count($state['proforma_refs']);
+        $result['question_count'] = count($state['question_refs']);
+        $result['event_names'] = array_values(array_unique($event_names));
+        return $result;
+    }
+}
+
 if (!function_exists('k20_mv_rest_permission')) {
     function k20_mv_rest_permission($request) {
         if (!is_user_logged_in()) {
@@ -199,6 +245,19 @@ if (!function_exists('k20_mv_register_routes')) {
             },
         ));
 
+        register_rest_route('k20-member/v1', '/lifecycle', array(
+            'methods' => 'GET',
+            'permission_callback' => 'k20_mv_rest_permission',
+            'callback' => function() {
+                $uid = k20_mv_user_id();
+                return rest_ensure_response(array(
+                    'ok' => true,
+                    'version' => '1.0',
+                    'lifecycle' => k20_mv_lifecycle_state($uid),
+                ));
+            },
+        ));
+
         register_rest_route('k20-member/v1', '/health', array(
             'methods' => 'GET',
             'permission_callback' => 'k20_mv_rest_permission',
@@ -284,6 +343,20 @@ if (!function_exists('k20_mv_dashboard')) {
         echo '<p class="k20-feedback" role="status" aria-live="polite"></p>';
         echo '</form>';
 
+        $lifecycle = k20_mv_lifecycle_state($uid);
+        echo '<aside class="k20-lifecycle-prompt" data-k20-lifecycle-state="' . esc_attr($lifecycle['state']) . '" aria-labelledby="k20-lifecycle-title">';
+        echo '<h3 id="k20-lifecycle-title">گام بعدی پروژه</h3>';
+        if ($lifecycle['state'] === 'project_saved_but_no_proforma') {
+            echo '<p>پروژه ذخیره شده است، اما هنوز پیش‌فاکتوری برای آن ثبت نشده. اگر آماده‌ای، مرحله بعد بررسی سبد و پیش‌فاکتور است.</p>';
+            echo '<button type="button" class="button" id="k20-lifecycle-proforma-cta" data-k20-action="request_proforma">درخواست بررسی و پیش‌فاکتور برای پروژه</button>';
+            echo '<p class="k20-lifecycle-feedback" role="status" aria-live="polite"></p>';
+        } elseif ($lifecycle['state'] === 'proforma_created_but_no_purchase') {
+            echo '<p>پیش‌فاکتور ثبت شده است. قبل از خرید می‌توانی وضعیت آن را دوباره بررسی کنی.</p>';
+        } else {
+            echo '<p>برای شروع، اولین پروژه را ذخیره کن تا پیشنهاد گام بعدی براساس همان پروژه نمایش داده شود.</p>';
+        }
+        echo '</aside>';
+
         echo '<h3>پروژه‌های من</h3><ul>';
         foreach (array_reverse($state['projects']) as $project) {
             echo '<li>' . esc_html($project['name']);
@@ -317,6 +390,12 @@ if (!function_exists('k20_mv_dashboard')) {
             . "if(!x.ok){box.textContent=(x.j&&x.j.message)?x.j.message:'ذخیره پروژه انجام نشد.';return;}"
             . "box.textContent='پروژه ذخیره شد.';window.dataLayer.push({event:'project_saved',source:'k20_member_value'});})"
             . ".catch(function(){form.querySelector('.k20-feedback').textContent='خطا در ارتباط. دوباره تلاش کنید.';});"
+            . "});}"
+            . "var lifecycleCta=document.getElementById('k20-lifecycle-proforma-cta');"
+            . "if(lifecycleCta){lifecycleCta.addEventListener('click',function(){"
+            . "var box=document.querySelector('.k20-lifecycle-feedback');"
+            . "if(box){box.textContent='درخواست شما در همین حساب ثبت خودکار نمی‌شود؛ ابتدا پروژه و اقلام را بررسی کن و سپس پیش‌فاکتور را نهایی کن.';}"
+            . "window.dataLayer.push({event:'lifecycle_cta_clicked',state:'project_saved_but_no_proforma',source:'k20_member_value'});"
             . "});}";
         if ($registration_pending) {
             $js .= "window.dataLayer.push({event:'registration_completed',source:'k20_member_value'});";
