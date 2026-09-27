@@ -87,8 +87,6 @@ jobs:
           }
           pathlib.Path('question-engine-results/v19-production-acceptance.json').write_text(
               json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-          if out['status']!='PASS_V19_PRODUCTION':
-              raise SystemExit(json.dumps(out,ensure_ascii=False))
           print(json.dumps(out,ensure_ascii=False))
           PY
       - name: Persist acceptance
@@ -107,3 +105,11 @@ jobs:
             sleep $((attempt*2))
           done
           exit 1
+
+      - name: Enforce acceptance
+        run: |
+          python - <<'PY'
+          import json
+          x=json.load(open('question-engine-results/v19-production-acceptance.json',encoding='utf-8'))
+          assert x['status']=='PASS_V19_PRODUCTION', x
+          PY
