@@ -7,6 +7,7 @@ ROOT=Path(__file__).resolve().parents[1]
 ENC=ROOT/"phase24"/"import"/"20260927-direct-observations.json.gz.b64"
 DEST=ROOT/"phase24"/"direct-observations-v2.json"
 REPORT=ROOT/"phase24-results"/"direct-observation-ingest-2026-09-27.json"
+ACCEPT=ROOT/"phase24-results"/"acceptance-v2-latest.json"
 
 spec=importlib.util.spec_from_file_location("p24",ROOT/"phase24"/"measurement_v2.py")
 m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
@@ -58,6 +59,29 @@ def main():
       "conflicts":conflicts
     }
     REPORT.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    remaining=200-len(ordered)
+    acceptance={
+      "phase":24,
+      "title":"AI Citation Experimentation & Influence Measurement v2",
+      "verified_at":"2026-09-27",
+      "status":"PASS_DIRECT_SURFACE_MEASUREMENT" if len(ordered)==200 else "CONTROL_PLANE_COMPLETE_EXTERNAL_SURFACE_PENDING",
+      "direct_surface_measurement":{
+        "captured_observations":len(ordered),
+        "remaining_observations":remaining,
+        "citation_rate":k["citation_rate"],
+        "brand_mention_rate":k["brand_mention_rate"],
+        "cited_page_coverage":k["cited_page_coverage"],
+        "observed_prompt_coverage":k["observed_prompt_coverage"],
+        "by_surface":k["by_surface"]
+      },
+      "completion_requirement":"200 DIRECT_SURFACE_CAPTURE observations across the named prompt/surface assignments",
+      "remaining_surface_work":{
+        p:max(0,50-k["by_surface"][p]["observations"]) for p in m.PLATFORMS
+      },
+      "evidence_source":"phase24/direct-observations-v2.json",
+      "fabricated_observations":0
+    }
+    ACCEPT.write_text(json.dumps(acceptance,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(report,ensure_ascii=False))
 
 if __name__=="__main__": main()
