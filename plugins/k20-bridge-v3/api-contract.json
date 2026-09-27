@@ -1,17 +1,21 @@
 {
-  "schema_version": "3.2",
-  "plugin_version": "3.2.1",
+  "schema_version": "3.3",
+  "plugin_version": "3.3.0",
   "namespace": "keshavarz20-ops/v3",
   "compatibility": {
     "request_min": "3.1",
-    "response_current": "3.2"
+    "response_current": "3.3"
   },
   "guarantees": [
-    "existing v3.1 action names remain valid",
+    "existing v3.1 and v3.2 action names remain valid",
     "writes are allow-listed",
-    "price/discount/coupon/payment/user/role/credential/arbitrary-code operations remain denied",
+    "price/discount/coupon/payment/user/role/credential/arbitrary-execution operations remain denied",
+    "chat-generated images can be relayed through detached Git blobs without public media URLs or manual upload",
+    "featured image and WooCommerce gallery binding are snapshot-backed; gallery replacement is approval-gated",
+    "Code Snippets reads and draft-only writes use a secure relay; snippet activation is not exposed",
+    "guarded code reading/search is allow-listed and redacts common secret assignments",
+    "live arbitrary filesystem code writes remain denied; source writes stay GitHub-first",
     "new high-impact actions use two-phase approval",
     "content and bridge updates are reversible through bounded snapshots/backups"
   ]
 }
-
