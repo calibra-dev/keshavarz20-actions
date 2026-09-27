@@ -42,7 +42,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f phase24/direct-observations-v2.json phase24-results/direct-observation-ingest-2026-09-27.json phase24-results/measurement-v2-latest.json
+          git add -f phase24/direct-observations-v2.json phase24-results/direct-observation-ingest-2026-09-27.json phase24-results/measurement-v2-latest.json phase24-results/acceptance-v2-latest.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "phase24: ingest 70 validated direct surface observations"
           for attempt in 1 2 3 4 5; do
