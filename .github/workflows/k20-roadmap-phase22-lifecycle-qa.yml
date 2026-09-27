@@ -1,0 +1,20 @@
+name: GrowthOS Roadmap Phase 22 Lifecycle Contract QA
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'growthos-membership/customer-lifecycle-v1.json'
+      - 'tests/test_customer_lifecycle_contract.py'
+      - '.github/workflows/k20-roadmap-phase22-lifecycle-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python tests/test_customer_lifecycle_contract.py
