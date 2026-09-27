@@ -72,3 +72,16 @@ assert "آب‌بندی" not in blob and "نوع اتصال دو طرف" not in 
 media = product("کوکوپیت نمونه")
 media["categories"] = [{"id":800,"name":"بستر کشت","slug":"growing-media"}]
 assert q.fam_of(media) == "growing_media", q.fam_of(media)
+
+
+long_product = product("اتصال بسیار بلند و مشخص برای آزمایش حفظ هویت محصول در سؤال‌های موتور نسخه نوزده سایز ویژه آزمایشی 123456")
+ref = q.b.ref_name(long_product)
+assert ref != "این محصول", ref
+assert "123456" in ref, ref
+
+media = product("پرلیت دانه ریز سایز 3-1 کیسه 15 کیلویی")
+media["categories"] = [{"id":800,"name":"بستر کشت","slug":"growing-media"}]
+fam = q.fam_of(media)
+assert fam == "growing_media", fam
+items = q.guarded_candidates(media, fam, "experienced", random.Random(1901))
+assert any(str(x.get("key","")).startswith("v19:growing-media:") for x in items)
