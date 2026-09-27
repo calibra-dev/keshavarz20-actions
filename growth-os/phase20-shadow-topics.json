@@ -1,0 +1,611 @@
+{
+  "schema_version": "1",
+  "generated_at": "2026-09-27",
+  "purpose": "30-topic shadow evaluation for Phase 20; no WordPress write",
+  "candidates": [
+    {
+      "id": "shadow-01-tomato-fars-tape",
+      "title": "گوجه در فارس؛ تصمیم‌گیری برای نوار تیپ در یک هکتار",
+      "topic_cluster": "tomato-fars-tape",
+      "scenario_dimensions": {
+        "decision": "گوجه در فارس؛ تصمیم‌گیری برای نوار تیپ در یک هکتار"
+      },
+      "scores": {
+        "farmer_decision_value": 20,
+        "independent_intent": 15,
+        "evidence_strength": 13,
+        "demand_signal": 13,
+        "seasonal_relevance": 8,
+        "business_relevance": 9,
+        "original_value_potential": 8,
+        "cannibalization_safety": 5
+      },
+      "blockers": []
+    },
+    {
+      "id": "shadow-02-corn-khuzestan-saline",
+      "title": "ذرت خوزستان با آب شور؛ چه داده‌هایی قبل از طراحی آبیاری لازم است؟",
+      "topic_cluster": "corn-khuzestan-saline",
+      "scenario_dimensions": {
+        "decision": "ذرت خوزستان با آب شور؛ چه داده‌هایی قبل از طراحی آبیاری لازم است؟"
+      },
+      "scores": {
+        "farmer_decision_value": 20,
+        "independent_intent": 15,
+        "evidence_strength": 13,
+        "demand_signal": 13,
+        "seasonal_relevance": 8,
+        "business_relevance": 9,
+        "original_value_potential": 8,
+        "cannibalization_safety": 5
+      },
+      "blockers": []
+    },
+    {
+      "id": "shadow-03-greenhouse-cucumber-clog",
+      "title": "خیار گلخانه‌ای و گرفتگی تیپ؛ مسیر تشخیص علت",
+      "topic_cluster": "greenhouse-cucumber-clog",
+      "scenario_dimensions": {
+        "decision": "خیار گلخانه‌ای و گرفتگی تیپ؛ مسیر تشخیص علت"
+      },
+      "scores": {
+        "farmer_decision_value": 20,
+        "independent_intent": 15,
+        "evidence_strength": 13,
+        "demand_signal": 13,
+        "seasonal_relevance": 8,
+        "business_relevance": 9,
+        "original_value_potential": 8,
+        "cannibalization_safety": 5
+      },
+      "blockers": []
+    },
+    {
+      "id": "shadow-04-pistachio-kerman-filtration",
+      "title": "پسته کرمان و آب چاه؛ انتخاب معماری فیلتراسیون",
+      "topic_cluster": "pistachio-kerman-filtration",
+      "scenario_dimensions": {
+        "decision": "پسته کرمان و آب چاه؛ انتخاب معماری فیلتراسیون"
+      },
+      "scores": {
+        "farmer_decision_value": 20,
+        "independent_intent": 15,
+        "evidence_strength": 13,
+        "demand_signal": 13,
+        "seasonal_relevance": 8,
+        "business_relevance": 9,
+        "original_value_potential": 8,
+        "cannibalization_safety": 5
+      },
+      "blockers": []
+    },
+    {
+      "id": "shadow-05-slope-pressure-loss",
+      "title": "زمین شیب‌دار و افت فشار؛ انتخاب راهکار هیدرولیکی",
+      "topic_cluster": "slope-pressure-loss",
+      "scenario_dimensions": {
+        "decision": "زمین شیب‌دار و افت فشار؛ انتخاب راهکار هیدرولیکی"
+      },
+      "scores": {
+        "farmer_decision_value": 20,
+        "independent_intent": 15,
+        "evidence_strength": 13,
+        "demand_signal": 13,
+        "seasonal_relevance": 8,
+        "business_relevance": 9,
+        "original_value_potential": 8,
+        "cannibalization_safety": 5
+      },
+      "blockers": []
+    },
+    {
+      "id": "shadow-06-well-sand-filter",
+      "title": "آب چاه شنی؛ انتخاب مرحله فیلتراسیون قبل از قطره‌ای",
+      "topic_cluster": "well-sand-filter",
+      "scenario_dimensions": {
+        "decision": "آب چاه شنی؛ انتخاب مرحله فیلتراسیون قبل از قطره‌ای"
+      },
+      "scores": {
+        "farmer_decision_value": 20,
+        "independent_intent": 15,
+        "evidence_strength": 13,
+        "demand_signal": 13,
+        "seasonal_relevance": 8,
+        "business_relevance": 9,
+        "original_value_potential": 8,
+        "cannibalization_safety": 5
+      },
+      "blockers": []
+    },
+    {
+      "id": "shadow-07-orchard-mainline-diameter",
+      "title": "باغ و انتخاب قطر لوله اصلی بر پایه دبی و طول مسیر",
+      "topic_cluster": "orchard-mainline-diameter",
+      "scenario_dimensions": {
+        "decision": "باغ و انتخاب قطر لوله اصلی بر پایه دبی و طول مسیر"
+      },
+      "scores": {
+        "farmer_decision_value": 20,
+        "independent_intent": 15,
+        "evidence_strength": 13,
+        "demand_signal": 13,
+        "seasonal_relevance": 8,
+        "business_relevance": 9,
+        "original_value_potential": 8,
+        "cannibalization_safety": 5
+      },
+      "blockers": []
+    },
+    {
+      "id": "shadow-08-greenhouse-fertigation-mixing",
+      "title": "گلخانه؛ تصمیم درباره ترتیب تزریق و اختلاط کودها",
+      "topic_cluster": "greenhouse-fertigation-mixing",
+      "scenario_dimensions": {
+        "decision": "گلخانه؛ تصمیم درباره ترتیب تزریق و اختلاط کودها"
+      },
+      "scores": {
+        "farmer_decision_value": 20,
+        "independent_intent": 15,
+        "evidence_strength": 13,
+        "demand_signal": 13,
+        "seasonal_relevance": 8,
+        "business_relevance": 9,
+        "original_value_potential": 8,
+        "cannibalization_safety": 5
+      },
+      "blockers": []
+    },
+    {
+      "id": "shadow-09-drip-flushing-frequency",
+      "title": "آبیاری قطره‌ای؛ تعیین برنامه شست‌وشوی خطوط بر پایه شواهد",
+      "topic_cluster": "drip-flushing-frequency",
+      "scenario_dimensions": {
+        "decision": "آبیاری قطره‌ای؛ تعیین برنامه شست‌وشوی خطوط بر پایه شواهد"
+      },
+      "scores": {
+        "farmer_decision_value": 20,
+        "independent_intent": 15,
+        "evidence_strength": 13,
+        "demand_signal": 13,
+        "seasonal_relevance": 8,
+        "business_relevance": 9,
+        "original_value_potential": 8,
+        "cannibalization_safety": 5
+      },
+      "blockers": []
+    },
+    {
+      "id": "shadow-10-filter-backwash-decision",
+      "title": "فیلتر دیسکی؛ تشخیص زمان شست‌وشو و افت فشار",
+      "topic_cluster": "filter-backwash-decision",
+      "scenario_dimensions": {
+        "decision": "فیلتر دیسکی؛ تشخیص زمان شست‌وشو و افت فشار"
+      },
+      "scores": {
+        "farmer_decision_value": 20,
+        "independent_intent": 15,
+        "evidence_strength": 13,
+        "demand_signal": 13,
+        "seasonal_relevance": 8,
+        "business_relevance": 9,
+        "original_value_potential": 8,
+        "cannibalization_safety": 5
+      },
+      "blockers": []
+    },
+    {
+      "id": "shadow-11-pump-cavitation-signs",
+      "title": "پمپ آبیاری؛ تشخیص علائم کاویتاسیون و داده‌های لازم",
+      "topic_cluster": "pump-cavitation-signs",
+      "scenario_dimensions": {
+        "decision": "پمپ آبیاری؛ تشخیص علائم کاویتاسیون و داده‌های لازم"
+      },
+      "scores": {
+        "farmer_decision_value": 20,
+        "independent_intent": 15,
+        "evidence_strength": 13,
+        "demand_signal": 13,
+        "seasonal_relevance": 8,
+        "business_relevance": 9,
+        "original_value_potential": 8,
+        "cannibalization_safety": 5
+      },
+      "blockers": []
+    },
+    {
+      "id": "shadow-12-air-valve-placement",
+      "title": "شبکه آبیاری؛ تصمیم درباره محل‌های محتمل شیر هوا",
+      "topic_cluster": "air-valve-placement",
+      "scenario_dimensions": {
+        "decision": "شبکه آبیاری؛ تصمیم درباره محل‌های محتمل شیر هوا"
+      },
+      "scores": {
+        "farmer_decision_value": 20,
+        "independent_intent": 15,
+        "evidence_strength": 13,
+        "demand_signal": 13,
+        "seasonal_relevance": 8,
+        "business_relevance": 9,
+        "original_value_potential": 8,
+        "cannibalization_safety": 5
+      },
+      "blockers": []
+    },
+    {
+      "id": "shadow-13-pressure-zone-design",
+      "title": "زمین اختلاف‌ارتفاع‌دار؛ تقسیم شبکه به زون فشاری",
+      "topic_cluster": "pressure-zone-design",
+      "scenario_dimensions": {
+        "decision": "زمین اختلاف‌ارتفاع‌دار؛ تقسیم شبکه به زون فشاری"
+      },
+      "scores": {
+        "farmer_decision_value": 20,
+        "independent_intent": 15,
+        "evidence_strength": 13,
+        "demand_signal": 13,
+        "seasonal_relevance": 8,
+        "business_relevance": 9,
+        "original_value_potential": 8,
+        "cannibalization_safety": 5
+      },
+      "blockers": []
+    },
+    {
+      "id": "shadow-14-dripline-spacing-decision",
+      "title": "فاصله خطوط تیپ؛ چه داده‌هایی قبل از انتخاب لازم است؟",
+      "topic_cluster": "dripline-spacing-decision",
+      "scenario_dimensions": {
+        "decision": "فاصله خطوط تیپ؛ چه داده‌هایی قبل از انتخاب لازم است؟"
+      },
+      "scores": {
+        "farmer_decision_value": 20,
+        "independent_intent": 15,
+        "evidence_strength": 13,
+        "demand_signal": 13,
+        "seasonal_relevance": 8,
+        "business_relevance": 9,
+        "original_value_potential": 8,
+        "cannibalization_safety": 5
+      },
+      "blockers": []
+    },
+    {
+      "id": "shadow-15-water-source-switch",
+      "title": "تغییر منبع آب؛ چه چیزهایی در طراحی آبیاری باید دوباره بررسی شود؟",
+      "topic_cluster": "water-source-switch",
+      "scenario_dimensions": {
+        "decision": "تغییر منبع آب؛ چه چیزهایی در طراحی آبیاری باید دوباره بررسی شود؟"
+      },
+      "scores": {
+        "farmer_decision_value": 20,
+        "independent_intent": 15,
+        "evidence_strength": 13,
+        "demand_signal": 13,
+        "seasonal_relevance": 8,
+        "business_relevance": 9,
+        "original_value_potential": 8,
+        "cannibalization_safety": 5
+      },
+      "blockers": []
+    },
+    {
+      "id": "shadow-16-existing-water-test-variant",
+      "title": "خواندن EC و SAR آب آبیاری برای مزرعه",
+      "topic_cluster": "existing-water-test-variant",
+      "scenario_dimensions": {
+        "decision": "خواندن EC و SAR آب آبیاری برای مزرعه"
+      },
+      "scores": {
+        "farmer_decision_value": 13,
+        "independent_intent": 8,
+        "evidence_strength": 7,
+        "demand_signal": 8,
+        "seasonal_relevance": 6,
+        "business_relevance": 7,
+        "original_value_potential": 5,
+        "cannibalization_safety": 2
+      },
+      "blockers": [
+        "existing_intent_overlap"
+      ]
+    },
+    {
+      "id": "shadow-17-existing-pump-variant",
+      "title": "راهنمای خرید پمپ آبیاری مناسب",
+      "topic_cluster": "existing-pump-variant",
+      "scenario_dimensions": {
+        "decision": "راهنمای خرید پمپ آبیاری مناسب"
+      },
+      "scores": {
+        "farmer_decision_value": 13,
+        "independent_intent": 8,
+        "evidence_strength": 7,
+        "demand_signal": 8,
+        "seasonal_relevance": 6,
+        "business_relevance": 7,
+        "original_value_potential": 5,
+        "cannibalization_safety": 2
+      },
+      "blockers": [
+        "existing_intent_overlap",
+        "keyword_variant"
+      ]
+    },
+    {
+      "id": "shadow-18-existing-pc-variant",
+      "title": "قطره‌چکان PC برای زمین شیب‌دار",
+      "topic_cluster": "existing-pc-variant",
+      "scenario_dimensions": {
+        "decision": "قطره‌چکان PC برای زمین شیب‌دار"
+      },
+      "scores": {
+        "farmer_decision_value": 13,
+        "independent_intent": 8,
+        "evidence_strength": 7,
+        "demand_signal": 8,
+        "seasonal_relevance": 6,
+        "business_relevance": 7,
+        "original_value_potential": 5,
+        "cannibalization_safety": 2
+      },
+      "blockers": [
+        "existing_intent_overlap"
+      ]
+    },
+    {
+      "id": "shadow-19-news-drought-today",
+      "title": "خبر امروز خشکسالی و اثر فوری آن",
+      "topic_cluster": "news-drought-today",
+      "scenario_dimensions": {
+        "decision": "خبر امروز خشکسالی و اثر فوری آن"
+      },
+      "scores": {
+        "farmer_decision_value": 13,
+        "independent_intent": 8,
+        "evidence_strength": 7,
+        "demand_signal": 8,
+        "seasonal_relevance": 6,
+        "business_relevance": 7,
+        "original_value_potential": 5,
+        "cannibalization_safety": 2
+      },
+      "blockers": [
+        "news_routing"
+      ]
+    },
+    {
+      "id": "shadow-20-province-only-variant",
+      "title": "نوار تیپ در استان فارس",
+      "topic_cluster": "province-only-variant",
+      "scenario_dimensions": {
+        "decision": "نوار تیپ در استان فارس"
+      },
+      "scores": {
+        "farmer_decision_value": 13,
+        "independent_intent": 8,
+        "evidence_strength": 7,
+        "demand_signal": 8,
+        "seasonal_relevance": 6,
+        "business_relevance": 7,
+        "original_value_potential": 5,
+        "cannibalization_safety": 2
+      },
+      "blockers": [
+        "scaled_geo_variant"
+      ]
+    },
+    {
+      "id": "shadow-21-sales-only-filter",
+      "title": "بهترین فیلتر برای خرید فوری",
+      "topic_cluster": "sales-only-filter",
+      "scenario_dimensions": {
+        "decision": "بهترین فیلتر برای خرید فوری"
+      },
+      "scores": {
+        "farmer_decision_value": 13,
+        "independent_intent": 8,
+        "evidence_strength": 7,
+        "demand_signal": 8,
+        "seasonal_relevance": 6,
+        "business_relevance": 7,
+        "original_value_potential": 5,
+        "cannibalization_safety": 2
+      },
+      "blockers": [
+        "sales_only"
+      ]
+    },
+    {
+      "id": "shadow-22-generic-irrigation-benefits",
+      "title": "مزایای آبیاری قطره‌ای",
+      "topic_cluster": "generic-irrigation-benefits",
+      "scenario_dimensions": {
+        "decision": "مزایای آبیاری قطره‌ای"
+      },
+      "scores": {
+        "farmer_decision_value": 13,
+        "independent_intent": 8,
+        "evidence_strength": 7,
+        "demand_signal": 8,
+        "seasonal_relevance": 6,
+        "business_relevance": 7,
+        "original_value_potential": 5,
+        "cannibalization_safety": 2
+      },
+      "blockers": [
+        "generic_ai"
+      ]
+    },
+    {
+      "id": "shadow-23-weak-claim-yield",
+      "title": "افزایش قطعی عملکرد با یک روش آبیاری",
+      "topic_cluster": "weak-claim-yield",
+      "scenario_dimensions": {
+        "decision": "افزایش قطعی عملکرد با یک روش آبیاری"
+      },
+      "scores": {
+        "farmer_decision_value": 13,
+        "independent_intent": 8,
+        "evidence_strength": 7,
+        "demand_signal": 8,
+        "seasonal_relevance": 6,
+        "business_relevance": 7,
+        "original_value_potential": 5,
+        "cannibalization_safety": 2
+      },
+      "blockers": [
+        "fabricated_claim_required",
+        "insufficient_evidence"
+      ]
+    },
+    {
+      "id": "shadow-24-price-today-tape",
+      "title": "قیمت امروز نوار تیپ",
+      "topic_cluster": "price-today-tape",
+      "scenario_dimensions": {
+        "decision": "قیمت امروز نوار تیپ"
+      },
+      "scores": {
+        "farmer_decision_value": 13,
+        "independent_intent": 8,
+        "evidence_strength": 7,
+        "demand_signal": 8,
+        "seasonal_relevance": 6,
+        "business_relevance": 7,
+        "original_value_potential": 5,
+        "cannibalization_safety": 2
+      },
+      "blockers": [
+        "news_routing",
+        "sales_only"
+      ]
+    },
+    {
+      "id": "shadow-25-tomato-fars-spelling",
+      "title": "نوار تیپ گوجه فارس یک هکتار - نسخه دوم",
+      "topic_cluster": "tomato-fars-spelling",
+      "scenario_dimensions": {
+        "decision": "نوار تیپ گوجه فارس یک هکتار - نسخه دوم"
+      },
+      "scores": {
+        "farmer_decision_value": 13,
+        "independent_intent": 8,
+        "evidence_strength": 7,
+        "demand_signal": 8,
+        "seasonal_relevance": 6,
+        "business_relevance": 7,
+        "original_value_potential": 5,
+        "cannibalization_safety": 2
+      },
+      "blockers": [
+        "keyword_variant"
+      ]
+    },
+    {
+      "id": "shadow-26-pistachio-kerman-filter-variant",
+      "title": "فیلتر پسته کرمان",
+      "topic_cluster": "pistachio-kerman-filter-variant",
+      "scenario_dimensions": {
+        "decision": "فیلتر پسته کرمان"
+      },
+      "scores": {
+        "farmer_decision_value": 13,
+        "independent_intent": 8,
+        "evidence_strength": 7,
+        "demand_signal": 8,
+        "seasonal_relevance": 6,
+        "business_relevance": 7,
+        "original_value_potential": 5,
+        "cannibalization_safety": 2
+      },
+      "blockers": [
+        "scaled_geo_variant"
+      ]
+    },
+    {
+      "id": "shadow-27-fertigation-copy",
+      "title": "تزریق کود در قطره‌ای؛ نسخه کوتاه",
+      "topic_cluster": "fertigation-copy",
+      "scenario_dimensions": {
+        "decision": "تزریق کود در قطره‌ای؛ نسخه کوتاه"
+      },
+      "scores": {
+        "farmer_decision_value": 13,
+        "independent_intent": 8,
+        "evidence_strength": 7,
+        "demand_signal": 8,
+        "seasonal_relevance": 6,
+        "business_relevance": 7,
+        "original_value_potential": 5,
+        "cannibalization_safety": 2
+      },
+      "blockers": [
+        "existing_intent_overlap"
+      ]
+    },
+    {
+      "id": "shadow-28-du-copy",
+      "title": "محاسبه DU آبیاری قطره‌ای",
+      "topic_cluster": "du-copy",
+      "scenario_dimensions": {
+        "decision": "محاسبه DU آبیاری قطره‌ای"
+      },
+      "scores": {
+        "farmer_decision_value": 13,
+        "independent_intent": 8,
+        "evidence_strength": 7,
+        "demand_signal": 8,
+        "seasonal_relevance": 6,
+        "business_relevance": 7,
+        "original_value_potential": 5,
+        "cannibalization_safety": 2
+      },
+      "blockers": [
+        "existing_intent_overlap"
+      ]
+    },
+    {
+      "id": "shadow-29-pressure-regulator-copy",
+      "title": "خرید فشارشکن قطره‌ای",
+      "topic_cluster": "pressure-regulator-copy",
+      "scenario_dimensions": {
+        "decision": "خرید فشارشکن قطره‌ای"
+      },
+      "scores": {
+        "farmer_decision_value": 13,
+        "independent_intent": 8,
+        "evidence_strength": 7,
+        "demand_signal": 8,
+        "seasonal_relevance": 6,
+        "business_relevance": 7,
+        "original_value_potential": 5,
+        "cannibalization_safety": 2
+      },
+      "blockers": [
+        "existing_intent_overlap",
+        "sales_only"
+      ]
+    },
+    {
+      "id": "shadow-30-soil-sampling-copy",
+      "title": "روش نمونه‌گیری خاک",
+      "topic_cluster": "soil-sampling-copy",
+      "scenario_dimensions": {
+        "decision": "روش نمونه‌گیری خاک"
+      },
+      "scores": {
+        "farmer_decision_value": 13,
+        "independent_intent": 8,
+        "evidence_strength": 7,
+        "demand_signal": 8,
+        "seasonal_relevance": 6,
+        "business_relevance": 7,
+        "original_value_potential": 5,
+        "cannibalization_safety": 2
+      },
+      "blockers": [
+        "existing_intent_overlap"
+      ]
+    }
+  ]
+}

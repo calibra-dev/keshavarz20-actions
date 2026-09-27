@@ -28,7 +28,13 @@ If no topic clears the quality gate, **skip the day**. A skipped weak article is
 
 ## 2) Research and topic selection
 
-Deep-search current web sources and inspect recent normal Keshavarz20 posts before choosing a topic. **Routing gate:** if a candidate is primarily a fresh event, announcement, outbreak/current incident, current policy action, or time-sensitive market/news development, reject it from this engine and leave it to `daily-agri-news`. Score durable candidates on:
+Before choosing a topic, read `growth-os/intent-registry.json`, `growth-os/content-registry.json`, and `growth-os/evidence-registry.json`. Treat the registry as a cannibalization and routing guard, not as permission to trust stale facts. Deep-search current web sources and inspect recent normal Keshavarz20 posts before choosing a topic. **Routing gate:** if a candidate is primarily a fresh event, announcement, outbreak/current incident, current policy action, or time-sensitive market/news development, reject it from this engine and leave it to `daily-agri-news`. Build the Iran Agriculture Intent Graph from real decision dimensions only:
+
+`Crop × Province/Climate × Season × Area × Water × Soil × Irrigation System × Problem × Decision`
+
+The graph is a decision model, not a scaled-URL generator. A province/crop/keyword variation alone is not an independent intent.
+
+Score durable candidates on:
 
 - Iranian farmer relevance
 - search intent and recurring question demand
@@ -38,6 +44,23 @@ Deep-search current web sources and inspect recent normal Keshavarz20 posts befo
 - ability to support claims with credible evidence
 - opportunity to connect naturally to existing tools, guides, categories or products
 - potential to become a durable reference/citation source rather than a temporary keyword page
+
+### Phase 20 topic score — hard gate
+
+Record a 100-point score in the queue metadata:
+
+- farmer decision value: 20
+- independent intent: 15
+- evidence strength: 15
+- search/AI demand signal: 15
+- seasonal relevance: 10
+- internal business relevance: 10
+- original value potential: 10
+- cannibalization safety: 5
+
+A new article needs **85/100 or higher and zero blockers**. Blockers include keyword-only variants, material overlap with an existing canonical intent, insufficient evidence, a fabricated claim requirement, news routing, sales-only intent, generic AI filler, or scaled geographic variants.
+
+If a strong existing URL covers the intent, propose/update that URL instead of creating a new one. If the signal is event/time-sensitive, route it to News. If it is product-specific uncertainty, route it to Question. If it is a compatibility gap, route it to Product Data/Compatibility backlog.
 
 ### Evidence hierarchy
 
@@ -128,6 +151,16 @@ Prepare all queue fields required by the publisher, including:
 - optional `cover_subtitle`: maximum **12 words**, maximum two rendered lines
 - descriptive `alt_text`
 - adaptive `faq_items` (0 or 3–8)
+- `phase20_schema_version` = `1`
+- `canonical_intent_id`
+- `parent_hub`
+- `scenario_dimensions` using only Crop/Province-Climate/Season/Area/Water/Soil/Irrigation-System/Problem/Decision
+- `source_strength`
+- `question_engine_intents_covered`
+- `compatibility_rules_referenced`
+- `membership_cta_type`
+- `update_triggers`
+- `topic_score` with component scores, total and empty blockers
 
 Do not create SEO fields by stuffing exact-match phrases. Titles, headings and metadata must describe the page accurately.
 
@@ -159,6 +192,8 @@ Before queueing:
 ## 8) Queue and WordPress safety
 
 Phase 16 provenance gate: the final `content_html` must visibly contain `منابع`, `نظر کارشناسی کشاورز بیست`, and `روش تهیه و بازبینی`, and must link to the public editorial policy. If a named Person author or reviewer is used, verify the identity and role first; otherwise use the responsible organization/editorial team and do not invent a person.
+
+For all new queues generated on or after 2026-09-27, Phase 20 metadata is mandatory and the publisher fails closed if the score is below 85, blockers exist, FAQ exceeds 8, or the canonical intent already has a URL without an explicit update path.
 
 If every gate passes, write exactly one queue JSON to:
 

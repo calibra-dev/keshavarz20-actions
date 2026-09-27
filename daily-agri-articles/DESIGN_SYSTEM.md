@@ -58,4 +58,4 @@ Recommended main wrapper:
 
 Keshavarz20 is a specialist agricultural retailer. Content should help the reader diagnose and choose correctly before buying. Do not force a purchase into every section. When a replacement or purchase is genuinely relevant, state the exact information needed for a correct recommendation (pressure, flow, size, connection, water source, crop, field conditions, existing model, etc.). Avoid empty CTAs, fake scarcity, exaggerated superiority and generic "buy now" language.
 
-For full troubleshooting, buying, calculator, maintenance and agronomy guides, the default finish includes 15 useful FAQs plus a clearly separated «نظر کارشناسی کشاورز بیست» card.
+For full troubleshooting, buying, calculator, maintenance and agronomy guides, FAQ is adaptive: use none when it adds no distinct decision value, otherwise use 3–8 intent-backed Q&As. Never add filler questions to reach a quota. Always keep a clearly separated «نظر کارشناسی کشاورز بیست» card.
