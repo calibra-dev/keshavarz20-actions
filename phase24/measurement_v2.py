@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 PLATFORMS = (
@@ -93,17 +94,29 @@ def validate_observation(obs: dict[str, Any], prompt_ids: set[str]) -> None:
         raise Phase24Error("citation KPI requires DIRECT_SURFACE_CAPTURE evidence")
     if not isinstance(obs["citation_urls"], list):
         raise Phase24Error("citation_urls must be a list")
+    if any(not isinstance(u, str) or urlsplit(u).scheme != "https" for u in obs["citation_urls"]):
+        raise Phase24Error("citation_urls must contain HTTPS URLs")
     cited = bool(obs["keshavarz20_cited"])
-    has_k20_url = any("keshavarz20.com" in str(u).lower() for u in obs["citation_urls"])
+    has_k20_url = any(
+        (urlsplit(u).hostname or "").lower() == "keshavarz20.com"
+        or (urlsplit(u).hostname or "").lower().endswith(".keshavarz20.com")
+        for u in obs["citation_urls"]
+    )
     if cited != has_k20_url:
         raise Phase24Error("keshavarz20_cited must match captured citation URLs")
 
 
 def compute_direct_kpis(bank: dict[str, Any], registry: dict[str, Any]) -> dict[str, Any]:
-    prompt_ids = {x["prompt_id"] for x in bank["records"]}
+    assignments = {x["prompt_id"]: x["planned_platform_model"] for x in bank["records"]}
     observations = registry.get("observations") or []
+    seen = set()
     for obs in observations:
-        validate_observation(obs, prompt_ids)
+        validate_observation(obs, set(assignments))
+        if obs["surface"] != assignments[obs["prompt_id"]]:
+            raise Phase24Error("observation surface does not match prompt assignment")
+        if obs["prompt_id"] in seen:
+            raise Phase24Error("duplicate prompt observation")
+        seen.add(obs["prompt_id"])
 
     if not observations:
         return {
@@ -124,7 +137,8 @@ def compute_direct_kpis(bank: dict[str, Any], registry: dict[str, Any]) -> dict[
         u
         for x in observations
         for u in x.get("citation_urls", [])
-        if "keshavarz20.com" in str(u).lower()
+        if (urlsplit(u).hostname or "").lower() == "keshavarz20.com"
+        or (urlsplit(u).hostname or "").lower().endswith(".keshavarz20.com")
     }
     observed_prompts = {x["prompt_id"] for x in observations}
 
