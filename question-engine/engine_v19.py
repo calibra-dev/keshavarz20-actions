@@ -127,11 +127,19 @@ def _v19_candidates(p, fam, style, rng):
             f"برای سایزبندی {name} قبل از سفارش، دبی طراحی، طول مسیر، اختلاف ارتفاع، فشار قابل‌قبول و تعداد انشعاب‌ها رو باید کنار هم داشته باشم؟",
         )
     elif fam == "fitting":
-        add(
-            "compatibility",
-            "v19:fitting:interface-photo",
-            f"برای اینکه {name} اشتباه سفارش داده نشه، عکس اتصال فعلی، قطر واقعی یا سایز اسمی، جنس خط و نوع رزوه یا رابط دو طرف رو باید تطبیق بدم؟",
-        )
+        subtype = q.fitting_subtype(p)
+        if subtype == "tee":
+            add(
+                "compatibility",
+                "v19:fitting:interface-photo:tee",
+                f"برای اینکه {name} اشتباه سفارش داده نشه، عکس اتصال فعلی، قطر واقعی یا سایز اسمی، جنس خط و اندازه و نوع اتصال هر سه شاخه رو باید تطبیق بدم؟",
+            )
+        else:
+            add(
+                "compatibility",
+                "v19:fitting:interface-photo",
+                f"برای اینکه {name} اشتباه سفارش داده نشه، عکس اتصال فعلی، قطر واقعی یا سایز اسمی، جنس خط و نوع رزوه یا رابط سمت‌های درگیر رو باید تطبیق بدم؟",
+            )
     elif fam in {"valve", "automatic_valve", "air_valve"}:
         add(
             "compatibility",
