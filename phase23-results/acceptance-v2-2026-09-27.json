@@ -2,26 +2,70 @@
   "phase": 23,
   "title": "Lifecycle & Freshness Governance v2",
   "verified_at": "2026-09-27",
-  "status": "PASS_STATIC_V2_AWAITING_LIVE_AUDIT",
+  "status": "PASS_LIFECYCLE_GOVERNANCE_V2",
+  "source_of_truth": {
+    "live_result": "phase23-results/lifecycle-freshness-v2-latest.json",
+    "live_result_sha": "3f002d4d3786be4c124acb760b462f6339b89821",
+    "workflow_run_id": 36299880998,
+    "live_evidence_commit": "55b9b9e4512e4843a62e46a98b4c4950b40a2a01",
+    "implementation_merge_commit": "d0f27c080a42b992d3eeaa0e4932813774cc4aa1"
+  },
   "dependencies": {
     "phase20_intent_graph": "PASS_CANARY_DRAFT",
     "phase21_authority_network": "PASS_IRAN_FIRST_AUTHORITY_V2",
     "phase22_decision_model": "PASS_FUNCTIONAL_V2_GUARDED_DEPLOYMENT"
   },
-  "model": {
-    "version": "k20-lifecycle-governance-v2",
-    "wp_content_classes": [
-      "posts",
-      "pages",
-      "products"
-    ],
-    "governance_assets": [
-      "intent_graph",
-      "authority_network",
-      "decision_model"
-    ],
-    "priority_queue": true,
-    "stock_transition_watch": true
+  "live_inventory": {
+    "posts": 51,
+    "pages": 47,
+    "products": 709
+  },
+  "review_queue": {
+    "count": 206,
+    "priority_counts": {
+      "P0": 0,
+      "P1": 0,
+      "P2": 206,
+      "P3": 0
+    },
+    "stock_transition_watch": {
+      "outofstock": 206,
+      "onbackorder": 0,
+      "unknown": 0
+    },
+    "interpretation": "Current queue is a verification queue. Out-of-stock is not treated as discontinued and does not trigger redirects, canonical changes, status changes, or freshness-date writes."
+  },
+  "governance_assets": [
+    {
+      "asset_id": "phase20-intent-graph",
+      "age_days": 0,
+      "review_due": false,
+      "review_days": 90,
+      "trigger": "intent conflict, duplicate URL attempt, material routing change"
+    },
+    {
+      "asset_id": "phase21-authority-network",
+      "age_days": 0,
+      "review_due": false,
+      "review_days": 90,
+      "trigger": "source invalidation, manufacturer evidence change, new first-party evidence"
+    },
+    {
+      "asset_id": "phase22-decision-model",
+      "age_days": 0,
+      "review_due": false,
+      "review_days": 90,
+      "trigger": "decision rule change, compatibility schema change, tool-route change"
+    }
+  ],
+  "checks": {
+    "dependencies_current": true,
+    "no_fake_freshness": true,
+    "outofstock_not_discontinued": true,
+    "no_auto_redirect_inference": true,
+    "no_auto_canonical_change": true,
+    "no_bulk_rewrite": true,
+    "live_inventory_nonempty": true
   },
   "safeguards": {
     "no_fake_dateModified": true,
@@ -30,7 +74,31 @@
     "no_auto_redirect": true,
     "no_auto_canonical_change": true,
     "no_bulk_rewrite_for_freshness": true,
-    "audit_is_read_only": true
+    "live_audit_read_only": true,
+    "stock_state_does_not_fake_content_freshness": true
   },
-  "next_gate": "Run live WordPress/WooCommerce audit on main with repository secrets and persist sanitized result."
+  "mutations": {
+    "content": 0,
+    "dateModified": 0,
+    "stock": 0,
+    "price": 0,
+    "status": 0,
+    "redirect": 0,
+    "canonical": 0
+  },
+  "acceptance_basis": [
+    "Static regression gate passed on the Phase 23 v2 implementation.",
+    "Authenticated WordPress/WooCommerce live audit completed successfully on main.",
+    "Sanitized live evidence was persisted to the repository.",
+    "All dependency and anti-fake-freshness checks passed.",
+    "No commerce or content mutation was performed by the audit."
+  ],
+  "remaining_operational_work": {
+    "blocks_phase23": false,
+    "items": [
+      "Review the 206 P2 out-of-stock products as a supply-state verification queue when business operations require it.",
+      "Do not infer discontinuation from this queue without explicit evidence.",
+      "Re-run governance when lifecycle evidence, canonical ownership, compatibility rules, or source validity materially changes."
+    ]
+  }
 }
