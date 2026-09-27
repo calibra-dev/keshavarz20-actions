@@ -20,6 +20,7 @@ def main():
         raise SystemExit("No catalog products")
     rng = random.Random(190027)
     generated = []
+    history = []
     blockers = []
     per_product = {}
 
@@ -29,13 +30,15 @@ def main():
         for seed in range(6):
             local = random.Random((int(p["id"]) * 1009) + seed)
             style = ("colloquial", "experienced", "technical")[seed % 3]
-            for item in q.guarded_candidates(p, fam, style, local):
+            candidates = list(q.guarded_candidates(p, fam, style, local) or [])
+            local.shuffle(candidates)
+            for item in candidates:
                 question = q.b.wrap(str(item.get("core") or ""), False, style, local)
                 ok, reason = q.consistency_guard(p, item, question)
                 if not ok:
                     blockers.append({"product_id": int(p["id"]), "key": item.get("key"), "reason": reason})
                     continue
-                score, reason = q.question_quality(p, question, item, fam, [])
+                score, reason = q.question_quality(p, question, item, fam, history[-200:])
                 if score < 97:
                     continue
                 pub = q.public_plan({
@@ -43,15 +46,14 @@ def main():
                     "style": style, "polite": False, "score": score, "catalog_size": len(products),
                 })
                 generated.append(pub)
+                history.append(pub["question"])
                 row = per_product[str(p["id"])]
                 row["count"] += 1
                 row["intents"].add(pub["intent_v19"])
                 row["scenario_keys"].update((pub.get("scenario_dimensions") or {}).keys())
-                # Keep scanning this product until at least one approved candidate exists.
-                # After catalog-wide coverage is achieved, enrichment is capped below.
-                if per_product[str(p["id"])]["count"] >= 1 and len(generated) >= 2400:
+                if per_product[str(p["id"])]["count"] >= 3:
                     break
-            if per_product[str(p["id"])]["count"] >= 1 and len(generated) >= 2400:
+            if per_product[str(p["id"])]["count"] >= 3:
                 break
 
     uncovered=[int(pid) for pid,row in per_product.items() if int(row["count"]) < 1]
