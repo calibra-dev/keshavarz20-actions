@@ -25,3 +25,5 @@ for pat in forbidden:
 
 assert "price" not in re.sub(r"اطلاعات قیمت", "", s).lower()
 print("PASS membership snippet static guard")
+
+assert '<?php' not in s and '?>' not in s, 'php_tags'
