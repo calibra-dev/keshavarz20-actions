@@ -1,0 +1,253 @@
+/**
+ * Keshavarz20 Membership Value Engine v1
+ * Draft/inactive source for Bridge 3.3 Secure Relay.
+ * Stores only user-initiated project/calculation/reference data for the logged-in user.
+ */
+if (!defined('ABSPATH')) { return; }
+
+if (!function_exists('k20_mv_now')) {
+    function k20_mv_now() {
+        return gmdate('c');
+    }
+}
+
+if (!function_exists('k20_mv_user_id')) {
+    function k20_mv_user_id() {
+        return is_user_logged_in() ? get_current_user_id() : 0;
+    }
+}
+
+if (!function_exists('k20_mv_state')) {
+    function k20_mv_state($user_id) {
+        $raw = get_user_meta($user_id, '_k20_member_value_v1', true);
+        $state = is_array($raw) ? $raw : array();
+        foreach (array('projects','calculations','proforma_refs','question_refs') as $key) {
+            if (!isset($state[$key]) || !is_array($state[$key])) {
+                $state[$key] = array();
+            }
+        }
+        return $state;
+    }
+}
+
+if (!function_exists('k20_mv_save_state')) {
+    function k20_mv_save_state($user_id, $state) {
+        foreach (array('projects','calculations','proforma_refs','question_refs') as $key) {
+            if (isset($state[$key]) && is_array($state[$key])) {
+                $state[$key] = array_slice(array_values($state[$key]), -20);
+            }
+        }
+        update_user_meta($user_id, '_k20_member_value_v1', $state);
+    }
+}
+
+if (!function_exists('k20_mv_text')) {
+    function k20_mv_text($value, $max = 120) {
+        $value = sanitize_text_field((string) $value);
+        if (function_exists('mb_substr')) {
+            return mb_substr($value, 0, $max);
+        }
+        return substr($value, 0, $max);
+    }
+}
+
+if (!function_exists('k20_mv_number')) {
+    function k20_mv_number($value, $min = 0, $max = 1000000) {
+        if ($value === '' || $value === null) { return null; }
+        $n = (float) $value;
+        if (!is_finite($n)) { return null; }
+        return max($min, min($max, $n));
+    }
+}
+
+if (!function_exists('k20_mv_rest_permission')) {
+    function k20_mv_rest_permission($request) {
+        return is_user_logged_in() && wp_verify_nonce((string) $request->get_header('X-WP-Nonce'), 'wp_rest');
+    }
+}
+
+if (!function_exists('k20_mv_register_routes')) {
+    function k20_mv_register_routes() {
+        register_rest_route('k20-member/v1', '/state', array(
+            'methods' => 'GET',
+            'permission_callback' => 'k20_mv_rest_permission',
+            'callback' => function() {
+                $uid = k20_mv_user_id();
+                return rest_ensure_response(array('ok'=>true, 'state'=>k20_mv_state($uid)));
+            },
+        ));
+
+        register_rest_route('k20-member/v1', '/project', array(
+            'methods' => 'POST',
+            'permission_callback' => 'k20_mv_rest_permission',
+            'callback' => function($request) {
+                $uid = k20_mv_user_id();
+                $p = (array) $request->get_json_params();
+                $project = array(
+                    'id' => 'prj_' . wp_generate_uuid4(),
+                    'name' => k20_mv_text($p['name'] ?? '', 100),
+                    'crop' => k20_mv_text($p['crop'] ?? '', 80),
+                    'province' => k20_mv_text($p['province'] ?? '', 80),
+                    'area_ha' => k20_mv_number($p['area_ha'] ?? null, 0, 100000),
+                    'water_source' => k20_mv_text($p['water_source'] ?? '', 80),
+                    'pressure_bar' => k20_mv_number($p['pressure_bar'] ?? null, 0, 100),
+                    'created_at' => k20_mv_now(),
+                );
+                if ($project['name'] === '') {
+                    return new WP_Error('k20_project_name_required', 'نام پروژه الزامی است.', array('status'=>400));
+                }
+                $state = k20_mv_state($uid);
+                $state['projects'][] = $project;
+                k20_mv_save_state($uid, $state);
+                return rest_ensure_response(array('ok'=>true,'event'=>'project_saved','project'=>$project));
+            },
+        ));
+
+        register_rest_route('k20-member/v1', '/calculation', array(
+            'methods' => 'POST',
+            'permission_callback' => 'k20_mv_rest_permission',
+            'callback' => function($request) {
+                $uid = k20_mv_user_id();
+                $p = (array) $request->get_json_params();
+                $calc = array(
+                    'id' => 'calc_' . wp_generate_uuid4(),
+                    'tool' => k20_mv_text($p['tool'] ?? '', 80),
+                    'label' => k20_mv_text($p['label'] ?? '', 120),
+                    'input_summary' => k20_mv_text($p['input_summary'] ?? '', 500),
+                    'result_summary' => k20_mv_text($p['result_summary'] ?? '', 500),
+                    'created_at' => k20_mv_now(),
+                );
+                if ($calc['tool'] === '' || $calc['label'] === '') {
+                    return new WP_Error('k20_calculation_fields_required', 'ابزار و عنوان محاسبه الزامی است.', array('status'=>400));
+                }
+                $state = k20_mv_state($uid);
+                $state['calculations'][] = $calc;
+                k20_mv_save_state($uid, $state);
+                return rest_ensure_response(array('ok'=>true,'event'=>'calculation_saved','calculation'=>$calc));
+            },
+        ));
+
+        register_rest_route('k20-member/v1', '/proforma-reference', array(
+            'methods' => 'POST',
+            'permission_callback' => 'k20_mv_rest_permission',
+            'callback' => function($request) {
+                $uid = k20_mv_user_id();
+                $p = (array) $request->get_json_params();
+                $row = array(
+                    'id' => 'pro_' . wp_generate_uuid4(),
+                    'reference' => k20_mv_text($p['reference'] ?? '', 120),
+                    'label' => k20_mv_text($p['label'] ?? 'درخواست پیش‌فاکتور', 120),
+                    'created_at' => k20_mv_now(),
+                );
+                if ($row['reference'] === '') {
+                    return new WP_Error('k20_reference_required', 'شناسه پیگیری لازم است.', array('status'=>400));
+                }
+                $state = k20_mv_state($uid);
+                $state['proforma_refs'][] = $row;
+                k20_mv_save_state($uid, $state);
+                return rest_ensure_response(array('ok'=>true,'event'=>'proforma_requested','reference'=>$row));
+            },
+        ));
+
+        register_rest_route('k20-member/v1', '/question-reference', array(
+            'methods' => 'POST',
+            'permission_callback' => 'k20_mv_rest_permission',
+            'callback' => function($request) {
+                $uid = k20_mv_user_id();
+                $p = (array) $request->get_json_params();
+                $row = array(
+                    'id' => 'q_' . wp_generate_uuid4(),
+                    'reference' => k20_mv_text($p['reference'] ?? '', 120),
+                    'label' => k20_mv_text($p['label'] ?? 'پرسش فنی', 160),
+                    'created_at' => k20_mv_now(),
+                );
+                if ($row['reference'] === '') {
+                    return new WP_Error('k20_reference_required', 'شناسه پرسش لازم است.', array('status'=>400));
+                }
+                $state = k20_mv_state($uid);
+                $state['question_refs'][] = $row;
+                k20_mv_save_state($uid, $state);
+                return rest_ensure_response(array('ok'=>true,'event'=>'technical_question_submitted','reference'=>$row));
+            },
+        ));
+    }
+    add_action('rest_api_init', 'k20_mv_register_routes');
+}
+
+if (!function_exists('k20_mv_mark_registration')) {
+    function k20_mv_mark_registration($customer_id) {
+        if ($customer_id) {
+            update_user_meta((int) $customer_id, '_k20_mv_registration_pending', 1);
+        }
+    }
+    add_action('woocommerce_created_customer', 'k20_mv_mark_registration', 20, 1);
+}
+
+if (!function_exists('k20_mv_dashboard')) {
+    function k20_mv_dashboard() {
+        if (!is_user_logged_in()) { return; }
+        $uid = k20_mv_user_id();
+        $state = k20_mv_state($uid);
+        $nonce = wp_create_nonce('wp_rest');
+        $endpoint = esc_url_raw(rest_url('k20-member/v1'));
+        ?>
+        <section class="k20-member-value" dir="rtl" aria-labelledby="k20-member-value-title">
+            <h2 id="k20-member-value-title">پروژه‌ها و محاسبات ذخیره‌شده</h2>
+            <p>اطلاعات این بخش فقط برای ادامه تصمیم‌گیری فنی شما ذخیره می‌شود. اطلاعات قیمت، سفارش یا پرداخت در این بخش ذخیره نمی‌شود.</p>
+
+            <form id="k20-project-form">
+                <p><label>نام پروژه <input name="name" required maxlength="100"></label></p>
+                <p><label>کشت <input name="crop" maxlength="80"></label></p>
+                <p><label>استان <input name="province" maxlength="80"></label></p>
+                <p><label>مساحت (هکتار) <input name="area_ha" type="number" min="0" step="0.01"></label></p>
+                <p><label>منبع آب <input name="water_source" maxlength="80"></label></p>
+                <p><label>فشار تقریبی (bar) <input name="pressure_bar" type="number" min="0" step="0.1"></label></p>
+                <p><button type="submit">ذخیره پروژه</button></p>
+                <p class="k20-feedback" role="status" aria-live="polite"></p>
+            </form>
+
+            <h3>پروژه‌های من</h3>
+            <ul>
+            <?php foreach (array_reverse($state['projects']) as $project): ?>
+                <li><?php echo esc_html($project['name']); ?><?php if (!empty($project['crop'])): ?> — <?php echo esc_html($project['crop']); ?><?php endif; ?></li>
+            <?php endforeach; ?>
+            </ul>
+
+            <h3>محاسبات ذخیره‌شده</h3>
+            <ul>
+            <?php foreach (array_reverse($state['calculations']) as $calc): ?>
+                <li><?php echo esc_html($calc['label']); ?> — <?php echo esc_html($calc['tool']); ?></li>
+            <?php endforeach; ?>
+            </ul>
+        </section>
+        <script>
+        (function(){
+            var root=<?php echo wp_json_encode($endpoint); ?>;
+            var nonce=<?php echo wp_json_encode($nonce); ?>;
+            window.dataLayer=window.dataLayer||[];
+            var form=document.getElementById('k20-project-form');
+            if(form){
+                form.addEventListener('submit',function(e){
+                    e.preventDefault();
+                    var fd=new FormData(form), payload={};
+                    fd.forEach(function(v,k){payload[k]=v;});
+                    fetch(root+'/project',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json','X-WP-Nonce':nonce},body:JSON.stringify(payload)})
+                    .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
+                    .then(function(x){
+                        var box=form.querySelector('.k20-feedback');
+                        if(!x.ok){box.textContent=(x.j&&x.j.message)?x.j.message:'ذخیره پروژه انجام نشد.';return;}
+                        box.textContent='پروژه ذخیره شد.';
+                        window.dataLayer.push({event:'project_saved',source:'k20_member_value'});
+                    }).catch(function(){form.querySelector('.k20-feedback').textContent='خطا در ارتباط. دوباره تلاش کنید.';});
+                });
+            }
+            <?php if ((int) get_user_meta($uid, '_k20_mv_registration_pending', true) === 1): ?>
+            window.dataLayer.push({event:'registration_completed',source:'k20_member_value'});
+            <?php delete_user_meta($uid, '_k20_mv_registration_pending'); ?>
+            <?php endif; ?>
+        })();
+        </script>
+        <?php
+    }
+    add_action('woocommerce_account_dashboard', 'k20_mv_dashboard', 30);
+}
