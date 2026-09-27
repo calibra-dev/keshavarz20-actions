@@ -1,0 +1,40 @@
+name: Phase 21 Iran Authority Network
+
+on:
+  pull_request:
+    paths:
+      - 'phase21/**'
+      - 'phase21-results/**'
+      - 'phase17/evidence-cards.json'
+      - 'phase9-results/canonical-pim.json'
+      - 'growth-os/intent-registry.json'
+      - 'growthos-phase10-results/measurement-dashboard.json'
+      - 'question-engine-results/**'
+      - 'tests/test_phase21_authority.py'
+      - '.github/workflows/k21-phase21-authority.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'phase21/**'
+      - 'phase21-results/**'
+      - 'tests/test_phase21_authority.py'
+      - '.github/workflows/k21-phase21-authority.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-authority-network:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate Phase 21 source graph
+        run: |
+          python -m py_compile phase21/authority_registry.py
+          python phase21/authority_registry.py --check
+          python -m unittest tests.test_phase21_authority -v
