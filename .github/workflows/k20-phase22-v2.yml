@@ -1,0 +1,48 @@
+name: Phase 22 Farmer Decision v2
+
+on:
+  pull_request:
+    paths:
+      - 'phase22/**'
+      - 'phase22-results/**'
+      - 'phase21-results/authority-network-2026-09-27.json'
+      - 'growth-os/intent-registry.json'
+      - 'tests/test_phase22_v2.py'
+      - '.github/workflows/k20-phase22-v2.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'phase22/**'
+      - 'phase22-results/**'
+      - 'tests/test_phase22_v2.py'
+      - '.github/workflows/k20-phase22-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-farmer-decision-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and test
+        run: |
+          python -m py_compile phase22/decision_engine_v2.py
+          python -m unittest tests.test_phase22_v2 -v
+      - name: Run 12-case acceptance pack
+        run: |
+          python phase22/decision_engine_v2.py --cases phase22/validation-cases-v2.json --output /tmp/phase22-v2-report.json
+          python - <<'PY'
+          import json
+          p=json.load(open('/tmp/phase22-v2-report.json',encoding='utf-8'))
+          assert p['status']=='PASS_MODEL_VALIDATION_V2'
+          assert p['case_count']>=12
+          assert p['site_mutations']==0
+          assert p['commerce_mutations']==0
+          print(json.dumps({'status':p['status'],'cases':p['case_count']},ensure_ascii=False))
+          PY
