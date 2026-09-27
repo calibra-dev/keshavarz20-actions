@@ -14,7 +14,7 @@ q = m.q
 
 def main():
     cfg = q.b.load_cfg()
-    wp = q.FastWP()
+    wp = q.b.WP()
     products = wp.products(cfg)
     if not products:
         raise SystemExit("No catalog products")
@@ -23,8 +23,7 @@ def main():
     blockers = []
     per_product = {}
 
-    for basic in products:
-        p = wp.product(int(basic["id"]))
+    for p in products:
         fam = q.fam_of(p)
         per_product.setdefault(str(p["id"]), {"family": fam, "count": 0, "intents": set(), "scenario_keys": set()})
         for seed in range(6):
