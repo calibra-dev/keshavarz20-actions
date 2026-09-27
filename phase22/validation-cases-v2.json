@@ -1,0 +1,141 @@
+[
+  {
+    "case_id": "tomato-fars-complete",
+    "crop": "گوجه فرنگی",
+    "area_ha": 1,
+    "water_source": "well",
+    "water_quality": "clear",
+    "pressure_bar": 2.2,
+    "available_flow_m3h": 12,
+    "soil_texture": "لومی",
+    "region": "فارس",
+    "verified_compatibility_fields": {
+      "nominal_size": "verified",
+      "connection_type": "verified"
+    }
+  },
+  {
+    "case_id": "corn-khuzestan-saline",
+    "crop": "ذرت",
+    "area_ha": 4,
+    "water_source": "well",
+    "water_quality": "saline EC requires lab interpretation",
+    "pressure_bar": 1.8,
+    "available_flow_m3h": 30,
+    "soil_texture": "رسی",
+    "region": "خوزستان"
+  },
+  {
+    "case_id": "cucumber-greenhouse-clogging",
+    "crop": "خیار گلخانه‌ای",
+    "area_ha": 0.5,
+    "water_source": "well",
+    "water_quality": "sediment observed",
+    "pressure_bar": 2,
+    "available_flow_m3h": 8,
+    "soil_texture": "لومی",
+    "region": "گلخانه",
+    "fertigation": true
+  },
+  {
+    "case_id": "surface-water",
+    "crop": "گندم",
+    "area_ha": 3,
+    "water_source": "canal",
+    "water_quality": "turbid",
+    "pressure_bar": 1.6,
+    "available_flow_m3h": 22,
+    "soil_texture": "رسی",
+    "region": "خوزستان"
+  },
+  {
+    "case_id": "missing-pressure",
+    "crop": "پسته",
+    "area_ha": 2,
+    "water_source": "well",
+    "water_quality": "clear",
+    "available_flow_m3h": 15,
+    "soil_texture": "شنی",
+    "region": "کرمان"
+  },
+  {
+    "case_id": "missing-flow",
+    "crop": "انگور",
+    "area_ha": 1.5,
+    "water_source": "well",
+    "water_quality": "clear",
+    "pressure_bar": 2.1,
+    "soil_texture": "لومی",
+    "region": "فارس"
+  },
+  {
+    "case_id": "missing-water-quality",
+    "crop": "گوجه",
+    "area_ha": 1,
+    "water_source": "well",
+    "pressure_bar": 2,
+    "available_flow_m3h": 10,
+    "soil_texture": "لومی",
+    "region": "فارس"
+  },
+  {
+    "case_id": "uneven-terrain",
+    "crop": "باغ",
+    "area_ha": 2.5,
+    "water_source": "well",
+    "water_quality": "clear",
+    "pressure_bar": 2.5,
+    "available_flow_m3h": 20,
+    "soil_texture": "لومی",
+    "region": "شیب‌دار",
+    "uneven_terrain": true
+  },
+  {
+    "case_id": "fertigation",
+    "crop": "فلفل گلخانه‌ای",
+    "area_ha": 0.8,
+    "water_source": "well",
+    "water_quality": "clear",
+    "pressure_bar": 2,
+    "available_flow_m3h": 9,
+    "soil_texture": "لومی",
+    "region": "گلخانه",
+    "fertigation": true
+  },
+  {
+    "case_id": "invalid-area",
+    "crop": "ذرت",
+    "area_ha": 0,
+    "water_source": "well",
+    "water_quality": "clear",
+    "pressure_bar": 2,
+    "available_flow_m3h": 12,
+    "soil_texture": "رسی",
+    "region": "خوزستان"
+  },
+  {
+    "case_id": "invalid-pressure",
+    "crop": "گوجه",
+    "area_ha": 1,
+    "water_source": "well",
+    "water_quality": "clear",
+    "pressure_bar": 0,
+    "available_flow_m3h": 10,
+    "soil_texture": "لومی",
+    "region": "فارس"
+  },
+  {
+    "case_id": "compatibility-unverified",
+    "crop": "گوجه",
+    "area_ha": 1,
+    "water_source": "well",
+    "water_quality": "clear",
+    "pressure_bar": 2,
+    "available_flow_m3h": 10,
+    "soil_texture": "لومی",
+    "region": "فارس",
+    "verified_compatibility_fields": {
+      "nominal_size": "verified"
+    }
+  }
+]
