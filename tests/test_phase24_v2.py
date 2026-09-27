@@ -34,8 +34,43 @@ class Phase24Tests(unittest.TestCase):
     def test_referral_is_not_used_as_citation(self):
         report=mod.build_report()
         self.assertEqual(report["telemetry"]["ga4"]["chatgpt_referral"]["sessions"],3)
-        self.assertIsNone(report["direct_surface_kpis"]["citation_rate"])
         self.assertTrue(report["measurement_rules"]["referral_is_not_citation"])
+
+    def test_duplicate_prompt_observations_are_rejected(self):
+        bank=json.loads((ROOT/"phase24"/"prompt-bank-200-fa.json").read_text(encoding="utf-8"))
+        row=bank["records"][0]
+        obs={
+          "observation_id":"x","prompt_id":row["prompt_id"],
+          "surface":row["planned_platform_model"],"observed_at_utc":"2026-09-27T00:00:00Z",
+          "evidence_type":"DIRECT_SURFACE_CAPTURE","answer_present":True,
+          "keshavarz20_cited":False,"brand_mentioned":False,"citation_urls":[]
+        }
+        with self.assertRaises(mod.Phase24Error):
+            mod.compute_direct_kpis(bank,{"observations":[obs,obs]})
+
+    def test_wrong_surface_assignment_is_rejected(self):
+        bank=json.loads((ROOT/"phase24"/"prompt-bank-200-fa.json").read_text(encoding="utf-8"))
+        obs={
+          "observation_id":"x","prompt_id":bank["records"][0]["prompt_id"],
+          "surface":"Perplexity","observed_at_utc":"2026-09-27T00:00:00Z",
+          "evidence_type":"DIRECT_SURFACE_CAPTURE","answer_present":True,
+          "keshavarz20_cited":False,"brand_mentioned":False,"citation_urls":[]
+        }
+        with self.assertRaises(mod.Phase24Error):
+            mod.compute_direct_kpis(bank,{"observations":[obs]})
+
+    def test_lookalike_domain_is_not_k20_citation(self):
+        bank=json.loads((ROOT/"phase24"/"prompt-bank-200-fa.json").read_text(encoding="utf-8"))
+        obs={
+          "observation_id":"x","prompt_id":bank["records"][0]["prompt_id"],
+          "surface":bank["records"][0]["planned_platform_model"],
+          "observed_at_utc":"2026-09-27T00:00:00Z",
+          "evidence_type":"DIRECT_SURFACE_CAPTURE","answer_present":True,
+          "keshavarz20_cited":True,"brand_mentioned":False,
+          "citation_urls":["https://keshavarz20.com.example.com/"]
+        }
+        with self.assertRaises(mod.Phase24Error):
+            mod.compute_direct_kpis(bank,{"observations":[obs]})
 
     def test_dependency_stack_20_to_23_is_current(self):
         report=mod.build_report()
