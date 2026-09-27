@@ -118,9 +118,13 @@ def validate_phase20_metadata(payload: dict[str, Any], registry: dict[str, Any] 
     if registry is not None:
         cid = str(payload.get("canonical_intent_id") or "")
         for item in registry.get("intents", []):
-            if str(item.get("canonical_intent_id") or "") == cid and item.get("canonical_url"):
-                if not payload.get("update_post_id"):
-                    raise ValueError("canonical intent already has a URL; update/merge required instead of new URL")
+            if str(item.get("canonical_intent_id") or "") != cid:
+                continue
+            status = str(item.get("status") or "").strip().lower()
+            is_active = status not in {"retired", "rejected", "deleted"}
+            has_existing_asset = bool(item.get("canonical_url") or item.get("wordpress_post_id") or is_active)
+            if has_existing_asset and not payload.get("update_post_id"):
+                raise ValueError("canonical intent already exists in the registry; update/merge required instead of a new URL")
 
 
 def load_json(path: Path) -> dict[str, Any]:
