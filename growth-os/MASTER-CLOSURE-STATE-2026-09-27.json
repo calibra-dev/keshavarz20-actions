@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-27T18:48:00Z",
+  "generated_at_utc": "2026-09-27T18:59:00Z",
   "purpose": "master closure no-repeat state",
   "closed_or_guarded": [
     {
@@ -91,24 +91,23 @@
     {
       "phase": 17,
       "title": "Question Engine v19 production closure",
-      "status": "DIVERSITY_REVALIDATION_REQUIRED",
+      "status": "QA_PASS_LIVE_ACCEPTANCE_EVIDENCE_PENDING",
       "verified": {
-        "runtime_active_v19": true,
-        "full_catalog_products": 652,
+        "config_engine": "v19",
+        "catalog_products": 652,
         "products_covered": 652,
+        "approved_candidates": 3025,
         "uncovered": 0,
         "blocker_count": 0,
+        "semantic_duplicate_rate_last_200": 0.017186,
+        "duplicate_threshold": 0.1,
         "perlite_product_141442_family": "growing_media",
-        "latest_verified_semantic_duplicate_rate_last_200": 0.13402,
-        "required_max": 0.1
+        "synthetic_evidence_preserved": true
       },
-      "latest_verified_evidence": "question-engine-results/v19-catalog-qa.json",
-      "new_changes": [
-        "long product names preserve unique identity instead of collapsing to generic reference",
-        "growing_media has v19-specific technical candidates",
-        "full-catalog QA uses balanced rolling global history"
-      ],
-      "current_action": "balanced full-catalog diversity QA and final production status/dry-run were triggered; do not mark PASS until fresh readback is persisted"
+      "evidence": "question-engine-results/v19-catalog-qa.json",
+      "current_action": "Dedicated production acceptance workflow runs live status + live dry-run and persists PASS/FAIL evidence before enforcement.",
+      "acceptance_workflow": ".github/workflows/k20-question-engine-v19-acceptance.yml",
+      "acceptance_trigger": "question-engine-v19-acceptance-ops/20260927-final-r2.json"
     },
     {
       "phase": "21-roadmap",
@@ -119,7 +118,9 @@
         "snippet_id": 35,
         "active": false,
         "forced_inactive": true,
-        "code_sha256": "a8c1d16df9b1d7d1a9e909726d495248803cb08a7ea803dd897b5c48bab9997e"
+        "readback_verified": true,
+        "code_sha256": "a8c1d16df9b1d7d1a9e909726d495248803cb08a7ea803dd897b5c48bab9997e",
+        "readback_receipt": "bridge-v3-secure-receipts/20260927-membership-v1-readback.json"
       },
       "blocker": "Bridge 3.3 intentionally exposes no snippet activation action; no bypass permitted."
     },
