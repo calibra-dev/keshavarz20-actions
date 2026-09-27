@@ -1,0 +1,25 @@
+{
+  "phase": 24,
+  "recorded_at_utc": "2026-09-27T19:36:00Z",
+  "status": "EXTERNAL_DIRECT_SURFACES_REQUIRED",
+  "environment_assessment": {
+    "direct_perplexity_connector_available": false,
+    "direct_microsoft_copilot_connector_available": false,
+    "direct_chatgpt_search_answer_surface_session_available_in_this_tool_context": false,
+    "ordinary_web_search_available": true,
+    "ordinary_web_search_eligible_as_direct_capture": false
+  },
+  "current_counts": {
+    "captured": 70,
+    "remaining": 130,
+    "by_surface_remaining": {
+      "ChatGPT Search": 30,
+      "Microsoft Copilot / Bing": 50,
+      "Perplexity": 50
+    }
+  },
+  "required_execution_environment": "Authenticated real answer-surface browser sessions, e.g. ChatGPT Work Cloud Browser",
+  "queue": "phase24-results/remaining-direct-surface-queue.json",
+  "execution_pack": "phase24/WORK-CLOUD-BROWSER-EXECUTION.md",
+  "fabricated_observations": 0
+}
