@@ -29,9 +29,11 @@
   "allow_product_statuses": [
     "publish"
   ],
-  "engine_version": "v18",
+  "engine_version": "v19",
   "production_mode": true,
   "persistent_mode": true,
   "scheduler_watchdog_enabled": true,
-  "watchdog_pending_window_hours": 24
+  "watchdog_pending_window_hours": 24,
+  "question_signal_registry_enabled": true,
+  "question_signal_classification": "synthetic_editorial_question_generator_not_customer_evidence"
 }
