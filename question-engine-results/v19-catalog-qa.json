@@ -3,7 +3,7 @@
   "engine_version": 19,
   "catalog_products": 652,
   "approved_candidates": 3025,
-  "semantic_duplicate_rate_last_200": 0.13402,
+  "semantic_duplicate_rate_last_200": 0.017186,
   "blocker_count": 0,
   "blocker_sample": [],
   "products_covered": 652,
@@ -420,6 +420,7 @@
       "family": "fitting",
       "intent_count": 1,
       "scenario_dimensions_seen": [
+        "crop",
         "logistics"
       ],
       "approved_candidate_count": 1
@@ -429,6 +430,7 @@
       "family": "fitting",
       "intent_count": 1,
       "scenario_dimensions_seen": [
+        "crop",
         "logistics"
       ],
       "approved_candidate_count": 1
@@ -2125,7 +2127,9 @@
       "family": "fitting",
       "intent_count": 1,
       "scenario_dimensions_seen": [
-        "logistics"
+        "crop",
+        "logistics",
+        "pressure"
       ],
       "approved_candidate_count": 1
     },
@@ -3350,6 +3354,7 @@
       "family": "fitting",
       "intent_count": 1,
       "scenario_dimensions_seen": [
+        "crop",
         "logistics"
       ],
       "approved_candidate_count": 1
@@ -3359,6 +3364,7 @@
       "family": "fitting",
       "intent_count": 1,
       "scenario_dimensions_seen": [
+        "crop",
         "logistics"
       ],
       "approved_candidate_count": 1
@@ -3378,6 +3384,7 @@
       "family": "fitting",
       "intent_count": 1,
       "scenario_dimensions_seen": [
+        "crop",
         "logistics"
       ],
       "approved_candidate_count": 1
@@ -3387,6 +3394,7 @@
       "family": "fitting",
       "intent_count": 1,
       "scenario_dimensions_seen": [
+        "crop",
         "logistics"
       ],
       "approved_candidate_count": 1
@@ -4074,7 +4082,8 @@
       "family": "fertilizer",
       "intent_count": 1,
       "scenario_dimensions_seen": [
-        "logistics"
+        "logistics",
+        "province_or_climate"
       ],
       "approved_candidate_count": 1
     },
@@ -4578,7 +4587,8 @@
       "family": "fertilizer",
       "intent_count": 1,
       "scenario_dimensions_seen": [
-        "logistics"
+        "logistics",
+        "water"
       ],
       "approved_candidate_count": 1
     },
@@ -5417,7 +5427,7 @@
       "family": "pesticide",
       "intent_count": 1,
       "scenario_dimensions_seen": [
-        "logistics"
+        "pressure"
       ],
       "approved_candidate_count": 1
     },
@@ -6101,7 +6111,7 @@
   "acceptance": {
     "approved_candidates_gte_1000": true,
     "all_catalog_products_covered": true,
-    "semantic_duplicate_rate_below_0_10": false,
+    "semantic_duplicate_rate_below_0_10": true,
     "synthetic_evidence_label_preserved": true
   }
 }
