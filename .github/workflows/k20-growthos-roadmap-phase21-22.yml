@@ -1,0 +1,38 @@
+name: K20 Roadmap Phase 21-22 Membership Lifecycle Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'growthos-roadmap-ops/phase21-22-*.json'
+      - 'growthos-phase10-results/event-taxonomy.json'
+      - 'growthos-phase10-results/instrumentation-audit.json'
+      - 'scripts/k20_growthos_roadmap_phase21_22.py'
+      - '.github/workflows/k20-growthos-roadmap-phase21-22.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m py_compile scripts/k20_growthos_roadmap_phase21_22.py
+      - run: python scripts/k20_growthos_roadmap_phase21_22.py
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f growthos-roadmap-results/phase21-membership-value.json growthos-roadmap-results/phase22-customer-lifecycle.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "growthos roadmap: record phase21-22 membership lifecycle gaps"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt*2))
+          done
+          exit 1
