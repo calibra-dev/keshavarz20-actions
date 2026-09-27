@@ -1,0 +1,53 @@
+{
+  "roadmap_phase": 21,
+  "title": "Membership Value Engine",
+  "version": "growthos-membership-value-v1",
+  "verified_at_utc": "2026-09-27T18:45:00Z",
+  "status": "IMPLEMENTATION_READY_ACTIVATION_BLOCKED",
+  "source": "growthos-membership/k20-membership-value-v1.snippet.php.txt",
+  "bridge_validation": {
+    "action": "snippet.validate",
+    "ok": true,
+    "bytes": 11931,
+    "code_sha256": "a8c1d16df9b1d7d1a9e909726d495248803cb08a7ea803dd897b5c48bab9997e",
+    "receipt": "bridge-v3-secure-receipts/20260927-membership-v1-validate-r3.json"
+  },
+  "site_draft": {
+    "snippet_id": 35,
+    "name": "K20 GrowthOS Membership Value Engine v1",
+    "active": false,
+    "forced_inactive": true,
+    "scope": "global",
+    "priority": 20,
+    "code_sha256": "a8c1d16df9b1d7d1a9e909726d495248803cb08a7ea803dd897b5c48bab9997e",
+    "receipt": "bridge-v3-secure-receipts/20260927-membership-v1-create-draft.json"
+  },
+  "implemented_capabilities": [
+    "account-backed saved projects",
+    "account-backed saved calculations",
+    "proforma reference history",
+    "technical question reference history",
+    "My Account project dashboard",
+    "REST nonce + logged-in permission checks",
+    "data minimization and bounded history"
+  ],
+  "qualified_events": [
+    "registration_completed",
+    "project_saved",
+    "calculation_saved",
+    "technical_question_submitted",
+    "proforma_requested"
+  ],
+  "acceptance": {
+    "code_policy_valid": true,
+    "draft_created_on_site": true,
+    "draft_hash_matches_validated_source": true,
+    "live_account_value_verified": false,
+    "live_event_delivery_verified": false
+  },
+  "blocker": {
+    "code": "BRIDGE_SNIPPET_ACTIVATION_NOT_EXPOSED",
+    "explanation": "Bridge 3.3 intentionally supports snippet create/update only as draft/inactive and exposes no activation action. This guard is not bypassed via WPVibe, raw PHP, SQL or filesystem writes.",
+    "next_allowed_step": "Reviewed manual/admin activation or a future explicitly approved activation path, followed by live My Account and analytics readback."
+  }
+}
