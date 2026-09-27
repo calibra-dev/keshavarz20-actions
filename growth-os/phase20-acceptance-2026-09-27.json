@@ -1,0 +1,40 @@
+{
+  "schema_version": "1",
+  "phase": 20,
+  "title": "Iran Agriculture Intent Graph + Article Engine vNext",
+  "verified_at": "2026-09-27",
+  "rollout": {
+    "shadow_topics": 30,
+    "draft_dry_runs": 10,
+    "canary_queue": "daily-agri-articles/queue/2026-09-27.json",
+    "canary_topic_score": 90,
+    "canary_wordpress_post_id": 146227,
+    "canary_wordpress_status": "draft",
+    "canary_wordpress_type": "post",
+    "canary_featured_media_id": 146226,
+    "canary_category_id": 1030,
+    "canary_qa_score": 100,
+    "canary_run_id": 36292737974,
+    "canary_run_conclusion": "success",
+    "merge_commit": "a003a5256e124b2acd4b8c44bd8238704fd98aa2"
+  },
+  "gates": {
+    "intent_graph_active": true,
+    "central_intent_registry": true,
+    "score_threshold_85": true,
+    "blocker_fail_closed": true,
+    "phase20_faq_0_or_3_to_8": true,
+    "historical_queue_backward_compatibility": true,
+    "draft_only": true,
+    "human_review_required": true,
+    "deterministic_cover": true,
+    "post_write_readback": true,
+    "duplicate_draft_intent_guard": true
+  },
+  "rollback": {
+    "publisher_previous": "daily-agri-articles/publish_queue_v5.py",
+    "publisher_current": "daily-agri-articles/publish_queue_v6.py",
+    "method": "switch workflow publisher command back to v5 and revert Phase 20 prompt/registry gate commit"
+  },
+  "status": "PASS_CANARY_DRAFT"
+}

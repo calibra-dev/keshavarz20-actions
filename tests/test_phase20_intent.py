@@ -44,6 +44,20 @@ class Phase20IntentTests(unittest.TestCase):
         for draft in data["drafts"]:
             mod.validate_phase20_metadata(draft, registry={"intents": []})
 
+    def test_existing_draft_intent_requires_update_path(self):
+        p = {
+            "phase20_schema_version": "1", "canonical_intent_id": "ir-intent-draft", "parent_hub": "irrigation",
+            "scenario_dimensions": {"decision": "انتخاب فیلتر"},
+            "source_strength": "primary+independent", "question_engine_intents_covered": [],
+            "compatibility_rules_referenced": [], "membership_cta_type": "save_project", "update_triggers": [],
+            "topic_score": {"total": 90, "blockers": []}, "faq_items": []
+        }
+        registry = {"intents": [{"canonical_intent_id": "ir-intent-draft", "status": "draft-covered", "wordpress_post_id": 146227}]}
+        with self.assertRaises(ValueError):
+            mod.validate_phase20_metadata(p, registry=registry)
+        p["update_post_id"] = 146227
+        mod.validate_phase20_metadata(p, registry=registry)
+
     def test_shadow_pack_has_30_candidates(self):
         data = json.loads((ROOT / "growth-os" / "phase20-shadow-topics.json").read_text(encoding="utf-8"))
         self.assertEqual(len(data["candidates"]), 30)
