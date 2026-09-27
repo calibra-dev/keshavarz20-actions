@@ -18,6 +18,7 @@ orig_guard = q.consistency_guard
 orig_quality = q.question_quality
 orig_public_plan = q.public_plan
 orig_run = q.run
+orig_family = q.b.family
 
 INTENT_ALIASES = {
     "water_efficiency": "selection",
@@ -94,6 +95,13 @@ def _extract_scenario(question):
             out["province_or_climate"] = city
             break
     return out
+
+
+def _family_v19(p):
+    name = _norm(p.get("name"))
+    if "پرلیت" in name:
+        return "growing_media"
+    return orig_family(p)
 
 
 def _v19_candidates(p, fam, style, rng):
@@ -244,6 +252,7 @@ def _run_v19(action, result_path):
     return res
 
 
+q.b.family = _family_v19
 q.guarded_candidates = _v19_candidates
 q.consistency_guard = _guard_v19
 q.question_quality = _quality_v19
