@@ -1,0 +1,48 @@
+{
+  "roadmap_phase": 21,
+  "verified_at_utc": "2026-09-27T20:13:30Z",
+  "status": "PASS_MEMBERSHIP_VALUE_LIVE_WITH_GUARDED_UNTESTED_EVENT_PATHS",
+  "snippet": {
+    "id": 35,
+    "active": true,
+    "version": "1.1",
+    "expected_code_sha256": "32d54fd6f5154390fc68b0db05bb852b742b25b61d88eb51fc018d720223c066"
+  },
+  "live_rest": {
+    "health_ok": true,
+    "state_ok": true,
+    "projects": 1,
+    "calculations": 1,
+    "proforma_refs": 0,
+    "question_refs": 1,
+    "event_count": 3,
+    "event_names": [
+      "project_saved",
+      "calculation_saved",
+      "technical_question_submitted"
+    ]
+  },
+  "qa_records": {
+    "project_label": "K20-QA-20260927",
+    "calculation_label": "K20-QA-20260927",
+    "technical_question_reference": "K20-QA-QUESTION-20260927"
+  },
+  "acceptance": {
+    "account_backed_saved_project_live": true,
+    "account_backed_saved_calculation_live": true,
+    "technical_question_reference_live": true,
+    "private_event_ledger_live": true,
+    "authenticated_rest_readback_live": true,
+    "registration_event_path_implemented_but_not_live_tested": true,
+    "proforma_event_path_implemented_but_tool_test_blocked": true
+  },
+  "guardrails": {
+    "no_price_stock_payment_user_role_changes": true,
+    "no_private_customer_export": true,
+    "proforma_test_not_retried_after_tool_safety_block": true
+  },
+  "remaining_non_blocking_validation": [
+    "Observe registration_completed on a real future customer registration.",
+    "Observe proforma_requested when exercised through an allowed live UI/path."
+  ]
+}
