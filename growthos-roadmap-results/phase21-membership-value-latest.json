@@ -20,7 +20,9 @@
     "scope": "global",
     "priority": 20,
     "code_sha256": "a8c1d16df9b1d7d1a9e909726d495248803cb08a7ea803dd897b5c48bab9997e",
-    "receipt": "bridge-v3-secure-receipts/20260927-membership-v1-create-draft.json"
+    "receipt": "bridge-v3-secure-receipts/20260927-membership-v1-create-draft.json",
+    "readback_receipt": "bridge-v3-secure-receipts/20260927-membership-v1-readback.json",
+    "readback_verified": true
   },
   "implemented_capabilities": [
     "account-backed saved projects",
@@ -43,7 +45,8 @@
     "draft_created_on_site": true,
     "draft_hash_matches_validated_source": true,
     "live_account_value_verified": false,
-    "live_event_delivery_verified": false
+    "live_event_delivery_verified": false,
+    "independent_site_readback_verified": true
   },
   "blocker": {
     "code": "BRIDGE_SNIPPET_ACTIVATION_NOT_EXPOSED",
