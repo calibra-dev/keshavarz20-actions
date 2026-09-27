@@ -1,0 +1,35 @@
+{
+  "phase": "22-roadmap",
+  "component": "K20 Customer Project Review Desk v1",
+  "generated_at_utc": "2026-09-27T21:20:00Z",
+  "source": "growthos-membership/k20-customer-project-review-desk-v1.snippet.php.txt",
+  "source_commit": "53538e4047e15117d9a76725d59cbd75218abf48",
+  "capabilities": [
+    "WooCommerce > پروژه‌های مشتریان admin desk",
+    "project list, status filter, search and pagination",
+    "project detail with crop/province/area/water/pressure/date",
+    "workflow statuses: new/reviewing/need_info/ready_quote/answered/closed",
+    "private internal manager note",
+    "customer-facing expert response",
+    "optional customer email only when explicitly checked by manager",
+    "generic admin email on future project_saved events",
+    "My Account project status board",
+    "dashboard widget with total/new counts"
+  ],
+  "security": {
+    "capability_gate": "manage_woocommerce OR manage_options",
+    "csrf_nonce": true,
+    "internal_note_not_customer_visible": true,
+    "no_price_order_payment_changes": true,
+    "no_customer_export": true,
+    "project_truth_not_duplicated": true
+  },
+  "acceptance_pending": [
+    "Bridge snippet.validate receipt",
+    "Bridge snippet.create_draft receipt",
+    "user activation",
+    "admin desk live readback",
+    "existing project visible",
+    "customer status board live readback"
+  ]
+}
