@@ -24,8 +24,6 @@ def main():
     per_product = {}
 
     for basic in products:
-        if len(generated) >= 1200:
-            break
         p = wp.product(int(basic["id"]))
         fam = q.fam_of(p)
         per_product.setdefault(str(p["id"]), {"family": fam, "count": 0, "intents": set(), "scenario_keys": set()})
@@ -50,13 +48,18 @@ def main():
                 row["count"] += 1
                 row["intents"].add(pub["intent_v19"])
                 row["scenario_keys"].update((pub.get("scenario_dimensions") or {}).keys())
-                if len(generated) >= 1200:
+                # Keep scanning this product until at least one approved candidate exists.
+                # After catalog-wide coverage is achieved, enrichment is capped below.
+                if per_product[str(p["id"])]["count"] >= 1 and len(generated) >= 2400:
                     break
-            if len(generated) >= 1200:
+            if per_product[str(p["id"])]["count"] >= 1 and len(generated) >= 2400:
                 break
 
     if len(generated) < 1000:
         raise SystemExit(f"Only {len(generated)} quality-approved candidates; need >=1000")
+    uncovered=[int(pid) for pid,row in per_product.items() if int(row["count"]) < 1]
+    if uncovered:
+        raise SystemExit(f"Catalog QA did not cover {len(uncovered)} products: {uncovered[:30]}")
 
     duplicate_pairs = 0
     comparisons = 0
@@ -87,8 +90,10 @@ def main():
         "blocker_count": len(blockers),
         "blocker_sample": blockers[:50],
         "coverage_ledger": ledger,
+        "products_covered": sum(1 for row in per_product.values() if int(row["count"]) >= 1),
         "acceptance": {
             "approved_candidates_gte_1000": len(generated) >= 1000,
+            "all_catalog_products_covered": all(int(row["count"]) >= 1 for row in per_product.values()),
             "semantic_duplicate_rate_below_0_10": duplicate_rate < 0.10,
             "synthetic_evidence_label_preserved": all(x.get("evidence_classification") == "synthetic_editorial_question_generator_not_customer_evidence" for x in generated),
         },
