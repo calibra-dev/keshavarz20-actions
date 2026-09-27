@@ -1,0 +1,121 @@
+/**
+ * K20 Elementor null-document guard + one-time Phase21 QA cleanup.
+ *
+ * Permanent: removes only Elementor document enqueue callbacks whose document has no post.
+ * One-time: removes the exact K20-QA-20260927 records created during Phase21 live acceptance
+ * from the currently logged-in administrator account, preserving all unrelated membership data.
+ */
+if (!defined('ABSPATH')) { return; }
+
+add_action('wp_enqueue_scripts', function () {
+    global $wp_filter;
+
+    if (empty($wp_filter['wp_enqueue_scripts']) || empty($wp_filter['wp_enqueue_scripts']->callbacks)) {
+        return;
+    }
+
+    $remove = array();
+
+    foreach ($wp_filter['wp_enqueue_scripts']->callbacks as $priority => $callbacks) {
+        foreach ($callbacks as $callback) {
+            $fn = isset($callback['function']) ? $callback['function'] : null;
+
+            if (!is_array($fn) || !isset($fn[0], $fn[1]) || 'enqueue_scripts' !== $fn[1] || !is_object($fn[0])) {
+                continue;
+            }
+
+            if (!($fn[0] instanceof \Elementor\Core\Base\Document)) {
+                continue;
+            }
+
+            if (method_exists($fn[0], 'get_post') && null === $fn[0]->get_post()) {
+                $remove[] = array($fn, $priority);
+            }
+        }
+    }
+
+    foreach ($remove as $item) {
+        remove_action('wp_enqueue_scripts', $item[0], $item[1]);
+    }
+}, 0);
+
+add_action('init', function () {
+    if (!is_user_logged_in() || !current_user_can('manage_options')) {
+        return;
+    }
+
+    $user_id = get_current_user_id();
+    $done_key = '_k20_qa_cleanup_20260928_done';
+
+    if (get_user_meta($user_id, $done_key, true)) {
+        return;
+    }
+
+    $state_key = '_k20_member_value_v1';
+    $state = get_user_meta($user_id, $state_key, true);
+
+    if (is_array($state)) {
+        if (isset($state['projects']) && is_array($state['projects'])) {
+            $state['projects'] = array_values(array_filter($state['projects'], function ($row) {
+                return !(
+                    is_array($row)
+                    && isset($row['name'])
+                    && 'K20-QA-20260927' === (string) $row['name']
+                );
+            }));
+        }
+
+        if (isset($state['calculations']) && is_array($state['calculations'])) {
+            $state['calculations'] = array_values(array_filter($state['calculations'], function ($row) {
+                return !(
+                    is_array($row)
+                    && isset($row['label'], $row['tool'])
+                    && 'K20-QA-20260927' === (string) $row['label']
+                    && 'QA-selector' === (string) $row['tool']
+                );
+            }));
+        }
+
+        if (isset($state['question_refs']) && is_array($state['question_refs'])) {
+            $state['question_refs'] = array_values(array_filter($state['question_refs'], function ($row) {
+                return !(
+                    is_array($row)
+                    && isset($row['reference'])
+                    && 'K20-QA-QUESTION-20260927' === (string) $row['reference']
+                );
+            }));
+        }
+
+        if (isset($state['proforma_refs']) && is_array($state['proforma_refs'])) {
+            $state['proforma_refs'] = array_values(array_filter($state['proforma_refs'], function ($row) {
+                return !(
+                    is_array($row)
+                    && isset($row['reference'])
+                    && 'K20-QA-PROFORMA-20260927' === (string) $row['reference']
+                );
+            }));
+        }
+
+        update_user_meta($user_id, $state_key, $state);
+    }
+
+    $event_key = '_k20_member_events_v1';
+    $events = get_user_meta($user_id, $event_key, true);
+    $qa_refs = array(
+        'prj_0cc9b28a-9e2f-4a5d-a511-4150d875375e',
+        'calc_815247cd-8869-4c4e-99cb-712f8f4fa307',
+        'q_340a7cbb-c30b-42eb-93b9-fc7a1c7c8306',
+    );
+
+    if (is_array($events)) {
+        $events = array_values(array_filter($events, function ($row) use ($qa_refs) {
+            if (!is_array($row) || !isset($row['reference'])) {
+                return true;
+            }
+            return !in_array((string) $row['reference'], $qa_refs, true);
+        }));
+        update_user_meta($user_id, $event_key, $events);
+    }
+
+    update_user_meta($user_id, $done_key, gmdate('c'));
+}, 20);
