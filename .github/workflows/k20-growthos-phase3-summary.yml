@@ -1,0 +1,36 @@
+name: K20 GrowthOS Phase 3 Compact Summary
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'growthos-phase3-summary-ops/*.json'
+      - 'growthos-phase3-results/html-schema-feed-parity.json'
+      - 'scripts/k20_growthos_phase3_compact_summary.py'
+      - '.github/workflows/k20-growthos-phase3-summary.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  summarize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python scripts/k20_growthos_phase3_compact_summary.py
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f growthos-phase3-results/html-schema-feed-parity-summary-latest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "growthos phase3: record compact current summary"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt*2))
+          done
+          exit 1
