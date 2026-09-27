@@ -7,7 +7,7 @@ on:
       - 'bridge-v3-secure-ops/*.json'
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: k20-bridge-v33-secure-relay
@@ -57,6 +57,49 @@ jobs:
             fi
           done
           echo "failed=$failed" >> "$GITHUB_ENV"
+
+      - name: Write sanitized secure receipts
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p bridge-v3-secure-receipts
+          python - <<'PY'
+          import json, pathlib
+          src=pathlib.Path(r'''${{ runner.temp }}/k20-v33-secure-results''')
+          dst=pathlib.Path('bridge-v3-secure-receipts')
+          dst.mkdir(exist_ok=True)
+          for p in src.glob('*.json'):
+              try:
+                  row=json.loads(p.read_text(encoding='utf-8'))
+              except Exception:
+                  continue
+              body=row.get('bridge_response') if isinstance(row.get('bridge_response'),dict) else {}
+              result=body.get('result') if isinstance(body.get('result'),dict) else {}
+              receipt={
+                  'http_code':row.get('http_code'),
+                  'request_id':row.get('request_id'),
+                  'action':row.get('action'),
+                  'request_sha256':row.get('request_sha256'),
+                  'ok':bool(body.get('ok')),
+                  'code':body.get('code'),
+                  'message':body.get('message'),
+                  'result':{k:result.get(k) for k in ('valid','bytes','sha256','snippet_id','name','active','scope','priority','forced_inactive','planned','code_bytes','code_sha256','locked','trashed') if k in result}
+              }
+              (dst/p.name).write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bridge-v3-secure-receipts/*.json 2>/dev/null || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "bridge-v3 secure: record sanitized receipt"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
 
       - name: Upload private secure results
         if: always()
