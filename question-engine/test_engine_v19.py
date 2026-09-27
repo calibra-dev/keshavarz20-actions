@@ -67,3 +67,8 @@ assert q.fam_of(perlite) == "growing_media", q.fam_of(perlite)
 items = q.guarded_candidates(perlite, q.fam_of(perlite), "experienced", random.Random(191))
 blob = " ".join(str(x.get("core") or "") for x in items)
 assert "آب‌بندی" not in blob and "نوع اتصال دو طرف" not in blob, blob
+
+
+media = product("کوکوپیت نمونه")
+media["categories"] = [{"id":800,"name":"بستر کشت","slug":"growing-media"}]
+assert q.fam_of(media) == "growing_media", q.fam_of(media)
