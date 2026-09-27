@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-27T13:45:00Z",
+  "generated_at_utc": "2026-09-27T18:48:00Z",
   "purpose": "master closure no-repeat state",
   "closed_or_guarded": [
     {
@@ -91,36 +91,53 @@
     {
       "phase": 17,
       "title": "Question Engine v19 production closure",
-      "status": "VERIFYING_FULL_CATALOG_AFTER_GROWING_MEDIA_FIX",
-      "evidence": [
-        "question-engine/engine_v19.py",
-        "question-engine/test_engine_v19.py",
-        "question-engine/qa_v19_catalog.py",
-        "question-engine-results/v19-catalog-qa.json"
+      "status": "DIVERSITY_REVALIDATION_REQUIRED",
+      "verified": {
+        "runtime_active_v19": true,
+        "full_catalog_products": 652,
+        "products_covered": 652,
+        "uncovered": 0,
+        "blocker_count": 0,
+        "perlite_product_141442_family": "growing_media",
+        "latest_verified_semantic_duplicate_rate_last_200": 0.13402,
+        "required_max": 0.1
+      },
+      "latest_verified_evidence": "question-engine-results/v19-catalog-qa.json",
+      "new_changes": [
+        "long product names preserve unique identity instead of collapsing to generic reference",
+        "growing_media has v19-specific technical candidates",
+        "full-catalog QA uses balanced rolling global history"
       ],
-      "completed": "v19 production runtime activated; status and dry-run readback succeeded; perlite ontology leak found and fixed; full-catalog 652/652 QA gate added",
-      "next_exact_action": "accept only after refreshed QA reports products_covered=652, blocker_count=0 and growing_media classification is observed for product 141442 or another category-800 product"
+      "current_action": "balanced full-catalog diversity QA and final production status/dry-run were triggered; do not mark PASS until fresh readback is persisted"
     },
     {
       "phase": "21-roadmap",
       "title": "Membership Value Engine",
-      "status": "BLOCKED_MEMBERSHIP_VALUE_ENGINE_NOT_IMPLEMENTED",
-      "evidence": "growthos-roadmap-results/phase21-membership-value.json",
-      "blocker": "no verified account-backed saved project/calculation/question/proforma history and all 5 required member events are missing",
-      "next_exact_action": "prepare draft/inactive Bridge 3.3 secure snippet or approved application implementation; activation requires allowed reviewed path"
+      "status": "IMPLEMENTATION_READY_ACTIVATION_BLOCKED",
+      "evidence": "growthos-roadmap-results/phase21-membership-value-latest.json",
+      "site_draft": {
+        "snippet_id": 35,
+        "active": false,
+        "forced_inactive": true,
+        "code_sha256": "a8c1d16df9b1d7d1a9e909726d495248803cb08a7ea803dd897b5c48bab9997e"
+      },
+      "blocker": "Bridge 3.3 intentionally exposes no snippet activation action; no bypass permitted."
     },
     {
       "phase": "22-roadmap",
       "title": "Customer Lifecycle & Retention",
-      "status": "BLOCKED_BY_PHASE21_AND_UNVERIFIED_RETENTION_EXECUTION",
-      "evidence": "growthos-roadmap-results/phase22-customer-lifecycle.json",
-      "blocker": "depends on roadmap Phase 21 qualified member events and consent-safe trigger execution"
+      "status": "DESIGN_READY_DEPENDENCY_BLOCKED",
+      "evidence": "growthos-roadmap-results/phase22-customer-lifecycle-latest.json",
+      "blocker": "Requires live Phase 21 activation and verified qualified-member events before lifecycle execution."
     },
     {
       "phase": 24,
       "title": "Direct AI citation measurement",
       "status": "CONTROL_PLANE_COMPLETE_EXTERNAL_SURFACE_PENDING",
-      "evidence": "phase24-results/acceptance-v2-latest.json",
+      "evidence": [
+        "phase24-results/acceptance-v2-latest.json",
+        "phase24-results/remaining-direct-surface-queue.json"
+      ],
       "captured": 70,
       "remaining": 130,
       "remaining_surface_work": {
@@ -129,13 +146,9 @@
         "Microsoft Copilot / Bing": 50,
         "Perplexity": 50
       },
-      "current_kpis": {
-        "citation_rate": 0.11428571428571428,
-        "brand_mention_rate": 0.14285714285714285,
-        "cited_page_coverage": 8
-      },
-      "blocker": "requires real DIRECT_SURFACE_CAPTURE on remaining named surfaces; ordinary web search/referral cannot substitute"
+      "blocker": "The remaining observations require actual named answer surfaces with DIRECT_SURFACE_CAPTURE; ordinary web search and referral telemetry cannot substitute."
     }
   ],
-  "no_repeat_rule": "Do not rerun closed_or_guarded phases unless a listed upstream dependency materially changes. Continue only from open[].next_exact_action or an explicitly new blocker."
+  "no_repeat_rule": "Continue only from the open entries above. Do not rerun closed or guarded phases unless an upstream dependency materially changes.",
+  "prompt_v2": "growth-os/MASTER-CLOSURE-PROMPT-V2-2026-09-27.md"
 }
