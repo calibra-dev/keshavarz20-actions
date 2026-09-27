@@ -8,7 +8,7 @@ final class K20_Bridge_V32_Approval {
 
     public static function requires(string $action,array $body): bool {
         if (!empty($body['_approval_bypass'])) return false;
-        if (in_array($action,['update.apply','update.rollback','snapshot.rollback'],true)) return true;
+        if (in_array($action,['update.apply','update.rollback','snapshot.rollback','asset.gallery.replace','snippet.deactivate'],true)) return true;
         if ($action==='elementor.structure') {
             $op=(string)($body['payload']['operation']??'');
             return in_array($op,['remove','move','insert','duplicate'],true);
