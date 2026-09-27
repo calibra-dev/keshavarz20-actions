@@ -1,0 +1,79 @@
+name: Keshavarz20 Question Engine v19 QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'question-engine-v19-ops/*.json'
+      - 'question-engine/engine_v19.py'
+      - 'question-engine/test_engine_v19.py'
+      - 'question-engine/qa_v19_catalog.py'
+      - '.github/workflows/k20-question-engine-v19-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: read
+
+concurrency:
+  group: k20-question-engine-v19-qa
+  cancel-in-progress: true
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile
+        run: |
+          python -m py_compile question-engine/engine_v19.py
+          python -m py_compile question-engine/qa_v19_catalog.py
+      - name: Regression v1-v19
+        run: |
+          python question-engine/test_engine.py
+          python question-engine/test_engine_v2.py
+          python question-engine/test_engine_v3.py
+          python question-engine/test_engine_v4.py
+          python question-engine/test_engine_v5.py
+          python question-engine/test_engine_v6.py
+          python question-engine/test_engine_v7.py
+          python question-engine/test_engine_v8.py
+          python question-engine/test_engine_v9.py
+          python question-engine/test_engine_v10.py
+          python question-engine/test_engine_v11.py
+          python question-engine/test_engine_v12.py
+          python question-engine/test_engine_v13.py
+          python question-engine/test_engine_v14.py
+          python question-engine/test_engine_v15.py
+          python question-engine/test_engine_v16.py
+          python question-engine/test_engine_v17.py
+          python question-engine/test_engine_v18.py
+          python question-engine/test_engine_v19.py
+      - name: Real catalog dry-run QA
+        run: python question-engine/qa_v19_catalog.py
+      - name: Persist sanitized QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f question-engine-results/v19-catalog-qa.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "questions v19: record catalog QA"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
