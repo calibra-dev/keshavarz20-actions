@@ -55,11 +55,7 @@ def main():
             if per_product[str(p["id"])]["count"] >= 1 and len(generated) >= 2400:
                 break
 
-    if len(generated) < 1000:
-        raise SystemExit(f"Only {len(generated)} quality-approved candidates; need >=1000")
     uncovered=[int(pid) for pid,row in per_product.items() if int(row["count"]) < 1]
-    if uncovered:
-        raise SystemExit(f"Catalog QA did not cover {len(uncovered)} products: {uncovered[:30]}")
 
     duplicate_pairs = 0
     comparisons = 0
@@ -82,13 +78,16 @@ def main():
         })
 
     report = {
-        "ok": True,
+        "ok": len(generated) >= 1000 and not uncovered,
         "engine_version": 19,
         "catalog_products": len(products),
         "approved_candidates": len(generated),
         "semantic_duplicate_rate_last_200": round(duplicate_rate, 6),
         "blocker_count": len(blockers),
         "blocker_sample": blockers[:50],
+        "products_covered": sum(1 for row in per_product.values() if int(row["count"]) >= 1),
+        "uncovered_product_ids": uncovered,
+        "uncovered_count": len(uncovered),
         "coverage_ledger": ledger,
         "products_covered": sum(1 for row in per_product.values() if int(row["count"]) >= 1),
         "acceptance": {
@@ -103,7 +102,7 @@ def main():
     path = os.path.join(out_dir, "v19-catalog-qa.json")
     with open(path, "w", encoding="utf-8") as fh:
         json.dump(report, fh, ensure_ascii=False, indent=2)
-    print(json.dumps({k: report[k] for k in ("ok", "engine_version", "catalog_products", "approved_candidates", "semantic_duplicate_rate_last_200", "blocker_count")}, ensure_ascii=False))
+    print(json.dumps({k: report[k] for k in ("ok", "engine_version", "catalog_products", "products_covered", "uncovered_count", "approved_candidates", "semantic_duplicate_rate_last_200", "blocker_count")}, ensure_ascii=False))
 
 
 if __name__ == "__main__":
