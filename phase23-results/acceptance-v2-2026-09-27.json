@@ -1,0 +1,36 @@
+{
+  "phase": 23,
+  "title": "Lifecycle & Freshness Governance v2",
+  "verified_at": "2026-09-27",
+  "status": "PASS_STATIC_V2_AWAITING_LIVE_AUDIT",
+  "dependencies": {
+    "phase20_intent_graph": "PASS_CANARY_DRAFT",
+    "phase21_authority_network": "PASS_IRAN_FIRST_AUTHORITY_V2",
+    "phase22_decision_model": "PASS_FUNCTIONAL_V2_GUARDED_DEPLOYMENT"
+  },
+  "model": {
+    "version": "k20-lifecycle-governance-v2",
+    "wp_content_classes": [
+      "posts",
+      "pages",
+      "products"
+    ],
+    "governance_assets": [
+      "intent_graph",
+      "authority_network",
+      "decision_model"
+    ],
+    "priority_queue": true,
+    "stock_transition_watch": true
+  },
+  "safeguards": {
+    "no_fake_dateModified": true,
+    "outofstock_not_discontinued": true,
+    "explicit_discontinuation_evidence_required": true,
+    "no_auto_redirect": true,
+    "no_auto_canonical_change": true,
+    "no_bulk_rewrite_for_freshness": true,
+    "audit_is_read_only": true
+  },
+  "next_gate": "Run live WordPress/WooCommerce audit on main with repository secrets and persist sanitized result."
+}

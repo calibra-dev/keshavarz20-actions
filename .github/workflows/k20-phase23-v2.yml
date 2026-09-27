@@ -1,0 +1,76 @@
+name: Phase 23 Lifecycle Freshness v2
+
+on:
+  pull_request:
+    paths:
+      - 'phase23/**'
+      - 'phase23-results/**'
+      - 'growth-os/phase20-acceptance-2026-09-27.json'
+      - 'phase21-results/authority-network-2026-09-27.json'
+      - 'phase22-results/acceptance-v2-2026-09-27.json'
+      - 'tests/test_phase23_v2.py'
+      - '.github/workflows/k20-phase23-v2.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'phase23/**'
+      - 'phase23-results/acceptance-v2-2026-09-27.json'
+      - 'tests/test_phase23_v2.py'
+      - '.github/workflows/k20-phase23-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-phase23-v2
+  cancel-in-progress: false
+
+jobs:
+  static-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and test
+        run: |
+          python -m py_compile phase23/lifecycle_governance_v2.py
+          python -m unittest tests.test_phase23_v2 -v
+
+  live-audit:
+    if: github.event_name != 'pull_request'
+    needs: static-verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run live read-only lifecycle audit
+        run: |
+          python phase23/lifecycle_governance_v2.py             --policy phase23/lifecycle-governance-policy-v2.json             --output phase23-results/lifecycle-freshness-v2-latest.json
+      - name: Persist sanitized live evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase23-results/lifecycle-freshness-v2-latest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase23: persist live lifecycle freshness v2 evidence"
+          for attempt in 1 2 3 4; do
+            git pull --rebase origin main
+            if git push origin main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
