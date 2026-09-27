@@ -1,0 +1,52 @@
+{
+  "phase": 24,
+  "title": "AI Citation Experimentation & Influence Measurement v2",
+  "verified_at": "2026-09-27",
+  "status": "CONTROL_PLANE_COMPLETE_EXTERNAL_SURFACE_PENDING",
+  "dependencies": {
+    "phase20": "PASS_CANARY_DRAFT",
+    "phase21": "PASS_IRAN_FIRST_AUTHORITY_V2",
+    "phase22": "PASS_FUNCTIONAL_V2_GUARDED_DEPLOYMENT",
+    "phase23": "PASS_LIFECYCLE_GOVERNANCE_V2"
+  },
+  "prompt_bank": {
+    "prompts": 200,
+    "platforms": 4,
+    "prompts_per_platform": 50,
+    "intent_buckets": 10,
+    "prompts_per_bucket": 20
+  },
+  "live_telemetry": {
+    "ga4_chatgpt_referral_sessions_30d": 3,
+    "ga4_chatgpt_engaged_sessions_30d": 2,
+    "gsc_clicks_settled_rows": 981,
+    "gsc_impressions_settled_rows": 14549,
+    "bing_webmaster": "CONNECTED_PROVIDER_THROTTLED"
+  },
+  "direct_surface_measurement": {
+    "captured_observations": 0,
+    "citation_rate": null,
+    "brand_mention_rate": null,
+    "completion_requirement": "200 DIRECT_SURFACE_CAPTURE observations across the named prompt/surface assignments"
+  },
+  "completed_control_plane_work": [
+    "balanced 200-prompt bank validated",
+    "live GA4 telemetry refreshed",
+    "live GSC telemetry refreshed",
+    "Bing provider failure reverified without inventing zero metrics",
+    "direct observation evidence schema enforced",
+    "citation/brand KPIs compute only from direct captures",
+    "ordinary web-search proxy segregated from AI citation metrics",
+    "Phase 20-23 dependency stack validated"
+  ],
+  "blocker": {
+    "type": "EXTERNAL_DIRECT_SURFACE_ACCESS",
+    "surfaces": [
+      "ChatGPT Search independent answer capture",
+      "Google AI Mode / AI Overviews",
+      "Microsoft Copilot / Bing answer surface",
+      "Perplexity"
+    ],
+    "note": "No connected tool in this execution context provides independent authenticated answer-surface capture for all four named platforms. The missing observations are therefore left null rather than fabricated."
+  }
+}
