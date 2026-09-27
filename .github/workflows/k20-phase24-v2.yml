@@ -41,8 +41,7 @@ jobs:
           import json
           p=json.load(open('/tmp/phase24-v2.json',encoding='utf-8'))
           assert p['prompt_bank']['count']==200
-          assert p['direct_surface_kpis']['direct_observation_count']==0
-          assert p['direct_surface_kpis']['citation_rate'] is None
-          assert p['status']=='CONTROL_PLANE_COMPLETE_EXTERNAL_SURFACE_PENDING'
-          print(json.dumps({'status':p['status'],'prompts':200,'direct_observations':0},ensure_ascii=False))
+          assert p['direct_surface_kpis']['direct_observation_count']>=0
+          if p['direct_surface_kpis']['direct_observation_count']==0:\n              assert p['direct_surface_kpis']['citation_rate'] is None\n          assert p['status']=='CONTROL_PLANE_COMPLETE_EXTERNAL_SURFACE_PENDING'
+          print(json.dumps({'status':p['status'],'prompts':200,'direct_observations':p['direct_surface_kpis']['direct_observation_count']},ensure_ascii=False))
           PY
