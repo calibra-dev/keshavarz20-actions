@@ -1,0 +1,613 @@
+/**
+ * K20 Customer Project Review Desk v1
+ *
+ * Admin workflow for projects saved by K20 GrowthOS Membership Value Engine.
+ * - Reads project data from existing user_meta; does not duplicate project truth.
+ * - Stores only review workflow metadata per project.
+ * - Adds WooCommerce admin desk, filters, stats, review form, internal notes.
+ * - Shows safe customer-facing status/message in My Account.
+ * - Optional email notification only when admin explicitly requests it.
+ */
+if (!defined('ABSPATH')) { return; }
+
+if (!function_exists('k20_prd_statuses')) {
+    function k20_prd_statuses() {
+        return array(
+            'new'        => array('label' => 'جدید', 'tone' => 'blue'),
+            'reviewing'  => array('label' => 'در حال بررسی', 'tone' => 'amber'),
+            'need_info'  => array('label' => 'نیاز به اطلاعات بیشتر', 'tone' => 'orange'),
+            'ready_quote'=> array('label' => 'آماده پیش‌فاکتور', 'tone' => 'green'),
+            'answered'   => array('label' => 'پاسخ داده شد', 'tone' => 'purple'),
+            'closed'     => array('label' => 'بسته شده', 'tone' => 'gray'),
+        );
+    }
+}
+
+if (!function_exists('k20_prd_now')) {
+    function k20_prd_now() {
+        return gmdate('c');
+    }
+}
+
+if (!function_exists('k20_prd_capable')) {
+    function k20_prd_capable() {
+        return current_user_can('manage_woocommerce') || current_user_can('manage_options');
+    }
+}
+
+if (!function_exists('k20_prd_member_state')) {
+    function k20_prd_member_state($user_id) {
+        $state = get_user_meta((int) $user_id, '_k20_member_value_v1', true);
+        $state = is_array($state) ? $state : array();
+        foreach (array('projects','calculations','proforma_refs','question_refs') as $key) {
+            if (!isset($state[$key]) || !is_array($state[$key])) {
+                $state[$key] = array();
+            }
+        }
+        return $state;
+    }
+}
+
+if (!function_exists('k20_prd_reviews')) {
+    function k20_prd_reviews($user_id) {
+        $reviews = get_user_meta((int) $user_id, '_k20_project_reviews_v1', true);
+        return is_array($reviews) ? $reviews : array();
+    }
+}
+
+if (!function_exists('k20_prd_save_reviews')) {
+    function k20_prd_save_reviews($user_id, $reviews) {
+        update_user_meta((int) $user_id, '_k20_project_reviews_v1', is_array($reviews) ? $reviews : array());
+    }
+}
+
+if (!function_exists('k20_prd_project')) {
+    function k20_prd_project($user_id, $project_id) {
+        $state = k20_prd_member_state($user_id);
+        foreach ($state['projects'] as $project) {
+            if (is_array($project) && isset($project['id']) && hash_equals((string) $project['id'], (string) $project_id)) {
+                return $project;
+            }
+        }
+        return null;
+    }
+}
+
+if (!function_exists('k20_prd_review')) {
+    function k20_prd_review($user_id, $project_id) {
+        $reviews = k20_prd_reviews($user_id);
+        $row = isset($reviews[$project_id]) && is_array($reviews[$project_id]) ? $reviews[$project_id] : array();
+        return wp_parse_args($row, array(
+            'status' => 'new',
+            'internal_note' => '',
+            'customer_message' => '',
+            'first_seen_at' => '',
+            'updated_at' => '',
+            'updated_by' => 0,
+            'admin_notified_at' => '',
+            'customer_notified_at' => '',
+        ));
+    }
+}
+
+if (!function_exists('k20_prd_status_label')) {
+    function k20_prd_status_label($status) {
+        $statuses = k20_prd_statuses();
+        return isset($statuses[$status]) ? $statuses[$status]['label'] : $statuses['new']['label'];
+    }
+}
+
+if (!function_exists('k20_prd_status_tone')) {
+    function k20_prd_status_tone($status) {
+        $statuses = k20_prd_statuses();
+        return isset($statuses[$status]) ? $statuses[$status]['tone'] : 'blue';
+    }
+}
+
+if (!function_exists('k20_prd_human_date')) {
+    function k20_prd_human_date($value) {
+        if (!$value) { return '—'; }
+        $timestamp = strtotime((string) $value);
+        return $timestamp ? wp_date('Y/m/d H:i', $timestamp) : '—';
+    }
+}
+
+if (!function_exists('k20_prd_all_projects')) {
+    function k20_prd_all_projects() {
+        $user_ids = get_users(array(
+            'meta_key' => '_k20_member_value_v1',
+            'fields' => 'ID',
+            'number' => 1000,
+            'orderby' => 'ID',
+            'order' => 'DESC',
+        ));
+
+        $rows = array();
+        foreach ($user_ids as $user_id) {
+            $state = k20_prd_member_state($user_id);
+            $user = get_userdata($user_id);
+            if (!$user) { continue; }
+
+            foreach ($state['projects'] as $project) {
+                if (!is_array($project) || empty($project['id'])) { continue; }
+                $review = k20_prd_review($user_id, $project['id']);
+                $rows[] = array(
+                    'user_id' => (int) $user_id,
+                    'customer_name' => $user->display_name ? $user->display_name : $user->user_login,
+                    'project' => $project,
+                    'review' => $review,
+                );
+            }
+        }
+
+        usort($rows, function($a, $b) {
+            $at = !empty($a['project']['created_at']) ? strtotime($a['project']['created_at']) : 0;
+            $bt = !empty($b['project']['created_at']) ? strtotime($b['project']['created_at']) : 0;
+            return $bt <=> $at;
+        });
+        return $rows;
+    }
+}
+
+if (!function_exists('k20_prd_admin_url')) {
+    function k20_prd_admin_url($args = array()) {
+        return add_query_arg(array_merge(array('page' => 'k20-project-desk'), $args), admin_url('admin.php'));
+    }
+}
+
+if (!function_exists('k20_prd_menu')) {
+    function k20_prd_menu() {
+        add_submenu_page(
+            'woocommerce',
+            'پروژه‌های مشتریان',
+            'پروژه‌های مشتریان',
+            'manage_woocommerce',
+            'k20-project-desk',
+            'k20_prd_render_admin'
+        );
+    }
+    add_action('admin_menu', 'k20_prd_menu', 40);
+}
+
+if (!function_exists('k20_prd_dashboard_widget')) {
+    function k20_prd_dashboard_widget() {
+        if (!k20_prd_capable()) { return; }
+        wp_add_dashboard_widget('k20_prd_dashboard', 'پروژه‌های مشتریان کشاورز بیست', 'k20_prd_dashboard_widget_render');
+    }
+    add_action('wp_dashboard_setup', 'k20_prd_dashboard_widget');
+}
+
+if (!function_exists('k20_prd_dashboard_widget_render')) {
+    function k20_prd_dashboard_widget_render() {
+        $rows = k20_prd_all_projects();
+        $new = 0;
+        foreach ($rows as $row) {
+            if ('new' === $row['review']['status']) { $new++; }
+        }
+        echo '<div dir="rtl">';
+        echo '<p><strong>' . esc_html(count($rows)) . '</strong> پروژه ثبت‌شده؛ <strong>' . esc_html($new) . '</strong> پروژه جدید.</p>';
+        echo '<p><a class="button button-primary" href="' . esc_url(k20_prd_admin_url()) . '">باز کردن میز بررسی پروژه‌ها</a></p>';
+        echo '</div>';
+    }
+}
+
+if (!function_exists('k20_prd_handle_save')) {
+    function k20_prd_handle_save() {
+        if (!k20_prd_capable()) {
+            wp_die('دسترسی کافی ندارید.');
+        }
+
+        $user_id = isset($_POST['user_id']) ? absint($_POST['user_id']) : 0;
+        $project_id = isset($_POST['project_id']) ? sanitize_text_field(wp_unslash($_POST['project_id'])) : '';
+        check_admin_referer('k20_prd_save_' . $user_id . '_' . $project_id);
+
+        $project = k20_prd_project($user_id, $project_id);
+        if (!$project) {
+            wp_die('پروژه پیدا نشد.');
+        }
+
+        $statuses = k20_prd_statuses();
+        $status = isset($_POST['status']) ? sanitize_key(wp_unslash($_POST['status'])) : 'new';
+        if (!isset($statuses[$status])) { $status = 'new'; }
+
+        $internal_note = isset($_POST['internal_note']) ? sanitize_textarea_field(wp_unslash($_POST['internal_note'])) : '';
+        $customer_message = isset($_POST['customer_message']) ? sanitize_textarea_field(wp_unslash($_POST['customer_message'])) : '';
+        if (function_exists('mb_substr')) {
+            $internal_note = mb_substr($internal_note, 0, 5000);
+            $customer_message = mb_substr($customer_message, 0, 3000);
+        } else {
+            $internal_note = substr($internal_note, 0, 5000);
+            $customer_message = substr($customer_message, 0, 3000);
+        }
+
+        $reviews = k20_prd_reviews($user_id);
+        $old = k20_prd_review($user_id, $project_id);
+        $now = k20_prd_now();
+
+        $reviews[$project_id] = array(
+            'status' => $status,
+            'internal_note' => $internal_note,
+            'customer_message' => $customer_message,
+            'first_seen_at' => $old['first_seen_at'] ? $old['first_seen_at'] : $now,
+            'updated_at' => $now,
+            'updated_by' => get_current_user_id(),
+            'admin_notified_at' => $old['admin_notified_at'],
+            'customer_notified_at' => $old['customer_notified_at'],
+        );
+
+        $send_email = !empty($_POST['notify_customer']) && $customer_message !== '';
+        if ($send_email) {
+            $customer = get_userdata($user_id);
+            if ($customer && is_email($customer->user_email)) {
+                $subject = 'وضعیت پروژه شما در کشاورز بیست به‌روزرسانی شد';
+                $project_name = !empty($project['name']) ? $project['name'] : 'پروژه';
+                $body = "پروژه: " . $project_name . "\n";
+                $body .= "وضعیت: " . k20_prd_status_label($status) . "\n\n";
+                $body .= $customer_message . "\n\n";
+                $body .= "برای مشاهده جزئیات وارد حساب کاربری خود در کشاورز بیست شوید:\n";
+                $body .= wc_get_page_permalink('myaccount');
+
+                if (wp_mail($customer->user_email, $subject, $body)) {
+                    $reviews[$project_id]['customer_notified_at'] = $now;
+                }
+            }
+        }
+
+        k20_prd_save_reviews($user_id, $reviews);
+
+        wp_safe_redirect(k20_prd_admin_url(array(
+            'view' => 'project',
+            'user_id' => $user_id,
+            'project_id' => rawurlencode($project_id),
+            'saved' => '1',
+        )));
+        exit;
+    }
+    add_action('admin_post_k20_prd_save', 'k20_prd_handle_save');
+}
+
+if (!function_exists('k20_prd_new_project_event')) {
+    function k20_prd_new_project_event($user_id, $event) {
+        if ('project_saved' !== $event) { return; }
+
+        $state = k20_prd_member_state($user_id);
+        if (empty($state['projects'])) { return; }
+        $project = end($state['projects']);
+        if (!is_array($project) || empty($project['id'])) { return; }
+
+        $reviews = k20_prd_reviews($user_id);
+        $review = k20_prd_review($user_id, $project['id']);
+        $now = k20_prd_now();
+
+        if (!$review['first_seen_at']) {
+            $review['first_seen_at'] = $now;
+        }
+
+        if (!$review['admin_notified_at']) {
+            $admin_email = get_option('admin_email');
+            if (is_email($admin_email)) {
+                $subject = 'پروژه جدید در کشاورز بیست ثبت شد';
+                $project_name = !empty($project['name']) ? $project['name'] : 'پروژه جدید';
+                $body = "یک پروژه جدید با عنوان «" . $project_name . "» ثبت شده است.\n";
+                $body .= "برای بررسی جزئیات وارد پنل پروژه‌های مشتریان شوید:\n";
+                $body .= k20_prd_admin_url();
+                if (wp_mail($admin_email, $subject, $body)) {
+                    $review['admin_notified_at'] = $now;
+                }
+            }
+        }
+
+        $reviews[$project['id']] = $review;
+        k20_prd_save_reviews($user_id, $reviews);
+    }
+    add_action('k20_member_value_event', 'k20_prd_new_project_event', 20, 2);
+}
+
+if (!function_exists('k20_prd_admin_assets')) {
+    function k20_prd_admin_assets($hook) {
+        if (false === strpos((string) $hook, 'k20-project-desk')) { return; }
+        $css = '
+        .k20-prd{direction:rtl;max-width:1450px;margin:20px 0 40px}
+        .k20-prd *{box-sizing:border-box}
+        .k20-prd h1{font-weight:900;margin:0 0 8px}
+        .k20-prd .lead{color:#667085;margin:0 0 20px}
+        .k20-prd-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:18px 0 22px}
+        .k20-prd-stat{background:#fff;border:1px solid #e8ecea;border-radius:16px;padding:16px 18px;box-shadow:0 7px 20px rgba(25,56,39,.05)}
+        .k20-prd-stat b{display:block;font-size:26px;line-height:1.2;color:#1f6b3b}.k20-prd-stat span{color:#667085;font-weight:700}
+        .k20-prd-toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:#fff;border:1px solid #e8ecea;padding:12px;border-radius:14px;margin-bottom:14px}
+        .k20-prd-toolbar input,.k20-prd-toolbar select{min-height:40px;border-radius:10px}
+        .k20-prd-card{background:#fff;border:1px solid #e8ecea;border-radius:18px;padding:20px;box-shadow:0 8px 25px rgba(25,56,39,.06);margin:14px 0}
+        .k20-prd-table{width:100%;border-collapse:separate;border-spacing:0 8px}
+        .k20-prd-table th{padding:8px 10px;color:#667085;text-align:right;font-size:12px}
+        .k20-prd-table td{background:#fff;padding:13px 10px;border-top:1px solid #eef1ef;border-bottom:1px solid #eef1ef;vertical-align:middle}
+        .k20-prd-table td:first-child{border-right:1px solid #eef1ef;border-radius:0 12px 12px 0}
+        .k20-prd-table td:last-child{border-left:1px solid #eef1ef;border-radius:12px 0 0 12px}
+        .k20-badge{display:inline-flex;align-items:center;min-height:28px;padding:3px 10px;border-radius:999px;font-weight:800;font-size:12px}
+        .k20-tone-blue{background:#eaf2ff;color:#245aa6}.k20-tone-amber{background:#fff4d8;color:#8a5a00}.k20-tone-orange{background:#fff0e6;color:#a24b12}
+        .k20-tone-green{background:#e7f7ed;color:#1e7041}.k20-tone-purple{background:#f2eafe;color:#6741a5}.k20-tone-gray{background:#eef0f2;color:#57606a}
+        .k20-prd-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:16px}
+        .k20-prd-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+        .k20-prd-field{background:#f8faf9;border:1px solid #edf0ee;border-radius:12px;padding:12px}
+        .k20-prd-field small{display:block;color:#7a8580;margin-bottom:4px}.k20-prd-field strong{font-size:14px}
+        .k20-prd label{font-weight:800;display:block;margin:12px 0 6px}
+        .k20-prd textarea,.k20-prd select{width:100%;border-radius:12px;border:1px solid #d9e1dd}
+        .k20-prd textarea{min-height:130px;padding:12px}
+        .k20-prd .notice-inline{padding:12px 14px;border-radius:12px;background:#edf8f1;color:#1f6b3b;font-weight:800;margin:10px 0}
+        @media(max-width:900px){.k20-prd-stats{grid-template-columns:repeat(2,1fr)}.k20-prd-grid{grid-template-columns:1fr}.k20-prd-table{font-size:12px}.k20-prd-fields{grid-template-columns:1fr}}
+        ';
+        wp_register_style('k20-prd-admin', false, array(), '1.0.0');
+        wp_enqueue_style('k20-prd-admin');
+        wp_add_inline_style('k20-prd-admin', $css);
+    }
+    add_action('admin_enqueue_scripts', 'k20_prd_admin_assets');
+}
+
+if (!function_exists('k20_prd_render_admin')) {
+    function k20_prd_render_admin() {
+        if (!k20_prd_capable()) { wp_die('دسترسی کافی ندارید.'); }
+
+        $view = isset($_GET['view']) ? sanitize_key(wp_unslash($_GET['view'])) : '';
+        echo '<div class="wrap k20-prd" dir="rtl">';
+        echo '<h1>پروژه‌های مشتریان</h1>';
+        echo '<p class="lead">میز بررسی پروژه‌های آبیاری ثبت‌شده در حساب کاربری؛ وضعیت، یادداشت داخلی و پاسخ مشتری از همین‌جا مدیریت می‌شود.</p>';
+
+        if ('project' === $view) {
+            k20_prd_render_project();
+        } else {
+            k20_prd_render_list();
+        }
+        echo '</div>';
+    }
+}
+
+if (!function_exists('k20_prd_render_list')) {
+    function k20_prd_render_list() {
+        $rows = k20_prd_all_projects();
+        $statuses = k20_prd_statuses();
+        $filter_status = isset($_GET['status']) ? sanitize_key(wp_unslash($_GET['status'])) : '';
+        $q = isset($_GET['q']) ? sanitize_text_field(wp_unslash($_GET['q'])) : '';
+
+        $counts = array('all' => count($rows));
+        foreach ($statuses as $key => $meta) { $counts[$key] = 0; }
+        foreach ($rows as $row) {
+            $s = isset($row['review']['status']) ? $row['review']['status'] : 'new';
+            if (isset($counts[$s])) { $counts[$s]++; }
+        }
+
+        echo '<div class="k20-prd-stats">';
+        foreach (array(
+            'all' => 'کل پروژه‌ها',
+            'new' => 'جدید',
+            'reviewing' => 'در حال بررسی',
+            'ready_quote' => 'آماده پیش‌فاکتور',
+        ) as $key => $label) {
+            echo '<div class="k20-prd-stat"><b>' . esc_html($counts[$key]) . '</b><span>' . esc_html($label) . '</span></div>';
+        }
+        echo '</div>';
+
+        echo '<form class="k20-prd-toolbar" method="get">';
+        echo '<input type="hidden" name="page" value="k20-project-desk">';
+        echo '<input type="search" name="q" value="' . esc_attr($q) . '" placeholder="جست‌وجوی پروژه، مشتری، کشت یا استان">';
+        echo '<select name="status"><option value="">همه وضعیت‌ها</option>';
+        foreach ($statuses as $key => $meta) {
+            echo '<option value="' . esc_attr($key) . '" ' . selected($filter_status, $key, false) . '>' . esc_html($meta['label']) . '</option>';
+        }
+        echo '</select>';
+        echo '<button class="button button-primary" type="submit">اعمال فیلتر</button>';
+        echo '<a class="button" href="' . esc_url(k20_prd_admin_url()) . '">پاک‌کردن فیلتر</a>';
+        echo '</form>';
+
+        $filtered = array_values(array_filter($rows, function($row) use ($filter_status, $q) {
+            if ($filter_status && $row['review']['status'] !== $filter_status) { return false; }
+            if (!$q) { return true; }
+            $p = $row['project'];
+            $haystack = implode(' ', array(
+                $row['customer_name'],
+                isset($p['name']) ? $p['name'] : '',
+                isset($p['crop']) ? $p['crop'] : '',
+                isset($p['province']) ? $p['province'] : '',
+            ));
+            return false !== mb_stripos($haystack, $q);
+        }));
+
+        $per_page = 20;
+        $paged = isset($_GET['paged']) ? max(1, absint($_GET['paged'])) : 1;
+        $total = count($filtered);
+        $page_rows = array_slice($filtered, ($paged - 1) * $per_page, $per_page);
+
+        echo '<table class="k20-prd-table"><thead><tr>';
+        echo '<th>پروژه</th><th>مشتری</th><th>کشت</th><th>مساحت</th><th>تاریخ ثبت</th><th>وضعیت</th><th></th>';
+        echo '</tr></thead><tbody>';
+        if (!$page_rows) {
+            echo '<tr><td colspan="7">پروژه‌ای با این فیلتر پیدا نشد.</td></tr>';
+        }
+        foreach ($page_rows as $row) {
+            $p = $row['project'];
+            $status = $row['review']['status'];
+            $tone = k20_prd_status_tone($status);
+            $url = k20_prd_admin_url(array(
+                'view' => 'project',
+                'user_id' => $row['user_id'],
+                'project_id' => rawurlencode($p['id']),
+            ));
+            echo '<tr>';
+            echo '<td><strong>' . esc_html(isset($p['name']) ? $p['name'] : 'بدون عنوان') . '</strong><br><small>' . esc_html($p['id']) . '</small></td>';
+            echo '<td>' . esc_html($row['customer_name']) . '</td>';
+            echo '<td>' . esc_html(isset($p['crop']) && $p['crop'] ? $p['crop'] : '—') . '</td>';
+            echo '<td>' . esc_html(isset($p['area_ha']) && $p['area_ha'] !== null ? $p['area_ha'] . ' هکتار' : '—') . '</td>';
+            echo '<td>' . esc_html(k20_prd_human_date(isset($p['created_at']) ? $p['created_at'] : '')) . '</td>';
+            echo '<td><span class="k20-badge k20-tone-' . esc_attr($tone) . '">' . esc_html(k20_prd_status_label($status)) . '</span></td>';
+            echo '<td><a class="button" href="' . esc_url($url) . '">بررسی پروژه</a></td>';
+            echo '</tr>';
+        }
+        echo '</tbody></table>';
+
+        if ($total > $per_page) {
+            $base = k20_prd_admin_url(array(
+                'status' => $filter_status,
+                'q' => $q,
+                'paged' => '%#%',
+            ));
+            echo '<div class="tablenav"><div class="tablenav-pages">';
+            echo wp_kses_post(paginate_links(array(
+                'base' => $base,
+                'format' => '',
+                'current' => $paged,
+                'total' => ceil($total / $per_page),
+                'prev_text' => 'قبلی',
+                'next_text' => 'بعدی',
+            )));
+            echo '</div></div>';
+        }
+    }
+}
+
+if (!function_exists('k20_prd_render_project')) {
+    function k20_prd_render_project() {
+        $user_id = isset($_GET['user_id']) ? absint($_GET['user_id']) : 0;
+        $project_id = isset($_GET['project_id']) ? sanitize_text_field(wp_unslash($_GET['project_id'])) : '';
+        $project = k20_prd_project($user_id, $project_id);
+        $customer = get_userdata($user_id);
+
+        if (!$project || !$customer) {
+            echo '<div class="notice notice-error"><p>پروژه پیدا نشد.</p></div>';
+            echo '<p><a class="button" href="' . esc_url(k20_prd_admin_url()) . '">بازگشت</a></p>';
+            return;
+        }
+
+        $review = k20_prd_review($user_id, $project_id);
+        $state = k20_prd_member_state($user_id);
+        $statuses = k20_prd_statuses();
+
+        if (!empty($_GET['saved'])) {
+            echo '<div class="notice-inline">تغییرات پروژه ذخیره شد.</div>';
+        }
+
+        echo '<p><a href="' . esc_url(k20_prd_admin_url()) . '">← بازگشت به همه پروژه‌ها</a></p>';
+        echo '<div class="k20-prd-grid">';
+
+        echo '<div>';
+        echo '<div class="k20-prd-card"><h2>' . esc_html($project['name']) . '</h2>';
+        echo '<div class="k20-prd-fields">';
+        $fields = array(
+            'مشتری' => $customer->display_name ? $customer->display_name : $customer->user_login,
+            'کشت' => isset($project['crop']) && $project['crop'] ? $project['crop'] : '—',
+            'استان' => isset($project['province']) && $project['province'] ? $project['province'] : '—',
+            'مساحت' => isset($project['area_ha']) && $project['area_ha'] !== null ? $project['area_ha'] . ' هکتار' : '—',
+            'منبع آب' => isset($project['water_source']) && $project['water_source'] ? $project['water_source'] : '—',
+            'فشار تقریبی' => isset($project['pressure_bar']) && $project['pressure_bar'] !== null ? $project['pressure_bar'] . ' bar' : '—',
+            'تاریخ ثبت' => k20_prd_human_date(isset($project['created_at']) ? $project['created_at'] : ''),
+            'شناسه پروژه' => $project['id'],
+        );
+        foreach ($fields as $label => $value) {
+            echo '<div class="k20-prd-field"><small>' . esc_html($label) . '</small><strong>' . esc_html($value) . '</strong></div>';
+        }
+        echo '</div></div>';
+
+        echo '<div class="k20-prd-card"><h3>سوابق مرتبط مشتری</h3>';
+        echo '<p><strong>محاسبات ذخیره‌شده:</strong> ' . esc_html(count($state['calculations'])) . '</p>';
+        echo '<p><strong>پرسش‌های فنی:</strong> ' . esc_html(count($state['question_refs'])) . '</p>';
+        echo '<p><strong>پیش‌فاکتورهای ثبت‌شده:</strong> ' . esc_html(count($state['proforma_refs'])) . '</p>';
+        echo '</div>';
+        echo '</div>';
+
+        echo '<div class="k20-prd-card"><h2>بررسی کارشناس</h2>';
+        echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '">';
+        echo '<input type="hidden" name="action" value="k20_prd_save">';
+        echo '<input type="hidden" name="user_id" value="' . esc_attr($user_id) . '">';
+        echo '<input type="hidden" name="project_id" value="' . esc_attr($project_id) . '">';
+        wp_nonce_field('k20_prd_save_' . $user_id . '_' . $project_id);
+
+        echo '<label for="k20-prd-status">وضعیت پروژه</label>';
+        echo '<select id="k20-prd-status" name="status">';
+        foreach ($statuses as $key => $meta) {
+            echo '<option value="' . esc_attr($key) . '" ' . selected($review['status'], $key, false) . '>' . esc_html($meta['label']) . '</option>';
+        }
+        echo '</select>';
+
+        echo '<label for="k20-prd-internal">یادداشت داخلی مدیر</label>';
+        echo '<textarea id="k20-prd-internal" name="internal_note" maxlength="5000" placeholder="این متن فقط در پنل مدیریت دیده می‌شود.">' . esc_textarea($review['internal_note']) . '</textarea>';
+
+        echo '<label for="k20-prd-customer">پاسخ قابل‌نمایش به مشتری</label>';
+        echo '<textarea id="k20-prd-customer" name="customer_message" maxlength="3000" placeholder="نتیجه بررسی، اطلاعات موردنیاز یا توضیحی که مشتری باید در حساب خود ببیند.">' . esc_textarea($review['customer_message']) . '</textarea>';
+
+        echo '<p><label style="font-weight:700"><input type="checkbox" name="notify_customer" value="1"> بعد از ذخیره، همین پاسخ به ایمیل مشتری هم اطلاع داده شود.</label></p>';
+        echo '<p><button class="button button-primary button-large" type="submit">ذخیره بررسی و پاسخ</button></p>';
+
+        if ($review['updated_at']) {
+            echo '<hr><p><small>آخرین به‌روزرسانی: ' . esc_html(k20_prd_human_date($review['updated_at'])) . '</small></p>';
+        }
+        if ($review['customer_notified_at']) {
+            echo '<p><small>آخرین اعلان ایمیلی موفق: ' . esc_html(k20_prd_human_date($review['customer_notified_at'])) . '</small></p>';
+        }
+
+        echo '</form></div>';
+        echo '</div>';
+    }
+}
+
+if (!function_exists('k20_prd_front_assets')) {
+    function k20_prd_front_assets() {
+        if (!function_exists('is_account_page') || !is_account_page()) { return; }
+        $css = '
+        .k20-project-status-board{direction:rtl;margin:22px 0;padding:20px;border-radius:22px;background:linear-gradient(180deg,#fff,#fbfdfc);border:1px solid #e5ebe7;box-shadow:0 12px 34px rgba(25,56,39,.07)}
+        .k20-project-status-board h2{margin:0 0 7px;font-size:22px;font-weight:900;color:#17211d}.k20-project-status-board>p{color:#6b756f;margin:0 0 16px}
+        .k20-project-status-list{display:grid;gap:12px}.k20-project-status-card{border:1px solid #e8ecea;border-radius:16px;padding:15px;background:#fff}
+        .k20-project-status-head{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}.k20-project-status-head strong{font-size:16px}
+        .k20-project-status-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px;color:#667085;font-size:12px}
+        .k20-project-status-message{margin-top:12px;padding:13px 14px;border-radius:13px;background:#eef8f1;border:1px solid #d6ecdD;color:#285b3a;line-height:1.9}
+        .k20-project-status-board .k20-badge{display:inline-flex;align-items:center;min-height:28px;padding:3px 10px;border-radius:999px;font-weight:900;font-size:12px}
+        .k20-project-status-board .k20-tone-blue{background:#eaf2ff;color:#245aa6}.k20-project-status-board .k20-tone-amber{background:#fff4d8;color:#8a5a00}
+        .k20-project-status-board .k20-tone-orange{background:#fff0e6;color:#a24b12}.k20-project-status-board .k20-tone-green{background:#e7f7ed;color:#1e7041}
+        .k20-project-status-board .k20-tone-purple{background:#f2eafe;color:#6741a5}.k20-project-status-board .k20-tone-gray{background:#eef0f2;color:#57606a}
+        ';
+        wp_register_style('k20-prd-front', false, array(), '1.0.0');
+        wp_enqueue_style('k20-prd-front');
+        wp_add_inline_style('k20-prd-front', $css);
+    }
+    add_action('wp_enqueue_scripts', 'k20_prd_front_assets', 100);
+}
+
+if (!function_exists('k20_prd_customer_board')) {
+    function k20_prd_customer_board() {
+        if (!is_user_logged_in()) { return; }
+        $user_id = get_current_user_id();
+        $state = k20_prd_member_state($user_id);
+        if (empty($state['projects'])) { return; }
+
+        echo '<section class="k20-project-status-board" aria-labelledby="k20-project-status-title">';
+        echo '<h2 id="k20-project-status-title">وضعیت بررسی پروژه‌ها</h2>';
+        echo '<p>آخرین وضعیت و پاسخ کارشناس کشاورز بیست برای پروژه‌های ذخیره‌شده شما.</p>';
+        echo '<div class="k20-project-status-list">';
+
+        foreach (array_reverse($state['projects']) as $project) {
+            if (!is_array($project) || empty($project['id'])) { continue; }
+            $review = k20_prd_review($user_id, $project['id']);
+            $status = $review['status'];
+            $tone = k20_prd_status_tone($status);
+
+            echo '<article class="k20-project-status-card">';
+            echo '<div class="k20-project-status-head"><strong>' . esc_html(isset($project['name']) ? $project['name'] : 'پروژه') . '</strong>';
+            echo '<span class="k20-badge k20-tone-' . esc_attr($tone) . '">' . esc_html(k20_prd_status_label($status)) . '</span></div>';
+
+            echo '<div class="k20-project-status-meta">';
+            if (!empty($project['crop'])) { echo '<span>کشت: ' . esc_html($project['crop']) . '</span>'; }
+            if (isset($project['area_ha']) && $project['area_ha'] !== null) { echo '<span>مساحت: ' . esc_html($project['area_ha']) . ' هکتار</span>'; }
+            if ($review['updated_at']) { echo '<span>آخرین بررسی: ' . esc_html(k20_prd_human_date($review['updated_at'])) . '</span>'; }
+            echo '</div>';
+
+            if ($review['customer_message'] !== '') {
+                echo '<div class="k20-project-status-message"><strong>پاسخ کارشناس:</strong><br>' . nl2br(esc_html($review['customer_message'])) . '</div>';
+            } elseif ('new' === $status) {
+                echo '<div class="k20-project-status-message">پروژه دریافت شده و در صف بررسی کارشناسی قرار دارد.</div>';
+            } elseif ('reviewing' === $status) {
+                echo '<div class="k20-project-status-message">پروژه شما در حال بررسی کارشناسی است.</div>';
+            }
+
+            echo '</article>';
+        }
+
+        echo '</div></section>';
+    }
+    add_action('woocommerce_account_dashboard', 'k20_prd_customer_board', 36);
+}
