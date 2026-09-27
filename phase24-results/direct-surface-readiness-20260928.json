@@ -1,0 +1,39 @@
+{
+  "phase": 24,
+  "generated_at_utc": "2026-09-27T21:34:00Z",
+  "status": "READY_FOR_DIRECT_SURFACE_EXECUTION",
+  "prompt_bank_count": 200,
+  "validated_observed_count": 70,
+  "remaining_count": 130,
+  "by_surface": {
+    "ChatGPT Search": 30,
+    "Microsoft Copilot / Bing": 50,
+    "Perplexity": 50,
+    "Google AI Mode / AI Overviews": 0
+  },
+  "evidence_contract": {
+    "accepted_capture_type": "DIRECT_SURFACE_CAPTURE",
+    "require_named_surface": true,
+    "require_readback_verified": true,
+    "ordinary_web_search_accepted": false,
+    "referral_accepted_as_citation": false,
+    "fabricated_observations_allowed": 0
+  },
+  "ingest_required_fields": [
+    "prompt_id",
+    "surface",
+    "prompt",
+    "answer_present",
+    "keshavarz20_cited",
+    "cited_url",
+    "brand_mentioned",
+    "recommendation_context",
+    "competitor_source_set",
+    "timestamp",
+    "capture_type",
+    "readback_verified"
+  ],
+  "current_runtime_constraint": "No authenticated direct answer-surface browser session is attached to this chat runtime. Standard web search is intentionally excluded.",
+  "queue": "phase24-results/remaining-direct-surface-queue.json",
+  "execution_guide": "phase24/WORK-CLOUD-BROWSER-EXECUTION.md"
+}
