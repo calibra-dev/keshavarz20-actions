@@ -52,7 +52,11 @@ jobs:
               lines=js.splitlines()
               a=max(0,line-4); b=min(len(lines),line+3)
               ctx='\n'.join(f'{i+1}: {lines[i]}' for i in range(a,b))
-          meta.update({'syntax_ok':not bool(err.strip()),'error':err[:4000],'error_line':line,'context':ctx[:5000]})
+          entity_lines=[]
+          for i,line_text in enumerate(js.splitlines(),1):
+              if '&#038;' in line_text or '&amp;' in line_text or '&#039;' in line_text or '&quot;' in line_text:
+                  entity_lines.append({'line':i,'text':line_text[:2000]})
+          meta.update({'syntax_ok':not bool(err.strip()),'error':err[:4000],'error_line':line,'context':ctx[:5000],'entity_lines':entity_lines[:100],'entity_line_count':len(entity_lines),'num038_count':js.count('&#038;')})
           pathlib.Path('diagnostics').mkdir(exist_ok=True)
           pathlib.Path('diagnostics/k20-webmcp-syntax-qa.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf8')
           PY
@@ -62,3 +66,5 @@ jobs:
           git commit -m 'qa: check calculator WebMCP script syntax'
           git pull --rebase origin main
           git push
+
+# rerun entity scan
