@@ -1,0 +1,37 @@
+name: K20 Calculator Response Diagnostics
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/k20-calculator-response-diagnostics.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Measure public response and cache headers
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://keshavarz20.com/drip-tape-length-fittings-calculator/'
+          : > "$RUNNER_TEMP/k20-response-diagnostics.txt"
+          for i in 1 2 3 4 5; do
+            echo "===== REQUEST $i =====" | tee -a "$RUNNER_TEMP/k20-response-diagnostics.txt"
+            curl -sS -o /dev/null -D "$RUNNER_TEMP/headers-$i.txt" \
+              -w 'http_code=%{http_code}\ntime_namelookup=%{time_namelookup}\ntime_connect=%{time_connect}\ntime_appconnect=%{time_appconnect}\ntime_starttransfer=%{time_starttransfer}\ntime_total=%{time_total}\nsize_download=%{size_download}\n' \
+              "$URL" | tee -a "$RUNNER_TEMP/k20-response-diagnostics.txt"
+            grep -Ei '^(cache-control|age|server|x-litespeed-cache|x-litespeed-cache-control|x-cache|cf-cache-status|vary|content-encoding|content-type|link):' "$RUNNER_TEMP/headers-$i.txt" | tee -a "$RUNNER_TEMP/k20-response-diagnostics.txt" || true
+            sleep 2
+          done
+      - name: Upload diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-calculator-response-diagnostics-${{ github.run_id }}
+          path: ${{ runner.temp }}/k20-response-diagnostics.txt
+          retention-days: 14
