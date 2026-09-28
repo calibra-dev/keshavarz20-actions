@@ -58,3 +58,5 @@ jobs:
           git commit -m 'qa: capture calculator browser UI state' || exit 0
           git pull --rebase origin main
           git push
+
+# rerun after snippet43 deactivation and cache purge
