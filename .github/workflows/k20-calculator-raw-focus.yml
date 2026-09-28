@@ -59,13 +59,13 @@ jobs:
             for p in matches[:6]:
               out['needles'][needle]['items'].append({'pos':p,'context':raw[max(0,p-1800):min(len(raw),p+4200)]})
           Path('diagnostics').mkdir(exist_ok=True)
-          Path('diagnostics/k20-calculator-raw-focus-20260928.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          Path('diagnostics/k20-calculator-raw-focus-20260928.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')\n          Path('diagnostics/k20-calculator-post-content.raw').write_text(raw,encoding='utf-8')
           PY
       - name: Upload focused diagnostic
         uses: actions/upload-artifact@v4
         with:
           name: k20-calculator-raw-focus
-          path: diagnostics/k20-calculator-raw-focus-20260928.json
+          path: |\n            diagnostics/k20-calculator-raw-focus-20260928.json\n            diagnostics/k20-calculator-post-content.raw
           if-no-files-found: error
           retention-days: 1
       - name: Commit focused diagnostic
