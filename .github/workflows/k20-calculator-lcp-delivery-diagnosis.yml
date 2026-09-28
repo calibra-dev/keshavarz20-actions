@@ -1,0 +1,32 @@
+name: K20 Calculator LCP Delivery Diagnosis
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/k20-calculator-lcp-delivery-diagnosis.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Probe calculator delivery
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://keshavarz20.com/drip-tape-length-fittings-calculator/'
+          echo '=== RESPONSE HEADERS ==='
+          curl -sS -D - -o /dev/null "$URL" | grep -Ei '^(HTTP/|server:|cache-control:|x-litespeed-cache:|x-litespeed-cache-control:|vary:|set-cookie:|content-type:|content-encoding:|age:|cf-cache-status:) ' || true
+          echo
+          echo '=== FIVE NORMAL REQUESTS ==='
+          for i in 1 2 3 4 5; do
+            curl -sS -o /dev/null -w "run=$i code=%{http_code} dns=%{time_namelookup} tcp=%{time_connect} tls=%{time_appconnect} ttfb=%{time_starttransfer} total=%{time_total} size=%{size_download}\n" "$URL"
+            sleep 1
+          done
+          echo
+          echo '=== MOBILE REQUEST ==='
+          curl -A 'Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 Chrome/153 Mobile Safari/537.36' -sS -D - -o /dev/null -w "ttfb=%{time_starttransfer} total=%{time_total}\n" "$URL" | grep -Ei '^(HTTP/|x-litespeed-cache:|x-litespeed-cache-control:|cache-control:|vary:|set-cookie:|ttfb=)' || true
