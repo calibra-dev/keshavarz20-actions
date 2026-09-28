@@ -8,54 +8,59 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   map:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Fetch and map live assets
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Fetch optimized and original asset HTML
         shell: bash
         run: |
           set -euo pipefail
-          URL='https://keshavarz20.com/drip-tape-length-fittings-calculator/'
-          curl -fsSL -A 'Mozilla/5.0' "$URL" -o "$RUNNER_TEMP/calc.html"
+          base='https://keshavarz20.com/drip-tape-length-fittings-calculator/'
+          curl -fsSL -A 'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/153 Mobile Safari/537.36' "$base" -o "$RUNNER_TEMP/optimized.html"
+          curl -fsSL -A 'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/153 Mobile Safari/537.36' "${base}?LSCWP_CTRL=before_optm" -o "$RUNNER_TEMP/original.html"
+
           python3 - <<'PY'
-          import re, json, os
-          p=os.environ['RUNNER_TEMP']+'/calc.html'
-          html=open(p,encoding='utf-8',errors='replace').read()
-          tags=[]
-          for m in re.finditer(r'<(?:script|link)\b[^>]*>', html, re.I):
-              tag=m.group(0)
-              low=tag.lower()
-              if tag.lower().startswith('<script') or ('rel=' in low and 'stylesheet' in low):
-                  def attr(n):
-                      mm=re.search(r'\b'+re.escape(n)+r'=["\']([^"\']+)', tag, re.I)
-                      return mm.group(1) if mm else None
-                  tags.append({
-                      'tag': 'script' if low.startswith('<script') else 'link',
-                      'id': attr('id'),
-                      'src': attr('src'),
-                      'href': attr('href'),
-                      'type': attr('type'),
-                      'defer': ' defer' in low,
-                      'async': ' async' in low,
-                      'text': tag[:600]
-                  })
-          lines=html.splitlines()
-          out={
-            'html_bytes':len(html.encode()),
-            'assets':tags,
-            'error_line_167': lines[166][:3000] if len(lines)>=167 else None,
-            'error_line_2235': lines[2234][:3000] if len(lines)>=2235 else None,
-          }
-          print(json.dumps(out,ensure_ascii=False,indent=2))
-          open(os.environ['RUNNER_TEMP']+'/asset-map.json','w',encoding='utf-8').write(json.dumps(out,ensure_ascii=False,indent=2))
+          import json,re,html,os
+          def parse(path):
+              s=open(path,encoding='utf-8',errors='replace').read()
+              styles=[]
+              scripts=[]
+              images=[]
+              for m in re.finditer(r'<link\b[^>]*rel=["\']stylesheet["\'][^>]*>',s,re.I):
+                  tag=m.group(0)
+                  href=re.search(r'href=["\']([^"\']+)',tag,re.I)
+                  iid=re.search(r'id=["\']([^"\']+)',tag,re.I)
+                  styles.append({'id':iid.group(1) if iid else None,'href':html.unescape(href.group(1)) if href else None,'tag':tag[:500]})
+              for m in re.finditer(r'<script\b[^>]*src=["\']([^"\']+)["\'][^>]*>',s,re.I):
+                  tag=m.group(0)
+                  iid=re.search(r'id=["\']([^"\']+)',tag,re.I)
+                  scripts.append({'id':iid.group(1) if iid else None,'src':html.unescape(m.group(1)),'tag':tag[:500]})
+              for m in re.finditer(r'<img\b[^>]*>',s,re.I):
+                  tag=m.group(0)
+                  src=re.search(r'src=["\']([^"\']+)',tag,re.I)
+                  if src and ('hossini.jpg' in src.group(1) or 'calculator-featured' in src.group(1) or 'logo' in src.group(1).lower()):
+                      images.append({'src':html.unescape(src.group(1)),'tag':tag[:900]})
+              return {'bytes':len(s.encode()),'styles':styles,'scripts':scripts,'focus_images':images}
+          out={'optimized':parse(os.environ['RUNNER_TEMP']+'/optimized.html'),'before_optm':parse(os.environ['RUNNER_TEMP']+'/original.html')}
+          os.makedirs('diagnostics',exist_ok=True)
+          open('diagnostics/calculator-asset-map.json','w',encoding='utf-8').write(json.dumps(out,ensure_ascii=False,indent=2))
           PY
-      - name: Upload map
-        uses: actions/upload-artifact@v4
-        with:
-          name: k20-calculator-asset-map-${{ github.run_id }}
-          path: ${{ runner.temp }}/asset-map.json
-          retention-days: 14
+
+      - name: Persist asset map
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add diagnostics/calculator-asset-map.json
+          git commit -m "diag: record calculator asset map" || exit 0
+          git pull --rebase origin main || true
+          git push origin HEAD:main
