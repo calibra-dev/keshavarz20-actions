@@ -1,0 +1,118 @@
+name: K20 Live Mobile UI Diagnostic
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/k20-live-mobile-ui-diagnostic.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect live mobile UI
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet requests beautifulsoup4
+          python3 - <<'PY'
+          import json, re, requests
+          from bs4 import BeautifulSoup, NavigableString
+          from pathlib import Path
+
+          ua = 'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140 Mobile Safari/537.36'
+          pages = {
+              'calculator': 'https://keshavarz20.com/drip-tape-length-fittings-calculator/',
+              'home': 'https://keshavarz20.com/',
+              'cart': 'https://keshavarz20.com/cart/',
+          }
+          terms = ['use strict', 'growthos-decision-flow', 'FAQPage', 'GrowthOSMeasurement']
+          nav_labels = ['صفحه اصلی', 'سبد خرید', 'دسته‌ها', 'حساب کاربری']
+
+          def clip(s, n=8000):
+              s = re.sub(r'\s+', ' ', s or '').strip()
+              return s[:n]
+
+          def visible_text(soup):
+              c = BeautifulSoup(str(soup), 'html.parser')
+              for tag in c(['script','style','noscript','template','svg']):
+                  tag.decompose()
+              return c.get_text(' ', strip=True)
+
+          def nearest_container_for_labels(soup):
+              nodes = []
+              for label in nav_labels:
+                  node = soup.find(string=lambda s: isinstance(s, str) and label in s)
+                  if node:
+                      nodes.append((label, node.parent))
+              best = None
+              for label, node in nodes:
+                  cur = node
+                  for _ in range(8):
+                      if not cur or not getattr(cur, 'get_text', None):
+                          break
+                      txt = cur.get_text(' ', strip=True)
+                      count = sum(1 for x in nav_labels if x in txt)
+                      if count >= 3:
+                          html = clip(str(cur), 12000)
+                          score = (count, -len(html))
+                          if best is None or score > best[0]:
+                              best = (score, {'tag': cur.name, 'id': cur.get('id'), 'class': cur.get('class'), 'html': html})
+                          break
+                      cur = cur.parent
+              return best[1] if best else None
+
+          def context_for_text(soup, needle):
+              node = soup.find(string=lambda s: isinstance(s, str) and needle in s)
+              if not node:
+                  return None
+              cur = node.parent
+              for _ in range(5):
+                  if cur and len(cur.get_text(' ', strip=True)) < 2500:
+                      cur = cur.parent
+                  else:
+                      break
+              return clip(str(cur or node.parent), 12000)
+
+          report = {'generated_by':'github-actions','pages':{}}
+          for name, url in pages.items():
+              r = requests.get(url, headers={'User-Agent':ua,'Cache-Control':'no-cache'}, timeout=30)
+              html = r.text
+              soup = BeautifulSoup(html, 'html.parser')
+              vt = visible_text(soup)
+              entry = {
+                  'url': url,
+                  'status': r.status_code,
+                  'bytes': len(r.content),
+                  'source_counts': {t: html.lower().count(t.lower()) for t in terms},
+                  'visible_counts': {t: vt.lower().count(t.lower()) for t in terms},
+                  'script_tag_counts': {t: sum(1 for x in soup.find_all('script') if t.lower() in (x.get_text() or '').lower()) for t in terms},
+                  'style_tag_counts': {t: sum(1 for x in soup.find_all('style') if t.lower() in (x.get_text() or '').lower()) for t in terms},
+                  'mobile_nav': nearest_container_for_labels(soup),
+                  'stylesheets': [x.get('href') for x in soup.find_all('link', rel=lambda v: v and 'stylesheet' in (v if isinstance(v,list) else [v])) if x.get('href')][:80],
+              }
+              if name == 'calculator':
+                  entry['copy_basket_context'] = context_for_text(soup, 'کپی سبد و فرضیات')
+                  entry['prefactor_context'] = context_for_text(soup, 'ارسال برای پیش‌فاکتور')
+                  entry['decision_flow_context'] = context_for_text(soup, 'مسیر تصمیم‌گیری')
+                  for t in terms:
+                      p = html.lower().find(t.lower())
+                      entry.setdefault('source_fragments', {})[t] = clip(html[max(0,p-1200):p+2600], 4200) if p >= 0 else None
+              report['pages'][name] = entry
+
+          Path('diagnostics').mkdir(exist_ok=True)
+          Path('diagnostics/k20-live-mobile-ui-20260928.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
+          PY
+      - name: Commit diagnostic report
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add diagnostics/k20-live-mobile-ui-20260928.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m 'diag: capture live mobile calculator and nav state'
+          git push
