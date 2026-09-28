@@ -1,0 +1,43 @@
+{
+  "task": "homepage_posts_view_all_link",
+  "site": "https://keshavarz20.com",
+  "target": {
+    "page_id": 644,
+    "page_title": "صفحه اصلی",
+    "template": "page-templates/home.php",
+    "section_title": "نوشته‌ها"
+  },
+  "requested_change": {
+    "label": "مشاهده همه",
+    "placement": "کنار عنوان بخش «نوشته‌ها»، مشابه لینک «مشاهده همه» در باکس‌های محصول",
+    "behavior": "با کلیک، صفحه فهرست کامل نوشته‌های آموزشی سایت باز شود",
+    "destination_resolution": "قبل از اعمال، URL واقعی آرشیو/صفحه همه نوشته‌ها از خود سایت خوانده و همان URL استفاده شود؛ حدس زده نشود",
+    "design": [
+      "RTL واقعی",
+      "هم‌تراز با عنوان بخش",
+      "ظاهر هماهنگ با مشاهده همه بخش محصولات",
+      "بدون ایجاد CLS یا تغییر ارتفاع ناگهانی",
+      "ریسپانسیو موبایل/تبلت/دسکتاپ",
+      "بدون دست‌زدن به اسلایدر، کارت‌های نوشته یا سایر بخش‌های صفحه"
+    ]
+  },
+  "execution_plan": [
+    "پس از در دسترس شدن WPVibe، ابتدا template/page source فعلی را به‌صورت read-only بررسی کن",
+    "منبع دقیق section نوشته‌ها را در page-templates/home.php یا include مربوطه پیدا کن",
+    "URL واقعی صفحه همه نوشته‌ها را از WordPress/site navigation/post archive resolve کن",
+    "فقط همان بخش را با حداقل diff تغییر بده",
+    "در صورت وجود helper/component مشابه «مشاهده همه» محصولات، همان الگو را reuse کن",
+    "کش LiteSpeed/Elementor/object cache مرتبط را فقط بعد از تغییر موفق پاک کن",
+    "صفحه اصلی را در frontend readback کن و وجود label و href صحیح را تأیید کن",
+    "بررسی کن لینک با keyboard focus قابل استفاده باشد و target جدید بدون نیاز باز نشود",
+    "اگر source یا مقصد مبهم بود، write انجام نده"
+  ],
+  "acceptance": [
+    "متن «مشاهده همه» کنار عنوان «نوشته‌ها» دیده شود",
+    "کلیک، کاربر را به فهرست کامل نوشته‌های آموزشی ببرد",
+    "ظاهر با الگوی مشاهده همه محصولات هماهنگ باشد",
+    "هیچ بخش دیگری از صفحه اصلی تغییر نکند",
+    "readback نهایی و URL مقصد ثبت شود"
+  ],
+  "status": "prepared_waiting_for_wpvibe"
+}
