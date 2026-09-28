@@ -40,7 +40,20 @@ jobs:
               except Exception as e:
                   probes.append({'url':url,'error':repr(e)})
 
-          out={'featured_urls':featured,'probes':probes}
+          post_probe={}
+          media_probe={}
+          try:
+              req=urllib.request.Request('https://keshavarz20.com/wp-json/wp/v2/posts/143698?_fields=id,featured_media',headers={'User-Agent':'Mozilla/5.0'})
+              with urllib.request.urlopen(req,timeout=30) as r:
+                  post_probe=json.loads(r.read().decode('utf-8','replace'))
+              mid=post_probe.get('featured_media')
+              if mid:
+                  req=urllib.request.Request(f'https://keshavarz20.com/wp-json/wp/v2/media/{mid}?_fields=id,source_url,media_details',headers={'User-Agent':'Mozilla/5.0'})
+                  with urllib.request.urlopen(req,timeout=30) as r:
+                      media_probe=json.loads(r.read().decode('utf-8','replace'))
+          except Exception as e:
+              media_probe={'error':repr(e)}
+          out={'featured_urls':featured,'post_probe':post_probe,'media_probe':media_probe,'probes':probes}
           os.makedirs('diagnostics',exist_ok=True)
           open('diagnostics/calculator-media-lookup.json','w',encoding='utf8').write(json.dumps(out,ensure_ascii=False,indent=2))
           PY
@@ -59,3 +72,5 @@ jobs:
             sleep $((attempt*2))
           done
           exit 1
+
+# direct post/media resolver 2026-09-29
