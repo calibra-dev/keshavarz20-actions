@@ -1,0 +1,12 @@
+{
+  "action": "content.patch",
+  "request_id": "calc-flow-js-wrap-20260928",
+  "payload": {
+    "target_type": "post",
+    "post_id": 143698,
+    "field": "post_content",
+    "old_content": "(function(){var root=document.currentScript&amp;&amp;document.currentScript.parentElement;if(!root)return;root.querySelectorAll('[data-growthos-step]').forEach(function(a){a.addEventListener('click',function(){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'growthos_flow_step',step:a.getAttribute('data-growthos-step'),target:a.getAttribute('href'),source_path:location.pathname});});});})()",
+    "new_content": "<script>\n(function(){var root=document.currentScript&&document.currentScript.parentElement;if(!root)return;root.querySelectorAll('[data-growthos-step]').forEach(function(a){a.addEventListener('click',function(){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'growthos_flow_step',step:a.getAttribute('data-growthos-step'),target:a.getAttribute('href'),source_path:location.pathname});});});})()\n</script>",
+    "expected_sha256": "7a93e5e6047c30eefcfa1626be1d6e874d73c252fb3fdf2a8688e8ab2326e0dc"
+  }
+}
