@@ -84,7 +84,13 @@ jobs:
                   'tc_calculate':'tc-calculate' in code_text,
                   'bottom_nav':'bottom-nav' in code_text,
                   'litespeed':'LiteSpeed' in code_text or 'litespeed' in code_text,
-                  'jquery':'jquery' in code_text.lower()
+                  'jquery':'jquery' in code_text.lower(),
+                  'ready_state':'document.readyState' in code_text,
+                  'wp_footer':'wp_footer' in code_text,
+                  'wp_add_inline_script':'wp_add_inline_script' in code_text,
+                  'wp_enqueue_scripts':'wp_enqueue_scripts' in code_text,
+                  'dom_listener_count':code_text.count('DOMContentLoaded'),
+                  'build_call_count':code_text.count('build()')
               }
               receipt={
                   'http_code':row.get('http_code'),
