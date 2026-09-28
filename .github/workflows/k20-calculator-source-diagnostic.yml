@@ -53,7 +53,9 @@ jobs:
                       media_probe=json.loads(r.read().decode('utf-8','replace'))
           except Exception as e:
               media_probe={'error':repr(e)}
-          out={'featured_urls':featured,'post_probe':post_probe,'media_probe':media_probe,'probes':probes}
+          tags=re.findall(r'<img\b[^>]*>',h,re.I)
+          featured_img_tag=next((t for t in tags if 'k20-calculator-featured-optimized-1200' in t),None)
+          out={'featured_urls':featured,'featured_img_tag':featured_img_tag,'post_probe':post_probe,'media_probe':media_probe,'probes':probes}
           os.makedirs('diagnostics',exist_ok=True)
           open('diagnostics/calculator-media-lookup.json','w',encoding='utf8').write(json.dumps(out,ensure_ascii=False,indent=2))
           PY
@@ -76,3 +78,5 @@ jobs:
 # direct post/media resolver 2026-09-29
 
 # post-bind readback trigger 2026-09-29
+
+# post-rollback featured tag probe 2026-09-29
