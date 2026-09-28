@@ -1,14 +1,16 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-ef840fbd8d4dda6e",
-  "product_id": 140415,
+  "canonical_intent_id": "question-intent-152d2f54624fb4a2",
+  "product_id": 140341,
   "family": "fitting",
-  "intent": "compatibility",
-  "scenario_dimensions": {},
-  "potential_article_gap": false,
+  "intent": "total_cost",
+  "scenario_dimensions": {
+    "pressure": true
+  },
+  "potential_article_gap": true,
   "potential_hub_gap": false,
-  "compatibility_gap": true,
+  "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
