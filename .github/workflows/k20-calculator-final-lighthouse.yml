@@ -60,6 +60,34 @@ jobs:
           };
           console.log(JSON.stringify(out,null,2));
           fs.writeFileSync(process.env.RUNNER_TEMP+'/k20-calculator-final-summary.json',JSON.stringify(out,null,2));
+
+          const auditIds=[
+            'largest-contentful-paint-element','lcp-lazy-loaded','lcp-discovery-insight','lcp-breakdown-insight',
+            'render-blocking-resources','render-blocking-insight','server-response-time','uses-responsive-images',
+            'image-size-responsive','modern-image-formats','uses-optimized-images','unsized-images','uses-rel-preload',
+            'font-display','unused-javascript','unused-css-rules','total-byte-weight','mainthread-work-breakdown',
+            'bootup-time','third-party-summary','critical-request-chains','network-dependency-tree-insight',
+            'dom-size','legacy-javascript','long-tasks','diagnostics'
+          ];
+          const deep={};
+          for(const id of auditIds){
+            const x=a[id];
+            if(x) deep[id]={score:x.score,displayValue:x.displayValue,numericValue:x.numericValue,details:x.details||null};
+          }
+          const net=(a['network-requests']?.details?.items||[]).map(x=>({
+            url:x.url,resourceType:x.resourceType,transferSize:x.transferSize,resourceSize:x.resourceSize,
+            startTime:x.startTime,endTime:x.endTime,statusCode:x.statusCode,protocol:x.protocol,
+            priority:x.priority,mimeType:x.mimeType
+          })).sort((x,y)=>(y.transferSize||0)-(x.transferSize||0)).slice(0,100);
+          const deepOut={
+            generated_at:new Date().toISOString(),
+            finalUrl:j.finalUrl,
+            lighthouseVersion:j.lighthouseVersion,
+            summary:out,
+            audits:deep,
+            top_network_requests:net
+          };
+          fs.writeFileSync(process.env.RUNNER_TEMP+'/k20-calculator-deep-summary.json',JSON.stringify(deepOut,null,2));
           NODE
       - name: Record current Lighthouse summary
         shell: bash
@@ -67,9 +95,10 @@ jobs:
           set -euo pipefail
           mkdir -p diagnostics
           cp "$RUNNER_TEMP/k20-calculator-final-summary.json" diagnostics/calculator-current-lighthouse.json
+          cp "$RUNNER_TEMP/k20-calculator-deep-summary.json" diagnostics/calculator-deep-performance.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add diagnostics/calculator-current-lighthouse.json
+          git add diagnostics/calculator-current-lighthouse.json diagnostics/calculator-deep-performance.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "diag: record current calculator Lighthouse"
           for attempt in 1 2 3 4 5; do
@@ -88,6 +117,7 @@ jobs:
           path: |
             ${{ runner.temp }}/k20-calculator-final.json
             ${{ runner.temp }}/k20-calculator-final-summary.json
+            ${{ runner.temp }}/k20-calculator-deep-summary.json
           if-no-files-found: warn
           retention-days: 14
 
@@ -104,3 +134,5 @@ jobs:
 # Audit trigger after snippet 48 activation 2026-09-28
 
 # Current comparison audit trigger 2026-09-28
+
+# Deep diagnostic extraction trigger 2026-09-28
