@@ -10,6 +10,7 @@ final class K20_Bridge_V33_Performance {
     private const TARGET_POST_ID = 143698;
     private const LCP_ATTACHMENT_ID = 145308;
     private const LCP_672_ATTACHMENT_ID = 146333;
+    private const LCP_768_ATTACHMENT_ID = 146338;
 
     public static function boot(): void {
         add_filter('wp_get_attachment_image_attributes', [__CLASS__, 'lcp_attributes'], 20, 3);
@@ -57,6 +58,18 @@ final class K20_Bridge_V33_Performance {
                 'url' => esc_url_raw((string) $candidate[0]),
                 'descriptor' => 'w',
                 'value' => 672,
+            ];
+            ksort($sources, SORT_NUMERIC);
+        }
+
+        $candidate_768 = wp_get_attachment_image_src(self::LCP_768_ATTACHMENT_ID, 'full');
+        if (is_array($candidate_768) && !empty($candidate_768[0]) && (int) ($candidate_768[1] ?? 0) === 768) {
+            // Replace only the 768w source used by high-DPR mobile devices.
+            // Desktop/full-size candidates remain untouched.
+            $sources[768] = [
+                'url' => esc_url_raw((string) $candidate_768[0]),
+                'descriptor' => 'w',
+                'value' => 768,
             ];
             ksort($sources, SORT_NUMERIC);
         }
