@@ -1,0 +1,38 @@
+name: K20 Complete Handoff Export
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/k20-complete-handoff-export.yml']
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Build complete handoff
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p handoff/evidence
+          git status --short > handoff/evidence/git-status.txt
+          git log -30 --oneline --decorate > handoff/evidence/recent-commits.txt
+          cat > handoff/README-HANDOFF.md <<'EOF'
+          # Keshavarz20 Complete Handoff — 2026-09-28
+          Repository: calibra-dev/keshavarz20-actions
+          Scope: full repository snapshot plus current calculator repair evidence and Git history.
+          Current calculator page: https://keshavarz20.com/drip-tape-length-fittings-calculator/
+          Page ID: 143698
+          Safety state established during repair: snippets 45,46,47,48 inactive; snippet 39 retained active.
+          Current unresolved visible defect at export time: malformed inline calculator/GrowthOS/FAQ content is rendered as text; investigation identified malformed content boundaries in page source. Do not re-enable snippets 47/48.
+          EOF
+          cp -a . handoff/repository
+          rm -rf handoff/repository/.git handoff/repository/handoff || true
+          tar -czf /tmp/keshavarz20-complete-handoff-2026-09-28.tar.gz handoff
+      - uses: actions/upload-artifact@v4
+        with:
+          name: keshavarz20-complete-handoff-2026-09-28
+          path: /tmp/keshavarz20-complete-handoff-2026-09-28.tar.gz
+          retention-days: 14
