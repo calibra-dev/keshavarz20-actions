@@ -4,6 +4,7 @@ from __future__ import annotations
 import importlib.util
 import json
 import re
+import sys
 import unicodedata
 from pathlib import Path
 from typing import Any
@@ -13,6 +14,10 @@ from bidi.algorithm import get_display
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
 
 ROOT = Path(__file__).resolve().parent
+REPO_ROOT = ROOT.parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+import k20_sanitizer
 spec = importlib.util.spec_from_file_location("news_v2", ROOT / "publish_queue_v2.py")
 v2 = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(v2)
@@ -112,6 +117,7 @@ def _select_copy(p: dict[str, Any]) -> tuple[str, str, str]:
 
 
 def validate_payload_v3(p):
+    k20_sanitizer.sanitize_payload_inplace(p)
     v2.validate_payload_v2(p)
     title, subtitle, _ = _select_copy(p)
     p["cover_title"] = title
