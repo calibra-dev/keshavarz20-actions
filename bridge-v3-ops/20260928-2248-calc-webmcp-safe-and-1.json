@@ -1,0 +1,12 @@
+{
+  "action": "content.patch",
+  "request_id": "calc-webmcp-safe-and-1-20260928-2248",
+  "payload": {
+    "target_type": "post",
+    "post_id": 143698,
+    "field": "post_content",
+    "old_content": "  var mc=(document.modelContext)||(window.navigator&&window.navigator.modelContext);",
+    "new_content": "  var mc=(document.modelContext)||(window.navigator ? window.navigator.modelContext : null);",
+    "expected_sha256": "b818e3ad0cc855223df4fdfd417cfe8c288e467054c5d55dd98ff2fab05b9be3"
+  }
+}
