@@ -17,18 +17,12 @@ jobs:
       - shell: bash
         run: |
           set -euo pipefail
+          curl -fsS -u "$WP_USERNAME:$WP_APP_PASSWORD" \
+            "$WP_BASE_URL/wp-json/wp/v2/pages/143698?context=edit" \
+            -H 'Accept: application/json' -o /tmp/page.json
           python3 - <<'PY'
-          import os,json,re,requests
-          base=os.environ['WP_BASE_URL'].rstrip('/')
-          r=requests.get(
-              base+'/wp-json/wp/v2/pages/143698',
-              params={'context':'edit'},
-              auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD']),
-              timeout=120,
-              headers={'Accept':'application/json'}
-          )
-          r.raise_for_status()
-          row=r.json()
+          import json,re,os
+          row=json.load(open('/tmp/page.json',encoding='utf8'))
           raw=((row.get('content') or {}).get('raw') or '')
           markers=['growthos-decision-flow','FAQPage','GrowthOSMeasurement','k20-basket-items','k20-calculator-ui-repair']
           out={'length':len(raw),'status':row.get('status'),'slug':row.get('slug'),'markers':{}}
