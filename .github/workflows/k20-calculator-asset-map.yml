@@ -1,0 +1,61 @@
+name: K20 Calculator Asset Map
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/k20-calculator-asset-map.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  map:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Fetch and map live assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://keshavarz20.com/drip-tape-length-fittings-calculator/'
+          curl -fsSL -A 'Mozilla/5.0' "$URL" -o "$RUNNER_TEMP/calc.html"
+          python3 - <<'PY'
+          import re, json, os
+          p=os.environ['RUNNER_TEMP']+'/calc.html'
+          html=open(p,encoding='utf-8',errors='replace').read()
+          tags=[]
+          for m in re.finditer(r'<(?:script|link)\b[^>]*>', html, re.I):
+              tag=m.group(0)
+              low=tag.lower()
+              if tag.lower().startswith('<script') or ('rel=' in low and 'stylesheet' in low):
+                  def attr(n):
+                      mm=re.search(r'\b'+re.escape(n)+r'=["\']([^"\']+)', tag, re.I)
+                      return mm.group(1) if mm else None
+                  tags.append({
+                      'tag': 'script' if low.startswith('<script') else 'link',
+                      'id': attr('id'),
+                      'src': attr('src'),
+                      'href': attr('href'),
+                      'type': attr('type'),
+                      'defer': ' defer' in low,
+                      'async': ' async' in low,
+                      'text': tag[:600]
+                  })
+          lines=html.splitlines()
+          out={
+            'html_bytes':len(html.encode()),
+            'assets':tags,
+            'error_line_167': lines[166][:3000] if len(lines)>=167 else None,
+            'error_line_2235': lines[2234][:3000] if len(lines)>=2235 else None,
+          }
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          open(os.environ['RUNNER_TEMP']+'/asset-map.json','w',encoding='utf-8').write(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+      - name: Upload map
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-calculator-asset-map-${{ github.run_id }}
+          path: ${{ runner.temp }}/asset-map.json
+          retention-days: 14
