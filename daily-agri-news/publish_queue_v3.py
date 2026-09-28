@@ -197,6 +197,7 @@ def make_editorial_image_v3(source: dict[str, Any]) -> Path:
         final.save(target, "WEBP", quality=88, method=6)
 
     raw.unlink(missing_ok=True)
+    k20_sanitizer.sanitize_image_file(target)
     manifest = {
         "renderer": RENDERER_VERSION,
         "background_profile": "factual-news-controlled-cinematic",
