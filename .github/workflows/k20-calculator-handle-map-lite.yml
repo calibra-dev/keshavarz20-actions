@@ -20,6 +20,16 @@ jobs:
           python3 - <<'PY'
           import json,re,os
           h=open('/tmp/before.html',encoding='utf8',errors='replace').read()
+          normal_url='https://keshavarz20.com/drip-tape-length-fittings-calculator/'
+          import urllib.request
+          rq=urllib.request.Request(normal_url,headers={'User-Agent':'Mozilla/5.0'})
+          with urllib.request.urlopen(rq,timeout=45) as rr:
+              normal=rr.read().decode('utf8','replace')
+          preloads=[]
+          for tag in re.findall(r'<link\b[^>]*>',normal,re.I):
+              rel_m=re.search(r'rel=["\']([^"\']+)["\']',tag,re.I)
+              if rel_m and 'preload' in rel_m.group(1).lower():
+                  preloads.append(tag)
           css=[]
           for tag in re.findall(r'<link\b[^>]*>',h,re.I):
               href=re.search(r'href=["\']([^"\']+)["\']',tag,re.I)
@@ -34,7 +44,7 @@ jobs:
               tid=re.search(r'id=["\']([^"\']+)["\']',tag,re.I)
               js.append({'id':tid.group(1) if tid else None,'src':src.group(1),'tag':tag})
           os.makedirs('diagnostics',exist_ok=True)
-          open('diagnostics/calculator-before-optm-handles.json','w',encoding='utf8').write(json.dumps({'stylesheets':css,'scripts':js},ensure_ascii=False,indent=2))
+          open('diagnostics/calculator-before-optm-handles.json','w',encoding='utf8').write(json.dumps({'preloads':preloads,'stylesheets':css,'scripts':js},ensure_ascii=False,indent=2))
           PY
       - shell: bash
         run: |
@@ -50,3 +60,5 @@ jobs:
             sleep $((attempt*2))
           done
           exit 1
+
+# post-safe-patch verification trigger 2026-09-29
