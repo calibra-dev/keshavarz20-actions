@@ -1,4 +1,4 @@
-name: K20 Calculator Runtime Analyze
+name: K20 Calculator Stored Content Extract
 on:
   push:
     branches: [main]
@@ -8,54 +8,50 @@ permissions:
 jobs:
   inspect:
     runs-on: ubuntu-latest
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
       - shell: bash
         run: |
           set -euo pipefail
-          npm install --no-save puppeteer-core@24 >/dev/null 2>&1
-          CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
-          if [ -z "$CHROME" ]; then echo "Chrome not found"; exit 1; fi
-          export CHROME
-          cat > /tmp/analyze.mjs <<'JS'
-          import puppeteer from 'puppeteer-core';
-          import fs from 'fs';
-          const browser=await puppeteer.launch({headless:true,executablePath:process.env.CHROME,args:['--no-sandbox','--disable-dev-shm-usage']});
-          const page=await browser.newPage();
-          await page.setViewport({width:390,height:844,deviceScaleFactor:1});
-          const errors=[];
-          page.on('console',msg=>{ if(msg.type()==='error') errors.push('console: '+msg.text()); });
-          page.on('pageerror',err=>errors.push('pageerror: '+String(err)));
-          await page.goto('https://keshavarz20.com/drip-tape-length-fittings-calculator/',{waitUntil:'networkidle2',timeout:120000});
-          await new Promise(r=>setTimeout(r,4000));
-          const data=await page.evaluate(()=>{
-            const bodyText=document.body.innerText||'';
-            const markers=['growthos-decision-flow','FAQPage','GrowthOSMeasurement','use strict'];
-            const markerHits={};
-            for(const m of markers){ markerHits[m]=bodyText.toLowerCase().includes(m.toLowerCase()); }
-            const basket=document.getElementById('k20-basket-items');
-            const nav=[...document.querySelectorAll('.bottom-nav .nav-item')].map(a=>{
-              const svg=a.querySelector('svg');
-              const r=a.getBoundingClientRect();
-              const sr=svg?svg.getBoundingClientRect():null;
-              const cs=svg?getComputedStyle(svg):null;
-              return {text:(a.innerText||'').trim(),href:a.href,box:{x:r.x,y:r.y,w:r.width,h:r.height},svg:svg?{display:cs.display,visibility:cs.visibility,opacity:cs.opacity,w:sr.width,h:sr.height,inlineStyle:svg.getAttribute('style')}:null};
-            });
-            return {
-              markerHits,
-              bodyTextExcerpt: bodyText.slice(0,3000),
-              basket:{exists:!!basket,childCount:basket?basket.children.length:null,text:basket?(basket.innerText||'').slice(0,3000):null,html:basket?basket.innerHTML.slice(0,5000):null},
-              nav
-            };
-          });
-          data.errors=errors.slice(0,50);
-          fs.mkdirSync('diagnostics',{recursive:true});
-          fs.writeFileSync('diagnostics/calculator-runtime-analysis.json',JSON.stringify(data,null,2));
-          await browser.close();
-          JS
-          node /tmp/analyze.mjs
+          python3 - <<'PY'
+          import os,json,re,requests
+          base=os.environ['WP_BASE_URL'].rstrip('/')
+          r=requests.get(
+              base+'/wp-json/wp/v2/pages/143698',
+              params={'context':'edit'},
+              auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD']),
+              timeout=120,
+              headers={'Accept':'application/json'}
+          )
+          r.raise_for_status()
+          row=r.json()
+          raw=((row.get('content') or {}).get('raw') or '')
+          markers=['growthos-decision-flow','FAQPage','GrowthOSMeasurement','k20-basket-items','k20-calculator-ui-repair']
+          out={'length':len(raw),'status':row.get('status'),'slug':row.get('slug'),'markers':{}}
+          for term in markers:
+              ms=list(re.finditer(re.escape(term),raw,re.I))
+              arr=[]
+              for m in ms[:20]:
+                  s=max(0,m.start()-1600); e=min(len(raw),m.end()+2600)
+                  arr.append({'pos':m.start(),'snippet':raw[s:e]})
+              out['markers'][term]=arr
+          blocks=[]
+          for kind in ('style','script'):
+              pat=re.compile(r'<'+kind+r'\b[^>]*>.*?</'+kind+r'\s*>',re.I|re.S)
+              for m in pat.finditer(raw):
+                  block=m.group(0)
+                  if any(t.lower() in block.lower() for t in markers):
+                      blocks.append({'kind':kind,'start':m.start(),'end':m.end(),'text':block})
+          out['matched_blocks']=blocks
+          os.makedirs('diagnostics',exist_ok=True)
+          open('diagnostics/calculator-stored-content-extract.json','w',encoding='utf8').write(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add diagnostics/calculator-runtime-analysis.json
-          git commit -m 'diag: capture calculator runtime state' || exit 0
+          git add diagnostics/calculator-stored-content-extract.json
+          git commit -m 'diag: persist calculator stored content extract' || exit 0
           git push
