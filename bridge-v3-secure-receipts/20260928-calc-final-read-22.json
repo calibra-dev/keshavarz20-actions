@@ -1,10 +1,20 @@
 {
-  "http_code": 400,
-  "request_id": "calc-final-read-22-20260928",
+  "http_code": 200,
+  "request_id": "calc-final-read-22b-20260928",
   "action": "snippet.read",
-  "request_sha256": "8871ada3a4e1885c4928c0e776f2c7a378b2d425ccc76b2b658ac64b291dc81b",
-  "ok": false,
-  "code": "snippet_id_required",
-  "message": "snippet_id is required.",
-  "result": {}
+  "request_sha256": "bb78efbc86ed0ceb540886c9464896d4bb8172d5b297a8049336c7f6915fc9c8",
+  "ok": true,
+  "code": null,
+  "message": null,
+  "result": {
+    "snippet_id": 22,
+    "name": "K20 Irrigation Tools UI Runtime v1",
+    "active": true,
+    "scope": "global",
+    "priority": 20,
+    "code_bytes": 11086,
+    "code_sha256": "c6615f0f01bab01ff7b35042daabe2847d2c48852cec908446e52e992e093de5",
+    "locked": false,
+    "trashed": false
+  }
 }
