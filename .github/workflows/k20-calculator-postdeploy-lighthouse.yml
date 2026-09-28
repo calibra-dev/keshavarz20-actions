@@ -1,0 +1,71 @@
+name: K20 Calculator Postdeploy Lighthouse
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/k20-calculator-postdeploy-lighthouse.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Run mobile Lighthouse
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://keshavarz20.com/drip-tape-length-fittings-calculator/'
+          npx --yes lighthouse "$URL"             --only-categories=performance,accessibility,best-practices,seo             --form-factor=mobile             --screenEmulation.mobile=true             --throttling-method=simulate             --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"             --output=json             --output-path="$RUNNER_TEMP/lh.json"             --quiet
+          node - <<'NODE'
+          const fs=require('fs');
+          const j=JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP+'/lh.json','utf8'));
+          const a=j.audits||{};
+          const metric=id=>({value:a[id]?.numericValue??null,display:a[id]?.displayValue??null,score:a[id]?.score??null});
+          const net=(a['network-requests']?.details?.items||[]).filter(x=>
+            /calculator-featured|googletagmanager|jquery|hossini\.jpg/i.test(x.url||'')
+          ).map(x=>({url:x.url,transferSize:x.transferSize,resourceType:x.resourceType,priority:x.priority}));
+          const out={
+            generated_at:new Date().toISOString(),
+            lighthouse_version:j.lighthouseVersion,
+            performance:Math.round((j.categories?.performance?.score||0)*100),
+            accessibility:Math.round((j.categories?.accessibility?.score||0)*100),
+            best_practices:Math.round((j.categories?.['best-practices']?.score||0)*100),
+            seo:Math.round((j.categories?.seo?.score||0)*100),
+            FCP:metric('first-contentful-paint'),
+            LCP:metric('largest-contentful-paint'),
+            CLS:metric('cumulative-layout-shift'),
+            TBT:metric('total-blocking-time'),
+            speed_index:metric('speed-index'),
+            TTFB:metric('server-response-time'),
+            lcp_breakdown:a['lcp-breakdown-insight']||null,
+            render_blocking:a['render-blocking-insight']||null,
+            network_focus:net
+          };
+          fs.mkdirSync('diagnostics',{recursive:true});
+          fs.writeFileSync('diagnostics/calculator-postdeploy-lighthouse.json',JSON.stringify(out,null,2));
+          NODE
+
+      - name: Persist result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add diagnostics/calculator-postdeploy-lighthouse.json
+          git commit -m "diag: record postdeploy calculator Lighthouse" || exit 0
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
