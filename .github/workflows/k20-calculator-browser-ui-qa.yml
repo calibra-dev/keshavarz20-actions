@@ -20,43 +20,70 @@ jobs:
             echo "Chrome not found"
             exit 2
           fi
-          "$CHROME" --headless=new --no-sandbox --disable-gpu --hide-scrollbars             --window-size=390,844 --virtual-time-budget=10000             --dump-dom 'https://keshavarz20.com/drip-tape-length-fittings-calculator/' > /tmp/final-dom.html
-          python3 -m pip install --quiet beautifulsoup4
+          python3 -m pip install --quiet websocket-client
+          "$CHROME" --headless=new --no-sandbox --disable-gpu --hide-scrollbars \
+            --remote-debugging-port=9222 --remote-allow-origins='*' \
+            --user-data-dir=/tmp/k20-chrome --window-size=390,844 \
+            'https://keshavarz20.com/drip-tape-length-fittings-calculator/' >/tmp/chrome.log 2>&1 &
+          CHROME_PID=$!
+          trap 'kill $CHROME_PID >/dev/null 2>&1 || true' EXIT
           python3 - <<'PY'
-          import json
-          from bs4 import BeautifulSoup
-          from pathlib import Path
-          h=Path('/tmp/final-dom.html').read_text(encoding='utf-8',errors='replace')
-          s=BeautifulSoup(h,'html.parser')
-          basket=s.find(id='k20-basket-items')
-          nav=s.select_one('.bottom-nav')
-          home=s.select_one('.bottom-nav .nav-item:nth-of-type(1) .nav-icon svg')
-          cart=s.select_one('.bottom-nav .nav-item:nth-of-type(2) .nav-icon svg')
-          out={
-            'basket_exists':bool(basket),
-            'basket_children':len(basket.find_all(recursive=False)) if basket else None,
-            'basket_text':basket.get_text(' ',strip=True)[:2000] if basket else None,
-            'basket_style':basket.get('style') if basket else None,
-            'home_svg_style':home.get('style') if home else None,
-            'cart_svg_style':cart.get('style') if cart else None,
-            'nav_html':str(nav)[:12000] if nav else None,
-            'visible_raw':{
-              'use strict':'use strict' in s.get_text(' ',strip=True),
-              'FAQPage':'FAQPage' in s.get_text(' ',strip=True),
-              'GrowthOSMeasurement':'GrowthOSMeasurement' in s.get_text(' ',strip=True)
-            }
-          }
-          Path('diagnostics').mkdir(exist_ok=True)
-          Path('diagnostics/k20-calculator-browser-ui-qa.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          import json,time,urllib.request,websocket,datetime,pathlib
+          deadline=time.time()+30
+          targets=None
+          while time.time()<deadline:
+              try:
+                  targets=json.load(urllib.request.urlopen('http://127.0.0.1:9222/json',timeout=2))
+                  if targets: break
+              except Exception:
+                  pass
+              time.sleep(1)
+          if not targets:
+              raise SystemExit('No CDP target')
+          target=next((t for t in targets if 'keshavarz20.com' in t.get('url','')),targets[0])
+          ws=websocket.create_connection(target['webSocketDebuggerUrl'],timeout=15)
+          time.sleep(10)
+          expr=r'''(()=>{
+            const b=document.getElementById('k20-basket-items');
+            const home=document.querySelector('.bottom-nav .nav-item:nth-of-type(1) .nav-icon svg');
+            const cart=document.querySelector('.bottom-nav .nav-item:nth-of-type(2) .nav-icon svg');
+            const info=(el)=>{if(!el)return null;const cs=getComputedStyle(el),r=el.getBoundingClientRect();return{display:cs.display,visibility:cs.visibility,opacity:cs.opacity,width:r.width,height:r.height,inline:el.getAttribute('style')}};
+            const body=(document.body.innerText||'');
+            return {
+              basket_exists:!!b,
+              basket_children:b?b.children.length:null,
+              basket_text:b?(b.innerText||'').slice(0,2500):null,
+              basket_html:b?b.innerHTML.slice(0,5000):null,
+              home_svg:info(home),
+              cart_svg:info(cart),
+              raw_visible:{
+                use_strict:body.includes('use strict'),
+                FAQPage:body.includes('FAQPage'),
+                GrowthOSMeasurement:body.includes('GrowthOSMeasurement'),
+                growthos_decision_flow:body.includes('growthos-decision-flow')
+              },
+              readyState:document.readyState,
+              url:location.href
+            };
+          })()'''
+          msg={'id':1,'method':'Runtime.evaluate','params':{'expression':expr,'returnByValue':True}}
+          ws.send(json.dumps(msg))
+          while True:
+              row=json.loads(ws.recv())
+              if row.get('id')==1:
+                  break
+          ws.close()
+          value=row['result']['result'].get('value') or {}
+          value['checked_at_utc']=datetime.datetime.now(datetime.timezone.utc).isoformat()
+          pathlib.Path('diagnostics').mkdir(exist_ok=True)
+          pathlib.Path('diagnostics/k20-calculator-browser-ui-qa-v2.json').write_text(json.dumps(value,ensure_ascii=False,indent=2),encoding='utf-8')
           PY
       - shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add diagnostics/k20-calculator-browser-ui-qa.json
-          git commit -m 'qa: capture calculator browser UI state' || exit 0
+          git add diagnostics/k20-calculator-browser-ui-qa-v2.json
+          git commit -m 'qa: capture calculator browser UI state v2'
           git pull --rebase origin main
           git push
-
-# rerun after snippet43 deactivation and cache purge
