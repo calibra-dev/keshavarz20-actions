@@ -12,6 +12,7 @@ final class K20_Bridge_V33_Performance {
     private const LCP_672_ATTACHMENT_ID = 146333;
 
     public static function boot(): void {
+        add_filter('wp_get_attachment_image_attributes', [__CLASS__, 'lcp_attributes'], 20, 3);
         add_filter('wp_calculate_image_srcset', [__CLASS__, 'lcp_srcset'], 20, 5);
         add_filter('wp_calculate_image_sizes', [__CLASS__, 'lcp_sizes'], 20, 5);
         add_filter('script_loader_tag', [__CLASS__, 'script_priority'], 20, 3);
@@ -22,6 +23,26 @@ final class K20_Bridge_V33_Performance {
         return !is_admin()
             && is_singular('post')
             && (int) get_queried_object_id() === self::TARGET_POST_ID;
+    }
+
+    public static function lcp_attributes(array $attr, $attachment, $size): array {
+        $attachment_id = is_object($attachment) ? (int) ($attachment->ID ?? 0) : 0;
+        if (!self::is_target() || $attachment_id !== self::LCP_ATTACHMENT_ID) {
+            return $attr;
+        }
+
+        // LiteSpeed's documented developer-level lazy-load exclusion.
+        // Keep the true LCP image discoverable and immediately fetchable.
+        $attr['data-no-lazy'] = '1';
+        $attr['loading'] = 'eager';
+        $attr['fetchpriority'] = 'high';
+        $attr['decoding'] = 'async';
+        $classes = preg_split('/\s+/', trim((string) ($attr['class'] ?? ''))) ?: [];
+        if (!in_array('k20-calculator-lcp', $classes, true)) {
+            $classes[] = 'k20-calculator-lcp';
+        }
+        $attr['class'] = trim(implode(' ', array_filter($classes)));
+        return $attr;
     }
 
     public static function lcp_srcset($sources, $size_array, $image_src, $image_meta, $attachment_id) {
