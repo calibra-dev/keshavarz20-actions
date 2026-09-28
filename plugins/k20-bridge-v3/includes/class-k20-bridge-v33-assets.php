@@ -77,7 +77,7 @@ final class K20_Bridge_V33_Assets {
 
             return new WP_REST_Response([
                 'ok'=>true,'bridge'=>'Keshavarz20 Bridge v3',
-                'version'=>defined('K20_BRIDGE_RUNTIME_VERSION')?K20_BRIDGE_RUNTIME_VERSION:'3.3.0',
+                'version'=>defined('K20_BRIDGE_RUNTIME_VERSION')?K20_BRIDGE_RUNTIME_VERSION:'3.3.1',
                 'contract'=>'3.3',
                 'result'=>[
                     'attachment_id'=>(int)$id,'url'=>wp_get_attachment_url($id),
@@ -215,7 +215,7 @@ final class K20_Bridge_V33_Assets {
     private static function error(string $code,string $message,int $status,array $extra=[]): WP_REST_Response {
         return new WP_REST_Response(array_merge([
             'ok'=>false,'bridge'=>'Keshavarz20 Bridge v3',
-            'version'=>defined('K20_BRIDGE_RUNTIME_VERSION')?K20_BRIDGE_RUNTIME_VERSION:'3.3.0',
+            'version'=>defined('K20_BRIDGE_RUNTIME_VERSION')?K20_BRIDGE_RUNTIME_VERSION:'3.3.1',
             'contract'=>'3.3','code'=>$code,'message'=>$message
         ],$extra),$status);
     }
