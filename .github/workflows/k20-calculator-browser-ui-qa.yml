@@ -1,0 +1,60 @@
+name: K20 Calculator Browser UI QA
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/k20-calculator-browser-ui-qa.yml']
+permissions:
+  contents: write
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - shell: bash
+        run: |
+          set -euo pipefail
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$CHROME" ]; then
+            echo "Chrome not found"
+            exit 2
+          fi
+          "$CHROME" --headless=new --no-sandbox --disable-gpu --hide-scrollbars             --window-size=390,844 --virtual-time-budget=10000             --dump-dom 'https://keshavarz20.com/drip-tape-length-fittings-calculator/' > /tmp/final-dom.html
+          python3 -m pip install --quiet beautifulsoup4
+          python3 - <<'PY'
+          import json
+          from bs4 import BeautifulSoup
+          from pathlib import Path
+          h=Path('/tmp/final-dom.html').read_text(encoding='utf-8',errors='replace')
+          s=BeautifulSoup(h,'html.parser')
+          basket=s.find(id='k20-basket-items')
+          nav=s.select_one('.bottom-nav')
+          home=s.select_one('.bottom-nav .nav-item:nth-of-type(1) .nav-icon svg')
+          cart=s.select_one('.bottom-nav .nav-item:nth-of-type(2) .nav-icon svg')
+          out={
+            'basket_exists':bool(basket),
+            'basket_children':len(basket.find_all(recursive=False)) if basket else None,
+            'basket_text':basket.get_text(' ',strip=True)[:2000] if basket else None,
+            'basket_style':basket.get('style') if basket else None,
+            'home_svg_style':home.get('style') if home else None,
+            'cart_svg_style':cart.get('style') if cart else None,
+            'nav_html':str(nav)[:12000] if nav else None,
+            'visible_raw':{
+              'use strict':'use strict' in s.get_text(' ',strip=True),
+              'FAQPage':'FAQPage' in s.get_text(' ',strip=True),
+              'GrowthOSMeasurement':'GrowthOSMeasurement' in s.get_text(' ',strip=True)
+            }
+          }
+          Path('diagnostics').mkdir(exist_ok=True)
+          Path('diagnostics/k20-calculator-browser-ui-qa.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          PY
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add diagnostics/k20-calculator-browser-ui-qa.json
+          git commit -m 'qa: capture calculator browser UI state' || exit 0
+          git pull --rebase origin main
+          git push
