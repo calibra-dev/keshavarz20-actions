@@ -1,14 +1,17 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-7ffa9cf1a7becdd6",
-  "product_id": 135533,
-  "family": "fitting",
-  "intent": "alternative",
-  "scenario_dimensions": {},
-  "potential_article_gap": false,
+  "canonical_intent_id": "question-intent-d8390571eb0293c2",
+  "product_id": 142962,
+  "family": "fertilizer",
+  "intent": "calculation_inputs",
+  "scenario_dimensions": {
+    "area": true,
+    "crop": "کلم"
+  },
+  "potential_article_gap": true,
   "potential_hub_gap": false,
-  "compatibility_gap": true,
+  "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
