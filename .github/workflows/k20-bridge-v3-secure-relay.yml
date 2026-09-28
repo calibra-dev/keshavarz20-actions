@@ -84,6 +84,9 @@ jobs:
                   'ok':bool(body.get('ok')),
                   'code':body.get('code'),
                   'message':body.get('message'),
+                  'approval_id':body.get('approval_id'),
+                  'fingerprint':body.get('fingerprint'),
+                  'expires_at_utc':body.get('expires_at_utc'),
                   'result':{k:result.get(k) for k in ('valid','bytes','sha256','snippet_id','name','active','scope','priority','forced_inactive','planned','code_bytes','code_sha256','locked','trashed') if k in result}
               }
               (dst/p.name).write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
