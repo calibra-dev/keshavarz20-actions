@@ -1,27 +1,14 @@
 {
-  "length": 17742,
+  "length": 17739,
   "amp_entity_count": 0,
   "lt_entity_count": 0,
   "gt_entity_count": 0,
   "repair_marker": true,
-  "syntax_ok": false,
-  "error": "/tmp/webmcp.js:215\n        if(Array.isArray(a.items)&#038;&#038;a.items.length){\n                                  ^\n\nSyntaxError: Invalid or unexpected token\n    at wrapSafe (node:internal/modules/cjs/loader:1713:18)\n    at checkSyntax (node:internal/main/check_syntax:78:3)\n\nNode.js v22.23.2\n",
-  "error_line": 215,
-  "context": "212:       execute:async function(a){\n213:         setValue(\"gp-project\",a.project);setValue(\"gp-crop\",a.crop);setValue(\"gp-area\",a.area);setValue(\"gp-province\",a.province);\n214:         setValue(\"gp-water\",a.water_source);setValue(\"gp-flow\",a.flow_m3h);setValue(\"gp-pressure\",a.pressure_bar);setValue(\"gp-length\",a.main_length_m);setValue(\"gp-assumptions\",a.assumptions);\n215:         if(Array.isArray(a.items)&#038;&#038;a.items.length){\n216:           var body=document.getElementById(\"gp-items\");\n217:           while(body&#038;&#038;body.querySelectorAll(\"tr\").length<a.items.length){if(!clickId(\"gp-add\")){break;}}\n218:           if(body){",
-  "entity_lines": [
-    {
-      "line": 215,
-      "text": "        if(Array.isArray(a.items)&#038;&#038;a.items.length){"
-    },
-    {
-      "line": 217,
-      "text": "          while(body&#038;&#038;body.querySelectorAll(\"tr\").length<a.items.length){if(!clickId(\"gp-add\")){break;}}"
-    },
-    {
-      "line": 224,
-      "text": "              if(ins[1]&#038;&#038;item.qty!==undefined){ins[1].value=String(item.qty);}"
-    }
-  ],
-  "entity_line_count": 3,
-  "num038_count": 6
+  "syntax_ok": true,
+  "error": "",
+  "error_line": null,
+  "context": "",
+  "entity_lines": [],
+  "entity_line_count": 0,
+  "num038_count": 0
 }
