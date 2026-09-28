@@ -1,18 +1,14 @@
 {
-  "ok": true,
+  "ok": false,
   "schema_version": "3.3",
-  "http_code": 200,
+  "http_code": 400,
   "request": "20260928-2246-calculator-source-search-growthos.sanitized.json",
-  "action": "content.search",
-  "request_id": "calculator-source-search-growthos-20260928-2246",
+  "action": "content.block.inspect",
+  "request_id": "calculator-block-inspect-20260928-2255",
   "dry_run": false,
-  "executed_at_utc": "2026-09-28T19:18:47.6128341Z",
+  "executed_at_utc": "2026-09-28T19:20:35.8458730Z",
   "bridge": "Keshavarz20 Bridge v3",
   "bridge_version": "3.3.0",
-  "error_code": null,
-  "message": null,
-  "result": {
-    "matches": 7,
-    "sha256": "f1f4090745dcbca621fd8fdaa38b41d7afc1207a527c89acf5f86e5fd3974f30"
-  }
+  "error_code": "block_path_required",
+  "message": "block_path must identify a block."
 }
