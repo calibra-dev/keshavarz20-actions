@@ -1,0 +1,69 @@
+name: K20 Inline Script Syntax Audit
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/k20-inline-script-syntax-audit.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Audit inline scripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet requests beautifulsoup4
+          python3 - <<'PY'
+          import hashlib, json, re, requests, subprocess, tempfile
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+
+          url='https://keshavarz20.com/drip-tape-length-fittings-calculator/'
+          html=requests.get(url,headers={'User-Agent':'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36','Cache-Control':'no-cache'},timeout=60).text
+          soup=BeautifulSoup(html,'html.parser')
+          failures=[]
+          checked=0
+          for i,s in enumerate(soup.find_all('script')):
+              if s.get('src'): continue
+              typ=(s.get('type') or '').lower().strip()
+              if typ and typ not in ('text/javascript','application/javascript','module'): continue
+              code=s.string if s.string is not None else s.get_text()
+              if not code or not code.strip(): continue
+              checked += 1
+              with tempfile.NamedTemporaryFile('w',suffix='.js',encoding='utf-8',delete=False) as f:
+                  f.write(code)
+                  name=f.name
+              p=subprocess.run(['node','--check',name],capture_output=True,text=True)
+              if p.returncode:
+                  # scrub temp path from parser message
+                  err=(p.stderr or p.stdout).replace(name,'inline-script.js')
+                  failures.append({
+                      'index':i,
+                      'id':s.get('id'),
+                      'class':s.get('class'),
+                      'type':typ or 'classic',
+                      'bytes':len(code.encode()),
+                      'sha256':hashlib.sha256(code.encode()).hexdigest(),
+                      'error':err[-1800:],
+                      'head':code[:1200],
+                      'tail':code[-1200:]
+                  })
+          out={'url':url,'inline_js_checked':checked,'failure_count':len(failures),'failures':failures}
+          Path('diagnostics').mkdir(exist_ok=True)
+          Path('diagnostics/k20-inline-script-syntax-audit.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          PY
+      - name: Commit audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add diagnostics/k20-inline-script-syntax-audit.json
+          git commit -m 'diag: audit calculator inline script syntax' || exit 0
+          git pull --rebase origin main
+          git push
