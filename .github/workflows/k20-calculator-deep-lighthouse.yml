@@ -1,0 +1,66 @@
+name: K20 Calculator Deep Lighthouse
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/k20-calculator-deep-lighthouse.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Run deep mobile Lighthouse diagnostics
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://keshavarz20.com/drip-tape-length-fittings-calculator/'
+          npx --yes lighthouse "$URL"             --only-categories=performance             --form-factor=mobile             --screenEmulation.mobile=true             --throttling-method=simulate             --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"             --output=json             --output-path="$RUNNER_TEMP/lh.json"             --quiet
+          node - <<'NODE'
+          const fs=require('fs');
+          const j=JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP+'/lh.json','utf8'));
+          const a=j.audits;
+          function rows(id, pick) {
+            const d=a[id]?.details;
+            if (!d || !Array.isArray(d.items)) return [];
+            return d.items.slice(0,20).map(pick);
+          }
+          const out={
+            score:Math.round((j.categories.performance.score||0)*100),
+            metrics:{
+              FCP:a['first-contentful-paint']?.numericValue,
+              LCP:a['largest-contentful-paint']?.numericValue,
+              TBT:a['total-blocking-time']?.numericValue,
+              CLS:a['cumulative-layout-shift']?.numericValue,
+              SI:a['speed-index']?.numericValue,
+              server_response_time:a['server-response-time']?.numericValue
+            },
+            lcp_element:a['largest-contentful-paint-element']?.details?.items||[],
+            lcp_breakdown:a['lcp-breakdown-insight']?.details||null,
+            render_blocking:rows('render-blocking-resources',x=>({url:x.url,totalBytes:x.totalBytes,wastedMs:x.wastedMs})),
+            unused_css:rows('unused-css-rules',x=>({url:x.url,totalBytes:x.totalBytes,wastedBytes:x.wastedBytes,wastedPercent:x.wastedPercent})),
+            unused_js:rows('unused-javascript',x=>({url:x.url,totalBytes:x.totalBytes,wastedBytes:x.wastedBytes,wastedPercent:x.wastedPercent})),
+            bootup:rows('bootup-time',x=>({url:x.url,total:x.total,scriptEvaluation:x.scriptEvaluation,scriptParseCompile:x.scriptParseCompile})),
+            mainthread:rows('mainthread-work-breakdown',x=>({group:x.group,label:x.groupLabel,duration:x.duration})),
+            long_tasks:rows('long-tasks',x=>({url:x.url,duration:x.duration,startTime:x.startTime})),
+            third_party:a['third-party-summary']?.details||null,
+            font_display:a['font-display']?.details||null,
+            network_requests:rows('network-requests',x=>({url:x.url,resourceType:x.resourceType,transferSize:x.transferSize,startTime:x.startTime,endTime:x.endTime,statusCode:x.statusCode,priority:x.priority})),
+            errors:a['errors-in-console']?.details||null
+          };
+          console.log(JSON.stringify(out,null,2));
+          fs.writeFileSync(process.env.RUNNER_TEMP+'/deep-summary.json',JSON.stringify(out,null,2));
+          NODE
+      - name: Upload evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-calculator-deep-lighthouse-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/deep-summary.json
+            ${{ runner.temp }}/lh.json
+          retention-days: 14
