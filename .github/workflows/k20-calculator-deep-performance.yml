@@ -1,0 +1,139 @@
+name: K20 Calculator Deep Performance Diagnostic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/k20-calculator-deep-performance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Run three mobile Lighthouse samples
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://keshavarz20.com/drip-tape-length-fittings-calculator/'
+          for i in 1 2 3; do
+            npx --yes lighthouse "$URL"               --only-categories=performance,accessibility,best-practices,seo               --form-factor=mobile               --screenEmulation.mobile=true               --throttling-method=simulate               --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"               --output=json               --output-path="$RUNNER_TEMP/lh-$i.json"               --quiet
+          done
+
+      - name: Extract diagnostic evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const fs=require('fs');
+          const runs=[1,2,3].map(i=>JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP+`/lh-${i}.json`,'utf8')));
+          const get=(j,id)=>j.audits?.[id]||{};
+          const metrics=runs.map(j=>({
+            performance:Math.round((j.categories?.performance?.score||0)*100),
+            accessibility:Math.round((j.categories?.accessibility?.score||0)*100),
+            best_practices:Math.round((j.categories?.['best-practices']?.score||0)*100),
+            seo:Math.round((j.categories?.seo?.score||0)*100),
+            FCP:get(j,'first-contentful-paint').numericValue||null,
+            LCP:get(j,'largest-contentful-paint').numericValue||null,
+            CLS:get(j,'cumulative-layout-shift').numericValue||null,
+            TBT:get(j,'total-blocking-time').numericValue||null,
+            speed_index:get(j,'speed-index').numericValue||null,
+            TTFB:get(j,'server-response-time').numericValue||null
+          }));
+          const med=(arr,k)=>[...arr].sort((a,b)=>(a[k]??1e15)-(b[k]??1e15))[1];
+          const rep=med(metrics,'LCP');
+          const repIndex=metrics.indexOf(rep);
+          const j=runs[repIndex];
+          const pick=(id)=>{
+            const a=get(j,id);
+            return {id,title:a.title,score:a.score,displayValue:a.displayValue,numericValue:a.numericValue,details:a.details||null};
+          };
+          const ids=[
+            'largest-contentful-paint-element',
+            'lcp-lazy-loaded',
+            'lcp-discovery-insight',
+            'lcp-breakdown-insight',
+            'render-blocking-resources',
+            'render-blocking-insight',
+            'server-response-time',
+            'uses-responsive-images',
+            'image-size-responsive',
+            'modern-image-formats',
+            'uses-optimized-images',
+            'unsized-images',
+            'uses-rel-preload',
+            'font-display',
+            'unused-javascript',
+            'unused-css-rules',
+            'total-byte-weight',
+            'mainthread-work-breakdown',
+            'bootup-time',
+            'third-party-summary',
+            'network-requests',
+            'critical-request-chains',
+            'network-dependency-tree-insight',
+            'dom-size',
+            'legacy-javascript',
+            'long-tasks',
+            'diagnostics'
+          ];
+          const audits={};
+          for(const id of ids) if(j.audits?.[id]) audits[id]=pick(id);
+
+          const net=(get(j,'network-requests').details?.items||[]).map(x=>({
+            url:x.url,
+            resourceType:x.resourceType,
+            transferSize:x.transferSize,
+            resourceSize:x.resourceSize,
+            startTime:x.startTime,
+            endTime:x.endTime,
+            statusCode:x.statusCode,
+            protocol:x.protocol,
+            priority:x.priority,
+            mimeType:x.mimeType
+          })).sort((a,b)=>(b.transferSize||0)-(a.transferSize||0)).slice(0,80);
+
+          const lcpNode = get(j,'largest-contentful-paint-element').details?.items?.[0]?.items?.[0]?.node
+            || get(j,'largest-contentful-paint-element').details?.items?.[0]?.node
+            || null;
+
+          const out={
+            generated_at:new Date().toISOString(),
+            url:j.finalUrl,
+            lighthouse_version:j.lighthouseVersion,
+            samples:metrics,
+            representative_sample:repIndex+1,
+            representative_metrics:rep,
+            lcp_node:lcpNode,
+            audits,
+            top_network_requests:net,
+            user_agent:j.userAgent,
+            fetch_time:j.fetchTime
+          };
+          fs.mkdirSync('diagnostics',{recursive:true});
+          fs.writeFileSync('diagnostics/calculator-deep-performance.json',JSON.stringify(out,null,2));
+          NODE
+
+      - name: Persist diagnostic
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add diagnostics/calculator-deep-performance.json
+          git commit -m "diag: record calculator deep performance evidence" || exit 0
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
