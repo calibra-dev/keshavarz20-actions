@@ -1,0 +1,48 @@
+name: K20 Secure Run Index
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/k20-secure-run-index.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Locate secure relay run
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_SHA: 4d32072bf11a34327767f9170a160317b2f2434f
+        run: |
+          set -euo pipefail
+          mkdir -p diagnostics
+          found=""
+          for i in $(seq 1 12); do
+            runs="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$TARGET_SHA&per_page=20")"
+            found="$(printf '%s' "$runs" | jq -c '[.workflow_runs[] | select(.name=="K20 Bridge v3.3 Secure Relay")][0] // empty')"
+            if [[ -n "$found" ]]; then
+              status="$(printf '%s' "$found" | jq -r '.status')"
+              if [[ "$status" == "completed" ]]; then break; fi
+            fi
+            sleep 5
+          done
+          if [[ -z "$found" ]]; then
+            echo '{"error":"secure run not found"}' > diagnostics/k20-secure-run-index.json
+          else
+            run_id="$(printf '%s' "$found" | jq -r '.id')"
+            arts="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/artifacts")"
+            jq -n               --arg target_sha "$TARGET_SHA"               --argjson run "$found"               --argjson artifacts "$arts"               '{target_sha:$target_sha,run:{id:$run.id,status:$run.status,conclusion:$run.conclusion,html_url:$run.html_url,head_sha:$run.head_sha},artifacts:[ $artifacts.artifacts[] | {id,name,expired,size_in_bytes} ]}'               > diagnostics/k20-secure-run-index.json
+          fi
+      - name: Commit run pointer
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add diagnostics/k20-secure-run-index.json
+          git commit -m 'diag: index secure relay run' || exit 0
+          git push
