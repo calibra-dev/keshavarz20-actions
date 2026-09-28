@@ -33,6 +33,12 @@ jobs:
           assert m['version']=='3.3.0'
           PY
 
+      - name: PHP syntax validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          find plugins/k20-bridge-v3 -type f -name '*.php' -print0 | xargs -0 -n1 php -l
+
       - name: Build release package
         shell: bash
         run: |
