@@ -1,0 +1,77 @@
+name: K20 Latest 10 Published Posts Inventory
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/k20-latest10-inventory.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Build latest 10 published-post inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os, requests, pathlib, re, html
+          base=os.environ["WP_BASE_URL"].rstrip("/")
+          auth=(os.environ["WP_USERNAME"], os.environ["WP_APP_PASSWORD"])
+          r=requests.get(
+              base+"/wp-json/wp/v2/posts",
+              params={"per_page":10,"status":"publish","orderby":"date","order":"desc","context":"edit"},
+              auth=auth, timeout=60
+          )
+          r.raise_for_status()
+          rows=[]
+          for p in r.json():
+              title=p.get("title",{})
+              title=title.get("raw") or title.get("rendered") if isinstance(title,dict) else str(title or "")
+              excerpt=p.get("excerpt",{})
+              excerpt=excerpt.get("raw") or excerpt.get("rendered") if isinstance(excerpt,dict) else str(excerpt or "")
+              excerpt=re.sub(r"<[^>]+>"," ",excerpt)
+              excerpt=html.unescape(re.sub(r"\s+"," ",excerpt)).strip()[:400]
+              rows.append({
+                  "id":p.get("id"),
+                  "date":p.get("date"),
+                  "modified":p.get("modified"),
+                  "slug":p.get("slug"),
+                  "link":p.get("link"),
+                  "title":title,
+                  "excerpt":excerpt,
+                  "featured_media":p.get("featured_media")
+              })
+          pathlib.Path("content-growth").mkdir(exist_ok=True)
+          pathlib.Path("content-growth/latest10-inventory.json").write_text(
+              json.dumps({"count":len(rows),"posts":rows},ensure_ascii=False,indent=2)+"\n",encoding="utf-8"
+          )
+          print(json.dumps({"count":len(rows),"ids":[x["id"] for x in rows]},ensure_ascii=False))
+          PY
+      - name: Persist inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content-growth/latest10-inventory.json
+          git commit -m "content-growth: record latest 10 published posts" || exit 0
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
