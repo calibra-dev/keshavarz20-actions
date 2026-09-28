@@ -63,7 +63,12 @@ jobs:
                 growthos_decision_flow:body.includes('growthos-decision-flow')
               },
               readyState:document.readyState,
-              url:location.href
+              url:location.href,
+              repairFlag:!!window.__k20BasketRuntimeRepairV1,
+              basketDataType:typeof window.K20TapeBasketData,
+              basketProductCount:(window.K20TapeBasketData && window.K20TapeBasketData.products)?Object.keys(window.K20TapeBasketData.products).length:null,
+              webmcpFlag:typeof window.__k20WebMCPPhase13,
+              scriptHasRepair:[...document.scripts].some(function(s){return (s.textContent||'').indexOf('__k20BasketRuntimeRepairV1')!==-1;})
             };
           })()'''
           msg={'id':1,'method':'Runtime.evaluate','params':{'expression':expr,'returnByValue':True}}
@@ -89,3 +94,5 @@ jobs:
           git push
 
 # rerun after basket fallback patch
+
+# rerun with basket runtime flags
