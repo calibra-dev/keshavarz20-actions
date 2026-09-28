@@ -1,64 +1,64 @@
 {
-  "generated_at": "2026-09-28T20:52:07.098Z",
+  "generated_at": "2026-09-28T21:08:36.633Z",
   "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
   "lighthouse_version": "13.5.0",
   "samples": [
     {
-      "performance": 69,
+      "performance": 42,
       "accessibility": 93,
       "best_practices": 92,
       "seo": 100,
-      "FCP": 2579.5914999999995,
-      "LCP": 3041.7084999999997,
+      "FCP": 2537.477,
+      "LCP": 7940.297796318055,
       "CLS": 0.09469271372368523,
-      "TBT": 420.1725000000001,
-      "speed_index": 9588.403963123608,
-      "TTFB": 4007
+      "TBT": 763.4920000000002,
+      "speed_index": 10446.018927414594,
+      "TTFB": 4520
     },
     {
-      "performance": 79,
+      "performance": 66,
       "accessibility": 93,
       "best_practices": 92,
       "seo": 100,
-      "FCP": 2519.754500000001,
-      "LCP": 4266.290500000001,
+      "FCP": 2478.8755,
+      "LCP": 7566.314796318056,
       "CLS": 0.06657182207621506,
-      "TBT": 154.10400000000072,
-      "speed_index": 3435.231943837721,
-      "TTFB": 325
+      "TBT": 248,
+      "speed_index": 3859.659000867734,
+      "TTFB": 319
     },
     {
-      "performance": 77,
+      "performance": 57,
       "accessibility": 93,
       "best_practices": 92,
       "seo": 100,
-      "FCP": 2532.0465,
-      "LCP": 4381.609,
-      "CLS": 0.09469271372368523,
-      "TBT": 125.1810000000005,
-      "speed_index": 3364.7735286330612,
-      "TTFB": 163
+      "FCP": 2487.686,
+      "LCP": 7421.438796318056,
+      "CLS": 0.06657182207621506,
+      "TBT": 318,
+      "speed_index": 8907.278145840068,
+      "TTFB": 3910
     }
   ],
   "representative_sample": 2,
   "representative_metrics": {
-    "performance": 79,
+    "performance": 66,
     "accessibility": 93,
     "best_practices": 92,
     "seo": 100,
-    "FCP": 2519.754500000001,
-    "LCP": 4266.290500000001,
+    "FCP": 2478.8755,
+    "LCP": 7566.314796318056,
     "CLS": 0.06657182207621506,
-    "TBT": 154.10400000000072,
-    "speed_index": 3435.231943837721,
-    "TTFB": 325
+    "TBT": 248,
+    "speed_index": 3859.659000867734,
+    "TTFB": 319
   },
   "lcp_node": null,
   "audits": {
     "lcp-discovery-insight": {
       "id": "lcp-discovery-insight",
       "title": "LCP request discovery",
-      "score": 1,
+      "score": 0,
       "details": {
         "type": "list",
         "items": [
@@ -66,16 +66,16 @@
             "type": "checklist",
             "items": {
               "priorityHinted": {
-                "label": "fetchpriority=high applied",
-                "value": true
+                "label": "fetchpriority=high should be applied",
+                "value": false
               },
               "requestDiscoverable": {
                 "label": "Request is discoverable in initial document",
-                "value": true
+                "value": false
               },
               "eagerlyLoaded": {
                 "label": "LCP resources should not use loading=lazy",
-                "value": true
+                "value": false
               }
             }
           },
@@ -92,7 +92,7 @@
               "width": 372,
               "height": 209
             },
-            "snippet": "<img fetchpriority=\"high\" width=\"1200\" height=\"675\" src=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured…\" class=\"attachment-full size-full wp-post-image k20-calculator-lcp\" alt=\"محاسبه متراژ نوار تیپ، تعداد رول و اتصالات آبیاری\" decoding=\"async\" srcset=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured…\" sizes=\"(max-width: 1200px) 100vw, 1200px\" loading=\"eager\">",
+            "snippet": "<img data-lazyloaded=\"1\" src=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured…\" loading=\"lazy\" width=\"1200\" height=\"675\" data-src=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured…\" class=\"attachment-full size-full wp-post-image entered litespeed-loaded\" alt=\"محاسبه متراژ نوار تیپ، تعداد رول و اتصالات آبیاری\" decoding=\"async\" data-srcset=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured…\" data-sizes=\"(max-width: 1200px) 100vw, 1200px\" data-ll-status=\"loaded\" sizes=\"(max-width: 1200px) 100vw, 1200px\" …>",
             "nodeLabel": "محاسبه متراژ نوار تیپ، تعداد رول و اتصالات آبیاری"
           }
         ]
@@ -123,22 +123,22 @@
               {
                 "subpart": "timeToFirstByte",
                 "label": "Time to first byte",
-                "duration": 666.935
+                "duration": 650.8410000000149
               },
               {
                 "subpart": "resourceLoadDelay",
                 "label": "Resource load delay",
-                "duration": 12.227
+                "duration": 1580.053999999985
               },
               {
                 "subpart": "resourceLoadDuration",
                 "label": "Resource load duration",
-                "duration": 475.196
+                "duration": 164.871
               },
               {
                 "subpart": "elementRenderDelay",
                 "label": "Element render delay",
-                "duration": 124.045
+                "duration": 16.382
               }
             ]
           },
@@ -155,7 +155,7 @@
               "width": 372,
               "height": 209
             },
-            "snippet": "<img fetchpriority=\"high\" width=\"1200\" height=\"675\" src=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured…\" class=\"attachment-full size-full wp-post-image k20-calculator-lcp\" alt=\"محاسبه متراژ نوار تیپ، تعداد رول و اتصالات آبیاری\" decoding=\"async\" srcset=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured…\" sizes=\"(max-width: 1200px) 100vw, 1200px\" loading=\"eager\">",
+            "snippet": "<img data-lazyloaded=\"1\" src=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured…\" loading=\"lazy\" width=\"1200\" height=\"675\" data-src=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured…\" class=\"attachment-full size-full wp-post-image entered litespeed-loaded\" alt=\"محاسبه متراژ نوار تیپ، تعداد رول و اتصالات آبیاری\" decoding=\"async\" data-srcset=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured…\" data-sizes=\"(max-width: 1200px) 100vw, 1200px\" data-ll-status=\"loaded\" sizes=\"(max-width: 1200px) 100vw, 1200px\" …>",
             "nodeLabel": "محاسبه متراژ نوار تیپ، تعداد رول و اتصالات آبیاری"
           }
         ]
@@ -165,7 +165,7 @@
       "id": "render-blocking-insight",
       "title": "Render-blocking requests",
       "score": 0,
-      "displayValue": "Est savings of 440 ms",
+      "displayValue": "Est savings of 370 ms",
       "details": {
         "type": "table",
         "headings": [
@@ -187,13 +187,13 @@
         ],
         "items": [
           {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/d83023bfe4b76eb18913925fea90caf0.js?ver=588e9",
+            "totalBytes": 4740
+          },
+          {
             "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
             "totalBytes": 29857,
             "wastedMs": 308
-          },
-          {
-            "url": "https://keshavarz20.com/wp-content/litespeed/js/d83023bfe4b76eb18913925fea90caf0.js?ver=588e9",
-            "totalBytes": 4740
           },
           {
             "url": "https://keshavarz20.com/wp-content/litespeed/css/7e0c89866ae4250b859a08a1e4310da4.css?ver=a8667",
@@ -201,16 +201,16 @@
           },
           {
             "url": "https://keshavarz20.com/wp-content/litespeed/css/62bccd5cbc3fa81af8e3db4ca4b9cbd8.css?ver=dc04d",
-            "totalBytes": 18625
+            "totalBytes": 18647
           },
           {
             "url": "https://keshavarz20.com/wp-content/litespeed/css/9c13dae17cf8ea20906a1f183d051600.css?ver=846ee",
-            "totalBytes": 22119,
+            "totalBytes": 22118,
             "wastedMs": 308
           },
           {
             "url": "https://keshavarz20.com/wp-content/litespeed/css/c06653149616549fd6996e2c5adc60e6.css?ver=167c3",
-            "totalBytes": 1621
+            "totalBytes": 1622
           },
           {
             "url": "https://keshavarz20.com/wp-content/litespeed/css/eb94baaffcc6d9127661069c4bf1c60a.css?ver=7b57a",
@@ -226,15 +226,11 @@
           },
           {
             "url": "https://keshavarz20.com/wp-content/litespeed/css/d1449c8b67d75f0b6862c0f5440a84e7.css?ver=7ece2",
-            "totalBytes": 1682
+            "totalBytes": 1681
           },
           {
             "url": "https://keshavarz20.com/wp-content/litespeed/css/c7c2a8934d7aef47a8886bfadc3d9d97.css?ver=d2fb6",
-            "totalBytes": 4791
-          },
-          {
-            "url": "https://keshavarz20.com/wp-content/litespeed/css/2a0b6fdc7822620200395a1b1778a4d0.css?ver=3b79d",
-            "totalBytes": 230
+            "totalBytes": 4871
           }
         ]
       }
@@ -243,8 +239,8 @@
       "id": "server-response-time",
       "title": "Initial server response time was short",
       "score": 1,
-      "displayValue": "Root document took 330 ms",
-      "numericValue": 325,
+      "displayValue": "Root document took 320 ms",
+      "numericValue": 319,
       "details": {
         "type": "opportunity",
         "headings": [
@@ -262,10 +258,10 @@
         "items": [
           {
             "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
-            "responseTime": 325
+            "responseTime": 319
           }
         ],
-        "overallSavingsMs": 225
+        "overallSavingsMs": 219
       }
     },
     "image-size-responsive": {
@@ -355,7 +351,7 @@
       "title": "Reduce unused JavaScript",
       "score": 0,
       "displayValue": "Est savings of 75 KiB",
-      "numericValue": 300,
+      "numericValue": 310,
       "details": {
         "type": "opportunity",
         "headings": [
@@ -389,12 +385,12 @@
           {
             "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
             "totalBytes": 195378,
-            "wastedBytes": 77142,
-            "wastedPercent": 39.48363330316379
+            "wastedBytes": 77090,
+            "wastedPercent": 39.45674790176976
           }
         ],
-        "overallSavingsMs": 300,
-        "overallSavingsBytes": 77142,
+        "overallSavingsMs": 310,
+        "overallSavingsBytes": 77090,
         "sortedBy": [
           "wastedBytes"
         ],
@@ -402,7 +398,7 @@
           "type": "debugdata",
           "metricSavings": {
             "FCP": 0,
-            "LCP": 300
+            "LCP": 310
           }
         }
       }
@@ -412,7 +408,7 @@
       "title": "Reduce unused CSS",
       "score": 0,
       "displayValue": "Est savings of 56 KiB",
-      "numericValue": 150,
+      "numericValue": 310,
       "details": {
         "type": "opportunity",
         "headings": [
@@ -452,7 +448,7 @@
             "totalBytes": 22064
           }
         ],
-        "overallSavingsMs": 150,
+        "overallSavingsMs": 310,
         "overallSavingsBytes": 56851,
         "sortedBy": [
           "wastedBytes"
@@ -460,8 +456,8 @@
         "debugData": {
           "type": "debugdata",
           "metricSavings": {
-            "FCP": 260,
-            "LCP": 150
+            "FCP": 0,
+            "LCP": 310
           }
         }
       }
@@ -470,8 +466,8 @@
       "id": "total-byte-weight",
       "title": "Avoids enormous network payloads",
       "score": 1,
-      "displayValue": "Total size was 855 KiB",
-      "numericValue": 875710,
+      "displayValue": "Total size was 888 KiB",
+      "numericValue": 909019,
       "details": {
         "type": "table",
         "headings": [
@@ -493,19 +489,23 @@
           },
           {
             "url": "https://keshavarz20.com/wp-content/uploads/2024/06/hossini.jpg",
-            "totalBytes": 138281
+            "totalBytes": 138327
           },
           {
             "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
-            "totalBytes": 71455
+            "totalBytes": 71501
           },
           {
-            "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured-optimized-1200-768x432.webp",
-            "totalBytes": 67892
+            "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured-optimized-1200-optimized-3-768x432.webp",
+            "totalBytes": 66589
           },
           {
             "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
-            "totalBytes": 61363
+            "totalBytes": 61399
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured-optimized-1200-optimized-2.webp",
+            "totalBytes": 34707
           },
           {
             "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebregularfanum.woff",
@@ -521,11 +521,7 @@
           },
           {
             "url": "https://keshavarz20.com/wp-content/litespeed/css/9c13dae17cf8ea20906a1f183d051600.css?ver=846ee",
-            "totalBytes": 22119
-          },
-          {
-            "url": "https://keshavarz20.com/wp-content/litespeed/css/7e0c89866ae4250b859a08a1e4310da4.css?ver=a8667",
-            "totalBytes": 19920
+            "totalBytes": 22118
           }
         ],
         "sortedBy": [
@@ -537,8 +533,8 @@
       "id": "mainthread-work-breakdown",
       "title": "Minimize main-thread work",
       "score": 0,
-      "displayValue": "2.8 s",
-      "numericValue": 2774.359999999981,
+      "displayValue": "2.6 s",
+      "numericValue": 2613.9999999999827,
       "details": {
         "type": "table",
         "headings": [
@@ -558,37 +554,32 @@
           {
             "group": "scriptEvaluation",
             "groupLabel": "Script Evaluation",
-            "duration": 820.2359999999934
+            "duration": 782.8839999999956
           },
           {
             "group": "other",
             "groupLabel": "Other",
-            "duration": 799.0439999999974
+            "duration": 723.1119999999971
           },
           {
             "group": "styleLayout",
             "groupLabel": "Style & Layout",
-            "duration": 695.3199999999907
+            "duration": 678.2439999999896
           },
           {
             "group": "scriptParseCompile",
             "groupLabel": "Script Parsing & Compilation",
-            "duration": 184.91200000000006
+            "duration": 174.61600000000018
           },
           {
             "group": "paintCompositeRender",
             "groupLabel": "Rendering",
-            "duration": 143.632
+            "duration": 139.74000000000015
           },
           {
             "group": "parseHTML",
             "groupLabel": "Parse HTML & CSS",
-            "duration": 118.55599999999991
-          },
-          {
-            "group": "garbageCollection",
-            "groupLabel": "Garbage Collection",
-            "duration": 12.659999999999998
+            "duration": 115.40399999999993
           }
         ],
         "sortedBy": [
@@ -600,8 +591,8 @@
       "id": "bootup-time",
       "title": "JavaScript execution time",
       "score": 1,
-      "displayValue": "0.8 s",
-      "numericValue": 820.1000000000013,
+      "displayValue": "0.7 s",
+      "numericValue": 736.4679999999996,
       "details": {
         "type": "table",
         "headings": [
@@ -632,37 +623,31 @@
         "items": [
           {
             "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
-            "total": 1485.139999999991,
-            "scripting": 158.9840000000004,
-            "scriptParseCompile": 29.35999999999998
+            "total": 1404.2279999999905,
+            "scripting": 112.44400000000002,
+            "scriptParseCompile": 28.731999999999978
           },
           {
             "url": "Unattributable",
-            "total": 598.1920000000019,
-            "scripting": 248.43600000000046,
+            "total": 571.6000000000014,
+            "scripting": 274.6039999999993,
             "scriptParseCompile": 0
           },
           {
             "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-            "total": 190.24800000000016,
-            "scripting": 158.46800000000016,
-            "scriptParseCompile": 12.372
+            "total": 192.2680000000002,
+            "scripting": 167.2760000000002,
+            "scriptParseCompile": 8.32
           },
           {
             "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
-            "total": 180.4680000000002,
-            "scripting": 105.71200000000017,
-            "scriptParseCompile": 56.952
-          },
-          {
-            "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
-            "total": 50.260000000000005,
-            "scripting": 23.560000000000002,
-            "scriptParseCompile": 26.256
+            "total": 162.87200000000013,
+            "scripting": 92.28000000000013,
+            "scriptParseCompile": 52.812
           }
         ],
         "summary": {
-          "wastedMs": 820.1000000000013
+          "wastedMs": 736.4679999999996
         },
         "sortedBy": [
           "total"
@@ -735,11 +720,11 @@
             "protocol": "h2",
             "cache": "none",
             "rendererStartTime": 0,
-            "networkRequestTime": 0.8790000000008149,
-            "networkEndTime": 829.752999999997,
+            "networkRequestTime": 0.9390000000130385,
+            "networkEndTime": 810.5200000000041,
             "finished": true,
-            "transferSize": 71455,
-            "resourceSize": 344891,
+            "transferSize": 71501,
+            "resourceSize": 346232,
             "statusCode": 200,
             "mimeType": "text/html",
             "resourceType": "Document",
@@ -748,16 +733,16 @@
             "entity": "keshavarz20.com"
           },
           {
-            "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured-optimized-1200-768x432.webp",
+            "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured-optimized-1200-optimized-2.webp",
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 677.8930000000109,
-            "networkRequestTime": 680.1730000000098,
-            "networkEndTime": 1153.0890000000072,
+            "rendererStartTime": 660.6779999999999,
+            "networkRequestTime": 662.3199999999924,
+            "networkEndTime": 1005.6370000000024,
             "finished": true,
-            "transferSize": 67892,
-            "resourceSize": 67762,
+            "transferSize": 34707,
+            "resourceSize": 34594,
             "statusCode": 200,
             "mimeType": "image/webp",
             "resourceType": "Image",
@@ -767,33 +752,15 @@
             "entity": "keshavarz20.com"
           },
           {
-            "url": "https://keshavarz20.com/wp-content/litespeed/css/2a0b6fdc7822620200395a1b1778a4d0.css?ver=3b79d",
-            "sessionTargetType": "page",
-            "protocol": "h2",
-            "cache": "none",
-            "rendererStartTime": 678.2190000000119,
-            "networkRequestTime": 681.247000000003,
-            "networkEndTime": 855.2859999999928,
-            "finished": true,
-            "transferSize": 230,
-            "resourceSize": 210,
-            "statusCode": 200,
-            "mimeType": "text/css",
-            "resourceType": "Stylesheet",
-            "priority": "VeryHigh",
-            "experimentalFromMainFrame": true,
-            "entity": "keshavarz20.com"
-          },
-          {
             "url": "https://keshavarz20.com/wp-content/litespeed/css/c7c2a8934d7aef47a8886bfadc3d9d97.css?ver=d2fb6",
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 678.3590000000113,
-            "networkRequestTime": 681.6030000000028,
-            "networkEndTime": 856.150999999998,
+            "rendererStartTime": 661.1169999999984,
+            "networkRequestTime": 663.3619999999937,
+            "networkEndTime": 830.2890000000043,
             "finished": true,
-            "transferSize": 4791,
+            "transferSize": 4871,
             "resourceSize": 41082,
             "statusCode": 200,
             "mimeType": "text/css",
@@ -807,11 +774,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 678.4989999999962,
-            "networkRequestTime": 681.9939999999915,
-            "networkEndTime": 857.0800000000017,
+            "rendererStartTime": 661.2119999999995,
+            "networkRequestTime": 663.6390000000101,
+            "networkEndTime": 830.8629999999976,
             "finished": true,
-            "transferSize": 1682,
+            "transferSize": 1681,
             "resourceSize": 5270,
             "statusCode": 200,
             "mimeType": "text/css",
@@ -825,9 +792,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 678.5859999999957,
-            "networkRequestTime": 682.2359999999899,
-            "networkEndTime": 857.7299999999959,
+            "rendererStartTime": 661.3059999999969,
+            "networkRequestTime": 663.8830000000016,
+            "networkEndTime": 846.7569999999978,
             "finished": true,
             "transferSize": 980,
             "resourceSize": 3426,
@@ -843,11 +810,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 678.6719999999914,
-            "networkRequestTime": 684.669000000009,
-            "networkEndTime": 993.2949999999983,
+            "rendererStartTime": 661.5010000000038,
+            "networkRequestTime": 664.2550000000047,
+            "networkEndTime": 971.1779999999999,
             "finished": true,
-            "transferSize": 18625,
+            "transferSize": 18647,
             "resourceSize": 277387,
             "statusCode": 200,
             "mimeType": "text/css",
@@ -861,9 +828,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 678.7710000000079,
-            "networkRequestTime": 684.9180000000051,
-            "networkEndTime": 880.6499999999942,
+            "rendererStartTime": 661.5999999999913,
+            "networkRequestTime": 664.6429999999964,
+            "networkEndTime": 847.5950000000012,
             "finished": true,
             "transferSize": 66,
             "resourceSize": 0,
@@ -879,11 +846,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 678.8550000000105,
-            "networkRequestTime": 685.0849999999919,
-            "networkEndTime": 992.8389999999927,
+            "rendererStartTime": 661.7109999999957,
+            "networkRequestTime": 664.8610000000044,
+            "networkEndTime": 970.8300000000017,
             "finished": true,
-            "transferSize": 22119,
+            "transferSize": 22118,
             "resourceSize": 150098,
             "statusCode": 200,
             "mimeType": "text/css",
@@ -897,9 +864,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 678.9649999999965,
-            "networkRequestTime": 685.2289999999921,
-            "networkEndTime": 994.2620000000024,
+            "rendererStartTime": 661.8089999999938,
+            "networkRequestTime": 665.1700000000128,
+            "networkEndTime": 971.8819999999978,
             "finished": true,
             "transferSize": 19920,
             "resourceSize": 166164,
@@ -915,9 +882,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 679.0409999999974,
-            "networkRequestTime": 685.505999999994,
-            "networkEndTime": 882.122000000003,
+            "rendererStartTime": 661.9180000000051,
+            "networkRequestTime": 665.5760000000009,
+            "networkEndTime": 848.6130000000121,
             "finished": true,
             "transferSize": 1285,
             "resourceSize": 5620,
@@ -933,11 +900,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 679.1069999999891,
-            "networkRequestTime": 685.7309999999998,
-            "networkEndTime": 882.7740000000049,
+            "rendererStartTime": 662.0200000000041,
+            "networkRequestTime": 665.8260000000009,
+            "networkEndTime": 849.244000000006,
             "finished": true,
-            "transferSize": 1621,
+            "transferSize": 1622,
             "resourceSize": 6662,
             "statusCode": 200,
             "mimeType": "text/css",
@@ -951,9 +918,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 679.1999999999971,
-            "networkRequestTime": 685.9510000000009,
-            "networkEndTime": 1157.1870000000054,
+            "rendererStartTime": 662.119000000006,
+            "networkRequestTime": 666.1030000000028,
+            "networkEndTime": 1010.7270000000135,
             "finished": true,
             "transferSize": 29857,
             "resourceSize": 87553,
@@ -969,9 +936,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 679.2880000000005,
-            "networkRequestTime": 686.2450000000099,
-            "networkEndTime": 1155.3840000000055,
+            "rendererStartTime": 662.2130000000034,
+            "networkRequestTime": 666.4210000000021,
+            "networkEndTime": 1127.6059999999998,
             "finished": true,
             "transferSize": 4740,
             "resourceSize": 13577,
@@ -987,9 +954,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 679.3620000000083,
-            "networkRequestTime": 1178.199999999997,
-            "networkEndTime": 1556.7179999999935,
+            "rendererStartTime": 663.0789999999979,
+            "networkRequestTime": 1138.625,
+            "networkEndTime": 2216.1670000000013,
             "finished": true,
             "transferSize": 5389,
             "resourceSize": 5305,
@@ -1005,9 +972,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 679.4839999999967,
-            "networkRequestTime": 1178.4780000000028,
-            "networkEndTime": 1553.508999999991,
+            "rendererStartTime": 663.1790000000037,
+            "networkRequestTime": 1138.775999999998,
+            "networkEndTime": 1495.150999999998,
             "finished": true,
             "transferSize": 2871,
             "resourceSize": 2780,
@@ -1023,16 +990,16 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 831.4890000000014,
-            "networkRequestTime": 831.9440000000031,
-            "networkEndTime": 953.4930000000022,
+            "rendererStartTime": 811.8880000000063,
+            "networkRequestTime": 1138.921000000002,
+            "networkEndTime": 1220.148000000001,
             "finished": true,
             "transferSize": 195710,
             "resourceSize": 598838,
             "statusCode": 200,
             "mimeType": "application/javascript",
             "resourceType": "Script",
-            "priority": "Medium",
+            "priority": "Low",
             "experimentalFromMainFrame": true,
             "entity": "Google Tag Manager"
           },
@@ -1041,11 +1008,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 831.6440000000002,
-            "networkRequestTime": 832.4409999999916,
-            "networkEndTime": 1156.3729999999923,
+            "rendererStartTime": 812.0080000000016,
+            "networkRequestTime": 812.3480000000127,
+            "networkEndTime": 1128.429999999993,
             "finished": true,
-            "transferSize": 1811,
+            "transferSize": 1812,
             "resourceSize": 5097,
             "statusCode": 200,
             "mimeType": "application/javascript",
@@ -1059,9 +1026,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 831.7390000000014,
-            "networkRequestTime": 967.0460000000021,
-            "networkEndTime": 1157.6949999999924,
+            "rendererStartTime": 812.0850000000064,
+            "networkRequestTime": 812.5470000000059,
+            "networkEndTime": 1129.0729999999894,
             "finished": true,
             "transferSize": 2435,
             "resourceSize": 5781,
@@ -1077,9 +1044,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 831.8410000000003,
-            "networkRequestTime": 1159.125,
-            "networkEndTime": 1325.3830000000016,
+            "rendererStartTime": 812.2010000000009,
+            "networkRequestTime": 1131.366000000009,
+            "networkEndTime": 1294.0339999999997,
             "finished": true,
             "transferSize": 6541,
             "resourceSize": 19875,
@@ -1095,11 +1062,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 831.9130000000005,
-            "networkRequestTime": 1169.1129999999976,
-            "networkEndTime": 1334.8319999999949,
+            "rendererStartTime": 812.2839999999997,
+            "networkRequestTime": 1131.824999999997,
+            "networkEndTime": 1294.8420000000042,
             "finished": true,
-            "transferSize": 5356,
+            "transferSize": 5309,
             "resourceSize": 17643,
             "statusCode": 200,
             "mimeType": "application/javascript",
@@ -1113,11 +1080,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 831.9750000000058,
-            "networkRequestTime": 1173.6040000000066,
-            "networkEndTime": 1345.1129999999976,
+            "rendererStartTime": 812.3680000000022,
+            "networkRequestTime": 1134.002999999997,
+            "networkEndTime": 1301.4079999999958,
             "finished": true,
-            "transferSize": 5777,
+            "transferSize": 5776,
             "resourceSize": 20136,
             "statusCode": 200,
             "mimeType": "application/javascript",
@@ -1131,11 +1098,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 832.0899999999965,
-            "networkRequestTime": 1173.8110000000015,
-            "networkEndTime": 1358.4520000000048,
+            "rendererStartTime": 812.4510000000009,
+            "networkRequestTime": 1134.1790000000037,
+            "networkEndTime": 1302.2620000000024,
             "finished": true,
-            "transferSize": 200,
+            "transferSize": 199,
             "resourceSize": 262,
             "statusCode": 200,
             "mimeType": "application/javascript",
@@ -1149,9 +1116,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 832.1579999999958,
-            "networkRequestTime": 1174.0140000000101,
-            "networkEndTime": 1394.3709999999992,
+            "rendererStartTime": 812.5359999999928,
+            "networkRequestTime": 1134.350999999995,
+            "networkEndTime": 1339.6470000000118,
             "finished": true,
             "transferSize": 19215,
             "resourceSize": 56367,
@@ -1167,9 +1134,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 832.2479999999923,
-            "networkRequestTime": 1174.225999999995,
-            "networkEndTime": 1359.5039999999863,
+            "rendererStartTime": 812.6379999999917,
+            "networkRequestTime": 1134.547000000006,
+            "networkEndTime": 1309.4380000000092,
             "finished": true,
             "transferSize": 428,
             "resourceSize": 841,
@@ -1185,11 +1152,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 832.3399999999965,
-            "networkRequestTime": 1178.7550000000047,
-            "networkEndTime": 1557.5650000000023,
+            "rendererStartTime": 812.7329999999929,
+            "networkRequestTime": 1139.5650000000023,
+            "networkEndTime": 2216.94200000001,
             "finished": true,
-            "transferSize": 1333,
+            "transferSize": 1286,
             "resourceSize": 2951,
             "statusCode": 200,
             "mimeType": "application/javascript",
@@ -1203,11 +1170,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 832.4260000000068,
-            "networkRequestTime": 1174.4470000000001,
-            "networkEndTime": 1360.113000000012,
+            "rendererStartTime": 812.8040000000037,
+            "networkRequestTime": 1134.7370000000083,
+            "networkEndTime": 1310.7900000000081,
             "finished": true,
-            "transferSize": 6608,
+            "transferSize": 6607,
             "resourceSize": 21991,
             "statusCode": 200,
             "mimeType": "application/javascript",
@@ -1221,9 +1188,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 832.523000000001,
-            "networkRequestTime": 1174.6100000000006,
-            "networkEndTime": 1360.7880000000005,
+            "rendererStartTime": 812.8770000000077,
+            "networkRequestTime": 1134.9199999999983,
+            "networkEndTime": 1311.570000000007,
             "finished": true,
             "transferSize": 962,
             "resourceSize": 5383,
@@ -1239,9 +1206,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 832.5969999999943,
-            "networkRequestTime": 1174.7839999999997,
-            "networkEndTime": 1361.6390000000101,
+            "rendererStartTime": 812.9600000000064,
+            "networkRequestTime": 1135.1849999999977,
+            "networkEndTime": 1312.221000000005,
             "finished": true,
             "transferSize": 4674,
             "resourceSize": 15316,
@@ -1257,11 +1224,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 832.7140000000072,
-            "networkRequestTime": 1174.949999999997,
-            "networkEndTime": 1362.517000000007,
+            "rendererStartTime": 813.0610000000015,
+            "networkRequestTime": 1135.351999999999,
+            "networkEndTime": 1312.8030000000144,
             "finished": true,
-            "transferSize": 1105,
+            "transferSize": 1084,
             "resourceSize": 2440,
             "statusCode": 200,
             "mimeType": "application/javascript",
@@ -1275,11 +1242,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 832.804999999993,
-            "networkRequestTime": 1175.1410000000033,
-            "networkEndTime": 1382.023000000001,
+            "rendererStartTime": 813.1169999999984,
+            "networkRequestTime": 1135.5559999999969,
+            "networkEndTime": 1326.3369999999995,
             "finished": true,
-            "transferSize": 10037,
+            "transferSize": 10030,
             "resourceSize": 36754,
             "statusCode": 200,
             "mimeType": "application/javascript",
@@ -1293,11 +1260,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 832.872000000003,
-            "networkRequestTime": 1175.2770000000019,
-            "networkEndTime": 1383.1429999999964,
+            "rendererStartTime": 813.1600000000035,
+            "networkRequestTime": 1135.768000000011,
+            "networkEndTime": 1327.3029999999999,
             "finished": true,
-            "transferSize": 13270,
+            "transferSize": 13279,
             "resourceSize": 54523,
             "statusCode": 200,
             "mimeType": "application/javascript",
@@ -1311,9 +1278,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 832.9909999999945,
-            "networkRequestTime": 1175.4860000000044,
-            "networkEndTime": 1383.8959999999934,
+            "rendererStartTime": 813.2050000000017,
+            "networkRequestTime": 1136.2850000000035,
+            "networkEndTime": 1328.5050000000047,
             "finished": true,
             "transferSize": 744,
             "resourceSize": 2692,
@@ -1329,11 +1296,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 833.0720000000001,
-            "networkRequestTime": 1175.6910000000062,
-            "networkEndTime": 1498.9199999999983,
+            "rendererStartTime": 813.2810000000027,
+            "networkRequestTime": 1136.5160000000033,
+            "networkEndTime": 1468.7810000000027,
             "finished": true,
-            "transferSize": 61363,
+            "transferSize": 61399,
             "resourceSize": 252309,
             "statusCode": 200,
             "mimeType": "application/javascript",
@@ -1347,11 +1314,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 833.127999999997,
-            "networkRequestTime": 1175.875,
-            "networkEndTime": 1384.9429999999993,
+            "rendererStartTime": 813.3249999999971,
+            "networkRequestTime": 1136.7510000000038,
+            "networkEndTime": 1329.478999999992,
             "finished": true,
-            "transferSize": 1193,
+            "transferSize": 1201,
             "resourceSize": 2268,
             "statusCode": 200,
             "mimeType": "application/javascript",
@@ -1365,9 +1332,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 833.1959999999963,
-            "networkRequestTime": 1176.0639999999985,
-            "networkEndTime": 1385.7489999999962,
+            "rendererStartTime": 813.372000000003,
+            "networkRequestTime": 1137.0409999999974,
+            "networkEndTime": 1330.1640000000043,
             "finished": true,
             "transferSize": 8472,
             "resourceSize": 32700,
@@ -1383,11 +1350,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 833.255999999994,
-            "networkRequestTime": 1176.3199999999924,
-            "networkEndTime": 1390.2109999999957,
+            "rendererStartTime": 813.4070000000065,
+            "networkRequestTime": 1137.247000000003,
+            "networkEndTime": 1334.4890000000014,
             "finished": true,
-            "transferSize": 2014,
+            "transferSize": 2016,
             "resourceSize": 7484,
             "statusCode": 200,
             "mimeType": "application/javascript",
@@ -1401,11 +1368,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 833.3629999999976,
-            "networkRequestTime": 1176.695000000007,
-            "networkEndTime": 1393.5739999999932,
+            "rendererStartTime": 813.4570000000094,
+            "networkRequestTime": 1137.4639999999927,
+            "networkEndTime": 1341.3439999999973,
             "finished": true,
-            "transferSize": 16368,
+            "transferSize": 16391,
             "resourceSize": 81174,
             "statusCode": 200,
             "mimeType": "application/javascript",
@@ -1419,11 +1386,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 833.4639999999927,
-            "networkRequestTime": 1177.0620000000054,
-            "networkEndTime": 1498.507999999987,
+            "rendererStartTime": 813.4989999999962,
+            "networkRequestTime": 1137.715000000011,
+            "networkEndTime": 1468.425000000003,
             "finished": true,
-            "transferSize": 17838,
+            "transferSize": 17816,
             "resourceSize": 77853,
             "statusCode": 200,
             "mimeType": "application/javascript",
@@ -1437,11 +1404,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 833.5460000000021,
-            "networkRequestTime": 1177.2609999999986,
-            "networkEndTime": 1392.6719999999914,
+            "rendererStartTime": 813.5400000000081,
+            "networkRequestTime": 1137.8989999999903,
+            "networkEndTime": 1336.8169999999955,
             "finished": true,
-            "transferSize": 9307,
+            "transferSize": 9306,
             "resourceSize": 40071,
             "statusCode": 200,
             "mimeType": "application/javascript",
@@ -1455,11 +1422,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 833.6290000000008,
-            "networkRequestTime": 1177.494000000006,
-            "networkEndTime": 1554.2189999999973,
+            "rendererStartTime": 813.6180000000022,
+            "networkRequestTime": 1138.119000000006,
+            "networkEndTime": 1338.3740000000107,
             "finished": true,
-            "transferSize": 3411,
+            "transferSize": 3393,
             "resourceSize": 11071,
             "statusCode": 200,
             "mimeType": "application/javascript",
@@ -1473,11 +1440,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 833.7469999999885,
-            "networkRequestTime": 1177.7300000000105,
-            "networkEndTime": 1555.25499999999,
+            "rendererStartTime": 813.6560000000027,
+            "networkRequestTime": 1138.3450000000012,
+            "networkEndTime": 1495.6860000000015,
             "finished": true,
-            "transferSize": 1011,
+            "transferSize": 1027,
             "resourceSize": 3277,
             "statusCode": 200,
             "mimeType": "application/javascript",
@@ -1491,11 +1458,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 833.8239999999932,
-            "networkRequestTime": 1177.965000000011,
-            "networkEndTime": 1556.1429999999964,
+            "rendererStartTime": 813.695000000007,
+            "networkRequestTime": 1138.491000000009,
+            "networkEndTime": 1496.5019999999931,
             "finished": true,
-            "transferSize": 332,
+            "transferSize": 355,
             "resourceSize": 720,
             "statusCode": 200,
             "mimeType": "application/javascript",
@@ -1509,9 +1476,9 @@
             "sessionTargetType": "page",
             "protocol": "data",
             "cache": "memory",
-            "rendererStartTime": 1179.8859999999986,
-            "networkRequestTime": 1179.8859999999986,
-            "networkEndTime": 1179.9719999999943,
+            "rendererStartTime": 1142.3860000000132,
+            "networkRequestTime": 1142.3860000000132,
+            "networkEndTime": 1142.4679999999935,
             "finished": true,
             "transferSize": 0,
             "resourceSize": 165,
@@ -1526,9 +1493,9 @@
             "sessionTargetType": "page",
             "protocol": "data",
             "cache": "memory",
-            "rendererStartTime": 1180.9459999999963,
-            "networkRequestTime": 1180.9459999999963,
-            "networkEndTime": 1181.028999999995,
+            "rendererStartTime": 1143.830999999991,
+            "networkRequestTime": 1143.830999999991,
+            "networkEndTime": 1143.9030000000057,
             "finished": true,
             "transferSize": 0,
             "resourceSize": 163,
@@ -1543,9 +1510,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 1193.828999999998,
-            "networkRequestTime": 1263.7520000000077,
-            "networkEndTime": 1544.0199999999895,
+            "rendererStartTime": 1156.820000000007,
+            "networkRequestTime": 1226.5,
+            "networkEndTime": 1493.5449999999983,
             "finished": true,
             "transferSize": 33715,
             "resourceSize": 33585,
@@ -1561,9 +1528,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 1193.975999999995,
-            "networkRequestTime": 1264.1000000000058,
-            "networkEndTime": 1552.5800000000017,
+            "rendererStartTime": 1156.9959999999992,
+            "networkRequestTime": 1226.7360000000044,
+            "networkEndTime": 1494.5390000000043,
             "finished": true,
             "transferSize": 33661,
             "resourceSize": 33581,
@@ -1575,13 +1542,30 @@
             "entity": "keshavarz20.com"
           },
           {
-            "url": "https://analytics.google.com/g/collect?v=2&tid=G-TKWY8X1PSM&gtm=45je69o0v9194059779za200zd9194059779xf1&_p=1790628695863&_gaz=1&gcs=G1--&gcd=13l3l3l3l5l1&npa=0&dma=0&gdid=dOGY3NW&_eu=AAAAACAC&cid=1613929278.1790628696&frm=0&ibt=1&pscdl=noapi&rcb=19&sr=412x823&uaa=&uab=64&uafvl=Google%2520Chrome%3B153.0.8010.52%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.52&uam=moto%20g%20power%20(2022)&uamb=1&uap=Android&uapv=11.0&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120469145~120469153&sid=1790628696&sct=1&seg=0&dl=https%3A%2F%2Fkeshavarz20.com%2Fdrip-tape-length-fittings-calculator%2F&dt=%D9%85%D8%A7%D8%B4%DB%8C%D9%86%20%D8%AD%D8%B3%D8%A7%D8%A8%20%D9%86%D9%88%D8%A7%D8%B1%20%D8%AA%DB%8C%D9%BE%20%7C%20%D9%85%D8%AD%D8%A7%D8%B3%D8%A8%D9%87%20%D9%85%D8%AA%D8%B1%D8%A7%DA%98%D8%8C%20%D8%B1%D9%88%D9%84%20%D9%88%20%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA&_tu=AAg&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.track_404=true&ep.logged_in=false&tfd=1369",
+            "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZ…",
+            "sessionTargetType": "page",
+            "protocol": "data",
+            "cache": "none",
+            "rendererStartTime": 1225.7900000000081,
+            "networkRequestTime": 1225.7900000000081,
+            "networkEndTime": 1251.94200000001,
+            "finished": true,
+            "transferSize": 169,
+            "resourceSize": 169,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "High",
+            "experimentalFromMainFrame": true
+          },
+          {
+            "url": "https://analytics.google.com/g/collect?v=2&tid=G-TKWY8X1PSM&gtm=45je69o0v9194059779za200zd9194059779xf1&_p=1790629682474&_gaz=1&gcs=G1--&gcd=13l3l3l3l5l1&npa=0&dma=0&gdid=dOGY3NW&_eu=AAAAACAC&cid=1554788454.1790629683&frm=0&ibt=1&pscdl=noapi&rcb=16&sr=412x823&uaa=&uab=64&uafvl=Google%2520Chrome%3B153.0.8010.52%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.52&uam=moto%20g%20power%20(2022)&uamb=1&uap=Android&uapv=11.0&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938468~118897920~118897930~120213116~120385423~120469145~120469153&sid=1790629682&sct=1&seg=0&dl=https%3A%2F%2Fkeshavarz20.com%2Fdrip-tape-length-fittings-calculator%2F&dt=%D9%85%D8%A7%D8%B4%DB%8C%D9%86%20%D8%AD%D8%B3%D8%A7%D8%A8%20%D9%86%D9%88%D8%A7%D8%B1%20%D8%AA%DB%8C%D9%BE%20%7C%20%D9%85%D8%AD%D8%A7%D8%B3%D8%A8%D9%87%20%D9%85%D8%AA%D8%B1%D8%A7%DA%98%D8%8C%20%D8%B1%D9%88%D9%84%20%D9%88%20%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA&_tu=AAg&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.track_404=true&ep.logged_in=false&tfd=1335",
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 1368.1230000000069,
-            "networkRequestTime": 1369.077999999994,
-            "networkEndTime": 1439.1169999999984,
+            "rendererStartTime": 1334.6470000000118,
+            "networkRequestTime": 1340.5770000000048,
+            "networkEndTime": 1392.9170000000013,
             "finished": true,
             "transferSize": 549,
             "resourceSize": 0,
@@ -1593,15 +1577,15 @@
             "entity": "Google Analytics"
           },
           {
-            "url": "https://stats.g.doubleclick.net/g/collect?v=2&ibt=1&tid=G-TKWY8X1PSM&cid=1613929278.1790628696&gtm=45je69o0v9194059779za200zd9194059779xf1&rcb=19&aip=1&dma=0&gcs=G1--&gcd=13l3l3l3l5l1&npa=0&frm=0&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120469145~120469153",
+            "url": "https://stats.g.doubleclick.net/g/collect?v=2&ibt=1&tid=G-TKWY8X1PSM&cid=1554788454.1790629683&gtm=45je69o0v9194059779za200zd9194059779xf1&rcb=16&aip=1&dma=0&gcs=G1--&gcd=13l3l3l3l5l1&npa=0&frm=0&tag_exp=115938465~115938468~118897920~118897930~120213116~120385423~120469145~120469153",
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 1369.2019999999902,
-            "networkRequestTime": 1369.9890000000014,
-            "networkEndTime": 1414.8819999999978,
+            "rendererStartTime": 1335.6770000000106,
+            "networkRequestTime": 1341.0430000000051,
+            "networkEndTime": 1378.6889999999985,
             "finished": true,
-            "transferSize": 558,
+            "transferSize": 549,
             "resourceSize": 0,
             "statusCode": 204,
             "mimeType": "text/plain",
@@ -1615,9 +1599,9 @@
             "sessionTargetType": "page",
             "protocol": "data",
             "cache": "memory",
-            "rendererStartTime": 1596.6729999999952,
-            "networkRequestTime": 1596.6729999999952,
-            "networkEndTime": 1596.7459999999992,
+            "rendererStartTime": 1540.906999999992,
+            "networkRequestTime": 1540.906999999992,
+            "networkEndTime": 1541.0100000000093,
             "finished": true,
             "transferSize": 0,
             "resourceSize": 167,
@@ -1632,9 +1616,9 @@
             "sessionTargetType": "page",
             "protocol": "data",
             "cache": "memory",
-            "rendererStartTime": 1597.5869999999995,
-            "networkRequestTime": 1597.5869999999995,
-            "networkEndTime": 1597.6680000000051,
+            "rendererStartTime": 1541.7780000000057,
+            "networkRequestTime": 1541.7780000000057,
+            "networkEndTime": 1541.8360000000102,
             "finished": true,
             "transferSize": 0,
             "resourceSize": 171,
@@ -1649,9 +1633,9 @@
             "sessionTargetType": "page",
             "protocol": "data",
             "cache": "memory",
-            "rendererStartTime": 1598.5559999999969,
-            "networkRequestTime": 1598.5559999999969,
-            "networkEndTime": 1598.6239999999962,
+            "rendererStartTime": 1542.6150000000052,
+            "networkRequestTime": 1542.6150000000052,
+            "networkEndTime": 1542.675000000003,
             "finished": true,
             "transferSize": 0,
             "resourceSize": 167,
@@ -1666,9 +1650,9 @@
             "sessionTargetType": "page",
             "protocol": "data",
             "cache": "memory",
-            "rendererStartTime": 1599.4820000000036,
-            "networkRequestTime": 1599.4820000000036,
-            "networkEndTime": 1599.5550000000076,
+            "rendererStartTime": 1543.4360000000015,
+            "networkRequestTime": 1543.4360000000015,
+            "networkEndTime": 1543.4959999999992,
             "finished": true,
             "transferSize": 0,
             "resourceSize": 171,
@@ -1683,9 +1667,9 @@
             "sessionTargetType": "page",
             "protocol": "data",
             "cache": "memory",
-            "rendererStartTime": 1600.5060000000085,
-            "networkRequestTime": 1600.5060000000085,
-            "networkEndTime": 1600.5780000000086,
+            "rendererStartTime": 1544.3169999999955,
+            "networkRequestTime": 1544.3169999999955,
+            "networkEndTime": 1544.3849999999948,
             "finished": true,
             "transferSize": 0,
             "resourceSize": 167,
@@ -1696,13 +1680,13 @@
             "experimentalFromMainFrame": true
           },
           {
-            "url": "blob:https://keshavarz20.com/25cd52d1-e281-4dd1-9554-c22e3a6aaebe",
+            "url": "blob:https://keshavarz20.com/4c287dd2-2c57-41a9-8149-807ecc36509a",
             "sessionTargetType": "worker",
             "protocol": "blob",
             "cache": "none",
-            "rendererStartTime": 1623.854999999996,
-            "networkRequestTime": 1623.854999999996,
-            "networkEndTime": 1686.1029999999882,
+            "rendererStartTime": 1566.645000000004,
+            "networkRequestTime": 1566.645000000004,
+            "networkEndTime": 1631.320000000007,
             "finished": true,
             "transferSize": -1,
             "resourceSize": 1327,
@@ -1716,9 +1700,9 @@
             "sessionTargetType": "page",
             "protocol": "data",
             "cache": "memory",
-            "rendererStartTime": 1632.273000000001,
-            "networkRequestTime": 1632.273000000001,
-            "networkEndTime": 1632.3510000000097,
+            "rendererStartTime": 1574.9470000000001,
+            "networkRequestTime": 1574.9470000000001,
+            "networkEndTime": 1575.0709999999963,
             "finished": true,
             "transferSize": 0,
             "resourceSize": 1476,
@@ -1733,9 +1717,9 @@
             "sessionTargetType": "page",
             "protocol": "data",
             "cache": "memory",
-            "rendererStartTime": 1633.1340000000055,
-            "networkRequestTime": 1633.1340000000055,
-            "networkEndTime": 1633.1840000000084,
+            "rendererStartTime": 1575.8120000000054,
+            "networkRequestTime": 1575.8120000000054,
+            "networkEndTime": 1575.8620000000083,
             "finished": true,
             "transferSize": 0,
             "resourceSize": 337,
@@ -1750,11 +1734,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 1633.546000000002,
-            "networkRequestTime": 1633.893000000011,
-            "networkEndTime": 1800.044000000009,
+            "rendererStartTime": 1576.2540000000008,
+            "networkRequestTime": 1576.5679999999993,
+            "networkEndTime": 1739.4320000000007,
             "finished": true,
-            "transferSize": 138281,
+            "transferSize": 138327,
             "resourceSize": 138113,
             "statusCode": 200,
             "mimeType": "image/jpeg",
@@ -1768,9 +1752,9 @@
             "sessionTargetType": "page",
             "protocol": "data",
             "cache": "memory",
-            "rendererStartTime": 1634.8150000000023,
-            "networkRequestTime": 1634.8150000000023,
-            "networkEndTime": 1634.9089999999997,
+            "rendererStartTime": 1577.3160000000062,
+            "networkRequestTime": 1577.3160000000062,
+            "networkEndTime": 1577.4279999999999,
             "finished": true,
             "transferSize": 0,
             "resourceSize": 1479,
@@ -1785,9 +1769,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 1686.596000000005,
-            "networkRequestTime": 1687.5099999999948,
-            "networkEndTime": 1852.9679999999935,
+            "rendererStartTime": 1631.773000000001,
+            "networkRequestTime": 1633.2220000000088,
+            "networkEndTime": 1794.502999999997,
             "finished": true,
             "transferSize": 5058,
             "resourceSize": 22752,
@@ -1803,9 +1787,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 1859.726999999999,
-            "networkRequestTime": 1860.1469999999972,
-            "networkEndTime": 1888.3310000000056,
+            "rendererStartTime": 1801.3350000000064,
+            "networkRequestTime": 1801.7229999999981,
+            "networkEndTime": 1819.1949999999924,
             "finished": true,
             "transferSize": 779,
             "resourceSize": 935,
@@ -1821,9 +1805,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 1861.1869999999908,
-            "networkRequestTime": 1861.7419999999984,
-            "networkEndTime": 1887.2920000000013,
+            "rendererStartTime": 1802.7350000000006,
+            "networkRequestTime": 1803.0840000000026,
+            "networkEndTime": 1820.2340000000113,
             "finished": true,
             "transferSize": 994,
             "resourceSize": 1305,
@@ -1839,9 +1823,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 1861.328999999998,
-            "networkRequestTime": 1862.107999999993,
-            "networkEndTime": 1889.8800000000047,
+            "rendererStartTime": 1802.863000000012,
+            "networkRequestTime": 1803.2920000000013,
+            "networkEndTime": 1819.6940000000031,
             "finished": true,
             "transferSize": 583,
             "resourceSize": 239,
@@ -1857,11 +1841,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 1861.5030000000115,
-            "networkRequestTime": 1862.2850000000035,
-            "networkEndTime": 1886.6640000000043,
+            "rendererStartTime": 1803.0190000000002,
+            "networkRequestTime": 1803.4979999999923,
+            "networkEndTime": 1818.5880000000034,
             "finished": true,
-            "transferSize": 1281,
+            "transferSize": 1272,
             "resourceSize": 1788,
             "statusCode": 200,
             "mimeType": "image/svg+xml",
@@ -1875,11 +1859,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 1861.6520000000019,
-            "networkRequestTime": 1862.502999999997,
-            "networkEndTime": 1885.5800000000017,
+            "rendererStartTime": 1803.1560000000027,
+            "networkRequestTime": 1803.6699999999983,
+            "networkEndTime": 1817.994000000006,
             "finished": true,
-            "transferSize": 671,
+            "transferSize": 670,
             "resourceSize": 515,
             "statusCode": 200,
             "mimeType": "image/svg+xml",
@@ -1893,11 +1877,11 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 1861.833999999988,
-            "networkRequestTime": 1863.2219999999943,
-            "networkEndTime": 1886.2810000000027,
+            "rendererStartTime": 1803.3209999999963,
+            "networkRequestTime": 1803.849000000002,
+            "networkEndTime": 1817.425000000003,
             "finished": true,
-            "transferSize": 735,
+            "transferSize": 736,
             "resourceSize": 391,
             "statusCode": 200,
             "mimeType": "image/svg+xml",
@@ -1911,9 +1895,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 1862.0010000000038,
-            "networkRequestTime": 1890.2590000000055,
-            "networkEndTime": 1897.9909999999945,
+            "rendererStartTime": 1803.4670000000042,
+            "networkRequestTime": 1820.4109999999928,
+            "networkEndTime": 1823.4930000000022,
             "finished": true,
             "transferSize": 795,
             "resourceSize": 451,
@@ -1929,9 +1913,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 1862.1349999999948,
-            "networkRequestTime": 1890.5709999999963,
-            "networkEndTime": 1898.3160000000062,
+            "rendererStartTime": 1803.5830000000133,
+            "networkRequestTime": 1820.5530000000144,
+            "networkEndTime": 1824.0490000000136,
             "finished": true,
             "transferSize": 614,
             "resourceSize": 704,
@@ -1947,9 +1931,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 1918.1970000000001,
-            "networkRequestTime": 1918.6440000000002,
-            "networkEndTime": 1943.6080000000075,
+            "rendererStartTime": 2230.043000000005,
+            "networkRequestTime": 2230.4340000000084,
+            "networkEndTime": 2245.0130000000063,
             "finished": true,
             "transferSize": 1482,
             "resourceSize": 1037,
@@ -1961,15 +1945,33 @@
             "entity": "Gravatar"
           },
           {
+            "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured-optimized-1200-optimized-3-768x432.webp",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 2230.1619999999966,
+            "networkRequestTime": 2231.2060000000056,
+            "networkEndTime": 2395.0330000000104,
+            "finished": true,
+            "transferSize": 66589,
+            "resourceSize": 66458,
+            "statusCode": 200,
+            "mimeType": "image/webp",
+            "resourceType": "Image",
+            "priority": "High",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
             "url": "https://keshavarz20.com/wp-content/uploads/2024/07/download.png",
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 1918.375,
-            "networkRequestTime": 1919.1620000000112,
-            "networkEndTime": 2084.532999999996,
+            "rendererStartTime": 2230.294000000009,
+            "networkRequestTime": 2231.44200000001,
+            "networkEndTime": 2393.9089999999997,
             "finished": true,
-            "transferSize": 3283,
+            "transferSize": 3291,
             "resourceSize": 3200,
             "statusCode": 200,
             "mimeType": "image/png",
@@ -1983,9 +1985,9 @@
             "sessionTargetType": "page",
             "protocol": "h2",
             "cache": "none",
-            "rendererStartTime": 1918.6719999999914,
-            "networkRequestTime": 1919.468000000008,
-            "networkEndTime": 2083.9219999999914,
+            "rendererStartTime": 2230.7479999999923,
+            "networkRequestTime": 2231.673999999999,
+            "networkEndTime": 2393.0080000000016,
             "finished": true,
             "transferSize": 1633,
             "resourceSize": 1550,
@@ -1999,19 +2001,13 @@
         ],
         "debugData": {
           "type": "debugdata",
-          "networkStartTimeTs": 69667606,
+          "networkStartTimeTs": 73308041,
           "initiators": [
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 39,
-              "columnNumber": 9983
-            },
-            {
-              "type": "parser",
-              "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
-              "lineNumber": 40,
-              "columnNumber": 240
+              "columnNumber": 10183
             },
             {
               "type": "parser",
@@ -2095,163 +2091,163 @@
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 661
+              "columnNumber": 681
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 815
+              "columnNumber": 835
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 968
+              "columnNumber": 988
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 1271
+              "columnNumber": 1291
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 1435
+              "columnNumber": 1455
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 1606
+              "columnNumber": 1626
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 1768
+              "columnNumber": 1788
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 1925
+              "columnNumber": 1945
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 4256
+              "columnNumber": 4276
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 4466
+              "columnNumber": 4486
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 4620
+              "columnNumber": 4640
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 4781
+              "columnNumber": 4801
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 4942
+              "columnNumber": 4962
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 5860
+              "columnNumber": 5880
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 6011
+              "columnNumber": 6031
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 6168
+              "columnNumber": 6188
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 6331
+              "columnNumber": 6351
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 6498
+              "columnNumber": 6518
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 6652
+              "columnNumber": 6672
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 8162
+              "columnNumber": 8182
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 8627
+              "columnNumber": 8647
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 15593
+              "columnNumber": 15613
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 21466
+              "columnNumber": 21486
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 21617
+              "columnNumber": 21637
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 21770
+              "columnNumber": 21790
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 21922
+              "columnNumber": 21942
             },
             {
               "type": "parser",
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 2315,
-              "columnNumber": 25194
+              "columnNumber": 25214
             },
             {
               "type": "parser",
@@ -2264,6 +2260,12 @@
               "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
               "lineNumber": 1921,
               "columnNumber": 24
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
+              "lineNumber": 1921,
+              "columnNumber": 26
             },
             {
               "type": "parser",
@@ -2345,265 +2347,259 @@
             "value": {
               "type": "network-tree",
               "chains": {
-                "006CC1E8E2577D6D8473C2EF16BC7441": {
+                "3D2D7D1A22639AD4E6286C91CA42F949": {
                   "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
-                  "navStartToEndTime": 839,
-                  "transferSize": 71455,
+                  "navStartToEndTime": 818,
+                  "transferSize": 71501,
                   "isLongest": true,
                   "children": {
-                    "2565.57": {
+                    "2563.54": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/2a0ea258e5521cde493b5f6064d174fb.js?ver=e4860",
-                      "navStartToEndTime": 1578,
-                      "transferSize": 332,
+                      "navStartToEndTime": 1523,
+                      "transferSize": 355,
                       "isLongest": true,
                       "children": {}
                     },
-                    "2565.56": {
+                    "2563.53": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/a2d2ccea685edbc59d862922362b1d37.js?ver=1d6d4",
-                      "navStartToEndTime": 1578,
-                      "transferSize": 1011,
+                      "navStartToEndTime": 1522,
+                      "transferSize": 1027,
                       "children": {}
                     },
-                    "2565.55": {
-                      "url": "https://keshavarz20.com/wp-content/litespeed/js/3ad9913ed2e76213ce80eaaa9e5f104d.js?ver=34f77",
-                      "navStartToEndTime": 1577,
-                      "transferSize": 3411,
-                      "children": {}
-                    },
-                    "2565.113": {
+                    "2563.108": {
                       "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebboldfanum.woff",
-                      "navStartToEndTime": 1576,
+                      "navStartToEndTime": 1521,
                       "transferSize": 33661,
                       "children": {}
                     },
-                    "2565.114": {
+                    "2563.109": {
                       "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebregularfanum.woff",
-                      "navStartToEndTime": 1546,
+                      "navStartToEndTime": 1495,
                       "transferSize": 33715,
                       "children": {}
                     },
-                    "2565.48": {
+                    "2563.45": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
-                      "navStartToEndTime": 1503,
-                      "transferSize": 61363,
+                      "navStartToEndTime": 1472,
+                      "transferSize": 61399,
                       "children": {}
                     },
-                    "2565.53": {
+                    "2563.50": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/a1548c83adc2678218fff1bf8a308b0d.js?ver=2c37a",
-                      "navStartToEndTime": 1500,
-                      "transferSize": 17838,
+                      "navStartToEndTime": 1470,
+                      "transferSize": 17816,
                       "children": {}
                     },
-                    "2565.31": {
+                    "2563.28": {
                       "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
-                      "navStartToEndTime": 967,
+                      "navStartToEndTime": 1254,
                       "transferSize": 195710,
                       "children": {
-                        "2565.116": {
-                          "url": "https://analytics.google.com/g/collect?v=2&tid=G-TKWY8X1PSM&gtm=45je69o0v9194059779za200zd9194059779xf1&_p=1790628695863&_gaz=1&gcs=G1--&gcd=13l3l3l3l5l1&npa=0&dma=0&gdid=dOGY3NW&_eu=AAAAACAC&cid=1613929278.1790628696&frm=0&ibt=1&pscdl=noapi&rcb=19&sr=412x823&uaa=&uab=64&uafvl=Google%2520Chrome%3B153.0.8010.52%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.52&uam=moto%20g%20power%20(2022)&uamb=1&uap=Android&uapv=11.0&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120469145~120469153&sid=1790628696&sct=1&seg=0&dl=https%3A%2F%2Fkeshavarz20.com%2Fdrip-tape-length-fittings-calculator%2F&dt=%D9%85%D8%A7%D8%B4%DB%8C%D9%86%20%D8%AD%D8%B3%D8%A7%D8%A8%20%D9%86%D9%88%D8%A7%D8%B1%20%D8%AA%DB%8C%D9%BE%20%7C%20%D9%85%D8%AD%D8%A7%D8%B3%D8%A8%D9%87%20%D9%85%D8%AA%D8%B1%D8%A7%DA%98%D8%8C%20%D8%B1%D9%88%D9%84%20%D9%88%20%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA&_tu=AAg&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.track_404=true&ep.logged_in=false&tfd=1369",
-                          "navStartToEndTime": 1439,
+                        "2563.112": {
+                          "url": "https://analytics.google.com/g/collect?v=2&tid=G-TKWY8X1PSM&gtm=45je69o0v9194059779za200zd9194059779xf1&_p=1790629682474&_gaz=1&gcs=G1--&gcd=13l3l3l3l5l1&npa=0&dma=0&gdid=dOGY3NW&_eu=AAAAACAC&cid=1554788454.1790629683&frm=0&ibt=1&pscdl=noapi&rcb=16&sr=412x823&uaa=&uab=64&uafvl=Google%2520Chrome%3B153.0.8010.52%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.52&uam=moto%20g%20power%20(2022)&uamb=1&uap=Android&uapv=11.0&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938468~118897920~118897930~120213116~120385423~120469145~120469153&sid=1790629682&sct=1&seg=0&dl=https%3A%2F%2Fkeshavarz20.com%2Fdrip-tape-length-fittings-calculator%2F&dt=%D9%85%D8%A7%D8%B4%DB%8C%D9%86%20%D8%AD%D8%B3%D8%A7%D8%A8%20%D9%86%D9%88%D8%A7%D8%B1%20%D8%AA%DB%8C%D9%BE%20%7C%20%D9%85%D8%AD%D8%A7%D8%B3%D8%A8%D9%87%20%D9%85%D8%AA%D8%B1%D8%A7%DA%98%D8%8C%20%D8%B1%D9%88%D9%84%20%D9%88%20%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA&_tu=AAg&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.track_404=true&ep.logged_in=false&tfd=1335",
+                          "navStartToEndTime": 1393,
                           "transferSize": 0,
                           "children": {}
                         }
                       }
                     },
-                    "2565.38": {
+                    "2563.35": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/4fe8f127c29828e027ef11d551317262.js?ver=df9fc",
-                      "navStartToEndTime": 1417,
+                      "navStartToEndTime": 1371,
                       "transferSize": 19215,
                       "children": {}
                     },
-                    "2565.52": {
+                    "2563.49": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/81a58d62acc2bda2575a4119ca64c006.js?ver=f4a3e",
-                      "navStartToEndTime": 1417,
-                      "transferSize": 16368,
+                      "navStartToEndTime": 1371,
+                      "transferSize": 16391,
                       "children": {}
                     },
-                    "2565.54": {
+                    "2563.52": {
+                      "url": "https://keshavarz20.com/wp-content/litespeed/js/3ad9913ed2e76213ce80eaaa9e5f104d.js?ver=34f77",
+                      "navStartToEndTime": 1371,
+                      "transferSize": 3393,
+                      "children": {}
+                    },
+                    "2563.51": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/b60ce8f8cdb2cbf0aeaa486e96347151.js?ver=f5b36",
-                      "navStartToEndTime": 1416,
-                      "transferSize": 9307,
+                      "navStartToEndTime": 1370,
+                      "transferSize": 9306,
                       "children": {}
                     },
-                    "2565.51": {
+                    "2563.48": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/ba805fd84d4b50e3366d18c5a8c0be90.js?ver=8db63",
-                      "navStartToEndTime": 1416,
-                      "transferSize": 2014,
+                      "navStartToEndTime": 1370,
+                      "transferSize": 2016,
                       "children": {}
                     },
-                    "2565.50": {
-                      "url": "https://keshavarz20.com/wp-content/litespeed/js/291fb7a293d236f8f164f4535f17e96e.js?ver=b0977",
-                      "navStartToEndTime": 1416,
-                      "transferSize": 8472,
-                      "children": {}
-                    },
-                    "2565.46": {
-                      "url": "https://keshavarz20.com/wp-content/litespeed/js/69b68c538bdec1627dd4aa6c47bf660b.js?ver=f660b",
-                      "navStartToEndTime": 1415,
-                      "transferSize": 13270,
-                      "children": {}
-                    },
-                    "2565.49": {
-                      "url": "https://keshavarz20.com/wp-content/litespeed/js/cc20a965911f0e0c941a624febd1e51f.js?ver=ab876",
-                      "navStartToEndTime": 1415,
-                      "transferSize": 1193,
-                      "children": {}
-                    },
-                    "2565.47": {
+                    "2563.44": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/6d34fb03e431748cf236d80c04d2fc0a.js?ver=2fc0a",
-                      "navStartToEndTime": 1414,
+                      "navStartToEndTime": 1369,
                       "transferSize": 744,
                       "children": {}
                     },
-                    "2565.45": {
+                    "2563.47": {
+                      "url": "https://keshavarz20.com/wp-content/litespeed/js/291fb7a293d236f8f164f4535f17e96e.js?ver=b0977",
+                      "navStartToEndTime": 1369,
+                      "transferSize": 8472,
+                      "children": {}
+                    },
+                    "2563.46": {
+                      "url": "https://keshavarz20.com/wp-content/litespeed/js/cc20a965911f0e0c941a624febd1e51f.js?ver=ab876",
+                      "navStartToEndTime": 1369,
+                      "transferSize": 1201,
+                      "children": {}
+                    },
+                    "2563.43": {
+                      "url": "https://keshavarz20.com/wp-content/litespeed/js/69b68c538bdec1627dd4aa6c47bf660b.js?ver=f660b",
+                      "navStartToEndTime": 1369,
+                      "transferSize": 13279,
+                      "children": {}
+                    },
+                    "2563.42": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/17ab8d74595c085eb0f60af1b19b14c5.js?ver=b14c5",
-                      "navStartToEndTime": 1414,
-                      "transferSize": 10037,
+                      "navStartToEndTime": 1368,
+                      "transferSize": 10030,
                       "children": {}
                     },
-                    "2565.39": {
-                      "url": "https://keshavarz20.com/wp-content/litespeed/js/a0faaf10558058a125cc0dcb18f2136a.js?ver=43fe1",
-                      "navStartToEndTime": 1403,
-                      "transferSize": 428,
-                      "children": {}
-                    },
-                    "2565.41": {
-                      "url": "https://keshavarz20.com/wp-content/litespeed/js/1ae53464d568614135fe06c49eac7be4.js?ver=ea0e8",
-                      "navStartToEndTime": 1403,
-                      "transferSize": 6608,
-                      "children": {}
-                    },
-                    "2565.44": {
-                      "url": "https://keshavarz20.com/wp-content/litespeed/js/0b27f16887d6b2eff369b5d255123089.js?ver=0d7fe",
-                      "navStartToEndTime": 1403,
-                      "transferSize": 1105,
-                      "children": {}
-                    },
-                    "2565.43": {
+                    "2563.40": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/48024c4eb360e093e56b89735c2a875e.js?ver=f9346",
-                      "navStartToEndTime": 1402,
+                      "navStartToEndTime": 1368,
                       "transferSize": 4674,
                       "children": {}
                     },
-                    "2565.42": {
+                    "2563.41": {
+                      "url": "https://keshavarz20.com/wp-content/litespeed/js/0b27f16887d6b2eff369b5d255123089.js?ver=0d7fe",
+                      "navStartToEndTime": 1367,
+                      "transferSize": 1084,
+                      "children": {}
+                    },
+                    "2563.36": {
+                      "url": "https://keshavarz20.com/wp-content/litespeed/js/a0faaf10558058a125cc0dcb18f2136a.js?ver=43fe1",
+                      "navStartToEndTime": 1367,
+                      "transferSize": 428,
+                      "children": {}
+                    },
+                    "2563.39": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/24628fe1ceb819a56ca96943c888775a.js?ver=05e7a",
-                      "navStartToEndTime": 1402,
+                      "navStartToEndTime": 1367,
                       "transferSize": 962,
                       "children": {}
                     },
-                    "2565.37": {
+                    "2563.38": {
+                      "url": "https://keshavarz20.com/wp-content/litespeed/js/1ae53464d568614135fe06c49eac7be4.js?ver=ea0e8",
+                      "navStartToEndTime": 1367,
+                      "transferSize": 6607,
+                      "children": {}
+                    },
+                    "2563.34": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/514715ecc7b6903b454cf3d05016a2ef.js?ver=e7f10",
-                      "navStartToEndTime": 1401,
-                      "transferSize": 200,
+                      "navStartToEndTime": 1366,
+                      "transferSize": 199,
                       "children": {}
                     },
-                    "2565.36": {
+                    "2563.33": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/656d4b457ff72cce48c5c66cef023d01.js?ver=23d01",
-                      "navStartToEndTime": 1401,
-                      "transferSize": 5777,
+                      "navStartToEndTime": 1365,
+                      "transferSize": 5776,
                       "children": {}
                     },
-                    "2565.35": {
+                    "2563.32": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/1ad6e6e83e608b73928dbb64ebc8fae7.js?ver=8fae7",
-                      "navStartToEndTime": 1400,
-                      "transferSize": 5356,
+                      "navStartToEndTime": 1364,
+                      "transferSize": 5309,
                       "children": {}
                     },
-                    "2565.34": {
+                    "2563.31": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/71c3ba7f1e2bde5718461357744685d6.js?ver=b8b51",
-                      "navStartToEndTime": 1396,
+                      "navStartToEndTime": 1362,
                       "transferSize": 6541,
                       "children": {}
                     },
-                    "2565.33": {
+                    "2563.30": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/ed409692eee5cbfdf32903665e3ae9ae.js?ver=2a0a9",
-                      "navStartToEndTime": 1169,
+                      "navStartToEndTime": 1132,
                       "transferSize": 2435,
                       "children": {}
                     },
-                    "2565.13": {
-                      "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-                      "navStartToEndTime": 1160,
-                      "transferSize": 29857,
-                      "children": {}
-                    },
-                    "2565.32": {
+                    "2563.29": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/12b57f5c83ea5b70b2b7473446f4607b.js?ver=47d4c",
-                      "navStartToEndTime": 1158,
-                      "transferSize": 1811,
+                      "navStartToEndTime": 1131,
+                      "transferSize": 1812,
                       "children": {}
                     },
-                    "2565.14": {
+                    "2563.13": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/js/d83023bfe4b76eb18913925fea90caf0.js?ver=588e9",
-                      "navStartToEndTime": 1158,
+                      "navStartToEndTime": 1128,
                       "transferSize": 4740,
                       "children": {}
                     },
-                    "2565.10": {
+                    "2563.12": {
+                      "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+                      "navStartToEndTime": 1014,
+                      "transferSize": 29857,
+                      "children": {}
+                    },
+                    "2563.9": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/css/7e0c89866ae4250b859a08a1e4310da4.css?ver=a8667",
-                      "navStartToEndTime": 1005,
+                      "navStartToEndTime": 982,
                       "transferSize": 19920,
                       "children": {}
                     },
-                    "2565.7": {
+                    "2563.6": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/css/62bccd5cbc3fa81af8e3db4ca4b9cbd8.css?ver=dc04d",
-                      "navStartToEndTime": 1003,
-                      "transferSize": 18625,
+                      "navStartToEndTime": 980,
+                      "transferSize": 18647,
                       "children": {}
                     },
-                    "2565.9": {
+                    "2563.8": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/css/9c13dae17cf8ea20906a1f183d051600.css?ver=846ee",
-                      "navStartToEndTime": 996,
-                      "transferSize": 22119,
+                      "navStartToEndTime": 975,
+                      "transferSize": 22118,
                       "children": {}
                     },
-                    "2565.12": {
+                    "2563.11": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/css/c06653149616549fd6996e2c5adc60e6.css?ver=167c3",
-                      "navStartToEndTime": 885,
-                      "transferSize": 1621,
+                      "navStartToEndTime": 852,
+                      "transferSize": 1622,
                       "children": {}
                     },
-                    "2565.11": {
+                    "2563.10": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/css/eb94baaffcc6d9127661069c4bf1c60a.css?ver=7b57a",
-                      "navStartToEndTime": 884,
+                      "navStartToEndTime": 851,
                       "transferSize": 1285,
                       "children": {}
                     },
-                    "2565.8": {
+                    "2563.7": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/css/e071696e0b7eb90ffe411df79df9b1b9.css?ver=82e4a",
-                      "navStartToEndTime": 883,
+                      "navStartToEndTime": 848,
                       "transferSize": 66,
                       "children": {}
                     },
-                    "2565.6": {
+                    "2563.5": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/css/22d8b85ae0ea8c9b35ab0dabcf39116a.css?ver=f0ec8",
-                      "navStartToEndTime": 860,
+                      "navStartToEndTime": 848,
                       "transferSize": 980,
                       "children": {}
                     },
-                    "2565.5": {
+                    "2563.4": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/css/d1449c8b67d75f0b6862c0f5440a84e7.css?ver=7ece2",
-                      "navStartToEndTime": 859,
-                      "transferSize": 1682,
+                      "navStartToEndTime": 832,
+                      "transferSize": 1681,
                       "children": {}
                     },
-                    "2565.4": {
+                    "2563.3": {
                       "url": "https://keshavarz20.com/wp-content/litespeed/css/c7c2a8934d7aef47a8886bfadc3d9d97.css?ver=d2fb6",
-                      "navStartToEndTime": 858,
-                      "transferSize": 4791,
-                      "children": {}
-                    },
-                    "2565.3": {
-                      "url": "https://keshavarz20.com/wp-content/litespeed/css/2a0b6fdc7822620200395a1b1778a4d0.css?ver=3b79d",
-                      "navStartToEndTime": 856,
-                      "transferSize": 230,
+                      "navStartToEndTime": 831,
+                      "transferSize": 4871,
                       "children": {}
                     }
                   }
                 }
               },
               "longestChain": {
-                "duration": 1578
+                "duration": 1523
               }
             }
           },
@@ -2621,8 +2617,37 @@
             "title": "Preconnect candidates",
             "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4.",
             "value": {
-              "type": "text",
-              "value": "No additional origins are good candidates for preconnecting"
+              "type": "table",
+              "headings": [
+                {
+                  "key": "origin",
+                  "valueType": "text",
+                  "label": "Origin"
+                },
+                {
+                  "key": "wastedMs",
+                  "valueType": "ms",
+                  "label": "Est LCP savings"
+                }
+              ],
+              "items": [
+                {
+                  "origin": "https://stats.g.doubleclick.net",
+                  "wastedMs": 302.218
+                },
+                {
+                  "origin": "https://secure.gravatar.com",
+                  "wastedMs": 300.372
+                },
+                {
+                  "origin": "https://analytics.google.com",
+                  "wastedMs": 300
+                },
+                {
+                  "origin": "https://s.w.org",
+                  "wastedMs": 300
+                }
+              ]
             }
           }
         ]
@@ -2656,34 +2681,34 @@
         ],
         "items": [
           {
+            "url": "Unattributable",
+            "duration": 177,
+            "startTime": 5115.573500000001
+          },
+          {
+            "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
+            "duration": 156,
+            "startTime": 1953.3375
+          },
+          {
             "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
-            "duration": 166,
-            "startTime": 4930.218500000001
-          },
-          {
-            "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
-            "duration": 152,
-            "startTime": 1927.1985000000004
+            "duration": 117,
+            "startTime": 4907.573500000001
           },
           {
             "url": "Unattributable",
-            "duration": 144,
-            "startTime": 5191.218500000001
+            "duration": 91,
+            "startTime": 5024.573500000001
           },
           {
-            "url": "Unattributable",
-            "duration": 95,
-            "startTime": 5096.218500000001
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/1ad6e6e83e608b73928dbb64ebc8fae7.js?ver=8fae7",
+            "duration": 63,
+            "startTime": 5292.573500000001
           },
           {
             "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
-            "duration": 56,
-            "startTime": 2109.1985000000004
-          },
-          {
-            "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
             "duration": 50,
-            "startTime": 6796.648092636109
+            "startTime": 2141.3375
           }
         ],
         "sortedBy": [
@@ -2695,56 +2720,56 @@
         "debugData": {
           "type": "debugdata",
           "urls": [
-            "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
-            "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
             "Unattributable",
-            "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b"
+            "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
+            "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+            "https://keshavarz20.com/wp-content/litespeed/js/1ad6e6e83e608b73928dbb64ebc8fae7.js?ver=8fae7"
           ],
           "tasks": [
             {
               "urlIndex": 0,
-              "startTime": 4930.2,
-              "duration": 166,
-              "other": 166,
-              "parseHTML": 0
+              "startTime": 5115.6,
+              "duration": 177,
+              "other": 177,
+              "scriptEvaluation": 0
             },
             {
               "urlIndex": 1,
-              "startTime": 1927.2,
-              "duration": 152,
-              "other": 152,
+              "startTime": 1953.3,
+              "duration": 156,
+              "other": 156,
               "paintCompositeRender": 0,
               "scriptEvaluation": 0,
               "styleLayout": 0
             },
             {
               "urlIndex": 2,
-              "startTime": 5191.2,
-              "duration": 144,
-              "other": 144,
+              "startTime": 4907.6,
+              "duration": 117,
+              "other": 117,
               "scriptEvaluation": 0
             },
             {
-              "urlIndex": 2,
-              "startTime": 5096.2,
-              "duration": 95,
-              "other": 95,
+              "urlIndex": 0,
+              "startTime": 5024.6,
+              "duration": 91,
+              "other": 91,
               "scriptEvaluation": 0
-            },
-            {
-              "urlIndex": 1,
-              "startTime": 2109.2,
-              "duration": 56,
-              "other": 56,
-              "paintCompositeRender": 0,
-              "styleLayout": 0
             },
             {
               "urlIndex": 3,
-              "startTime": 6796.6,
+              "startTime": 5292.6,
+              "duration": 63,
+              "other": 63,
+              "parseHTML": 0
+            },
+            {
+              "urlIndex": 1,
+              "startTime": 2141.3,
               "duration": 50,
               "other": 50,
-              "scriptEvaluation": 0
+              "paintCompositeRender": 0,
+              "styleLayout": 0
             }
           ]
         }
@@ -2758,23 +2783,23 @@
         "type": "debugdata",
         "items": [
           {
-            "numRequests": 71,
+            "numRequests": 72,
             "numScripts": 31,
-            "numStylesheets": 10,
+            "numStylesheets": 9,
             "numFonts": 2,
-            "numTasks": 1880,
+            "numTasks": 1996,
             "numTasksOver10ms": 13,
-            "numTasksOver25ms": 4,
+            "numTasksOver25ms": 3,
             "numTasksOver50ms": 1,
             "numTasksOver100ms": 0,
             "numTasksOver500ms": 0,
-            "rtt": 5.179,
-            "throughput": 10235684.722526135,
-            "maxRtt": 162.957,
-            "maxServerLatency": 43.891999999999996,
-            "totalByteWeight": 875709,
-            "totalTaskTime": 693.5899999999941,
-            "mainDocumentTransferSize": 71455
+            "rtt": 1.3559999999999999,
+            "throughput": 9913387.2122762,
+            "maxRtt": 159.625,
+            "maxServerLatency": 21.602,
+            "totalByteWeight": 909187,
+            "totalTaskTime": 653.4999999999978,
+            "mainDocumentTransferSize": 71501
           }
         ]
       }
@@ -2788,13 +2813,13 @@
       "resourceSize": 598838,
       "statusCode": 200,
       "protocol": "h2",
-      "priority": "Medium",
+      "priority": "Low",
       "mimeType": "application/javascript"
     },
     {
       "url": "https://keshavarz20.com/wp-content/uploads/2024/06/hossini.jpg",
       "resourceType": "Image",
-      "transferSize": 138281,
+      "transferSize": 138327,
       "resourceSize": 138113,
       "statusCode": 200,
       "protocol": "h2",
@@ -2804,18 +2829,18 @@
     {
       "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
       "resourceType": "Document",
-      "transferSize": 71455,
-      "resourceSize": 344891,
+      "transferSize": 71501,
+      "resourceSize": 346232,
       "statusCode": 200,
       "protocol": "h2",
       "priority": "VeryHigh",
       "mimeType": "text/html"
     },
     {
-      "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured-optimized-1200-768x432.webp",
+      "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured-optimized-1200-optimized-3-768x432.webp",
       "resourceType": "Image",
-      "transferSize": 67892,
-      "resourceSize": 67762,
+      "transferSize": 66589,
+      "resourceSize": 66458,
       "statusCode": 200,
       "protocol": "h2",
       "priority": "High",
@@ -2824,12 +2849,22 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
       "resourceType": "Script",
-      "transferSize": 61363,
+      "transferSize": 61399,
       "resourceSize": 252309,
       "statusCode": 200,
       "protocol": "h2",
       "priority": "Medium",
       "mimeType": "application/javascript"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured-optimized-1200-optimized-2.webp",
+      "resourceType": "Image",
+      "transferSize": 34707,
+      "resourceSize": 34594,
+      "statusCode": 200,
+      "protocol": "h2",
+      "priority": "High",
+      "mimeType": "image/webp"
     },
     {
       "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebregularfanum.woff",
@@ -2864,7 +2899,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/css/9c13dae17cf8ea20906a1f183d051600.css?ver=846ee",
       "resourceType": "Stylesheet",
-      "transferSize": 22119,
+      "transferSize": 22118,
       "resourceSize": 150098,
       "statusCode": 200,
       "protocol": "h2",
@@ -2894,7 +2929,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/css/62bccd5cbc3fa81af8e3db4ca4b9cbd8.css?ver=dc04d",
       "resourceType": "Stylesheet",
-      "transferSize": 18625,
+      "transferSize": 18647,
       "resourceSize": 277387,
       "statusCode": 200,
       "protocol": "h2",
@@ -2904,7 +2939,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/js/a1548c83adc2678218fff1bf8a308b0d.js?ver=2c37a",
       "resourceType": "Script",
-      "transferSize": 17838,
+      "transferSize": 17816,
       "resourceSize": 77853,
       "statusCode": 200,
       "protocol": "h2",
@@ -2914,7 +2949,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/js/81a58d62acc2bda2575a4119ca64c006.js?ver=f4a3e",
       "resourceType": "Script",
-      "transferSize": 16368,
+      "transferSize": 16391,
       "resourceSize": 81174,
       "statusCode": 200,
       "protocol": "h2",
@@ -2924,7 +2959,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/js/69b68c538bdec1627dd4aa6c47bf660b.js?ver=f660b",
       "resourceType": "Script",
-      "transferSize": 13270,
+      "transferSize": 13279,
       "resourceSize": 54523,
       "statusCode": 200,
       "protocol": "h2",
@@ -2934,7 +2969,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/js/17ab8d74595c085eb0f60af1b19b14c5.js?ver=b14c5",
       "resourceType": "Script",
-      "transferSize": 10037,
+      "transferSize": 10030,
       "resourceSize": 36754,
       "statusCode": 200,
       "protocol": "h2",
@@ -2944,7 +2979,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/js/b60ce8f8cdb2cbf0aeaa486e96347151.js?ver=f5b36",
       "resourceType": "Script",
-      "transferSize": 9307,
+      "transferSize": 9306,
       "resourceSize": 40071,
       "statusCode": 200,
       "protocol": "h2",
@@ -2964,7 +2999,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/js/1ae53464d568614135fe06c49eac7be4.js?ver=ea0e8",
       "resourceType": "Script",
-      "transferSize": 6608,
+      "transferSize": 6607,
       "resourceSize": 21991,
       "statusCode": 200,
       "protocol": "h2",
@@ -2984,7 +3019,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/js/656d4b457ff72cce48c5c66cef023d01.js?ver=23d01",
       "resourceType": "Script",
-      "transferSize": 5777,
+      "transferSize": 5776,
       "resourceSize": 20136,
       "statusCode": 200,
       "protocol": "h2",
@@ -3004,7 +3039,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/js/1ad6e6e83e608b73928dbb64ebc8fae7.js?ver=8fae7",
       "resourceType": "Script",
-      "transferSize": 5356,
+      "transferSize": 5309,
       "resourceSize": 17643,
       "statusCode": 200,
       "protocol": "h2",
@@ -3024,7 +3059,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/css/c7c2a8934d7aef47a8886bfadc3d9d97.css?ver=d2fb6",
       "resourceType": "Stylesheet",
-      "transferSize": 4791,
+      "transferSize": 4871,
       "resourceSize": 41082,
       "statusCode": 200,
       "protocol": "h2",
@@ -3054,7 +3089,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/js/3ad9913ed2e76213ce80eaaa9e5f104d.js?ver=34f77",
       "resourceType": "Script",
-      "transferSize": 3411,
+      "transferSize": 3393,
       "resourceSize": 11071,
       "statusCode": 200,
       "protocol": "h2",
@@ -3064,7 +3099,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/uploads/2024/07/download.png",
       "resourceType": "Image",
-      "transferSize": 3283,
+      "transferSize": 3291,
       "resourceSize": 3200,
       "statusCode": 200,
       "protocol": "h2",
@@ -3094,7 +3129,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/js/ba805fd84d4b50e3366d18c5a8c0be90.js?ver=8db63",
       "resourceType": "Script",
-      "transferSize": 2014,
+      "transferSize": 2016,
       "resourceSize": 7484,
       "statusCode": 200,
       "protocol": "h2",
@@ -3104,7 +3139,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/js/12b57f5c83ea5b70b2b7473446f4607b.js?ver=47d4c",
       "resourceType": "Script",
-      "transferSize": 1811,
+      "transferSize": 1812,
       "resourceSize": 5097,
       "statusCode": 200,
       "protocol": "h2",
@@ -3114,7 +3149,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/css/d1449c8b67d75f0b6862c0f5440a84e7.css?ver=7ece2",
       "resourceType": "Stylesheet",
-      "transferSize": 1682,
+      "transferSize": 1681,
       "resourceSize": 5270,
       "statusCode": 200,
       "protocol": "h2",
@@ -3134,7 +3169,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/css/c06653149616549fd6996e2c5adc60e6.css?ver=167c3",
       "resourceType": "Stylesheet",
-      "transferSize": 1621,
+      "transferSize": 1622,
       "resourceSize": 6662,
       "statusCode": 200,
       "protocol": "h2",
@@ -3154,7 +3189,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/js/01945764d8618afbe0c242cec6f6da61.js?ver=fdccd",
       "resourceType": "Script",
-      "transferSize": 1333,
+      "transferSize": 1286,
       "resourceSize": 2951,
       "statusCode": 200,
       "protocol": "h2",
@@ -3174,7 +3209,7 @@
     {
       "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f33f.svg",
       "resourceType": "Image",
-      "transferSize": 1281,
+      "transferSize": 1272,
       "resourceSize": 1788,
       "statusCode": 200,
       "protocol": "h2",
@@ -3184,7 +3219,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/js/cc20a965911f0e0c941a624febd1e51f.js?ver=ab876",
       "resourceType": "Script",
-      "transferSize": 1193,
+      "transferSize": 1201,
       "resourceSize": 2268,
       "statusCode": 200,
       "protocol": "h2",
@@ -3194,7 +3229,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/js/0b27f16887d6b2eff369b5d255123089.js?ver=0d7fe",
       "resourceType": "Script",
-      "transferSize": 1105,
+      "transferSize": 1084,
       "resourceSize": 2440,
       "statusCode": 200,
       "protocol": "h2",
@@ -3204,7 +3239,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/js/a2d2ccea685edbc59d862922362b1d37.js?ver=1d6d4",
       "resourceType": "Script",
-      "transferSize": 1011,
+      "transferSize": 1027,
       "resourceSize": 3277,
       "statusCode": 200,
       "protocol": "h2",
@@ -3274,7 +3309,7 @@
     {
       "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4de.svg",
       "resourceType": "Image",
-      "transferSize": 735,
+      "transferSize": 736,
       "resourceSize": 391,
       "statusCode": 200,
       "protocol": "h2",
@@ -3284,7 +3319,7 @@
     {
       "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f331.svg",
       "resourceType": "Image",
-      "transferSize": 671,
+      "transferSize": 670,
       "resourceSize": 515,
       "statusCode": 200,
       "protocol": "h2",
@@ -3312,23 +3347,23 @@
       "mimeType": "image/svg+xml"
     },
     {
-      "url": "https://stats.g.doubleclick.net/g/collect?v=2&ibt=1&tid=G-TKWY8X1PSM&cid=1613929278.1790628696&gtm=45je69o0v9194059779za200zd9194059779xf1&rcb=19&aip=1&dma=0&gcs=G1--&gcd=13l3l3l3l5l1&npa=0&frm=0&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120469145~120469153",
-      "resourceType": "Ping",
-      "transferSize": 558,
-      "resourceSize": 0,
-      "statusCode": 204,
-      "protocol": "h2",
-      "priority": "VeryLow",
-      "mimeType": "text/plain"
-    },
-    {
-      "url": "https://analytics.google.com/g/collect?v=2&tid=G-TKWY8X1PSM&gtm=45je69o0v9194059779za200zd9194059779xf1&_p=1790628695863&_gaz=1&gcs=G1--&gcd=13l3l3l3l5l1&npa=0&dma=0&gdid=dOGY3NW&_eu=AAAAACAC&cid=1613929278.1790628696&frm=0&ibt=1&pscdl=noapi&rcb=19&sr=412x823&uaa=&uab=64&uafvl=Google%2520Chrome%3B153.0.8010.52%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.52&uam=moto%20g%20power%20(2022)&uamb=1&uap=Android&uapv=11.0&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120469145~120469153&sid=1790628696&sct=1&seg=0&dl=https%3A%2F%2Fkeshavarz20.com%2Fdrip-tape-length-fittings-calculator%2F&dt=%D9%85%D8%A7%D8%B4%DB%8C%D9%86%20%D8%AD%D8%B3%D8%A7%D8%A8%20%D9%86%D9%88%D8%A7%D8%B1%20%D8%AA%DB%8C%D9%BE%20%7C%20%D9%85%D8%AD%D8%A7%D8%B3%D8%A8%D9%87%20%D9%85%D8%AA%D8%B1%D8%A7%DA%98%D8%8C%20%D8%B1%D9%88%D9%84%20%D9%88%20%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA&_tu=AAg&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.track_404=true&ep.logged_in=false&tfd=1369",
+      "url": "https://analytics.google.com/g/collect?v=2&tid=G-TKWY8X1PSM&gtm=45je69o0v9194059779za200zd9194059779xf1&_p=1790629682474&_gaz=1&gcs=G1--&gcd=13l3l3l3l5l1&npa=0&dma=0&gdid=dOGY3NW&_eu=AAAAACAC&cid=1554788454.1790629683&frm=0&ibt=1&pscdl=noapi&rcb=16&sr=412x823&uaa=&uab=64&uafvl=Google%2520Chrome%3B153.0.8010.52%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.52&uam=moto%20g%20power%20(2022)&uamb=1&uap=Android&uapv=11.0&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938468~118897920~118897930~120213116~120385423~120469145~120469153&sid=1790629682&sct=1&seg=0&dl=https%3A%2F%2Fkeshavarz20.com%2Fdrip-tape-length-fittings-calculator%2F&dt=%D9%85%D8%A7%D8%B4%DB%8C%D9%86%20%D8%AD%D8%B3%D8%A7%D8%A8%20%D9%86%D9%88%D8%A7%D8%B1%20%D8%AA%DB%8C%D9%BE%20%7C%20%D9%85%D8%AD%D8%A7%D8%B3%D8%A8%D9%87%20%D9%85%D8%AA%D8%B1%D8%A7%DA%98%D8%8C%20%D8%B1%D9%88%D9%84%20%D9%88%20%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%D8%A7%D8%AA&_tu=AAg&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.track_404=true&ep.logged_in=false&tfd=1335",
       "resourceType": "Fetch",
       "transferSize": 549,
       "resourceSize": 0,
       "statusCode": 204,
       "protocol": "h2",
       "priority": "High",
+      "mimeType": "text/plain"
+    },
+    {
+      "url": "https://stats.g.doubleclick.net/g/collect?v=2&ibt=1&tid=G-TKWY8X1PSM&cid=1554788454.1790629683&gtm=45je69o0v9194059779za200zd9194059779xf1&rcb=16&aip=1&dma=0&gcs=G1--&gcd=13l3l3l3l5l1&npa=0&frm=0&tag_exp=115938465~115938468~118897920~118897930~120213116~120385423~120469145~120469153",
+      "resourceType": "Ping",
+      "transferSize": 549,
+      "resourceSize": 0,
+      "statusCode": 204,
+      "protocol": "h2",
+      "priority": "VeryLow",
       "mimeType": "text/plain"
     },
     {
@@ -3344,7 +3379,7 @@
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/js/2a0ea258e5521cde493b5f6064d174fb.js?ver=e4860",
       "resourceType": "Script",
-      "transferSize": 332,
+      "transferSize": 355,
       "resourceSize": 720,
       "statusCode": 200,
       "protocol": "h2",
@@ -3352,24 +3387,24 @@
       "mimeType": "application/javascript"
     },
     {
-      "url": "https://keshavarz20.com/wp-content/litespeed/css/2a0b6fdc7822620200395a1b1778a4d0.css?ver=3b79d",
-      "resourceType": "Stylesheet",
-      "transferSize": 230,
-      "resourceSize": 210,
-      "statusCode": 200,
-      "protocol": "h2",
-      "priority": "VeryHigh",
-      "mimeType": "text/css"
-    },
-    {
       "url": "https://keshavarz20.com/wp-content/litespeed/js/514715ecc7b6903b454cf3d05016a2ef.js?ver=e7f10",
       "resourceType": "Script",
-      "transferSize": 200,
+      "transferSize": 199,
       "resourceSize": 262,
       "statusCode": 200,
       "protocol": "h2",
       "priority": "Medium",
       "mimeType": "application/javascript"
+    },
+    {
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZ…",
+      "resourceType": "Image",
+      "transferSize": 169,
+      "resourceSize": 169,
+      "statusCode": 200,
+      "protocol": "data",
+      "priority": "High",
+      "mimeType": "image/svg+xml"
     },
     {
       "url": "https://keshavarz20.com/wp-content/litespeed/css/e071696e0b7eb90ffe411df79df9b1b9.css?ver=82e4a",
@@ -3482,7 +3517,7 @@
       "mimeType": "image/svg+xml"
     },
     {
-      "url": "blob:https://keshavarz20.com/25cd52d1-e281-4dd1-9554-c22e3a6aaebe",
+      "url": "blob:https://keshavarz20.com/4c287dd2-2c57-41a9-8149-807ecc36509a",
       "resourceType": "Script",
       "transferSize": -1,
       "resourceSize": 1327,
@@ -3493,5 +3528,5 @@
     }
   ],
   "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
-  "fetch_time": "2026-09-28T20:51:34.786Z"
+  "fetch_time": "2026-09-28T21:08:01.436Z"
 }
