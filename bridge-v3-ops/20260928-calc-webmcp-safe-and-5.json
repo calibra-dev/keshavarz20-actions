@@ -1,0 +1,12 @@
+{
+  "action": "content.patch",
+  "request_id": "calc-webmcp-safe-and-5-20260928",
+  "payload": {
+    "target_type": "post",
+    "post_id": 143698,
+    "field": "post_content",
+    "old_content": "              if(ins[1]&&item.qty!==undefined){ins[1].value=String(item.qty);}",
+    "new_content": "              if(ins[1] ? item.qty!==undefined : false){ins[1].value=String(item.qty);}",
+    "expected_sha256": "10d57876e243521df66480debac2947bf6d5bfcef67ee9e0c9c455a3105cba0a"
+  }
+}
