@@ -76,6 +76,16 @@ jobs:
                   continue
               body=row.get('bridge_response') if isinstance(row.get('bridge_response'),dict) else {}
               result=body.get('result') if isinstance(body.get('result'),dict) else {}
+              code_text=result.get('code') if isinstance(result.get('code'),str) else ''
+              code_markers={
+                  'k20_basket_items':'k20-basket-items' in code_text,
+                  'basket_data':'K20TapeBasketData' in code_text,
+                  'dom_content_loaded':'DOMContentLoaded' in code_text,
+                  'tc_calculate':'tc-calculate' in code_text,
+                  'bottom_nav':'bottom-nav' in code_text,
+                  'litespeed':'LiteSpeed' in code_text or 'litespeed' in code_text,
+                  'jquery':'jquery' in code_text.lower()
+              }
               receipt={
                   'http_code':row.get('http_code'),
                   'request_id':row.get('request_id'),
@@ -87,7 +97,8 @@ jobs:
                   'approval_id':body.get('approval_id'),
                   'fingerprint':body.get('fingerprint'),
                   'expires_at_utc':body.get('expires_at_utc'),
-                  'result':{k:result.get(k) for k in ('valid','bytes','sha256','snippet_id','name','active','scope','priority','forced_inactive','planned','code_bytes','code_sha256','locked','trashed') if k in result}
+                  'result':{k:result.get(k) for k in ('valid','bytes','sha256','snippet_id','name','active','scope','priority','forced_inactive','planned','code_bytes','code_sha256','locked','trashed') if k in result},
+                  'code_markers':code_markers
               }
               (dst/p.name).write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
           PY
