@@ -1,21 +1,21 @@
 {
-  "generated_at_utc": "2026-09-23T09:53:09.144878+00:00",
+  "generated_at_utc": "2026-09-28T08:44:08.299839+00:00",
   "program": "K21 GEO/AEO AI Product Readiness",
   "summary": {
     "products": 30,
-    "overall_average": 89.6,
-    "ai_ready_85_plus": 23,
-    "below_85": 7,
-    "non_video_overall_average": 89.4,
-    "non_video_ready_85_plus": 23,
-    "non_video_below_85": 7,
+    "overall_average": 85.9,
+    "ai_ready_85_plus": 15,
+    "below_85": 15,
+    "non_video_overall_average": 85.4,
+    "non_video_ready_85_plus": 15,
+    "non_video_below_85": 15,
     "averages": {
-      "ai_product_completeness": 79.8,
+      "ai_product_completeness": 81.8,
       "answer_readiness": 100.0,
-      "citation_readiness": 92.5,
+      "citation_readiness": 82.8,
       "merchant_discovery_readiness": 97.5,
       "compatibility_readiness": 81.9,
-      "evidence_readiness": 85.7
+      "evidence_readiness": 71.2
     },
     "external_product_feed_submitted": false,
     "direct_ai_citation_measurement_complete": false
@@ -39,9 +39,9 @@
       "product_ids": [
         141536,
         135235,
-        141710,
         141527,
         141528,
+        141710,
         135667,
         135255,
         140501,
@@ -79,23 +79,14 @@
     },
     {
       "priority": "P2",
-      "blocker": "real_video_missing",
-      "affected_products": 1,
-      "product_ids": [
-        140014
-      ],
-      "acceptance": "Resolve only from verified first-party/manufacturer/catalog evidence; preserve unknown values otherwise."
-    },
-    {
-      "priority": "P2",
-      "blocker": "gtin_mpn_unknown_do_not_invent",
-      "affected_products": 30,
+      "blocker": "real_media_set_incomplete",
+      "affected_products": 29,
       "product_ids": [
         141536,
         135235,
-        141710,
         141527,
         141528,
+        141710,
         135667,
         135255,
         140501,
@@ -106,7 +97,6 @@
         135385,
         140610,
         141196,
-        140014,
         135323,
         135102,
         140657,
@@ -121,6 +111,53 @@
         140407,
         135339,
         135349
+      ],
+      "acceptance": "Resolve only from verified first-party/manufacturer/catalog evidence; preserve unknown values otherwise."
+    },
+    {
+      "priority": "P2",
+      "blocker": "real_video_missing",
+      "affected_products": 1,
+      "product_ids": [
+        140014
+      ],
+      "acceptance": "Resolve only from verified first-party/manufacturer/catalog evidence; preserve unknown values otherwise."
+    },
+    {
+      "priority": "P2",
+      "blocker": "gtin_mpn_unknown_do_not_invent",
+      "affected_products": 30,
+      "product_ids": [
+        141536,
+        135235,
+        141527,
+        141528,
+        141710,
+        135667,
+        135255,
+        140501,
+        135064,
+        135383,
+        141188,
+        140595,
+        135385,
+        140610,
+        141196,
+        135323,
+        135102,
+        140657,
+        139232,
+        140503,
+        140661,
+        139231,
+        135331,
+        140656,
+        140406,
+        135341,
+        140407,
+        135339,
+        135349,
+        140014
       ],
       "acceptance": "Resolve only from verified first-party/manufacturer/catalog evidence; preserve unknown values otherwise."
     }
