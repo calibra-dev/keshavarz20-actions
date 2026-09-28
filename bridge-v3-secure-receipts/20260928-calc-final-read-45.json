@@ -1,10 +1,20 @@
 {
-  "http_code": 400,
-  "request_id": "calc-final-read-45-20260928",
+  "http_code": 200,
+  "request_id": "calc-final-read-45b-20260928",
   "action": "snippet.read",
-  "request_sha256": "023b385c35792d094635d9916c20f8d09899f79f766be2cf1786e5a32df5ed1e",
-  "ok": false,
-  "code": "snippet_id_required",
-  "message": "snippet_id is required.",
-  "result": {}
+  "request_sha256": "4ca4bb57cfd829b03ad2ee850a8f37631a4374b8831072a1d27429dd1c1c7bf8",
+  "ok": true,
+  "code": null,
+  "message": null,
+  "result": {
+    "snippet_id": 45,
+    "name": "K20 Calculator Standalone Runtime v1",
+    "active": true,
+    "scope": "global",
+    "priority": 50,
+    "code_bytes": 4534,
+    "code_sha256": "6074be1f44bc2bacacca759968b1621381fd95947a03764e628c6c53bff7fa2a",
+    "locked": false,
+    "trashed": false
+  }
 }
