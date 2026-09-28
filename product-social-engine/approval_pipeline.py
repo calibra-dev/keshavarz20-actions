@@ -136,6 +136,8 @@ def build_assets(candidate: dict[str, Any]) -> tuple[Path, Path]:
     base.download_image(str(candidate["source_image_url"]), source)
     base.render_creative(as_product(candidate), source, ad)
     render_story(ad, story)
+    k20_sanitizer.sanitize_image_file(ad)
+    k20_sanitizer.sanitize_image_file(story)
     (OUT_DIR / "caption.txt").write_text(str(candidate["caption"]) + "\n", encoding="utf-8")
     return ad, story
 
