@@ -1,4 +1,4 @@
-name: K20 Calculator Stored Content Extract
+name: K20 Calculator WebMCP Syntax QA
 on:
   push:
     branches: [main]
@@ -8,44 +8,57 @@ permissions:
 jobs:
   inspect:
     runs-on: ubuntu-latest
-    env:
-      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
-      WP_USERNAME: ${{ secrets.WP_USERNAME }}
-      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
       - shell: bash
         run: |
           set -euo pipefail
-          curl -fsS -u "$WP_USERNAME:$WP_APP_PASSWORD" \
-            "$WP_BASE_URL/wp-json/wp/v2/pages/143698?context=edit" \
-            -H 'Accept: application/json' -o /tmp/page.json
+          curl -fsSL -A 'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36' \
+            'https://keshavarz20.com/drip-tape-length-fittings-calculator/' -o /tmp/page.html
           python3 - <<'PY'
-          import json,re,os
-          row=json.load(open('/tmp/page.json',encoding='utf8'))
-          raw=((row.get('content') or {}).get('raw') or '')
-          markers=['growthos-decision-flow','FAQPage','GrowthOSMeasurement','k20-basket-items','k20-calculator-ui-repair']
-          out={'length':len(raw),'status':row.get('status'),'slug':row.get('slug'),'markers':{}}
-          for term in markers:
-              ms=list(re.finditer(re.escape(term),raw,re.I))
-              arr=[]
-              for m in ms[:20]:
-                  s=max(0,m.start()-1600); e=min(len(raw),m.end()+2600)
-                  arr.append({'pos':m.start(),'snippet':raw[s:e]})
-              out['markers'][term]=arr
-          blocks=[]
-          for kind in ('style','script'):
-              pat=re.compile(r'<'+kind+r'\b[^>]*>.*?</'+kind+r'\s*>',re.I|re.S)
-              for m in pat.finditer(raw):
-                  block=m.group(0)
-                  if any(t.lower() in block.lower() for t in markers):
-                      blocks.append({'kind':kind,'start':m.start(),'end':m.end(),'text':block})
-          out['matched_blocks']=blocks
-          os.makedirs('diagnostics',exist_ok=True)
-          open('diagnostics/calculator-stored-content-extract.json','w',encoding='utf8').write(json.dumps(out,ensure_ascii=False,indent=2))
+          import re,json,pathlib
+          h=pathlib.Path('/tmp/page.html').read_text(encoding='utf8',errors='replace')
+          scripts=re.findall(r'<script\b[^>]*>(.*?)</script\s*>',h,re.I|re.S)
+          target=''
+          for s in scripts:
+              if '__k20WebMCPPhase13' in s:
+                  target=s
+                  break
+          if not target:
+              raise SystemExit('WebMCP script not found')
+          pathlib.Path('/tmp/webmcp.js').write_text(target,encoding='utf8')
+          pathlib.Path('/tmp/webmcp-meta.json').write_text(json.dumps({
+              'length':len(target),
+              'amp_entity_count':target.count('&amp;'),
+              'lt_entity_count':target.count('&lt;'),
+              'gt_entity_count':target.count('&gt;'),
+              'repair_marker':'__k20BasketRuntimeRepairV1' in target
+          },indent=2),encoding='utf8')
+          PY
+          set +e
+          node --check /tmp/webmcp.js >/tmp/node.out 2>/tmp/node.err
+          STATUS=$?
+          set -e
+          python3 - <<'PY'
+          import json,pathlib,re
+          meta=json.loads(pathlib.Path('/tmp/webmcp-meta.json').read_text())
+          err=pathlib.Path('/tmp/node.err').read_text(encoding='utf8',errors='replace')
+          js=pathlib.Path('/tmp/webmcp.js').read_text(encoding='utf8',errors='replace')
+          line=None
+          m=re.search(r'/tmp/webmcp\.js:(\d+)',err)
+          if m: line=int(m.group(1))
+          ctx=''
+          if line:
+              lines=js.splitlines()
+              a=max(0,line-4); b=min(len(lines),line+3)
+              ctx='\n'.join(f'{i+1}: {lines[i]}' for i in range(a,b))
+          meta.update({'syntax_ok':not bool(err.strip()),'error':err[:4000],'error_line':line,'context':ctx[:5000]})
+          pathlib.Path('diagnostics').mkdir(exist_ok=True)
+          pathlib.Path('diagnostics/k20-webmcp-syntax-qa.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf8')
           PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add diagnostics/calculator-stored-content-extract.json
-          git commit -m 'diag: persist calculator stored content extract' || exit 0
+          git add diagnostics/k20-webmcp-syntax-qa.json
+          git commit -m 'qa: check calculator WebMCP script syntax'
+          git pull --rebase origin main
           git push
