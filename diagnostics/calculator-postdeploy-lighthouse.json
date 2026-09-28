@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-09-28T21:09:59.094Z",
+  "generated_at": "2026-09-28T21:11:21.058Z",
   "lighthouse_version": "13.5.0",
-  "performance": 42,
+  "performance": 79,
   "accessibility": 93,
   "best_practices": 92,
   "seo": 100,
   "FCP": {
-    "value": 2664.8795,
-    "display": "2.7 s",
-    "score": 0.61
+    "value": 2844.542,
+    "display": "2.8 s",
+    "score": 0.55
   },
   "LCP": {
-    "value": 8072.443296318052,
-    "display": "8.1 s",
-    "score": 0.02
+    "value": 3020.3689999999997,
+    "display": "3.0 s",
+    "score": 0.77
   },
   "CLS": {
     "value": 0.06657182207621506,
@@ -21,19 +21,19 @@
     "score": 0.97
   },
   "TBT": {
-    "value": 1288.522,
-    "display": "1,290 ms",
-    "score": 0.18
+    "value": 120,
+    "display": "120 ms",
+    "score": 0.97
   },
   "speed_index": {
-    "value": 5255.333468896666,
-    "display": "5.3 s",
-    "score": 0.59
+    "value": 9844.254536324832,
+    "display": "9.8 s",
+    "score": 0.1
   },
   "TTFB": {
-    "value": 182,
-    "display": "Root document took 180 ms",
-    "score": 1
+    "value": 4140,
+    "display": "Root document took 4,140 ms",
+    "score": 0
   },
   "lcp_breakdown": {
     "id": "lcp-breakdown-insight",
@@ -65,22 +65,22 @@
             {
               "subpart": "timeToFirstByte",
               "label": "Time to first byte",
-              "duration": 1170.909
+              "duration": 4753.45
             },
             {
               "subpart": "resourceLoadDelay",
               "label": "Resource load delay",
-              "duration": 1765.56
+              "duration": 218.816
             },
             {
               "subpart": "resourceLoadDuration",
               "label": "Resource load duration",
-              "duration": 185.728
+              "duration": 437.8
             },
             {
               "subpart": "elementRenderDelay",
               "label": "Element render delay",
-              "duration": 23.955
+              "duration": 119.849
             }
           ]
         },
@@ -97,7 +97,7 @@
             "width": 372,
             "height": 209
           },
-          "snippet": "<img data-lazyloaded=\"1\" src=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured…\" loading=\"lazy\" width=\"1200\" height=\"675\" data-src=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured…\" class=\"attachment-full size-full wp-post-image entered litespeed-loaded\" alt=\"محاسبه متراژ نوار تیپ، تعداد رول و اتصالات آبیاری\" decoding=\"async\" data-srcset=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured…\" data-sizes=\"(max-width: 1200px) 100vw, 1200px\" data-ll-status=\"loaded\" sizes=\"(max-width: 1200px) 100vw, 1200px\" …>",
+          "snippet": "<img fetchpriority=\"high\" width=\"1200\" height=\"675\" src=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured…\" class=\"attachment-full size-full wp-post-image k20-calculator-lcp\" alt=\"محاسبه متراژ نوار تیپ، تعداد رول و اتصالات آبیاری\" decoding=\"async\" srcset=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured…\" sizes=\"(max-width: 767px) calc(100vw - 40px), (max-width: 1200px) 100vw, 1200px\" loading=\"eager\">",
           "nodeLabel": "محاسبه متراژ نوار تیپ، تعداد رول و اتصالات آبیاری"
         }
       ]
@@ -110,9 +110,9 @@
     "description": "Requests are blocking the page's initial render, which may delay LCP. [Deferring or inlining](https://developer.chrome.com/docs/performance/insights/render-blocking) can move these network requests out of the critical path.",
     "score": 0,
     "scoreDisplayMode": "metricSavings",
-    "displayValue": "Est savings of 440 ms",
+    "displayValue": "Est savings of 490 ms",
     "metricSavings": {
-      "FCP": 450,
+      "FCP": 500,
       "LCP": 0
     },
     "details": {
@@ -142,32 +142,24 @@
         {
           "url": "https://keshavarz20.com/wp-content/litespeed/css/9c13dae17cf8ea20906a1f183d051600.css?ver=846ee",
           "totalBytes": 22118,
-          "wastedMs": 324
+          "wastedMs": 348
         },
         {
           "url": "https://keshavarz20.com/wp-content/litespeed/css/62bccd5cbc3fa81af8e3db4ca4b9cbd8.css?ver=dc04d",
-          "totalBytes": 18625
-        },
-        {
-          "url": "https://keshavarz20.com/wp-content/litespeed/js/d83023bfe4b76eb18913925fea90caf0.js?ver=588e9",
-          "totalBytes": 4740
+          "totalBytes": 18648
         },
         {
           "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
           "totalBytes": 29857,
-          "wastedMs": 324
+          "wastedMs": 348
+        },
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/js/d83023bfe4b76eb18913925fea90caf0.js?ver=588e9",
+          "totalBytes": 4739
         },
         {
           "url": "https://keshavarz20.com/wp-content/litespeed/css/c06653149616549fd6996e2c5adc60e6.css?ver=167c3",
           "totalBytes": 1622
-        },
-        {
-          "url": "https://keshavarz20.com/wp-content/litespeed/css/22d8b85ae0ea8c9b35ab0dabcf39116a.css?ver=f0ec8",
-          "totalBytes": 980
-        },
-        {
-          "url": "https://keshavarz20.com/wp-content/litespeed/css/d1449c8b67d75f0b6862c0f5440a84e7.css?ver=7ece2",
-          "totalBytes": 1682
         },
         {
           "url": "https://keshavarz20.com/wp-content/litespeed/css/eb94baaffcc6d9127661069c4bf1c60a.css?ver=7b57a",
@@ -178,8 +170,16 @@
           "totalBytes": 66
         },
         {
+          "url": "https://keshavarz20.com/wp-content/litespeed/css/22d8b85ae0ea8c9b35ab0dabcf39116a.css?ver=f0ec8",
+          "totalBytes": 980
+        },
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/css/d1449c8b67d75f0b6862c0f5440a84e7.css?ver=7ece2",
+          "totalBytes": 1682
+        },
+        {
           "url": "https://keshavarz20.com/wp-content/litespeed/css/c7c2a8934d7aef47a8886bfadc3d9d97.css?ver=d2fb6",
-          "totalBytes": 4848
+          "totalBytes": 4871
         }
       ]
     },
@@ -200,19 +200,13 @@
     },
     {
       "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
-      "transferSize": 195709,
+      "transferSize": 195710,
       "resourceType": "Script",
       "priority": "Low"
     },
     {
       "url": "https://keshavarz20.com/wp-content/uploads/2024/06/hossini.jpg",
       "transferSize": 138281,
-      "resourceType": "Image",
-      "priority": "High"
-    },
-    {
-      "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-calculator-featured-optimized-1200-optimized-3-768x432.webp",
-      "transferSize": 66635,
       "resourceType": "Image",
       "priority": "High"
     }
