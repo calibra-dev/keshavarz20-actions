@@ -38,6 +38,20 @@ jobs:
               mm=re.search(r'\b'+k+r'="([^"]*)"',tag,re.I)
               if mm: attrs[k]=html.unescape(mm.group(1))
           out['lcp_attrs']=attrs
+          tags=[]
+          for mm in re.finditer(r'<(?:link|script)\\b[^>]*(?:href|src)="[^"]+"[^>]*>',src,re.I):
+              tag2=mm.group(0)
+              urlm=re.search(r'(?:href|src)="([^"]+)"',tag2,re.I)
+              if not urlm: continue
+              idm=re.search(r'\\bid="([^"]+)"',tag2,re.I)
+              relm=re.search(r'\\brel="([^"]+)"',tag2,re.I)
+              tags.append({
+                  'tag':tag2[:1000],
+                  'id':idm.group(1) if idm else None,
+                  'rel':relm.group(1) if relm else None,
+                  'url':html.unescape(urlm.group(1))
+              })
+          out['asset_tags']=tags
           post=None
           for typ in ['posts','pages']:
               try:
@@ -69,3 +83,5 @@ jobs:
             sleep $((attempt*2))
           done
           exit 1
+
+# capture asset tag ids 2026-09-29
