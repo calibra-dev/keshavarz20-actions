@@ -4,23 +4,31 @@ on:
     branches: [main]
     paths: ['.github/workflows/k20-calculator-source-extract.yml']
 permissions:
-  contents: read
+  contents: write
 jobs:
   inspect:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - shell: bash
         run: |
           set -euo pipefail
           curl -fsSL -A 'Mozilla/5.0' 'https://keshavarz20.com/drip-tape-length-fittings-calculator/' -o /tmp/p.html
           python3 - <<'PY'
-          import re
+          import json,re,os
           h=open('/tmp/p.html',encoding='utf8',errors='replace').read()
-          for term in ['use strict','growthos-decision-flow']:
-            print('\n###',term)
-            ms=list(re.finditer(re.escape(term),h,re.I))
-            for n,m in enumerate(ms[:3]):
+          out={}
+          for term in ['use strict','growthos-decision-flow','FAQPage','GrowthOSMeasurement','کپی سبد و فرضیات','ارسال برای پیش‌فاکتور']:
+            rows=[]
+            for m in list(re.finditer(re.escape(term),h,re.I))[:8]:
               s=max(0,m.start()-2500); e=min(len(h),m.end()+3500)
-              print('MATCH',n,'POS',m.start())
-              print(h[s:e].replace('\n',' '))
+              rows.append({'pos':m.start(),'snippet':h[s:e]})
+            out[term]=rows
+          os.makedirs('diagnostics',exist_ok=True)
+          open('diagnostics/calculator-source-extract.json','w',encoding='utf8').write(json.dumps(out,ensure_ascii=False,indent=2))
           PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add diagnostics/calculator-source-extract.json
+          git commit -m 'diag: persist calculator source extract' || exit 0
+          git push
