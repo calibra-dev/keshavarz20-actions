@@ -15,6 +15,7 @@ final class K20_Bridge_V33_Performance {
         add_filter('wp_get_attachment_image_attributes', [__CLASS__, 'lcp_attributes'], 20, 3);
         add_filter('wp_calculate_image_srcset', [__CLASS__, 'lcp_srcset'], 20, 5);
         add_filter('wp_calculate_image_sizes', [__CLASS__, 'lcp_sizes'], 20, 5);
+        add_action('wp_head', [__CLASS__, 'preload_mobile_lcp'], 1);
         add_filter('script_loader_tag', [__CLASS__, 'script_priority'], 20, 3);
         add_action('wp_enqueue_scripts', [__CLASS__, 'dequeue_irrelevant_assets'], 999);
     }
@@ -72,6 +73,20 @@ final class K20_Bridge_V33_Performance {
         return '(max-width: 767px) calc(100vw - 40px), (max-width: 1200px) 100vw, 1200px';
     }
 
+    public static function preload_mobile_lcp(): void {
+        if (!self::is_target()) return;
+
+        $candidate = wp_get_attachment_image_src(self::LCP_672_ATTACHMENT_ID, 'full');
+        if (!is_array($candidate) || empty($candidate[0]) || (int) ($candidate[1] ?? 0) !== 672) {
+            return;
+        }
+
+        printf(
+            '<link rel="preload" as="image" href="%s" media="(max-width: 767px)" fetchpriority="high">' . "\n",
+            esc_url((string) $candidate[0])
+        );
+    }
+
     public static function script_priority(string $tag, string $handle, string $src): string {
         if (!self::is_target() || $handle !== 'google-tag-manager') {
             return $tag;
@@ -87,8 +102,13 @@ final class K20_Bridge_V33_Performance {
         if (!self::is_target()) return;
 
         // Front-end payment gateway help-link CSS is not used by the calculator.
-        // This is deliberately the only dequeue in phase 1.
         wp_dequeue_style('help_style');
+
+        // Elementor Pro MegaTheme icon font CSS is 100% unused on this calculator page
+        // in Lighthouse coverage and has no meaningful class intersection with rendered
+        // calculator/header/cart/navigation markup. Keep all IranKala, WooCommerce,
+        // Digits and WhatsApp styles intact.
+        wp_dequeue_style('mega-theme-icon');
     }
 }
 
