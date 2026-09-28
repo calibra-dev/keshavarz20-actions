@@ -1,0 +1,12 @@
+{
+  "action": "content.patch",
+  "request_id": "calc-measurement-remove-escaped-and-20260928-2247",
+  "payload": {
+    "target_type": "post",
+    "post_id": 143698,
+    "field": "post_content",
+    "old_content": "      if(item && Object.prototype.toString.call(item)==='[object Object]' && /^growthos_/.test(String(item.event||''))){",
+    "new_content": "      if(item ? (Object.prototype.toString.call(item)==='[object Object]' ? /^growthos_/.test(String(item.event||'')) : false) : false){",
+    "expected_sha256": "a5baad73c69a0765704ae0289024cdfe55e4793ba104e51815e321444855bd3d"
+  }
+}
