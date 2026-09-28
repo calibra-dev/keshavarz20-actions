@@ -1,0 +1,44 @@
+name: K20 Calculator Preloader Inspect
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/k20-calculator-preloader-inspect.yml'
+permissions:
+  contents: write
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import requests,re,json,pathlib,html
+          ua={'User-Agent':'Mozilla/5.0 (Linux; Android 14; Mobile) AppleWebKit/537.36 Chrome/153 Safari/537.36'}
+          page=requests.get('https://keshavarz20.com/drip-tape-length-fittings-calculator/',headers=ua,timeout=30).text
+          cssurls=re.findall(r"href=['\"](https://keshavarz20\.com/wp-content/litespeed/css/[^'\"]+)",page,re.I)
+          out={'html_matches':[],'css_matches':[]}
+          for m in re.finditer(r'pre-loader',page,re.I):
+              out['html_matches'].append(re.sub(r'\s+',' ',html.unescape(page[max(0,m.start()-800):m.end()+1200]))[:2200])
+          for url in dict.fromkeys(cssurls):
+              t=requests.get(url,headers=ua,timeout=30).text
+              if 'pre-loader' in t:
+                  ms=[]
+                  for m in re.finditer(r'pre-loader',t,re.I):
+                      ms.append(t[max(0,m.start()-500):m.end()+1200])
+                  out['css_matches'].append({'url':url,'matches':ms[:10]})
+          pathlib.Path('diagnostics').mkdir(exist_ok=True)
+          pathlib.Path('diagnostics/calculator-preloader.json').write_text(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+      - shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add diagnostics/calculator-preloader.json
+          git commit -m "diag: inspect calculator preloader" || exit 0
+          git pull --rebase origin main || true
+          git push origin HEAD:main
