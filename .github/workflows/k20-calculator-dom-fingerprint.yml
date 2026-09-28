@@ -1,0 +1,42 @@
+name: K20 Calculator DOM Feature Fingerprint
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/k20-calculator-dom-fingerprint.yml'
+permissions:
+  contents: write
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --compressed -A 'Mozilla/5.0 (Linux; Android 14; Mobile) AppleWebKit/537.36 Chrome/153 Safari/537.36'             'https://keshavarz20.com/drip-tape-length-fittings-calculator/' -o /tmp/p.html
+          python3 - <<'PY'
+          import re,json,pathlib,html
+          s=pathlib.Path('/tmp/p.html').read_text(errors='replace')
+          pats=['m-icon-','digits','pDate','persian-datepicker','owl-carousel','slick','venobox','nta-','woocommerce','mini-cart','hossini.jpg','libphonenumber','select2']
+          out={'counts':{p:len(re.findall(re.escape(p),s,re.I)) for p in pats}}
+          for p in ['hossini.jpg','m-icon-','digits','pDate','owl-carousel','mini-cart']:
+              ms=[]
+              for m in list(re.finditer(re.escape(p),s,re.I))[:8]:
+                  a=max(0,m.start()-500); b=min(len(s),m.end()+800)
+                  ms.append(re.sub(r'\s+',' ',html.unescape(s[a:b])))
+              out[p]=ms
+          pathlib.Path('diagnostics').mkdir(exist_ok=True)
+          pathlib.Path('diagnostics/calculator-dom-features.json').write_text(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add diagnostics/calculator-dom-features.json
+          git commit -m "diag: record calculator DOM feature usage" || exit 0
+          git pull --rebase origin main || true
+          git push origin HEAD:main
