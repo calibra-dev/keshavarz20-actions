@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20260929-0110-perf-cache-purge-after-safe-patch.sanitized.json",
+  "action": "cache.purge",
+  "request_id": "perf-cache-purge-after-safe-patch-20260929-0110",
+  "dry_run": false,
+  "executed_at_utc": "2026-09-28T21:28:12.3514928Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.0",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "purged": true,
+    "actions": [
+      "litespeed_purge_all",
+      "wp_cache_flush"
+    ]
+  }
+}
