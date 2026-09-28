@@ -23,6 +23,10 @@ from openai import OpenAI
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parent
+REPO_ROOT = ROOT.parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+import k20_sanitizer
 OUT = ROOT / "output"
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -656,6 +660,7 @@ def main() -> None:
     save_json("selected-story.json", {**asdict(selected), "ranking": rank, "verification": verification})
 
     article = author_article(selected, verification)
+    k20_sanitizer.sanitize_payload_inplace(article)
     save_json("article.json", article)
 
     image = generate_featured_image(article)
