@@ -27,6 +27,7 @@ REPO_ROOT = ROOT.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 import k20_sanitizer
+import content_growth_runtime
 OUT = ROOT / "output"
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -383,6 +384,7 @@ def crosscheck(selected: Candidate, all_candidates: list[Candidate]) -> dict[str
 
 
 def author_article(selected: Candidate, verification: dict[str, Any]) -> dict[str, Any]:
+    master_prompt = content_growth_runtime.load_master_prompt()
     prompt = f"""
 برای سایت تخصصی کشاورز بیست یک خبر فارسی حرفه‌ای و انسان‌نویس بنویس. این متن «بازنویسی تحریریه» است نه کپی خبر منبع.
 
@@ -420,6 +422,11 @@ SEO:
 - tags بین 4 تا 8 برچسب دقیق.
 - alt_text توصیفی و کوتاه.
 
+چارچوب رشد مشترک کشاورز بیست:
+{master_prompt}
+
+نکته: تمام قواعد محتوایی، هیومن‌نویسی، Citation Readiness، Internal Linking، Entity/Trust و شیت‌بندی کم‌هزینه را رعایت کن، اما قرارداد خروجی مخصوص خبر در ادامه را دقیقاً حفظ کن. هیچ منبع، عدد یا ادعای تازه‌ای خارج از fact-check و شواهد معتبر نساز.
+
 فقط JSON معتبر:
 {{
  "title":"...",
@@ -438,6 +445,15 @@ SEO:
 """
     response = client.responses.create(model=TEXT_MODEL, input=prompt)
     data = safe_json_from_text(response.output_text)
+    content_growth_runtime.clean_user_facing_fields(
+        data,
+        [
+            "title", "excerpt", "content_html", "focus_keyphrase",
+            "related_keyphrases", "seo_title", "meta_description",
+            "tags", "image_title", "alt_text",
+        ],
+    )
+    content_growth_runtime.assert_safe_content_html(str(data.get("content_html") or ""))
     validate_article(data)
     return data
 
