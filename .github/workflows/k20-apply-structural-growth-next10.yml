@@ -1,0 +1,76 @@
+name: K20 Apply Structural Growth Posts 11-20
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/k20-apply-structural-growth-next10.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-apply-structural-growth-next10
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install parser and watermark hygiene
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          pip install beautifulsoup4>=4.12.3
+          git clone --depth 1 --branch v0.7.0 https://github.com/guillaumemeyer/watermarks-remover.git "$RUNNER_TEMP/watermarks-remover"
+          test -f "$RUNNER_TEMP/watermarks-remover/service/scripts/clean_text.py"
+
+      - name: Static validation
+        run: python -m py_compile content-growth/apply_next10_structural_v2.py
+
+      - name: Apply growth to posts 11-20
+        env:
+          K20_WATERMARK_SCRIPTS: ${{ runner.temp }}/watermarks-remover/service/scripts
+        run: python content-growth/apply_next10_structural_v2.py
+
+      - name: Persist readback report
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content-growth/next10-structural-v2-report.json
+          git commit -m "content-growth: record posts 11-20 readback" || exit 0
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
+
+      - name: Upload rollback evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-next10-growth-${{ github.run_id }}
+          path: |
+            content-growth/output/backups-next10-v2/*.json
+            content-growth/output/next10-structural-v2-report.json
+          if-no-files-found: warn
+          retention-days: 14
