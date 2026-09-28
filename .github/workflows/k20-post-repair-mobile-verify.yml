@@ -1,0 +1,142 @@
+name: K20 Post Repair Mobile Verify
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/k20-post-repair-mobile-verify.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install browser tools
+        run: |
+          python3 -m pip install --quiet requests beautifulsoup4 playwright
+          python3 -m playwright install chromium
+      - name: Verify live mobile UI
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import asyncio, json, re, requests
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          from playwright.async_api import async_playwright
+
+          URL='https://keshavarz20.com/drip-tape-length-fittings-calculator/'
+          ua='Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36'
+          h=requests.get(URL,headers={'User-Agent':ua,'Cache-Control':'no-cache'},timeout=60).text
+          soup=BeautifulSoup(h,'html.parser')
+          clone=BeautifulSoup(h,'html.parser')
+          for t in clone(['script','style','noscript','template','svg']): t.decompose()
+          visible=clone.get_text(' ',strip=True)
+          report={
+            'source_visible_counts':{
+              'FAQPage':visible.count('FAQPage'),
+              'GrowthOSMeasurementV1':visible.count('GrowthOSMeasurementV1'),
+              'use strict':visible.count('use strict'),
+              'growthos-decision-flow':visible.count('growthos-decision-flow'),
+            },
+            'source_has_repair_style':'k20-calculator-ui-repair' in h,
+            'pages':{}
+          }
+
+          async def inspect_page(page, name, url):
+            errors=[]
+            page.on('pageerror',lambda exc: errors.append(str(exc)))
+            await page.goto(url,wait_until='networkidle',timeout=90000)
+            await page.wait_for_timeout(1500)
+            data=await page.evaluate("""() => {
+              const q=(s)=>document.querySelector(s);
+              const item=(a)=>{
+                if(!a)return null;
+                const svg=a.querySelector('.nav-icon svg');
+                const cs=svg?getComputedStyle(svg):null;
+                const r=svg?svg.getBoundingClientRect():null;
+                return {
+                  text:(a.innerText||'').trim(),
+                  classes:a.className,
+                  href:a.href,
+                  svgInlineStyle:svg?svg.getAttribute('style'):null,
+                  svgDisplay:cs?cs.display:null,
+                  svgVisibility:cs?cs.visibility:null,
+                  svgOpacity:cs?cs.opacity:null,
+                  svgWidth:r?r.width:null,
+                  svgHeight:r?r.height:null
+                };
+              };
+              const nav=[...document.querySelectorAll('.bottom-nav .nav-item')];
+              const home=nav.find(a=>/صفحه اصلی/.test(a.innerText||''));
+              const cart=nav.find(a=>/سبد خرید/.test(a.innerText||''));
+              const refresh=q('#k20-basket-refresh');
+              const rcs=refresh?getComputedStyle(refresh):null;
+              const rr=refresh?refresh.getBoundingClientRect():null;
+              const ids=['tc-line-count','tc-line-length','tc-reserve-percent','tc-roll-length','tc-fitting-spare','tc-active-lines','tc-emitter-spacing','tc-emitter-flow','tc-row-spacing','tc-irrigation-hours'];
+              return {
+                bodyHasFAQPage:(document.body.innerText||'').includes('FAQPage'),
+                bodyHasMeasurement:(document.body.innerText||'').includes('GrowthOSMeasurementV1'),
+                bodyHasUseStrict:(document.body.innerText||'').includes('use strict'),
+                home:item(home),
+                cart:item(cart),
+                refresh:refresh?{
+                  text:(refresh.innerText||'').trim(),
+                  display:rcs.display,
+                  color:rcs.color,
+                  backgroundColor:rcs.backgroundColor,
+                  width:rr.width,
+                  height:rr.height
+                }:null,
+                inputs:ids.map(id=>({id,exists:!!q('#'+id),value:q('#'+id)?.value||null})),
+                resultBox:q('#tc-results')?{display:getComputedStyle(q('#tc-results')).display,text:(q('#tc-results').innerText||'').trim().slice(0,1200)}:null
+              };
+            }""")
+            if name=='calculator':
+              try:
+                await page.click('#tc-calculate',timeout=5000)
+                await page.wait_for_timeout(300)
+                data['afterCalculate']=await page.evaluate("""() => {
+                  const e=document.querySelector('#tc-error');
+                  const r=document.querySelector('#tc-results');
+                  return {error:e?(e.innerText||'').trim():null,errorDisplay:e?getComputedStyle(e).display:null,resultDisplay:r?getComputedStyle(r).display:null,resultText:r?(r.innerText||'').trim().slice(0,1500):null};
+                }""")
+              except Exception as e:
+                data['calculateClickError']=str(e)
+              await page.screenshot(path='diagnostics/k20-calculator-mobile-after-repair.png',full_page=True)
+            data['pageErrors']=errors
+            report['pages'][name]=data
+
+          async def main():
+            Path('diagnostics').mkdir(exist_ok=True)
+            async with async_playwright() as p:
+              browser=await p.chromium.launch()
+              context=await browser.new_context(viewport={'width':390,'height':844},user_agent=ua,locale='fa-IR')
+              page=await context.new_page()
+              await inspect_page(page,'calculator',URL)
+              await inspect_page(page,'home','https://keshavarz20.com/')
+              await inspect_page(page,'cart','https://keshavarz20.com/cart/')
+              await browser.close()
+            Path('diagnostics/k20-post-repair-mobile-verify.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+          asyncio.run(main())
+          PY
+      - name: Upload verification
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-post-repair-mobile-verify
+          path: |
+            diagnostics/k20-post-repair-mobile-verify.json
+            diagnostics/k20-calculator-mobile-after-repair.png
+          retention-days: 1
+      - name: Commit JSON verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add diagnostics/k20-post-repair-mobile-verify.json
+          git commit -m 'verify: record post-repair mobile state' || exit 0
+          git pull --rebase origin main
+          git push
