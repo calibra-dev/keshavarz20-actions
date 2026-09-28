@@ -1,0 +1,51 @@
+name: K20 Central Content Sanitizer Policy
+
+on:
+  pull_request:
+    paths:
+      - 'k20_sanitizer.py'
+      - 'tests/test_k20_sanitizer.py'
+      - 'daily-agri-articles/**'
+      - 'daily-agri-news/**'
+      - 'question-engine/**'
+      - 'product-social-engine/**'
+      - '.github/workflows/**'
+  push:
+    branches: [main]
+    paths:
+      - 'k20_sanitizer.py'
+      - 'tests/test_k20_sanitizer.py'
+      - 'daily-agri-articles/**'
+      - 'daily-agri-news/**'
+      - 'question-engine/**'
+      - 'product-social-engine/**'
+      - '.github/workflows/**'
+
+permissions:
+  contents: read
+
+jobs:
+  sanitizer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile integrated entrypoints
+        run: |
+          python -m py_compile k20_sanitizer.py
+          python -m py_compile daily-agri-articles/publish_queue_v6.py
+          python -m py_compile daily-agri-news/publish_queue_v3.py
+          python -m py_compile daily-agri-news/main.py
+          python -m py_compile question-engine/engine.py
+          python -m py_compile product-social-engine/approval_pipeline.py
+      - name: Sanitizer regression tests
+        run: python -m unittest tests.test_k20_sanitizer -v
+      - name: Guard future publish workflows
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "k20-content-sanitizer: enforced" .github/workflows/k20-bridge-v3-gateway.yml
+          echo "K20 central sanitizer policy active."
