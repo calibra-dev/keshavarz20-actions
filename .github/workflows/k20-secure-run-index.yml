@@ -16,14 +16,14 @@ jobs:
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-          TARGET_SHA: ccd7d9f9d4f36405a1a95ef67d03be8b0d5c3cda
+          TARGET_SHA: 777bbf7dcc511ef289d99a9a26fd498c842b0b12
         run: |
           set -euo pipefail
           mkdir -p diagnostics
           found=""
           for i in $(seq 1 12); do
             runs="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$TARGET_SHA&per_page=20")"
-            found="$(printf '%s' "$runs" | jq -c '[.workflow_runs[] | select(.name=="K20 Bridge v3.3 Secure Relay")][0] // empty')"
+            found="$(printf '%s' "$runs" | jq -c '[.workflow_runs[] | select(.name=="K20 Calculator Raw Focus")][0] // empty')"
             if [[ -n "$found" ]]; then
               status="$(printf '%s' "$found" | jq -r '.status')"
               if [[ "$status" == "completed" ]]; then break; fi
