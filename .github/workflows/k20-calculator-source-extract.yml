@@ -1,4 +1,4 @@
-name: K20 Calculator Source Extract
+name: K20 Calculator Source Analyze
 on:
   push:
     branches: [main]
@@ -13,22 +13,51 @@ jobs:
       - shell: bash
         run: |
           set -euo pipefail
-          curl -fsSL -A 'Mozilla/5.0' 'https://keshavarz20.com/drip-tape-length-fittings-calculator/' -o /tmp/p.html
+          python3 -m pip install --disable-pip-version-check beautifulsoup4 >/dev/null
+          curl -fsSL -A 'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36' 'https://keshavarz20.com/drip-tape-length-fittings-calculator/' -o /tmp/p.html
           python3 - <<'PY'
-          import json,re,os
+          import json,os,re
+          from bs4 import BeautifulSoup, NavigableString
           h=open('/tmp/p.html',encoding='utf8',errors='replace').read()
-          out={}
-          for term in ['use strict','growthos-decision-flow','FAQPage','GrowthOSMeasurement','کپی سبد و فرضیات','ارسال برای پیش‌فاکتور']:
-            rows=[]
-            for m in list(re.finditer(re.escape(term),h,re.I))[:8]:
-              s=max(0,m.start()-2500); e=min(len(h),m.end()+3500)
-              rows.append({'pos':m.start(),'snippet':h[s:e]})
-            out[term]=rows
+          soup=BeautifulSoup(h,'html.parser')
+          markers=['growthos-decision-flow','FAQPage','GrowthOSMeasurement','use strict']
+          visible=[]
+          for node in soup.find_all(string=True):
+              txt=str(node)
+              if not any(m.lower() in txt.lower() for m in markers):
+                  continue
+              parent=node.parent
+              if parent and parent.name in {'script','style','template','noscript'}:
+                  continue
+              chain=[]
+              p=parent
+              for _ in range(4):
+                  if not p: break
+                  chain.append({'tag':p.name,'id':p.get('id'),'class':p.get('class')})
+                  p=p.parent
+              visible.append({'text':txt[:2500],'parent_chain':chain})
+          basket=soup.find(id='k20-basket-items')
+          nav=soup.select_one('.bottom-nav')
+          out={
+            'visible_marker_nodes':visible[:20],
+            'basket':{
+              'exists':basket is not None,
+              'html':str(basket)[:5000] if basket else None,
+              'text':basket.get_text(' ',strip=True)[:2000] if basket else None
+            },
+            'bottom_nav':{
+              'exists':nav is not None,
+              'html':str(nav)[:9000] if nav else None,
+              'text':nav.get_text(' ',strip=True)[:3000] if nav else None
+            },
+            'counts':{m:len(list(re.finditer(re.escape(m),h,re.I))) for m in markers},
+            'html_len':len(h)
+          }
           os.makedirs('diagnostics',exist_ok=True)
-          open('diagnostics/calculator-source-extract.json','w',encoding='utf8').write(json.dumps(out,ensure_ascii=False,indent=2))
+          open('diagnostics/calculator-source-analysis.json','w',encoding='utf8').write(json.dumps(out,ensure_ascii=False,indent=2))
           PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add diagnostics/calculator-source-extract.json
-          git commit -m 'diag: persist calculator source extract' || exit 0
+          git add diagnostics/calculator-source-analysis.json
+          git commit -m 'diag: analyze calculator visible source defects' || exit 0
           git push
