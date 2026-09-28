@@ -48,7 +48,14 @@ jobs:
                   src=re.search(r'src=["\']([^"\']+)',tag,re.I)
                   if src and ('hossini.jpg' in src.group(1) or 'calculator-featured' in src.group(1) or 'logo' in src.group(1).lower()):
                       images.append({'src':html.unescape(src.group(1)),'tag':tag[:900]})
-              return {'bytes':len(s.encode()),'styles':styles,'scripts':scripts,'focus_images':images}
+              occ={}
+              for term in ['hossini.jpg','googletagmanager.com/gtag/js','k20-calculator-featured']:
+                  rows=[]
+                  for mm in re.finditer(re.escape(term),s,re.I):
+                      a=max(0,mm.start()-800); b=min(len(s),mm.end()+1200)
+                      rows.append(s[a:b])
+                  occ[term]=rows[:5]
+              return {'bytes':len(s.encode()),'styles':styles,'scripts':scripts,'focus_images':images,'occurrences':occ}
           out={'optimized':parse(os.environ['RUNNER_TEMP']+'/optimized.html'),'before_optm':parse(os.environ['RUNNER_TEMP']+'/original.html')}
           os.makedirs('diagnostics',exist_ok=True)
           open('diagnostics/calculator-asset-map.json','w',encoding='utf-8').write(json.dumps(out,ensure_ascii=False,indent=2))
@@ -64,3 +71,5 @@ jobs:
           git commit -m "diag: record calculator asset map" || exit 0
           git pull --rebase origin main || true
           git push origin HEAD:main
+
+# Context refresh trigger 2026-09-29
