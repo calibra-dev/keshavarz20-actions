@@ -59,7 +59,6 @@ jobs:
       K20_DRY_RUN: ${{ inputs.dry_run }}
       K20_NEWS_CATEGORY_ID: '839'
       K20_NEWS_CATEGORY_NAME: 'کشاورزی'
-      K20_WATERMARK_SCRIPTS: ${{ runner.temp }}/watermarks-remover/service/scripts
 
     steps:
       - name: Checkout
@@ -100,6 +99,8 @@ jobs:
           fi
 
       - name: Build agriculture news draft
+        env:
+          K20_WATERMARK_SCRIPTS: ${{ runner.temp }}/watermarks-remover/service/scripts
         run: python daily-agri-news/main.py
 
       - name: Publish run summary
