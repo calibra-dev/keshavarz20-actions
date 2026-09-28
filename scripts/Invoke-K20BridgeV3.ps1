@@ -191,7 +191,7 @@ if($parsed -and $parsed.result){
   if($result.data){
     $data=$result.data
     if(($data -is [System.Collections.IEnumerable]) -and -not($data -is [string]) -and -not($data -is [pscustomobject])){ $safe['data_count']=@($data).Count }
-    else{ foreach($name in @('id','status','slug','title','name','sku','stock_status','stock_quantity','modified_gmt','link','permalink','description','short_description','attributes','images','categories','tags')){ $p=$data.PSObject.Properties[$name]; if($p){ $safe["data_$name"]=$p.Value } } }
+    else{ foreach($name in @('id','status','slug','title','name','sku','stock_status','stock_quantity','modified_gmt','link','permalink','description','short_description','attributes','images','categories','tags','featured_media','source_url','media_type','mime_type','media_details')){ $p=$data.PSObject.Properties[$name]; if($p){ $safe["data_$name"]=$p.Value } } }
   }
   $record['result']=$safe
 }
