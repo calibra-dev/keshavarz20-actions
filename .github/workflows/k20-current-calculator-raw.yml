@@ -1,0 +1,49 @@
+name: K20 Current Calculator Raw Artifact
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/k20-current-calculator-raw.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  raw:
+    runs-on: ubuntu-latest
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch current raw post content
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet requests
+          python3 - <<'PY'
+          import json, os, hashlib
+          from pathlib import Path
+          import requests
+          base=os.environ['WP_BASE_URL'].rstrip('/')
+          r=requests.get(
+              base+'/wp-json/wp/v2/posts/143698?context=edit',
+              auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD']),
+              timeout=60,
+              headers={'Accept':'application/json','User-Agent':'k20-current-raw'}
+          )
+          r.raise_for_status()
+          raw=(r.json().get('content') or {}).get('raw') or ''
+          Path('diagnostics').mkdir(exist_ok=True)
+          Path('diagnostics/k20-current-calculator.raw').write_text(raw,encoding='utf-8')
+          Path('diagnostics/k20-current-calculator-meta.json').write_text(
+              json.dumps({'sha256':hashlib.sha256(raw.encode()).hexdigest(),'bytes':len(raw.encode())},indent=2),
+              encoding='utf-8'
+          )
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: k20-current-calculator-raw
+          path: |
+            diagnostics/k20-current-calculator.raw
+            diagnostics/k20-current-calculator-meta.json
+          retention-days: 1
