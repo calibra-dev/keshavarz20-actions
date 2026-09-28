@@ -59,7 +59,6 @@ jobs:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       OPENAI_TEXT_MODEL: ${{ vars.OPENAI_TEXT_MODEL || 'gpt-5.6' }}
       K20_CONTENT_GROWTH_ENABLED: 'true'
-      K20_WATERMARK_SCRIPTS: ${{ runner.temp }}/watermarks-remover/service/scripts
 
     steps:
       - name: Checkout
@@ -130,6 +129,8 @@ jobs:
 
       - name: Publish queued article drafts
         shell: bash
+        env:
+          K20_WATERMARK_SCRIPTS: ${{ runner.temp }}/watermarks-remover/service/scripts
         run: |
           set -euo pipefail
           if [ ! -s /tmp/k20-article-queue-files.txt ]; then
