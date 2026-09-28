@@ -180,7 +180,7 @@ if($parsed -and $parsed.ok -ne $true){
 if($parsed -and $parsed.result){
   $result=$parsed.result; $safe=[ordered]@{}
   foreach($name in @(
-    'id','status','slug','title','name','sku','stock_status','stock_quantity','count','purged','planned','version','wp_version','php_version',
+    'id','status','slug','title','name','sku','stock_status','stock_quantity','count','purged','planned','version','wp_version','php_version','theme','active_plugins',
     'woocommerce','yoast','elementor','object_cache','litespeed_active','wp_cache_flush_available','actions','method','path','job_id','cursor','total','success','failed','retrying','dead_letter',
     'matches','changed','before_sha256','after_sha256','source_attachment_id','new_attachment_id','approval_id','fingerprint','rolled_back',
     'current_version','available_version','update_available','staged','applied','installed_file_version','schema_version',
