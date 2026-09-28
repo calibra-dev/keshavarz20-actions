@@ -25,7 +25,6 @@ jobs:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       OPENAI_TEXT_MODEL: ${{ vars.OPENAI_TEXT_MODEL || 'gpt-5.6' }}
       K20_UPGRADE_LIMIT: '10'
-      K20_WATERMARK_SCRIPTS: ${{ runner.temp }}/watermarks-remover/service/scripts
     steps:
       - uses: actions/checkout@v4
         with:
@@ -68,6 +67,8 @@ jobs:
       - name: Upgrade latest 10 published posts
         id: upgrade
         shell: bash
+        env:
+          K20_WATERMARK_SCRIPTS: ${{ runner.temp }}/watermarks-remover/service/scripts
         run: |
           set +e
           python content-growth/upgrade_latest_posts.py
