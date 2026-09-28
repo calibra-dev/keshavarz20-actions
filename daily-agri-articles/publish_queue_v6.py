@@ -2,10 +2,14 @@
 from __future__ import annotations
 
 import importlib.util
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 REPO_ROOT = ROOT.parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+import k20_sanitizer
 spec = importlib.util.spec_from_file_location("article_v5", ROOT / "publish_queue_v5.py")
 v5 = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(v5)
@@ -27,6 +31,7 @@ def _is_phase20_payload(p: dict) -> bool:
 
 
 def validate_payload_v6(p):
+    k20_sanitizer.sanitize_payload_inplace(p)
     previous_validate(p)
     if not _is_phase20_payload(p):
         return
