@@ -56,6 +56,10 @@ jobs:
       WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
       WP_USERNAME: ${{ secrets.WP_USERNAME }}
       WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_TEXT_MODEL: ${{ vars.OPENAI_TEXT_MODEL || 'gpt-5.6' }}
+      K20_CONTENT_GROWTH_ENABLED: 'true'
+      K20_WATERMARK_SCRIPTS: ${{ runner.temp }}/watermarks-remover/service/scripts
 
     steps:
       - name: Checkout
@@ -81,11 +85,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r daily-agri-articles/requirements.txt
 
+      - name: Install watermark-remover hygiene layer
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --branch v0.7.0 https://github.com/guillaumemeyer/watermarks-remover.git "$RUNNER_TEMP/watermarks-remover"
+          test -f "$RUNNER_TEMP/watermarks-remover/service/scripts/clean_text.py"
+
       - name: Validate WordPress secrets
         shell: bash
         run: |
           set -euo pipefail
-          for name in WP_BASE_URL WP_USERNAME WP_APP_PASSWORD; do
+          for name in WP_BASE_URL WP_USERNAME WP_APP_PASSWORD OPENAI_API_KEY; do
             if [ -z "${!name:-}" ]; then
               echo "::error title=Missing repository secret::$name is empty or unavailable"
               exit 2
