@@ -21,6 +21,7 @@ require_once __DIR__.'/includes/class-k20-bridge-v32-observability.php';
 require_once __DIR__.'/includes/class-k20-bridge-v33-assets.php';
 require_once __DIR__.'/includes/class-k20-bridge-v33-snippets.php';
 require_once __DIR__.'/includes/class-k20-bridge-v33-code.php';
+require_once __DIR__.'/includes/class-k20-bridge-v33-performance.php';
 
 final class K20_Bridge_V3 {
     private const VERSION='3.3.0';
