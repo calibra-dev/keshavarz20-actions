@@ -1,0 +1,68 @@
+name: K20 Calculator Final Lighthouse
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/k20-calculator-final-lighthouse.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Run mobile Lighthouse
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://keshavarz20.com/drip-tape-length-fittings-calculator/'
+          npx --yes lighthouse "$URL" \
+            --only-categories=performance,accessibility,best-practices,seo \
+            --form-factor=mobile \
+            --screenEmulation.mobile=true \
+            --throttling-method=simulate \
+            --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" \
+            --output=json \
+            --output-path="$RUNNER_TEMP/k20-calculator-final.json" \
+            --quiet
+          node - <<'NODE'
+          const fs=require('fs');
+          const j=JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP+'/k20-calculator-final.json','utf8'));
+          const c=j.categories,a=j.audits;
+          const out={
+            performance:Math.round(c.performance.score*100),
+            accessibility:Math.round(c.accessibility.score*100),
+            best_practices:Math.round(c['best-practices'].score*100),
+            seo:Math.round(c.seo.score*100),
+            FCP:a['first-contentful-paint']?.numericValue||null,
+            LCP:a['largest-contentful-paint']?.numericValue||null,
+            CLS:a['cumulative-layout-shift']?.numericValue||null,
+            TBT:a['total-blocking-time']?.numericValue||null,
+            speed_index:a['speed-index']?.numericValue||null,
+            FCP_display:a['first-contentful-paint']?.displayValue||null,
+            LCP_display:a['largest-contentful-paint']?.displayValue||null,
+            CLS_display:a['cumulative-layout-shift']?.displayValue||null,
+            TBT_display:a['total-blocking-time']?.displayValue||null,
+            speed_index_display:a['speed-index']?.displayValue||null,
+            unused_js:a['unused-javascript']?.displayValue||null,
+            unused_css:a['unused-css-rules']?.displayValue||null,
+            console_errors:a['errors-in-console']?.score===1,
+            image_responsive:a['image-size-responsive']?.score===1
+          };
+          console.log(JSON.stringify(out,null,2));
+          fs.writeFileSync(process.env.RUNNER_TEMP+'/k20-calculator-final-summary.json',JSON.stringify(out,null,2));
+          NODE
+      - name: Upload final evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-calculator-final-lighthouse-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/k20-calculator-final.json
+            ${{ runner.temp }}/k20-calculator-final-summary.json
+          if-no-files-found: warn
+          retention-days: 14
