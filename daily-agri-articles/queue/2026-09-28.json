@@ -1,0 +1,117 @@
+{
+  "content_type": "post",
+  "generated_at": "2026-09-28T09:20:00+03:30",
+  "title": "زمان آبیاری قطره‌ای را چگونه محاسبه کنیم؟ از ET و دبی واقعی زون تا ساعت کارکرد",
+  "slug": "drip-irrigation-runtime-et-flow-calculation-guide",
+  "excerpt": "برای تعیین زمان آبیاری قطره‌ای، ساعت ثابت هفتگی کافی نیست. این راهنما نشان می‌دهد چگونه نیاز آبی بر پایه ET، دبی واقعی زون، بارش و وضعیت خاک را به زمان کارکرد تبدیل کنیم.",
+  "content_html": "<div dir=\"rtl\" style=\"direction:rtl;background:linear-gradient(180deg,#F3FAF5 0%,#FFFFFF 100%);padding:28px;border-radius:24px;color:#1F2937;line-height:2;font-size:17px\">\n<section style=\"background:linear-gradient(135deg,#11492A,#17653A,#2E8B57);color:#fff;border-radius:22px;padding:30px 26px;margin-bottom:24px\"><div style=\"display:inline-block;background:rgba(255,255,255,.14);padding:7px 14px;border-radius:999px;font-size:14px;margin-bottom:14px\">راهنمای محاسبه زمان کارکرد آبیاری قطره‌ای</div><h1 style=\"margin:0 0 12px;color:#fff;font-size:30px;line-height:1.65\">زمان آبیاری قطره‌ای را چگونه محاسبه کنیم؟ از ET و دبی واقعی زون تا ساعت کارکرد</h1><p style=\"margin:0;color:#F4FFF7\"><strong>خلاصه تصمیم:</strong> زمان آبیاری را با یک عدد ثابت هفتگی تعیین نکنید. ابتدا نیاز آبی را با ET، مرحله رشد، بارش و وضعیت آب خاک برآورد کنید، سپس آن را با دبی واقعی همان زون به زمان کارکرد تبدیل کنید و نتیجه را با رطوبت خاک و عملکرد واقعی سامانه کنترل کنید.</p></section>\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">چرا ساعت ثابت کافی نیست؟</h2><p>مصرف آب گیاه با دما، باد، تابش، رطوبت هوا، مرحله رشد و سطح پوشش تغییر می‌کند. FAO در روش استاندارد خود تبخیر و تعرق گیاه را با رابطه <strong>ETc = Kc × ETo</strong> بیان می‌کند؛ ETo تقاضای اقلیمی و Kc تفاوت محصول و مرحله رشد را وارد محاسبه می‌کند.</p><p>این رابطه نقطه شروع است، نه نسخه نهایی. بارش مؤثر، ذخیره آب خاک، عمق ریشه، شوری، زهکشی و عملکرد واقعی سامانه می‌توانند زمان آبیاری را تغییر دهند. بنابراین برنامه‌ای که در یک هفته مناسب بوده، لزوماً در مرحله رشد یا هوای دیگر همان نتیجه را نمی‌دهد.</p><div style=\"background:#FFF6D8;border:1px solid #F0D78C;border-radius:16px;padding:18px\"><strong>هشدار:</strong> Kc را بدون توجه به محصول، مرحله رشد و منبع معتبر کپی نکنید. شرایط محلی می‌تواند نیاز به تعدیل داشته باشد.</div></section>\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">مرحله اول: ETc را به حجم آب تبدیل کنید</h2><p>اگر ETo روزانه یا میانگین چندروزه از یک منبع هواشناسی معتبر نزدیک مزرعه دارید، آن را در Kc متناسب با مرحله رشد ضرب کنید. واحد ET معمولاً میلی‌متر در روز است. از نظر هندسی، یک میلی‌متر آب روی یک مترمربع برابر یک لیتر و روی یک هکتار برابر ۱۰ مترمکعب است.</p><div style=\"background:#EEF7FF;border:1px solid #CFE2F4;border-radius:18px;padding:20px;text-align:center\"><strong>ETc (mm/day) = Kc × ETo</strong><br><strong>۱ میلی‌متر روی ۱ هکتار = ۱۰ مترمکعب</strong></div><p><strong>مثال آموزشی:</strong> اگر ETo برابر ۵ میلی‌متر در روز و Kc برابر ۰٫۸ باشد، ETc برابر ۴ میلی‌متر در روز است؛ یعنی برای یک هکتار از نظر هندسی ۴۰ مترمکعب در روز. این هنوز حجم نهایی آبیاری نیست و باید با بارش، وضعیت خاک و راندمان واقعی اصلاح شود.</p></section>\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">مرحله دوم: موجودی آب خاک را وارد تصمیم کنید</h2><p>University of Minnesota Extension توضیح می‌دهد که زمان‌بندی می‌تواند با پایش مستقیم آب خاک یا روش تراز آب بر پایه ET انجام شود. در تراز آب، بارش و آبیاری به ذخیره ناحیه ریشه اضافه و ET از آن کم می‌شود. این یعنی بالا بودن ETc در یک روز به‌تنهایی اثبات نمی‌کند که همان روز باید کل آن مقدار را آبیاری کنید.</p><p>بافت خاک و عمق مؤثر ریشه تعیین می‌کنند آب با چه سرعتی ذخیره یا تخلیه می‌شود. خاک سبک معمولاً آب را سریع‌تر از دسترس خارج می‌کند و خاک سنگین ممکن است به نوبت‌های متفاوت نیاز داشته باشد. نتیجه محاسبه باید با مشاهده رطوبت خاک یا حسگر مناسب کنترل شود.</p><div style=\"background:#EAF6EE;border-radius:16px;padding:18px\"><strong>کار عملی:</strong> برای هر زون یک جدول ساده از ET، بارش، آبیاری انجام‌شده و رطوبت خاک نگه دارید. مقایسه روندها از یک عدد منفرد ارزشمندتر است.</div></section>\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">مرحله سوم: دبی واقعی زون را اندازه بگیرید</h2><p>برای تبدیل حجم به زمان باید بدانید زون واقعاً چند مترمکعب در ساعت آب می‌دهد. دبی اسمی قطره‌چکان یا نوار تیپ در فشار مشخص تعریف می‌شود؛ فشار متفاوت، گرفتگی، تعداد خطوط و آرایش شبکه می‌تواند دبی واقعی را تغییر دهد. بنابراین برای زمان‌بندی دقیق‌تر، دبی واقعی زون در شرایط کار معمول اندازه‌گیری شود.</p><p>Utah State و Penn State نشان می‌دهند که زمان کارکرد به نرخ اعمال آب و دبی سامانه وابسته است. اگر کنتور یا فلومتر دارید، دبی همان زون را ثبت کنید. برای کنترل یکنواختی خروجی‌ها نیز <a href=\"https://keshavarz20.com/drip-irrigation-uniformity-du-field-test-guide/\" style=\"color:#17653A;font-weight:700\">راهنمای تست دبی قطره‌چکان و محاسبه DU</a> مکمل این محاسبه است.</p></section>\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">مرحله چهارم: حجم را به زمان تبدیل کنید</h2><div style=\"background:#EEF7FF;border:1px solid #CFE2F4;border-radius:18px;padding:20px;text-align:center\"><strong>زمان کارکرد (ساعت) = حجم آبیاری موردنیاز ÷ دبی واقعی زون</strong></div><p>اگر پس از بررسی بارش و آب خاک، حجم موردنیاز یک زون ۳۰ مترمکعب باشد و دبی واقعی آن ۱۵ مترمکعب در ساعت اندازه‌گیری شود، زمان پایه دو ساعت است. اگر مزرعه چند زون دارد، محاسبه باید برای هر زون جدا انجام شود.</p><p>اگر نرخ اعمال سامانه را به میلی‌متر در ساعت می‌دانید، رابطه <strong>زمان = عمق هدف ÷ نرخ اعمال</strong> قابل استفاده است. نرخ اعمال را از دبی و سطح تحت پوشش به دست آورید یا از داده معتبر سامانه استفاده کنید.</p></section>\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">پنج عامل که عدد نهایی را تغییر می‌دهند</h2><div style=\"overflow-x:auto;border-radius:14px;border:1px solid #D7E9DD\"><table style=\"width:100%;border-collapse:collapse;min-width:720px\"><thead><tr style=\"background:#17653A;color:#fff\"><th style=\"padding:12px\">عامل</th><th style=\"padding:12px\">اثر</th><th style=\"padding:12px\">کنترل</th></tr></thead><tbody><tr><td style=\"padding:12px\">بارش مؤثر</td><td style=\"padding:12px\">نیاز خالص را کم می‌کند</td><td style=\"padding:12px\">بارش واقعی و نفوذ در ناحیه ریشه</td></tr><tr><td style=\"padding:12px\">بافت و عمق خاک</td><td style=\"padding:12px\">ذخیره آب و فاصله نوبت‌ها را تغییر می‌دهد</td><td style=\"padding:12px\">بافت، عمق ریشه و زهکشی</td></tr><tr><td style=\"padding:12px\">مرحله رشد</td><td style=\"padding:12px\">Kc و حساسیت به تنش را تغییر می‌دهد</td><td style=\"padding:12px\">تاریخ کاشت و مرحله فنولوژیک</td></tr><tr><td style=\"padding:12px\">فشار و گرفتگی</td><td style=\"padding:12px\">دبی واقعی را از مقدار اسمی دور می‌کند</td><td style=\"padding:12px\">فشار و تست دبی چند خروجی</td></tr><tr><td style=\"padding:12px\">راندمان و یکنواختی</td><td style=\"padding:12px\">آب ناخالص موردنیاز را تغییر می‌دهد</td><td style=\"padding:12px\">اندازه‌گیری یا مقدار طراحی معتبر سامانه</td></tr></tbody></table></div></section>\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">چرا زمان بیشتر همیشه بهتر نیست؟</h2><p>اگر آب بیش از ظرفیت ناحیه ریشه اعمال شود، بخشی از آن می‌تواند به عمق پایین‌تر از ریشه برود یا در شرایط نامناسب باعث ماندابی شدن شود. از طرف دیگر، نوبت‌های بسیار کوتاه ممکن است فقط بخش کوچکی از حجم ریشه را خیس کنند. مدت و تعداد نوبت‌ها باید با بافت خاک، عمق ریشه و الگوی خیس‌شدگی هماهنگ شوند.</p><p>اگر کیفیت آب یا شوری عامل محدودکننده است، فقط با تغییر زمان کارکرد مسئله را حل‌شده فرض نکنید. برای EC، SAR و شاخص‌های پایه ابتدا <a href=\"https://keshavarz20.com/irrigation-water-test-ec-sar-salinity-guide/\" style=\"color:#17653A;font-weight:700\">راهنمای تفسیر آزمایش آب آبیاری</a> را بررسی کنید.</p></section>\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">مثال گام‌به‌گام برای یک زون یک‌هکتاری</h2><ol><li>ETo معتبر محلی را بگیرید؛ فرض آموزشی: ۵ میلی‌متر در روز.</li><li>Kc متناسب با مرحله رشد را انتخاب کنید؛ فرض آموزشی: ۰٫۸.</li><li>ETc برابر ۴ میلی‌متر در روز می‌شود.</li><li>برای یک هکتار این مقدار برابر ۴۰ مترمکعب است.</li><li>بارش مؤثر و موجودی آب خاک را بررسی کنید.</li><li>دبی واقعی زون را اندازه بگیرید؛ فرض آموزشی: ۲۰ مترمکعب در ساعت.</li><li>اگر حجم نهایی همان ۴۰ مترمکعب باشد، زمان پایه دو ساعت است.</li><li>نتیجه را با رطوبت خاک، عمق خیس‌شدگی و یکنواختی سامانه کنترل کنید.</li></ol><div style=\"background:#FFF6D8;border-radius:16px;padding:18px\"><strong>محدودیت مثال:</strong> این اعداد نسخه آبیاری نیستند؛ فقط مسیر محاسبه را نشان می‌دهند. داده واقعی همان مزرعه جایگزین فرض‌های مثال می‌شود.</div></section>\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">۵ پرسش کاربردی</h2><div style=\"display:grid;gap:12px\"><div style=\"border:1px solid #D7E9DD;border-radius:15px;padding:18px\"><h3>آیا می‌توان برای کل فصل یک زمان ثابت تعیین کرد؟</h3><p>برای برنامه اولیه شاید، اما ET، مرحله رشد، بارش و ذخیره آب خاک تغییر می‌کنند و زمان باید بازبینی شود.</p></div><div style=\"border:1px solid #D7E9DD;border-radius:15px;padding:18px\"><h3>ETo را از کجا بگیریم؟</h3><p>از ایستگاه یا سامانه هواشناسی قابل‌اعتماد و تا حد ممکن نزدیک به مزرعه استفاده کنید.</p></div><div style=\"border:1px solid #D7E9DD;border-radius:15px;padding:18px\"><h3>دبی اسمی نوار تیپ کافی است؟</h3><p>برای برآورد اولیه بله، اما برای زمان‌بندی دقیق‌تر دبی واقعی زون در فشار کاری مزرعه بهتر است.</p></div><div style=\"border:1px solid #D7E9DD;border-radius:15px;padding:18px\"><h3>اگر خاک بعد از زمان محاسبه‌شده خیلی خیس است چه کنیم؟</h3><p>فرض‌های ET/Kc، دبی واقعی، زهکشی و فاصله نوبت‌ها را بازبینی کنید؛ برنامه را کورکورانه ادامه ندهید.</p></div><div style=\"border:1px solid #D7E9DD;border-radius:15px;padding:18px\"><h3>برای هر زون جداگانه محاسبه کنیم؟</h3><p>اگر مساحت، دبی، فشار یا محصول فرق دارد، بله؛ هر زون باید زمان مخصوص خودش را داشته باشد.</p></div></div></section>\n<section style=\"background:#11492A;color:#fff;border-radius:18px;padding:22px;margin:22px 0\"><h2 style=\"color:#fff\">نظر کارشناسی کشاورز بیست</h2><p><strong>تحلیل تحریریه کشاورز بیست:</strong> پرسش «چند ساعت آب بدهم؟» باید بعد از چهار داده پاسخ داده شود: نیاز آبی، مرحله رشد، وضعیت آب خاک و دبی واقعی زون. وقتی این چهار داده کنار هم باشند، زمان کارکرد از حدس به تصمیم قابل‌اندازه‌گیری تبدیل می‌شود.</p></section>\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">منابع</h2><ul><li><a href=\"https://www.fao.org/4/x0490e/x0490e0b.htm\" rel=\"nofollow noopener\">FAO Irrigation and Drainage Paper 56 — ETc and Kc</a></li><li><a href=\"https://extension.umn.edu/natural-resources/conservation/agricultural-soil-and-water/irrigation/evapotranspiration-based-irrigation-scheduling-or-water-balance-method\" rel=\"nofollow noopener\">University of Minnesota Extension — ET-based irrigation scheduling</a></li><li><a href=\"https://extension.psu.edu/determining-how-long-to-run-drip-irrigation-systems-for-vegetables\" rel=\"nofollow noopener\">Penn State Extension — Drip irrigation runtime</a></li><li><a href=\"https://extension.usu.edu/yardandgarden/research/water-recommendations-for-vegetables\" rel=\"nofollow noopener\">Utah State University Extension — Drip application rate and runtime</a></li></ul></section>\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">روش تهیه و بازبینی</h2><p>این متن با منابع مستقیم FAO و سرویس‌های ترویج دانشگاهی تهیه شده و ادعاهای اصلی درباره ETc، تراز آب خاک و تبدیل نرخ اعمال به زمان کارکرد با چند منبع مستقل تطبیق داده شده‌اند. خروجی خودکار فقط پیش‌نویس است و پیش از انتشار عمومی باید بازبینی انسانی شود. جزئیات در <a href=\"https://keshavarz20.com/editorial-policy/\" style=\"color:#17653A;font-weight:700\">سیاست تحریریه کشاورز بیست</a> آمده است.</p></section>\n<section style=\"background:linear-gradient(135deg,#17653A,#11492A);color:#fff;border-radius:20px;padding:25px;margin-top:24px\"><h2 style=\"color:#fff\">جمع‌بندی</h2><p>برای محاسبه زمان آبیاری قطره‌ای، از ET و وضعیت خاک شروع کنید، حجم واقعی موردنیاز را به دست آورید، سپس آن را بر دبی واقعی همان زون تقسیم کنید و نتیجه را با رطوبت خاک و یکنواختی سامانه کنترل کنید. این روش از انتقال کورکورانه یک ساعت ثابت بین فصل‌ها و مزارع جلوگیری می‌کند.</p></section>\n</div>",
+  "focus_keyphrase": "محاسبه زمان آبیاری قطره‌ای",
+  "related_keyphrases": [
+    "زمان آبیاری قطره‌ای",
+    "محاسبه ET آبیاری",
+    "ETc و Kc",
+    "دبی زون آبیاری",
+    "مدت کارکرد نوار تیپ",
+    "برنامه آبیاری قطره‌ای"
+  ],
+  "seo_title": "محاسبه زمان آبیاری قطره‌ای با ET و دبی | کشاورز بیست",
+  "meta_description": "راهنمای محاسبه زمان آبیاری قطره‌ای با ETc، Kc، دبی واقعی زون، بارش و رطوبت خاک؛ همراه فرمول، مثال و کنترل خطاهای رایج.",
+  "category_name": "راهنمای آبیاری و تجهیزات",
+  "category_id": 1030,
+  "tags": [
+    "آبیاری قطره‌ای",
+    "زمان آبیاری",
+    "تبخیر و تعرق",
+    "ETc",
+    "دبی آبیاری",
+    "نوار تیپ",
+    "مدیریت آب"
+  ],
+  "source_urls": [
+    "https://www.fao.org/4/x0490e/x0490e0b.htm",
+    "https://extension.umn.edu/natural-resources/conservation/agricultural-soil-and-water/irrigation/evapotranspiration-based-irrigation-scheduling-or-water-balance-method",
+    "https://extension.psu.edu/determining-how-long-to-run-drip-irrigation-systems-for-vegetables",
+    "https://extension.usu.edu/yardandgarden/research/water-recommendations-for-vegetables"
+  ],
+  "source_names": [
+    "FAO Irrigation and Drainage Paper 56 — ETc and Kc",
+    "University of Minnesota Extension — ET-based irrigation scheduling",
+    "Penn State Extension — Determining How Long to Run Drip Irrigation Systems for Vegetables",
+    "Utah State University Extension — Water Recommendations for Vegetables"
+  ],
+  "research_summary": "Recovery for missing 2026-09-28 queue. Durable intent: convert crop water need into actual drip-zone runtime. Phase 20 registries contain water-quality interpretation, soil sampling, water hammer, fertigation, PC emitters, pump selection, DU testing, pressure-regulator selection and sandy-well filtration, but no ET/Kc-to-runtime canonical intent. Keshavarz20 web search did not surface a dedicated page. Claims were cross-checked against FAO 56 and independent UMN, Penn State and Utah State Extension sources. The article avoids universal runtime, Kc or efficiency values and requires local ETo, crop stage, soil-water status, rainfall and measured zone flow.",
+  "editorial_disclosure": "این پیش‌نویس با کمک خودکارسازی تحریریه و بر پایه منابع مستقیم FAO و دانشگاهی تهیه شده است؛ انتشار عمومی فقط پس از بازبینی انسانی مجاز است.",
+  "review_status": "human_review_required_before_publish",
+  "image_search_query": "text-free realistic drip irrigation vegetable field with visible drip tape and irrigation flow meter at field edge no labels no logos",
+  "image_title": "محاسبه زمان کارکرد آبیاری قطره‌ای",
+  "cover_title": "محاسبه زمان آبیاری قطره‌ای",
+  "cover_subtitle": "از ET و دبی واقعی زون به زمان کارکرد برسید",
+  "alt_text": "خطوط آبیاری قطره‌ای در مزرعه همراه با دبی‌سنج برای محاسبه زمان کارکرد زون",
+  "faq_items": [
+    {
+      "question": "آیا می‌توان برای کل فصل یک زمان ثابت تعیین کرد؟",
+      "answer": "برای برنامه اولیه ممکن است، اما ET، مرحله رشد، بارش و ذخیره آب خاک تغییر می‌کنند و زمان کارکرد باید بازبینی شود."
+    },
+    {
+      "question": "ETo را از کجا بگیریم؟",
+      "answer": "از ایستگاه یا سامانه هواشناسی قابل‌اعتماد و تا حد ممکن نزدیک به مزرعه استفاده کنید."
+    },
+    {
+      "question": "دبی اسمی نوار تیپ برای محاسبه کافی است؟",
+      "answer": "برای برآورد اولیه مفید است، اما برای زمان‌بندی دقیق‌تر بهتر است دبی واقعی زون در فشار کاری مزرعه اندازه‌گیری شود."
+    },
+    {
+      "question": "اگر خاک بعد از زمان محاسبه‌شده هنوز خیلی خیس است چه کنیم؟",
+      "answer": "فرض‌های ET/Kc، دبی واقعی، زهکشی و فاصله نوبت‌ها را بازبینی کنید و برنامه را کورکورانه ادامه ندهید."
+    },
+    {
+      "question": "برای هر زون باید جداگانه محاسبه کنیم؟",
+      "answer": "اگر مساحت، دبی، فشار یا نوع محصول بین زون‌ها فرق دارد، بله؛ هر زون باید زمان مخصوص خودش را داشته باشد."
+    }
+  ],
+  "phase20_schema_version": "1",
+  "canonical_intent_id": "ir-intent-drip-runtime-et-scheduling",
+  "parent_hub": "راهنمای آبیاری و تجهیزات",
+  "scenario_dimensions": {
+    "crop": "",
+    "province_or_climate": "",
+    "season": "",
+    "area": "",
+    "water": "منبع آب آبیاری با دبی قابل اندازه‌گیری",
+    "soil": "بافت و ذخیره آب خاک به‌عنوان ورودی زمان‌بندی",
+    "irrigation_system": "آبیاری قطره‌ای یا نوار تیپ",
+    "problem": "نامشخص بودن مدت کارکرد و خطر کم‌آبی یا آبیاری بیش از نیاز",
+    "decision": "محاسبه زمان کارکرد زون از ET، وضعیت خاک و دبی واقعی"
+  },
+  "source_strength": "FAO_primary_guideline+independent_university_extension",
+  "question_engine_intents_covered": [
+    "design_scenario",
+    "water_efficiency",
+    "risk_check",
+    "operation"
+  ],
+  "compatibility_rules_referenced": [
+    "runtime_requires_measured_or_verified_zone_flow",
+    "emitter_flow_depends_on_operating_pressure_and_layout",
+    "soil_water_status_and_crop_stage_modify_schedule"
+  ],
+  "membership_cta_type": "save_project",
+  "update_triggers": [
+    "به‌روزرسانی روش یا داده‌های رسمی ET0/Kc",
+    "اضافه شدن منبع معتبر ایرانی برای ET0 یا ضرایب محصول",
+    "اضافه شدن ابزار محاسبه زمان آبیاری در کشاورز بیست",
+    "تغییر معنی‌دار در راهنمای زمان‌بندی یا تراز آب خاک"
+  ],
+  "topic_score": {
+    "farmer_decision_value": 20,
+    "independent_intent": 15,
+    "evidence_strength": 15,
+    "demand_signal": 13,
+    "seasonal_relevance": 8,
+    "business_relevance": 9,
+    "original_value_potential": 8,
+    "cannibalization_safety": 5,
+    "total": 93,
+    "blockers": []
+  }
+}
