@@ -76,7 +76,7 @@ jobs:
                   continue
               body=row.get('bridge_response') if isinstance(row.get('bridge_response'),dict) else {}
               result=body.get('result') if isinstance(body.get('result'),dict) else {}
-              code_text=result.get('code') if isinstance(result.get('code'),str) else ''
+              code_text=result.get('code') if isinstance(result.get('code'),str) else (result.get('snippet_code') if isinstance(result.get('snippet_code'),str) else '')
               code_markers={
                   'k20_basket_items':'k20-basket-items' in code_text,
                   'basket_data':'K20TapeBasketData' in code_text,
