@@ -8,13 +8,18 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   audit:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
       - name: Run mobile Lighthouse
         shell: bash
         run: |
@@ -56,6 +61,25 @@ jobs:
           console.log(JSON.stringify(out,null,2));
           fs.writeFileSync(process.env.RUNNER_TEMP+'/k20-calculator-final-summary.json',JSON.stringify(out,null,2));
           NODE
+      - name: Record current Lighthouse summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p diagnostics
+          cp "$RUNNER_TEMP/k20-calculator-final-summary.json" diagnostics/calculator-current-lighthouse.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add diagnostics/calculator-current-lighthouse.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "diag: record current calculator Lighthouse"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
+
       - name: Upload final evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -78,3 +102,5 @@ jobs:
 # Audit trigger after snippet 47 activation 2026-09-28
 
 # Audit trigger after snippet 48 activation 2026-09-28
+
+# Current comparison audit trigger 2026-09-28
