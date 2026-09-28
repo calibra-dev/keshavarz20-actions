@@ -16,7 +16,7 @@ jobs:
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-          TARGET_SHA: 777bbf7dcc511ef289d99a9a26fd498c842b0b12
+          TARGET_SHA: 715ddd5ad6a48ad674e4706d2a2f3dc7a97a56ee
         run: |
           set -euo pipefail
           mkdir -p diagnostics
