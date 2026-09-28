@@ -95,7 +95,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for name in WP_BASE_URL WP_USERNAME WP_APP_PASSWORD OPENAI_API_KEY; do
+          for name in WP_BASE_URL WP_USERNAME WP_APP_PASSWORD; do
             if [ -z "${!name:-}" ]; then
               echo "::error title=Missing repository secret::$name is empty or unavailable"
               exit 2
