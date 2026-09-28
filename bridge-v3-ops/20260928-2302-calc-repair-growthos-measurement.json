@@ -1,0 +1,12 @@
+{
+  "action": "content.patch",
+  "request_id": "calc-repair-growthos-measurement-20260928-2302",
+  "payload": {
+    "target_type": "post",
+    "post_id": 143698,
+    "field": "post_content",
+    "old_content": "\n\n(function(){\n  if(window.__k20GrowthOSMeasurementV1){return;}\n  window.__k20GrowthOSMeasurementV1=true;\n  window.dataLayer=window.dataLayer||[];\n  var nativePush=window.dataLayer.push.bind(window.dataLayer);\n  window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};\n  window.dataLayer.push=function(){\n    for(var i=0;i&lt;arguments.length;i++){\n      var item=arguments[i];\n      if(item &amp;&amp; Object.prototype.toString.call(item)===&#039;[object Object]&#039; &amp;&amp; /^growthos_/.test(String(item.event||&#039;&#039;))){\n        var eventName=String(item.event),params={};\n        Object.keys(item).forEach(function(k){if(k!==&#039;event&#039;){params[k]=item[k];}});\n        setTimeout(function(n,p){return function(){try{window.gtag(&#039;event&#039;,n,p);}catch(e){}};}(eventName,params),0);\n      }\n    }\n    return nativePush.apply(null,arguments);\n  };\n  try{\n    window.gtag(&#039;event&#039;,&#039;growthos_measurement_ready&#039;,{\n      phase:10,\n      page_path:window.location.pathname,\n      transport_type:&#039;beacon&#039;\n    });\n  }catch(e){}\n})();\n\n",
+    "new_content": "\n\n<script>\n(function(){\n  if(window.__k20GrowthOSMeasurementV1){return;}\n  window.__k20GrowthOSMeasurementV1=true;\n  window.dataLayer=window.dataLayer||[];\n  var nativePush=window.dataLayer.push.bind(window.dataLayer);\n  window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};\n  window.dataLayer.push=function(){\n    for(var i=0;i<arguments.length;i++){\n      var item=arguments[i];\n      if(item && Object.prototype.toString.call(item)==='[object Object]' && /^growthos_/.test(String(item.event||''))){\n        var eventName=String(item.event),params={};\n        Object.keys(item).forEach(function(k){if(k!=='event'){params[k]=item[k];}});\n        setTimeout(function(n,p){return function(){try{window.gtag('event',n,p);}catch(e){}};}(eventName,params),0);\n      }\n    }\n    return nativePush.apply(null,arguments);\n  };\n  try{\n    window.gtag('event','growthos_measurement_ready',{\n      phase:10,\n      page_path:window.location.pathname,\n      transport_type:'beacon'\n    });\n  }catch(e){}\n})();\n</script>\n\n",
+    "expected_sha256": "f2cb077002f05dbb3de126b4e2f3a3232b0e6c7c0cf179d31bfaf41d8fc3d163"
+  }
+}
