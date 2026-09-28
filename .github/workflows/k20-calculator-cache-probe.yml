@@ -1,0 +1,77 @@
+name: K20 Calculator Cache TTFB Probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/k20-calculator-cache-probe.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Probe repeated uncached URL requests
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://keshavarz20.com/drip-tape-length-fittings-calculator/'
+          mkdir -p /tmp/k20probe
+          : > /tmp/k20probe/timings.tsv
+          for i in 1 2 3 4 5 6 7 8; do
+            curl -sS -L --compressed               -A 'Mozilla/5.0 (Linux; Android 14; Mobile) AppleWebKit/537.36 Chrome/153 Safari/537.36'               -D "/tmp/k20probe/h-$i.txt" -o /dev/null               -w "$i\t%{http_code}\t%{time_namelookup}\t%{time_connect}\t%{time_appconnect}\t%{time_starttransfer}\t%{time_total}\t%{size_download}\n"               "$URL" >> /tmp/k20probe/timings.tsv
+            sleep 1
+          done
+          python3 - <<'PY'
+          import json,re,pathlib
+          root=pathlib.Path('/tmp/k20probe')
+          rows=[]
+          for line in (root/'timings.tsv').read_text().splitlines():
+              p=line.split('\t')
+              if len(p)<8: continue
+              i,code,dns,conn,tls,ttfb,total,size=p
+              hdr=(root/f'h-{i}.txt').read_text(errors='replace')
+              def h(name):
+                  m=re.findall(rf'(?im)^{re.escape(name)}:\s*(.+?)\r?$',hdr)
+                  return m[-1].strip() if m else None
+              rows.append({
+                  'n':int(i),'http':int(code),'dns_s':float(dns),'connect_s':float(conn),'tls_s':float(tls),
+                  'ttfb_s':float(ttfb),'total_s':float(total),'bytes':int(float(size)),
+                  'x_litespeed_cache':h('x-litespeed-cache'),
+                  'x_litespeed_cache_control':h('x-litespeed-cache-control'),
+                  'cache_control':h('cache-control'),
+                  'age':h('age'),
+                  'server':h('server'),
+                  'vary':h('vary'),
+                  'content_encoding':h('content-encoding'),
+                  'x_powered_cache':h('x-cache') or h('cf-cache-status')
+              })
+          t=sorted(x['ttfb_s'] for x in rows)
+          out={'url':'https://keshavarz20.com/drip-tape-length-fittings-calculator/','samples':rows}
+          if t:
+              out['ttfb_min_s']=min(t); out['ttfb_max_s']=max(t); out['ttfb_median_s']=t[len(t)//2]
+          pathlib.Path('diagnostics').mkdir(exist_ok=True)
+          pathlib.Path('diagnostics/calculator-cache-probe.json').write_text(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+      - name: Persist probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add diagnostics/calculator-cache-probe.json
+          git commit -m "diag: record calculator cache TTFB probe" || exit 0
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
