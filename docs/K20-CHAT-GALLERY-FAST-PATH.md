@@ -46,3 +46,20 @@ A complete publish report must include:
 - uploaded attachment IDs
 - final product image IDs
 - `featured_preserved: true` unless featured replacement was explicitly requested
+## Shortcut alias
+
+The permanent user-facing shorthand for this workflow is **«گالری»**.
+
+When the user says **«گالری کن»** in the Keshavarz20 project, interpret it as:
+
+- use the already approved image set unless the user asks for new generation;
+- resolve the exact target product;
+- use the K20 Chat Gallery Fast Path;
+- publish through GitHub -> K20 Chat Gallery Publisher -> Bridge 3.3;
+- preserve the featured image unless replacement was explicitly requested;
+- use append vs replace according to the user's wording/context;
+- perform final readback before reporting success;
+- do not rerun completed/in-progress work that could create duplicates.
+
+This alias is intended to be reused across future Keshavarz20 chats so the user does not need to restate the transfer architecture.
+
