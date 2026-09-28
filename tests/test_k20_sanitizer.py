@@ -2,6 +2,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from PIL import Image, PngImagePlugin
 import k20_sanitizer as s
 
 class K20SanitizerTests(unittest.TestCase):
@@ -24,6 +25,20 @@ class K20SanitizerTests(unittest.TestCase):
             r=s.sanitize_json_file(p)
             self.assertTrue(r["clean"])
             self.assertEqual(json.loads(p.read_text(encoding="utf-8"))["content"],"AB")
+
+    def test_image_metadata_strip_and_verify(self):
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td) / "meta.png"
+            meta = PngImagePlugin.PngInfo()
+            meta.add_text("Comment", "generated-by-ai")
+            meta.add_itxt("XML:com.adobe.xmp", "<x:xmpmeta>AI provenance</x:xmpmeta>")
+            Image.new("RGB", (16, 16), "white").save(p, "PNG", pnginfo=meta)
+            before = s.verify_image_file(p)
+            self.assertFalse(before["clean"])
+            result = s.sanitize_image_file(p)
+            self.assertTrue(result["clean"])
+            after = s.verify_image_file(p)
+            self.assertTrue(after["clean"])
 
 if __name__ == "__main__":
     unittest.main()

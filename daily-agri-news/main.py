@@ -485,6 +485,7 @@ Visual requirements: photorealistic, authentic Iranian agricultural context when
             im = im.resize((1280, 720), Image.Resampling.LANCZOS)
             im.save(target, "WEBP", quality=88, method=6)
         temp.unlink(missing_ok=True)
+        k20_sanitizer.sanitize_image_file(target)
         return target
     if getattr(item, "url", None):
         r = SESSION.get(item.url, timeout=90)

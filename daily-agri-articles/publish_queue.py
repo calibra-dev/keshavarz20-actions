@@ -22,6 +22,10 @@ except Exception:  # pragma: no cover
     get_display = None
 
 ROOT = Path(__file__).resolve().parent
+REPO_ROOT = ROOT.parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+import k20_sanitizer
 OUT = ROOT / "output"
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -308,6 +312,7 @@ def make_editorial_cover(source: dict[str, Any], p: dict[str, Any]) -> Path:
         im = Image.alpha_composite(im.convert("RGBA"), overlay).convert("RGB")
         im.save(target, "WEBP", quality=88, method=6)
     raw.unlink(missing_ok=True)
+    k20_sanitizer.sanitize_image_file(target)
     return target
 
 

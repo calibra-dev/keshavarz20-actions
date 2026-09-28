@@ -33,9 +33,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install sanitizer test dependency
+        run: python -m pip install pillow
       - name: Compile integrated entrypoints
         run: |
           python -m py_compile k20_sanitizer.py
+          python -m py_compile daily-agri-articles/publish_queue.py
           python -m py_compile daily-agri-articles/publish_queue_v6.py
           python -m py_compile daily-agri-news/publish_queue_v3.py
           python -m py_compile daily-agri-news/main.py

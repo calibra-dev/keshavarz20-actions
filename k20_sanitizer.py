@@ -111,3 +111,79 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+
+def _image_metadata_findings(path: str | Path) -> dict[str, Any]:
+    """Inspect common image metadata/provenance containers without preserving them."""
+    p = Path(path)
+    findings = {"exif": 0, "xmp": False, "comment": False, "c2pa_marker": False, "jumb_marker": False}
+    try:
+        from PIL import Image
+        with Image.open(p) as im:
+            try:
+                findings["exif"] = len(im.getexif() or {})
+            except Exception:
+                findings["exif"] = 0
+            info = {str(k).lower(): v for k, v in (im.info or {}).items()}
+            findings["xmp"] = any(k in info for k in ("xmp", "xml", "photoshop"))
+            findings["comment"] = "comment" in info
+    except Exception:
+        pass
+    try:
+        raw = p.read_bytes().lower()
+        findings["c2pa_marker"] = b"c2pa" in raw or b"content credentials" in raw
+        findings["jumb_marker"] = b"jumb" in raw or b"jumd" in raw
+        if b"xmpmeta" in raw or b"adobe:ns:meta" in raw:
+            findings["xmp"] = True
+    except Exception:
+        pass
+    return findings
+
+def sanitize_image_file(path: str | Path) -> dict[str, Any]:
+    """Rebuild an image without metadata, then verify common hidden metadata markers are absent.
+
+    This removes deterministic metadata/provenance containers that Pillow does not
+    explicitly preserve. It does not claim removal of robust pixel-domain watermarks.
+    """
+    from PIL import Image
+    p = Path(path)
+    suffix = p.suffix.lower()
+    tmp = p.with_name(p.stem + ".k20-sanitized" + p.suffix)
+    with Image.open(p) as im:
+        rebuilt = im.convert("RGB")
+        if suffix in {".jpg", ".jpeg"}:
+            rebuilt.save(tmp, "JPEG", quality=92, optimize=True)
+        elif suffix == ".png":
+            rebuilt.save(tmp, "PNG", optimize=True)
+        elif suffix == ".webp":
+            rebuilt.save(tmp, "WEBP", quality=88, method=6)
+        else:
+            raise ValueError(f"Unsupported image type for sanitizer: {suffix}")
+    tmp.replace(p)
+    findings = _image_metadata_findings(p)
+    deterministic_clean = (
+        int(findings.get("exif") or 0) == 0
+        and not findings.get("xmp")
+        and not findings.get("comment")
+        and not findings.get("c2pa_marker")
+        and not findings.get("jumb_marker")
+    )
+    if not deterministic_clean:
+        raise ValueError(f"K20 image sanitizer verification failed: {findings}")
+    return {
+        "path": str(p),
+        "clean": True,
+        "verified": findings,
+        "pixel_domain_watermark_guarantee": False,
+    }
+
+def verify_image_file(path: str | Path) -> dict[str, Any]:
+    findings = _image_metadata_findings(path)
+    clean = (
+        int(findings.get("exif") or 0) == 0
+        and not findings.get("xmp")
+        and not findings.get("comment")
+        and not findings.get("c2pa_marker")
+        and not findings.get("jumb_marker")
+    )
+    return {"path": str(path), "clean": clean, "findings": findings}
