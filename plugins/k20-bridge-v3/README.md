@@ -86,7 +86,7 @@ Sensitive operations use `bridge-v3-secure-ops/`. The committed manifest contain
 
 ## Update flow
 
-1. Install the v3.3 ZIP over v3.2, or after the v3.3.0 release/manifest lands on `main`, use `update.check`.
+1. Install the v3.3 ZIP over v3.2, or after the v3.3.1 release/manifest lands on `main`, use `update.check`.
 2. `update.stage` downloads only the allow-listed GitHub release asset and verifies SHA-256.
 3. `update.apply` is approval-gated, backs up the current plugin folder, then copies verified files.
 4. The next request verifies the running version.
