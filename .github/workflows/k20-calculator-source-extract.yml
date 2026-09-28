@@ -1,0 +1,26 @@
+name: K20 Calculator Source Extract
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/k20-calculator-source-extract.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL -A 'Mozilla/5.0' 'https://keshavarz20.com/drip-tape-length-fittings-calculator/' -o /tmp/p.html
+          python3 - <<'PY'
+          import re
+          h=open('/tmp/p.html',encoding='utf8',errors='replace').read()
+          for term in ['use strict','growthos-decision-flow']:
+            print('\n###',term)
+            ms=list(re.finditer(re.escape(term),h,re.I))
+            for n,m in enumerate(ms[:3]):
+              s=max(0,m.start()-2500); e=min(len(h),m.end()+3500)
+              print('MATCH',n,'POS',m.start())
+              print(h[s:e].replace('\n',' '))
+          PY
