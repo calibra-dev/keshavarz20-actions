@@ -1,0 +1,27 @@
+name: K20 Calculator Source Diagnostic
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/k20-calculator-source-diagnostic.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL -A 'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36' 'https://keshavarz20.com/drip-tape-length-fittings-calculator/' -o /tmp/p.html
+          python3 - <<'PY'
+          import re
+          h=open('/tmp/p.html',encoding='utf8',errors='replace').read()
+          for term in ['use strict','growthos-decision-flow','FAQPage','GrowthOSMeasurement']:
+            print('\n###',term)
+            for m in list(re.finditer(re.escape(term),h,re.I))[:5]:
+              s=max(0,m.start()-700); e=min(len(h),m.end()+1200)
+              x=h[s:e].replace('\n',' ')
+              print(x[:2000])
+              print('---')
+          PY
