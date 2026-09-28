@@ -2,18 +2,18 @@
   "ok": true,
   "mode": "read-only",
   "version": "phase3-top30-pim-v2",
-  "generated_at_utc": "2026-09-23T22:49:22.035006Z",
+  "generated_at_utc": "2026-09-28T06:11:21.819063Z",
   "selection_rule": "GSC irrigation/fertigation candidate cohort; published Woo products; organic demand dominates priority; in-stock bonus; out-of-stock penalty. This is commercial-priority, not a profit/margin claim.",
   "summary": {
     "selected": 30,
     "mapped_candidates": 46,
     "unmapped_candidates": 0,
-    "average_pim_completeness": 79.5,
-    "scores_85_plus": 0,
+    "average_pim_completeness": 80.17,
+    "scores_85_plus": 1,
     "missing_sku": 0,
     "missing_gtin": 30,
     "missing_mpn": 30,
-    "missing_brand": 3,
+    "missing_brand": 0,
     "compatibility_incomplete": 15,
     "decision_link_missing": 0,
     "average_product_quality_score": 93.73,
@@ -267,8 +267,7 @@
       "pim_fields": {
         "brand": {
           "value": "اتصال گستر",
-          "source": "woocommerce_attribute",
-          "field": "برند",
+          "source": "woocommerce_brand",
           "confidence": "high"
         },
         "mpn": null,
@@ -482,8 +481,7 @@
       "pim_fields": {
         "brand": {
           "value": "اتصال گستر",
-          "source": "woocommerce_attribute",
-          "field": "برند",
+          "source": "woocommerce_brand",
           "confidence": "high"
         },
         "mpn": null,
@@ -694,7 +692,11 @@
         "mpn": null
       },
       "pim_fields": {
-        "brand": null,
+        "brand": {
+          "value": "باران (baran)",
+          "source": "woocommerce_brand",
+          "confidence": "high"
+        },
         "mpn": null,
         "model": {
           "value": "سوپاپ چدنی",
@@ -750,7 +752,7 @@
         "image_count": 1,
         "all_image_alt_present": true
       },
-      "pim_completeness_score": 75,
+      "pim_completeness_score": 80,
       "product_quality_score": 87,
       "product_quality_gaps": [
         "مشخصات ساختاریافته/کامل",
@@ -759,7 +761,6 @@
       "gaps": [
         "missing_gtin",
         "missing_mpn",
-        "missing_brand",
         "compatibility_fields_incomplete",
         "image_set_incomplete"
       ]
@@ -1434,9 +1435,8 @@
       },
       "pim_fields": {
         "brand": {
-          "value": "پلی رود اتصال (Polirood Etesal)",
-          "source": "woocommerce_attribute",
-          "field": "برند",
+          "value": "پلی رود اتصال( Poliroodetesal)",
+          "source": "woocommerce_brand",
           "confidence": "high"
         },
         "mpn": null,
@@ -1544,8 +1544,7 @@
       "pim_fields": {
         "brand": {
           "value": "آب لوله بسپار (Ablooleh baspar)",
-          "source": "woocommerce_attribute",
-          "field": "برند",
+          "source": "woocommerce_brand",
           "confidence": "high"
         },
         "mpn": null,
@@ -1817,18 +1816,17 @@
       "content": {
         "short_words": 69,
         "description_words": 1609,
-        "image_count": 2,
+        "image_count": 10,
         "all_image_alt_present": true
       },
-      "pim_completeness_score": 80,
+      "pim_completeness_score": 85,
       "product_quality_score": 91,
       "product_quality_gaps": [
         "ویدئو"
       ],
       "gaps": [
         "missing_gtin",
-        "missing_mpn",
-        "image_set_incomplete"
+        "missing_mpn"
       ]
     },
     {
@@ -1965,7 +1963,11 @@
         "mpn": null
       },
       "pim_fields": {
-        "brand": null,
+        "brand": {
+          "value": "متفرقه",
+          "source": "woocommerce_brand",
+          "confidence": "high"
+        },
         "mpn": null,
         "model": {
           "value": "فلنج دنده‌ای آهنی",
@@ -2026,7 +2028,7 @@
         "image_count": 1,
         "all_image_alt_present": true
       },
-      "pim_completeness_score": 75,
+      "pim_completeness_score": 80,
       "product_quality_score": 90,
       "product_quality_gaps": [
         "Feed (فاز ۳)"
@@ -2034,7 +2036,6 @@
       "gaps": [
         "missing_gtin",
         "missing_mpn",
-        "missing_brand",
         "compatibility_fields_incomplete",
         "image_set_incomplete"
       ]
@@ -2603,9 +2604,8 @@
       },
       "pim_fields": {
         "brand": {
-          "value": "پلی رود اتصال (Polirood Etesal)",
-          "source": "woocommerce_attribute",
-          "field": "برند",
+          "value": "پلی رود اتصال( Poliroodetesal)",
+          "source": "woocommerce_brand",
           "confidence": "high"
         },
         "mpn": null,
@@ -3138,7 +3138,11 @@
         "mpn": null
       },
       "pim_fields": {
-        "brand": null,
+        "brand": {
+          "value": "متفرقه",
+          "source": "woocommerce_brand",
+          "confidence": "high"
+        },
         "mpn": null,
         "model": {
           "value": "نوار تیپ آبیاری قطره‌ای برای کشت زیر پلاستیک",
@@ -3195,7 +3199,7 @@
         "image_count": 1,
         "all_image_alt_present": true
       },
-      "pim_completeness_score": 75,
+      "pim_completeness_score": 80,
       "product_quality_score": 87,
       "product_quality_gaps": [
         "مشخصات ساختاریافته/کامل",
@@ -3204,7 +3208,6 @@
       "gaps": [
         "missing_gtin",
         "missing_mpn",
-        "missing_brand",
         "compatibility_fields_incomplete",
         "image_set_incomplete"
       ]
