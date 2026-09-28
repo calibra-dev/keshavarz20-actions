@@ -110,3 +110,5 @@ jobs:
       - name: Fail if any live post failed
         if: steps.upgrade.outputs.exit_code != '0'
         run: exit 1
+
+# second live trigger after workflow registration 2026-09-29T01:18+03:30
