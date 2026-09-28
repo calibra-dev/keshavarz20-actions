@@ -1,0 +1,126 @@
+name: K20 Generate Calculator Repair Plan
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/k20-generate-calculator-repairs.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Generate exact repair plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet requests beautifulsoup4
+          python3 - <<'PY'
+          import hashlib, html, json, os, re
+          from pathlib import Path
+          import requests
+          from bs4 import BeautifulSoup
+
+          base=os.environ['WP_BASE_URL'].rstrip('/')
+          auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD'])
+          r=requests.get(base+'/wp-json/wp/v2/posts/143698?context=edit',auth=auth,timeout=60,headers={'Accept':'application/json','User-Agent':'k20-repair-plan'})
+          r.raise_for_status()
+          raw=(r.json().get('content') or {}).get('raw') or ''
+          sha=lambda s: hashlib.sha256(s.encode('utf-8')).hexdigest()
+          original_sha=sha(raw)
+
+          patches=[]
+
+          # 1. Calculator runtime: turn the raw/escaped JS text into a real script.
+          faq_marker='<!-- FAQ Schema:'
+          faq_idx=raw.index(faq_marker)
+          calc_start=raw.rfind('\n\n(function () {',0,faq_idx)
+          if calc_start < 0:
+              raise RuntimeError('calculator raw JS start not found')
+          old=raw[calc_start:faq_idx]
+          code=html.unescape(old.strip())
+          new='\n\n<script>\n'+code+'\n</script>\n\n'
+          patches.append({'name':'calculator-js-wrapper','old_content':old,'new_content':new})
+
+          # 2. FAQ JSON-LD: parse exact JSON object and wrap it properly.
+          json_start=raw.index('{',faq_idx)
+          obj,json_len=json.JSONDecoder().raw_decode(raw[json_start:])
+          json_end=json_start+json_len
+          old=raw[json_start:json_end]
+          new='<script type="application/ld+json">\n'+old+'\n</script>'
+          patches.append({'name':'faq-jsonld-wrapper','old_content':old,'new_content':new})
+
+          # 3. Decision-flow click tracking: wrap + decode the raw inline JS.
+          flow_sig='(function(){var root=document.currentScript&amp;&amp;document.currentScript.parentElement;'
+          flow_start=raw.index(flow_sig)
+          flow_end=raw.index('})();',flow_start)+4
+          old=raw[flow_start:flow_end]
+          new='<script>\n'+html.unescape(old)+'\n</script>'
+          patches.append({'name':'growthos-flow-js-wrapper','old_content':old,'new_content':new})
+
+          # 4. Measurement runtime: wrap + decode between explicit phase markers.
+          m_start_marker='<!-- K20-GROWTHOS-PHASE10-MEASUREMENT-START -->'
+          m_end_marker='<!-- K20-GROWTHOS-PHASE10-MEASUREMENT-END -->'
+          ms=raw.index(m_start_marker)+len(m_start_marker)
+          me=raw.index(m_end_marker,ms)
+          old=raw[ms:me]
+          body=old.strip()
+          new='\n\n<script>\n'+html.unescape(body)+'\n</script>\n\n'
+          patches.append({'name':'growthos-measurement-js-wrapper','old_content':old,'new_content':new})
+
+          current=raw
+          for p in patches:
+              before=sha(current)
+              count=current.count(p['old_content'])
+              if count != 1:
+                  raise RuntimeError(f"{p['name']} exact-match count={count}")
+              current=current.replace(p['old_content'],p['new_content'],1)
+              p['expected_sha256']=before
+              p['after_sha256']=sha(current)
+              p['old_bytes']=len(p['old_content'].encode())
+              p['new_bytes']=len(p['new_content'].encode())
+
+          # Rendered DOM context for the blank card/buttons.
+          h=requests.get(base+'/drip-tape-length-fittings-calculator/',timeout=60,headers={'User-Agent':'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36','Cache-Control':'no-cache'}).text
+          soup=BeautifulSoup(h,'html.parser')
+          dom={}
+          for needle in ['کپی سبد و فرضیات','ارسال برای پیش‌فاکتور','انتخاب شروع خط']:
+              node=soup.find(string=lambda s: isinstance(s,str) and needle in s)
+              if not node:
+                  dom[needle]=None
+                  continue
+              el=node.parent
+              parent=el.parent if el else None
+              dom[needle]={
+                'element':str(el)[:4000],
+                'parent':str(parent)[:12000] if parent else None,
+                'siblings':[str(x)[:5000] for x in (parent.find_all(recursive=False) if parent else [])]
+              }
+
+          out={
+            'post_id':143698,
+            'original_sha256':original_sha,
+            'final_sha256':sha(current),
+            'patches':patches,
+            'live_dom':dom,
+          }
+          Path('diagnostics').mkdir(exist_ok=True)
+          Path('diagnostics/k20-calculator-repair-plan.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          PY
+      - name: Commit repair plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add diagnostics/k20-calculator-repair-plan.json
+          git commit -m 'diag: generate exact calculator repair plan' || exit 0
+          git pull --rebase origin main
+          git push
