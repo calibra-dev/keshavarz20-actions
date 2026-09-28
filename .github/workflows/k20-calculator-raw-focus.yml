@@ -26,14 +26,21 @@ jobs:
           import requests
 
           base=os.environ['WP_BASE_URL'].rstrip('/')
-          r=requests.get(
-            base+'/wp-json/wp/v2/posts/143698?context=edit',
-            auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD']),
-            timeout=60,
-            headers={'Accept':'application/json','User-Agent':'k20-raw-focus'}
-          )
-          r.raise_for_status()
-          data=r.json()
+          data=None
+          attempts=[]
+          for route in ['posts','pages']:
+            r=requests.get(
+              base+f'/wp-json/wp/v2/{route}/143698?context=edit',
+              auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD']),
+              timeout=60,
+              headers={'Accept':'application/json','User-Agent':'k20-raw-focus'}
+            )
+            attempts.append({'route':route,'status':r.status_code})
+            if r.status_code==200:
+              data=r.json()
+              break
+          if not isinstance(data,dict):
+            data={}
           raw=(data.get('content') or {}).get('raw') or ''
           needles=[
             'GrowthOSMeasurementV1',
@@ -45,7 +52,7 @@ jobs:
             'tc-suggest',
             'suggest',
           ]
-          out={'post_id':143698,'status':data.get('status'),'raw_sha256':hashlib.sha256(raw.encode()).hexdigest(),'raw_bytes':len(raw.encode()),'needles':{}}
+          out={'post_id':143698,'attempts':attempts,'status':data.get('status'),'raw_sha256':hashlib.sha256(raw.encode()).hexdigest(),'raw_bytes':len(raw.encode()),'needles':{}}
           for needle in needles:
             matches=[m.start() for m in re.finditer(re.escape(needle),raw,re.I)]
             out['needles'][needle]={'count':len(matches),'items':[]}
