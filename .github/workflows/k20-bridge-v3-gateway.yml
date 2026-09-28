@@ -1,4 +1,5 @@
 name: Keshavarz20 Bridge v3 Gateway
+# k20-content-sanitizer: enforced
 
 on:
   push:
@@ -28,6 +29,11 @@ jobs:
         with:
           fetch-depth: 2
 
+      - name: Set up Python for content sanitizer
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
       - name: Execute changed v3 requests
         shell: pwsh
         run: |
@@ -47,8 +53,13 @@ jobs:
           foreach ($requestPath in $changed) {
             $name = [IO.Path]::GetFileNameWithoutExtension($requestPath)
             $out = Join-Path $env:RUNNER_TEMP "$name.result.json"
+            $cleanRequest = Join-Path $env:RUNNER_TEMP "$name.sanitized.json"
+            python ./k20_sanitizer.py --json $requestPath --output $cleanRequest
+            if ($LASTEXITCODE -ne 0) { throw "K20 content sanitizer failed for $requestPath" }
+            python ./k20_sanitizer.py --check $cleanRequest
+            if ($LASTEXITCODE -ne 0) { throw "K20 content sanitizer verification failed for $requestPath" }
             try {
-              & ./scripts/Invoke-K20BridgeV3.ps1 -RequestPath $requestPath -OutputPath $out
+              & ./scripts/Invoke-K20BridgeV3.ps1 -RequestPath $cleanRequest -OutputPath $out
               if ($LASTEXITCODE -ne 0) { throw "Bridge v3 client exited $LASTEXITCODE" }
             } catch {
               $hadFailure = $true
