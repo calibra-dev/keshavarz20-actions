@@ -3,6 +3,10 @@ import argparse, base64, datetime as dt, hashlib, html, json, os, random, re, sy
 from urllib import parse, request, error
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.dirname(ROOT)
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
+import k20_sanitizer
 CONFIG_PATH = os.path.join(ROOT, "config.json")
 UA = "Keshavarz20-Customer-Question-Engine/1.0"
 
@@ -101,6 +105,8 @@ class WP:
             headers["Authorization"] = self.auth
         data = None
         if body is not None:
+            body = k20_sanitizer.sanitize_obj(body)
+            k20_sanitizer.assert_clean(body)
             data = json.dumps(body, ensure_ascii=False).encode("utf-8")
             headers["Content-Type"] = "application/json; charset=utf-8"
         req = request.Request(self.base + path, data=data, headers=headers, method=method)

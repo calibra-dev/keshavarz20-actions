@@ -14,6 +14,10 @@ from zoneinfo import ZoneInfo
 import requests
 from PIL import Image, ImageOps
 
+REPO_ROOT = Path(__file__).resolve().parent.parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+import k20_sanitizer
 import main as base
 
 TEHRAN = ZoneInfo("Asia/Tehran")
@@ -62,6 +66,7 @@ def make_candidate(product: dict[str, Any], publish_date: str) -> dict[str, Any]
             "instagram_story": "08:55 Asia/Tehran",
         },
     }
+    k20_sanitizer.sanitize_payload_inplace(candidate)
     hashed = {k: v for k, v in candidate.items() if k != "generated_at"}
     canonical = json.dumps(hashed, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
     candidate["candidate_hash"] = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
