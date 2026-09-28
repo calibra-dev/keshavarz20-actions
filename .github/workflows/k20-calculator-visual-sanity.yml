@@ -1,0 +1,35 @@
+name: K20 Calculator Visual Sanity
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/k20-calculator-visual-sanity.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://keshavarz20.com/drip-tape-length-fittings-calculator/'
+          curl -fsSL -A 'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36' "$URL" -o /tmp/page.html
+          python3 - <<'PY'
+          import re, json
+          h=open('/tmp/page.html',encoding='utf8',errors='replace').read()
+          out={
+            'html_bytes':len(h.encode()),
+            'stylesheet_links':len(re.findall(r'<link[^>]+stylesheet',h,re.I)),
+            'script_tags':len(re.findall(r'<script\b',h,re.I)),
+            'raw_use_strict_text':bool(re.search(r'>\s*use strict\s*;',h,re.I)),
+            'raw_growthos_css_text':bool(re.search(r'>\s*growthos-decision-flow\{',h,re.I)),
+            'has_featured_image':'k20-calculator-featured' in h,
+            'has_calculator_title':'ماشین حساب نوار تیپ' in h,
+            'has_theme_css':bool(re.search(r'irk-(?:style|common|rtl)',h,re.I)),
+            'has_woocommerce_css':bool(re.search(r'irk-woocommerce',h,re.I)),
+            'has_mega_icon_css':bool(re.search(r'mega-theme-icon',h,re.I))
+          }
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
