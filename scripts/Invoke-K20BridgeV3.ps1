@@ -51,7 +51,7 @@ function Write-Result($Object){
 function Get-Engine([string]$Name){
   switch($Name.ToLowerInvariant()){
     'question' { return @{workflow='k20-customer-question-engine.yml';label='Customer Question Engine v18'} }
-    'news' { return @{workflow='k20-daily-agri-news.yml';label='Daily Agriculture News Engine'} }
+    'news' { return @{workflow='k20-news-queue-publisher.yml';label='Daily Agriculture News Engine'} }
     'article' { return @{workflow='k20-article-queue-publisher.yml';label='Daily Article Engine'} }
     'social' { return @{workflow='k20-daily-product-social.yml';label='Daily Product Social Engine'} }
     default { Fail "Unknown engine: $Name" }
@@ -82,6 +82,10 @@ if($githubActions -contains $action){
     if([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($name))){ Fail "Missing GitHub runtime variable: $name" }
   }
   $engine=Get-Engine ([string]$request.engine)
+  $engineMode=[string]$request.mode
+  if(([string]$request.engine).ToLowerInvariant() -eq 'news' -and $engineMode -eq 'api_fallback'){
+    $engine.workflow='k20-daily-agri-news.yml'
+  }
   $headers=@{Authorization="Bearer $env:GH_TOKEN";Accept='application/vnd.github+json';'X-GitHub-Api-Version'='2022-11-28';'User-Agent'='k20-bridge-v33-engine-router'}
   $workflow=[Uri]::EscapeDataString([string]$engine.workflow)
 
@@ -111,15 +115,181 @@ if($githubActions -contains $action){
       $inputs.action=$ea
     }
     'news' {
-      $hours=24; if($null -ne $request.lookback_hours){ $hours=[int]$request.lookback_hours }
-      if($hours -lt 1 -or $hours -gt 168){ Fail 'lookback_hours must be 1..168' }
-      $inputs.lookback_hours=[string]$hours
-      $dr=$true; if($null -ne $request.dry_run){ $dr=[bool]$request.dry_run }
-      $inputs.dry_run=$dr.ToString().ToLowerInvariant()
+      if($engineMode -eq 'api_fallback'){
+        $hours=24; if($null -ne $request.lookback_hours){ $hours=[int]$request.lookback_hours }
+        if($hours -lt 1 -or $hours -gt 168){ Fail 'lookback_hours must be 1..168' }
+        $inputs.lookback_hours=[string]$hours
+        $dr=$true; if($null -ne $request.dry_run){ $dr=[bool]$request.dry_run }
+        $inputs.dry_run=$dr.ToString().ToLowerInvariant()
+      } else {
+        $vo=$false; if($null -ne $request.validate_only){ $vo=[bool]$request.validate_only }
+        $inputs.validate_only=$vo.ToString().ToLowerInvariant()
+        $q=[string]$request.queue_file
+        if($vo -and [string]::IsNullOrWhiteSpace($q)){ $q='daily-agri-news/queue/manual.json' }
+        if($q -notmatch '^daily-agri-news/queue/[A-Za-z0-9._-]+\.json
+    'social' {
+      $ea=[string]$request.engine_action; if([string]::IsNullOrWhiteSpace($ea)){ $ea='status' }
+      if(@('status','prepare','whatsapp','telegram','instagram') -notcontains $ea){ Fail "Unsupported social engine action: $ea" }
+      $inputs.action=$ea
+      if(-not[string]::IsNullOrWhiteSpace([string]$request.publish_date)){
+        if([string]$request.publish_date -notmatch '^\d{4}-\d{2}-\d{2}$'){ Fail 'publish_date must be YYYY-MM-DD' }
+        $inputs.publish_date=[string]$request.publish_date
+      }
+    }
+  }
+  $uri="https://api.github.com/repos/$env:GITHUB_REPOSITORY/actions/workflows/$workflow/dispatches"
+  $payload=[ordered]@{ref='main';inputs=$inputs} | ConvertTo-Json -Depth 10
+  $resp=Invoke-WebRequest -Method Post -Uri $uri -Headers $headers -ContentType 'application/json' -Body $payload -TimeoutSec 60 -SkipHttpErrorCheck
+  if([int]$resp.StatusCode -ne 204){ Fail "Engine dispatch failed with HTTP $([int]$resp.StatusCode)" }
+  Write-Result ([ordered]@{
+    ok=$true;schema_version='3.3';action=$action;engine=[string]$request.engine;engine_label=$engine.label;
+    workflow=$engine.workflow;state='accepted';started_at=[DateTime]::UtcNow.ToString('o');finished_at=$null;
+    changed_ids=@();errors=@();artifact=$null;next_action='engine.status';inputs=$inputs;executed_at_utc=[DateTime]::UtcNow.ToString('o')
+  })
+  exit 0
+}
+
+foreach($name in 'WP_BASE_URL','WP_USERNAME','WP_APP_PASSWORD'){
+  if([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($name))){ Fail "Missing required repository secret: $name" }
+}
+$base=$env:WP_BASE_URL.TrimEnd('/')
+$endpoint="$base/wp-json/keshavarz20-ops/v3/execute"
+$authText="$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"
+$auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($authText))
+$headers=@{Authorization="Basic $auth";Accept='application/json'}
+$body=$request | ConvertTo-Json -Depth 100 -Compress
+$response=Invoke-WebRequest -Uri $endpoint -Method Post -Headers $headers -ContentType 'application/json; charset=utf-8' -Body ([Text.Encoding]::UTF8.GetBytes($body)) -TimeoutSec 180 -SkipHttpErrorCheck
+$status=[int]$response.StatusCode
+$parsed=$null
+try{ $parsed=$response.Content | ConvertFrom-Json -Depth 100 }catch{}
+
+$record=[ordered]@{
+  ok=($status -ge 200 -and $status -lt 300 -and $parsed -and $parsed.ok -eq $true)
+  schema_version=if($parsed -and $parsed.contract){[string]$parsed.contract}else{$null}
+  http_code=$status
+  request=[IO.Path]::GetFileName($RequestPath)
+  action=$action
+  request_id=[string]$request.request_id
+  dry_run=[bool]$request.dry_run
+  executed_at_utc=[DateTime]::UtcNow.ToString('o')
+  bridge=if($parsed){[string]$parsed.bridge}else{$null}
+  bridge_version=if($parsed){[string]$parsed.version}else{$null}
+  error_code=if($parsed -and $parsed.ok -ne $true){[string]$parsed.code}else{$null}
+  message=if($parsed -and $parsed.ok -ne $true){[string]$parsed.message}else{$null}
+}
+if($parsed -and $parsed.ok -ne $true){
+  foreach($name in @('approval_id','fingerprint','expires_at_utc')){
+    $p=$parsed.PSObject.Properties[$name]; if($p){ $record[$name]=$p.Value }
+  }
+}
+if($parsed -and $parsed.result){
+  $result=$parsed.result; $safe=[ordered]@{}
+  foreach($name in @(
+    'id','status','slug','title','name','sku','stock_status','stock_quantity','count','purged','planned','version','wp_version','php_version','theme','active_plugins',
+    'woocommerce','yoast','elementor','object_cache','litespeed_active','wp_cache_flush_available','actions','method','path','job_id','cursor','total','success','failed','retrying','dead_letter',
+    'matches','changed','before_sha256','after_sha256','source_attachment_id','new_attachment_id','approval_id','fingerprint','rolled_back',
+    'current_version','available_version','update_available','staged','applied','installed_file_version','schema_version',
+    'description','focus_keyword','canonical','noindex','attachment_id','attachment_ids','featured_attachment_id','gallery_image_ids','before_gallery_image_ids','target_id','product_id','snapshot_id','sha256','mime','bytes','width','height','previous_attachment_id'
+  )){
+    $p=$result.PSObject.Properties[$name]; if($p){ $safe[$name]=$p.Value }
+  }
+  if($result.data){
+    $data=$result.data
+    if(($data -is [System.Collections.IEnumerable]) -and -not($data -is [string]) -and -not($data -is [pscustomobject])){ $safe['data_count']=@($data).Count }
+    else{ foreach($name in @('id','status','slug','title','name','sku','stock_status','stock_quantity','modified_gmt','link','permalink','description','short_description','attributes','images','categories','tags','featured_media','source_url','media_type','mime_type','media_details')){ $p=$data.PSObject.Properties[$name]; if($p){ $safe["data_$name"]=$p.Value } } }
+  }
+  $record['result']=$safe
+}
+Write-Result $record
+if(-not $record.ok){ Fail "K20 Bridge v3 request failed with HTTP $status" }
+Write-Host "K20_BRIDGE_V33_OK action=$action request_id=$($request.request_id)"
+){ Fail 'News engine requires an allow-listed queue_file path.' }
+        $inputs.queue_file=$q
+      }
     }
     'article' {
+      $vo=$false; if($null -ne $request.validate_only){ $vo=[bool]$request.validate_only }
+      $inputs.validate_only=$vo.ToString().ToLowerInvariant()
       $q=[string]$request.queue_file
-      if($q -notmatch '^daily-agri-articles/queue/[A-Za-z0-9._-]+\.json$'){ Fail 'Article engine requires an allow-listed queue_file path.' }
+      if($vo -and [string]::IsNullOrWhiteSpace($q)){ $q='daily-agri-articles/queue/manual.json' }
+      if($q -notmatch '^daily-agri-articles/queue/[A-Za-z0-9._-]+\.json
+    'social' {
+      $ea=[string]$request.engine_action; if([string]::IsNullOrWhiteSpace($ea)){ $ea='status' }
+      if(@('status','prepare','whatsapp','telegram','instagram') -notcontains $ea){ Fail "Unsupported social engine action: $ea" }
+      $inputs.action=$ea
+      if(-not[string]::IsNullOrWhiteSpace([string]$request.publish_date)){
+        if([string]$request.publish_date -notmatch '^\d{4}-\d{2}-\d{2}$'){ Fail 'publish_date must be YYYY-MM-DD' }
+        $inputs.publish_date=[string]$request.publish_date
+      }
+    }
+  }
+  $uri="https://api.github.com/repos/$env:GITHUB_REPOSITORY/actions/workflows/$workflow/dispatches"
+  $payload=[ordered]@{ref='main';inputs=$inputs} | ConvertTo-Json -Depth 10
+  $resp=Invoke-WebRequest -Method Post -Uri $uri -Headers $headers -ContentType 'application/json' -Body $payload -TimeoutSec 60 -SkipHttpErrorCheck
+  if([int]$resp.StatusCode -ne 204){ Fail "Engine dispatch failed with HTTP $([int]$resp.StatusCode)" }
+  Write-Result ([ordered]@{
+    ok=$true;schema_version='3.3';action=$action;engine=[string]$request.engine;engine_label=$engine.label;
+    workflow=$engine.workflow;state='accepted';started_at=[DateTime]::UtcNow.ToString('o');finished_at=$null;
+    changed_ids=@();errors=@();artifact=$null;next_action='engine.status';inputs=$inputs;executed_at_utc=[DateTime]::UtcNow.ToString('o')
+  })
+  exit 0
+}
+
+foreach($name in 'WP_BASE_URL','WP_USERNAME','WP_APP_PASSWORD'){
+  if([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($name))){ Fail "Missing required repository secret: $name" }
+}
+$base=$env:WP_BASE_URL.TrimEnd('/')
+$endpoint="$base/wp-json/keshavarz20-ops/v3/execute"
+$authText="$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"
+$auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($authText))
+$headers=@{Authorization="Basic $auth";Accept='application/json'}
+$body=$request | ConvertTo-Json -Depth 100 -Compress
+$response=Invoke-WebRequest -Uri $endpoint -Method Post -Headers $headers -ContentType 'application/json; charset=utf-8' -Body ([Text.Encoding]::UTF8.GetBytes($body)) -TimeoutSec 180 -SkipHttpErrorCheck
+$status=[int]$response.StatusCode
+$parsed=$null
+try{ $parsed=$response.Content | ConvertFrom-Json -Depth 100 }catch{}
+
+$record=[ordered]@{
+  ok=($status -ge 200 -and $status -lt 300 -and $parsed -and $parsed.ok -eq $true)
+  schema_version=if($parsed -and $parsed.contract){[string]$parsed.contract}else{$null}
+  http_code=$status
+  request=[IO.Path]::GetFileName($RequestPath)
+  action=$action
+  request_id=[string]$request.request_id
+  dry_run=[bool]$request.dry_run
+  executed_at_utc=[DateTime]::UtcNow.ToString('o')
+  bridge=if($parsed){[string]$parsed.bridge}else{$null}
+  bridge_version=if($parsed){[string]$parsed.version}else{$null}
+  error_code=if($parsed -and $parsed.ok -ne $true){[string]$parsed.code}else{$null}
+  message=if($parsed -and $parsed.ok -ne $true){[string]$parsed.message}else{$null}
+}
+if($parsed -and $parsed.ok -ne $true){
+  foreach($name in @('approval_id','fingerprint','expires_at_utc')){
+    $p=$parsed.PSObject.Properties[$name]; if($p){ $record[$name]=$p.Value }
+  }
+}
+if($parsed -and $parsed.result){
+  $result=$parsed.result; $safe=[ordered]@{}
+  foreach($name in @(
+    'id','status','slug','title','name','sku','stock_status','stock_quantity','count','purged','planned','version','wp_version','php_version','theme','active_plugins',
+    'woocommerce','yoast','elementor','object_cache','litespeed_active','wp_cache_flush_available','actions','method','path','job_id','cursor','total','success','failed','retrying','dead_letter',
+    'matches','changed','before_sha256','after_sha256','source_attachment_id','new_attachment_id','approval_id','fingerprint','rolled_back',
+    'current_version','available_version','update_available','staged','applied','installed_file_version','schema_version',
+    'description','focus_keyword','canonical','noindex','attachment_id','attachment_ids','featured_attachment_id','gallery_image_ids','before_gallery_image_ids','target_id','product_id','snapshot_id','sha256','mime','bytes','width','height','previous_attachment_id'
+  )){
+    $p=$result.PSObject.Properties[$name]; if($p){ $safe[$name]=$p.Value }
+  }
+  if($result.data){
+    $data=$result.data
+    if(($data -is [System.Collections.IEnumerable]) -and -not($data -is [string]) -and -not($data -is [pscustomobject])){ $safe['data_count']=@($data).Count }
+    else{ foreach($name in @('id','status','slug','title','name','sku','stock_status','stock_quantity','modified_gmt','link','permalink','description','short_description','attributes','images','categories','tags','featured_media','source_url','media_type','mime_type','media_details')){ $p=$data.PSObject.Properties[$name]; if($p){ $safe["data_$name"]=$p.Value } } }
+  }
+  $record['result']=$safe
+}
+Write-Result $record
+if(-not $record.ok){ Fail "K20 Bridge v3 request failed with HTTP $status" }
+Write-Host "K20_BRIDGE_V33_OK action=$action request_id=$($request.request_id)"
+){ Fail 'Article engine requires an allow-listed queue_file path.' }
       $inputs.queue_file=$q
     }
     'social' {
