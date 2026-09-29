@@ -20,6 +20,9 @@ on:
       - '.github/workflows/k20-daily-agri-news.yml'
       - 'daily-agri-news/main.py'
       - 'daily-agri-news/requirements.txt'
+      - 'content-growth/**'
+      - 'content_growth_runtime.py'
+      - 'tests/test_content_growth_prompt_v3.py'
 
 permissions:
   contents: read
@@ -40,7 +43,10 @@ jobs:
         with:
           python-version: '3.12'
       - name: Compile Python
-        run: python -m py_compile daily-agri-news/main.py
+        run: |
+          python -m py_compile daily-agri-news/main.py
+          python -m py_compile content_growth_runtime.py
+          python -m unittest tests.test_content_growth_prompt_v3 -v
 
   build-news-draft:
     if: github.event_name != 'pull_request'
