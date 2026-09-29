@@ -10,12 +10,20 @@ on:
       - '.github/workflows/k20-news-queue-publisher.yml'
       - 'automation-policy/**'
       - 'daily-agri-news/**'
+      - 'content-growth/**'
+      - 'content_growth_runtime.py'
+      - 'tests/test_content_growth_prompt_v3.py'
   workflow_dispatch:
     inputs:
       queue_file:
         description: 'Path to a queue JSON file'
         required: true
         default: 'daily-agri-news/queue/manual.json'
+      validate_only:
+        description: 'Run static validation only; never write to WordPress'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: read
@@ -40,9 +48,11 @@ jobs:
           python -m py_compile daily-agri-news/publish_queue.py
           python -m py_compile daily-agri-news/publish_queue_v2.py
           python -m py_compile daily-agri-news/publish_queue_v3.py
+          python -m py_compile content_growth_runtime.py
+          python -m unittest tests.test_content_growth_prompt_v3 -v
 
   publish-draft:
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request' && (github.event_name != 'workflow_dispatch' || inputs.validate_only != true)
     needs: static-check
     runs-on: ubuntu-latest
     timeout-minutes: 15
