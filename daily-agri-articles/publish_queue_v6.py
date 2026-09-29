@@ -35,7 +35,7 @@ def _upgrade_queue_payload_with_growth_prompt(p: dict) -> dict:
         k20_sanitizer.sanitize_payload_inplace(p)
         return p
 
-    master = content_growth_runtime.load_master_prompt()
+    master = content_growth_runtime.load_master_prompt("article")
     model = os.environ.get("OPENAI_TEXT_MODEL", "gpt-5.6")
     client = OpenAI(api_key=key)
     protected = {
