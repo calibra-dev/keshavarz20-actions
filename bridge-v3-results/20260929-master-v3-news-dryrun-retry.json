@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "action": "engine.run",
+  "engine": "news",
+  "engine_label": "Daily Agriculture News Engine",
+  "workflow": "k20-daily-agri-news.yml",
+  "state": "accepted",
+  "started_at": "2026-09-29T20:17:51.3581764Z",
+  "finished_at": null,
+  "changed_ids": [],
+  "errors": [],
+  "artifact": null,
+  "next_action": "engine.status",
+  "inputs": {
+    "lookback_hours": "24",
+    "dry_run": "true"
+  },
+  "executed_at_utc": "2026-09-29T20:17:51.3610710Z"
+}
