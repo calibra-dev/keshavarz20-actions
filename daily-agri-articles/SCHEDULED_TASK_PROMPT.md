@@ -8,8 +8,10 @@ Before research, read and obey:
 
 1. `automation-policy/seo-god-2026.json`
 2. `automation-policy/editorial-trust-2026.json`
-3. this file
-4. `daily-agri-articles/README.md`
+3. `content-growth/K20_CONTENT_GROWTH_MASTER_PROMPT_V3.md`
+4. `content-growth/profiles/article.md`
+5. this file
+6. `daily-agri-articles/README.md`
 
 The shared policy controls evidence quality, farmer decision value, GEO/AEO behavior, safety and automation governance. If this document conflicts with the shared policy, use the stricter rule.
 
