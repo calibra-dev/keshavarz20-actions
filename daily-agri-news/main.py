@@ -384,7 +384,7 @@ def crosscheck(selected: Candidate, all_candidates: list[Candidate]) -> dict[str
 
 
 def author_article(selected: Candidate, verification: dict[str, Any]) -> dict[str, Any]:
-    master_prompt = content_growth_runtime.load_master_prompt()
+    master_prompt = content_growth_runtime.load_master_prompt("news")
     prompt = f"""
 برای سایت تخصصی کشاورز بیست یک خبر فارسی حرفه‌ای و انسان‌نویس بنویس. این متن «بازنویسی تحریریه» است نه کپی خبر منبع.
 
