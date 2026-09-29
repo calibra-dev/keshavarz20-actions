@@ -1,0 +1,121 @@
+{
+  "content_type": "post",
+  "generated_at": "2026-09-29T09:00:00+03:30",
+  "title": "چند فیلتر موازی برای آبیاری قطره‌ای لازم است؟ راهنمای دبی، افت فشار و بک‌واش",
+  "slug": "drip-irrigation-parallel-filter-sizing-flow-pressure-backwash-guide",
+  "excerpt": "تعداد فیلتر موازی را با دبی طراحی، ظرفیت واقعی هر واحد، افت فشار و حالت بک‌واش محاسبه کنید؛ نه فقط از روی سایز اتصال فیلتر.",
+  "content_html": "<div dir=\"rtl\" style=\"direction:rtl;background:linear-gradient(180deg,#F3FAF5 0%,#FFFFFF 100%);padding:28px;border-radius:24px;color:#1F2937;line-height:2;font-size:17px\">\n<section style=\"background:linear-gradient(135deg,#11492A,#17653A,#2E8B57);color:#fff;border-radius:22px;padding:30px 26px;margin-bottom:24px\"><div style=\"display:inline-block;background:rgba(255,255,255,.14);padding:7px 14px;border-radius:999px;font-size:14px;margin-bottom:14px\">راهنمای سایزبندی ایستگاه فیلتراسیون</div><h1 style=\"margin:0 0 12px;color:#fff;font-size:30px;line-height:1.65\">چند فیلتر موازی برای آبیاری قطره‌ای لازم است؟ راهنمای دبی، افت فشار و بک‌واش</h1><p style=\"margin:0;color:#F4FFF7\"><strong>خلاصه تصمیم:</strong> تعداد فیلترها را از تقسیم دبی طراحی بر ظرفیت مجاز هر واحد شروع کنید و رو به بالا گرد کنید؛ اما این فقط عدد پایه است. اگر هنگام بک‌واش یک فیلتر از مدار خارج می‌شود، باید بررسی کنید فیلترهای باقی‌مانده هنوز دبی آبیاری و در صورت نیاز دبی شست‌وشو را بدون عبور از ظرفیت و افت فشار مجاز تأمین می‌کنند یا نه.</p></section>\n\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">قبل از محاسبه تعداد فیلتر چه چیزهایی باید مشخص باشد؟</h2><p>پنج ورودی اصلی دارید: <strong>دبی بیشینه زون فعال</strong>، <strong>کیفیت آب و بار ذرات</strong>، <strong>نوع و درجه فیلتراسیون</strong>، <strong>ظرفیت مجاز هر فیلتر در شرایط واقعی</strong> و <strong>منطق بک‌واش</strong>. اگر فقط قطر ورودی فیلتر یا عبارت «۲ اینچ» را بدانید، برای سایزبندی کافی نیست.</p><ul><li><strong>Qdesign:</strong> دبی واقعی یا طراحی‌ای که ایستگاه باید عبور دهد.</li><li><strong>Qunit:</strong> ظرفیت قابل قبول هر واحد برای همان مش/دیسک/مدیا و کیفیت آب.</li><li><strong>ΔP:</strong> افت فشار تمیز و آستانه شست‌وشو.</li><li><strong>Qbw:</strong> دبی لازم برای شست‌وشوی معکوس، اگر سیستم خودکار باشد.</li><li><strong>واحد خارج از مدار:</strong> آیا هنگام شست‌وشو یک فیلتر موقتاً از مدار خارج می‌شود؟</li></ul></section>\n\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">فرمول پایه تعداد فیلتر موازی</h2><div style=\"background:#EEF7FF;border:1px solid #CFE2F4;border-radius:18px;padding:20px;text-align:center\"><strong>Nbase = ceil(Qdesign ÷ Qunit)</strong></div><p>یعنی تعداد پایه برابر است با دبی طراحی تقسیم بر ظرفیت مجاز هر واحد و سپس گردکردن رو به بالا. نکته مهم این است که <strong>Qunit باید ظرفیت مجاز در شرایط واقعی باشد، نه صرفاً یک عدد تبلیغاتی یا حداکثر لحظه‌ای.</strong></p><p>University of California ANR توضیح می‌دهد که عملکرد فیلتر توری به مقدار مواد معلق، مش، دبی و سطح توری وابسته است؛ در فیلترهای مدیا نیز دبی طراحی با میزان آلودگی آب تغییر می‌کند. بنابراین یک ظرفیت ثابت برای هر منبع آب وجود ندارد.</p></section>\n\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">مثال ساده: دبی ۶۰ مترمکعب بر ساعت</h2><p>فرض کنید دبی طراحی ایستگاه <strong>۶۰ مترمکعب بر ساعت</strong> است و سازنده برای شرایط آب، درجه فیلتراسیون و افت فشار قابل قبول شما، ظرفیت مجاز هر واحد را <strong>۲۵ مترمکعب بر ساعت</strong> اعلام کرده است.</p><div style=\"background:#EAF6EE;border-radius:16px;padding:18px\"><strong>عدد پایه:</strong> ۶۰ ÷ ۲۵ = ۲٫۴، پس حداقل <strong>۳ واحد</strong> برای عبور دبی در حالت عادی لازم است.</div><p>اما اگر سامانه هنگام بک‌واش یکی از فیلترها را از مدار خارج کند، دو واحد باقی‌مانده در مجموع فقط ۵۰ مترمکعب بر ساعت ظرفیت دارند؛ بنابراین برای حفظ کامل دبی ۶۰ مترمکعب بر ساعت، سه واحد کافی نیستند و باید آرایش دیگری بررسی شود. در این مثال آموزشی، <strong>۴ واحد</strong> باعث می‌شود با خروج یک واحد، سه فیلتر باقی‌مانده هنوز ۷۵ مترمکعب بر ساعت ظرفیت اسمی مجاز داشته باشند؛ سپس باید دبی خود بک‌واش و محدودیت سازنده نیز کنترل شود.</p></section>\n\n<section style=\"background:#FFF6D8;border:1px solid #F0D78C;border-radius:18px;padding:22px;margin:22px 0\"><h2 style=\"color:#7A5415\">حاشیه ظرفیت را درصد ثابت نگیرید</h2><p>یک «۲۰ درصد اضافه» یا عدد مشابه، قانون جهانی طراحی فیلتر نیست. حاشیه واقعی به کیفیت آب، سرعت کثیف‌شدن، تعداد دفعات شست‌وشو، افت فشار، امکان توقف آبیاری و آرایش بک‌واش بستگی دارد. به‌جای درصد دلخواه، ظرفیت را بر اساس <strong>حالت عادی + حالت یک واحد خارج از مدار + نیاز بک‌واش</strong> کنترل کنید.</p></section>\n\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">افت فشار فیلتر چه نقشی در تعداد واحدها دارد؟</h2><p>فیلتر فقط باید دبی را عبور ندهد؛ افت فشار آن نیز باید در بودجه هد سامانه قرار گیرد. UC ANR برای برخی فیلترهای توری و مدیا، افت فشار طراحی تمیز در حدود <strong>۳ تا ۵ psi</strong> را گزارش می‌کند. این اعداد راهنمای عمومی همان منابع هستند و جای منحنی سازنده را نمی‌گیرند.</p><p>اگر فیلتر بیش از حد کوچک انتخاب شود، سرعت عبور و افت فشار افزایش می‌یابد و فاصله بین شست‌وشوها می‌تواند کوتاه شود. از طرف دیگر، افت فشار فیلتر باید همراه با افت خط اصلی، شیرها، رگلاتورها و اختلاف ارتفاع در هد کل پمپ دیده شود. برای این بخش، <a href=\"https://keshavarz20.com/irrigation-pump-flow-head-selection-guide/\" style=\"color:#17653A;font-weight:700\">راهنمای انتخاب پمپ بر اساس دبی و هد</a> مکمل خوبی است.</p></section>\n\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">بک‌واش چگونه محاسبه را عوض می‌کند؟</h2><p>UC ANR درباره بانک‌های فیلتر توری و مدیا توضیح می‌دهد که در بسیاری از آرایش‌های خودکار، هنگام شست‌وشوی یک واحد، آب تمیز از واحدهای دیگر برای بک‌واش استفاده می‌شود. بنابراین باید دو سؤال را جواب دهید:</p><ol><li>وقتی یک واحد شسته می‌شود، ظرفیت واحدهای باقی‌مانده برای دبی آبیاری کافی است؟</li><li>آیا علاوه بر دبی آبیاری، دبی لازم برای بک‌واش نیز باید از همان واحدهای فعال تأمین شود؟</li></ol><div style=\"background:#EEF7FF;border:1px solid #CFE2F4;border-radius:18px;padding:20px;text-align:center\"><strong>کنترل محافظه‌کارانه:</strong><br>(N − 1) × Qunit ≥ Qdesign + Qbw<br><small>فقط وقتی بک‌واش واقعاً هم‌زمان با آبیاری و از بانک فعال تغذیه می‌شود.</small></div><p>اگر کنترلر هنگام شست‌وشو دبی آبیاری را کاهش می‌دهد یا پمپ/مسیر مستقل برای بک‌واش وجود دارد، این رابطه تغییر می‌کند. طراحی نهایی باید مطابق منطق واقعی شیرها و سازنده باشد.</p></section>\n\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">نوع آب و نوع فیلتر را جداگانه ببینید</h2><div style=\"overflow-x:auto;border-radius:14px;border:1px solid #D7E9DD\"><table style=\"width:100%;border-collapse:collapse;min-width:760px\"><thead><tr style=\"background:#17653A;color:#fff\"><th style=\"padding:12px\">شرایط</th><th style=\"padding:12px\">نکته طراحی</th><th style=\"padding:12px\">ریسک اگر نادیده بگیرید</th></tr></thead><tbody><tr><td style=\"padding:12px\">آب چاه با شن</td><td style=\"padding:12px\">جداکننده شن/هیدروسیکلون پیش از فیلتر نهایی بررسی شود</td><td style=\"padding:12px\">بار زیاد روی فیلتر و شست‌وشوی مکرر</td></tr><tr><td style=\"padding:12px\">مواد آلی زیاد</td><td style=\"padding:12px\">توری ممکن است سریع‌تر مسدود شود؛ نوع فیلتر را با کیفیت آب تطبیق دهید</td><td style=\"padding:12px\">افت فشار سریع و کاهش دبی</td></tr><tr><td style=\"padding:12px\">بانک اتوماتیک</td><td style=\"padding:12px\">ظرفیت حالت بک‌واش مهم است</td><td style=\"padding:12px\">کمبود دبی هنگام شست‌وشو</td></tr><tr><td style=\"padding:12px\">چند زون با دبی متفاوت</td><td style=\"padding:12px\">کمینه و بیشینه دبی را با منحنی تجهیزات کنترل کنید</td><td style=\"padding:12px\">کارکرد خارج از محدوده مناسب</td></tr></tbody></table></div><p>اگر منبع آب چاه شنی است، قبل از افزایش تعداد فیلترهای نهایی، ترتیب جداسازی شن و فیلتراسیون باید درست باشد. در چنین پروژه‌ای، یک پیش‌فیلتر مناسب می‌تواند مسئله‌ای را حل کند که صرفاً با بزرگ‌ترکردن بانک فیلتر حل نمی‌شود.</p></section>\n\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">فشار قبل و بعد از فیلتر را اندازه بگیرید</h2><p>گیج فشار قبل و بعد از بانک فیلتر یکی از ساده‌ترین ابزارهای تشخیص است. اختلاف این دو فشار نشان می‌دهد فیلتر چه مقدار هد مصرف می‌کند. روند افزایش اختلاف فشار معمولاً از یک عدد منفرد ارزشمندتر است.</p><p>برای توری، UC ANR توصیه می‌کند وقتی افت فشار نسبت به حالت تمیز افزایش قابل‌توجهی پیدا می‌کند، شست‌وشو انجام شود؛ برای مدیا نیز آستانه بک‌واش بالاتری گزارش شده است. اما آستانه نهایی باید از دستورالعمل سازنده همان فیلتر گرفته شود.</p><p>بعد از فیلتر، فشار باید برای رگلاتور و زون کافی بماند. اگر فشار خروجی ناپایدار است، <a href=\"https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/\" style=\"color:#17653A;font-weight:700\">راهنمای انتخاب و تست فشارشکن آبیاری قطره‌ای</a> را بررسی کنید.</p></section>\n\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">پنج خطای رایج در بانک فیلتر</h2><ol><li><strong>انتخاب تعداد بر اساس سایز اتصال:</strong> «دو اینچ» ظرفیت واقعی را مشخص نمی‌کند.</li><li><strong>استفاده از حداکثر کاتالوگ بدون توجه به کیفیت آب:</strong> آب کثیف‌تر می‌تواند ظرفیت عملی را محدود کند.</li><li><strong>ندیدن حالت بک‌واش:</strong> سیستم در حالت عادی جواب می‌دهد اما هنگام شست‌وشو افت دبی پیدا می‌کند.</li><li><strong>بی‌توجهی به افت فشار:</strong> فیلتر عبور دبی دارد اما هد زیادی مصرف می‌کند.</li><li><strong>حل شن با فیلتر نهایی:</strong> در آب چاه شنی، جداکننده اولیه ممکن است بخش ضروری طراحی باشد.</li></ol></section>\n\n<section style=\"background:#EAF6EE;border:1px solid #CFE5D5;border-radius:18px;padding:22px;margin:22px 0\"><h2 style=\"color:#17653A\">چه زمانی محاسبه ساده کافی نیست؟</h2><p>اگر آب سطحی با بار آلی متغیر دارید، بک‌واش خودکار دارید، دبی زون‌ها تفاوت زیادی دارد، چند پمپ یا چند منبع آب دارید، یا افت فشار ایستگاه به هد پمپ نزدیک شده است، طراحی باید با منحنی سازنده، کیفیت واقعی آب و سناریوهای عملیاتی انجام شود. در این شرایط فقط تقسیم دبی بر ظرفیت نامی فیلتر کافی نیست.</p><p>اگر مشکل اصلی یکنواختی آب در انتهای خطوط است، <a href=\"https://keshavarz20.com/drip-irrigation-uniformity-du-field-test-guide/\" style=\"color:#17653A;font-weight:700\">تست دبی قطره‌چکان و محاسبه DU</a> کمک می‌کند مشخص شود محدودیت از فیلتراسیون، فشار یا خود شبکه است.</p></section>\n\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">سوالات متداول</h2><h3>آیا همیشه یک فیلتر رزرو اضافه لازم است؟</h3><p>نه به‌عنوان قانون ثابت. اگر هنگام بک‌واش باید دبی کامل حفظ شود، آرایش N+1 یا مشابه ممکن است منطقی باشد؛ اما تصمیم باید با ظرفیت واقعی و منطق شست‌وشو گرفته شود.</p><h3>آیا ظرفیت فیلتر را از سایز ۲ یا ۳ اینچ می‌توان فهمید؟</h3><p>خیر. نوع المان، سطح فیلتراسیون، درجه مش، کیفیت آب و منحنی افت فشار تعیین‌کننده‌اند.</p><h3>آیا افت فشار ۳ تا ۵ psi برای همه فیلترهاست؟</h3><p>خیر. این بازه در منابع UC ANR برای برخی طراحی‌های توری و مدیا گزارش شده است. مقدار مجاز واقعی باید از سازنده همان فیلتر گرفته شود.</p><h3>اگر یک واحد در بک‌واش باشد، بقیه باید کل دبی را عبور دهند؟</h3><p>اگر آبیاری بدون کاهش دبی ادامه پیدا می‌کند، بله؛ و در برخی آرایش‌ها دبی خود بک‌واش هم باید از بانک فعال تأمین شود.</p><h3>برای آب چاه شنی فقط تعداد فیلتر را بیشتر کنیم؟</h3><p>نه لزوماً. ابتدا نیاز به جداکننده شن یا پیش‌فیلتر مناسب بررسی شود؛ افزایش تعداد فیلتر نهایی جای طراحی صحیح پیش‌تصفیه را نمی‌گیرد.</p></section>\n\n<section style=\"background:linear-gradient(135deg,#0F5132,#17653A);color:#fff;border-radius:20px;padding:24px;margin:24px 0\"><h2 style=\"color:#fff\">جمع‌بندی</h2><p>برای تعداد فیلتر موازی، از <strong>دبی طراحی ÷ ظرفیت مجاز هر واحد</strong> شروع کنید؛ سپس حالت یک واحد خارج از مدار، دبی بک‌واش، افت فشار و کیفیت آب را کنترل کنید. عددی که فقط در حالت تمیز و عادی جواب می‌دهد، الزاماً ظرفیت واقعی ایستگاه در فصل کار نیست.</p></section>\n\n<section style=\"background:#FFF9E8;border:1px solid #EED9A3;border-radius:18px;padding:22px;margin:22px 0\"><h2 style=\"color:#7A5415\">نظر کارشناسی کشاورز بیست</h2><p>در خرید فیلتر، تمرکز صرف روی قطر اتصال یکی از خطاهای رایج است. برای تصمیم بهتر، از فروشنده یا سازنده منحنی دبی–افت فشار، ظرفیت در مش موردنظر و نیاز بک‌واش را بخواهید. اگر این سه داده موجود نباشد، مقایسه قیمت دو فیلتر می‌تواند گمراه‌کننده باشد.</p></section>\n\n<section style=\"background:#fff;border:1px solid #D7E9DD;border-radius:18px;padding:24px;margin:22px 0\"><h2 style=\"color:#17653A\">منابع</h2><ul><li><a href=\"https://www.ucanr.edu/site/maintenance-microirrigation-systems/pressurized-screen-flters\">University of California ANR — Pressurized Screen Filters</a></li><li><a href=\"https://ucanr.edu/site/maintenance-microirrigation-systems/sand-media-filters\">University of California ANR — Sand Media Filters</a></li><li><a href=\"https://ucanr.edu/site/maintenance-microirrigation-systems/centrifugal-sand-separators\">University of California ANR — Centrifugal Sand Separators</a></li><li><a href=\"https://www.wcc.nrcs.usda.gov/ftpref/wntsc/waterMgt/irrigation/NEH15/ch7.pdf\">USDA NRCS National Engineering Handbook, Part 623, Chapter 7 — Microirrigation</a></li></ul></section>\n\n<section style=\"background:#F7F7F7;border-radius:16px;padding:20px;margin-top:22px\"><h2 style=\"color:#17653A\">روش تهیه و بازبینی</h2><p>این راهنما با تفکیک ظرفیت عادی، ظرفیت هنگام بک‌واش، افت فشار و کیفیت آب از منابع مستقیم دانشگاهی و مهندسی تهیه شده است. فرمول‌ها برای غربال اولیه‌اند و جای منحنی سازنده یا طراحی پروژه را نمی‌گیرند. خروجی به‌صورت پیش‌نویس تولید شده و پیش از انتشار نهایی نیازمند بازبینی انسانی است. <a href=\"https://keshavarz20.com/editorial-policy/\" style=\"color:#17653A;font-weight:700\">سیاست تحریریه کشاورز بیست</a> جزئیات روش کنترل محتوا را توضیح می‌دهد.</p></section>\n</div>",
+  "focus_keyphrase": "محاسبه تعداد فیلتر موازی آبیاری قطره‌ای",
+  "related_keyphrases": [
+    "تعداد فیلتر موازی آبیاری",
+    "ظرفیت فیلتر آبیاری",
+    "افت فشار فیلتر",
+    "بک‌واش فیلتر آبیاری",
+    "سایزبندی ایستگاه فیلتراسیون"
+  ],
+  "seo_title": "تعداد فیلتر موازی آبیاری | دبی، افت فشار و بک‌واش",
+  "meta_description": "تعداد فیلتر موازی آبیاری قطره‌ای را از دبی، ظرفیت هر واحد، افت فشار و بک‌واش محاسبه کنید؛ همراه مثال ۶۰ مترمکعب بر ساعت.",
+  "category_name": "راهنمای آبیاری و تجهیزات",
+  "category_id": 1030,
+  "tags": [
+    "فیلتر آبیاری",
+    "آبیاری قطره‌ای",
+    "فیلتر توری",
+    "فیلتر دیسکی",
+    "بک‌واش",
+    "افت فشار",
+    "فیلتراسیون"
+  ],
+  "source_urls": [
+    "https://www.ucanr.edu/site/maintenance-microirrigation-systems/pressurized-screen-flters",
+    "https://ucanr.edu/site/maintenance-microirrigation-systems/sand-media-filters",
+    "https://ucanr.edu/site/maintenance-microirrigation-systems/centrifugal-sand-separators",
+    "https://www.wcc.nrcs.usda.gov/ftpref/wntsc/waterMgt/irrigation/NEH15/ch7.pdf"
+  ],
+  "source_names": [
+    "University of California ANR — Pressurized Screen Filters",
+    "University of California ANR — Sand Media Filters",
+    "University of California ANR — Centrifugal Sand Separators",
+    "USDA NRCS National Engineering Handbook — Chapter 7 Microirrigation"
+  ],
+  "research_summary": "موضوع از نیاز تکرارشونده سایزبندی بانک فیلتر و سؤال تعداد فیلترهای موازی انتخاب شد. منابع UC ANR و NRCS برای ظرفیت وابسته به کیفیت آب، افت فشار، آرایش بانک و بک‌واش بررسی شدند. هیچ درصد ثابت حاشیه ظرفیت به‌عنوان قانون عمومی معرفی نشده و عددهای فشار فقط با نسبت‌دادن به منبع ارائه شده‌اند.",
+  "editorial_disclosure": "این پیش‌نویس با کمک اتوماسیون تحریریه و منابع مستقیم فنی تهیه شده و پیش از انتشار نهایی نیازمند بازبینی انسانی است.",
+  "review_status": "human_review_required_before_publish",
+  "image_search_query": "agricultural drip irrigation filtration station screen filter bank",
+  "image_search_fallbacks": [
+    "farm irrigation filter station screen filters",
+    "drip irrigation filtration system agriculture"
+  ],
+  "image_title": "سایزبندی فیلترهای موازی آبیاری قطره‌ای",
+  "cover_title": "چند فیلتر موازی لازم است؟",
+  "cover_subtitle": "دبی، افت فشار و بک‌واش را با هم حساب کنید",
+  "alt_text": "بانک فیلترهای موازی در ایستگاه فیلتراسیون آبیاری قطره‌ای",
+  "faq_items": [
+    {
+      "question": "آیا همیشه یک فیلتر رزرو اضافه لازم است؟",
+      "answer": "نه به‌عنوان قانون ثابت. اگر هنگام بک‌واش باید دبی کامل حفظ شود، آرایش N+1 یا مشابه ممکن است منطقی باشد؛ اما تصمیم باید با ظرفیت واقعی و منطق شست‌وشو گرفته شود."
+    },
+    {
+      "question": "آیا ظرفیت فیلتر را از سایز ۲ یا ۳ اینچ می‌توان فهمید؟",
+      "answer": "خیر. نوع المان، سطح فیلتراسیون، درجه مش، کیفیت آب و منحنی افت فشار تعیین‌کننده‌اند."
+    },
+    {
+      "question": "آیا افت فشار ۳ تا ۵ psi برای همه فیلترهاست؟",
+      "answer": "خیر. این بازه در منابع UC ANR برای برخی طراحی‌های توری و مدیا گزارش شده و مقدار مجاز واقعی باید از سازنده همان فیلتر گرفته شود."
+    },
+    {
+      "question": "اگر یک واحد در بک‌واش باشد، بقیه باید کل دبی را عبور دهند؟",
+      "answer": "اگر آبیاری بدون کاهش دبی ادامه پیدا می‌کند، بله؛ و در برخی آرایش‌ها دبی خود بک‌واش هم باید از بانک فعال تأمین شود."
+    },
+    {
+      "question": "برای آب چاه شنی فقط تعداد فیلتر را بیشتر کنیم؟",
+      "answer": "نه لزوماً. ابتدا نیاز به جداکننده شن یا پیش‌فیلتر مناسب بررسی شود؛ افزایش تعداد فیلتر نهایی جای طراحی صحیح پیش‌تصفیه را نمی‌گیرد."
+    }
+  ],
+  "phase20_schema_version": "1",
+  "canonical_intent_id": "ir-intent-parallel-filter-bank-sizing",
+  "parent_hub": "راهنمای آبیاری و تجهیزات",
+  "scenario_dimensions": {
+    "crop": "",
+    "province_or_climate": "",
+    "season": "",
+    "area": "",
+    "water": "کیفیت آب متغیر و نیازمند فیلتراسیون",
+    "soil": "",
+    "irrigation_system": "آبیاری قطره‌ای",
+    "problem": "کمبود ظرفیت، افت فشار یا کاهش دبی هنگام بک‌واش",
+    "decision": "تعیین تعداد فیلترهای موازی بر اساس دبی، افت فشار و شست‌وشو"
+  },
+  "source_strength": "PRIMARY_EXTENSION+ENGINEERING_REFERENCE",
+  "question_engine_intents_covered": [
+    "برای محاسبه تعداد فیلتر موازی چه ورودی‌هایی لازم است؟",
+    "برای انتخاب فیلتر بر اساس دبی چه حاشیه ظرفیتی منطقی است؟",
+    "چرا فیلتر با وجود شست‌وشو افت فشار دارد؟"
+  ],
+  "compatibility_rules_referenced": [
+    "filter_flow_capacity",
+    "pressure_drop",
+    "backwash_capacity",
+    "water_quality",
+    "pre_filtration"
+  ],
+  "membership_cta_type": "save_project",
+  "update_triggers": [
+    "اضافه شدن ماشین‌حساب تعداد فیلتر موازی",
+    "تغییر راهنمای رسمی بک‌واش یا افت فشار",
+    "افزوده شدن منحنی‌های معتبر سازندگان رایج بازار ایران",
+    "افزوده شدن داده واقعی کیفیت آب و ظرفیت بانک فیلتر"
+  ],
+  "topic_score": {
+    "farmer_decision_value": 20,
+    "independent_intent": 15,
+    "evidence_strength": 15,
+    "demand_signal": 13,
+    "seasonal_relevance": 7,
+    "business_relevance": 10,
+    "original_value_potential": 8,
+    "cannibalization_safety": 5,
+    "total": 93,
+    "blockers": []
+  }
+}
