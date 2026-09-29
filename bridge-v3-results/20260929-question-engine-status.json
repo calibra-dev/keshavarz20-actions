@@ -1,0 +1,77 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "action": "engine.status",
+  "engine": "question",
+  "engine_label": "Customer Question Engine v18",
+  "workflow": "k20-customer-question-engine.yml",
+  "state": "completed",
+  "runs": [
+    {
+      "run_id": 36341725525,
+      "state": "completed",
+      "conclusion": "success",
+      "event": "push",
+      "started_at": "2026-09-27T18:43:54Z",
+      "created_at": "2026-09-27T18:43:54Z",
+      "finished_at": "2026-09-27T18:52:50Z",
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    },
+    {
+      "run_id": 36341722393,
+      "state": "completed",
+      "conclusion": "cancelled",
+      "event": "push",
+      "started_at": "2026-09-27T18:43:51Z",
+      "created_at": "2026-09-27T18:43:51Z",
+      "finished_at": "2026-09-27T18:43:55Z",
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    },
+    {
+      "run_id": 36322386953,
+      "state": "completed",
+      "conclusion": "success",
+      "event": "push",
+      "started_at": "2026-09-27T13:26:18Z",
+      "created_at": "2026-09-27T13:26:18Z",
+      "finished_at": "2026-09-27T13:27:18Z",
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    },
+    {
+      "run_id": 36322094667,
+      "state": "completed",
+      "conclusion": "success",
+      "event": "push",
+      "started_at": "2026-09-27T13:21:12Z",
+      "created_at": "2026-09-27T13:21:12Z",
+      "finished_at": "2026-09-27T13:22:46Z",
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    },
+    {
+      "run_id": 36322092572,
+      "state": "completed",
+      "conclusion": "success",
+      "event": "push",
+      "started_at": "2026-09-27T13:21:10Z",
+      "created_at": "2026-09-27T13:21:10Z",
+      "finished_at": "2026-09-27T13:21:49Z",
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    }
+  ],
+  "executed_at_utc": "2026-09-29T20:50:17.0380593Z"
+}
