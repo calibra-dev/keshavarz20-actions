@@ -1,14 +1,16 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-7ffa9cf1a7becdd6",
-  "product_id": 136343,
-  "family": "seed",
-  "intent": "alternative",
-  "scenario_dimensions": {},
+  "canonical_intent_id": "question-intent-ff9a33d637d2f074",
+  "product_id": 140216,
+  "family": "fertilizer",
+  "intent": "salinity",
+  "scenario_dimensions": {
+    "water": true
+  },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": true,
+  "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
