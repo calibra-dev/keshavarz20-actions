@@ -110,25 +110,42 @@ if($githubActions -contains $action){
   $inputs=[ordered]@{}
   switch([string]$request.engine){
     'question' {
-      $ea=[string]$request.engine_action; if([string]::IsNullOrWhiteSpace($ea)){ $ea='status' }
+      $ea=[string]$request.engine_action
+      if([string]::IsNullOrWhiteSpace($ea)){ $ea='status' }
       if(@('status','dry_run','submit_one') -notcontains $ea){ Fail "Unsupported question engine action: $ea" }
       $inputs.action=$ea
     }
     'news' {
       if($engineMode -eq 'api_fallback'){
-        $hours=24; if($null -ne $request.lookback_hours){ $hours=[int]$request.lookback_hours }
+        $hours=24
+        if($null -ne $request.lookback_hours){ $hours=[int]$request.lookback_hours }
         if($hours -lt 1 -or $hours -gt 168){ Fail 'lookback_hours must be 1..168' }
         $inputs.lookback_hours=[string]$hours
-        $dr=$true; if($null -ne $request.dry_run){ $dr=[bool]$request.dry_run }
+        $dr=$true
+        if($null -ne $request.dry_run){ $dr=[bool]$request.dry_run }
         $inputs.dry_run=$dr.ToString().ToLowerInvariant()
       } else {
-        $vo=$false; if($null -ne $request.validate_only){ $vo=[bool]$request.validate_only }
+        $vo=$false
+        if($null -ne $request.validate_only){ $vo=[bool]$request.validate_only }
         $inputs.validate_only=$vo.ToString().ToLowerInvariant()
         $q=[string]$request.queue_file
         if($vo -and [string]::IsNullOrWhiteSpace($q)){ $q='daily-agri-news/queue/manual.json' }
-        if($q -notmatch '^daily-agri-news/queue/[A-Za-z0-9._-]+\.json
+        if($q -notmatch '^daily-agri-news/queue/[A-Za-z0-9._-]+[.]json$'){ Fail 'News engine requires an allow-listed queue_file path.' }
+        $inputs.queue_file=$q
+      }
+    }
+    'article' {
+      $vo=$false
+      if($null -ne $request.validate_only){ $vo=[bool]$request.validate_only }
+      $inputs.validate_only=$vo.ToString().ToLowerInvariant()
+      $q=[string]$request.queue_file
+      if($vo -and [string]::IsNullOrWhiteSpace($q)){ $q='daily-agri-articles/queue/manual.json' }
+      if($q -notmatch '^daily-agri-articles/queue/[A-Za-z0-9._-]+[.]json$'){ Fail 'Article engine requires an allow-listed queue_file path.' }
+      $inputs.queue_file=$q
+    }
     'social' {
-      $ea=[string]$request.engine_action; if([string]::IsNullOrWhiteSpace($ea)){ $ea='status' }
+      $ea=[string]$request.engine_action
+      if([string]::IsNullOrWhiteSpace($ea)){ $ea='status' }
       if(@('status','prepare','whatsapp','telegram','instagram') -notcontains $ea){ Fail "Unsupported social engine action: $ea" }
       $inputs.action=$ea
       if(-not[string]::IsNullOrWhiteSpace([string]$request.publish_date)){
