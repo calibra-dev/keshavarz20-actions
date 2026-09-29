@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "action": "engine.run",
+  "engine": "article",
+  "engine_label": "Daily Article Engine",
+  "workflow": "k20-article-queue-publisher.yml",
+  "state": "accepted",
+  "started_at": "2026-09-29T20:32:54.1903765Z",
+  "finished_at": null,
+  "changed_ids": [],
+  "errors": [],
+  "artifact": null,
+  "next_action": "engine.status",
+  "inputs": {
+    "validate_only": "true",
+    "queue_file": "daily-agri-articles/queue/manual.json"
+  },
+  "executed_at_utc": "2026-09-29T20:32:54.1941803Z"
+}
