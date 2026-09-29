@@ -9,7 +9,8 @@ from pathlib import Path
 from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parent
-MASTER_PROMPT_PATH = REPO_ROOT / "content-growth" / "K20_CONTENT_GROWTH_MASTER_PROMPT_V2.md"
+MASTER_PROMPT_PATH = REPO_ROOT / "content-growth" / "K20_CONTENT_GROWTH_MASTER_PROMPT_V3.md"
+PROFILE_DIR = REPO_ROOT / "content-growth" / "profiles"
 
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
@@ -17,8 +18,15 @@ if str(REPO_ROOT) not in sys.path:
 import k20_sanitizer
 
 
-def load_master_prompt() -> str:
-    return MASTER_PROMPT_PATH.read_text(encoding="utf-8")
+def load_master_prompt(profile: str | None = None) -> str:
+    master = MASTER_PROMPT_PATH.read_text(encoding="utf-8")
+    if not profile:
+        return master
+    name = str(profile).strip().lower()
+    if name not in {"article", "news"}:
+        raise ValueError(f"Unsupported content-growth profile: {profile}")
+    profile_path = PROFILE_DIR / f"{name}.md"
+    return master + "\n\n" + profile_path.read_text(encoding="utf-8")
 
 
 def safe_json_from_text(text: str) -> dict[str, Any]:
