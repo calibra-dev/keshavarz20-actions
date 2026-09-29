@@ -10,6 +10,9 @@ on:
       - '.github/workflows/k20-article-queue-publisher.yml'
       - 'automation-policy/**'
       - 'daily-agri-articles/**'
+      - 'content-growth/**'
+      - 'content_growth_runtime.py'
+      - 'tests/test_content_growth_prompt_v3.py'
   workflow_dispatch:
     inputs:
       queue_file:
@@ -44,7 +47,9 @@ jobs:
           python -m py_compile daily-agri-articles/publish_queue_v5.py
           python -m py_compile daily-agri-articles/intent_graph.py
           python -m py_compile daily-agri-articles/publish_queue_v6.py
+          python -m py_compile content_growth_runtime.py
           python -m unittest tests.test_phase20_intent -v
+          python -m unittest tests.test_content_growth_prompt_v3 -v
 
   publish-draft:
     if: github.event_name != 'pull_request'
