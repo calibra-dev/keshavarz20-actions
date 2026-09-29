@@ -6,9 +6,11 @@ This is the canonical automatic prompt for the daily `news` engine.
 
 1. `automation-policy/seo-god-2026.json`
 2. `automation-policy/editorial-trust-2026.json`
-3. this file
-4. `daily-agri-news/README.md`
-5. `daily-agri-news/DESIGN_SYSTEM.md`
+3. `content-growth/K20_CONTENT_GROWTH_MASTER_PROMPT_V3.md`
+4. `content-growth/profiles/news.md`
+5. this file
+6. `daily-agri-news/README.md`
+7. `daily-agri-news/DESIGN_SYSTEM.md`
 
 Use the stricter rule on conflict.
 
