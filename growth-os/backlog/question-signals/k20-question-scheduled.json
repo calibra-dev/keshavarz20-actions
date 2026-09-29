@@ -1,16 +1,18 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-8ae4275af1621290",
-  "product_id": 135679,
-  "family": "riser",
-  "intent": "use",
+  "canonical_intent_id": "question-intent-e39ce1c54f54335a",
+  "product_id": 135098,
+  "family": "fitting",
+  "intent": "installation",
   "scenario_dimensions": {
-    "crop": "به"
+    "pressure": true,
+    "installation_state": true,
+    "failure_mode": true
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": false,
+  "compatibility_gap": true,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
