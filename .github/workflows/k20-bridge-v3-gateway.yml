@@ -11,8 +11,11 @@ permissions:
   contents: write
   actions: write
 
+# Use one concurrency key per request commit. GitHub keeps only one pending run
+# per concurrency group, so a shared key could silently cancel intermediate
+# Bridge requests during bursts of repo activity.
 concurrency:
-  group: k20-bridge-v3-gateway
+  group: k20-bridge-v3-gateway-${{ github.sha }}
   cancel-in-progress: false
 
 jobs:
