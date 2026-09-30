@@ -4,6 +4,7 @@ import json
 import os
 import re
 import time
+import html as htmlmod
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -161,7 +162,29 @@ def textify(raw: str) -> str:
     value = re.sub(r"<script\b.*?</script>"," ",raw or "",flags=re.I|re.S)
     value = re.sub(r"<style\b.*?</style>"," ",value,flags=re.I|re.S)
     value = re.sub(r"<[^>]+>"," ",value)
+    value = htmlmod.unescape(value)
     return re.sub(r"\s+"," ",value).strip()
+
+def semantic_content_match(expected: str, actual: str) -> tuple[bool, dict[str,Any]]:
+    expected_text=textify(expected)
+    actual_text=textify(actual)
+    text_ok=expected_text==actual_text
+    tags=("h2","h3","table","details","ul","ol")
+    expected_counts={t:len(re.findall(fr"<{t}\\b",expected or "",re.I)) for t in tags}
+    actual_counts={t:len(re.findall(fr"<{t}\\b",actual or "",re.I)) for t in tags}
+    structure_ok=all(actual_counts[t]>=expected_counts[t] for t in tags)
+    expected_links=sorted(set(re.findall(r'href=["\\\']([^"\\\']+)["\\\']',expected or "",re.I)))
+    actual_links=sorted(set(re.findall(r'href=["\\\']([^"\\\']+)["\\\']',actual or "",re.I)))
+    links_ok=all(x in actual_links for x in expected_links)
+    return bool(text_ok and structure_ok and links_ok),{
+        "text_ok":text_ok,
+        "structure_ok":structure_ok,
+        "links_ok":links_ok,
+        "expected_text_len":len(expected_text),
+        "actual_text_len":len(actual_text),
+        "expected_counts":expected_counts,
+        "actual_counts":actual_counts,
+    }
 
 def research_input(product: dict[str,Any], seo: dict[str,Any], page_html: str) -> dict[str,Any]:
     return {
@@ -180,20 +203,27 @@ def research_input(product: dict[str,Any], seo: dict[str,Any], page_html: str) -
         }
     }
 
-def write_candidate(before: dict[str,Any], candidate: dict[str,Any]) -> None:
-    pid = int(before["id"])
-    rest("PUT",f"/wc/v3/products/{pid}",payload={
-        "description":candidate["description_html"],
-        "short_description":candidate["short_description_html"],
-    })
-    seo_write(pid,candidate)
+def apply_image_alts(before: dict[str,Any], candidate: dict[str,Any]) -> list[int]:
     image_ids = {int(x.get("id") or 0):x for x in (before.get("images") or [])}
+    changed=[]
     for item in candidate.get("image_alt_suggestions") or []:
         aid = int(item.get("attachment_id") or 0)
         alt = textify(str(item.get("alt_text") or ""))
         current = textify(str((image_ids.get(aid) or {}).get("alt") or ""))
         if aid in image_ids and alt and alt != current:
             bridge("media.metadata",payload={"attachment_id":aid,"alt_text":alt})
+            changed.append(aid)
+    return changed
+
+def write_candidate(before: dict[str,Any], candidate: dict[str,Any], *, write_media: bool=True) -> None:
+    pid = int(before["id"])
+    rest("PUT",f"/wc/v3/products/{pid}",payload={
+        "description":candidate["description_html"],
+        "short_description":candidate["short_description_html"],
+    })
+    seo_write(pid,candidate)
+    if write_media:
+        apply_image_alts(before,candidate)
     cache_purge()
 
 def rollback(before: dict[str,Any], seo_before: dict[str,Any]) -> bool:
