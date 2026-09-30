@@ -83,6 +83,7 @@ def main() -> None:
             "public_http_status": http_status,
             "public_phase6_marker_present": "k20-phase6-basket-intelligence" in html,
             "public_phase6_heading_present": "چک‌لیست تکمیل خرید" in html,
+            "public_related_guard_present": f"k20-phase6-related-guard-{pid}" in html,
             "public_related_section_present": bool(RELATED_PATTERNS["related_products"].search(html)),
             "public_upsells_section_present": bool(RELATED_PATTERNS["upsells"].search(html)),
             "public_cross_sells_section_present": bool(RELATED_PATTERNS["cross_sells"].search(html)),
@@ -101,10 +102,22 @@ def main() -> None:
         or r["public_upsells_section_present"]
         or r["public_cross_sells_section_present"]
     ]
+    public_recommendation_unsuppressed = [
+        r["product_id"] for r in rows
+        if (
+            r["public_related_section_present"]
+            or r["public_upsells_section_present"]
+            or r["public_cross_sells_section_present"]
+        )
+        and not r["public_related_guard_present"]
+    ]
+    related_guard_missing = [
+        r["product_id"] for r in rows if not r["public_related_guard_present"]
+    ]
     physical_marker_missing = [
         r["product_id"] for r in rows
         if r["product_id"] in PHYSICAL
-        and not (r["public_phase6_marker_present"] and r["public_phase6_heading_present"])
+        and not r["public_phase6_heading_present"]
     ]
     fertilizer_marker_unexpected = [
         r["product_id"] for r in rows
@@ -119,23 +132,35 @@ def main() -> None:
         "metrics": {
             "tier_a_products": len(rows),
             "explicit_recommendation_fields_nonempty": len(explicit_nonempty),
-            "public_recommendation_sections_present": len(public_recommendation_sections),
-            "physical_marker_missing": len(physical_marker_missing),
+            "public_recommendation_sections_present_raw": len(public_recommendation_sections),
+            "public_recommendation_sections_unsuppressed": len(public_recommendation_unsuppressed),
+            "phase6_related_guard_missing": len(related_guard_missing),
+            "physical_heading_missing": len(physical_marker_missing),
             "fertilizer_marker_unexpected": len(fertilizer_marker_unexpected),
             "public_non_200": len(non_200),
         },
         "failures": {
             "explicit_recommendation_fields_nonempty_product_ids": explicit_nonempty,
-            "public_recommendation_section_product_ids": public_recommendation_sections,
-            "physical_marker_missing_product_ids": physical_marker_missing,
+            "public_recommendation_section_product_ids_raw": public_recommendation_sections,
+            "public_recommendation_unsuppressed_product_ids": public_recommendation_unsuppressed,
+            "phase6_related_guard_missing_product_ids": related_guard_missing,
+            "physical_heading_missing_product_ids": physical_marker_missing,
             "fertilizer_marker_unexpected_product_ids": fertilizer_marker_unexpected,
             "public_non_200_product_ids": non_200,
         },
         "rows": rows,
     }
+    blocking_metrics = [
+        "explicit_recommendation_fields_nonempty",
+        "public_recommendation_sections_unsuppressed",
+        "phase6_related_guard_missing",
+        "physical_heading_missing",
+        "fertilizer_marker_unexpected",
+        "public_non_200",
+    ]
     report["status"] = (
         "PASS"
-        if all(v == 0 for v in report["metrics"].values() if isinstance(v, int) and v != 20)
+        if all(report["metrics"][key] == 0 for key in blocking_metrics)
         else "FAIL"
     )
     OUT.parent.mkdir(parents=True, exist_ok=True)
