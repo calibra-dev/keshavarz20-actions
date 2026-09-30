@@ -1,4 +1,4 @@
-name: SEO God2 Phase 9 Purchase Risk Audit
+name: SEO God2 Phase 9 Purchase Risk Audit v2
 
 on:
   workflow_dispatch:
@@ -26,7 +26,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install --disable-pip-version-check requests beautifulsoup4
-      - name: Audit returns mismatch authenticity clarity
+      - name: Audit expanded returns mismatch authenticity evidence clarity
         shell: python
         run: |
           import json, os, pathlib, re, time, requests
@@ -59,9 +59,10 @@ jobs:
           unconditional_terms=['بدون قید و شرط','در هر شرایطی','تضمین بازگشت وجه','بازپرداخت قطعی']
           for p in products:
             pid=int(p['id'])
-            rr=get_retry(public,p['permalink'],timeout=60,allow_redirects=True,headers={'User-Agent':'K20Phase9PublicAudit/1.0','Cache-Control':'no-cache','Pragma':'no-cache'})
+            rr=get_retry(public,p['permalink'],timeout=60,allow_redirects=True,headers={'User-Agent':'K20Phase9PublicAudit/2.0','Cache-Control':'no-cache','Pragma':'no-cache'})
             soup=BeautifulSoup(rr.text,'html.parser')
-            card=soup.select_one('.k20-purchase-risk')
+            cards=soup.select('.k20-purchase-risk')
+            card=cards[0] if cards else None
             text=' '.join(card.stripped_strings) if card else ''
             links=[a.get('href') or '' for a in card.select('a[href]')] if card else []
             rows.append({
@@ -71,10 +72,17 @@ jobs:
               'public_final_url':rr.url,
               'rest_permalink':p.get('permalink'),
               'phase9_card_present':card is not None,
-              'phase9_heading_present':'مرجوعی، مغایرت و اصالت کالا' in text,
+              'phase9_card_exactly_once':len(cards)==1,
+              'phase9_marker_exactly_once':rr.text.count('k20-phase9-purchase-risk')==2,
+              'phase9_heading_present':'مرجوعی، مغایرت، اصالت و ثبت شواهد' in text,
+              'identity_check_guidance_present':'پیش از نصب یا مصرف' in text,
+              'evidence_capture_guidance_present':'چند تصویر واضح نگه دارید' in text,
+              'hold_install_use_guidance_present':'از نصب، مصرف یا تغییر کالا خودداری کنید' in text,
+              'policy_disclaimer_present':'جایگزین سیاست رسمی نیست' in text,
+              'support_evidence_ready_present':'شماره سفارش و تصاویر مرتبط' in text,
               'returns_link_present':any(x.rstrip('/').endswith('/refund_returns') for x in links),
               'authenticity_link_present':any('%d8%b6%d9%85%d8%a7%d9%86%d8%aa-%d8%a7%d8%b5%d8%a7%d9%84%d8%aa-%da%a9%d8%a7%d9%84%d8%a7' in x.lower() for x in links),
-              'no_fixed_promise_present':'مهلت، مبلغ یا زمان بازپرداخت ثابتی وعده داده نمی‌شود' in text,
+              'no_fixed_promise_present':'مهلت، مبلغ، زمان بازپرداخت یا ضمانت اختصاصی برای این SKU وعده داده نمی‌شود' in text,
               'invented_return_window':bool(specific_window.search(text)),
               'invented_refund_timing':bool(refund_timing.search(text)),
               'unconditional_claims':[x for x in unconditional_terms if x in text],
@@ -93,7 +101,14 @@ jobs:
             'public_non_200':[r['product_id'] for r in rows if r['public_status']!=200],
             'redirected_away':[r['product_id'] for r in rows if r['public_final_url'].rstrip('/').lower()!=r['rest_permalink'].rstrip('/').lower()],
             'phase9_card_missing':[r['product_id'] for r in rows if not r['phase9_card_present']],
+            'phase9_card_not_exactly_once':[r['product_id'] for r in rows if not r['phase9_card_exactly_once']],
+            'phase9_marker_not_exactly_once':[r['product_id'] for r in rows if not r['phase9_marker_exactly_once']],
             'phase9_heading_missing':[r['product_id'] for r in rows if not r['phase9_heading_present']],
+            'identity_check_guidance_missing':[r['product_id'] for r in rows if not r['identity_check_guidance_present']],
+            'evidence_capture_guidance_missing':[r['product_id'] for r in rows if not r['evidence_capture_guidance_present']],
+            'hold_install_use_guidance_missing':[r['product_id'] for r in rows if not r['hold_install_use_guidance_present']],
+            'policy_disclaimer_missing':[r['product_id'] for r in rows if not r['policy_disclaimer_present']],
+            'support_evidence_ready_missing':[r['product_id'] for r in rows if not r['support_evidence_ready_present']],
             'returns_link_missing':[r['product_id'] for r in rows if not r['returns_link_present']],
             'authenticity_link_missing':[r['product_id'] for r in rows if not r['authenticity_link_present']],
             'no_fixed_promise_missing':[r['product_id'] for r in rows if not r['no_fixed_promise_present']],
@@ -113,9 +128,9 @@ jobs:
           zero_keys=list(failures.keys())
           status='PASS' if all(metrics[k]==0 for k in zero_keys) and metrics['tier_a_products']==20 and metrics['returns_policy_page_ok'] and metrics['authenticity_policy_page_ok'] else 'FAIL'
           out={
-            'schema_version':'seo-god2-phase9-purchase-risk-audit-v1',
+            'schema_version':'seo-god2-phase9-purchase-risk-audit-v2',
             'status':status,
-            'policy':'Only official policy links and non-specific guidance are allowed; no invented return/refund/warranty promises.',
+            'policy':'Official policy links plus evidence-preservation guidance; no invented return/refund/warranty promises.',
             'metrics':metrics,
             'failures':failures,
             'policy_pages':{
@@ -125,7 +140,7 @@ jobs:
             'rows':rows
           }
           pathlib.Path('seo-god2').mkdir(exist_ok=True)
-          pathlib.Path('seo-god2/phase9-public-purchase-risk-audit-20260930.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          pathlib.Path('seo-god2/phase9-public-purchase-risk-audit-20261001.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
           print(json.dumps({'status':status,'metrics':metrics},ensure_ascii=False))
           if status!='PASS': raise SystemExit(1)
       - name: Commit audit
@@ -138,7 +153,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f seo-god2/phase9-public-purchase-risk-audit-20260930.json
           git diff --cached --quiet && exit 0
-          git commit -m "seo god2 phase9: record public purchase-risk acceptance"
+          git commit -m "seo god2 phase9: record expanded public purchase-risk acceptance"
           for attempt in 1 2 3 4 5; do
             git pull --rebase origin main || true
             if git push origin HEAD:main; then exit 0; fi
