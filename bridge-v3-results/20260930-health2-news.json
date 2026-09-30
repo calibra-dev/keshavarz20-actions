@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "action": "engine.run",
+  "engine": "news",
+  "engine_label": "Daily Agriculture News Engine",
+  "workflow": "k20-news-queue-publisher.yml",
+  "state": "accepted",
+  "started_at": "2026-09-30T05:30:12.6171741Z",
+  "finished_at": null,
+  "changed_ids": [],
+  "errors": [],
+  "artifact": null,
+  "next_action": "engine.status",
+  "inputs": {
+    "validate_only": "true",
+    "queue_file": "daily-agri-news/queue/manual.json"
+  },
+  "executed_at_utc": "2026-09-30T05:30:12.6199619Z"
+}
