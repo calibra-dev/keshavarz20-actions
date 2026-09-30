@@ -1,28 +1,22 @@
 {
   "schema_version": "seo-god2-phase6-public-recommendation-audit-v1",
-  "generated_at_utc": "2026-09-30T13:56:20.404246+00:00",
+  "generated_at_utc": "2026-09-30T14:14:04.052255+00:00",
   "scope": "All 20 Tier A products; read-only WooCommerce fields plus public rendered HTML",
   "metrics": {
     "tier_a_products": 20,
     "explicit_recommendation_fields_nonempty": 0,
-    "public_recommendation_sections_present_raw": 1,
-    "public_recommendation_sections_unsuppressed": 1,
-    "phase6_related_guard_missing": 1,
+    "public_recommendation_sections_present_raw": 0,
+    "public_recommendation_sections_unsuppressed": 0,
+    "phase6_related_guard_missing": 0,
     "physical_heading_missing": 0,
     "fertilizer_marker_unexpected": 0,
     "public_non_200": 0
   },
   "failures": {
     "explicit_recommendation_fields_nonempty_product_ids": [],
-    "public_recommendation_section_product_ids_raw": [
-      140816
-    ],
-    "public_recommendation_unsuppressed_product_ids": [
-      140816
-    ],
-    "phase6_related_guard_missing_product_ids": [
-      140816
-    ],
+    "public_recommendation_section_product_ids_raw": [],
+    "public_recommendation_unsuppressed_product_ids": [],
+    "phase6_related_guard_missing_product_ids": [],
     "physical_heading_missing_product_ids": [],
     "fertilizer_marker_unexpected_product_ids": [],
     "public_non_200_product_ids": []
@@ -198,17 +192,17 @@
       "explicit_cross_sell_ids": [],
       "woocommerce_related_ids": [],
       "public_http_status": 200,
-      "public_final_url": "https://keshavarz20.com/product/%d9%be%d9%84%db%8c-%d8%a7%d8%b3-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "public_final_url": "https://keshavarz20.com/product/%da%a9%d9%84%d8%b3%db%8c%d9%85-%da%a9%d8%b1%d8%a7%d9%be-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
       "public_canonical": null,
       "public_body_tag": "",
-      "public_related_context": "ncrease-qty\">+</span></div><button type=\"submit\" name=\"add-to-cart\" value=\"140841\" class=\"single_add_to_cart_button button alt\">افزودن به سبد خرید</button></form></div></div></div></div></div></div><div class=\"widget widget-products-slider widget-related-products style-slider\" data-config=\"{&quot;nav&quot;:&quot;1&quot;,&quot;dots&quot;:&quot;1&quot;,&quot;autoplay&quot;:&quot;1&quot;,&quot;rewind&quot;:null,&quot;pause_hover&quot;:&quot;1&quot;,&quot;single_slide&quot;:null,&quot;stage_padding&quot;:0,&quot;autoplay_timeout&quot;:5000,&quot;autoplay_speed&quot;:500,&quot;nav_speed&quot;:500,&quot;items1200&quot;:7,&quot;items992&quot;:5,&quot;items768&quot;:4,&quot;items576&quot;:3,&quot;items320&quot;:2}\"><header class=\"widget-header\"><h2 class=\"wi",
+      "public_related_context": "",
       "public_cache_headers": {
         "x-litespeed-cache-control": "no-cache,esi=on"
       },
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": false,
-      "public_related_guard_present": false,
-      "public_related_section_present": true,
+      "public_related_guard_present": true,
+      "public_related_section_present": false,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
     },
@@ -489,5 +483,5 @@
       "public_cross_sells_section_present": false
     }
   ],
-  "status": "FAIL"
+  "status": "PASS"
 }
