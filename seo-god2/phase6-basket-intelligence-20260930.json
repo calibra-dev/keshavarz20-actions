@@ -1,0 +1,760 @@
+{
+  "schema_version": "seo-god2-phase6-basket-intelligence-v1",
+  "generated_at_utc": "2026-09-30T09:20:46.132003+00:00",
+  "source_graph": "seo-god2/phase5-tier-a-compatibility-graph-v2-20260930.json",
+  "status": "PASS_GUARDED_BASKET_INTELLIGENCE",
+  "policy": {
+    "random_woocommerce_recommendations_allowed": false,
+    "same_size_recommendation_allowed": false,
+    "exact_sku_requires_verified_edge_and_approved_label": true,
+    "incompatible_edges_blocked": true,
+    "needs_review_routes_to_expert": true,
+    "fertilizer_mix_requires_exact_label_or_manufacturer_evidence": true,
+    "no_price_discount_or_stock_mutation": true
+  },
+  "metrics": {
+    "tier_a_products": 20,
+    "verified_exact_recommendations": 0,
+    "incompatible_pairs_blocked": 5,
+    "expert_review_pairs": 8,
+    "random_recommendations": 0,
+    "same_size_only_recommendations": 0
+  },
+  "recommendation_labels": [
+    "جایگزین",
+    "محصول مشابه",
+    "مکمل اختیاری",
+    "مکمل ضروری",
+    "نیازمند تأیید کارشناس"
+  ],
+  "products": [
+    {
+      "product_id": 140856,
+      "family": "fertilizer",
+      "required_accessories": [],
+      "optional_accessories": [],
+      "installation_accessories": [],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "NOT_APPLICABLE",
+      "valve_requirement": "NOT_APPLICABLE",
+      "connector_requirement": "NOT_APPLICABLE",
+      "washer_requirement": "NOT_APPLICABLE",
+      "drill_requirement": "NOT_APPLICABLE",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [],
+      "expert_review_pairs": [],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": "اختلاط یا جایگزینی کود فقط با برچسب همین محصول یا منبع سازنده قابل توصیه است."
+    },
+    {
+      "product_id": 140718,
+      "family": "fertilizer",
+      "required_accessories": [],
+      "optional_accessories": [],
+      "installation_accessories": [],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "NOT_APPLICABLE",
+      "valve_requirement": "NOT_APPLICABLE",
+      "connector_requirement": "NOT_APPLICABLE",
+      "washer_requirement": "NOT_APPLICABLE",
+      "drill_requirement": "NOT_APPLICABLE",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [],
+      "expert_review_pairs": [],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": "اختلاط یا جایگزینی کود فقط با برچسب همین محصول یا منبع سازنده قابل توصیه است."
+    },
+    {
+      "product_id": 140853,
+      "family": "fertilizer",
+      "required_accessories": [],
+      "optional_accessories": [],
+      "installation_accessories": [],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "NOT_APPLICABLE",
+      "valve_requirement": "NOT_APPLICABLE",
+      "connector_requirement": "NOT_APPLICABLE",
+      "washer_requirement": "NOT_APPLICABLE",
+      "drill_requirement": "NOT_APPLICABLE",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [],
+      "expert_review_pairs": [],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": "اختلاط یا جایگزینی کود فقط با برچسب همین محصول یا منبع سازنده قابل توصیه است."
+    },
+    {
+      "product_id": 140760,
+      "family": "fertilizer",
+      "required_accessories": [],
+      "optional_accessories": [],
+      "installation_accessories": [],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "NOT_APPLICABLE",
+      "valve_requirement": "NOT_APPLICABLE",
+      "connector_requirement": "NOT_APPLICABLE",
+      "washer_requirement": "NOT_APPLICABLE",
+      "drill_requirement": "NOT_APPLICABLE",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [],
+      "expert_review_pairs": [],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": "اختلاط یا جایگزینی کود فقط با برچسب همین محصول یا منبع سازنده قابل توصیه است."
+    },
+    {
+      "product_id": 140816,
+      "family": "fertilizer",
+      "required_accessories": [],
+      "optional_accessories": [],
+      "installation_accessories": [],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "NOT_APPLICABLE",
+      "valve_requirement": "NOT_APPLICABLE",
+      "connector_requirement": "NOT_APPLICABLE",
+      "washer_requirement": "NOT_APPLICABLE",
+      "drill_requirement": "NOT_APPLICABLE",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [],
+      "expert_review_pairs": [],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": "اختلاط یا جایگزینی کود فقط با برچسب همین محصول یا منبع سازنده قابل توصیه است."
+    },
+    {
+      "product_id": 135339,
+      "family": "valve",
+      "required_accessories": [
+        "قطعه مقابل و آب‌بندی متناسب با نوع اتصال واقعی"
+      ],
+      "optional_accessories": [
+        "ساپورت یا مهار خط در صورت نیاز پروژه"
+      ],
+      "installation_accessories": [
+        "ابزار نصب متناسب با نوع اتصال واقعی"
+      ],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "CONDITIONAL_BY_SYSTEM_DESIGN",
+      "valve_requirement": "SELF",
+      "connector_requirement": "REQUIRED_CHECK",
+      "washer_requirement": "DEPENDS_ON_CONNECTION_STANDARD",
+      "drill_requirement": "NOT_APPLICABLE",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [
+        {
+          "from": 135339,
+          "to": 135309,
+          "relation": "direct_connection_without_adapter",
+          "reason": "Valve is 4 inch while hose is 2 inch; direct nominal sizes differ."
+        },
+        {
+          "from": 135339,
+          "to": 140014,
+          "relation": "direct_connection_without_adapter",
+          "reason": "Valve is 4 inch while rain pipe is 2 inch; direct nominal sizes differ."
+        }
+      ],
+      "expert_review_pairs": [],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": null
+    },
+    {
+      "product_id": 135349,
+      "family": "valve",
+      "required_accessories": [
+        "قطعه مقابل و آب‌بندی متناسب با نوع اتصال واقعی"
+      ],
+      "optional_accessories": [
+        "ساپورت یا مهار خط در صورت نیاز پروژه"
+      ],
+      "installation_accessories": [
+        "ابزار نصب متناسب با نوع اتصال واقعی"
+      ],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "CONDITIONAL_BY_SYSTEM_DESIGN",
+      "valve_requirement": "SELF",
+      "connector_requirement": "REQUIRED_CHECK",
+      "washer_requirement": "DEPENDS_ON_CONNECTION_STANDARD",
+      "drill_requirement": "NOT_APPLICABLE",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [],
+      "expert_review_pairs": [
+        {
+          "from": 135349,
+          "to": 135309,
+          "relation": "valve_to_layflat_line",
+          "label": "نیازمند تأیید کارشناس",
+          "reason": "Both are nominal 2 inch, but the valve is threaded while the hose requires a verified hose-barb/retention interface; same size is insufficient.",
+          "evidence_needed": [
+            "exact 2-inch valve thread standard",
+            "exact 2-inch hose-barb/adapter SKU",
+            "clamp/retention requirement"
+          ]
+        },
+        {
+          "from": 135349,
+          "to": 140014,
+          "relation": "valve_to_rain_pipe",
+          "label": "نیازمند تأیید کارشناس",
+          "reason": "Both are nominal 2 inch, but the valve is threaded and rain pipe uses a hose connector/barb family; exact adapter chain is not verified.",
+          "evidence_needed": [
+            "exact valve thread standard",
+            "exact rain-pipe connector/barb SKU",
+            "retention/clamp requirement"
+          ]
+        }
+      ],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": null
+    },
+    {
+      "product_id": 135337,
+      "family": "valve",
+      "required_accessories": [
+        "قطعه مقابل و آب‌بندی متناسب با نوع اتصال واقعی"
+      ],
+      "optional_accessories": [
+        "ساپورت یا مهار خط در صورت نیاز پروژه"
+      ],
+      "installation_accessories": [
+        "ابزار نصب متناسب با نوع اتصال واقعی"
+      ],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "CONDITIONAL_BY_SYSTEM_DESIGN",
+      "valve_requirement": "SELF",
+      "connector_requirement": "REQUIRED_CHECK",
+      "washer_requirement": "DEPENDS_ON_CONNECTION_STANDARD",
+      "drill_requirement": "NOT_APPLICABLE",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [
+        {
+          "from": 135337,
+          "to": 135309,
+          "relation": "direct_connection_without_adapter",
+          "reason": "Valve is 3 inch while hose is 2 inch; direct nominal sizes differ."
+        },
+        {
+          "from": 135337,
+          "to": 140014,
+          "relation": "direct_connection_without_adapter",
+          "reason": "Valve is 3 inch while rain pipe is 2 inch; direct nominal sizes differ."
+        }
+      ],
+      "expert_review_pairs": [],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": null
+    },
+    {
+      "product_id": 135667,
+      "family": "valve",
+      "required_accessories": [
+        "قطعه مقابل و آب‌بندی متناسب با نوع اتصال واقعی"
+      ],
+      "optional_accessories": [
+        "ساپورت یا مهار خط در صورت نیاز پروژه"
+      ],
+      "installation_accessories": [
+        "ابزار نصب متناسب با نوع اتصال واقعی"
+      ],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "CONDITIONAL_BY_SYSTEM_DESIGN",
+      "valve_requirement": "SELF",
+      "connector_requirement": "REQUIRED_CHECK",
+      "washer_requirement": "DEPENDS_ON_CONNECTION_STANDARD",
+      "drill_requirement": "NOT_APPLICABLE",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [
+        {
+          "from": 140406,
+          "to": 135667,
+          "relation": "direct_connection_without_adapter",
+          "reason": "Tank interface is 3/4 inch while valve interface is 1 inch; direct nominal sizes differ."
+        }
+      ],
+      "expert_review_pairs": [
+        {
+          "from": 140407,
+          "to": 135667,
+          "relation": "direct_or_adapter_connection",
+          "label": "نیازمند تأیید کارشناس",
+          "reason": "Both expose nominal 1-inch interfaces, but thread standard, tank-side gender and required nipple/adapter are not verified.",
+          "evidence_needed": [
+            "exact tank outlet thread standard/gender",
+            "exact valve thread standard",
+            "adapter/nipple part number if required"
+          ]
+        }
+      ],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": null
+    },
+    {
+      "product_id": 140406,
+      "family": "fertigation_tank",
+      "required_accessories": [
+        "اتصالات ورودی و خروجی متناسب با مدار واقعی"
+      ],
+      "optional_accessories": [
+        "شیر ایزوله و بای‌پس فقط در صورت تأیید طراحی"
+      ],
+      "installation_accessories": [
+        "آب‌بندی و مهار متناسب با استاندارد اتصال"
+      ],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "CONDITIONAL_BY_SYSTEM_DESIGN",
+      "valve_requirement": "REQUIRED_CHECK",
+      "connector_requirement": "REQUIRED_CHECK",
+      "washer_requirement": "DEPENDS_ON_CONNECTION_STANDARD",
+      "drill_requirement": "NOT_APPLICABLE",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [
+        {
+          "from": 140406,
+          "to": 135667,
+          "relation": "direct_connection_without_adapter",
+          "reason": "Tank interface is 3/4 inch while valve interface is 1 inch; direct nominal sizes differ."
+        }
+      ],
+      "expert_review_pairs": [],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": null
+    },
+    {
+      "product_id": 140407,
+      "family": "fertigation_tank",
+      "required_accessories": [
+        "اتصالات ورودی و خروجی متناسب با مدار واقعی"
+      ],
+      "optional_accessories": [
+        "شیر ایزوله و بای‌پس فقط در صورت تأیید طراحی"
+      ],
+      "installation_accessories": [
+        "آب‌بندی و مهار متناسب با استاندارد اتصال"
+      ],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "CONDITIONAL_BY_SYSTEM_DESIGN",
+      "valve_requirement": "REQUIRED_CHECK",
+      "connector_requirement": "REQUIRED_CHECK",
+      "washer_requirement": "DEPENDS_ON_CONNECTION_STANDARD",
+      "drill_requirement": "NOT_APPLICABLE",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [],
+      "expert_review_pairs": [
+        {
+          "from": 140407,
+          "to": 135667,
+          "relation": "direct_or_adapter_connection",
+          "label": "نیازمند تأیید کارشناس",
+          "reason": "Both expose nominal 1-inch interfaces, but thread standard, tank-side gender and required nipple/adapter are not verified.",
+          "evidence_needed": [
+            "exact tank outlet thread standard/gender",
+            "exact valve thread standard",
+            "adapter/nipple part number if required"
+          ]
+        }
+      ],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": null
+    },
+    {
+      "product_id": 135353,
+      "family": "drip_tape_connector",
+      "required_accessories": [
+        "نوار تیپ سازگار با رابط دقیق"
+      ],
+      "optional_accessories": [],
+      "installation_accessories": [
+        "واشر یا ابزار سوراخ‌کاری فقط اگر دیتاشیت همان رابط الزام کند"
+      ],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "SYSTEM_LEVEL_CHECK",
+      "valve_requirement": "CONDITIONAL_BY_ZONE_DESIGN",
+      "connector_requirement": "SELF",
+      "washer_requirement": "NEEDS_REVIEW",
+      "drill_requirement": "NEEDS_REVIEW",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [],
+      "expert_review_pairs": [
+        {
+          "from": 135353,
+          "to": 135235,
+          "relation": "layflat_to_drip_tape",
+          "label": "نیازمند تأیید کارشناس",
+          "reason": "Connector role matches the system concept, but the exact drip-tape interface, hole size and washer requirement are not verified for this tape SKU.",
+          "evidence_needed": [
+            "exact tape manufacturer/model label",
+            "Farat connector datasheet",
+            "drill/hole size",
+            "washer requirement"
+          ]
+        }
+      ],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": null
+    },
+    {
+      "product_id": 135381,
+      "family": "drip_tape_connector",
+      "required_accessories": [
+        "نوار تیپ سازگار با رابط دقیق"
+      ],
+      "optional_accessories": [],
+      "installation_accessories": [
+        "واشر یا ابزار سوراخ‌کاری فقط اگر دیتاشیت همان رابط الزام کند"
+      ],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "SYSTEM_LEVEL_CHECK",
+      "valve_requirement": "CONDITIONAL_BY_ZONE_DESIGN",
+      "connector_requirement": "SELF",
+      "washer_requirement": "NEEDS_REVIEW",
+      "drill_requirement": "NEEDS_REVIEW",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [],
+      "expert_review_pairs": [
+        {
+          "from": 135381,
+          "to": 135235,
+          "relation": "drip_tape_to_drip_tape",
+          "label": "نیازمند تأیید کارشناس",
+          "reason": "Connector is intended for tape-to-tape use, but exact compatibility with this tape SKU is not proven.",
+          "evidence_needed": [
+            "exact tape manufacturer/model",
+            "connector jaw/lock dimensional spec"
+          ]
+        }
+      ],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": null
+    },
+    {
+      "product_id": 135359,
+      "family": "drip_tape_valve",
+      "required_accessories": [
+        "خط ورودی و نوار تیپ سازگار با دو سمت شیر"
+      ],
+      "optional_accessories": [],
+      "installation_accessories": [
+        "واشر/پانچ فقط طبق رابط دقیق"
+      ],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "SYSTEM_LEVEL_CHECK",
+      "valve_requirement": "SELF",
+      "connector_requirement": "NEEDS_REVIEW",
+      "washer_requirement": "NEEDS_REVIEW",
+      "drill_requirement": "NEEDS_REVIEW",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [],
+      "expert_review_pairs": [
+        {
+          "from": 135359,
+          "to": 135235,
+          "relation": "16mm_line_to_drip_tape",
+          "label": "نیازمند تأیید کارشناس",
+          "reason": "Product role targets drip tape, but exact tape interface and inlet fitting geometry remain unverified.",
+          "evidence_needed": [
+            "exact tape interface",
+            "exact 16mm inlet geometry",
+            "pressure range"
+          ]
+        },
+        {
+          "from": 135361,
+          "to": 135359,
+          "relation": "16mm_distribution_chain",
+          "label": "نیازمند تأیید کارشناس",
+          "reason": "Both reference 16 mm service, but the exact fitting geometry and insertion/compression interface are not verified.",
+          "evidence_needed": [
+            "exact 16mm tee connection geometry",
+            "exact valve inlet geometry"
+          ]
+        }
+      ],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": null
+    },
+    {
+      "product_id": 140674,
+      "family": "drip_tape_connector",
+      "required_accessories": [
+        "نوار تیپ سازگار با رابط دقیق"
+      ],
+      "optional_accessories": [],
+      "installation_accessories": [
+        "واشر یا ابزار سوراخ‌کاری فقط اگر دیتاشیت همان رابط الزام کند"
+      ],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "SYSTEM_LEVEL_CHECK",
+      "valve_requirement": "CONDITIONAL_BY_ZONE_DESIGN",
+      "connector_requirement": "SELF",
+      "washer_requirement": "NEEDS_REVIEW",
+      "drill_requirement": "NEEDS_REVIEW",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [],
+      "expert_review_pairs": [
+        {
+          "from": 140674,
+          "to": 135235,
+          "relation": "drip_tape_to_drip_tape",
+          "label": "نیازمند تأیید کارشناس",
+          "reason": "Connector is intended for tape-to-tape use, but exact compatibility with this tape SKU is not proven.",
+          "evidence_needed": [
+            "exact tape manufacturer/model",
+            "connector jaw/lock dimensional spec"
+          ]
+        }
+      ],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": null
+    },
+    {
+      "product_id": 135361,
+      "family": "drip_line_fitting",
+      "required_accessories": [
+        "لوله ۱۶ میلی‌متری با هندسه اتصال سازگار"
+      ],
+      "optional_accessories": [],
+      "installation_accessories": [
+        "ابزار نصب در صورت الزام سازنده"
+      ],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "SYSTEM_LEVEL_CHECK",
+      "valve_requirement": "CONDITIONAL_BY_ZONE_DESIGN",
+      "connector_requirement": "SELF",
+      "washer_requirement": "NOT_APPLICABLE",
+      "drill_requirement": "NOT_APPLICABLE",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [],
+      "expert_review_pairs": [
+        {
+          "from": 135361,
+          "to": 135359,
+          "relation": "16mm_distribution_chain",
+          "label": "نیازمند تأیید کارشناس",
+          "reason": "Both reference 16 mm service, but the exact fitting geometry and insertion/compression interface are not verified.",
+          "evidence_needed": [
+            "exact 16mm tee connection geometry",
+            "exact valve inlet geometry"
+          ]
+        }
+      ],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": null
+    },
+    {
+      "product_id": 140454,
+      "family": "emitter",
+      "required_accessories": [
+        "خط لوله و رابط نصب سازگار با مدل دقیق دریپر"
+      ],
+      "optional_accessories": [],
+      "installation_accessories": [
+        "پانچ یا ابزار نصب فقط طبق مدل دقیق"
+      ],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "REQUIRED_CHECK",
+      "valve_requirement": "CONDITIONAL_BY_ZONE_DESIGN",
+      "connector_requirement": "NEEDS_REVIEW",
+      "washer_requirement": "DEPENDS_ON_INSTALL_INTERFACE",
+      "drill_requirement": "NEEDS_REVIEW",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [],
+      "expert_review_pairs": [],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": null
+    },
+    {
+      "product_id": 135235,
+      "family": "drip_tape",
+      "required_accessories": [
+        "اتصال ابتدا و انتهای خط متناسب با مدل واقعی نوار تیپ"
+      ],
+      "optional_accessories": [
+        "شیر ردیفی در صورت نیاز به کنترل مستقل هر ردیف"
+      ],
+      "installation_accessories": [
+        "پانچ/واشر فقط مطابق رابط انتخاب‌شده"
+      ],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "REQUIRED_CHECK",
+      "valve_requirement": "CONDITIONAL_BY_ZONE_DESIGN",
+      "connector_requirement": "REQUIRED_CHECK",
+      "washer_requirement": "DEPENDS_ON_CONNECTOR",
+      "drill_requirement": "DEPENDS_ON_CONNECTOR",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [],
+      "expert_review_pairs": [
+        {
+          "from": 135353,
+          "to": 135235,
+          "relation": "layflat_to_drip_tape",
+          "label": "نیازمند تأیید کارشناس",
+          "reason": "Connector role matches the system concept, but the exact drip-tape interface, hole size and washer requirement are not verified for this tape SKU.",
+          "evidence_needed": [
+            "exact tape manufacturer/model label",
+            "Farat connector datasheet",
+            "drill/hole size",
+            "washer requirement"
+          ]
+        },
+        {
+          "from": 135359,
+          "to": 135235,
+          "relation": "16mm_line_to_drip_tape",
+          "label": "نیازمند تأیید کارشناس",
+          "reason": "Product role targets drip tape, but exact tape interface and inlet fitting geometry remain unverified.",
+          "evidence_needed": [
+            "exact tape interface",
+            "exact 16mm inlet geometry",
+            "pressure range"
+          ]
+        },
+        {
+          "from": 135381,
+          "to": 135235,
+          "relation": "drip_tape_to_drip_tape",
+          "label": "نیازمند تأیید کارشناس",
+          "reason": "Connector is intended for tape-to-tape use, but exact compatibility with this tape SKU is not proven.",
+          "evidence_needed": [
+            "exact tape manufacturer/model",
+            "connector jaw/lock dimensional spec"
+          ]
+        },
+        {
+          "from": 140674,
+          "to": 135235,
+          "relation": "drip_tape_to_drip_tape",
+          "label": "نیازمند تأیید کارشناس",
+          "reason": "Connector is intended for tape-to-tape use, but exact compatibility with this tape SKU is not proven.",
+          "evidence_needed": [
+            "exact tape manufacturer/model",
+            "connector jaw/lock dimensional spec"
+          ]
+        }
+      ],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": null
+    },
+    {
+      "product_id": 140014,
+      "family": "rain_pipe",
+      "required_accessories": [
+        "رابط/سرشلنگی و مهار متناسب با سایز و فشار واقعی خط"
+      ],
+      "optional_accessories": [
+        "شیر ایزوله در صورت نیاز طراحی"
+      ],
+      "installation_accessories": [
+        "بست یا مهار مناسب رابط"
+      ],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "CONDITIONAL_BY_WATER_QUALITY",
+      "valve_requirement": "CONDITIONAL_BY_ZONE_DESIGN",
+      "connector_requirement": "REQUIRED_CHECK",
+      "washer_requirement": "DEPENDS_ON_CONNECTOR",
+      "drill_requirement": "NOT_APPLICABLE",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [
+        {
+          "from": 135337,
+          "to": 140014,
+          "relation": "direct_connection_without_adapter",
+          "reason": "Valve is 3 inch while rain pipe is 2 inch; direct nominal sizes differ."
+        },
+        {
+          "from": 135339,
+          "to": 140014,
+          "relation": "direct_connection_without_adapter",
+          "reason": "Valve is 4 inch while rain pipe is 2 inch; direct nominal sizes differ."
+        }
+      ],
+      "expert_review_pairs": [
+        {
+          "from": 135349,
+          "to": 140014,
+          "relation": "valve_to_rain_pipe",
+          "label": "نیازمند تأیید کارشناس",
+          "reason": "Both are nominal 2 inch, but the valve is threaded and rain pipe uses a hose connector/barb family; exact adapter chain is not verified.",
+          "evidence_needed": [
+            "exact valve thread standard",
+            "exact rain-pipe connector/barb SKU",
+            "retention/clamp requirement"
+          ]
+        }
+      ],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": null
+    },
+    {
+      "product_id": 135309,
+      "family": "layflat_reinforced_hose",
+      "required_accessories": [
+        "سرشلنگی/رابط و مهار متناسب با قطر واقعی لوله"
+      ],
+      "optional_accessories": [
+        "شیر ایزوله در صورت نیاز طراحی"
+      ],
+      "installation_accessories": [
+        "بست یا مهار مناسب رابط"
+      ],
+      "compatible_alternatives": [],
+      "replacement_product": null,
+      "filter_requirement": "CONDITIONAL_BY_SYSTEM_USE",
+      "valve_requirement": "CONDITIONAL_BY_ZONE_DESIGN",
+      "connector_requirement": "REQUIRED_CHECK",
+      "washer_requirement": "DEPENDS_ON_CONNECTOR",
+      "drill_requirement": "NOT_APPLICABLE",
+      "exact_sku_recommendations": [],
+      "blocked_pairs": [
+        {
+          "from": 135337,
+          "to": 135309,
+          "relation": "direct_connection_without_adapter",
+          "reason": "Valve is 3 inch while hose is 2 inch; direct nominal sizes differ."
+        },
+        {
+          "from": 135339,
+          "to": 135309,
+          "relation": "direct_connection_without_adapter",
+          "reason": "Valve is 4 inch while hose is 2 inch; direct nominal sizes differ."
+        }
+      ],
+      "expert_review_pairs": [
+        {
+          "from": 135349,
+          "to": 135309,
+          "relation": "valve_to_layflat_line",
+          "label": "نیازمند تأیید کارشناس",
+          "reason": "Both are nominal 2 inch, but the valve is threaded while the hose requires a verified hose-barb/retention interface; same size is insufficient.",
+          "evidence_needed": [
+            "exact 2-inch valve thread standard",
+            "exact 2-inch hose-barb/adapter SKU",
+            "clamp/retention requirement"
+          ]
+        }
+      ],
+      "ui_policy": "SHOW_REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW_ONLY",
+      "profile_note": null
+    }
+  ],
+  "runtime": {
+    "exact_sku_cards_enabled": false,
+    "fallback": "REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW",
+    "legacy_same_size_writer_must_remain_disabled": true
+  }
+}
