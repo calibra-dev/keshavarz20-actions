@@ -1,0 +1,26 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20260930-seo-god2-phase1-catalog-order-read-evidence-2.sanitized.json",
+  "action": "commerce.catalog_order.read",
+  "request_id": "seo-god2-phase1-catalog-order-read-evidence-2-20260930",
+  "dry_run": false,
+  "executed_at_utc": "2026-09-30T06:25:01.3452654Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.4",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "setting": "woocommerce_default_catalog_orderby",
+    "value": "popularity",
+    "allowed_values": [
+      "menu_order",
+      "popularity",
+      "rating",
+      "date",
+      "price",
+      "price-desc"
+    ]
+  }
+}
