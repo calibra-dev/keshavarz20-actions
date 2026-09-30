@@ -1,0 +1,67 @@
+{
+  "schema_version": "seo-god2-phase7-shipping-clarity-v1",
+  "generated_at_utc": "2026-09-30T14:29:26.734299+00:00",
+  "status": "PASS_SHIPPING_TRUTH_LOCKED",
+  "scope": {
+    "tier_a_products": 20,
+    "product_ids": [
+      140856,
+      140718,
+      135339,
+      135349,
+      140853,
+      140406,
+      140760,
+      140816,
+      140407,
+      135337,
+      135353,
+      140454,
+      135381,
+      135361,
+      140674,
+      135235,
+      140014,
+      135309,
+      135359,
+      135667
+    ]
+  },
+  "canonical_policy": {
+    "country_scope": "Iran / سراسر کشور",
+    "allowed_methods": [
+      "باربری",
+      "تیپاکس"
+    ],
+    "shipping_charge": "پس‌کرایه مطابق تعرفه شرکت حمل",
+    "free_shipping": false,
+    "local_pickup": false,
+    "fixed_delivery_promise": false,
+    "method_selection": "بر اساس نوع و ابعاد کالا، مقصد و پذیرش شرکت حمل",
+    "delivery_time": "وابسته به مقصد، روش حمل، زمان تحویل به شرکت حمل و شبکه توزیع",
+    "policy_page": "/shipping/"
+  },
+  "guardrails": {
+    "forbidden_claims": [
+      "ارسال رایگان",
+      "رایگان ارسال",
+      "تحویل ۱ روزه",
+      "تحویل یک روزه",
+      "تحویل ۲ روزه",
+      "تحویل دو روزه",
+      "تحویل ۳ روزه",
+      "تحویل سه روزه"
+    ],
+    "fixed_shipping_price_allowed": false,
+    "fixed_delivery_days_allowed": false,
+    "per_sku_carrier_guarantee_allowed": false,
+    "shipping_method_must_be_selected_from_live_policy": true
+  },
+  "render": {
+    "marker": "k20-phase7-shipping-clarity",
+    "block_html": "<!-- k20-phase7-shipping-clarity -->\n<div dir=\"rtl\" class=\"k20-shipping-clarity\" style=\"direction:rtl;text-align:right;margin:14px 0;padding:13px 15px;border:1px solid #dfe5ef;border-radius:14px;background:#fafcff;line-height:1.9\">\n<p style=\"margin:0 0 8px\"><strong>ارسال و تحویل سفارش</strong></p>\n<ul style=\"margin:8px 18px 0 0;padding:0\">\n<li>ارسال به سراسر کشور از طریق <strong>باربری یا تیپاکس</strong> انجام می‌شود.</li>\n<li>هزینه حمل <strong>پس‌کرایه</strong> و مطابق تعرفه شرکت حمل از گیرنده دریافت می‌شود.</li>\n<li>روش نهایی حمل با توجه به نوع و ابعاد کالا، مقصد و امکان پذیرش مرسوله توسط شرکت حمل تعیین می‌شود.</li>\n<li>زمان تحویل به مقصد و شبکه توزیع شرکت حمل وابسته است و بدون اطلاعات همان سفارش، زمان قطعی اعلام نمی‌شود.</li>\n</ul>\n<p style=\"margin:9px 0 0\"><a href=\"/shipping/\" rel=\"nofollow\">جزئیات روش‌های ارسال سفارش</a></p>\n</div>\n<!-- /k20-phase7-shipping-clarity -->",
+    "placement": "product short_description after product/basket content",
+    "idempotent": true
+  },
+  "truth_source": "seo-god2/phase7-shipping-truth-20260930.json"
+}
