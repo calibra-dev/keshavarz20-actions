@@ -148,10 +148,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test -f seo-god2/phase9-public-purchase-risk-audit-20260930.json || exit 0
+          test -f seo-god2/phase9-public-purchase-risk-audit-20261001.json || exit 0
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f seo-god2/phase9-public-purchase-risk-audit-20260930.json
+          git add -f seo-god2/phase9-public-purchase-risk-audit-20261001.json
           git diff --cached --quiet && exit 0
           git commit -m "seo god2 phase9: record expanded public purchase-risk acceptance"
           for attempt in 1 2 3 4 5; do
