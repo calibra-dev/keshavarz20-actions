@@ -1,6 +1,9 @@
 name: SEO God2 Phase 7 Public Shipping Audit
 
 on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 2 * * *'
   push:
     branches: [main]
     paths:
