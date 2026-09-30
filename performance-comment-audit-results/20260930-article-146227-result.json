@@ -1,0 +1,45 @@
+{
+  "program": "K20 Comment Cache Candidate Audit",
+  "executed_at_utc": "2026-09-30T05:27:14Z",
+  "read_only": true,
+  "speed_result": "performance-results/article-146227-baseline-cache.json",
+  "resolved_wp_objects": 1,
+  "safe_close_candidate_count": 1,
+  "policy": "Only published non-product WordPress posts with comment_status=open, zero approved public comments, and explicit no-cache in the measured cohort are candidates. Products/reviews are excluded.",
+  "candidates": [
+    {
+      "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+      "id": 146227,
+      "kind": "posts",
+      "slug": "sandy-well-water-drip-filtration-guide",
+      "status": "publish",
+      "comment_status": "open",
+      "approved_public_comments": 0,
+      "median_ttfb_s": 6.183384,
+      "median_total_s": 6.610319,
+      "cache_states": [],
+      "cache_controls": [
+        "no-cache,esi=on"
+      ],
+      "safe_close_candidate": true
+    }
+  ],
+  "all_resolved": [
+    {
+      "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+      "id": 146227,
+      "kind": "posts",
+      "slug": "sandy-well-water-drip-filtration-guide",
+      "status": "publish",
+      "comment_status": "open",
+      "approved_public_comments": 0,
+      "median_ttfb_s": 6.183384,
+      "median_total_s": 6.610319,
+      "cache_states": [],
+      "cache_controls": [
+        "no-cache,esi=on"
+      ],
+      "safe_close_candidate": true
+    }
+  ]
+}
