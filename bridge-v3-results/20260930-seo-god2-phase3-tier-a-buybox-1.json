@@ -4,14 +4,96 @@
   "http_code": 200,
   "request": "20260930-seo-god2-phase3-tier-a-buybox-1.sanitized.json",
   "action": "batch",
-  "request_id": "seo-god2-phase3-tier-a-buybox-1-20260930",
+  "request_id": "seo-god2-phase3-tier-a-buybox-1-retry-20260930",
   "dry_run": false,
-  "executed_at_utc": "2026-09-30T06:24:17.5699043Z",
+  "executed_at_utc": "2026-09-30T06:25:37.2413173Z",
   "bridge": "Keshavarz20 Bridge v3",
   "bridge_version": "3.3.4",
   "error_code": null,
   "message": null,
   "result": {
-    "count": 10
+    "count": 10,
+    "items": [
+      {
+        "index": 0,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "PUT",
+        "result_path": "/wc/v3/products/140856",
+        "result_status": 200
+      },
+      {
+        "index": 1,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "PUT",
+        "result_path": "/wc/v3/products/140718",
+        "result_status": 200
+      },
+      {
+        "index": 2,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "PUT",
+        "result_path": "/wc/v3/products/135339",
+        "result_status": 200
+      },
+      {
+        "index": 3,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "PUT",
+        "result_path": "/wc/v3/products/135349",
+        "result_status": 200
+      },
+      {
+        "index": 4,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "PUT",
+        "result_path": "/wc/v3/products/140853",
+        "result_status": 200
+      },
+      {
+        "index": 5,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "PUT",
+        "result_path": "/wc/v3/products/140406",
+        "result_status": 200
+      },
+      {
+        "index": 6,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "PUT",
+        "result_path": "/wc/v3/products/140760",
+        "result_status": 200
+      },
+      {
+        "index": 7,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "PUT",
+        "result_path": "/wc/v3/products/140407",
+        "result_status": 200
+      },
+      {
+        "index": 8,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "PUT",
+        "result_path": "/wc/v3/products/135337",
+        "result_status": 200
+      },
+      {
+        "index": 9,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "PUT",
+        "result_path": "/wc/v3/products/140610",
+        "result_status": 200
+      }
+    ]
   }
 }
