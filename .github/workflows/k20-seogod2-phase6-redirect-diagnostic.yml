@@ -48,6 +48,8 @@ jobs:
           hist=[{'status':x.status_code,'url':x.url,'location':x.headers.get('Location'),'server':x.headers.get('Server'),'x_redirect_by':x.headers.get('X-Redirect-By')} for x in followed.history]
           out={
             'product_id':140816,
+            'yoast_delete_route_definition': routes.get('/yoast/v1/redirects/delete'),
+            'yoast_undo_route_definition': routes.get('/yoast/v1/redirects/undo-for-object'),
             'product_name':product.get('name'),
             'slug':product.get('slug'),
             'rest_permalink':url,
