@@ -1,0 +1,88 @@
+name: SEO God2 Phase 6 Yoast Redirect Inspect
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'seo-god2-phase6-yoast-redirect-inspect-ops/*.json'
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check requests
+      - name: Inspect exact Yoast redirect only
+        shell: python
+        run: |
+          import json, os, pathlib, requests, urllib.parse
+          base=os.environ['WP_BASE_URL'].rstrip('/')
+          auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD'])
+          url=base+'/wp-json/yoast/v1/redirects/list'
+          r=requests.get(url,params={'format':'json'},auth=auth,timeout=60)
+          r.raise_for_status()
+          data=r.json()
+          needles=[
+            'کلسیم-کراپ-ایکس-گرین',
+            'کلسیم کراپ ایکس گرین',
+            '%da%a9%d9%84%d8%b3%db%8c%d9%85-%da%a9%d8%b1%d8%a7%d9%be-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86',
+            'پلی-اس-ایکس-گرین-20-لیتری',
+            '%d9%be%d9%84%db%8c-%d8%a7%d8%b3-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c'
+          ]
+          def rows(obj):
+            if isinstance(obj,list): return obj
+            if isinstance(obj,dict):
+              for k in ('redirects','items','data','results'):
+                if isinstance(obj.get(k),list): return obj[k]
+              vals=[]
+              for k,v in obj.items():
+                if isinstance(v,dict):
+                  row=dict(v); row.setdefault('_key',k); vals.append(row)
+              if vals: return vals
+            return []
+          all_rows=rows(data)
+          matches=[]
+          for row in all_rows:
+            s=json.dumps(row,ensure_ascii=False).lower()
+            if any(n.lower() in s for n in needles):
+              matches.append(row)
+          out={
+            'http_status':r.status_code,
+            'response_type':type(data).__name__,
+            'response_keys':sorted(data.keys()) if isinstance(data,dict) else None,
+            'row_count':len(all_rows),
+            'match_count':len(matches),
+            'matches':matches[:20]
+          }
+          pathlib.Path('seo-god2').mkdir(exist_ok=True)
+          pathlib.Path('seo-god2/phase6-140816-yoast-redirect-inspect.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps({'row_count':out['row_count'],'match_count':out['match_count']},ensure_ascii=False))
+      - name: Commit inspection
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f seo-god2/phase6-140816-yoast-redirect-inspect.json
+          git diff --cached --quiet && exit 0
+          git commit -m "seo god2 phase6: record exact Yoast redirect inspection"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
