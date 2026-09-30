@@ -1,0 +1,73 @@
+{
+  "schema_version": "seo-god2-phase1-3-closure-v1",
+  "generated_at_utc": "2026-09-30T06:37:00Z",
+  "bridge": {
+    "installed_version": "3.3.6",
+    "contract": "3.3"
+  },
+  "phase1": {
+    "status": "PASS_GUARDED",
+    "scope": "Shop/category conversion UX baseline",
+    "completed": [
+      "Verified WooCommerce stored catalog order is popularity.",
+      "Identified IranKala callback IRK_WC_Hooks::default_catalog_orderby at priority 10.",
+      "Installed guarded frontend default-order override at priority 999; explicit user orderby remains respected.",
+      "Direct server-side shop diagnostic returned HTTP 200 and first products aligned with WooCommerce popularity/top-sales order.",
+      "LiteSpeed + WordPress object cache purge completed after shop sort change."
+    ],
+    "evidence": [
+      "bridge-v3-results/20260930-seo-god2-phase1-catalog-order-read-evidence-2.json",
+      "bridge-v3-results/20260930-seo-god2-phase1-shop-diagnose-v336-final.json",
+      "bridge-v3-results/20260930-seo-god2-phase1-cache-purge-after-v335.json",
+      "bridge-v3-results/20260930-seo-god2-approve-v336.json"
+    ],
+    "guarded_remaining": [
+      "Public shop currently exposes search, price, brand and category filters; technical filtering is not yet complete.",
+      "Only 4 global WooCommerce product attributes are registered (body material, nominal pressure, size/diameter, warranty); many technical attributes still exist as local product attributes and require controlled normalization before reliable faceted filters can be enabled."
+    ]
+  },
+  "phase2": {
+    "status": "PASS",
+    "scope": "Evidence-based Money Product tiers",
+    "completed": [
+      "Created Tier A 20 products from GSC 28d demand + WooCommerce total_sales + stock + commercial/basket role.",
+      "Created Tier B next 30 in-stock products by real WooCommerce sales after excluding Tier A.",
+      "Tier C defined as remaining published catalog."
+    ],
+    "evidence": [
+      "seo-god2/phase2-money-product-tiers-20260930.json"
+    ],
+    "important_exclusions": [
+      "Organic Marvel XGreen excluded from Tier A because out of stock.",
+      "Calcium Crop XGreen search landing excluded because URL/product truth mismatch was detected and not silently rewritten."
+    ]
+  },
+  "phase3": {
+    "status": "PASS",
+    "scope": "Tier A Buy Box 2.0 / human-written decision copy",
+    "completed": [
+      "Updated only short_description for Tier A; no price, stock, payment or discount fields changed.",
+      "All 20 Tier A products now have human-written decision-oriented buy boxes with evidence-aware pre-purchase checks.",
+      "Final QA: 20/20 contain the human buy-box pattern; 0 legacy k20-buybox-v2 markers remain."
+    ],
+    "evidence": [
+      "bridge-v3-results/20260930-seo-god2-phase3-tier-a-human-fix-8.json",
+      "bridge-v3-results/20260930-seo-god2-phase3-tier-a-final-readback.json"
+    ],
+    "qa": {
+      "tier_a_count": 20,
+      "human_buybox_count": 20,
+      "legacy_marker_count": 0
+    }
+  },
+  "do_not_repeat": [
+    "Do not rerun Phase 2 tier selection unless GSC/sales/stock materially changes.",
+    "Do not rewrite the 20 Tier A short descriptions without new evidence or a CRO reason.",
+    "Do not re-fix shop default sorting unless direct diagnostic shows regression."
+  ],
+  "next_open_work": [
+    "Normalize technical product attributes into a controlled global attribute model, then expose reliable technical filters on shop/category mobile and desktop.",
+    "Resolve detected URL/product truth mismatches such as Calcium Crop landing before treating those pages as Money Products.",
+    "Continue later revenue phases: verified compatibility edges, real reviews/social proof, shipping/ETA clarity, and end-to-end paid purchase measurement."
+  ]
+}
