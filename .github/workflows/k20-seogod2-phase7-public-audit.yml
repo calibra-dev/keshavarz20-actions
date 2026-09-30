@@ -1,0 +1,186 @@
+name: SEO God2 Phase 7 Public Shipping Audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'seo-god2-phase7-public-audit-ops/*.json'
+      - '.github/workflows/k20-seogod2-phase7-public-audit.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check requests beautifulsoup4
+      - name: Audit public product shipping clarity
+        shell: python
+        run: |
+          import json, os, pathlib, re, requests
+          from bs4 import BeautifulSoup
+
+          ids=[
+            140856,140718,135339,135349,140853,140406,140760,140816,140407,135337,
+            135353,140454,135381,135361,140674,135235,140014,135309,135359,135667
+          ]
+          physical={140674,140454,140407,140406,140014,135235,135381,135361,135359,135353,135349,135339,135337,135309,135667}
+          base=os.environ['WP_BASE_URL'].rstrip('/')
+          auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD'])
+          s=requests.Session(); s.auth=auth
+          public=requests.Session()
+          rows=[]
+          for pid in ids:
+            pr=s.get(base+f'/wp-json/wc/v3/products/{pid}?context=edit',timeout=60)
+            pr.raise_for_status()
+            p=pr.json()
+            url=p.get('permalink')
+            rr=public.get(url,timeout=60,allow_redirects=True,headers={
+              'User-Agent':'K20Phase7PublicAudit/1.0',
+              'Cache-Control':'no-cache','Pragma':'no-cache'
+            })
+            soup=BeautifulSoup(rr.text,'html.parser')
+            card=soup.select_one('.k20-shipping-clarity')
+            card_text=' '.join(card.stripped_strings) if card else ''
+            card_links=[a.get('href') for a in card.select('a[href]')] if card else []
+            rows.append({
+              'product_id':pid,
+              'name':p.get('name'),
+              'rest_permalink':url,
+              'public_status':rr.status_code,
+              'public_final_url':rr.url,
+              'shipping_card_present':card is not None,
+              'shipping_heading_present':'ارسال و تحویل سفارش' in card_text,
+              'barbari_present':'باربری' in card_text,
+              'tipax_present':'تیپاکس' in card_text,
+              'collect_freight_present':'پس‌کرایه' in card_text,
+              'shipping_policy_link_present':any((x or '').rstrip('/').endswith('/shipping') for x in card_links),
+              'free_shipping_claim_in_card':'ارسال رایگان' in card_text,
+              'fixed_delivery_days_claim':bool(re.search(r'(?:تحویل|ارسال)[^\n]{0,40}[۰-۹0-9]+\s*روز',card_text)),
+              'fixed_shipping_price_claim':bool(re.search(r'[۰-۹0-9]{2,}\s*(?:تومان|ریال)',card_text)),
+              'legacy_phase6_css_visible':bool(re.search(r'\.postid-\d+\s+\.related\.products',rr.text)),
+              'phase6_basket_heading_present':'چک‌لیست تکمیل خرید' in rr.text,
+              'expected_phase6_basket':pid in physical,
+            })
+
+          ship=public.get(base+'/shipping/',timeout=60,allow_redirects=True,headers={
+            'User-Agent':'K20Phase7PublicAudit/1.0','Cache-Control':'no-cache','Pragma':'no-cache'
+          })
+          ship_text=' '.join(BeautifulSoup(ship.text,'html.parser').stripped_strings)
+
+          zones=s.get(base+'/wp-json/wc/v3/shipping/zones?per_page=100',timeout=60)
+          zones.raise_for_status()
+          iran=next((z for z in zones.json() if z.get('name')=='ایران'),None)
+          methods=[]
+          if iran:
+            mr=s.get(base+f"/wp-json/wc/v3/shipping/zones/{iran['id']}/methods",timeout=60)
+            mr.raise_for_status(); methods=mr.json()
+          enabled=[m for m in methods if m.get('enabled') is True]
+
+          failures={
+            'public_non_200':[r['product_id'] for r in rows if r['public_status']!=200],
+            'redirected_away':[r['product_id'] for r in rows if r['public_final_url'].rstrip('/')!=r['rest_permalink'].rstrip('/')],
+            'shipping_card_missing':[r['product_id'] for r in rows if not r['shipping_card_present']],
+            'shipping_heading_missing':[r['product_id'] for r in rows if not r['shipping_heading_present']],
+            'barbari_missing':[r['product_id'] for r in rows if not r['barbari_present']],
+            'tipax_missing':[r['product_id'] for r in rows if not r['tipax_present']],
+            'collect_freight_missing':[r['product_id'] for r in rows if not r['collect_freight_present']],
+            'shipping_link_missing':[r['product_id'] for r in rows if not r['shipping_policy_link_present']],
+            'free_shipping_claim':[r['product_id'] for r in rows if r['free_shipping_claim_in_card']],
+            'fixed_delivery_claim':[r['product_id'] for r in rows if r['fixed_delivery_days_claim']],
+            'fixed_shipping_price_claim':[r['product_id'] for r in rows if r['fixed_shipping_price_claim']],
+            'legacy_phase6_css_visible':[r['product_id'] for r in rows if r['legacy_phase6_css_visible']],
+            'phase6_basket_missing':[r['product_id'] for r in rows if r['expected_phase6_basket'] and not r['phase6_basket_heading_present']],
+          }
+          settings_ok=(
+            iran is not None
+            and len(enabled)==1
+            and enabled[0].get('method_id')=='flat_rate'
+            and 'باربری' in (enabled[0].get('title') or '')
+            and 'تیپاکس' in (enabled[0].get('title') or '')
+            and 'پس‌کرایه' in (enabled[0].get('title') or '')
+            and all(not m.get('enabled') for m in methods if m.get('method_id') in ('free_shipping','local_pickup'))
+          )
+          shipping_page_ok=(
+            ship.status_code==200
+            and 'باربری' in ship_text
+            and 'تیپاکس' in ship_text
+            and 'پس‌کرایه' in ship_text
+            and 'تحویل محلی به‌عنوان روش حمل فروشگاه فعال نیست' in ship_text
+          )
+          metrics={
+            'tier_a_products':len(rows),
+            'public_non_200':len(failures['public_non_200']),
+            'redirected_away':len(failures['redirected_away']),
+            'shipping_card_missing':len(failures['shipping_card_missing']),
+            'shipping_heading_missing':len(failures['shipping_heading_missing']),
+            'barbari_missing':len(failures['barbari_missing']),
+            'tipax_missing':len(failures['tipax_missing']),
+            'collect_freight_missing':len(failures['collect_freight_missing']),
+            'shipping_link_missing':len(failures['shipping_link_missing']),
+            'free_shipping_claim':len(failures['free_shipping_claim']),
+            'fixed_delivery_claim':len(failures['fixed_delivery_claim']),
+            'fixed_shipping_price_claim':len(failures['fixed_shipping_price_claim']),
+            'legacy_phase6_css_visible':len(failures['legacy_phase6_css_visible']),
+            'phase6_basket_missing':len(failures['phase6_basket_missing']),
+            'shipping_page_ok':shipping_page_ok,
+            'live_shipping_settings_ok':settings_ok,
+          }
+          zero_keys=[
+            'public_non_200','redirected_away','shipping_card_missing','shipping_heading_missing',
+            'barbari_missing','tipax_missing','collect_freight_missing','shipping_link_missing',
+            'free_shipping_claim','fixed_delivery_claim','fixed_shipping_price_claim',
+            'legacy_phase6_css_visible','phase6_basket_missing'
+          ]
+          status='PASS' if all(metrics[k]==0 for k in zero_keys) and shipping_page_ok and settings_ok else 'FAIL'
+          out={
+            'schema_version':'seo-god2-phase7-public-shipping-audit-v1',
+            'status':status,
+            'metrics':metrics,
+            'failures':failures,
+            'shipping_page':{
+              'status':ship.status_code,
+              'final_url':ship.url,
+              'truth_terms':{'barbari':'باربری' in ship_text,'tipax':'تیپاکس' in ship_text,'collect':'پس‌کرایه' in ship_text}
+            },
+            'live_shipping_settings':{
+              'iran_zone_id':iran.get('id') if iran else None,
+              'enabled_methods':[{'method_id':m.get('method_id'),'title':m.get('title')} for m in enabled]
+            },
+            'rows':rows
+          }
+          pathlib.Path('seo-god2').mkdir(exist_ok=True)
+          pathlib.Path('seo-god2/phase7-public-shipping-audit-20260930.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps({'status':status,'metrics':metrics},ensure_ascii=False))
+          if status!='PASS':
+            raise SystemExit(1)
+      - name: Commit audit
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f seo-god2/phase7-public-shipping-audit-20260930.json || exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f seo-god2/phase7-public-shipping-audit-20260930.json
+          git diff --cached --quiet && exit 0
+          git commit -m "seo god2 phase7: record public shipping acceptance"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
