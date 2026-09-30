@@ -1,0 +1,109 @@
+{
+  "schema_version": "seo-god2-phase1-3-final-closure-v2",
+  "generated_at_utc": "2026-09-30T08:11:00Z",
+  "status": "PASS",
+  "bridge": {
+    "installed_version": "3.3.7",
+    "contract": "3.3",
+    "release_run_id": 36686415685,
+    "release_conclusion": "success"
+  },
+  "phase1": {
+    "status": "PASS",
+    "scope": "Shop/category discovery, sorting, technical attribute normalization and live technical filters",
+    "completed": [
+      "Default shop ordering remains popularity; IranKala priority-10 override is superseded by the guarded priority-999 default while explicit user orderby remains respected.",
+      "Audited all 652 published products.",
+      "Created 8 new controlled global WooCommerce attributes; with the existing technical attributes, the catalog now has a controlled global technical model.",
+      "Migrated all 37 products that had source-backed local technical attributes; 37/37 now have global technical attributes and 0 targeted legacy local attributes remain.",
+      "Preserved descriptive/non-facet local fields such as brand, filtration notes, pressure requirements and coil weight instead of forcing them into noisy filters.",
+      "Installed Bridge 3.3.7 with lightweight RTL technical filters for shop/category pages.",
+      "Live shop diagnostic confirms HTTP 200, popularity ordering, technical filter UI present and 6 currently usable controls.",
+      "Final LiteSpeed + WordPress object cache purge completed."
+    ],
+    "qa": {
+      "published_products_audited": 652,
+      "source_backed_products_migrated": 37,
+      "source_backed_products_with_global_attrs": 37,
+      "targeted_legacy_local_attrs_remaining": 0,
+      "live_technical_filter_controls": 6,
+      "shop_http_status": 200,
+      "default_order_option": "popularity",
+      "default_order_filtered": "popularity"
+    },
+    "non_blocking_note": "A WooCommerce REST smoke request using attribute_term was rejected by the installed REST schema, so it was not used as acceptance evidence. Acceptance is based on product readback, live global terms, installed frontend query hook and live shop HTML diagnostic.",
+    "evidence": [
+      "seo-god2/phase1-attribute-normalization-plan-20260930.json",
+      "bridge-v3-results/20260930-seo-god2-phase1-migration-readback.json",
+      "bridge-v3-results/20260930-seo-god2-phase1-shop-diagnose-v337.json",
+      "bridge-v3-results/20260930-seo-god2-phase1-cache-purge-v337.json",
+      "bridge-v3-results/20260930-seo-god2-approve-v337-final.json"
+    ]
+  },
+  "phase2": {
+    "status": "PASS",
+    "scope": "Money Product tiers and URL/product truth",
+    "completed": [
+      "Resolved the calcium-crop / Polys URL-product mismatch without changing price, payment or stock.",
+      "Product 140816 now owns the calcium-crop slug; product 140841 now owns the Polys 20L slug.",
+      "Refreshed Tier A by delta only after current GSC + WooCommerce evidence: Hard Calicrop promoted into Tier A; product 140610 moved to Tier C/watchlist.",
+      "Tier A remains 20 products and Tier B remains 30 products.",
+      "Organic Marvel 140854 remains intentionally outside Tier A because current stock is 0; this is an inventory condition, not an unresolved truth defect."
+    ],
+    "qa": {
+      "tier_a_count": 20,
+      "tier_b_count": 30,
+      "promoted_product_id": 140816,
+      "promoted_product_gsc_clicks_28d": 9,
+      "promoted_product_gsc_impressions_28d": 134,
+      "promoted_product_gsc_avg_position": 7.8881,
+      "promoted_product_total_sales": 19,
+      "demoted_product_id": 140610,
+      "organic_marvel_stock_status": "outofstock",
+      "organic_marvel_stock_quantity": 0
+    },
+    "evidence": [
+      "seo-god2/phase2-url-truth-resolution-20260930.json",
+      "seo-god2/phase2-money-product-tiers-v2-20260930.json",
+      "bridge-v3-results/20260930-seo-god2-phase2-url-readback-calcium.json",
+      "bridge-v3-results/20260930-seo-god2-phase2-url-readback-polys.json",
+      "bridge-v3-results/20260930-seo-god2-phase2-organic-marvel-current.json"
+    ]
+  },
+  "phase3": {
+    "status": "PASS",
+    "scope": "Tier A Buy Box 2.0 human-written decision copy",
+    "completed": [
+      "Kept existing 19 valid Tier A Buy Boxes unchanged.",
+      "Added a human-written evidence-aware Buy Box for newly promoted Hard Calicrop 140816.",
+      "Final Tier A v2 readback confirms 20/20 human Buy Boxes and 0 legacy k20-buybox-v2 markers.",
+      "No price, stock, discount or payment fields were changed."
+    ],
+    "qa": {
+      "tier_a_v2_count": 20,
+      "human_buybox_count": 20,
+      "legacy_buybox_marker_count": 0,
+      "failures": 0,
+      "tier_a_products_with_global_technical_attrs": 7
+    },
+    "evidence": [
+      "bridge-v3-results/20260930-seo-god2-phase3-hard-calicrop-buybox.json",
+      "bridge-v3-results/20260930-seo-god2-phase3-tier-a-v2-final-readback.json",
+      "bridge-v3-results/20260930-seo-god2-final-cache-purge.json"
+    ]
+  },
+  "remaining_within_phases_1_3": [],
+  "guards": [
+    "Do not fabricate technical attributes for products without authoritative/source-backed data.",
+    "Do not rerun Tier A selection unless GSC, sales or stock materially changes.",
+    "Do not rewrite Tier A Buy Boxes without new evidence or a CRO reason.",
+    "Do not repeat payment/gateway testing as part of these phases."
+  ],
+  "next_scope_outside_phases_1_3": [
+    "Verified compatibility edges from manufacturer/supplier evidence",
+    "Real customer reviews/social proof",
+    "Shipping/ETA clarity close to purchase CTA",
+    "Paid-purchase measurement and revenue funnel closure",
+    "Later SEO God2 phases only"
+  ]
+}
