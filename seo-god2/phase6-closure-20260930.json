@@ -1,0 +1,91 @@
+{
+  "schema_version": "seo-god2-phase6-closure-v1",
+  "generated_at_utc": "2026-09-30T14:15:00Z",
+  "status": "PASS_PHASE6_COMPLETE",
+  "title": "Phase 6 — Recommendation & Basket Intelligence",
+  "acceptance": {
+    "tier_a_products": "20/20",
+    "evidence_gated_exact_sku_only": true,
+    "random_recommendations": 0,
+    "same_size_only_recommendations": 0,
+    "incompatible_pairs_blocked": 5,
+    "expert_review_pairs": 8,
+    "verified_exact_recommendations": 0,
+    "explicit_upsell_cross_sell_nonempty": 0,
+    "public_related_sections_present": 0,
+    "public_related_guard_missing": 0,
+    "public_http_non_200": 0,
+    "physical_basket_checklist_missing": 0,
+    "fertilizer_auto_recommendation_blocks_present": false
+  },
+  "engine": {
+    "result": "seo-god2/phase6-basket-intelligence-20260930.json",
+    "ci_run_id": 36695530672,
+    "ci_conclusion": "success",
+    "legacy_writer_guard_test_run_id": 36696175112,
+    "legacy_writer_guard_test_conclusion": "success",
+    "exact_sku_cards_enabled": false,
+    "fallback": "REQUIREMENT_CHECKLIST_AND_EXPERT_REVIEW",
+    "legacy_same_size_writer_disabled": true
+  },
+  "compatibility_input": {
+    "source": "seo-god2/phase5-tier-a-compatibility-graph-v2-20260930.json",
+    "phase5_closure": "seo-god2/phase5-closure-v2-20260930.json",
+    "verified_positive_edges": 0,
+    "incompatible_edges": 5,
+    "needs_review_edges": 8
+  },
+  "site_runtime_guard": {
+    "source": "plugins/k20-bridge-v3/includes/class-k20-bridge-v33-recommendation-guard.php",
+    "current_repo_bridge_version": "3.3.16",
+    "tier_a_guard_count": 20,
+    "blocks": [
+      "WooCommerce native related products",
+      "WooCommerce upsell IDs",
+      "WooCommerce cross-sell IDs",
+      "IranKala theme widget-related-products output"
+    ],
+    "public_audit": "seo-god2/phase6-public-recommendation-audit-20260930.json",
+    "public_audit_run_id": 36727464174,
+    "public_audit_conclusion": "success"
+  },
+  "url_truth_fix": {
+    "product_id": 140816,
+    "product_name": "کود مایع کلسیم آمینواسید هارد کالی‌کراپ ایکس گرین ۱ لیتری با منیزیم و ریزمغذی (Hard calicrop XGreen)",
+    "diagnostic": "seo-god2/phase6-140816-redirect-diagnostic.json",
+    "prior_issue": "REST permalink returned HTTP 301 with X-Redirect-By: Yoast SEO Premium to product 140841",
+    "wrong_target_product_id": 140841,
+    "final_public_status": 200,
+    "final_redirect_history_count": 0,
+    "final_wrong_location": null,
+    "note": "Public URL truth is verified fixed. No claim is made about internal Yoast redirect-storage cleanup beyond the verified public behavior."
+  },
+  "public_acceptance_metrics": {
+    "tier_a_products": 20,
+    "explicit_recommendation_fields_nonempty": 0,
+    "public_recommendation_sections_present_raw": 0,
+    "public_recommendation_sections_unsuppressed": 0,
+    "phase6_related_guard_missing": 0,
+    "physical_heading_missing": 0,
+    "fertilizer_marker_unexpected": 0,
+    "public_non_200": 0
+  },
+  "hard_guards_preserved": [
+    "No price, regular_price, sale_price, coupon, payment or stock mutation",
+    "No exact-SKU recommendation without VERIFIED compatibility evidence",
+    "INCOMPATIBLE pairs are blocked",
+    "NEEDS_REVIEW pairs route to expert review",
+    "Same nominal size alone never becomes compatibility",
+    "Fertilizer mixing/replacement requires exact label or manufacturer evidence"
+  ],
+  "evidence": [
+    "seo-god2/phase6-basket-intelligence-20260930.json",
+    "seo-god2/phase6-public-recommendation-audit-20260930.json",
+    "seo-god2/phase6-140816-redirect-diagnostic.json",
+    "seo-god2/phase5-tier-a-compatibility-graph-v2-20260930.json",
+    "plugins/k20-bridge-v3/includes/class-k20-bridge-v33-recommendation-guard.php",
+    "scripts/k20_seogod2_phase6_basket.py",
+    "tests/test_seogod2_phase6_basket.py"
+  ],
+  "next_scope": "Phase 7 — Shipping & Delivery Clarity"
+}
