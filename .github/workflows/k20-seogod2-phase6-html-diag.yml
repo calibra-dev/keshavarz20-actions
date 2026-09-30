@@ -1,0 +1,51 @@
+name: SEO God2 Phase 6 Public HTML Diagnostic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'seo-god2-phase6-html-diag-ops/*.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-seogod2-phase6-html-diag
+  cancel-in-progress: true
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile
+        run: python -m py_compile scripts/k20_seogod2_phase6_public_html_diag.py
+      - name: Diagnose representative Tier A page
+        run: python scripts/k20_seogod2_phase6_public_html_diag.py
+      - name: Commit diagnostic
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f seo-god2/phase6-public-html-diagnostic-135349-20260930.json
+          git diff --cached --quiet && exit 0
+          git commit -m "seo god2 phase6: record public HTML diagnostic"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
