@@ -35,13 +35,13 @@ def around(text: str, pattern: str, limit: int = 8, radius: int = 320) -> list[s
 
 def extract_related_widget(html: str) -> dict:
     opener = re.search(
-        r"<div\\b[^>]*class=['\"][^'\"]*\\bwidget-related-products\\b[^'\"]*['\"][^>]*>",
+        r"<div\b[^>]*class=['\"][^'\"]*\bwidget-related-products\b[^'\"]*['\"][^>]*>",
         html,
         re.I | re.S,
     )
     if not opener:
         return {"present": False, "bytes": 0, "slider_items": 0, "product_links": [], "text_sample": ""}
-    token_re = re.compile(r'<div\\b[^>]*>|</div\\s*>', re.I | re.S)
+    token_re = re.compile(r"<div\b[^>]*>|</div\s*>", re.I | re.S)
     depth = 0
     end = None
     for m in token_re.finditer(html, opener.start()):
@@ -53,10 +53,7 @@ def extract_related_widget(html: str) -> dict:
             if depth == 0:
                 end = m.end()
                 break
-    if end is None:
-        block = html[opener.start():]
-    else:
-        block = html[opener.start():end]
+    block = html[opener.start():end] if end is not None else html[opener.start():]
     links = []
     for m in re.finditer(r"href=['\"]([^'\"]+/product/[^'\"]*)['\"]", block, re.I):
         url = m.group(1)
@@ -64,18 +61,19 @@ def extract_related_widget(html: str) -> dict:
             links.append(url)
         if len(links) >= 20:
             break
-    text_only = re.sub(r'<script\\b[^>]*>[\\s\\S]*?</script>', ' ', block, flags=re.I)
-    text_only = re.sub(r'<style\\b[^>]*>[\\s\\S]*?</style>', ' ', text_only, flags=re.I)
-    text_only = re.sub(r'<[^>]+>', ' ', text_only)
-    text_only = re.sub(r'\\s+', ' ', text_only).strip()
+    text_only = re.sub(r"<script\b[^>]*>[\s\S]*?</script>", " ", block, flags=re.I)
+    text_only = re.sub(r"<style\b[^>]*>[\s\S]*?</style>", " ", text_only, flags=re.I)
+    text_only = re.sub(r"<[^>]+>", " ", text_only)
+    text_only = re.sub(r"\s+", " ", text_only).strip()
     return {
         "present": True,
         "bytes": len(block.encode("utf-8")),
-        "slider_items": len(re.findall(r"class=['\"][^'\"]*\\bslider-item\\b", block, re.I)),
+        "slider_items": len(re.findall(r"class=['\"][^'\"]*\bslider-item\b", block, re.I)),
         "product_links": links,
         "product_link_count": len(links),
         "text_sample": text_only[:1200],
     }
+
 
 def main() -> None:
     base = os.environ["WP_BASE_URL"].rstrip("/")
