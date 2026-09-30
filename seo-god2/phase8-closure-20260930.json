@@ -1,0 +1,115 @@
+{
+  "schema_version": "seo-god2-phase8-closure-v1",
+  "project": "keshavarz20.com / SEO GOD2",
+  "phase": 8,
+  "name": "Trust & Social Proof",
+  "status": "PASS_PHASE8_COMPLETE",
+  "closed": true,
+  "closed_at_utc": "2026-09-30T20:09:30Z",
+  "scope": {
+    "tier_a_products": 20,
+    "ugc_policy_page_id": 145288,
+    "ugc_policy_url": "https://keshavarz20.com/reviews-qa-ugc-policy/",
+    "bridge_version": "3.3.16"
+  },
+  "implementation": {
+    "final_route": "content.patch -> post_excerpt",
+    "marker": "k20-phase8-trust-proof",
+    "product_count": 20,
+    "approval_id": "ap_c9bd180910616b9647",
+    "approval_fingerprint": "5aaedab106538313f4cf664fdff9bc3abd8461514e1e68bcd686f09c165622d5",
+    "approval_workflow_run_id": 36769882507,
+    "approval_workflow_conclusion": "success",
+    "approval_result_commit": "09c84f804b0ca9d7fb89a1f515c2bcd139afe4f3",
+    "changed_items": "20/20"
+  },
+  "readback": {
+    "status": "PASS",
+    "workflow_run_id": 36770174143,
+    "workflow_conclusion": "success",
+    "result_commit": "d76a5b373ed529662cf2ae23e25c639af68f1e2a",
+    "tier_a_products": 20,
+    "trust_marker_present": 20,
+    "trust_heading_present": 20,
+    "ugc_policy_link_present": 20,
+    "anti_fake_review_policy_present": 20,
+    "phase7_shipping_preserved": 20,
+    "phase6_expected_products_preserved": 15
+  },
+  "reviews": {
+    "refreshed_at_utc": "2026-09-30T19:58:01.575145Z",
+    "workflow_run_id": 36769287066,
+    "workflow_conclusion": "success",
+    "result_commit": "ea9c163e18ccbc6e6b35fff18b96e409b4766adb",
+    "approved": 0,
+    "verified": 0,
+    "unverified": 0,
+    "products_with_verified_reviews": 0,
+    "reviews_enabled": true,
+    "ratings_enabled": true,
+    "verified_review_label_enabled": true,
+    "verified_purchase_required": false
+  },
+  "cache": {
+    "status": "PASS",
+    "workflow_run_id": 36770174921,
+    "workflow_conclusion": "success",
+    "result_commit": "5b2b1335bb829e3695eaa96dea9dc81a89ade437",
+    "purged": true,
+    "actions": [
+      "litespeed_purge_all",
+      "wp_cache_flush"
+    ]
+  },
+  "public_acceptance": {
+    "status": "PASS",
+    "workflow_run_id": 36770283545,
+    "workflow_conclusion": "success",
+    "evidence_commit": "9d0b7df33d437e28d75e57c306e8e96d48cd87ce",
+    "metrics": {
+      "public_non_200": 0,
+      "redirected_away": 0,
+      "trust_card_missing": 0,
+      "trust_heading_missing": 0,
+      "ugc_policy_link_missing": 0,
+      "anti_fake_policy_missing": 0,
+      "phase7_shipping_missing": 0,
+      "phase6_basket_missing": 0,
+      "banned_social_claims": 0,
+      "tier_a_products": 20,
+      "ugc_policy_page_ok": true,
+      "approved_reviews": 0,
+      "verified_reviews": 0,
+      "unverified_reviews": 0,
+      "products_with_verified_reviews": 0
+    }
+  },
+  "guardrails": {
+    "fake_reviews_added": 0,
+    "fake_ratings_added": 0,
+    "fake_testimonials_added": 0,
+    "fake_customer_projects_added": 0,
+    "fake_manufacturer_confirmations_added": 0,
+    "fabricated_reviewer_identities_added": 0,
+    "price_fields_written": 0,
+    "stock_fields_written": 0,
+    "payment_settings_written": 0,
+    "phase6_recommendation_guards_preserved": true,
+    "phase7_shipping_preserved": true
+  },
+  "notes": [
+    "Initial WooCommerce REST short_description PUT returned HTTP 200 but did not persist the Phase 8 block on readback.",
+    "The final implementation therefore used snapshot-aware exact content.patch on post_excerpt and was verified by REST and public-page readback."
+  ],
+  "evidence": [
+    "seo-god2/phase8-trust-social-proof-plan-20260930.json",
+    "seo-god2/phase8-trust-registry-20260930.json",
+    "bridge-v3-results/20260930-seo-god2-phase8-excerpt-patch-approval.json",
+    "bridge-v3-results/20260930-seo-god2-phase8-postpatch-readback.json",
+    "bridge-v3-results/20260930-seo-god2-phase8-postpatch-cache-purge.json",
+    "phase2-results/verified-reviews-audit.json",
+    "seo-god2/phase8-public-trust-audit-20260930.json"
+  ],
+  "acceptance": "PASS",
+  "next_phase": 9
+}
