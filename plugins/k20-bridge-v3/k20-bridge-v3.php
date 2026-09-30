@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Keshavarz20 Bridge v3
  * Description: GitHub-first guarded execution bridge for Keshavarz20.
- * Version: 3.3.5
+ * Version: 3.3.6
  * Author: Keshavarz20
  */
 
 if (!defined('ABSPATH')) exit;
-if (!defined('K20_BRIDGE_RUNTIME_VERSION')) define('K20_BRIDGE_RUNTIME_VERSION','3.3.5');
+if (!defined('K20_BRIDGE_RUNTIME_VERSION')) define('K20_BRIDGE_RUNTIME_VERSION','3.3.6');
 
 require_once __DIR__.'/includes/class-k20-bridge-v31-content.php';
 require_once __DIR__.'/includes/class-k20-bridge-v31-media.php';
@@ -24,7 +24,7 @@ require_once __DIR__.'/includes/class-k20-bridge-v33-code.php';
 require_once __DIR__.'/includes/class-k20-bridge-v33-performance.php';
 
 final class K20_Bridge_V3 {
-    private const VERSION='3.3.5';
+    private const VERSION='3.3.6';
     private const CONTRACT='3.3';
     private const NS='keshavarz20-ops/v3';
     private const AUDIT_OPTION='k20_bridge_v3_audit';
@@ -287,7 +287,7 @@ final class K20_Bridge_V3 {
         $shop=function_exists('wc_get_page_permalink')?wc_get_page_permalink('shop'):home_url('/shop/');
         if (!$shop) $shop=home_url('/shop/');
         $url=add_query_arg('_k20_diag',gmdate('YmdHis'),$shop);
-        $res=wp_remote_get($url,['timeout'=>20,'redirection'=>3,'user-agent'=>'K20-Bridge-Shop-Diagnostic/3.3.5']);
+        $res=wp_remote_get($url,['timeout'=>20,'redirection'=>3,'user-agent'=>'K20-Bridge-Shop-Diagnostic/3.3.6']);
         if (is_wp_error($res)) return $res;
         $status=(int)wp_remote_retrieve_response_code($res);
         $body=(string)wp_remote_retrieve_body($res);
