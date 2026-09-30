@@ -1,16 +1,15 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-27a4befbe69521d7",
-  "product_id": 140463,
-  "family": "fitting",
-  "intent": "logistics",
+  "canonical_intent_id": "question-intent-86a1ed339f4780f6",
+  "product_id": 143032,
+  "family": "power_equipment",
+  "intent": "suitability",
   "scenario_dimensions": {
-    "pressure": true,
-    "logistics": true,
-    "province_or_climate": "ارومیه"
+    "installation_state": true,
+    "crop": "جو"
   },
-  "potential_article_gap": false,
+  "potential_article_gap": true,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
