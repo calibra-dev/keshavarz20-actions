@@ -1,0 +1,585 @@
+{
+  "schema_version": "seo-god2-phase7-structured-shipping-audit-v1",
+  "status": "PASS",
+  "shipping_method": {
+    "id": 2,
+    "method_id": "flat_rate",
+    "title": "ارسال با باربری یا تیپاکس به سراسر کشور (هزینه حمل پس‌کرایه)",
+    "enabled": true,
+    "settings": {
+      "title": {
+        "id": "title",
+        "label": "نام",
+        "type": "text",
+        "value": "ارسال با باربری یا تیپاکس به سراسر کشور (هزینه حمل پس‌کرایه)",
+        "default": "نرخ ثابت"
+      },
+      "tax_status": {
+        "id": "tax_status",
+        "label": "وضعیت مالیات",
+        "type": "select",
+        "value": "taxable",
+        "default": "taxable"
+      },
+      "cost": {
+        "id": "cost",
+        "label": "مبلغ",
+        "type": "text",
+        "value": "0",
+        "default": ""
+      }
+    }
+  },
+  "metrics": {
+    "tier_a_products": 20,
+    "products_with_shipping_structured_data": 20,
+    "products_with_zero_or_free_shipping_schema": 0,
+    "public_non_200": 0
+  },
+  "failures": {
+    "zero_or_free_shipping_schema_product_ids": [],
+    "public_non_200_product_ids": []
+  },
+  "rows": [
+    {
+      "product_id": 140853,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 140856,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 140816,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 140760,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 140718,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 140674,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 140454,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 140407,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 140406,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 140014,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 135235,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 135381,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 135361,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 135359,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 135353,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 135349,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 135339,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 135337,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 135309,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    },
+    {
+      "product_id": 135667,
+      "public_status": 200,
+      "shipping_structured_signal_count": 2,
+      "shipping_structured_signals": [
+        {
+          "path": "$.@graph[4].hasShippingService.shippingConditions.shippingDestination",
+          "key": "shippingDestination",
+          "value": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "path": "$.@graph[1].offers[0].shippingDetails",
+          "key": "shippingDetails",
+          "value": {
+            "@type": "OfferShippingDetails",
+            "hasShippingService": {
+              "@id": "https://keshavarz20.com/#shipping-service"
+            }
+          }
+        }
+      ],
+      "zero_or_free_shipping_structured_signals": [],
+      "jsonld_parse_errors": 0
+    }
+  ]
+}
