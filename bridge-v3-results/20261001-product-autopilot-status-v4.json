@@ -1,0 +1,51 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "action": "engine.status",
+  "engine": "product",
+  "engine_label": "K20 Product Autopilot v1",
+  "workflow": "k20-product-autopilot.yml",
+  "state": "in_progress",
+  "runs": [
+    {
+      "run_id": 36776943701,
+      "state": "in_progress",
+      "conclusion": null,
+      "event": "workflow_dispatch",
+      "started_at": "2026-09-30T21:03:52Z",
+      "created_at": "2026-09-30T21:03:52Z",
+      "finished_at": null,
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    },
+    {
+      "run_id": 36776393989,
+      "state": "completed",
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "started_at": "2026-09-30T20:59:04Z",
+      "created_at": "2026-09-30T20:59:04Z",
+      "finished_at": "2026-09-30T20:59:36Z",
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    },
+    {
+      "run_id": 36775588467,
+      "state": "completed",
+      "conclusion": "failure",
+      "event": "workflow_dispatch",
+      "started_at": "2026-09-30T20:51:51Z",
+      "created_at": "2026-09-30T20:51:51Z",
+      "finished_at": "2026-09-30T20:52:17Z",
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    }
+  ],
+  "executed_at_utc": "2026-09-30T21:04:17.5634123Z"
+}
