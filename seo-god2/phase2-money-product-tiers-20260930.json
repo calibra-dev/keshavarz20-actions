@@ -1,0 +1,510 @@
+{
+  "schema_version": "seo-god2-phase2-v1",
+  "generated_at": "2026-09-30",
+  "methodology": {
+    "tier_a": "۲۰ محصول با ترکیب Search Console 28d، total_sales ووکامرس، موجودی و نقش تجاری/تکمیل سبد. محصول ناموجود یا URL دارای mismatch از Tier A حذف شده است.",
+    "tier_b": "۳۰ محصول موجود بعدی بر اساس total_sales پس از حذف Tier A.",
+    "tier_c": "سایر محصولات منتشرشده کاتالوگ؛ CRO سنگین فعلاً روی آن‌ها اجرا نمی‌شود.",
+    "caveats": [
+      "Margin SKU-level و revenue SKU-level مستقیم در Control Plane موجود نبود و جعل نشده است.",
+      "URL «کلسیم کراپ ایکس گرین» در Readback به محصول دیگری متصل بود و تا رفع Product/URL truth از Tier A خارج شد.",
+      "معجزه‌گر ارگانیک XGreen با وجود Search Demand در وضعیت outofstock بود و از Tier A خارج شد."
+    ]
+  },
+  "tier_a": [
+    {
+      "rank": 1,
+      "id": 140856,
+      "name": "کود پودری پتاسیم محلول K60 ایکس گرین ۱ کیلوگرمی (k60 XGreen)",
+      "sku": "K20-140856",
+      "stock_status": "instock",
+      "total_sales": 6,
+      "gsc": {
+        "clicks": 32,
+        "impressions": 892,
+        "position": 6.0157
+      },
+      "selection_reason": "بالاترین تقاضای ارگانیک محصولی در ۲۸ روز اخیر"
+    },
+    {
+      "rank": 2,
+      "id": 140718,
+      "name": "کود مایع سیلیکات ۷۰ ایکس گرین ۱ لیتری",
+      "sku": null,
+      "stock_status": "instock",
+      "total_sales": 0,
+      "gsc": {
+        "clicks": 20,
+        "impressions": 97,
+        "position": 4.1856
+      },
+      "selection_reason": "تقاضای ارگانیک قوی و جایگاه ۴"
+    },
+    {
+      "rank": 3,
+      "id": 135339,
+      "name": "شیر پروانه‌ای پلیمری ویسپار ۴ اینچ با دسته فلزی (110 میلی‌متر)",
+      "sku": "430301000",
+      "stock_status": "instock",
+      "total_sales": 12,
+      "gsc": {
+        "clicks": 17,
+        "impressions": 397,
+        "position": 7.4408
+      },
+      "selection_reason": "تقاضای ارگانیک قوی + کالای فنی آبیاری"
+    },
+    {
+      "rank": 4,
+      "id": 135349,
+      "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۲ اینچ",
+      "sku": null,
+      "stock_status": "instock",
+      "total_sales": 0,
+      "gsc": {
+        "clicks": 15,
+        "impressions": 324,
+        "position": 7.4568
+      },
+      "selection_reason": "تقاضای ارگانیک قوی + Intent خرید فنی"
+    },
+    {
+      "rank": 5,
+      "id": 140853,
+      "name": "کود نیتروژن بالا هایپر ۴۰-۰-۱ ایکس گرین ۱۰ کیلوگرمی",
+      "sku": null,
+      "stock_status": "instock",
+      "total_sales": 1,
+      "gsc": {
+        "clicks": 13,
+        "impressions": 179,
+        "position": 4.4581
+      },
+      "selection_reason": "تقاضای ارگانیک قوی و جایگاه ۴"
+    },
+    {
+      "rank": 6,
+      "id": 140406,
+      "name": "مخزن تزریق کود ۱۰۰ لیتری",
+      "sku": null,
+      "stock_status": "instock",
+      "total_sales": 1,
+      "gsc": {
+        "clicks": 12,
+        "impressions": 80,
+        "position": 5.1125
+      },
+      "selection_reason": "محصول پروژه‌ای با Intent خرید و پیش‌فاکتور"
+    },
+    {
+      "rank": 7,
+      "id": 140760,
+      "name": "کود مایع مس کلاته و پتاسیم مسی ۱ لیتری (Mesi XGreen)",
+      "sku": null,
+      "stock_status": "instock",
+      "total_sales": 13,
+      "gsc": {
+        "clicks": 10,
+        "impressions": 87,
+        "position": 7.2989
+      },
+      "selection_reason": "Search + فروش واقعی"
+    },
+    {
+      "rank": 8,
+      "id": 140407,
+      "name": "مخزن تزریق کود ۲۰۰ لیتری",
+      "sku": null,
+      "stock_status": "instock",
+      "total_sales": 1,
+      "gsc": {
+        "clicks": 9,
+        "impressions": 134,
+        "position": 5.194
+      },
+      "selection_reason": "محصول پروژه‌ای با Search Demand"
+    },
+    {
+      "rank": 9,
+      "id": 135337,
+      "name": "شیر پروانه‌ای پلیمری ویسپار ۳ اینچ با دسته فلزی (90 میلی‌متر)",
+      "sku": "430300900",
+      "stock_status": "instock",
+      "total_sales": 11,
+      "gsc": {
+        "clicks": 8,
+        "impressions": 187,
+        "position": 6.8663
+      },
+      "selection_reason": "Search + فروش + کالای فنی"
+    },
+    {
+      "rank": 10,
+      "id": 140610,
+      "name": "کمربند انشعاب پلی‌اتیلن ۶۳ × ۲ اینچ",
+      "sku": null,
+      "stock_status": "instock",
+      "total_sales": 0,
+      "gsc": {
+        "clicks": 7,
+        "impressions": 177,
+        "position": 9.8927
+      },
+      "selection_reason": "Search Opportunity + اتصال مکمل"
+    },
+    {
+      "rank": 11,
+      "id": 135353,
+      "name": "رابط لی فلت به تیپ فرات پلیمر",
+      "sku": "431210109",
+      "stock_status": "instock",
+      "total_sales": 1060,
+      "gsc": null,
+      "selection_reason": "فروش واقعی بالا و نقش تکمیل سبد"
+    },
+    {
+      "rank": 12,
+      "id": 140454,
+      "name": "دریپر زیتونی بهاره زلال رود",
+      "sku": "100020019",
+      "stock_status": "instock",
+      "total_sales": 552,
+      "gsc": null,
+      "selection_reason": "فروش واقعی بالا و نقش تکمیل سبد"
+    },
+    {
+      "rank": 13,
+      "id": 135381,
+      "name": "رابط لوله نواری تیپ به تیپ",
+      "sku": "k20_135381",
+      "stock_status": "instock",
+      "total_sales": 400,
+      "gsc": null,
+      "selection_reason": "فروش واقعی بالا و نقش تکمیل سبد"
+    },
+    {
+      "rank": 14,
+      "id": 135361,
+      "name": "سه راه 16 میلیمتر پلی اتیلن",
+      "sku": "k20_135361",
+      "stock_status": "instock",
+      "total_sales": 400,
+      "gsc": null,
+      "selection_reason": "فروش واقعی بالا و نقش تکمیل سبد"
+    },
+    {
+      "rank": 15,
+      "id": 140674,
+      "name": "رابط تیپ به تیپ مهره نارنجی",
+      "sku": "300018",
+      "stock_status": "instock",
+      "total_sales": 370,
+      "gsc": null,
+      "selection_reason": "فروش واقعی بالا و نقش تکمیل سبد"
+    },
+    {
+      "rank": 16,
+      "id": 135235,
+      "name": "نوار تیپ آبیاری قطره‌ای ۲۰ سانتی‌متری مناسب کشت زیر پلاستیک",
+      "sku": "160010017",
+      "stock_status": "instock",
+      "total_sales": 52,
+      "gsc": {
+        "clicks": 1,
+        "impressions": 49,
+        "position": 22.7755
+      },
+      "selection_reason": "فروش واقعی + نقش تجاری در آبیاری"
+    },
+    {
+      "rank": 17,
+      "id": 140014,
+      "name": "لوله بارانی مه‌پاش ۲ اینچ آسایش آذربایجان ۱۰۰ متری",
+      "sku": "K20-140014",
+      "stock_status": "instock",
+      "total_sales": 42,
+      "gsc": {
+        "clicks": 4,
+        "impressions": 283,
+        "position": 12.4417
+      },
+      "selection_reason": "Anchor product + فروش + Search"
+    },
+    {
+      "rank": 18,
+      "id": 135309,
+      "name": "لوله نخدار ۲ اینچ آسایش آذربایجان ۵ لایه ۱۰۰ متری",
+      "sku": "900714",
+      "stock_status": "instock",
+      "total_sales": 27,
+      "gsc": null,
+      "selection_reason": "Anchor product + فروش واقعی"
+    },
+    {
+      "rank": 19,
+      "id": 135359,
+      "name": "شیر انشعاب 16 به تیپ فرات پلیمر",
+      "sku": "k20_135359",
+      "stock_status": "instock",
+      "total_sales": 160,
+      "gsc": null,
+      "selection_reason": "فروش واقعی بالا و نقش تکمیل سبد"
+    },
+    {
+      "rank": 20,
+      "id": 135667,
+      "name": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۱ اینچ (۳۲ میلی‌متر)",
+      "sku": "300563",
+      "stock_status": "instock",
+      "total_sales": 33,
+      "gsc": null,
+      "selection_reason": "فروش واقعی + نقش تجاری در آبیاری"
+    }
+  ],
+  "tier_b": [
+    {
+      "rank": 1,
+      "id": 140442,
+      "name": "بابلر ۷۵ لیتری زلال رود",
+      "sku": "100020036",
+      "stock_status": "instock",
+      "total_sales": 245
+    },
+    {
+      "rank": 2,
+      "id": 140669,
+      "name": "زانو ۱۶ میلی‌متر آبیاری قطره‌ای",
+      "sku": "100020031",
+      "stock_status": "instock",
+      "total_sales": 210
+    },
+    {
+      "rank": 3,
+      "id": 140460,
+      "name": "رابط ۱۶ میلی‌متر آبیاری قطره‌ای",
+      "sku": "100020027",
+      "stock_status": "instock",
+      "total_sales": 180
+    },
+    {
+      "rank": 4,
+      "id": 135766,
+      "name": "کورکن کلیدی لوله ۱۶ میلی‌متر پلی‌اتیلن",
+      "sku": "k20_135766",
+      "stock_status": "instock",
+      "total_sales": 176
+    },
+    {
+      "rank": 5,
+      "id": 140475,
+      "name": "رابط تیپ به تیپ زلال رود",
+      "sku": "100020066",
+      "stock_status": "instock",
+      "total_sales": 131
+    },
+    {
+      "rank": 6,
+      "id": 142485,
+      "name": "واشر بست ابتدایی ۱۶ میلی‌متر آبیاری قطره‌ای",
+      "sku": "",
+      "stock_status": "instock",
+      "total_sales": 115
+    },
+    {
+      "rank": 7,
+      "id": 140673,
+      "name": "رابط تیپ به لوله مهره نارنجی",
+      "sku": "300017",
+      "stock_status": "instock",
+      "total_sales": 100
+    },
+    {
+      "rank": 8,
+      "id": 140394,
+      "name": "بست ابتدایی ۱۸×۱۶",
+      "sku": "100020030",
+      "stock_status": "instock",
+      "total_sales": 100
+    },
+    {
+      "rank": 9,
+      "id": 140551,
+      "name": "شیر انشعاب ۱۶ به ۱۶ فرات پلیمر",
+      "sku": "170040002",
+      "stock_status": "instock",
+      "total_sales": 81
+    },
+    {
+      "rank": 10,
+      "id": 140405,
+      "name": "بوشن رزوه ای پليمري 1/2 ویسپار (پايا) u-pvc",
+      "sku": "431060100",
+      "stock_status": "instock",
+      "total_sales": 70
+    },
+    {
+      "rank": 11,
+      "id": 135138,
+      "name": "تبدیل دنده ای پلیمری 1 * 2 اینچ",
+      "sku": "2101991040-1",
+      "stock_status": "instock",
+      "total_sales": 57
+    },
+    {
+      "rank": 12,
+      "id": 135357,
+      "name": "شیر انشعاب لی فلت به تیپ فرات پلیمر",
+      "sku": "k20_135357",
+      "stock_status": "instock",
+      "total_sales": 50
+    },
+    {
+      "rank": 13,
+      "id": 135142,
+      "name": "تبدیل دنده ای پلیمری 1.1/2 * 2.1/2 اینچ",
+      "sku": "2101991038-1-1",
+      "stock_status": "instock",
+      "total_sales": 50
+    },
+    {
+      "rank": 14,
+      "id": 135377,
+      "name": "انشعاب دوشاخه ۱۶×۱/۲",
+      "sku": "k20_135377",
+      "stock_status": "instock",
+      "total_sales": 47
+    },
+    {
+      "rank": 15,
+      "id": 141222,
+      "name": "کود مایع کوئین ایکس گرین آمریکا 1 لیتری (Queen XGreen)",
+      "sku": "",
+      "stock_status": "instock",
+      "total_sales": 42
+    },
+    {
+      "rank": 16,
+      "id": 140483,
+      "name": "رابط تیپ به لی فلت زلال رود",
+      "sku": "100020026",
+      "stock_status": "instock",
+      "total_sales": 40
+    },
+    {
+      "rank": 17,
+      "id": 135044,
+      "name": "کمربند پلی‌اتیلن ۳۲ × ۱/۲ اینچ | انشعاب لوله ۲۰ میلی‌متر",
+      "sku": "300202",
+      "stock_status": "instock",
+      "total_sales": 40
+    },
+    {
+      "rank": 18,
+      "id": 135379,
+      "name": "انشعاب سه‌شاخه ۱۶×۳۲",
+      "sku": "k20_135379",
+      "stock_status": "instock",
+      "total_sales": 39
+    },
+    {
+      "rank": 19,
+      "id": 135114,
+      "name": "سر شلنگی و رابط پلیمری 2 اینچ (2*63 میلیمتر)",
+      "sku": "k20_135114",
+      "stock_status": "instock",
+      "total_sales": 36
+    },
+    {
+      "rank": 20,
+      "id": 141517,
+      "name": "آبپاش پلیمری تمام دور ویسپار ۳/۴ اینچ",
+      "sku": "140010139",
+      "stock_status": "instock",
+      "total_sales": 32
+    },
+    {
+      "rank": 21,
+      "id": 140435,
+      "name": "درپوش رزوهای ویسپار (پایا) 2 اینچ 63 میلیمتر",
+      "sku": "431050600",
+      "stock_status": "instock",
+      "total_sales": 31
+    },
+    {
+      "rank": 22,
+      "id": 140385,
+      "name": "اتصال نر 32 میلیمتر",
+      "sku": "42013232",
+      "stock_status": "instock",
+      "total_sales": 30
+    },
+    {
+      "rank": 23,
+      "id": 140725,
+      "name": "کود معجزه‌گر N Plus ایکس گرین آمریکا ۱۰ کیلویی | کود ازت بالا ۲۰٪",
+      "sku": "",
+      "stock_status": "instock",
+      "total_sales": 25
+    },
+    {
+      "rank": 24,
+      "id": 135130,
+      "name": "کمربند انشعاب نخ دار (لی فلت) سایز 2 اینچ",
+      "sku": "k20_135130",
+      "stock_status": "instock",
+      "total_sales": 25
+    },
+    {
+      "rank": 25,
+      "id": 140841,
+      "name": "محلول پلی‌اس ایکس گرین ۲۰ لیتری؛ گوگرد چندظرفیتی (Polys XGreen)",
+      "sku": "",
+      "stock_status": "instock",
+      "total_sales": 24
+    },
+    {
+      "rank": 26,
+      "id": 139231,
+      "name": "زانو 90 درجه جوشی سایز 3 اینچ (90 میلیمتر) - 6بار",
+      "sku": "20509000006",
+      "stock_status": "instock",
+      "total_sales": 22
+    },
+    {
+      "rank": 27,
+      "id": 142476,
+      "name": "کور کامل لی‌فلت زلال‌رود",
+      "sku": "",
+      "stock_status": "instock",
+      "total_sales": 20
+    },
+    {
+      "rank": 28,
+      "id": 141518,
+      "name": "آبپاش پلیمری تمام دور ویسپار ۱ اینچ",
+      "sku": "140010141",
+      "stock_status": "instock",
+      "total_sales": 20
+    },
+    {
+      "rank": 29,
+      "id": 140587,
+      "name": "کمربند پلی‌اتیلن ۲۵ × ۱/۲ اینچ | انشعاب لوله ۲۰ میلی‌متر",
+      "sku": "11403201200-1",
+      "stock_status": "instock",
+      "total_sales": 20
+    },
+    {
+      "rank": 30,
+      "id": 140510,
+      "name": "سر شيلنگ 1/2*16 زلال رود",
+      "sku": "100020139",
+      "stock_status": "instock",
+      "total_sales": 20
+    }
+  ],
+  "tier_c": {
+    "definition": "all remaining published catalog products",
+    "estimated_count": 602
+  }
+}
