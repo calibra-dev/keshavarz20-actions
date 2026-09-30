@@ -131,10 +131,15 @@ article_workflow = (ROOT / ".github" / "workflows" / "k20-article-queue-publishe
 news_workflow = (ROOT / ".github" / "workflows" / "k20-news-queue-publisher.yml").read_text(encoding="utf-8")
 question_workflow = (ROOT / ".github" / "workflows" / "k20-customer-question-engine.yml").read_text(encoding="utf-8")
 scheduler_workflow = (ROOT / ".github" / "workflows" / "k20-question-scheduler.yml").read_text(encoding="utf-8")
+question_config = json.loads((ROOT / "question-engine" / "config.json").read_text(encoding="utf-8"))
+question_version = str(question_config.get("engine_version") or "").strip()
+assert question_version.startswith("v") and question_version[1:].isdigit()
+question_engine_file = f"engine_{question_version}.py"
+question_test_file = f"test_engine_{question_version}.py"
 assert "publish_queue_v2.py" in article_workflow
 assert "publish_queue_v2.py" in news_workflow
-assert "engine_v18.py" in question_workflow
-assert "test_engine_v18.py" in question_workflow
-assert "engine_v18.py" in scheduler_workflow
+assert question_engine_file in question_workflow
+assert question_test_file in question_workflow
+assert question_engine_file in scheduler_workflow
 
 print("PASS SEO-God cross-engine smoke tests")
