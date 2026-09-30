@@ -1,0 +1,63 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20260930-seo-god2-phase1-shop-diagnose-refreshed.sanitized.json",
+  "action": "commerce.shop.diagnose",
+  "request_id": "seo-god2-phase1-shop-diagnose-refreshed-20260930",
+  "dry_run": false,
+  "executed_at_utc": "2026-09-30T06:34:06.3616847Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.5",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "shop_url": "https://keshavarz20.com/shop/",
+    "http_status": 200,
+    "body_sha256": "d04718690f4bf0d6eda4ede3bc445516c32ab15af50af5625673737fa72bf0e3",
+    "option_value": "popularity",
+    "filtered_value": "popularity",
+    "selected_orderby": null,
+    "callback_count": 2,
+    "callbacks": [
+      {
+        "priority": 10,
+        "callback": "IRK_WC_Hooks::default_catalog_orderby"
+      },
+      {
+        "priority": 999,
+        "callback": "K20_Bridge_V3::frontend_catalog_order_default"
+      }
+    ],
+    "first_product_ids": [
+      135353,
+      140454,
+      135381,
+      135361,
+      140674,
+      139205,
+      140442,
+      140480,
+      140669,
+      140460,
+      135766,
+      135359
+    ],
+    "first_product_titles": [
+      "رابط لی فلت به تیپ فرات پلیمر",
+      "دریپر زیتونی بهاره زلال رود",
+      "رابط لوله نواری تیپ به تیپ",
+      "سه راه 16 میلیمتر پلی اتیلن",
+      "رابط تیپ به تیپ مهره نارنجی",
+      "کپسول زیرسطحی آبیاری",
+      "بابلر ۷۵ لیتری زلال رود",
+      "رابط تیپ به لی فلت واشر دار آبافرین سر تخت",
+      "زانو ۱۶ میلی‌متر آبیاری قطره‌ای",
+      "رابط ۱۶ میلی‌متر آبیاری قطره‌ای",
+      "کورکن کلیدی لوله ۱۶ میلی‌متر پلی‌اتیلن",
+      "شیر انشعاب 16 به تیپ فرات پلیمر"
+    ],
+    "contains_price_desc": true,
+    "contains_popularity": true
+  }
+}
