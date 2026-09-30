@@ -2,7 +2,7 @@
   "schema_version": "product-queue-result-v1",
   "queue_file": "product-engine/queue/2026-10-01-product-134980-recovery1.json",
   "product_id": 134980,
-  "started_at": "2026-09-30T22:08:41.745109+00:00",
+  "started_at": "2026-09-30T22:11:42.325213+00:00",
   "status": "VALIDATED",
   "product_name": "اتصال ماده  آبلوله 32 میلیمتر",
   "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
@@ -21,68 +21,130 @@
     "media_alt": 10
   },
   "validation_errors": [],
+  "http_probe": [
+    {
+      "run": 1,
+      "status": 200,
+      "elapsed_ms": 5967.0,
+      "bytes": 412384,
+      "cache_control": null,
+      "x_litespeed_cache": null,
+      "x_litespeed_tag": "92c_product,92c_URL.de3b1bcee07a0e49f2170b45e3a9f814,92c_Po.134980,92c_",
+      "age": null,
+      "server": "LiteSpeed",
+      "vary": "Accept-Encoding,User-Agent"
+    },
+    {
+      "run": 2,
+      "status": 200,
+      "elapsed_ms": 4881.4,
+      "bytes": 415465,
+      "cache_control": null,
+      "x_litespeed_cache": null,
+      "x_litespeed_tag": "92c_product,92c_URL.de3b1bcee07a0e49f2170b45e3a9f814,92c_Po.134980,92c_",
+      "age": null,
+      "server": "LiteSpeed",
+      "vary": "Accept-Encoding,User-Agent"
+    },
+    {
+      "run": 3,
+      "status": 200,
+      "elapsed_ms": 5279.4,
+      "bytes": 415581,
+      "cache_control": null,
+      "x_litespeed_cache": null,
+      "x_litespeed_tag": "92c_product,92c_URL.de3b1bcee07a0e49f2170b45e3a9f814,92c_Po.134980,92c_",
+      "age": null,
+      "server": "LiteSpeed",
+      "vary": "Accept-Encoding,User-Agent"
+    },
+    {
+      "run": 4,
+      "status": 200,
+      "elapsed_ms": 5085.9,
+      "bytes": 413733,
+      "cache_control": null,
+      "x_litespeed_cache": null,
+      "x_litespeed_tag": "92c_product,92c_URL.de3b1bcee07a0e49f2170b45e3a9f814,92c_Po.134980,92c_",
+      "age": null,
+      "server": "LiteSpeed",
+      "vary": "Accept-Encoding,User-Agent"
+    },
+    {
+      "run": 5,
+      "status": 200,
+      "elapsed_ms": 4985.7,
+      "bytes": 414877,
+      "cache_control": null,
+      "x_litespeed_cache": null,
+      "x_litespeed_tag": "92c_product,92c_URL.de3b1bcee07a0e49f2170b45e3a9f814,92c_Po.134980,92c_",
+      "age": null,
+      "server": "LiteSpeed",
+      "vary": "Accept-Encoding,User-Agent"
+    }
+  ],
   "baseline_performance": {
     "samples": [
       {
-        "performance": 26,
+        "performance": 45,
         "accessibility": 79,
         "best_practices": 92,
         "seo": 100,
-        "fcp_ms": 2961.861,
-        "lcp_ms": 4907.222,
-        "speed_index_ms": 10888.108934525686,
-        "tbt_ms": 1724.999999999999,
-        "cls": 0.28537334216208216,
-        "ttfb_ms": 4672,
-        "total_bytes": 1020771,
-        "unused_css": "Est savings of 71 KiB",
-        "unused_js": "Est savings of 75 KiB"
-      },
-      {
-        "performance": 69,
-        "accessibility": 79,
-        "best_practices": 92,
-        "seo": 100,
-        "fcp_ms": 2740.181,
-        "lcp_ms": 4568.705,
-        "speed_index_ms": 10684.115549922404,
-        "tbt_ms": 133.5,
-        "cls": 0,
-        "ttfb_ms": 4620,
-        "total_bytes": 1021995,
+        "fcp_ms": 3224.8869999999997,
+        "lcp_ms": 3587.8869999999997,
+        "speed_index_ms": 12279.011728831112,
+        "tbt_ms": 4568.499999999999,
+        "cls": 0.0016310954176704962,
+        "ttfb_ms": 4701,
+        "total_bytes": 1020852,
         "unused_css": "Est savings of 71 KiB",
         "unused_js": "Est savings of 76 KiB"
       },
       {
-        "performance": 53,
+        "performance": 46,
         "accessibility": 79,
         "best_practices": 92,
         "seo": 100,
-        "fcp_ms": 2753.45,
-        "lcp_ms": 4577.614,
-        "speed_index_ms": 10706.764586027903,
-        "tbt_ms": 179.5,
+        "fcp_ms": 3180.6169999999993,
+        "lcp_ms": 5041.418999999999,
+        "speed_index_ms": 11656.150625373728,
+        "tbt_ms": 284,
         "cls": 0.28537334216208216,
-        "ttfb_ms": 4785,
-        "total_bytes": 1021308,
+        "ttfb_ms": 5025,
+        "total_bytes": 1021428,
         "unused_css": "Est savings of 71 KiB",
         "unused_js": "Est savings of 75 KiB"
+      },
+      {
+        "performance": 45,
+        "accessibility": 79,
+        "best_practices": 92,
+        "seo": 100,
+        "fcp_ms": 2951.861,
+        "lcp_ms": 4764.816,
+        "speed_index_ms": 11185.313687748148,
+        "tbt_ms": 363.2112036819458,
+        "cls": 0.2910428740284492,
+        "ttfb_ms": 4716,
+        "total_bytes": 1020648,
+        "unused_css": "Est savings of 71 KiB",
+        "unused_js": "Est savings of 76 KiB"
       }
     ],
     "representative": {
-      "performance": 53,
+      "performance": 45,
       "accessibility": 79,
       "best_practices": 92,
       "seo": 100,
-      "fcp_ms": 2753.45,
-      "lcp_ms": 4577.614,
-      "speed_index_ms": 10706.764586027903,
-      "tbt_ms": 179.5,
-      "cls": 0.28537334216208216,
-      "ttfb_ms": 4785,
-      "total_bytes": 1021308,
+      "fcp_ms": 2951.861,
+      "lcp_ms": 4764.816,
+      "speed_index_ms": 11185.313687748148,
+      "tbt_ms": 363.2112036819458,
+      "cls": 0.2910428740284492,
+      "ttfb_ms": 4716,
+      "total_bytes": 1020648,
       "unused_css": "Est savings of 71 KiB",
-      "unused_js": "Est savings of 75 KiB"
+      "unused_js": "Est savings of 76 KiB"
     },
     "successful_runs": 3,
     "top_network_requests": [
@@ -96,15 +158,15 @@
       {
         "url": "https://keshavarz20.com/wp-content/uploads/2024/06/hossini.jpg",
         "resource_type": "Image",
-        "transfer_size": 138281,
+        "transfer_size": 138336,
         "resource_size": 138113,
         "priority": "High"
       },
       {
         "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
         "resource_type": "Document",
-        "transfer_size": 65230,
-        "resource_size": 369989,
+        "transfer_size": 64669,
+        "resource_size": 365506,
         "priority": "VeryHigh"
       },
       {
@@ -124,7 +186,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebregularfanum.woff",
         "resource_type": "Font",
-        "transfer_size": 33706,
+        "transfer_size": 33761,
         "resource_size": 33585,
         "priority": "VeryHigh"
       },
@@ -145,7 +207,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/uploads/2024/06/%DA%AF%D8%A7%D8%B1%D8%A7%D9%86%D8%AA%DB%8C.png",
         "resource_type": "Image",
-        "transfer_size": 28488,
+        "transfer_size": 28496,
         "resource_size": 28393,
         "priority": "High"
       },
@@ -201,14 +263,14 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/a1548c83adc2678218fff1bf8a308b0d.js?ver=2c37a",
         "resource_type": "Script",
-        "transfer_size": 17833,
+        "transfer_size": 17816,
         "resource_size": 77853,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/81a58d62acc2bda2575a4119ca64c006.js?ver=f4a3e",
         "resource_type": "Script",
-        "transfer_size": 16391,
+        "transfer_size": 16368,
         "resource_size": 81174,
         "priority": "Medium"
       },
@@ -222,7 +284,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/9ef702f93cda38d01dd013f772f7c746.js?ver=4e13e",
         "resource_type": "Script",
-        "transfer_size": 11781,
+        "transfer_size": 11716,
         "resource_size": 31627,
         "priority": "Low"
       },
@@ -269,53 +331,288 @@
           "id": "button-name",
           "title": "Buttons do not have an accessible name",
           "score": 0,
-          "display_value": null
+          "display_value": null,
+          "items": [
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot active\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot active\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            }
+          ]
         },
         {
           "category": "accessibility",
           "id": "color-contrast",
           "title": "Background and foreground colors do not have a sufficient contrast ratio.",
           "score": 0,
-          "display_value": null
+          "display_value": null,
+          "items": [
+            {
+              "selector": "body.rtl > main#main > div.container > nav.woocommerce-breadcrumb",
+              "snippet": "<nav class=\"woocommerce-breadcrumb breadcrumb\">",
+              "node_label": "خانه / تجهیزات و لوازم کشاورزی / اتصالات پلی اتیلن / پلی اتیلن پیچی / سایر اتصا…"
+            },
+            {
+              "selector": "div.column-description > div.product-rating > div.average > span",
+              "snippet": "<span>",
+              "node_label": "(0)"
+            },
+            {
+              "selector": "div.summary-columns > div.column-description > div.product-rating > a.woocommerce-review-link",
+              "snippet": "<a href=\"#reviews\" class=\"woocommerce-review-link reviews\" rel=\"nofollow\">",
+              "node_label": "1 دیدگاه‌ها"
+            },
+            {
+              "selector": "div.summary-columns > div.column-description > div.product_meta > span.posted_in",
+              "snippet": "<span class=\"posted_in\">",
+              "node_label": "دسته:\nاتصال یکسر ماده پلی اتیلن\n,\nاتصالات پلی اتیلن\n,\nپلی اتیلن پیچی\n,\nتجهیزات …"
+            },
+            {
+              "selector": "div.summary-columns > div.column-description > div.product_meta > span.tagged_as",
+              "snippet": "<span class=\"tagged_as\">",
+              "node_label": "برچسب:\nپلی رود،شیر توپی،انشعاب،قطره ای،قطره چکان،رابط،کمربند،شیر دو سر نر، شیر …"
+            },
+            {
+              "selector": "div.summary-columns > div.column-description > div.product_meta > span.brands",
+              "snippet": "<span class=\"brands\">",
+              "node_label": "برندها:\nآب لوله بسپار (Ablooleh baspar)\n,\nپلی رود اتصال( Poliroodetesal)"
+            },
+            {
+              "selector": "div.column-description > div.product_meta > span.brands > a",
+              "snippet": "<a href=\"https://keshavarz20.com/product_brand/%d8%a2%d8%a8-%d9%84%d9%88%d9%84%d9%8…\">",
+              "node_label": "آب لوله بسپار (Ablooleh baspar)"
+            },
+            {
+              "selector": "div.column-description > div.product_meta > span.brands > a",
+              "snippet": "<a href=\"https://keshavarz20.com/product_brand/%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%a…\">",
+              "node_label": "پلی رود اتصال( Poliroodetesal)"
+            },
+            {
+              "selector": "div.column-description > div.woocommerce-product-details__short-description > div > p",
+              "snippet": "<p>",
+              "node_label": "اتصال ماده آبلوله 32 میلیمتر برای تبدیل سمت لوله به اتصال رزوه داخلی برای اتصال…"
+            },
+            {
+              "selector": "div.cart-box > div.panel-stock > div.delivery > div.delivery-text",
+              "snippet": "<div class=\"delivery-text\">",
+              "node_label": "ارسال توسط کشاورز بیست."
+            },
+            {
+              "selector": "div.reviews-columns > div.column-rating > div.theiaStickySidebar > button.button",
+              "snippet": "<button class=\"button button-outline button-small modal-toggle\" data-modal=\"modal-reviews\">",
+              "node_label": "درج دیدگاه"
+            },
+            {
+              "selector": "div#comment-2741 > div.comment-text > p.meta > time.woocommerce-review__published-date",
+              "snippet": "<time class=\"woocommerce-review__published-date\" datetime=\"1405-06-27T18:22:40+03:30\">",
+              "node_label": "1405-06-27"
+            }
+          ]
         },
         {
           "category": "accessibility",
           "id": "link-name",
           "title": "Links do not have a discernible name",
           "score": 0,
-          "display_value": null
+          "display_value": null,
+          "items": [
+            {
+              "selector": "div.col-6 > div.header-buttons > div.user-button > a.login-register",
+              "snippet": "<a href=\"https://keshavarz20.com/my-account\" class=\"login-register\">",
+              "node_label": "div.col-6 > div.header-buttons > div.user-button > a.login-register"
+            }
+          ]
         },
         {
           "category": "accessibility",
           "id": "meta-viewport",
           "title": "`[user-scalable=\"no\"]` is used in the `<meta name=\"viewport\">` element or the `[maximum-scale]` attribute is less than 5.",
           "score": 0,
-          "display_value": null
+          "display_value": null,
+          "items": [
+            {
+              "selector": "head > meta",
+              "snippet": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, …\">",
+              "node_label": "head > meta"
+            }
+          ]
         },
         {
           "category": "accessibility",
           "id": "target-size",
           "title": "Touch targets do not have sufficient size or spacing.",
           "score": 0,
-          "display_value": null
+          "display_value": null,
+          "items": [
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot active\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot active\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            }
+          ]
         },
         {
           "category": "best-practices",
           "id": "image-aspect-ratio",
           "title": "Displays images with incorrect aspect ratio",
           "score": 0,
-          "display_value": null
+          "display_value": null,
+          "items": [
+            {
+              "selector": "div.column-summary > div.summary > div.warranty-message > img.entered",
+              "snippet": "<img data-lazyloaded=\"1\" src=\"https://keshavarz20.com/wp-content/uploads/2024/06/گارانتی.png\" data-src=\"https://keshavarz20.com/wp-content/uploads/2024/06/گارانتی.png\" alt=\"گارانتی\" style=\"margin-right: 10px; width: 32px; height: 32px;\" width=\"218\" height=\"240\" data-ll-status=\"loaded\" class=\"entered litespeed-loaded\">",
+              "node_label": "گارانتی",
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/06/%DA%AF%D8%A7%D8%B1%D8%A7%D9%86%D8%AA%DB%8C.png"
+            }
+          ]
         },
         {
           "category": "best-practices",
           "id": "image-size-responsive",
           "title": "Serves images with low resolution",
           "score": 0,
-          "display_value": null
+          "display_value": null,
+          "items": [
+            {
+              "selector": "div.row > div.col-12 > a.site-logo > img.logo-mobile",
+              "snippet": "<img width=\"50\" height=\"50\" src=\"https://keshavarz20.com/wp-content/uploads/2024/05/لوگو-2-کشاورز20-.png\" class=\"logo-mobile img-fluid\" alt=\"لوگوی فروشگاه کشاورز بیست\" decoding=\"async\">",
+              "node_label": "لوگوی فروشگاه کشاورز بیست",
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/05/%D9%84%D9%88%DA%AF%D9%88-2-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B220-.png"
+            }
+          ]
         }
       ],
       "lcp_element": [],
-      "layout_shifts": [],
+      "layout_shifts": [
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-1-DIV",
+            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV",
+            "selector": "body.rtl > main#main > div.container > div#product-134980",
+            "boundingRect": {
+              "top": 246,
+              "bottom": 3194,
+              "left": 0,
+              "right": 412,
+              "width": 412,
+              "height": 2948
+            },
+            "snippet": "<div id=\"product-134980\" class=\"product type-product post-134980 status-publish first instock product_cat-…\" style=\"transform: none;\">",
+            "nodeLabel": "گارانتی اصالت و سلامت کالا\n\nاتصال ماده آبلوله 32 میلیمتر\n0 (0)\n1 دیدگاه‌ها\nدسته:…"
+          },
+          "score": 0.283809804905869
+        },
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-5-A",
+            "path": "1,HTML,1,BODY,60,DIV,0,A",
+            "selector": "body.rtl > div.bottom-nav > a.nav-item",
+            "boundingRect": {
+              "top": 769,
+              "bottom": 823,
+              "left": 309,
+              "right": 412,
+              "width": 103,
+              "height": 53
+            },
+            "snippet": "<a href=\"https://keshavarz20.com\" class=\"nav-item \">",
+            "nodeLabel": "صفحه اصلی"
+          },
+          "score": 0.001563537256213143
+        }
+      ],
       "render_blocking": [],
       "unused_css_items": [
         {
@@ -338,8 +635,8 @@
         },
         {
           "url": "https://keshavarz20.com/wp-content/litespeed/css/7e0c89866ae4250b859a08a1e4310da4.css?ver=a8667",
-          "wastedBytes": 17370,
-          "wastedPercent": 87.43349943429382,
+          "wastedBytes": 17398,
+          "wastedPercent": 87.5761296068944,
           "totalBytes": 19866
         }
       ],
@@ -347,82 +644,97 @@
         {
           "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
           "totalBytes": 196567,
-          "wastedBytes": 77422,
-          "wastedPercent": 39.38707954797987
+          "wastedBytes": 76945,
+          "wastedPercent": 39.144286230766426
         }
       ],
       "long_tasks": [
         {
-          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "duration": 112,
-          "startTime": 7472.5645926361085
-        },
-        {
           "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
-          "duration": 106,
-          "startTime": 5218.889
-        },
-        {
-          "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
-          "duration": 85,
-          "startTime": 5133.889
-        },
-        {
-          "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-          "duration": 82,
-          "startTime": 2119.555
+          "duration": 160,
+          "startTime": 5566.418999999999
         },
         {
           "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "duration": 69,
-          "startTime": 7584.5645926361085
+          "duration": 147,
+          "startTime": 8053.492592636107
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+          "duration": 134,
+          "startTime": 5432.418999999999
         },
         {
           "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-          "duration": 66,
-          "startTime": 2053.555
+          "duration": 83,
+          "startTime": 2416.0209999999997
         },
         {
           "url": "https://keshavarz20.com/wp-content/litespeed/js/cc20a965911f0e0c941a624febd1e51f.js?ver=ab876",
-          "duration": 54,
-          "startTime": 7071.251592636108
+          "duration": 79,
+          "startTime": 7218.896592636107
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 65,
+          "startTime": 8295.492592636107
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 61,
+          "startTime": 8200.492592636107
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+          "duration": 60,
+          "startTime": 7963.492592636107
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 59,
+          "startTime": 4240.512592636108
+        },
+        {
+          "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "duration": 51,
+          "startTime": 2546.0209999999997
         }
       ],
       "mainthread_work": [
         {
           "group": "other",
           "groupLabel": "Other",
-          "duration": 815.8039999999953
-        },
-        {
-          "group": "styleLayout",
-          "groupLabel": "Style & Layout",
-          "duration": 708.1799999999776
+          "duration": 1044.8919999999869
         },
         {
           "group": "scriptEvaluation",
           "groupLabel": "Script Evaluation",
-          "duration": 686.3920000000037
+          "duration": 954.6399999999904
+        },
+        {
+          "group": "styleLayout",
+          "groupLabel": "Style & Layout",
+          "duration": 839.0399999999902
         },
         {
           "group": "parseHTML",
           "groupLabel": "Parse HTML & CSS",
-          "duration": 136.17199999999997
+          "duration": 197
         },
         {
           "group": "scriptParseCompile",
           "groupLabel": "Script Parsing & Compilation",
-          "duration": 118.85600000000001
+          "duration": 190.01600000000002
         },
         {
           "group": "paintCompositeRender",
           "groupLabel": "Rendering",
-          "duration": 116.68400000000003
+          "duration": 164.4440000000001
         },
         {
           "group": "garbageCollection",
           "groupLabel": "Garbage Collection",
-          "duration": 27.21200000000002
+          "duration": 35.34000000000002
         }
       ],
       "font_display": [],
@@ -430,5 +742,5 @@
       "modern_image_formats": []
     }
   },
-  "finished_at": "2026-09-30T22:09:58.526351+00:00"
+  "finished_at": "2026-09-30T22:13:51.051770+00:00"
 }
