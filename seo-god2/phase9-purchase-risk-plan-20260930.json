@@ -1,0 +1,51 @@
+{
+  "schema_version": "seo-god2-phase9-purchase-risk-plan-v1",
+  "project": "keshavarz20.com / SEO GOD2",
+  "phase": 9,
+  "name": "Returns, Mismatch & Authenticity Clarity",
+  "status": "PLAN_LOCKED",
+  "scope": {
+    "tier_a_products": 20
+  },
+  "policy_truth": {
+    "returns_mismatch": {
+      "page_id": 13,
+      "title": "مرجوعی و مغایرت کالا",
+      "url": "https://keshavarz20.com/refund_returns/",
+      "status": "publish"
+    },
+    "authenticity": {
+      "page_id": 143336,
+      "title": "ضمانت اصالت کالا",
+      "url": "https://keshavarz20.com/%d8%b6%d9%85%d8%a7%d9%86%d8%aa-%d8%a7%d8%b5%d8%a7%d9%84%d8%aa-%da%a9%d8%a7%d9%84%d8%a7/",
+      "status": "publish"
+    }
+  },
+  "render_policy": {
+    "marker": "k20-phase9-purchase-risk",
+    "target": "post_excerpt",
+    "placement": "after Phase 8 trust block",
+    "idempotent": true,
+    "claims": [
+      "Link to the official returns/mismatch policy.",
+      "Link to the official authenticity policy.",
+      "No invented return window, refund time, refund amount, unconditional guarantee, or per-SKU warranty promise.",
+      "Tell users to consult the official policy/support for case-specific conditions."
+    ]
+  },
+  "acceptance": {
+    "public_http_200": 20,
+    "phase9_card_present": 20,
+    "returns_link_present": 20,
+    "authenticity_link_present": 20,
+    "phase8_trust_preserved": 20,
+    "phase7_shipping_preserved": 20,
+    "phase6_expected_preserved": 15,
+    "invented_return_window_claims": 0,
+    "invented_refund_timing_claims": 0,
+    "unconditional_guarantee_claims": 0,
+    "price_fields_written": 0,
+    "stock_fields_written": 0,
+    "payment_settings_written": 0
+  }
+}
