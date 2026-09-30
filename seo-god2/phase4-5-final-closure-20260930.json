@@ -1,0 +1,45 @@
+{
+  "schema_version": "seo-god2-phase4-5-final-closure-v1",
+  "generated_at_utc": "2026-09-30T09:08:00Z",
+  "overall_status": "PASS_PHASE4_PHASE5_COMPLETE_WITH_EVIDENCE_GUARDS",
+  "phase4": {
+    "status": "PASS_VERIFIED_EVIDENCE_GATE_COMPLETE",
+    "closure": "seo-god2/phase4-closure-v2-20260930.json",
+    "evidence_records": "seo-god2/phase4-product-evidence-records-v2-20260930.json",
+    "tier_a_records": "20/20",
+    "products_with_verified_structured_attributes": 9,
+    "total_verified_structured_attributes": 44,
+    "new_live_product_updates": [
+      135309,
+      135337
+    ],
+    "site_write_run": 36692675342,
+    "site_write_conclusion": "success",
+    "site_readback_run": 36692981559,
+    "site_readback_conclusion": "success",
+    "cache_run": 36692988495,
+    "cache_conclusion": "success",
+    "bridge_version_at_write_and_readback": "3.3.8",
+    "unsupported_promotions": 0
+  },
+  "phase5": {
+    "status": "PASS_EXPANDED_GUARDED_COMPATIBILITY_COMPLETE",
+    "closure": "seo-god2/phase5-closure-v2-20260930.json",
+    "graph": "seo-god2/phase5-tier-a-compatibility-graph-v2-20260930.json",
+    "research_refresh": "seo-god2/phase5-external-research-refresh-20260930.json",
+    "tier_a_nodes": 20,
+    "verified_positive_edges": 0,
+    "incompatible_edges": 5,
+    "needs_review_edges": 8,
+    "guessed_edges": 0,
+    "exact_sku_auto_recommendation_enabled": false
+  },
+  "hard_guards_preserved": [
+    "No price/regular_price/sale_price/payment mutation",
+    "No guessed technical attributes",
+    "Same nominal size is not compatibility",
+    "Unknown exact interface remains NEEDS_REVIEW",
+    "Fertilizer mixing compatibility requires exact label/manufacturer evidence"
+  ],
+  "next_scope": "Phase 6 — Recommendation & Basket Intelligence should consume only VERIFIED compatibility edges and keep NEEDS_REVIEW pairs routed to expert review."
+}
