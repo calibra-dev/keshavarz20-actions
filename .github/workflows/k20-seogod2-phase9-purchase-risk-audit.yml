@@ -57,6 +57,14 @@ jobs:
           specific_window=re.compile(r'(?:مرجوع|بازگشت|عودت)[^\n]{0,60}[۰-۹0-9]+\s*(?:روز|ساعت)')
           refund_timing=re.compile(r'(?:بازپرداخت|عودت وجه|استرداد وجه)[^\n]{0,60}[۰-۹0-9]+\s*(?:روز|ساعت)')
           unconditional_terms=['بدون قید و شرط','در هر شرایطی','تضمین بازگشت وجه','بازپرداخت قطعی']
+          suspicious_single={0x180E,0x200B,0x200D,0x2060,0xFEFF}
+          def hidden_codes(value):
+            found=set()
+            for ch in value or '':
+              cp=ord(ch)
+              if cp in suspicious_single or 0x202A<=cp<=0x202E or 0x2066<=cp<=0x2069 or 0xE0000<=cp<=0xE007F:
+                found.add(f'U+{cp:04X}')
+            return sorted(found)
           for p in products:
             pid=int(p['id'])
             rr=get_retry(public,p['permalink'],timeout=60,allow_redirects=True,headers={'User-Agent':'K20Phase9PublicAudit/2.0','Cache-Control':'no-cache','Pragma':'no-cache'})
@@ -80,6 +88,7 @@ jobs:
               'hold_install_use_guidance_present':'از نصب، مصرف یا تغییر کالا خودداری کنید' in text,
               'policy_disclaimer_present':'جایگزین سیاست رسمی نیست' in text,
               'support_evidence_ready_present':'شماره سفارش و تصاویر مرتبط' in text,
+              'hidden_artifacts':hidden_codes(p.get('short_description') or ''),
               'returns_link_present':any(x.rstrip('/').endswith('/refund_returns') for x in links),
               'authenticity_link_present':any('%d8%b6%d9%85%d8%a7%d9%86%d8%aa-%d8%a7%d8%b5%d8%a7%d9%84%d8%aa-%da%a9%d8%a7%d9%84%d8%a7' in x.lower() for x in links),
               'no_fixed_promise_present':'مهلت، مبلغ، زمان بازپرداخت یا ضمانت اختصاصی برای این SKU وعده داده نمی‌شود' in text,
@@ -109,6 +118,7 @@ jobs:
             'hold_install_use_guidance_missing':[r['product_id'] for r in rows if not r['hold_install_use_guidance_present']],
             'policy_disclaimer_missing':[r['product_id'] for r in rows if not r['policy_disclaimer_present']],
             'support_evidence_ready_missing':[r['product_id'] for r in rows if not r['support_evidence_ready_present']],
+            'hidden_artifacts':[r['product_id'] for r in rows if r['hidden_artifacts']],
             'returns_link_missing':[r['product_id'] for r in rows if not r['returns_link_present']],
             'authenticity_link_missing':[r['product_id'] for r in rows if not r['authenticity_link_present']],
             'no_fixed_promise_missing':[r['product_id'] for r in rows if not r['no_fixed_promise_present']],
