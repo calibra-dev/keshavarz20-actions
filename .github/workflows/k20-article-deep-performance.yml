@@ -1,0 +1,128 @@
+name: K20 Article Deep Performance Diagnostic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/article-deep-performance/*.json'
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Resolve request
+        id: req
+        shell: bash
+        run: |
+          set -euo pipefail
+          before='${{ github.event.before }}'
+          current='${{ github.sha }}'
+          zero='0000000000000000000000000000000000000000'
+          if [[ -n "$before" && "$before" != "$zero" ]]; then
+            mapfile -t files < <(git diff --name-only "$before" "$current" -- 'diagnostics/article-deep-performance/*.json' | sed '/^$/d' | sort -u)
+          else
+            mapfile -t files < <(git show --pretty= --name-only "$current" -- 'diagnostics/article-deep-performance/*.json' | sed '/^$/d' | sort -u)
+          fi
+          [[ "${#files[@]}" -eq 1 ]] || { echo "expected one request"; exit 1; }
+          echo "request=${files[0]}" >> "$GITHUB_OUTPUT"
+          base="$(basename "${files[0]}" .json)"
+          echo "result=diagnostics/article-deep-performance-results/${base}-result.json" >> "$GITHUB_OUTPUT"
+
+      - name: Install Lighthouse
+        run: npm install -g lighthouse
+
+      - name: Run three mobile samples
+        shell: bash
+        env:
+          REQUEST: ${{ steps.req.outputs.request }}
+          RESULT: ${{ steps.req.outputs.result }}
+        run: |
+          set -euo pipefail
+          url="$(jq -r '.url' "$REQUEST")"
+          mkdir -p "$RUNNER_TEMP/article-lh" "$(dirname "$RESULT")"
+          for i in 1 2 3; do
+            lighthouse "$url" \
+              --quiet \
+              --only-categories=performance,accessibility,best-practices,seo \
+              --form-factor=mobile \
+              --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" \
+              --output=json \
+              --output-path="$RUNNER_TEMP/article-lh/lh-$i.json"
+          done
+          node - "$RESULT" "$RUNNER_TEMP/article-lh" <<'NODE'
+          const fs=require('fs');
+          const outPath=process.argv[2], dir=process.argv[3];
+          const runs=[1,2,3].map(i=>JSON.parse(fs.readFileSync(dir+`/lh-${i}.json`,'utf8')));
+          const get=(j,id)=>j.audits?.[id]||{};
+          const metric=j=>({
+            performance:Math.round((j.categories?.performance?.score||0)*100),
+            accessibility:Math.round((j.categories?.accessibility?.score||0)*100),
+            best_practices:Math.round((j.categories?.['best-practices']?.score||0)*100),
+            seo:Math.round((j.categories?.seo?.score||0)*100),
+            fcp_ms:get(j,'first-contentful-paint').numericValue||null,
+            lcp_ms:get(j,'largest-contentful-paint').numericValue||null,
+            speed_index_ms:get(j,'speed-index').numericValue||null,
+            tbt_ms:get(j,'total-blocking-time').numericValue||null,
+            cls:get(j,'cumulative-layout-shift').numericValue||null,
+            ttfb_ms:get(j,'server-response-time').numericValue||null
+          });
+          const metrics=runs.map(metric);
+          const sorted=[...metrics].sort((a,b)=>(a.lcp_ms??1e15)-(b.lcp_ms??1e15));
+          const med=sorted[1], idx=metrics.indexOf(med), j=runs[idx];
+          const lcpAudit=get(j,'largest-contentful-paint-element');
+          const lcpNode=lcpAudit.details?.items?.[0]?.items?.[0]?.node || lcpAudit.details?.items?.[0]?.node || null;
+          const wanted=[
+            'largest-contentful-paint-element','lcp-discovery-insight','lcp-breakdown-insight',
+            'render-blocking-insight','render-blocking-resources','uses-responsive-images',
+            'image-size-responsive','modern-image-formats','uses-optimized-images','unsized-images',
+            'font-display','unused-javascript','unused-css-rules','total-byte-weight',
+            'network-requests','third-party-summary','mainthread-work-breakdown','dom-size','diagnostics'
+          ];
+          const audits={};
+          for(const id of wanted){
+            const a=get(j,id);
+            if(Object.keys(a).length) audits[id]={score:a.score,displayValue:a.displayValue,numericValue:a.numericValue,details:a.details||null};
+          }
+          const net=(get(j,'network-requests').details?.items||[]).map(x=>({
+            url:x.url,resourceType:x.resourceType,transferSize:x.transferSize,resourceSize:x.resourceSize,
+            priority:x.priority,startTime:x.startTime,endTime:x.endTime
+          })).sort((a,b)=>(b.transferSize||0)-(a.transferSize||0)).slice(0,60);
+          const out={
+            generated_at:new Date().toISOString(),
+            url:j.finalUrl,
+            lighthouse_version:j.lighthouseVersion,
+            samples:metrics,
+            representative_sample:idx+1,
+            representative_metrics:med,
+            lcp_node:lcpNode,
+            audits,
+            top_network_requests:net
+          };
+          fs.writeFileSync(outPath,JSON.stringify(out,null,2));
+          console.log(JSON.stringify({samples:metrics,lcp_node:lcpNode},null,2));
+          NODE
+
+      - name: Persist result
+        shell: bash
+        env:
+          RESULT: ${{ steps.req.outputs.result }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f "$RESULT"
+          git commit -m "diag: record article deep performance" || exit 0
+          for attempt in 1 2 3 4; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt*2))
+          done
+          exit 1
