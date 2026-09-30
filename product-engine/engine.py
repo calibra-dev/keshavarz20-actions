@@ -216,14 +216,16 @@ def main() -> int:
         return 0
 
     if not os.environ.get("OPENAI_API_KEY","").strip():
-        state["updated_at"]=utcnow()
-        state["model_access_blocked_at"]=utcnow()
-        save_json(STATE_PATH,state)
-        save_json(LAST_RUN_PATH,{
-            "ok":False,"status":"MODEL_ACCESS_BLOCKED",
-            "blocker":"OPENAI_API_KEY is not configured for product-engine",
-            "at":utcnow(),"auto_retry_on_schedule":True
-        })
+        if not state.get("model_access_blocked_at"):
+            blocked_at=utcnow()
+            state["updated_at"]=blocked_at
+            state["model_access_blocked_at"]=blocked_at
+            save_json(STATE_PATH,state)
+            save_json(LAST_RUN_PATH,{
+                "ok":False,"status":"MODEL_ACCESS_BLOCKED",
+                "blocker":"OPENAI_API_KEY is not configured for product-engine",
+                "at":blocked_at,"auto_retry_on_schedule":True
+            })
         print(json.dumps({"ok":False,"status":"MODEL_ACCESS_BLOCKED","enabled":True,"auto_retry":True},ensure_ascii=False))
         return 0
 
