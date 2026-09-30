@@ -203,6 +203,14 @@ If every gate passes, write exactly one queue JSON to:
 
 using the current **Asia/Tehran** date and commit it to `calibra-dev/keshavarz20-actions` on `main`.
 
+**Production queue commit discipline — hard rule:**
+- Re-fetch the current `main` branch immediately before the write.
+- Re-check the exact target path on `main` immediately before the write.
+- If the path now exists, stop: inspect the existing queue and do not rewrite, replace, branch around, or duplicate it.
+- For the normal daily production path, commit the one new queue JSON directly to current `main`; do **not** create a side branch or PR for the queue.
+- Queue JSON files are immutable for routine automation after their first commit. If an already-existing queue needs an operational repair, use the explicit human/ops recovery path and manual workflow dispatch rather than an automatic rewrite.
+- If `main` advances during research, that is normal; the final pre-write re-fetch and exact-path check are authoritative.
+
 Never publish directly to WordPress. The GitHub queue publisher is responsible for validation and creating a **draft only**. Do not alter existing posts from this task.
 
 If today's queue already exists, read it first; do not create a duplicate.
