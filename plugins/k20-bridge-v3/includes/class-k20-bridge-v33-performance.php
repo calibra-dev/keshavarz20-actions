@@ -20,6 +20,7 @@ final class K20_Bridge_V33_Performance {
         add_filter('wp_calculate_image_srcset', [__CLASS__, 'lcp_srcset'], 20, 5);
         add_filter('wp_calculate_image_sizes', [__CLASS__, 'lcp_sizes'], 20, 5);
         add_filter('script_loader_tag', [__CLASS__, 'script_priority'], 20, 3);
+        add_action('wp_enqueue_scripts', [__CLASS__, 'defer_article_scripts'], 998);
         add_action('wp_enqueue_scripts', [__CLASS__, 'dequeue_irrelevant_assets'], 999);
     }
 
@@ -105,6 +106,19 @@ final class K20_Bridge_V33_Performance {
             $tag = preg_replace('/<script\b/i', '<script fetchpriority="low"', $tag, 1) ?: $tag;
         }
         return $tag;
+    }
+
+    public static function defer_article_scripts(): void {
+        if (!self::is_article_target()) return;
+
+        // Preserve functionality while moving non-critical interactive scripts out of
+        // the parser-blocking path for this audited article only. WordPress may adjust
+        // the strategy when dependency constraints require a safer execution order.
+        foreach (['digits-login-script', 'slick', 'venobox', 'dtwcbe', 'nta-js-popup'] as $handle) {
+            if (wp_script_is($handle, 'enqueued')) {
+                wp_script_add_data($handle, 'strategy', 'defer');
+            }
+        }
     }
 
     public static function dequeue_irrelevant_assets(): void {
