@@ -1,0 +1,112 @@
+name: K20 Single URL A11y Diagnostic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/a11y-page/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-single-url-a11y
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Resolve request
+        id: req
+        shell: bash
+        run: |
+          set -euo pipefail
+          before='${{ github.event.before }}'
+          current='${{ github.sha }}'
+          zero='0000000000000000000000000000000000000000'
+          if [ -n "$before" ] && [ "$before" != "$zero" ]; then
+            mapfile -t files < <(git diff --name-only "$before" "$current" -- 'diagnostics/a11y-page/*.json' | sed '/^$/d' | sort -u)
+          else
+            mapfile -t files < <(git show --pretty='' --name-only "$current" -- 'diagnostics/a11y-page/*.json' | sed '/^$/d' | sort -u)
+          fi
+          [ "${#files[@]}" -eq 1 ] || { echo "Expected one request, found ${#files[@]}"; exit 1; }
+          req="${files[0]}"
+          base="$(basename "$req" .json)"
+          echo "request=$req" >> "$GITHUB_OUTPUT"
+          echo "result=diagnostics/a11y-page-results/${base}-result.json" >> "$GITHUB_OUTPUT"
+
+      - name: Install Lighthouse
+        run: npm install -g lighthouse
+
+      - name: Run exact-node audit
+        shell: bash
+        env:
+          REQUEST: ${{ steps.req.outputs.request }}
+          RESULT: ${{ steps.req.outputs.result }}
+        run: |
+          set -euo pipefail
+          url="$(jq -r '.url' "$REQUEST")"
+          test -n "$url"
+          tmp="$RUNNER_TEMP/k20-a11y.json"
+          lighthouse "$url" --quiet --output=json --output-path="$tmp" --only-categories=accessibility,best-practices --form-factor=mobile --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
+          python3 - "$tmp" "$RESULT" <<'PY'
+          import json, os, sys, datetime
+          src, out = sys.argv[1:3]
+          j=json.load(open(src,encoding='utf-8'))
+          wanted=['color-contrast','link-name','meta-viewport','image-size-responsive','heading-order','image-alt','button-name','label']
+          audits={}
+          for aid in wanted:
+              a=(j.get('audits') or {}).get(aid) or {}
+              rows=[]
+              for item in ((a.get('details') or {}).get('items') or []):
+                  node=item.get('node') or {}
+                  rows.append({
+                      'selector':node.get('selector'),
+                      'path':node.get('path'),
+                      'nodeLabel':node.get('nodeLabel'),
+                      'snippet':node.get('snippet'),
+                      'explanation':node.get('explanation'),
+                      'subItems':item.get('subItems'),
+                  })
+              audits[aid]={'score':a.get('score'),'title':a.get('title'),'description':a.get('description'),'items':rows}
+          result={
+              'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              'url':j.get('finalDisplayedUrl') or j.get('finalUrl'),
+              'scores':{
+                  'accessibility':(j.get('categories') or {}).get('accessibility',{}).get('score'),
+                  'best_practices':(j.get('categories') or {}).get('best-practices',{}).get('score'),
+              },
+              'audits':audits,
+              'site_mutations':0,
+          }
+          os.makedirs(os.path.dirname(out),exist_ok=True)
+          json.dump(result,open(out,'w',encoding='utf-8'),ensure_ascii=False,indent=2)
+          print(json.dumps(result,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Persist diagnostic
+        shell: bash
+        env:
+          RESULT: ${{ steps.req.outputs.result }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f "$RESULT"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "diag: record single URL a11y nodes"
+          for attempt in 1 2 3 4; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt*2))
+          done
+          exit 1
