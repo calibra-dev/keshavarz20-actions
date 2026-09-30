@@ -1,0 +1,31 @@
+{
+  "schema_version": "seo-god2-phase5-closure-v1",
+  "generated_at_utc": "2026-09-30T08:56:00Z",
+  "status": "PASS_GUARDED_COMPATIBILITY_COMPLETE",
+  "acceptance": {
+    "tier_a_first": true,
+    "status_vocabulary_enforced": true,
+    "same_size_never_promoted_to_verified": true,
+    "candidate_positive_edges_promoted_without_evidence": 0,
+    "exact_sku_auto_recommendation_disabled_without_verified_positive_edge": true,
+    "direct_incompatibilities_recorded": true
+  },
+  "metrics": {
+    "tier_a_nodes": 20,
+    "physical_equipment_nodes": 15,
+    "fertilizer_nodes_guarded": 5,
+    "verified_positive_edges": 0,
+    "incompatible_edges": 5,
+    "needs_review_edges": 8,
+    "guessed_edges": 0
+  },
+  "guard": {
+    "automatic_exact_sku_positive_recommendation_enabled": false,
+    "incompatible_pair_guard_enabled": true,
+    "needs_review_pairs_route_to_expert_check": true
+  },
+  "note": "Phase 5 is complete as an evidence-gated graph. Completion does not mean every pair is positively compatible; unresolved interfaces remain NEEDS_REVIEW by design.",
+  "evidence": [
+    "seo-god2/phase5-tier-a-compatibility-graph-20260930.json"
+  ]
+}
