@@ -1,0 +1,123 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20260930-seo-god2-phase1-approve-terms-3.sanitized.json",
+  "action": "approval.execute",
+  "request_id": "seo-god2-phase1-approve-terms-3-20260930",
+  "dry_run": false,
+  "executed_at_utc": "2026-09-30T07:49:52.2362786Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.6",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "count": 13,
+    "items": [
+      {
+        "index": 0,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "POST",
+        "result_path": "/wc/v3/products/attributes/19/terms",
+        "result_status": 201
+      },
+      {
+        "index": 1,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "POST",
+        "result_path": "/wc/v3/products/attributes/19/terms",
+        "result_status": 201
+      },
+      {
+        "index": 2,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "POST",
+        "result_path": "/wc/v3/products/attributes/19/terms",
+        "result_status": 201
+      },
+      {
+        "index": 3,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "POST",
+        "result_path": "/wc/v3/products/attributes/19/terms",
+        "result_status": 201
+      },
+      {
+        "index": 4,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "POST",
+        "result_path": "/wc/v3/products/attributes/19/terms",
+        "result_status": 201
+      },
+      {
+        "index": 5,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "POST",
+        "result_path": "/wc/v3/products/attributes/19/terms",
+        "result_status": 201
+      },
+      {
+        "index": 6,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "POST",
+        "result_path": "/wc/v3/products/attributes/20/terms",
+        "result_status": 201
+      },
+      {
+        "index": 7,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "POST",
+        "result_path": "/wc/v3/products/attributes/21/terms",
+        "result_status": 201
+      },
+      {
+        "index": 8,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "POST",
+        "result_path": "/wc/v3/products/attributes/21/terms",
+        "result_status": 201
+      },
+      {
+        "index": 9,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "POST",
+        "result_path": "/wc/v3/products/attributes/22/terms",
+        "result_status": 201
+      },
+      {
+        "index": 10,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "POST",
+        "result_path": "/wc/v3/products/attributes/23/terms",
+        "result_status": 201
+      },
+      {
+        "index": 11,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "POST",
+        "result_path": "/wc/v3/products/attributes/24/terms",
+        "result_status": 201
+      },
+      {
+        "index": 12,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "POST",
+        "result_path": "/wc/v3/products/attributes/25/terms",
+        "result_status": 201
+      }
+    ]
+  }
+}
