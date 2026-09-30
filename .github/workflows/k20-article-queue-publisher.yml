@@ -128,10 +128,10 @@ jobs:
             esac
             printf '%s\n' "$MANUAL_FILE" > /tmp/k20-article-queue-files.txt
           else
-            git diff-tree --no-commit-id --name-only -r HEAD -- 'daily-agri-articles/queue/*.json' > /tmp/k20-article-queue-files.txt
+            git diff-tree --no-commit-id --name-only --diff-filter=A -r HEAD -- 'daily-agri-articles/queue/*.json' > /tmp/k20-article-queue-files.txt
           fi
           if [ ! -s /tmp/k20-article-queue-files.txt ]; then
-            echo 'No article queue JSON file found in this change.'
+            echo 'No newly added article queue JSON file found; modified existing queues are intentionally not auto-republished.'
             exit 0
           fi
           echo 'Article queue files:'
