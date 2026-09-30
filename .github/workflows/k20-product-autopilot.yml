@@ -1,0 +1,180 @@
+name: K20 Product Autopilot
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'run | dry_run | pause | resume'
+        required: true
+        default: 'run'
+        type: choice
+        options:
+          - run
+          - dry_run
+          - pause
+          - resume
+      product_id:
+        description: 'Optional exact WooCommerce product ID'
+        required: false
+        default: ''
+        type: string
+      max_products:
+        description: 'Bounded products for this run (1..5)'
+        required: false
+        default: '1'
+        type: string
+  schedule:
+    - cron: '7,37 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-product-autopilot
+  cancel-in-progress: false
+
+jobs:
+  product:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      TZ: Asia/Tehran
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_PRODUCT_MODEL: ${{ vars.OPENAI_PRODUCT_MODEL || 'gpt-5.6' }}
+      K20_PRODUCT_AUTOWRITE: 'true'
+
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: product-engine/requirements.txt
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r product-engine/requirements.txt
+
+      - name: Install Lighthouse
+        run: npm install -g lighthouse
+
+      - name: Static validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile product-engine/engine.py
+          python -m py_compile k20_sanitizer.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          json.loads(Path('product-engine/config.json').read_text(encoding='utf-8'))
+          json.loads(Path('product-engine/state.json').read_text(encoding='utf-8'))
+          prompt=Path('product-engine/MASTER_PROMPT_V1.md').read_text(encoding='utf-8')
+          assert 'Never reuse another product' in prompt
+          assert 'Target Performance >= 96' in prompt
+          print('PRODUCT_ENGINE_STATIC_OK')
+          PY
+
+      - name: Validate runtime secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in WP_BASE_URL WP_USERNAME WP_APP_PASSWORD OPENAI_API_KEY; do
+            if [ -z "${!name:-}" ]; then
+              echo "::error title=Missing repository secret::$name is empty or unavailable"
+              exit 2
+            fi
+          done
+
+      - name: Resolve action
+        id: action
+        shell: bash
+        env:
+          INPUT_ACTION: ${{ inputs.action }}
+          INPUT_PRODUCT_ID: ${{ inputs.product_id }}
+          INPUT_MAX_PRODUCTS: ${{ inputs.max_products }}
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            action='run'
+            product_id=''
+            max_products='1'
+          else
+            action="${INPUT_ACTION:-run}"
+            product_id="${INPUT_PRODUCT_ID:-}"
+            max_products="${INPUT_MAX_PRODUCTS:-1}"
+          fi
+          case "$action" in
+            run|dry_run|pause|resume) ;;
+            *) echo "::error::Unsupported action $action"; exit 3 ;;
+          esac
+          [[ "$max_products" =~ ^[1-5]$ ]] || { echo "::error::max_products must be 1..5"; exit 4; }
+          if [ -n "$product_id" ]; then
+            [[ "$product_id" =~ ^[0-9]+$ ]] || { echo "::error::product_id must be numeric"; exit 5; }
+          fi
+          echo "action=$action" >> "$GITHUB_OUTPUT"
+          echo "product_id=$product_id" >> "$GITHUB_OUTPUT"
+          echo "max_products=$max_products" >> "$GITHUB_OUTPUT"
+
+      - name: Execute Product Autopilot
+        shell: bash
+        env:
+          ACTION: ${{ steps.action.outputs.action }}
+          PRODUCT_ID: ${{ steps.action.outputs.product_id }}
+          MAX_PRODUCTS: ${{ steps.action.outputs.max_products }}
+        run: |
+          set -euo pipefail
+          args=()
+          case "$ACTION" in
+            run) args+=(--run-mode auto --max-products "$MAX_PRODUCTS") ;;
+            dry_run) args+=(--run-mode dry_run --max-products "$MAX_PRODUCTS") ;;
+            pause) args+=(--pause) ;;
+            resume) args+=(--resume) ;;
+          esac
+          if [ -n "$PRODUCT_ID" ]; then
+            args+=(--target-id "$PRODUCT_ID")
+          fi
+          python product-engine/engine.py "${args[@]}"
+
+      - name: Persist engine checkpoint
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f product-engine/state.json product-engine/inventory.json product-engine/last-run.json product-engine/results 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No product-engine checkpoint change."
+            exit 0
+          fi
+          git commit -m "product-engine: checkpoint autonomous run"
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt * 2))
+          done
+          exit 1
+
+      - name: Upload run evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-product-autopilot-${{ github.run_id }}
+          if-no-files-found: ignore
+          retention-days: 14
+          path: |
+            product-engine/last-run.json
+            product-engine/inventory.json
+            product-engine/results/*.json
