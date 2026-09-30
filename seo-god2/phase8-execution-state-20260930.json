@@ -3,8 +3,8 @@
   "project": "keshavarz20.com / SEO GOD2",
   "phase": 8,
   "name": "Trust & Social Proof",
-  "status": "BLOCKED_EXTERNAL_CONNECTIVITY_NOT_CLOSED",
-  "closed": false,
+  "status": "PASS_PHASE8_COMPLETE",
+  "closed": true,
   "completed_repo_work": {
     "plan": {
       "path": "seo-god2/phase8-trust-social-proof-plan-20260930.json",
@@ -83,14 +83,7 @@
   ],
   "confirmed_no_partial_site_write": true,
   "next_exact_steps": [
-    "Run lightweight api.contract connectivity check.",
-    "If healthy, rerun Phase 8 bounded write workflow run 36764393159 or issue an equivalent unique Bridge request.",
-    "If approval_required, execute the exact frozen approval without payload changes.",
-    "Read back all 20 Tier A short_description fields and verify the k20-phase8-trust-proof marker exactly once.",
-    "Refresh verified reviews audit read-only.",
-    "Purge cache.",
-    "Trigger seo-god2-phase8-public-audit-ops and require PASS.",
-    "Create seo-god2/phase8-closure-20260930.json only after public acceptance PASS."
+    "Proceed to Phase 9 only; do not rerun Phase 8 unless regression evidence appears."
   ],
   "hard_guards_preserved": {
     "price_written": false,
@@ -100,5 +93,20 @@
     "payment_settings_written": false,
     "phase6_recommendation_guards_preserved_in_request": true,
     "phase7_shipping_content_preserved_in_source_payload": true
+  },
+  "blocker_cleared": true,
+  "connectivity_restored_evidence": {
+    "api_contract_http_code": 200,
+    "bridge_version": "3.3.16",
+    "request": "bridge-v3-results/20260930-user-connectivity-check-live.json"
+  },
+  "final_execution": {
+    "route": "content.patch -> post_excerpt",
+    "approval_run_id": 36769882507,
+    "readback_run_id": 36770174143,
+    "cache_run_id": 36770174921,
+    "reviews_run_id": 36769287066,
+    "public_acceptance_run_id": 36770283545,
+    "closure_commit": "a602984e5b3fe6f9faed58928075a31025aab825"
   }
 }
