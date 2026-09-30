@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "action": "engine.run",
+  "engine": "product",
+  "engine_label": "Product Queue Engine",
+  "workflow": "k20-product-queue-publisher.yml",
+  "state": "accepted",
+  "started_at": "2026-09-30T22:11:07.0587774Z",
+  "finished_at": null,
+  "changed_ids": [],
+  "errors": [],
+  "artifact": null,
+  "next_action": "engine.status",
+  "inputs": {
+    "validate_only": "true",
+    "queue_file": "product-engine/queue/2026-10-01-product-134980-recovery1.json"
+  },
+  "executed_at_utc": "2026-09-30T22:11:07.0617374Z"
+}
