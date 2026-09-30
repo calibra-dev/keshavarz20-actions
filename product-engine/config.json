@@ -1,0 +1,49 @@
+{
+  "schema_version": "product-autopilot-config-v1",
+  "catalog_order": "frozen_product_id_ascending_then_append_new",
+  "concurrency": 1,
+  "max_products_per_run": 1,
+  "content_acceptance": 96,
+  "lighthouse_acceptance": {
+    "performance": 96,
+    "accessibility": 96,
+    "best_practices": 96,
+    "seo": 96,
+    "lcp_ms": 2500,
+    "cls": 0.1,
+    "tbt_ms": 200
+  },
+  "schedule": "every_30_minutes",
+  "automatic_writes": [
+    "description",
+    "short_description",
+    "seo_title",
+    "meta_description",
+    "focus_keyphrase",
+    "missing_image_alt"
+  ],
+  "protected_fields": [
+    "slug",
+    "canonical",
+    "price",
+    "regular_price",
+    "sale_price",
+    "stock",
+    "sku",
+    "gtin",
+    "mpn",
+    "categories",
+    "brand",
+    "attributes",
+    "variations",
+    "featured_image",
+    "gallery_bindings"
+  ],
+  "fail_closed": true,
+  "continue_after_noncritical_blocker": true,
+  "kill_switch_on": [
+    "bridge_write_failure",
+    "rollback_failure",
+    "catalog_wide_regression"
+  ]
+}
