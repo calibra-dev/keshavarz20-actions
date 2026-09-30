@@ -234,7 +234,7 @@ final class K20_Bridge_V33_Performance {
 
         // Restore user zoom while preserving the theme's viewport width/initial scale.
         $html = preg_replace_callback(
-            '/<meta\\b(?=[^>]*\\bname=["\\']viewport["\\'])[^>]*>/i',
+            '/<meta\\b(?=[^>]*\\bname="viewport")[^>]*>/i',
             static function (array $match): string {
                 $tag = preg_replace('/,?\\s*maximum-scale\\s*=\\s*1(?:\\.0)?/i', '', $match[0]) ?: $match[0];
                 $tag = preg_replace('/,?\\s*user-scalable\\s*=\\s*(?:no|0)/i', '', $tag) ?: $tag;
