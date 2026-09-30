@@ -7,7 +7,7 @@ function Fail([string]$Message){ throw $Message }
 if(-not(Test-Path -LiteralPath $RequestPath)){ Fail "Request file not found: $RequestPath" }
 
 $siteActions=@(
-  'system.info','rest.proxy','api.contract','commerce.catalog_order.read','commerce.catalog_order.update',
+  'system.info','rest.proxy','api.contract','commerce.catalog_order.read','commerce.catalog_order.update','commerce.shop.diagnose',
   'seo.read','seo.update',
   'content.search','content.patch','content.block.inspect','content.block.patch',
   'elementor.inspect','elementor.search','elementor.edit','elementor.structure',
@@ -207,7 +207,7 @@ if($parsed -and $parsed.result){
     'matches','changed','before_sha256','after_sha256','source_attachment_id','new_attachment_id','approval_id','fingerprint','rolled_back',
     'current_version','available_version','update_available','staged','applied','installed_file_version','schema_version',
     'description','focus_keyword','canonical','noindex','attachment_id','attachment_ids','featured_attachment_id','gallery_image_ids','before_gallery_image_ids','target_id','product_id','snapshot_id','sha256','mime','bytes','width','height','previous_attachment_id',
-    'setting','value','allowed_values','before','after'
+    'setting','value','allowed_values','before','after','shop_url','http_status','body_sha256','option_value','filtered_value','selected_orderby','callback_count','callbacks','first_product_ids','first_product_titles','contains_price_desc','contains_popularity'
   )){
     $p=$result.PSObject.Properties[$name]; if($p){ $safe[$name]=$p.Value }
   }
