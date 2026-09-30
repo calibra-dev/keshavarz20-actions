@@ -20,7 +20,8 @@
     "seo_title",
     "meta_description",
     "focus_keyphrase",
-    "missing_image_alt"
+    "missing_image_alt",
+    "measured_featured_image_webp_rebind_with_rollback"
   ],
   "protected_fields": [
     "slug",
@@ -36,7 +37,7 @@
     "brand",
     "attributes",
     "variations",
-    "featured_image",
+    "gallery_bindings",
     "gallery_bindings"
   ],
   "fail_closed": true,
@@ -45,5 +46,18 @@
     "bridge_write_failure",
     "rollback_failure",
     "catalog_wide_regression"
-  ]
+  ],
+  "performance_repair": {
+    "featured_image": {
+      "enabled": true,
+      "min_source_bytes": 280000,
+      "only_when_top_transferred_resource": true,
+      "output_mime": "image/webp",
+      "quality": 82,
+      "max_dimension": 1600,
+      "rollback_on_regression": true
+    },
+    "gallery_rebinding": false,
+    "global_css_js_mutation": false
+  }
 }
