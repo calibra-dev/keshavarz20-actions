@@ -1,0 +1,399 @@
+{
+  "schema_version": "seo-god2-phase5-tier-a-compatibility-graph-v1",
+  "generated_at_utc": "2026-09-30T08:56:00Z",
+  "scope": "Tier A first; direct physical compatibility only",
+  "policy": {
+    "allowed_status": [
+      "VERIFIED",
+      "INCOMPATIBLE",
+      "NEEDS_REVIEW"
+    ],
+    "same_size_is_not_compatibility": true,
+    "exact_sku_positive_recommendation_requires_real_interface_evidence": true,
+    "fertilizer_mixing_is_out_of_scope_without_exact_label_or_manufacturer_mix_evidence": true
+  },
+  "nodes": [
+    {
+      "id": 140856,
+      "family": "fertilizer",
+      "compatibility_mode": "LABEL_GUARDED_NON_PHYSICAL"
+    },
+    {
+      "id": 140718,
+      "family": "fertilizer",
+      "compatibility_mode": "LABEL_GUARDED_NON_PHYSICAL"
+    },
+    {
+      "id": 140853,
+      "family": "fertilizer",
+      "compatibility_mode": "LABEL_GUARDED_NON_PHYSICAL"
+    },
+    {
+      "id": 140760,
+      "family": "fertilizer",
+      "compatibility_mode": "LABEL_GUARDED_NON_PHYSICAL"
+    },
+    {
+      "id": 140816,
+      "family": "fertilizer",
+      "compatibility_mode": "LABEL_GUARDED_NON_PHYSICAL"
+    },
+    {
+      "id": 135339,
+      "family": "valve",
+      "known": {
+        "nominal_size": "4 inch / 110 mm",
+        "pressure": "6 bar",
+        "connection": "wafer",
+        "material": "uPVC"
+      }
+    },
+    {
+      "id": 135349,
+      "family": "valve",
+      "known": {
+        "nominal_size": "2 inch / 63 mm",
+        "pressure": "6 bar",
+        "connection": "threaded",
+        "material": "uPVC"
+      }
+    },
+    {
+      "id": 135337,
+      "family": "valve",
+      "known": {
+        "nominal_size": "3 inch",
+        "pressure": "6 bar",
+        "material_family": "polymeric"
+      },
+      "guarded": [
+        "exact connection standard",
+        "exact material composition"
+      ]
+    },
+    {
+      "id": 135667,
+      "family": "valve",
+      "known": {
+        "nominal_size": "1 inch / 32 mm",
+        "connection": "female thread both sides",
+        "material": "uPVC"
+      },
+      "guarded": [
+        "pressure class",
+        "thread standard"
+      ]
+    },
+    {
+      "id": 140406,
+      "family": "fertigation_tank",
+      "known": {
+        "capacity": "100 L",
+        "inlet_outlet": "3/4 inch"
+      },
+      "guarded": [
+        "pressure rating",
+        "thread standard",
+        "connection gender"
+      ]
+    },
+    {
+      "id": 140407,
+      "family": "fertigation_tank",
+      "known": {
+        "capacity": "200 L",
+        "inlet_outlet": "1 inch"
+      },
+      "guarded": [
+        "pressure rating",
+        "thread standard",
+        "connection gender"
+      ]
+    },
+    {
+      "id": 135353,
+      "family": "drip_tape_connector",
+      "known": {
+        "role": "layflat to drip tape"
+      },
+      "guarded": [
+        "layflat hole/drill size",
+        "washer requirement",
+        "exact tape interface"
+      ]
+    },
+    {
+      "id": 135381,
+      "family": "drip_tape_connector",
+      "known": {
+        "role": "drip tape to drip tape"
+      },
+      "guarded": [
+        "exact tape interface"
+      ]
+    },
+    {
+      "id": 135359,
+      "family": "drip_tape_valve",
+      "known": {
+        "role": "16 mm line to drip tape"
+      },
+      "guarded": [
+        "exact inlet fitting form",
+        "exact tape interface",
+        "pressure range"
+      ]
+    },
+    {
+      "id": 140674,
+      "family": "drip_tape_connector",
+      "known": {
+        "role": "drip tape to drip tape"
+      },
+      "guarded": [
+        "exact tape interface"
+      ]
+    },
+    {
+      "id": 135361,
+      "family": "drip_line_fitting",
+      "known": {
+        "nominal_size": "16 mm tee"
+      },
+      "guarded": [
+        "exact connection geometry",
+        "pressure class"
+      ]
+    },
+    {
+      "id": 140454,
+      "family": "emitter",
+      "guarded": [
+        "flow rate curve",
+        "connection type",
+        "pressure range",
+        "filtration requirement"
+      ]
+    },
+    {
+      "id": 135235,
+      "family": "drip_tape",
+      "known": {
+        "emitter_spacing": "20 cm",
+        "application": "under plastic"
+      },
+      "guarded": [
+        "manufacturer/model",
+        "diameter",
+        "wall thickness",
+        "pressure",
+        "flow",
+        "exact filtration grade",
+        "roll length"
+      ]
+    },
+    {
+      "id": 140014,
+      "family": "rain_pipe",
+      "known": {
+        "nominal_size": "2 inch",
+        "roll_length": "100 m",
+        "pressure_max": "0.8 bar",
+        "connection_family": "hose-barb/connector"
+      }
+    },
+    {
+      "id": 135309,
+      "family": "layflat_reinforced_hose",
+      "known": {
+        "nominal_size": "2 inch / 50 mm",
+        "roll_length": "100 m",
+        "layers": "5",
+        "material": "PE reinforced with thread",
+        "pressure": "1.5 bar"
+      },
+      "guarded": [
+        "exact connector interface"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": 140406,
+      "to": 135667,
+      "relation": "direct_connection_without_adapter",
+      "status": "INCOMPATIBLE",
+      "reason": "Tank interface is 3/4 inch while valve interface is 1 inch; direct nominal sizes differ.",
+      "evidence": [
+        "live structured attributes 140406",
+        "live structured attributes 135667"
+      ]
+    },
+    {
+      "from": 135337,
+      "to": 135309,
+      "relation": "direct_connection_without_adapter",
+      "status": "INCOMPATIBLE",
+      "reason": "Valve is 3 inch while hose is 2 inch; direct nominal sizes differ.",
+      "evidence": [
+        "current Vispar family evidence",
+        "exact 2-inch Asayesh distributor evidence"
+      ]
+    },
+    {
+      "from": 135339,
+      "to": 135309,
+      "relation": "direct_connection_without_adapter",
+      "status": "INCOMPATIBLE",
+      "reason": "Valve is 4 inch while hose is 2 inch; direct nominal sizes differ.",
+      "evidence": [
+        "live structured attributes 135339",
+        "exact 2-inch Asayesh distributor evidence"
+      ]
+    },
+    {
+      "from": 135337,
+      "to": 140014,
+      "relation": "direct_connection_without_adapter",
+      "status": "INCOMPATIBLE",
+      "reason": "Valve is 3 inch while rain pipe is 2 inch; direct nominal sizes differ.",
+      "evidence": [
+        "current Vispar family evidence",
+        "live structured attributes 140014"
+      ]
+    },
+    {
+      "from": 135339,
+      "to": 140014,
+      "relation": "direct_connection_without_adapter",
+      "status": "INCOMPATIBLE",
+      "reason": "Valve is 4 inch while rain pipe is 2 inch; direct nominal sizes differ.",
+      "evidence": [
+        "live structured attributes 135339",
+        "live structured attributes 140014"
+      ]
+    },
+    {
+      "from": 140407,
+      "to": 135667,
+      "relation": "direct_or_adapter_connection",
+      "status": "NEEDS_REVIEW",
+      "reason": "Both expose nominal 1-inch interfaces, but thread standard, tank-side gender and required nipple/adapter are not verified.",
+      "evidence_needed": [
+        "exact tank outlet thread standard/gender",
+        "exact valve thread standard",
+        "adapter/nipple part number if required"
+      ]
+    },
+    {
+      "from": 135349,
+      "to": 135309,
+      "relation": "valve_to_layflat_line",
+      "status": "NEEDS_REVIEW",
+      "reason": "Both are nominal 2 inch, but the valve is threaded while the hose requires a verified hose-barb/retention interface; same size is insufficient.",
+      "evidence_needed": [
+        "exact 2-inch valve thread standard",
+        "exact 2-inch hose-barb/adapter SKU",
+        "clamp/retention requirement"
+      ]
+    },
+    {
+      "from": 135349,
+      "to": 140014,
+      "relation": "valve_to_rain_pipe",
+      "status": "NEEDS_REVIEW",
+      "reason": "Both are nominal 2 inch, but the valve is threaded and rain pipe uses a hose connector/barb family; exact adapter chain is not verified.",
+      "evidence_needed": [
+        "exact valve thread standard",
+        "exact rain-pipe connector/barb SKU",
+        "retention/clamp requirement"
+      ]
+    },
+    {
+      "from": 135353,
+      "to": 135235,
+      "relation": "layflat_to_drip_tape",
+      "status": "NEEDS_REVIEW",
+      "reason": "Connector role matches the system concept, but the exact drip-tape interface, hole size and washer requirement are not verified for this tape SKU.",
+      "evidence_needed": [
+        "exact tape manufacturer/model label",
+        "Farat connector datasheet",
+        "drill/hole size",
+        "washer requirement"
+      ]
+    },
+    {
+      "from": 135359,
+      "to": 135235,
+      "relation": "16mm_line_to_drip_tape",
+      "status": "NEEDS_REVIEW",
+      "reason": "Product role targets drip tape, but exact tape interface and inlet fitting geometry remain unverified.",
+      "evidence_needed": [
+        "exact tape interface",
+        "exact 16mm inlet geometry",
+        "pressure range"
+      ]
+    },
+    {
+      "from": 135381,
+      "to": 135235,
+      "relation": "drip_tape_to_drip_tape",
+      "status": "NEEDS_REVIEW",
+      "reason": "Connector is intended for tape-to-tape use, but exact compatibility with this tape SKU is not proven.",
+      "evidence_needed": [
+        "exact tape manufacturer/model",
+        "connector jaw/lock dimensional spec"
+      ]
+    },
+    {
+      "from": 140674,
+      "to": 135235,
+      "relation": "drip_tape_to_drip_tape",
+      "status": "NEEDS_REVIEW",
+      "reason": "Connector is intended for tape-to-tape use, but exact compatibility with this tape SKU is not proven.",
+      "evidence_needed": [
+        "exact tape manufacturer/model",
+        "connector jaw/lock dimensional spec"
+      ]
+    },
+    {
+      "from": 135361,
+      "to": 135359,
+      "relation": "16mm_distribution_chain",
+      "status": "NEEDS_REVIEW",
+      "reason": "Both reference 16 mm service, but the exact fitting geometry and insertion/compression interface are not verified.",
+      "evidence_needed": [
+        "exact 16mm tee connection geometry",
+        "exact valve inlet geometry"
+      ]
+    }
+  ],
+  "metrics": {
+    "tier_a_nodes": 20,
+    "physical_equipment_nodes": 15,
+    "fertilizer_nodes_guarded": 5,
+    "verified_positive_edges": 0,
+    "incompatible_edges": 5,
+    "needs_review_edges": 8,
+    "guessed_edges": 0
+  },
+  "runtime_decision": {
+    "automatic_exact_sku_positive_recommendation_enabled": false,
+    "incompatible_pair_guard_enabled": true,
+    "needs_review_pairs_route_to_expert_check": true
+  },
+  "next_evidence_priority": [
+    "Exact drip tape manufacturer/model label for product 135235",
+    "Farat Polymer connector datasheet for 135353/135359/135381",
+    "Exact tank thread standard/gender for 140406/140407",
+    "Exact thread standard and adapter chain for valve 135349 to 2-inch flexible pipe",
+    "Exact flow/interface datasheet for emitter 140454"
+  ],
+  "evidence": [
+    "seo-god2/phase4-product-evidence-records-20260930.json",
+    "seo-god2/phase4-external-evidence-refresh-20260930.json",
+    "bridge-v3-results/20260930-seo-god2-phase7-tier-a-current.json",
+    "growthos-phase4-results/compatibility-summary.json",
+    "growthos-phase4-results/verification-backlog.json"
+  ]
+}
