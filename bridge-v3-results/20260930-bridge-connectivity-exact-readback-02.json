@@ -1,0 +1,32 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20260930-bridge-connectivity-exact-readback-02.sanitized.json",
+  "action": "batch",
+  "request_id": "bridge-connectivity-exact-readback-20260930-02",
+  "dry_run": false,
+  "executed_at_utc": "2026-09-30T19:33:46.8576202Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.16",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "count": 2,
+    "items": [
+      {
+        "index": 0,
+        "action": "system.info",
+        "ok": true
+      },
+      {
+        "index": 1,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "GET",
+        "result_path": "/wc/v3/products/140856",
+        "result_status": 200
+      }
+    ]
+  }
+}
