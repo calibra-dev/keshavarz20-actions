@@ -1,0 +1,148 @@
+name: SEO God2 Phase 9 Purchase Risk Audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'seo-god2-phase9-public-audit-ops/*.json'
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check requests beautifulsoup4
+      - name: Audit returns mismatch authenticity clarity
+        shell: python
+        run: |
+          import json, os, pathlib, re, time, requests
+          from bs4 import BeautifulSoup
+
+          ids=[140856,140718,135339,135349,140853,140406,140760,140816,140407,135337,135353,140454,135381,135361,140674,135235,140014,135309,135359,135667]
+          physical={140674,140454,140407,140406,140014,135235,135381,135361,135359,135353,135349,135339,135337,135309,135667}
+          base=os.environ['WP_BASE_URL'].rstrip('/')
+          auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD'])
+          api=requests.Session(); api.auth=auth
+          public=requests.Session()
+
+          def get_retry(session,url,**kwargs):
+            last=None
+            for attempt in range(4):
+              try:
+                return session.get(url,**kwargs)
+              except requests.RequestException as e:
+                last=e; time.sleep(1.5*(attempt+1))
+            raise last
+
+          products=[]
+          for pid in ids:
+            r=get_retry(api,base+f'/wp-json/wc/v3/products/{pid}',timeout=60,params={'_fields':'id,name,permalink,short_description'})
+            r.raise_for_status(); products.append(r.json())
+
+          rows=[]
+          specific_window=re.compile(r'(?:مرجوع|بازگشت|عودت)[^\n]{0,60}[۰-۹0-9]+\s*(?:روز|ساعت)')
+          refund_timing=re.compile(r'(?:بازپرداخت|عودت وجه|استرداد وجه)[^\n]{0,60}[۰-۹0-9]+\s*(?:روز|ساعت)')
+          unconditional_terms=['بدون قید و شرط','در هر شرایطی','تضمین بازگشت وجه','بازپرداخت قطعی']
+          for p in products:
+            pid=int(p['id'])
+            rr=get_retry(public,p['permalink'],timeout=60,allow_redirects=True,headers={'User-Agent':'K20Phase9PublicAudit/1.0','Cache-Control':'no-cache','Pragma':'no-cache'})
+            soup=BeautifulSoup(rr.text,'html.parser')
+            card=soup.select_one('.k20-purchase-risk')
+            text=' '.join(card.stripped_strings) if card else ''
+            links=[a.get('href') or '' for a in card.select('a[href]')] if card else []
+            rows.append({
+              'product_id':pid,
+              'name':p.get('name'),
+              'public_status':rr.status_code,
+              'public_final_url':rr.url,
+              'rest_permalink':p.get('permalink'),
+              'phase9_card_present':card is not None,
+              'phase9_heading_present':'مرجوعی، مغایرت و اصالت کالا' in text,
+              'returns_link_present':any(x.rstrip('/').endswith('/refund_returns') for x in links),
+              'authenticity_link_present':any('%d8%b6%d9%85%d8%a7%d9%86%d8%aa-%d8%a7%d8%b5%d8%a7%d9%84%d8%aa-%da%a9%d8%a7%d9%84%d8%a7' in x.lower() for x in links),
+              'no_fixed_promise_present':'مهلت، مبلغ یا زمان بازپرداخت ثابتی وعده داده نمی‌شود' in text,
+              'invented_return_window':bool(specific_window.search(text)),
+              'invented_refund_timing':bool(refund_timing.search(text)),
+              'unconditional_claims':[x for x in unconditional_terms if x in text],
+              'phase8_trust_present':soup.select_one('.k20-trust-proof') is not None,
+              'phase7_shipping_present':soup.select_one('.k20-shipping-clarity') is not None,
+              'phase6_basket_present':'چک‌لیست تکمیل خرید' in rr.text,
+              'expected_phase6_basket':pid in physical,
+            })
+
+          ret=get_retry(public,base+'/refund_returns/',timeout=60,allow_redirects=True,headers={'User-Agent':'K20Phase9PublicAudit/1.0','Cache-Control':'no-cache','Pragma':'no-cache'})
+          authp=get_retry(public,base+'/%d8%b6%d9%85%d8%a7%d9%86%d8%aa-%d8%a7%d8%b5%d8%a7%d9%84%d8%aa-%da%a9%d8%a7%d9%84%d8%a7/',timeout=60,allow_redirects=True,headers={'User-Agent':'K20Phase9PublicAudit/1.0','Cache-Control':'no-cache','Pragma':'no-cache'})
+          ret_text=' '.join(BeautifulSoup(ret.text,'html.parser').stripped_strings)
+          auth_text=' '.join(BeautifulSoup(authp.text,'html.parser').stripped_strings)
+
+          failures={
+            'public_non_200':[r['product_id'] for r in rows if r['public_status']!=200],
+            'redirected_away':[r['product_id'] for r in rows if r['public_final_url'].rstrip('/').lower()!=r['rest_permalink'].rstrip('/').lower()],
+            'phase9_card_missing':[r['product_id'] for r in rows if not r['phase9_card_present']],
+            'phase9_heading_missing':[r['product_id'] for r in rows if not r['phase9_heading_present']],
+            'returns_link_missing':[r['product_id'] for r in rows if not r['returns_link_present']],
+            'authenticity_link_missing':[r['product_id'] for r in rows if not r['authenticity_link_present']],
+            'no_fixed_promise_missing':[r['product_id'] for r in rows if not r['no_fixed_promise_present']],
+            'invented_return_window':[r['product_id'] for r in rows if r['invented_return_window']],
+            'invented_refund_timing':[r['product_id'] for r in rows if r['invented_refund_timing']],
+            'unconditional_claims':[r['product_id'] for r in rows if r['unconditional_claims']],
+            'phase8_trust_missing':[r['product_id'] for r in rows if not r['phase8_trust_present']],
+            'phase7_shipping_missing':[r['product_id'] for r in rows if not r['phase7_shipping_present']],
+            'phase6_basket_missing':[r['product_id'] for r in rows if r['expected_phase6_basket'] and not r['phase6_basket_present']],
+          }
+          metrics={k:len(v) for k,v in failures.items()}
+          metrics.update({
+            'tier_a_products':len(rows),
+            'returns_policy_page_ok':ret.status_code==200 and 'مرجوع' in ret_text and 'مغایرت' in ret_text,
+            'authenticity_policy_page_ok':authp.status_code==200 and 'اصالت' in auth_text,
+          })
+          zero_keys=list(failures.keys())
+          status='PASS' if all(metrics[k]==0 for k in zero_keys) and metrics['tier_a_products']==20 and metrics['returns_policy_page_ok'] and metrics['authenticity_policy_page_ok'] else 'FAIL'
+          out={
+            'schema_version':'seo-god2-phase9-purchase-risk-audit-v1',
+            'status':status,
+            'policy':'Only official policy links and non-specific guidance are allowed; no invented return/refund/warranty promises.',
+            'metrics':metrics,
+            'failures':failures,
+            'policy_pages':{
+              'returns':{'status':ret.status_code,'final_url':ret.url},
+              'authenticity':{'status':authp.status_code,'final_url':authp.url}
+            },
+            'rows':rows
+          }
+          pathlib.Path('seo-god2').mkdir(exist_ok=True)
+          pathlib.Path('seo-god2/phase9-public-purchase-risk-audit-20260930.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps({'status':status,'metrics':metrics},ensure_ascii=False))
+          if status!='PASS': raise SystemExit(1)
+      - name: Commit audit
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f seo-god2/phase9-public-purchase-risk-audit-20260930.json || exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f seo-god2/phase9-public-purchase-risk-audit-20260930.json
+          git diff --cached --quiet && exit 0
+          git commit -m "seo god2 phase9: record public purchase-risk acceptance"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
