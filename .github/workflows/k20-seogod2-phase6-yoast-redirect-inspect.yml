@@ -32,9 +32,13 @@ jobs:
           base=os.environ['WP_BASE_URL'].rstrip('/')
           auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD'])
           url=base+'/wp-json/yoast/v1/redirects/list'
-          r=requests.get(url,params={'format':'json'},auth=auth,timeout=60)
-          r.raise_for_status()
-          data=r.json()
+          r=requests.get(url,auth=auth,timeout=60)
+          try:
+            data=r.json()
+          except Exception:
+            data={'raw_text':r.text[:4000]}
+          if r.status_code >= 400:
+            raise RuntimeError('Yoast redirect list failed: '+str(r.status_code)+' '+json.dumps(data,ensure_ascii=False)[:1200])
           needles=[
             'کلسیم-کراپ-ایکس-گرین',
             'کلسیم کراپ ایکس گرین',
