@@ -53,29 +53,104 @@ function Get-Engine([string]$Name){
     'question' { return @{workflow='k20-customer-question-engine.yml';label='Customer Question Engine v18'} }
     'news' { return @{workflow='k20-news-queue-publisher.yml';label='Daily Agriculture News Engine'} }
     'article' { return @{workflow='k20-article-queue-publisher.yml';label='Daily Article Engine'} }
+    'social' { return @{workflow='k20-daily-product-social.yml';label='Daily Product Social Engine'} }
+    'product' { return @{workflow='k20-product-autopilot.yml';label='K20 Product Autopilot v1'} }
+    default { Fail "Unknown engine: $Name" }
+  }
+}
+
+$request=Get-Content -Raw -LiteralPath $RequestPath | ConvertFrom-Json -Depth 100
+$action=[string]$request.action
+if([string]::IsNullOrWhiteSpace($action) -or $allowed -notcontains $action){ Fail "Action is not allow-listed: $action" }
+Assert-Safe $request
+if([string]::IsNullOrWhiteSpace([string]$request.request_id)){
+  $request | Add-Member -NotePropertyName request_id -NotePropertyValue ("gh-"+[IO.Path]::GetFileNameWithoutExtension($RequestPath)) -Force
+}
+
+if($githubActions -contains $action){
+  if($action -eq 'gitops.profile'){
+    Write-Result ([ordered]@{
+      ok=$true;schema_version='3.3';action=$action;request_id=[string]$request.request_id;profile='keshavarz20-git-ops';
+      primary_path='ChatGPT -> GitHub -> guarded gateway -> WordPress/WooCommerce/K20 Bridge';
+      engines=@('question','news','article','social','product');
+      hard_guards=@('no price/discount/coupon/payment mutation','no users/roles/capabilities','no credentials/secrets','no arbitrary code/SQL/shell','sensitive snippet/code actions use secure relay');
+      executed_at_utc=[DateTime]::UtcNow.ToString('o')
+    })
+    exit 0
+  }
+
+  foreach($name in 'GH_TOKEN','GITHUB_REPOSITORY'){
+    if([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($name))){ Fail "Missing GitHub runtime variable: $name" }
+  }
+  $engine=Get-Engine ([string]$request.engine)
+  $engineMode=[string]$request.mode
+  if(([string]$request.engine).ToLowerInvariant() -eq 'news' -and $engineMode -eq 'api_fallback'){
+    $engine.workflow='k20-daily-agri-news.yml'
+  }
+  $headers=@{Authorization="Bearer $env:GH_TOKEN";Accept='application/vnd.github+json';'X-GitHub-Api-Version'='2022-11-28';'User-Agent'='k20-bridge-v33-engine-router'}
+  $workflow=[Uri]::EscapeDataString([string]$engine.workflow)
+
+  if($action -eq 'engine.status'){
+    $uri="https://api.github.com/repos/$env:GITHUB_REPOSITORY/actions/workflows/$workflow/runs?branch=main&per_page=5"
+    $runs=Invoke-RestMethod -Method Get -Uri $uri -Headers $headers -TimeoutSec 60
+    $items=@()
+    foreach($r in @($runs.workflow_runs)){
+      $items += [ordered]@{
+        run_id=$r.id;state=$r.status;conclusion=$r.conclusion;event=$r.event;
+        started_at=$r.run_started_at;created_at=$r.created_at;finished_at=if($r.status -eq 'completed'){$r.updated_at}else{$null};
+        changed_ids=@();errors=@();artifact=$null;next_action=$null
+      }
+    }
+    Write-Result ([ordered]@{
+      ok=$true;schema_version='3.3';action=$action;engine=[string]$request.engine;engine_label=$engine.label;
+      workflow=$engine.workflow;state=if($items.Count -gt 0){$items[0].state}else{'unknown'};runs=$items;executed_at_utc=[DateTime]::UtcNow.ToString('o')
+    })
+    exit 0
+  }
+
+  $inputs=[ordered]@{}
+  switch([string]$request.engine){
+    'question' {
+      $ea=[string]$request.engine_action
+      if([string]::IsNullOrWhiteSpace($ea)){ $ea='status' }
+      if(@('status','dry_run','submit_one') -notcontains $ea){ Fail "Unsupported question engine action: $ea" }
+      $inputs.action=$ea
+    }
+    'news' {
+      if($engineMode -eq 'api_fallback'){
+        $hours=24
+        if($null -ne $request.lookback_hours){ $hours=[int]$request.lookback_hours }
+        if($hours -lt 1 -or $hours -gt 168){ Fail 'lookback_hours must be 1..168' }
+        $inputs.lookback_hours=[string]$hours
+        $dr=$true
+        if($null -ne $request.dry_run){ $dr=[bool]$request.dry_run }
+        $inputs.dry_run=$dr.ToString().ToLowerInvariant()
+      } else {
+        $vo=$false
+        if($null -ne $request.validate_only){ $vo=[bool]$request.validate_only }
+        $inputs.validate_only=$vo.ToString().ToLowerInvariant()
+        $q=[string]$request.queue_file
+        if($vo -and [string]::IsNullOrWhiteSpace($q)){ $q='daily-agri-news/queue/manual.json' }
+        if($q -notmatch '^daily-agri-news/queue/[A-Za-z0-9._-]+[.]json$'){ Fail 'News engine requires an allow-listed queue_file path.' }
+        $inputs.queue_file=$q
+      }
+    }
+    'article' {
+      $vo=$false
+      if($null -ne $request.validate_only){ $vo=[bool]$request.validate_only }
+      $inputs.validate_only=$vo.ToString().ToLowerInvariant()
+      $q=[string]$request.queue_file
+      if($vo -and [string]::IsNullOrWhiteSpace($q)){ $q='daily-agri-articles/queue/manual.json' }
+      if($q -notmatch '^daily-agri-articles/queue/[A-Za-z0-9._-]+[.]json$'){ Fail 'Article engine requires an allow-listed queue_file path.' }
+      $inputs.queue_file=$q
+    }
     'social' {
       $ea=[string]$request.engine_action
       if([string]::IsNullOrWhiteSpace($ea)){ $ea='status' }
       if(@('status','prepare','whatsapp','telegram','instagram') -notcontains $ea){ Fail "Unsupported social engine action: $ea" }
       $inputs.action=$ea
       if(-not[string]::IsNullOrWhiteSpace([string]$request.publish_date)){
-        if([string]$request.publish_date -notmatch '^\d{4}-\d{2}-\d{2}$'){ Fail 'publish_date must be YYYY-MM-DD' }
-        $inputs.publish_date=[string]$request.publish_date
-      }
-    }
-    'product' {
-      $ea=[string]$request.engine_action
-      if([string]::IsNullOrWhiteSpace($ea)){ $ea='run' }
-      if(@('run','dry_run','pause','resume') -notcontains $ea){ Fail "Unsupported product engine action: $ea" }
-      $inputs.action=$ea
-      $max=1
-      if($null -ne $request.max_products){ $max=[int]$request.max_products }
-      if($max -lt 1 -or $max -gt 5){ Fail 'max_products must be 1..5' }
-      $inputs.max_products=[string]$max
-      if($null -ne $request.product_id -and [int]$request.product_id -gt 0){
-        $inputs.product_id=[string][int]$request.product_id
-      }
-    }
+        if([string]$request.publish_date -notmatch '^\d{4}-\d{2}-\d{2}
   }
   $uri="https://api.github.com/repos/$env:GITHUB_REPOSITORY/actions/workflows/$workflow/dispatches"
   $payload=[ordered]@{ref='main';inputs=$inputs} | ConvertTo-Json -Depth 10
