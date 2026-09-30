@@ -43,20 +43,29 @@ def fetch_json(url: str, auth: str) -> dict:
     with urllib.request.urlopen(req, timeout=20, context=ssl.create_default_context()) as r:
         return json.loads(r.read().decode("utf-8"))
 
-def fetch_html(url: str) -> tuple[int, str]:
+def fetch_html(url: str) -> tuple[int, str, str, dict]:
     req = urllib.request.Request(
         url,
         headers={
             "Accept": "text/html,application/xhtml+xml",
-            "User-Agent": "Mozilla/5.0 (compatible; Keshavarz20Phase6Audit/1.0)",
+            "User-Agent": "Mozilla/5.0 (compatible; Keshavarz20Phase6Audit/1.1)",
+            "Cache-Control": "no-cache",
+            "Pragma": "no-cache",
         },
     )
     try:
         with urllib.request.urlopen(req, timeout=20, context=ssl.create_default_context()) as r:
-            return int(getattr(r, "status", 200)), r.read().decode("utf-8", errors="replace")
+            headers = {k.lower(): v for k, v in r.headers.items()}
+            return (
+                int(getattr(r, "status", 200)),
+                r.read().decode("utf-8", errors="replace"),
+                r.geturl(),
+                headers,
+            )
     except urllib.error.HTTPError as e:
         body = e.read().decode("utf-8", errors="replace") if e.fp else ""
-        return int(e.code), body
+        headers = {k.lower(): v for k, v in e.headers.items()} if e.headers else {}
+        return int(e.code), body, e.geturl(), headers
 
 def main() -> None:
     base = os.environ["WP_BASE_URL"].rstrip("/")
@@ -71,7 +80,12 @@ def main() -> None:
             auth,
         )
         permalink = product.get("permalink") or ""
-        http_status, html = fetch_html(permalink)
+        http_status, html, final_url, response_headers = fetch_html(permalink)
+        body_match = re.search(r"<body\\b([^>]*)>", html, re.I)
+        body_tag = body_match.group(0) if body_match else ""
+        canonical_match = re.search(r'<link\\b[^>]*rel=["\\\']canonical["\\\'][^>]*href=["\\\']([^"\\\']+)', html, re.I)
+        related_pos = html.lower().find("widget-related-products")
+        related_context = html[max(0, related_pos - 240): related_pos + 520] if related_pos >= 0 else ""
         return {
             "product_id": pid,
             "name": product.get("name"),
@@ -81,6 +95,15 @@ def main() -> None:
             "explicit_cross_sell_ids": product.get("cross_sell_ids") or [],
             "woocommerce_related_ids": product.get("related_ids") or [],
             "public_http_status": http_status,
+            "public_final_url": final_url,
+            "public_canonical": canonical_match.group(1) if canonical_match else None,
+            "public_body_tag": body_tag[:1200],
+            "public_related_context": related_context[:1200],
+            "public_cache_headers": {
+                k: response_headers.get(k)
+                for k in ("x-litespeed-cache", "x-litespeed-cache-control", "cache-control", "age", "cf-cache-status")
+                if response_headers.get(k) is not None
+            },
             "public_phase6_marker_present": "k20-phase6-basket-intelligence" in html,
             "public_phase6_heading_present": "چک‌لیست تکمیل خرید" in html,
             "public_related_guard_present": f"k20-phase6-related-guard-{pid}" in html,
