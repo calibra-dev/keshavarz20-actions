@@ -17,8 +17,8 @@ from product_engine_compat import add_product_engine_path
 add_product_engine_path()
 
 from core import (
-    RESULT_DIR, STATE_PATH, cache_purge, load_json, product_read, public_html,
-    rollback, save_json, seo_read, textify, utcnow, write_candidate
+    RESULT_DIR, STATE_PATH, apply_image_alts, cache_purge, load_json, product_read, public_html,
+    rollback, save_json, semantic_content_match, seo_read, textify, utcnow, write_candidate
 )
 from perf import lighthouse, passes as performance_passes, regressions
 from media_perf import maybe_optimize_featured, restore_featured
@@ -140,15 +140,25 @@ def run(queue: dict[str,Any], queue_path: str, validate_only: bool=False) -> dic
     baseline=lighthouse(str(before.get("permalink") or ""),3)
     result["baseline_performance"]=baseline
 
-    write_candidate(before,candidate)
+    write_candidate(before,candidate,write_media=False)
     after=product_read(pid)
     seo_after=seo_read(pid)
-    content_ok=(
-        str(after.get("description") or "")==str(candidate.get("description_html") or "")
-        and str(after.get("short_description") or "")==str(candidate.get("short_description_html") or "")
+    desc_ok,desc_detail=semantic_content_match(
+        str(candidate.get("description_html") or ""),
+        str(after.get("description") or "")
     )
+    short_ok,short_detail=semantic_content_match(
+        str(candidate.get("short_description_html") or ""),
+        str(after.get("short_description") or "")
+    )
+    content_ok=bool(desc_ok and short_ok)
     seo_ok=seo_matches(seo_after,candidate)
-    result["readback"]={"content_ok":content_ok,"seo_ok":seo_ok}
+    result["readback"]={
+        "content_ok":content_ok,
+        "seo_ok":seo_ok,
+        "description":desc_detail,
+        "short_description":short_detail,
+    }
     if not content_ok or not seo_ok:
         rb=rollback(before,seo_before)
         result.update(status="ROLLED_BACK",rollback_readback_ok=rb,blocker="content/SEO readback mismatch",finished_at=utcnow())
@@ -201,6 +211,10 @@ def run(queue: dict[str,Any], queue_path: str, validate_only: bool=False) -> dic
     if blockers:
         result.update(status="PLATFORM_BLOCKED",blocker="; ".join(blockers))
     else:
+        changed_alt_ids=apply_image_alts(after,candidate)
+        if changed_alt_ids:
+            cache_purge()
+        result["image_alt_changed_ids"]=changed_alt_ids
         result.update(status="ACCEPTED")
     result["finished_at"]=utcnow()
     return result
