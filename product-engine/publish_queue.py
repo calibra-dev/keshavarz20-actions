@@ -127,6 +127,8 @@ def run(queue: dict[str,Any], queue_path: str, validate_only: bool=False) -> dic
         return result
 
     if validate_only:
+        baseline=lighthouse(str(before.get("permalink") or ""),3)
+        result["baseline_performance"]=baseline
         result.update(status="VALIDATED",finished_at=utcnow())
         return result
 
