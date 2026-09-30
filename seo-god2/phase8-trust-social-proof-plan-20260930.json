@@ -1,0 +1,103 @@
+{
+  "schema_version": "seo-god2-phase8-trust-social-proof-plan-v1",
+  "project": "keshavarz20.com / SEO GOD2",
+  "phase": 8,
+  "name": "Trust & Social Proof",
+  "status": "PLAN_LOCKED_PENDING_LIVE_BASELINE",
+  "scope": {
+    "tier_a_products": 20,
+    "product_ids": [
+      140856,
+      140718,
+      135339,
+      135349,
+      140853,
+      140406,
+      140760,
+      140816,
+      140407,
+      135337,
+      135353,
+      140454,
+      135381,
+      135361,
+      140674,
+      135235,
+      140014,
+      135309,
+      135359,
+      135667
+    ],
+    "ugc_policy_page": {
+      "id": 145288,
+      "slug": "reviews-qa-ugc-policy"
+    }
+  },
+  "objectives": [
+    "نمایش فقط سیگنال‌های اعتماد واقعی و قابل‌اثبات",
+    "شفاف‌سازی نبود review واقعی بدون ساخت امتیاز یا testimonial",
+    "اتصال وضعیت evidence فنی Phase 4 به پیام اعتماد محصول",
+    "هدایت تجربه واقعی مشتری به سیاست UGC",
+    "حفظ کامل guardهای Phase 5/6/7"
+  ],
+  "evidence_inputs": [
+    "WooCommerce average_rating/rating_count/reviews_allowed",
+    "WooCommerce current product images",
+    "seo-god2/phase4-product-evidence-records-v2-20260930.json",
+    "live Page 145288 /reviews-qa-ugc-policy/"
+  ],
+  "prohibited": [
+    "fake review",
+    "fake rating",
+    "fake testimonial",
+    "fake customer project",
+    "fake farm/install photo claim",
+    "fake manufacturer confirmation",
+    "invented datasheet",
+    "invented technical reviewer",
+    "unsupported verified-purchase claim"
+  ],
+  "render_policy": {
+    "marker": "k20-phase8-trust-proof",
+    "field": "short_description",
+    "placement": "after Phase 7 shipping clarity block",
+    "idempotent": true,
+    "review_copy": {
+      "when_rating_count_gt_0": "نمایش تعداد/امتیاز فقط از WooCommerce live truth",
+      "when_rating_count_eq_0": "صریحاً اعلام شود نظر تأییدشده‌ای ثبت نشده و امتیاز ساختگی نمایش داده نمی‌شود"
+    },
+    "evidence_copy": {
+      "verified_or_partial": "ذکر شود فقط مشخصات دارای مدرک قطعی تلقی می‌شوند و شکاف‌ها محفوظ می‌مانند",
+      "guarded_source_required": "ذکر شود برخی ادعاهای فنی هنوز منبع کافی ندارند و قطعی اعلام نمی‌شوند"
+    },
+    "ugc_link": "/reviews-qa-ugc-policy/"
+  },
+  "acceptance": {
+    "public_http_200": 20,
+    "trust_card_present": 20,
+    "ugc_policy_link_present": 20,
+    "review_count_matches_live": 20,
+    "fake_review_claims": 0,
+    "fake_rating_claims": 0,
+    "fake_testimonial_claims": 0,
+    "fake_project_claims": 0,
+    "fake_manufacturer_confirmation_claims": 0,
+    "fabricated_reviewer_claims": 0,
+    "phase6_guard_regressions": 0,
+    "phase7_shipping_card_regressions": 0,
+    "random_recommendations": 0,
+    "same_size_only_recommendations": 0,
+    "incompatible_recommendations": 0,
+    "price_fields_written": 0,
+    "stock_fields_written": 0,
+    "payment_settings_written": 0
+  },
+  "closure_requires": [
+    "live baseline PASS",
+    "bounded write with approval when required",
+    "20/20 readback",
+    "cache purge",
+    "public acceptance audit PASS",
+    "closure artifact committed"
+  ]
+}
