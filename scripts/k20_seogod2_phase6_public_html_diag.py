@@ -35,7 +35,7 @@ def around(text: str, pattern: str, limit: int = 8, radius: int = 320) -> list[s
 
 def extract_related_widget(html: str) -> dict:
     opener = re.search(
-        r'<div\\b[^>]*class=["\\'][^"\\']*\\bwidget-related-products\\b[^"\\']*["\\'][^>]*>',
+        r"<div\\b[^>]*class=['\"][^'\"]*\\bwidget-related-products\\b[^'\"]*['\"][^>]*>",
         html,
         re.I | re.S,
     )
@@ -58,7 +58,7 @@ def extract_related_widget(html: str) -> dict:
     else:
         block = html[opener.start():end]
     links = []
-    for m in re.finditer(r'href=["\\']([^"\\']+/product/[^"\\']*)["\\']', block, re.I):
+    for m in re.finditer(r"href=['\"]([^'\"]+/product/[^'\"]*)['\"]", block, re.I):
         url = m.group(1)
         if url not in links:
             links.append(url)
@@ -71,7 +71,7 @@ def extract_related_widget(html: str) -> dict:
     return {
         "present": True,
         "bytes": len(block.encode("utf-8")),
-        "slider_items": len(re.findall(r'class=["\\'][^"\\']*\\bslider-item\\b', block, re.I)),
+        "slider_items": len(re.findall(r"class=['\"][^'\"]*\\bslider-item\\b", block, re.I)),
         "product_links": links,
         "product_link_count": len(links),
         "text_sample": text_only[:1200],
