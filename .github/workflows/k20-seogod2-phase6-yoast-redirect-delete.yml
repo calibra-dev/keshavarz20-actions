@@ -51,7 +51,7 @@ jobs:
             raise RuntimeError(f'Expected exactly one wrong redirect, found {len(exact)}')
 
           delete_url=base+'/wp-json/yoast/v1/redirects/delete'
-          payload={**expected,'ignore_warning':False}
+          payload={'origin':origin,'target':target,'type':'301','format':'plain','ignore_warning':False}
           deleted=requests.post(delete_url,json=payload,auth=auth,timeout=60)
           try:
             delete_body=deleted.json()
