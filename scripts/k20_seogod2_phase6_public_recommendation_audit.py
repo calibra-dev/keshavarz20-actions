@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import base64
+from concurrent.futures import ThreadPoolExecutor
 import json
 import os
 import re
@@ -39,7 +40,7 @@ def fetch_json(url: str, auth: str) -> dict:
             "User-Agent": "k20-seogod2-phase6-audit/1.0",
         },
     )
-    with urllib.request.urlopen(req, timeout=45, context=ssl.create_default_context()) as r:
+    with urllib.request.urlopen(req, timeout=20, context=ssl.create_default_context()) as r:
         return json.loads(r.read().decode("utf-8"))
 
 def fetch_html(url: str) -> tuple[int, str]:
@@ -51,7 +52,7 @@ def fetch_html(url: str) -> tuple[int, str]:
         },
     )
     try:
-        with urllib.request.urlopen(req, timeout=45, context=ssl.create_default_context()) as r:
+        with urllib.request.urlopen(req, timeout=20, context=ssl.create_default_context()) as r:
             return int(getattr(r, "status", 200)), r.read().decode("utf-8", errors="replace")
     except urllib.error.HTTPError as e:
         body = e.read().decode("utf-8", errors="replace") if e.fp else ""
@@ -64,15 +65,14 @@ def main() -> None:
     token = base64.b64encode(f"{user}:{password}".encode()).decode()
     auth = f"Basic {token}"
 
-    rows = []
-    for pid in TIER_A:
+    def audit_one(pid: int) -> dict:
         product = fetch_json(
             f"{base}/wp-json/wc/v3/products/{pid}?context=edit",
             auth,
         )
         permalink = product.get("permalink") or ""
         http_status, html = fetch_html(permalink)
-        row = {
+        return {
             "product_id": pid,
             "name": product.get("name"),
             "family_scope": "physical" if pid in PHYSICAL else "fertilizer",
@@ -87,7 +87,9 @@ def main() -> None:
             "public_upsells_section_present": bool(RELATED_PATTERNS["upsells"].search(html)),
             "public_cross_sells_section_present": bool(RELATED_PATTERNS["cross_sells"].search(html)),
         }
-        rows.append(row)
+
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        rows = list(pool.map(audit_one, TIER_A))
 
     explicit_nonempty = [
         r["product_id"] for r in rows
