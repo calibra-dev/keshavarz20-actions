@@ -16,6 +16,9 @@ $base = $base.TrimEnd('/')
 $request = Get-Content -Raw -LiteralPath $RequestPath | ConvertFrom-Json -Depth 100
 $mode = if ($request.mode) { [string]$request.mode } else { 'audit' }
 if ($mode -notin @('audit','apply_description')) { Fail "Unsupported mode: $mode" }
+if ($mode -eq 'apply_description') {
+  Fail 'Unsafe legacy recommendation writes are disabled by SEO God2 Phase 6. Same-size and name-based candidates must not be written. Use the evidence-gated Phase 6 basket engine.'
+}
 
 $authText = "$user`:$pass"
 $authValue = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($authText))
