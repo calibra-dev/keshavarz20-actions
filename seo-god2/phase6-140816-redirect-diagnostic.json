@@ -1,27 +1,104 @@
 {
   "product_id": 140816,
+  "yoast_delete_route_definition": {
+    "namespace": "yoast/v1",
+    "methods": [
+      "POST"
+    ],
+    "endpoints": [
+      {
+        "methods": [
+          "POST"
+        ],
+        "args": {
+          "origin": {
+            "type": "string",
+            "description": "The origin to redirect",
+            "required": true
+          },
+          "target": {
+            "type": "string",
+            "description": "The redirect target",
+            "required": false
+          },
+          "type": {
+            "type": "string",
+            "description": "The redirect format",
+            "required": false
+          },
+          "ignore_warning": {
+            "type": "boolean",
+            "description": "Whether to ignore warnings",
+            "default": false,
+            "required": false
+          },
+          "format": {
+            "description": "ساختار تغییر مسیری که باید ایجاد شود.",
+            "type": "string",
+            "enum": [
+              "plain",
+              "regex"
+            ],
+            "default": "plain",
+            "required": false
+          }
+        }
+      }
+    ],
+    "_links": {
+      "self": [
+        {
+          "href": "https://keshavarz20.com/wp-json/yoast/v1/redirects/delete"
+        }
+      ]
+    }
+  },
+  "yoast_undo_route_definition": {
+    "namespace": "yoast/v1",
+    "methods": [
+      "POST"
+    ],
+    "endpoints": [
+      {
+        "methods": [
+          "POST"
+        ],
+        "args": {
+          "obj_id": {
+            "type": "int",
+            "description": "The id of the post or term",
+            "required": true
+          },
+          "obj_type": {
+            "type": "string",
+            "description": "The object type: post or term",
+            "required": true
+          }
+        }
+      }
+    ],
+    "_links": {
+      "self": [
+        {
+          "href": "https://keshavarz20.com/wp-json/yoast/v1/redirects/undo-for-object"
+        }
+      ]
+    }
+  },
   "product_name": "کود مایع کلسیم آمینواسید هارد کالی‌کراپ ایکس گرین ۱ لیتری با منیزیم و ریزمغذی (Hard calicrop XGreen)",
   "slug": "%da%a9%d9%84%d8%b3%db%8c%d9%85-%da%a9%d8%b1%d8%a7%d9%be-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
   "rest_permalink": "https://keshavarz20.com/product/%da%a9%d9%84%d8%b3%db%8c%d9%85-%da%a9%d8%b1%d8%a7%d9%be-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
   "first_response": {
-    "status": 301,
-    "location": "https://keshavarz20.com/product/%d9%be%d9%84%db%8c-%d8%a7%d8%b3-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
-    "x_redirect_by": "Yoast SEO Premium",
+    "status": 200,
+    "location": null,
+    "x_redirect_by": null,
     "server": "LiteSpeed",
     "x_litespeed_cache": null,
-    "x_litespeed_cache_control": null
+    "x_litespeed_cache_control": "no-cache,esi=on"
   },
-  "redirect_history": [
-    {
-      "status": 301,
-      "url": "https://keshavarz20.com/product/%DA%A9%D9%84%D8%B3%DB%8C%D9%85-%DA%A9%D8%B1%D8%A7%D9%BE-%D8%A7%DB%8C%DA%A9%D8%B3-%DA%AF%D8%B1%DB%8C%D9%86/",
-      "location": "https://keshavarz20.com/product/%d9%be%d9%84%db%8c-%d8%a7%d8%b3-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
-      "server": "LiteSpeed",
-      "x_redirect_by": "Yoast SEO Premium"
-    }
-  ],
+  "redirect_history": [],
   "final_status": 200,
-  "final_url": "https://keshavarz20.com/product/%d9%be%d9%84%db%8c-%d8%a7%d8%b3-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+  "final_url": "https://keshavarz20.com/product/%DA%A9%D9%84%D8%B3%DB%8C%D9%85-%DA%A9%D8%B1%D8%A7%D9%BE-%D8%A7%DB%8C%DA%A9%D8%B3-%DA%AF%D8%B1%DB%8C%D9%86/",
   "redirect_related_routes": {
     "/redirection/v1": {
       "methods": [
