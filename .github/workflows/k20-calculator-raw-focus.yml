@@ -1,11 +1,15 @@
 name: K20 Calculator Raw Focus
+
 on:
   push:
     branches: [main]
-    paths: ['.github/workflows/k20-calculator-raw-focus.yml']
+    paths:
+      - '.github/workflows/k20-calculator-raw-focus.yml'
   workflow_dispatch:
+
 permissions:
   contents: write
+
 jobs:
   inspect:
     runs-on: ubuntu-latest
@@ -15,59 +19,90 @@ jobs:
       WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
+
       - name: Inspect raw post content safely
         shell: bash
         run: |
           set -euo pipefail
           python3 -m pip install --quiet requests
           python3 - <<'PY'
-          import hashlib, json, os, re
+          import hashlib
+          import json
+          import os
+          import re
           from pathlib import Path
+
           import requests
 
-          base=os.environ['WP_BASE_URL'].rstrip('/')
-          data=None
-          attempts=[]
-          for route in ['posts','pages']:
-            r=requests.get(
-              base+f'/wp-json/wp/v2/{route}/143698?context=edit',
-              auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD']),
-              timeout=60,
-              headers={'Accept':'application/json','User-Agent':'k20-raw-focus'}
-            )
-            attempts.append({'route':route,'status':r.status_code})
-            if r.status_code==200:
-              data=r.json()
-              break
-          if not isinstance(data,dict):
-            data={}
-          raw=(data.get('content') or {}).get('raw') or ''
-          needles=[
-            'GrowthOSMeasurementV1',
-            'data-growthos-step',
-            'FAQPage',
-            'use strict',
-            'کپی سبد و فرضیات',
-            'ارسال برای پیش‌فاکتور',
-            'tc-suggest',
-            'suggest',
+          base = os.environ["WP_BASE_URL"].rstrip("/")
+          data = None
+          attempts = []
+
+          for route in ["posts", "pages"]:
+              r = requests.get(
+                  base + f"/wp-json/wp/v2/{route}/143698?context=edit",
+                  auth=(os.environ["WP_USERNAME"], os.environ["WP_APP_PASSWORD"]),
+                  timeout=60,
+                  headers={"Accept": "application/json", "User-Agent": "k20-raw-focus"},
+              )
+              attempts.append({"route": route, "status": r.status_code})
+              if r.status_code == 200:
+                  data = r.json()
+                  break
+
+          if not isinstance(data, dict):
+              data = {}
+
+          raw = (data.get("content") or {}).get("raw") or ""
+          needles = [
+              "GrowthOSMeasurementV1",
+              "data-growthos-step",
+              "FAQPage",
+              "use strict",
+              "کپی سبد و فرضیات",
+              "ارسال برای پیش‌فاکتور",
+              "tc-suggest",
+              "suggest",
           ]
-          out={'post_id':143698,'attempts':attempts,'status':data.get('status'),'raw_sha256':hashlib.sha256(raw.encode()).hexdigest(),'raw_bytes':len(raw.encode()),'needles':{}}
+
+          out = {
+              "post_id": 143698,
+              "attempts": attempts,
+              "status": data.get("status"),
+              "raw_sha256": hashlib.sha256(raw.encode()).hexdigest(),
+              "raw_bytes": len(raw.encode()),
+              "needles": {},
+          }
+
           for needle in needles:
-            matches=[m.start() for m in re.finditer(re.escape(needle),raw,re.I)]
-            out['needles'][needle]={'count':len(matches),'items':[]}
-            for p in matches[:6]:
-              out['needles'][needle]['items'].append({'pos':p,'context':raw[max(0,p-1800):min(len(raw),p+4200)]})
-          Path('diagnostics').mkdir(exist_ok=True)
-          Path('diagnostics/k20-calculator-raw-focus-20260928.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')\n          Path('diagnostics/k20-calculator-post-content.raw').write_text(raw,encoding='utf-8')
+              matches = [m.start() for m in re.finditer(re.escape(needle), raw, re.I)]
+              out["needles"][needle] = {"count": len(matches), "items": []}
+              for p in matches[:6]:
+                  out["needles"][needle]["items"].append(
+                      {"pos": p, "context": raw[max(0, p - 1800):min(len(raw), p + 4200)]}
+                  )
+
+          Path("diagnostics").mkdir(exist_ok=True)
+          Path("diagnostics/k20-calculator-raw-focus-20260928.json").write_text(
+              json.dumps(out, ensure_ascii=False, indent=2),
+              encoding="utf-8",
+          )
+          Path("diagnostics/k20-calculator-post-content.raw").write_text(
+              raw,
+              encoding="utf-8",
+          )
           PY
+
       - name: Upload focused diagnostic
         uses: actions/upload-artifact@v4
         with:
           name: k20-calculator-raw-focus
-          path: |\n            diagnostics/k20-calculator-raw-focus-20260928.json\n            diagnostics/k20-calculator-post-content.raw
+          path: |
+            diagnostics/k20-calculator-raw-focus-20260928.json
+            diagnostics/k20-calculator-post-content.raw
           if-no-files-found: error
           retention-days: 1
+
       - name: Commit focused diagnostic
         shell: bash
         run: |
