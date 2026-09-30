@@ -1,0 +1,106 @@
+{
+  "schema_version": "seo-god2-phase9-closure-v1",
+  "project": "keshavarz20.com / SEO GOD2",
+  "phase": 9,
+  "name": "Returns, Mismatch & Authenticity Clarity",
+  "status": "PASS_PHASE9_COMPLETE",
+  "closed": true,
+  "closed_at_utc": "2026-09-30T20:38:00Z",
+  "scope": {
+    "tier_a_products": 20,
+    "bridge_version": "3.3.16",
+    "returns_policy_page": {
+      "id": 13,
+      "title": "مرجوعی و مغایرت کالا",
+      "url": "https://keshavarz20.com/refund_returns/"
+    },
+    "authenticity_policy_page": {
+      "id": 143336,
+      "title": "ضمانت اصالت کالا",
+      "url": "https://keshavarz20.com/%D8%B6%D9%85%D8%A7%D9%86%D8%AA-%D8%A7%D8%B5%D8%A7%D9%84%D8%AA-%DA%A9%D8%A7%D9%84%D8%A7/"
+    }
+  },
+  "implementation": {
+    "route": "content.patch -> post_excerpt",
+    "marker": "k20-phase9-purchase-risk",
+    "approval_id": "ap_90dd1a135a22802c4f",
+    "approval_fingerprint": "a40b4a75e4d995da3598bd9589ea107d81e88b52ee98223606580b671b022800",
+    "approval_workflow_run_id": 36773057385,
+    "approval_workflow_conclusion": "success",
+    "approval_result_commit": "ff42dd46136523ce3d7088a6f5f1c5d1ce7c33be",
+    "changed_items": "20/20"
+  },
+  "readback": {
+    "status": "PASS",
+    "workflow_run_id": 36773376563,
+    "workflow_conclusion": "success",
+    "result_commit": "5af4d32932e607a0209a5d793ec065f513a3396c",
+    "tier_a_products": 20,
+    "phase9_marker_present": 20,
+    "returns_link_present": 20,
+    "authenticity_link_present": 20,
+    "no_fixed_promise_present": 20,
+    "phase8_trust_preserved": 20,
+    "phase7_shipping_preserved": 20,
+    "phase6_expected_products_preserved": 15
+  },
+  "cache": {
+    "status": "PASS",
+    "workflow_run_id": 36773382033,
+    "workflow_conclusion": "success",
+    "result_commit": "3bf7d4e6ba8fbb667f338febb725e3169c73fc90",
+    "purged": true,
+    "actions": [
+      "litespeed_purge_all",
+      "wp_cache_flush"
+    ]
+  },
+  "public_acceptance": {
+    "status": "PASS",
+    "workflow_run_id": 36773567126,
+    "workflow_conclusion": "success",
+    "evidence_commit": "29fe01ea796d215433fb93a1d87e875db21cd49c",
+    "metrics": {
+      "public_non_200": 0,
+      "redirected_away": 0,
+      "phase9_card_missing": 0,
+      "phase9_heading_missing": 0,
+      "returns_link_missing": 0,
+      "authenticity_link_missing": 0,
+      "no_fixed_promise_missing": 0,
+      "invented_return_window": 0,
+      "invented_refund_timing": 0,
+      "unconditional_claims": 0,
+      "phase8_trust_missing": 0,
+      "phase7_shipping_missing": 0,
+      "phase6_basket_missing": 0,
+      "tier_a_products": 20,
+      "returns_policy_page_ok": true,
+      "authenticity_policy_page_ok": true
+    }
+  },
+  "guardrails": {
+    "invented_return_deadlines_added": 0,
+    "invented_refund_timing_added": 0,
+    "invented_refund_amount_added": 0,
+    "unconditional_guarantee_claims_added": 0,
+    "sku_specific_warranty_claims_added": 0,
+    "price_fields_written": 0,
+    "stock_fields_written": 0,
+    "payment_settings_written": 0,
+    "phase6_preserved": true,
+    "phase7_preserved": true,
+    "phase8_preserved": true
+  },
+  "evidence": [
+    "seo-god2/phase9-purchase-risk-plan-20260930.json",
+    "bridge-v3-results/20260930-seo-god2-phase9-return-page-read.json",
+    "bridge-v3-results/20260930-seo-god2-phase9-authenticity-page-read.json",
+    "bridge-v3-results/20260930-seo-god2-phase9-purchase-risk-approval.json",
+    "bridge-v3-results/20260930-seo-god2-phase9-postwrite-readback.json",
+    "bridge-v3-results/20260930-seo-god2-phase9-final-cache-purge.json",
+    "seo-god2/phase9-public-purchase-risk-audit-20260930.json"
+  ],
+  "acceptance": "PASS",
+  "next_phase": 10
+}
