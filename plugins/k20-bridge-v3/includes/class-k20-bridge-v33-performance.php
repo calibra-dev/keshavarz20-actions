@@ -40,7 +40,7 @@ final class K20_Bridge_V33_Performance {
     public static function lcp_attributes(array $attr, $attachment, $size): array {
         $attachment_id = is_object($attachment) ? (int) ($attachment->ID ?? 0) : 0;
         $is_calculator_lcp = self::is_calculator_target() && $attachment_id === self::LCP_ATTACHMENT_ID;
-        $is_article_lcp = self::is_article_target() && $attachment_id === self::ARTICLE_LCP_ATTACHMENT_ID;
+        $is_article_lcp = self::is_article_target() && $attachment_id === self::ARTICLE_LCP_ATTACHMENT_ID && $size === 'full';
         if (!$is_calculator_lcp && !$is_article_lcp) {
             return $attr;
         }
@@ -87,7 +87,7 @@ final class K20_Bridge_V33_Performance {
             return $sources;
         }
 
-        if (self::is_article_target() && (int) $attachment_id === self::ARTICLE_LCP_ATTACHMENT_ID) {
+        if (self::is_article_target() && (int) $attachment_id === self::ARTICLE_LCP_ATTACHMENT_ID && (int) ($size_array[0] ?? 0) >= 768) {
             $candidate_768 = wp_get_attachment_image_src(self::ARTICLE_LCP_768_ATTACHMENT_ID, 'full');
             if (is_array($candidate_768) && !empty($candidate_768[0]) && (int) ($candidate_768[1] ?? 0) === 768) {
                 // Replace only this article's 768w candidate. All other responsive
