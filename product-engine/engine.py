@@ -161,7 +161,18 @@ def process_one(entry: dict[str,Any], state: dict[str,Any], run_mode: str) -> di
         result.update(status="MODEL_ACCESS_BLOCKED",blocker=str(exc),finished_at=utcnow(),pause_engine=True)
         return result
     except Exception as exc:
-        result.update(status="FAILED",blocker=f"{type(exc).__name__}: {exc}",finished_at=utcnow())
+        message=f"{type(exc).__name__}: {exc}"
+        lowered=message.lower()
+        if "insufficient_quota" in lowered or "credit_balance_exhausted" in lowered or "no credits remaining" in lowered:
+            result.update(
+                status="MODEL_ACCESS_BLOCKED",
+                blocker=message,
+                finished_at=utcnow(),
+                pause_engine=True,
+                retry_same_product=True
+            )
+            return result
+        result.update(status="FAILED",blocker=message,finished_at=utcnow())
         return result
 
 def update_stats(state: dict[str,Any], result: dict[str,Any]) -> None:
@@ -258,9 +269,8 @@ def main() -> int:
             state["enabled"]=False
             state["updated_at"]=utcnow()
             save_json(STATE_PATH,state)
-            break
 
-        if result["status"]!="DRY_RUN_READY":
+        if result["status"]!="DRY_RUN_READY" and not result.get("retry_same_product"):
             processed[pid]={
                 "status":result["status"],
                 "finished_at":result.get("finished_at") or utcnow(),
@@ -270,6 +280,9 @@ def main() -> int:
                 "result_file":f"product-engine/results/{pid}.json",
             }
             update_stats(state,result)
+
+        if result.get("pause_engine"):
+            break
 
         if (
             (result["status"]=="FAILED" and "Bridge" in str(result.get("blocker") or ""))
