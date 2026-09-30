@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Keshavarz20 Bridge v3
  * Description: GitHub-first guarded execution bridge for Keshavarz20.
- * Version: 3.3.3
+ * Version: 3.3.4
  * Author: Keshavarz20
  */
 
 if (!defined('ABSPATH')) exit;
-if (!defined('K20_BRIDGE_RUNTIME_VERSION')) define('K20_BRIDGE_RUNTIME_VERSION','3.3.3');
+if (!defined('K20_BRIDGE_RUNTIME_VERSION')) define('K20_BRIDGE_RUNTIME_VERSION','3.3.4');
 
 require_once __DIR__.'/includes/class-k20-bridge-v31-content.php';
 require_once __DIR__.'/includes/class-k20-bridge-v31-media.php';
@@ -24,7 +24,7 @@ require_once __DIR__.'/includes/class-k20-bridge-v33-code.php';
 require_once __DIR__.'/includes/class-k20-bridge-v33-performance.php';
 
 final class K20_Bridge_V3 {
-    private const VERSION='3.3.3';
+    private const VERSION='3.3.4';
     private const CONTRACT='3.3';
     private const NS='keshavarz20-ops/v3';
     private const AUDIT_OPTION='k20_bridge_v3_audit';
@@ -98,7 +98,7 @@ final class K20_Bridge_V3 {
 
     private static function actions(): array {
         return [
-            'system.info','rest.proxy','api.contract',
+            'system.info','rest.proxy','api.contract','commerce.catalog_order.read','commerce.catalog_order.update',
             'seo.read','seo.update',
             'content.search','content.patch','content.block.inspect','content.block.patch',
             'elementor.inspect','elementor.search','elementor.edit','elementor.structure',
@@ -121,8 +121,7 @@ final class K20_Bridge_V3 {
             '#^/wp/v2/categories(?:/\d+)?$#','#^/wp/v2/tags(?:/\d+)?$#','#^/wp/v2/search$#',
             '#^/wp/v2/product(?:/\d+)?$#',
             '#^/wc/v3/products(?:/\d+)?$#','#^/wc/v3/products/categories(?:/\d+)?$#',
-            '#^/wc/v3/products/tags(?:/\d+)?$#','#^/wc/v3/products/attributes(?:/\d+)?(?:/terms(?:/\d+)?)?$#',
-            '#^/wc/v3/settings/products/woocommerce_default_catalog_orderby$#'
+            '#^/wc/v3/products/tags(?:/\d+)?$#','#^/wc/v3/products/attributes(?:/\d+)?(?:/terms(?:/\d+)?)?$#'
         ];
     }
 
@@ -173,6 +172,8 @@ final class K20_Bridge_V3 {
             case 'system.info': return self::system_info();
             case 'api.contract': return self::api_contract();
             case 'rest.proxy': return self::rest_proxy($body,$dry);
+            case 'commerce.catalog_order.read': return self::catalog_order_read();
+            case 'commerce.catalog_order.update': return self::catalog_order_update($body,$dry);
 
             case 'seo.read': return self::seo_read(absint($body['id']??0));
             case 'seo.update': return self::seo_update(absint($body['id']??0),(array)($body['payload']??[]),$dry);
@@ -250,6 +251,24 @@ final class K20_Bridge_V3 {
                 'snippet code writes are draft-only and sensitive code reads use the secure GitHub relay'
             ]
         ];
+    }
+
+    private static function catalog_order_read(): array {
+        $allowed=['menu_order','popularity','rating','date','price','price-desc'];
+        $value=(string)get_option('woocommerce_default_catalog_orderby','menu_order');
+        return ['setting'=>'woocommerce_default_catalog_orderby','value'=>$value,'allowed_values'=>$allowed];
+    }
+
+    private static function catalog_order_update(array $body,bool $dry) {
+        $allowed=['menu_order','popularity','rating','date','price','price-desc'];
+        $value=sanitize_key((string)($body['payload']['value']??''));
+        if (!in_array($value,$allowed,true)) return new WP_Error('invalid_catalog_order','Catalog order value is not allow-listed.',['status'=>400]);
+        $before=(string)get_option('woocommerce_default_catalog_orderby','menu_order');
+        if ($dry) return ['planned'=>true,'setting'=>'woocommerce_default_catalog_orderby','before'=>$before,'after'=>$value];
+        update_option('woocommerce_default_catalog_orderby',$value,false);
+        $after=(string)get_option('woocommerce_default_catalog_orderby','menu_order');
+        if ($after!==$value) return new WP_Error('catalog_order_verify_failed','Catalog ordering update could not be verified.',['status'=>500]);
+        return ['changed'=>$before!==$after,'setting'=>'woocommerce_default_catalog_orderby','before'=>$before,'after'=>$after];
     }
 
     private static function rest_proxy(array $body,bool $dry) {
