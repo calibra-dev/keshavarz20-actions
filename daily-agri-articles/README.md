@@ -115,6 +115,14 @@ Core fields:
 - post-write verification of draft status/type/featured image/category/SEO fields
 - sanitized artifact output only
 
+## Queue immutability and idempotency
+
+- Automatic push publishing processes only **newly added** `daily-agri-articles/queue/*.json` files.
+- Editing an existing queue file on `main` does not auto-publish it again. This prevents a successful draft from being followed by a misleading duplicate-detection failure when metadata or image-search fallbacks are hardened later.
+- Routine daily automation must treat an existing dated queue as immutable.
+- An intentional repair/retry of an existing queue is an explicit ops action and must use `workflow_dispatch` after review; it is never an automatic rewrite.
+- The production research task must re-fetch `main` and re-check the exact dated queue path immediately before commit.
+
 ## Required GitHub secrets
 
 - `WP_BASE_URL`
