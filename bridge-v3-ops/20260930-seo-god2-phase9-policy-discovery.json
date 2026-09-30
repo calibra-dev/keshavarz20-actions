@@ -1,0 +1,58 @@
+{
+  "action": "batch",
+  "request_id": "seo-god2-phase9-policy-discovery-20260930",
+  "payload": {
+    "items": [
+      {
+        "action": "rest.proxy",
+        "method": "GET",
+        "path": "/wp/v2/pages",
+        "query": {
+          "search": "مرجوعی",
+          "per_page": 20,
+          "context": "edit"
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "GET",
+        "path": "/wp/v2/pages",
+        "query": {
+          "search": "مغایرت",
+          "per_page": 20,
+          "context": "edit"
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "GET",
+        "path": "/wp/v2/pages",
+        "query": {
+          "search": "اصالت",
+          "per_page": 20,
+          "context": "edit"
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "GET",
+        "path": "/wp/v2/pages",
+        "query": {
+          "search": "بازگشت",
+          "per_page": 20,
+          "context": "edit"
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "GET",
+        "path": "/wp/v2/pages",
+        "query": {
+          "search": "ضمانت",
+          "per_page": 20,
+          "context": "edit"
+        }
+      }
+    ]
+  }
+}
