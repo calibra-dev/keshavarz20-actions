@@ -126,16 +126,21 @@ final class K20_Bridge_V33_Performance {
     }
 
     public static function dequeue_irrelevant_assets(): void {
-        if (!self::is_calculator_target()) return;
+        if (self::is_calculator_target()) {
+            // Front-end payment gateway help-link CSS is not used by the calculator.
+            wp_dequeue_style('help_style');
 
-        // Front-end payment gateway help-link CSS is not used by the calculator.
-        wp_dequeue_style('help_style');
+            // Verified unused on the calculator page.
+            wp_dequeue_style('mega-theme-icon');
+            return;
+        }
 
-        // Elementor Pro MegaTheme icon font CSS is 100% unused on this calculator page
-        // in Lighthouse coverage and has no meaningful class intersection with rendered
-        // calculator/header/cart/navigation markup. Keep all IranKala, WooCommerce,
-        // Digits and WhatsApp styles intact.
-        wp_dequeue_style('mega-theme-icon');
+        if (self::is_article_target()) {
+            // Lighthouse coverage reports this Elementor Pro MegaTheme icon font
+            // stylesheet as 100% unused on article 146227. Keep IranKala,
+            // WooCommerce, Digits and WhatsApp styles intact.
+            wp_dequeue_style('mega-theme-icon');
+        }
     }
 }
 
