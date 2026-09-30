@@ -61,3 +61,4 @@ jobs:
           else
             gh release create v3.3.14               dist/k20-bridge-v3.3.14.zip               dist/k20-bridge-v3.3.14.sha256               --title 'Keshavarz20 Bridge v3.3.14'               --notes 'Guarded K20 Bridge v3.3: direct chat-asset relay, product/post image binding, secure draft-only snippet code operations, guarded code inspection, rollback, approval, jobs, observability and self-update.'
           fi
+# retrigger: publish v3.3.15 after package-only commit
