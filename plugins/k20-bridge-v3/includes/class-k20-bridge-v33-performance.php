@@ -2,15 +2,18 @@
 if (!defined('ABSPATH')) exit;
 
 /**
- * Narrow, reversible performance guard for the drip-tape calculator.
- * Scope is intentionally limited to post 143698 and does not remove
- * WooCommerce, IranKala, Digits, WhatsApp or jQuery functionality.
+ * Narrow, reversible performance guard for verified LCP targets.
+ * Scope is intentionally limited to the drip-tape calculator and the
+ * audited sandy-well filtration article. It does not remove WooCommerce,
+ * IranKala, Digits, WhatsApp or jQuery functionality.
  */
 final class K20_Bridge_V33_Performance {
     private const TARGET_POST_ID = 143698;
     private const LCP_ATTACHMENT_ID = 145308;
     private const LCP_672_ATTACHMENT_ID = 146333;
     private const LCP_768_ATTACHMENT_ID = 146338;
+    private const ARTICLE_POST_ID = 146227;
+    private const ARTICLE_LCP_ATTACHMENT_ID = 146240;
 
     public static function boot(): void {
         add_filter('wp_get_attachment_image_attributes', [__CLASS__, 'lcp_attributes'], 20, 3);
