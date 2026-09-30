@@ -137,6 +137,14 @@ final class K20_Bridge_V33_Performance {
                 return preg_replace('/<script\\b/i', '<script defer', $tag, 1) ?: $tag;
             }, $html, 1) ?: $html;
         }
+
+        // The WhatsApp popup renders this media as a tiny avatar. Reuse the existing
+        // WordPress thumbnail instead of transferring the 138 KiB full-size JPEG.
+        $html = str_replace(
+            'https://keshavarz20.com/wp-content/uploads/2024/06/hossini.jpg',
+            'https://keshavarz20.com/wp-content/uploads/2024/06/hossini-150x150.jpg',
+            $html
+        );
         return $html;
     }
 
