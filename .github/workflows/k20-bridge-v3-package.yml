@@ -78,9 +78,11 @@ jobs:
           for token in             content.block.patch elementor.structure media.optimize media.focal_crop media.watermark             asset.featured.set asset.gallery.append asset.gallery.replace asset.content.insert             snippet.list snippet.read snippet.validate snippet.create_draft snippet.update_draft snippet.deactivate             code.read code.search             job.retry_failed snapshot.rollback approval.execute observability.status selftest.run             update.check update.stage update.apply update.rollback; do
             grep -q "'$token'" plugins/k20-bridge-v3/k20-bridge-v3.php
           done
-          for file in             class-k20-bridge-v32-snapshots.php             class-k20-bridge-v32-approval.php             class-k20-bridge-v32-content.php             class-k20-bridge-v32-media.php             class-k20-bridge-v32-jobs.php             class-k20-bridge-v32-updater.php             class-k20-bridge-v32-observability.php             class-k20-bridge-v33-assets.php             class-k20-bridge-v33-snippets.php             class-k20-bridge-v33-code.php; do
+          for file in             class-k20-bridge-v32-snapshots.php             class-k20-bridge-v32-approval.php             class-k20-bridge-v32-content.php             class-k20-bridge-v32-media.php             class-k20-bridge-v32-jobs.php             class-k20-bridge-v32-updater.php             class-k20-bridge-v32-observability.php             class-k20-bridge-v33-assets.php             class-k20-bridge-v33-snippets.php             class-k20-bridge-v33-code.php             class-k20-bridge-v33-performance.php             class-k20-bridge-v33-recommendation-guard.php; do
             test -f "plugins/k20-bridge-v3/includes/$file"
           done
+          grep -q "woocommerce_related_products" plugins/k20-bridge-v3/includes/class-k20-bridge-v33-recommendation-guard.php
+          grep -q "k20-phase6-related-guard-" plugins/k20-bridge-v3/includes/class-k20-bridge-v33-recommendation-guard.php
           grep -q "'engine.status'" scripts/Invoke-K20BridgeV3.ps1
           grep -q "schema_version='3.3'" scripts/Invoke-K20BridgeV3.ps1
           test -f scripts/k20_chat_asset_relay.py
