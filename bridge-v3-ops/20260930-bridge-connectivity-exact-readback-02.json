@@ -1,0 +1,19 @@
+{
+  "action": "batch",
+  "request_id": "bridge-connectivity-exact-readback-20260930-02",
+  "payload": {
+    "items": [
+      {
+        "action": "system.info"
+      },
+      {
+        "action": "rest.proxy",
+        "method": "GET",
+        "path": "/wc/v3/products/140856",
+        "query": {
+          "_fields": "id,name,status,sku,stock_status,permalink"
+        }
+      }
+    ]
+  }
+}
