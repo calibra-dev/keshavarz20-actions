@@ -20,7 +20,7 @@ final class K20_Bridge_V33_Performance {
         add_filter('wp_calculate_image_srcset', [__CLASS__, 'lcp_srcset'], 20, 5);
         add_filter('wp_calculate_image_sizes', [__CLASS__, 'lcp_sizes'], 20, 5);
         add_filter('script_loader_tag', [__CLASS__, 'script_priority'], 20, 3);
-        add_action('wp_enqueue_scripts', [__CLASS__, 'defer_article_scripts'], 998);
+        add_filter('litespeed_buffer_after', [__CLASS__, 'defer_article_elementor_pro_scripts'], 20, 1);
         add_action('wp_enqueue_scripts', [__CLASS__, 'dequeue_irrelevant_assets'], 999);
     }
 
@@ -108,17 +108,21 @@ final class K20_Bridge_V33_Performance {
         return $tag;
     }
 
-    public static function defer_article_scripts(): void {
-        if (!self::is_article_target()) return;
+    public static function defer_article_elementor_pro_scripts(string $html): string {
+        if (!self::is_article_target() || $html === '') return $html;
 
-        // Preserve functionality while moving non-critical interactive scripts out of
-        // the parser-blocking path for this audited article only. WordPress may adjust
-        // the strategy when dependency constraints require a safer execution order.
-        foreach (['digits-login-script', 'slick', 'venobox', 'dtwcbe', 'nta-js-popup'] as $handle) {
-            if (wp_script_is($handle, 'enqueued')) {
-                wp_script_add_data($handle, 'strategy', 'defer');
-            }
+        // LiteSpeed rewrites script tags after WordPress enqueue strategies. Apply this
+        // after its optimization pass, only to the two bundles verified as overwhelmingly
+        // unused on this article.
+        foreach (['elementor-pro-frontend-js', 'pro-elements-handlers-js'] as $id) {
+            $pattern = '/<script\\b(?=[^>]*\\bid="' . preg_quote($id, '/') . '")[^>]*>/i';
+            $html = preg_replace_callback($pattern, static function (array $match): string {
+                $tag = $match[0];
+                if (preg_match('/\\s(?:async|defer)(?:\\s|=|>)/i', $tag)) return $tag;
+                return preg_replace('/<script\\b/i', '<script defer', $tag, 1) ?: $tag;
+            }, $html, 1) ?: $html;
         }
+        return $html;
     }
 
     public static function dequeue_irrelevant_assets(): void {
