@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Keshavarz20 Bridge v3
  * Description: GitHub-first guarded execution bridge for Keshavarz20.
- * Version: 3.3.6
+ * Version: 3.3.7
  * Author: Keshavarz20
  */
 
 if (!defined('ABSPATH')) exit;
-if (!defined('K20_BRIDGE_RUNTIME_VERSION')) define('K20_BRIDGE_RUNTIME_VERSION','3.3.6');
+if (!defined('K20_BRIDGE_RUNTIME_VERSION')) define('K20_BRIDGE_RUNTIME_VERSION','3.3.7');
 
 require_once __DIR__.'/includes/class-k20-bridge-v31-content.php';
 require_once __DIR__.'/includes/class-k20-bridge-v31-media.php';
@@ -24,7 +24,7 @@ require_once __DIR__.'/includes/class-k20-bridge-v33-code.php';
 require_once __DIR__.'/includes/class-k20-bridge-v33-performance.php';
 
 final class K20_Bridge_V3 {
-    private const VERSION='3.3.6';
+    private const VERSION='3.3.7';
     private const CONTRACT='3.3';
     private const NS='keshavarz20-ops/v3';
     private const AUDIT_OPTION='k20_bridge_v3_audit';
@@ -44,6 +44,8 @@ final class K20_Bridge_V3 {
     public static function boot(): void {
         add_action('rest_api_init',[__CLASS__,'routes']);
         add_filter('woocommerce_default_catalog_orderby',[__CLASS__,'frontend_catalog_order_default'],999);
+        add_action('woocommerce_product_query',[__CLASS__,'apply_technical_filters'],20);
+        add_action('woocommerce_before_shop_loop',[__CLASS__,'render_technical_filters'],5);
     }
 
     public static function frontend_catalog_order_default($value) {
@@ -51,6 +53,92 @@ final class K20_Bridge_V3 {
         $requested=isset($_GET['orderby'])?sanitize_text_field(wp_unslash((string)$_GET['orderby'])):'';
         if ($requested!=='') return $value;
         return 'popularity';
+    }
+
+    private static function technical_filter_facets(): array {
+        return [
+            'pa_size'=>['param'=>'k20_size','label'=>'سایز / قطر'],
+            'pa_nominal-pressure'=>['param'=>'k20_pressure','label'=>'فشار کاری'],
+            'pa_body-material'=>['param'=>'k20_material','label'=>'جنس'],
+            'pa_connection-type'=>['param'=>'k20_connection','label'=>'نوع اتصال'],
+            'pa_product-type'=>['param'=>'k20_product_type','label'=>'نوع محصول'],
+            'pa_length'=>['param'=>'k20_length','label'=>'طول'],
+            'pa_capacity'=>['param'=>'k20_capacity','label'=>'ظرفیت'],
+            'pa_emitter-spacing'=>['param'=>'k20_emitter_spacing','label'=>'فاصله قطره‌چکان'],
+            'pa_irrigation-type'=>['param'=>'k20_irrigation_type','label'=>'نوع آبیاری'],
+            'pa_layers'=>['param'=>'k20_layers','label'=>'تعداد لایه'],
+            'pa_reinforcement'=>['param'=>'k20_reinforcement','label'=>'تقویت ساختاری'],
+        ];
+    }
+
+    public static function apply_technical_filters($query): void {
+        if (is_admin() && !wp_doing_ajax()) return;
+        if (!function_exists('is_shop') || !(is_shop() || is_product_taxonomy())) return;
+        if (!is_object($query) || !method_exists($query,'get') || !method_exists($query,'set')) return;
+
+        $tax_query=(array)$query->get('tax_query');
+        foreach (self::technical_filter_facets() as $taxonomy=>$cfg) {
+            if (!taxonomy_exists($taxonomy)) continue;
+            $param=$cfg['param'];
+            $raw=isset($_GET[$param])?sanitize_title(wp_unslash((string)$_GET[$param])):'';
+            if ($raw==='') continue;
+            $term=get_term_by('slug',$raw,$taxonomy);
+            if (!$term || is_wp_error($term)) continue;
+            $tax_query[]=[
+                'taxonomy'=>$taxonomy,
+                'field'=>'slug',
+                'terms'=>[$term->slug],
+                'operator'=>'IN',
+            ];
+        }
+        $query->set('tax_query',$tax_query);
+    }
+
+    public static function render_technical_filters(): void {
+        if (is_admin() || !(is_shop() || is_product_taxonomy())) return;
+        $facets=self::technical_filter_facets();
+        $visible=[];
+        foreach ($facets as $taxonomy=>$cfg) {
+            if (!taxonomy_exists($taxonomy)) continue;
+            $terms=get_terms([
+                'taxonomy'=>$taxonomy,
+                'hide_empty'=>true,
+                'number'=>100,
+                'orderby'=>'name',
+                'order'=>'ASC',
+            ]);
+            if (is_wp_error($terms) || count($terms)<2) continue;
+            $visible[$taxonomy]=['cfg'=>$cfg,'terms'=>$terms];
+        }
+        if (!$visible) return;
+
+        $own_params=[];
+        foreach ($facets as $cfg) $own_params[]=$cfg['param'];
+        $action=get_pagenum_link(1);
+
+        echo '<section class="k20-tech-filters" data-k20-tech-filters="1" dir="rtl" aria-label="فیلتر فنی محصولات">';
+        echo '<div class="k20-tech-filters__head"><strong>فیلتر فنی محصولات</strong><span>انتخاب دقیق‌تر بر اساس مشخصات ثبت‌شده</span></div>';
+        echo '<form method="get" action="'.esc_url($action).'" class="k20-tech-filters__form">';
+        foreach ($_GET as $key=>$value) {
+            if (in_array((string)$key,$own_params,true) || in_array((string)$key,['paged','product-page'],true) || is_array($value)) continue;
+            echo '<input type="hidden" name="'.esc_attr(sanitize_key((string)$key)).'" value="'.esc_attr(wp_unslash((string)$value)).'">';
+        }
+        echo '<div class="k20-tech-filters__grid">';
+        foreach ($visible as $taxonomy=>$row) {
+            $cfg=$row['cfg']; $param=$cfg['param'];
+            $selected=isset($_GET[$param])?sanitize_title(wp_unslash((string)$_GET[$param])):'';
+            echo '<label class="k20-tech-filters__field"><span>'.esc_html($cfg['label']).'</span>';
+            echo '<select name="'.esc_attr($param).'" aria-label="'.esc_attr($cfg['label']).'">';
+            echo '<option value="">همه</option>';
+            foreach ($row['terms'] as $term) {
+                echo '<option value="'.esc_attr($term->slug).'" '.selected($selected,$term->slug,false).'>'.esc_html($term->name).' ('.esc_html(number_format_i18n((int)$term->count)).')</option>';
+            }
+            echo '</select></label>';
+        }
+        echo '</div>';
+        echo '<div class="k20-tech-filters__actions"><button type="submit">اعمال فیلتر</button><a href="'.esc_url(remove_query_arg($own_params)).'">پاک کردن فیلتر فنی</a></div>';
+        echo '</form></section>';
+        echo '<style id="k20-tech-filters-css">.k20-tech-filters{margin:14px 0 22px;padding:16px;border:1px solid #e2e8df;border-radius:16px;background:#fff;direction:rtl}.k20-tech-filters__head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}.k20-tech-filters__head strong{font-size:16px}.k20-tech-filters__head span{font-size:12px;opacity:.72}.k20-tech-filters__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}.k20-tech-filters__field{display:flex;flex-direction:column;gap:5px;font-size:12px}.k20-tech-filters__field select{width:100%;min-height:42px;border:1px solid #d9e1d6;border-radius:10px;background:#fff;padding:6px 9px}.k20-tech-filters__actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px}.k20-tech-filters__actions button{min-height:40px;border:0;border-radius:10px;padding:8px 18px;cursor:pointer}.k20-tech-filters__actions a{font-size:12px;text-decoration:none}@media(max-width:767px){.k20-tech-filters{padding:12px;margin:10px 0 16px}.k20-tech-filters__grid{grid-template-columns:1fr 1fr}.k20-tech-filters__actions>*{flex:1;text-align:center}}@media(max-width:420px){.k20-tech-filters__grid{grid-template-columns:1fr}}</style>';
     }
 
     public static function routes(): void {
@@ -287,7 +375,7 @@ final class K20_Bridge_V3 {
         $shop=function_exists('wc_get_page_permalink')?wc_get_page_permalink('shop'):home_url('/shop/');
         if (!$shop) $shop=home_url('/shop/');
         $url=add_query_arg('_k20_diag',gmdate('YmdHis'),$shop);
-        $res=wp_remote_get($url,['timeout'=>20,'redirection'=>3,'user-agent'=>'K20-Bridge-Shop-Diagnostic/3.3.6']);
+        $res=wp_remote_get($url,['timeout'=>20,'redirection'=>3,'user-agent'=>'K20-Bridge-Shop-Diagnostic/3.3.7']);
         if (is_wp_error($res)) return $res;
         $status=(int)wp_remote_retrieve_response_code($res);
         $body=(string)wp_remote_retrieve_body($res);
@@ -317,7 +405,9 @@ final class K20_Bridge_V3 {
             'first_product_ids'=>$product_ids,
             'first_product_titles'=>$titles,
             'contains_price_desc'=>str_contains($body,'price-desc'),
-            'contains_popularity'=>str_contains($body,'popularity')
+            'contains_popularity'=>str_contains($body,'popularity'),
+            'technical_filters_present'=>str_contains($body,'data-k20-tech-filters="1"'),
+            'technical_filter_controls'=>preg_match_all('/name=["\\\']k20_[a-z0-9_]+["\\\']/i',$body,$fm)?:0
         ];
     }
 
