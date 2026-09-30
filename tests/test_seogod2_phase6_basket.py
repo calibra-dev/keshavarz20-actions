@@ -44,6 +44,13 @@ class Phase6BasketTests(unittest.TestCase):
             for edge in p["expert_review_pairs"]:
                 self.assertEqual(edge["label"], "نیازمند تأیید کارشناس")
 
+    def test_legacy_apply_writer_is_disabled(self):
+        text = (ROOT / "scripts" / "Invoke-K20RecommendationSync.ps1").read_text(encoding="utf-8")
+        self.assertIn(
+            "Unsafe legacy recommendation writes are disabled by SEO God2 Phase 6",
+            text,
+        )
+
     def test_verified_edge_requires_approved_label(self):
         graph = {
             "nodes": [{"id": i, "family": "valve"} for i in range(1, 21)],
