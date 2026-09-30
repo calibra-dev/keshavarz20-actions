@@ -20,7 +20,7 @@ from core import (
     RESULT_DIR, STATE_PATH, apply_image_alts, cache_purge, load_json, product_read, public_html,
     rollback, save_json, semantic_content_match, seo_read, textify, utcnow, write_candidate
 )
-from perf import lighthouse, passes as performance_passes, regressions
+from perf import http_probe, lighthouse, passes as performance_passes, regressions
 from media_perf import maybe_optimize_featured, restore_featured
 from qa import score as quality_score, update_bank, validate as validate_candidate
 
@@ -133,7 +133,9 @@ def run(queue: dict[str,Any], queue_path: str, validate_only: bool=False) -> dic
         return result
 
     if validate_only:
-        baseline=lighthouse(str(before.get("permalink") or ""),3)
+        url=str(before.get("permalink") or "")
+        result["http_probe"]=http_probe(url,5)
+        baseline=lighthouse(url,3)
         result["baseline_performance"]=baseline
         result.update(status="VALIDATED",finished_at=utcnow())
         return result
