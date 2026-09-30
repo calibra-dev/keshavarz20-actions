@@ -64,8 +64,6 @@ jobs:
           ad=after.json(); redirects2=ad.get('redirects') if isinstance(ad,dict) else None
           rows2=list(redirects2.values()) if isinstance(redirects2,dict) else (redirects2 if isinstance(redirects2,list) else [])
           exact_after=[r for r in rows2 if isinstance(r,dict) and all(r.get(k)==v for k,v in expected.items())]
-          if exact_after:
-            raise RuntimeError('Wrong redirect still present after delete')
 
           old_origin='product/%d9%87%d8%a7%d8%b1%d8%af-%da%a9%d8%a7%d9%84%db%8c-%da%a9%d8%b1%d8%a7%d9%be-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86'
           correct_target=origin
@@ -80,7 +78,7 @@ jobs:
             raise RuntimeError('Public URL still redirects to wrong Polys product')
 
           out={
-            'status':'PASS',
+            'status':'PASS' if not exact_after else 'NO_CHANGE',
             'deleted_redirect':expected,
             'delete_http_status':deleted.status_code,
             'delete_response':delete_body,
@@ -93,6 +91,8 @@ jobs:
           pathlib.Path('seo-god2').mkdir(exist_ok=True)
           pathlib.Path('seo-god2/phase6-140816-yoast-redirect-delete.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
           print(json.dumps(out,ensure_ascii=False))
+          if exact_after:
+            raise RuntimeError('Wrong redirect still present after delete; response was recorded')
       - name: Commit verified deletion receipt
         shell: bash
         run: |
