@@ -1,0 +1,116 @@
+name: SEO God2 Phase 7 Shipping Truth Audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'seo-god2-phase7-audit-ops/*.json'
+      - '.github/workflows/k20-seogod2-phase7-shipping-truth.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check requests beautifulsoup4
+      - name: Audit shipping truth
+        shell: python
+        run: |
+          import html, json, os, pathlib, re, requests
+          from bs4 import BeautifulSoup
+
+          base=os.environ['WP_BASE_URL'].rstrip('/')
+          auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD'])
+          s=requests.Session(); s.auth=auth
+          page=s.get(base+'/wp-json/wp/v2/pages/145319?context=edit',timeout=60)
+          page.raise_for_status()
+          pj=page.json()
+          rendered=((pj.get('content') or {}).get('rendered') or '')
+          soup=BeautifulSoup(rendered,'html.parser')
+          text='\n'.join(x.strip() for x in soup.stripped_strings if x.strip())
+
+          zones_r=s.get(base+'/wp-json/wc/v3/shipping/zones?per_page=100',timeout=60)
+          zones=[]
+          if zones_r.ok:
+            for z in zones_r.json():
+              zid=z.get('id')
+              methods_r=s.get(base+f'/wp-json/wc/v3/shipping/zones/{zid}/methods',timeout=60)
+              methods=[]
+              if methods_r.ok:
+                for m in methods_r.json():
+                  methods.append({
+                    'id':m.get('id'),
+                    'method_id':m.get('method_id'),
+                    'title':m.get('title'),
+                    'enabled':m.get('enabled'),
+                    'method_title':m.get('method_title'),
+                    'method_description':m.get('method_description')
+                  })
+              locations_r=s.get(base+f'/wp-json/wc/v3/shipping/zones/{zid}/locations',timeout=60)
+              locations=[]
+              if locations_r.ok:
+                locations=[{'code':x.get('code'),'type':x.get('type')} for x in locations_r.json()]
+              zones.append({'id':zid,'name':z.get('name'),'order':z.get('order'),'locations':locations,'methods':methods})
+
+          classes_r=s.get(base+'/wp-json/wc/v3/products/shipping_classes?per_page=100',timeout=60)
+          classes=[]
+          if classes_r.ok:
+            classes=[{'id':x.get('id'),'name':x.get('name'),'slug':x.get('slug'),'count':x.get('count')} for x in classes_r.json()]
+
+          keywords=['تیپاکس','باربری','پس کرایه','پس‌کرایه','پست','پیک','ارسال رایگان','هزینه ارسال','زمان ارسال','تحویل','تهران','شهرستان']
+          signals={k:(k in text) for k in keywords}
+          evidence_lines=[]
+          for line in text.splitlines():
+            if any(k in line for k in keywords):
+              evidence_lines.append(line[:500])
+
+          out={
+            'schema_version':'seo-god2-phase7-shipping-truth-v1',
+            'shipping_page':{
+              'id':145319,'slug':pj.get('slug'),'status':pj.get('status'),
+              'title':((pj.get('title') or {}).get('rendered') or ''),
+              'excerpt':((pj.get('excerpt') or {}).get('rendered') or ''),
+              'text':text[:12000],
+              'keyword_signals':signals,
+              'evidence_lines':evidence_lines[:80]
+            },
+            'shipping_zones':zones,
+            'shipping_classes':classes,
+            'source_http':{
+              'page':page.status_code,
+              'zones':zones_r.status_code,
+              'classes':classes_r.status_code
+            }
+          }
+          pathlib.Path('seo-god2').mkdir(exist_ok=True)
+          pathlib.Path('seo-god2/phase7-shipping-truth-20260930.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps({'page_title':out['shipping_page']['title'],'signals':signals,'zones':len(zones),'classes':len(classes),'http':out['source_http']},ensure_ascii=False))
+      - name: Commit audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f seo-god2/phase7-shipping-truth-20260930.json
+          git diff --cached --quiet && exit 0
+          git commit -m "seo god2 phase7: record shipping truth audit"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
