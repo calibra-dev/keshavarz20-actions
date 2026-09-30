@@ -1,18 +1,14 @@
 {
-  "ok": true,
+  "ok": false,
   "schema_version": "3.3",
-  "http_code": 200,
+  "http_code": 409,
   "request": "20260930-seo-god2-approve-v335.sanitized.json",
   "action": "approval.execute",
-  "request_id": "seo-god2-approve-v335-20260930",
+  "request_id": "seo-god2-approve-v335-retry-20260930",
   "dry_run": false,
-  "executed_at_utc": "2026-09-30T06:29:42.5762240Z",
+  "executed_at_utc": "2026-09-30T06:30:05.4052510Z",
   "bridge": "Keshavarz20 Bridge v3",
-  "bridge_version": "3.3.4",
-  "error_code": null,
-  "message": null,
-  "result": {
-    "applied": true,
-    "installed_file_version": "3.3.5"
-  }
+  "bridge_version": "3.3.5",
+  "error_code": "approval_not_pending",
+  "message": "Approval is not pending."
 }
