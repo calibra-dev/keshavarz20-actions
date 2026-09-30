@@ -1,0 +1,91 @@
+{
+  "schema_version": "seo-god2-phase8-closure-v1",
+  "project": "keshavarz20.com / SEO GOD2",
+  "phase": 8,
+  "name": "Trust & Social Proof",
+  "status": "PASS_PHASE8_COMPLETE",
+  "closed": true,
+  "verified_at_utc": "2026-09-30T22:58:30Z",
+  "scope": {
+    "tier_a_products": 20,
+    "ugc_policy_page_id": 145288
+  },
+  "live_readback": {
+    "request_commit": "0a7d6b928e886b1d31bf5316f0e95ad86acf9529",
+    "workflow_run_id": 36788098434,
+    "workflow_conclusion": "success",
+    "bridge_version": "3.3.17",
+    "http_code": 200,
+    "products": 20,
+    "trust_card_exactly_once": "20/20",
+    "ugc_policy_link_present": "20/20",
+    "phase7_shipping_preserved": "20/20",
+    "anomalies": 0,
+    "live_rating_count_nonzero_products": 0
+  },
+  "verified_reviews_refresh": {
+    "trigger_commit": "1915663c725e88c11e89dc5d5e4f3c876119b279",
+    "workflow_run_id": 36788246135,
+    "workflow_conclusion": "success",
+    "approved": 0,
+    "verified": 0,
+    "unverified": 0,
+    "products_with_verified_reviews": 0,
+    "mode": "read-only"
+  },
+  "cache": {
+    "request_commit": "63d2fb8d04deb583b9165086050785498df2aa62",
+    "workflow_run_id": 36788287942,
+    "workflow_conclusion": "success",
+    "bridge_version": "3.3.17",
+    "purged": true,
+    "actions": [
+      "litespeed_purge_all",
+      "wp_cache_flush"
+    ]
+  },
+  "public_acceptance": {
+    "trigger_commit": "48f86f807afcdbc329f020a384d0dada67847e99",
+    "workflow_run_id": 36788296760,
+    "workflow_conclusion": "success",
+    "result_file": "seo-god2/phase8-public-trust-audit-20260930.json",
+    "result_commit_if_changed": "9d0b7df33d437e28d75e57c306e8e96d48cd87ce",
+    "status": "PASS",
+    "metrics": {
+      "public_non_200": 0,
+      "redirected_away": 0,
+      "trust_card_missing": 0,
+      "trust_heading_missing": 0,
+      "ugc_policy_link_missing": 0,
+      "anti_fake_policy_missing": 0,
+      "phase7_shipping_missing": 0,
+      "phase6_basket_missing": 0,
+      "banned_social_claims": 0,
+      "tier_a_products": 20,
+      "ugc_policy_page_ok": true,
+      "approved_reviews": 0,
+      "verified_reviews": 0,
+      "unverified_reviews": 0,
+      "products_with_verified_reviews": 0
+    }
+  },
+  "trust_policy": {
+    "fake_reviews": false,
+    "fake_ratings": false,
+    "fake_testimonials": false,
+    "fake_customer_projects": false,
+    "fake_manufacturer_confirmation": false,
+    "fabricated_reviewer_identity": false,
+    "live_woocommerce_truth_only": true
+  },
+  "guardrails_preserved": {
+    "price_modified": false,
+    "regular_price_modified": false,
+    "sale_price_modified": false,
+    "discounts_modified": false,
+    "stock_modified_by_phase8": false,
+    "payment_settings_modified": false,
+    "users_roles_credentials_modified": false
+  },
+  "note": "A fresh live baseline showed the Phase 8 trust block was already present on all 20 products and Phase 9 had subsequently appended its own block. No repeat Phase 8 write was performed, avoiding overwrite of newer product content. Phase 8 was closed from fresh readback, read-only review refresh, cache purge, and successful public acceptance."
+}
