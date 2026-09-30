@@ -1,7 +1,267 @@
 {
-  "ok": false,
-  "status": "MODEL_ACCESS_BLOCKED",
-  "blocker": "OPENAI_API_KEY is not configured for product-engine",
-  "at": "2026-09-30T21:04:14.519585+00:00",
-  "auto_retry_on_schedule": true
+  "schema_version": "product-autopilot-run-v1",
+  "started_at": "2026-09-30T21:31:04.879824+00:00",
+  "run_mode": "dry_run",
+  "targets": [
+    134980
+  ],
+  "results": [
+    {
+      "schema_version": "product-result-v1",
+      "product_id": 134980,
+      "name": "اتصال ماده  آبلوله 32 میلیمتر",
+      "started_at": "2026-09-30T21:31:04.879904+00:00",
+      "status": "FAILED",
+      "baseline_performance": {
+        "samples": [
+          {
+            "performance": 65,
+            "accessibility": 79,
+            "best_practices": 92,
+            "seo": 100,
+            "fcp_ms": 3022.313,
+            "lcp_ms": 4652.7880000000005,
+            "speed_index_ms": 10849.938806658687,
+            "tbt_ms": 215.5,
+            "cls": 0,
+            "ttfb_ms": 4705,
+            "total_bytes": 1021585,
+            "unused_css": "Est savings of 71 KiB",
+            "unused_js": "Est savings of 75 KiB"
+          },
+          {
+            "performance": 70,
+            "accessibility": 79,
+            "best_practices": 92,
+            "seo": 100,
+            "fcp_ms": 2766.101,
+            "lcp_ms": 4541.612,
+            "speed_index_ms": 11131.214626164898,
+            "tbt_ms": 94.5,
+            "cls": 0.001563537256213143,
+            "ttfb_ms": 4933,
+            "total_bytes": 1021021,
+            "unused_css": "Est savings of 71 KiB",
+            "unused_js": "Est savings of 76 KiB"
+          },
+          {
+            "performance": 53,
+            "accessibility": 79,
+            "best_practices": 92,
+            "seo": 100,
+            "fcp_ms": 2817.424,
+            "lcp_ms": 4726.411499999999,
+            "speed_index_ms": 10892.262324081288,
+            "tbt_ms": 147.5,
+            "cls": 0.28537334216208216,
+            "ttfb_ms": 4616,
+            "total_bytes": 1020677,
+            "unused_css": "Est savings of 71 KiB",
+            "unused_js": "Est savings of 76 KiB"
+          }
+        ],
+        "representative": {
+          "performance": 65,
+          "accessibility": 79,
+          "best_practices": 92,
+          "seo": 100,
+          "fcp_ms": 3022.313,
+          "lcp_ms": 4652.7880000000005,
+          "speed_index_ms": 10849.938806658687,
+          "tbt_ms": 215.5,
+          "cls": 0,
+          "ttfb_ms": 4705,
+          "total_bytes": 1021585,
+          "unused_css": "Est savings of 71 KiB",
+          "unused_js": "Est savings of 75 KiB"
+        },
+        "successful_runs": 3,
+        "top_network_requests": [
+          {
+            "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+            "resource_type": "Script",
+            "transfer_size": 196907,
+            "resource_size": 602982,
+            "priority": "Medium"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/uploads/2024/06/hossini.jpg",
+            "resource_type": "Image",
+            "transfer_size": 138281,
+            "resource_size": 138113,
+            "priority": "High"
+          },
+          {
+            "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+            "resource_type": "Document",
+            "transfer_size": 64226,
+            "resource_size": 365612,
+            "priority": "VeryHigh"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
+            "resource_type": "Script",
+            "transfer_size": 61355,
+            "resource_size": 252309,
+            "priority": "Medium"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-direct-a143246.webp",
+            "resource_type": "Image",
+            "transfer_size": 57894,
+            "resource_size": 57774,
+            "priority": "High"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebregularfanum.woff",
+            "resource_type": "Font",
+            "transfer_size": 33706,
+            "resource_size": 33585,
+            "priority": "VeryHigh"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebboldfanum.woff",
+            "resource_type": "Font",
+            "transfer_size": 33661,
+            "resource_size": 33581,
+            "priority": "VeryHigh"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+            "resource_type": "Script",
+            "transfer_size": 29857,
+            "resource_size": 87553,
+            "priority": "High"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/uploads/2024/06/%DA%AF%D8%A7%D8%B1%D8%A7%D9%86%D8%AA%DB%8C.png",
+            "resource_type": "Image",
+            "transfer_size": 28488,
+            "resource_size": 28393,
+            "priority": "High"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/0cc6bdf8c66b1a3b7118fdadef6aa6d5.js?ver=ae346",
+            "resource_type": "Script",
+            "transfer_size": 26925,
+            "resource_size": 108081,
+            "priority": "Medium"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/uploads/2026/09/d8a7d8aad8b5d8a7d984-d985d8a7d8afd987-d8a2d8a8d984d988d984d987-32-d985db8cd984db8cd985d8aad8b1-139862.webp",
+            "resource_type": "Image",
+            "transfer_size": 23885,
+            "resource_size": 23780,
+            "priority": "High"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/9c13dae17cf8ea20906a1f183d051600.css?ver=846ee",
+            "resource_type": "Stylesheet",
+            "transfer_size": 22118,
+            "resource_size": 150098,
+            "priority": "VeryHigh"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/7e0c89866ae4250b859a08a1e4310da4.css?ver=a8667",
+            "resource_type": "Stylesheet",
+            "transfer_size": 19920,
+            "resource_size": 166164,
+            "priority": "VeryHigh"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/4fe8f127c29828e027ef11d551317262.js?ver=df9fc",
+            "resource_type": "Script",
+            "transfer_size": 19215,
+            "resource_size": 56367,
+            "priority": "Medium"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/62bccd5cbc3fa81af8e3db4ca4b9cbd8.css?ver=dc04d",
+            "resource_type": "Stylesheet",
+            "transfer_size": 18647,
+            "resource_size": 277387,
+            "priority": "VeryHigh"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/6c6e99777b208fdc2e0d8d3666a7bcc9.css?ver=5f774",
+            "resource_type": "Stylesheet",
+            "transfer_size": 18081,
+            "resource_size": 140774,
+            "priority": "VeryHigh"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/a1548c83adc2678218fff1bf8a308b0d.js?ver=2c37a",
+            "resource_type": "Script",
+            "transfer_size": 17855,
+            "resource_size": 77853,
+            "priority": "Medium"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/81a58d62acc2bda2575a4119ca64c006.js?ver=f4a3e",
+            "resource_type": "Script",
+            "transfer_size": 16368,
+            "resource_size": 81174,
+            "priority": "Medium"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/69b68c538bdec1627dd4aa6c47bf660b.js?ver=f660b",
+            "resource_type": "Script",
+            "transfer_size": 13251,
+            "resource_size": 54523,
+            "priority": "Medium"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/9ef702f93cda38d01dd013f772f7c746.js?ver=4e13e",
+            "resource_type": "Script",
+            "transfer_size": 11736,
+            "resource_size": 31627,
+            "priority": "Low"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/17ab8d74595c085eb0f60af1b19b14c5.js?ver=b14c5",
+            "resource_type": "Script",
+            "transfer_size": 10029,
+            "resource_size": 36754,
+            "priority": "Medium"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/b60ce8f8cdb2cbf0aeaa486e96347151.js?ver=f5b36",
+            "resource_type": "Script",
+            "transfer_size": 9306,
+            "resource_size": 40071,
+            "priority": "Medium"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/291fb7a293d236f8f164f4535f17e96e.js?ver=b0977",
+            "resource_type": "Script",
+            "transfer_size": 8472,
+            "resource_size": 32700,
+            "priority": "Medium"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/95a9006f8e4ffc363679cec5343abfe9.js?ver=6fb11",
+            "resource_type": "Script",
+            "transfer_size": 7292,
+            "resource_size": 19013,
+            "priority": "High"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/1ae53464d568614135fe06c49eac7be4.js?ver=ea0e8",
+            "resource_type": "Script",
+            "transfer_size": 6608,
+            "resource_size": 21991,
+            "priority": "Medium"
+          }
+        ]
+      },
+      "blocker": "RateLimitError: Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.', 'type': 'insufficient_quota', 'param': None, 'code': 'credit_balance_exhausted'}}",
+      "finished_at": "2026-09-30T21:32:30.115540+00:00"
+    }
+  ],
+  "finished_at": "2026-09-30T21:32:30.116939+00:00",
+  "inventory_count": 652,
+  "processed_count": 1,
+  "remaining_initial_sweep": 651,
+  "enabled": true,
+  "kill_switch": false
 }
