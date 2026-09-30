@@ -1,0 +1,101 @@
+{
+  "mode": "read-only",
+  "files": [
+    {
+      "path": "plugins/litespeed-cache/src/metabox.cls.php",
+      "line_count": 214,
+      "matches": [
+        {
+          "pattern": "$conf",
+          "line": 129,
+          "snippet": "* @param string   $conf    Meta key to load."
+        },
+        {
+          "pattern": "$conf",
+          "line": 133,
+          "snippet": "public function setting( $conf, $post_id = false ) {"
+        },
+        {
+          "pattern": "$conf",
+          "line": 144,
+          "snippet": "$val = $post_id ? get_post_meta( $post_id, $conf, true ) : null;"
+        },
+        {
+          "pattern": "litespeed_",
+          "line": 39,
+          "snippet": "'litespeed_no_cache'        => __( 'Disable Cache', 'litespeed-cache' ),"
+        },
+        {
+          "pattern": "litespeed_",
+          "line": 40,
+          "snippet": "'litespeed_no_image_lazy'   => __( 'Disable Image Lazyload', 'litespeed-cache' ),"
+        },
+        {
+          "pattern": "litespeed_",
+          "line": 41,
+          "snippet": "'litespeed_no_vpi'          => __( 'Disable VPI', 'litespeed-cache' ),"
+        },
+        {
+          "pattern": "litespeed_",
+          "line": 42,
+          "snippet": "'litespeed_vpi_list'        => __( 'Viewport Images', 'litespeed-cache' ),"
+        },
+        {
+          "pattern": "litespeed_",
+          "line": 43,
+          "snippet": "'litespeed_vpi_list_mobile' => __( 'Viewport Images', 'litespeed-cache' ) . ' - ' . __( 'Mobile', 'litespeed-cache' ),"
+        },
+        {
+          "pattern": "litespeed_",
+          "line": 68,
+          "snippet": "if ( apply_filters( 'litespeed_bypass_metabox', false, $post_type ) ) {"
+        },
+        {
+          "pattern": "litespeed_",
+          "line": 76,
+          "snippet": "add_meta_box( 'litespeed_meta_boxes', 'LiteSpeed', [ $this, 'meta_box_options' ], $post_type, 'side', 'core' );"
+        },
+        {
+          "pattern": "lazy_img_excludes",
+          "line": 192,
+          "snippet": "public function lazy_img_excludes( $exclude_list ) {"
+        },
+        {
+          "pattern": "post_meta",
+          "line": 144,
+          "snippet": "$val = $post_id ? get_post_meta( $post_id, $conf, true ) : null;"
+        },
+        {
+          "pattern": "post_meta",
+          "line": 164,
+          "snippet": "if ( false !== strpos( $name, VPI::POST_META ) ) {"
+        },
+        {
+          "pattern": "post_meta",
+          "line": 178,
+          "snippet": "update_post_meta( $post_id, $name, $val );"
+        },
+        {
+          "pattern": "post_meta",
+          "line": 180,
+          "snippet": "delete_post_meta( $post_id, $name );"
+        },
+        {
+          "pattern": "post_meta",
+          "line": 194,
+          "snippet": "$excludes  = $this->setting( $is_mobile ? VPI::POST_META_MOBILE : VPI::POST_META );"
+        },
+        {
+          "pattern": "lazy",
+          "line": 40,
+          "snippet": "'litespeed_no_image_lazy'   => __( 'Disable Image Lazyload', 'litespeed-cache' ),"
+        },
+        {
+          "pattern": "lazy",
+          "line": 192,
+          "snippet": "public function lazy_img_excludes( $exclude_list ) {"
+        }
+      ]
+    }
+  ]
+}
