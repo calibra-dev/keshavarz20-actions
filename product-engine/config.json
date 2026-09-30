@@ -1,17 +1,22 @@
 {
-  "schema_version": "product-autopilot-config-v1",
+  "schema_version": "product-autopilot-config-v2",
   "catalog_order": "frozen_product_id_ascending_then_append_new",
   "concurrency": 1,
   "max_products_per_run": 1,
   "content_acceptance": 96,
+  "canary": {
+    "product_id": 134980,
+    "require_acceptance_before_catalog_advance": true
+  },
   "lighthouse_acceptance": {
-    "performance": 96,
-    "accessibility": 96,
-    "best_practices": 96,
-    "seo": 96,
-    "lcp_ms": 2500,
-    "cls": 0.1,
-    "tbt_ms": 200
+    "successful_runs": 3,
+    "performance": {"median_min": 92, "each_run_min": 91},
+    "accessibility": {"median_min": 92, "each_run_min": 91},
+    "best_practices": {"median_min": 90, "each_run_min": 90},
+    "seo": {"median_min": 96, "each_run_min": 96},
+    "lcp_median_max_ms": 2500,
+    "cls_each_run_max": 0.1,
+    "tbt_median_max_ms": 200
   },
   "schedule": "every_30_minutes",
   "automatic_writes": [
@@ -21,42 +26,66 @@
     "meta_description",
     "focus_keyphrase",
     "missing_image_alt",
-    "measured_featured_image_webp_rebind_with_rollback"
+    "featured_image_webp_rebind_with_rollback",
+    "gallery_image_webp_rebind_with_rollback"
   ],
   "protected_fields": [
+    "status",
+    "type",
     "slug",
-    "canonical",
     "price",
     "regular_price",
     "sale_price",
-    "stock",
+    "stock_status",
+    "stock_quantity",
+    "manage_stock",
+    "backorders",
     "sku",
     "gtin",
     "mpn",
     "categories",
-    "brand",
+    "tags",
+    "brands",
     "attributes",
-    "variations",
-    "gallery_bindings"
+    "variations"
   ],
   "fail_closed": true,
-  "continue_after_noncritical_blocker": true,
+  "continue_after_noncritical_blocker": false,
   "kill_switch_on": [
     "bridge_write_failure",
     "rollback_failure",
     "catalog_wide_regression"
   ],
-  "performance_repair": {
-    "featured_image": {
-      "enabled": true,
-      "min_source_bytes": 280000,
-      "only_when_top_transferred_resource": true,
-      "output_mime": "image/webp",
-      "quality": 82,
-      "max_dimension": 1600,
-      "rollback_on_regression": true
-    },
-    "gallery_rebinding": false,
-    "global_css_js_mutation": false
-  }
+  "media_optimization": {
+    "enabled": true,
+    "featured": true,
+    "gallery": true,
+    "output_mime": "image/webp",
+    "quality": 84,
+    "max_dimension": 1600,
+    "skip_existing_webp": true,
+    "require_smaller": true,
+    "minimum_saving_pct": 3,
+    "preserve_order": true,
+    "delete_source_after_acceptance": false,
+    "rollback_on_regression": true
+  },
+  "visual_guard": {
+    "enabled": true,
+    "critical_markers": [
+      "woocommerce-product-gallery",
+      "woocommerce-breadcrumb",
+      "site-logo",
+      "bottom-nav",
+      "single_add_to_cart_button"
+    ]
+  },
+  "rollback_policy": {
+    "on_regression": true,
+    "on_protected_field_change": true,
+    "on_media_readback_failure": true,
+    "on_visual_guard_failure": true,
+    "on_gate_failure": false
+  },
+  "global_css_js_mutation": false
 }
