@@ -156,6 +156,12 @@ Do not replace images automatically merely to improve a score.
 If ALT is empty, use a truthful, concise description based only on what is safely known.
 Never invent visual details not observed.
 
+## Measured Featured-Image Performance Repair Exception
+- If mobile Lighthouse is below target and the current featured image is proven to be one of the largest transferred resources, the runtime may create an optimized WebP derivative of that exact image and bind it as featured.
+- This exception never substitutes a different visual, never changes gallery order, and never invents media.
+- The original attachment ID must be preserved as rollback state.
+- If measured LCP/Speed Index/CLS/Performance regresses, restore the original featured image immediately.
+
 ## Performance
 
 The content itself must be lightweight:
@@ -195,7 +201,7 @@ Protected by default:
 - SKU/GTIN/MPN
 - category/brand/attributes unless separately verified and explicitly handled
 - product type/variations
-- featured/gallery binding
+- gallery binding; featured binding may change only in the measured Performance Repair exception below
 
 ## Acceptance
 
