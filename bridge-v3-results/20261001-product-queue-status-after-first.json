@@ -1,0 +1,25 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "action": "engine.status",
+  "engine": "product",
+  "engine_label": "Product Queue Engine",
+  "workflow": "k20-product-queue-publisher.yml",
+  "state": "in_progress",
+  "runs": [
+    {
+      "run_id": 36782535065,
+      "state": "in_progress",
+      "conclusion": null,
+      "event": "push",
+      "started_at": "2026-09-30T21:55:57Z",
+      "created_at": "2026-09-30T21:55:57Z",
+      "finished_at": null,
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    }
+  ],
+  "executed_at_utc": "2026-09-30T21:56:27.7414345Z"
+}
