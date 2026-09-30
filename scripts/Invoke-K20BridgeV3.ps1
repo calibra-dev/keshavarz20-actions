@@ -206,9 +206,27 @@ if($parsed -and $parsed.result){
     'woocommerce','yoast','elementor','object_cache','litespeed_active','wp_cache_flush_available','actions','method','path','job_id','cursor','total','success','failed','retrying','dead_letter',
     'matches','changed','before_sha256','after_sha256','source_attachment_id','new_attachment_id','approval_id','fingerprint','rolled_back',
     'current_version','available_version','update_available','staged','applied','installed_file_version','schema_version',
-    'description','focus_keyword','canonical','noindex','attachment_id','attachment_ids','featured_attachment_id','gallery_image_ids','before_gallery_image_ids','target_id','product_id','snapshot_id','sha256','mime','bytes','width','height','previous_attachment_id'
+    'description','focus_keyword','canonical','noindex','attachment_id','attachment_ids','featured_attachment_id','gallery_image_ids','before_gallery_image_ids','target_id','product_id','snapshot_id','sha256','mime','bytes','width','height','previous_attachment_id',
+    'setting','value','allowed_values','before','after'
   )){
     $p=$result.PSObject.Properties[$name]; if($p){ $safe[$name]=$p.Value }
+  }
+  if($result.items){
+    $safeBatch=@()
+    foreach($bi in @($result.items)){
+      $b=[ordered]@{}
+      foreach($name in @('index','action','ok','error')){
+        $p=$bi.PSObject.Properties[$name]; if($p){ $b[$name]=$p.Value }
+      }
+      $rp=$bi.PSObject.Properties['result']
+      if($rp -and $rp.Value){
+        foreach($name in @('method','path','status','changed','before','after')){
+          $p=$rp.Value.PSObject.Properties[$name]; if($p){ $b["result_$name"]=$p.Value }
+        }
+      }
+      if($b.Count -gt 0){ $safeBatch += [pscustomobject]$b }
+    }
+    if($safeBatch.Count -gt 0){ $safe['items']=$safeBatch }
   }
   if($result.data){
     $data=$result.data
