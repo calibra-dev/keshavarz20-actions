@@ -212,7 +212,21 @@ if($parsed -and $parsed.result){
   }
   if($result.data){
     $data=$result.data
-    if(($data -is [System.Collections.IEnumerable]) -and -not($data -is [string]) -and -not($data -is [pscustomobject])){ $safe['data_count']=@($data).Count }
+    if(($data -is [System.Collections.IEnumerable]) -and -not($data -is [string]) -and -not($data -is [pscustomobject])){
+      $rows=@($data)
+      $safe['data_count']=$rows.Count
+      $safeRows=@()
+      foreach($row in $rows){
+        if($null -eq $row){ continue }
+        $item=[ordered]@{}
+        foreach($name in @('id','status','slug','name','sku','stock_status','stock_quantity','total_sales','average_rating','rating_count','date_modified_gmt','permalink','attributes','categories','tags')){
+          $p=$row.PSObject.Properties[$name]
+          if($p){ $item[$name]=$p.Value }
+        }
+        if($item.Count -gt 0){ $safeRows += [pscustomobject]$item }
+      }
+      if($safeRows.Count -gt 0){ $safe['data_items']=$safeRows }
+    }
     else{ foreach($name in @('id','status','slug','title','name','sku','stock_status','stock_quantity','modified_gmt','link','permalink','description','short_description','attributes','images','categories','tags','featured_media','source_url','media_type','mime_type','media_details')){ $p=$data.PSObject.Properties[$name]; if($p){ $safe["data_$name"]=$p.Value } } }
   }
   $record['result']=$safe
