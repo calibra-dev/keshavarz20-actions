@@ -1,0 +1,33 @@
+{
+  "action": "rest.proxy",
+  "request_id": "seo-god2-phase6-postwrite-fields-readback-20260930",
+  "method": "GET",
+  "path": "/wc/v3/products",
+  "query": {
+    "status": "publish",
+    "per_page": 100,
+    "include": [
+      140856,
+      140718,
+      135339,
+      135349,
+      140853,
+      140406,
+      140760,
+      140816,
+      140407,
+      135337,
+      135353,
+      140454,
+      135381,
+      135361,
+      140674,
+      135235,
+      140014,
+      135309,
+      135359,
+      135667
+    ],
+    "_fields": "id,name,sku,short_description,upsell_ids,cross_sell_ids,stock_status,stock_quantity"
+  }
+}
