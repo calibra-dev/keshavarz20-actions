@@ -111,4 +111,12 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add diagnostics/k20-calculator-raw-focus-20260928.json
           git commit -m 'diag: capture calculator raw content boundaries' || exit 0
-          git push
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt * 2))
+          done
+          echo "::error::Failed to persist focused diagnostic after 5 rebase/push attempts"
+          exit 1
