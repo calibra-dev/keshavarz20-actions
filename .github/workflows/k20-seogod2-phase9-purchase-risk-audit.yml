@@ -73,7 +73,7 @@ jobs:
               'rest_permalink':p.get('permalink'),
               'phase9_card_present':card is not None,
               'phase9_card_exactly_once':len(cards)==1,
-              'phase9_marker_exactly_once':rr.text.count('k20-phase9-purchase-risk')==2,
+              'phase9_marker_exactly_once':(p.get('short_description') or '').count('k20-phase9-purchase-risk')==2,
               'phase9_heading_present':'مرجوعی، مغایرت، اصالت و ثبت شواهد' in text,
               'identity_check_guidance_present':'پیش از نصب یا مصرف' in text,
               'evidence_capture_guidance_present':'چند تصویر واضح نگه دارید' in text,
