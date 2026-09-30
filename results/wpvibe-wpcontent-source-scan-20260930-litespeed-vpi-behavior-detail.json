@@ -1,0 +1,147 @@
+{
+  "mode": "read-only",
+  "files": [
+    {
+      "path": "plugins/litespeed-cache/src/metabox.cls.php",
+      "line_count": 214,
+      "matches": [
+        {
+          "pattern": "POST_META_MOBILE",
+          "line": 194,
+          "snippet": "$excludes  = $this->setting( $is_mobile ? VPI::POST_META_MOBILE : VPI::POST_META );"
+        },
+        {
+          "pattern": "POST_META",
+          "line": 144,
+          "snippet": "$val = $post_id ? get_post_meta( $post_id, $conf, true ) : null;"
+        },
+        {
+          "pattern": "POST_META",
+          "line": 164,
+          "snippet": "if ( false !== strpos( $name, VPI::POST_META ) ) {"
+        },
+        {
+          "pattern": "POST_META",
+          "line": 178,
+          "snippet": "update_post_meta( $post_id, $name, $val );"
+        },
+        {
+          "pattern": "POST_META",
+          "line": 180,
+          "snippet": "delete_post_meta( $post_id, $name );"
+        },
+        {
+          "pattern": "POST_META",
+          "line": 194,
+          "snippet": "$excludes  = $this->setting( $is_mobile ? VPI::POST_META_MOBILE : VPI::POST_META );"
+        },
+        {
+          "pattern": "lazy_img_excludes",
+          "line": 192,
+          "snippet": "public function lazy_img_excludes( $exclude_list ) {"
+        },
+        {
+          "pattern": "return $exclude_list",
+          "line": 206,
+          "snippet": "return $exclude_list;"
+        },
+        {
+          "pattern": "return $exclude_list",
+          "line": 211,
+          "snippet": "return $exclude_list;"
+        },
+        {
+          "pattern": "array_merge",
+          "line": 173,
+          "snippet": "$val           = array_unique( array_merge( $val, $existing_data ) );"
+        },
+        {
+          "pattern": "array_merge",
+          "line": 202,
+          "snippet": "return array_merge( $exclude_list, $excludes );"
+        }
+      ]
+    },
+    {
+      "path": "plugins/litespeed-cache/src/media.cls.php",
+      "line_count": 1518,
+      "matches": [
+        {
+          "pattern": "POST_META_MOBILE",
+          "line": 916,
+          "snippet": "$vpi_files = $this->cls( 'Metabox' )->setting( $is_mobile ? VPI::POST_META_MOBILE : VPI::POST_META );"
+        },
+        {
+          "pattern": "POST_META",
+          "line": 182,
+          "snippet": "update_post_meta( $attachment_id, '_wp_attached_file', $metadata['file'] );"
+        },
+        {
+          "pattern": "POST_META",
+          "line": 281,
+          "snippet": "update_post_meta( $attachment_id, '_wp_attached_file', $meta_value['file'] );"
+        },
+        {
+          "pattern": "POST_META",
+          "line": 512,
+          "snippet": "$size_meta = get_post_meta( $post_id, Img_Optm::DB_SIZE, true );"
+        },
+        {
+          "pattern": "POST_META",
+          "line": 916,
+          "snippet": "$vpi_files = $this->cls( 'Metabox' )->setting( $is_mobile ? VPI::POST_META_MOBILE : VPI::POST_META );"
+        },
+        {
+          "pattern": "cfg_vpi",
+          "line": 836,
+          "snippet": "$cfg_vpi           = defined( 'LITESPEED_GUEST_OPTM' ) || $this->conf( Base::O_MEDIA_VPI );"
+        },
+        {
+          "pattern": "cfg_vpi",
+          "line": 839,
+          "snippet": "if ( $cfg_vpi ) {"
+        },
+        {
+          "pattern": "cfg_vpi",
+          "line": 844,
+          "snippet": "if ( $cfg_vpi ) {"
+        },
+        {
+          "pattern": "lazy_img_excludes",
+          "line": 845,
+          "snippet": "add_filter( 'litespeed_media_lazy_img_excludes', [ $this->cls( 'Metabox' ), 'lazy_img_excludes' ] );"
+        },
+        {
+          "pattern": "lazy_img_excludes",
+          "line": 999,
+          "snippet": "$excludes = apply_filters( 'litespeed_media_lazy_img_excludes', $this->conf( Base::O_MEDIA_LAZY_EXC ) );"
+        },
+        {
+          "pattern": "fetchpriority",
+          "line": 310,
+          "snippet": "$content .= '<link rel=\"preload\" fetchpriority=\"high\" as=\"image\" href=\"' . esc_url( Str::trim_quotes( $v ) ) . '\">';"
+        },
+        {
+          "pattern": "fetchpriority",
+          "line": 910,
+          "snippet": "* @since 7.6 - Added attributes fetchpriority=\"high\" and decode=\"sync\" for VPI images."
+        },
+        {
+          "pattern": "fetchpriority",
+          "line": 961,
+          "snippet": "// Add attributes fetchpriority=\"high\" and decode=\"sync\""
+        },
+        {
+          "pattern": "fetchpriority",
+          "line": 964,
+          "snippet": "$attrs[ 'fetchpriority' ] = 'high';"
+        },
+        {
+          "pattern": "fetchpriority",
+          "line": 977,
+          "snippet": "// if VPI fetchpriority changes, do the replacement"
+        }
+      ]
+    }
+  ]
+}
