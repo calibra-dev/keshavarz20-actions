@@ -1,0 +1,24 @@
+{
+  "action": "batch",
+  "request_id": "seo-god2-phase2-fix-url-truth-20260930",
+  "payload": {
+    "items": [
+      {
+        "action": "rest.proxy",
+        "method": "PUT",
+        "path": "/wc/v3/products/140841",
+        "payload": {
+          "slug": "پلی-اس-ایکس-گرین-20-لیتری"
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "PUT",
+        "path": "/wc/v3/products/140816",
+        "payload": {
+          "slug": "کلسیم-کراپ-ایکس-گرین"
+        }
+      }
+    ]
+  }
+}
