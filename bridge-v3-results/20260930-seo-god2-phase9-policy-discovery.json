@@ -1,0 +1,59 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20260930-seo-god2-phase9-policy-discovery.sanitized.json",
+  "action": "batch",
+  "request_id": "seo-god2-phase9-policy-discovery-20260930",
+  "dry_run": false,
+  "executed_at_utc": "2026-09-30T20:25:05.7031329Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.16",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "count": 5,
+    "items": [
+      {
+        "index": 0,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "GET",
+        "result_path": "/wp/v2/pages",
+        "result_status": 200
+      },
+      {
+        "index": 1,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "GET",
+        "result_path": "/wp/v2/pages",
+        "result_status": 200
+      },
+      {
+        "index": 2,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "GET",
+        "result_path": "/wp/v2/pages",
+        "result_status": 200
+      },
+      {
+        "index": 3,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "GET",
+        "result_path": "/wp/v2/pages",
+        "result_status": 200
+      },
+      {
+        "index": 4,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "GET",
+        "result_path": "/wp/v2/pages",
+        "result_status": 200
+      }
+    ]
+  }
+}
