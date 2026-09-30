@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Keshavarz20 Bridge v3
  * Description: GitHub-first guarded execution bridge for Keshavarz20.
- * Version: 3.3.4
+ * Version: 3.3.5
  * Author: Keshavarz20
  */
 
 if (!defined('ABSPATH')) exit;
-if (!defined('K20_BRIDGE_RUNTIME_VERSION')) define('K20_BRIDGE_RUNTIME_VERSION','3.3.4');
+if (!defined('K20_BRIDGE_RUNTIME_VERSION')) define('K20_BRIDGE_RUNTIME_VERSION','3.3.5');
 
 require_once __DIR__.'/includes/class-k20-bridge-v31-content.php';
 require_once __DIR__.'/includes/class-k20-bridge-v31-media.php';
@@ -24,7 +24,7 @@ require_once __DIR__.'/includes/class-k20-bridge-v33-code.php';
 require_once __DIR__.'/includes/class-k20-bridge-v33-performance.php';
 
 final class K20_Bridge_V3 {
-    private const VERSION='3.3.4';
+    private const VERSION='3.3.5';
     private const CONTRACT='3.3';
     private const NS='keshavarz20-ops/v3';
     private const AUDIT_OPTION='k20_bridge_v3_audit';
@@ -41,7 +41,17 @@ final class K20_Bridge_V3 {
         'sql','query_sql','php','code','command','shell'
     ];
 
-    public static function boot(): void { add_action('rest_api_init',[__CLASS__,'routes']); }
+    public static function boot(): void {
+        add_action('rest_api_init',[__CLASS__,'routes']);
+        add_filter('woocommerce_default_catalog_orderby',[__CLASS__,'frontend_catalog_order_default'],999);
+    }
+
+    public static function frontend_catalog_order_default($value) {
+        if (is_admin() && !wp_doing_ajax()) return $value;
+        $requested=isset($_GET['orderby'])?sanitize_text_field(wp_unslash((string)$_GET['orderby'])):'';
+        if ($requested!=='') return $value;
+        return 'popularity';
+    }
 
     public static function routes(): void {
         foreach (['/'=>'index','/health'=>'health','/capabilities'=>'capabilities_route'] as $route=>$method) {
