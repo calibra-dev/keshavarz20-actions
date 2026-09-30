@@ -1,0 +1,169 @@
+{
+  "schema_version": "seo-god2-phase9-expanded-closure-v2",
+  "project": "keshavarz20.com / SEO GOD2",
+  "phase": 9,
+  "name": "Returns, Mismatch, Authenticity & Evidence Clarity",
+  "status": "PASS_PHASE9_EXPANDED_COMPLETE",
+  "closed": true,
+  "closed_at_utc": "2026-09-30T23:25:11Z",
+  "supersedes_for_current_state": "seo-god2/phase9-closure-20260930.json",
+  "scope": {
+    "tier_a_products": 20,
+    "bridge_version": "3.3.17"
+  },
+  "expansion_plan": {
+    "file": "seo-god2/phase9-expansion-plan-20261001.json",
+    "commit": "da3798dba76d7d435d941499fc3fbd7e465cfef9"
+  },
+  "baseline": {
+    "request_commit": "02b79de7666626a2f82f9a67684138cb8a7e5001",
+    "workflow_run_id": 36789304170,
+    "workflow_conclusion": "success",
+    "products": 20,
+    "phase9_unique_block": "20/20",
+    "phase8_preserved": "20/20",
+    "phase7_preserved": "20/20",
+    "phase6_expected_preserved": "15/15"
+  },
+  "implementation": {
+    "apply_commit": "fc3d94d55db9afb6a9706fd5246de3e9d5232962",
+    "apply_run_id": 36789444250,
+    "apply_initial_conclusion": "failure_expected_approval_required",
+    "approval_id": "ap_247ab68258428add73",
+    "approval_fingerprint": "36dfc83fa9c3fd5db4ed261d2b7a01008f74f8791f5401b284b6ad6320f9014c",
+    "approval_commit": "0777122158a83d1b4fe765d9552ea0666979d0f2",
+    "approval_run_id": 36789559592,
+    "approval_conclusion": "success",
+    "changed_items": "20/20",
+    "target_field": "post_excerpt",
+    "target_marker": "k20-phase9-purchase-risk",
+    "added_guidance": [
+      "pre-install/pre-use product identity check",
+      "capture clear photos of product, packaging/label and mismatch/damage",
+      "do not install/use/alter while mismatch case is being clarified",
+      "official returns/mismatch policy link",
+      "official authenticity policy link",
+      "explicit no fixed return/refund/SKU warranty promise",
+      "prepare order number and related images when contacting support",
+      "explicit statement that the card does not replace official policy"
+    ]
+  },
+  "postwrite_readback": {
+    "request_commit": "e371c39f2d4b21f6c3752c865fed26007d0edbfe",
+    "workflow_run_id": 36789863651,
+    "workflow_conclusion": "success",
+    "bridge_version": "3.3.17",
+    "products": 20,
+    "phase9_card_exactly_once": "20/20",
+    "new_heading": "20/20",
+    "identity_check_guidance": "20/20",
+    "evidence_capture_guidance": "20/20",
+    "hold_install_use_guidance": "20/20",
+    "returns_link": "20/20",
+    "authenticity_link": "20/20",
+    "no_fixed_promise": "20/20",
+    "policy_disclaimer": "20/20",
+    "support_evidence_ready": "20/20",
+    "phase8_preserved": "20/20",
+    "phase7_preserved": "20/20",
+    "phase6_expected_preserved": "15/15"
+  },
+  "cache": {
+    "request_commit": "04309d0ab6e1dc3da1a2bdf030d2be1545969603",
+    "workflow_run_id": 36790170876,
+    "workflow_conclusion": "success",
+    "purged": true,
+    "actions": [
+      "litespeed_purge_all",
+      "wp_cache_flush"
+    ]
+  },
+  "audit_v2": {
+    "workflow_file": ".github/workflows/k20-seogod2-phase9-purchase-risk-audit.yml",
+    "workflow_upgrade_commits": [
+      "57bfd45a5fd91305268858f587d6401ae0ab4eb8",
+      "1508de8c4790671788da9bdbcc6be6c995833176",
+      "9ec4e6f205b3226b0cc73baf732d2896e9dcd5c0",
+      "3c973b39beb31abe8ace88e7fa2c17eac7b0ae69"
+    ],
+    "first_expanded_audit": {
+      "trigger_commit": "6cc4c48adfb60d4725b7a38b657f358483edd4c3",
+      "workflow_run_id": 36790213714,
+      "conclusion": "failure",
+      "reason": "HTML comments are not a reliable public-render marker source; all visible/REST checks passed except public marker count."
+    },
+    "corrected_marker_source": "REST short_description",
+    "pass_rerun": {
+      "trigger_commit": "a0b6f5eb445105e3f7368a25e9a41a0d21f4a8af",
+      "workflow_run_id": 36790538998,
+      "conclusion": "success",
+      "evidence_commit": "f96d351766d813df207767299fff3752b0fd3f06"
+    },
+    "sanitizer_verify": {
+      "trigger_commit": "d8d95abc35d9c4421011e7496b87fa9d568e8b53",
+      "workflow_run_id": 36790812412,
+      "conclusion": "success",
+      "final_evidence_commit": "f58c5c4469e59bf2cb8b9850985e836446460533",
+      "result_file": "seo-god2/phase9-public-purchase-risk-audit-20261001.json",
+      "status": "PASS",
+      "metrics": {
+        "public_non_200": 0,
+        "redirected_away": 0,
+        "phase9_card_missing": 0,
+        "phase9_card_not_exactly_once": 0,
+        "phase9_marker_not_exactly_once": 0,
+        "phase9_heading_missing": 0,
+        "identity_check_guidance_missing": 0,
+        "evidence_capture_guidance_missing": 0,
+        "hold_install_use_guidance_missing": 0,
+        "policy_disclaimer_missing": 0,
+        "support_evidence_ready_missing": 0,
+        "hidden_artifacts": 0,
+        "returns_link_missing": 0,
+        "authenticity_link_missing": 0,
+        "no_fixed_promise_missing": 0,
+        "invented_return_window": 0,
+        "invented_refund_timing": 0,
+        "unconditional_claims": 0,
+        "phase8_trust_missing": 0,
+        "phase7_shipping_missing": 0,
+        "phase6_basket_missing": 0,
+        "tier_a_products": 20,
+        "returns_policy_page_ok": true,
+        "authenticity_policy_page_ok": true
+      }
+    }
+  },
+  "sanitization": {
+    "artifact_type": "WooCommerce product excerpt / short description HTML",
+    "field": "post_excerpt",
+    "publication_path": "Bridge gateway content sanitizer",
+    "hidden_artifact_verification": "PASS 20/20",
+    "suspicious_classes_checked": [
+      "U+180E",
+      "U+200B",
+      "U+200D",
+      "U+2060",
+      "U+FEFF",
+      "U+202A..U+202E",
+      "U+2066..U+2069",
+      "U+E0000..U+E007F"
+    ],
+    "persian_zwnj_u200c": "allowed",
+    "detector_evasion_claim": false
+  },
+  "guardrails": {
+    "price_fields_written": 0,
+    "stock_fields_written": 0,
+    "payment_settings_written": 0,
+    "coupons_or_discounts_written": 0,
+    "users_roles_credentials_written": 0,
+    "invented_return_deadlines_added": 0,
+    "invented_refund_timing_added": 0,
+    "invented_refund_amount_added": 0,
+    "unconditional_guarantee_claims_added": 0,
+    "sku_specific_warranty_promises_added": 0
+  },
+  "acceptance": "PASS",
+  "next_phase": 10
+}
