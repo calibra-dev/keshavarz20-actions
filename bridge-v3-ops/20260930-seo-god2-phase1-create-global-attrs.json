@@ -1,0 +1,104 @@
+{
+  "action": "batch",
+  "request_id": "seo-god2-phase1-create-global-attrs-20260930",
+  "payload": {
+    "items": [
+      {
+        "action": "rest.proxy",
+        "method": "POST",
+        "path": "/wc/v3/products/attributes",
+        "payload": {
+          "name": "نوع اتصال",
+          "slug": "connection-type",
+          "type": "select",
+          "order_by": "name",
+          "has_archives": false
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "POST",
+        "path": "/wc/v3/products/attributes",
+        "payload": {
+          "name": "نوع محصول",
+          "slug": "product-type",
+          "type": "select",
+          "order_by": "name",
+          "has_archives": false
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "POST",
+        "path": "/wc/v3/products/attributes",
+        "payload": {
+          "name": "طول",
+          "slug": "length",
+          "type": "select",
+          "order_by": "name",
+          "has_archives": false
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "POST",
+        "path": "/wc/v3/products/attributes",
+        "payload": {
+          "name": "ظرفیت",
+          "slug": "capacity",
+          "type": "select",
+          "order_by": "name",
+          "has_archives": false
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "POST",
+        "path": "/wc/v3/products/attributes",
+        "payload": {
+          "name": "فاصله قطره‌چکان",
+          "slug": "emitter-spacing",
+          "type": "select",
+          "order_by": "name",
+          "has_archives": false
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "POST",
+        "path": "/wc/v3/products/attributes",
+        "payload": {
+          "name": "نوع آبیاری",
+          "slug": "irrigation-type",
+          "type": "select",
+          "order_by": "name",
+          "has_archives": false
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "POST",
+        "path": "/wc/v3/products/attributes",
+        "payload": {
+          "name": "تعداد لایه",
+          "slug": "layers",
+          "type": "select",
+          "order_by": "name",
+          "has_archives": false
+        }
+      },
+      {
+        "action": "rest.proxy",
+        "method": "POST",
+        "path": "/wc/v3/products/attributes",
+        "payload": {
+          "name": "تقویت ساختاری",
+          "slug": "reinforcement",
+          "type": "select",
+          "order_by": "name",
+          "has_archives": false
+        }
+      }
+    ]
+  }
+}
