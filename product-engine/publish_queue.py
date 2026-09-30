@@ -114,8 +114,14 @@ def run(queue: dict[str,Any], queue_path: str, validate_only: bool=False) -> dic
 
     expected_modified=str(queue.get("expected_date_modified_gmt") or "")
     actual_modified=str(before.get("date_modified_gmt") or "")
-    if expected_modified and expected_modified!=actual_modified:
+    if (not validate_only) and expected_modified and expected_modified!=actual_modified:
         raise QueueError(f"stale queue: expected date_modified_gmt {expected_modified}, got {actual_modified}")
+    if validate_only and expected_modified and expected_modified!=actual_modified:
+        result["stale_queue_observed"]={
+            "expected_date_modified_gmt":expected_modified,
+            "actual_date_modified_gmt":actual_modified,
+            "write_blocked":True
+        }
 
     errors=validate_candidate(candidate,before,source_urls,state.get("sentence_bank") or {})
     qscore,qdetail=quality_score(candidate,before,source_urls,errors)
