@@ -1,0 +1,97 @@
+{
+  "schema_version": "seo-god2-phase5-external-research-refresh-v1",
+  "generated_at_utc": "2026-09-30T09:04:00Z",
+  "policy": "Only exact-SKU or exact-interface evidence can promote a positive compatibility edge.",
+  "researched_edges": [
+    {
+      "products": [
+        135353,
+        135235
+      ],
+      "current_status": "NEEDS_REVIEW",
+      "current_external_findings": [
+        {
+          "source_url": "https://www.ekad-co.ir/%D8%B7%D8%B1%D8%A7%D8%AD%DB%8C-%D9%88-%D9%BE%DB%8C%D8%A7%D8%AF%D9%87-%D8%B3%D8%A7%D8%B2%DB%8C-%D9%88%D8%A8-%D8%B3%D8%A7%DB%8C%D8%AA-%D8%B4%D8%B1%DA%A9%D8%AA-%D9%81%D8%B1%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C/",
+          "finding": "Current indexed material lists Farat Polymer product families including 16-to-tape and tape-to-tape components, but does not expose exact SKU dimensions for the Keshavarz20 connector."
+        },
+        {
+          "source_url": "https://rodineh.com/product-category/%D9%85%D8%AD%D8%B5%D9%88%D9%84%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%B4%DB%8C%D8%B1-%D8%A2%D9%84%D8%A7%D8%AA/drip-irrigation-valve/",
+          "finding": "Current specialist catalog lists a Farat Polymer layflat-to-tape 16 mm family product, but not a source that binds exact SKU 431210109 to product 135235 tape dimensions."
+        }
+      ],
+      "decision": "NO_PROMOTION",
+      "evidence_needed": [
+        "exact Farat SKU/datasheet",
+        "exact tape manufacturer/model",
+        "hole/drill size",
+        "washer/interface spec"
+      ]
+    },
+    {
+      "products": [
+        135359,
+        135235
+      ],
+      "current_status": "NEEDS_REVIEW",
+      "current_external_findings": [
+        {
+          "source_url": "https://rodineh.com/product-category/%D9%85%D8%AD%D8%B5%D9%88%D9%84%D8%A7%D8%AA-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B2%DB%8C/%D8%B4%DB%8C%D8%B1-%D8%A2%D9%84%D8%A7%D8%AA/drip-irrigation-valve/page/3/",
+          "finding": "Current specialist catalog confirms a Farat Polymer 16-to-tape valve family exists; exact interface dimensions and tape-SKU compatibility are not provided."
+        }
+      ],
+      "decision": "NO_PROMOTION",
+      "evidence_needed": [
+        "exact inlet geometry",
+        "exact tape interface",
+        "operating pressure range"
+      ]
+    },
+    {
+      "products": [
+        135381,
+        135235
+      ],
+      "current_status": "NEEDS_REVIEW",
+      "current_external_findings": [
+        {
+          "source_url": "https://www.ekad-co.ir/%D8%B7%D8%B1%D8%A7%D8%AD%DB%8C-%D9%88-%D9%BE%DB%8C%D8%A7%D8%AF%D9%87-%D8%B3%D8%A7%D8%B2%DB%8C-%D9%88%D8%A8-%D8%B3%D8%A7%DB%8C%D8%AA-%D8%B4%D8%B1%DA%A9%D8%AA-%D9%81%D8%B1%D8%A7%D8%AA-%D9%BE%D9%84%DB%8C/",
+          "finding": "Farat Polymer tape-to-tape connector family is corroborated, but exact fit to product 135235 is not proven."
+        }
+      ],
+      "decision": "NO_PROMOTION",
+      "evidence_needed": [
+        "exact connector locking dimension",
+        "exact tape wall/model identity"
+      ]
+    },
+    {
+      "product_id": 140454,
+      "current_status": "SOURCE_BOUND_GAP",
+      "search_result": "No reliable current exact Zalal Roud source was found for SKU 100020019 that states flow curve and inlet/interface.",
+      "decision": "KEEP_GUARDED",
+      "evidence_needed": [
+        "exact manufacturer datasheet or package label"
+      ]
+    },
+    {
+      "products": [
+        140407,
+        135667
+      ],
+      "current_status": "NEEDS_REVIEW",
+      "search_result": "No current exact source was found that proves tank-side thread gender/standard and direct mating to the 1-inch female valve.",
+      "decision": "KEEP_GUARDED",
+      "evidence_needed": [
+        "tank outlet thread standard/gender",
+        "valve thread standard",
+        "required nipple/adapter if any"
+      ]
+    }
+  ],
+  "summary": {
+    "edges_promoted_to_verified": 0,
+    "edges_demoted_to_incompatible": 0,
+    "needs_review_preserved": 8,
+    "unsupported_promotions": 0
+  }
+}
