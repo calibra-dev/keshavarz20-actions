@@ -7,7 +7,7 @@ function Fail([string]$Message){ throw $Message }
 if(-not(Test-Path -LiteralPath $RequestPath)){ Fail "Request file not found: $RequestPath" }
 
 $siteActions=@(
-  'system.info','rest.proxy','api.contract',
+  'system.info','rest.proxy','api.contract','commerce.catalog_order.read','commerce.catalog_order.update',
   'seo.read','seo.update',
   'content.search','content.patch','content.block.inspect','content.block.patch',
   'elementor.inspect','elementor.search','elementor.edit','elementor.structure',
