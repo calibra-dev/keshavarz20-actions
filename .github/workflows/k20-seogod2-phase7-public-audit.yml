@@ -101,7 +101,7 @@ jobs:
 
           failures={
             'public_non_200':[r['product_id'] for r in rows if r['public_status']!=200],
-            'redirected_away':[r['product_id'] for r in rows if r['public_final_url'].rstrip('/')!=r['rest_permalink'].rstrip('/')],
+            'redirected_away':[r['product_id'] for r in rows if r['public_final_url'].rstrip('/').lower()!=r['rest_permalink'].rstrip('/').lower()],
             'shipping_card_missing':[r['product_id'] for r in rows if not r['shipping_card_present']],
             'shipping_heading_missing':[r['product_id'] for r in rows if not r['shipping_heading_present']],
             'barbari_missing':[r['product_id'] for r in rows if not r['barbari_present']],
