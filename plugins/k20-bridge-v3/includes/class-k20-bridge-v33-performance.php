@@ -14,6 +14,7 @@ final class K20_Bridge_V33_Performance {
     private const LCP_768_ATTACHMENT_ID = 146338;
     private const ARTICLE_POST_ID = 146227;
     private const ARTICLE_LCP_ATTACHMENT_ID = 146240;
+    private const ARTICLE_LCP_672_ATTACHMENT_ID = 146385;
     private const ARTICLE_LCP_768_ATTACHMENT_ID = 146383;
 
     public static function boot(): void {
@@ -88,28 +89,48 @@ final class K20_Bridge_V33_Performance {
         }
 
         if (self::is_article_target() && (int) $attachment_id === self::ARTICLE_LCP_ATTACHMENT_ID && (int) ($size_array[0] ?? 0) >= 768) {
+            $candidate_672 = wp_get_attachment_image_src(self::ARTICLE_LCP_672_ATTACHMENT_ID, 'full');
+            if (is_array($candidate_672) && !empty($candidate_672[0]) && (int) ($candidate_672[1] ?? 0) === 672) {
+                $sources[672] = [
+                    'url' => esc_url_raw((string) $candidate_672[0]),
+                    'descriptor' => 'w',
+                    'value' => 672,
+                ];
+            }
+
             $candidate_768 = wp_get_attachment_image_src(self::ARTICLE_LCP_768_ATTACHMENT_ID, 'full');
             if (is_array($candidate_768) && !empty($candidate_768[0]) && (int) ($candidate_768[1] ?? 0) === 768) {
-                // Replace only this article's 768w candidate. All other responsive
+                // Replace only this article's optimized responsive candidates. All other
                 // sources and the featured-image binding remain on attachment 146240.
                 $sources[768] = [
                     'url' => esc_url_raw((string) $candidate_768[0]),
                     'descriptor' => 'w',
                     'value' => 768,
                 ];
-                ksort($sources, SORT_NUMERIC);
             }
+
+            ksort($sources, SORT_NUMERIC);
         }
 
         return $sources;
     }
     public static function lcp_sizes($sizes, $size, $image_src, $image_meta, $attachment_id) {
-        if (!self::is_calculator_target() || (int) $attachment_id !== self::LCP_ATTACHMENT_ID) {
-            return $sizes;
+        $requested_width = is_array($size) ? (int) ($size[0] ?? 0) : 0;
+
+        if (self::is_calculator_target() && (int) $attachment_id === self::LCP_ATTACHMENT_ID) {
+            // Actual mobile content width is viewport minus the 20px gutters on each side.
+            return '(max-width: 767px) calc(100vw - 40px), (max-width: 1200px) 100vw, 1200px';
         }
 
-        // Actual mobile content width is viewport minus the 20px gutters on each side.
-        return '(max-width: 767px) calc(100vw - 40px), (max-width: 1200px) 100vw, 1200px';
+        if (self::is_article_target()
+            && (int) $attachment_id === self::ARTICLE_LCP_ATTACHMENT_ID
+            && $requested_width >= 768) {
+            // Scope the accurate mobile width only to the article hero render, not the
+            // 64px recent-post thumbnail that reuses the same featured attachment.
+            return '(max-width: 767px) calc(100vw - 40px), (max-width: 1200px) 100vw, 1200px';
+        }
+
+        return $sizes;
     }
 
     public static function script_priority(string $tag, string $handle, string $src): string {
