@@ -108,7 +108,7 @@ final class K20_Bridge_V3 {
 
     private static function actions(): array {
         return [
-            'system.info','rest.proxy','api.contract','commerce.catalog_order.read','commerce.catalog_order.update',
+            'system.info','rest.proxy','api.contract','commerce.catalog_order.read','commerce.catalog_order.update','commerce.shop.diagnose',
             'seo.read','seo.update',
             'content.search','content.patch','content.block.inspect','content.block.patch',
             'elementor.inspect','elementor.search','elementor.edit','elementor.structure',
@@ -184,6 +184,7 @@ final class K20_Bridge_V3 {
             case 'rest.proxy': return self::rest_proxy($body,$dry);
             case 'commerce.catalog_order.read': return self::catalog_order_read();
             case 'commerce.catalog_order.update': return self::catalog_order_update($body,$dry);
+            case 'commerce.shop.diagnose': return self::shop_diagnose();
 
             case 'seo.read': return self::seo_read(absint($body['id']??0));
             case 'seo.update': return self::seo_update(absint($body['id']??0),(array)($body['payload']??[]),$dry);
@@ -260,6 +261,63 @@ final class K20_Bridge_V3 {
                 'chat-generated images can be relayed without public media URLs',
                 'snippet code writes are draft-only and sensitive code reads use the secure GitHub relay'
             ]
+        ];
+    }
+
+    private static function shop_diagnose() {
+        $option=(string)get_option('woocommerce_default_catalog_orderby','menu_order');
+        $filtered=(string)apply_filters('woocommerce_default_catalog_orderby',$option);
+        $callbacks=[];
+        global $wp_filter;
+        $hook=$wp_filter['woocommerce_default_catalog_orderby']??null;
+        if ($hook instanceof WP_Hook) {
+            foreach ($hook->callbacks as $priority=>$entries) {
+                foreach ($entries as $entry) {
+                    $fn=$entry['function']??null; $label='unknown';
+                    if (is_string($fn)) $label=$fn;
+                    elseif (is_array($fn) && count($fn)>=2) {
+                        $owner=is_object($fn[0])?get_class($fn[0]):(string)$fn[0];
+                        $label=$owner.'::'.(string)$fn[1];
+                    } elseif ($fn instanceof Closure) $label='Closure';
+                    elseif (is_object($fn)) $label=get_class($fn);
+                    $callbacks[]=['priority'=>(int)$priority,'callback'=>$label];
+                }
+            }
+        }
+        $shop=function_exists('wc_get_page_permalink')?wc_get_page_permalink('shop'):home_url('/shop/');
+        if (!$shop) $shop=home_url('/shop/');
+        $url=add_query_arg('_k20_diag',gmdate('YmdHis'),$shop);
+        $res=wp_remote_get($url,['timeout'=>20,'redirection'=>3,'user-agent'=>'K20-Bridge-Shop-Diagnostic/3.3.5']);
+        if (is_wp_error($res)) return $res;
+        $status=(int)wp_remote_retrieve_response_code($res);
+        $body=(string)wp_remote_retrieve_body($res);
+        $selected=null;
+        if (preg_match('/<select[^>]*name=["\\\']orderby["\\\'][^>]*>(.*?)<\\/select>/is',$body,$m)) {
+            if (preg_match('/<option[^>]*value=["\\\']([^"\\\']+)["\\\'][^>]*selected[^>]*>/is',$m[1],$sm)) $selected=html_entity_decode($sm[1],ENT_QUOTES|ENT_HTML5,'UTF-8');
+            elseif (preg_match('/<option[^>]*selected[^>]*value=["\\\']([^"\\\']+)["\\\']/is',$m[1],$sm)) $selected=html_entity_decode($sm[1],ENT_QUOTES|ENT_HTML5,'UTF-8');
+        }
+        if ($selected===null && preg_match('/<input[^>]*name=["\\\']orderby["\\\'][^>]*value=["\\\']([^"\\\']+)["\\\']/is',$body,$sm)) {
+            $selected=html_entity_decode($sm[1],ENT_QUOTES|ENT_HTML5,'UTF-8');
+        }
+        $product_ids=[];
+        if (preg_match_all('/\\bpost-(\\d+)\\b[^"\\\']*\\bproduct\\b/i',$body,$pm)) $product_ids=array_slice(array_values(array_unique(array_map('intval',$pm[1]))),0,12);
+        $titles=[];
+        if (preg_match_all('/<h[2-3][^>]*woocommerce-loop-product__title[^>]*>(.*?)<\\/h[2-3]>/is',$body,$tm)) {
+            foreach (array_slice($tm[1],0,12) as $raw) $titles[]=trim(wp_strip_all_tags(html_entity_decode($raw,ENT_QUOTES|ENT_HTML5,'UTF-8')));
+        }
+        return [
+            'shop_url'=>$shop,
+            'http_status'=>$status,
+            'body_sha256'=>hash('sha256',$body),
+            'option_value'=>$option,
+            'filtered_value'=>$filtered,
+            'selected_orderby'=>$selected,
+            'callback_count'=>count($callbacks),
+            'callbacks'=>$callbacks,
+            'first_product_ids'=>$product_ids,
+            'first_product_titles'=>$titles,
+            'contains_price_desc'=>str_contains($body,'price-desc'),
+            'contains_popularity'=>str_contains($body,'popularity')
         ];
     }
 
