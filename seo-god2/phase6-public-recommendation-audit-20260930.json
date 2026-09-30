@@ -1,18 +1,20 @@
 {
   "schema_version": "seo-god2-phase6-public-recommendation-audit-v1",
-  "generated_at_utc": "2026-09-30T09:38:00.993056+00:00",
+  "generated_at_utc": "2026-09-30T09:41:48.059709+00:00",
   "scope": "All 20 Tier A products; read-only WooCommerce fields plus public rendered HTML",
   "metrics": {
     "tier_a_products": 20,
     "explicit_recommendation_fields_nonempty": 0,
-    "public_recommendation_sections_present": 20,
-    "physical_marker_missing": 15,
+    "public_recommendation_sections_present_raw": 20,
+    "public_recommendation_sections_unsuppressed": 20,
+    "phase6_related_guard_missing": 20,
+    "physical_heading_missing": 0,
     "fertilizer_marker_unexpected": 0,
     "public_non_200": 0
   },
   "failures": {
     "explicit_recommendation_fields_nonempty_product_ids": [],
-    "public_recommendation_section_product_ids": [
+    "public_recommendation_section_product_ids_raw": [
       140856,
       140718,
       135339,
@@ -34,10 +36,15 @@
       135359,
       135667
     ],
-    "physical_marker_missing_product_ids": [
+    "public_recommendation_unsuppressed_product_ids": [
+      140856,
+      140718,
       135339,
       135349,
+      140853,
       140406,
+      140760,
+      140816,
       140407,
       135337,
       135353,
@@ -51,6 +58,29 @@
       135359,
       135667
     ],
+    "phase6_related_guard_missing_product_ids": [
+      140856,
+      140718,
+      135339,
+      135349,
+      140853,
+      140406,
+      140760,
+      140816,
+      140407,
+      135337,
+      135353,
+      140454,
+      135381,
+      135361,
+      140674,
+      135235,
+      140014,
+      135309,
+      135359,
+      135667
+    ],
+    "physical_heading_missing_product_ids": [],
     "fertilizer_marker_unexpected_product_ids": [],
     "public_non_200_product_ids": []
   },
@@ -72,6 +102,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": false,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -93,6 +124,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": false,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -114,6 +146,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": true,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -135,6 +168,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": true,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -156,6 +190,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": false,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -177,6 +212,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": true,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -198,6 +234,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": false,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -219,6 +256,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": false,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -240,6 +278,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": true,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -261,6 +300,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": true,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -282,6 +322,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": true,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -303,6 +344,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": true,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -324,6 +366,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": true,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -345,6 +388,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": true,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -366,6 +410,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": true,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -387,6 +432,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": true,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -408,6 +454,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": true,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -429,6 +476,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": true,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -450,6 +498,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": true,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
@@ -471,6 +520,7 @@
       "public_http_status": 200,
       "public_phase6_marker_present": false,
       "public_phase6_heading_present": true,
+      "public_related_guard_present": false,
       "public_related_section_present": true,
       "public_upsells_section_present": false,
       "public_cross_sells_section_present": false
