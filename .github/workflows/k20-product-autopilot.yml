@@ -71,6 +71,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          python -m py_compile product-engine/core.py
+          python -m py_compile product-engine/ai_runtime.py
+          python -m py_compile product-engine/qa.py
+          python -m py_compile product-engine/perf.py
           python -m py_compile product-engine/engine.py
           python -m py_compile k20_sanitizer.py
           python - <<'PY'
@@ -88,12 +92,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for name in WP_BASE_URL WP_USERNAME WP_APP_PASSWORD OPENAI_API_KEY; do
+          for name in WP_BASE_URL WP_USERNAME WP_APP_PASSWORD; do
             if [ -z "${!name:-}" ]; then
               echo "::error title=Missing repository secret::$name is empty or unavailable"
               exit 2
             fi
           done
+          if [ -z "${OPENAI_API_KEY:-}" ]; then
+            echo "::warning title=Product model access::OPENAI_API_KEY is not configured; engine will fail-closed and pause before writes."
+          fi
 
       - name: Resolve action
         id: action
