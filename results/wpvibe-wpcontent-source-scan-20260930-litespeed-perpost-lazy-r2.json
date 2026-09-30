@@ -1,0 +1,77 @@
+{
+  "mode": "read-only",
+  "files": [
+    {
+      "path": "plugins/litespeed-cache/src/metabox.cls.php",
+      "line_count": 214,
+      "matches": [
+        {
+          "pattern": "lazy_img_excludes",
+          "line": 192,
+          "snippet": "public function lazy_img_excludes( $exclude_list ) {"
+        },
+        {
+          "pattern": "get_post_meta",
+          "line": 144,
+          "snippet": "$val = $post_id ? get_post_meta( $post_id, $conf, true ) : null;"
+        },
+        {
+          "pattern": "update_post_meta",
+          "line": 178,
+          "snippet": "update_post_meta( $post_id, $name, $val );"
+        }
+      ]
+    },
+    {
+      "path": "plugins/litespeed-cache/src/media.cls.php",
+      "line_count": 1518,
+      "matches": [
+        {
+          "pattern": "lazy_img_excludes",
+          "line": 845,
+          "snippet": "add_filter( 'litespeed_media_lazy_img_excludes', [ $this->cls( 'Metabox' ), 'lazy_img_excludes' ] );"
+        },
+        {
+          "pattern": "lazy_img_excludes",
+          "line": 999,
+          "snippet": "$excludes = apply_filters( 'litespeed_media_lazy_img_excludes', $this->conf( Base::O_MEDIA_LAZY_EXC ) );"
+        },
+        {
+          "pattern": "get_post_meta",
+          "line": 512,
+          "snippet": "$size_meta = get_post_meta( $post_id, Img_Optm::DB_SIZE, true );"
+        },
+        {
+          "pattern": "update_post_meta",
+          "line": 182,
+          "snippet": "update_post_meta( $attachment_id, '_wp_attached_file', $metadata['file'] );"
+        },
+        {
+          "pattern": "update_post_meta",
+          "line": 281,
+          "snippet": "update_post_meta( $attachment_id, '_wp_attached_file', $meta_value['file'] );"
+        },
+        {
+          "pattern": "litespeed_media_lazy_img_excludes",
+          "line": 845,
+          "snippet": "add_filter( 'litespeed_media_lazy_img_excludes', [ $this->cls( 'Metabox' ), 'lazy_img_excludes' ] );"
+        },
+        {
+          "pattern": "litespeed_media_lazy_img_excludes",
+          "line": 999,
+          "snippet": "$excludes = apply_filters( 'litespeed_media_lazy_img_excludes', $this->conf( Base::O_MEDIA_LAZY_EXC ) );"
+        },
+        {
+          "pattern": "data-no-lazy",
+          "line": 1054,
+          "snippet": "! empty( $attrs['data-no-lazy'] ) ||"
+        },
+        {
+          "pattern": "data-no-lazy",
+          "line": 1208,
+          "snippet": "if ( ! empty( $attrs['data-no-lazy'] ) || ! empty( $attrs['data-skip-lazy'] ) || ! empty( $attrs['data-lazyloaded'] ) || ! empty( $attrs['data-src'] ) ) {"
+        }
+      ]
+    }
+  ]
+}
