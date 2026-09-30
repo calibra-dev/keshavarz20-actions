@@ -32,6 +32,51 @@ def around(text: str, pattern: str, limit: int = 8, radius: int = 320) -> list[s
             break
     return out
 
+
+def extract_related_widget(html: str) -> dict:
+    opener = re.search(
+        r'<div\\b[^>]*class=["\\'][^"\\']*\\bwidget-related-products\\b[^"\\']*["\\'][^>]*>',
+        html,
+        re.I | re.S,
+    )
+    if not opener:
+        return {"present": False, "bytes": 0, "slider_items": 0, "product_links": [], "text_sample": ""}
+    token_re = re.compile(r'<div\\b[^>]*>|</div\\s*>', re.I | re.S)
+    depth = 0
+    end = None
+    for m in token_re.finditer(html, opener.start()):
+        tok = m.group(0).lower()
+        if tok.startswith("<div"):
+            depth += 1
+        else:
+            depth -= 1
+            if depth == 0:
+                end = m.end()
+                break
+    if end is None:
+        block = html[opener.start():]
+    else:
+        block = html[opener.start():end]
+    links = []
+    for m in re.finditer(r'href=["\\']([^"\\']+/product/[^"\\']*)["\\']', block, re.I):
+        url = m.group(1)
+        if url not in links:
+            links.append(url)
+        if len(links) >= 20:
+            break
+    text_only = re.sub(r'<script\\b[^>]*>[\\s\\S]*?</script>', ' ', block, flags=re.I)
+    text_only = re.sub(r'<style\\b[^>]*>[\\s\\S]*?</style>', ' ', text_only, flags=re.I)
+    text_only = re.sub(r'<[^>]+>', ' ', text_only)
+    text_only = re.sub(r'\\s+', ' ', text_only).strip()
+    return {
+        "present": True,
+        "bytes": len(block.encode("utf-8")),
+        "slider_items": len(re.findall(r'class=["\\'][^"\\']*\\bslider-item\\b', block, re.I)),
+        "product_links": links,
+        "product_link_count": len(links),
+        "text_sample": text_only[:1200],
+    }
+
 def main() -> None:
     base = os.environ["WP_BASE_URL"].rstrip("/")
     user = os.environ["WP_USERNAME"]
@@ -95,6 +140,7 @@ def main() -> None:
             "basket_heading_present": "چک‌لیست تکمیل خرید" in html,
             "matches": {key: len(list(re.finditer(pat, html, re.I | re.S))) for key, pat in patterns.items()},
             "snippets": {key: around(html, pat) for key, pat in patterns.items() if key not in ("guard_marker","basket_heading")},
+            "related_widget": extract_related_widget(html),
         }
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
