@@ -23,34 +23,42 @@ final class K20_Bridge_V33_Performance {
         add_action('wp_enqueue_scripts', [__CLASS__, 'dequeue_irrelevant_assets'], 999);
     }
 
-    private static function is_target(): bool {
+    private static function is_calculator_target(): bool {
         return !is_admin()
             && is_singular('post')
             && (int) get_queried_object_id() === self::TARGET_POST_ID;
     }
 
+    private static function is_article_target(): bool {
+        return !is_admin()
+            && is_singular('post')
+            && (int) get_queried_object_id() === self::ARTICLE_POST_ID;
+    }
+
     public static function lcp_attributes(array $attr, $attachment, $size): array {
         $attachment_id = is_object($attachment) ? (int) ($attachment->ID ?? 0) : 0;
-        if (!self::is_target() || $attachment_id !== self::LCP_ATTACHMENT_ID) {
+        $is_calculator_lcp = self::is_calculator_target() && $attachment_id === self::LCP_ATTACHMENT_ID;
+        $is_article_lcp = self::is_article_target() && $attachment_id === self::ARTICLE_LCP_ATTACHMENT_ID;
+        if (!$is_calculator_lcp && !$is_article_lcp) {
             return $attr;
         }
 
-        // LiteSpeed's documented developer-level lazy-load exclusion.
-        // Keep the true LCP image discoverable and immediately fetchable.
+        // Keep only the verified LCP image discoverable and immediately fetchable.
         $attr['data-no-lazy'] = '1';
         $attr['loading'] = 'eager';
         $attr['fetchpriority'] = 'high';
         $attr['decoding'] = 'async';
+        $class_name = $is_article_lcp ? 'k20-article-lcp' : 'k20-calculator-lcp';
         $classes = preg_split('/\s+/', trim((string) ($attr['class'] ?? ''))) ?: [];
-        if (!in_array('k20-calculator-lcp', $classes, true)) {
-            $classes[] = 'k20-calculator-lcp';
+        if (!in_array($class_name, $classes, true)) {
+            $classes[] = $class_name;
         }
         $attr['class'] = trim(implode(' ', array_filter($classes)));
         return $attr;
     }
 
     public static function lcp_srcset($sources, $size_array, $image_src, $image_meta, $attachment_id) {
-        if (!self::is_target() || (int) $attachment_id !== self::LCP_ATTACHMENT_ID || !is_array($sources)) {
+        if (!self::is_calculator_target() || (int) $attachment_id !== self::LCP_ATTACHMENT_ID || !is_array($sources)) {
             return $sources;
         }
 
@@ -80,7 +88,7 @@ final class K20_Bridge_V33_Performance {
     }
 
     public static function lcp_sizes($sizes, $size, $image_src, $image_meta, $attachment_id) {
-        if (!self::is_target() || (int) $attachment_id !== self::LCP_ATTACHMENT_ID) {
+        if (!self::is_calculator_target() || (int) $attachment_id !== self::LCP_ATTACHMENT_ID) {
             return $sizes;
         }
 
@@ -89,7 +97,7 @@ final class K20_Bridge_V33_Performance {
     }
 
     public static function script_priority(string $tag, string $handle, string $src): string {
-        if (!self::is_target() || $handle !== 'google-tag-manager') {
+        if (!self::is_calculator_target() || $handle !== 'google-tag-manager') {
             return $tag;
         }
 
@@ -100,7 +108,7 @@ final class K20_Bridge_V33_Performance {
     }
 
     public static function dequeue_irrelevant_assets(): void {
-        if (!self::is_target()) return;
+        if (!self::is_calculator_target()) return;
 
         // Front-end payment gateway help-link CSS is not used by the calculator.
         wp_dequeue_style('help_style');
