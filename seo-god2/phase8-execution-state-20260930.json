@@ -1,0 +1,104 @@
+{
+  "schema_version": "seo-god2-phase8-execution-state-v1",
+  "project": "keshavarz20.com / SEO GOD2",
+  "phase": 8,
+  "name": "Trust & Social Proof",
+  "status": "BLOCKED_EXTERNAL_CONNECTIVITY_NOT_CLOSED",
+  "closed": false,
+  "completed_repo_work": {
+    "plan": {
+      "path": "seo-god2/phase8-trust-social-proof-plan-20260930.json",
+      "commit": "b959f7e8821201cffe9fd1a8a51cb0469a5a7c28"
+    },
+    "trust_registry": {
+      "path": "seo-god2/phase8-trust-registry-20260930.json",
+      "commit": "265a5ab182c1cb564edddebe23e8b10b4da2cc62"
+    },
+    "public_acceptance_workflow": {
+      "path": ".github/workflows/k20-seogod2-phase8-public-trust-audit.yml",
+      "commit": "f5b375d87ade3bf64457352f6f6dd5bca71bdb79"
+    },
+    "bounded_write_request": {
+      "path": "bridge-v3-ops/20260930-seo-god2-phase8-trust-proof-apply.json",
+      "commit": "7894f0e667f66d925b90b7ec8e32e97eceabb60d",
+      "workflow_run_id": 36764393159,
+      "workflow_conclusion": "failure_before_site_write",
+      "result_path": "bridge-v3-results/20260930-seo-god2-phase8-trust-proof-apply.json"
+    }
+  },
+  "trust_policy": {
+    "fake_reviews": false,
+    "fake_ratings": false,
+    "fake_testimonials": false,
+    "fake_customer_projects": false,
+    "fake_manufacturer_confirmation": false,
+    "fabricated_reviewer_identity": false,
+    "ugc_policy_page_id": 145288,
+    "ugc_policy_slug": "reviews-qa-ugc-policy",
+    "last_verified_reviews_audit": {
+      "generated_at_utc": "2026-09-28T10:31:00.213455Z",
+      "approved": 0,
+      "verified": 0,
+      "products_with_verified_reviews": 0,
+      "source": "phase2-results/verified-reviews-audit.json"
+    }
+  },
+  "connectivity_evidence": [
+    {
+      "run_id": 36762398523,
+      "workflow": "Keshavarz20 Question Scheduler",
+      "conclusion": "failure",
+      "evidence": "independent workflow timed out connecting to keshavarz20.com:443"
+    },
+    {
+      "run_id": 36763831449,
+      "workflow": "Keshavarz20 Bridge v3 Gateway",
+      "conclusion": "failure",
+      "evidence": "Phase 8 products A baseline timed out"
+    },
+    {
+      "run_id": 36763836446,
+      "workflow": "Keshavarz20 Bridge v3 Gateway",
+      "conclusion": "failure",
+      "evidence": "Phase 8 products B baseline timed out"
+    },
+    {
+      "run_id": 36763842762,
+      "workflow": "Keshavarz20 Bridge v3 Gateway",
+      "conclusion": "failure",
+      "evidence": "Phase 8 UGC policy live read timed out"
+    },
+    {
+      "run_id": 36764604260,
+      "workflow": "K20 Verified Reviews Audit",
+      "conclusion": "failure",
+      "evidence": "Direct WooCommerce reviews read timed out after 120s"
+    },
+    {
+      "run_id": 36764924783,
+      "workflow": "Keshavarz20 Bridge v3 Gateway",
+      "conclusion": "failure",
+      "evidence": "Final api.contract connectivity check timed out"
+    }
+  ],
+  "confirmed_no_partial_site_write": true,
+  "next_exact_steps": [
+    "Run lightweight api.contract connectivity check.",
+    "If healthy, rerun Phase 8 bounded write workflow run 36764393159 or issue an equivalent unique Bridge request.",
+    "If approval_required, execute the exact frozen approval without payload changes.",
+    "Read back all 20 Tier A short_description fields and verify the k20-phase8-trust-proof marker exactly once.",
+    "Refresh verified reviews audit read-only.",
+    "Purge cache.",
+    "Trigger seo-god2-phase8-public-audit-ops and require PASS.",
+    "Create seo-god2/phase8-closure-20260930.json only after public acceptance PASS."
+  ],
+  "hard_guards_preserved": {
+    "price_written": false,
+    "regular_price_written": false,
+    "sale_price_written": false,
+    "stock_written": false,
+    "payment_settings_written": false,
+    "phase6_recommendation_guards_preserved_in_request": true,
+    "phase7_shipping_content_preserved_in_source_payload": true
+  }
+}
