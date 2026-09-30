@@ -1,0 +1,85 @@
+name: SEO God2 Phase 6 Redirect Diagnostic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'seo-god2-phase6-redirect-diag-ops/*.json'
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check requests
+      - name: Diagnose redirect chain and redirect-capable REST routes
+        shell: python
+        run: |
+          import json, os, pathlib, requests
+          base=os.environ['WP_BASE_URL'].rstrip('/')
+          auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD'])
+          s=requests.Session(); s.auth=auth
+          p=s.get(base+'/wp-json/wc/v3/products/140816',timeout=45)
+          p.raise_for_status()
+          product=p.json()
+          url=product.get('permalink')
+          h=requests.Session()
+          first=h.get(url,allow_redirects=False,timeout=45,headers={'User-Agent':'K20Phase6RedirectDiag/1.0','Cache-Control':'no-cache','Pragma':'no-cache'})
+          followed=h.get(url,allow_redirects=True,timeout=45,headers={'User-Agent':'K20Phase6RedirectDiag/1.0','Cache-Control':'no-cache','Pragma':'no-cache'})
+          idx=s.get(base+'/wp-json/',timeout=45); idx.raise_for_status()
+          routes=idx.json().get('routes') or {}
+          redirect_routes={k:{
+            'methods':v.get('methods'),
+            'endpoints':[{'methods':e.get('methods'),'args':sorted((e.get('args') or {}).keys())} for e in (v.get('endpoints') or [])]
+          } for k,v in routes.items() if 'redirect' in k.lower() or 'rankmath' in k.lower() or 'yoast' in k.lower()}
+          hist=[{'status':x.status_code,'url':x.url,'location':x.headers.get('Location'),'server':x.headers.get('Server'),'x_redirect_by':x.headers.get('X-Redirect-By')} for x in followed.history]
+          out={
+            'product_id':140816,
+            'product_name':product.get('name'),
+            'slug':product.get('slug'),
+            'rest_permalink':url,
+            'first_response':{
+              'status':first.status_code,
+              'location':first.headers.get('Location'),
+              'x_redirect_by':first.headers.get('X-Redirect-By'),
+              'server':first.headers.get('Server'),
+              'x_litespeed_cache':first.headers.get('X-LiteSpeed-Cache'),
+              'x_litespeed_cache_control':first.headers.get('X-LiteSpeed-Cache-Control')
+            },
+            'redirect_history':hist,
+            'final_status':followed.status_code,
+            'final_url':followed.url,
+            'redirect_related_routes':redirect_routes
+          }
+          pathlib.Path('seo-god2').mkdir(exist_ok=True)
+          pathlib.Path('seo-god2/phase6-140816-redirect-diagnostic.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps({'first':out['first_response'],'history':hist,'final_url':out['final_url'],'route_count':len(redirect_routes)},ensure_ascii=False))
+      - name: Commit diagnostic
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f seo-god2/phase6-140816-redirect-diagnostic.json
+          git diff --cached --quiet && exit 0
+          git commit -m "seo god2 phase6: record 140816 redirect diagnostic"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
