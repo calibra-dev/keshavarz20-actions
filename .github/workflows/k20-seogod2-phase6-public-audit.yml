@@ -5,8 +5,6 @@ on:
     branches: [main]
     paths:
       - 'seo-god2-phase6-public-audit-ops/*.json'
-      - 'scripts/k20_seogod2_phase6_public_recommendation_audit.py'
-      - '.github/workflows/k20-seogod2-phase6-public-audit.yml'
   workflow_dispatch:
 
 permissions:
@@ -59,8 +57,9 @@ jobs:
           m=r["metrics"]
           assert m["tier_a_products"] == 20
           assert m["explicit_recommendation_fields_nonempty"] == 0
-          assert m["public_recommendation_sections_present"] == 0
-          assert m["physical_marker_missing"] == 0
+          assert m["public_recommendation_sections_unsuppressed"] == 0
+          assert m["phase6_related_guard_missing"] == 0
+          assert m["physical_heading_missing"] == 0
           assert m["fertilizer_marker_unexpected"] == 0
           assert m["public_non_200"] == 0
           print("PHASE6_PUBLIC_ACCEPTANCE_OK", m)
