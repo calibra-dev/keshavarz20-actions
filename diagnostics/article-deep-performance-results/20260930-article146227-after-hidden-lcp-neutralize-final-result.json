@@ -1,0 +1,3532 @@
+{
+  "generated_at": "2026-09-30T10:12:29.623Z",
+  "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+  "lighthouse_version": "13.5.0",
+  "samples": [
+    {
+      "performance": 44,
+      "accessibility": 100,
+      "best_practices": 100,
+      "seo": 100,
+      "fcp_ms": 2951.1389999999997,
+      "lcp_ms": 4901.098,
+      "speed_index_ms": 17004.118124808865,
+      "tbt_ms": 434.5,
+      "cls": 0.25007165854077856,
+      "ttfb_ms": 8892
+    },
+    {
+      "performance": 70,
+      "accessibility": 100,
+      "best_practices": 100,
+      "seo": 100,
+      "fcp_ms": 2955.6310000000003,
+      "lcp_ms": 4864.078,
+      "speed_index_ms": 4499.719279893641,
+      "tbt_ms": 240.5,
+      "cls": 0.005843225976987536,
+      "ttfb_ms": 442
+    },
+    {
+      "performance": 72,
+      "accessibility": 100,
+      "best_practices": 100,
+      "seo": 100,
+      "fcp_ms": 2912.9669999999996,
+      "lcp_ms": 4778.224999999999,
+      "speed_index_ms": 4499.984301177128,
+      "tbt_ms": 190,
+      "cls": 0.005843225976987536,
+      "ttfb_ms": 439
+    }
+  ],
+  "representative_sample": 2,
+  "representative_metrics": {
+    "performance": 70,
+    "accessibility": 100,
+    "best_practices": 100,
+    "seo": 100,
+    "fcp_ms": 2955.6310000000003,
+    "lcp_ms": 4864.078,
+    "speed_index_ms": 4499.719279893641,
+    "tbt_ms": 240.5,
+    "cls": 0.005843225976987536,
+    "ttfb_ms": 442
+  },
+  "lcp_node": null,
+  "audits": {
+    "lcp-discovery-insight": {
+      "score": 1,
+      "details": {
+        "type": "list",
+        "items": [
+          {
+            "type": "checklist",
+            "items": {
+              "priorityHinted": {
+                "label": "fetchpriority=high applied",
+                "value": true
+              },
+              "requestDiscoverable": {
+                "label": "Request is discoverable in initial document",
+                "value": true
+              },
+              "eagerlyLoaded": {
+                "label": "LCP resources should not use loading=lazy",
+                "value": true
+              }
+            }
+          },
+          {
+            "type": "node",
+            "lhId": "page-0-IMG",
+            "path": "1,HTML,1,BODY,5,MAIN,0,DIV,1,DIV,1,DIV,0,DIV,0,ARTICLE,2,FIGURE,0,IMG",
+            "selector": "div.theiaStickySidebar > article.post-single > figure.post-img > img.attachment-full",
+            "boundingRect": {
+              "top": 447,
+              "bottom": 656,
+              "left": 20,
+              "right": 392,
+              "width": 372,
+              "height": 209
+            },
+            "snippet": "<img fetchpriority=\"high\" width=\"1200\" height=\"675\" src=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-import-20260927-080…\" class=\"attachment-full size-full wp-post-image k20-article-lcp\" alt=\"آب چاه شنی در آبیاری قطره‌ای؛ شن‌گیر، فیلتر دیسکی یا توری\" decoding=\"async\" srcset=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-import-20260927-080…\" sizes=\"(max-width: 1200px) 100vw, 1200px\" data-no-lazy=\"1\" loading=\"eager\">",
+            "nodeLabel": "آب چاه شنی در آبیاری قطره‌ای؛ شن‌گیر، فیلتر دیسکی یا توری"
+          }
+        ]
+      }
+    },
+    "lcp-breakdown-insight": {
+      "score": 1,
+      "details": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "label",
+                "valueType": "text",
+                "label": "Subpart"
+              },
+              {
+                "key": "duration",
+                "valueType": "ms",
+                "label": "Duration"
+              }
+            ],
+            "items": [
+              {
+                "subpart": "timeToFirstByte",
+                "label": "Time to first byte",
+                "duration": 895.885
+              },
+              {
+                "subpart": "resourceLoadDelay",
+                "label": "Resource load delay",
+                "duration": 20.524
+              },
+              {
+                "subpart": "resourceLoadDuration",
+                "label": "Resource load duration",
+                "duration": 681.645
+              },
+              {
+                "subpart": "elementRenderDelay",
+                "label": "Element render delay",
+                "duration": 128.203
+              }
+            ]
+          },
+          {
+            "type": "node",
+            "lhId": "page-0-IMG",
+            "path": "1,HTML,1,BODY,5,MAIN,0,DIV,1,DIV,1,DIV,0,DIV,0,ARTICLE,2,FIGURE,0,IMG",
+            "selector": "div.theiaStickySidebar > article.post-single > figure.post-img > img.attachment-full",
+            "boundingRect": {
+              "top": 447,
+              "bottom": 656,
+              "left": 20,
+              "right": 392,
+              "width": 372,
+              "height": 209
+            },
+            "snippet": "<img fetchpriority=\"high\" width=\"1200\" height=\"675\" src=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-import-20260927-080…\" class=\"attachment-full size-full wp-post-image k20-article-lcp\" alt=\"آب چاه شنی در آبیاری قطره‌ای؛ شن‌گیر، فیلتر دیسکی یا توری\" decoding=\"async\" srcset=\"https://keshavarz20.com/wp-content/uploads/2026/09/k20-import-20260927-080…\" sizes=\"(max-width: 1200px) 100vw, 1200px\" data-no-lazy=\"1\" loading=\"eager\">",
+            "nodeLabel": "آب چاه شنی در آبیاری قطره‌ای؛ شن‌گیر، فیلتر دیسکی یا توری"
+          }
+        ]
+      }
+    },
+    "render-blocking-insight": {
+      "score": 0,
+      "displayValue": "Est savings of 570 ms",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedMs",
+            "valueType": "timespanMs",
+            "label": "Duration"
+          }
+        ],
+        "items": [
+          {
+            "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+            "totalBytes": 29857
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/6f6fccca5701fc31779bb329f68e15a0.js?ver=439e2",
+            "totalBytes": 2923
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/95a9006f8e4ffc363679cec5343abfe9.js?ver=6fb11",
+            "totalBytes": 7320
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/19aa97b643bf918e984ebcf73900d82d.js?ver=80dbe",
+            "totalBytes": 799
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/1e43b0762746aa61e2bb7439318ffc03.css?ver=fd6f3",
+            "totalBytes": 2810
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/d83023bfe4b76eb18913925fea90caf0.js?ver=588e9",
+            "totalBytes": 4741
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/8c18f40ad6304cea7c0b959d864bb588.css?ver=02068",
+            "totalBytes": 1856
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/9d5d216a2fc54fd5d892a535cd0a5022.css?ver=f3c41",
+            "totalBytes": 703
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/5013bf9e27fef66a03e6eaf8dbf3eec8.css?ver=1fddf",
+            "totalBytes": 2508
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/22b705aa3b481f51f7a0b3728c64a929.css?ver=19f5e",
+            "totalBytes": 452
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/fb132bccc7626fbdfe8d18795e3e70f1.css?ver=e30d3",
+            "totalBytes": 169
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/afe94bdedadc1bc787dce2af87642462.css?ver=6ac7e",
+            "totalBytes": 335
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/eead753fffd066ab3e81ee6bf62b2003.css?ver=52bb3",
+            "totalBytes": 139
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/6f0e9c2a266c3ae69431ae04a0147ca4.css?ver=2d6a8",
+            "totalBytes": 6675,
+            "wastedMs": 366
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/14708b3d583679c3da6a80b8d1db3b9e.css?ver=9e0e0",
+            "totalBytes": 420
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/0692a32b2d676b22a32301f9c8eacde9.css?ver=1c6ef",
+            "totalBytes": 4303
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/8f8a58e8b09544a3a1ce4e4fc1f45ea0.css?ver=2f732",
+            "totalBytes": 1712
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/c06653149616549fd6996e2c5adc60e6.css?ver=167c3",
+            "totalBytes": 1621
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/eb94baaffcc6d9127661069c4bf1c60a.css?ver=7b57a",
+            "totalBytes": 1284
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/7e0c89866ae4250b859a08a1e4310da4.css?ver=a8667",
+            "totalBytes": 19920,
+            "wastedMs": 366
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/9c13dae17cf8ea20906a1f183d051600.css?ver=846ee",
+            "totalBytes": 22118
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/b661754a5e5ee08f21cd7f6db8e897a0.css?ver=34586",
+            "totalBytes": 309
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/22d8b85ae0ea8c9b35ab0dabcf39116a.css?ver=f0ec8",
+            "totalBytes": 980
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/d1449c8b67d75f0b6862c0f5440a84e7.css?ver=7ece2",
+            "totalBytes": 1682
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/1300888df97b0decf520adf5c9f2a538.css?ver=72ffc",
+            "totalBytes": 834
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/abbb3f76150b62a8b88df58cf12a7356.css?ver=df762",
+            "totalBytes": 216
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/e071696e0b7eb90ffe411df79df9b1b9.css?ver=82e4a",
+            "totalBytes": 56
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/c7c2a8934d7aef47a8886bfadc3d9d97.css?ver=d2fb6",
+            "totalBytes": 4768
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/2a0b6fdc7822620200395a1b1778a4d0.css?ver=3b79d",
+            "totalBytes": 253
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/plugins/elementor-pro/megatheme/includes/fonts/font.css",
+            "totalBytes": 5062
+          }
+        ]
+      }
+    },
+    "image-size-responsive": {
+      "score": 1,
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "node",
+            "valueType": "node",
+            "label": ""
+          },
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "displayedSize",
+            "valueType": "text",
+            "label": "Displayed size"
+          },
+          {
+            "key": "actualSize",
+            "valueType": "text",
+            "label": "Actual size"
+          },
+          {
+            "key": "expectedSize",
+            "valueType": "text",
+            "label": "Expected size"
+          }
+        ],
+        "items": []
+      }
+    },
+    "unsized-images": {
+      "score": 1,
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "node",
+            "valueType": "node",
+            "label": ""
+          },
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          }
+        ],
+        "items": []
+      }
+    },
+    "unused-javascript": {
+      "score": 0,
+      "displayValue": "Est savings of 163 KiB",
+      "numericValue": 140,
+      "details": {
+        "type": "opportunity",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "subItemsHeading": {
+              "key": "source",
+              "valueType": "code"
+            },
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "subItemsHeading": {
+              "key": "sourceBytes"
+            },
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedBytes",
+            "valueType": "bytes",
+            "subItemsHeading": {
+              "key": "sourceWastedBytes"
+            },
+            "label": "Est Savings"
+          }
+        ],
+        "items": [
+          {
+            "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+            "totalBytes": 195739,
+            "wastedBytes": 78429,
+            "wastedPercent": 40.06805111661457
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/1d5c61e4e264d256b6f6456c8fc54f4a.js?ver=a6f0b",
+            "totalBytes": 69973,
+            "wastedBytes": 66528,
+            "wastedPercent": 95.07683444158285
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/5b507bd01200da96f44cfa52fdf38685.js?ver=18e1d",
+            "totalBytes": 23914,
+            "wastedBytes": 22193,
+            "wastedPercent": 92.80528876138206
+          }
+        ],
+        "overallSavingsMs": 140,
+        "overallSavingsBytes": 167150,
+        "sortedBy": [
+          "wastedBytes"
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "metricSavings": {
+            "FCP": 0,
+            "LCP": 140
+          }
+        }
+      }
+    },
+    "unused-css-rules": {
+      "score": 0,
+      "displayValue": "Est savings of 37 KiB",
+      "numericValue": 450,
+      "details": {
+        "type": "opportunity",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedBytes",
+            "valueType": "bytes",
+            "label": "Est Savings"
+          }
+        ],
+        "items": [
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/7e0c89866ae4250b859a08a1e4310da4.css?ver=a8667",
+            "wastedBytes": 19775,
+            "wastedPercent": 99.54442598878217,
+            "totalBytes": 19866
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/9c13dae17cf8ea20906a1f183d051600.css?ver=846ee",
+            "wastedBytes": 18263,
+            "wastedPercent": 82.7745872696505,
+            "totalBytes": 22064
+          }
+        ],
+        "overallSavingsMs": 450,
+        "overallSavingsBytes": 38038,
+        "sortedBy": [
+          "wastedBytes"
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "metricSavings": {
+            "FCP": 290,
+            "LCP": 450
+          }
+        }
+      }
+    },
+    "total-byte-weight": {
+      "score": 1,
+      "displayValue": "Total size was 1,055 KiB",
+      "numericValue": 1080685,
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          }
+        ],
+        "items": [
+          {
+            "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+            "totalBytes": 196071
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/uploads/2024/06/hossini.jpg",
+            "totalBytes": 138289
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/1d5c61e4e264d256b6f6456c8fc54f4a.js?ver=a6f0b",
+            "totalBytes": 70090
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-import-20260927-080520-optimized.webp",
+            "totalBytes": 62083
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
+            "totalBytes": 61355
+          },
+          {
+            "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+            "totalBytes": 55311
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebregularfanum.woff",
+            "totalBytes": 33706
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebboldfanum.woff",
+            "totalBytes": 33661
+          },
+          {
+            "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+            "totalBytes": 29857
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/0cc6bdf8c66b1a3b7118fdadef6aa6d5.js?ver=ae346",
+            "totalBytes": 26948
+          }
+        ],
+        "sortedBy": [
+          "totalBytes"
+        ]
+      }
+    },
+    "network-requests": {
+      "score": 1,
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "protocol",
+            "valueType": "text",
+            "label": "Protocol"
+          },
+          {
+            "key": "networkRequestTime",
+            "valueType": "ms",
+            "granularity": 1,
+            "label": "Network Request Time"
+          },
+          {
+            "key": "networkEndTime",
+            "valueType": "ms",
+            "granularity": 1,
+            "label": "Network End Time"
+          },
+          {
+            "key": "transferSize",
+            "valueType": "bytes",
+            "displayUnit": "kb",
+            "granularity": 1,
+            "label": "Transfer Size"
+          },
+          {
+            "key": "resourceSize",
+            "valueType": "bytes",
+            "displayUnit": "kb",
+            "granularity": 1,
+            "label": "Resource Size"
+          },
+          {
+            "key": "statusCode",
+            "valueType": "text",
+            "label": "Status Code"
+          },
+          {
+            "key": "mimeType",
+            "valueType": "text",
+            "label": "MIME Type"
+          },
+          {
+            "key": "resourceType",
+            "valueType": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "items": [
+          {
+            "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 0,
+            "networkRequestTime": 0.9369999999908032,
+            "networkEndTime": 1116.5929999999935,
+            "finished": true,
+            "transferSize": 55311,
+            "resourceSize": 271703,
+            "statusCode": 200,
+            "mimeType": "text/html",
+            "resourceType": "Document",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/2a0b6fdc7822620200395a1b1778a4d0.css?ver=3b79d",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 908.4239999999991,
+            "networkRequestTime": 910.1129999999976,
+            "networkEndTime": 1169.2219999999943,
+            "finished": true,
+            "transferSize": 253,
+            "resourceSize": 210,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/c7c2a8934d7aef47a8886bfadc3d9d97.css?ver=d2fb6",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 908.9560000000056,
+            "networkRequestTime": 911.4809999999852,
+            "networkEndTime": 1170.1119999999937,
+            "finished": true,
+            "transferSize": 4768,
+            "resourceSize": 41082,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/abbb3f76150b62a8b88df58cf12a7356.css?ver=df762",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 909.0379999999859,
+            "networkRequestTime": 911.7049999999872,
+            "networkEndTime": 1170.6809999999969,
+            "finished": true,
+            "transferSize": 216,
+            "resourceSize": 148,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/1300888df97b0decf520adf5c9f2a538.css?ver=72ffc",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 909.1199999999953,
+            "networkRequestTime": 911.9569999999949,
+            "networkEndTime": 1171.6319999999978,
+            "finished": true,
+            "transferSize": 834,
+            "resourceSize": 2869,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/d1449c8b67d75f0b6862c0f5440a84e7.css?ver=7ece2",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 909.2209999999905,
+            "networkRequestTime": 914.3349999999919,
+            "networkEndTime": 1172.425000000003,
+            "finished": true,
+            "transferSize": 1682,
+            "resourceSize": 5270,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/22d8b85ae0ea8c9b35ab0dabcf39116a.css?ver=f0ec8",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 909.3110000000015,
+            "networkRequestTime": 914.7649999999994,
+            "networkEndTime": 1173.0819999999949,
+            "finished": true,
+            "transferSize": 980,
+            "resourceSize": 3426,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/b661754a5e5ee08f21cd7f6db8e897a0.css?ver=34586",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 909.3989999999903,
+            "networkRequestTime": 915.1119999999937,
+            "networkEndTime": 1173.676999999996,
+            "finished": true,
+            "transferSize": 309,
+            "resourceSize": 884,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/e071696e0b7eb90ffe411df79df9b1b9.css?ver=82e4a",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 909.4790000000066,
+            "networkRequestTime": 915.5589999999938,
+            "networkEndTime": 1174.511999999988,
+            "finished": true,
+            "transferSize": 56,
+            "resourceSize": 0,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/9c13dae17cf8ea20906a1f183d051600.css?ver=846ee",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 909.5929999999935,
+            "networkRequestTime": 916.3269999999902,
+            "networkEndTime": 1177.406999999992,
+            "finished": true,
+            "transferSize": 22118,
+            "resourceSize": 150098,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/7e0c89866ae4250b859a08a1e4310da4.css?ver=a8667",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 910.8709999999992,
+            "networkRequestTime": 916.7309999999998,
+            "networkEndTime": 1337.8879999999917,
+            "finished": true,
+            "transferSize": 19920,
+            "resourceSize": 166164,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/eb94baaffcc6d9127661069c4bf1c60a.css?ver=7b57a",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 910.9469999999856,
+            "networkRequestTime": 917.1340000000055,
+            "networkEndTime": 1377.3259999999864,
+            "finished": true,
+            "transferSize": 1284,
+            "resourceSize": 5620,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/c06653149616549fd6996e2c5adc60e6.css?ver=167c3",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 911.0050000000047,
+            "networkRequestTime": 917.7319999999891,
+            "networkEndTime": 1377.9590000000026,
+            "finished": true,
+            "transferSize": 1621,
+            "resourceSize": 6662,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/8f8a58e8b09544a3a1ce4e4fc1f45ea0.css?ver=2f732",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 911.0649999999878,
+            "networkRequestTime": 917.9699999999866,
+            "networkEndTime": 1378.5639999999985,
+            "finished": true,
+            "transferSize": 1712,
+            "resourceSize": 13260,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/0692a32b2d676b22a32301f9c8eacde9.css?ver=1c6ef",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 911.1389999999956,
+            "networkRequestTime": 918.2359999999899,
+            "networkEndTime": 1379.4909999999945,
+            "finished": true,
+            "transferSize": 4303,
+            "resourceSize": 22593,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/6f0e9c2a266c3ae69431ae04a0147ca4.css?ver=2d6a8",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 911.2499999999854,
+            "networkRequestTime": 918.560999999987,
+            "networkEndTime": 1380.2459999999992,
+            "finished": true,
+            "transferSize": 6675,
+            "resourceSize": 54652,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/14708b3d583679c3da6a80b8d1db3b9e.css?ver=9e0e0",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 912.2249999999913,
+            "networkRequestTime": 918.8059999999969,
+            "networkEndTime": 1380.857999999993,
+            "finished": true,
+            "transferSize": 420,
+            "resourceSize": 1245,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/eead753fffd066ab3e81ee6bf62b2003.css?ver=52bb3",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 912.3699999999953,
+            "networkRequestTime": 919.0329999999958,
+            "networkEndTime": 1381.6149999999907,
+            "finished": true,
+            "transferSize": 139,
+            "resourceSize": 81,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/afe94bdedadc1bc787dce2af87642462.css?ver=6ac7e",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 912.4479999999894,
+            "networkRequestTime": 919.5200000000041,
+            "networkEndTime": 1389.7449999999953,
+            "finished": true,
+            "transferSize": 335,
+            "resourceSize": 2641,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/fb132bccc7626fbdfe8d18795e3e70f1.css?ver=e30d3",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 912.5149999999994,
+            "networkRequestTime": 919.8999999999942,
+            "networkEndTime": 1390.8329999999987,
+            "finished": true,
+            "transferSize": 169,
+            "resourceSize": 434,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/22b705aa3b481f51f7a0b3728c64a929.css?ver=19f5e",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 912.5939999999973,
+            "networkRequestTime": 920.2540000000008,
+            "networkEndTime": 1391.380999999994,
+            "finished": true,
+            "transferSize": 452,
+            "resourceSize": 1264,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/5013bf9e27fef66a03e6eaf8dbf3eec8.css?ver=1fddf",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 912.6659999999974,
+            "networkRequestTime": 920.6640000000043,
+            "networkEndTime": 1392.0279999999912,
+            "finished": true,
+            "transferSize": 2508,
+            "resourceSize": 18486,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/1e43b0762746aa61e2bb7439318ffc03.css?ver=fd6f3",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 912.726999999999,
+            "networkRequestTime": 921.0949999999866,
+            "networkEndTime": 1392.6709999999875,
+            "finished": true,
+            "transferSize": 2810,
+            "resourceSize": 21564,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/8c18f40ad6304cea7c0b959d864bb588.css?ver=02068",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 912.7939999999944,
+            "networkRequestTime": 921.5429999999906,
+            "networkEndTime": 1397.3919999999925,
+            "finished": true,
+            "transferSize": 1856,
+            "resourceSize": 94914,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/css/9d5d216a2fc54fd5d892a535cd0a5022.css?ver=f3c41",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 912.8840000000055,
+            "networkRequestTime": 921.9139999999898,
+            "networkEndTime": 1393.987999999983,
+            "finished": true,
+            "transferSize": 703,
+            "resourceSize": 21618,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 912.9779999999882,
+            "networkRequestTime": 922.3089999999938,
+            "networkEndTime": 1398.002999999997,
+            "finished": true,
+            "transferSize": 29857,
+            "resourceSize": 87553,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "High",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/d83023bfe4b76eb18913925fea90caf0.js?ver=588e9",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 913.05799999999,
+            "networkRequestTime": 922.7350000000006,
+            "networkEndTime": 1398.729999999996,
+            "finished": true,
+            "transferSize": 4741,
+            "resourceSize": 13577,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "High",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/860d6cde31ab2406ea51172b7c8282fd.js?ver=f3888",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 913.130999999994,
+            "networkRequestTime": 2284.554999999993,
+            "networkEndTime": 2549.902000000002,
+            "finished": true,
+            "transferSize": 3361,
+            "resourceSize": 9637,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/55556b0a5cac09f3b4cad659e3b8f4c2.js?ver=383eb",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 913.2390000000014,
+            "networkRequestTime": 2284.653999999995,
+            "networkEndTime": 2550.601999999999,
+            "finished": true,
+            "transferSize": 1361,
+            "resourceSize": 4351,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/2fe8d07153efc57a48bcd3dff89e0a51.js?ver=49f60",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 913.304999999993,
+            "networkRequestTime": 2284.764999999985,
+            "networkEndTime": 2551.1489999999903,
+            "finished": true,
+            "transferSize": 822,
+            "resourceSize": 1721,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/8d4b01a52508b6fcad2250120302d1d6.js?ver=670f6",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 913.3789999999863,
+            "networkRequestTime": 2284.880999999994,
+            "networkEndTime": 2553.7189999999973,
+            "finished": true,
+            "transferSize": 1452,
+            "resourceSize": 4282,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/95a9006f8e4ffc363679cec5343abfe9.js?ver=6fb11",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 913.4549999999872,
+            "networkRequestTime": 923.1949999999924,
+            "networkEndTime": 1400.096000000005,
+            "finished": true,
+            "transferSize": 7320,
+            "resourceSize": 19013,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "High",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/19aa97b643bf918e984ebcf73900d82d.js?ver=80dbe",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 913.5689999999886,
+            "networkRequestTime": 923.523000000001,
+            "networkEndTime": 1400.903999999995,
+            "finished": true,
+            "transferSize": 799,
+            "resourceSize": 1432,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "High",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/6f6fccca5701fc31779bb329f68e15a0.js?ver=439e2",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 913.6709999999875,
+            "networkRequestTime": 923.9229999999952,
+            "networkEndTime": 1401.5979999999836,
+            "finished": true,
+            "transferSize": 2923,
+            "resourceSize": 11716,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "High",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/uploads/2024/05/logo-deks2-keshavarz20.png",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 913.7649999999994,
+            "networkRequestTime": 2284.9939999999915,
+            "networkEndTime": 2555.535999999993,
+            "finished": true,
+            "transferSize": 5397,
+            "resourceSize": 5305,
+            "statusCode": 200,
+            "mimeType": "image/png",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/uploads/2024/05/logo-deks22-keshavarz20.png",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 915.3029999999853,
+            "networkRequestTime": 1705.729999999996,
+            "networkEndTime": 1927.900999999998,
+            "finished": true,
+            "transferSize": 13181,
+            "resourceSize": 13088,
+            "statusCode": 200,
+            "mimeType": "image/png",
+            "resourceType": "Image",
+            "priority": "High",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/uploads/2024/05/%D9%84%D9%88%DA%AF%D9%88-2-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B220-.png",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 915.4369999999908,
+            "networkRequestTime": 2285.106999999989,
+            "networkEndTime": 2556.129000000001,
+            "finished": true,
+            "transferSize": 2863,
+            "resourceSize": 2780,
+            "statusCode": 200,
+            "mimeType": "image/png",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-import-20260927-080520-optimized.webp",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 915.7289999999921,
+            "networkRequestTime": 924.4539999999979,
+            "networkEndTime": 1597.3739999999962,
+            "finished": true,
+            "transferSize": 62083,
+            "resourceSize": 61954,
+            "statusCode": 200,
+            "mimeType": "image/webp",
+            "resourceType": "Image",
+            "priority": "High",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1117.9639999999927,
+            "networkRequestTime": 1118.5360000000073,
+            "networkEndTime": 1192.5269999999873,
+            "finished": true,
+            "transferSize": 196071,
+            "resourceSize": 600431,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "Google Tag Manager"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/12b57f5c83ea5b70b2b7473446f4607b.js?ver=47d4c",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1118.0949999999866,
+            "networkRequestTime": 1119.0939999999973,
+            "networkEndTime": 1598.5249999999942,
+            "finished": true,
+            "transferSize": 1811,
+            "resourceSize": 5097,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/ed409692eee5cbfdf32903665e3ae9ae.js?ver=2a0a9",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1118.2429999999877,
+            "networkRequestTime": 1207.0979999999981,
+            "networkEndTime": 1599.4929999999877,
+            "finished": true,
+            "transferSize": 2434,
+            "resourceSize": 5781,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/71c3ba7f1e2bde5718461357744685d6.js?ver=b8b51",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1118.3640000000014,
+            "networkRequestTime": 1600.7079999999987,
+            "networkEndTime": 1825.2489999999962,
+            "finished": true,
+            "transferSize": 6587,
+            "resourceSize": 19875,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/1ad6e6e83e608b73928dbb64ebc8fae7.js?ver=8fae7",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1118.4489999999932,
+            "networkRequestTime": 1601.2889999999898,
+            "networkEndTime": 1826.758999999991,
+            "finished": true,
+            "transferSize": 5309,
+            "resourceSize": 17643,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/656d4b457ff72cce48c5c66cef023d01.js?ver=23d01",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1118.5389999999898,
+            "networkRequestTime": 1641.6419999999925,
+            "networkEndTime": 1869.2119999999995,
+            "finished": true,
+            "transferSize": 5776,
+            "resourceSize": 20136,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/514715ecc7b6903b454cf3d05016a2ef.js?ver=e7f10",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1118.6189999999915,
+            "networkRequestTime": 1641.923999999999,
+            "networkEndTime": 1878.3830000000016,
+            "finished": true,
+            "transferSize": 199,
+            "resourceSize": 262,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/4fe8f127c29828e027ef11d551317262.js?ver=df9fc",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1118.702999999994,
+            "networkRequestTime": 1642.1019999999844,
+            "networkEndTime": 1880.846000000005,
+            "finished": true,
+            "transferSize": 19215,
+            "resourceSize": 56367,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/a0faaf10558058a125cc0dcb18f2136a.js?ver=43fe1",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1118.7769999999873,
+            "networkRequestTime": 1642.2859999999928,
+            "networkEndTime": 1879.2519999999931,
+            "finished": true,
+            "transferSize": 428,
+            "resourceSize": 841,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/01945764d8618afbe0c242cec6f6da61.js?ver=fdccd",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1118.8509999999806,
+            "networkRequestTime": 2285.251999999993,
+            "networkEndTime": 2556.783999999985,
+            "finished": true,
+            "transferSize": 1286,
+            "resourceSize": 2951,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/1ae53464d568614135fe06c49eac7be4.js?ver=ea0e8",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1118.9300000000076,
+            "networkRequestTime": 1642.4909999999945,
+            "networkEndTime": 1879.8959999999934,
+            "finished": true,
+            "transferSize": 6607,
+            "resourceSize": 21991,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/0cc6bdf8c66b1a3b7118fdadef6aa6d5.js?ver=ae346",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1119.0009999999893,
+            "networkRequestTime": 1642.7799999999988,
+            "networkEndTime": 1881.8899999999994,
+            "finished": true,
+            "transferSize": 26948,
+            "resourceSize": 108081,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/24628fe1ceb819a56ca96943c888775a.js?ver=05e7a",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1119.1029999999882,
+            "networkRequestTime": 1894.2599999999948,
+            "networkEndTime": 2117.2810000000027,
+            "finished": true,
+            "transferSize": 961,
+            "resourceSize": 5383,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/48024c4eb360e093e56b89735c2a875e.js?ver=f9346",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1119.2350000000006,
+            "networkRequestTime": 2046.2529999999824,
+            "networkEndTime": 2270.9679999999935,
+            "finished": true,
+            "transferSize": 4674,
+            "resourceSize": 15316,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/0b27f16887d6b2eff369b5d255123089.js?ver=0d7fe",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1119.3289999999834,
+            "networkRequestTime": 2046.4349999999977,
+            "networkEndTime": 2278.5130000000063,
+            "finished": true,
+            "transferSize": 1085,
+            "resourceSize": 2440,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/17ab8d74595c085eb0f60af1b19b14c5.js?ver=b14c5",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1119.4079999999813,
+            "networkRequestTime": 2046.5499999999884,
+            "networkEndTime": 2279.406999999992,
+            "finished": true,
+            "transferSize": 10046,
+            "resourceSize": 36754,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/69b68c538bdec1627dd4aa6c47bf660b.js?ver=f660b",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1119.476999999999,
+            "networkRequestTime": 2046.653999999995,
+            "networkEndTime": 2280.6879999999946,
+            "finished": true,
+            "transferSize": 13251,
+            "resourceSize": 54523,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/6d34fb03e431748cf236d80c04d2fc0a.js?ver=2fc0a",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1119.5639999999985,
+            "networkRequestTime": 2046.7509999999893,
+            "networkEndTime": 2281.603999999992,
+            "finished": true,
+            "transferSize": 770,
+            "resourceSize": 2692,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/30fa0e85c6a9e323f53f2dc0775e47dc.js?ver=4fdfb",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1119.6349999999948,
+            "networkRequestTime": 2117.5469999999914,
+            "networkEndTime": 2340.784999999989,
+            "finished": true,
+            "transferSize": 101,
+            "resourceSize": 2,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/61299613ea7b1e100096655b25b3d9c3.js?ver=593d1",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1119.673999999999,
+            "networkRequestTime": 2117.748000000007,
+            "networkEndTime": 2341.5069999999832,
+            "finished": true,
+            "transferSize": 16036,
+            "resourceSize": 53087,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/ef52755deab8edf19d4a58de3fd651b1.js?ver=786ef",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1119.7200000000012,
+            "networkRequestTime": 2117.857999999993,
+            "networkEndTime": 2342.040999999983,
+            "finished": true,
+            "transferSize": 6348,
+            "resourceSize": 18676,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/784c92126ab2141d7704eccaacf2f50c.js?ver=a1bb8",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1119.810999999987,
+            "networkRequestTime": 2271.2920000000013,
+            "networkEndTime": 2493.8619999999937,
+            "finished": true,
+            "transferSize": 18356,
+            "resourceSize": 60023,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1119.8760000000038,
+            "networkRequestTime": 2281.863999999987,
+            "networkEndTime": 2561.8429999999935,
+            "finished": true,
+            "transferSize": 61355,
+            "resourceSize": 252309,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/cc20a965911f0e0c941a624febd1e51f.js?ver=ab876",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1119.9349999999977,
+            "networkRequestTime": 2283.4089999999997,
+            "networkEndTime": 2526.6419999999925,
+            "finished": true,
+            "transferSize": 1170,
+            "resourceSize": 2268,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/291fb7a293d236f8f164f4535f17e96e.js?ver=b0977",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1119.9869999999937,
+            "networkRequestTime": 2283.5160000000033,
+            "networkEndTime": 2527.558999999994,
+            "finished": true,
+            "transferSize": 8471,
+            "resourceSize": 32700,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/ba805fd84d4b50e3366d18c5a8c0be90.js?ver=8db63",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1120.0369999999966,
+            "networkRequestTime": 2283.6189999999915,
+            "networkEndTime": 2543.9649999999965,
+            "finished": true,
+            "transferSize": 2014,
+            "resourceSize": 7484,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/81a58d62acc2bda2575a4119ca64c006.js?ver=f4a3e",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1120.1319999999978,
+            "networkRequestTime": 2283.725999999995,
+            "networkEndTime": 2554.7999999999884,
+            "finished": true,
+            "transferSize": 16367,
+            "resourceSize": 81174,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/a1548c83adc2678218fff1bf8a308b0d.js?ver=2c37a",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1120.228999999992,
+            "networkRequestTime": 2283.8519999999844,
+            "networkEndTime": 2560.908999999985,
+            "finished": true,
+            "transferSize": 17816,
+            "resourceSize": 77853,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/b60ce8f8cdb2cbf0aeaa486e96347151.js?ver=f5b36",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1120.290999999983,
+            "networkRequestTime": 2283.9699999999866,
+            "networkEndTime": 2545.9060000000027,
+            "finished": true,
+            "transferSize": 9353,
+            "resourceSize": 40071,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/3ad9913ed2e76213ce80eaaa9e5f104d.js?ver=34f77",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1120.372000000003,
+            "networkRequestTime": 2284.0699999999924,
+            "networkEndTime": 2546.576000000001,
+            "finished": true,
+            "transferSize": 3393,
+            "resourceSize": 11071,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/a2d2ccea685edbc59d862922362b1d37.js?ver=1d6d4",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1120.4149999999936,
+            "networkRequestTime": 2284.2239999999874,
+            "networkEndTime": 2547.5109999999986,
+            "finished": true,
+            "transferSize": 1010,
+            "resourceSize": 3277,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/2a0ea258e5521cde493b5f6064d174fb.js?ver=e4860",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1120.4569999999949,
+            "networkRequestTime": 2284.340999999986,
+            "networkEndTime": 2548.322,
+            "finished": true,
+            "transferSize": 331,
+            "resourceSize": 720,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/e30f0df4aa85cf381177711a48595ddb.js?ver=95ddb",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1120.4929999999877,
+            "networkRequestTime": 2284.452999999994,
+            "networkEndTime": 2548.827999999994,
+            "finished": true,
+            "transferSize": 89,
+            "resourceSize": 2,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Medium",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/5b507bd01200da96f44cfa52fdf38685.js?ver=18e1d",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1120.5399999999936,
+            "networkRequestTime": 2285.6419999999925,
+            "networkEndTime": 2561.4209999999875,
+            "finished": true,
+            "transferSize": 23968,
+            "resourceSize": 80170,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/litespeed/js/1d5c61e4e264d256b6f6456c8fc54f4a.js?ver=a6f0b",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1120.5769999999902,
+            "networkRequestTime": 2285.8389999999927,
+            "networkEndTime": 3368.454999999987,
+            "finished": true,
+            "transferSize": 70090,
+            "resourceSize": 291601,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/plugins/elementor-pro/megatheme/includes/fonts/font.css",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1384.856999999989,
+            "networkRequestTime": 1389.2949999999983,
+            "networkEndTime": 1620.4769999999844,
+            "finished": true,
+            "transferSize": 5062,
+            "resourceSize": 144526,
+            "statusCode": 200,
+            "mimeType": "text/css",
+            "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4NCIgaGVpZ…",
+            "sessionTargetType": "page",
+            "protocol": "data",
+            "cache": "memory",
+            "rendererStartTime": 1647.625,
+            "networkRequestTime": 1647.625,
+            "networkEndTime": 1647.7249999999913,
+            "finished": true,
+            "transferSize": 0,
+            "resourceSize": 165,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true
+          },
+          {
+            "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ…",
+            "sessionTargetType": "page",
+            "protocol": "data",
+            "cache": "memory",
+            "rendererStartTime": 1648.6839999999938,
+            "networkRequestTime": 1648.6839999999938,
+            "networkEndTime": 1648.7409999999945,
+            "finished": true,
+            "transferSize": 0,
+            "resourceSize": 163,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebregularfanum.woff",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1669.9519999999902,
+            "networkRequestTime": 1712.7809999999881,
+            "networkEndTime": 2045.2519999999931,
+            "finished": true,
+            "transferSize": 33706,
+            "resourceSize": 33585,
+            "statusCode": 200,
+            "mimeType": "application/x-font-woff",
+            "resourceType": "Font",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebboldfanum.woff",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1670.127999999997,
+            "networkRequestTime": 1713.0629999999946,
+            "networkEndTime": 2046.0510000000068,
+            "finished": true,
+            "transferSize": 33661,
+            "resourceSize": 33581,
+            "statusCode": 200,
+            "mimeType": "application/x-font-woff",
+            "resourceType": "Font",
+            "priority": "VeryHigh",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://analytics.google.com/g/collect?v=2&tid=G-TKWY8X1PSM&gtm=45je69s1v9194059779za200zd9194059779xf1&_p=1790763117991&_gaz=1&gcs=G1--&gcd=13l3l3l3l5l1&npa=0&dma=0&gdid=dOGY3NW&_eu=AAAAACAC&cid=666878886.1790763118&frm=0&ibt=1&pscdl=noapi&rcb=6&sr=412x823&uaa=&uab=64&uafvl=Google%2520Chrome%3B153.0.8010.52%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.52&uam=moto%20g%20power%20(2022)&uamb=1&uap=Android&uapv=11.0&uaw=0&ul=en-us&_s=1&tag_exp=115616986~115938465~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121246026~121246034&sid=1790763118&sct=1&seg=0&dl=https%3A%2F%2Fkeshavarz20.com%2Fsandy-well-water-drip-filtration-guide%2F&dt=%D9%81%DB%8C%D9%84%D8%AA%D8%B1%D8%A7%D8%B3%DB%8C%D9%88%D9%86%20%D8%A2%D8%A8%20%DA%86%D8%A7%D9%87%20%D8%B4%D9%86%DB%8C%20%D8%AF%D8%B1%20%D8%A2%D8%A8%DB%8C%D8%A7%D8%B1%DB%8C%20%D9%82%D8%B7%D8%B1%D9%87%E2%80%8C%D8%A7%DB%8C%20%7C%20%D8%B1%D8%A7%D9%87%D9%86%D9%85%D8%A7%DB%8C%20%D8%A7%D9%86%D8%AA%D8%AE%D8%A7%D8%A8%20%D8%B4%D9%86%E2%80%8C%DA%AF%DB%8C%D8%B1%20%D9%88%20%D9%81%DB%8C%D9%84%D8%AA%D8%B1&_tu=AAg&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.track_404=true&ep.logged_in=false&tfd=1796",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1795.7489999999962,
+            "networkRequestTime": 1796.6459999999934,
+            "networkEndTime": 1833.5339999999997,
+            "finished": true,
+            "transferSize": 549,
+            "resourceSize": 0,
+            "statusCode": 204,
+            "mimeType": "text/plain",
+            "resourceType": "Fetch",
+            "priority": "High",
+            "experimentalFromMainFrame": true,
+            "entity": "Google Analytics"
+          },
+          {
+            "url": "https://stats.g.doubleclick.net/g/collect?v=2&ibt=1&tid=G-TKWY8X1PSM&cid=666878886.1790763118&gtm=45je69s1v9194059779za200zd9194059779xf1&rcb=6&aip=1&dma=0&gcs=G1--&gcd=13l3l3l3l5l1&npa=0&frm=0&tag_exp=115616986~115938465~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121246026~121246034",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 1796.7229999999981,
+            "networkRequestTime": 2285.956999999995,
+            "networkEndTime": 2327.695000000007,
+            "finished": true,
+            "transferSize": 558,
+            "resourceSize": 0,
+            "statusCode": 204,
+            "mimeType": "text/plain",
+            "resourceType": "Ping",
+            "priority": "VeryLow",
+            "experimentalFromMainFrame": true,
+            "entity": "Google/Doubleclick Ads"
+          },
+          {
+            "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjgiIGhla…",
+            "sessionTargetType": "page",
+            "protocol": "data",
+            "cache": "memory",
+            "rendererStartTime": 2592.665999999983,
+            "networkRequestTime": 2592.665999999983,
+            "networkEndTime": 2592.748999999996,
+            "finished": true,
+            "transferSize": 0,
+            "resourceSize": 167,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true
+          },
+          {
+            "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDI0IiBoZ…",
+            "sessionTargetType": "page",
+            "protocol": "data",
+            "cache": "memory",
+            "rendererStartTime": 2593.5120000000024,
+            "networkRequestTime": 2593.5120000000024,
+            "networkEndTime": 2593.5729999999894,
+            "finished": true,
+            "transferSize": 0,
+            "resourceSize": 171,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true
+          },
+          {
+            "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhla…",
+            "sessionTargetType": "page",
+            "protocol": "data",
+            "cache": "memory",
+            "rendererStartTime": 2594.324999999997,
+            "networkRequestTime": 2594.324999999997,
+            "networkEndTime": 2594.373000000007,
+            "finished": true,
+            "transferSize": 0,
+            "resourceSize": 167,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true
+          },
+          {
+            "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDgwIiBoZ…",
+            "sessionTargetType": "page",
+            "protocol": "data",
+            "cache": "memory",
+            "rendererStartTime": 2595.076000000001,
+            "networkRequestTime": 2595.076000000001,
+            "networkEndTime": 2595.1249999999854,
+            "finished": true,
+            "transferSize": 0,
+            "resourceSize": 171,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true
+          },
+          {
+            "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjUiIGhla…",
+            "sessionTargetType": "page",
+            "protocol": "data",
+            "cache": "memory",
+            "rendererStartTime": 2595.8889999999956,
+            "networkRequestTime": 2595.8889999999956,
+            "networkEndTime": 2595.944000000003,
+            "finished": true,
+            "transferSize": 0,
+            "resourceSize": 167,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true
+          },
+          {
+            "url": "blob:https://keshavarz20.com/bc991c80-91e2-4c1e-a357-451a8d2af54d",
+            "sessionTargetType": "worker",
+            "protocol": "blob",
+            "cache": "none",
+            "rendererStartTime": 3385.1140000000014,
+            "networkRequestTime": 3385.1140000000014,
+            "networkEndTime": 3503.3889999999956,
+            "finished": true,
+            "transferSize": -1,
+            "resourceSize": 1327,
+            "statusCode": 200,
+            "mimeType": "text/javascript",
+            "resourceType": "Script",
+            "priority": "VeryLow"
+          },
+          {
+            "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0N…",
+            "sessionTargetType": "page",
+            "protocol": "data",
+            "cache": "memory",
+            "rendererStartTime": 3392.470000000001,
+            "networkRequestTime": 3392.470000000001,
+            "networkEndTime": 3392.5380000000005,
+            "finished": true,
+            "transferSize": 0,
+            "resourceSize": 1476,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true
+          },
+          {
+            "url": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd…",
+            "sessionTargetType": "page",
+            "protocol": "data",
+            "cache": "memory",
+            "rendererStartTime": 3393.298999999999,
+            "networkRequestTime": 3393.298999999999,
+            "networkEndTime": 3393.357999999993,
+            "finished": true,
+            "transferSize": 0,
+            "resourceSize": 337,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/uploads/2024/06/hossini.jpg",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 3393.7219999999943,
+            "networkRequestTime": 3394.058999999994,
+            "networkEndTime": 3618.7149999999965,
+            "finished": true,
+            "transferSize": 138289,
+            "resourceSize": 138113,
+            "statusCode": 200,
+            "mimeType": "image/jpeg",
+            "resourceType": "Image",
+            "priority": "High",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0N…",
+            "sessionTargetType": "page",
+            "protocol": "data",
+            "cache": "memory",
+            "rendererStartTime": 3394.73599999999,
+            "networkRequestTime": 3394.73599999999,
+            "networkEndTime": 3394.8429999999935,
+            "finished": true,
+            "transferSize": 0,
+            "resourceSize": 1479,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/plugins/elementor/assets/js/chunks/section-stretched-section.min.js?ver=4.3.2",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 3478.5399999999936,
+            "networkRequestTime": 3479.3099999999977,
+            "networkEndTime": 3701.6229999999923,
+            "finished": true,
+            "transferSize": 629,
+            "resourceSize": 1057,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/plugins/elementor/assets/js/chunks/background-slideshow.min.js?ver=4.3.2",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 3478.955999999991,
+            "networkRequestTime": 3480.2569999999832,
+            "networkEndTime": 3702.6689999999944,
+            "finished": true,
+            "transferSize": 7820,
+            "resourceSize": 23186,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/plugins/elementor/assets/js/chunks/background-video.min.js?ver=4.3.2",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 3479.3289999999834,
+            "networkRequestTime": 3480.523000000001,
+            "networkEndTime": 3705.528999999995,
+            "finished": true,
+            "transferSize": 8102,
+            "resourceSize": 24570,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/plugins/elementor/assets/js/chunks/text-editor.min.js?ver=4.3.2",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 3481.764999999985,
+            "networkRequestTime": 3482.3179999999847,
+            "networkEndTime": 3706.2929999999906,
+            "finished": true,
+            "transferSize": 7043,
+            "resourceSize": 20662,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-includes/js/wp-emoji-release.min.js?ver=7.1.2",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 3503.876000000004,
+            "networkRequestTime": 3504.574999999997,
+            "networkEndTime": 3727.705999999991,
+            "finished": true,
+            "transferSize": 5058,
+            "resourceSize": 22752,
+            "statusCode": 200,
+            "mimeType": "application/javascript",
+            "resourceType": "Script",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f3e0.svg",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 3733.2999999999884,
+            "networkRequestTime": 3733.6140000000014,
+            "networkEndTime": 3838.277000000002,
+            "finished": true,
+            "transferSize": 779,
+            "resourceSize": 935,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "WordPress"
+          },
+          {
+            "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f6d2.svg",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 3734.274999999994,
+            "networkRequestTime": 3734.581999999995,
+            "networkEndTime": 3837.653999999995,
+            "finished": true,
+            "transferSize": 994,
+            "resourceSize": 1305,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "WordPress"
+          },
+          {
+            "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4a7.svg",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 3734.402000000002,
+            "networkRequestTime": 3734.773000000001,
+            "networkEndTime": 3837.05799999999,
+            "finished": true,
+            "transferSize": 583,
+            "resourceSize": 239,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "WordPress"
+          },
+          {
+            "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f33f.svg",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 3734.5449999999983,
+            "networkRequestTime": 3734.961999999985,
+            "networkEndTime": 3836.459999999992,
+            "finished": true,
+            "transferSize": 1272,
+            "resourceSize": 1788,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "WordPress"
+          },
+          {
+            "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f331.svg",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 3734.699999999997,
+            "networkRequestTime": 3735.146999999997,
+            "networkEndTime": 3835.2599999999948,
+            "finished": true,
+            "transferSize": 670,
+            "resourceSize": 515,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "WordPress"
+          },
+          {
+            "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4de.svg",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 3734.832999999984,
+            "networkRequestTime": 3735.351999999999,
+            "networkEndTime": 3835.6449999999895,
+            "finished": true,
+            "transferSize": 736,
+            "resourceSize": 391,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "WordPress"
+          },
+          {
+            "url": "https://s.w.org/images/core/emoji/17.0.2/svg/26a1.svg",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 3734.947,
+            "networkRequestTime": 3838.4409999999916,
+            "networkEndTime": 3869.3849999999948,
+            "finished": true,
+            "transferSize": 795,
+            "resourceSize": 451,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "WordPress"
+          },
+          {
+            "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f9fe.svg",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 3735.0829999999987,
+            "networkRequestTime": 3838.7039999999834,
+            "networkEndTime": 3870.031999999992,
+            "finished": true,
+            "transferSize": 614,
+            "resourceSize": 704,
+            "statusCode": 200,
+            "mimeType": "image/svg+xml",
+            "resourceType": "Image",
+            "priority": "Low",
+            "experimentalFromMainFrame": true,
+            "entity": "WordPress"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/uploads/2024/05/cropped-logo-deks22-keshavarz20-32x32.png",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 3881.2479999999923,
+            "networkRequestTime": 3881.625,
+            "networkEndTime": 4103.914999999994,
+            "finished": true,
+            "transferSize": 1679,
+            "resourceSize": 1550,
+            "statusCode": 200,
+            "mimeType": "image/png",
+            "resourceType": "Other",
+            "priority": "High",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          },
+          {
+            "url": "https://secure.gravatar.com/avatar/ec1c5788928127340fe91decea99ba05855aaf1270ba13f6a503aaea308ba275?s=48&d=mm&r=g",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 3890.7939999999944,
+            "networkRequestTime": 3891.2709999999934,
+            "networkEndTime": 3989.0800000000017,
+            "finished": true,
+            "transferSize": 1483,
+            "resourceSize": 1037,
+            "statusCode": 200,
+            "mimeType": "image/jpeg",
+            "resourceType": "Image",
+            "priority": "High",
+            "experimentalFromMainFrame": true,
+            "entity": "Gravatar"
+          },
+          {
+            "url": "https://keshavarz20.com/wp-content/uploads/2024/07/download.png",
+            "sessionTargetType": "page",
+            "protocol": "h2",
+            "cache": "none",
+            "rendererStartTime": 3890.923999999999,
+            "networkRequestTime": 3891.809999999983,
+            "networkEndTime": 4114.107999999993,
+            "finished": true,
+            "transferSize": 3283,
+            "resourceSize": 3200,
+            "statusCode": 200,
+            "mimeType": "image/png",
+            "resourceType": "Image",
+            "priority": "High",
+            "experimentalFromMainFrame": true,
+            "entity": "keshavarz20.com"
+          }
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "networkStartTimeTs": 71908850,
+          "initiators": [
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 40,
+              "columnNumber": 240
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 53,
+              "columnNumber": 250
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 53,
+              "columnNumber": 432
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 61,
+              "columnNumber": 240
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 61,
+              "columnNumber": 421
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 64,
+              "columnNumber": 239
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 65,
+              "columnNumber": 249
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 65,
+              "columnNumber": 427
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 65,
+              "columnNumber": 606
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 65,
+              "columnNumber": 790
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 65,
+              "columnNumber": 966
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 65,
+              "columnNumber": 1154
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 65,
+              "columnNumber": 1334
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 65,
+              "columnNumber": 1518
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 65,
+              "columnNumber": 1705
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 65,
+              "columnNumber": 1892
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 65,
+              "columnNumber": 2075
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 65,
+              "columnNumber": 2272
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 65,
+              "columnNumber": 2462
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 65,
+              "columnNumber": 2636
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 65,
+              "columnNumber": 2812
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 65,
+              "columnNumber": 2987
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 65,
+              "columnNumber": 3181
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 65,
+              "columnNumber": 3379
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 155,
+              "columnNumber": 182
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 155,
+              "columnNumber": 342
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 155,
+              "columnNumber": 536
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 155,
+              "columnNumber": 1084
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 155,
+              "columnNumber": 1273
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 155,
+              "columnNumber": 1845
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 155,
+              "columnNumber": 2001
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 155,
+              "columnNumber": 2276
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 155,
+              "columnNumber": 4387
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1335,
+              "columnNumber": 667
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1335,
+              "columnNumber": 861
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1372,
+              "columnNumber": 1013
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1465,
+              "columnNumber": 1479
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 661
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 815
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 968
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 1271
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 1435
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 1606
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 1768
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 1925
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 4256
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 4466
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 4620
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 6173
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 6334
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 6495
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 7413
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 7564
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 7721
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 7884
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 8055
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 8227
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 8476
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 13531
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 13698
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 13852
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 15362
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 15827
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 22795
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 28670
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 28821
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 28974
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 29126
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1484,
+              "columnNumber": 32398
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1485,
+              "columnNumber": 243
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1485,
+              "columnNumber": 1930
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1485,
+              "columnNumber": 2103
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/wp-content/litespeed/css/eead753fffd066ab3e81ee6bf62b2003.css?ver=52bb3",
+              "lineNumber": 0,
+              "columnNumber": 0
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1474,
+              "columnNumber": 1562
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1474,
+              "columnNumber": 1562
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1474,
+              "columnNumber": 1563
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1474,
+              "columnNumber": 1563
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1750,
+              "columnNumber": 8182
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1750,
+              "columnNumber": 8182
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1750,
+              "columnNumber": 8182
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1750,
+              "columnNumber": 8182
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1750,
+              "columnNumber": 8182
+            },
+            {
+              "type": "other",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/"
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/wp-content/litespeed/css/c7c2a8934d7aef47a8886bfadc3d9d97.css?ver=d2fb6"
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/wp-content/litespeed/css/c7c2a8934d7aef47a8886bfadc3d9d97.css?ver=d2fb6"
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+              "lineNumber": 1754,
+              "columnNumber": 34
+            },
+            {
+              "type": "parser",
+              "url": "https://keshavarz20.com/wp-content/litespeed/css/c7c2a8934d7aef47a8886bfadc3d9d97.css?ver=d2fb6"
+            }
+          ]
+        }
+      }
+    },
+    "mainthread-work-breakdown": {
+      "score": 0,
+      "displayValue": "3.0 s",
+      "numericValue": 2984.459999999984,
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "groupLabel",
+            "valueType": "text",
+            "label": "Category"
+          },
+          {
+            "key": "duration",
+            "valueType": "ms",
+            "granularity": 1,
+            "label": "Time Spent"
+          }
+        ],
+        "items": [
+          {
+            "group": "other",
+            "groupLabel": "Other",
+            "duration": 1033.079999999989
+          },
+          {
+            "group": "scriptEvaluation",
+            "groupLabel": "Script Evaluation",
+            "duration": 812.175999999998
+          },
+          {
+            "group": "styleLayout",
+            "groupLabel": "Style & Layout",
+            "duration": 577.9439999999963
+          },
+          {
+            "group": "scriptParseCompile",
+            "groupLabel": "Script Parsing & Compilation",
+            "duration": 244.8880000000002
+          },
+          {
+            "group": "parseHTML",
+            "groupLabel": "Parse HTML & CSS",
+            "duration": 184.07200000000017
+          },
+          {
+            "group": "paintCompositeRender",
+            "groupLabel": "Rendering",
+            "duration": 120.47600000000013
+          },
+          {
+            "group": "garbageCollection",
+            "groupLabel": "Garbage Collection",
+            "duration": 11.823999999999996
+          }
+        ],
+        "sortedBy": [
+          "duration"
+        ]
+      }
+    },
+    "diagnostics": {
+      "score": 1,
+      "details": {
+        "type": "debugdata",
+        "items": [
+          {
+            "numRequests": 106,
+            "numScripts": 50,
+            "numStylesheets": 25,
+            "numFonts": 2,
+            "numTasks": 3135,
+            "numTasksOver10ms": 12,
+            "numTasksOver25ms": 4,
+            "numTasksOver50ms": 0,
+            "numTasksOver100ms": 0,
+            "numTasksOver500ms": 0,
+            "rtt": 4.943999999999999,
+            "throughput": 9513674.19738476,
+            "maxRtt": 221.018,
+            "maxServerLatency": 27.11299999999997,
+            "totalByteWeight": 1080684,
+            "totalTaskTime": 746.1149999999943,
+            "mainDocumentTransferSize": 55311
+          }
+        ]
+      }
+    }
+  },
+  "top_network_requests": [
+    {
+      "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+      "resourceType": "Script",
+      "transferSize": 196071,
+      "resourceSize": 600431,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2024/06/hossini.jpg",
+      "resourceType": "Image",
+      "transferSize": 138289,
+      "resourceSize": 138113,
+      "priority": "High"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/1d5c61e4e264d256b6f6456c8fc54f4a.js?ver=a6f0b",
+      "resourceType": "Script",
+      "transferSize": 70090,
+      "resourceSize": 291601,
+      "priority": "Low"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-import-20260927-080520-optimized.webp",
+      "resourceType": "Image",
+      "transferSize": 62083,
+      "resourceSize": 61954,
+      "priority": "High"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
+      "resourceType": "Script",
+      "transferSize": 61355,
+      "resourceSize": 252309,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/sandy-well-water-drip-filtration-guide/",
+      "resourceType": "Document",
+      "transferSize": 55311,
+      "resourceSize": 271703,
+      "priority": "VeryHigh"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebregularfanum.woff",
+      "resourceType": "Font",
+      "transferSize": 33706,
+      "resourceSize": 33585,
+      "priority": "VeryHigh"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebboldfanum.woff",
+      "resourceType": "Font",
+      "transferSize": 33661,
+      "resourceSize": 33581,
+      "priority": "VeryHigh"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+      "resourceType": "Script",
+      "transferSize": 29857,
+      "resourceSize": 87553,
+      "priority": "High"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/0cc6bdf8c66b1a3b7118fdadef6aa6d5.js?ver=ae346",
+      "resourceType": "Script",
+      "transferSize": 26948,
+      "resourceSize": 108081,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/5b507bd01200da96f44cfa52fdf38685.js?ver=18e1d",
+      "resourceType": "Script",
+      "transferSize": 23968,
+      "resourceSize": 80170,
+      "priority": "Low"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/css/9c13dae17cf8ea20906a1f183d051600.css?ver=846ee",
+      "resourceType": "Stylesheet",
+      "transferSize": 22118,
+      "resourceSize": 150098,
+      "priority": "VeryHigh"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/css/7e0c89866ae4250b859a08a1e4310da4.css?ver=a8667",
+      "resourceType": "Stylesheet",
+      "transferSize": 19920,
+      "resourceSize": 166164,
+      "priority": "VeryHigh"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/4fe8f127c29828e027ef11d551317262.js?ver=df9fc",
+      "resourceType": "Script",
+      "transferSize": 19215,
+      "resourceSize": 56367,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/784c92126ab2141d7704eccaacf2f50c.js?ver=a1bb8",
+      "resourceType": "Script",
+      "transferSize": 18356,
+      "resourceSize": 60023,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/a1548c83adc2678218fff1bf8a308b0d.js?ver=2c37a",
+      "resourceType": "Script",
+      "transferSize": 17816,
+      "resourceSize": 77853,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/81a58d62acc2bda2575a4119ca64c006.js?ver=f4a3e",
+      "resourceType": "Script",
+      "transferSize": 16367,
+      "resourceSize": 81174,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/61299613ea7b1e100096655b25b3d9c3.js?ver=593d1",
+      "resourceType": "Script",
+      "transferSize": 16036,
+      "resourceSize": 53087,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/69b68c538bdec1627dd4aa6c47bf660b.js?ver=f660b",
+      "resourceType": "Script",
+      "transferSize": 13251,
+      "resourceSize": 54523,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2024/05/logo-deks22-keshavarz20.png",
+      "resourceType": "Image",
+      "transferSize": 13181,
+      "resourceSize": 13088,
+      "priority": "High"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/17ab8d74595c085eb0f60af1b19b14c5.js?ver=b14c5",
+      "resourceType": "Script",
+      "transferSize": 10046,
+      "resourceSize": 36754,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/b60ce8f8cdb2cbf0aeaa486e96347151.js?ver=f5b36",
+      "resourceType": "Script",
+      "transferSize": 9353,
+      "resourceSize": 40071,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/291fb7a293d236f8f164f4535f17e96e.js?ver=b0977",
+      "resourceType": "Script",
+      "transferSize": 8471,
+      "resourceSize": 32700,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/plugins/elementor/assets/js/chunks/background-video.min.js?ver=4.3.2",
+      "resourceType": "Script",
+      "transferSize": 8102,
+      "resourceSize": 24570,
+      "priority": "Low"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/plugins/elementor/assets/js/chunks/background-slideshow.min.js?ver=4.3.2",
+      "resourceType": "Script",
+      "transferSize": 7820,
+      "resourceSize": 23186,
+      "priority": "Low"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/95a9006f8e4ffc363679cec5343abfe9.js?ver=6fb11",
+      "resourceType": "Script",
+      "transferSize": 7320,
+      "resourceSize": 19013,
+      "priority": "High"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/plugins/elementor/assets/js/chunks/text-editor.min.js?ver=4.3.2",
+      "resourceType": "Script",
+      "transferSize": 7043,
+      "resourceSize": 20662,
+      "priority": "Low"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/css/6f0e9c2a266c3ae69431ae04a0147ca4.css?ver=2d6a8",
+      "resourceType": "Stylesheet",
+      "transferSize": 6675,
+      "resourceSize": 54652,
+      "priority": "VeryHigh"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/1ae53464d568614135fe06c49eac7be4.js?ver=ea0e8",
+      "resourceType": "Script",
+      "transferSize": 6607,
+      "resourceSize": 21991,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/71c3ba7f1e2bde5718461357744685d6.js?ver=b8b51",
+      "resourceType": "Script",
+      "transferSize": 6587,
+      "resourceSize": 19875,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/ef52755deab8edf19d4a58de3fd651b1.js?ver=786ef",
+      "resourceType": "Script",
+      "transferSize": 6348,
+      "resourceSize": 18676,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/656d4b457ff72cce48c5c66cef023d01.js?ver=23d01",
+      "resourceType": "Script",
+      "transferSize": 5776,
+      "resourceSize": 20136,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2024/05/logo-deks2-keshavarz20.png",
+      "resourceType": "Image",
+      "transferSize": 5397,
+      "resourceSize": 5305,
+      "priority": "Low"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/1ad6e6e83e608b73928dbb64ebc8fae7.js?ver=8fae7",
+      "resourceType": "Script",
+      "transferSize": 5309,
+      "resourceSize": 17643,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/plugins/elementor-pro/megatheme/includes/fonts/font.css",
+      "resourceType": "Stylesheet",
+      "transferSize": 5062,
+      "resourceSize": 144526,
+      "priority": "VeryHigh"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-includes/js/wp-emoji-release.min.js?ver=7.1.2",
+      "resourceType": "Script",
+      "transferSize": 5058,
+      "resourceSize": 22752,
+      "priority": "Low"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/css/c7c2a8934d7aef47a8886bfadc3d9d97.css?ver=d2fb6",
+      "resourceType": "Stylesheet",
+      "transferSize": 4768,
+      "resourceSize": 41082,
+      "priority": "VeryHigh"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/d83023bfe4b76eb18913925fea90caf0.js?ver=588e9",
+      "resourceType": "Script",
+      "transferSize": 4741,
+      "resourceSize": 13577,
+      "priority": "High"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/48024c4eb360e093e56b89735c2a875e.js?ver=f9346",
+      "resourceType": "Script",
+      "transferSize": 4674,
+      "resourceSize": 15316,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/css/0692a32b2d676b22a32301f9c8eacde9.css?ver=1c6ef",
+      "resourceType": "Stylesheet",
+      "transferSize": 4303,
+      "resourceSize": 22593,
+      "priority": "VeryHigh"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/3ad9913ed2e76213ce80eaaa9e5f104d.js?ver=34f77",
+      "resourceType": "Script",
+      "transferSize": 3393,
+      "resourceSize": 11071,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/860d6cde31ab2406ea51172b7c8282fd.js?ver=f3888",
+      "resourceType": "Script",
+      "transferSize": 3361,
+      "resourceSize": 9637,
+      "priority": "Low"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2024/07/download.png",
+      "resourceType": "Image",
+      "transferSize": 3283,
+      "resourceSize": 3200,
+      "priority": "High"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/6f6fccca5701fc31779bb329f68e15a0.js?ver=439e2",
+      "resourceType": "Script",
+      "transferSize": 2923,
+      "resourceSize": 11716,
+      "priority": "High"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2024/05/%D9%84%D9%88%DA%AF%D9%88-2-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B220-.png",
+      "resourceType": "Image",
+      "transferSize": 2863,
+      "resourceSize": 2780,
+      "priority": "Low"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/css/1e43b0762746aa61e2bb7439318ffc03.css?ver=fd6f3",
+      "resourceType": "Stylesheet",
+      "transferSize": 2810,
+      "resourceSize": 21564,
+      "priority": "VeryHigh"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/css/5013bf9e27fef66a03e6eaf8dbf3eec8.css?ver=1fddf",
+      "resourceType": "Stylesheet",
+      "transferSize": 2508,
+      "resourceSize": 18486,
+      "priority": "VeryHigh"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/ed409692eee5cbfdf32903665e3ae9ae.js?ver=2a0a9",
+      "resourceType": "Script",
+      "transferSize": 2434,
+      "resourceSize": 5781,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/ba805fd84d4b50e3366d18c5a8c0be90.js?ver=8db63",
+      "resourceType": "Script",
+      "transferSize": 2014,
+      "resourceSize": 7484,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/css/8c18f40ad6304cea7c0b959d864bb588.css?ver=02068",
+      "resourceType": "Stylesheet",
+      "transferSize": 1856,
+      "resourceSize": 94914,
+      "priority": "VeryHigh"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/12b57f5c83ea5b70b2b7473446f4607b.js?ver=47d4c",
+      "resourceType": "Script",
+      "transferSize": 1811,
+      "resourceSize": 5097,
+      "priority": "Medium"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/css/8f8a58e8b09544a3a1ce4e4fc1f45ea0.css?ver=2f732",
+      "resourceType": "Stylesheet",
+      "transferSize": 1712,
+      "resourceSize": 13260,
+      "priority": "VeryHigh"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/css/d1449c8b67d75f0b6862c0f5440a84e7.css?ver=7ece2",
+      "resourceType": "Stylesheet",
+      "transferSize": 1682,
+      "resourceSize": 5270,
+      "priority": "VeryHigh"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/uploads/2024/05/cropped-logo-deks22-keshavarz20-32x32.png",
+      "resourceType": "Other",
+      "transferSize": 1679,
+      "resourceSize": 1550,
+      "priority": "High"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/css/c06653149616549fd6996e2c5adc60e6.css?ver=167c3",
+      "resourceType": "Stylesheet",
+      "transferSize": 1621,
+      "resourceSize": 6662,
+      "priority": "VeryHigh"
+    },
+    {
+      "url": "https://secure.gravatar.com/avatar/ec1c5788928127340fe91decea99ba05855aaf1270ba13f6a503aaea308ba275?s=48&d=mm&r=g",
+      "resourceType": "Image",
+      "transferSize": 1483,
+      "resourceSize": 1037,
+      "priority": "High"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/8d4b01a52508b6fcad2250120302d1d6.js?ver=670f6",
+      "resourceType": "Script",
+      "transferSize": 1452,
+      "resourceSize": 4282,
+      "priority": "Low"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/55556b0a5cac09f3b4cad659e3b8f4c2.js?ver=383eb",
+      "resourceType": "Script",
+      "transferSize": 1361,
+      "resourceSize": 4351,
+      "priority": "Low"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/js/01945764d8618afbe0c242cec6f6da61.js?ver=fdccd",
+      "resourceType": "Script",
+      "transferSize": 1286,
+      "resourceSize": 2951,
+      "priority": "Low"
+    },
+    {
+      "url": "https://keshavarz20.com/wp-content/litespeed/css/eb94baaffcc6d9127661069c4bf1c60a.css?ver=7b57a",
+      "resourceType": "Stylesheet",
+      "transferSize": 1284,
+      "resourceSize": 5620,
+      "priority": "VeryHigh"
+    }
+  ]
+}
