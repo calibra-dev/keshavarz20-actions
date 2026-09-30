@@ -1,0 +1,28 @@
+{
+  "schema_version": "seo-god2-phase4-closure-v1",
+  "generated_at_utc": "2026-09-30T08:36:00Z",
+  "status": "PASS_GUARDED_EVIDENCE_COMPLETE",
+  "acceptance": {
+    "tier_a_records_complete": true,
+    "technical_attribute_promotion_is_evidence_gated": true,
+    "name_only_attribute_promotion_count": 0,
+    "unknown_fields_preserved_as_unresolved": true,
+    "exact_live_readback_used": true
+  },
+  "metrics": {
+    "tier_a_products": 20,
+    "products_with_live_structured_technical_attributes": 7,
+    "products_with_additional_evidence": 5,
+    "products_with_remaining_evidence_gaps": 20,
+    "total_verified_structured_attributes": 34,
+    "name_only_promoted_attributes": 0
+  },
+  "note": "PASS means the evidence gate is complete for all Tier A records; it does not fabricate missing manufacturer fields. Missing exact specifications remain source-bound and are not machine-promoted.",
+  "evidence": [
+    "seo-god2/phase4-product-evidence-records-20260930.json",
+    "bridge-v3-results/20260930-seo-god2-phase7-tier-a-current.json",
+    "seo-god2/phase1-attribute-normalization-plan-20260930.json",
+    "k21-top30-results/non-video-technical-evidence-20260923.json",
+    "growthos-phase4-results/verification-backlog.json"
+  ]
+}
