@@ -1,0 +1,163 @@
+name: Keshavarz20 ChatGPT Product Queue Publisher
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'product-engine/queue/*.json'
+  pull_request:
+    paths:
+      - '.github/workflows/k20-product-queue-publisher.yml'
+      - 'product-engine/**'
+      - 'product_engine_compat.py'
+      - 'k20_sanitizer.py'
+  workflow_dispatch:
+    inputs:
+      queue_file:
+        description: 'Path to a product queue JSON file'
+        required: true
+        default: 'product-engine/queue/manual.json'
+      validate_only:
+        description: 'Validate queue + Lighthouse baseline only; never write to WordPress'
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-product-queue-publisher
+  cancel-in-progress: false
+
+jobs:
+  static-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile product publisher
+        run: |
+          python -m py_compile product_engine_compat.py
+          python -m py_compile product-engine/core.py
+          python -m py_compile product-engine/qa.py
+          python -m py_compile product-engine/perf.py
+          python -m py_compile product-engine/media_perf.py
+          python -m py_compile product-engine/publish_queue.py
+          python -m py_compile k20_sanitizer.py
+
+  publish-product:
+    if: github.event_name != 'pull_request'
+    needs: static-check
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      TZ: Asia/Tehran
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: product-engine/requirements.txt
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r product-engine/requirements.txt
+
+      - name: Install Lighthouse
+        run: npm install -g lighthouse
+
+      - name: Validate WordPress/Bridge secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in WP_BASE_URL WP_USERNAME WP_APP_PASSWORD; do
+            if [ -z "${!name:-}" ]; then
+              echo "::error title=Missing repository secret::$name is empty or unavailable"
+              exit 2
+            fi
+          done
+
+      - name: Resolve product queue files
+        shell: bash
+        env:
+          MANUAL_FILE: ${{ inputs.queue_file }}
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            case "$MANUAL_FILE" in
+              product-engine/queue/*.json) ;;
+              *) echo "::error::Product publisher accepts only product-engine/queue/*.json"; exit 4 ;;
+            esac
+            printf '%s\n' "$MANUAL_FILE" > /tmp/k20-product-queue-files.txt
+          else
+            git diff-tree --no-commit-id --name-only --diff-filter=A -r HEAD -- 'product-engine/queue/*.json' > /tmp/k20-product-queue-files.txt
+          fi
+          if [ ! -s /tmp/k20-product-queue-files.txt ]; then
+            echo 'No newly added product queue JSON file found.'
+            exit 0
+          fi
+          cat /tmp/k20-product-queue-files.txt
+
+      - name: Publish queued product
+        shell: bash
+        env:
+          VALIDATE_ONLY: ${{ inputs.validate_only }}
+        run: |
+          set -euo pipefail
+          while IFS= read -r file; do
+            [ -n "$file" ] || continue
+            [ -f "$file" ] || { echo "::error::Queue file not found: $file"; exit 3; }
+            args=("$file")
+            if [ "${VALIDATE_ONLY:-false}" = "true" ]; then args+=(--validate-only); fi
+            python product-engine/publish_queue.py "${args[@]}"
+          done < /tmp/k20-product-queue-files.txt
+
+      - name: Persist product state and evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f product-engine/state.json 2>/dev/null || true
+          if [ -f product-engine/last-run.json ]; then git add -f product-engine/last-run.json; fi
+          if [ -d product-engine/results ]; then git add -f product-engine/results; fi
+          if git diff --cached --quiet; then
+            echo 'No state/evidence change.'
+            exit 0
+          fi
+          git commit -m "product-engine: checkpoint queue publisher"
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
+
+      - name: Upload product evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k20-product-queue-${{ github.run_id }}
+          if-no-files-found: ignore
+          retention-days: 14
+          path: |
+            product-engine/last-run.json
+            product-engine/results/*.json
