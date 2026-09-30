@@ -6,9 +6,32 @@ import subprocess
 import tempfile
 from typing import Any
 
+def _audit_items(audits: dict[str,Any], audit_id: str, limit: int=30) -> list[dict[str,Any]]:
+    items=(audits.get(audit_id) or {}).get("details",{}).get("items",[])
+    return items[:limit] if isinstance(items,list) else []
+
+def _category_failures(cats: dict[str,Any], audits: dict[str,Any]) -> list[dict[str,Any]]:
+    out=[]
+    for category_id in ("accessibility","best-practices","seo"):
+        category=cats.get(category_id) or {}
+        for ref in category.get("auditRefs") or []:
+            aid=ref.get("id")
+            audit=audits.get(aid) or {}
+            score=audit.get("score")
+            if score is not None and score < 1:
+                out.append({
+                    "category":category_id,
+                    "id":aid,
+                    "title":audit.get("title"),
+                    "score":score,
+                    "display_value":audit.get("displayValue"),
+                })
+    return out[:100]
+
 def lighthouse(url: str, runs: int=3) -> dict[str,Any]:
     samples=[]
     deep=[]
+    diagnostics={}
     for i in range(runs):
         fd,path=tempfile.mkstemp(prefix=f"k20-product-{i+1}-",suffix=".json")
         os.close(fd)
@@ -45,13 +68,26 @@ def lighthouse(url: str, runs: int=3) -> dict[str,Any]:
             }
             samples.append(metric)
             if i==1:
-                net=(audits.get("network-requests") or {}).get("details",{}).get("items",[])
+                net=_audit_items(audits,"network-requests",200)
                 top=sorted(net,key=lambda x:x.get("transferSize") or 0,reverse=True)[:25]
                 deep=[{
                     "url":x.get("url"),"resource_type":x.get("resourceType"),
                     "transfer_size":x.get("transferSize"),"resource_size":x.get("resourceSize"),
                     "priority":x.get("priority")
                 } for x in top]
+                diagnostics={
+                    "failing_audits":_category_failures(cats,audits),
+                    "lcp_element":_audit_items(audits,"largest-contentful-paint-element",5),
+                    "layout_shifts":_audit_items(audits,"layout-shifts",12),
+                    "render_blocking":_audit_items(audits,"render-blocking-resources",30),
+                    "unused_css_items":_audit_items(audits,"unused-css-rules",30),
+                    "unused_js_items":_audit_items(audits,"unused-javascript",30),
+                    "long_tasks":_audit_items(audits,"long-tasks",20),
+                    "mainthread_work":_audit_items(audits,"mainthread-work-breakdown",30),
+                    "font_display":_audit_items(audits,"font-display",30),
+                    "image_delivery":_audit_items(audits,"uses-optimized-images",30),
+                    "modern_image_formats":_audit_items(audits,"modern-image-formats",30),
+                }
         finally:
             try: os.remove(path)
             except OSError: pass
@@ -59,7 +95,8 @@ def lighthouse(url: str, runs: int=3) -> dict[str,Any]:
     representative=sorted(good,key=lambda x:x["lcp_ms"])[len(good)//2] if good else None
     return {
         "samples":samples,"representative":representative,
-        "successful_runs":len(good),"top_network_requests":deep
+        "successful_runs":len(good),"top_network_requests":deep,
+        "diagnostics":diagnostics
     }
 
 def passes(result: dict[str,Any]) -> bool:
