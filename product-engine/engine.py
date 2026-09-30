@@ -13,6 +13,7 @@ from core import (
     research_input, rollback, save_json, seo_read, textify, utcnow, write_candidate
 )
 from perf import lighthouse, passes as performance_passes, regressions
+from media_perf import maybe_optimize_featured, restore_featured
 from qa import score as quality_score, update_bank, validate as validate_candidate
 
 def default_state() -> dict[str,Any]:
@@ -116,14 +117,25 @@ def process_one(entry: dict[str,Any], state: dict[str,Any], run_mode: str) -> di
         }
         result["schema_readback"]=schema
 
+        media_action={"attempted":False,"reason":"not evaluated"}
+        try:
+            media_action=maybe_optimize_featured(after,baseline)
+        except Exception as exc:
+            media_action={"attempted":False,"error":f"{type(exc).__name__}: {exc}"}
+        result["featured_image_performance_repair"]=media_action
+
         after_perf=lighthouse(str(after.get("permalink") or ""),3)
         result["after_performance"]=after_perf
         reg=regressions(baseline,after_perf)
         result["regressions"]=reg
         if reg:
-            rb_ok=rollback(before,seo_before)
+            image_rb=restore_featured(pid,media_action)
+            content_rb=rollback(before,seo_before)
             result.update(
-                status="ROLLED_BACK",rollback_readback_ok=rb_ok,
+                status="ROLLED_BACK",
+                rollback_readback_ok=bool(image_rb and content_rb),
+                image_rollback_ok=image_rb,
+                content_rollback_ok=content_rb,
                 blocker="; ".join(reg),finished_at=utcnow()
             )
             return result
@@ -257,8 +269,8 @@ def main() -> int:
             }
             update_stats(state,result)
 
-        if result["status"]=="FAILED" and (
-            "Bridge" in str(result.get("blocker") or "")
+        if (
+            (result["status"]=="FAILED" and "Bridge" in str(result.get("blocker") or ""))
             or result.get("rollback_readback_ok") is False
         ):
             state["kill_switch"]=True
