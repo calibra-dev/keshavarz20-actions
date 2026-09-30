@@ -1,0 +1,75 @@
+{
+  "schema_version": "seo-god2-phase4-closure-v2",
+  "generated_at_utc": "2026-09-30T09:02:00Z",
+  "status": "PASS_VERIFIED_EVIDENCE_GATE_COMPLETE",
+  "acceptance": {
+    "tier_a_evidence_records": "20/20",
+    "current_live_readback_used": true,
+    "site_writes_verified": "2/2",
+    "sanitizer_clean_before_publish": "2/2",
+    "cache_purge_verified": true,
+    "name_only_attribute_promotions": 0,
+    "unknown_fields_remain_guarded": true
+  },
+  "metrics": {
+    "tier_a_products": 20,
+    "products_with_verified_structured_attributes": 9,
+    "products_with_additional_evidence": 5,
+    "products_with_remaining_source_bound_gaps": 20,
+    "total_verified_structured_attributes": 44,
+    "newly_promoted_products": 2,
+    "newly_promoted_attributes": 10,
+    "unsupported_promotions": 0
+  },
+  "newly_verified_live_updates": [
+    {
+      "product_id": 135309,
+      "verified_attributes": {
+        "size": "۲ اینچ",
+        "pressure": "۱.۵ بار",
+        "material": "پلی‌اتیلن تقویت‌شده با نخ",
+        "product_type": "لوله نخدار تاشو آبیاری",
+        "length": "۱۰۰ متر",
+        "layers": "۵ لایه"
+      }
+    },
+    {
+      "product_id": 135337,
+      "verified_attributes": {
+        "size": "۳ اینچ",
+        "pressure": "۶ بار",
+        "material_family": "پلیمری",
+        "product_type": "شیر پروانه‌ای پلیمری دسته فلزی"
+      },
+      "still_guarded": [
+        "نوع دقیق اتصال",
+        "استاندارد فلنج/ویفر",
+        "ترکیب دقیق متریال",
+        "ابعاد نصب همین SKU"
+      ]
+    }
+  ],
+  "execution_evidence": {
+    "write_request": "bridge-v3-ops/20260930-seo-god2-phase4-promote-verified-attrs.json",
+    "write_commit": "b5e13b6b6bc8463bf061e255a38d06085ef2dc65",
+    "write_run_id": 36692675342,
+    "write_run_conclusion": "success",
+    "write_bridge_version": "3.3.8",
+    "readback_request": "bridge-v3-ops/20260930-seo-god2-phase4-postwrite-readback.json",
+    "readback_commit": "56dfd5510a2d7c30bd4be559293acb6cc8e4189c",
+    "readback_run_id": 36692981559,
+    "readback_run_conclusion": "success",
+    "readback_result": "bridge-v3-results/20260930-seo-god2-phase4-postwrite-readback.json",
+    "cache_commit": "6224dcd6a0ad6f5b0e1c85c468b64bc29b5b899d",
+    "cache_run_id": 36692988495,
+    "cache_run_conclusion": "success",
+    "cache_result": "bridge-v3-results/20260930-seo-god2-phase4-cache-purge.json"
+  },
+  "evidence": [
+    "seo-god2/phase4-product-evidence-records-v2-20260930.json",
+    "seo-god2/phase4-external-evidence-refresh-20260930.json",
+    "bridge-v3-results/20260930-seo-god2-phase4-postwrite-readback.json",
+    "bridge-v3-results/20260930-seo-god2-phase4-cache-purge.json"
+  ],
+  "interpretation": "Phase 4 acceptance is complete because every Tier A product has an evidence record and unsupported values are blocked. It does not mean every manufacturer field is known; source-bound gaps remain explicitly guarded rather than fabricated."
+}
