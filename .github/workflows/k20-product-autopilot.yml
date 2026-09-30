@@ -1,4 +1,4 @@
-name: K20 Product Autopilot
+name: K20 Product API Fallback
 
 on:
   workflow_dispatch:
@@ -23,8 +23,6 @@ on:
         required: false
         default: '1'
         type: string
-  schedule:
-    - cron: '7,37 * * * *'
 
 permissions:
   contents: write
@@ -112,15 +110,9 @@ jobs:
           INPUT_MAX_PRODUCTS: ${{ inputs.max_products }}
         run: |
           set -euo pipefail
-          if [ "${{ github.event_name }}" = "schedule" ]; then
-            action='run'
-            product_id=''
-            max_products='1'
-          else
-            action="${INPUT_ACTION:-run}"
-            product_id="${INPUT_PRODUCT_ID:-}"
-            max_products="${INPUT_MAX_PRODUCTS:-1}"
-          fi
+          action="${INPUT_ACTION:-run}"
+          product_id="${INPUT_PRODUCT_ID:-}"
+          max_products="${INPUT_MAX_PRODUCTS:-1}"
           case "$action" in
             run|dry_run|pause|resume) ;;
             *) echo "::error::Unsupported action $action"; exit 3 ;;
