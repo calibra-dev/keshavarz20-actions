@@ -203,6 +203,18 @@ def main() -> int:
         save_json(LAST_RUN_PATH,{"ok":True,"status":"PAUSED","at":utcnow()})
         return 0
 
+    if not os.environ.get("OPENAI_API_KEY","").strip():
+        state["enabled"]=False
+        state["updated_at"]=utcnow()
+        save_json(STATE_PATH,state)
+        save_json(LAST_RUN_PATH,{
+            "ok":False,"status":"MODEL_ACCESS_BLOCKED",
+            "blocker":"OPENAI_API_KEY is not configured for product-engine",
+            "at":utcnow()
+        })
+        print(json.dumps({"ok":False,"status":"MODEL_ACCESS_BLOCKED","enabled":False},ensure_ascii=False))
+        return 0
+
     inventory=refresh_inventory()
     processed=state.setdefault("processed",{})
 
