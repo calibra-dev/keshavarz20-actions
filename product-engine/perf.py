@@ -4,11 +4,26 @@ import json
 import os
 import subprocess
 import tempfile
+import time
 from typing import Any
+
+import requests
 
 def _audit_items(audits: dict[str,Any], audit_id: str, limit: int=30) -> list[dict[str,Any]]:
     items=(audits.get(audit_id) or {}).get("details",{}).get("items",[])
     return items[:limit] if isinstance(items,list) else []
+
+def _compact_item(item: dict[str,Any]) -> dict[str,Any]:
+    node=item.get("node") or {}
+    compact={
+        "selector":node.get("selector"),
+        "snippet":node.get("snippet"),
+        "node_label":node.get("nodeLabel"),
+    }
+    for key in ("contrastRatio","expectedContrastRatio","fontSize","fontWeight","url","displayValue","failureSummary"):
+        if key in item:
+            compact[key]=item.get(key)
+    return {k:v for k,v in compact.items() if v not in (None,"",[])}
 
 def _category_failures(cats: dict[str,Any], audits: dict[str,Any]) -> list[dict[str,Any]]:
     out=[]
@@ -19,14 +34,42 @@ def _category_failures(cats: dict[str,Any], audits: dict[str,Any]) -> list[dict[
             audit=audits.get(aid) or {}
             score=audit.get("score")
             if score is not None and score < 1:
+                items=(audit.get("details") or {}).get("items") or []
                 out.append({
                     "category":category_id,
                     "id":aid,
                     "title":audit.get("title"),
                     "score":score,
                     "display_value":audit.get("displayValue"),
+                    "items":[_compact_item(x) for x in items[:12] if isinstance(x,dict)],
                 })
     return out[:100]
+
+def http_probe(url: str, runs: int=5) -> list[dict[str,Any]]:
+    out=[]
+    session=requests.Session()
+    headers={"User-Agent":"Mozilla/5.0 Keshavarz20-Product-Audit/1.0","Accept":"text/html,application/xhtml+xml"}
+    for i in range(runs):
+        started=time.perf_counter()
+        try:
+            r=session.get(url,headers=headers,timeout=45,allow_redirects=True)
+            elapsed_ms=round((time.perf_counter()-started)*1000,1)
+            h={k.lower():v for k,v in r.headers.items()}
+            out.append({
+                "run":i+1,
+                "status":r.status_code,
+                "elapsed_ms":elapsed_ms,
+                "bytes":len(r.content),
+                "cache_control":h.get("cache-control"),
+                "x_litespeed_cache":h.get("x-litespeed-cache"),
+                "x_litespeed_tag":h.get("x-litespeed-tag"),
+                "age":h.get("age"),
+                "server":h.get("server"),
+                "vary":h.get("vary"),
+            })
+        except Exception as exc:
+            out.append({"run":i+1,"error":f"{type(exc).__name__}: {exc}"})
+    return out
 
 def lighthouse(url: str, runs: int=3) -> dict[str,Any]:
     samples=[]
