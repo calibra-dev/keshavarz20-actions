@@ -75,6 +75,7 @@ jobs:
           python -m py_compile product-engine/ai_runtime.py
           python -m py_compile product-engine/qa.py
           python -m py_compile product-engine/perf.py
+          python -m py_compile product-engine/media_perf.py
           python -m py_compile product-engine/engine.py
           python -m py_compile k20_sanitizer.py
           python - <<'PY'
