@@ -1,0 +1,62 @@
+{
+  "schema_version": "seo-god2-phase9-expansion-plan-v2",
+  "phase": 9,
+  "name": "Returns, Mismatch, Authenticity & Evidence Clarity",
+  "status": "READY",
+  "scope": {
+    "tier_a_products": 20,
+    "product_ids": [
+      140856,
+      140718,
+      135339,
+      135349,
+      140853,
+      140406,
+      140760,
+      140816,
+      140407,
+      135337,
+      135353,
+      140454,
+      135381,
+      135361,
+      140674,
+      135235,
+      140014,
+      135309,
+      135359,
+      135667
+    ]
+  },
+  "expansion": [
+    "Preserve official returns/mismatch and authenticity links.",
+    "Add pre-install/pre-use identity check guidance.",
+    "Add evidence-capture guidance for mismatch/damage without making it a fabricated legal condition.",
+    "Tell users not to install/use/alter the item while a mismatch case is being clarified.",
+    "Keep explicit no-fixed-return/refund promise language.",
+    "Preserve Phase 6/7/8 blocks and any newer content."
+  ],
+  "prohibited": [
+    "invented return window",
+    "invented refund timing",
+    "invented refund amount",
+    "unconditional guarantee",
+    "SKU-specific warranty promise without evidence",
+    "price/stock/payment changes"
+  ],
+  "acceptance": {
+    "products": 20,
+    "phase9_card_exactly_once": 20,
+    "returns_link": 20,
+    "authenticity_link": 20,
+    "identity_check_guidance": 20,
+    "evidence_capture_guidance": 20,
+    "no_install_use_guidance": 20,
+    "no_fixed_promise": 20,
+    "phase8_preserved": 20,
+    "phase7_preserved": 20,
+    "phase6_expected_preserved": 15,
+    "public_http_200": 20,
+    "forbidden_claims": 0
+  }
+}
