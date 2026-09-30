@@ -1,0 +1,32 @@
+{
+  "action": "rest.proxy",
+  "request_id": "seo-god2-phase7-tier-a-shipping-fields-20260930",
+  "method": "GET",
+  "path": "/wc/v3/products",
+  "query": {
+    "include": [
+      140856,
+      140718,
+      135339,
+      135349,
+      140853,
+      140406,
+      140760,
+      140816,
+      140407,
+      135337,
+      135353,
+      140454,
+      135381,
+      135361,
+      140674,
+      135235,
+      140014,
+      135309,
+      135359,
+      135667
+    ],
+    "per_page": 100,
+    "_fields": "id,name,permalink,status,sku,weight,dimensions,shipping_class,shipping_class_id,short_description,stock_status,stock_quantity"
+  }
+}
