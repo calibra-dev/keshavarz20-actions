@@ -1,0 +1,28 @@
+{
+  "action": "batch",
+  "request_id": "seo-god2-phase6-urltruth-140816-140841-read-20260930",
+  "payload": {
+    "items": [
+      {
+        "action": "rest.proxy",
+        "method": "GET",
+        "path": "/wc/v3/products/140816"
+      },
+      {
+        "action": "rest.proxy",
+        "method": "GET",
+        "path": "/wc/v3/products/140841"
+      },
+      {
+        "action": "rest.proxy",
+        "method": "GET",
+        "path": "/wp/v2/product/140816"
+      },
+      {
+        "action": "rest.proxy",
+        "method": "GET",
+        "path": "/wp/v2/product/140841"
+      }
+    ]
+  }
+}
