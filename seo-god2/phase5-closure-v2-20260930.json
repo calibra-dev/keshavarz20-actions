@@ -1,0 +1,51 @@
+{
+  "schema_version": "seo-god2-phase5-closure-v2",
+  "generated_at_utc": "2026-09-30T09:06:00Z",
+  "status": "PASS_EXPANDED_GUARDED_COMPATIBILITY_COMPLETE",
+  "acceptance": {
+    "tier_a_nodes_complete": "20/20",
+    "physical_equipment_nodes": 15,
+    "fertilizer_nodes_label_guarded": 5,
+    "status_vocabulary_enforced": [
+      "VERIFIED",
+      "INCOMPATIBLE",
+      "NEEDS_REVIEW"
+    ],
+    "same_size_never_promoted_to_verified": true,
+    "exact_sku_positive_recommendation_requires_real_evidence": true,
+    "direct_incompatibilities_recorded": true,
+    "unresolved_pairs_researched_again": true,
+    "unsupported_positive_promotions": 0
+  },
+  "metrics": {
+    "tier_a_nodes": 20,
+    "physical_equipment_nodes": 15,
+    "fertilizer_nodes_guarded": 5,
+    "verified_positive_edges": 0,
+    "incompatible_edges": 5,
+    "needs_review_edges": 8,
+    "guessed_edges": 0,
+    "externally_researched_unresolved_groups": 5,
+    "status_changes_after_external_refresh": 0
+  },
+  "guard": {
+    "automatic_exact_sku_positive_recommendation_enabled": false,
+    "incompatible_pair_guard_enabled": true,
+    "needs_review_pairs_route_to_expert_check": true,
+    "fertilizer_mix_compatibility_default": "NEEDS_LABEL_OR_MANUFACTURER_EVIDENCE"
+  },
+  "key_decision": "Zero verified positive edges is an intentional evidence result, not a missing execution. No same-size or same-family pair was promoted without exact interface evidence.",
+  "evidence": [
+    "seo-god2/phase5-tier-a-compatibility-graph-v2-20260930.json",
+    "seo-god2/phase5-external-research-refresh-20260930.json",
+    "seo-god2/phase4-product-evidence-records-v2-20260930.json",
+    "bridge-v3-results/20260930-seo-god2-phase4-postwrite-readback.json"
+  ],
+  "next_evidence_priority": [
+    "Product 135235: exact manufacturer/model label or datasheet",
+    "Products 135353/135359/135381: exact Farat Polymer interface datasheets",
+    "Products 140406/140407: exact tank thread standard/gender and pressure rating",
+    "Product 135349: exact thread standard plus verified 2-inch hose/rainpipe adapter chain",
+    "Product 140454: exact Zalal Roud flow/interface datasheet"
+  ]
+}
