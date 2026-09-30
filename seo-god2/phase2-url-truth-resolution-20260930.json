@@ -1,0 +1,38 @@
+{
+  "schema_version": "seo-god2-phase2-url-truth-resolution-v1",
+  "generated_at_utc": "2026-09-30T07:57:00Z",
+  "issue": "The indexed calcium-crop slug was attached to Polys XGreen instead of the calcium product.",
+  "resolved": [
+    {
+      "product_id": 140816,
+      "product_name": "کود مایع کلسیم آمینواسید هارد کالی‌کراپ ایکس گرین ۱ لیتری با منیزیم و ریزمغذی (Hard calicrop XGreen)",
+      "final_slug": "کلسیم-کراپ-ایکس-گرین",
+      "stock_status": "instock",
+      "stock_quantity": 1
+    },
+    {
+      "product_id": 140841,
+      "product_name": "محلول پلی‌اس ایکس گرین ۲۰ لیتری؛ گوگرد چندظرفیتی (Polys XGreen)",
+      "final_slug": "پلی-اس-ایکس-گرین-20-لیتری",
+      "stock_status": "instock",
+      "stock_quantity": 20
+    }
+  ],
+  "canonical_state": "Yoast explicit canonical was blank on both products before the slug correction, so normal self-canonical behavior remains applicable.",
+  "inventory_exclusion": {
+    "product_id": 140854,
+    "product_name": "کود پودری معجزه گر ارگانیک ایکس گرین آمریکا 10 کیلویی (Organic Marvel)",
+    "stock_status": "outofstock",
+    "stock_quantity": 0,
+    "tier_action": "Keep excluded from Tier A until stock becomes available; this is an inventory condition, not an unresolved truth defect."
+  },
+  "evidence": [
+    "bridge-v3-results/20260930-seo-god2-phase2-search-calcium-crop.json",
+    "bridge-v3-results/20260930-seo-god2-phase2-seo-read-140816.json",
+    "bridge-v3-results/20260930-seo-god2-phase2-seo-read-140841.json",
+    "bridge-v3-results/20260930-seo-god2-phase2-fix-url-truth.json",
+    "bridge-v3-results/20260930-seo-god2-phase2-url-readback-calcium.json",
+    "bridge-v3-results/20260930-seo-god2-phase2-url-readback-polys.json",
+    "bridge-v3-results/20260930-seo-god2-phase2-organic-marvel-current.json"
+  ]
+}
