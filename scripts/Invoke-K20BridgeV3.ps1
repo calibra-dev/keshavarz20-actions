@@ -219,7 +219,7 @@ if($parsed -and $parsed.result){
       foreach($row in $rows){
         if($null -eq $row){ continue }
         $item=[ordered]@{}
-        foreach($name in @('id','status','slug','name','sku','stock_status','stock_quantity','total_sales','average_rating','rating_count','date_modified_gmt','permalink','attributes','categories','tags')){
+        foreach($name in @('id','status','slug','name','sku','stock_status','stock_quantity','total_sales','average_rating','rating_count','date_modified_gmt','permalink','short_description','attributes','categories','tags','brands')){
           $p=$row.PSObject.Properties[$name]
           if($p){ $item[$name]=$p.Value }
         }
