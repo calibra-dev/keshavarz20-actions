@@ -1,4 +1,6 @@
-# K20 Content Quality Master Prompt v3 — Article + News
+# K20 Content Quality Master Prompt v3.1 — Article + News
+
+> Integrated with K20 ULTIMATE ARTICLE ENGINE V2 on 2026-09-30. This file remains the canonical runtime path; v3.1 is a content-contract revision, not a new engine path.
 
 هدف: هر خروجی موتور نوشته‌ها و اخبار کشاورز بیست باید همزمان انسان‌محور، دقیق، قابل استناد، SEO/GEO/AEO-ready، سریع‌فهم، موبایل‌خوان و Performance-safe باشد؛ بدون قربانی‌کردن صحت فنی، تجربه کاربری یا هویت برند.
 
@@ -255,6 +257,133 @@ Title، Meta، H1/H2/H3، Canonical، Index intent، ALT، Internal Links، Brea
 - humanized
 - watermark/text hygiene + residual check
 - هیچ داده محافظت‌شده موتور تغییر نکند.
+
+
+## فاز 30A — Read Before Write / Existing Page State
+اگر URL یا صفحه از قبل وجود دارد، قبل از هر تغییر وضعیت واقعی را بخوان و ثبت کن:
+- post_id / URL / status / title / H1
+- SEO title / meta description / focus keyphrase / canonical / indexability
+- main content / Elementor or builder content
+- featured image / ALT / visible FAQ / internal links / CTA / TOC
+- schema-facing state
+- final HTML
+- current LCP element and relevant CSS/JS/image assets when performance work is in scope
+
+کار بسته‌شده را بدون شاهد regression تکرار نکن. Memory یا حدس جای readback نیست.
+
+## فاز 30B — Information Gain Gate
+مقاله نباید صرفاً بازنویسی نتایج عمومی باشد. هر محتوای مرجع باید، در صورت تناسب موضوع، حداقل چند مورد ارزش افزوده واقعی داشته باشد:
+- جدول تصمیم
+- فرمول و مثال قابل بازتولید
+- شرایط «مناسب نیست»
+- خطای رایج و روش عیب‌یابی
+- Compatibility صریح
+- BOM مقدماتی یا چک‌لیست خرید
+- ورودی‌های لازم برای طراحی مهندسی
+- محدودیت و boundary تصمیم
+
+Information Gain نباید با عدد یا تجربه ساختگی ایجاد شود.
+
+## فاز 30C — Claim → Evidence Ledger
+هر ادعای مهم را به یکی از این پشتوانه‌ها متصل کن:
+- منبع رسمی/استاندارد/دیتاشیت سازنده
+- داده واقعی محصول/سایت
+- محاسبه بازتولیدپذیر
+- تجربه عمومی صنعت با بیان محتاطانه
+
+طبقه‌بندی داخلی ادعا:
+FACT / ESTIMATE / ENGINEERING_REQUIRED / MANUFACTURER_CLAIM / EXPERT_INTERPRETATION.
+Estimate را قطعی نکن و Engineering Required را با توصیه نهایی جایگزین نکن.
+
+## فاز 30D — LCP / Asset Delivery Hardening
+اگر Performance در scope است:
+1. LCP element واقعی را از HTML/trace مشخص کن.
+2. فقط Hero/LCP واقعی می‌تواند eager/high-priority باشد.
+3. Attachment ID به‌تنهایی شرط کافی نیست؛ context/size/render location را نیز بررسی کن.
+4. Hero باید width/height، srcset و sizes صحیح داشته باشد.
+5. موبایل نباید بی‌دلیل candidate بسیار بزرگ دانلود کند.
+6. وجود duplicate hero در Elementor/content/sidebar/widgets را بررسی کن.
+7. duplicate غیرضروری را exact و narrow neutralize/remove کن؛ broad replace ممنوع.
+8. heavy non-LCP assets مثل avatar/widget thumbnail را با اندازه واقعی نمایش تطبیق بده.
+
+## فاز 30E — CSS / JS / LiteSpeed Final-State Audit
+- CSS/JS را فقط براساس owner + dependency + صفحه واقعی قضاوت کن؛ درصد unused به‌تنهایی دلیل حذف نیست.
+- ترتیب ترجیح JS: defer → delay → page-specific dequeue → removal.
+- jQuery/WooCommerce/Elementor/Digits/Analytics/WhatsApp را کورکورانه حذف نکن.
+- LiteSpeed یا cache layer ممکن است خروجی نهایی را تغییر دهد؛ بنابراین PHP/enqueue state با Final HTML state برابر فرض نشود.
+- بعد از هر تغییر فنی: cache purge → fetch final HTML → network/readback → test.
+- تغییر global فقط پس از اثبات و regression test؛ پیش‌فرض page-specific است.
+
+## فاز 30F — Lighthouse ×3 and Stable Median
+برای Performance acceptance حداقل سه Mobile Lighthouse run هم‌شرایط ثبت کن:
+- Performance / Accessibility / Best Practices / SEO
+- FCP / LCP / Speed Index / TBT / CLS / TTFB
+- Total Byte Weight / render blocking / unused CSS / unused JS
+
+Run سرد را گزارش کن ولی نماینده steady-state فرض نکن. Median/representative stable run را جدا اعلام کن. یک Run سریع یا کند به‌تنهایی مبنای نتیجه نیست.
+
+## فاز 30G — Regression / Rollback Guard
+بعد از هر patch فنی این مسیرها را بررسی کن:
+Header, desktop/mobile menu, search, login/Digits, WhatsApp, CTA, links, tables, TOC, Elementor components, images, sidebar, related posts, schema و calculator در صفحات مربوط.
+اگر UX، SEO/schema، PHP/JS، HTTP، LCP/CLS یا تعاملات اصلی regression واقعی داشتند، rollback کن. امتیاز Lighthouse مجوز شکستن سایت نیست.
+
+## فاز 30H — Accessibility Contract
+حداقل بررسی:
+- دقیقاً یک H1 واقعی
+- heading hierarchy
+- alt/link/button/form labels
+- contrast/focus/target size
+- duplicate IDs
+- image sizing
+- keyboard/zoom برای جدول و ابزار تعاملی
+
+Accessibility = 100 هدف پروژه است، نه ادعای موفقیت بدون audit.
+
+## فاز 30I — Schema Parity / Visibility
+Schema فقط داده‌ای را بیان کند که کاربر واقعاً در صفحه می‌بیند و ماهیت صفحه آن را توجیه می‌کند.
+FAQ visible و schema باید همسان باشند. اگر FAQ/عدد/تاریخ/نام تغییر کرد، structured data هم هماهنگ شود. Product/HowTo/FAQPage فقط در صورت واقعی بودن همان نوع محتوا.
+
+## فاز 30J — CTA / Conversion Safety
+CTA باید بعد از ارزش واقعی و در نقطه تصمیم قرار گیرد:
+مشاهده تجهیزات، بررسی محصول، درخواست پیش‌فاکتور، تماس فنی، یا ماشین‌حساب.
+فشار مصنوعی، فوریت جعلی، موجودی/قیمت/تضمین ساختگی و ادعای «بهترین» ممنوع.
+
+## فاز 30K — Existing Article Repair Mode
+اگر صفحه موجود رتبه/ترافیک دارد و مسئله Performance است، بدون ضرورت URL/H1/title/meta/focus keyword/core content/internal links/schema را بازنویسی نکن.
+ابتدا image delivery، LCP، duplicate asset، responsive srcset، lazy/eager، CSS/JS، cache، font، thumbnails و third-party را بررسی کن.
+
+## فاز 30L — Execution Priority
+کارها را بر اساس اثر/ریسک مرتب کن:
+P0 = خطا، اعتماد، indexability، broken UX
+P1 = Intent، Answer، Evidence، SEO
+P2 = GEO/AEO، Schema، Internal Linking
+P3 = Performance / CWV
+P4 = Conversion
+P5 = polish
+
+بعد از هر write، readback اجباری است. تغییر موفق فقط با final-state evidence پذیرفته می‌شود.
+
+## فاز 30M — Post-Publish Measurement
+بعد از انتشار/به‌روزرسانی در صورت دسترسی واقعی:
+- HTTP 200 / canonical / indexability
+- schema parity / mobile rendering
+- Lighthouse mobile ×3
+- Search Console query/device/country/landing-page trend
+- CTR / impressions / position با context
+- AI citation فقط با مشاهده مستقیم surface/prompt/time/URL
+
+اثر محتوا بر فروش، رتبه یا citation را از correlation/حدس جدا کن.
+
+## فاز 30N — Definition of Done
+DONE فقط وقتی مجاز است که موارد مرتبط با scope پاس شده باشند:
+Intent, Answer-first, human-style Persian, evidence, no fake claims, information gain, useful table/calculation where relevant, SEO metadata, internal links, image/ALT, schema parity, FAQ quality, CTA, mobile UX, one H1, accessibility, LCP identification, responsive image delivery, duplicate/high-priority guard, heavy non-LCP audit, CSS/JS audit, cache purge, HTML readback, Lighthouse ×3, regression test, no broken functionality, and post-publish monitoring state.
+موارد خارج از scope را N/A ثبت کن؛ با شواهد ناقص «همه چیز کامل شد» نگو.
+
+## فاز 30O — Final Operational Report
+گزارش نهایی اجرای واقعی، فقط برای مواردی که data دارند، این محورها را پوشش دهد:
+1) تغییر چه بود  2) چرا  3) چه چیزی عمداً تغییر نکرد  4) Content  5) SEO  6) GEO/AEO  7) Schema  8) Accessibility  9) Images  10) LCP element
+11) Performance before  12) after  13-15) Lighthouse runs  16) median  17) TTFB  18) LCP  19) CLS  20) TBT  21) Speed Index  22) Total Bytes  23) remaining unused CSS  24) remaining unused JS  25) open issues  26) exact next action.
+هیچ metric یا success claim بدون اندازه‌گیری واقعی تولید نشود.
 
 ## فاز 30 — اصل نهایی
 محتوا را برای Google ننویس.
