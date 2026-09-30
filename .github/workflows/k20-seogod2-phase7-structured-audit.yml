@@ -1,0 +1,158 @@
+name: SEO God2 Phase 7 Structured Shipping Audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'seo-god2-phase7-structured-audit-ops/*.json'
+      - '.github/workflows/k20-seogod2-phase7-structured-audit.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check requests beautifulsoup4
+      - name: Audit structured shipping signals
+        shell: python
+        run: |
+          import json, os, pathlib, requests, time
+          from bs4 import BeautifulSoup
+
+          base=os.environ['WP_BASE_URL'].rstrip('/')
+          auth=(os.environ['WP_USERNAME'],os.environ['WP_APP_PASSWORD'])
+          s=requests.Session(); s.auth=auth
+          public=requests.Session()
+
+          def get_retry(session,url,**kwargs):
+            last=None
+            for attempt in range(4):
+              try:
+                return session.get(url,**kwargs)
+              except requests.RequestException as e:
+                last=e; time.sleep(1.5*(attempt+1))
+            raise last
+
+          method_r=get_retry(s,base+'/wp-json/wc/v3/shipping/zones/1/methods/2',timeout=60)
+          method_r.raise_for_status()
+          method=method_r.json()
+          settings={}
+          for k,v in (method.get('settings') or {}).items():
+            if isinstance(v,dict):
+              settings[k]={
+                'id':v.get('id'),
+                'label':v.get('label'),
+                'type':v.get('type'),
+                'value':v.get('value'),
+                'default':v.get('default')
+              }
+
+          readback=json.loads(pathlib.Path('bridge-v3-results/20260930-seo-god2-phase7-postwrite-readback.json').read_text(encoding='utf-8'))
+          products=readback['result']['data_items']
+          rows=[]
+
+          def walk(obj,path='$'):
+            out=[]
+            if isinstance(obj,dict):
+              for k,v in obj.items():
+                kp=f'{path}.{k}'
+                if k in ('shippingDetails','shippingRate','deliveryTime','shippingDestination','shippingLabel'):
+                  out.append({'path':kp,'key':k,'value':v})
+                out.extend(walk(v,kp))
+            elif isinstance(obj,list):
+              for i,v in enumerate(obj):
+                out.extend(walk(v,f'{path}[{i}]'))
+            return out
+
+          for p in products:
+            url=p['permalink']
+            rr=get_retry(public,url,timeout=60,allow_redirects=True,headers={
+              'User-Agent':'K20Phase7StructuredAudit/1.0','Cache-Control':'no-cache','Pragma':'no-cache'
+            })
+            soup=BeautifulSoup(rr.text,'html.parser')
+            found=[]
+            parse_errors=0
+            for sc in soup.find_all('script',attrs={'type':'application/ld+json'}):
+              raw=sc.string or sc.get_text() or ''
+              try:
+                data=json.loads(raw)
+              except Exception:
+                parse_errors+=1
+                continue
+              found.extend(walk(data))
+            zero_shipping=[]
+            for item in found:
+              if item['key']!='shippingRate': continue
+              val=item['value']
+              txt=json.dumps(val,ensure_ascii=False).lower()
+              if '"value": 0' in txt or '"value":"0"' in txt or '"value": "0"' in txt or 'free' in txt or 'رایگان' in txt:
+                zero_shipping.append(item)
+            rows.append({
+              'product_id':p['id'],
+              'public_status':rr.status_code,
+              'shipping_structured_signal_count':len(found),
+              'shipping_structured_signals':found[:30],
+              'zero_or_free_shipping_structured_signals':zero_shipping,
+              'jsonld_parse_errors':parse_errors
+            })
+
+          zero_products=[r['product_id'] for r in rows if r['zero_or_free_shipping_structured_signals']]
+          shipping_details_products=[r['product_id'] for r in rows if r['shipping_structured_signal_count']>0]
+          out={
+            'schema_version':'seo-god2-phase7-structured-shipping-audit-v1',
+            'status':'PASS' if not zero_products else 'FAIL_CONTRADICTORY_FREE_SHIPPING_SCHEMA',
+            'shipping_method':{
+              'id':method.get('id'),
+              'method_id':method.get('method_id'),
+              'title':method.get('title'),
+              'enabled':method.get('enabled'),
+              'settings':settings
+            },
+            'metrics':{
+              'tier_a_products':len(rows),
+              'products_with_shipping_structured_data':len(shipping_details_products),
+              'products_with_zero_or_free_shipping_schema':len(zero_products),
+              'public_non_200':sum(1 for r in rows if r['public_status']!=200)
+            },
+            'failures':{
+              'zero_or_free_shipping_schema_product_ids':zero_products,
+              'public_non_200_product_ids':[r['product_id'] for r in rows if r['public_status']!=200]
+            },
+            'rows':rows
+          }
+          pathlib.Path('seo-god2').mkdir(exist_ok=True)
+          pathlib.Path('seo-god2/phase7-structured-shipping-audit-20260930.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps({'status':out['status'],'metrics':out['metrics'],'method_settings':settings},ensure_ascii=False))
+          if out['status']!='PASS' or out['metrics']['public_non_200']!=0:
+            raise SystemExit(1)
+      - name: Commit audit
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f seo-god2/phase7-structured-shipping-audit-20260930.json || exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f seo-god2/phase7-structured-shipping-audit-20260930.json
+          git diff --cached --quiet && exit 0
+          git commit -m "seo god2 phase7: record structured shipping audit"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
