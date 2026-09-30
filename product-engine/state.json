@@ -3,14 +3,14 @@
   "enabled": true,
   "kill_switch": false,
   "created_at": "2026-09-30T20:30:00Z",
-  "updated_at": "2026-09-30T21:32:30.116125+00:00",
+  "updated_at": "2026-09-30T21:58:56.903685+00:00",
   "processed": {
     "134980": {
-      "status": "FAILED",
-      "finished_at": "2026-09-30T21:32:30.115540+00:00",
-      "content_quality_score": null,
+      "status": "ROLLED_BACK",
+      "finished_at": "2026-09-30T21:58:56.902666+00:00",
+      "content_quality_score": 100,
       "performance": null,
-      "blocker": "RateLimitError: Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.', 'type': 'insufficient_quota', 'param': None, 'code': 'credit_balance_exhausted'}}",
+      "blocker": "content/SEO readback mismatch",
       "result_file": "product-engine/results/134980.json"
     }
   },
@@ -19,7 +19,7 @@
     "accepted": 0,
     "platform_blocked": 0,
     "blocked": 0,
-    "rolled_back": 0,
+    "rolled_back": 1,
     "failed": 1
   },
   "model_access_blocked_at": "2026-09-30T21:04:14.519348+00:00"

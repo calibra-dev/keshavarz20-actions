@@ -1,69 +1,86 @@
 {
-  "schema_version": "product-result-v1",
+  "schema_version": "product-queue-result-v1",
+  "queue_file": "product-engine/queue/2026-10-01-product-134980.json",
   "product_id": 134980,
-  "name": "اتصال ماده  آبلوله 32 میلیمتر",
-  "started_at": "2026-09-30T21:31:04.879904+00:00",
-  "status": "FAILED",
+  "started_at": "2026-09-30T21:56:34.037427+00:00",
+  "status": "ROLLED_BACK",
+  "product_name": "اتصال ماده  آبلوله 32 میلیمتر",
+  "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+  "content_quality_score": 100,
+  "content_score_detail": {
+    "evidence": 25,
+    "commercial": 20,
+    "decision_structure": 20,
+    "seo": 15,
+    "safety": 10,
+    "media_alt": 10
+  },
+  "validation_errors": [],
+  "baseline_schema": {
+    "product": true,
+    "offer": true,
+    "h1_count": 1
+  },
   "baseline_performance": {
     "samples": [
       {
-        "performance": 65,
+        "performance": 45,
         "accessibility": 79,
         "best_practices": 92,
         "seo": 100,
-        "fcp_ms": 3022.313,
-        "lcp_ms": 4652.7880000000005,
-        "speed_index_ms": 10849.938806658687,
-        "tbt_ms": 215.5,
-        "cls": 0,
-        "ttfb_ms": 4705,
-        "total_bytes": 1021585,
-        "unused_css": "Est savings of 71 KiB",
-        "unused_js": "Est savings of 75 KiB"
-      },
-      {
-        "performance": 70,
-        "accessibility": 79,
-        "best_practices": 92,
-        "seo": 100,
-        "fcp_ms": 2766.101,
-        "lcp_ms": 4541.612,
-        "speed_index_ms": 11131.214626164898,
-        "tbt_ms": 94.5,
-        "cls": 0.001563537256213143,
-        "ttfb_ms": 4933,
-        "total_bytes": 1021021,
+        "fcp_ms": 3255.2550000000006,
+        "lcp_ms": 5028.772000000001,
+        "speed_index_ms": 11457.291549560085,
+        "tbt_ms": 295.5,
+        "cls": 0.28537334216208216,
+        "ttfb_ms": 4920,
+        "total_bytes": 1021562,
         "unused_css": "Est savings of 71 KiB",
         "unused_js": "Est savings of 76 KiB"
       },
       {
-        "performance": 53,
+        "performance": 48,
         "accessibility": 79,
         "best_practices": 92,
         "seo": 100,
-        "fcp_ms": 2817.424,
-        "lcp_ms": 4726.411499999999,
-        "speed_index_ms": 10892.262324081288,
-        "tbt_ms": 147.5,
+        "fcp_ms": 2985.2389999999996,
+        "lcp_ms": 4845.920999999999,
+        "speed_index_ms": 11316.523681501607,
+        "tbt_ms": 276.00000000000045,
         "cls": 0.28537334216208216,
-        "ttfb_ms": 4616,
-        "total_bytes": 1020677,
+        "ttfb_ms": 4823,
+        "total_bytes": 1020811,
+        "unused_css": "Est savings of 71 KiB",
+        "unused_js": "Est savings of 75 KiB"
+      },
+      {
+        "performance": 48,
+        "accessibility": 79,
+        "best_practices": 92,
+        "seo": 100,
+        "fcp_ms": 3039.29,
+        "lcp_ms": 4790.153,
+        "speed_index_ms": 10956.961734526418,
+        "tbt_ms": 279.5,
+        "cls": 0.28537334216208216,
+        "ttfb_ms": 4543,
+        "total_bytes": 1020415,
         "unused_css": "Est savings of 71 KiB",
         "unused_js": "Est savings of 76 KiB"
       }
     ],
     "representative": {
-      "performance": 65,
+      "performance": 48,
       "accessibility": 79,
       "best_practices": 92,
       "seo": 100,
-      "fcp_ms": 3022.313,
-      "lcp_ms": 4652.7880000000005,
-      "speed_index_ms": 10849.938806658687,
-      "tbt_ms": 215.5,
-      "cls": 0,
-      "ttfb_ms": 4705,
-      "total_bytes": 1021585,
+      "fcp_ms": 2985.2389999999996,
+      "lcp_ms": 4845.920999999999,
+      "speed_index_ms": 11316.523681501607,
+      "tbt_ms": 276.00000000000045,
+      "cls": 0.28537334216208216,
+      "ttfb_ms": 4823,
+      "total_bytes": 1020811,
       "unused_css": "Est savings of 71 KiB",
       "unused_js": "Est savings of 75 KiB"
     },
@@ -72,7 +89,7 @@
       {
         "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
         "resource_type": "Script",
-        "transfer_size": 196907,
+        "transfer_size": 196905,
         "resource_size": 602982,
         "priority": "Medium"
       },
@@ -86,8 +103,8 @@
       {
         "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
         "resource_type": "Document",
-        "transfer_size": 64226,
-        "resource_size": 365612,
+        "transfer_size": 64069,
+        "resource_size": 368479,
         "priority": "VeryHigh"
       },
       {
@@ -156,21 +173,21 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/css/7e0c89866ae4250b859a08a1e4310da4.css?ver=a8667",
         "resource_type": "Stylesheet",
-        "transfer_size": 19920,
+        "transfer_size": 19919,
         "resource_size": 166164,
         "priority": "VeryHigh"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/4fe8f127c29828e027ef11d551317262.js?ver=df9fc",
         "resource_type": "Script",
-        "transfer_size": 19215,
+        "transfer_size": 19216,
         "resource_size": 56367,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/css/62bccd5cbc3fa81af8e3db4ca4b9cbd8.css?ver=dc04d",
         "resource_type": "Stylesheet",
-        "transfer_size": 18647,
+        "transfer_size": 18648,
         "resource_size": 277387,
         "priority": "VeryHigh"
       },
@@ -184,7 +201,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/a1548c83adc2678218fff1bf8a308b0d.js?ver=2c37a",
         "resource_type": "Script",
-        "transfer_size": 17855,
+        "transfer_size": 17839,
         "resource_size": 77853,
         "priority": "Medium"
       },
@@ -205,7 +222,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/9ef702f93cda38d01dd013f772f7c746.js?ver=4e13e",
         "resource_type": "Script",
-        "transfer_size": 11736,
+        "transfer_size": 11781,
         "resource_size": 31627,
         "priority": "Low"
       },
@@ -219,7 +236,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/b60ce8f8cdb2cbf0aeaa486e96347151.js?ver=f5b36",
         "resource_type": "Script",
-        "transfer_size": 9306,
+        "transfer_size": 9324,
         "resource_size": 40071,
         "priority": "Medium"
       },
@@ -240,12 +257,17 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/1ae53464d568614135fe06c49eac7be4.js?ver=ea0e8",
         "resource_type": "Script",
-        "transfer_size": 6608,
+        "transfer_size": 6607,
         "resource_size": 21991,
         "priority": "Medium"
       }
     ]
   },
-  "blocker": "RateLimitError: Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.', 'type': 'insufficient_quota', 'param': None, 'code': 'credit_balance_exhausted'}}",
-  "finished_at": "2026-09-30T21:32:30.115540+00:00"
+  "readback": {
+    "content_ok": false,
+    "seo_ok": true
+  },
+  "rollback_readback_ok": true,
+  "blocker": "content/SEO readback mismatch",
+  "finished_at": "2026-09-30T21:58:56.902666+00:00"
 }
