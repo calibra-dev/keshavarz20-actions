@@ -134,3 +134,10 @@ Primary delivery is a direct immutable queue commit onto current `main`.
 If the connected GitHub execution environment cannot place the queue directly on `main` and instead creates a branch named `automation/product-*`, do not stop the engine and do not require a pull request. Commit exactly one new immutable `product-engine/queue/*.json` file on that branch. The guarded `.github/workflows/k20-product-queue-promoter.yml` must validate and promote that single queue onto current `main`, after which `k20-product-queue-publisher.yml` owns publication/readback.
 
 Never rewrite an existing queue on either branch or main. Verify promoter/publisher terminal state before claiming completion.
+
+
+## Publisher handoff invariant
+
+When a queue is created on an `automation/product-*` branch, the promoter must not rely on the resulting `GITHUB_TOKEN` push to `main` to trigger the publisher. After promotion, it must explicitly invoke `k20-product-queue-publisher.yml` through `workflow_dispatch` with the exact immutable `queue_file`. This handoff is mandatory and is enforced by the route guard.
+
+If the queue already exists on `main` but `product-engine/results/<PRODUCT_ID>.json` does not exist, the promoter may dispatch the publisher for that existing queue. If the result already exists, the promoter must skip duplicate publication.
