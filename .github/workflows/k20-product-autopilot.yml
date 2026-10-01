@@ -1,6 +1,12 @@
 name: K20 Product API Fallback
 
 on:
+  schedule:
+    - cron: '*/30 * * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'product-engine/activation.json'
   workflow_dispatch:
     inputs:
       action:
