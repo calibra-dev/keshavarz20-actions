@@ -174,6 +174,43 @@ jobs:
               product:(()=>{const e=document.querySelector('#product-134980');if(!e)return null;const r=e.getBoundingClientRect();return {top:r.top,left:r.left,width:r.width,height:r.height,style:e.getAttribute('style'),className:e.className};})()
             };
           """)
+          css_targets=req.get("css_targets") or []
+          css_coverage=driver.execute_script("""
+            const targets=arguments[0]||[];
+            const out=[];
+            const visit=(rules,acc)=>{
+              if(!rules) return;
+              for(const rule of rules){
+                try{
+                  if(rule.cssRules){ visit(rule.cssRules,acc); continue; }
+                  const text=String(rule.cssText||'');
+                  acc.totalRules++;
+                  acc.totalBytes+=text.length;
+                  if(!rule.selectorText) continue;
+                  let used=false;
+                  try{ used=!!document.querySelector(rule.selectorText); }catch(e){}
+                  if(used){
+                    acc.usedRules++;
+                    acc.usedBytes+=text.length;
+                    if(acc.usedSelectors.length<80) acc.usedSelectors.push(String(rule.selectorText).slice(0,240));
+                  }
+                }catch(e){}
+              }
+            };
+            for(const target of targets){
+              const acc={target,totalRules:0,usedRules:0,totalBytes:0,usedBytes:0,usedSelectors:[]};
+              for(const sheet of Array.from(document.styleSheets||[])){
+                const href=String(sheet.href||'');
+                if(!href.includes(target)) continue;
+                acc.href=href;
+                try{ visit(sheet.cssRules,acc); }catch(e){ acc.error=String(e); }
+              }
+              acc.usedRulePct=acc.totalRules?Math.round(acc.usedRules*10000/acc.totalRules)/100:0;
+              acc.usedBytePct=acc.totalBytes?Math.round(acc.usedBytes*10000/acc.totalBytes)/100:0;
+              out.push(acc);
+            }
+            return out;
+          """, css_targets)
           driver.quit()
 
           total=sum(float(x.get("value") or 0) for x in shifts)
