@@ -48,7 +48,11 @@ jobs:
           python -m py_compile product-engine/qa.py
           python -m py_compile product-engine/perf.py
           python -m py_compile product-engine/media_perf.py
+          python -m py_compile product-engine/protected_fields.py
+          python -m py_compile product-engine/a11y.py
+          python -m py_compile product-engine/visual_guard.py
           python -m py_compile product-engine/publish_queue.py
+          python -m py_compile product-engine/engine.py
           python -m py_compile k20_sanitizer.py
 
   publish-product:
