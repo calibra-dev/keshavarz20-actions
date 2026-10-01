@@ -1,0 +1,12 @@
+{
+  "action": "content.patch",
+  "request_id": "20261001-p14-fix-growthos-fittings",
+  "payload": {
+    "target_type": "post",
+    "post_id": 144239,
+    "field": "post_content",
+    "old_content": "if(item && Object.prototype.toString.call(item)==='[object Object]' && /^growthos_/.test(String(item.event||''))){",
+    "new_content": "if(item ? (Object.prototype.toString.call(item)==='[object Object]' ? /^growthos_/.test(String(item.event||'')) : false) : false){",
+    "expected_sha256": "df2d617450e3af73ee8b68dd2b46c86b59b917cf4214304b0a77f77c0742fc67"
+  }
+}
