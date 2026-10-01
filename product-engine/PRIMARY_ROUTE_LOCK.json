@@ -35,6 +35,9 @@
     "primary": "direct_main_immutable_queue",
     "branch_fallback": "automation/product-*",
     "promoter_workflow": ".github/workflows/k20-product-queue-promoter.yml",
-    "publisher_workflow": ".github/workflows/k20-product-queue-publisher.yml"
+    "publisher_workflow": ".github/workflows/k20-product-queue-publisher.yml",
+    "promoter_handoff": "explicit_workflow_dispatch",
+    "publisher_dispatch_endpoint": "actions/workflows/k20-product-queue-publisher.yml/dispatches",
+    "never_rely_on_github_token_push_recursion": true
   }
 }
