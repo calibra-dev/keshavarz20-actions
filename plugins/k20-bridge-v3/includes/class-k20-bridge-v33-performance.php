@@ -120,11 +120,11 @@ final class K20_Bridge_V33_Performance {
         }
 
         header('X-K20-Late-LS-Control: loaded');
-        header('X-K20-Late-LS-Cacheable: ' . (\\LiteSpeed\\Control::is_cacheable() ? '1' : '0'));
-        header('X-K20-Late-LS-NotCacheable: ' . (\\LiteSpeed\\Control::isset_notcacheable() ? '1' : '0'));
-        header('X-K20-Late-LS-Forced: ' . (\\LiteSpeed\\Control::is_forced_cacheable() ? '1' : '0'));
-        header('X-K20-Late-LS-PublicForced: ' . (\\LiteSpeed\\Control::is_public_forced() ? '1' : '0'));
-        header('X-K20-Late-LS-Private: ' . (\\LiteSpeed\\Control::is_private() ? '1' : '0'));
+        header('X-K20-Late-LS-Cacheable: ' . (\LiteSpeed\Control::is_cacheable() ? '1' : '0'));
+        header('X-K20-Late-LS-NotCacheable: ' . (\LiteSpeed\Control::isset_notcacheable() ? '1' : '0'));
+        header('X-K20-Late-LS-Forced: ' . (\LiteSpeed\Control::is_forced_cacheable() ? '1' : '0'));
+        header('X-K20-Late-LS-PublicForced: ' . (\LiteSpeed\Control::is_public_forced() ? '1' : '0'));
+        header('X-K20-Late-LS-Private: ' . (\LiteSpeed\Control::is_private() ? '1' : '0'));
     }
 
     private static function is_calculator_target(): bool {
