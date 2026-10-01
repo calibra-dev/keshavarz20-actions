@@ -11,6 +11,7 @@ PROMPT_PATH = ROOT / "product-engine" / "SCHEDULED_TASK_PROMPT.md"
 README_PATH = ROOT / "product-engine" / "README.md"
 API_WF_PATH = ROOT / ".github" / "workflows" / "k20-product-autopilot.yml"
 QUEUE_WF_PATH = ROOT / ".github" / "workflows" / "k20-product-queue-publisher.yml"
+PROMOTER_WF_PATH = ROOT / ".github" / "workflows" / "k20-product-queue-promoter.yml"
 
 
 def fail(message: str) -> None:
@@ -23,6 +24,7 @@ prompt = PROMPT_PATH.read_text(encoding="utf-8")
 readme = README_PATH.read_text(encoding="utf-8")
 api_wf = API_WF_PATH.read_text(encoding="utf-8")
 queue_wf = QUEUE_WF_PATH.read_text(encoding="utf-8")
+promoter_wf = PROMOTER_WF_PATH.read_text(encoding="utf-8")
 
 if lock.get("primary_producer") != "connected_chatgpt_queue":
     fail("route lock primary_producer changed")
@@ -54,6 +56,13 @@ if "OPENAI_API_KEY" in queue_wf:
 
 if "python product-engine/ai_runtime.py" in queue_wf:
     fail("primary queue publisher must not invoke ai_runtime.py")
+
+if "automation/product-*" not in promoter_wf:
+    fail("queue promoter must watch automation/product-* branches")
+if "product-engine/queue/*.json" not in promoter_wf:
+    fail("queue promoter must be scoped to product queue files")
+if "OPENAI_API_KEY" in promoter_wf or "ai_runtime.py" in promoter_wf:
+    fail("queue promoter must not use model/API generation path")
 
 required_prompt_markers = [
     "Connected ChatGPT",
