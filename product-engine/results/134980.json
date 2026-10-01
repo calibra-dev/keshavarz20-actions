@@ -1,8 +1,8 @@
 {
   "schema_version": "product-queue-result-v2",
-  "queue_file": "product-engine/queue/2026-10-01-product-134980-v2-after3319.json",
+  "queue_file": "product-engine/queue/2026-10-01-product-134980-v2-after3320.json",
   "product_id": 134980,
-  "started_at": "2026-10-01T04:13:12.195215+00:00",
+  "started_at": "2026-10-01T04:26:20.421496+00:00",
   "status": "PLATFORM_BLOCKED",
   "policy": {
     "content_acceptance": 96,
@@ -72,12 +72,13 @@
     {
       "run": 1,
       "status": 200,
-      "elapsed_ms": 6284.5,
-      "bytes": 407086,
+      "elapsed_ms": 5811.2,
+      "bytes": 403125,
       "cache_control": null,
       "x_litespeed_cache": null,
       "x_litespeed_cache_control": "no-cache,esi=on",
-      "x_k20_canary_guard": "3.3.19",
+      "x_k20_canary_guard": "3.3.20",
+      "x_k20_recent_view": "disabled-canary",
       "x_litespeed_tag": "92c_product,92c_URL.de3b1bcee07a0e49f2170b45e3a9f814,92c_Po.134980,92c_",
       "set_cookie": "woocommerce_recently_viewed=134980; path=/; secure",
       "age": null,
@@ -87,12 +88,13 @@
     {
       "run": 2,
       "status": 200,
-      "elapsed_ms": 4907.2,
-      "bytes": 408636,
+      "elapsed_ms": 4986.4,
+      "bytes": 405940,
       "cache_control": null,
       "x_litespeed_cache": null,
       "x_litespeed_cache_control": "no-cache,esi=on",
-      "x_k20_canary_guard": "3.3.19",
+      "x_k20_canary_guard": "3.3.20",
+      "x_k20_recent_view": "disabled-canary",
       "x_litespeed_tag": "92c_product,92c_URL.de3b1bcee07a0e49f2170b45e3a9f814,92c_Po.134980,92c_",
       "set_cookie": "woocommerce_recently_viewed=134980; path=/; secure",
       "age": null,
@@ -102,12 +104,13 @@
     {
       "run": 3,
       "status": 200,
-      "elapsed_ms": 5248.3,
-      "bytes": 404336,
+      "elapsed_ms": 5462.5,
+      "bytes": 404997,
       "cache_control": null,
       "x_litespeed_cache": null,
       "x_litespeed_cache_control": "no-cache,esi=on",
-      "x_k20_canary_guard": "3.3.19",
+      "x_k20_canary_guard": "3.3.20",
+      "x_k20_recent_view": "disabled-canary",
       "x_litespeed_tag": "92c_product,92c_URL.de3b1bcee07a0e49f2170b45e3a9f814,92c_Po.134980,92c_",
       "set_cookie": "woocommerce_recently_viewed=134980; path=/; secure",
       "age": null,
@@ -118,63 +121,63 @@
   "baseline_performance": {
     "samples": [
       {
-        "performance": 45,
+        "performance": 54,
         "accessibility": 96,
         "best_practices": 100,
         "seo": 100,
-        "fcp_ms": 2925.808,
-        "lcp_ms": 3077.219,
-        "speed_index_ms": 11113.500539995408,
-        "tbt_ms": 913.4999999999995,
+        "fcp_ms": 2968.631,
+        "lcp_ms": 3125.2145,
+        "speed_index_ms": 10292.689721217852,
+        "tbt_ms": 441,
         "cls": 0.283809804905869,
-        "ttfb_ms": 4867,
-        "total_bytes": 894129,
+        "ttfb_ms": 4622,
+        "total_bytes": 894188,
         "unused_css": "Est savings of 71 KiB",
         "unused_js": "Est savings of 76 KiB"
       },
       {
-        "performance": 59,
+        "performance": 56,
         "accessibility": 96,
         "best_practices": 100,
         "seo": 100,
-        "fcp_ms": 2963.1469999999995,
-        "lcp_ms": 3386.1155,
-        "speed_index_ms": 11588.785550581584,
-        "tbt_ms": 237,
+        "fcp_ms": 3030.892999999999,
+        "lcp_ms": 3438.4869999999987,
+        "speed_index_ms": 10720.322289622922,
+        "tbt_ms": 300.50000000000045,
         "cls": 0.283809804905869,
-        "ttfb_ms": 5173,
-        "total_bytes": 893815,
+        "ttfb_ms": 4842,
+        "total_bytes": 894055,
         "unused_css": "Est savings of 71 KiB",
         "unused_js": "Est savings of 76 KiB"
       },
       {
-        "performance": 51,
+        "performance": 60,
         "accessibility": 96,
         "best_practices": 100,
         "seo": 100,
-        "fcp_ms": 3640.67,
-        "lcp_ms": 4068.3189999999995,
-        "speed_index_ms": 13922.281821178298,
-        "tbt_ms": 260,
+        "fcp_ms": 2864.731,
+        "lcp_ms": 3044.5835,
+        "speed_index_ms": 10408.461718152093,
+        "tbt_ms": 285.50000000000045,
         "cls": 0.283809804905869,
-        "ttfb_ms": 4957,
-        "total_bytes": 893832,
-        "unused_css": "Est savings of 71 KiB",
-        "unused_js": "Est savings of 76 KiB"
+        "ttfb_ms": 4946,
+        "total_bytes": 904753,
+        "unused_css": "Est savings of 75 KiB",
+        "unused_js": "Est savings of 75 KiB"
       }
     ],
     "representative": {
-      "performance": 59,
+      "performance": 54,
       "accessibility": 96,
       "best_practices": 100,
       "seo": 100,
-      "fcp_ms": 2963.1469999999995,
-      "lcp_ms": 3386.1155,
-      "speed_index_ms": 11588.785550581584,
-      "tbt_ms": 237,
+      "fcp_ms": 2968.631,
+      "lcp_ms": 3125.2145,
+      "speed_index_ms": 10292.689721217852,
+      "tbt_ms": 441,
       "cls": 0.283809804905869,
-      "ttfb_ms": 5173,
-      "total_bytes": 893815,
+      "ttfb_ms": 4622,
+      "total_bytes": 894188,
       "unused_css": "Est savings of 71 KiB",
       "unused_js": "Est savings of 76 KiB"
     },
@@ -183,21 +186,21 @@
       {
         "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
         "resource_type": "Script",
-        "transfer_size": 196907,
+        "transfer_size": 196899,
         "resource_size": 602982,
         "priority": "Low"
       },
       {
         "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
         "resource_type": "Document",
-        "transfer_size": 62141,
-        "resource_size": 356855,
+        "transfer_size": 62321,
+        "resource_size": 355427,
         "priority": "VeryHigh"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
         "resource_type": "Script",
-        "transfer_size": 61354,
+        "transfer_size": 61355,
         "resource_size": 252309,
         "priority": "Medium"
       },
@@ -218,7 +221,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebboldfanum.woff",
         "resource_type": "Font",
-        "transfer_size": 33662,
+        "transfer_size": 33661,
         "resource_size": 33581,
         "priority": "VeryHigh"
       },
@@ -232,7 +235,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/uploads/2024/06/%DA%AF%D8%A7%D8%B1%D8%A7%D9%86%D8%AA%DB%8C.png",
         "resource_type": "Image",
-        "transfer_size": 28488,
+        "transfer_size": 28543,
         "resource_size": 28393,
         "priority": "High"
       },
@@ -267,14 +270,14 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/4fe8f127c29828e027ef11d551317262.js?ver=df9fc",
         "resource_type": "Script",
-        "transfer_size": 19239,
+        "transfer_size": 19215,
         "resource_size": 56367,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/css/62bccd5cbc3fa81af8e3db4ca4b9cbd8.css?ver=dc04d",
         "resource_type": "Stylesheet",
-        "transfer_size": 18670,
+        "transfer_size": 18624,
         "resource_size": 277387,
         "priority": "VeryHigh"
       },
@@ -288,7 +291,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/a1548c83adc2678218fff1bf8a308b0d.js?ver=2c37a",
         "resource_type": "Script",
-        "transfer_size": 17816,
+        "transfer_size": 17815,
         "resource_size": 77853,
         "priority": "Medium"
       },
@@ -309,7 +312,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/9ef702f93cda38d01dd013f772f7c746.js?ver=4e13e",
         "resource_type": "Script",
-        "transfer_size": 11715,
+        "transfer_size": 11716,
         "resource_size": 31627,
         "priority": "Low"
       },
@@ -330,21 +333,21 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/b60ce8f8cdb2cbf0aeaa486e96347151.js?ver=f5b36",
         "resource_type": "Script",
-        "transfer_size": 9324,
+        "transfer_size": 9307,
         "resource_size": 40071,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/291fb7a293d236f8f164f4535f17e96e.js?ver=b0977",
         "resource_type": "Script",
-        "transfer_size": 8472,
+        "transfer_size": 8473,
         "resource_size": 32700,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/95a9006f8e4ffc363679cec5343abfe9.js?ver=6fb11",
         "resource_type": "Script",
-        "transfer_size": 7291,
+        "transfer_size": 7314,
         "resource_size": 19013,
         "priority": "High"
       },
@@ -415,6 +418,347 @@
           "score": 0.283809804905869
         }
       ],
+      "cls_culprits": [],
+      "non_composited_animations": [
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-5-path",
+            "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,1,path",
+            "selector": "div.toast-content > div > svg > path.checkmark-check",
+            "boundingRect": {
+              "top": 1605,
+              "bottom": 1611,
+              "left": 296,
+              "right": 305,
+              "width": 9,
+              "height": 6
+            },
+            "snippet": "<path class=\"checkmark-check\" fill=\"none\" d=\"M14.1 27.2l7.1 7.2 16.7-16.8\">",
+            "nodeLabel": "div.toast-content > div > svg > path.checkmark-check"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Property: stroke-dashoffset",
+                "animation": "stroke"
+              }
+            ]
+          }
+        },
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-6-circle",
+            "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,0,circle",
+            "selector": "div.toast-content > div > svg > circle.checkmark-circle",
+            "boundingRect": {
+              "top": 1598,
+              "bottom": 1618,
+              "left": 291,
+              "right": 310,
+              "width": 19,
+              "height": 19
+            },
+            "snippet": "<circle class=\"checkmark-circle\" cx=\"26\" cy=\"26\" r=\"25\" fill=\"none\">",
+            "nodeLabel": "div.toast-content > div > svg > circle.checkmark-circle"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Property: stroke-dashoffset",
+                "animation": "stroke"
+              }
+            ]
+          }
+        },
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-9-SPAN",
+            "path": "1,HTML,1,BODY,63,DIV,0,DIV,1,DIV,0,DIV,0,DIV,0,SPAN",
+            "selector": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line",
+            "boundingRect": {
+              "top": 964,
+              "bottom": 985,
+              "left": 178,
+              "right": 199,
+              "width": 21,
+              "height": 21
+            },
+            "snippet": "<span class=\"icon-line line-tip\">",
+            "nodeLabel": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Properties: top, left, width",
+                "animation": "icon-line-tip"
+              }
+            ]
+          }
+        },
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-11-SPAN",
+            "path": "1,HTML,1,BODY,63,DIV,0,DIV,1,DIV,0,DIV,0,DIV,1,SPAN",
+            "selector": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line",
+            "boundingRect": {
+              "top": 948,
+              "bottom": 985,
+              "left": 192,
+              "right": 229,
+              "width": 37,
+              "height": 37
+            },
+            "snippet": "<span class=\"icon-line line-long\">",
+            "nodeLabel": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Properties: right, top, width",
+                "animation": "icon-line-long"
+              }
+            ]
+          }
+        }
+      ],
+      "unsized_images": [
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-202-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,1,SECTION,2,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 1268,
+              "bottom": 1280,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🔁\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg\">",
+            "nodeLabel": "🔁"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-203-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,3,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 1775,
+              "bottom": 1787,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"📸\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg\">",
+            "nodeLabel": "📸"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-204-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,6,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 1909,
+              "bottom": 1921,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"✅\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg\">",
+            "nodeLabel": "✅"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-205-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,9,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 2043,
+              "bottom": 2055,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🚚\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg\">",
+            "nodeLabel": "🚚"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f50e.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-206-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,12,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 2177,
+              "bottom": 2189,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🔎\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f50e.svg\">",
+            "nodeLabel": "🔎"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-207-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,3,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 3783,
+              "bottom": 3795,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🔁\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg\">",
+            "nodeLabel": "🔁"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4e6.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-208-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,6,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 3917,
+              "bottom": 3929,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"📦\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f4e6.svg\">",
+            "nodeLabel": "📦"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-209-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,9,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 4051,
+              "bottom": 4063,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"📸\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg\">",
+            "nodeLabel": "📸"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-210-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,3,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 6468,
+              "bottom": 6480,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"📸\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg\">",
+            "nodeLabel": "📸"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-211-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,6,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 6602,
+              "bottom": 6614,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"✅\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg\">",
+            "nodeLabel": "✅"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-212-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,9,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 6736,
+              "bottom": 6748,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🚚\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg\">",
+            "nodeLabel": "🚚"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/260e.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-213-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,12,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 6870,
+              "bottom": 6882,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"☎️\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/260e.svg\">",
+            "nodeLabel": "☎️"
+          }
+        }
+      ],
       "render_blocking": [],
       "unused_css_items": [
         {
@@ -445,93 +789,98 @@
       "unused_js_items": [
         {
           "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
-          "totalBytes": 196575,
-          "wastedBytes": 77425,
-          "wastedPercent": 39.38707954797987
+          "totalBytes": 196567,
+          "wastedBytes": 77631,
+          "wastedPercent": 39.49321870304586
         }
       ],
       "long_tasks": [
         {
           "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "duration": 176,
-          "startTime": 7813.83359263611
+          "duration": 192,
+          "startTime": 5548.062592636105
         },
         {
           "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
-          "duration": 138,
-          "startTime": 5117.170000000001
+          "duration": 186.0000000000009,
+          "startTime": 8165.562592636105
         },
         {
           "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
-          "duration": 109,
-          "startTime": 5008.170000000001
+          "duration": 117,
+          "startTime": 8048.562592636105
         },
         {
           "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-          "duration": 74,
-          "startTime": 2027.21
+          "duration": 76,
+          "startTime": 2071.7049999999995
         },
         {
-          "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
-          "duration": 73,
-          "startTime": 7707.83359263611
-        },
-        {
-          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "duration": 62,
-          "startTime": 7989.83359263611
+          "url": "https://keshavarz20.com/wp-content/litespeed/js/71c3ba7f1e2bde5718461357744685d6.js?ver=b8b51",
+          "duration": 71,
+          "startTime": 5840.062592636105
         },
         {
           "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "duration": 57,
-          "startTime": 3868.0855926361082
+          "duration": 64,
+          "startTime": 5740.062592636105
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 61,
+          "startTime": 3596.686592636107
         },
         {
           "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-          "duration": 55,
-          "startTime": 2101.21
+          "duration": 58,
+          "startTime": 2147.7049999999995
         },
         {
           "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 56,
+          "startTime": 5911.062592636105
+        },
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/js/a0faaf10558058a125cc0dcb18f2136a.js?ver=43fe1",
           "duration": 55,
-          "startTime": 8084.83359263611
+          "startTime": 4556.874592636106
         }
       ],
       "mainthread_work": [
         {
           "group": "other",
           "groupLabel": "Other",
-          "duration": 1015.4959999999841
+          "duration": 1161.971999999983
         },
         {
           "group": "scriptEvaluation",
           "groupLabel": "Script Evaluation",
-          "duration": 928.2679999999929
+          "duration": 999.2799999999883
         },
         {
           "group": "styleLayout",
           "groupLabel": "Style & Layout",
-          "duration": 848.3119999999835
+          "duration": 909.8119999999883
         },
         {
           "group": "parseHTML",
           "groupLabel": "Parse HTML & CSS",
-          "duration": 193.79600000000022
+          "duration": 197.4680000000001
         },
         {
           "group": "scriptParseCompile",
           "groupLabel": "Script Parsing & Compilation",
-          "duration": 183.34800000000004
+          "duration": 176.72799999999998
         },
         {
           "group": "paintCompositeRender",
           "groupLabel": "Rendering",
-          "duration": 152.8479999999999
+          "duration": 168.89600000000013
         },
         {
           "group": "garbageCollection",
           "groupLabel": "Garbage Collection",
-          "duration": 34.424
+          "duration": 16.583999999999993
         }
       ],
       "font_display": [],
@@ -541,9 +890,9 @@
     "summary": {
       "successful_runs": 3,
       "performance": {
-        "median": 51.0,
-        "min": 45.0,
-        "max": 59.0
+        "median": 56.0,
+        "min": 54.0,
+        "max": 60.0
       },
       "accessibility": {
         "median": 96.0,
@@ -561,9 +910,9 @@
         "max": 100.0
       },
       "lcp_ms": {
-        "median": 3386.1155,
-        "min": 3077.219,
-        "max": 4068.3189999999995
+        "median": 3125.2145,
+        "min": 3044.5835,
+        "max": 3438.4869999999987
       },
       "cls": {
         "median": 0.283809804905869,
@@ -571,19 +920,19 @@
         "max": 0.283809804905869
       },
       "tbt_ms": {
-        "median": 260.0,
-        "min": 237.0,
-        "max": 913.4999999999995
+        "median": 300.50000000000045,
+        "min": 285.50000000000045,
+        "max": 441.0
       },
       "ttfb_ms": {
-        "median": 4957.0,
-        "min": 4867.0,
-        "max": 5173.0
+        "median": 4842.0,
+        "min": 4622.0,
+        "max": 4946.0
       },
       "total_bytes": {
-        "median": 893832.0,
-        "min": 893815.0,
-        "max": 894129.0
+        "median": 894188.0,
+        "min": 894055.0,
+        "max": 904753.0
       }
     }
   },
@@ -728,12 +1077,13 @@
     {
       "run": 1,
       "status": 200,
-      "elapsed_ms": 5689.7,
-      "bytes": 406547,
+      "elapsed_ms": 6128.8,
+      "bytes": 404546,
       "cache_control": null,
       "x_litespeed_cache": null,
       "x_litespeed_cache_control": "no-cache,esi=on",
-      "x_k20_canary_guard": "3.3.19",
+      "x_k20_canary_guard": "3.3.20",
+      "x_k20_recent_view": "disabled-canary",
       "x_litespeed_tag": "92c_product,92c_URL.de3b1bcee07a0e49f2170b45e3a9f814,92c_Po.134980,92c_",
       "set_cookie": "woocommerce_recently_viewed=134980; path=/; secure",
       "age": null,
@@ -743,12 +1093,13 @@
     {
       "run": 2,
       "status": 200,
-      "elapsed_ms": 5116.3,
-      "bytes": 400612,
+      "elapsed_ms": 5554.9,
+      "bytes": 408202,
       "cache_control": null,
       "x_litespeed_cache": null,
       "x_litespeed_cache_control": "no-cache,esi=on",
-      "x_k20_canary_guard": "3.3.19",
+      "x_k20_canary_guard": "3.3.20",
+      "x_k20_recent_view": "disabled-canary",
       "x_litespeed_tag": "92c_product,92c_URL.de3b1bcee07a0e49f2170b45e3a9f814,92c_Po.134980,92c_",
       "set_cookie": "woocommerce_recently_viewed=134980; path=/; secure",
       "age": null,
@@ -758,12 +1109,13 @@
     {
       "run": 3,
       "status": 200,
-      "elapsed_ms": 5114.5,
-      "bytes": 409120,
+      "elapsed_ms": 5363.8,
+      "bytes": 402063,
       "cache_control": null,
       "x_litespeed_cache": null,
       "x_litespeed_cache_control": "no-cache,esi=on",
-      "x_k20_canary_guard": "3.3.19",
+      "x_k20_canary_guard": "3.3.20",
+      "x_k20_recent_view": "disabled-canary",
       "x_litespeed_tag": "92c_product,92c_URL.de3b1bcee07a0e49f2170b45e3a9f814,92c_Po.134980,92c_",
       "set_cookie": "woocommerce_recently_viewed=134980; path=/; secure",
       "age": null,
@@ -778,61 +1130,61 @@
         "accessibility": 96,
         "best_practices": 100,
         "seo": 100,
-        "fcp_ms": 3066.3830000000007,
-        "lcp_ms": 3390.4620000000004,
-        "speed_index_ms": 10680.392078473546,
-        "tbt_ms": 260.5,
+        "fcp_ms": 2877.9569999999994,
+        "lcp_ms": 3296.5909999999994,
+        "speed_index_ms": 10718.353964910923,
+        "tbt_ms": 282,
         "cls": 0.283809804905869,
-        "ttfb_ms": 4725,
-        "total_bytes": 893530,
+        "ttfb_ms": 5058,
+        "total_bytes": 893567,
+        "unused_css": "Est savings of 71 KiB",
+        "unused_js": "Est savings of 75 KiB"
+      },
+      {
+        "performance": 57,
+        "accessibility": 96,
+        "best_practices": 100,
+        "seo": 100,
+        "fcp_ms": 2876.6220000000003,
+        "lcp_ms": 3443.5200000000004,
+        "speed_index_ms": 12337.413482819018,
+        "tbt_ms": 264,
+        "cls": 0.283809804905869,
+        "ttfb_ms": 5400,
+        "total_bytes": 893718,
         "unused_css": "Est savings of 71 KiB",
         "unused_js": "Est savings of 74 KiB"
       },
       {
-        "performance": 52,
+        "performance": 57,
         "accessibility": 96,
         "best_practices": 100,
         "seo": 100,
-        "fcp_ms": 3539.4399999999996,
-        "lcp_ms": 3961.5759999999996,
-        "speed_index_ms": 13955.116491653098,
-        "tbt_ms": 244.5,
+        "fcp_ms": 2697.5610000000006,
+        "lcp_ms": 3422.4610000000002,
+        "speed_index_ms": 11084.66519249959,
+        "tbt_ms": 302.5,
         "cls": 0.283809804905869,
-        "ttfb_ms": 5065,
-        "total_bytes": 893407,
+        "ttfb_ms": 5380,
+        "total_bytes": 894112,
         "unused_css": "Est savings of 71 KiB",
-        "unused_js": "Est savings of 74 KiB"
-      },
-      {
-        "performance": 53,
-        "accessibility": 96,
-        "best_practices": 100,
-        "seo": 100,
-        "fcp_ms": 3297.625,
-        "lcp_ms": 3923.759,
-        "speed_index_ms": 15331.242488608399,
-        "tbt_ms": 255.5,
-        "cls": 0.283809804905869,
-        "ttfb_ms": 5306,
-        "total_bytes": 893933,
-        "unused_css": "Est savings of 71 KiB",
-        "unused_js": "Est savings of 76 KiB"
+        "unused_js": "Est savings of 75 KiB"
       }
     ],
     "representative": {
-      "performance": 53,
+      "performance": 57,
       "accessibility": 96,
       "best_practices": 100,
       "seo": 100,
-      "fcp_ms": 3297.625,
-      "lcp_ms": 3923.759,
-      "speed_index_ms": 15331.242488608399,
-      "tbt_ms": 255.5,
+      "fcp_ms": 2697.5610000000006,
+      "lcp_ms": 3422.4610000000002,
+      "speed_index_ms": 11084.66519249959,
+      "tbt_ms": 302.5,
       "cls": 0.283809804905869,
-      "ttfb_ms": 5306,
-      "total_bytes": 893933,
+      "ttfb_ms": 5380,
+      "total_bytes": 894112,
       "unused_css": "Est savings of 71 KiB",
-      "unused_js": "Est savings of 76 KiB"
+      "unused_js": "Est savings of 75 KiB"
     },
     "successful_runs": 3,
     "top_network_requests": [
@@ -846,14 +1198,14 @@
       {
         "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
         "resource_type": "Document",
-        "transfer_size": 61616,
-        "resource_size": 354985,
+        "transfer_size": 61866,
+        "resource_size": 352866,
         "priority": "VeryHigh"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
         "resource_type": "Script",
-        "transfer_size": 61355,
+        "transfer_size": 61354,
         "resource_size": 252309,
         "priority": "Medium"
       },
@@ -874,7 +1226,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebboldfanum.woff",
         "resource_type": "Font",
-        "transfer_size": 33669,
+        "transfer_size": 33661,
         "resource_size": 33581,
         "priority": "VeryHigh"
       },
@@ -895,7 +1247,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/0cc6bdf8c66b1a3b7118fdadef6aa6d5.js?ver=ae346",
         "resource_type": "Script",
-        "transfer_size": 26925,
+        "transfer_size": 26948,
         "resource_size": 108081,
         "priority": "Medium"
       },
@@ -930,28 +1282,28 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/css/62bccd5cbc3fa81af8e3db4ca4b9cbd8.css?ver=dc04d",
         "resource_type": "Stylesheet",
-        "transfer_size": 18624,
+        "transfer_size": 18625,
         "resource_size": 277387,
         "priority": "VeryHigh"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/css/6c6e99777b208fdc2e0d8d3666a7bcc9.css?ver=5f774",
         "resource_type": "Stylesheet",
-        "transfer_size": 18081,
+        "transfer_size": 18127,
         "resource_size": 140774,
         "priority": "VeryHigh"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/a1548c83adc2678218fff1bf8a308b0d.js?ver=2c37a",
         "resource_type": "Script",
-        "transfer_size": 17815,
+        "transfer_size": 17816,
         "resource_size": 77853,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/81a58d62acc2bda2575a4119ca64c006.js?ver=f4a3e",
         "resource_type": "Script",
-        "transfer_size": 16384,
+        "transfer_size": 16367,
         "resource_size": 81174,
         "priority": "Medium"
       },
@@ -972,28 +1324,28 @@
       {
         "url": "https://keshavarz20.com/wp-content/uploads/2025/11/cropped-logo-deks22-keshavarz20-100x100.png",
         "resource_type": "Image",
-        "transfer_size": 10083,
+        "transfer_size": 10065,
         "resource_size": 9973,
         "priority": "High"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/17ab8d74595c085eb0f60af1b19b14c5.js?ver=b14c5",
         "resource_type": "Script",
-        "transfer_size": 10029,
+        "transfer_size": 10028,
         "resource_size": 36754,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/b60ce8f8cdb2cbf0aeaa486e96347151.js?ver=f5b36",
         "resource_type": "Script",
-        "transfer_size": 9307,
+        "transfer_size": 9324,
         "resource_size": 40071,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/291fb7a293d236f8f164f4535f17e96e.js?ver=b0977",
         "resource_type": "Script",
-        "transfer_size": 8472,
+        "transfer_size": 8471,
         "resource_size": 32700,
         "priority": "Medium"
       },
@@ -1007,7 +1359,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/71c3ba7f1e2bde5718461357744685d6.js?ver=b8b51",
         "resource_type": "Script",
-        "transfer_size": 6618,
+        "transfer_size": 6617,
         "resource_size": 19875,
         "priority": "Medium"
       }
@@ -1071,6 +1423,347 @@
           "score": 0.283809804905869
         }
       ],
+      "cls_culprits": [],
+      "non_composited_animations": [
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-5-circle",
+            "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,0,circle",
+            "selector": "div.toast-content > div > svg > circle.checkmark-circle",
+            "boundingRect": {
+              "top": 1598,
+              "bottom": 1618,
+              "left": 291,
+              "right": 310,
+              "width": 19,
+              "height": 19
+            },
+            "snippet": "<circle class=\"checkmark-circle\" cx=\"26\" cy=\"26\" r=\"25\" fill=\"none\">",
+            "nodeLabel": "div.toast-content > div > svg > circle.checkmark-circle"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Property: stroke-dashoffset",
+                "animation": "stroke"
+              }
+            ]
+          }
+        },
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-7-SPAN",
+            "path": "1,HTML,1,BODY,63,DIV,0,DIV,1,DIV,0,DIV,0,DIV,1,SPAN",
+            "selector": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line",
+            "boundingRect": {
+              "top": 948,
+              "bottom": 985,
+              "left": 192,
+              "right": 229,
+              "width": 37,
+              "height": 37
+            },
+            "snippet": "<span class=\"icon-line line-long\">",
+            "nodeLabel": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Properties: right, top, width",
+                "animation": "icon-line-long"
+              }
+            ]
+          }
+        },
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-9-SPAN",
+            "path": "1,HTML,1,BODY,63,DIV,0,DIV,1,DIV,0,DIV,0,DIV,0,SPAN",
+            "selector": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line",
+            "boundingRect": {
+              "top": 964,
+              "bottom": 985,
+              "left": 178,
+              "right": 199,
+              "width": 21,
+              "height": 21
+            },
+            "snippet": "<span class=\"icon-line line-tip\">",
+            "nodeLabel": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Properties: top, left, width",
+                "animation": "icon-line-tip"
+              }
+            ]
+          }
+        },
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-11-path",
+            "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,1,path",
+            "selector": "div.toast-content > div > svg > path.checkmark-check",
+            "boundingRect": {
+              "top": 1605,
+              "bottom": 1611,
+              "left": 296,
+              "right": 305,
+              "width": 9,
+              "height": 6
+            },
+            "snippet": "<path class=\"checkmark-check\" fill=\"none\" d=\"M14.1 27.2l7.1 7.2 16.7-16.8\">",
+            "nodeLabel": "div.toast-content > div > svg > path.checkmark-check"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Property: stroke-dashoffset",
+                "animation": "stroke"
+              }
+            ]
+          }
+        }
+      ],
+      "unsized_images": [
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-200-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,1,SECTION,2,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 1268,
+              "bottom": 1280,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🔁\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg\">",
+            "nodeLabel": "🔁"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-201-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,3,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 1775,
+              "bottom": 1787,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"📸\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg\">",
+            "nodeLabel": "📸"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-202-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,6,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 1909,
+              "bottom": 1921,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"✅\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg\">",
+            "nodeLabel": "✅"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-203-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,9,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 2043,
+              "bottom": 2055,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🚚\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg\">",
+            "nodeLabel": "🚚"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f50e.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-204-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,12,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 2177,
+              "bottom": 2189,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🔎\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f50e.svg\">",
+            "nodeLabel": "🔎"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-205-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,3,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 3783,
+              "bottom": 3795,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🔁\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg\">",
+            "nodeLabel": "🔁"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4e6.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-206-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,6,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 3917,
+              "bottom": 3929,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"📦\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f4e6.svg\">",
+            "nodeLabel": "📦"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-207-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,9,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 4051,
+              "bottom": 4063,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"📸\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg\">",
+            "nodeLabel": "📸"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-208-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,3,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 6468,
+              "bottom": 6480,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"📸\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg\">",
+            "nodeLabel": "📸"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-209-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,6,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 6602,
+              "bottom": 6614,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"✅\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg\">",
+            "nodeLabel": "✅"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-210-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,9,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 6736,
+              "bottom": 6748,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🚚\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg\">",
+            "nodeLabel": "🚚"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/260e.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-211-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,12,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 6870,
+              "bottom": 6882,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"☎️\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/260e.svg\">",
+            "nodeLabel": "☎️"
+          }
+        }
+      ],
       "render_blocking": [],
       "unused_css_items": [
         {
@@ -1093,8 +1786,8 @@
         },
         {
           "url": "https://keshavarz20.com/wp-content/litespeed/css/7e0c89866ae4250b859a08a1e4310da4.css?ver=a8667",
-          "wastedBytes": 17346,
-          "wastedPercent": 87.31734912496088,
+          "wastedBytes": 17375,
+          "wastedPercent": 87.45997929756145,
           "totalBytes": 19866
         }
       ],
@@ -1102,102 +1795,92 @@
         {
           "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
           "totalBytes": 196575,
-          "wastedBytes": 76213,
-          "wastedPercent": 38.77047739401839
+          "wastedBytes": 75937,
+          "wastedPercent": 38.630174698415544
         }
       ],
       "long_tasks": [
         {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+          "duration": 182,
+          "startTime": 8231.343092636107
+        },
+        {
           "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "duration": 170,
-          "startTime": 7794.953592636108
+          "duration": 175,
+          "startTime": 5419.215592636107
         },
         {
           "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
-          "duration": 147,
-          "startTime": 5688.785
-        },
-        {
-          "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
-          "duration": 108,
-          "startTime": 5580.785
-        },
-        {
-          "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
-          "duration": 77,
-          "startTime": 7636.953592636108
+          "duration": 110,
+          "startTime": 8121.343092636107
         },
         {
           "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-          "duration": 72,
-          "startTime": 2623.1679999999997
+          "duration": 70,
+          "startTime": 2238.724
+        },
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/js/71c3ba7f1e2bde5718461357744685d6.js?ver=b8b51",
+          "duration": 66,
+          "startTime": 5323.215592636107
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 63,
+          "startTime": 5594.215592636107
         },
         {
           "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
           "duration": 59,
-          "startTime": 7964.953592636108
+          "startTime": 3758.4705926361084
         },
         {
           "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "duration": 59,
-          "startTime": 8055.953592636108
-        },
-        {
-          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "duration": 57,
-          "startTime": 4442.713592636108
+          "duration": 55,
+          "startTime": 5686.215592636107
         },
         {
           "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
           "duration": 54,
-          "startTime": 2735.1679999999997
-        },
-        {
-          "url": "Unattributable",
-          "duration": 50,
-          "startTime": 2524.1679999999997
-        },
-        {
-          "url": "https://keshavarz20.com/wp-content/litespeed/js/b60ce8f8cdb2cbf0aeaa486e96347151.js?ver=f5b36",
-          "duration": 50,
-          "startTime": 7713.953592636108
+          "startTime": 2308.724
         }
       ],
       "mainthread_work": [
         {
           "group": "other",
           "groupLabel": "Other",
-          "duration": 1146.8999999999855
+          "duration": 1056.7439999999813
         },
         {
           "group": "scriptEvaluation",
           "groupLabel": "Script Evaluation",
-          "duration": 945.8399999999897
+          "duration": 947.1639999999984
         },
         {
           "group": "styleLayout",
           "groupLabel": "Style & Layout",
-          "duration": 860.1519999999861
+          "duration": 865.739999999986
         },
         {
           "group": "scriptParseCompile",
           "groupLabel": "Script Parsing & Compilation",
-          "duration": 185.38400000000004
+          "duration": 187.68399999999997
         },
         {
           "group": "paintCompositeRender",
           "groupLabel": "Rendering",
-          "duration": 169.2759999999999
+          "duration": 157.70799999999997
         },
         {
           "group": "parseHTML",
           "groupLabel": "Parse HTML & CSS",
-          "duration": 164.07600000000028
+          "duration": 156.66800000000032
         },
         {
           "group": "garbageCollection",
           "groupLabel": "Garbage Collection",
-          "duration": 22.37199999999999
+          "duration": 41.220000000000006
         }
       ],
       "font_display": [],
@@ -1207,8 +1890,8 @@
     "summary": {
       "successful_runs": 3,
       "performance": {
-        "median": 53.0,
-        "min": 52.0,
+        "median": 57.0,
+        "min": 57.0,
         "max": 58.0
       },
       "accessibility": {
@@ -1227,9 +1910,9 @@
         "max": 100.0
       },
       "lcp_ms": {
-        "median": 3923.759,
-        "min": 3390.4620000000004,
-        "max": 3961.5759999999996
+        "median": 3422.4610000000002,
+        "min": 3296.5909999999994,
+        "max": 3443.5200000000004
       },
       "cls": {
         "median": 0.283809804905869,
@@ -1237,19 +1920,19 @@
         "max": 0.283809804905869
       },
       "tbt_ms": {
-        "median": 255.5,
-        "min": 244.5,
-        "max": 260.5
+        "median": 282.0,
+        "min": 264.0,
+        "max": 302.5
       },
       "ttfb_ms": {
-        "median": 5065.0,
-        "min": 4725.0,
-        "max": 5306.0
+        "median": 5380.0,
+        "min": 5058.0,
+        "max": 5400.0
       },
       "total_bytes": {
-        "median": 893530.0,
-        "min": 893407.0,
-        "max": 893933.0
+        "median": 893718.0,
+        "min": 893567.0,
+        "max": 894112.0
       }
     }
   },
@@ -1280,8 +1963,8 @@
     "summary": {
       "successful_runs": 3,
       "performance": {
-        "median": 53.0,
-        "min": 52.0,
+        "median": 57.0,
+        "min": 57.0,
         "max": 58.0
       },
       "accessibility": {
@@ -1300,9 +1983,9 @@
         "max": 100.0
       },
       "lcp_ms": {
-        "median": 3923.759,
-        "min": 3390.4620000000004,
-        "max": 3961.5759999999996
+        "median": 3422.4610000000002,
+        "min": 3296.5909999999994,
+        "max": 3443.5200000000004
       },
       "cls": {
         "median": 0.283809804905869,
@@ -1310,19 +1993,19 @@
         "max": 0.283809804905869
       },
       "tbt_ms": {
-        "median": 255.5,
-        "min": 244.5,
-        "max": 260.5
+        "median": 282.0,
+        "min": 264.0,
+        "max": 302.5
       },
       "ttfb_ms": {
-        "median": 5065.0,
-        "min": 4725.0,
-        "max": 5306.0
+        "median": 5380.0,
+        "min": 5058.0,
+        "max": 5400.0
       },
       "total_bytes": {
-        "median": 893530.0,
-        "min": 893407.0,
-        "max": 893933.0
+        "median": 893718.0,
+        "min": 893567.0,
+        "max": 894112.0
       }
     }
   },
@@ -1336,5 +2019,5 @@
       "alt": "اتصال یکسر ماده پلی‌اتیلن ۳۲ میلی‌متر"
     }
   ],
-  "finished_at": "2026-10-01T04:17:31.258401+00:00"
+  "finished_at": "2026-10-01T04:30:27.098958+00:00"
 }
