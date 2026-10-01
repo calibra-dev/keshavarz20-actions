@@ -21,3 +21,16 @@ Key guarantees:
 - critical Bridge/rollback failures engage a kill switch
 
 Runtime state is stored in product-engine/state.json. Product-specific evidence is stored under product-engine/results/.
+
+
+## Primary-route lock
+
+The automatic Product Engine route is locked by `product-engine/PRIMARY_ROUTE_LOCK.json` and enforced by `scripts/check_product_engine_primary_route.py`.
+
+Automatic production MUST remain:
+
+`Connected ChatGPT -> product-engine/queue/*.json -> k20-product-queue-publisher.yml -> K20 Bridge 3.3 -> WooCommerce/WordPress -> readback/QA`.
+
+`.github/workflows/k20-product-autopilot.yml` is manual API fallback only. It must never gain `schedule` or `push` triggers and must not become the primary producer.
+
+CI workflow `.github/workflows/k20-product-route-guard.yml` fails if these routing invariants drift.
