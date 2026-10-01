@@ -524,9 +524,9 @@ final class K20_Bridge_V33_Performance {
             '/<img\\b(?=[^>]*k20-direct-a143246\\.webp)[^>]*>/i',
             static function (array $match): string {
                 $tag = $match[0];
-                $tag = preg_replace('/\\sloading=(["\\']).*?\\1/i', '', $tag) ?: $tag;
-                $tag = preg_replace('/\\sfetchpriority=(["\\']).*?\\1/i', '', $tag) ?: $tag;
-                $tag = preg_replace('/\\sdecoding=(["\\']).*?\\1/i', '', $tag) ?: $tag;
+                $tag = preg_replace("~\\sloading=([\"']).*?\\1~i", '', $tag) ?: $tag;
+                $tag = preg_replace("~\\sfetchpriority=([\"']).*?\\1~i", '', $tag) ?: $tag;
+                $tag = preg_replace("~\\sdecoding=([\"']).*?\\1~i", '', $tag) ?: $tag;
                 return substr($tag, 0, -1) . ' loading="lazy" fetchpriority="low" decoding="async">';
             },
             $html
@@ -537,7 +537,7 @@ final class K20_Bridge_V33_Performance {
             static function (array $match): string {
                 $tag = $match[0];
                 if (stripos($tag, 'fetchpriority=') !== false) {
-                    return preg_replace('/fetchpriority=(["\\']).*?\\1/i', 'fetchpriority="low"', $tag, 1) ?: $tag;
+                    return preg_replace("~fetchpriority=([\"']).*?\\1~i", 'fetchpriority="low"', $tag, 1) ?: $tag;
                 }
                 return substr($tag, 0, -1) . ' fetchpriority="low">';
             },
