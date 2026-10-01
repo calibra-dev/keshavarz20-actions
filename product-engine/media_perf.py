@@ -2,74 +2,148 @@ from __future__ import annotations
 
 from typing import Any
 from urllib.parse import urlparse
-import os
 
-from core import bridge, cache_purge
+from core import bridge, cache_purge, product_read, rest, textify
 
-def _basename(url: str) -> str:
+
+def _is_webp(url: str) -> bool:
     try:
-        return os.path.basename(urlparse(url).path)
+        return urlparse(url).path.lower().endswith(".webp")
     except Exception:
-        return ""
+        return False
 
-def maybe_optimize_featured(product: dict[str,Any], baseline: dict[str,Any]) -> dict[str,Any]:
-    rep=baseline.get("representative") or {}
-    if int(rep.get("performance") or 0)>=96:
-        return {"attempted":False,"reason":"baseline already >=96"}
+
+def _bytes(value: Any) -> int:
+    try:
+        return int(value or 0)
+    except (TypeError,ValueError):
+        return 0
+
+
+def _alt_map(suggestions: list[dict[str,Any]] | None) -> dict[int,str]:
+    out={}
+    for item in suggestions or []:
+        try:
+            aid=int(item.get("attachment_id") or 0)
+        except (TypeError,ValueError):
+            continue
+        alt=textify(str(item.get("alt_text") or ""))
+        if aid and alt:
+            out[aid]=alt
+    return out
+
+
+def optimize_product_images(product: dict[str,Any], policy: dict[str,Any], alt_suggestions: list[dict[str,Any]] | None=None) -> dict[str,Any]:
     images=product.get("images") or []
+    source_ids=[int(x.get("id") or 0) for x in images if int(x.get("id") or 0)>0]
+    if not policy.get("enabled",True):
+        return {"attempted":False,"reason":"media optimization disabled","source_ids":source_ids,"target_ids":source_ids}
     if not images:
-        return {"attempted":False,"reason":"no product image"}
-    featured=images[0]
-    aid=int(featured.get("id") or 0)
-    src=str(featured.get("src") or "")
-    if not aid or not src:
-        return {"attempted":False,"reason":"featured image identity unavailable"}
+        return {"attempted":False,"reason":"product has no images","source_ids":[],"target_ids":[],"all_webp":True}
 
-    top=baseline.get("top_network_requests") or []
-    source_name=_basename(src)
-    relevant=False
-    for req in top:
-        if source_name and source_name.split(".")[0] in str(req.get("url") or ""):
-            relevant=True
-            break
-    if not relevant:
-        return {"attempted":False,"reason":"featured image not a top transferred resource"}
+    quality=int(policy.get("quality") or 84)
+    max_dimension=int(policy.get("max_dimension") or 1600)
+    minimum_saving_pct=float(policy.get("minimum_saving_pct") or 0)
+    require_smaller=bool(policy.get("require_smaller",True))
+    suggestions=_alt_map(alt_suggestions)
+    target_ids=[]
+    items=[]
+    created_ids=[]
 
-    hashed=bridge("media.hash",dry_run=True,payload={"attachment_id":aid}).get("result") or {}
-    byte_count=int(hashed.get("bytes") or 0)
-    if byte_count and byte_count<280000:
-        return {"attempted":False,"reason":"featured source below optimization threshold","bytes":byte_count}
+    for index,image in enumerate(images):
+        aid=int(image.get("id") or 0)
+        src=str(image.get("src") or "")
+        role="featured" if index==0 else "gallery"
+        if not aid:
+            raise RuntimeError(f"{role} image has no attachment id")
+        if role=="featured" and not policy.get("featured",True):
+            target_ids.append(aid); items.append({"role":role,"source_attachment_id":aid,"target_attachment_id":aid,"status":"disabled"}); continue
+        if role=="gallery" and not policy.get("gallery",True):
+            target_ids.append(aid); items.append({"role":role,"source_attachment_id":aid,"target_attachment_id":aid,"status":"disabled"}); continue
+        if policy.get("skip_existing_webp",True) and _is_webp(src):
+            target_ids.append(aid)
+            items.append({"role":role,"source_attachment_id":aid,"target_attachment_id":aid,"status":"already_webp","src":src})
+            continue
 
-    optimized=bridge("media.optimize",payload={
-        "attachment_id":aid,"mime":"image/webp","quality":82,"max_dimension":1600
-    }).get("result") or {}
-    new_id=int(optimized.get("new_attachment_id") or 0)
-    if not new_id:
-        return {"attempted":False,"reason":"media.optimize produced no attachment","source_attachment_id":aid}
+        hashed=bridge("media.hash",dry_run=True,payload={"attachment_id":aid}).get("result") or {}
+        source_bytes=_bytes(hashed.get("bytes"))
+        optimized=bridge("media.optimize",payload={
+            "attachment_id":aid,
+            "mime":str(policy.get("output_mime") or "image/webp"),
+            "quality":quality,
+            "max_dimension":max_dimension,
+        }).get("result") or {}
+        new_id=int(optimized.get("new_attachment_id") or 0)
+        optimized_bytes=_bytes(optimized.get("bytes"))
+        if not new_id:
+            raise RuntimeError(f"media.optimize produced no attachment for {aid}")
+        created_ids.append(new_id)
+        saving_pct=None
+        if source_bytes>0 and optimized_bytes>0:
+            saving_pct=round((source_bytes-optimized_bytes)*100/source_bytes,2)
+        if require_smaller and source_bytes>0 and optimized_bytes>0 and saving_pct is not None and saving_pct<minimum_saving_pct:
+            target_ids.append(aid)
+            items.append({
+                "role":role,"source_attachment_id":aid,"target_attachment_id":aid,
+                "rejected_attachment_id":new_id,"status":"rejected_no_size_gain",
+                "source_bytes":source_bytes,"optimized_bytes":optimized_bytes,"saving_pct":saving_pct,
+            })
+            continue
 
-    bound=bridge("asset.featured.set",payload={
-        "target_id":int(product["id"]),"attachment_id":new_id
-    }).get("result") or {}
-    cache_purge()
+        alt=suggestions.get(aid) or textify(str(image.get("alt") or ""))
+        if alt:
+            bridge("media.metadata",payload={"attachment_id":new_id,"alt_text":alt})
+        target_ids.append(new_id)
+        items.append({
+            "role":role,"source_attachment_id":aid,"target_attachment_id":new_id,
+            "status":"converted","source_bytes":source_bytes or None,
+            "optimized_bytes":optimized_bytes or None,"saving_pct":saving_pct,
+            "optimized_mime":optimized.get("mime") or "image/webp",
+        })
+
+    changed=target_ids!=source_ids
+    if changed:
+        rest("PUT",f"/wc/v3/products/{int(product['id'])}",payload={"images":[{"id":x} for x in target_ids]})
+        cache_purge()
+
+    check=product_read(int(product["id"]))
+    readback_ids=[int(x.get("id") or 0) for x in (check.get("images") or [])]
+    if readback_ids!=target_ids:
+        if changed:
+            rest("PUT",f"/wc/v3/products/{int(product['id'])}",payload={"images":[{"id":x} for x in source_ids]})
+            cache_purge()
+        raise RuntimeError(f"media binding readback mismatch expected={target_ids} got={readback_ids}")
+
+    all_webp=all(_is_webp(str(x.get("src") or "")) for x in (check.get("images") or []))
     return {
         "attempted":True,
-        "source_attachment_id":aid,
-        "new_attachment_id":new_id,
-        "previous_attachment_id":int(bound.get("previous_attachment_id") or aid),
-        "snapshot_id":bound.get("snapshot_id"),
-        "source_bytes":byte_count or None,
-        "optimized_bytes":optimized.get("bytes"),
-        "optimized_mime":optimized.get("mime"),
+        "changed":changed,
+        "source_ids":source_ids,
+        "target_ids":target_ids,
+        "created_attachment_ids":created_ids,
+        "items":items,
+        "readback_ok":True,
+        "all_webp":all_webp,
     }
 
-def restore_featured(product_id: int, action: dict[str,Any]) -> bool:
-    if not action.get("attempted"):
+
+def restore_product_images(product_id: int, action: dict[str,Any]) -> bool:
+    source_ids=[int(x) for x in (action.get("source_ids") or []) if int(x)>0]
+    if not action.get("changed"):
         return True
-    previous=int(action.get("previous_attachment_id") or action.get("source_attachment_id") or 0)
-    if not previous:
-        return False
-    out=bridge("asset.featured.set",payload={
-        "target_id":int(product_id),"attachment_id":previous
-    }).get("result") or {}
+    rest("PUT",f"/wc/v3/products/{int(product_id)}",payload={"images":[{"id":x} for x in source_ids]})
     cache_purge()
-    return int(out.get("featured_attachment_id") or 0)==previous
+    check=product_read(int(product_id))
+    readback=[int(x.get("id") or 0) for x in (check.get("images") or [])]
+    return readback==source_ids
+
+
+def remap_alt_suggestions(suggestions: list[dict[str,Any]] | None, action: dict[str,Any]) -> list[dict[str,Any]]:
+    mapping={int(x.get("source_attachment_id") or 0):int(x.get("target_attachment_id") or 0) for x in (action.get("items") or [])}
+    out=[]
+    for item in suggestions or []:
+        old=int(item.get("attachment_id") or 0)
+        new=mapping.get(old,old)
+        if new:
+            out.append({"attachment_id":new,"alt_text":item.get("alt_text") or ""})
+    return out
