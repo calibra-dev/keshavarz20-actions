@@ -544,7 +544,7 @@ final class K20_Bridge_V33_Performance {
         ];
 
         foreach ($verified_unused as $fragment) {
-            $pattern = '/<link\\b(?=[^>]*href=(["\\'])[^"\\']*' . preg_quote($fragment, '/') . '[^"\\']*\\1)[^>]*>/i';
+            $pattern = "~<link\\b(?=[^>]*href=([\"'])[^\"']*" . preg_quote($fragment, '~') . "[^\"']*\\1)[^>]*>~i";
             $html = preg_replace_callback(
                 $pattern,
                 static function (array $match): string {
@@ -554,8 +554,8 @@ final class K20_Bridge_V33_Performance {
                     }
 
                     $async = preg_replace(
-                        '/\\srel=(["\\'])stylesheet\\1/i',
-                        ' rel="stylesheet" media="print" onload="this.media=\\'all\\'"',
+                        "~\\srel=([\"'])stylesheet\\1~i",
+                        " rel=\"stylesheet\" media=\"print\" onload=\"this.media='all'\"",
                         $tag,
                         1
                     ) ?: $tag;
