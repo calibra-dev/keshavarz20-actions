@@ -45,7 +45,7 @@ def write_category(session, category_id, description):
         timeout=90,
     )
     r.raise_for_status()
-    return r.json()
+    return {"http_status": r.status_code, "content_type": r.headers.get("content-type")}
 
 def desired_description(old, module):
     sc = old.count(MARKER_START)
