@@ -29,7 +29,10 @@ final class K20_Bridge_V33_Performance {
         add_filter('litespeed_buffer_after', [__CLASS__, 'final_html_repairs'], 20, 1);
         add_action('template_redirect', [__CLASS__, 'start_product_output_buffer'], 0);
         add_action('wp', [__CLASS__, 'product_cache_policy'], 9999);
-        add_action('wp_footer', [__CLASS__, 'product_cache_policy'], PHP_INT_MAX);
+        add_action('template_redirect', [__CLASS__, 'product_cache_policy'], 9999);
+        add_action('wp_head', [__CLASS__, 'render_product_head_repairs'], 99990);
+        add_action('wp_footer', [__CLASS__, 'product_cache_policy'], 99990);
+        add_action('wp_footer', [__CLASS__, 'render_product_footer_repairs'], 99999);
         add_action('comment_post', [__CLASS__, 'purge_product_review_cache'], 20, 3);
         add_action('transition_comment_status', [__CLASS__, 'purge_product_review_transition'], 20, 3);
         add_action('wp_enqueue_scripts', [__CLASS__, 'dequeue_irrelevant_assets'], 999);
@@ -48,10 +51,11 @@ final class K20_Bridge_V33_Performance {
     }
 
     private static function is_product_target(): bool {
-        return !is_admin()
-            && function_exists('is_product')
-            && is_product()
-            && (int) get_queried_object_id() === self::PRODUCT_POST_ID;
+        if (is_admin()) return false;
+        $queried_id = (int) get_queried_object_id();
+        if ($queried_id === self::PRODUCT_POST_ID) return true;
+        global $post;
+        return is_object($post) && (int) ($post->ID ?? 0) === self::PRODUCT_POST_ID;
     }
 
     private static function has_private_commerce_cookie(): bool {
@@ -83,9 +87,48 @@ final class K20_Bridge_V33_Performance {
         // to the verified canary product and only to anonymous GET/HEAD requests without
         // cart/session/login cookies. "woocommerce_recently_viewed" is not private state.
         $reason = 'K20 product 134980 safe anonymous canary';
+        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.19');
         do_action('litespeed_control_force_cacheable', $reason);
         do_action('litespeed_control_force_public', $reason);
         do_action('litespeed_control_set_ttl', 300, $reason);
+    }
+
+    private static function product_a11y_css(): string {
+        return 'body.single-product .woocommerce-breadcrumb,'
+            . 'body.single-product .product-rating .average span,'
+            . 'body.single-product .woocommerce-review-link,'
+            . 'body.single-product .product_meta,body.single-product .product_meta a,'
+            . 'body.single-product .woocommerce-product-details__short-description,'
+            . 'body.single-product .woocommerce-product-details__short-description p,'
+            . 'body.single-product .delivery-text,'
+            . 'body.single-product .reviews-columns .button,'
+            . 'body.single-product .woocommerce-review__published-date,'
+            . 'body.single-product .slider-item .price del,'
+            . 'body.single-product .slider-item .price del *{color:#374151!important;}'
+            . 'body.single-product .slider-item .price .discount{background:#14532d!important;color:#fff!important;}'
+            . 'body.single-product .k20-footer-summary-text,'
+            . 'body.single-product footer.main-footer .copyright{color:#f9fafb!important;}'
+            . 'body.single-product .widget-content .owl-dots .owl-dot{min-width:32px!important;min-height:32px!important;margin:4px!important;padding:0!important;}'
+            . 'body.single-product .warranty-message img{width:auto!important;height:32px!important;max-width:32px!important;object-fit:contain!important;}';
+    }
+
+    public static function render_product_head_repairs(): void {
+        if (!self::is_product_target()) return;
+        echo '<style id="k20-product-134980-canary-css">' . self::product_a11y_css() . '</style>';
+    }
+
+    public static function render_product_footer_repairs(): void {
+        if (!self::is_product_target()) return;
+        echo '<script id="k20-product-134980-a11y-js">(function(){'
+            . 'var apply=function(){'
+            . 'document.querySelectorAll(".owl-dot:not([aria-label])").forEach(function(el,i){el.setAttribute("aria-label","اسلاید "+(i+1));});'
+            . 'document.querySelectorAll("a.login-register:not([aria-label])").forEach(function(el){el.setAttribute("aria-label","ورود یا حساب کاربری");});'
+            . 'document.querySelectorAll(".second-img > a:not([aria-label])").forEach(function(el){el.setAttribute("aria-label","مشاهده تصویر دوم محصول");});'
+            . '};'
+            . 'apply();'
+            . 'var mo=new MutationObserver(apply);mo.observe(document.documentElement,{childList:true,subtree:true});'
+            . 'setTimeout(function(){apply();mo.disconnect();},4000);'
+            . '})();</script>';
     }
 
     public static function start_product_output_buffer(): void {
@@ -306,26 +349,9 @@ final class K20_Bridge_V33_Performance {
             $html
         ) ?: $html;
 
-        // Page-scoped fixes for audited contrast, touch target and warranty aspect ratio.
+        // Page-scoped fallback for environments where direct wp_head output is filtered.
         if (stripos($html, 'id="k20-product-134980-canary-css"') === false) {
-            $css = '<style id="k20-product-134980-canary-css">'
-                . 'body.single-product .woocommerce-breadcrumb,'
-                . 'body.single-product .product-rating .average span,'
-                . 'body.single-product .woocommerce-review-link,'
-                . 'body.single-product .product_meta,body.single-product .product_meta a,'
-                . 'body.single-product .woocommerce-product-details__short-description,'
-                . 'body.single-product .woocommerce-product-details__short-description p,'
-                . 'body.single-product .delivery-text,'
-                . 'body.single-product .reviews-columns .button,'
-                . 'body.single-product .woocommerce-review__published-date,'
-                . 'body.single-product .slider-item .price del,'
-                . 'body.single-product .slider-item .price del *{color:#374151!important;}'
-                . 'body.single-product .slider-item .price .discount{background:#14532d!important;color:#fff!important;}'
-                . 'body.single-product .k20-footer-summary-text,'
-                . 'body.single-product footer.main-footer .copyright{color:#f9fafb!important;}'
-                . 'body.single-product .widget-content .owl-dots .owl-dot{min-width:32px!important;min-height:32px!important;margin:4px!important;padding:0!important;}'
-                . 'body.single-product .warranty-message img{width:auto!important;height:32px!important;max-width:32px!important;object-fit:contain!important;}'
-                . '</style>';
+            $css = '<style id="k20-product-134980-canary-css">' . self::product_a11y_css() . '</style>';
             $html = str_ireplace('</head>', $css . '</head>', $html);
         }
 

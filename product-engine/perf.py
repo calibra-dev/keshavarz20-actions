@@ -58,6 +58,7 @@ def http_probe(url: str, runs: int=5) -> list[dict[str,Any]]:
                 "bytes":len(r.content),"cache_control":h.get("cache-control"),
                 "x_litespeed_cache":h.get("x-litespeed-cache"),
                 "x_litespeed_cache_control":h.get("x-litespeed-cache-control"),
+                "x_k20_canary_guard":h.get("x-k20-canary-guard"),
                 "x_litespeed_tag":h.get("x-litespeed-tag"),"set_cookie":h.get("set-cookie"),
                 "age":h.get("age"),"server":h.get("server"),"vary":h.get("vary")
             })
