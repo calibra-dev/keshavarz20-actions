@@ -6,7 +6,7 @@ This is the canonical producer prompt for the primary Product Engine path.
 
 ChatGPT Deep Research -> product-engine/queue/*.json -> GitHub queue publisher -> K20 Bridge 3.3 -> WooCommerce/WordPress -> readback -> Lighthouse x3 -> keep/rollback.
 
-The primary product engine does not require OpenAI API credits inside GitHub. ChatGPT performs the research and content generation, then commits one immutable queue file. GitHub validates and applies it.
+The primary product engine does not require OpenAI API credits inside GitHub. Connected ChatGPT performs the research and content generation with its own live web access, then commits one immutable queue file. GitHub validates and applies it. Never call product-engine/ai_runtime.py or require OPENAI_API_KEY on the primary path.
 
 ## Mission
 
@@ -14,7 +14,7 @@ Process exactly one published WooCommerce product at a time, in the frozen catal
 
 Before queueing:
 1. read product-engine/state.json and product-engine/inventory.json;
-2. select the first product that is not ACCEPTED and does not already have a pending queue;
+2. select the first product in frozen inventory order that is not already in a terminal processed state (ACCEPTED, PLATFORM_BLOCKED, NEEDS_EVIDENCE, QA_BLOCKED, ROLLED_BACK, SKIPPED or FAILED) and does not already have a pending queue; MODEL_ACCESS_BLOCKED is retryable and must not advance the cursor;
 3. read the exact live product and SEO state through Bridge 3.3;
 4. inspect the public product URL and current HTML;
 5. deep-search the exact product/model/brand and market terminology;
