@@ -30,7 +30,7 @@
     "cls_each_run_max": 0.1,
     "tbt_median_max_ms": 200
   },
-  "schedule": "every_30_minutes",
+  "schedule": "connected_chatgpt_hourly",
   "automatic_writes": [
     "description",
     "short_description",
@@ -99,5 +99,7 @@
     "on_visual_guard_failure": true,
     "on_gate_failure": false
   },
-  "global_css_js_mutation": false
+  "global_css_js_mutation": false,
+  "primary_producer": "connected_chatgpt_queue",
+  "api_fallback_manual_only": true
 }
