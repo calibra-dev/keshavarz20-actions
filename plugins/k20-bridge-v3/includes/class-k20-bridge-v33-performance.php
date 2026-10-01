@@ -114,9 +114,9 @@ final class K20_Bridge_V33_Performance {
 
         $reason = 'K20 product 134980 pre-header safe anonymous canary';
         if (class_exists('\\LiteSpeed\\Control')) {
-            \\LiteSpeed\\Control::force_cacheable($reason);
-            \\LiteSpeed\\Control::set_public_forced($reason);
-            \\LiteSpeed\\Control::set_custom_ttl(300, $reason);
+            \LiteSpeed\Control::force_cacheable($reason);
+            \LiteSpeed\Control::set_public_forced($reason);
+            \LiteSpeed\Control::set_custom_ttl(300, $reason);
         } else {
             do_action('litespeed_control_force_cacheable', $reason);
             do_action('litespeed_control_force_public', $reason);
