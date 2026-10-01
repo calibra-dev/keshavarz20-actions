@@ -1,0 +1,12 @@
+{
+  "action": "content.patch",
+  "request_id": "20261001-phase14-patch-comparator-growthos-js-145234-v2",
+  "payload": {
+    "target_type": "post",
+    "post_id": 145234,
+    "field": "post_content",
+    "old_content": "if(item && Object.prototype.toString.call(item)==='[object Object]' && /^growthos_/.test(String(item.event||''))){",
+    "new_content": "if(item ? (Object.prototype.toString.call(item)==='[object Object]' ? /^growthos_/.test(String(item.event||'')) : false) : false){",
+    "expected_sha256": "f85fd4a18840152dea216266c09f8b95da2702a401e1a15c4835963d101666a8"
+  }
+}
