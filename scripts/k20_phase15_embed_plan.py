@@ -4,11 +4,12 @@ from __future__ import annotations
 import html
 import json
 import math
+import sys
 from pathlib import Path
 
-from k20_sanitizer import sanitize_text
-
 ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from k20_sanitizer import sanitize_text
 ASSETS=ROOT/"phase15-publication-results/public-assets.json"
 OUT=ROOT/"phase15-publication-results/embed-plan.json"
 MARKER="<!-- K20-GROWTHOS-PHASE10-MEASUREMENT-END -->"
