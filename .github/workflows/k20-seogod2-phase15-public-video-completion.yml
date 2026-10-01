@@ -1,0 +1,95 @@
+name: K20 SEO God2 Phase15 Public Video Completion
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'phase15-publication-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-seogod2-phase15-public-video-completion
+  cancel-in-progress: false
+
+jobs:
+  publish-shards:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: a
+            episodes: "2,3,4,5,6"
+          - name: b
+            episodes: "8,9,10,11,13"
+          - name: c
+            episodes: "14,15,16,18,19"
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      K20_SITE_BASE_URL: https://keshavarz20.com
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python -m pip install -r phase15-video-engine/requirements.txt
+      - name: Render upload and verify shard
+        run: >-
+          python scripts/k20_phase15_public_video_shard.py
+          --episodes "${{ matrix.episodes }}"
+          --output "phase15-publication-results/shard-${{ matrix.name }}.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: phase15-shard-${{ matrix.name }}
+          if-no-files-found: error
+          retention-days: 7
+          path: phase15-publication-results/shard-${{ matrix.name }}.json
+
+  aggregate:
+    needs: publish-shards
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: phase15-shard-*
+          path: /tmp/phase15-shards
+          merge-multiple: true
+      - name: Refresh main and aggregate publication evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git reset --hard origin/main
+          python scripts/k20_phase15_aggregate_publication.py --artifacts /tmp/phase15-shards
+          python scripts/k20_video_sitemap_gate.py
+      - name: Commit public manifest and sitemap gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f             phase2/video-program/assets.json             phase2/video-program/manifest.json             phase2-results/video-sitemap-gate.json             phase2-results/video-sitemap.xml             phase15-publication-results/public-assets.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "seo god2 phase15: publish 20 verified video assets"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
