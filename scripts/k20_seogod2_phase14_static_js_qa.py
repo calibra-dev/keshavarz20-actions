@@ -5,10 +5,15 @@ from pathlib import Path
 import requests
 
 PAGES = {
+ "drip_tape_calculator":"https://keshavarz20.com/drip-tape-length-fittings-calculator/",
+ "pipe_size_selector":"https://keshavarz20.com/irrigation-pipe-size-selector/",
+ "fittings_compatibility":"https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+ "filter_selector":"https://keshavarz20.com/irrigation-filter-selector/",
  "layflat_calculator":"https://keshavarz20.com/layflat-length-fittings-calculator/",
  "request_quotation":"https://keshavarz20.com/request-quotation/",
  "one_hectare_basket":"https://keshavarz20.com/one-hectare-drip-irrigation-basket/",
  "product_comparator":"https://keshavarz20.com/irrigation-product-comparator/",
+ "proforma_request":"https://keshavarz20.com/request-proforma/",
 }
 
 SCRIPT_RE = re.compile(r"<script\b([^>]*)>(.*?)</script\s*>", re.I|re.S)
