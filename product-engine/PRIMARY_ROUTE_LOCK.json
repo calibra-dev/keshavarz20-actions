@@ -1,0 +1,34 @@
+{
+  "schema_version": "product-primary-route-lock-v1",
+  "primary_producer": "connected_chatgpt_queue",
+  "primary_flow": [
+    "Connected ChatGPT live research",
+    "product-engine/queue/*.json",
+    ".github/workflows/k20-product-queue-publisher.yml",
+    "K20 Bridge 3.3",
+    "WooCommerce/WordPress",
+    "readback",
+    "Lighthouse x3",
+    "keep_or_rollback",
+    "checkpoint"
+  ],
+  "automatic_api_generation_forbidden": true,
+  "api_fallback": {
+    "workflow": ".github/workflows/k20-product-autopilot.yml",
+    "manual_only": true,
+    "allowed_trigger": "workflow_dispatch"
+  },
+  "invariants": {
+    "concurrency": 1,
+    "max_products_per_run": 1,
+    "immutable_queue": true,
+    "protected_commerce_fields": true,
+    "fail_closed": true
+  },
+  "forbidden_primary_dependencies": [
+    "OPENAI_API_KEY",
+    "product-engine/ai_runtime.py"
+  ],
+  "canonical_prompt": "product-engine/SCHEDULED_TASK_PROMPT.md",
+  "canonical_config": "product-engine/config.json"
+}
