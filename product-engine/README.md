@@ -34,3 +34,8 @@ Automatic production MUST remain:
 `.github/workflows/k20-product-autopilot.yml` is manual API fallback only. It must never gain `schedule` or `push` triggers and must not become the primary producer.
 
 CI workflow `.github/workflows/k20-product-route-guard.yml` fails if these routing invariants drift.
+
+
+### Explicit promoter handoff
+
+Branch fallback promotion is completed only after the promoter explicitly dispatches `k20-product-queue-publisher.yml` with `workflow_dispatch`. Do not rely on workflow-generated pushes to recursively trigger another workflow. The route guard fails if this explicit handoff is removed.
