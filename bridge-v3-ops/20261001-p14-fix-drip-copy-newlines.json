@@ -1,0 +1,12 @@
+{
+  "action": "content.patch",
+  "request_id": "20261001-p14-fix-drip-copy-newlines",
+  "payload": {
+    "target_type": "post",
+    "post_id": 143698,
+    "field": "post_content",
+    "old_content": "window.tcTapeResultText =\n      \"خلاصه محاسبه نوار تیپ کشاورز بیست:n\" +\n      \"تعداد خطوط: \" + faNumber(lineCount, 0) + \"n\" +\n      \"طول هر خط: \" + faNumber(lineLength, 1) + \" مترn\" +\n      \"متراژ خام: \" + faNumber(rawLength, 1) + \" مترn\" +\n      \"متراژ با ذخیره: \" + faNumber(finalLength, 1) + \" مترn\" +\n      \"تعداد رول: \" + faNumber(rolls, 0) + \"n\" +\n      \"رابط یا شیر شروع: \" + faNumber(startFittings, 0) + \" عددn\" +\n      \"قطعات انتهایی: \" + faNumber(endFittings, 0) + \" عددn\" +\n      \"دبی تقریبی هر خط: \" + faNumber(lineFlowLh, 1) + \" لیتر بر ساعتn\" +\n      \"دبی تقریبی زون: \" + faNumber(zoneFlowM3h, 2) + \" مترمکعب بر ساعتn\" +\n      \"نرخ کاربرد تقریبی: \" +\n      faNumber(applicationRate, 2) +\n      \" میلی‌متر بر ساعت\";",
+    "new_content": "window.tcTapeResultText = [\n      \"خلاصه محاسبه نوار تیپ کشاورز بیست:\",\n      \"تعداد خطوط: \" + faNumber(lineCount, 0),\n      \"طول هر خط: \" + faNumber(lineLength, 1) + \" متر\",\n      \"متراژ خام: \" + faNumber(rawLength, 1) + \" متر\",\n      \"متراژ با ذخیره: \" + faNumber(finalLength, 1) + \" متر\",\n      \"تعداد رول: \" + faNumber(rolls, 0),\n      \"رابط یا شیر شروع: \" + faNumber(startFittings, 0) + \" عدد\",\n      \"قطعات انتهایی: \" + faNumber(endFittings, 0) + \" عدد\",\n      \"دبی تقریبی هر خط: \" + faNumber(lineFlowLh, 1) + \" لیتر بر ساعت\",\n      \"دبی تقریبی زون: \" + faNumber(zoneFlowM3h, 2) + \" مترمکعب بر ساعت\",\n      \"نرخ کاربرد تقریبی: \" + faNumber(applicationRate, 2) + \" میلی‌متر بر ساعت\"\n    ].join(String.fromCharCode(10));",
+    "expected_sha256": "77522213b95ea33e1b2f9674b07a6917b3572c5a38e750a22d9c118c796bc417"
+  }
+}
