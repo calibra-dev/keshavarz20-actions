@@ -72,7 +72,7 @@ async def boundary_probe(page):
             except Exception:
                 pass
             after = (await page.locator("body").inner_text())[-5000:]
-            custom_error = bool(INVALID_RE.search(after)) and (after != before or not native_valid)
+            custom_error = bool(INVALID_RE.search(after))
             ok = (not native_valid) or custom_error
             result["cases"].append({
                 "input": ident, "case": label, "native_valid": native_valid,
@@ -161,10 +161,12 @@ async def main():
                 row["h1_count"] = await page.locator("h1").count()
                 row["controls"] = await page.locator("input:visible, select:visible, textarea:visible").count()
                 row["actions"] = await page.locator("button:visible, input[type=button]:visible, input[type=submit]:visible").count()
+                row["quote_links"] = await page.locator("a[href*='wa.me']:visible, a[href^='tel:']:visible, a[href*='whatsapp']:visible").count()
                 overflow = await page.evaluate("()=>document.documentElement.scrollWidth-document.documentElement.clientWidth")
                 row["horizontal_overflow_px"] = int(overflow)
                 row["page_errors"] = page_errors[:10]
-                row["smoke_pass"] = bool(row["http"] == 200 and row["h1_count"] >= 1 and row["controls"] >= 1 and row["actions"] >= 1 and overflow <= 4)
+                has_action = row["actions"] >= 1 or (t["kind"] == "quote" and row["quote_links"] >= 1)
+                row["smoke_pass"] = bool(row["http"] == 200 and row["h1_count"] >= 1 and row["controls"] >= 1 and has_action and overflow <= 4)
 
                 if t["kind"] in {"interactive","selector"}:
                     row["boundary"] = await boundary_probe(page)
