@@ -1,0 +1,12 @@
+{
+  "action": "content.patch",
+  "request_id": "20261001-phase14-patch-growthos-js-144236",
+  "payload": {
+    "target_type": "post",
+    "post_id": 144236,
+    "field": "post_content",
+    "old_content": "if(item && Object.prototype.toString.call(item)==='[object Object]' && /^growthos_/.test(String(item.event||''))){",
+    "new_content": "if(item ? (Object.prototype.toString.call(item)==='[object Object]' ? /^growthos_/.test(String(item.event||'')) : false) : false){",
+    "expected_sha256": "841bb98da118ef0f1193ee1cb58404852ccc52e3ed97984a43005e45e036839e"
+  }
+}
