@@ -1,8 +1,8 @@
 {
   "schema_version": "product-queue-result-v2",
-  "queue_file": "product-engine/queue/2026-10-01-product-134980-v2-after3330.json",
+  "queue_file": "product-engine/queue/2026-10-01-product-134980-v2-after3331.json",
   "product_id": 134980,
-  "started_at": "2026-10-01T07:57:57.479483+00:00",
+  "started_at": "2026-10-01T08:13:44.119087+00:00",
   "status": "PLATFORM_BLOCKED",
   "policy": {
     "content_acceptance": 96,
@@ -72,14 +72,14 @@
     {
       "run": 1,
       "status": 200,
-      "elapsed_ms": 1260.0,
-      "bytes": 401913,
+      "elapsed_ms": 1017.0,
+      "bytes": 415189,
       "cache_control": null,
       "x_litespeed_cache": "hit",
       "x_litespeed_cache_control": null,
-      "x_k20_canary_guard": "3.3.30",
+      "x_k20_canary_guard": "3.3.31",
       "x_k20_recent_view": "blocked-filter",
-      "x_k20_wc_cache_compat": "3.3.30",
+      "x_k20_wc_cache_compat": "3.3.31",
       "x_k20_wc_prevent_hook": "removed",
       "x_k20_donotcache": "0",
       "x_k20_ls_cacheable": "1",
@@ -93,14 +93,14 @@
     {
       "run": 2,
       "status": 200,
-      "elapsed_ms": 170.3,
-      "bytes": 401913,
+      "elapsed_ms": 397.8,
+      "bytes": 415189,
       "cache_control": null,
       "x_litespeed_cache": "hit",
       "x_litespeed_cache_control": null,
-      "x_k20_canary_guard": "3.3.30",
+      "x_k20_canary_guard": "3.3.31",
       "x_k20_recent_view": "blocked-filter",
-      "x_k20_wc_cache_compat": "3.3.30",
+      "x_k20_wc_cache_compat": "3.3.31",
       "x_k20_wc_prevent_hook": "removed",
       "x_k20_donotcache": "0",
       "x_k20_ls_cacheable": "1",
@@ -114,14 +114,14 @@
     {
       "run": 3,
       "status": 200,
-      "elapsed_ms": 169.6,
-      "bytes": 401913,
+      "elapsed_ms": 201.6,
+      "bytes": 415189,
       "cache_control": null,
       "x_litespeed_cache": "hit",
       "x_litespeed_cache_control": null,
-      "x_k20_canary_guard": "3.3.30",
+      "x_k20_canary_guard": "3.3.31",
       "x_k20_recent_view": "blocked-filter",
-      "x_k20_wc_cache_compat": "3.3.30",
+      "x_k20_wc_cache_compat": "3.3.31",
       "x_k20_wc_prevent_hook": "removed",
       "x_k20_donotcache": "0",
       "x_k20_ls_cacheable": "1",
@@ -136,63 +136,63 @@
   "baseline_performance": {
     "samples": [
       {
-        "performance": 43,
+        "performance": 72,
         "accessibility": 96,
         "best_practices": 100,
         "seo": 100,
-        "fcp_ms": 2424.341,
-        "lcp_ms": 4863.02,
-        "speed_index_ms": 12818.622843705325,
-        "tbt_ms": 1585.8690000000001,
-        "cls": 0.05791026219876913,
-        "ttfb_ms": 6295,
-        "total_bytes": 695786,
+        "fcp_ms": 2660.2879999999996,
+        "lcp_ms": 3023.7614999999996,
+        "speed_index_ms": 11387.489481532006,
+        "tbt_ms": 371.5,
+        "cls": 0,
+        "ttfb_ms": 5583,
+        "total_bytes": 696387,
         "unused_css": "Est savings of 71 KiB",
         "unused_js": ""
       },
       {
-        "performance": 47,
+        "performance": 87,
         "accessibility": 96,
         "best_practices": 100,
         "seo": 100,
-        "fcp_ms": 2370.8729999999996,
-        "lcp_ms": 5114.154777244569,
-        "speed_index_ms": 5327.01989908186,
-        "tbt_ms": 191.5,
-        "cls": 1.0003415760656933,
-        "ttfb_ms": 323,
-        "total_bytes": 695753,
+        "fcp_ms": 2736.398,
+        "lcp_ms": 3185.213,
+        "speed_index_ms": 3929.484148331127,
+        "tbt_ms": 96,
+        "cls": 0,
+        "ttfb_ms": 393,
+        "total_bytes": 696366,
         "unused_css": "Est savings of 71 KiB",
         "unused_js": ""
       },
       {
-        "performance": 50,
+        "performance": 73,
         "accessibility": 96,
         "best_practices": 100,
         "seo": 100,
-        "fcp_ms": 2365.7120000000004,
-        "lcp_ms": 4979.074296318055,
-        "speed_index_ms": 4059.5786362249682,
-        "tbt_ms": 180.78099999999995,
-        "cls": 1.051590881240874,
-        "ttfb_ms": 163,
-        "total_bytes": 695778,
+        "fcp_ms": 2716.2889999999998,
+        "lcp_ms": 3158.8925,
+        "speed_index_ms": 3941.9992983444527,
+        "tbt_ms": 98.5,
+        "cls": 0.283809804905869,
+        "ttfb_ms": 393,
+        "total_bytes": 696377,
         "unused_css": "Est savings of 71 KiB",
         "unused_js": ""
       }
     ],
     "representative": {
-      "performance": 50,
+      "performance": 73,
       "accessibility": 96,
       "best_practices": 100,
       "seo": 100,
-      "fcp_ms": 2365.7120000000004,
-      "lcp_ms": 4979.074296318055,
-      "speed_index_ms": 4059.5786362249682,
-      "tbt_ms": 180.78099999999995,
-      "cls": 1.051590881240874,
-      "ttfb_ms": 163,
-      "total_bytes": 695778,
+      "fcp_ms": 2716.2889999999998,
+      "lcp_ms": 3158.8925,
+      "speed_index_ms": 3941.9992983444527,
+      "tbt_ms": 98.5,
+      "cls": 0.283809804905869,
+      "ttfb_ms": 393,
+      "total_bytes": 696377,
       "unused_css": "Est savings of 71 KiB",
       "unused_js": ""
     },
@@ -201,14 +201,14 @@
       {
         "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
         "resource_type": "Document",
-        "transfer_size": 62030,
-        "resource_size": 353402,
+        "transfer_size": 62591,
+        "resource_size": 362913,
         "priority": "VeryHigh"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
         "resource_type": "Script",
-        "transfer_size": 61355,
+        "transfer_size": 61417,
         "resource_size": 252309,
         "priority": "Medium"
       },
@@ -217,21 +217,21 @@
         "resource_type": "Image",
         "transfer_size": 57894,
         "resource_size": 57774,
-        "priority": "High"
+        "priority": "Low"
       },
       {
         "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebregularfanum.woff",
         "resource_type": "Font",
-        "transfer_size": 33706,
+        "transfer_size": 33714,
         "resource_size": 33585,
         "priority": "High"
       },
       {
         "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebboldfanum.woff",
         "resource_type": "Font",
-        "transfer_size": 33669,
+        "transfer_size": 33661,
         "resource_size": 33581,
-        "priority": "High"
+        "priority": "VeryHigh"
       },
       {
         "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
@@ -266,12 +266,12 @@
         "resource_type": "Stylesheet",
         "transfer_size": 22118,
         "resource_size": 150098,
-        "priority": "VeryLow"
+        "priority": "VeryHigh"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/css/7e0c89866ae4250b859a08a1e4310da4.css?ver=a8667",
         "resource_type": "Stylesheet",
-        "transfer_size": 19920,
+        "transfer_size": 19943,
         "resource_size": 166164,
         "priority": "VeryHigh"
       },
@@ -292,14 +292,14 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/css/6c6e99777b208fdc2e0d8d3666a7bcc9.css?ver=5f774",
         "resource_type": "Stylesheet",
-        "transfer_size": 18157,
+        "transfer_size": 18111,
         "resource_size": 140774,
         "priority": "VeryLow"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/a1548c83adc2678218fff1bf8a308b0d.js?ver=2c37a",
         "resource_type": "Script",
-        "transfer_size": 17815,
+        "transfer_size": 17838,
         "resource_size": 77853,
         "priority": "Medium"
       },
@@ -313,21 +313,21 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/69b68c538bdec1627dd4aa6c47bf660b.js?ver=f660b",
         "resource_type": "Script",
-        "transfer_size": 13251,
+        "transfer_size": 13250,
         "resource_size": 54523,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/9ef702f93cda38d01dd013f772f7c746.js?ver=4e13e",
         "resource_type": "Script",
-        "transfer_size": 11715,
+        "transfer_size": 11716,
         "resource_size": 31627,
         "priority": "Low"
       },
       {
         "url": "https://keshavarz20.com/wp-content/uploads/2025/11/cropped-logo-deks22-keshavarz20-100x100.png",
         "resource_type": "Image",
-        "transfer_size": 10056,
+        "transfer_size": 10073,
         "resource_size": 9973,
         "priority": "High"
       },
@@ -341,14 +341,14 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/b60ce8f8cdb2cbf0aeaa486e96347151.js?ver=f5b36",
         "resource_type": "Script",
-        "transfer_size": 9307,
+        "transfer_size": 9306,
         "resource_size": 40071,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/291fb7a293d236f8f164f4535f17e96e.js?ver=b0977",
         "resource_type": "Script",
-        "transfer_size": 8494,
+        "transfer_size": 8472,
         "resource_size": 32700,
         "priority": "Medium"
       },
@@ -369,7 +369,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/71c3ba7f1e2bde5718461357744685d6.js?ver=b8b51",
         "resource_type": "Script",
-        "transfer_size": 6571,
+        "transfer_size": 6541,
         "resource_size": 19875,
         "priority": "Medium"
       }
@@ -412,75 +412,32 @@
         }
       ],
       "lcp_element": [],
-      "layout_shifts": [
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-4-DIV",
-            "path": "1,HTML,1,BODY,2,HEADER,0,DIV,0,DIV",
-            "selector": "body.rtl > header.main-header > div.container > div.main-header-cols",
-            "boundingRect": {
-              "top": 0,
-              "bottom": 127,
-              "left": 15,
-              "right": 397,
-              "width": 382,
-              "height": 127
-            },
-            "snippet": "<div class=\"main-header-cols\">",
-            "nodeLabel": "لوگوی فروشگاه کشاورز بیست"
-          },
-          "score": 1
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-6-NAV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,0,NAV",
-            "selector": "body.rtl > main#main > div.container > nav.woocommerce-breadcrumb",
-            "boundingRect": {
-              "top": 148,
-              "bottom": 226,
-              "left": 0,
-              "right": 412,
-              "width": 412,
-              "height": 78
-            },
-            "snippet": "<nav class=\"woocommerce-breadcrumb breadcrumb\">",
-            "nodeLabel": "خانه / تجهیزات و لوازم کشاورزی / اتصالات پلی اتیلن / پلی اتیلن پیچی / سایر اتصا…"
-          },
-          "score": 0.0003415760656933337
-        }
-      ],
+      "layout_shifts": [],
       "cls_culprits": [],
       "non_composited_animations": [
         {
           "node": {
             "type": "node",
-            "lhId": "page-7-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,0,NAV,2,A",
-            "selector": "main#main > div.container > nav.woocommerce-breadcrumb > a",
+            "lhId": "page-3-SPAN",
+            "path": "1,HTML,1,BODY,63,DIV,0,DIV,1,DIV,0,DIV,0,DIV,0,SPAN",
+            "selector": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line",
             "boundingRect": {
-              "top": 148,
-              "bottom": 174,
-              "left": 218,
-              "right": 355,
-              "width": 138,
-              "height": 26
+              "top": 964,
+              "bottom": 985,
+              "left": 178,
+              "right": 199,
+              "width": 21,
+              "height": 21
             },
-            "snippet": "<a href=\"https://keshavarz20.com/product-category/agricultural-equipment-supplies/\">",
-            "nodeLabel": "تجهیزات و لوازم کشاورزی"
+            "snippet": "<span class=\"icon-line line-tip\">",
+            "nodeLabel": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line"
           },
           "subItems": {
             "type": "subitems",
             "items": [
               {
-                "failureReason": "Unsupported CSS Property: color",
-                "animation": "color"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
+                "failureReason": "Unsupported CSS Properties: top, left, width",
+                "animation": "icon-line-tip"
               }
             ]
           }
@@ -488,104 +445,7 @@
         {
           "node": {
             "type": "node",
-            "lhId": "page-8-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,0,NAV,0,A",
-            "selector": "main#main > div.container > nav.woocommerce-breadcrumb > a",
-            "boundingRect": {
-              "top": 148,
-              "bottom": 174,
-              "left": 369,
-              "right": 392,
-              "width": 23,
-              "height": 26
-            },
-            "snippet": "<a href=\"https://keshavarz20.com\">",
-            "nodeLabel": "خانه"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: color",
-                "animation": "color"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-9-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,0,NAV,6,A",
-            "selector": "main#main > div.container > nav.woocommerce-breadcrumb > a",
-            "boundingRect": {
-              "top": 174,
-              "bottom": 200,
-              "left": 307,
-              "right": 392,
-              "width": 85,
-              "height": 26
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product-category/agricultural-equipment-supplies/p…\">",
-            "nodeLabel": "پلی اتیلن پیچی"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: color",
-                "animation": "color"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-10-NAV",
-            "path": "1,HTML,1,BODY,3,NAV",
-            "selector": "body.rtl > nav#cat-menu",
-            "boundingRect": {
-              "top": 0,
-              "bottom": 823,
-              "left": 412,
-              "right": 732,
-              "width": 320,
-              "height": 823
-            },
-            "snippet": "<nav id=\"cat-menu\" class=\"\">",
-            "nodeLabel": " خانه"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: margin-bottom",
-                "animation": "margin-bottom"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: color",
-                "animation": "color"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-11-SPAN",
+            "lhId": "page-5-SPAN",
             "path": "1,HTML,1,BODY,63,DIV,0,DIV,1,DIV,0,DIV,0,DIV,1,SPAN",
             "selector": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line",
             "boundingRect": {
@@ -612,7 +472,34 @@
         {
           "node": {
             "type": "node",
-            "lhId": "page-12-path",
+            "lhId": "page-8-circle",
+            "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,0,circle",
+            "selector": "div.toast-content > div > svg > circle.checkmark-circle",
+            "boundingRect": {
+              "top": 1598,
+              "bottom": 1618,
+              "left": 291,
+              "right": 310,
+              "width": 19,
+              "height": 19
+            },
+            "snippet": "<circle class=\"checkmark-circle\" cx=\"26\" cy=\"26\" r=\"25\" fill=\"none\">",
+            "nodeLabel": "div.toast-content > div > svg > circle.checkmark-circle"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Property: stroke-dashoffset",
+                "animation": "stroke"
+              }
+            ]
+          }
+        },
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-9-path",
             "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,1,path",
             "selector": "div.toast-content > div > svg > path.checkmark-check",
             "boundingRect": {
@@ -635,727 +522,6 @@
               }
             ]
           }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-13-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,0,DIV,1,DIV,0,DIV,2,DIV,0,DIV,1,DIV,0,SPAN,3,A",
-            "selector": "div.column-description > div.product_meta > span.posted_in > a",
-            "boundingRect": {
-              "top": 938,
-              "bottom": 966,
-              "left": 77,
-              "right": 183,
-              "width": 106,
-              "height": 28
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product-category/agricultural-equipment-supplies/p…\" rel=\"tag\">",
-            "nodeLabel": "اتصالات پلی اتیلن"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-14-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,0,DIV,1,DIV,0,DIV,2,DIV,0,DIV,1,DIV,0,SPAN,1,A",
-            "selector": "div.column-description > div.product_meta > span.posted_in > a",
-            "boundingRect": {
-              "top": 938,
-              "bottom": 966,
-              "left": 194,
-              "right": 352,
-              "width": 158,
-              "height": 28
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product-category/agricultural-equipment-supplies/p…\" rel=\"tag\">",
-            "nodeLabel": "اتصال یکسر ماده پلی اتیلن"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-16-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,0,DIV,1,DIV,0,DIV,2,DIV,0,DIV,1,DIV,2,SPAN,1,A",
-            "selector": "div.column-description > div.product_meta > span.brands > a",
-            "boundingRect": {
-              "top": 1118,
-              "bottom": 1146,
-              "left": 153,
-              "right": 350,
-              "width": 197,
-              "height": 28
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product_brand/%d8%a2%d8%a8-%d9%84%d9%88%d9%84%d9%8…\">",
-            "nodeLabel": "آب لوله بسپار (Ablooleh baspar)"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-17-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,0,NAV,8,A",
-            "selector": "main#main > div.container > nav.woocommerce-breadcrumb > a",
-            "boundingRect": {
-              "top": 174,
-              "bottom": 200,
-              "left": 132,
-              "right": 293,
-              "width": 161,
-              "height": 26
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product-category/agricultural-equipment-supplies/p…\">",
-            "nodeLabel": "سایر اتصالات پلی اتیلن پیچی"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: color",
-                "animation": "color"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-18-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,0,DIV,1,DIV,0,DIV,2,DIV,0,DIV,1,DIV,0,SPAN,7,A",
-            "selector": "div.column-description > div.product_meta > span.posted_in > a",
-            "boundingRect": {
-              "top": 970,
-              "bottom": 998,
-              "left": 141,
-              "right": 290,
-              "width": 148,
-              "height": 28
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product-category/agricultural-equipment-supplies/\" rel=\"tag\">",
-            "nodeLabel": "تجهیزات و لوازم کشاورزی"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-20-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,0,DIV,1,DIV,0,DIV,2,DIV,0,DIV,1,DIV,2,SPAN,3,A",
-            "selector": "div.column-description > div.product_meta > span.brands > a",
-            "boundingRect": {
-              "top": 1150,
-              "bottom": 1178,
-              "left": 207,
-              "right": 392,
-              "width": 185,
-              "height": 28
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product_brand/%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%a…\">",
-            "nodeLabel": "پلی رود اتصال( Poliroodetesal)"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-21-A",
-            "path": "1,HTML,1,BODY,2,HEADER,0,DIV,0,DIV,0,DIV,0,DIV,2,A",
-            "selector": "div.main-header-cols > div.row > div.col-12 > a.site-logo",
-            "boundingRect": {
-              "top": 8,
-              "bottom": 58,
-              "left": 169,
-              "right": 219,
-              "width": 50,
-              "height": 50
-            },
-            "snippet": "<a href=\"https://keshavarz20.com\" class=\"site-logo\">",
-            "nodeLabel": "لوگوی فروشگاه کشاورز بیست"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: color",
-                "animation": "color"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-39-A",
-            "path": "1,HTML,1,BODY,3,NAV,0,DIV,0,UL,1,LI,0,A",
-            "selector": "div.container > ul#menu-%d8%af%d8%b3%d8%aa%d9%87-%d8%a8%d9%86%d8%af%db%8c-%d9%87%d8%a7%db%8c-%d8%a7%d8%b5%d9%84%db%8c > li.menu-item > a",
-            "boundingRect": {
-              "top": 107,
-              "bottom": 159,
-              "left": 412,
-              "right": 732,
-              "width": 320,
-              "height": 52
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/\" style=\"\">",
-            "nodeLabel": " خانه"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: font-weight",
-                "animation": "font-weight"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: padding-bottom",
-                "animation": "padding-bottom"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: padding-left",
-                "animation": "padding-left"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: padding-right",
-                "animation": "padding-right"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: padding-top",
-                "animation": "padding-top"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: color",
-                "animation": "color"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-41-A",
-            "path": "1,HTML,1,BODY,3,NAV,0,DIV,0,UL,0,LI,0,A",
-            "selector": "div.container > ul#menu-%d8%af%d8%b3%d8%aa%d9%87-%d8%a8%d9%86%d8%af%db%8c-%d9%87%d8%a7%db%8c-%d8%a7%d8%b5%d9%84%db%8c > li.menu-item > a.site-logo",
-            "boundingRect": {
-              "top": 12,
-              "bottom": 95,
-              "left": 424,
-              "right": 720,
-              "width": 296,
-              "height": 83
-            },
-            "snippet": "<a href=\"https://keshavarz20.com\" class=\"site-logo\">",
-            "nodeLabel": "لوگوی فروشگاه کشاورز بیست"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: font-weight",
-                "animation": "font-weight"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: margin-bottom",
-                "animation": "margin-bottom"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: padding-bottom",
-                "animation": "padding-bottom"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: margin-left",
-                "animation": "margin-left"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: margin-right",
-                "animation": "margin-right"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: margin-top",
-                "animation": "margin-top"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: padding-right",
-                "animation": "padding-right"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: padding-left",
-                "animation": "padding-left"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: color",
-                "animation": "color"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: padding-top",
-                "animation": "padding-top"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: border-bottom-color",
-                "animation": "border-bottom-color"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: border-bottom-width",
-                "animation": "border-bottom-width"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-53-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,2,DIV,0,DIV,0,A",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > a",
-            "boundingRect": {
-              "top": 2895,
-              "bottom": 3165,
-              "left": 215,
-              "right": 384,
-              "width": 169,
-              "height": 270
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%da%a9%d9%84%d8%a7%d8%a…\">",
-            "nodeLabel": "کود مایع کلات آهن اف ای 8 روم هلند 1 لیتری (Fe8 Room)\nناموجود\n316,932 تومان"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: border-left-width"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-54-DIV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,9,DIV,0,DIV,1,DIV",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
-            "boundingRect": {
-              "top": 2891,
-              "bottom": 2929,
-              "left": -1095,
-              "right": -1051,
-              "width": 44,
-              "height": 38
-            },
-            "snippet": "<div class=\"product--actions\">",
-            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: border-right-color"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-55-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,5,DIV,0,DIV,0,A",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > a",
-            "boundingRect": {
-              "top": 2895,
-              "bottom": 3165,
-              "left": -343,
-              "right": -174,
-              "width": 169,
-              "height": 270
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%81%d9%…\">",
-            "nodeLabel": "سه راه فلنجدار مساوی آهنی 3 اینچ\n5 عدد در انبار\n1,350,000 تومان"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: border-right-width"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-56-DIV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,5,DIV,0,DIV,1,DIV",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
-            "boundingRect": {
-              "top": 2891,
-              "bottom": 2929,
-              "left": -351,
-              "right": -307,
-              "width": 44,
-              "height": 38
-            },
-            "snippet": "<div class=\"product--actions\">",
-            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: color"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-57-DIV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,4,DIV,0,DIV,1,DIV",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
-            "boundingRect": {
-              "top": 2891,
-              "bottom": 2929,
-              "left": -165,
-              "right": -121,
-              "width": 44,
-              "height": 38
-            },
-            "snippet": "<div class=\"product--actions\">",
-            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: border-top-color"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-58-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,4,DIV,0,DIV,0,A",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > a",
-            "boundingRect": {
-              "top": 2895,
-              "bottom": 3165,
-              "left": -157,
-              "right": 12,
-              "width": 169,
-              "height": 270
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product/%d9%85%d9%88%d9%86%d9%88%d8%a2%d9%85%d9%88…\">",
-            "nodeLabel": "مونوآمونیوم فسفات ۰-۶۱-۱۲ 25kg\nناموجود"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: border-top-left-radius"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-59-DIV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,3,DIV,0,DIV,1,DIV",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
-            "boundingRect": {
-              "top": 2891,
-              "bottom": 2929,
-              "left": 20,
-              "right": 64,
-              "width": 44,
-              "height": 38
-            },
-            "snippet": "<div class=\"product--actions\">",
-            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: border-top-right-radius"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-60-DIV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,1,DIV,0,DIV,1,DIV",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
-            "boundingRect": {
-              "top": 2891,
-              "bottom": 2929,
-              "left": 393,
-              "right": 437,
-              "width": 44,
-              "height": 38
-            },
-            "snippet": "<div class=\"product--actions\">",
-            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: border-top-width"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-61-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,3,DIV,0,DIV,0,A",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > a",
-            "boundingRect": {
-              "top": 2895,
-              "bottom": 3165,
-              "left": 28,
-              "right": 198,
-              "width": 170,
-              "height": 270
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product/%d8%b3%d9%85-%d9%82%d8%a7%d8%b1%da%86-%da%…\">",
-            "nodeLabel": "سم قارچ کش بردوفیکس باغبان تاک 5 لیتری\nناموجود\n1,400,000 تومان"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: font-size"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-63-DIV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,0,DIV,0,DIV,1,DIV",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
-            "boundingRect": {
-              "top": 2891,
-              "bottom": 2929,
-              "left": 579,
-              "right": 623,
-              "width": 44,
-              "height": 38
-            },
-            "snippet": "<div class=\"product--actions\">",
-            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: margin-bottom"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-64-DIV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,8,DIV,0,DIV,1,DIV",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
-            "boundingRect": {
-              "top": 2891,
-              "bottom": 2929,
-              "left": -909,
-              "right": -865,
-              "width": 44,
-              "height": 38
-            },
-            "snippet": "<div class=\"product--actions\">",
-            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: margin-left"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-65-DIV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,7,DIV,0,DIV,1,DIV",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
-            "boundingRect": {
-              "top": 2891,
-              "bottom": 2929,
-              "left": -723,
-              "right": -679,
-              "width": 44,
-              "height": 38
-            },
-            "snippet": "<div class=\"product--actions\">",
-            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: margin-right"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-66-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,0,DIV,0,DIV,0,A",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > a",
-            "boundingRect": {
-              "top": 2895,
-              "bottom": 3165,
-              "left": 587,
-              "right": 756,
-              "width": 169,
-              "height": 270
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product/%da%af%d8%b1%d8%a7%d9%86%d9%88%d9%84-%db%b…\">",
-            "nodeLabel": "گرانول ۵-۵-۵ ایکس گرین\nناموجود\n5%\n6,026,400 \nقیمت اصلی 6,026,400 تومان بود.\n5,7…"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: margin-top"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-67-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,7,DIV,0,DIV,0,A",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > a",
-            "boundingRect": {
-              "top": 2895,
-              "bottom": 3165,
-              "left": -715,
-              "right": -546,
-              "width": 169,
-              "height": 270
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d8%aa%d8%a8%d8%a…\">",
-            "nodeLabel": "رابط تبدیل 63 × 110 میلیمتر\n9 عدد در انبار\n3,040,000 تومان"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: border-bottom-color"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-68-DIV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,2,DIV,0,DIV,1,DIV",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
-            "boundingRect": {
-              "top": 2891,
-              "bottom": 2929,
-              "left": 207,
-              "right": 251,
-              "width": 44,
-              "height": 38
-            },
-            "snippet": "<div class=\"product--actions\">",
-            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: border-bottom-left-radius"
-              }
-            ]
-          }
         }
       ],
       "unsized_images": [
@@ -1363,7 +529,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg",
           "node": {
             "type": "node",
-            "lhId": "1-200-IMG",
+            "lhId": "1-204-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,1,SECTION,2,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1382,7 +548,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
           "node": {
             "type": "node",
-            "lhId": "1-201-IMG",
+            "lhId": "1-205-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,3,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1401,7 +567,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg",
           "node": {
             "type": "node",
-            "lhId": "1-202-IMG",
+            "lhId": "1-206-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,6,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1420,7 +586,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg",
           "node": {
             "type": "node",
-            "lhId": "1-203-IMG",
+            "lhId": "1-207-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,9,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1439,7 +605,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f50e.svg",
           "node": {
             "type": "node",
-            "lhId": "1-204-IMG",
+            "lhId": "1-208-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,12,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1458,7 +624,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg",
           "node": {
             "type": "node",
-            "lhId": "1-205-IMG",
+            "lhId": "1-209-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,3,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1477,7 +643,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4e6.svg",
           "node": {
             "type": "node",
-            "lhId": "1-206-IMG",
+            "lhId": "1-210-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,6,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1496,7 +662,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
           "node": {
             "type": "node",
-            "lhId": "1-207-IMG",
+            "lhId": "1-211-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,9,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1515,7 +681,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
           "node": {
             "type": "node",
-            "lhId": "1-208-IMG",
+            "lhId": "1-212-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,3,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1534,7 +700,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg",
           "node": {
             "type": "node",
-            "lhId": "1-209-IMG",
+            "lhId": "1-213-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,6,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1553,7 +719,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg",
           "node": {
             "type": "node",
-            "lhId": "1-210-IMG",
+            "lhId": "1-214-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,9,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1572,7 +738,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/260e.svg",
           "node": {
             "type": "node",
-            "lhId": "1-211-IMG",
+            "lhId": "1-215-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,12,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1610,84 +776,94 @@
         },
         {
           "url": "https://keshavarz20.com/wp-content/litespeed/css/7e0c89866ae4250b859a08a1e4310da4.css?ver=a8667",
-          "wastedBytes": 17375,
-          "wastedPercent": 87.45997929756145,
+          "wastedBytes": 17346,
+          "wastedPercent": 87.31734912496088,
           "totalBytes": 19866
         }
       ],
       "unused_js_items": [],
       "long_tasks": [
         {
-          "url": "Unattributable",
-          "duration": 175,
-          "startTime": 2405.064
-        },
-        {
           "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "duration": 163,
-          "startTime": 5154.15559263611
+          "duration": 184,
+          "startTime": 5494.079592636109
         },
         {
-          "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-          "duration": 156,
-          "startTime": 2249.064
-        },
-        {
-          "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-          "duration": 71,
-          "startTime": 2108.064
-        },
-        {
-          "url": "https://keshavarz20.com/wp-content/litespeed/js/4a54697855cb2b79d36f91c7c978e645.js?ver=ac1d8",
+          "url": "https://keshavarz20.com/wp-content/litespeed/js/71c3ba7f1e2bde5718461357744685d6.js?ver=b8b51",
           "duration": 70,
-          "startTime": 5391.15559263611
+          "startTime": 5392.079592636109
         },
         {
-          "url": "Unattributable",
-          "duration": 59,
-          "startTime": 2015.0639999999999
+          "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "duration": 65,
+          "startTime": 2096.978
         },
         {
           "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "duration": 50,
-          "startTime": 5317.15559263611
+          "duration": 62,
+          "startTime": 5678.079592636109
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 60,
+          "startTime": 3356.8195926361086
+        },
+        {
+          "url": "Unattributable",
+          "duration": 58,
+          "startTime": 1997.978
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 55,
+          "startTime": 5778.079592636109
+        },
+        {
+          "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "duration": 53,
+          "startTime": 2183.978
+        },
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
+          "duration": 51,
+          "startTime": 4713.659592636109
         }
       ],
       "mainthread_work": [
         {
           "group": "other",
           "groupLabel": "Other",
-          "duration": 1502.0559999999855
+          "duration": 1043.6119999999785
         },
         {
           "group": "styleLayout",
           "groupLabel": "Style & Layout",
-          "duration": 862.9479999999699
+          "duration": 901.2479999999877
         },
         {
           "group": "scriptEvaluation",
           "groupLabel": "Script Evaluation",
-          "duration": 566.968000000003
-        },
-        {
-          "group": "paintCompositeRender",
-          "groupLabel": "Rendering",
-          "duration": 188.1279999999998
+          "duration": 741.2799999999978
         },
         {
           "group": "parseHTML",
           "groupLabel": "Parse HTML & CSS",
-          "duration": 130.7760000000001
+          "duration": 160.53200000000032
+        },
+        {
+          "group": "paintCompositeRender",
+          "groupLabel": "Rendering",
+          "duration": 160.07599999999994
         },
         {
           "group": "scriptParseCompile",
           "groupLabel": "Script Parsing & Compilation",
-          "duration": 99.67999999999999
+          "duration": 155.688
         },
         {
           "group": "garbageCollection",
           "groupLabel": "Garbage Collection",
-          "duration": 13.99999999999999
+          "duration": 13.483999999999991
         }
       ],
       "font_display": [],
@@ -1697,9 +873,9 @@
     "summary": {
       "successful_runs": 3,
       "performance": {
-        "median": 47.0,
-        "min": 43.0,
-        "max": 50.0
+        "median": 73.0,
+        "min": 72.0,
+        "max": 87.0
       },
       "accessibility": {
         "median": 96.0,
@@ -1717,29 +893,29 @@
         "max": 100.0
       },
       "lcp_ms": {
-        "median": 4979.074296318055,
-        "min": 4863.02,
-        "max": 5114.154777244569
+        "median": 3158.8925,
+        "min": 3023.7614999999996,
+        "max": 3185.213
       },
       "cls": {
-        "median": 1.0003415760656933,
-        "min": 0.05791026219876913,
-        "max": 1.051590881240874
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.283809804905869
       },
       "tbt_ms": {
-        "median": 191.5,
-        "min": 180.78099999999995,
-        "max": 1585.8690000000001
+        "median": 98.5,
+        "min": 96.0,
+        "max": 371.5
       },
       "ttfb_ms": {
-        "median": 323.0,
-        "min": 163.0,
-        "max": 6295.0
+        "median": 393.0,
+        "min": 393.0,
+        "max": 5583.0
       },
       "total_bytes": {
-        "median": 695778.0,
-        "min": 695753.0,
-        "max": 695786.0
+        "median": 696377.0,
+        "min": 696366.0,
+        "max": 696387.0
       }
     }
   },
@@ -1884,14 +1060,14 @@
     {
       "run": 1,
       "status": 200,
-      "elapsed_ms": 964.3,
-      "bytes": 405148,
+      "elapsed_ms": 1049.0,
+      "bytes": 403892,
       "cache_control": null,
       "x_litespeed_cache": "hit",
       "x_litespeed_cache_control": null,
-      "x_k20_canary_guard": "3.3.30",
+      "x_k20_canary_guard": "3.3.31",
       "x_k20_recent_view": "blocked-filter",
-      "x_k20_wc_cache_compat": "3.3.30",
+      "x_k20_wc_cache_compat": "3.3.31",
       "x_k20_wc_prevent_hook": "removed",
       "x_k20_donotcache": "0",
       "x_k20_ls_cacheable": "1",
@@ -1905,14 +1081,14 @@
     {
       "run": 2,
       "status": 200,
-      "elapsed_ms": 169.5,
-      "bytes": 405148,
+      "elapsed_ms": 207.5,
+      "bytes": 403892,
       "cache_control": null,
       "x_litespeed_cache": "hit",
       "x_litespeed_cache_control": null,
-      "x_k20_canary_guard": "3.3.30",
+      "x_k20_canary_guard": "3.3.31",
       "x_k20_recent_view": "blocked-filter",
-      "x_k20_wc_cache_compat": "3.3.30",
+      "x_k20_wc_cache_compat": "3.3.31",
       "x_k20_wc_prevent_hook": "removed",
       "x_k20_donotcache": "0",
       "x_k20_ls_cacheable": "1",
@@ -1926,14 +1102,14 @@
     {
       "run": 3,
       "status": 200,
-      "elapsed_ms": 169.3,
-      "bytes": 405148,
+      "elapsed_ms": 207.3,
+      "bytes": 403892,
       "cache_control": null,
       "x_litespeed_cache": "hit",
       "x_litespeed_cache_control": null,
-      "x_k20_canary_guard": "3.3.30",
+      "x_k20_canary_guard": "3.3.31",
       "x_k20_recent_view": "blocked-filter",
-      "x_k20_wc_cache_compat": "3.3.30",
+      "x_k20_wc_cache_compat": "3.3.31",
       "x_k20_wc_prevent_hook": "removed",
       "x_k20_donotcache": "0",
       "x_k20_ls_cacheable": "1",
@@ -1948,63 +1124,63 @@
   "after_performance": {
     "samples": [
       {
-        "performance": 49,
+        "performance": 75,
         "accessibility": 96,
         "best_practices": 100,
         "seo": 100,
-        "fcp_ms": 2370.9100000000003,
-        "lcp_ms": 4188.200000000001,
-        "speed_index_ms": 12725.159286796577,
-        "tbt_ms": 44.5,
-        "cls": 1.0230305693235948,
-        "ttfb_ms": 6404,
-        "total_bytes": 695858,
-        "unused_css": "Est savings of 71 KiB",
-        "unused_js": ""
-      },
-      {
-        "performance": 58,
-        "accessibility": 96,
-        "best_practices": 100,
-        "seo": 100,
-        "fcp_ms": 2226.009,
-        "lcp_ms": 4052.338999999999,
-        "speed_index_ms": 4250.657159674471,
-        "tbt_ms": 67.94500000000016,
-        "cls": 1.0230303289515112,
-        "ttfb_ms": 324,
-        "total_bytes": 695951,
-        "unused_css": "Est savings of 71 KiB",
-        "unused_js": ""
-      },
-      {
-        "performance": 60,
-        "accessibility": 96,
-        "best_practices": 100,
-        "seo": 100,
-        "fcp_ms": 2342.4610000000002,
-        "lcp_ms": 5105.065796318055,
-        "speed_index_ms": 5498.484996914919,
-        "tbt_ms": 551.9999999999995,
+        "fcp_ms": 2928.527,
+        "lcp_ms": 3704.2795000000006,
+        "speed_index_ms": 12045.040258862453,
+        "tbt_ms": 102,
         "cls": 0,
-        "ttfb_ms": 323,
-        "total_bytes": 696025,
+        "ttfb_ms": 5809,
+        "total_bytes": 696237,
+        "unused_css": "Est savings of 71 KiB",
+        "unused_js": ""
+      },
+      {
+        "performance": 71,
+        "accessibility": 96,
+        "best_practices": 100,
+        "seo": 100,
+        "fcp_ms": 2706.1250000000005,
+        "lcp_ms": 3342.3890000000006,
+        "speed_index_ms": 3724.4360800362574,
+        "tbt_ms": 95.5,
+        "cls": 0.283809804905869,
+        "ttfb_ms": 197,
+        "total_bytes": 699030,
+        "unused_css": "Est savings of 73 KiB",
+        "unused_js": ""
+      },
+      {
+        "performance": 72,
+        "accessibility": 96,
+        "best_practices": 100,
+        "seo": 100,
+        "fcp_ms": 2709.9979999999996,
+        "lcp_ms": 3348.3319999999994,
+        "speed_index_ms": 3805.3239033603886,
+        "tbt_ms": 88,
+        "cls": 0.283809804905869,
+        "ttfb_ms": 197,
+        "total_bytes": 696338,
         "unused_css": "Est savings of 71 KiB",
         "unused_js": ""
       }
     ],
     "representative": {
-      "performance": 49,
+      "performance": 72,
       "accessibility": 96,
       "best_practices": 100,
       "seo": 100,
-      "fcp_ms": 2370.9100000000003,
-      "lcp_ms": 4188.200000000001,
-      "speed_index_ms": 12725.159286796577,
-      "tbt_ms": 44.5,
-      "cls": 1.0230305693235948,
-      "ttfb_ms": 6404,
-      "total_bytes": 695858,
+      "fcp_ms": 2709.9979999999996,
+      "lcp_ms": 3348.3319999999994,
+      "speed_index_ms": 3805.3239033603886,
+      "tbt_ms": 88,
+      "cls": 0.283809804905869,
+      "ttfb_ms": 197,
+      "total_bytes": 696338,
       "unused_css": "Est savings of 71 KiB",
       "unused_js": ""
     },
@@ -2013,14 +1189,14 @@
       {
         "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
         "resource_type": "Document",
-        "transfer_size": 62151,
-        "resource_size": 356381,
+        "transfer_size": 62523,
+        "resource_size": 363405,
         "priority": "VeryHigh"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
         "resource_type": "Script",
-        "transfer_size": 61423,
+        "transfer_size": 61356,
         "resource_size": 252309,
         "priority": "Medium"
       },
@@ -2029,21 +1205,21 @@
         "resource_type": "Image",
         "transfer_size": 57894,
         "resource_size": 57774,
-        "priority": "High"
+        "priority": "Low"
       },
       {
         "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebregularfanum.woff",
         "resource_type": "Font",
-        "transfer_size": 33707,
+        "transfer_size": 33737,
         "resource_size": 33585,
         "priority": "High"
       },
       {
         "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebboldfanum.woff",
         "resource_type": "Font",
-        "transfer_size": 33669,
+        "transfer_size": 33719,
         "resource_size": 33581,
-        "priority": "High"
+        "priority": "VeryHigh"
       },
       {
         "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
@@ -2055,14 +1231,14 @@
       {
         "url": "https://keshavarz20.com/wp-content/uploads/2024/06/%DA%AF%D8%A7%D8%B1%D8%A7%D9%86%D8%AA%DB%8C.png",
         "resource_type": "Image",
-        "transfer_size": 28488,
+        "transfer_size": 28534,
         "resource_size": 28393,
         "priority": "High"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/0cc6bdf8c66b1a3b7118fdadef6aa6d5.js?ver=ae346",
         "resource_type": "Script",
-        "transfer_size": 26925,
+        "transfer_size": 26948,
         "resource_size": 108081,
         "priority": "Medium"
       },
@@ -2076,8 +1252,15 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/css/9c13dae17cf8ea20906a1f183d051600.css?ver=846ee",
         "resource_type": "Stylesheet",
-        "transfer_size": 22118,
+        "transfer_size": 22141,
         "resource_size": 150098,
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/css/62bccd5cbc3fa81af8e3db4ca4b9cbd8.css?ver=dc04d",
+        "resource_type": "Stylesheet",
+        "transfer_size": 21261,
+        "resource_size": 277387,
         "priority": "VeryLow"
       },
       {
@@ -2095,13 +1278,6 @@
         "priority": "Medium"
       },
       {
-        "url": "https://keshavarz20.com/wp-content/litespeed/css/62bccd5cbc3fa81af8e3db4ca4b9cbd8.css?ver=dc04d",
-        "resource_type": "Stylesheet",
-        "transfer_size": 18624,
-        "resource_size": 277387,
-        "priority": "VeryLow"
-      },
-      {
         "url": "https://keshavarz20.com/wp-content/litespeed/css/6c6e99777b208fdc2e0d8d3666a7bcc9.css?ver=5f774",
         "resource_type": "Stylesheet",
         "transfer_size": 18111,
@@ -2111,7 +1287,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/a1548c83adc2678218fff1bf8a308b0d.js?ver=2c37a",
         "resource_type": "Script",
-        "transfer_size": 17815,
+        "transfer_size": 17838,
         "resource_size": 77853,
         "priority": "Medium"
       },
@@ -2125,21 +1301,21 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/69b68c538bdec1627dd4aa6c47bf660b.js?ver=f660b",
         "resource_type": "Script",
-        "transfer_size": 13273,
+        "transfer_size": 13251,
         "resource_size": 54523,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/9ef702f93cda38d01dd013f772f7c746.js?ver=4e13e",
         "resource_type": "Script",
-        "transfer_size": 11738,
+        "transfer_size": 11715,
         "resource_size": 31627,
         "priority": "Low"
       },
       {
         "url": "https://keshavarz20.com/wp-content/uploads/2025/11/cropped-logo-deks22-keshavarz20-100x100.png",
         "resource_type": "Image",
-        "transfer_size": 10056,
+        "transfer_size": 10064,
         "resource_size": 9973,
         "priority": "High"
       },
@@ -2153,35 +1329,35 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/b60ce8f8cdb2cbf0aeaa486e96347151.js?ver=f5b36",
         "resource_type": "Script",
-        "transfer_size": 9306,
+        "transfer_size": 9307,
         "resource_size": 40071,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/291fb7a293d236f8f164f4535f17e96e.js?ver=b0977",
         "resource_type": "Script",
-        "transfer_size": 8471,
+        "transfer_size": 8472,
         "resource_size": 32700,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/95a9006f8e4ffc363679cec5343abfe9.js?ver=6fb11",
         "resource_type": "Script",
-        "transfer_size": 7291,
+        "transfer_size": 7292,
         "resource_size": 19013,
         "priority": "High"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/1ae53464d568614135fe06c49eac7be4.js?ver=ea0e8",
         "resource_type": "Script",
-        "transfer_size": 6608,
+        "transfer_size": 6609,
         "resource_size": 21991,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/71c3ba7f1e2bde5718461357744685d6.js?ver=b8b51",
         "resource_type": "Script",
-        "transfer_size": 6540,
+        "transfer_size": 6587,
         "resource_size": 19875,
         "priority": "Medium"
       }
@@ -2229,25 +1405,6 @@
           "node": {
             "type": "node",
             "lhId": "page-1-DIV",
-            "path": "1,HTML,1,BODY,2,HEADER,0,DIV,0,DIV",
-            "selector": "body.rtl > header.main-header > div.container > div.main-header-cols",
-            "boundingRect": {
-              "top": 0,
-              "bottom": 127,
-              "left": 15,
-              "right": 397,
-              "width": 382,
-              "height": 127
-            },
-            "snippet": "<div class=\"main-header-cols\">",
-            "nodeLabel": "لوگوی فروشگاه کشاورز بیست"
-          },
-          "score": 1
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-3-DIV",
             "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV",
             "selector": "body.rtl > main#main > div.container > div#product-134980",
             "boundingRect": {
@@ -2261,102 +1418,7 @@
             "snippet": "<div id=\"product-134980\" class=\"product type-product post-134980 status-publish first instock product_cat-…\" style=\"transform: none;\">",
             "nodeLabel": "گارانتی اصالت و سلامت کالا\n\nاتصال ماده آبلوله 32 میلیمتر\n0 (0)\n1 دیدگاه‌ها\nدسته:…"
           },
-          "score": 0.01957154768271896
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-4-NAV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,0,NAV",
-            "selector": "body.rtl > main#main > div.container > nav.woocommerce-breadcrumb",
-            "boundingRect": {
-              "top": 148,
-              "bottom": 226,
-              "left": 0,
-              "right": 412,
-              "width": 412,
-              "height": 78
-            },
-            "snippet": "<nav class=\"woocommerce-breadcrumb breadcrumb\">",
-            "nodeLabel": "خانه / تجهیزات و لوازم کشاورزی / اتصالات پلی اتیلن / پلی اتیلن پیچی / سایر اتصا…"
-          },
-          "score": 0.0008570852142998527
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-4-NAV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,0,NAV",
-            "selector": "body.rtl > main#main > div.container > nav.woocommerce-breadcrumb",
-            "boundingRect": {
-              "top": 148,
-              "bottom": 226,
-              "left": 0,
-              "right": 412,
-              "width": 412,
-              "height": 78
-            },
-            "snippet": "<nav class=\"woocommerce-breadcrumb breadcrumb\">",
-            "nodeLabel": "خانه / تجهیزات و لوازم کشاورزی / اتصالات پلی اتیلن / پلی اتیلن پیچی / سایر اتصا…"
-          },
-          "score": 0.0008402440507070556
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-4-NAV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,0,NAV",
-            "selector": "body.rtl > main#main > div.container > nav.woocommerce-breadcrumb",
-            "boundingRect": {
-              "top": 148,
-              "bottom": 226,
-              "left": 0,
-              "right": 412,
-              "width": 412,
-              "height": 78
-            },
-            "snippet": "<nav class=\"woocommerce-breadcrumb breadcrumb\">",
-            "nodeLabel": "خانه / تجهیزات و لوازم کشاورزی / اتصالات پلی اتیلن / پلی اتیلن پیچی / سایر اتصا…"
-          },
-          "score": 0.0007383907896245857
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-4-NAV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,0,NAV",
-            "selector": "body.rtl > main#main > div.container > nav.woocommerce-breadcrumb",
-            "boundingRect": {
-              "top": 148,
-              "bottom": 226,
-              "left": 0,
-              "right": 412,
-              "width": 412,
-              "height": 78
-            },
-            "snippet": "<nav class=\"woocommerce-breadcrumb breadcrumb\">",
-            "nodeLabel": "خانه / تجهیزات و لوازم کشاورزی / اتصالات پلی اتیلن / پلی اتیلن پیچی / سایر اتصا…"
-          },
-          "score": 0.0006175852563912273
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-4-NAV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,0,NAV",
-            "selector": "body.rtl > main#main > div.container > nav.woocommerce-breadcrumb",
-            "boundingRect": {
-              "top": 148,
-              "bottom": 226,
-              "left": 0,
-              "right": 412,
-              "width": 412,
-              "height": 78
-            },
-            "snippet": "<nav class=\"woocommerce-breadcrumb breadcrumb\">",
-            "nodeLabel": "خانه / تجهیزات و لوازم کشاورزی / اتصالات پلی اتیلن / پلی اتیلن پیچی / سایر اتصا…"
-          },
-          "score": 0.0004054759577694149
+          "score": 0.283809804905869
         }
       ],
       "cls_culprits": [],
@@ -2364,88 +1426,7 @@
         {
           "node": {
             "type": "node",
-            "lhId": "page-34-path",
-            "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,1,path",
-            "selector": "div.toast-content > div > svg > path.checkmark-check",
-            "boundingRect": {
-              "top": 1605,
-              "bottom": 1611,
-              "left": 296,
-              "right": 305,
-              "width": 9,
-              "height": 6
-            },
-            "snippet": "<path class=\"checkmark-check\" fill=\"none\" d=\"M14.1 27.2l7.1 7.2 16.7-16.8\">",
-            "nodeLabel": "div.toast-content > div > svg > path.checkmark-check"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: stroke-dashoffset",
-                "animation": "stroke"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-35-SPAN",
-            "path": "1,HTML,1,BODY,63,DIV,0,DIV,1,DIV,0,DIV,0,DIV,1,SPAN",
-            "selector": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line",
-            "boundingRect": {
-              "top": 948,
-              "bottom": 985,
-              "left": 192,
-              "right": 229,
-              "width": 37,
-              "height": 37
-            },
-            "snippet": "<span class=\"icon-line line-long\">",
-            "nodeLabel": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Properties: right, top, width",
-                "animation": "icon-line-long"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-38-circle",
-            "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,0,circle",
-            "selector": "div.toast-content > div > svg > circle.checkmark-circle",
-            "boundingRect": {
-              "top": 1598,
-              "bottom": 1618,
-              "left": 291,
-              "right": 310,
-              "width": 19,
-              "height": 19
-            },
-            "snippet": "<circle class=\"checkmark-circle\" cx=\"26\" cy=\"26\" r=\"25\" fill=\"none\">",
-            "nodeLabel": "div.toast-content > div > svg > circle.checkmark-circle"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: stroke-dashoffset",
-                "animation": "stroke"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-41-SPAN",
+            "lhId": "page-7-SPAN",
             "path": "1,HTML,1,BODY,63,DIV,0,DIV,1,DIV,0,DIV,0,DIV,0,SPAN",
             "selector": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line",
             "boundingRect": {
@@ -2472,25 +1453,26 @@
         {
           "node": {
             "type": "node",
-            "lhId": "page-54-DIV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,4,DIV,0,DIV,1,DIV",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
+            "lhId": "page-8-path",
+            "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,1,path",
+            "selector": "div.toast-content > div > svg > path.checkmark-check",
             "boundingRect": {
-              "top": 2891,
-              "bottom": 2929,
-              "left": -165,
-              "right": -121,
-              "width": 44,
-              "height": 38
+              "top": 1605,
+              "bottom": 1611,
+              "left": 296,
+              "right": 305,
+              "width": 9,
+              "height": 6
             },
-            "snippet": "<div class=\"product--actions\">",
-            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
+            "snippet": "<path class=\"checkmark-check\" fill=\"none\" d=\"M14.1 27.2l7.1 7.2 16.7-16.8\">",
+            "nodeLabel": "div.toast-content > div > svg > path.checkmark-check"
           },
           "subItems": {
             "type": "subitems",
             "items": [
               {
-                "failureReason": "Unsupported CSS Property: border-top-width"
+                "failureReason": "Unsupported CSS Property: stroke-dashoffset",
+                "animation": "stroke"
               }
             ]
           }
@@ -2498,25 +1480,26 @@
         {
           "node": {
             "type": "node",
-            "lhId": "page-55-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,6,DIV,0,DIV,0,A",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > a",
+            "lhId": "page-10-circle",
+            "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,0,circle",
+            "selector": "div.toast-content > div > svg > circle.checkmark-circle",
             "boundingRect": {
-              "top": 2895,
-              "bottom": 3165,
-              "left": -529,
-              "right": -360,
-              "width": 169,
-              "height": 270
+              "top": 1598,
+              "bottom": 1618,
+              "left": 291,
+              "right": 310,
+              "width": 19,
+              "height": 19
             },
-            "snippet": "<a href=\"https://keshavarz20.com/product/%da%af%d8%b1%d8%a7%d9%86%d9%88%d9%84-%db%b…\">",
-            "nodeLabel": "کود گرانول ۱۰-۱۰-۱۰ ایکس گرین آمریکا 25 کیلویی (Granular 10-10-10 XGreen)\nناموج…"
+            "snippet": "<circle class=\"checkmark-circle\" cx=\"26\" cy=\"26\" r=\"25\" fill=\"none\">",
+            "nodeLabel": "div.toast-content > div > svg > circle.checkmark-circle"
           },
           "subItems": {
             "type": "subitems",
             "items": [
               {
-                "failureReason": "Unsupported CSS Property: font-size"
+                "failureReason": "Unsupported CSS Property: stroke-dashoffset",
+                "animation": "stroke"
               }
             ]
           }
@@ -2524,691 +1507,26 @@
         {
           "node": {
             "type": "node",
-            "lhId": "page-57-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,3,DIV,0,DIV,0,A",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > a",
+            "lhId": "page-13-SPAN",
+            "path": "1,HTML,1,BODY,63,DIV,0,DIV,1,DIV,0,DIV,0,DIV,1,SPAN",
+            "selector": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line",
             "boundingRect": {
-              "top": 2895,
-              "bottom": 3165,
-              "left": 28,
-              "right": 198,
-              "width": 170,
-              "height": 270
+              "top": 948,
+              "bottom": 985,
+              "left": 192,
+              "right": 229,
+              "width": 37,
+              "height": 37
             },
-            "snippet": "<a href=\"https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d8%aa%db%8c%d9%b…\">",
-            "nodeLabel": "رابط تیپ به تیپ کشویی زلال رود\nناموجود\n8,500 تومان"
+            "snippet": "<span class=\"icon-line line-long\">",
+            "nodeLabel": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line"
           },
           "subItems": {
             "type": "subitems",
             "items": [
               {
-                "failureReason": "Unsupported CSS Property: margin-bottom"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-58-DIV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,7,DIV,0,DIV,1,DIV",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
-            "boundingRect": {
-              "top": 2891,
-              "bottom": 2929,
-              "left": -723,
-              "right": -679,
-              "width": 44,
-              "height": 38
-            },
-            "snippet": "<div class=\"product--actions\">",
-            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: margin-left"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-59-DIV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,0,DIV,0,DIV,1,DIV",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
-            "boundingRect": {
-              "top": 2891,
-              "bottom": 2929,
-              "left": 579,
-              "right": 623,
-              "width": 44,
-              "height": 38
-            },
-            "snippet": "<div class=\"product--actions\">",
-            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: margin-right"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-60-DIV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,8,DIV,0,DIV,1,DIV",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
-            "boundingRect": {
-              "top": 2891,
-              "bottom": 2929,
-              "left": -909,
-              "right": -865,
-              "width": 44,
-              "height": 38
-            },
-            "snippet": "<div class=\"product--actions\">",
-            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: margin-top"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-61-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,9,DIV,0,DIV,0,A",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > a",
-            "boundingRect": {
-              "top": 2895,
-              "bottom": 3165,
-              "left": -1087,
-              "right": -918,
-              "width": 169,
-              "height": 270
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%8…\">",
-            "nodeLabel": "بذر گوجه سيمينس 8320 پاكت هند\nموجود در انبار"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: border-bottom-color"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-62-DIV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,3,DIV,0,DIV,1,DIV",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
-            "boundingRect": {
-              "top": 2891,
-              "bottom": 2929,
-              "left": 20,
-              "right": 64,
-              "width": 44,
-              "height": 38
-            },
-            "snippet": "<div class=\"product--actions\">",
-            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: border-bottom-left-radius"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-63-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,5,DIV,0,DIV,0,A",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > a",
-            "boundingRect": {
-              "top": 2895,
-              "bottom": 3165,
-              "left": -343,
-              "right": -174,
-              "width": 169,
-              "height": 270
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product/%d8%a8%d8%b3%d8%aa-%d8%aa%da%a9-%da%a9%d9%…\">",
-            "nodeLabel": "بست تک کپه سایز 4 اینچ (110 میلیمتر)\n10 عدد در انبار\n250,000 تومان"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: border-bottom-right-radius"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-64-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,2,DIV,0,DIV,0,A",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > a",
-            "boundingRect": {
-              "top": 2895,
-              "bottom": 3165,
-              "left": 215,
-              "right": 384,
-              "width": 169,
-              "height": 270
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product/%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8…\">",
-            "nodeLabel": "مغزی پلیمری 1 اینچ\nناموجود\n38%\n17,813 \nقیمت اصلی 17,813 تومان بود.\n11,055 تومان…"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: border-bottom-width"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-65-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,0,DIV,0,DIV,0,A",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > a",
-            "boundingRect": {
-              "top": 2895,
-              "bottom": 3165,
-              "left": 587,
-              "right": 756,
-              "width": 169,
-              "height": 270
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c…\">",
-            "nodeLabel": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ و ۱/۲ اینچ (۵۰ میلی‌متر)\n200 عدد در انبار\n58…"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: color"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-66-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,8,DIV,0,DIV,0,A",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > a",
-            "boundingRect": {
-              "top": 2895,
-              "bottom": 3165,
-              "left": -901,
-              "right": -732,
-              "width": 169,
-              "height": 270
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%8…\">",
-            "nodeLabel": "بذر گوجه سيمينس برنتا تايلند\nموجود در انبار"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: font-size"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-68-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,1,DIV,0,DIV,0,A",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > a",
-            "boundingRect": {
-              "top": 2895,
-              "bottom": 3165,
-              "left": 401,
-              "right": 570,
-              "width": 169,
-              "height": 270
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product/%d9%85%d8%ba%d8%b2%db%8c-u-pvc-%d9%be%d9%8…\">",
-            "nodeLabel": "مغزی u-pvc پلیمری 1 اینچ ویسپار (پایا)\n200 عدد در انبار\n35,000 تومان"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: color"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-69-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,9,DIV,0,DIV,2,DIV,0,A",
-            "selector": "div.owl-item > div.slider-item > div.second-img > a",
-            "boundingRect": {
-              "top": 2895,
-              "bottom": 2995,
-              "left": -1052,
-              "right": -952,
-              "width": 100,
-              "height": 100
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%8…\" aria-label=\"مشاهده تصویر دوم محصول\">",
-            "nodeLabel": "مشاهده تصویر دوم محصول"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: font-size"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-70-DIV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,5,DIV,0,DIV,1,DIV",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
-            "boundingRect": {
-              "top": 2891,
-              "bottom": 2929,
-              "left": -351,
-              "right": -307,
-              "width": 44,
-              "height": 38
-            },
-            "snippet": "<div class=\"product--actions\">",
-            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: margin-bottom"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-71-DIV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,9,DIV,0,DIV,1,DIV",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
-            "boundingRect": {
-              "top": 2891,
-              "bottom": 2929,
-              "left": -1095,
-              "right": -1051,
-              "width": 44,
-              "height": 38
-            },
-            "snippet": "<div class=\"product--actions\">",
-            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: font-size"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-72-DIV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,2,DIV,0,DIV,1,DIV",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
-            "boundingRect": {
-              "top": 2891,
-              "bottom": 2929,
-              "left": 207,
-              "right": 251,
-              "width": 44,
-              "height": 38
-            },
-            "snippet": "<div class=\"product--actions\">",
-            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: color"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-74-DIV",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,6,DIV,0,DIV,1,DIV",
-            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
-            "boundingRect": {
-              "top": 2891,
-              "bottom": 2929,
-              "left": -537,
-              "right": -493,
-              "width": 44,
-              "height": 38
-            },
-            "snippet": "<div class=\"product--actions\">",
-            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: margin-bottom"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-12-HEADER",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,1,DIV,0,HEADER",
-            "selector": "div.container > div#product-134980 > div.widget > header.widget-header",
-            "boundingRect": {
-              "top": 1704,
-              "bottom": 1776,
-              "left": 20,
-              "right": 392,
-              "width": 372,
-              "height": 72
-            },
-            "snippet": "<header class=\"widget-header\">",
-            "nodeLabel": "محصولات مرتبط"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: padding-bottom",
-                "animation": "padding-bottom"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: color",
-                "animation": "color"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-13-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,0,DIV,1,DIV,0,DIV,2,DIV,0,DIV,1,DIV,0,SPAN,3,A",
-            "selector": "div.column-description > div.product_meta > span.posted_in > a",
-            "boundingRect": {
-              "top": 938,
-              "bottom": 966,
-              "left": 77,
-              "right": 183,
-              "width": 106,
-              "height": 28
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product-category/agricultural-equipment-supplies/p…\" rel=\"tag\">",
-            "nodeLabel": "اتصالات پلی اتیلن"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-14-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,0,DIV,1,DIV,0,DIV,2,DIV,0,DIV,1,DIV,0,SPAN,1,A",
-            "selector": "div.column-description > div.product_meta > span.posted_in > a",
-            "boundingRect": {
-              "top": 938,
-              "bottom": 966,
-              "left": 194,
-              "right": 352,
-              "width": 158,
-              "height": 28
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product-category/agricultural-equipment-supplies/p…\" rel=\"tag\">",
-            "nodeLabel": "اتصال یکسر ماده پلی اتیلن"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-15-A",
-            "path": "1,HTML,1,BODY,2,HEADER,0,DIV,0,DIV,0,DIV,2,DIV,0,DIV,0,DIV,0,A",
-            "selector": "div.col-6 > div.header-buttons > div.user-button > a.login-register",
-            "boundingRect": {
-              "top": 76,
-              "bottom": 116,
-              "left": 55,
-              "right": 103,
-              "width": 48,
-              "height": 40
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/my-account\" class=\"login-register\" aria-label=\"ورود یا حساب کاربری\">",
-            "nodeLabel": "ورود یا حساب کاربری"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: font-weight",
-                "animation": "font-weight"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: padding-bottom",
-                "animation": "padding-bottom"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: margin-right",
-                "animation": "margin-right"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: padding-left",
-                "animation": "padding-left"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: padding-right",
-                "animation": "padding-right"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: padding-top",
-                "animation": "padding-top"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: color",
-                "animation": "color"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: border-top-left-radius",
-                "animation": "border-top-left-radius"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: border-top-right-radius",
-                "animation": "border-top-right-radius"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: border-bottom-left-radius",
-                "animation": "border-bottom-left-radius"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: border-bottom-right-radius",
-                "animation": "border-bottom-right-radius"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-16-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,0,DIV,1,DIV,0,DIV,2,DIV,0,DIV,1,DIV,1,SPAN,1,A",
-            "selector": "div.column-description > div.product_meta > span.tagged_as > a",
-            "boundingRect": {
-              "top": 1062,
-              "bottom": 1118,
-              "left": 20,
-              "right": 392,
-              "width": 372,
-              "height": 56
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product-tag/%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af%…\" rel=\"tag\">",
-            "nodeLabel": "پلی رود،شیر توپی،انشعاب،قطره ای،قطره چکان،رابط،کمربند،شیر دو سر نر، شیر دو سر م…"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-17-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,0,DIV,0,DIV,1,DIV,1,DIV,0,DIV,0,A",
-            "selector": "div.woocommerce-product-gallery > div.woocommerce-product-gallery__wrapper > div.woocommerce-product-gallery__image > a",
-            "boundingRect": {
-              "top": 320,
-              "bottom": 692,
-              "left": 20,
-              "right": 392,
-              "width": 372,
-              "height": 372
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/wp-content/uploads/2026/09/d8a7d8aad8b5d8a7d984-d9…\">",
-            "nodeLabel": "اتصال یکسر ماده پلی‌اتیلن ۳۲ میلی‌متر"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: color",
-                "animation": "color"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-18-NAV",
-            "path": "1,HTML,1,BODY,4,NAV",
-            "selector": "body.rtl > nav#mobile-menu",
-            "boundingRect": {
-              "top": 0,
-              "bottom": 823,
-              "left": 412,
-              "right": 732,
-              "width": 320,
-              "height": 823
-            },
-            "snippet": "<nav id=\"mobile-menu\">",
-            "nodeLabel": "body.rtl > nav#mobile-menu"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: color",
-                "animation": "color"
-              },
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-19-A",
-            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,0,DIV,1,DIV,0,DIV,2,DIV,0,DIV,1,DIV,0,SPAN,11,A",
-            "selector": "div.column-description > div.product_meta > span.posted_in > a",
-            "boundingRect": {
-              "top": 1002,
-              "bottom": 1030,
-              "left": 94,
-              "right": 207,
-              "width": 113,
-              "height": 28
-            },
-            "snippet": "<a href=\"https://keshavarz20.com/product-category/%d9%85%d8%ad%d8%b5%d9%88%d9%84%d8…\" rel=\"tag\">",
-            "nodeLabel": "محصولات کشاورزی"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: font-size",
-                "animation": "font-size"
+                "failureReason": "Unsupported CSS Properties: right, top, width",
+                "animation": "icon-line-long"
               }
             ]
           }
@@ -3219,7 +1537,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg",
           "node": {
             "type": "node",
-            "lhId": "1-202-IMG",
+            "lhId": "1-206-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,1,SECTION,2,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -3238,7 +1556,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
           "node": {
             "type": "node",
-            "lhId": "1-203-IMG",
+            "lhId": "1-207-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,3,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -3257,7 +1575,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg",
           "node": {
             "type": "node",
-            "lhId": "1-204-IMG",
+            "lhId": "1-208-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,6,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -3276,7 +1594,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg",
           "node": {
             "type": "node",
-            "lhId": "1-205-IMG",
+            "lhId": "1-209-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,9,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -3295,7 +1613,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f50e.svg",
           "node": {
             "type": "node",
-            "lhId": "1-206-IMG",
+            "lhId": "1-210-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,12,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -3314,7 +1632,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg",
           "node": {
             "type": "node",
-            "lhId": "1-207-IMG",
+            "lhId": "1-211-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,3,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -3333,7 +1651,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4e6.svg",
           "node": {
             "type": "node",
-            "lhId": "1-208-IMG",
+            "lhId": "1-212-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,6,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -3352,7 +1670,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
           "node": {
             "type": "node",
-            "lhId": "1-209-IMG",
+            "lhId": "1-213-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,9,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -3371,7 +1689,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
           "node": {
             "type": "node",
-            "lhId": "1-210-IMG",
+            "lhId": "1-214-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,3,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -3390,7 +1708,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg",
           "node": {
             "type": "node",
-            "lhId": "1-211-IMG",
+            "lhId": "1-215-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,6,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -3409,7 +1727,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg",
           "node": {
             "type": "node",
-            "lhId": "1-212-IMG",
+            "lhId": "1-216-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,9,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -3428,7 +1746,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/260e.svg",
           "node": {
             "type": "node",
-            "lhId": "1-213-IMG",
+            "lhId": "1-217-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,12,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -3448,9 +1766,9 @@
       "unused_css_items": [
         {
           "url": "https://keshavarz20.com/wp-content/litespeed/css/62bccd5cbc3fa81af8e3db4ca4b9cbd8.css?ver=dc04d",
-          "wastedBytes": 18570,
+          "wastedBytes": 21182,
           "wastedPercent": 100,
-          "totalBytes": 18570
+          "totalBytes": 21182
         },
         {
           "url": "https://keshavarz20.com/wp-content/litespeed/css/9c13dae17cf8ea20906a1f183d051600.css?ver=846ee",
@@ -3475,70 +1793,70 @@
       "long_tasks": [
         {
           "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "duration": 147,
-          "startTime": 4744.450592636108
-        },
-        {
-          "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-          "duration": 141,
-          "startTime": 2029.9540000000002
-        },
-        {
-          "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-          "duration": 80,
-          "startTime": 2214.954
-        },
-        {
-          "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-          "duration": 60,
-          "startTime": 1938.9540000000002
+          "duration": 188,
+          "startTime": 5397.182592636109
         },
         {
           "url": "https://keshavarz20.com/wp-content/litespeed/js/71c3ba7f1e2bde5718461357744685d6.js?ver=b8b51",
-          "duration": 51,
-          "startTime": 5014.450592636108
+          "duration": 73,
+          "startTime": 5685.182592636109
+        },
+        {
+          "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "duration": 71,
+          "startTime": 2039.8610000000003
         },
         {
           "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "duration": 50,
-          "startTime": 4964.450592636108
+          "duration": 64,
+          "startTime": 5585.182592636109
+        },
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/js/17ab8d74595c085eb0f60af1b19b14c5.js?ver=b14c5",
+          "duration": 60,
+          "startTime": 5002.550592636109
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 56,
+          "startTime": 5758.182592636109
         }
       ],
       "mainthread_work": [
         {
           "group": "other",
           "groupLabel": "Other",
-          "duration": 1175.0479999999686
+          "duration": 1211.739999999978
         },
         {
           "group": "styleLayout",
           "groupLabel": "Style & Layout",
-          "duration": 980.9599999999772
+          "duration": 993.0559999999933
         },
         {
           "group": "scriptEvaluation",
           "groupLabel": "Script Evaluation",
-          "duration": 562.1119999999988
-        },
-        {
-          "group": "paintCompositeRender",
-          "groupLabel": "Rendering",
-          "duration": 203.91199999999967
+          "duration": 757.3999999999987
         },
         {
           "group": "parseHTML",
           "groupLabel": "Parse HTML & CSS",
-          "duration": 118.59599999999996
+          "duration": 191.87200000000024
+        },
+        {
+          "group": "paintCompositeRender",
+          "groupLabel": "Rendering",
+          "duration": 183.39599999999947
         },
         {
           "group": "scriptParseCompile",
           "groupLabel": "Script Parsing & Compilation",
-          "duration": 103.50800000000002
+          "duration": 139.25599999999997
         },
         {
           "group": "garbageCollection",
           "groupLabel": "Garbage Collection",
-          "duration": 13.86799999999999
+          "duration": 15.483999999999982
         }
       ],
       "font_display": [],
@@ -3548,9 +1866,9 @@
     "summary": {
       "successful_runs": 3,
       "performance": {
-        "median": 58.0,
-        "min": 49.0,
-        "max": 60.0
+        "median": 72.0,
+        "min": 71.0,
+        "max": 75.0
       },
       "accessibility": {
         "median": 96.0,
@@ -3568,29 +1886,29 @@
         "max": 100.0
       },
       "lcp_ms": {
-        "median": 4188.200000000001,
-        "min": 4052.338999999999,
-        "max": 5105.065796318055
+        "median": 3348.3319999999994,
+        "min": 3342.3890000000006,
+        "max": 3704.2795000000006
       },
       "cls": {
-        "median": 1.0230303289515112,
+        "median": 0.283809804905869,
         "min": 0.0,
-        "max": 1.0230305693235948
+        "max": 0.283809804905869
       },
       "tbt_ms": {
-        "median": 67.94500000000016,
-        "min": 44.5,
-        "max": 551.9999999999995
+        "median": 95.5,
+        "min": 88.0,
+        "max": 102.0
       },
       "ttfb_ms": {
-        "median": 324.0,
-        "min": 323.0,
-        "max": 6404.0
+        "median": 197.0,
+        "min": 197.0,
+        "max": 5809.0
       },
       "total_bytes": {
-        "median": 695951.0,
-        "min": 695858.0,
-        "max": 696025.0
+        "median": 696338.0,
+        "min": 696237.0,
+        "max": 699030.0
       }
     }
   },
@@ -3620,9 +1938,9 @@
     "summary": {
       "successful_runs": 3,
       "performance": {
-        "median": 58.0,
-        "min": 49.0,
-        "max": 60.0
+        "median": 72.0,
+        "min": 71.0,
+        "max": 75.0
       },
       "accessibility": {
         "median": 96.0,
@@ -3640,29 +1958,29 @@
         "max": 100.0
       },
       "lcp_ms": {
-        "median": 4188.200000000001,
-        "min": 4052.338999999999,
-        "max": 5105.065796318055
+        "median": 3348.3319999999994,
+        "min": 3342.3890000000006,
+        "max": 3704.2795000000006
       },
       "cls": {
-        "median": 1.0230303289515112,
+        "median": 0.283809804905869,
         "min": 0.0,
-        "max": 1.0230305693235948
+        "max": 0.283809804905869
       },
       "tbt_ms": {
-        "median": 67.94500000000016,
-        "min": 44.5,
-        "max": 551.9999999999995
+        "median": 95.5,
+        "min": 88.0,
+        "max": 102.0
       },
       "ttfb_ms": {
-        "median": 324.0,
-        "min": 323.0,
-        "max": 6404.0
+        "median": 197.0,
+        "min": 197.0,
+        "max": 5809.0
       },
       "total_bytes": {
-        "median": 695951.0,
-        "min": 695858.0,
-        "max": 696025.0
+        "median": 696338.0,
+        "min": 696237.0,
+        "max": 699030.0
       }
     }
   },
@@ -3676,5 +1994,5 @@
       "alt": "اتصال یکسر ماده پلی‌اتیلن ۳۲ میلی‌متر"
     }
   ],
-  "finished_at": "2026-10-01T08:01:12.204995+00:00"
+  "finished_at": "2026-10-01T08:17:01.242808+00:00"
 }
