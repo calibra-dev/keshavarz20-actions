@@ -223,10 +223,31 @@ jobs:
           """, css_targets)
           driver.quit()
 
+          css_text_summary=[]
+          for item in css_coverage:
+              href=str(item.get("href") or "")
+              if not href:
+                  continue
+              try:
+                  cr=session.get(href,timeout=30)
+                  body=cr.text
+                  css_text_summary.append({
+                      "target":item.get("target"),
+                      "href":href,
+                      "status":cr.status_code,
+                      "chars":len(body),
+                      "font_face_count":body.count("@font-face"),
+                      "media_count":body.count("@media"),
+                      "keyframes_count":body.count("@keyframes"),
+                      "prefix":body[:1600]
+                  })
+              except Exception as exc:
+                  css_text_summary.append({"target":item.get("target"),"href":href,"error":str(exc)})
+
           total=sum(float(x.get("value") or 0) for x in shifts)
           lcp_urls={str(x.get("url") or x.get("src") or "") for x in lcp if (x.get("url") or x.get("src"))}
           lcp_resources=[x for x in resources if str(x.get("name") or "") in lcp_urls]
-          out={"url":url,"http":http,"cls_total":total,"shifts":shifts,"lcp":lcp,"lcp_resources":lcp_resources,"resources":resources,"images":images,"css_coverage":css_coverage,"page":metrics}
+          out={"url":url,"http":http,"cls_total":total,"shifts":shifts,"lcp":lcp,"lcp_resources":lcp_resources,"resources":resources,"images":images,"css_coverage":css_coverage,"css_text_summary":css_text_summary,"page":metrics}
           path=pathlib.Path("product-engine/probe-output/134980-cls.json")
           path.write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
           print(json.dumps({
@@ -239,6 +260,7 @@ jobs:
               "viewport_images":[x for x in images if x.get("inViewport")][:20],
               "early_images":[x for x in images if x.get("top",99999)<1800][:30],
               "css_coverage":css_coverage,
+              "css_text_summary":css_text_summary,
               "page":metrics
           },ensure_ascii=False))
           PY
