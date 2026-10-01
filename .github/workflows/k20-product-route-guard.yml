@@ -8,6 +8,7 @@ on:
       - 'scripts/check_product_engine_primary_route.py'
       - '.github/workflows/k20-product-autopilot.yml'
       - '.github/workflows/k20-product-queue-publisher.yml'
+      - '.github/workflows/k20-product-queue-promoter.yml'
       - '.github/workflows/k20-product-route-guard.yml'
   pull_request:
     paths:
@@ -15,6 +16,7 @@ on:
       - 'scripts/check_product_engine_primary_route.py'
       - '.github/workflows/k20-product-autopilot.yml'
       - '.github/workflows/k20-product-queue-publisher.yml'
+      - '.github/workflows/k20-product-queue-promoter.yml'
       - '.github/workflows/k20-product-route-guard.yml'
   workflow_dispatch:
 
