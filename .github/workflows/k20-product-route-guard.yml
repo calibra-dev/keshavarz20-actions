@@ -1,0 +1,42 @@
+name: K20 Product Primary Route Guard
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'product-engine/**'
+      - 'scripts/check_product_engine_primary_route.py'
+      - '.github/workflows/k20-product-autopilot.yml'
+      - '.github/workflows/k20-product-queue-publisher.yml'
+      - '.github/workflows/k20-product-route-guard.yml'
+  pull_request:
+    paths:
+      - 'product-engine/**'
+      - 'scripts/check_product_engine_primary_route.py'
+      - '.github/workflows/k20-product-autopilot.yml'
+      - '.github/workflows/k20-product-queue-publisher.yml'
+      - '.github/workflows/k20-product-route-guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: k20-product-primary-route-guard
+  cancel-in-progress: false
+
+jobs:
+  route-guard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Enforce Product primary route
+        run: python scripts/check_product_engine_primary_route.py
