@@ -1,0 +1,149 @@
+name: K20 Product CLS Probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'product-engine/probe-queue/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: browser-actions/setup-chrome@v1
+
+      - name: Install probe dependencies
+        run: python -m pip install --quiet requests selenium
+
+      - name: Resolve request
+        shell: bash
+        run: |
+          set -euo pipefail
+          REQ="$(git diff --name-only HEAD^ HEAD | grep '^product-engine/probe-queue/.*\.json$' | tail -n 1)"
+          test -n "$REQ"
+          echo "K20_PROBE_REQUEST=$REQ" >> "$GITHUB_ENV"
+
+      - name: Run HTTP and CLS probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p product-engine/probe-output
+          python - <<'PY'
+          import json, os, pathlib, time
+          import requests
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+
+          req_path=pathlib.Path(os.environ["K20_PROBE_REQUEST"])
+          req=json.loads(req_path.read_text(encoding="utf-8"))
+          url=str(req["url"])
+
+          selected=[
+              "x-litespeed-cache","x-litespeed-cache-control","x-k20-canary-guard",
+              "x-k20-wc-cache-compat","x-k20-wc-prevent-hook","x-k20-donotcache",
+              "x-k20-ls-cacheable","x-k20-ls-nocache-reason","x-k20-wc-notices",
+              "x-k20-esi","set-cookie","cache-control","age","server","vary"
+          ]
+          session=requests.Session()
+          session.headers.update({"User-Agent":"Mozilla/5.0 K20-CLS-Probe/1.0","Accept":"text/html,application/xhtml+xml"})
+          http=[]
+          for i in range(3):
+              started=time.perf_counter()
+              r=session.get(url,timeout=30,allow_redirects=True)
+              h={k.lower():v for k,v in r.headers.items()}
+              http.append({
+                  "run":i+1,"status":r.status_code,
+                  "elapsed_ms":round((time.perf_counter()-started)*1000,1),
+                  "bytes":len(r.content),
+                  "headers":{k:h.get(k) for k in selected if h.get(k) is not None}
+              })
+
+          opts=Options()
+          opts.add_argument("--headless=new")
+          opts.add_argument("--no-sandbox")
+          opts.add_argument("--disable-dev-shm-usage")
+          opts.add_argument("--disable-background-networking")
+          opts.add_argument("--window-size=412,915")
+          driver=webdriver.Chrome(options=opts)
+          driver.execute_cdp_cmd("Emulation.setDeviceMetricsOverride",{
+              "width":412,"height":915,"deviceScaleFactor":1,"mobile":True,
+              "screenWidth":412,"screenHeight":915
+          })
+          driver.execute_cdp_cmd("Network.setUserAgentOverride",{
+              "userAgent":"Mozilla/5.0 (Linux; Android 13; K20Probe) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Mobile Safari/537.36"
+          })
+          script=r"""
+          (function(){
+            window.__k20Shifts=[];
+            const rect=r=>r?({x:r.x,y:r.y,width:r.width,height:r.height,top:r.top,right:r.right,bottom:r.bottom,left:r.left}):null;
+            const selector=n=>{
+              if(!n || !n.tagName) return null;
+              if(n.id) return '#'+n.id;
+              const c=n.classList?Array.from(n.classList).slice(0,4):[];
+              return n.tagName.toLowerCase()+(c.length?'.'+c.join('.'):'');
+            };
+            new PerformanceObserver(list=>{
+              for(const e of list.getEntries()){
+                if(e.hadRecentInput) continue;
+                window.__k20Shifts.push({
+                  value:e.value,startTime:e.startTime,
+                  sources:(e.sources||[]).map(s=>{
+                    const n=s.node;
+                    return {
+                      selector:selector(n),
+                      previousRect:rect(s.previousRect),
+                      currentRect:rect(s.currentRect),
+                      text:n&&n.innerText?String(n.innerText).trim().slice(0,160):null,
+                      html:n&&n.outerHTML?String(n.outerHTML).slice(0,320):null
+                    };
+                  })
+                });
+              }
+            }).observe({type:'layout-shift',buffered:true});
+          })();
+          """
+          driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument",{"source":script})
+          driver.get(url)
+          time.sleep(10)
+          shifts=driver.execute_script("return window.__k20Shifts || []")
+          metrics=driver.execute_script("""
+            return {
+              href:location.href,
+              readyState:document.readyState,
+              scrollHeight:document.documentElement.scrollHeight,
+              viewport:{w:innerWidth,h:innerHeight,dpr:devicePixelRatio},
+              product:(()=>{const e=document.querySelector('#product-134980');if(!e)return null;const r=e.getBoundingClientRect();return {top:r.top,left:r.left,width:r.width,height:r.height,style:e.getAttribute('style'),className:e.className};})()
+            };
+          """)
+          driver.quit()
+
+          total=sum(float(x.get("value") or 0) for x in shifts)
+          out={"url":url,"http":http,"cls_total":total,"shifts":shifts,"page":metrics}
+          path=pathlib.Path("product-engine/probe-output/134980-cls.json")
+          path.write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
+          print(json.dumps({
+              "url":url,"http":http,"cls_total":total,
+              "shift_count":len(shifts),
+              "top_shifts":sorted(shifts,key=lambda x:x.get("value",0),reverse=True)[:5],
+              "page":metrics
+          },ensure_ascii=False))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: k20-product-134980-cls-probe
+          path: product-engine/probe-output/134980-cls.json
+          if-no-files-found: error
