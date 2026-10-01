@@ -1,0 +1,182 @@
+{
+  "schema_version": "seo-god2-phase10-closure-v1",
+  "project": "keshavarz20.com / SEO GOD2",
+  "phase": 10,
+  "name": "Measurement & Observability",
+  "status": "PASS_PHASE10_GUARDED_COMPLETE",
+  "closed": true,
+  "closed_at_utc": "2026-10-01T03:40:30Z",
+  "acceptance_mode": "core measurement complete; dedicated first-party AI visibility reports remain guarded external gaps",
+  "baseline": {
+    "input_file": "phase10-ops/baseline-20261001.json",
+    "input_commit": "a6eb038bedacb2a4fb4d7e9fe5deb21e46a44a6c",
+    "generated_result_commit": "5745ccdbe37f347cf56ab51c82637455a32f7329",
+    "observability_result": "phase10-results/observability-baseline.json",
+    "acceptance_result": "phase10-results/acceptance.json"
+  },
+  "fresh_measurements": {
+    "google_search_console": {
+      "source": "Windsor.ai Search Console",
+      "account": "sc-domain:keshavarz20.com",
+      "window": "last_28d settled rows",
+      "date_min": "2026-09-03",
+      "date_max": "2026-09-28",
+      "clicks": 1068,
+      "impressions": 14377,
+      "ctr": 0.07428531682548516,
+      "avg_position_impression_weighted": 9.118184836892258,
+      "product_snippets": {
+        "clicks": 39,
+        "impressions": 464,
+        "ctr": 0.0841,
+        "position": 7.3556
+      }
+    },
+    "ga4": {
+      "source": "Windsor.ai GA4",
+      "account": "456208539",
+      "window": "last_28d",
+      "sessions": 1453,
+      "active_users": 1330,
+      "engaged_sessions": 552,
+      "engagement_rate_calculated": 0.3799036476256022,
+      "key_events": 24,
+      "add_to_carts": 20,
+      "checkouts": 2,
+      "ecommerce_purchases": 0,
+      "transactions": 0,
+      "purchase_revenue": 0,
+      "purchase_zero_interpretation": "Tracking observation only; it is not evidence that no real-world orders occurred."
+    },
+    "chatgpt_referral": {
+      "source_medium": "chatgpt.com / ai-assistant",
+      "sessions": 1,
+      "engaged_sessions": 1,
+      "key_events": 0,
+      "add_to_carts": 0,
+      "checkouts": 0,
+      "purchases": 0,
+      "interpretation": "Observed referral traffic is not a complete citation count."
+    },
+    "bing_webmaster": {
+      "source": "Windsor.ai Bing Webmaster",
+      "account": "https://keshavarz20.com",
+      "window": "last_28d available rows",
+      "date_min": "2026-09-03",
+      "date_max": "2026-09-24",
+      "clicks": 3,
+      "impressions": 112,
+      "ctr": 0.026785714285714284,
+      "standard_query_read": "PASS",
+      "prior_throttle_state": "resolved for the standard query-performance read in this execution"
+    },
+    "growthos_instrumentation": {
+      "source": "GA4 event read",
+      "observed_events": {
+        "growthos_webmcp_tool": 78,
+        "growthos_measurement_ready": 45,
+        "growthos_webmcp_status": 40
+      },
+      "conclusion": "Phase 10 GrowthOS instrumentation is observed in GA4, not merely deployed."
+    },
+    "cwv": {
+      "status": "BASELINED_HISTORICAL_CURRENT_REFRESH_UNAVAILABLE",
+      "source_file": "phase10-results/field-cwv-20260918.json",
+      "captured_at_utc": "2026-09-18T18:33:00Z",
+      "mobile_field_baseline": {
+        "lcp_ms": 9753,
+        "inp_ms": 117,
+        "cls": 0.004
+      },
+      "limitation": "Do not interpret this historical field baseline as current post-optimization CWV. Current GSC Wizard read is unavailable because the subscription/trial is inactive; Windsor google_pagespeed is not configured."
+    }
+  },
+  "site_and_index_measurement": {
+    "system_info_request_commit": "3b06d18e4d0d989e851bbe8fb1f5373c6f6db2d5",
+    "system_info_workflow_run_id": 36811367477,
+    "workflow_conclusion": "success",
+    "bridge_version": "3.3.17",
+    "wp_version": "7.1.2",
+    "theme": "IranKala 10.10.0",
+    "indexnow_plugin_active": true,
+    "indexnow_plugin_version": "1.0.4",
+    "indexnow_prior_verified_state": {
+      "captured_at": "2026-09-19",
+      "internal_key_configured": true,
+      "internal_key_valid": true,
+      "auto_submission_enabled": true,
+      "passed_submissions": 824,
+      "failed_submissions": 0,
+      "retry_queue": 0,
+      "note": "The key value is not stored or exposed in this closure."
+    }
+  },
+  "observability_execution": {
+    "workflow_file": ".github/workflows/k20-phase10-observability.yml",
+    "script_file": "scripts/k20_phase10_observability.py",
+    "script_guarded_gap_patch_commit": "5434941951b08b01b8538bfe84e33b433beeb0f8",
+    "first_run": {
+      "run_id": 36811481761,
+      "script_result": "PASS_GUARDED_EXTERNAL_REPORT_GAPS",
+      "script_blocking_count": 2,
+      "public_failures": 0,
+      "workflow_conclusion": "failure",
+      "failure_reason": "Generated-evidence commit hit a concurrent git rebase conflict after the measurement script had already succeeded."
+    },
+    "clean_rerun": {
+      "trigger_file": "phase10-ops/refresh-20261001-live-v2.json",
+      "trigger_commit": "eb25079a47b997ba231e20da6a12d4c5d4266dc2",
+      "run_id": 36811566795,
+      "workflow_conclusion": "success",
+      "evidence_commit": "5745ccdbe37f347cf56ab51c82637455a32f7329",
+      "result_status": "PASS_GUARDED_EXTERNAL_REPORT_GAPS",
+      "public_live_checks": "5/5 HTTP 200",
+      "public_failures": 0,
+      "all_core_measurement_sources_baselined": true
+    }
+  },
+  "public_live_checks": {
+    "count": 5,
+    "http_200": 5,
+    "failures": 0,
+    "cache_hits_observed_on_public_pages": true
+  },
+  "guarded_external_gaps": [
+    {
+      "source": "google_generative_ai",
+      "status": "EXTERNAL_FIRST_PARTY_REPORT_REQUIRED",
+      "reason": "The connected Search Console surface provides ordinary Search and Search Appearance data but not the dedicated Google Generative AI performance report. Ordinary search impressions are not used as a proxy and missing AI-report data is not recorded as zero.",
+      "current_connector_note": "GSC Wizard currently returns payment_required because its trial/subscription is inactive."
+    },
+    {
+      "source": "bing_ai_performance",
+      "status": "EXTERNAL_FIRST_PARTY_REPORT_REQUIRED",
+      "reason": "Standard Bing Webmaster query performance is now readable, but the connected Windsor Bing Webmaster surface does not expose account-specific AI Performance/citation metrics. Missing AI-report data is unknown, not zero."
+    }
+  ],
+  "acceptance": {
+    "status": "PASS_GUARDED_EXTERNAL_REPORT_GAPS",
+    "gsc_search_baselined": true,
+    "bing_search_baselined": true,
+    "ga4_baselined": true,
+    "chatgpt_referrals_baselined": true,
+    "cwv_field_baselined": true,
+    "index_baselined": true,
+    "conversion_baselined": true,
+    "growthos_instrumentation_observed": true,
+    "all_core_measurement_sources_baselined": true,
+    "dedicated_google_ai_report_connected": false,
+    "dedicated_bing_ai_report_connected": false,
+    "contains_sensitive_data": false
+  },
+  "safety": {
+    "site_content_writes": 0,
+    "price_fields_written": 0,
+    "stock_fields_written": 0,
+    "payment_settings_written": 0,
+    "users_roles_credentials_written": 0,
+    "customer_order_data_exported": 0,
+    "secrets_persisted": 0
+  },
+  "next_phase": 11
+}
