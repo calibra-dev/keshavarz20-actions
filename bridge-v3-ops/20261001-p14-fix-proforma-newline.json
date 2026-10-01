@@ -1,0 +1,12 @@
+{
+  "action": "content.patch",
+  "request_id": "20261001-p14-fix-proforma-newline",
+  "payload": {
+    "target_type": "post",
+    "post_id": 145286,
+    "field": "post_content",
+    "old_content": "var t=l.join('\\n');",
+    "new_content": "var t=l.join(String.fromCharCode(10));",
+    "expected_sha256": "9deb2ba1976448440cd90baa4b203c0dfbf20558be025288070ef9f5ce4632ef"
+  }
+}
