@@ -1,0 +1,12 @@
+{
+  "action": "content.patch",
+  "request_id": "20261001-p14-fix-growthos-pipe",
+  "payload": {
+    "target_type": "post",
+    "post_id": 144266,
+    "field": "post_content",
+    "old_content": "if(item && Object.prototype.toString.call(item)==='[object Object]' && /^growthos_/.test(String(item.event||''))){",
+    "new_content": "if(item ? (Object.prototype.toString.call(item)==='[object Object]' ? /^growthos_/.test(String(item.event||'')) : false) : false){",
+    "expected_sha256": "c0e93381b2a160c687473b6625622558da7b671bdc38ecfa76620dee21006935"
+  }
+}
