@@ -6,6 +6,8 @@ import re
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+from html.parser import HTMLParser
+from html import unescape
 from urllib.parse import urljoin
 
 import requests
@@ -49,6 +51,29 @@ def write_category(session, category_id, description):
     r.raise_for_status()
     return {"http_status": r.status_code, "content_type": r.headers.get("content-type")}
 
+class _SemanticHTML(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.text = []
+        self.links = []
+    def handle_data(self, data):
+        value = re.sub(r"\s+", " ", unescape(data)).strip()
+        if value:
+            self.text.append(value)
+    def handle_starttag(self, tag, attrs):
+        if tag.lower() == "a":
+            href = dict(attrs).get("href")
+            if href:
+                self.links.append(href.strip())
+
+def semantic_signature(fragment):
+    p = _SemanticHTML()
+    p.feed(fragment)
+    return {
+        "text": " ".join(p.text),
+        "links": sorted(set(p.links)),
+    }
+
 def desired_description(old, module):
     sc = old.count(MARKER_START)
     ec = old.count(MARKER_END)
@@ -61,7 +86,7 @@ def desired_description(old, module):
     b = old.index(MARKER_END, a)
     b2 = b + len(MARKER_END)
     current = old[a:b2]
-    if current == module:
+    if semantic_signature(current) == semantic_signature(module):
         return old, "noop"
     return old[:a] + module + old[b2:], "replace"
 
