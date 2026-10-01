@@ -59,6 +59,7 @@ def http_probe(url: str, runs: int=5) -> list[dict[str,Any]]:
                 "x_litespeed_cache":h.get("x-litespeed-cache"),
                 "x_litespeed_cache_control":h.get("x-litespeed-cache-control"),
                 "x_k20_canary_guard":h.get("x-k20-canary-guard"),
+                "x_k20_recent_view":h.get("x-k20-recent-view"),
                 "x_litespeed_tag":h.get("x-litespeed-tag"),"set_cookie":h.get("set-cookie"),
                 "age":h.get("age"),"server":h.get("server"),"vary":h.get("vary")
             })
@@ -129,6 +130,9 @@ def lighthouse(url: str, runs: int=3) -> dict[str,Any]:
                     "failing_audits":_category_failures(cats,audits),
                     "lcp_element":_audit_items(audits,"largest-contentful-paint-element",5),
                     "layout_shifts":_audit_items(audits,"layout-shifts",12),
+                    "cls_culprits":_audit_items(audits,"cls-culprits",30),
+                    "non_composited_animations":_audit_items(audits,"non-composited-animations",30),
+                    "unsized_images":_audit_items(audits,"unsized-images",30),
                     "render_blocking":_audit_items(audits,"render-blocking-resources",30),
                     "unused_css_items":_audit_items(audits,"unused-css-rules",30),
                     "unused_js_items":_audit_items(audits,"unused-javascript",30),

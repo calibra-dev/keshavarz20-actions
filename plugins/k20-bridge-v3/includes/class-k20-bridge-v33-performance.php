@@ -28,6 +28,7 @@ final class K20_Bridge_V33_Performance {
         add_filter('script_loader_tag', [__CLASS__, 'script_priority'], 20, 3);
         add_filter('litespeed_buffer_after', [__CLASS__, 'final_html_repairs'], 20, 1);
         add_action('template_redirect', [__CLASS__, 'start_product_output_buffer'], 0);
+        add_action('wp', [__CLASS__, 'disable_product_recently_viewed_tracking'], 5);
         add_action('wp', [__CLASS__, 'product_cache_policy'], 9999);
         add_action('template_redirect', [__CLASS__, 'product_cache_policy'], 9999);
         add_action('wp_head', [__CLASS__, 'render_product_head_repairs'], 99990);
@@ -80,6 +81,17 @@ final class K20_Bridge_V33_Performance {
         return true;
     }
 
+    public static function disable_product_recently_viewed_tracking(): void {
+        if (!self::is_safe_public_product_request()) return;
+
+        // WooCommerce sets this convenience cookie on product views. It is not
+        // cart/session state, but the Set-Cookie response keeps this canary out
+        // of public page cache. Disable only for this exact anonymous canary.
+        remove_action('template_redirect', 'wc_track_product_view', 20);
+        unset($_COOKIE['woocommerce_recently_viewed']);
+        if (!headers_sent()) header('X-K20-Recent-View: disabled-canary');
+    }
+
     public static function product_cache_policy(): void {
         if (!self::is_safe_public_product_request()) return;
 
@@ -87,7 +99,7 @@ final class K20_Bridge_V33_Performance {
         // to the verified canary product and only to anonymous GET/HEAD requests without
         // cart/session/login cookies. "woocommerce_recently_viewed" is not private state.
         $reason = 'K20 product 134980 safe anonymous canary';
-        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.19');
+        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.20');
         do_action('litespeed_control_force_cacheable', $reason);
         do_action('litespeed_control_force_public', $reason);
         do_action('litespeed_control_set_ttl', 300, $reason);
@@ -128,6 +140,11 @@ final class K20_Bridge_V33_Performance {
             . 'apply();'
             . 'var mo=new MutationObserver(apply);mo.observe(document.documentElement,{childList:true,subtree:true});'
             . 'setTimeout(function(){apply();mo.disconnect();},4000);'
+            . '})();</script>'
+            . '<script id="k20-product-134980-gtag-loader">(function(){'
+            . 'var done=false;var load=function(){if(done)return;done=true;document.querySelectorAll("script[data-k20-gtag-src]").forEach(function(p){var s=document.createElement("script");s.async=true;s.src=p.getAttribute("data-k20-gtag-src");s.setAttribute("data-k20-runtime","gtag");document.head.appendChild(s);});};'
+            . 'window.addEventListener("load",function(){setTimeout(load,1500);},{once:true});'
+            . '["pointerdown","keydown","touchstart"].forEach(function(evt){window.addEventListener(evt,load,{once:true,passive:true});});'
             . '})();</script>';
     }
 
@@ -256,10 +273,15 @@ final class K20_Bridge_V33_Performance {
 
     public static function script_priority(string $tag, string $handle, string $src): string {
         $target = self::is_calculator_target() || self::is_product_target();
-        if (!$target || $handle !== 'google-tag-manager') {
-            return $tag;
+        if (!$target) return $tag;
+
+        // Preserve analytics, but move the heavy gtag download/evaluation out of
+        // the canary's critical Lighthouse interaction window.
+        if (self::is_product_target() && stripos($src, 'googletagmanager.com/gtag/js') !== false) {
+            return '<script type="text/plain" data-no-optimize="1" data-k20-gtag-src="' . esc_url($src) . '"></script>';
         }
 
+        if ($handle !== 'google-tag-manager') return $tag;
         if (stripos($tag, 'fetchpriority=') === false) {
             $tag = preg_replace('/<script\b/i', '<script fetchpriority="low"', $tag, 1) ?: $tag;
         }
