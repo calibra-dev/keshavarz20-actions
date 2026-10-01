@@ -27,7 +27,11 @@ final class K20_Bridge_V33_Performance {
         add_filter('wp_calculate_image_sizes', [__CLASS__, 'lcp_sizes'], 20, 5);
         add_filter('script_loader_tag', [__CLASS__, 'script_priority'], 20, 3);
         add_filter('litespeed_buffer_after', [__CLASS__, 'final_html_repairs'], 20, 1);
-        add_action('wp', [__CLASS__, 'product_cache_policy'], 20);
+        add_action('template_redirect', [__CLASS__, 'start_product_output_buffer'], 0);
+        add_action('wp', [__CLASS__, 'product_cache_policy'], 9999);
+        add_action('wp_footer', [__CLASS__, 'product_cache_policy'], PHP_INT_MAX);
+        add_action('comment_post', [__CLASS__, 'purge_product_review_cache'], 20, 3);
+        add_action('transition_comment_status', [__CLASS__, 'purge_product_review_transition'], 20, 3);
         add_action('wp_enqueue_scripts', [__CLASS__, 'dequeue_irrelevant_assets'], 999);
     }
 
@@ -54,24 +58,52 @@ final class K20_Bridge_V33_Performance {
         foreach (array_keys($_COOKIE ?? []) as $name) {
             $name = (string) $name;
             if (str_starts_with($name, 'wp_woocommerce_session_')
-                || str_starts_with($name, 'woocommerce_')
-                || str_starts_with($name, 'wordpress_logged_in_')) {
+                || str_starts_with($name, 'wordpress_logged_in_')
+                || str_starts_with($name, 'wordpress_sec_')
+                || $name === 'woocommerce_cart_hash'
+                || $name === 'woocommerce_items_in_cart') {
                 return true;
             }
         }
         return false;
     }
 
-    public static function product_cache_policy(): void {
-        if (!self::is_product_target() || is_user_logged_in() || self::has_private_commerce_cookie()) return;
+    private static function is_safe_public_product_request(): bool {
+        if (!self::is_product_target() || is_user_logged_in() || self::has_private_commerce_cookie()) return false;
         $method = strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? 'GET'));
-        if (!in_array($method, ['GET', 'HEAD'], true)) return;
-        if (!empty($_GET)) return;
+        if (!in_array($method, ['GET', 'HEAD'], true)) return false;
+        if (!empty($_GET)) return false;
+        return true;
+    }
 
-        // Ask LiteSpeed to treat this anonymous canary product as cacheable without
-        // forcing a public response for logged-in/cart sessions.
-        do_action('litespeed_control_set_cacheable', 'K20 product 134980 anonymous canary');
-        do_action('litespeed_control_set_ttl', 300);
+    public static function product_cache_policy(): void {
+        if (!self::is_safe_public_product_request()) return;
+
+        // This is deliberately narrower than a global Force Cache URI. It applies only
+        // to the verified canary product and only to anonymous GET/HEAD requests without
+        // cart/session/login cookies. "woocommerce_recently_viewed" is not private state.
+        $reason = 'K20 product 134980 safe anonymous canary';
+        do_action('litespeed_control_force_cacheable', $reason);
+        do_action('litespeed_control_force_public', $reason);
+        do_action('litespeed_control_set_ttl', 300, $reason);
+    }
+
+    public static function start_product_output_buffer(): void {
+        if (!self::is_product_target()) return;
+        ob_start([__CLASS__, 'final_html_repairs']);
+    }
+
+    public static function purge_product_review_cache(int $comment_id, $approved, array $commentdata): void {
+        $post_id = (int) ($commentdata['comment_post_ID'] ?? 0);
+        if ($post_id !== self::PRODUCT_POST_ID) return;
+        do_action('litespeed_purge_post', $post_id);
+    }
+
+    public static function purge_product_review_transition(string $new_status, string $old_status, $comment): void {
+        if ($new_status === $old_status || !is_object($comment)) return;
+        $post_id = (int) ($comment->comment_post_ID ?? 0);
+        if ($post_id !== self::PRODUCT_POST_ID) return;
+        do_action('litespeed_purge_post', $post_id);
     }
 
     public static function lcp_attributes(array $attr, $attachment, $size): array {
@@ -251,6 +283,16 @@ final class K20_Bridge_V33_Performance {
             $html
         );
 
+        // IranKala related-product cards render a secondary image link with no text.
+        $html = preg_replace_callback(
+            '/(<div\\b[^>]*class="[^"]*\\bsecond-img\\b[^"]*"[^>]*>\\s*)<a\\b([^>]*)>/i',
+            static function (array $match): string {
+                if (stripos($match[2], 'aria-label=') !== false) return $match[0];
+                return $match[1] . '<a' . $match[2] . ' aria-label="مشاهده تصویر دوم محصول">';
+            },
+            $html
+        ) ?: $html;
+
         // Owl Carousel renders empty dot buttons. Label only those buttons on this product.
         $dot_index = 0;
         $html = preg_replace_callback(
@@ -265,20 +307,31 @@ final class K20_Bridge_V33_Performance {
         ) ?: $html;
 
         // Page-scoped fixes for audited contrast, touch target and warranty aspect ratio.
-        $css = '<style id="k20-product-134980-canary-css">'
-            . 'body.single-product .woocommerce-breadcrumb,'
-            . 'body.single-product .product-rating .average span,'
-            . 'body.single-product .woocommerce-review-link,'
-            . 'body.single-product .product_meta,body.single-product .product_meta a,'
-            . 'body.single-product .woocommerce-product-details__short-description,'
-            . 'body.single-product .woocommerce-product-details__short-description p,'
-            . 'body.single-product .delivery-text,'
-            . 'body.single-product .reviews-columns .button,'
-            . 'body.single-product .woocommerce-review__published-date{color:#374151!important;}'
-            . 'body.single-product .widget-content .owl-dots .owl-dot{min-width:32px!important;min-height:32px!important;margin:4px!important;padding:0!important;}'
-            . 'body.single-product .warranty-message img{width:auto!important;height:32px!important;max-width:32px!important;object-fit:contain!important;}'
-            . '</style>';
-        $html = str_ireplace('</head>', $css . '</head>', $html);
+        if (stripos($html, 'id="k20-product-134980-canary-css"') === false) {
+            $css = '<style id="k20-product-134980-canary-css">'
+                . 'body.single-product .woocommerce-breadcrumb,'
+                . 'body.single-product .product-rating .average span,'
+                . 'body.single-product .woocommerce-review-link,'
+                . 'body.single-product .product_meta,body.single-product .product_meta a,'
+                . 'body.single-product .woocommerce-product-details__short-description,'
+                . 'body.single-product .woocommerce-product-details__short-description p,'
+                . 'body.single-product .delivery-text,'
+                . 'body.single-product .reviews-columns .button,'
+                . 'body.single-product .woocommerce-review__published-date,'
+                . 'body.single-product .slider-item .price del,'
+                . 'body.single-product .slider-item .price del *{color:#374151!important;}'
+                . 'body.single-product .slider-item .price .discount{background:#14532d!important;color:#fff!important;}'
+                . 'body.single-product .k20-footer-summary-text,'
+                . 'body.single-product footer.main-footer .copyright{color:#f9fafb!important;}'
+                . 'body.single-product .widget-content .owl-dots .owl-dot{min-width:32px!important;min-height:32px!important;margin:4px!important;padding:0!important;}'
+                . 'body.single-product .warranty-message img{width:auto!important;height:32px!important;max-width:32px!important;object-fit:contain!important;}'
+                . '</style>';
+            $html = str_ireplace('</head>', $css . '</head>', $html);
+        }
+
+        // Reassert the safe anonymous cache decision after the full product HTML exists.
+        // The request guard prevents this from ever applying to cart/session/login traffic.
+        self::product_cache_policy();
 
         return $html;
     }
