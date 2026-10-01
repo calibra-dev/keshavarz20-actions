@@ -1,16 +1,16 @@
 {
   "schema_version": "product-autopilot-v2",
-  "enabled": false,
+  "enabled": true,
   "kill_switch": false,
   "created_at": "2026-09-30T20:30:00Z",
-  "updated_at": "2026-10-01T08:46:07.065155+00:00",
+  "updated_at": "2026-10-01T08:48:00Z",
   "processed": {
     "134980": {
       "status": "PLATFORM_BLOCKED",
       "finished_at": "2026-10-01T08:33:11.895028+00:00",
       "content_quality_score": 100,
-      "performance": 83.0,
-      "accessibility": 96.0,
+      "performance": 83,
+      "accessibility": 96,
       "media_all_webp": true,
       "protected_fields_ok": true,
       "blocker": "performance median below 92; performance run below 91; LCP median above gate",
