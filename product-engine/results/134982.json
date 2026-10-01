@@ -1,11 +1,2571 @@
 {
-  "schema_version": "product-result-v2",
+  "schema_version": "product-queue-result-v2",
+  "queue_file": "product-engine/queue/2026-10-01-product-134982.json",
   "product_id": 134982,
-  "name": "اتصال ماده آبلوله 75 میلیمتر",
-  "started_at": "2026-10-01T09:15:07.934618+00:00",
-  "status": "MODEL_ACCESS_BLOCKED",
-  "blocker": "RateLimitError: Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.', 'type': 'insufficient_quota', 'param': None, 'code': 'credit_balance_exhausted'}}",
-  "finished_at": "2026-10-01T09:15:33.655190+00:00",
-  "auto_retry_on_schedule": true,
-  "retry_same_product": true
+  "started_at": "2026-10-01T09:23:24.080481+00:00",
+  "status": "PLATFORM_BLOCKED",
+  "policy": {
+    "content_acceptance": 96,
+    "lighthouse_acceptance": {
+      "successful_runs": 3,
+      "performance": {
+        "median_min": 92,
+        "each_run_min": 91
+      },
+      "accessibility": {
+        "median_min": 92,
+        "each_run_min": 91
+      },
+      "best_practices": {
+        "median_min": 90,
+        "each_run_min": 90
+      },
+      "seo": {
+        "median_min": 96,
+        "each_run_min": 96
+      },
+      "lcp_median_max_ms": 2500,
+      "cls_each_run_max": 0.1,
+      "tbt_median_max_ms": 200
+    },
+    "media_optimization": {
+      "enabled": true,
+      "featured": true,
+      "gallery": true,
+      "output_mime": "image/webp",
+      "quality": 84,
+      "max_dimension": 1600,
+      "skip_existing_webp": true,
+      "require_smaller": true,
+      "minimum_saving_pct": 3,
+      "preserve_order": true,
+      "delete_source_after_acceptance": false,
+      "rollback_on_regression": true
+    }
+  },
+  "product_name": "اتصال ماده آبلوله 75 میلیمتر",
+  "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+  "before_media": [
+    {
+      "role": "featured",
+      "attachment_id": 144292,
+      "src": "https://keshavarz20.com/wp-content/uploads/2026/09/d8a7d8aad8b5d8a7d984-d985d8a7d8afd987-d8a2d8a8d984d988d984d987-75-d985db8cd984db8cd985d8aad8b1-139863.webp",
+      "alt": "تصویر محصول اتصال ماده آبلوله 75 میلیمتر"
+    }
+  ],
+  "content_quality_score": 100,
+  "content_score_detail": {
+    "evidence": 25,
+    "commercial": 20,
+    "decision_structure": 20,
+    "seo": 15,
+    "safety": 10,
+    "media_alt": 10
+  },
+  "validation_errors": [],
+  "baseline_schema": {
+    "product": true,
+    "offer": true,
+    "h1_count": 1
+  },
+  "http_probe_before": [
+    {
+      "run": 1,
+      "status": 200,
+      "elapsed_ms": 6658.0,
+      "bytes": 427982,
+      "cache_control": null,
+      "x_litespeed_cache": null,
+      "x_litespeed_cache_control": "no-cache,esi=on",
+      "x_k20_canary_guard": null,
+      "x_k20_recent_view": null,
+      "x_k20_wc_cache_compat": null,
+      "x_k20_wc_prevent_hook": null,
+      "x_k20_donotcache": null,
+      "x_k20_ls_cacheable": null,
+      "x_k20_preheader_cache": null,
+      "x_litespeed_tag": "92c_product,92c_URL.e6c3e5f764f39d7a3ae25bdd5631a2ce,92c_Po.134982,92c_",
+      "set_cookie": "woocommerce_recently_viewed=134982; path=/; secure",
+      "age": null,
+      "server": "LiteSpeed",
+      "vary": "Accept-Encoding,User-Agent"
+    },
+    {
+      "run": 2,
+      "status": 200,
+      "elapsed_ms": 6458.1,
+      "bytes": 426014,
+      "cache_control": null,
+      "x_litespeed_cache": null,
+      "x_litespeed_cache_control": "no-cache,esi=on",
+      "x_k20_canary_guard": null,
+      "x_k20_recent_view": null,
+      "x_k20_wc_cache_compat": null,
+      "x_k20_wc_prevent_hook": null,
+      "x_k20_donotcache": null,
+      "x_k20_ls_cacheable": null,
+      "x_k20_preheader_cache": null,
+      "x_litespeed_tag": "92c_product,92c_URL.e6c3e5f764f39d7a3ae25bdd5631a2ce,92c_Po.134982,92c_",
+      "set_cookie": "woocommerce_recently_viewed=134982; path=/; secure",
+      "age": null,
+      "server": "LiteSpeed",
+      "vary": "Accept-Encoding,User-Agent"
+    },
+    {
+      "run": 3,
+      "status": 200,
+      "elapsed_ms": 6185.8,
+      "bytes": 429151,
+      "cache_control": null,
+      "x_litespeed_cache": null,
+      "x_litespeed_cache_control": "no-cache,esi=on",
+      "x_k20_canary_guard": null,
+      "x_k20_recent_view": null,
+      "x_k20_wc_cache_compat": null,
+      "x_k20_wc_prevent_hook": null,
+      "x_k20_donotcache": null,
+      "x_k20_ls_cacheable": null,
+      "x_k20_preheader_cache": null,
+      "x_litespeed_tag": "92c_product,92c_URL.e6c3e5f764f39d7a3ae25bdd5631a2ce,92c_Po.134982,92c_",
+      "set_cookie": "woocommerce_recently_viewed=134982; path=/; secure",
+      "age": null,
+      "server": "LiteSpeed",
+      "vary": "Accept-Encoding,User-Agent"
+    }
+  ],
+  "baseline_performance": {
+    "samples": [
+      {
+        "performance": 49,
+        "accessibility": 79,
+        "best_practices": 92,
+        "seo": 100,
+        "fcp_ms": 2898.0479999999993,
+        "lcp_ms": 4487.5019999999995,
+        "speed_index_ms": 12571.482808160366,
+        "tbt_ms": 297.9999999999991,
+        "cls": 0.283809804905869,
+        "ttfb_ms": 6307,
+        "total_bytes": 1019850,
+        "unused_css": "Est savings of 71 KiB",
+        "unused_js": "Est savings of 76 KiB"
+      },
+      {
+        "performance": 50,
+        "accessibility": 79,
+        "best_practices": 92,
+        "seo": 100,
+        "fcp_ms": 2914.2219999999998,
+        "lcp_ms": 4578.1715,
+        "speed_index_ms": 11091.158264884103,
+        "tbt_ms": 264.5000000000009,
+        "cls": 0.28537334216208216,
+        "ttfb_ms": 5143,
+        "total_bytes": 1019504,
+        "unused_css": "Est savings of 71 KiB",
+        "unused_js": "Est savings of 76 KiB"
+      },
+      {
+        "performance": 50,
+        "accessibility": 79,
+        "best_practices": 92,
+        "seo": 100,
+        "fcp_ms": 2804.1970000000006,
+        "lcp_ms": 4402.034500000001,
+        "speed_index_ms": 12348.774166395528,
+        "tbt_ms": 282.5,
+        "cls": 0.28537334216208216,
+        "ttfb_ms": 5913,
+        "total_bytes": 1019312,
+        "unused_css": "Est savings of 71 KiB",
+        "unused_js": "Est savings of 76 KiB"
+      }
+    ],
+    "representative": {
+      "performance": 49,
+      "accessibility": 79,
+      "best_practices": 92,
+      "seo": 100,
+      "fcp_ms": 2898.0479999999993,
+      "lcp_ms": 4487.5019999999995,
+      "speed_index_ms": 12571.482808160366,
+      "tbt_ms": 297.9999999999991,
+      "cls": 0.283809804905869,
+      "ttfb_ms": 6307,
+      "total_bytes": 1019850,
+      "unused_css": "Est savings of 71 KiB",
+      "unused_js": "Est savings of 76 KiB"
+    },
+    "successful_runs": 3,
+    "warmup": {
+      "attempted": true,
+      "ok": true,
+      "returncode": 0
+    },
+    "top_network_requests": [
+      {
+        "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+        "resource_type": "Script",
+        "transfer_size": 196899,
+        "resource_size": 602982,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/uploads/2024/06/hossini.jpg",
+        "resource_type": "Image",
+        "transfer_size": 138281,
+        "resource_size": 138113,
+        "priority": "High"
+      },
+      {
+        "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+        "resource_type": "Document",
+        "transfer_size": 62755,
+        "resource_size": 360615,
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
+        "resource_type": "Script",
+        "transfer_size": 61377,
+        "resource_size": 252309,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-direct-a143246.webp",
+        "resource_type": "Image",
+        "transfer_size": 57894,
+        "resource_size": 57774,
+        "priority": "High"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebregularfanum.woff",
+        "resource_type": "Font",
+        "transfer_size": 33706,
+        "resource_size": 33585,
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebboldfanum.woff",
+        "resource_type": "Font",
+        "transfer_size": 33661,
+        "resource_size": 33581,
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+        "resource_type": "Script",
+        "transfer_size": 29857,
+        "resource_size": 87553,
+        "priority": "High"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/uploads/2024/06/%DA%AF%D8%A7%D8%B1%D8%A7%D9%86%D8%AA%DB%8C.png",
+        "resource_type": "Image",
+        "transfer_size": 28488,
+        "resource_size": 28393,
+        "priority": "High"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/0cc6bdf8c66b1a3b7118fdadef6aa6d5.js?ver=ae346",
+        "resource_type": "Script",
+        "transfer_size": 26925,
+        "resource_size": 108081,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/uploads/2026/09/d8a7d8aad8b5d8a7d984-d985d8a7d8afd987-d8a2d8a8d984d988d984d987-75-d985db8cd984db8cd985d8aad8b1-139863.webp",
+        "resource_type": "Image",
+        "transfer_size": 23884,
+        "resource_size": 23780,
+        "priority": "High"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/css/9c13dae17cf8ea20906a1f183d051600.css?ver=846ee",
+        "resource_type": "Stylesheet",
+        "transfer_size": 22118,
+        "resource_size": 150098,
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/css/7e0c89866ae4250b859a08a1e4310da4.css?ver=a8667",
+        "resource_type": "Stylesheet",
+        "transfer_size": 19920,
+        "resource_size": 166164,
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/4fe8f127c29828e027ef11d551317262.js?ver=df9fc",
+        "resource_type": "Script",
+        "transfer_size": 19215,
+        "resource_size": 56367,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/css/62bccd5cbc3fa81af8e3db4ca4b9cbd8.css?ver=dc04d",
+        "resource_type": "Stylesheet",
+        "transfer_size": 18624,
+        "resource_size": 277387,
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/css/6c6e99777b208fdc2e0d8d3666a7bcc9.css?ver=5f774",
+        "resource_type": "Stylesheet",
+        "transfer_size": 18081,
+        "resource_size": 140774,
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/a1548c83adc2678218fff1bf8a308b0d.js?ver=2c37a",
+        "resource_type": "Script",
+        "transfer_size": 17815,
+        "resource_size": 77853,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/81a58d62acc2bda2575a4119ca64c006.js?ver=f4a3e",
+        "resource_type": "Script",
+        "transfer_size": 16384,
+        "resource_size": 81174,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/69b68c538bdec1627dd4aa6c47bf660b.js?ver=f660b",
+        "resource_type": "Script",
+        "transfer_size": 13250,
+        "resource_size": 54523,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/9ef702f93cda38d01dd013f772f7c746.js?ver=4e13e",
+        "resource_type": "Script",
+        "transfer_size": 11735,
+        "resource_size": 31627,
+        "priority": "Low"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/17ab8d74595c085eb0f60af1b19b14c5.js?ver=b14c5",
+        "resource_type": "Script",
+        "transfer_size": 10029,
+        "resource_size": 36754,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/b60ce8f8cdb2cbf0aeaa486e96347151.js?ver=f5b36",
+        "resource_type": "Script",
+        "transfer_size": 9306,
+        "resource_size": 40071,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/291fb7a293d236f8f164f4535f17e96e.js?ver=b0977",
+        "resource_type": "Script",
+        "transfer_size": 8472,
+        "resource_size": 32700,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/95a9006f8e4ffc363679cec5343abfe9.js?ver=6fb11",
+        "resource_type": "Script",
+        "transfer_size": 7291,
+        "resource_size": 19013,
+        "priority": "High"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/71c3ba7f1e2bde5718461357744685d6.js?ver=b8b51",
+        "resource_type": "Script",
+        "transfer_size": 6618,
+        "resource_size": 19875,
+        "priority": "Medium"
+      }
+    ],
+    "diagnostics": {
+      "failing_audits": [
+        {
+          "category": "accessibility",
+          "id": "button-name",
+          "title": "Buttons do not have an accessible name",
+          "score": 0,
+          "display_value": null,
+          "items": [
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot active\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot active\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            }
+          ]
+        },
+        {
+          "category": "accessibility",
+          "id": "color-contrast",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "score": 0,
+          "display_value": null,
+          "items": [
+            {
+              "selector": "body.rtl > main#main > div.container > nav.woocommerce-breadcrumb",
+              "snippet": "<nav class=\"woocommerce-breadcrumb breadcrumb\">",
+              "node_label": "خانه / تجهیزات و لوازم کشاورزی / اتصالات پلی اتیلن / پلی اتیلن پیچی / سایر اتصا…"
+            },
+            {
+              "selector": "div.summary-columns > div.column-description > div.product_meta > span.posted_in",
+              "snippet": "<span class=\"posted_in\">",
+              "node_label": "دسته:\nاتصال یکسر ماده پلی اتیلن\n,\nاتصالات پلی اتیلن\n,\nپلی اتیلن پیچی\n,\nتجهیزات …"
+            },
+            {
+              "selector": "div.summary-columns > div.column-description > div.product_meta > span.tagged_as",
+              "snippet": "<span class=\"tagged_as\">",
+              "node_label": "برچسب:\nپلی رود،شیر توپی،انشعاب،قطره ای،قطره چکان،رابط،کمربند،شیر دو سر نر، شیر …"
+            },
+            {
+              "selector": "div.summary-columns > div.column-description > div.product_meta > span.brands",
+              "snippet": "<span class=\"brands\">",
+              "node_label": "برندها:\nآب لوله بسپار (Ablooleh baspar)\n,\nپلی رود اتصال( Poliroodetesal)"
+            },
+            {
+              "selector": "div.column-description > div.product_meta > span.brands > a",
+              "snippet": "<a href=\"https://keshavarz20.com/product_brand/%d8%a2%d8%a8-%d9%84%d9%88%d9%84%d9%8…\">",
+              "node_label": "آب لوله بسپار (Ablooleh baspar)"
+            },
+            {
+              "selector": "div.column-description > div.product_meta > span.brands > a",
+              "snippet": "<a href=\"https://keshavarz20.com/product_brand/%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%a…\">",
+              "node_label": "پلی رود اتصال( Poliroodetesal)"
+            },
+            {
+              "selector": "div.column-description > div.woocommerce-product-details__short-description > div > p",
+              "snippet": "<p>",
+              "node_label": "اتصال ماده آبلوله 75 میلیمتر برای تبدیل سمت لوله به اتصال رزوه داخلی برای اتصال…"
+            },
+            {
+              "selector": "div.cart-box > div.panel-stock > div.delivery > div.delivery-text",
+              "snippet": "<div class=\"delivery-text\">",
+              "node_label": "ارسال توسط کشاورز بیست."
+            },
+            {
+              "selector": "div.reviews-columns > div.column-rating > div.theiaStickySidebar > button.button",
+              "snippet": "<button class=\"button button-outline button-small modal-toggle\" data-modal=\"modal-reviews\">",
+              "node_label": "درج دیدگاه"
+            },
+            {
+              "selector": "div#showmore-1 > div.textwidget > div.k20-footer-summary > p.k20-footer-summary-text",
+              "snippet": "<p class=\"k20-footer-summary-text\">",
+              "node_label": "کشاورز بیست مرکز تأمین آنلاین نهاده‌های کشاورزی، تجهیزات آبیاری، لوله و اتصالات،…"
+            },
+            {
+              "selector": "body.rtl > footer.main-footer > div.copyright",
+              "snippet": "<div class=\"copyright\">",
+              "node_label": "برای استفاده از مطالب کشاورز بیست، داشتن «هدف غیرتجاری» و ذکر «منبع» کافیست. تم…"
+            }
+          ]
+        },
+        {
+          "category": "accessibility",
+          "id": "link-name",
+          "title": "Links do not have a discernible name",
+          "score": 0,
+          "display_value": null,
+          "items": [
+            {
+              "selector": "div.col-6 > div.header-buttons > div.user-button > a.login-register",
+              "snippet": "<a href=\"https://keshavarz20.com/my-account\" class=\"login-register\">",
+              "node_label": "div.col-6 > div.header-buttons > div.user-button > a.login-register"
+            }
+          ]
+        },
+        {
+          "category": "accessibility",
+          "id": "meta-viewport",
+          "title": "`[user-scalable=\"no\"]` is used in the `<meta name=\"viewport\">` element or the `[maximum-scale]` attribute is less than 5.",
+          "score": 0,
+          "display_value": null,
+          "items": [
+            {
+              "selector": "head > meta",
+              "snippet": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, …\">",
+              "node_label": "head > meta"
+            }
+          ]
+        },
+        {
+          "category": "accessibility",
+          "id": "target-size",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "score": 0,
+          "display_value": null,
+          "items": [
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot active\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot active\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            }
+          ]
+        },
+        {
+          "category": "best-practices",
+          "id": "image-aspect-ratio",
+          "title": "Displays images with incorrect aspect ratio",
+          "score": 0,
+          "display_value": null,
+          "items": [
+            {
+              "selector": "div.column-summary > div.summary > div.warranty-message > img.entered",
+              "snippet": "<img data-lazyloaded=\"1\" src=\"https://keshavarz20.com/wp-content/uploads/2024/06/گارانتی.png\" data-src=\"https://keshavarz20.com/wp-content/uploads/2024/06/گارانتی.png\" alt=\"گارانتی\" style=\"margin-right: 10px; width: 32px; height: 32px;\" width=\"218\" height=\"240\" data-ll-status=\"loaded\" class=\"entered litespeed-loaded\">",
+              "node_label": "گارانتی",
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/06/%DA%AF%D8%A7%D8%B1%D8%A7%D9%86%D8%AA%DB%8C.png"
+            }
+          ]
+        },
+        {
+          "category": "best-practices",
+          "id": "image-size-responsive",
+          "title": "Serves images with low resolution",
+          "score": 0,
+          "display_value": null,
+          "items": [
+            {
+              "selector": "div.row > div.col-12 > a.site-logo > img.logo-mobile",
+              "snippet": "<img width=\"50\" height=\"50\" src=\"https://keshavarz20.com/wp-content/uploads/2024/05/لوگو-2-کشاورز20-.png\" class=\"logo-mobile img-fluid\" alt=\"لوگوی فروشگاه کشاورز بیست\" decoding=\"async\">",
+              "node_label": "لوگوی فروشگاه کشاورز بیست",
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/05/%D9%84%D9%88%DA%AF%D9%88-2-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B220-.png"
+            }
+          ]
+        }
+      ],
+      "lcp_element": [],
+      "layout_shifts": [
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-1-DIV",
+            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV",
+            "selector": "body.rtl > main#main > div.container > div#product-134982",
+            "boundingRect": {
+              "top": 246,
+              "bottom": 3073,
+              "left": 0,
+              "right": 412,
+              "width": 412,
+              "height": 2827
+            },
+            "snippet": "<div id=\"product-134982\" class=\"product type-product post-134982 status-publish first instock product_cat-…\" style=\"transform: none;\">",
+            "nodeLabel": "گارانتی اصالت و سلامت کالا\n\nاتصال ماده آبلوله 75 میلیمتر\nدسته:\nاتصال یکسر ماده …"
+          },
+          "score": 0.283809804905869
+        },
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-5-A",
+            "path": "1,HTML,1,BODY,60,DIV,0,A",
+            "selector": "body.rtl > div.bottom-nav > a.nav-item",
+            "boundingRect": {
+              "top": 769,
+              "bottom": 823,
+              "left": 309,
+              "right": 412,
+              "width": 103,
+              "height": 53
+            },
+            "snippet": "<a href=\"https://keshavarz20.com\" class=\"nav-item \">",
+            "nodeLabel": "صفحه اصلی"
+          },
+          "score": 0.001563537256213143
+        }
+      ],
+      "cls_culprits": [],
+      "non_composited_animations": [
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-9-path",
+            "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,1,path",
+            "selector": "div.toast-content > div > svg > path.checkmark-check",
+            "boundingRect": {
+              "top": 1605,
+              "bottom": 1611,
+              "left": 296,
+              "right": 305,
+              "width": 9,
+              "height": 6
+            },
+            "snippet": "<path class=\"checkmark-check\" fill=\"none\" d=\"M14.1 27.2l7.1 7.2 16.7-16.8\">",
+            "nodeLabel": "div.toast-content > div > svg > path.checkmark-check"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Property: stroke-dashoffset",
+                "animation": "stroke"
+              }
+            ]
+          }
+        },
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-12-SPAN",
+            "path": "1,HTML,1,BODY,63,DIV,0,DIV,1,DIV,0,DIV,0,DIV,0,SPAN",
+            "selector": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line",
+            "boundingRect": {
+              "top": 964,
+              "bottom": 985,
+              "left": 178,
+              "right": 199,
+              "width": 21,
+              "height": 21
+            },
+            "snippet": "<span class=\"icon-line line-tip\">",
+            "nodeLabel": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Properties: top, left, width",
+                "animation": "icon-line-tip"
+              }
+            ]
+          }
+        },
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-16-circle",
+            "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,0,circle",
+            "selector": "div.toast-content > div > svg > circle.checkmark-circle",
+            "boundingRect": {
+              "top": 1598,
+              "bottom": 1618,
+              "left": 291,
+              "right": 310,
+              "width": 19,
+              "height": 19
+            },
+            "snippet": "<circle class=\"checkmark-circle\" cx=\"26\" cy=\"26\" r=\"25\" fill=\"none\">",
+            "nodeLabel": "div.toast-content > div > svg > circle.checkmark-circle"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Property: stroke-dashoffset",
+                "animation": "stroke"
+              }
+            ]
+          }
+        },
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-17-SPAN",
+            "path": "1,HTML,1,BODY,63,DIV,0,DIV,1,DIV,0,DIV,0,DIV,1,SPAN",
+            "selector": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line",
+            "boundingRect": {
+              "top": 948,
+              "bottom": 985,
+              "left": 192,
+              "right": 229,
+              "width": 37,
+              "height": 37
+            },
+            "snippet": "<span class=\"icon-line line-long\">",
+            "nodeLabel": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Properties: right, top, width",
+                "animation": "icon-line-long"
+              }
+            ]
+          }
+        }
+      ],
+      "unsized_images": [
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-222-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,1,SECTION,2,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 1268,
+              "bottom": 1280,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🔁\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg\">",
+            "nodeLabel": "🔁"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-223-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,3,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 1775,
+              "bottom": 1787,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"📸\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg\">",
+            "nodeLabel": "📸"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-224-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,6,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 1909,
+              "bottom": 1921,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"✅\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg\">",
+            "nodeLabel": "✅"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-225-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,9,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 2043,
+              "bottom": 2055,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🚚\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg\">",
+            "nodeLabel": "🚚"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f50e.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-226-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,12,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 2177,
+              "bottom": 2189,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🔎\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f50e.svg\">",
+            "nodeLabel": "🔎"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-227-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,3,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 3783,
+              "bottom": 3795,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🔁\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg\">",
+            "nodeLabel": "🔁"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4e6.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-228-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,6,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 3917,
+              "bottom": 3929,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"📦\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f4e6.svg\">",
+            "nodeLabel": "📦"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-229-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,9,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 4051,
+              "bottom": 4063,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"📸\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg\">",
+            "nodeLabel": "📸"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-230-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,3,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 6468,
+              "bottom": 6480,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"📸\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg\">",
+            "nodeLabel": "📸"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-231-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,6,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 6602,
+              "bottom": 6614,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"✅\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg\">",
+            "nodeLabel": "✅"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-232-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,9,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 6736,
+              "bottom": 6748,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🚚\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg\">",
+            "nodeLabel": "🚚"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/260e.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-233-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,12,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 6870,
+              "bottom": 6882,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"☎️\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/260e.svg\">",
+            "nodeLabel": "☎️"
+          }
+        }
+      ],
+      "render_blocking": [],
+      "unused_css_items": [
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/css/62bccd5cbc3fa81af8e3db4ca4b9cbd8.css?ver=dc04d",
+          "wastedBytes": 18570,
+          "wastedPercent": 100,
+          "totalBytes": 18570
+        },
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/css/9c13dae17cf8ea20906a1f183d051600.css?ver=846ee",
+          "wastedBytes": 18413,
+          "wastedPercent": 83.45214459886208,
+          "totalBytes": 22064
+        },
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/css/6c6e99777b208fdc2e0d8d3666a7bcc9.css?ver=5f774",
+          "wastedBytes": 17898,
+          "wastedPercent": 99.28537940244647,
+          "totalBytes": 18027
+        },
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/css/7e0c89866ae4250b859a08a1e4310da4.css?ver=a8667",
+          "wastedBytes": 17561,
+          "wastedPercent": 88.39760718326472,
+          "totalBytes": 19866
+        }
+      ],
+      "unused_js_items": [
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+          "totalBytes": 196567,
+          "wastedBytes": 77422,
+          "wastedPercent": 39.38707954797987
+        }
+      ],
+      "long_tasks": [
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 153,
+          "startTime": 7345.167592636108
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+          "duration": 150,
+          "startTime": 5107.669
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+          "duration": 131.0000000000009,
+          "startTime": 4976.668999999999
+        },
+        {
+          "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "duration": 82,
+          "startTime": 1960.2339999999997
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+          "duration": 77,
+          "startTime": 7589.167592636108
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 60,
+          "startTime": 7666.167592636108
+        },
+        {
+          "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "duration": 59,
+          "startTime": 2085.2339999999995
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 59,
+          "startTime": 7498.167592636108
+        },
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
+          "duration": 58,
+          "startTime": 6917.171592636108
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 55,
+          "startTime": 3797.211592636108
+        }
+      ],
+      "mainthread_work": [
+        {
+          "group": "other",
+          "groupLabel": "Other",
+          "duration": 1019.611999999987
+        },
+        {
+          "group": "scriptEvaluation",
+          "groupLabel": "Script Evaluation",
+          "duration": 963.0399999999918
+        },
+        {
+          "group": "styleLayout",
+          "groupLabel": "Style & Layout",
+          "duration": 846.9879999999927
+        },
+        {
+          "group": "scriptParseCompile",
+          "groupLabel": "Script Parsing & Compilation",
+          "duration": 206.14799999999997
+        },
+        {
+          "group": "parseHTML",
+          "groupLabel": "Parse HTML & CSS",
+          "duration": 197.34000000000023
+        },
+        {
+          "group": "paintCompositeRender",
+          "groupLabel": "Rendering",
+          "duration": 160.16800000000015
+        },
+        {
+          "group": "garbageCollection",
+          "groupLabel": "Garbage Collection",
+          "duration": 38.40000000000003
+        }
+      ],
+      "font_display": [],
+      "image_delivery": [],
+      "modern_image_formats": []
+    },
+    "summary": {
+      "successful_runs": 3,
+      "performance": {
+        "median": 50.0,
+        "min": 49.0,
+        "max": 50.0
+      },
+      "accessibility": {
+        "median": 79.0,
+        "min": 79.0,
+        "max": 79.0
+      },
+      "best_practices": {
+        "median": 92.0,
+        "min": 92.0,
+        "max": 92.0
+      },
+      "seo": {
+        "median": 100.0,
+        "min": 100.0,
+        "max": 100.0
+      },
+      "lcp_ms": {
+        "median": 4487.5019999999995,
+        "min": 4402.034500000001,
+        "max": 4578.1715
+      },
+      "cls": {
+        "median": 0.28537334216208216,
+        "min": 0.283809804905869,
+        "max": 0.28537334216208216
+      },
+      "tbt_ms": {
+        "median": 282.5,
+        "min": 264.5000000000009,
+        "max": 297.9999999999991
+      },
+      "ttfb_ms": {
+        "median": 5913.0,
+        "min": 5143.0,
+        "max": 6307.0
+      },
+      "total_bytes": {
+        "median": 1019504.0,
+        "min": 1019312.0,
+        "max": 1019850.0
+      }
+    }
+  },
+  "baseline_accessibility": {
+    "scores": [
+      79,
+      79,
+      79
+    ],
+    "shared_renderer_audits": [
+      "button-name",
+      "link-name",
+      "meta-viewport",
+      "target-size"
+    ],
+    "product_scoped_audits": [
+      "color-contrast"
+    ],
+    "mixed_or_unknown_audits": [],
+    "failing_audit_ids": [
+      "button-name",
+      "color-contrast",
+      "link-name",
+      "meta-viewport",
+      "target-size"
+    ]
+  },
+  "readback": {
+    "content_ok": true,
+    "seo_ok": true,
+    "description": {
+      "text_ok": true,
+      "structure_ok": true,
+      "links_ok": true,
+      "expected_text_len": 3772,
+      "actual_text_len": 3772,
+      "expected_counts": {
+        "h2": 0,
+        "h3": 0,
+        "table": 0,
+        "details": 0,
+        "ul": 0,
+        "ol": 0
+      },
+      "actual_counts": {
+        "h2": 0,
+        "h3": 0,
+        "table": 0,
+        "details": 0,
+        "ul": 0,
+        "ol": 0
+      }
+    },
+    "short_description": {
+      "text_ok": true,
+      "structure_ok": true,
+      "links_ok": true,
+      "expected_text_len": 368,
+      "actual_text_len": 368,
+      "expected_counts": {
+        "h2": 0,
+        "h3": 0,
+        "table": 0,
+        "details": 0,
+        "ul": 0,
+        "ol": 0
+      },
+      "actual_counts": {
+        "h2": 0,
+        "h3": 0,
+        "table": 0,
+        "details": 0,
+        "ul": 0,
+        "ol": 0
+      }
+    }
+  },
+  "media_optimization": {
+    "attempted": true,
+    "changed": false,
+    "source_ids": [
+      144292
+    ],
+    "target_ids": [
+      144292
+    ],
+    "created_attachment_ids": [],
+    "items": [
+      {
+        "role": "featured",
+        "source_attachment_id": 144292,
+        "target_attachment_id": 144292,
+        "status": "already_webp",
+        "src": "https://keshavarz20.com/wp-content/uploads/2026/09/d8a7d8aad8b5d8a7d984-d985d8a7d8afd987-d8a2d8a8d984d988d984d987-75-d985db8cd984db8cd985d8aad8b1-139863.webp"
+      }
+    ],
+    "readback_ok": true,
+    "all_webp": true
+  },
+  "image_alt_changed_ids": [
+    144292
+  ],
+  "protected_fields": {
+    "ok": true,
+    "before_sha256": "2a636718aa3166fff58eaad70c1593ee2fc37194b95921459ff77330c7f5bc19",
+    "after_sha256": "2a636718aa3166fff58eaad70c1593ee2fc37194b95921459ff77330c7f5bc19",
+    "changed": {}
+  },
+  "schema_readback": {
+    "product": true,
+    "offer": true,
+    "h1_count": 1
+  },
+  "visual_guard": {
+    "ok": true,
+    "issues": [],
+    "markers": {
+      "woocommerce-product-gallery": {
+        "before": 22,
+        "after": 22
+      },
+      "woocommerce-breadcrumb": {
+        "before": 1,
+        "after": 1
+      },
+      "site-logo": {
+        "before": 5,
+        "after": 5
+      },
+      "bottom-nav": {
+        "before": 11,
+        "after": 11
+      },
+      "single_add_to_cart_button": {
+        "before": 2,
+        "after": 2
+      }
+    },
+    "image_slots": {
+      "before": [
+        144292
+      ],
+      "after": [
+        144292
+      ]
+    },
+    "h1_count": {
+      "before": 1,
+      "after": 1
+    }
+  },
+  "http_probe_after": [
+    {
+      "run": 1,
+      "status": 200,
+      "elapsed_ms": 6595.9,
+      "bytes": 412381,
+      "cache_control": null,
+      "x_litespeed_cache": null,
+      "x_litespeed_cache_control": "no-cache,esi=on",
+      "x_k20_canary_guard": null,
+      "x_k20_recent_view": null,
+      "x_k20_wc_cache_compat": null,
+      "x_k20_wc_prevent_hook": null,
+      "x_k20_donotcache": null,
+      "x_k20_ls_cacheable": null,
+      "x_k20_preheader_cache": null,
+      "x_litespeed_tag": "92c_product,92c_URL.e6c3e5f764f39d7a3ae25bdd5631a2ce,92c_Po.134982,92c_",
+      "set_cookie": "woocommerce_recently_viewed=134982; path=/; secure",
+      "age": null,
+      "server": "LiteSpeed",
+      "vary": "Accept-Encoding,User-Agent"
+    },
+    {
+      "run": 2,
+      "status": 200,
+      "elapsed_ms": 5841.6,
+      "bytes": 413889,
+      "cache_control": null,
+      "x_litespeed_cache": null,
+      "x_litespeed_cache_control": "no-cache,esi=on",
+      "x_k20_canary_guard": null,
+      "x_k20_recent_view": null,
+      "x_k20_wc_cache_compat": null,
+      "x_k20_wc_prevent_hook": null,
+      "x_k20_donotcache": null,
+      "x_k20_ls_cacheable": null,
+      "x_k20_preheader_cache": null,
+      "x_litespeed_tag": "92c_product,92c_URL.e6c3e5f764f39d7a3ae25bdd5631a2ce,92c_Po.134982,92c_",
+      "set_cookie": "woocommerce_recently_viewed=134982; path=/; secure",
+      "age": null,
+      "server": "LiteSpeed",
+      "vary": "Accept-Encoding,User-Agent"
+    },
+    {
+      "run": 3,
+      "status": 200,
+      "elapsed_ms": 6387.3,
+      "bytes": 412865,
+      "cache_control": null,
+      "x_litespeed_cache": null,
+      "x_litespeed_cache_control": "no-cache,esi=on",
+      "x_k20_canary_guard": null,
+      "x_k20_recent_view": null,
+      "x_k20_wc_cache_compat": null,
+      "x_k20_wc_prevent_hook": null,
+      "x_k20_donotcache": null,
+      "x_k20_ls_cacheable": null,
+      "x_k20_preheader_cache": null,
+      "x_litespeed_tag": "92c_product,92c_URL.e6c3e5f764f39d7a3ae25bdd5631a2ce,92c_Po.134982,92c_",
+      "set_cookie": "woocommerce_recently_viewed=134982; path=/; secure",
+      "age": null,
+      "server": "LiteSpeed",
+      "vary": "Accept-Encoding,User-Agent"
+    }
+  ],
+  "after_performance": {
+    "samples": [
+      {
+        "performance": 47,
+        "accessibility": 79,
+        "best_practices": 92,
+        "seo": 100,
+        "fcp_ms": 3075.171,
+        "lcp_ms": 4663.450999999999,
+        "speed_index_ms": 12880.909526820657,
+        "tbt_ms": 298.5,
+        "cls": 0.28537334216208216,
+        "ttfb_ms": 6159,
+        "total_bytes": 1016902,
+        "unused_css": "Est savings of 71 KiB",
+        "unused_js": "Est savings of 75 KiB"
+      },
+      {
+        "performance": 47,
+        "accessibility": 79,
+        "best_practices": 92,
+        "seo": 100,
+        "fcp_ms": 2940.339,
+        "lcp_ms": 4677.692,
+        "speed_index_ms": 12409.765150832332,
+        "tbt_ms": 312,
+        "cls": 0.28537334216208216,
+        "ttfb_ms": 5958,
+        "total_bytes": 1016802,
+        "unused_css": "Est savings of 71 KiB",
+        "unused_js": "Est savings of 75 KiB"
+      },
+      {
+        "performance": 48,
+        "accessibility": 79,
+        "best_practices": 92,
+        "seo": 100,
+        "fcp_ms": 2993.0209999999993,
+        "lcp_ms": 4612.932999999999,
+        "speed_index_ms": 12198.793694566595,
+        "tbt_ms": 303.5,
+        "cls": 0.28537334216208216,
+        "ttfb_ms": 5942,
+        "total_bytes": 1016888,
+        "unused_css": "Est savings of 71 KiB",
+        "unused_js": "Est savings of 75 KiB"
+      }
+    ],
+    "representative": {
+      "performance": 47,
+      "accessibility": 79,
+      "best_practices": 92,
+      "seo": 100,
+      "fcp_ms": 3075.171,
+      "lcp_ms": 4663.450999999999,
+      "speed_index_ms": 12880.909526820657,
+      "tbt_ms": 298.5,
+      "cls": 0.28537334216208216,
+      "ttfb_ms": 6159,
+      "total_bytes": 1016902,
+      "unused_css": "Est savings of 71 KiB",
+      "unused_js": "Est savings of 75 KiB"
+    },
+    "successful_runs": 3,
+    "warmup": {
+      "attempted": true,
+      "ok": true,
+      "returncode": 0
+    },
+    "top_network_requests": [
+      {
+        "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+        "resource_type": "Script",
+        "transfer_size": 196907,
+        "resource_size": 602982,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/uploads/2024/06/hossini.jpg",
+        "resource_type": "Image",
+        "transfer_size": 138281,
+        "resource_size": 138113,
+        "priority": "High"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
+        "resource_type": "Script",
+        "transfer_size": 61378,
+        "resource_size": 252309,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+        "resource_type": "Document",
+        "transfer_size": 60015,
+        "resource_size": 347527,
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-direct-a143246.webp",
+        "resource_type": "Image",
+        "transfer_size": 57894,
+        "resource_size": 57774,
+        "priority": "High"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebregularfanum.woff",
+        "resource_type": "Font",
+        "transfer_size": 33723,
+        "resource_size": 33585,
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebboldfanum.woff",
+        "resource_type": "Font",
+        "transfer_size": 33681,
+        "resource_size": 33581,
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+        "resource_type": "Script",
+        "transfer_size": 29857,
+        "resource_size": 87553,
+        "priority": "High"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/uploads/2024/06/%DA%AF%D8%A7%D8%B1%D8%A7%D9%86%D8%AA%DB%8C.png",
+        "resource_type": "Image",
+        "transfer_size": 28488,
+        "resource_size": 28393,
+        "priority": "High"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/0cc6bdf8c66b1a3b7118fdadef6aa6d5.js?ver=ae346",
+        "resource_type": "Script",
+        "transfer_size": 26925,
+        "resource_size": 108081,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/uploads/2026/09/d8a7d8aad8b5d8a7d984-d985d8a7d8afd987-d8a2d8a8d984d988d984d987-75-d985db8cd984db8cd985d8aad8b1-139863.webp",
+        "resource_type": "Image",
+        "transfer_size": 23891,
+        "resource_size": 23780,
+        "priority": "High"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/css/9c13dae17cf8ea20906a1f183d051600.css?ver=846ee",
+        "resource_type": "Stylesheet",
+        "transfer_size": 22164,
+        "resource_size": 150098,
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/css/7e0c89866ae4250b859a08a1e4310da4.css?ver=a8667",
+        "resource_type": "Stylesheet",
+        "transfer_size": 19920,
+        "resource_size": 166164,
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/4fe8f127c29828e027ef11d551317262.js?ver=df9fc",
+        "resource_type": "Script",
+        "transfer_size": 19216,
+        "resource_size": 56367,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/css/62bccd5cbc3fa81af8e3db4ca4b9cbd8.css?ver=dc04d",
+        "resource_type": "Stylesheet",
+        "transfer_size": 18625,
+        "resource_size": 277387,
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/css/6c6e99777b208fdc2e0d8d3666a7bcc9.css?ver=5f774",
+        "resource_type": "Stylesheet",
+        "transfer_size": 18104,
+        "resource_size": 140774,
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/a1548c83adc2678218fff1bf8a308b0d.js?ver=2c37a",
+        "resource_type": "Script",
+        "transfer_size": 17817,
+        "resource_size": 77853,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/81a58d62acc2bda2575a4119ca64c006.js?ver=f4a3e",
+        "resource_type": "Script",
+        "transfer_size": 16367,
+        "resource_size": 81174,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/69b68c538bdec1627dd4aa6c47bf660b.js?ver=f660b",
+        "resource_type": "Script",
+        "transfer_size": 13296,
+        "resource_size": 54523,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/9ef702f93cda38d01dd013f772f7c746.js?ver=4e13e",
+        "resource_type": "Script",
+        "transfer_size": 11716,
+        "resource_size": 31627,
+        "priority": "Low"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/17ab8d74595c085eb0f60af1b19b14c5.js?ver=b14c5",
+        "resource_type": "Script",
+        "transfer_size": 10030,
+        "resource_size": 36754,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/b60ce8f8cdb2cbf0aeaa486e96347151.js?ver=f5b36",
+        "resource_type": "Script",
+        "transfer_size": 9324,
+        "resource_size": 40071,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/291fb7a293d236f8f164f4535f17e96e.js?ver=b0977",
+        "resource_type": "Script",
+        "transfer_size": 8471,
+        "resource_size": 32700,
+        "priority": "Medium"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/95a9006f8e4ffc363679cec5343abfe9.js?ver=6fb11",
+        "resource_type": "Script",
+        "transfer_size": 7292,
+        "resource_size": 19013,
+        "priority": "High"
+      },
+      {
+        "url": "https://keshavarz20.com/wp-content/litespeed/js/1ae53464d568614135fe06c49eac7be4.js?ver=ea0e8",
+        "resource_type": "Script",
+        "transfer_size": 6607,
+        "resource_size": 21991,
+        "priority": "Medium"
+      }
+    ],
+    "diagnostics": {
+      "failing_audits": [
+        {
+          "category": "accessibility",
+          "id": "button-name",
+          "title": "Buttons do not have an accessible name",
+          "score": 0,
+          "display_value": null,
+          "items": [
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot active\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot active\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            }
+          ]
+        },
+        {
+          "category": "accessibility",
+          "id": "color-contrast",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "score": 0,
+          "display_value": null,
+          "items": [
+            {
+              "selector": "body.rtl > main#main > div.container > nav.woocommerce-breadcrumb",
+              "snippet": "<nav class=\"woocommerce-breadcrumb breadcrumb\">",
+              "node_label": "خانه / تجهیزات و لوازم کشاورزی / اتصالات پلی اتیلن / پلی اتیلن پیچی / سایر اتصا…"
+            },
+            {
+              "selector": "div.summary-columns > div.column-description > div.product_meta > span.posted_in",
+              "snippet": "<span class=\"posted_in\">",
+              "node_label": "دسته:\nاتصال یکسر ماده پلی اتیلن\n,\nاتصالات پلی اتیلن\n,\nپلی اتیلن پیچی\n,\nتجهیزات …"
+            },
+            {
+              "selector": "div.summary-columns > div.column-description > div.product_meta > span.tagged_as",
+              "snippet": "<span class=\"tagged_as\">",
+              "node_label": "برچسب:\nپلی رود،شیر توپی،انشعاب،قطره ای،قطره چکان،رابط،کمربند،شیر دو سر نر، شیر …"
+            },
+            {
+              "selector": "div.summary-columns > div.column-description > div.product_meta > span.brands",
+              "snippet": "<span class=\"brands\">",
+              "node_label": "برندها:\nآب لوله بسپار (Ablooleh baspar)\n,\nپلی رود اتصال( Poliroodetesal)"
+            },
+            {
+              "selector": "div.column-description > div.product_meta > span.brands > a",
+              "snippet": "<a href=\"https://keshavarz20.com/product_brand/%d8%a2%d8%a8-%d9%84%d9%88%d9%84%d9%8…\">",
+              "node_label": "آب لوله بسپار (Ablooleh baspar)"
+            },
+            {
+              "selector": "div.column-description > div.product_meta > span.brands > a",
+              "snippet": "<a href=\"https://keshavarz20.com/product_brand/%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%a…\">",
+              "node_label": "پلی رود اتصال( Poliroodetesal)"
+            },
+            {
+              "selector": "div.column-description > div.woocommerce-product-details__short-description > div > p",
+              "snippet": "<p>",
+              "node_label": "اتصال ماده پلی‌اتیلن ۷۵ میلی‌متر برای اتصال لوله پلی‌اتیلن ۷۵ به یک قطعه نر رزوه‌ای…"
+            },
+            {
+              "selector": "div.woocommerce-product-details__short-description > div > p > strong",
+              "snippet": "<strong>",
+              "node_label": "اتصال ماده پلی‌اتیلن ۷۵ میلی‌متر"
+            },
+            {
+              "selector": "div.cart-box > div.panel-stock > div.delivery > div.delivery-text",
+              "snippet": "<div class=\"delivery-text\">",
+              "node_label": "ارسال توسط کشاورز بیست."
+            },
+            {
+              "selector": "div.reviews-columns > div.column-rating > div.theiaStickySidebar > button.button",
+              "snippet": "<button class=\"button button-outline button-small modal-toggle\" data-modal=\"modal-reviews\">",
+              "node_label": "درج دیدگاه"
+            },
+            {
+              "selector": "div#showmore-1 > div.textwidget > div.k20-footer-summary > p.k20-footer-summary-text",
+              "snippet": "<p class=\"k20-footer-summary-text\">",
+              "node_label": "کشاورز بیست مرکز تأمین آنلاین نهاده‌های کشاورزی، تجهیزات آبیاری، لوله و اتصالات،…"
+            },
+            {
+              "selector": "body.rtl > footer.main-footer > div.copyright",
+              "snippet": "<div class=\"copyright\">",
+              "node_label": "برای استفاده از مطالب کشاورز بیست، داشتن «هدف غیرتجاری» و ذکر «منبع» کافیست. تم…"
+            }
+          ]
+        },
+        {
+          "category": "accessibility",
+          "id": "link-name",
+          "title": "Links do not have a discernible name",
+          "score": 0,
+          "display_value": null,
+          "items": [
+            {
+              "selector": "div.col-6 > div.header-buttons > div.user-button > a.login-register",
+              "snippet": "<a href=\"https://keshavarz20.com/my-account\" class=\"login-register\">",
+              "node_label": "div.col-6 > div.header-buttons > div.user-button > a.login-register"
+            }
+          ]
+        },
+        {
+          "category": "accessibility",
+          "id": "meta-viewport",
+          "title": "`[user-scalable=\"no\"]` is used in the `<meta name=\"viewport\">` element or the `[maximum-scale]` attribute is less than 5.",
+          "score": 0,
+          "display_value": null,
+          "items": [
+            {
+              "selector": "head > meta",
+              "snippet": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, …\">",
+              "node_label": "head > meta"
+            }
+          ]
+        },
+        {
+          "category": "accessibility",
+          "id": "target-size",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "score": 0,
+          "display_value": null,
+          "items": [
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot active\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot active\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "node_label": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+            }
+          ]
+        },
+        {
+          "category": "best-practices",
+          "id": "image-aspect-ratio",
+          "title": "Displays images with incorrect aspect ratio",
+          "score": 0,
+          "display_value": null,
+          "items": [
+            {
+              "selector": "div.column-summary > div.summary > div.warranty-message > img.entered",
+              "snippet": "<img data-lazyloaded=\"1\" src=\"https://keshavarz20.com/wp-content/uploads/2024/06/گارانتی.png\" data-src=\"https://keshavarz20.com/wp-content/uploads/2024/06/گارانتی.png\" alt=\"گارانتی\" style=\"margin-right: 10px; width: 32px; height: 32px;\" width=\"218\" height=\"240\" data-ll-status=\"loaded\" class=\"entered litespeed-loaded\">",
+              "node_label": "گارانتی",
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/06/%DA%AF%D8%A7%D8%B1%D8%A7%D9%86%D8%AA%DB%8C.png"
+            }
+          ]
+        },
+        {
+          "category": "best-practices",
+          "id": "image-size-responsive",
+          "title": "Serves images with low resolution",
+          "score": 0,
+          "display_value": null,
+          "items": [
+            {
+              "selector": "div.row > div.col-12 > a.site-logo > img.logo-mobile",
+              "snippet": "<img width=\"50\" height=\"50\" src=\"https://keshavarz20.com/wp-content/uploads/2024/05/لوگو-2-کشاورز20-.png\" class=\"logo-mobile img-fluid\" alt=\"لوگوی فروشگاه کشاورز بیست\" decoding=\"async\">",
+              "node_label": "لوگوی فروشگاه کشاورز بیست",
+              "url": "https://keshavarz20.com/wp-content/uploads/2024/05/%D9%84%D9%88%DA%AF%D9%88-2-%DA%A9%D8%B4%D8%A7%D9%88%D8%B1%D8%B220-.png"
+            }
+          ]
+        }
+      ],
+      "lcp_element": [],
+      "layout_shifts": [
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-1-DIV",
+            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV",
+            "selector": "body.rtl > main#main > div.container > div#product-134982",
+            "boundingRect": {
+              "top": 246,
+              "bottom": 3021,
+              "left": 0,
+              "right": 412,
+              "width": 412,
+              "height": 2775
+            },
+            "snippet": "<div id=\"product-134982\" class=\"product type-product post-134982 status-publish first instock product_cat-…\" style=\"transform: none;\">",
+            "nodeLabel": "گارانتی اصالت و سلامت کالا\n\nاتصال ماده آبلوله 75 میلیمتر\nدسته:\nاتصال یکسر ماده …"
+          },
+          "score": 0.283809804905869,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "extra": {
+                  "type": "node",
+                  "lhId": "page-0-IMG",
+                  "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,0,DIV,0,DIV,1,DIV,1,DIV,0,DIV,0,A,0,IMG",
+                  "selector": "div.woocommerce-product-gallery__wrapper > div.woocommerce-product-gallery__image > a > img.wp-post-image",
+                  "boundingRect": {
+                    "top": 320,
+                    "bottom": 692,
+                    "left": 20,
+                    "right": 392,
+                    "width": 372,
+                    "height": 372
+                  },
+                  "snippet": "<img fetchpriority=\"high\" width=\"600\" height=\"600\" src=\"https://keshavarz20.com/wp-content/uploads/2026/09/d8a7d8aad8b5d8a7d984-d9…\" class=\"wp-post-image keshavarz20-product-lcp\" alt=\"اتصال یکسر ماده پلی‌اتیلن ۷۵ میلی‌متر\" data-caption=\"\" data-src=\"https://keshavarz20.com/wp-content/uploads/2026/09/d8a7d8aad8b5d8a7d984-d9…\" data-large_image=\"https://keshavarz20.com/wp-content/uploads/2026/09/d8a7d8aad8b5d8a7d984-d9…\" data-large_image_width=\"600\" data-large_image_height=\"600\" decoding=\"async\" srcset=\"https://keshavarz20.com/wp-content/uploads/2026/09/d8a7d8aad8b5d8a7d984-d9…\" …>",
+                  "nodeLabel": "اتصال یکسر ماده پلی‌اتیلن ۷۵ میلی‌متر"
+                },
+                "cause": "Media element lacking an explicit size"
+              }
+            ]
+          }
+        },
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-5-A",
+            "path": "1,HTML,1,BODY,60,DIV,0,A",
+            "selector": "body.rtl > div.bottom-nav > a.nav-item",
+            "boundingRect": {
+              "top": 769,
+              "bottom": 823,
+              "left": 309,
+              "right": 412,
+              "width": 103,
+              "height": 53
+            },
+            "snippet": "<a href=\"https://keshavarz20.com\" class=\"nav-item \">",
+            "nodeLabel": "صفحه اصلی"
+          },
+          "score": 0.001563537256213143
+        }
+      ],
+      "cls_culprits": [],
+      "non_composited_animations": [
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-27-A",
+            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,8,DIV,0,DIV,0,A",
+            "selector": "div.owl-stage > div.owl-item > div.slider-item > a",
+            "boundingRect": {
+              "top": 2703,
+              "bottom": 2973,
+              "left": -901,
+              "right": -732,
+              "width": 169,
+              "height": 270
+            },
+            "snippet": "<a href=\"https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d8%ac%d9%84%d8%a8%da%a…\">",
+            "nodeLabel": "کود جلبک سوپر (Algae Super) شنژن (Shenzhen)\n5 عدد در انبار\n2%\n1,796,875 \nقیمت ا…"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Property: stroke-dashoffset"
+              }
+            ]
+          }
+        },
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-28-DIV",
+            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,9,DIV,0,DIV,1,DIV",
+            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
+            "boundingRect": {
+              "top": 2699,
+              "bottom": 2737,
+              "left": -1095,
+              "right": -1051,
+              "width": 44,
+              "height": 38
+            },
+            "snippet": "<div class=\"product--actions\">",
+            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Properties: top, left, width"
+              }
+            ]
+          }
+        },
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-30-DIV",
+            "path": "1,HTML,1,BODY,6,MAIN,0,DIV,2,DIV,3,DIV,1,DIV,0,DIV,0,DIV,0,DIV,6,DIV,0,DIV,1,DIV",
+            "selector": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions",
+            "boundingRect": {
+              "top": 2699,
+              "bottom": 2737,
+              "left": -537,
+              "right": -493,
+              "width": 44,
+              "height": 38
+            },
+            "snippet": "<div class=\"product--actions\">",
+            "nodeLabel": "div.owl-stage > div.owl-item > div.slider-item > div.product--actions"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Properties: right, top, width"
+              }
+            ]
+          }
+        },
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-15-path",
+            "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,1,path",
+            "selector": "div.toast-content > div > svg > path.checkmark-check",
+            "boundingRect": {
+              "top": 1605,
+              "bottom": 1611,
+              "left": 296,
+              "right": 305,
+              "width": 9,
+              "height": 6
+            },
+            "snippet": "<path class=\"checkmark-check\" fill=\"none\" d=\"M14.1 27.2l7.1 7.2 16.7-16.8\">",
+            "nodeLabel": "div.toast-content > div > svg > path.checkmark-check"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Property: stroke-dashoffset",
+                "animation": "stroke"
+              }
+            ]
+          }
+        }
+      ],
+      "unsized_images": [
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-214-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,1,SECTION,2,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 1268,
+              "bottom": 1280,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🔁\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg\">",
+            "nodeLabel": "🔁"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-215-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,3,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 1775,
+              "bottom": 1787,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"📸\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg\">",
+            "nodeLabel": "📸"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-216-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,6,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 1909,
+              "bottom": 1921,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"✅\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg\">",
+            "nodeLabel": "✅"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-217-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,9,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 2043,
+              "bottom": 2055,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🚚\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg\">",
+            "nodeLabel": "🚚"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f50e.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-218-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,12,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 2177,
+              "bottom": 2189,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🔎\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f50e.svg\">",
+            "nodeLabel": "🔎"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-219-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,3,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 3783,
+              "bottom": 3795,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🔁\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg\">",
+            "nodeLabel": "🔁"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4e6.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-220-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,6,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 3917,
+              "bottom": 3929,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"📦\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f4e6.svg\">",
+            "nodeLabel": "📦"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-221-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,9,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 4051,
+              "bottom": 4063,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"📸\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg\">",
+            "nodeLabel": "📸"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-222-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,3,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 6468,
+              "bottom": 6480,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"📸\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg\">",
+            "nodeLabel": "📸"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-223-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,6,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 6602,
+              "bottom": 6614,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"✅\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg\">",
+            "nodeLabel": "✅"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-224-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,9,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 6736,
+              "bottom": 6748,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"🚚\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg\">",
+            "nodeLabel": "🚚"
+          }
+        },
+        {
+          "url": "https://s.w.org/images/core/emoji/17.0.2/svg/260e.svg",
+          "node": {
+            "type": "node",
+            "lhId": "1-225-IMG",
+            "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,12,IMG",
+            "selector": "div.rules-content > section > section > img.emoji",
+            "boundingRect": {
+              "top": 6870,
+              "bottom": 6882,
+              "left": 370,
+              "right": 382,
+              "width": 12,
+              "height": 12
+            },
+            "snippet": "<img draggable=\"false\" role=\"img\" class=\"emoji\" alt=\"☎️\" src=\"https://s.w.org/images/core/emoji/17.0.2/svg/260e.svg\">",
+            "nodeLabel": "☎️"
+          }
+        }
+      ],
+      "render_blocking": [],
+      "unused_css_items": [
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/css/62bccd5cbc3fa81af8e3db4ca4b9cbd8.css?ver=dc04d",
+          "wastedBytes": 18570,
+          "wastedPercent": 100,
+          "totalBytes": 18570
+        },
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/css/9c13dae17cf8ea20906a1f183d051600.css?ver=846ee",
+          "wastedBytes": 18416,
+          "wastedPercent": 83.46680168956281,
+          "totalBytes": 22064
+        },
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/css/6c6e99777b208fdc2e0d8d3666a7bcc9.css?ver=5f774",
+          "wastedBytes": 17898,
+          "wastedPercent": 99.28537940244647,
+          "totalBytes": 18027
+        },
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/css/7e0c89866ae4250b859a08a1e4310da4.css?ver=a8667",
+          "wastedBytes": 17566,
+          "wastedPercent": 88.42408704653234,
+          "totalBytes": 19866
+        }
+      ],
+      "unused_js_items": [
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+          "totalBytes": 196575,
+          "wastedBytes": 76916,
+          "wastedPercent": 39.12819951507673
+        }
+      ],
+      "long_tasks": [
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+          "duration": 181,
+          "startTime": 5131.654999999999
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 142,
+          "startTime": 7659.0505926361075
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+          "duration": 141,
+          "startTime": 4990.654999999999
+        },
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/js/cc20a965911f0e0c941a624febd1e51f.js?ver=ab876",
+          "duration": 78,
+          "startTime": 7252.936592636108
+        },
+        {
+          "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "duration": 77,
+          "startTime": 2117.9970000000003
+        },
+        {
+          "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "duration": 65.00000000000023,
+          "startTime": 2032.997
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 65,
+          "startTime": 7801.0505926361075
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-TKWY8X1PSM",
+          "duration": 62,
+          "startTime": 7565.0505926361075
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 61,
+          "startTime": 7899.0505926361075
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 59,
+          "startTime": 3819.682592636109
+        },
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/js/6d34fb03e431748cf236d80c04d2fc0a.js?ver=2fc0a",
+          "duration": 52,
+          "startTime": 6940.822592636108
+        }
+      ],
+      "mainthread_work": [
+        {
+          "group": "other",
+          "groupLabel": "Other",
+          "duration": 1106.6439999999798
+        },
+        {
+          "group": "scriptEvaluation",
+          "groupLabel": "Script Evaluation",
+          "duration": 978.4399999999961
+        },
+        {
+          "group": "styleLayout",
+          "groupLabel": "Style & Layout",
+          "duration": 930.5119999999871
+        },
+        {
+          "group": "scriptParseCompile",
+          "groupLabel": "Script Parsing & Compilation",
+          "duration": 200.25999999999996
+        },
+        {
+          "group": "paintCompositeRender",
+          "groupLabel": "Rendering",
+          "duration": 194.86399999999887
+        },
+        {
+          "group": "parseHTML",
+          "groupLabel": "Parse HTML & CSS",
+          "duration": 171.88400000000007
+        },
+        {
+          "group": "garbageCollection",
+          "groupLabel": "Garbage Collection",
+          "duration": 47.14400000000001
+        }
+      ],
+      "font_display": [],
+      "image_delivery": [],
+      "modern_image_formats": []
+    },
+    "summary": {
+      "successful_runs": 3,
+      "performance": {
+        "median": 47.0,
+        "min": 47.0,
+        "max": 48.0
+      },
+      "accessibility": {
+        "median": 79.0,
+        "min": 79.0,
+        "max": 79.0
+      },
+      "best_practices": {
+        "median": 92.0,
+        "min": 92.0,
+        "max": 92.0
+      },
+      "seo": {
+        "median": 100.0,
+        "min": 100.0,
+        "max": 100.0
+      },
+      "lcp_ms": {
+        "median": 4663.450999999999,
+        "min": 4612.932999999999,
+        "max": 4677.692
+      },
+      "cls": {
+        "median": 0.28537334216208216,
+        "min": 0.28537334216208216,
+        "max": 0.28537334216208216
+      },
+      "tbt_ms": {
+        "median": 303.5,
+        "min": 298.5,
+        "max": 312.0
+      },
+      "ttfb_ms": {
+        "median": 5958.0,
+        "min": 5942.0,
+        "max": 6159.0
+      },
+      "total_bytes": {
+        "median": 1016888.0,
+        "min": 1016802.0,
+        "max": 1016902.0
+      }
+    }
+  },
+  "after_accessibility": {
+    "scores": [
+      79,
+      79,
+      79
+    ],
+    "shared_renderer_audits": [
+      "button-name",
+      "link-name",
+      "meta-viewport",
+      "target-size"
+    ],
+    "product_scoped_audits": [
+      "color-contrast"
+    ],
+    "mixed_or_unknown_audits": [],
+    "failing_audit_ids": [
+      "button-name",
+      "color-contrast",
+      "link-name",
+      "meta-viewport",
+      "target-size"
+    ]
+  },
+  "acceptance": {
+    "ok": false,
+    "reasons": [
+      "performance median below 92",
+      "performance run below 91",
+      "accessibility median below 92",
+      "accessibility run below 91",
+      "LCP median above gate",
+      "CLS run above gate",
+      "TBT median above gate"
+    ],
+    "summary": {
+      "successful_runs": 3,
+      "performance": {
+        "median": 47.0,
+        "min": 47.0,
+        "max": 48.0
+      },
+      "accessibility": {
+        "median": 79.0,
+        "min": 79.0,
+        "max": 79.0
+      },
+      "best_practices": {
+        "median": 92.0,
+        "min": 92.0,
+        "max": 92.0
+      },
+      "seo": {
+        "median": 100.0,
+        "min": 100.0,
+        "max": 100.0
+      },
+      "lcp_ms": {
+        "median": 4663.450999999999,
+        "min": 4612.932999999999,
+        "max": 4677.692
+      },
+      "cls": {
+        "median": 0.28537334216208216,
+        "min": 0.28537334216208216,
+        "max": 0.28537334216208216
+      },
+      "tbt_ms": {
+        "median": 303.5,
+        "min": 298.5,
+        "max": 312.0
+      },
+      "ttfb_ms": {
+        "median": 5958.0,
+        "min": 5942.0,
+        "max": 6159.0
+      },
+      "total_bytes": {
+        "median": 1016888.0,
+        "min": 1016802.0,
+        "max": 1016902.0
+      }
+    }
+  },
+  "regressions": [],
+  "blocker": "performance median below 92; performance run below 91; accessibility median below 92; accessibility run below 91; LCP median above gate; CLS run above gate; TBT median above gate",
+  "after_media": [
+    {
+      "role": "featured",
+      "attachment_id": 144292,
+      "src": "https://keshavarz20.com/wp-content/uploads/2026/09/d8a7d8aad8b5d8a7d984-d985d8a7d8afd987-d8a2d8a8d984d988d984d987-75-d985db8cd984db8cd985d8aad8b1-139863.webp",
+      "alt": "اتصال یکسر ماده پلی‌اتیلن ۷۵ میلی‌متر"
+    }
+  ],
+  "finished_at": "2026-10-01T09:28:36.388159+00:00"
 }
