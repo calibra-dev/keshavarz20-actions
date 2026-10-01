@@ -80,8 +80,8 @@ final class K20_Bridge_V33_Performance {
         do_action('litespeed_control_set_ttl', 300, $reason);
 
         if (!headers_sent()) {
-            header('X-K20-WC-Cache-Compat: 3.3.29');
-            header('X-K20-Canary-Guard: 3.3.29');
+            header('X-K20-WC-Cache-Compat: 3.3.30');
+            header('X-K20-Canary-Guard: 3.3.30');
         }
     }
 
@@ -118,7 +118,7 @@ final class K20_Bridge_V33_Performance {
         $headers['X-K20-LS-Cacheable'] = apply_filters('litespeed_control_cacheable', false) ? '1' : '0';
         $headers['X-K20-WC-Notices'] = function_exists('wc_notice_count') ? (string) wc_notice_count() : 'na';
         $headers['X-K20-ESI'] = apply_filters('litespeed_esi_status', false) ? '1' : '0';
-        $headers['X-K20-DONOTCACHE-Override'] = 'scoped-3.3.29';
+        $headers['X-K20-DONOTCACHE-Override'] = 'scoped-3.3.30';
         return $headers;
     }
 
@@ -226,7 +226,7 @@ final class K20_Bridge_V33_Performance {
         // to the verified canary product and only to anonymous GET/HEAD requests without
         // cart/session/login cookies. "woocommerce_recently_viewed" is not private state.
         $reason = 'K20 product 134980 safe anonymous canary';
-        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.29');
+        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.30');
         do_action('litespeed_control_force_cacheable', $reason);
         do_action('litespeed_control_force_public', $reason);
         do_action('litespeed_control_set_ttl', 300, $reason);
@@ -541,6 +541,7 @@ final class K20_Bridge_V33_Performance {
         $verified_unused = [
             '62bccd5cbc3fa81af8e3db4ca4b9cbd8.css',
             '6c6e99777b208fdc2e0d8d3666a7bcc9.css',
+            '9c13dae17cf8ea20906a1f183d051600.css',
         ];
 
         foreach ($verified_unused as $fragment) {
