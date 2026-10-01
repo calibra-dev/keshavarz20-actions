@@ -10,6 +10,8 @@ from pathlib import Path
 import requests
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from k20_sanitizer import sanitize_image_file, sanitize_text
 ENGINE = ROOT / "phase15-video-engine"
 sys.path.insert(0, str(ENGINE))
 
@@ -62,9 +64,11 @@ def main() -> int:
         if transcript != expected_transcript:
             raise RuntimeError(f"transcript mismatch for episode {number}")
 
-        title = f"{parsed[number].title} | کشاورز بیست"
+        sanitize_image_file(out_dir / "thumbnail.jpg")
+        title = sanitize_text(f"{parsed[number].title} | کشاورز بیست")
+        thumb_title = sanitize_text(f"کاور ویدئو: {parsed[number].title}")
         video = upload_media(out_dir / "video.mp4", title)
-        thumb = upload_media(out_dir / "thumbnail.jpg", f"کاور ویدئو: {parsed[number].title}")
+        thumb = upload_media(out_dir / "thumbnail.jpg", thumb_title)
 
         video_probe = verify_public(str(video["source_url"]), "video/")
         thumb_probe = verify_public(str(thumb["source_url"]), "image/")
@@ -83,9 +87,10 @@ def main() -> int:
             "duration_seconds": meta.get("duration_seconds"),
             "video_sha256": meta.get("video_sha256"),
             "publication_date": datetime.now(timezone.utc).date().isoformat(),
-            "title": parsed[number].title,
-            "description": " ".join([parsed[number].hook, parsed[number].body]).strip(),
-            "transcript": expected_transcript,
+            "title": sanitize_text(parsed[number].title),
+            "description": sanitize_text(" ".join([parsed[number].hook, parsed[number].body]).strip()),
+            "transcript": sanitize_text(expected_transcript),
+            "sanitizer": {"thumbnail_metadata_clean": True, "text_hidden_artifacts_clean": True},
             "video_probe": video_probe,
             "thumbnail_probe": thumb_probe,
         })
