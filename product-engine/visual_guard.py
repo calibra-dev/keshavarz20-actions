@@ -22,8 +22,8 @@ def compare(before_product: dict[str,Any], after_product: dict[str,Any], html_be
     after_images=[int(x.get("id") or 0) for x in (after_product.get("images") or [])]
     if len(before_images)!=len(after_images):
         issues.append("product image slot count changed")
-    h1_before=len(re.findall(r"<h1\\b",html_before or "",re.I))
-    h1_after=len(re.findall(r"<h1\\b",html_after or "",re.I))
+    h1_before=len(re.findall(r"<h1\b",html_before or "",re.I))
+    h1_after=len(re.findall(r"<h1\b",html_after or "",re.I))
     if h1_before!=h1_after:
         issues.append(f"H1 count changed {h1_before}->{h1_after}")
     for token in ("status","type"):
