@@ -5,9 +5,6 @@ on:
     branches: [main]
     paths:
       - 'phase12-ops/apply-*.json'
-      - 'scripts/k20_phase12_category_decision.py'
-      - 'phase12-input/category-decision-modules-20261001.json'
-      - '.github/workflows/k20-phase12-category-decision.yml'
 
 permissions:
   contents: write
