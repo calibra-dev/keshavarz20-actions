@@ -1,0 +1,12 @@
+{
+  "action": "content.patch",
+  "request_id": "20261001-p14-fix-growthos-proforma",
+  "payload": {
+    "target_type": "post",
+    "post_id": 145286,
+    "field": "post_content",
+    "old_content": "if(item && Object.prototype.toString.call(item)==='[object Object]' && /^growthos_/.test(String(item.event||''))){",
+    "new_content": "if(item ? (Object.prototype.toString.call(item)==='[object Object]' ? /^growthos_/.test(String(item.event||'')) : false) : false){",
+    "expected_sha256": "fecd2b75b3dc6fcd3bf23fae3c1129f07d7f802cc40bdf69289e19772bd645ed"
+  }
+}
