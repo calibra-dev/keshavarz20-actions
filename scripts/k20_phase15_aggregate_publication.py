@@ -93,27 +93,37 @@ def main() -> int:
             if x.get("status")=="public_ready" and x.get("episode"):
                 rows[int(x["episode"])]=x
 
-    family=json.loads((ROOT/"phase15-video-results/k21-top30-family-videos.json").read_text(encoding="utf-8"))
-    for episode,key in EXISTING_FAMILY_EPISODES.items():
-        f=family["families"][key]
-        video_url=f["video"]["source_url"]
-        thumb_url=f["thumbnail"]["source_url"]
-        rows[episode]={
-            "episode":episode,
-            "status":"public_ready_reused",
-            "product_id":f.get("source_product_id"),
-            "source_product_id":f.get("source_product_id"),
-            "source_product_url":f.get("source_product_url"),
-            "video_media_id":f["video"].get("id"),
-            "video_url":video_url,
-            "thumbnail_media_id":f["thumbnail"].get("id"),
-            "thumbnail_url":thumb_url,
-            "duration_seconds":f.get("duration_seconds"),
-            "video_sha256":f.get("video_sha256"),
-            "publication_date":"2026-09-23",
-            "video_probe":verify(video_url,"video/"),
-            "thumbnail_probe":verify(thumb_url,"image/"),
-        }
+    # Historical family assets are a fallback only. New verified shard data always wins.
+    family_path=ROOT/"phase15-video-results/k21-top30-family-videos.json"
+    if family_path.exists():
+        family=json.loads(family_path.read_text(encoding="utf-8"))
+        for episode,key in EXISTING_FAMILY_EPISODES.items():
+            if episode in rows:
+                continue
+            f=family["families"][key]
+            video_url=f["video"]["source_url"]
+            thumb_url=f["thumbnail"]["source_url"]
+            try:
+                video_probe=verify(video_url,"video/")
+                thumb_probe=verify(thumb_url,"image/")
+            except Exception:
+                continue
+            rows[episode]={
+                "episode":episode,
+                "status":"public_ready_reused",
+                "product_id":f.get("source_product_id"),
+                "source_product_id":f.get("source_product_id"),
+                "source_product_url":f.get("source_product_url"),
+                "video_media_id":f["video"].get("id"),
+                "video_url":video_url,
+                "thumbnail_media_id":f["thumbnail"].get("id"),
+                "thumbnail_url":thumb_url,
+                "duration_seconds":f.get("duration_seconds"),
+                "video_sha256":f.get("video_sha256"),
+                "publication_date":"2026-09-23",
+                "video_probe":video_probe,
+                "thumbnail_probe":thumb_probe,
+            }
 
     missing=[n for n in range(1,21) if n not in rows]
     if missing:
@@ -173,8 +183,8 @@ def main() -> int:
         "ok":True,
         "generated_at_utc":datetime.now(timezone.utc).isoformat(),
         "public_ready":20,
-        "reused_public_episodes":sorted(EXISTING_FAMILY_EPISODES),
-        "new_public_episodes":sorted(set(range(1,21))-set(EXISTING_FAMILY_EPISODES)),
+        "reused_public_episodes":sorted(n for n in EXISTING_FAMILY_EPISODES if rows[n].get("status")=="public_ready_reused"),
+        "new_public_episodes":sorted(n for n in range(1,21) if rows[n].get("status")!="public_ready_reused"),
         "landing_groups":list(landing_groups.values()),
         "episodes":episodes,
     }
