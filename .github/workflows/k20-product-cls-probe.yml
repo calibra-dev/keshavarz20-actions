@@ -164,7 +164,9 @@ jobs:
           driver.quit()
 
           total=sum(float(x.get("value") or 0) for x in shifts)
-          out={"url":url,"http":http,"cls_total":total,"shifts":shifts,"lcp":lcp,"resources":resources,"page":metrics}
+          lcp_urls={str(x.get("url") or x.get("src") or "") for x in lcp if (x.get("url") or x.get("src"))}
+          lcp_resources=[x for x in resources if str(x.get("name") or "") in lcp_urls]
+          out={"url":url,"http":http,"cls_total":total,"shifts":shifts,"lcp":lcp,"lcp_resources":lcp_resources,"resources":resources,"page":metrics}
           path=pathlib.Path("product-engine/probe-output/134980-cls.json")
           path.write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
           print(json.dumps({
@@ -172,6 +174,7 @@ jobs:
               "shift_count":len(shifts),
               "top_shifts":sorted(shifts,key=lambda x:x.get("value",0),reverse=True)[:5],
               "lcp":lcp[-5:],
+              "lcp_resources":lcp_resources,
               "slow_resources":resources[:15],
               "page":metrics
           },ensure_ascii=False))
