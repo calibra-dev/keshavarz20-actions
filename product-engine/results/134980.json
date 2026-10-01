@@ -1,8 +1,8 @@
 {
   "schema_version": "product-queue-result-v2",
-  "queue_file": "product-engine/queue/2026-10-01-product-134980-v2-after3321.json",
+  "queue_file": "product-engine/queue/2026-10-01-product-134980-v2-after3322.json",
   "product_id": 134980,
-  "started_at": "2026-10-01T05:20:55.519854+00:00",
+  "started_at": "2026-10-01T05:32:21.502149+00:00",
   "status": "PLATFORM_BLOCKED",
   "policy": {
     "content_acceptance": 96,
@@ -72,19 +72,19 @@
     {
       "run": 1,
       "status": 200,
-      "elapsed_ms": 6503.6,
-      "bytes": 401042,
+      "elapsed_ms": 6414.7,
+      "bytes": 401878,
       "cache_control": null,
       "x_litespeed_cache": null,
       "x_litespeed_cache_control": "no-cache,esi=on",
-      "x_k20_canary_guard": "3.3.21",
+      "x_k20_canary_guard": "3.3.22",
       "x_k20_recent_view": "blocked-filter",
-      "x_k20_wc_cache_compat": null,
-      "x_k20_wc_prevent_hook": null,
-      "x_k20_donotcache": null,
-      "x_k20_ls_cacheable": null,
+      "x_k20_wc_cache_compat": "3.3.22",
+      "x_k20_wc_prevent_hook": "removed",
+      "x_k20_donotcache": "0",
+      "x_k20_ls_cacheable": "1",
       "x_litespeed_tag": "92c_product,92c_URL.de3b1bcee07a0e49f2170b45e3a9f814,92c_Po.134980,92c_",
-      "set_cookie": "woocommerce_recently_viewed=134980; path=/; secure",
+      "set_cookie": null,
       "age": null,
       "server": "LiteSpeed",
       "vary": "Accept-Encoding,User-Agent"
@@ -92,19 +92,19 @@
     {
       "run": 2,
       "status": 200,
-      "elapsed_ms": 5930.2,
-      "bytes": 404243,
+      "elapsed_ms": 5639.0,
+      "bytes": 404455,
       "cache_control": null,
       "x_litespeed_cache": null,
       "x_litespeed_cache_control": "no-cache,esi=on",
-      "x_k20_canary_guard": "3.3.21",
+      "x_k20_canary_guard": "3.3.22",
       "x_k20_recent_view": "blocked-filter",
-      "x_k20_wc_cache_compat": null,
-      "x_k20_wc_prevent_hook": null,
-      "x_k20_donotcache": null,
-      "x_k20_ls_cacheable": null,
+      "x_k20_wc_cache_compat": "3.3.22",
+      "x_k20_wc_prevent_hook": "removed",
+      "x_k20_donotcache": "0",
+      "x_k20_ls_cacheable": "1",
       "x_litespeed_tag": "92c_product,92c_URL.de3b1bcee07a0e49f2170b45e3a9f814,92c_Po.134980,92c_",
-      "set_cookie": "woocommerce_recently_viewed=134980; path=/; secure",
+      "set_cookie": null,
       "age": null,
       "server": "LiteSpeed",
       "vary": "Accept-Encoding,User-Agent"
@@ -112,19 +112,19 @@
     {
       "run": 3,
       "status": 200,
-      "elapsed_ms": 6017.9,
-      "bytes": 403421,
+      "elapsed_ms": 6133.8,
+      "bytes": 400037,
       "cache_control": null,
       "x_litespeed_cache": null,
       "x_litespeed_cache_control": "no-cache,esi=on",
-      "x_k20_canary_guard": "3.3.21",
+      "x_k20_canary_guard": "3.3.22",
       "x_k20_recent_view": "blocked-filter",
-      "x_k20_wc_cache_compat": null,
-      "x_k20_wc_prevent_hook": null,
-      "x_k20_donotcache": null,
-      "x_k20_ls_cacheable": null,
+      "x_k20_wc_cache_compat": "3.3.22",
+      "x_k20_wc_prevent_hook": "removed",
+      "x_k20_donotcache": "0",
+      "x_k20_ls_cacheable": "1",
       "x_litespeed_tag": "92c_product,92c_URL.de3b1bcee07a0e49f2170b45e3a9f814,92c_Po.134980,92c_",
-      "set_cookie": "woocommerce_recently_viewed=134980; path=/; secure",
+      "set_cookie": null,
       "age": null,
       "server": "LiteSpeed",
       "vary": "Accept-Encoding,User-Agent"
@@ -133,63 +133,63 @@
   "baseline_performance": {
     "samples": [
       {
-        "performance": 51,
+        "performance": 55,
         "accessibility": 96,
         "best_practices": 100,
         "seo": 100,
-        "fcp_ms": 2946.738,
-        "lcp_ms": 3829.6989999999996,
-        "speed_index_ms": 11618.26001280145,
-        "tbt_ms": 377.5,
+        "fcp_ms": 2971.6730000000007,
+        "lcp_ms": 3295.669500000001,
+        "speed_index_ms": 12007.412010170641,
+        "tbt_ms": 353,
         "cls": 0.283809804905869,
-        "ttfb_ms": 5394,
-        "total_bytes": 695776,
+        "ttfb_ms": 5890,
+        "total_bytes": 695856,
         "unused_css": "Est savings of 71 KiB",
         "unused_js": ""
       },
       {
-        "performance": 61,
+        "performance": 62,
         "accessibility": 96,
         "best_practices": 100,
         "seo": 100,
-        "fcp_ms": 2952.2789999999995,
-        "lcp_ms": 3574.0689999999995,
-        "speed_index_ms": 12758.498163486322,
-        "tbt_ms": 68,
+        "fcp_ms": 2922.9720000000007,
+        "lcp_ms": 3336.938,
+        "speed_index_ms": 10942.022760571821,
+        "tbt_ms": 113.5,
         "cls": 0.283809804905869,
-        "ttfb_ms": 6298,
-        "total_bytes": 696006,
+        "ttfb_ms": 5323,
+        "total_bytes": 695835,
         "unused_css": "Est savings of 71 KiB",
         "unused_js": ""
       },
       {
-        "performance": 60,
+        "performance": 62,
         "accessibility": 96,
         "best_practices": 100,
         "seo": 100,
-        "fcp_ms": 2948.392,
-        "lcp_ms": 3735.432,
-        "speed_index_ms": 11466.424736497278,
-        "tbt_ms": 76,
+        "fcp_ms": 3058.147000000001,
+        "lcp_ms": 3341.8980000000006,
+        "speed_index_ms": 11535.647689006775,
+        "tbt_ms": 95,
         "cls": 0.283809804905869,
-        "ttfb_ms": 5335,
-        "total_bytes": 696007,
+        "ttfb_ms": 5464,
+        "total_bytes": 695692,
         "unused_css": "Est savings of 71 KiB",
         "unused_js": ""
       }
     ],
     "representative": {
-      "performance": 60,
+      "performance": 62,
       "accessibility": 96,
       "best_practices": 100,
       "seo": 100,
-      "fcp_ms": 2948.392,
-      "lcp_ms": 3735.432,
-      "speed_index_ms": 11466.424736497278,
-      "tbt_ms": 76,
+      "fcp_ms": 2922.9720000000007,
+      "lcp_ms": 3336.938,
+      "speed_index_ms": 10942.022760571821,
+      "tbt_ms": 113.5,
       "cls": 0.283809804905869,
-      "ttfb_ms": 5335,
-      "total_bytes": 696007,
+      "ttfb_ms": 5323,
+      "total_bytes": 695835,
       "unused_css": "Est savings of 71 KiB",
       "unused_js": ""
     },
@@ -198,35 +198,35 @@
       {
         "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
         "resource_type": "Document",
-        "transfer_size": 62329,
-        "resource_size": 357978,
+        "transfer_size": 62105,
+        "resource_size": 354146,
         "priority": "VeryHigh"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
         "resource_type": "Script",
-        "transfer_size": 61356,
+        "transfer_size": 61378,
         "resource_size": 252309,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-direct-a143246.webp",
         "resource_type": "Image",
-        "transfer_size": 57903,
+        "transfer_size": 57894,
         "resource_size": 57774,
         "priority": "High"
       },
       {
         "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebregularfanum.woff",
         "resource_type": "Font",
-        "transfer_size": 33715,
+        "transfer_size": 33716,
         "resource_size": 33585,
         "priority": "VeryHigh"
       },
       {
         "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebboldfanum.woff",
         "resource_type": "Font",
-        "transfer_size": 33661,
+        "transfer_size": 33670,
         "resource_size": 33581,
         "priority": "VeryHigh"
       },
@@ -254,7 +254,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/uploads/2026/09/d8a7d8aad8b5d8a7d984-d985d8a7d8afd987-d8a2d8a8d984d988d984d987-32-d985db8cd984db8cd985d8aad8b1-139862.webp",
         "resource_type": "Image",
-        "transfer_size": 23884,
+        "transfer_size": 23885,
         "resource_size": 23780,
         "priority": "High"
       },
@@ -289,56 +289,56 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/css/6c6e99777b208fdc2e0d8d3666a7bcc9.css?ver=5f774",
         "resource_type": "Stylesheet",
-        "transfer_size": 18081,
+        "transfer_size": 18104,
         "resource_size": 140774,
         "priority": "VeryHigh"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/a1548c83adc2678218fff1bf8a308b0d.js?ver=2c37a",
         "resource_type": "Script",
-        "transfer_size": 17815,
+        "transfer_size": 17816,
         "resource_size": 77853,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/81a58d62acc2bda2575a4119ca64c006.js?ver=f4a3e",
         "resource_type": "Script",
-        "transfer_size": 16367,
+        "transfer_size": 16384,
         "resource_size": 81174,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/69b68c538bdec1627dd4aa6c47bf660b.js?ver=f660b",
         "resource_type": "Script",
-        "transfer_size": 13251,
+        "transfer_size": 13250,
         "resource_size": 54523,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/9ef702f93cda38d01dd013f772f7c746.js?ver=4e13e",
         "resource_type": "Script",
-        "transfer_size": 11715,
+        "transfer_size": 11716,
         "resource_size": 31627,
         "priority": "Low"
       },
       {
         "url": "https://keshavarz20.com/wp-content/uploads/2025/11/cropped-logo-deks22-keshavarz20-100x100.png",
         "resource_type": "Image",
-        "transfer_size": 10056,
+        "transfer_size": 10085,
         "resource_size": 9973,
         "priority": "High"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/17ab8d74595c085eb0f60af1b19b14c5.js?ver=b14c5",
         "resource_type": "Script",
-        "transfer_size": 10029,
+        "transfer_size": 10028,
         "resource_size": 36754,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/b60ce8f8cdb2cbf0aeaa486e96347151.js?ver=f5b36",
         "resource_type": "Script",
-        "transfer_size": 9306,
+        "transfer_size": 9307,
         "resource_size": 40071,
         "priority": "Medium"
       },
@@ -366,7 +366,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/71c3ba7f1e2bde5718461357744685d6.js?ver=b8b51",
         "resource_type": "Script",
-        "transfer_size": 6572,
+        "transfer_size": 6595,
         "resource_size": 19875,
         "priority": "Medium"
       }
@@ -436,33 +436,6 @@
           "node": {
             "type": "node",
             "lhId": "page-5-SPAN",
-            "path": "1,HTML,1,BODY,63,DIV,0,DIV,1,DIV,0,DIV,0,DIV,0,SPAN",
-            "selector": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line",
-            "boundingRect": {
-              "top": 964,
-              "bottom": 985,
-              "left": 178,
-              "right": 199,
-              "width": 21,
-              "height": 21
-            },
-            "snippet": "<span class=\"icon-line line-tip\">",
-            "nodeLabel": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Properties: top, left, width",
-                "animation": "icon-line-tip"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
-            "lhId": "page-7-SPAN",
             "path": "1,HTML,1,BODY,63,DIV,0,DIV,1,DIV,0,DIV,0,DIV,1,SPAN",
             "selector": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line",
             "boundingRect": {
@@ -489,7 +462,34 @@
         {
           "node": {
             "type": "node",
-            "lhId": "page-8-circle",
+            "lhId": "page-7-path",
+            "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,1,path",
+            "selector": "div.toast-content > div > svg > path.checkmark-check",
+            "boundingRect": {
+              "top": 1605,
+              "bottom": 1611,
+              "left": 296,
+              "right": 305,
+              "width": 9,
+              "height": 6
+            },
+            "snippet": "<path class=\"checkmark-check\" fill=\"none\" d=\"M14.1 27.2l7.1 7.2 16.7-16.8\">",
+            "nodeLabel": "div.toast-content > div > svg > path.checkmark-check"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Property: stroke-dashoffset",
+                "animation": "stroke"
+              }
+            ]
+          }
+        },
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-9-circle",
             "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,0,circle",
             "selector": "div.toast-content > div > svg > circle.checkmark-circle",
             "boundingRect": {
@@ -516,26 +516,26 @@
         {
           "node": {
             "type": "node",
-            "lhId": "page-12-path",
-            "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,1,path",
-            "selector": "div.toast-content > div > svg > path.checkmark-check",
+            "lhId": "page-12-SPAN",
+            "path": "1,HTML,1,BODY,63,DIV,0,DIV,1,DIV,0,DIV,0,DIV,0,SPAN",
+            "selector": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line",
             "boundingRect": {
-              "top": 1605,
-              "bottom": 1611,
-              "left": 296,
-              "right": 305,
-              "width": 9,
-              "height": 6
+              "top": 964,
+              "bottom": 985,
+              "left": 178,
+              "right": 199,
+              "width": 21,
+              "height": 21
             },
-            "snippet": "<path class=\"checkmark-check\" fill=\"none\" d=\"M14.1 27.2l7.1 7.2 16.7-16.8\">",
-            "nodeLabel": "div.toast-content > div > svg > path.checkmark-check"
+            "snippet": "<span class=\"icon-line line-tip\">",
+            "nodeLabel": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line"
           },
           "subItems": {
             "type": "subitems",
             "items": [
               {
-                "failureReason": "Unsupported CSS Property: stroke-dashoffset",
-                "animation": "stroke"
+                "failureReason": "Unsupported CSS Properties: top, left, width",
+                "animation": "icon-line-tip"
               }
             ]
           }
@@ -546,7 +546,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg",
           "node": {
             "type": "node",
-            "lhId": "1-204-IMG",
+            "lhId": "1-202-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,1,SECTION,2,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -565,7 +565,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
           "node": {
             "type": "node",
-            "lhId": "1-205-IMG",
+            "lhId": "1-203-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,3,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -584,7 +584,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg",
           "node": {
             "type": "node",
-            "lhId": "1-206-IMG",
+            "lhId": "1-204-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,6,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -603,7 +603,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg",
           "node": {
             "type": "node",
-            "lhId": "1-207-IMG",
+            "lhId": "1-205-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,9,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -622,7 +622,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f50e.svg",
           "node": {
             "type": "node",
-            "lhId": "1-208-IMG",
+            "lhId": "1-206-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,12,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -641,7 +641,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg",
           "node": {
             "type": "node",
-            "lhId": "1-209-IMG",
+            "lhId": "1-207-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,3,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -660,7 +660,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4e6.svg",
           "node": {
             "type": "node",
-            "lhId": "1-210-IMG",
+            "lhId": "1-208-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,6,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -679,7 +679,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
           "node": {
             "type": "node",
-            "lhId": "1-211-IMG",
+            "lhId": "1-209-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,9,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -698,7 +698,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
           "node": {
             "type": "node",
-            "lhId": "1-212-IMG",
+            "lhId": "1-210-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,3,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -717,7 +717,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg",
           "node": {
             "type": "node",
-            "lhId": "1-213-IMG",
+            "lhId": "1-211-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,6,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -736,7 +736,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg",
           "node": {
             "type": "node",
-            "lhId": "1-214-IMG",
+            "lhId": "1-212-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,9,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -755,7 +755,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/260e.svg",
           "node": {
             "type": "node",
-            "lhId": "1-215-IMG",
+            "lhId": "1-213-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,12,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -802,65 +802,80 @@
       "long_tasks": [
         {
           "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "duration": 164,
-          "startTime": 5699.440592636109
+          "duration": 194,
+          "startTime": 5416.12559263611
         },
         {
           "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-          "duration": 70,
-          "startTime": 2255.4889999999996
+          "duration": 93,
+          "startTime": 2033.04
+        },
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/js/4a54697855cb2b79d36f91c7c978e645.js?ver=ac1d8",
+          "duration": 86,
+          "startTime": 5710.12559263611
+        },
+        {
+          "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "duration": 75,
+          "startTime": 1958.04
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 64,
+          "startTime": 5610.12559263611
         },
         {
           "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
           "duration": 58,
-          "startTime": 3576.070592636108
-        },
-        {
-          "url": "https://keshavarz20.com/wp-content/litespeed/js/71c3ba7f1e2bde5718461357744685d6.js?ver=b8b51",
-          "duration": 54,
-          "startTime": 5615.440592636109
+          "startTime": 3496.2615926361086
         },
         {
           "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "duration": 52,
-          "startTime": 5863.440592636109
+          "duration": 57,
+          "startTime": 5796.12559263611
+        },
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
+          "duration": 55,
+          "startTime": 4754.83759263611
         }
       ],
       "mainthread_work": [
         {
           "group": "other",
           "groupLabel": "Other",
-          "duration": 1050.419999999974
+          "duration": 1027.631999999986
         },
         {
           "group": "styleLayout",
           "groupLabel": "Style & Layout",
-          "duration": 768.5159999999776
+          "duration": 1012.5599999999927
         },
         {
           "group": "scriptEvaluation",
           "groupLabel": "Script Evaluation",
-          "duration": 620.6400000000025
+          "duration": 748.1279999999961
         },
         {
           "group": "parseHTML",
           "groupLabel": "Parse HTML & CSS",
-          "duration": 158.49600000000012
+          "duration": 193.42800000000034
         },
         {
           "group": "paintCompositeRender",
           "groupLabel": "Rendering",
-          "duration": 132.37200000000027
+          "duration": 178.05600000000004
         },
         {
           "group": "scriptParseCompile",
           "groupLabel": "Script Parsing & Compilation",
-          "duration": 131.35200000000003
+          "duration": 139.66000000000005
         },
         {
           "group": "garbageCollection",
           "groupLabel": "Garbage Collection",
-          "duration": 31.795999999999975
+          "duration": 15.495999999999992
         }
       ],
       "font_display": [],
@@ -870,9 +885,9 @@
     "summary": {
       "successful_runs": 3,
       "performance": {
-        "median": 60.0,
-        "min": 51.0,
-        "max": 61.0
+        "median": 62.0,
+        "min": 55.0,
+        "max": 62.0
       },
       "accessibility": {
         "median": 96.0,
@@ -890,9 +905,9 @@
         "max": 100.0
       },
       "lcp_ms": {
-        "median": 3735.432,
-        "min": 3574.0689999999995,
-        "max": 3829.6989999999996
+        "median": 3336.938,
+        "min": 3295.669500000001,
+        "max": 3341.8980000000006
       },
       "cls": {
         "median": 0.283809804905869,
@@ -900,19 +915,19 @@
         "max": 0.283809804905869
       },
       "tbt_ms": {
-        "median": 76.0,
-        "min": 68.0,
-        "max": 377.5
+        "median": 113.5,
+        "min": 95.0,
+        "max": 353.0
       },
       "ttfb_ms": {
-        "median": 5394.0,
-        "min": 5335.0,
-        "max": 6298.0
+        "median": 5464.0,
+        "min": 5323.0,
+        "max": 5890.0
       },
       "total_bytes": {
-        "median": 696006.0,
-        "min": 695776.0,
-        "max": 696007.0
+        "median": 695835.0,
+        "min": 695692.0,
+        "max": 695856.0
       }
     }
   },
@@ -1057,19 +1072,19 @@
     {
       "run": 1,
       "status": 200,
-      "elapsed_ms": 6540.2,
-      "bytes": 400821,
+      "elapsed_ms": 7093.8,
+      "bytes": 402093,
       "cache_control": null,
       "x_litespeed_cache": null,
       "x_litespeed_cache_control": "no-cache,esi=on",
-      "x_k20_canary_guard": "3.3.21",
+      "x_k20_canary_guard": "3.3.22",
       "x_k20_recent_view": "blocked-filter",
-      "x_k20_wc_cache_compat": null,
-      "x_k20_wc_prevent_hook": null,
-      "x_k20_donotcache": null,
-      "x_k20_ls_cacheable": null,
+      "x_k20_wc_cache_compat": "3.3.22",
+      "x_k20_wc_prevent_hook": "removed",
+      "x_k20_donotcache": "0",
+      "x_k20_ls_cacheable": "1",
       "x_litespeed_tag": "92c_product,92c_URL.de3b1bcee07a0e49f2170b45e3a9f814,92c_Po.134980,92c_",
-      "set_cookie": "woocommerce_recently_viewed=134980; path=/; secure",
+      "set_cookie": null,
       "age": null,
       "server": "LiteSpeed",
       "vary": "Accept-Encoding,User-Agent"
@@ -1077,19 +1092,19 @@
     {
       "run": 2,
       "status": 200,
-      "elapsed_ms": 6638.4,
-      "bytes": 403324,
+      "elapsed_ms": 6210.7,
+      "bytes": 405538,
       "cache_control": null,
       "x_litespeed_cache": null,
       "x_litespeed_cache_control": "no-cache,esi=on",
-      "x_k20_canary_guard": "3.3.21",
+      "x_k20_canary_guard": "3.3.22",
       "x_k20_recent_view": "blocked-filter",
-      "x_k20_wc_cache_compat": null,
-      "x_k20_wc_prevent_hook": null,
-      "x_k20_donotcache": null,
-      "x_k20_ls_cacheable": null,
+      "x_k20_wc_cache_compat": "3.3.22",
+      "x_k20_wc_prevent_hook": "removed",
+      "x_k20_donotcache": "0",
+      "x_k20_ls_cacheable": "1",
       "x_litespeed_tag": "92c_product,92c_URL.de3b1bcee07a0e49f2170b45e3a9f814,92c_Po.134980,92c_",
-      "set_cookie": "woocommerce_recently_viewed=134980; path=/; secure",
+      "set_cookie": null,
       "age": null,
       "server": "LiteSpeed",
       "vary": "Accept-Encoding,User-Agent"
@@ -1097,19 +1112,19 @@
     {
       "run": 3,
       "status": 200,
-      "elapsed_ms": 5601.8,
-      "bytes": 402350,
+      "elapsed_ms": 6599.5,
+      "bytes": 405749,
       "cache_control": null,
       "x_litespeed_cache": null,
       "x_litespeed_cache_control": "no-cache,esi=on",
-      "x_k20_canary_guard": "3.3.21",
+      "x_k20_canary_guard": "3.3.22",
       "x_k20_recent_view": "blocked-filter",
-      "x_k20_wc_cache_compat": null,
-      "x_k20_wc_prevent_hook": null,
-      "x_k20_donotcache": null,
-      "x_k20_ls_cacheable": null,
+      "x_k20_wc_cache_compat": "3.3.22",
+      "x_k20_wc_prevent_hook": "removed",
+      "x_k20_donotcache": "0",
+      "x_k20_ls_cacheable": "1",
       "x_litespeed_tag": "92c_product,92c_URL.de3b1bcee07a0e49f2170b45e3a9f814,92c_Po.134980,92c_",
-      "set_cookie": "woocommerce_recently_viewed=134980; path=/; secure",
+      "set_cookie": null,
       "age": null,
       "server": "LiteSpeed",
       "vary": "Accept-Encoding,User-Agent"
@@ -1118,63 +1133,63 @@
   "after_performance": {
     "samples": [
       {
-        "performance": 62,
+        "performance": 64,
         "accessibility": 96,
         "best_practices": 100,
         "seo": 100,
-        "fcp_ms": 2744.368,
-        "lcp_ms": 3519.7105,
-        "speed_index_ms": 12134.252602695653,
-        "tbt_ms": 75.5,
+        "fcp_ms": 2906.7530000000006,
+        "lcp_ms": 3189.3700000000003,
+        "speed_index_ms": 11092.524492777211,
+        "tbt_ms": 108.5,
         "cls": 0.283809804905869,
-        "ttfb_ms": 6043,
-        "total_bytes": 695750,
+        "ttfb_ms": 5529,
+        "total_bytes": 695595,
         "unused_css": "Est savings of 71 KiB",
         "unused_js": ""
       },
       {
-        "performance": 61,
+        "performance": 63,
         "accessibility": 96,
         "best_practices": 100,
         "seo": 100,
-        "fcp_ms": 2894.9090000000006,
-        "lcp_ms": 3659.6240000000007,
-        "speed_index_ms": 11467.684227240668,
-        "tbt_ms": 72.5,
+        "fcp_ms": 2752.5360000000005,
+        "lcp_ms": 3482.5860000000002,
+        "speed_index_ms": 10852.636829150886,
+        "tbt_ms": 89.5,
         "cls": 0.283809804905869,
-        "ttfb_ms": 5537,
-        "total_bytes": 695803,
+        "ttfb_ms": 5084,
+        "total_bytes": 695912,
         "unused_css": "Est savings of 71 KiB",
         "unused_js": ""
       },
       {
-        "performance": 60,
+        "performance": 64,
         "accessibility": 96,
         "best_practices": 100,
         "seo": 100,
-        "fcp_ms": 2921.323,
-        "lcp_ms": 3701.9655,
-        "speed_index_ms": 12059.677151134052,
-        "tbt_ms": 70.5,
+        "fcp_ms": 2584.458,
+        "lcp_ms": 3304.5305000000003,
+        "speed_index_ms": 11770.336649037792,
+        "tbt_ms": 110.5,
         "cls": 0.283809804905869,
-        "ttfb_ms": 5622,
-        "total_bytes": 697071,
+        "ttfb_ms": 5960,
+        "total_bytes": 695922,
         "unused_css": "Est savings of 71 KiB",
         "unused_js": ""
       }
     ],
     "representative": {
-      "performance": 61,
+      "performance": 64,
       "accessibility": 96,
       "best_practices": 100,
       "seo": 100,
-      "fcp_ms": 2894.9090000000006,
-      "lcp_ms": 3659.6240000000007,
-      "speed_index_ms": 11467.684227240668,
-      "tbt_ms": 72.5,
+      "fcp_ms": 2584.458,
+      "lcp_ms": 3304.5305000000003,
+      "speed_index_ms": 11770.336649037792,
+      "tbt_ms": 110.5,
       "cls": 0.283809804905869,
-      "ttfb_ms": 5537,
-      "total_bytes": 695803,
+      "ttfb_ms": 5960,
+      "total_bytes": 695922,
       "unused_css": "Est savings of 71 KiB",
       "unused_js": ""
     },
@@ -1183,14 +1198,14 @@
       {
         "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
         "resource_type": "Document",
-        "transfer_size": 62048,
-        "resource_size": 351943,
+        "transfer_size": 62231,
+        "resource_size": 356489,
         "priority": "VeryHigh"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
         "resource_type": "Script",
-        "transfer_size": 61355,
+        "transfer_size": 61372,
         "resource_size": 252309,
         "priority": "Medium"
       },
@@ -1204,7 +1219,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebregularfanum.woff",
         "resource_type": "Font",
-        "transfer_size": 33738,
+        "transfer_size": 33715,
         "resource_size": 33585,
         "priority": "VeryHigh"
       },
@@ -1225,7 +1240,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/uploads/2024/06/%DA%AF%D8%A7%D8%B1%D8%A7%D9%86%D8%AA%DB%8C.png",
         "resource_type": "Image",
-        "transfer_size": 28488,
+        "transfer_size": 28497,
         "resource_size": 28393,
         "priority": "High"
       },
@@ -1246,7 +1261,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/css/9c13dae17cf8ea20906a1f183d051600.css?ver=846ee",
         "resource_type": "Stylesheet",
-        "transfer_size": 22118,
+        "transfer_size": 22119,
         "resource_size": 150098,
         "priority": "VeryHigh"
       },
@@ -1260,14 +1275,14 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/4fe8f127c29828e027ef11d551317262.js?ver=df9fc",
         "resource_type": "Script",
-        "transfer_size": 19215,
+        "transfer_size": 19216,
         "resource_size": 56367,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/css/62bccd5cbc3fa81af8e3db4ca4b9cbd8.css?ver=dc04d",
         "resource_type": "Stylesheet",
-        "transfer_size": 18624,
+        "transfer_size": 18625,
         "resource_size": 277387,
         "priority": "VeryHigh"
       },
@@ -1281,7 +1296,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/a1548c83adc2678218fff1bf8a308b0d.js?ver=2c37a",
         "resource_type": "Script",
-        "transfer_size": 17816,
+        "transfer_size": 17815,
         "resource_size": 77853,
         "priority": "Medium"
       },
@@ -1295,7 +1310,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/69b68c538bdec1627dd4aa6c47bf660b.js?ver=f660b",
         "resource_type": "Script",
-        "transfer_size": 13259,
+        "transfer_size": 13251,
         "resource_size": 54523,
         "priority": "Medium"
       },
@@ -1309,7 +1324,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/uploads/2025/11/cropped-logo-deks22-keshavarz20-100x100.png",
         "resource_type": "Image",
-        "transfer_size": 10064,
+        "transfer_size": 10056,
         "resource_size": 9973,
         "priority": "High"
       },
@@ -1323,21 +1338,21 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/b60ce8f8cdb2cbf0aeaa486e96347151.js?ver=f5b36",
         "resource_type": "Script",
-        "transfer_size": 9329,
+        "transfer_size": 9307,
         "resource_size": 40071,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/291fb7a293d236f8f164f4535f17e96e.js?ver=b0977",
         "resource_type": "Script",
-        "transfer_size": 8471,
+        "transfer_size": 8472,
         "resource_size": 32700,
         "priority": "Medium"
       },
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/95a9006f8e4ffc363679cec5343abfe9.js?ver=6fb11",
         "resource_type": "Script",
-        "transfer_size": 7315,
+        "transfer_size": 7292,
         "resource_size": 19013,
         "priority": "High"
       },
@@ -1351,7 +1366,7 @@
       {
         "url": "https://keshavarz20.com/wp-content/litespeed/js/71c3ba7f1e2bde5718461357744685d6.js?ver=b8b51",
         "resource_type": "Script",
-        "transfer_size": 6572,
+        "transfer_size": 6594,
         "resource_size": 19875,
         "priority": "Medium"
       }
@@ -1420,33 +1435,6 @@
         {
           "node": {
             "type": "node",
-            "lhId": "page-5-path",
-            "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,1,path",
-            "selector": "div.toast-content > div > svg > path.checkmark-check",
-            "boundingRect": {
-              "top": 1605,
-              "bottom": 1611,
-              "left": 296,
-              "right": 305,
-              "width": 9,
-              "height": 6
-            },
-            "snippet": "<path class=\"checkmark-check\" fill=\"none\" d=\"M14.1 27.2l7.1 7.2 16.7-16.8\">",
-            "nodeLabel": "div.toast-content > div > svg > path.checkmark-check"
-          },
-          "subItems": {
-            "type": "subitems",
-            "items": [
-              {
-                "failureReason": "Unsupported CSS Property: stroke-dashoffset",
-                "animation": "stroke"
-              }
-            ]
-          }
-        },
-        {
-          "node": {
-            "type": "node",
             "lhId": "page-6-SPAN",
             "path": "1,HTML,1,BODY,63,DIV,0,DIV,1,DIV,0,DIV,0,DIV,0,SPAN",
             "selector": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line",
@@ -1474,7 +1462,34 @@
         {
           "node": {
             "type": "node",
-            "lhId": "page-7-SPAN",
+            "lhId": "page-8-circle",
+            "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,0,circle",
+            "selector": "div.toast-content > div > svg > circle.checkmark-circle",
+            "boundingRect": {
+              "top": 1598,
+              "bottom": 1618,
+              "left": 291,
+              "right": 310,
+              "width": 19,
+              "height": 19
+            },
+            "snippet": "<circle class=\"checkmark-circle\" cx=\"26\" cy=\"26\" r=\"25\" fill=\"none\">",
+            "nodeLabel": "div.toast-content > div > svg > circle.checkmark-circle"
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "failureReason": "Unsupported CSS Property: stroke-dashoffset",
+                "animation": "stroke"
+              }
+            ]
+          }
+        },
+        {
+          "node": {
+            "type": "node",
+            "lhId": "page-9-SPAN",
             "path": "1,HTML,1,BODY,63,DIV,0,DIV,1,DIV,0,DIV,0,DIV,1,SPAN",
             "selector": "div.modal-content > div.success-checkmark > div.check-icon > span.icon-line",
             "boundingRect": {
@@ -1501,19 +1516,19 @@
         {
           "node": {
             "type": "node",
-            "lhId": "page-10-circle",
-            "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,0,circle",
-            "selector": "div.toast-content > div > svg > circle.checkmark-circle",
+            "lhId": "page-10-path",
+            "path": "1,HTML,1,BODY,62,DIV,0,DIV,0,DIV,1,svg,1,path",
+            "selector": "div.toast-content > div > svg > path.checkmark-check",
             "boundingRect": {
-              "top": 1598,
-              "bottom": 1618,
-              "left": 291,
-              "right": 310,
-              "width": 19,
-              "height": 19
+              "top": 1605,
+              "bottom": 1611,
+              "left": 296,
+              "right": 305,
+              "width": 9,
+              "height": 6
             },
-            "snippet": "<circle class=\"checkmark-circle\" cx=\"26\" cy=\"26\" r=\"25\" fill=\"none\">",
-            "nodeLabel": "div.toast-content > div > svg > circle.checkmark-circle"
+            "snippet": "<path class=\"checkmark-check\" fill=\"none\" d=\"M14.1 27.2l7.1 7.2 16.7-16.8\">",
+            "nodeLabel": "div.toast-content > div > svg > path.checkmark-check"
           },
           "subItems": {
             "type": "subitems",
@@ -1531,7 +1546,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg",
           "node": {
             "type": "node",
-            "lhId": "1-200-IMG",
+            "lhId": "1-202-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,1,SECTION,2,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1550,7 +1565,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
           "node": {
             "type": "node",
-            "lhId": "1-201-IMG",
+            "lhId": "1-203-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,3,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1569,7 +1584,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg",
           "node": {
             "type": "node",
-            "lhId": "1-202-IMG",
+            "lhId": "1-204-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,6,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1588,7 +1603,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg",
           "node": {
             "type": "node",
-            "lhId": "1-203-IMG",
+            "lhId": "1-205-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,9,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1607,7 +1622,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f50e.svg",
           "node": {
             "type": "node",
-            "lhId": "1-204-IMG",
+            "lhId": "1-206-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,2,SECTION,12,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1626,7 +1641,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f501.svg",
           "node": {
             "type": "node",
-            "lhId": "1-205-IMG",
+            "lhId": "1-207-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,3,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1645,7 +1660,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4e6.svg",
           "node": {
             "type": "node",
-            "lhId": "1-206-IMG",
+            "lhId": "1-208-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,6,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1664,7 +1679,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
           "node": {
             "type": "node",
-            "lhId": "1-207-IMG",
+            "lhId": "1-209-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,5,SECTION,9,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1683,7 +1698,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4f8.svg",
           "node": {
             "type": "node",
-            "lhId": "1-208-IMG",
+            "lhId": "1-210-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,3,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1702,7 +1717,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/2705.svg",
           "node": {
             "type": "node",
-            "lhId": "1-209-IMG",
+            "lhId": "1-211-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,6,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1721,7 +1736,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/1f69a.svg",
           "node": {
             "type": "node",
-            "lhId": "1-210-IMG",
+            "lhId": "1-212-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,9,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1740,7 +1755,7 @@
           "url": "https://s.w.org/images/core/emoji/17.0.2/svg/260e.svg",
           "node": {
             "type": "node",
-            "lhId": "1-211-IMG",
+            "lhId": "1-213-IMG",
             "path": "1,HTML,1,BODY,68,DIV,0,DIV,1,DIV,0,DIV,1,DIV,0,DIV,0,SECTION,10,SECTION,12,IMG",
             "selector": "div.rules-content > section > section > img.emoji",
             "boundingRect": {
@@ -1778,8 +1793,8 @@
         },
         {
           "url": "https://keshavarz20.com/wp-content/litespeed/css/7e0c89866ae4250b859a08a1e4310da4.css?ver=a8667",
-          "wastedBytes": 17375,
-          "wastedPercent": 87.45997929756145,
+          "wastedBytes": 17346,
+          "wastedPercent": 87.31734912496088,
           "totalBytes": 19866
         }
       ],
@@ -1787,70 +1802,85 @@
       "long_tasks": [
         {
           "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "duration": 161,
-          "startTime": 5564.398592636107
-        },
-        {
-          "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-          "duration": 68,
-          "startTime": 2211.5370000000003
-        },
-        {
-          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "duration": 62,
-          "startTime": 3496.282592636109
+          "duration": 172,
+          "startTime": 5631.917592636108
         },
         {
           "url": "https://keshavarz20.com/wp-content/litespeed/js/71c3ba7f1e2bde5718461357744685d6.js?ver=b8b51",
+          "duration": 71,
+          "startTime": 5530.917592636108
+        },
+        {
+          "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+          "duration": 70,
+          "startTime": 2107.896
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 60,
+          "startTime": 5803.917592636108
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 57,
+          "startTime": 3641.9975926361085
+        },
+        {
+          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "duration": 55,
+          "startTime": 5896.917592636108
+        },
+        {
+          "url": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
           "duration": 54,
-          "startTime": 5480.398592636107
+          "startTime": 2201.896
+        },
+        {
+          "url": "https://keshavarz20.com/wp-content/litespeed/js/6b97d12877c5c406be532b178ba2007b.js?ver=2007b",
+          "duration": 53,
+          "startTime": 4901.277592636108
         },
         {
           "url": "https://keshavarz20.com/wp-content/litespeed/js/a0faaf10558058a125cc0dcb18f2136a.js?ver=43fe1",
           "duration": 52,
-          "startTime": 4488.340592636108
-        },
-        {
-          "url": "https://keshavarz20.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "duration": 52,
-          "startTime": 5725.398592636107
+          "startTime": 4586.4575926361085
         }
       ],
       "mainthread_work": [
         {
           "group": "other",
           "groupLabel": "Other",
-          "duration": 968.6839999999906
+          "duration": 953.9159999999807
         },
         {
           "group": "styleLayout",
           "groupLabel": "Style & Layout",
-          "duration": 781.2919999999773
+          "duration": 850.6279999999947
         },
         {
           "group": "scriptEvaluation",
           "groupLabel": "Script Evaluation",
-          "duration": 641.9560000000014
+          "duration": 686.4199999999975
         },
         {
           "group": "parseHTML",
           "groupLabel": "Parse HTML & CSS",
-          "duration": 155.00000000000026
+          "duration": 154.71600000000015
         },
         {
           "group": "paintCompositeRender",
           "groupLabel": "Rendering",
-          "duration": 130.46000000000032
+          "duration": 149.74799999999985
         },
         {
           "group": "scriptParseCompile",
           "groupLabel": "Script Parsing & Compilation",
-          "duration": 126.95199999999996
+          "duration": 138.54800000000006
         },
         {
           "group": "garbageCollection",
           "groupLabel": "Garbage Collection",
-          "duration": 24.319999999999972
+          "duration": 28.775999999999993
         }
       ],
       "font_display": [],
@@ -1860,9 +1890,9 @@
     "summary": {
       "successful_runs": 3,
       "performance": {
-        "median": 61.0,
-        "min": 60.0,
-        "max": 62.0
+        "median": 64.0,
+        "min": 63.0,
+        "max": 64.0
       },
       "accessibility": {
         "median": 96.0,
@@ -1880,9 +1910,9 @@
         "max": 100.0
       },
       "lcp_ms": {
-        "median": 3659.6240000000007,
-        "min": 3519.7105,
-        "max": 3701.9655
+        "median": 3304.5305000000003,
+        "min": 3189.3700000000003,
+        "max": 3482.5860000000002
       },
       "cls": {
         "median": 0.283809804905869,
@@ -1890,19 +1920,19 @@
         "max": 0.283809804905869
       },
       "tbt_ms": {
-        "median": 72.5,
-        "min": 70.5,
-        "max": 75.5
+        "median": 108.5,
+        "min": 89.5,
+        "max": 110.5
       },
       "ttfb_ms": {
-        "median": 5622.0,
-        "min": 5537.0,
-        "max": 6043.0
+        "median": 5529.0,
+        "min": 5084.0,
+        "max": 5960.0
       },
       "total_bytes": {
-        "median": 695803.0,
-        "min": 695750.0,
-        "max": 697071.0
+        "median": 695912.0,
+        "min": 695595.0,
+        "max": 695922.0
       }
     }
   },
@@ -1932,9 +1962,9 @@
     "summary": {
       "successful_runs": 3,
       "performance": {
-        "median": 61.0,
-        "min": 60.0,
-        "max": 62.0
+        "median": 64.0,
+        "min": 63.0,
+        "max": 64.0
       },
       "accessibility": {
         "median": 96.0,
@@ -1952,9 +1982,9 @@
         "max": 100.0
       },
       "lcp_ms": {
-        "median": 3659.6240000000007,
-        "min": 3519.7105,
-        "max": 3701.9655
+        "median": 3304.5305000000003,
+        "min": 3189.3700000000003,
+        "max": 3482.5860000000002
       },
       "cls": {
         "median": 0.283809804905869,
@@ -1962,19 +1992,19 @@
         "max": 0.283809804905869
       },
       "tbt_ms": {
-        "median": 72.5,
-        "min": 70.5,
-        "max": 75.5
+        "median": 108.5,
+        "min": 89.5,
+        "max": 110.5
       },
       "ttfb_ms": {
-        "median": 5622.0,
-        "min": 5537.0,
-        "max": 6043.0
+        "median": 5529.0,
+        "min": 5084.0,
+        "max": 5960.0
       },
       "total_bytes": {
-        "median": 695803.0,
-        "min": 695750.0,
-        "max": 697071.0
+        "median": 695912.0,
+        "min": 695595.0,
+        "max": 695922.0
       }
     }
   },
@@ -1988,5 +2018,5 @@
       "alt": "اتصال یکسر ماده پلی‌اتیلن ۳۲ میلی‌متر"
     }
   ],
-  "finished_at": "2026-10-01T05:25:12.544634+00:00"
+  "finished_at": "2026-10-01T05:36:43.099255+00:00"
 }
