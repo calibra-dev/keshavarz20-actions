@@ -65,6 +65,7 @@ jobs:
         with: { fetch-depth: 2 }
       - uses: actions/setup-python@v5
         with: { python-version: '3.12' }
+      - run: python -m pip install requests
       - uses: actions/download-artifact@v4
         with:
           pattern: phase15-shard-*
