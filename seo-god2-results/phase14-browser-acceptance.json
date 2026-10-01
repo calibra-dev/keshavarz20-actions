@@ -1,0 +1,497 @@
+{
+  "program": "SEO God2",
+  "phase": 14,
+  "title": "Browser acceptance for calculators/selectors/BOM/proforma",
+  "generated_at_utc": "2026-10-01T07:59:02.874929+00:00",
+  "mode": "public-read-only-browser-qa",
+  "network_guard": "all non-GET/HEAD/OPTIONS requests aborted",
+  "tools": [
+    {
+      "key": "drip_tape_calculator",
+      "url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
+      "kind": "interactive",
+      "http": 200,
+      "h1_count": 1,
+      "controls": 13,
+      "actions": 5,
+      "horizontal_overflow_px": 0,
+      "page_errors": [
+        "Invalid or unexpected token"
+      ],
+      "smoke_pass": true,
+      "boundary": {
+        "tested": 0,
+        "cases": [],
+        "pass": true
+      },
+      "pass": true
+    },
+    {
+      "key": "pipe_size_selector",
+      "url": "https://keshavarz20.com/irrigation-pipe-size-selector/",
+      "kind": "selector",
+      "http": 200,
+      "h1_count": 1,
+      "controls": 19,
+      "actions": 7,
+      "horizontal_overflow_px": 0,
+      "page_errors": [
+        "Invalid or unexpected token",
+        "Invalid or unexpected token"
+      ],
+      "smoke_pass": true,
+      "boundary": {
+        "tested": 21,
+        "cases": [
+          {
+            "input": "k20-pipe-flow",
+            "case": "zero",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "k20-pipe-flow",
+            "case": "negative",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "k20-pipe-flow",
+            "case": "blank",
+            "native_valid": true,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "k20-pipe-length",
+            "case": "zero",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "k20-pipe-length",
+            "case": "negative",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "k20-pipe-length",
+            "case": "blank",
+            "native_valid": true,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "k20-pipe-inlet-pressure",
+            "case": "zero",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "k20-pipe-inlet-pressure",
+            "case": "negative",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "k20-pipe-inlet-pressure",
+            "case": "blank",
+            "native_valid": true,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "k20-pipe-max-velocity",
+            "case": "zero",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "k20-pipe-max-velocity",
+            "case": "negative",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "k20-pipe-max-velocity",
+            "case": "blank",
+            "native_valid": true,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "go-flow",
+            "case": "zero",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "go-flow",
+            "case": "negative",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "go-flow",
+            "case": "blank",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "go-outlets",
+            "case": "zero",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "go-outlets",
+            "case": "negative",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "go-outlets",
+            "case": "blank",
+            "native_valid": true,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "k20-bundle-rolls",
+            "case": "zero",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "k20-bundle-rolls",
+            "case": "negative",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "k20-bundle-rolls",
+            "case": "blank",
+            "native_valid": true,
+            "custom_error_signal": true,
+            "pass": true
+          }
+        ],
+        "pass": true
+      },
+      "pass": true
+    },
+    {
+      "key": "fittings_compatibility",
+      "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+      "kind": "selector",
+      "http": 200,
+      "h1_count": 1,
+      "controls": 5,
+      "actions": 1,
+      "horizontal_overflow_px": 0,
+      "page_errors": [
+        "Invalid or unexpected token",
+        "Unexpected token '<'"
+      ],
+      "smoke_pass": true,
+      "boundary": {
+        "tested": 0,
+        "cases": [],
+        "pass": true
+      },
+      "pass": true
+    },
+    {
+      "key": "filter_selector",
+      "url": "https://keshavarz20.com/irrigation-filter-selector/",
+      "kind": "selector",
+      "http": 200,
+      "h1_count": 1,
+      "controls": 6,
+      "actions": 1,
+      "horizontal_overflow_px": 0,
+      "page_errors": [
+        "Invalid or unexpected token"
+      ],
+      "smoke_pass": true,
+      "boundary": {
+        "tested": 3,
+        "cases": [
+          {
+            "input": "fs_micron",
+            "case": "zero",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "fs_micron",
+            "case": "negative",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "fs_micron",
+            "case": "blank",
+            "native_valid": true,
+            "custom_error_signal": true,
+            "pass": true
+          }
+        ],
+        "pass": true
+      },
+      "pass": true
+    },
+    {
+      "key": "layflat_calculator",
+      "url": "https://keshavarz20.com/layflat-length-fittings-calculator/",
+      "kind": "interactive",
+      "http": 200,
+      "h1_count": 1,
+      "controls": 6,
+      "actions": 1,
+      "horizontal_overflow_px": 0,
+      "page_errors": [
+        "Invalid or unexpected token"
+      ],
+      "smoke_pass": true,
+      "boundary": {
+        "tested": 6,
+        "cases": [
+          {
+            "input": "lf_roll",
+            "case": "zero",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "lf_roll",
+            "case": "negative",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "lf_roll",
+            "case": "blank",
+            "native_valid": true,
+            "custom_error_signal": false,
+            "pass": false
+          },
+          {
+            "input": "lf_end",
+            "case": "zero",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "lf_end",
+            "case": "negative",
+            "native_valid": false,
+            "custom_error_signal": true,
+            "pass": true
+          },
+          {
+            "input": "lf_end",
+            "case": "blank",
+            "native_valid": true,
+            "custom_error_signal": true,
+            "pass": true
+          }
+        ],
+        "pass": false
+      },
+      "pass": false
+    },
+    {
+      "key": "request_quotation",
+      "url": "https://keshavarz20.com/request-quotation/",
+      "kind": "quote",
+      "http": 200,
+      "h1_count": 1,
+      "controls": 1,
+      "actions": 0,
+      "horizontal_overflow_px": 0,
+      "page_errors": [],
+      "smoke_pass": false,
+      "pass": false
+    },
+    {
+      "key": "one_hectare_basket",
+      "url": "https://keshavarz20.com/one-hectare-drip-irrigation-basket/",
+      "kind": "interactive",
+      "http": 200,
+      "h1_count": 2,
+      "controls": 7,
+      "actions": 1,
+      "horizontal_overflow_px": 0,
+      "page_errors": [
+        "Invalid or unexpected token",
+        "Invalid or unexpected token",
+        "Unexpected token '<'"
+      ],
+      "smoke_pass": true,
+      "boundary": {
+        "tested": 12,
+        "cases": [
+          {
+            "input": "k20-area",
+            "case": "zero",
+            "native_valid": false,
+            "custom_error_signal": false,
+            "pass": true
+          },
+          {
+            "input": "k20-area",
+            "case": "negative",
+            "native_valid": false,
+            "custom_error_signal": false,
+            "pass": true
+          },
+          {
+            "input": "k20-area",
+            "case": "blank",
+            "native_valid": true,
+            "custom_error_signal": false,
+            "pass": false
+          },
+          {
+            "input": "k20-row-length",
+            "case": "zero",
+            "native_valid": false,
+            "custom_error_signal": false,
+            "pass": true
+          },
+          {
+            "input": "k20-row-length",
+            "case": "negative",
+            "native_valid": false,
+            "custom_error_signal": false,
+            "pass": true
+          },
+          {
+            "input": "k20-row-length",
+            "case": "blank",
+            "native_valid": true,
+            "custom_error_signal": false,
+            "pass": false
+          },
+          {
+            "input": "k20-row-spacing",
+            "case": "zero",
+            "native_valid": false,
+            "custom_error_signal": false,
+            "pass": true
+          },
+          {
+            "input": "k20-row-spacing",
+            "case": "negative",
+            "native_valid": false,
+            "custom_error_signal": false,
+            "pass": true
+          },
+          {
+            "input": "k20-row-spacing",
+            "case": "blank",
+            "native_valid": true,
+            "custom_error_signal": false,
+            "pass": false
+          },
+          {
+            "input": "k20-roll-length",
+            "case": "zero",
+            "native_valid": false,
+            "custom_error_signal": false,
+            "pass": true
+          },
+          {
+            "input": "k20-roll-length",
+            "case": "negative",
+            "native_valid": false,
+            "custom_error_signal": false,
+            "pass": true
+          },
+          {
+            "input": "k20-roll-length",
+            "case": "blank",
+            "native_valid": true,
+            "custom_error_signal": false,
+            "pass": false
+          }
+        ],
+        "pass": false
+      },
+      "business_logic": {
+        "pass": false,
+        "formula_output": "",
+        "formula_pass": false,
+        "zero_rejected": false
+      },
+      "pass": false
+    },
+    {
+      "key": "product_comparator",
+      "url": "https://keshavarz20.com/irrigation-product-comparator/",
+      "kind": "interactive",
+      "http": 200,
+      "h1_count": 2,
+      "controls": 2,
+      "actions": 1,
+      "horizontal_overflow_px": 0,
+      "page_errors": [
+        "Invalid or unexpected token",
+        "Invalid or unexpected token"
+      ],
+      "smoke_pass": true,
+      "boundary": {
+        "tested": 0,
+        "cases": [],
+        "pass": true
+      },
+      "business_logic": {
+        "pass": false,
+        "reason": "no product results",
+        "result_text": ""
+      },
+      "pass": false
+    },
+    {
+      "key": "proforma_request",
+      "url": "https://keshavarz20.com/request-proforma/",
+      "kind": "quote",
+      "http": 200,
+      "h1_count": 2,
+      "controls": 30,
+      "actions": 4,
+      "horizontal_overflow_px": 0,
+      "page_errors": [
+        "Invalid or unexpected token",
+        "Invalid or unexpected token",
+        "Unexpected token '<'"
+      ],
+      "smoke_pass": true,
+      "pass": true
+    }
+  ],
+  "tools_pass": 5,
+  "tools_fail": 4,
+  "overall_pass": false
+}
