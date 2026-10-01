@@ -2,7 +2,7 @@
   "phase": 10,
   "title": "Measurement & Observability",
   "status": "PARTIAL_BLOCKED_EXTERNAL_INTEGRATIONS",
-  "generated_at_utc": "2026-09-30T08:58:55.989821+00:00",
+  "generated_at_utc": "2026-10-01T03:39:13.260683+00:00",
   "baseline_input": "phase10-ops/baseline-20260918.json",
   "source_status": {
     "gsc_search": "connected",
@@ -20,15 +20,15 @@
       "url": "https://keshavarz20.com/",
       "status": 200,
       "final_url": "https://keshavarz20.com/",
-      "elapsed_ms": 23016.8,
-      "cache": "miss",
+      "elapsed_ms": 1665.3,
+      "cache": "hit",
       "cache_control": null
     },
     {
       "url": "https://keshavarz20.com/robots.txt",
       "status": 200,
       "final_url": "https://keshavarz20.com/robots.txt",
-      "elapsed_ms": 712.1,
+      "elapsed_ms": 1303.3,
       "cache": null,
       "cache_control": null
     },
@@ -36,7 +36,7 @@
       "url": "https://keshavarz20.com/irrigation-filter-selector/",
       "status": 200,
       "final_url": "https://keshavarz20.com/irrigation-filter-selector/",
-      "elapsed_ms": 6822.5,
+      "elapsed_ms": 5668.6,
       "cache": "miss",
       "cache_control": null
     },
@@ -44,7 +44,7 @@
       "url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
       "status": 200,
       "final_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
-      "elapsed_ms": 6216.8,
+      "elapsed_ms": 5800.5,
       "cache": "miss",
       "cache_control": null
     },
@@ -52,7 +52,7 @@
       "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
       "status": 200,
       "final_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
-      "elapsed_ms": 5814.5,
+      "elapsed_ms": 5542.4,
       "cache": "miss",
       "cache_control": null
     }
@@ -61,27 +61,32 @@
     {
       "source": "google_generative_ai",
       "status": "manual_export_required",
-      "reason": "Dedicated GSC Generative AI data is not exposed by the connected Search Analytics API snapshot."
+      "reason": "Dedicated GSC Generative AI data is not exposed by the connected Search Analytics API snapshot.",
+      "guarded_external": false
     },
     {
       "source": "bing_ai_performance",
       "status": "manual_export_required",
-      "reason": "No connected export/API source is available in the current control plane."
+      "reason": "No connected export/API source is available in the current control plane.",
+      "guarded_external": false
     },
     {
       "source": "chatgpt_referrals",
       "status": "not_baselined",
-      "reason": "GA4 is not connected."
+      "reason": "GA4 is not connected.",
+      "guarded_external": false
     },
     {
       "source": "cwv_field",
       "status": "not_configured",
-      "reason": "No CrUX API key is configured."
+      "reason": "No CrUX API key is configured.",
+      "guarded_external": false
     },
     {
       "source": "conversion",
       "status": "not_baselined",
-      "reason": "GA4 ecommerce/key-event access is not connected."
+      "reason": "GA4 ecommerce/key-event access is not connected.",
+      "guarded_external": false
     }
   ],
   "public_failures": [],
