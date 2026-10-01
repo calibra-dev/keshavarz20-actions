@@ -216,7 +216,7 @@ jobs:
           total=sum(float(x.get("value") or 0) for x in shifts)
           lcp_urls={str(x.get("url") or x.get("src") or "") for x in lcp if (x.get("url") or x.get("src"))}
           lcp_resources=[x for x in resources if str(x.get("name") or "") in lcp_urls]
-          out={"url":url,"http":http,"cls_total":total,"shifts":shifts,"lcp":lcp,"lcp_resources":lcp_resources,"resources":resources,"images":images,"page":metrics}
+          out={"url":url,"http":http,"cls_total":total,"shifts":shifts,"lcp":lcp,"lcp_resources":lcp_resources,"resources":resources,"images":images,"css_coverage":css_coverage,"page":metrics}
           path=pathlib.Path("product-engine/probe-output/134980-cls.json")
           path.write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
           print(json.dumps({
@@ -228,6 +228,7 @@ jobs:
               "slow_resources":resources[:15],
               "viewport_images":[x for x in images if x.get("inViewport")][:20],
               "early_images":[x for x in images if x.get("top",99999)<1800][:30],
+              "css_coverage":css_coverage,
               "page":metrics
           },ensure_ascii=False))
           PY
