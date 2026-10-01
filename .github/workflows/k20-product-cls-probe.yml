@@ -82,6 +82,16 @@ jobs:
           opts.add_argument("--disable-background-networking")
           opts.add_argument("--window-size=412,915")
           driver=webdriver.Chrome(options=opts)
+          if req.get("lighthouse_like"):
+              driver.execute_cdp_cmd("Network.enable",{})
+              driver.execute_cdp_cmd("Network.emulateNetworkConditions",{
+                  "offline":False,
+                  "latency":150,
+                  "downloadThroughput":200000,
+                  "uploadThroughput":100000,
+                  "connectionType":"cellular4g"
+              })
+              driver.execute_cdp_cmd("Emulation.setCPUThrottlingRate",{"rate":4})
           driver.execute_cdp_cmd("Emulation.setDeviceMetricsOverride",{
               "width":412,"height":915,"deviceScaleFactor":1,"mobile":True,
               "screenWidth":412,"screenHeight":915
