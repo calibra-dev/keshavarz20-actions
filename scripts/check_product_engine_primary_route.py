@@ -63,6 +63,12 @@ if "product-engine/queue/*.json" not in promoter_wf:
     fail("queue promoter must be scoped to product queue files")
 if "OPENAI_API_KEY" in promoter_wf or "ai_runtime.py" in promoter_wf:
     fail("queue promoter must not use model/API generation path")
+if "actions: write" not in promoter_wf:
+    fail("queue promoter must have actions: write for explicit publisher dispatch")
+if "k20-product-queue-publisher.yml/dispatches" not in promoter_wf:
+    fail("queue promoter must explicitly dispatch product queue publisher")
+if "workflow_dispatch" not in queue_wf:
+    fail("queue publisher must retain workflow_dispatch for promoter handoff")
 
 required_prompt_markers = [
     "Connected ChatGPT",
