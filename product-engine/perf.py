@@ -91,6 +91,24 @@ def lighthouse(url: str, runs: int=3) -> dict[str,Any]:
     samples=[]
     deep=[]
     diagnostics={}
+    warmup={"attempted":True,"ok":False}
+    fd,warm_path=tempfile.mkstemp(prefix="k20-product-warmup-",suffix=".json")
+    os.close(fd)
+    try:
+        warm_cp=subprocess.run([
+            "lighthouse",url,"--quiet",
+            "--only-categories=performance",
+            "--form-factor=mobile",
+            "--chrome-flags=--headless --no-sandbox --disable-dev-shm-usage",
+            "--output=json",f"--output-path={warm_path}"
+        ],stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True,timeout=260)
+        warmup={"attempted":True,"ok":warm_cp.returncode==0,"returncode":warm_cp.returncode}
+    except Exception as exc:
+        warmup={"attempted":True,"ok":False,"error":f"{type(exc).__name__}: {exc}"}
+    finally:
+        try: os.remove(warm_path)
+        except OSError: pass
+
     for i in range(runs):
         fd,path=tempfile.mkstemp(prefix=f"k20-product-{i+1}-",suffix=".json")
         os.close(fd)
@@ -154,6 +172,7 @@ def lighthouse(url: str, runs: int=3) -> dict[str,Any]:
     representative=sorted(good,key=lambda x:x["lcp_ms"])[len(good)//2] if good else None
     result={
         "samples":samples,"representative":representative,"successful_runs":len(good),
+        "warmup":warmup,
         "top_network_requests":deep,"diagnostics":diagnostics
     }
     result["summary"]=summarize(result)
