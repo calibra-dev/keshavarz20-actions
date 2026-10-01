@@ -1,0 +1,117 @@
+{
+  "schema_version": "seo-god2-phase11-priority-decision-audit-v1",
+  "project": "keshavarz20.com / SEO GOD2",
+  "phase": 11,
+  "name": "Priority Product Decision Pages",
+  "generated_at_utc": "2026-10-01T04:02:30Z",
+  "scope": {
+    "products": [
+      {
+        "id": 135349,
+        "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۲ اینچ (۶۳ میلی‌متر)"
+      },
+      {
+        "id": 140407,
+        "name": "مخزن تزریق کود (تانک کود) 200 لیتری"
+      },
+      {
+        "id": 135339,
+        "name": "شیر پروانه‌ای پلیمری ویسپار ۴ اینچ با دسته فلزی (110 میلی‌متر)"
+      }
+    ]
+  },
+  "dependency_chain": {
+    "phase6": "PASS_PHASE6_COMPLETE",
+    "phase7": "PASS_PHASE7_COMPLETE",
+    "phase8": "PASS_PHASE8_COMPLETE",
+    "phase9": "PASS_PHASE9_EXPANDED_COMPLETE",
+    "phase10": "PASS_PHASE10_GUARDED_COMPLETE"
+  },
+  "current_snapshot": {
+    "request_commit": "516319d56f58e3bca40ed9fb52bf93139ac6b500",
+    "workflow_run_id": 36813133476,
+    "workflow_conclusion": "success",
+    "evidence_commit": "7ebfcc72cd4bc9ad61eff8ed2102a0c770857b6b",
+    "result_file": "phase11-results/product-snapshot.json",
+    "products": 3
+  },
+  "rest_readback": {
+    "published": "3/3",
+    "decision_marker_exactly_once": "3/3",
+    "decision_start_exactly_once": "3/3",
+    "decision_end_exactly_once": "3/3",
+    "suitable_section": "3/3",
+    "not_suitable_section": "3/3",
+    "required_inputs_section": "3/3",
+    "compatibility_limitations_section": "3/3",
+    "related_guides_section": "3/3",
+    "evidence_limit_note": "3/3",
+    "phase9_purchase_risk_preserved": "3/3",
+    "phase8_trust_preserved": "3/3",
+    "phase7_shipping_preserved": "3/3",
+    "hidden_artifacts_description": 0,
+    "hidden_artifacts_short_description": 0
+  },
+  "evidence_guard": {
+    "unsupported_promotions_in_phase11_module": 0,
+    "checked_sensitive_terms_by_product": {
+      "135339": [
+        "6 bar",
+        "۶ بار",
+        "UPVC",
+        "ABS",
+        "EPDM",
+        "wafer",
+        "ویفری"
+      ],
+      "135349": [
+        "6 bar",
+        "PN6",
+        "PN 6",
+        "کلاس فشار ۶",
+        "رزوه BSP"
+      ],
+      "140407": [
+        "1 inch",
+        "۱ اینچ",
+        "3 mm",
+        "۳ میلی",
+        "جهاد کشاورزی",
+        "تاییدیه جهاد",
+        "فشار 6 بار",
+        "فشار ۶ بار"
+      ]
+    },
+    "interpretation": "The decision modules do not promote previously unverified technical claims; missing compatibility/pressure/interface facts remain explicitly guarded."
+  },
+  "public_verify": {
+    "trigger_commit": "4e62dad53d85f04d8ceba20aa1ae557c5af88600",
+    "workflow_run_id": 36813206652,
+    "workflow_conclusion": "success",
+    "evidence_commit": "604cfceb14d087faf06fd872404311e814ba791b",
+    "result_file": "phase11-results/public-live-verify.json",
+    "public_http_200": "3/3",
+    "decision_heading_present": "3/3",
+    "evidence_limit_note_present": "3/3",
+    "ok": true
+  },
+  "execution_decision": {
+    "site_write_required": false,
+    "reason": "All three established Phase 11 targets already satisfy the current acceptance criteria and were reverified after later Phase 7-10 changes. Rewriting them would create unnecessary churn.",
+    "cache_purge_required": false
+  },
+  "acceptance": {
+    "suitable_not_suitable": true,
+    "required_inputs": true,
+    "real_specs_only": true,
+    "compatibility_limitations_explicit": true,
+    "alternatives_or_related_guides": true,
+    "prior_phase_layers_preserved": true,
+    "public_render_verified": true,
+    "sanitization_verified": true,
+    "price_writes": false,
+    "stock_writes": false,
+    "site_writes_this_execution": 0
+  },
+  "status": "PASS"
+}
