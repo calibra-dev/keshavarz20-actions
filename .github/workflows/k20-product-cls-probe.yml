@@ -55,7 +55,8 @@ jobs:
               "x-litespeed-cache","x-litespeed-cache-control","x-k20-canary-guard",
               "x-k20-wc-cache-compat","x-k20-wc-prevent-hook","x-k20-donotcache",
               "x-k20-ls-cacheable","x-k20-ls-nocache-reason","x-k20-wc-notices",
-              "x-k20-esi","x-k20-preheader-cache","x-k20-late-ls-nocache","x-k20-late-ls-control",
+              "x-k20-esi","x-k20-preheader-cache","x-k20-late-ls-nocache",
+              "x-k20-late-donotcache","x-k20-late-filtered-donotcache","x-k20-late-ls-control",
               "x-k20-late-ls-cacheable","x-k20-late-ls-notcacheable",
               "x-k20-late-ls-forced","x-k20-late-ls-publicforced","x-k20-late-ls-private",
               "set-cookie","cache-control","age","server","vary"

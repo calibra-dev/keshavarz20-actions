@@ -79,8 +79,8 @@ final class K20_Bridge_V33_Performance {
         do_action('litespeed_control_set_ttl', 300, $reason);
 
         if (!headers_sent()) {
-            header('X-K20-WC-Cache-Compat: 3.3.25');
-            header('X-K20-Canary-Guard: 3.3.25');
+            header('X-K20-WC-Cache-Compat: 3.3.26');
+            header('X-K20-Canary-Guard: 3.3.26');
         }
     }
 
@@ -132,6 +132,13 @@ final class K20_Bridge_V33_Performance {
 
         $no_cache_constant = (defined('LSCACHE_NO_CACHE') && LSCACHE_NO_CACHE) ? '1' : '0';
         header('X-K20-Late-LS-NoCache: ' . $no_cache_constant);
+
+        $donotcache = (defined('DONOTCACHEPAGE') && DONOTCACHEPAGE) ? true : false;
+        $filtered_donotcache = defined('DONOTCACHEPAGE')
+            ? (bool) apply_filters('litespeed_const_DONOTCACHEPAGE', DONOTCACHEPAGE)
+            : false;
+        header('X-K20-Late-DoNotCache: ' . ($donotcache ? '1' : '0'));
+        header('X-K20-Late-Filtered-DoNotCache: ' . ($filtered_donotcache ? '1' : '0'));
 
         if (!class_exists('\\LiteSpeed\\Control')) {
             header('X-K20-Late-LS-Control: missing');
@@ -206,7 +213,7 @@ final class K20_Bridge_V33_Performance {
         // to the verified canary product and only to anonymous GET/HEAD requests without
         // cart/session/login cookies. "woocommerce_recently_viewed" is not private state.
         $reason = 'K20 product 134980 safe anonymous canary';
-        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.25');
+        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.26');
         do_action('litespeed_control_force_cacheable', $reason);
         do_action('litespeed_control_force_public', $reason);
         do_action('litespeed_control_set_ttl', 300, $reason);
