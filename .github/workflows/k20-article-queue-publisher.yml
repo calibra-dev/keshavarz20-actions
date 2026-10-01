@@ -66,9 +66,7 @@ jobs:
       WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
       WP_USERNAME: ${{ secrets.WP_USERNAME }}
       WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      OPENAI_TEXT_MODEL: ${{ vars.OPENAI_TEXT_MODEL || 'gpt-5.6' }}
-      K20_CONTENT_GROWTH_ENABLED: 'true'
+      K20_CONTENT_GROWTH_ENABLED: 'false'
 
     steps:
       - name: Checkout
