@@ -1,0 +1,39 @@
+name: K20 SEO God2 Phase14 Browser Acceptance
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/k20_seogod2_phase14_browser_qa.py'
+      - '.github/workflows/k20-seogod2-phase14-browser-qa.yml'
+      - 'seo-god2-phase14-browser-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-seogod2-phase14-browser-qa
+  cancel-in-progress: false
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: python -m pip install playwright
+      - run: python -m playwright install --with-deps chromium
+      - run: python scripts/k20_seogod2_phase14_browser_qa.py
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f seo-god2-results/phase14-browser-acceptance.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'seo god2: record phase14 browser acceptance'
+          git pull --rebase origin main
+          git push origin main
