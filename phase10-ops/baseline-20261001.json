@@ -1,0 +1,149 @@
+{
+  "phase": 10,
+  "captured_at": "2026-10-01T07:08:00+03:30",
+  "property": "sc-domain:keshavarz20.com",
+  "source_refresh": "live connectors + existing verified field-CWV baseline",
+  "sources": {
+    "gsc_search": {
+      "status": "connected",
+      "connector": "Windsor.ai searchconsole",
+      "account": "sc-domain:keshavarz20.com",
+      "window": "last_28d",
+      "settled_rows": 26,
+      "date_min": "2026-09-03",
+      "date_max": "2026-09-28",
+      "clicks": 1068,
+      "impressions": 14377,
+      "ctr": 0.07428531682548516,
+      "avg_position_impression_weighted": 9.118184836892258,
+      "search_appearance": [
+        {
+          "type": "PRODUCT_SNIPPETS",
+          "clicks": 39,
+          "impressions": 464,
+          "ctr": 0.0841,
+          "position": 7.3556
+        }
+      ]
+    },
+    "google_generative_ai": {
+      "status": "external_report_required",
+      "guarded_external": true,
+      "reason": "Connected Search Console exposes ordinary Search/Search Appearance data but not the dedicated Google Generative AI performance report in the available connector. No zero was inferred."
+    },
+    "bing_search": {
+      "status": "connected",
+      "connector": "Windsor.ai bing_webmaster",
+      "account": "https://keshavarz20.com",
+      "window": "last_28d",
+      "date_min": "2026-09-03",
+      "date_max": "2026-09-24",
+      "clicks": 3,
+      "impressions": 112,
+      "ctr": 0.026785714285714284,
+      "prior_throttle_resolved_for_standard_query_read": true
+    },
+    "bing_ai_performance": {
+      "status": "external_report_required",
+      "guarded_external": true,
+      "reason": "Bing Webmaster standard query performance is readable, but the available connector does not expose account-specific AI Performance/citation fields. Missing AI-report data is unknown, not zero."
+    },
+    "ga4": {
+      "status": "connected",
+      "connector": "Windsor.ai googleanalytics4",
+      "account": "456208539",
+      "window": "last_28d",
+      "sessions": 1453,
+      "active_users": 1330,
+      "engaged_sessions": 552,
+      "engagement_rate_calc": 0.3799036476256022,
+      "key_events": 24
+    },
+    "chatgpt_referrals": {
+      "status": "baselined",
+      "source": "GA4 session_source_medium",
+      "window": "last_28d",
+      "source_medium": "chatgpt.com / ai-assistant",
+      "sessions": 1,
+      "engaged_sessions": 1,
+      "key_events": 0,
+      "add_to_carts": 0,
+      "checkouts": 0,
+      "purchases": 0,
+      "purchase_revenue": 0,
+      "interpretation": "Referral sessions are observed visits, not a complete citation count."
+    },
+    "cwv_field": {
+      "status": "baselined",
+      "source": "phase10-results/field-cwv-20260918.json",
+      "captured_at_utc": "2026-09-18T18:33:00Z",
+      "page": "https://keshavarz20.com/",
+      "form_factor": "mobile",
+      "field": {
+        "lcp_ms": 9753,
+        "inp_ms": 117,
+        "cls": 0.004
+      },
+      "freshness": "historical baseline; current refresh unavailable in this run",
+      "refresh_limit": "GSC Wizard currently returns payment_required and Windsor google_pagespeed has no configured account.",
+      "interpretation": "Baseline exists; do not treat these historical values as current post-optimization CWV."
+    },
+    "index": {
+      "status": "baselined",
+      "current_site": {
+        "bridge_version": "3.3.17",
+        "wp_version": "7.1.2",
+        "theme": "IranKala 10.10.0",
+        "indexnow_plugin_active": true,
+        "indexnow_plugin_version": "1.0.4"
+      },
+      "prior_verified_indexnow": {
+        "captured_at": "2026-09-19",
+        "internal_key_configured": true,
+        "internal_key_valid": true,
+        "auto_submission_enabled": true,
+        "passed_submissions": 824,
+        "failed_submissions": 0,
+        "retry_queue": 0
+      }
+    },
+    "conversion": {
+      "status": "baselined",
+      "source": "GA4",
+      "window": "last_28d",
+      "key_events": 24,
+      "add_to_carts": 20,
+      "checkouts": 2,
+      "purchases": 0,
+      "transactions": 0,
+      "purchase_revenue": 0,
+      "interpretation": "GA4 recorded zero purchase/transaction events. This is a tracking observation, not proof of zero real-world orders."
+    },
+    "growthos_instrumentation": {
+      "status": "connected",
+      "observed_events": {
+        "growthos_webmcp_tool": 78,
+        "growthos_measurement_ready": 45,
+        "growthos_webmcp_status": 40
+      },
+      "interpretation": "Phase 10 instrumentation is no longer only deployed; GrowthOS events are now observed in GA4."
+    }
+  },
+  "connector_state": {
+    "windsor_connected": [
+      "googleanalytics4",
+      "searchconsole",
+      "bing_webmaster"
+    ],
+    "gsc_wizard": "payment_required_trial_ended",
+    "google_pagespeed_windsor": "not_configured"
+  },
+  "safety": {
+    "contains_secrets": false,
+    "contains_customer_data": false,
+    "price_writes": false,
+    "stock_writes": false,
+    "payment_writes": false,
+    "user_or_role_writes": false
+  }
+}
