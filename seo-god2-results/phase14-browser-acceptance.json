@@ -2,7 +2,7 @@
   "program": "SEO God2",
   "phase": 14,
   "title": "Browser acceptance for calculators/selectors/BOM/proforma",
-  "generated_at_utc": "2026-10-01T08:08:53.718472+00:00",
+  "generated_at_utc": "2026-10-01T08:24:04.660874+00:00",
   "mode": "public-read-only-browser-qa",
   "network_guard": "all non-GET/HEAD/OPTIONS requests aborted",
   "tools": [
@@ -13,7 +13,7 @@
       "http": 200,
       "h1_count": 1,
       "controls": 13,
-      "actions": 5,
+      "actions": 12,
       "quote_links": 8,
       "horizontal_overflow_px": 0,
       "page_errors": [
@@ -34,7 +34,7 @@
       "http": 200,
       "h1_count": 1,
       "controls": 19,
-      "actions": 7,
+      "actions": 9,
       "quote_links": 3,
       "horizontal_overflow_px": 0,
       "page_errors": [
@@ -43,7 +43,7 @@
       ],
       "smoke_pass": true,
       "boundary": {
-        "tested": 21,
+        "tested": 14,
         "cases": [
           {
             "input": "k20-pipe-flow",
@@ -60,13 +60,6 @@
             "pass": true
           },
           {
-            "input": "k20-pipe-flow",
-            "case": "blank",
-            "native_valid": true,
-            "custom_error_signal": true,
-            "pass": true
-          },
-          {
             "input": "k20-pipe-length",
             "case": "zero",
             "native_valid": false,
@@ -77,13 +70,6 @@
             "input": "k20-pipe-length",
             "case": "negative",
             "native_valid": false,
-            "custom_error_signal": true,
-            "pass": true
-          },
-          {
-            "input": "k20-pipe-length",
-            "case": "blank",
-            "native_valid": true,
             "custom_error_signal": true,
             "pass": true
           },
@@ -102,13 +88,6 @@
             "pass": true
           },
           {
-            "input": "k20-pipe-inlet-pressure",
-            "case": "blank",
-            "native_valid": true,
-            "custom_error_signal": true,
-            "pass": true
-          },
-          {
             "input": "k20-pipe-max-velocity",
             "case": "zero",
             "native_valid": false,
@@ -123,13 +102,6 @@
             "pass": true
           },
           {
-            "input": "k20-pipe-max-velocity",
-            "case": "blank",
-            "native_valid": true,
-            "custom_error_signal": true,
-            "pass": true
-          },
-          {
             "input": "go-flow",
             "case": "zero",
             "native_valid": false,
@@ -139,13 +111,6 @@
           {
             "input": "go-flow",
             "case": "negative",
-            "native_valid": false,
-            "custom_error_signal": true,
-            "pass": true
-          },
-          {
-            "input": "go-flow",
-            "case": "blank",
             "native_valid": false,
             "custom_error_signal": true,
             "pass": true
@@ -165,13 +130,6 @@
             "pass": true
           },
           {
-            "input": "go-outlets",
-            "case": "blank",
-            "native_valid": true,
-            "custom_error_signal": true,
-            "pass": true
-          },
-          {
             "input": "k20-bundle-rolls",
             "case": "zero",
             "native_valid": false,
@@ -182,13 +140,6 @@
             "input": "k20-bundle-rolls",
             "case": "negative",
             "native_valid": false,
-            "custom_error_signal": true,
-            "pass": true
-          },
-          {
-            "input": "k20-bundle-rolls",
-            "case": "blank",
-            "native_valid": true,
             "custom_error_signal": true,
             "pass": true
           }
@@ -204,7 +155,7 @@
       "http": 200,
       "h1_count": 1,
       "controls": 5,
-      "actions": 1,
+      "actions": 3,
       "quote_links": 3,
       "horizontal_overflow_px": 0,
       "page_errors": [
@@ -226,7 +177,7 @@
       "http": 200,
       "h1_count": 1,
       "controls": 6,
-      "actions": 1,
+      "actions": 3,
       "quote_links": 3,
       "horizontal_overflow_px": 0,
       "page_errors": [
@@ -234,7 +185,7 @@
       ],
       "smoke_pass": true,
       "boundary": {
-        "tested": 3,
+        "tested": 2,
         "cases": [
           {
             "input": "fs_micron",
@@ -247,13 +198,6 @@
             "input": "fs_micron",
             "case": "negative",
             "native_valid": false,
-            "custom_error_signal": true,
-            "pass": true
-          },
-          {
-            "input": "fs_micron",
-            "case": "blank",
-            "native_valid": true,
             "custom_error_signal": true,
             "pass": true
           }
@@ -269,15 +213,13 @@
       "http": 200,
       "h1_count": 1,
       "controls": 6,
-      "actions": 1,
+      "actions": 3,
       "quote_links": 3,
       "horizontal_overflow_px": 0,
-      "page_errors": [
-        "Invalid or unexpected token"
-      ],
+      "page_errors": [],
       "smoke_pass": true,
       "boundary": {
-        "tested": 6,
+        "tested": 4,
         "cases": [
           {
             "input": "lf_roll",
@@ -294,13 +236,6 @@
             "pass": true
           },
           {
-            "input": "lf_roll",
-            "case": "blank",
-            "native_valid": true,
-            "custom_error_signal": true,
-            "pass": true
-          },
-          {
             "input": "lf_end",
             "case": "zero",
             "native_valid": false,
@@ -311,13 +246,6 @@
             "input": "lf_end",
             "case": "negative",
             "native_valid": false,
-            "custom_error_signal": true,
-            "pass": true
-          },
-          {
-            "input": "lf_end",
-            "case": "blank",
-            "native_valid": true,
             "custom_error_signal": true,
             "pass": true
           }
@@ -333,7 +261,7 @@
       "http": 200,
       "h1_count": 1,
       "controls": 1,
-      "actions": 0,
+      "actions": 15,
       "quote_links": 11,
       "horizontal_overflow_px": 0,
       "page_errors": [],
@@ -347,17 +275,16 @@
       "http": 200,
       "h1_count": 2,
       "controls": 7,
-      "actions": 1,
+      "actions": 4,
       "quote_links": 4,
       "horizontal_overflow_px": 0,
       "page_errors": [
-        "Invalid or unexpected token",
         "Invalid or unexpected token",
         "Unexpected token '<'"
       ],
       "smoke_pass": true,
       "boundary": {
-        "tested": 12,
+        "tested": 8,
         "cases": [
           {
             "input": "k20-area",
@@ -374,13 +301,6 @@
             "pass": true
           },
           {
-            "input": "k20-area",
-            "case": "blank",
-            "native_valid": true,
-            "custom_error_signal": false,
-            "pass": false
-          },
-          {
             "input": "k20-row-length",
             "case": "zero",
             "native_valid": false,
@@ -393,13 +313,6 @@
             "native_valid": false,
             "custom_error_signal": false,
             "pass": true
-          },
-          {
-            "input": "k20-row-length",
-            "case": "blank",
-            "native_valid": true,
-            "custom_error_signal": false,
-            "pass": false
           },
           {
             "input": "k20-row-spacing",
@@ -416,13 +329,6 @@
             "pass": true
           },
           {
-            "input": "k20-row-spacing",
-            "case": "blank",
-            "native_valid": true,
-            "custom_error_signal": false,
-            "pass": false
-          },
-          {
             "input": "k20-roll-length",
             "case": "zero",
             "native_valid": false,
@@ -435,21 +341,14 @@
             "native_valid": false,
             "custom_error_signal": false,
             "pass": true
-          },
-          {
-            "input": "k20-roll-length",
-            "case": "blank",
-            "native_valid": true,
-            "custom_error_signal": false,
-            "pass": false
           }
         ],
-        "pass": false
+        "pass": true
       },
       "business_logic": {
         "pass": false,
-        "formula_output": "",
-        "formula_pass": false,
+        "formula_output": "برآورد اولیه سبد\nعرض معادل زمین\t۱۰۰ متر\nتعداد ردیف برآوردی\t۱۰۰\nمتراژ پایه نوار\t۱۰٬۰۰۰ متر\nمتراژ با رزرو\t۱۰٬۵۰۰ متر\nتعداد رول\t۱۱\nشیر/رابط شروع\t۱۰۰ + ۵ ذخیره\nقطعه انتهایی\t۱۰۰ + ۵ ذخیره\n\nنیازمند تأیید فنی: فیلتر، خط اصلی، فشار، دبی، کیفیت آب و سازگاری اتصال‌ها.",
+        "formula_pass": true,
         "zero_rejected": false
       },
       "pass": false
@@ -461,13 +360,10 @@
       "http": 200,
       "h1_count": 2,
       "controls": 2,
-      "actions": 1,
+      "actions": 4,
       "quote_links": 4,
       "horizontal_overflow_px": 0,
-      "page_errors": [
-        "Invalid or unexpected token",
-        "Invalid or unexpected token"
-      ],
+      "page_errors": [],
       "smoke_pass": true,
       "boundary": {
         "tested": 0,
@@ -475,11 +371,12 @@
         "pass": true
       },
       "business_logic": {
-        "pass": false,
-        "reason": "no product results",
-        "result_text": ""
+        "pass": true,
+        "result_count": 7,
+        "table_count": 1,
+        "compare_text": "\t\nنوار تیپ آبیاری قطره‌ای ۱۰ سانتی‌متری مناسب زیر پلاستیک\t\nنوار تیپ پلاک‌دار ۲۰ سانتی‌متری ۲۰۰۰ متری مناسب گلخانه\nقیمت\t2,600,000 تومان\t6,500,000 تومان\nموجودی\tناموجود\tناموجود\nویژگی‌های ثبت‌شده\tاعلام نشده\tاعلام نشده"
       },
-      "pass": false
+      "pass": true
     },
     {
       "key": "proforma_request",
@@ -488,7 +385,7 @@
       "http": 200,
       "h1_count": 2,
       "controls": 30,
-      "actions": 4,
+      "actions": 7,
       "quote_links": 4,
       "horizontal_overflow_px": 0,
       "page_errors": [
@@ -500,7 +397,7 @@
       "pass": true
     }
   ],
-  "tools_pass": 7,
-  "tools_fail": 2,
+  "tools_pass": 8,
+  "tools_fail": 1,
   "overall_pass": false
 }
