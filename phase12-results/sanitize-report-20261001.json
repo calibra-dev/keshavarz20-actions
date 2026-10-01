@@ -1,0 +1,63 @@
+{
+  "schema_version": "k20-content-sanitizer-report-v1",
+  "artifact_type": "HTML fragments for WooCommerce product category descriptions",
+  "fields_sanitized": [
+    "category decision module HTML for taxonomy IDs 846,997,768,755,754,826"
+  ],
+  "tools": [
+    "sanitize_html.py",
+    "verify_clean.py"
+  ],
+  "hidden_artifact_classes_checked": [
+    "zero-width characters",
+    "bidi controls",
+    "odd invisible separators",
+    "Unicode tag characters"
+  ],
+  "results": {
+    "754": {
+      "clean": true,
+      "zero_width_found": 0,
+      "bidi_found": 0,
+      "odd_separators_found": 0,
+      "tag_characters_found": 0
+    },
+    "755": {
+      "clean": true,
+      "zero_width_found": 0,
+      "bidi_found": 0,
+      "odd_separators_found": 0,
+      "tag_characters_found": 0
+    },
+    "768": {
+      "clean": true,
+      "zero_width_found": 0,
+      "bidi_found": 0,
+      "odd_separators_found": 0,
+      "tag_characters_found": 0
+    },
+    "826": {
+      "clean": true,
+      "zero_width_found": 0,
+      "bidi_found": 0,
+      "odd_separators_found": 0,
+      "tag_characters_found": 0
+    },
+    "846": {
+      "clean": true,
+      "zero_width_found": 0,
+      "bidi_found": 0,
+      "odd_separators_found": 0,
+      "tag_characters_found": 0
+    },
+    "997": {
+      "clean": true,
+      "zero_width_found": 0,
+      "bidi_found": 0,
+      "odd_separators_found": 0,
+      "tag_characters_found": 0
+    }
+  },
+  "ready_for_publish": true,
+  "limitations": "Deterministic hidden-artifact cleanup only; no claim of AI-detector or statistical watermark evasion."
+}
