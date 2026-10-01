@@ -53,10 +53,21 @@ blocking = []
 for key in ["google_generative_ai", "bing_ai_performance", "chatgpt_referrals", "cwv_field", "conversion"]:
     status = sources[key].get("status")
     if status not in {"baselined", "connected"}:
-        blocking.append({"source": key, "status": status, "reason": sources[key].get("reason")})
+        blocking.append({
+            "source": key,
+            "status": status,
+            "reason": sources[key].get("reason"),
+            "guarded_external": bool(sources[key].get("guarded_external")),
+        })
 
 public_failures = [c for c in checks if c.get("status") != 200]
-status = "PASS" if not blocking and not public_failures else "PARTIAL_BLOCKED_EXTERNAL_INTEGRATIONS"
+hard_blocking = [item for item in blocking if not item.get("guarded_external")]
+if public_failures or hard_blocking:
+    status = "PARTIAL_BLOCKED_EXTERNAL_INTEGRATIONS"
+elif blocking:
+    status = "PASS_GUARDED_EXTERNAL_REPORT_GAPS"
+else:
+    status = "PASS"
 
 result = {
     "phase": 10,
@@ -90,6 +101,8 @@ acceptance = {
     "gsc_search_baselined": sources["gsc_search"].get("status") == "connected",
     "index_baselined": sources["index"].get("status") == "baselined",
     "all_required_measurement_sources_baselined": not blocking,
+    "all_core_measurement_sources_baselined": not hard_blocking,
+    "guarded_external_report_gaps": [item for item in blocking if item.get("guarded_external")],
     "public_live_checks_ok": not public_failures,
     "contains_sensitive_data": False,
     "blocking_sources": blocking,
