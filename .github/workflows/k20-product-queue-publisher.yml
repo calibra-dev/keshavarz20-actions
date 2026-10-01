@@ -11,6 +11,7 @@ on:
       - 'product-engine/**'
       - 'product_engine_compat.py'
       - 'k20_sanitizer.py'
+      - 'scripts/check_product_engine_primary_route.py'
   workflow_dispatch:
     inputs:
       queue_file:
@@ -54,6 +55,7 @@ jobs:
           python -m py_compile product-engine/publish_queue.py
           python -m py_compile product-engine/engine.py
           python -m py_compile k20_sanitizer.py
+          python scripts/check_product_engine_primary_route.py
 
   publish-product:
     if: github.event_name != 'pull_request'
