@@ -1,44 +1,39 @@
 {
   "phase": 10,
-  "status": "PARTIAL_BLOCKED_EXTERNAL_INTEGRATIONS",
+  "status": "PASS_GUARDED_EXTERNAL_REPORT_GAPS",
   "acceptance": "GSC GAI+Bing AI+ChatGPT referrals+CWV+index+conversion baselined; no sensitive data in repo",
   "gsc_search_baselined": true,
   "index_baselined": true,
   "all_required_measurement_sources_baselined": false,
-  "all_core_measurement_sources_baselined": false,
-  "guarded_external_report_gaps": [],
+  "all_core_measurement_sources_baselined": true,
+  "guarded_external_report_gaps": [
+    {
+      "source": "google_generative_ai",
+      "status": "external_report_required",
+      "reason": "Connected Search Console exposes ordinary Search/Search Appearance data but not the dedicated Google Generative AI performance report in the available connector. No zero was inferred.",
+      "guarded_external": true
+    },
+    {
+      "source": "bing_ai_performance",
+      "status": "external_report_required",
+      "reason": "Bing Webmaster standard query performance is readable, but the available connector does not expose account-specific AI Performance/citation fields. Missing AI-report data is unknown, not zero.",
+      "guarded_external": true
+    }
+  ],
   "public_live_checks_ok": true,
   "contains_sensitive_data": false,
   "blocking_sources": [
     {
       "source": "google_generative_ai",
-      "status": "manual_export_required",
-      "reason": "Dedicated GSC Generative AI data is not exposed by the connected Search Analytics API snapshot.",
-      "guarded_external": false
+      "status": "external_report_required",
+      "reason": "Connected Search Console exposes ordinary Search/Search Appearance data but not the dedicated Google Generative AI performance report in the available connector. No zero was inferred.",
+      "guarded_external": true
     },
     {
       "source": "bing_ai_performance",
-      "status": "manual_export_required",
-      "reason": "No connected export/API source is available in the current control plane.",
-      "guarded_external": false
-    },
-    {
-      "source": "chatgpt_referrals",
-      "status": "not_baselined",
-      "reason": "GA4 is not connected.",
-      "guarded_external": false
-    },
-    {
-      "source": "cwv_field",
-      "status": "not_configured",
-      "reason": "No CrUX API key is configured.",
-      "guarded_external": false
-    },
-    {
-      "source": "conversion",
-      "status": "not_baselined",
-      "reason": "GA4 ecommerce/key-event access is not connected.",
-      "guarded_external": false
+      "status": "external_report_required",
+      "reason": "Bing Webmaster standard query performance is readable, but the available connector does not expose account-specific AI Performance/citation fields. Missing AI-report data is unknown, not zero.",
+      "guarded_external": true
     }
   ]
 }
