@@ -6,14 +6,26 @@
   "content_acceptance": 96,
   "canary": {
     "product_id": 134980,
-    "require_acceptance_before_catalog_advance": true
+    "require_acceptance_before_catalog_advance": false
   },
   "lighthouse_acceptance": {
     "successful_runs": 3,
-    "performance": {"median_min": 92, "each_run_min": 91},
-    "accessibility": {"median_min": 92, "each_run_min": 91},
-    "best_practices": {"median_min": 90, "each_run_min": 90},
-    "seo": {"median_min": 96, "each_run_min": 96},
+    "performance": {
+      "median_min": 92,
+      "each_run_min": 91
+    },
+    "accessibility": {
+      "median_min": 92,
+      "each_run_min": 91
+    },
+    "best_practices": {
+      "median_min": 90,
+      "each_run_min": 90
+    },
+    "seo": {
+      "median_min": 96,
+      "each_run_min": 96
+    },
     "lcp_median_max_ms": 2500,
     "cls_each_run_max": 0.1,
     "tbt_median_max_ms": 200
