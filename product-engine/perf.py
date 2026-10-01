@@ -60,6 +60,10 @@ def http_probe(url: str, runs: int=5) -> list[dict[str,Any]]:
                 "x_litespeed_cache_control":h.get("x-litespeed-cache-control"),
                 "x_k20_canary_guard":h.get("x-k20-canary-guard"),
                 "x_k20_recent_view":h.get("x-k20-recent-view"),
+                "x_k20_wc_cache_compat":h.get("x-k20-wc-cache-compat"),
+                "x_k20_wc_prevent_hook":h.get("x-k20-wc-prevent-hook"),
+                "x_k20_donotcache":h.get("x-k20-donotcache"),
+                "x_k20_ls_cacheable":h.get("x-k20-ls-cacheable"),
                 "x_litespeed_tag":h.get("x-litespeed-tag"),"set_cookie":h.get("set-cookie"),
                 "age":h.get("age"),"server":h.get("server"),"vary":h.get("vary")
             })
