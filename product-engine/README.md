@@ -2,8 +2,10 @@
 
 Autonomous sequential remediation for the live WooCommerce catalog.
 
-Flow:
-GitHub Actions -> product-engine -> K20 Bridge 3.3 -> WooCommerce/WordPress -> readback -> Lighthouse x3 -> keep/rollback -> checkpoint.
+Primary flow:
+Connected ChatGPT -> product-engine/queue/*.json -> GitHub queue publisher -> K20 Bridge 3.3 -> WooCommerce/WordPress -> readback -> Lighthouse x3 -> keep/rollback -> checkpoint.
+
+The GitHub OpenAI-API autopilot workflow is manual fallback only and is not part of the automatic path.
 
 Key guarantees:
 - one product at a time
