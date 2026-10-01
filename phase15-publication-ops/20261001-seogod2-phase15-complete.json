@@ -1,0 +1,37 @@
+{
+  "phase": 15,
+  "title": "Visual / Video / Image Search",
+  "action": "complete_public_video_assets",
+  "requested_at": "2026-10-01",
+  "reuse_public_episodes": [
+    1,
+    7,
+    12,
+    17,
+    20
+  ],
+  "render_missing_episodes": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10,
+    11,
+    13,
+    14,
+    15,
+    16,
+    18,
+    19
+  ],
+  "guardrails": [
+    "reuse existing public assets",
+    "no fabricated claims",
+    "sanitize before upload",
+    "verify public URLs",
+    "no price or payment writes"
+  ]
+}
