@@ -1,0 +1,162 @@
+{
+  "schema_version": "seo-god2-phase12-closure-v1",
+  "project": "keshavarz20.com / SEO GOD2",
+  "phase": 12,
+  "name": "Category Decision Pages",
+  "status": "PASS_PHASE12_COMPLETE",
+  "closed": true,
+  "closed_at_utc": "2026-10-01T06:06:30Z",
+  "scope": {
+    "priority_categories": 6,
+    "taxonomy": "product_cat",
+    "category_ids": [
+      754,
+      755,
+      768,
+      826,
+      846,
+      997
+    ],
+    "categories": [
+      {
+        "id": 754,
+        "name": "لوله پلی اتیلن"
+      },
+      {
+        "id": 755,
+        "name": "نوار تیپ"
+      },
+      {
+        "id": 768,
+        "name": "لوله نخدار"
+      },
+      {
+        "id": 826,
+        "name": "آبیاری بارانی و آبپاش"
+      },
+      {
+        "id": 846,
+        "name": "ایکس گرین (XGreen)"
+      },
+      {
+        "id": 997,
+        "name": "شنژن (shenzhen)"
+      }
+    ]
+  },
+  "dependency_chain": {
+    "phase6": "PASS_PHASE6_COMPLETE",
+    "phase7": "PASS_PHASE7_COMPLETE",
+    "phase8": "PASS_PHASE8_COMPLETE",
+    "phase9": "PASS_PHASE9_EXPANDED_COMPLETE",
+    "phase10": "PASS_PHASE10_GUARDED_COMPLETE",
+    "phase11": "PASS_PHASE11_COMPLETE"
+  },
+  "definition_note": "This closure is the SEO GOD2 Phase 12 Category Decision Pages phase. The separate GrowthOS Phase 12 Google Merchant/UCP architecture work remains a distinct workstream and is not used as the definition of this phase.",
+  "sanitized_content": {
+    "module_file": "phase12-input/category-decision-modules-20261001.json",
+    "module_commit": "c1c1798f9d750376813be30c5eb68441a4746478",
+    "sanitizer_report": "phase12-results/sanitize-report-20261001.json",
+    "sanitizer_report_commit": "b8751ea7cc81428b6b9e3e8ece0256559cbebdb7",
+    "artifact_type": "WooCommerce product category description HTML fragments",
+    "fields_sanitized": "6/6 category decision modules",
+    "clean": "6/6",
+    "zero_width_found": 0,
+    "bidi_found": 0,
+    "odd_separators_found": 0,
+    "tag_characters_found": 0,
+    "ready_for_publish": true,
+    "limitation": "Deterministic hidden-artifact cleanup only; no AI-detector or statistical watermark evasion claim."
+  },
+  "execution": {
+    "workflow_file": ".github/workflows/k20-phase12-category-decision.yml",
+    "executor": "scripts/k20_phase12_category_decision.py",
+    "executor_initial_commit": "3d16b591fc7f012d821308b116232c5be360baa0",
+    "workflow_commit": "b970674828437c13969d9af10dd0bbda0747d697",
+    "first_run": {
+      "run_id": 36819019725,
+      "conclusion": "failure",
+      "reason": "WordPress taxonomy POST returned a successful HTTP response with an empty response body; the first executor unnecessarily attempted JSON decoding. The guarded workflow issued its rollback path before failing."
+    },
+    "parser_fix_commit": "3a55f96e7eb262e71a5b072fd40d4edc7060ea0f",
+    "successful_run": {
+      "run_id": 36819076462,
+      "conclusion": "success",
+      "result_file": "phase12-results/category-decision-execution-20261001.json",
+      "evidence_commit": "6a52e063a71bfe8eed84b356aed3c6352053c583",
+      "changed_count": 6,
+      "noop_count": 0,
+      "changed_ids": [
+        754,
+        755,
+        768,
+        826,
+        846,
+        997
+      ]
+    }
+  },
+  "acceptance": {
+    "priority_categories": "6/6",
+    "decision_heading": "6/6",
+    "suitable_not_suitable": "6/6",
+    "grouping_or_filters": "6/6",
+    "required_inputs": "6/6",
+    "relevant_guides_or_tools": "6/6",
+    "method_and_review_date": "6/6",
+    "no_guess_guard": "6/6",
+    "sanitizer_clean": "6/6",
+    "marker_start_exactly_once": "6/6",
+    "marker_end_exactly_once": "6/6",
+    "existing_category_description_preserved_outside_marker": true,
+    "linked_surfaces_http_200": "6/6",
+    "public_http_200_before_final_cache_purge": "6/6",
+    "public_heading_present_before_final_cache_purge": "6/6"
+  },
+  "linked_surfaces": [
+    "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
+    "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+    "https://keshavarz20.com/irrigation-product-comparator/",
+    "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+    "https://keshavarz20.com/request-proforma/",
+    "https://keshavarz20.com/sprinkler-irrigation-selection-design-guide/"
+  ],
+  "cache": {
+    "request_file": "bridge-v3-ops/20261001-seo-god2-phase12-final-cache-purge.json",
+    "request_commit": "229f9bb6625e7bf7f5da206f18c2fe87e39ff96e",
+    "result_file": "bridge-v3-results/20261001-seo-god2-phase12-final-cache-purge.json",
+    "bridge_version": "3.3.21",
+    "http_code": 200,
+    "purged": true,
+    "actions": [
+      "litespeed_purge_all",
+      "wp_cache_flush"
+    ]
+  },
+  "post_cache_public_validation": {
+    "workflow_file": ".github/workflows/k20-phase12-postcache-verify.yml",
+    "workflow_run_id": 36822947083,
+    "workflow_conclusion": "success",
+    "result_file": "phase12-results/post-cache-public-verify-20261001.json",
+    "evidence_commit": "2009c2f0d952fdcea61310a3d04f290fa5916ddf",
+    "status": "PASS",
+    "public_http_200": "6/6",
+    "decision_heading_present": "6/6",
+    "observed_litespeed_state": "miss after purge on all 6 first verification requests"
+  },
+  "guardrails": {
+    "price_fields_written": 0,
+    "sale_price_fields_written": 0,
+    "stock_fields_written": 0,
+    "product_writes": 0,
+    "payment_settings_written": 0,
+    "users_roles_credentials_written": 0,
+    "customer_or_order_data_read": false,
+    "unsupported_specs_promoted": false,
+    "fabricated_compatibility_claims": false,
+    "arbitrary_broad_replace": false,
+    "rollback_on_execution_failure": true
+  },
+  "acceptance_result": "PASS",
+  "next_phase": 13
+}
