@@ -80,8 +80,8 @@ final class K20_Bridge_V33_Performance {
         do_action('litespeed_control_set_ttl', 300, $reason);
 
         if (!headers_sent()) {
-            header('X-K20-WC-Cache-Compat: 3.3.28');
-            header('X-K20-Canary-Guard: 3.3.28');
+            header('X-K20-WC-Cache-Compat: 3.3.29');
+            header('X-K20-Canary-Guard: 3.3.29');
         }
     }
 
@@ -118,7 +118,7 @@ final class K20_Bridge_V33_Performance {
         $headers['X-K20-LS-Cacheable'] = apply_filters('litespeed_control_cacheable', false) ? '1' : '0';
         $headers['X-K20-WC-Notices'] = function_exists('wc_notice_count') ? (string) wc_notice_count() : 'na';
         $headers['X-K20-ESI'] = apply_filters('litespeed_esi_status', false) ? '1' : '0';
-        $headers['X-K20-DONOTCACHE-Override'] = 'scoped-3.3.28';
+        $headers['X-K20-DONOTCACHE-Override'] = 'scoped-3.3.29';
         return $headers;
     }
 
@@ -226,7 +226,7 @@ final class K20_Bridge_V33_Performance {
         // to the verified canary product and only to anonymous GET/HEAD requests without
         // cart/session/login cookies. "woocommerce_recently_viewed" is not private state.
         $reason = 'K20 product 134980 safe anonymous canary';
-        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.28');
+        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.29');
         do_action('litespeed_control_force_cacheable', $reason);
         do_action('litespeed_control_force_public', $reason);
         do_action('litespeed_control_set_ttl', 300, $reason);
@@ -254,6 +254,17 @@ final class K20_Bridge_V33_Performance {
 
     public static function render_product_head_repairs(): void {
         if (!self::is_product_target()) return;
+
+        $lcp_src = wp_get_attachment_image_url(self::PRODUCT_LCP_ATTACHMENT_ID, 'woocommerce_single');
+        if (!$lcp_src) $lcp_src = wp_get_attachment_url(self::PRODUCT_LCP_ATTACHMENT_ID);
+        if ($lcp_src) {
+            $lcp_srcset = wp_get_attachment_image_srcset(self::PRODUCT_LCP_ATTACHMENT_ID, 'woocommerce_single');
+            $lcp_sizes = '(max-width: 767px) calc(100vw - 40px), 600px';
+            echo '<link rel="preload" as="image" href="' . esc_url($lcp_src) . '" fetchpriority="high"'
+                . ($lcp_srcset ? ' imagesrcset="' . esc_attr($lcp_srcset) . '" imagesizes="' . esc_attr($lcp_sizes) . '"' : '')
+                . '>';
+        }
+
         echo '<link rel="preload" href="https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebregularfanum.woff" as="font" type="font/woff" crossorigin>';
         echo '<link rel="preload" href="https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebboldfanum.woff" as="font" type="font/woff" crossorigin>';
         echo '<style id="k20-product-134980-canary-css">' . self::product_a11y_css() . '</style>';
@@ -507,6 +518,12 @@ final class K20_Bridge_V33_Performance {
             $html = str_ireplace('</head>', $css . '</head>', $html);
         }
 
+        // Lighthouse on the verified canary reports these exact two generated
+        // LiteSpeed stylesheets as 99-100% unused while they still block first paint.
+        // Keep the final appearance intact by loading them asynchronously, and retain
+        // a noscript fallback. If LiteSpeed changes the hashes, this becomes a no-op.
+        $html = self::defer_verified_unused_product_css($html);
+
         // Reassert the safe anonymous cache decision after the full product HTML exists.
         // The request guard prevents this from ever applying to cart/session/login traffic.
         self::product_cache_policy();
@@ -514,6 +531,41 @@ final class K20_Bridge_V33_Performance {
         // Read-only late snapshot: do not alter cache state here. This isolates whether
         // LiteSpeed flips the request after our earlier safe-public decision.
         self::emit_late_litespeed_diagnostics();
+
+        return $html;
+    }
+
+    private static function defer_verified_unused_product_css(string $html): string {
+        if (!self::is_product_target() || $html === '') return $html;
+
+        $verified_unused = [
+            '62bccd5cbc3fa81af8e3db4ca4b9cbd8.css',
+            '6c6e99777b208fdc2e0d8d3666a7bcc9.css',
+        ];
+
+        foreach ($verified_unused as $fragment) {
+            $pattern = '/<link\\b(?=[^>]*href=(["\\'])[^"\\']*' . preg_quote($fragment, '/') . '[^"\\']*\\1)[^>]*>/i';
+            $html = preg_replace_callback(
+                $pattern,
+                static function (array $match): string {
+                    $tag = $match[0];
+                    if (stripos($tag, 'stylesheet') === false || stripos($tag, 'media="print"') !== false || stripos($tag, "media='print'") !== false) {
+                        return $tag;
+                    }
+
+                    $async = preg_replace(
+                        '/\\srel=(["\\'])stylesheet\\1/i',
+                        ' rel="stylesheet" media="print" onload="this.media=\\'all\\'"',
+                        $tag,
+                        1
+                    ) ?: $tag;
+
+                    if ($async === $tag) return $tag;
+                    return $async . '<noscript>' . $tag . '</noscript>';
+                },
+                $html
+            ) ?: $html;
+        }
 
         return $html;
     }
