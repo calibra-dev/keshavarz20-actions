@@ -80,8 +80,8 @@ final class K20_Bridge_V33_Performance {
         do_action('litespeed_control_set_ttl', 300, $reason);
 
         if (!headers_sent()) {
-            header('X-K20-WC-Cache-Compat: 3.3.27');
-            header('X-K20-Canary-Guard: 3.3.27');
+            header('X-K20-WC-Cache-Compat: 3.3.28');
+            header('X-K20-Canary-Guard: 3.3.28');
         }
     }
 
@@ -118,7 +118,7 @@ final class K20_Bridge_V33_Performance {
         $headers['X-K20-LS-Cacheable'] = apply_filters('litespeed_control_cacheable', false) ? '1' : '0';
         $headers['X-K20-WC-Notices'] = function_exists('wc_notice_count') ? (string) wc_notice_count() : 'na';
         $headers['X-K20-ESI'] = apply_filters('litespeed_esi_status', false) ? '1' : '0';
-        $headers['X-K20-DONOTCACHE-Override'] = 'scoped-3.3.27';
+        $headers['X-K20-DONOTCACHE-Override'] = 'scoped-3.3.28';
         return $headers;
     }
 
@@ -226,7 +226,7 @@ final class K20_Bridge_V33_Performance {
         // to the verified canary product and only to anonymous GET/HEAD requests without
         // cart/session/login cookies. "woocommerce_recently_viewed" is not private state.
         $reason = 'K20 product 134980 safe anonymous canary';
-        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.27');
+        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.28');
         do_action('litespeed_control_force_cacheable', $reason);
         do_action('litespeed_control_force_public', $reason);
         do_action('litespeed_control_set_ttl', 300, $reason);
@@ -254,6 +254,8 @@ final class K20_Bridge_V33_Performance {
 
     public static function render_product_head_repairs(): void {
         if (!self::is_product_target()) return;
+        echo '<link rel="preload" href="https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebregularfanum.woff" as="font" type="font/woff" crossorigin>';
+        echo '<link rel="preload" href="https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebboldfanum.woff" as="font" type="font/woff" crossorigin>';
         echo '<style id="k20-product-134980-canary-css">' . self::product_a11y_css() . '</style>';
     }
 
