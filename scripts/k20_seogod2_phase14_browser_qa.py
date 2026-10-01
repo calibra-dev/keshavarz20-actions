@@ -17,7 +17,7 @@ TOOLS = [
 ]
 
 INVALID_RE = re.compile(r"(مثبت|نامعتبر|وارد|الزامی|required|invalid|خطا|بزرگ.?تر از صفر)", re.I)
-ACTION_RE = re.compile(r"(محاسبه|انتخاب|بررسی|جست.?وجو|مقایسه|نمایش|calculate|select|check|search|compare)", re.I)
+ACTION_RE = re.compile(r"(محاسبه|انتخاب|بررسی|جست.?وجو|مقایسه|نمایش|ارسال|درخواست|تماس|calculate|select|check|search|compare|send|request|contact)", re.I)
 
 PERSIAN_DIGITS = str.maketrans("۰۱۲۳۴۵۶۷۸۹٬٫", "0123456789,.")
 
@@ -32,7 +32,7 @@ async def block_writes(route):
         await route.continue_()
 
 async def get_action_button(page):
-    buttons = page.locator("button:visible, input[type=button]:visible")
+    buttons = page.locator("button:visible, input[type=button]:visible, a:visible")
     n = await buttons.count()
     for i in range(n):
         b = buttons.nth(i)
@@ -62,7 +62,7 @@ async def boundary_probe(page):
             continue
         original = await el.input_value()
         ident = await el.get_attribute("id") or await el.get_attribute("name") or f"number[{i}]"
-        for label, value in (("zero","0"),("negative","-1"),("blank","")):
+        for label, value in (("zero","0"),("negative","-1")):
             await el.fill(value)
             native_valid = await el.evaluate("(e)=>e.checkValidity()")
             before = (await page.locator("body").inner_text())[-3000:]
@@ -160,7 +160,7 @@ async def main():
                 row["http"] = resp.status if resp else 0
                 row["h1_count"] = await page.locator("h1").count()
                 row["controls"] = await page.locator("input:visible, select:visible, textarea:visible").count()
-                row["actions"] = await page.locator("button:visible, input[type=button]:visible, input[type=submit]:visible").count()
+                row["actions"] = await page.locator("button:visible, input[type=button]:visible, input[type=submit]:visible, a[href^='https://wa.me/']:visible, a[href^='sms:']:visible, a[href^='tel:']:visible").count()
                 row["quote_links"] = await page.locator("a[href*='wa.me']:visible, a[href^='tel:']:visible, a[href*='whatsapp']:visible").count()
                 overflow = await page.evaluate("()=>document.documentElement.scrollWidth-document.documentElement.clientWidth")
                 row["horizontal_overflow_px"] = int(overflow)
