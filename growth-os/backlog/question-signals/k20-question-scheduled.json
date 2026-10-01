@@ -1,17 +1,16 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-7bd00ddd4ae022e5",
-  "product_id": 135213,
-  "family": "pipe",
-  "intent": "season",
+  "canonical_intent_id": "question-intent-2f56abf50dac6c4e",
+  "product_id": 140612,
+  "family": "fitting",
+  "intent": "compatibility",
   "scenario_dimensions": {
-    "maintenance": true,
-    "crop": "به"
+    "installation_state": true
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": false,
+  "compatibility_gap": true,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
