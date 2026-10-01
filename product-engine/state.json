@@ -3,7 +3,7 @@
   "enabled": true,
   "kill_switch": false,
   "created_at": "2026-09-30T20:30:00Z",
-  "updated_at": "2026-10-01T17:30:53.219109+00:00",
+  "updated_at": "2026-10-01T18:34:10.601322+00:00",
   "processed": {
     "134980": {
       "status": "PLATFORM_BLOCKED",
@@ -103,12 +103,23 @@
       "protected_fields_ok": true,
       "blocker": "performance median below 92; performance run below 91; accessibility median below 92; accessibility run below 91; LCP median above gate",
       "result_file": "product-engine/results/135004.json"
+    },
+    "135006": {
+      "status": "PLATFORM_BLOCKED",
+      "finished_at": "2026-10-01T18:34:10.596514+00:00",
+      "content_quality_score": 100,
+      "performance": 75.0,
+      "accessibility": 78.0,
+      "media_all_webp": true,
+      "protected_fields_ok": true,
+      "blocker": "performance median below 92; performance run below 91; accessibility median below 92; accessibility run below 91; LCP median above gate; TBT median above gate",
+      "result_file": "product-engine/results/135006.json"
     }
   },
   "sentence_bank": {},
   "stats": {
     "accepted": 0,
-    "platform_blocked": 20,
+    "platform_blocked": 21,
     "blocked": 0,
     "rolled_back": 2,
     "failed": 1
