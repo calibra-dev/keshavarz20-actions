@@ -1,12 +1,8 @@
 name: K20 Product API Fallback
 
 on:
-  schedule:
-    - cron: '*/30 * * * *'
-  push:
-    branches: [main]
-    paths:
-      - 'product-engine/activation.json'
+  # Primary automatic path is connected ChatGPT -> product-engine/queue/*.json
+  # -> k20-product-queue-publisher.yml. Keep this API mode manual fallback only.
   workflow_dispatch:
     inputs:
       action:
