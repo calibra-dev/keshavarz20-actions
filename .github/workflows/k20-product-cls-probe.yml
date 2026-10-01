@@ -92,6 +92,7 @@ jobs:
           script=r"""
           (function(){
             window.__k20Shifts=[];
+            window.__k20Lcp=[];
             const rect=r=>r?({x:r.x,y:r.y,width:r.width,height:r.height,top:r.top,right:r.right,bottom:r.bottom,left:r.left}):null;
             const selector=n=>{
               if(!n || !n.tagName) return null;
@@ -117,12 +118,40 @@ jobs:
                 });
               }
             }).observe({type:'layout-shift',buffered:true});
+            try {
+              new PerformanceObserver(list=>{
+                for(const e of list.getEntries()){
+                  const n=e.element;
+                  const r=n&&n.getBoundingClientRect?n.getBoundingClientRect():null;
+                  window.__k20Lcp.push({
+                    startTime:e.startTime,renderTime:e.renderTime,loadTime:e.loadTime,size:e.size,
+                    url:e.url||null,
+                    tag:n&&n.tagName?n.tagName:null,
+                    id:n&&n.id?n.id:null,
+                    className:n&&n.className?String(n.className):null,
+                    src:n&&n.currentSrc?n.currentSrc:(n&&n.src?n.src:null),
+                    loading:n&&n.getAttribute?n.getAttribute('loading'):null,
+                    fetchpriority:n&&n.getAttribute?n.getAttribute('fetchpriority'):null,
+                    rect:r?{top:r.top,left:r.left,width:r.width,height:r.height}:null,
+                    text:n&&n.innerText?String(n.innerText).trim().slice(0,200):null
+                  });
+                }
+              }).observe({type:'largest-contentful-paint',buffered:true});
+            } catch(e) {}
           })();
           """
           driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument",{"source":script})
           driver.get(url)
           time.sleep(10)
           shifts=driver.execute_script("return window.__k20Shifts || []")
+          lcp=driver.execute_script("return window.__k20Lcp || []")
+          resources=driver.execute_script("""
+            return performance.getEntriesByType('resource').map(e=>({
+              name:e.name,initiatorType:e.initiatorType,startTime:e.startTime,
+              requestStart:e.requestStart,responseStart:e.responseStart,responseEnd:e.responseEnd,
+              duration:e.duration,transferSize:e.transferSize,decodedBodySize:e.decodedBodySize
+            })).sort((a,b)=>b.duration-a.duration).slice(0,40);
+          """)
           metrics=driver.execute_script("""
             return {
               href:location.href,
@@ -135,13 +164,15 @@ jobs:
           driver.quit()
 
           total=sum(float(x.get("value") or 0) for x in shifts)
-          out={"url":url,"http":http,"cls_total":total,"shifts":shifts,"page":metrics}
+          out={"url":url,"http":http,"cls_total":total,"shifts":shifts,"lcp":lcp,"resources":resources,"page":metrics}
           path=pathlib.Path("product-engine/probe-output/134980-cls.json")
           path.write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
           print(json.dumps({
               "url":url,"http":http,"cls_total":total,
               "shift_count":len(shifts),
               "top_shifts":sorted(shifts,key=lambda x:x.get("value",0),reverse=True)[:5],
+              "lcp":lcp[-5:],
+              "slow_resources":resources[:15],
               "page":metrics
           },ensure_ascii=False))
           PY
