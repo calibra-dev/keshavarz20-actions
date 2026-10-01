@@ -1,7 +1,7 @@
 {
   "program": "SEO God2",
   "phase": 14,
-  "generated_at_utc": "2026-10-01T08:28:06.084115+00:00",
+  "generated_at_utc": "2026-10-01T08:35:54.625257+00:00",
   "mode": "public-read-only-static-js-parse",
   "pages": [
     {
@@ -1016,9 +1016,9 @@
       "key": "one_hectare_basket",
       "url": "https://keshavarz20.com/one-hectare-drip-irrigation-basket/",
       "http": 200,
-      "bytes": 220697,
+      "bytes": 208931,
       "script_count": 68,
-      "script_fail": 1,
+      "script_fail": 0,
       "scripts": [
         {
           "index": 0,
@@ -1175,12 +1175,11 @@
         },
         {
           "index": 25,
-          "chars": 13800,
-          "ok": false,
-          "stderr": "/tmp/tmp5aeyxl3e.js:13\n  window.__k20WebMCPPhase13={version:\"1.0.0\",registered:[],errors:[]};</p>\n                                                                      ^\n\nSyntaxError: Unexpected token '<'\n    at wrapSafe (node:internal/modules/cjs/loader:1713:18)\n    at checkSyntax (node:internal/main/check_syntax:78:3)\n\nNode.js v22.23.3\n",
+          "chars": 3387,
+          "ok": true,
+          "stderr": "",
           "markers": [
             "k20-calc",
-            "growthos",
             "WebMCP"
           ]
         },
@@ -1507,7 +1506,7 @@
           "markers": []
         }
       ],
-      "pass": false
+      "pass": true
     },
     {
       "key": "product_comparator",
@@ -1996,7 +1995,7 @@
       "pass": true
     }
   ],
-  "pages_pass": 3,
-  "pages_fail": 1,
-  "overall_pass": false
+  "pages_pass": 4,
+  "pages_fail": 0,
+  "overall_pass": true
 }
