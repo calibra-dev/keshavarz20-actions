@@ -80,8 +80,8 @@ final class K20_Bridge_V33_Performance {
         do_action('litespeed_control_set_ttl', 300, $reason);
 
         if (!headers_sent()) {
-            header('X-K20-WC-Cache-Compat: 3.3.30');
-            header('X-K20-Canary-Guard: 3.3.30');
+            header('X-K20-WC-Cache-Compat: 3.3.31');
+            header('X-K20-Canary-Guard: 3.3.31');
         }
     }
 
@@ -118,7 +118,7 @@ final class K20_Bridge_V33_Performance {
         $headers['X-K20-LS-Cacheable'] = apply_filters('litespeed_control_cacheable', false) ? '1' : '0';
         $headers['X-K20-WC-Notices'] = function_exists('wc_notice_count') ? (string) wc_notice_count() : 'na';
         $headers['X-K20-ESI'] = apply_filters('litespeed_esi_status', false) ? '1' : '0';
-        $headers['X-K20-DONOTCACHE-Override'] = 'scoped-3.3.30';
+        $headers['X-K20-DONOTCACHE-Override'] = 'scoped-3.3.31';
         return $headers;
     }
 
@@ -226,7 +226,7 @@ final class K20_Bridge_V33_Performance {
         // to the verified canary product and only to anonymous GET/HEAD requests without
         // cart/session/login cookies. "woocommerce_recently_viewed" is not private state.
         $reason = 'K20 product 134980 safe anonymous canary';
-        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.30');
+        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.31');
         do_action('litespeed_control_force_cacheable', $reason);
         do_action('litespeed_control_force_public', $reason);
         do_action('litespeed_control_set_ttl', 300, $reason);
@@ -266,7 +266,6 @@ final class K20_Bridge_V33_Performance {
         }
 
         echo '<link rel="preload" href="https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebregularfanum.woff" as="font" type="font/woff" crossorigin>';
-        echo '<link rel="preload" href="https://keshavarz20.com/wp-content/themes/irankala/assets/fonts/iranyekan/woff/iranyekanwebboldfanum.woff" as="font" type="font/woff" crossorigin>';
         echo '<style id="k20-product-134980-canary-css">' . self::product_a11y_css() . '</style>';
     }
 
@@ -312,9 +311,12 @@ final class K20_Bridge_V33_Performance {
         $is_calculator_lcp = self::is_calculator_target() && $attachment_id === self::LCP_ATTACHMENT_ID;
         $is_article_lcp = self::is_article_target() && $attachment_id === self::ARTICLE_LCP_ATTACHMENT_ID && $size === 'full';
         $product_render_width = is_array($size) ? (int) ($size[0] ?? 0) : 0;
+        $product_attr_class = (string) ($attr['class'] ?? '');
+        $is_product_main_render = $size === 'woocommerce_single'
+            || (($size === 'full' || $product_render_width >= 300) && str_contains($product_attr_class, 'wp-post-image'));
         $is_product_lcp = self::is_product_target()
             && $attachment_id === self::PRODUCT_LCP_ATTACHMENT_ID
-            && ($size === 'woocommerce_single' || $size === 'full' || $product_render_width >= 300);
+            && $is_product_main_render;
         if (!$is_calculator_lcp && !$is_article_lcp && !$is_product_lcp) {
             return $attr;
         }
@@ -518,6 +520,30 @@ final class K20_Bridge_V33_Performance {
             $html = str_ireplace('</head>', $css . '</head>', $html);
         }
 
+        $html = preg_replace_callback(
+            '/<img\\b(?=[^>]*k20-direct-a143246\\.webp)[^>]*>/i',
+            static function (array $match): string {
+                $tag = $match[0];
+                $tag = preg_replace('/\\sloading=(["\\']).*?\\1/i', '', $tag) ?: $tag;
+                $tag = preg_replace('/\\sfetchpriority=(["\\']).*?\\1/i', '', $tag) ?: $tag;
+                $tag = preg_replace('/\\sdecoding=(["\\']).*?\\1/i', '', $tag) ?: $tag;
+                return substr($tag, 0, -1) . ' loading="lazy" fetchpriority="low" decoding="async">';
+            },
+            $html
+        ) ?: $html;
+
+        $html = preg_replace_callback(
+            '/<img\\b(?=[^>]*%DA%AF%D8%A7%D8%B1%D8%A7%D9%86%D8%AA%DB%8C\\.png)[^>]*>/i',
+            static function (array $match): string {
+                $tag = $match[0];
+                if (stripos($tag, 'fetchpriority=') !== false) {
+                    return preg_replace('/fetchpriority=(["\\']).*?\\1/i', 'fetchpriority="low"', $tag, 1) ?: $tag;
+                }
+                return substr($tag, 0, -1) . ' fetchpriority="low">';
+            },
+            $html
+        ) ?: $html;
+
         // Lighthouse on the verified canary reports these exact two generated
         // LiteSpeed stylesheets as 99-100% unused while they still block first paint.
         // Keep the final appearance intact by loading them asynchronously, and retain
@@ -541,7 +567,6 @@ final class K20_Bridge_V33_Performance {
         $verified_unused = [
             '62bccd5cbc3fa81af8e3db4ca4b9cbd8.css',
             '6c6e99777b208fdc2e0d8d3666a7bcc9.css',
-            '9c13dae17cf8ea20906a1f183d051600.css',
         ];
 
         foreach ($verified_unused as $fragment) {
