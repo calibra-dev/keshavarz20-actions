@@ -1,0 +1,12 @@
+{
+  "action": "content.patch",
+  "request_id": "20261001-phase14-patch-basket-validation-145233",
+  "payload": {
+    "target_type": "post",
+    "post_id": 145233,
+    "field": "post_content",
+    "old_content": "if(!(area>0&&len>0&&spacing>0&&roll>0&&waste>=0&&spare>=0)){",
+    "new_content": "if(area<=0||len<=0||spacing<=0||roll<=0||waste<0||spare<0){",
+    "expected_sha256": "8990124b244f940796b1918d26ff54567c49e1a21d42b5cdd350d73954449ac1"
+  }
+}
