@@ -1,16 +1,17 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-2f56abf50dac6c4e",
-  "product_id": 140612,
-  "family": "fitting",
-  "intent": "compatibility",
+  "canonical_intent_id": "question-intent-62d8157aa28c3b0b",
+  "product_id": 142960,
+  "family": "fertilizer",
+  "intent": "experience_request",
   "scenario_dimensions": {
-    "installation_state": true
+    "water": true,
+    "crop": "لوبیا"
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": true,
+  "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
