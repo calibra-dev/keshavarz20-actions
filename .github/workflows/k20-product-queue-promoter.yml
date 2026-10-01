@@ -1,0 +1,97 @@
+name: K20 Product Queue Promoter
+
+on:
+  push:
+    branches:
+      - 'automation/product-*'
+    paths:
+      - 'product-engine/queue/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-product-queue-promoter
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout producer branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Resolve exactly one new immutable queue
+        id: queue
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff-tree --no-commit-id --name-only --diff-filter=A -r "$GITHUB_SHA" -- 'product-engine/queue/*.json' > /tmp/product-queues.txt
+          count=$(grep -c . /tmp/product-queues.txt || true)
+          if [ "$count" -ne 1 ]; then
+            echo "::error::Expected exactly one newly added product queue; found $count"
+            cat /tmp/product-queues.txt || true
+            exit 2
+          fi
+          file=$(cat /tmp/product-queues.txt)
+          case "$file" in
+            product-engine/queue/*.json) ;;
+            *) echo "::error::Unexpected queue path: $file"; exit 3 ;;
+          esac
+          python - "$file" <<'PY'
+          import json, sys
+          from pathlib import Path
+          p=Path(sys.argv[1])
+          d=json.loads(p.read_text(encoding='utf-8'))
+          if d.get('content_type')!='product':
+              raise SystemExit('content_type must be product')
+          if d.get('producer')!='connected_chatgpt_deep_research':
+              raise SystemExit('producer must be connected_chatgpt_deep_research')
+          pid=int(d.get('product_id') or 0)
+          if pid<=0:
+              raise SystemExit('product_id missing')
+          if str(pid) not in p.name:
+              raise SystemExit('queue filename must contain product_id')
+          print('PRODUCT_QUEUE_PROMOTION_INPUT_OK')
+          PY
+          cp "$file" /tmp/product-queue.json
+          echo "file=$file" >> "$GITHUB_OUTPUT"
+
+      - name: Promote queue onto current main
+        shell: bash
+        env:
+          QUEUE_FILE: ${{ steps.queue.outputs.file }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          if git cat-file -e "origin/main:${QUEUE_FILE}" 2>/dev/null; then
+            echo "Queue already exists on main; promotion is idempotently complete."
+            exit 0
+          fi
+          source_branch="$GITHUB_REF_NAME"
+          source_sha="$GITHUB_SHA"
+          git checkout -B main origin/main
+          mkdir -p "$(dirname "$QUEUE_FILE")"
+          cp /tmp/product-queue.json "$QUEUE_FILE"
+          python scripts/check_product_engine_primary_route.py
+          git add "$QUEUE_FILE"
+          base_name=$(basename "$QUEUE_FILE")
+          git commit -m "product-engine: promote ${base_name} from ${source_branch} (${source_sha:0:12})"
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt * 2))
+          done
+          exit 1
