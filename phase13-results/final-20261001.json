@@ -1,0 +1,94 @@
+{
+"phase": 13,
+"title": "Guides, Hubs, Crop/Problem Content",
+"date": "2026-10-01",
+"status": "PASS_FINAL_GUARDED_NO_MUTATION_REQUIRED",
+"scope": "Fresh cannibalization review, intent ownership validation, and irrigation hub decision after Phase 12 closure.",
+"data_sources": {
+"search_console": "Windsor.ai Search Console connected to sc-domain:keshavarz20.com",
+"wordpress_readback": "WPVibe read-only fallback used only because Bridge REST slug search is not allow-listed",
+"control_plane_for_writes": "GitHub -> Keshavarz20 Bridge 3.3",
+"site_writes_via_fallback": 0
+},
+"decisions": [
+{
+"cluster": "drip_tape_calculator",
+"owner_post_id": 143698,
+"owner_url": "https://keshavarz20.com/drip-tape-length-fittings-calculator/",
+"duplicate_post_id": 145263,
+"duplicate_url": "https://keshavarz20.com/tape-irrigation-length-fittings-calculator-2026/",
+"decision": "PRESERVE_OWNER_KEEP_DUPLICATE_NOINDEX_NO_NEW_WRITE",
+"evidence": {
+"duplicate_live_robots": "noindex, follow",
+"duplicate_recent_impressions_2026_09_26_to_2026_09_30": 0,
+"owner_recent_impressions_present": true,
+"note": "The duplicate had historical impressions before noindex settled, but no impressions were observed in the recent settled window. Additional canonical or redirect changes are not justified by current evidence."
+}
+},
+{
+"cluster": "ethephon_tomato",
+"decision": "PRESERVE_EXISTING_OWNER_NO_VARIANT_PAGE",
+"evidence": {
+"query": "اتفون",
+"clicks_last_28d": 48,
+"impressions_last_28d": 248,
+"avg_position_last_28d": 2.2379
+}
+},
+{
+"cluster": "iron_fertilizer",
+"generic_owner_post_id": 142952,
+"mixing_owner_post_id": 142954,
+"decision": "KEEP_BOTH_DISTINCT_INTENTS",
+"evidence": {
+"generic_owner_primary_demand": "کود آهن / خواص / زمان مصرف / مقدار مصرف",
+"mixing_owner_primary_demand": "ترکیب و اختلاط کود آهن با پتاس، اوره و سایر کودها",
+"generic_query_kood_ahan_impressions_last_28d": 129,
+"mixing_query_iron_potassium_impressions_last_28d": 437,
+"mixing_query_urea_iron_impressions_last_28d": 293
+}
+},
+{
+"cluster": "irrigation_hub",
+"decision": "NO_NEW_HUB",
+"evidence": {
+"existing_category_id": 1030,
+"existing_category_name": "راهنمای آبیاری و تجهیزات",
+"existing_category_post_count": 35,
+"existing_subcategory_id": 829,
+"existing_subcategory_name": "راهنمای لوله و نوار آبیاری",
+"existing_subcategory_post_count": 19,
+"reason": "A dedicated taxonomy hub already exists and current search demand is distributed across specific task intents. A new generic hub would duplicate navigation and risk thin overlap."
+}
+}
+],
+"editorial_cannibalization_review": {
+"notable_overlaps_last_28d": [
+{
+"query": "sdr در لوله پلی اتیلن",
+"primary_url": "https://keshavarz20.com/polyethylene-pipe-pn-sdr-pe80-pe100-guide/",
+"primary_impressions": 25,
+"secondary_url": "https://keshavarz20.com/irrigation-pipe-size-selector/",
+"secondary_impressions": 1,
+"decision": "NO_ACTION_DISTINCT_INTENT_AND_NEGLIGIBLE_SECONDARY_SHARE"
+},
+{
+"query": "محاسبه نوار تیپ",
+"decision": "RESOLVED_BY_EXISTING_NOINDEX_SIGNAL_NO_NEW_WRITE"
+},
+{
+"query": "زمان مصرف کلات آهن",
+"decision": "NO_ACTION_ARTICLE_OWNER_CLEAR_CATEGORY_RESULT_WEAK"
+}
+]
+},
+"guards": {
+"new_thin_pages_created": 0,
+"blind_merges": 0,
+"redirects_added": 0,
+"site_mutations": 0,
+"price_writes": 0,
+"fallback_writes": 0
+},
+"conclusion": "Phase 13 is complete. Existing intent owners are preserved, the duplicate drip-tape calculator is already suppressed by noindex with no recent impressions, iron-fertilizer intents are distinct, and the existing irrigation taxonomy already functions as the hub. No additional site mutation is justified by current evidence."
+}
