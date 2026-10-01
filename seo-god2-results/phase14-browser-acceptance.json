@@ -2,7 +2,7 @@
   "program": "SEO God2",
   "phase": 14,
   "title": "Browser acceptance for calculators/selectors/BOM/proforma",
-  "generated_at_utc": "2026-10-01T08:28:32.195432+00:00",
+  "generated_at_utc": "2026-10-01T08:35:49.438035+00:00",
   "mode": "public-read-only-browser-qa",
   "network_guard": "all non-GET/HEAD/OPTIONS requests aborted",
   "tools": [
@@ -278,9 +278,7 @@
       "actions": 4,
       "quote_links": 4,
       "horizontal_overflow_px": 0,
-      "page_errors": [
-        "Unexpected token '<'"
-      ],
+      "page_errors": [],
       "smoke_pass": true,
       "boundary": {
         "tested": 8,
@@ -345,12 +343,13 @@
         "pass": true
       },
       "business_logic": {
-        "pass": false,
+        "pass": true,
         "formula_output": "برآورد اولیه سبد\nعرض معادل زمین\t۱۰۰ متر\nتعداد ردیف برآوردی\t۱۰۰\nمتراژ پایه نوار\t۱۰٬۰۰۰ متر\nمتراژ با رزرو\t۱۰٬۵۰۰ متر\nتعداد رول\t۱۱\nشیر/رابط شروع\t۱۰۰ + ۵ ذخیره\nقطعه انتهایی\t۱۰۰ + ۵ ذخیره\n\nنیازمند تأیید فنی: فیلتر، خط اصلی، فشار، دبی، کیفیت آب و سازگاری اتصال‌ها.",
         "formula_pass": true,
-        "zero_rejected": false
+        "zero_rejected": true,
+        "zero_message": "ورودی‌ها را با عدد معتبر تکمیل کنید."
       },
-      "pass": false
+      "pass": true
     },
     {
       "key": "product_comparator",
@@ -396,7 +395,7 @@
       "pass": true
     }
   ],
-  "tools_pass": 8,
-  "tools_fail": 1,
-  "overall_pass": false
+  "tools_pass": 9,
+  "tools_fail": 0,
+  "overall_pass": true
 }
