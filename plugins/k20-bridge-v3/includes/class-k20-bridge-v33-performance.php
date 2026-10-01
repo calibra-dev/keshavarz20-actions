@@ -28,6 +28,7 @@ final class K20_Bridge_V33_Performance {
         add_filter('script_loader_tag', [__CLASS__, 'script_priority'], 20, 3);
         add_filter('litespeed_buffer_after', [__CLASS__, 'final_html_repairs'], 20, 1);
         add_filter('litespeed_buffer_finalize', [__CLASS__, 'pre_header_product_cache_reassert'], PHP_INT_MAX, 1);
+        add_filter('litespeed_const_DONOTCACHEPAGE', [__CLASS__, 'override_product_donotcachepage'], PHP_INT_MAX, 1);
         add_action('litespeed_control_set_nocache', [__CLASS__, 'capture_litespeed_nocache'], PHP_INT_MAX, 1);
         add_filter('woocommerce_set_cookie_enabled', [__CLASS__, 'filter_product_cookie'], 9999, 5);
         add_filter('wp_headers', [__CLASS__, 'product_cache_diagnostic_headers'], 99999);
@@ -79,9 +80,20 @@ final class K20_Bridge_V33_Performance {
         do_action('litespeed_control_set_ttl', 300, $reason);
 
         if (!headers_sent()) {
-            header('X-K20-WC-Cache-Compat: 3.3.26');
-            header('X-K20-Canary-Guard: 3.3.26');
+            header('X-K20-WC-Cache-Compat: 3.3.27');
+            header('X-K20-Canary-Guard: 3.3.27');
         }
+    }
+
+    public static function override_product_donotcachepage($value) {
+        if (!self::is_safe_public_product_uri()) return $value;
+        if (function_exists('wc_notice_count') && wc_notice_count() > 0) return $value;
+
+        // LiteSpeed exposes this filter specifically so third-party late
+        // DONOTCACHEPAGE constants can be ignored when the request is proven
+        // safe to cache. Keep the override scoped to this exact anonymous
+        // product canary; commerce/login/session requests never reach here.
+        return false;
     }
 
     public static function filter_product_cookie($enabled, $name, $value, $expire, $secure) {
@@ -106,6 +118,7 @@ final class K20_Bridge_V33_Performance {
         $headers['X-K20-LS-Cacheable'] = apply_filters('litespeed_control_cacheable', false) ? '1' : '0';
         $headers['X-K20-WC-Notices'] = function_exists('wc_notice_count') ? (string) wc_notice_count() : 'na';
         $headers['X-K20-ESI'] = apply_filters('litespeed_esi_status', false) ? '1' : '0';
+        $headers['X-K20-DONOTCACHE-Override'] = 'scoped-3.3.27';
         return $headers;
     }
 
@@ -213,7 +226,7 @@ final class K20_Bridge_V33_Performance {
         // to the verified canary product and only to anonymous GET/HEAD requests without
         // cart/session/login cookies. "woocommerce_recently_viewed" is not private state.
         $reason = 'K20 product 134980 safe anonymous canary';
-        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.26');
+        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.27');
         do_action('litespeed_control_force_cacheable', $reason);
         do_action('litespeed_control_force_public', $reason);
         do_action('litespeed_control_set_ttl', 300, $reason);
