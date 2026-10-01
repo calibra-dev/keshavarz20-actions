@@ -30,5 +30,11 @@
     "product-engine/ai_runtime.py"
   ],
   "canonical_prompt": "product-engine/SCHEDULED_TASK_PROMPT.md",
-  "canonical_config": "product-engine/config.json"
+  "canonical_config": "product-engine/config.json",
+  "queue_delivery": {
+    "primary": "direct_main_immutable_queue",
+    "branch_fallback": "automation/product-*",
+    "promoter_workflow": ".github/workflows/k20-product-queue-promoter.yml",
+    "publisher_workflow": ".github/workflows/k20-product-queue-publisher.yml"
+  }
 }
