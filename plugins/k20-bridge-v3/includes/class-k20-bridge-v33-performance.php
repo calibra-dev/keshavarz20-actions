@@ -78,8 +78,8 @@ final class K20_Bridge_V33_Performance {
         do_action('litespeed_control_set_ttl', 300, $reason);
 
         if (!headers_sent()) {
-            header('X-K20-WC-Cache-Compat: 3.3.23');
-            header('X-K20-Canary-Guard: 3.3.23');
+            header('X-K20-WC-Cache-Compat: 3.3.24');
+            header('X-K20-Canary-Guard: 3.3.24');
         }
     }
 
@@ -106,6 +106,25 @@ final class K20_Bridge_V33_Performance {
         $headers['X-K20-WC-Notices'] = function_exists('wc_notice_count') ? (string) wc_notice_count() : 'na';
         $headers['X-K20-ESI'] = apply_filters('litespeed_esi_status', false) ? '1' : '0';
         return $headers;
+    }
+
+    private static function emit_late_litespeed_diagnostics(): void {
+        if (!self::is_safe_public_product_uri() || headers_sent()) return;
+
+        $no_cache_constant = (defined('LSCACHE_NO_CACHE') && LSCACHE_NO_CACHE) ? '1' : '0';
+        header('X-K20-Late-LS-NoCache: ' . $no_cache_constant);
+
+        if (!class_exists('\\LiteSpeed\\Control')) {
+            header('X-K20-Late-LS-Control: missing');
+            return;
+        }
+
+        header('X-K20-Late-LS-Control: loaded');
+        header('X-K20-Late-LS-Cacheable: ' . (\\LiteSpeed\\Control::is_cacheable() ? '1' : '0'));
+        header('X-K20-Late-LS-NotCacheable: ' . (\\LiteSpeed\\Control::isset_notcacheable() ? '1' : '0'));
+        header('X-K20-Late-LS-Forced: ' . (\\LiteSpeed\\Control::is_forced_cacheable() ? '1' : '0'));
+        header('X-K20-Late-LS-PublicForced: ' . (\\LiteSpeed\\Control::is_public_forced() ? '1' : '0'));
+        header('X-K20-Late-LS-Private: ' . (\\LiteSpeed\\Control::is_private() ? '1' : '0'));
     }
 
     private static function is_calculator_target(): bool {
@@ -168,7 +187,7 @@ final class K20_Bridge_V33_Performance {
         // to the verified canary product and only to anonymous GET/HEAD requests without
         // cart/session/login cookies. "woocommerce_recently_viewed" is not private state.
         $reason = 'K20 product 134980 safe anonymous canary';
-        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.23');
+        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.24');
         do_action('litespeed_control_force_cacheable', $reason);
         do_action('litespeed_control_force_public', $reason);
         do_action('litespeed_control_set_ttl', 300, $reason);
@@ -450,6 +469,10 @@ final class K20_Bridge_V33_Performance {
         // Reassert the safe anonymous cache decision after the full product HTML exists.
         // The request guard prevents this from ever applying to cart/session/login traffic.
         self::product_cache_policy();
+
+        // Read-only late snapshot: do not alter cache state here. This isolates whether
+        // LiteSpeed flips the request after our earlier safe-public decision.
+        self::emit_late_litespeed_diagnostics();
 
         return $html;
     }
