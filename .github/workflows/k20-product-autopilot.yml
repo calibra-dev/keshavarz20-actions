@@ -78,6 +78,7 @@ jobs:
           python -m py_compile product-engine/media_perf.py
           python -m py_compile product-engine/engine.py
           python -m py_compile k20_sanitizer.py
+          python scripts/check_product_engine_primary_route.py
           python - <<'PY'
           import json
           from pathlib import Path
