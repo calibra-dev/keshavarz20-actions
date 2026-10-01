@@ -110,8 +110,8 @@ async def test_basket(page):
     await page.locator("#k20-calc").click()
     await page.wait_for_timeout(150)
     invalid_txt = await page.locator("#k20-result").inner_text()
-    invalid_ok = bool(INVALID_RE.search(invalid_txt))
-    return {"pass": bool(formula_ok and invalid_ok), "formula_output": out[:1800], "formula_pass": bool(formula_ok), "zero_rejected": bool(invalid_ok)}
+    invalid_ok = bool(re.search(r"(عدد معتبر|نامعتبر|مثبت|وارد)", invalid_txt, re.I))
+    return {"pass": bool(formula_ok and invalid_ok), "formula_output": out[:1800], "formula_pass": bool(formula_ok), "zero_rejected": bool(invalid_ok), "zero_message": invalid_txt[:500]}
 
 async def test_comparator(page):
     search = page.locator("#k20-search")
