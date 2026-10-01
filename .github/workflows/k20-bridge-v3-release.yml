@@ -1,4 +1,4 @@
-name: Keshavarz20 Bridge v3.3.20 Release
+name: Keshavarz20 Bridge v3.3.21 Release
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: k20-bridge-v3.3.20-release
+  group: k20-bridge-v3.3.21-release
   cancel-in-progress: false
 
 jobs:
@@ -26,11 +26,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          grep -q 'Version: 3.3.20' plugins/k20-bridge-v3/k20-bridge-v3.php
+          grep -q 'Version: 3.3.21' plugins/k20-bridge-v3/k20-bridge-v3.php
           python - <<'PY'
           import json
           m=json.load(open('plugins/k20-bridge-v3/update-manifest.json'))
-          assert m['version']=='3.3.20'
+          assert m['version']=='3.3.21'
           PY
 
       - name: PHP syntax validation
@@ -47,8 +47,8 @@ jobs:
           mkdir -p dist/k20-bridge-v3
           cp -R plugins/k20-bridge-v3/. dist/k20-bridge-v3/
           cd dist
-          zip -qr k20-bridge-v3.3.20.zip k20-bridge-v3
-          sha256sum k20-bridge-v3.3.20.zip > k20-bridge-v3.3.20.sha256
+          zip -qr k20-bridge-v3.3.21.zip k20-bridge-v3
+          sha256sum k20-bridge-v3.3.21.zip > k20-bridge-v3.3.21.sha256
 
       - name: Publish or refresh release assets
         shell: bash
@@ -56,8 +56,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          if gh release view v3.3.20 >/dev/null 2>&1; then
-            gh release upload v3.3.20 dist/k20-bridge-v3.3.20.zip dist/k20-bridge-v3.3.20.sha256 --clobber
+          if gh release view v3.3.21 >/dev/null 2>&1; then
+            gh release upload v3.3.21 dist/k20-bridge-v3.3.21.zip dist/k20-bridge-v3.3.21.sha256 --clobber
           else
-            gh release create v3.3.20               dist/k20-bridge-v3.3.20.zip               dist/k20-bridge-v3.3.20.sha256               --title 'Keshavarz20 Bridge v3.3.20'               --notes 'Guarded K20 Bridge v3.3: direct chat-asset relay, product/post image binding, secure draft-only snippet code operations, guarded code inspection, rollback, approval, jobs, observability and self-update.'
+            gh release create v3.3.21               dist/k20-bridge-v3.3.21.zip               dist/k20-bridge-v3.3.21.sha256               --title 'Keshavarz20 Bridge v3.3.21'               --notes 'Guarded K20 Bridge v3.3: direct chat-asset relay, product/post image binding, secure draft-only snippet code operations, guarded code inspection, rollback, approval, jobs, observability and self-update.'
           fi
