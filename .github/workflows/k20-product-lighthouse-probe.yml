@@ -1,0 +1,76 @@
+name: K20 Product Lighthouse Insight Probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'product-engine/lighthouse-probe-queue/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: browser-actions/setup-chrome@v1
+
+      - name: Install Lighthouse
+        run: npm install -g lighthouse@latest
+
+      - name: Resolve request
+        shell: bash
+        run: |
+          set -euo pipefail
+          REQ="$(git diff --name-only HEAD^ HEAD | grep '^product-engine/lighthouse-probe-queue/.*\.json$' | tail -n 1)"
+          test -n "$REQ"
+          echo "K20_LIGHTHOUSE_PROBE=$REQ" >> "$GITHUB_ENV"
+
+      - name: Run one mobile Lighthouse insight probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL="$(python -c 'import json,os; print(json.load(open(os.environ["K20_LIGHTHOUSE_PROBE"], encoding="utf-8"))["url"])')"
+          lighthouse "$URL" --quiet             --only-categories=performance             --form-factor=mobile             --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"             --output=json --output-path=lighthouse.json
+          python - <<'PY'
+          import json
+          d=json.load(open("lighthouse.json",encoding="utf-8"))
+          audits=d.get("audits") or {}
+          cats=d.get("categories") or {}
+          wanted=[
+            "first-contentful-paint","largest-contentful-paint","speed-index",
+            "total-blocking-time","cumulative-layout-shift","server-response-time",
+            "lcp-breakdown-insight","lcp-discovery-insight","render-blocking-insight",
+            "network-dependency-tree-insight","image-delivery-insight",
+            "document-latency-insight","font-display-insight"
+          ]
+          out={
+            "performance":round(((cats.get("performance") or {}).get("score") or 0)*100),
+            "audits":{}
+          }
+          for k in wanted:
+            a=audits.get(k)
+            if a is not None:
+              out["audits"][k]={
+                "score":a.get("score"),
+                "numericValue":a.get("numericValue"),
+                "displayValue":a.get("displayValue"),
+                "details":a.get("details")
+              }
+          out["available_lcp_keys"]=[k for k in audits if "lcp" in k.lower() or "largest-contentful" in k.lower()]
+          out["available_render_keys"]=[k for k in audits if "render" in k.lower() or "critical" in k.lower()]
+          print(json.dumps(out,ensure_ascii=False))
+          open("lighthouse-insights.json","w",encoding="utf-8").write(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: k20-product-lighthouse-insights
+          path: lighthouse-insights.json
+          if-no-files-found: error
