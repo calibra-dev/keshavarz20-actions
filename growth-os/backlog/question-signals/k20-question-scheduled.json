@@ -1,14 +1,15 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-f07d9ece98f882fb",
-  "product_id": 140713,
-  "family": "fertilizer",
-  "intent": "post_purchase",
+  "canonical_intent_id": "question-intent-700a249832f1293c",
+  "product_id": 136077,
+  "family": "seedling",
+  "intent": "safety/risk",
   "scenario_dimensions": {
-    "crop": "جعفری"
+    "pressure": true,
+    "maintenance": true
   },
-  "potential_article_gap": false,
+  "potential_article_gap": true,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
