@@ -27,6 +27,7 @@ final class K20_Bridge_V33_Performance {
         add_filter('wp_calculate_image_sizes', [__CLASS__, 'lcp_sizes'], 20, 5);
         add_filter('script_loader_tag', [__CLASS__, 'script_priority'], 20, 3);
         add_filter('litespeed_buffer_after', [__CLASS__, 'final_html_repairs'], 20, 1);
+        add_filter('litespeed_buffer_finalize', [__CLASS__, 'pre_header_product_cache_reassert'], PHP_INT_MAX, 1);
         add_action('litespeed_control_set_nocache', [__CLASS__, 'capture_litespeed_nocache'], PHP_INT_MAX, 1);
         add_filter('woocommerce_set_cookie_enabled', [__CLASS__, 'filter_product_cookie'], 9999, 5);
         add_filter('wp_headers', [__CLASS__, 'product_cache_diagnostic_headers'], 99999);
@@ -78,8 +79,8 @@ final class K20_Bridge_V33_Performance {
         do_action('litespeed_control_set_ttl', 300, $reason);
 
         if (!headers_sent()) {
-            header('X-K20-WC-Cache-Compat: 3.3.24');
-            header('X-K20-Canary-Guard: 3.3.24');
+            header('X-K20-WC-Cache-Compat: 3.3.25');
+            header('X-K20-Canary-Guard: 3.3.25');
         }
     }
 
@@ -106,6 +107,24 @@ final class K20_Bridge_V33_Performance {
         $headers['X-K20-WC-Notices'] = function_exists('wc_notice_count') ? (string) wc_notice_count() : 'na';
         $headers['X-K20-ESI'] = apply_filters('litespeed_esi_status', false) ? '1' : '0';
         return $headers;
+    }
+
+    public static function pre_header_product_cache_reassert(string $html): string {
+        if (!self::is_safe_public_product_uri()) return $html;
+
+        $reason = 'K20 product 134980 pre-header safe anonymous canary';
+        if (class_exists('\\LiteSpeed\\Control')) {
+            \\LiteSpeed\\Control::force_cacheable($reason);
+            \\LiteSpeed\\Control::set_public_forced($reason);
+            \\LiteSpeed\\Control::set_custom_ttl(300, $reason);
+        } else {
+            do_action('litespeed_control_force_cacheable', $reason);
+            do_action('litespeed_control_force_public', $reason);
+            do_action('litespeed_control_set_ttl', 300, $reason);
+        }
+
+        if (!headers_sent()) header('X-K20-PreHeader-Cache: forced-public-300');
+        return $html;
     }
 
     private static function emit_late_litespeed_diagnostics(): void {
@@ -187,7 +206,7 @@ final class K20_Bridge_V33_Performance {
         // to the verified canary product and only to anonymous GET/HEAD requests without
         // cart/session/login cookies. "woocommerce_recently_viewed" is not private state.
         $reason = 'K20 product 134980 safe anonymous canary';
-        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.24');
+        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.25');
         do_action('litespeed_control_force_cacheable', $reason);
         do_action('litespeed_control_force_public', $reason);
         do_action('litespeed_control_set_ttl', 300, $reason);
@@ -210,7 +229,7 @@ final class K20_Bridge_V33_Performance {
             . 'body.single-product footer.main-footer .copyright{color:#f9fafb!important;}'
             . 'body.single-product .widget-content .owl-dots .owl-dot{min-width:32px!important;min-height:32px!important;margin:4px!important;padding:0!important;}'
             . 'body.single-product .warranty-message img{width:auto!important;height:32px!important;max-width:32px!important;object-fit:contain!important;}'
-            . '@media(max-width:767px){body.single-product #product-134980{transform:none!important;}body.single-product img.emoji{width:1em!important;height:1em!important;max-width:1em!important;}}';
+            . '@media(max-width:767px){body.single-product .woocommerce-breadcrumb{min-height:44px!important;}body.single-product #product-134980{transform:none!important;}body.single-product img.emoji{width:1em!important;height:1em!important;max-width:1em!important;}}';
     }
 
     public static function render_product_head_repairs(): void {

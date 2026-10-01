@@ -64,6 +64,7 @@ def http_probe(url: str, runs: int=5) -> list[dict[str,Any]]:
                 "x_k20_wc_prevent_hook":h.get("x-k20-wc-prevent-hook"),
                 "x_k20_donotcache":h.get("x-k20-donotcache"),
                 "x_k20_ls_cacheable":h.get("x-k20-ls-cacheable"),
+                "x_k20_preheader_cache":h.get("x-k20-preheader-cache"),
                 "x_litespeed_tag":h.get("x-litespeed-tag"),"set_cookie":h.get("set-cookie"),
                 "age":h.get("age"),"server":h.get("server"),"vary":h.get("vary")
             })
