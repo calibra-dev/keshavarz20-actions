@@ -3,16 +3,41 @@ from __future__ import annotations
 
 import argparse
 import json
-import sys
+import re
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
 
 ROOT = Path(__file__).resolve().parents[1]
-ENGINE = ROOT / "phase15-video-engine"
-sys.path.insert(0, str(ENGINE))
-import k20_video_engine as engine
+TRANSCRIPTS = ROOT / "phase2" / "video-program" / "transcripts-fa.md"
+
+@dataclass
+class Episode:
+    number: int
+    title: str
+    hook: str
+    body: str
+    cta: str
+
+    @property
+    def narration(self) -> str:
+        return " ".join(x.strip() for x in (self.hook, self.body, self.cta) if x.strip())
+
+def parse_episodes() -> dict[int, Episode]:
+    text = TRANSCRIPTS.read_text(encoding="utf-8")
+    header_re = re.compile(r"^##\s+(\d{2})\s+—\s+(.+)$", re.M)
+    matches = list(header_re.finditer(text))
+    out = {}
+    for i, match in enumerate(matches):
+        block = text[match.end():(matches[i+1].start() if i+1 < len(matches) else len(text))]
+        def field(label: str) -> str:
+            m = re.search(rf"\*\*{re.escape(label)}:\*\*\s*(.+)", block)
+            return m.group(1).strip() if m else ""
+        n = int(match.group(1))
+        out[n] = Episode(n, match.group(2).strip(), field("هوک"), field("متن"), field("CTA"))
+    return out
 
 LANDINGS = {
     1:  {"id":143698,"type":"post","url":"https://keshavarz20.com/drip-tape-length-fittings-calculator/"},
@@ -54,7 +79,7 @@ def main() -> int:
     ap.add_argument("--artifacts",required=True)
     args=ap.parse_args()
 
-    parsed=engine.parse_episodes()
+    parsed=parse_episodes()
     current=json.loads((ROOT/"phase2/video-program/assets.json").read_text(encoding="utf-8"))
     old={int(x["episode"]):x for x in current.get("episodes",[])}
 
