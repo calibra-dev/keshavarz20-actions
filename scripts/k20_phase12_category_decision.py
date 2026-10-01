@@ -9,6 +9,8 @@ from pathlib import Path
 from urllib.parse import urljoin
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 ROOT = Path(__file__).resolve().parents[1]
 MODULE_FILE = ROOT / "phase12-input" / "category-decision-modules-20261001.json"
@@ -93,6 +95,17 @@ def main():
     session = requests.Session()
     session.auth = AUTH
     session.headers.update({"Accept": "application/json", "User-Agent": "K20-Phase12-CategoryDecision/1.0"})
+    get_retry = Retry(
+        total=5,
+        connect=5,
+        read=5,
+        status=5,
+        backoff_factor=1.0,
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=frozenset(["GET"]),
+    )
+    session.mount("https://", HTTPAdapter(max_retries=get_retry))
+    session.mount("http://", HTTPAdapter(max_retries=get_retry))
 
     before = {}
     changed = []
