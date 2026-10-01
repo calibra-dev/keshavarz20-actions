@@ -125,3 +125,12 @@ The GitHub publisher, not the ChatGPT producer, owns:
 - rollback.
 
 Do not claim a product is published until the publisher result and live readback prove it.
+
+
+## Queue delivery and branch fallback
+
+Primary delivery is a direct immutable queue commit onto current `main`.
+
+If the connected GitHub execution environment cannot place the queue directly on `main` and instead creates a branch named `automation/product-*`, do not stop the engine and do not require a pull request. Commit exactly one new immutable `product-engine/queue/*.json` file on that branch. The guarded `.github/workflows/k20-product-queue-promoter.yml` must validate and promote that single queue onto current `main`, after which `k20-product-queue-publisher.yml` owns publication/readback.
+
+Never rewrite an existing queue on either branch or main. Verify promoter/publisher terminal state before claiming completion.
