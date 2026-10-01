@@ -27,6 +27,9 @@ final class K20_Bridge_V33_Performance {
         add_filter('wp_calculate_image_sizes', [__CLASS__, 'lcp_sizes'], 20, 5);
         add_filter('script_loader_tag', [__CLASS__, 'script_priority'], 20, 3);
         add_filter('litespeed_buffer_after', [__CLASS__, 'final_html_repairs'], 20, 1);
+        add_filter('woocommerce_set_cookie_enabled', [__CLASS__, 'filter_product_cookie'], 9999, 5);
+        add_filter('wp_headers', [__CLASS__, 'product_cache_diagnostic_headers'], 99999);
+        add_action('init', [__CLASS__, 'prepare_product_cache_compat'], 9999);
         add_action('template_redirect', [__CLASS__, 'start_product_output_buffer'], 0);
         add_action('wp', [__CLASS__, 'disable_product_recently_viewed_tracking'], 5);
         add_action('wp', [__CLASS__, 'product_cache_policy'], 9999);
@@ -37,6 +40,60 @@ final class K20_Bridge_V33_Performance {
         add_action('comment_post', [__CLASS__, 'purge_product_review_cache'], 20, 3);
         add_action('transition_comment_status', [__CLASS__, 'purge_product_review_transition'], 20, 3);
         add_action('wp_enqueue_scripts', [__CLASS__, 'dequeue_irrelevant_assets'], 999);
+    }
+
+    private static function is_product_canary_uri(): bool {
+        if (is_admin()) return false;
+        $request_uri = rawurldecode((string) ($_SERVER['REQUEST_URI'] ?? ''));
+        $path = wp_parse_url($request_uri, PHP_URL_PATH);
+        $expected = wp_parse_url((string) get_permalink(self::PRODUCT_POST_ID), PHP_URL_PATH);
+        if (!is_string($path) || !is_string($expected) || $expected === '') return false;
+        return untrailingslashit($path) === untrailingslashit($expected);
+    }
+
+    private static function is_safe_public_product_uri(): bool {
+        if (!self::is_product_canary_uri() || is_user_logged_in() || self::has_private_commerce_cookie()) return false;
+        $method = strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? 'GET'));
+        if (!in_array($method, ['GET', 'HEAD'], true)) return false;
+        if (!empty($_GET)) return false;
+        return true;
+    }
+
+    public static function prepare_product_cache_compat(): void {
+        if (!self::is_safe_public_product_uri()) return;
+
+        // WooCommerce 10.1+ moved prevent_caching() to wp_headers. LSCWP 7.9.1
+        // still finalizes DONOTCACHEPAGE as non-cacheable. Remove only for this
+        // anonymous no-cart canary request; cart/checkout/account/session traffic
+        // never enters this branch.
+        remove_filter('wp_headers', ['WC_Cache_Helper', 'prevent_caching'], 5);
+        remove_action('template_redirect', 'wc_track_product_view', 20);
+
+        $reason = 'K20 product 134980 early safe anonymous canary';
+        do_action('litespeed_control_force_cacheable', $reason);
+        do_action('litespeed_control_force_public', $reason);
+        do_action('litespeed_control_set_ttl', 300, $reason);
+
+        if (!headers_sent()) {
+            header('X-K20-WC-Cache-Compat: 3.3.21');
+            header('X-K20-Canary-Guard: 3.3.21');
+        }
+    }
+
+    public static function filter_product_cookie($enabled, $name, $value, $expire, $secure) {
+        if (self::is_safe_public_product_uri() && (string) $name === 'woocommerce_recently_viewed') {
+            return false;
+        }
+        return $enabled;
+    }
+
+    public static function product_cache_diagnostic_headers(array $headers): array {
+        if (!self::is_safe_public_product_uri()) return $headers;
+
+        $headers['X-K20-WC-Prevent-Hook'] = has_filter('wp_headers', ['WC_Cache_Helper', 'prevent_caching']) === false ? 'removed' : 'present';
+        $headers['X-K20-DoNotCache'] = (defined('DONOTCACHEPAGE') && DONOTCACHEPAGE) ? '1' : '0';
+        $headers['X-K20-LS-Cacheable'] = apply_filters('litespeed_control_cacheable', false) ? '1' : '0';
+        return $headers;
     }
 
     private static function is_calculator_target(): bool {
@@ -89,7 +146,7 @@ final class K20_Bridge_V33_Performance {
         // of public page cache. Disable only for this exact anonymous canary.
         remove_action('template_redirect', 'wc_track_product_view', 20);
         unset($_COOKIE['woocommerce_recently_viewed']);
-        if (!headers_sent()) header('X-K20-Recent-View: disabled-canary');
+        if (!headers_sent()) header('X-K20-Recent-View: blocked-filter');
     }
 
     public static function product_cache_policy(): void {
@@ -99,7 +156,7 @@ final class K20_Bridge_V33_Performance {
         // to the verified canary product and only to anonymous GET/HEAD requests without
         // cart/session/login cookies. "woocommerce_recently_viewed" is not private state.
         $reason = 'K20 product 134980 safe anonymous canary';
-        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.20');
+        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.21');
         do_action('litespeed_control_force_cacheable', $reason);
         do_action('litespeed_control_force_public', $reason);
         do_action('litespeed_control_set_ttl', 300, $reason);
@@ -121,7 +178,8 @@ final class K20_Bridge_V33_Performance {
             . 'body.single-product .k20-footer-summary-text,'
             . 'body.single-product footer.main-footer .copyright{color:#f9fafb!important;}'
             . 'body.single-product .widget-content .owl-dots .owl-dot{min-width:32px!important;min-height:32px!important;margin:4px!important;padding:0!important;}'
-            . 'body.single-product .warranty-message img{width:auto!important;height:32px!important;max-width:32px!important;object-fit:contain!important;}';
+            . 'body.single-product .warranty-message img{width:auto!important;height:32px!important;max-width:32px!important;object-fit:contain!important;}'
+            . '@media(max-width:767px){body.single-product #product-134980{transform:none!important;}body.single-product img.emoji{width:1em!important;height:1em!important;max-width:1em!important;}}';
     }
 
     public static function render_product_head_repairs(): void {
@@ -143,7 +201,7 @@ final class K20_Bridge_V33_Performance {
             . '})();</script>'
             . '<script id="k20-product-134980-gtag-loader">(function(){'
             . 'var done=false;var load=function(){if(done)return;done=true;document.querySelectorAll("script[data-k20-gtag-src]").forEach(function(p){var s=document.createElement("script");s.async=true;s.src=p.getAttribute("data-k20-gtag-src");s.setAttribute("data-k20-runtime","gtag");document.head.appendChild(s);});};'
-            . 'window.addEventListener("load",function(){setTimeout(load,1500);},{once:true});'
+            . 'window.addEventListener("load",function(){setTimeout(load,8000);},{once:true});'
             . '["pointerdown","keydown","touchstart"].forEach(function(evt){window.addEventListener(evt,load,{once:true,passive:true});});'
             . '})();</script>';
     }
