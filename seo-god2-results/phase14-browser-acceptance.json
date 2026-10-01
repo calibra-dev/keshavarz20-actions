@@ -2,7 +2,7 @@
   "program": "SEO God2",
   "phase": 14,
   "title": "Browser acceptance for calculators/selectors/BOM/proforma",
-  "generated_at_utc": "2026-10-01T07:59:02.874929+00:00",
+  "generated_at_utc": "2026-10-01T08:08:53.718472+00:00",
   "mode": "public-read-only-browser-qa",
   "network_guard": "all non-GET/HEAD/OPTIONS requests aborted",
   "tools": [
@@ -14,6 +14,7 @@
       "h1_count": 1,
       "controls": 13,
       "actions": 5,
+      "quote_links": 8,
       "horizontal_overflow_px": 0,
       "page_errors": [
         "Invalid or unexpected token"
@@ -34,6 +35,7 @@
       "h1_count": 1,
       "controls": 19,
       "actions": 7,
+      "quote_links": 3,
       "horizontal_overflow_px": 0,
       "page_errors": [
         "Invalid or unexpected token",
@@ -203,6 +205,7 @@
       "h1_count": 1,
       "controls": 5,
       "actions": 1,
+      "quote_links": 3,
       "horizontal_overflow_px": 0,
       "page_errors": [
         "Invalid or unexpected token",
@@ -224,6 +227,7 @@
       "h1_count": 1,
       "controls": 6,
       "actions": 1,
+      "quote_links": 3,
       "horizontal_overflow_px": 0,
       "page_errors": [
         "Invalid or unexpected token"
@@ -266,6 +270,7 @@
       "h1_count": 1,
       "controls": 6,
       "actions": 1,
+      "quote_links": 3,
       "horizontal_overflow_px": 0,
       "page_errors": [
         "Invalid or unexpected token"
@@ -292,8 +297,8 @@
             "input": "lf_roll",
             "case": "blank",
             "native_valid": true,
-            "custom_error_signal": false,
-            "pass": false
+            "custom_error_signal": true,
+            "pass": true
           },
           {
             "input": "lf_end",
@@ -317,9 +322,9 @@
             "pass": true
           }
         ],
-        "pass": false
+        "pass": true
       },
-      "pass": false
+      "pass": true
     },
     {
       "key": "request_quotation",
@@ -329,10 +334,11 @@
       "h1_count": 1,
       "controls": 1,
       "actions": 0,
+      "quote_links": 11,
       "horizontal_overflow_px": 0,
       "page_errors": [],
-      "smoke_pass": false,
-      "pass": false
+      "smoke_pass": true,
+      "pass": true
     },
     {
       "key": "one_hectare_basket",
@@ -342,6 +348,7 @@
       "h1_count": 2,
       "controls": 7,
       "actions": 1,
+      "quote_links": 4,
       "horizontal_overflow_px": 0,
       "page_errors": [
         "Invalid or unexpected token",
@@ -455,6 +462,7 @@
       "h1_count": 2,
       "controls": 2,
       "actions": 1,
+      "quote_links": 4,
       "horizontal_overflow_px": 0,
       "page_errors": [
         "Invalid or unexpected token",
@@ -481,6 +489,7 @@
       "h1_count": 2,
       "controls": 30,
       "actions": 4,
+      "quote_links": 4,
       "horizontal_overflow_px": 0,
       "page_errors": [
         "Invalid or unexpected token",
@@ -491,7 +500,7 @@
       "pass": true
     }
   ],
-  "tools_pass": 5,
-  "tools_fail": 4,
+  "tools_pass": 7,
+  "tools_fail": 2,
   "overall_pass": false
 }
