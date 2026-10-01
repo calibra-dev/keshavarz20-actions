@@ -3,8 +3,8 @@
   "count": 20,
   "format": "9:16",
   "language": "fa",
-  "status": "LOCAL_RENDER_COMPLETE",
-  "render_status": "LOCAL_RENDER_COMPLETE_PUBLICATION_PENDING",
+  "status": "PUBLIC_ASSETS_READY",
+  "render_status": "PUBLIC_ASSETS_READY_EMBED_PENDING",
   "provider_blocker": {
     "checked_at_utc": "2026-09-21T06:30:00Z",
     "invideo": {
@@ -53,7 +53,10 @@
     "nvidia_driver": "560.94",
     "encoder_note": "FFmpeg 9 NVENC requires NVIDIA driver >=610.00; runtime safely fell back to libx264 for this batch.",
     "persistent_output_root": "C:\\actions-runner\\k20-output\\run-35829024974",
-    "public_hosting_complete": false
+    "public_hosting_complete": true
   },
-  "provider_blocker_resolved_by": "Local self-hosted Windows rendering; no paid provider credits used."
+  "provider_blocker_resolved_by": "Local self-hosted Windows rendering; no paid provider credits used.",
+  "public_hosting_complete": true,
+  "public_ready_count": 20,
+  "publication_reconciled_at_utc": "2026-10-01T09:38:51.254172+00:00"
 }
