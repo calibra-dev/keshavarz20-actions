@@ -89,13 +89,13 @@ def process_one(entry: dict[str,Any], state: dict[str,Any], run_mode: str) -> di
         return run_queue_pipeline(queue,f"auto:{pid}",False)
 
     except ModelAccessError as exc:
-        result.update(status="MODEL_ACCESS_BLOCKED",blocker=str(exc),finished_at=utcnow(),pause_engine=True,retry_same_product=True)
+        result.update(status="MODEL_ACCESS_BLOCKED",blocker=str(exc),finished_at=utcnow(),auto_retry_on_schedule=True,retry_same_product=True)
         return result
     except Exception as exc:
         message=f"{type(exc).__name__}: {exc}"
         lowered=message.lower()
         if "insufficient_quota" in lowered or "credit_balance_exhausted" in lowered or "no credits remaining" in lowered:
-            result.update(status="MODEL_ACCESS_BLOCKED",blocker=message,finished_at=utcnow(),pause_engine=True,retry_same_product=True)
+            result.update(status="MODEL_ACCESS_BLOCKED",blocker=message,finished_at=utcnow(),auto_retry_on_schedule=True,retry_same_product=True)
             return result
         result.update(status="FAILED",blocker=message,finished_at=utcnow())
         return result
