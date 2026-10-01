@@ -27,6 +27,7 @@ final class K20_Bridge_V33_Performance {
         add_filter('wp_calculate_image_sizes', [__CLASS__, 'lcp_sizes'], 20, 5);
         add_filter('script_loader_tag', [__CLASS__, 'script_priority'], 20, 3);
         add_filter('litespeed_buffer_after', [__CLASS__, 'final_html_repairs'], 20, 1);
+        add_action('litespeed_control_set_nocache', [__CLASS__, 'capture_litespeed_nocache'], PHP_INT_MAX, 1);
         add_filter('woocommerce_set_cookie_enabled', [__CLASS__, 'filter_product_cookie'], 9999, 5);
         add_filter('wp_headers', [__CLASS__, 'product_cache_diagnostic_headers'], 99999);
         add_action('init', [__CLASS__, 'prepare_product_cache_compat'], 9999);
@@ -77,8 +78,8 @@ final class K20_Bridge_V33_Performance {
         do_action('litespeed_control_set_ttl', 300, $reason);
 
         if (!headers_sent()) {
-            header('X-K20-WC-Cache-Compat: 3.3.22');
-            header('X-K20-Canary-Guard: 3.3.22');
+            header('X-K20-WC-Cache-Compat: 3.3.23');
+            header('X-K20-Canary-Guard: 3.3.23');
         }
     }
 
@@ -89,12 +90,21 @@ final class K20_Bridge_V33_Performance {
         return $enabled;
     }
 
+    public static function capture_litespeed_nocache($reason = false): void {
+        if (!self::is_safe_public_product_uri()) return;
+        $text = is_scalar($reason) ? sanitize_text_field((string) $reason) : 'unknown';
+        if ($text === '') $text = 'unknown';
+        if (!headers_sent()) header('X-K20-LS-Nocache-Reason: ' . substr($text, 0, 180));
+    }
+
     public static function product_cache_diagnostic_headers(array $headers): array {
         if (!self::is_safe_public_product_uri()) return $headers;
 
         $headers['X-K20-WC-Prevent-Hook'] = has_filter('wp_headers', ['WC_Cache_Helper', 'prevent_caching']) === false ? 'removed' : 'present';
         $headers['X-K20-DoNotCache'] = (defined('DONOTCACHEPAGE') && DONOTCACHEPAGE) ? '1' : '0';
         $headers['X-K20-LS-Cacheable'] = apply_filters('litespeed_control_cacheable', false) ? '1' : '0';
+        $headers['X-K20-WC-Notices'] = function_exists('wc_notice_count') ? (string) wc_notice_count() : 'na';
+        $headers['X-K20-ESI'] = apply_filters('litespeed_esi_status', false) ? '1' : '0';
         return $headers;
     }
 
@@ -158,7 +168,7 @@ final class K20_Bridge_V33_Performance {
         // to the verified canary product and only to anonymous GET/HEAD requests without
         // cart/session/login cookies. "woocommerce_recently_viewed" is not private state.
         $reason = 'K20 product 134980 safe anonymous canary';
-        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.22');
+        if (!headers_sent()) header('X-K20-Canary-Guard: 3.3.23');
         do_action('litespeed_control_force_cacheable', $reason);
         do_action('litespeed_control_force_public', $reason);
         do_action('litespeed_control_set_ttl', 300, $reason);
