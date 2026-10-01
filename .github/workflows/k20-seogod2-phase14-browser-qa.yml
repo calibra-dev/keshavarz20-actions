@@ -35,5 +35,9 @@ jobs:
           git add -f seo-god2-results/phase14-browser-acceptance.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'seo god2: record phase14 browser acceptance'
-          git pull --rebase origin main
-          git push origin main
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin main; then exit 0; fi
+            sleep 2
+          done
+          exit 1
