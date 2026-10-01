@@ -30,14 +30,23 @@ previous_load_queue = base.load_queue
 
 def _upgrade_queue_payload_with_growth_prompt(p: dict) -> dict:
     key = os.environ.get("OPENAI_API_KEY", "").strip()
-    enabled = os.environ.get("K20_CONTENT_GROWTH_ENABLED", "true").lower() in {"1", "true", "yes"}
+    enabled = os.environ.get("K20_CONTENT_GROWTH_ENABLED", "false").lower() in {"1", "true", "yes"}
     if not key or not enabled:
         k20_sanitizer.sanitize_payload_inplace(p)
         return p
 
-    master = content_growth_runtime.load_master_prompt("article")
-    model = os.environ.get("OPENAI_TEXT_MODEL", "gpt-5.6")
-    client = OpenAI(api_key=key)
+    try:
+        master = content_growth_runtime.load_master_prompt("article")
+        model = os.environ.get("OPENAI_TEXT_MODEL", "gpt-5.6")
+        client = OpenAI(api_key=key)
+    except Exception as exc:
+        print(
+            f"Optional content-growth enhancer unavailable ({type(exc).__name__}); "
+            "continuing with the original queue payload and deterministic validators.",
+            file=sys.stderr,
+        )
+        k20_sanitizer.sanitize_payload_inplace(p)
+        return p
     protected = {
         "slug": p.get("slug"),
         "content_type": p.get("content_type"),
@@ -97,8 +106,17 @@ def _upgrade_queue_payload_with_growth_prompt(p: dict) -> dict:
 ورودی:
 {json.dumps(source, ensure_ascii=False)}
 """
-    response = client.responses.create(model=model, input=prompt)
-    data = content_growth_runtime.safe_json_from_text(response.output_text)
+    try:
+        response = client.responses.create(model=model, input=prompt)
+        data = content_growth_runtime.safe_json_from_text(response.output_text)
+    except Exception as exc:
+        print(
+            f"Optional content-growth enhancer failed ({type(exc).__name__}); "
+            "continuing with the original queue payload and deterministic validators.",
+            file=sys.stderr,
+        )
+        k20_sanitizer.sanitize_payload_inplace(p)
+        return p
     allowed = {
         "title", "excerpt", "content_html", "focus_keyphrase", "related_keyphrases",
         "seo_title", "meta_description", "tags", "faq_items", "cover_title",
