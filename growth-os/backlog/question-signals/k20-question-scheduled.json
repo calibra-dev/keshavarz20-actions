@@ -1,11 +1,15 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-7ffa9cf1a7becdd6",
-  "product_id": 135122,
+  "canonical_intent_id": "question-intent-e39ce1c54f54335a",
+  "product_id": 135597,
   "family": "fitting",
-  "intent": "alternative",
-  "scenario_dimensions": {},
+  "intent": "installation",
+  "scenario_dimensions": {
+    "pressure": true,
+    "installation_state": true,
+    "failure_mode": true
+  },
   "potential_article_gap": false,
   "potential_hub_gap": false,
   "compatibility_gap": true,
