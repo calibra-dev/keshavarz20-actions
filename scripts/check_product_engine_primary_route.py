@@ -55,6 +55,26 @@ if live_read.get("direct_wordpress_credentials_forbidden") is not True:
 if live_read.get("connected_producer_must_not_write_bridge_v3_ops") is not True:
     fail("connected producer must not write bridge-v3-ops for normal product reads")
 
+delivery = lock.get("queue_delivery") or {}
+if delivery.get("primary") != "direct_main_immutable_queue":
+    fail("queue primary delivery changed")
+if delivery.get("primary_transport") != "github_contents_api":
+    fail("queue primary transport must remain GitHub Contents API")
+if delivery.get("atomic_fallback") != "github_git_data_api":
+    fail("queue atomic fallback must remain GitHub Git Data API")
+if delivery.get("branch_fallback") != "automation/product-*":
+    fail("queue branch fallback changed")
+if delivery.get("branch_transport") != "github_git_data_api":
+    fail("queue branch fallback must use Git Data API")
+if delivery.get("never_rewrite_existing_queue") is not True:
+    fail("immutable queue rewrite protection must remain enabled")
+if delivery.get("fresh_live_read_required_before_each_delivery_attempt") is not True:
+    fail("queue delivery must require fresh live read")
+if delivery.get("cursor_must_not_advance_on_transport_block") is not True:
+    fail("transport block must not advance cursor")
+if delivery.get("automation_must_remain_enabled_on_transport_block") is not True:
+    fail("transport block must not disable automation")
+
 if config.get("primary_producer") != "connected_chatgpt_queue":
     fail("config primary_producer must be connected_chatgpt_queue")
 
@@ -111,7 +131,7 @@ for marker in required_prompt_markers:
     if marker not in prompt:
         fail(f"canonical producer prompt missing marker: {marker}")
 
-for marker in ["### Freshness source rule", "expected_date_modified_gmt", "Never copy this field from `inventory.json`", "## Producer live-read route", "product-engine/live-read-ops/", "product.result.data_date_modified_gmt"]:
+for marker in ["### Freshness source rule", "expected_date_modified_gmt", "Never copy this field from `inventory.json`", "## Producer live-read route", "product-engine/live-read-ops/", "product.result.data_date_modified_gmt", "GitHub Git Data API", "Never force-update `main`"]:
     if marker not in prompt:
         fail(f"canonical producer freshness rule missing marker: {marker}")
 
