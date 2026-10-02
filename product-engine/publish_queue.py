@@ -28,6 +28,7 @@ from qa import score as quality_score, update_bank, validate as validate_candida
 from visual_guard import compare as visual_compare
 
 CONFIG_PATH=Path(__file__).resolve().parent / "config.json"
+RECOVERY_DIR=Path(__file__).resolve().parent / "recovery"
 
 
 class QueueError(RuntimeError):
@@ -66,6 +67,30 @@ def load_queue(path: Path) -> dict[str,Any]:
     k20_sanitizer.assert_clean(candidate)
     return data
 
+
+def stale_recovery_evidence(queue: dict[str,Any], queue_path: str, before: dict[str,Any], expected_modified: str, actual_modified: str) -> dict[str,Any] | None:
+    recovery_path=RECOVERY_DIR / f"{Path(queue_path).stem}-stale-recovery.json"
+    if not recovery_path.exists():
+        return None
+    recovery=load_json(recovery_path,{})
+    featured_id=int(((before.get("images") or [{}])[0]).get("id") or 0)
+    checks={
+        "schema_version":recovery.get("schema_version")=="product-stale-recovery-v1",
+        "queue_file":str(recovery.get("queue_file") or "")==queue_path,
+        "product_id":int(recovery.get("product_id") or 0)==int(queue.get("product_id") or 0),
+        "reason":str(recovery.get("reason") or "")=="producer_timestamp_source_bug",
+        "original_expected":str(recovery.get("original_expected_date_modified_gmt") or "")==expected_modified,
+        "verified_actual":str(recovery.get("verified_actual_date_modified_gmt") or "")==actual_modified,
+        "queue_generated_at":str(recovery.get("queue_generated_at") or "")==str(queue.get("generated_at") or ""),
+        "live_status":str(recovery.get("live_status") or "")==str(before.get("status") or ""),
+        "live_name":str(recovery.get("live_name") or "")==str(before.get("name") or ""),
+        "live_permalink":str(recovery.get("live_permalink") or "")==str(before.get("permalink") or ""),
+        "featured_image_id":int(recovery.get("featured_image_id") or 0)==featured_id,
+    }
+    failed=[name for name,ok in checks.items() if not ok]
+    if failed:
+        raise QueueError("invalid stale recovery assertion: "+", ".join(failed))
+    return {"assertion_file":str(recovery_path),"reason":recovery.get("reason"),"original_expected_date_modified_gmt":expected_modified,"verified_actual_date_modified_gmt":actual_modified,"verified_at":recovery.get("verified_at")}
 
 def seo_matches(seo: dict[str,Any], c: dict[str,Any]) -> bool:
     return (
@@ -145,7 +170,10 @@ def run(queue: dict[str,Any], queue_path: str, validate_only: bool=False) -> dic
     expected_modified=str(queue.get("expected_date_modified_gmt") or "")
     actual_modified=str(before.get("date_modified_gmt") or "")
     if (not validate_only) and expected_modified and expected_modified!=actual_modified:
-        raise QueueError(f"stale queue: expected date_modified_gmt {expected_modified}, got {actual_modified}")
+        recovery=stale_recovery_evidence(queue,queue_path,before,expected_modified,actual_modified)
+        if not recovery:
+            raise QueueError(f"stale queue: expected date_modified_gmt {expected_modified}, got {actual_modified}")
+        result["stale_recovery"]=recovery
     if validate_only and expected_modified and expected_modified!=actual_modified:
         result["stale_queue_observed"]={
             "expected_date_modified_gmt":expected_modified,
