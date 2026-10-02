@@ -12,7 +12,7 @@ permissions:
   actions: write
 
 concurrency:
-  group: k20-product-queue-promoter
+  group: k20-product-queue-promoter-${{ github.sha }}
   cancel-in-progress: false
 
 jobs:
@@ -91,12 +91,14 @@ jobs:
           base_name=$(basename "$QUEUE_FILE")
           git commit -m "product-engine: promote ${base_name} from ${source_branch} (${source_sha:0:12})"
           for attempt in 1 2 3 4 5; do
-            if git pull --rebase origin main && git push origin HEAD:main; then
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then
               exit 0
             fi
             git rebase --abort >/dev/null 2>&1 || true
             sleep $((attempt * 2))
           done
+          echo "::error::Queue promotion could not fast-forward current main after 5 retries."
           exit 1
 
       - name: Dispatch queue publisher explicitly
