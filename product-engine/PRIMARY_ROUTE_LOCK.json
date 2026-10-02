@@ -54,7 +54,15 @@
     "never_rewrite_existing_queue": true,
     "fresh_live_read_required_before_each_delivery_attempt": true,
     "cursor_must_not_advance_on_transport_block": true,
-    "automation_must_remain_enabled_on_transport_block": true
+    "automation_must_remain_enabled_on_transport_block": true,
+    "ingress_workflow": ".github/workflows/k20-product-queue-ingress.yml",
+    "ingress_request_path": "product-engine/queue-ingress-ops/*.json",
+    "ingress_schema": "product-queue-ingress-v1",
+    "ingress_payload_source": "immutable_git_blob_sha",
+    "ingress_use": "preferred_when_connected_contents_write_rejects_large_queue",
+    "ingress_requires_bound_fresh_live_read": true,
+    "ingress_validates_queue_contract": true,
+    "ingress_dispatches_publisher_explicitly": true
   },
   "producer_live_read": {
     "workflow": ".github/workflows/k20-product-producer-live-read.yml",
