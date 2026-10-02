@@ -1,0 +1,109 @@
+name: K20 Catalog Postfix QA
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/k20-catalog-postfix-qa.yml']
+permissions:
+  contents: write
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - shell: bash
+        run: |
+          set -euo pipefail
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          test -n "$CHROME"
+          python3 -m pip install --quiet websocket-client
+          mkdir -p diagnostics
+          "$CHROME" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --remote-debugging-port=9222 --remote-allow-origins='*' --user-data-dir=/tmp/k20-postfix about:blank >/tmp/k20-postfix.log 2>&1 &
+          PID=$!; trap 'kill $PID >/dev/null 2>&1 || true' EXIT
+          python3 - <<'PY'
+          import json,time,urllib.request,websocket,pathlib,datetime,os,base64
+          for _ in range(30):
+              try:
+                  ts=json.load(urllib.request.urlopen('http://127.0.0.1:9222/json',timeout=2))
+                  if ts: break
+              except Exception: pass
+              time.sleep(1)
+          t=next(x for x in ts if x.get('type')=='page')
+          ws=websocket.create_connection(t['webSocketDebuggerUrl'],timeout=20)
+          seq=0
+          def cmd(method,params=None):
+              global seq; seq+=1
+              ws.send(json.dumps({'id':seq,'method':method,'params':params or {}}))
+              while True:
+                  r=json.loads(ws.recv())
+                  if r.get('id')==seq:return r
+          def ev(expr):
+              r=cmd('Runtime.evaluate',{'expression':expr,'returnByValue':True})
+              rr=r.get('result',{})
+              if 'exceptionDetails' in rr:return {'error':rr['exceptionDetails'].get('text'),'desc':rr.get('result',{}).get('description')}
+              return rr.get('result',{}).get('value')
+          def ob(expr):
+              v=ev("JSON.stringify("+expr+")")
+              if isinstance(v,str):
+                  try:return json.loads(v)
+                  except Exception:return {'raw':v}
+              return v
+          cmd('Page.enable');cmd('Runtime.enable')
+          cmd('Page.navigate',{'url':'https://keshavarz20.com/catalog/?postfixqa=1'})
+          time.sleep(12)
+          desktop=ob(r'''({
+            href:location.href,ready:document.readyState,
+            root:!!document.getElementById('k20CatalogV2'),
+            products:document.querySelectorAll('#k20ProductSource ul.products li.product').length,
+            runtimeType:typeof window.__K20CatalogV2,
+            runtime:window.__K20CatalogV2||null,
+            externalScript:[...document.scripts].find(s=>(s.src||'').includes('k20-catalog-v2.js'))?.src||null,
+            externalLoaded:[...document.scripts].some(s=>(s.src||'').includes('k20-catalog-v2.js')),
+            overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
+            appWidth:document.getElementById('k20AppShell')?.getBoundingClientRect().width||0
+          })''')
+          first=ev("(document.querySelector('#k20ProductSource .woocommerce-loop-product__title')?.textContent||'').trim()") or ''
+          term=next((x for x in first.split() if len(x)>2),first)
+          before=ev("[...document.querySelectorAll('#k20ProductSource ul.products li.product')].filter(x=>getComputedStyle(x).display!=='none').length")
+          ev("(function(){const i=document.getElementById('k20TopSearch');if(!i)return false;i.value="+json.dumps(term,ensure_ascii=False)+";i.dispatchEvent(new Event('input',{bubbles:true}));return true;})()")
+          time.sleep(.5)
+          after=ev("[...document.querySelectorAll('#k20ProductSource ul.products li.product')].filter(x=>getComputedStyle(x).display!=='none').length")
+          desktop['searchTerm']=term;desktop['visibleBefore']=before;desktop['visibleAfter']=after
+          shot=cmd('Page.captureScreenshot',{'format':'png','captureBeyondViewport':False}).get('result',{}).get('data')
+          if shot:pathlib.Path('diagnostics/k20-catalog-postfix-desktop-'+os.environ['GITHUB_RUN_ID']+'.png').write_bytes(base64.b64decode(shot))
+          cmd('Emulation.setDeviceMetricsOverride',{'width':390,'height':844,'deviceScaleFactor':1,'mobile':True})
+          cmd('Page.navigate',{'url':'https://keshavarz20.com/catalog/?postfixqa=2'})
+          time.sleep(10)
+          mobile=ob(r'''({
+            width:innerWidth,root:!!document.getElementById('k20CatalogV2'),
+            products:document.querySelectorAll('#k20ProductSource ul.products li.product').length,
+            runtimeType:typeof window.__K20CatalogV2,
+            buttonVisible:!!document.getElementById('k20MobileFilter')&&getComputedStyle(document.getElementById('k20MobileFilter')).display!=='none',
+            appWidth:document.getElementById('k20AppShell')?.getBoundingClientRect().width||0,
+            overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth
+          })''')
+          mobile['click']=ev("(function(){const b=document.getElementById('k20MobileFilter');if(!b)return 'missing';b.click();return 'clicked';})()")
+          time.sleep(.5)
+          mobile['panelOpen']=ev("document.getElementById('k20FilterPanel')?.classList.contains('open')||false")
+          mobile['backdropOpen']=ev("document.getElementById('k20FilterBackdrop')?.classList.contains('open')||false")
+          shot=cmd('Page.captureScreenshot',{'format':'png','captureBeyondViewport':False}).get('result',{}).get('data')
+          if shot:pathlib.Path('diagnostics/k20-catalog-postfix-mobile-'+os.environ['GITHUB_RUN_ID']+'.png').write_bytes(base64.b64decode(shot))
+          ws.close()
+          out={'checked_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'desktop':desktop,'mobile':mobile}
+          out['pass']=bool(desktop.get('root') and desktop.get('products',0)>0 and desktop.get('runtimeType')=='object' and desktop.get('externalLoaded') and desktop.get('overflow',999)<=4 and isinstance(after,int) and isinstance(before,int) and after<before and mobile.get('root') and mobile.get('products',0)>0 and mobile.get('runtimeType')=='object' and mobile.get('buttonVisible') and mobile.get('panelOpen') and mobile.get('backdropOpen') and mobile.get('overflow',999)<=4 and 350<=mobile.get('appWidth',0)<=390)
+          p=pathlib.Path('diagnostics/k20-catalog-postfix-'+os.environ['GITHUB_RUN_ID']+'.json');p.write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          if not out['pass']:raise SystemExit(3)
+          PY
+      - shell: bash
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add diagnostics/k20-catalog-postfix-* || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'qa: catalog postfix evidence'
+          git pull --rebase origin main
+          git push origin main
