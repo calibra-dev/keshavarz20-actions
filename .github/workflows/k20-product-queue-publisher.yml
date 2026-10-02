@@ -124,19 +124,19 @@ jobs:
               fi
               recovery_file=$(cat /tmp/k20-product-recovery-files.txt)
               python - "$recovery_file" <<'PY' > /tmp/k20-product-queue-files.txt
-import json, sys
-from pathlib import Path
-p=Path(sys.argv[1])
-d=json.loads(p.read_text(encoding='utf-8'))
-if d.get('schema_version')!='product-stale-recovery-v1':
-    raise SystemExit('invalid stale recovery schema_version')
-queue_file=str(d.get('queue_file') or '')
-if not queue_file.startswith('product-engine/queue/') or not queue_file.endswith('.json'):
-    raise SystemExit('invalid stale recovery queue_file')
-if not Path(queue_file).is_file():
-    raise SystemExit('stale recovery queue_file does not exist')
-print(queue_file)
-PY
+              import json, sys
+              from pathlib import Path
+              p=Path(sys.argv[1])
+              d=json.loads(p.read_text(encoding='utf-8'))
+              if d.get('schema_version')!='product-stale-recovery-v1':
+                  raise SystemExit('invalid stale recovery schema_version')
+              queue_file=str(d.get('queue_file') or '')
+              if not queue_file.startswith('product-engine/queue/') or not queue_file.endswith('.json'):
+                  raise SystemExit('invalid stale recovery queue_file')
+              if not Path(queue_file).is_file():
+                  raise SystemExit('stale recovery queue_file does not exist')
+              print(queue_file)
+              PY
             fi
           fi
           if [ ! -s /tmp/k20-product-queue-files.txt ]; then
