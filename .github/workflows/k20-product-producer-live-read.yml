@@ -151,7 +151,7 @@ jobs:
           result="product-engine/live-read-results/${NAME}.json"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$result"
+          git add -f "$result"
           git commit -m "product-engine: record live read for ${PRODUCT_ID}"
           for attempt in 1 2 3 4 5; do
             if git pull --rebase origin main && git push origin HEAD:main; then
