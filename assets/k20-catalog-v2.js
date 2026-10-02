@@ -84,7 +84,7 @@ function buildApiCard(product){
     var image=make('img');
     image.src=imageUrl;
     image.alt=(product.images[0].alt||product.name||'محصول کشاورزی');
-    image.loading='lazy';
+    image.loading='eager';
     image.decoding='async';
     image.addEventListener('error',function(){
       image.style.display='none';
