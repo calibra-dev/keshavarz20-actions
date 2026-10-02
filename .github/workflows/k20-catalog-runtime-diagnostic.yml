@@ -1,0 +1,69 @@
+name: K20 Catalog Runtime Diagnostic
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/k20-catalog-runtime-diagnostic.yml']
+permissions:
+  contents: write
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - shell: bash
+        run: |
+          set -euo pipefail
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          test -n "$CHROME"
+          python3 -m pip install --quiet websocket-client
+          "$CHROME" --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-allow-origins='*' --user-data-dir=/tmp/k20-runtime about:blank >/tmp/k20-runtime.log 2>&1 &
+          PID=$!; trap 'kill $PID >/dev/null 2>&1 || true' EXIT
+          python3 - <<'PY'
+          import json,time,urllib.request,websocket,pathlib,os
+          for _ in range(30):
+              try:
+                  ts=json.load(urllib.request.urlopen('http://127.0.0.1:9222/json',timeout=2))
+                  if ts: break
+              except Exception: pass
+              time.sleep(1)
+          t=next(x for x in ts if x.get('type')=='page')
+          ws=websocket.create_connection(t['webSocketDebuggerUrl'],timeout=20)
+          i=0
+          def cmd(method,params=None):
+              global i;i+=1;ws.send(json.dumps({'id':i,'method':method,'params':params or {}}))
+              while True:
+                  r=json.loads(ws.recv())
+                  if r.get('id')==i:return r
+          def ev(expr):
+              r=cmd('Runtime.evaluate',{'expression':expr,'returnByValue':True})
+              rr=r.get('result',{})
+              if 'exceptionDetails' in rr:return {'cdp_exception':rr['exceptionDetails'].get('text'),'desc':rr.get('result',{}).get('description')}
+              return rr.get('result',{}).get('value')
+          cmd('Page.enable');cmd('Runtime.enable');cmd('Page.navigate',{'url':'https://keshavarz20.com/catalog/?runtime_diag=1'});time.sleep(12)
+          result={}
+          result['ready']=ev("document.readyState")
+          result['root']=ev("!!document.getElementById('k20CatalogV2')")
+          result['products']=ev("document.querySelectorAll('#k20ProductSource ul.products li.product').length")
+          result['runtime_before']=ev("typeof window.__K20CatalogV2")
+          result['script_meta']=ev("""(()=>{const s=[...document.scripts].find(x=>(x.textContent||'').includes('__K20CatalogV2'));return s?JSON.stringify({len:s.textContent.length,type:s.type,noDefer:s.getAttribute('data-no-defer'),head:s.textContent.slice(0,150)}):null})()""")
+          result['manual_eval']=ev("""(()=>{const s=[...document.scripts].find(x=>(x.textContent||'').includes('__K20CatalogV2'));if(!s)return 'no-script';try{(0,eval)(s.textContent);return JSON.stringify({ok:true,runtime:window.__K20CatalogV2||null});}catch(e){return JSON.stringify({ok:false,name:e.name,message:e.message,stack:(e.stack||'').slice(0,1200)});}})()""")
+          time.sleep(1)
+          result['runtime_after']=ev("JSON.stringify(window.__K20CatalogV2||null)")
+          result['filter_test']=ev("""(()=>{const b=document.getElementById('k20MobileFilter');const p=document.getElementById('k20FilterPanel');if(!b||!p)return JSON.stringify({missing:true});b.click();return JSON.stringify({open:p.classList.contains('open')});})()""")
+          pathlib.Path('diagnostics').mkdir(exist_ok=True)
+          path=pathlib.Path('diagnostics')/('k20-catalog-runtime-'+os.environ.get('GITHUB_RUN_ID','run')+'.json')
+          path.write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(result,ensure_ascii=False,indent=2))
+          ws.close()
+          PY
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add diagnostics/k20-catalog-runtime-*.json
+          git commit -m 'diag: catalog runtime execution'
+          git pull --rebase origin main
+          git push origin main
