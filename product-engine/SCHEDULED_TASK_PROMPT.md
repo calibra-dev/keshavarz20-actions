@@ -40,9 +40,18 @@ If a relay request/result is temporarily unavailable, do not fall back to invent
 
 ### Queue-delivery reliability
 
-Before writing a queue, sanitize/verify the complete queue payload against `k20_sanitizer.py` hygiene requirements and keep it within the canonical queue schema. Queue delivery remains direct immutable commit to current `main`, with `automation/product-*` as the existing branch fallback.
+Before writing a queue, sanitize/verify the complete queue payload against `k20_sanitizer.py` hygiene requirements and keep it within the canonical queue schema.
 
-If the connected GitHub safety layer rejects a large queue write, do not weaken the queue contract, split the queue into unvalidated fragments, rewrite an existing queue, or switch to OPENAI/API generation. Preserve the candidate for the current run, report the exact delivery blocker, and retry the same product on the next run after a fresh relay read. The automation must remain enabled and the cursor must not advance.
+Delivery order is mandatory:
+1. re-fetch current `main` and verify the immutable queue path is absent;
+2. try the normal GitHub Contents API direct immutable create on current `main`;
+3. if and only if that transport is rejected by the connected GitHub layer, use the GitHub Git Data API as the canonical atomic fallback: create the queue blob, create a tree based on the current main tree, create a single commit whose parent is that exact current main SHA, re-read main HEAD, and update `main` only as a non-force fast-forward when the parent still matches;
+4. if main changed before the ref update, discard that unpublished commit, refresh main and the live-read freshness evidence, then retry once from the new main;
+5. if direct main still cannot be advanced, create/update only a branch named `automation/product-*` from the latest main and place exactly one immutable queue on it using the same Git Data primitives; rely on `k20-product-queue-promoter.yml` for promotion and explicit publisher dispatch.
+
+Never force-update `main`. Never rewrite an existing queue. Never split one queue into fragments. Never weaken the schema/evidence contract. Never switch to OPENAI/API generation.
+
+A GitHub transport rejection is not a product terminal status. Keep the recurring automation enabled, do not advance the cursor, and retry the same product only after a new producer live-read. A terminal publisher result remains the only normal cursor-advance signal.
 
 ## Product-page writing rules
 
