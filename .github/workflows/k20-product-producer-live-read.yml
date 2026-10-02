@@ -1,0 +1,153 @@
+name: K20 Product Producer Live Read
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'product-engine/live-read-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-product-producer-live-read
+  cancel-in-progress: false
+
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Resolve exactly one immutable live-read request
+        id: req
+        shell: bash
+        run: |
+          set -euo pipefail
+          before='${{ github.event.before }}'
+          current='${{ github.sha }}'
+          zero='0000000000000000000000000000000000000000'
+          if [ -n "$before" ] && [ "$before" != "$zero" ]; then
+            git diff --name-only --diff-filter=A "$before" "$current" -- 'product-engine/live-read-ops/*.json' > /tmp/live-read-files.txt
+          else
+            git show --pretty='' --name-only --diff-filter=A "$current" -- 'product-engine/live-read-ops/*.json' > /tmp/live-read-files.txt
+          fi
+          count=$(grep -c . /tmp/live-read-files.txt || true)
+          if [ "$count" -ne 1 ]; then
+            echo "::error::Expected exactly one newly added live-read request; found $count"
+            cat /tmp/live-read-files.txt || true
+            exit 2
+          fi
+          file=$(cat /tmp/live-read-files.txt)
+          python ./k20_sanitizer.py --check "$file"
+          product_id=$(python - "$file" <<'PY'
+          import json, sys
+          from pathlib import Path
+          p=Path(sys.argv[1])
+          d=json.loads(p.read_text(encoding='utf-8'))
+          if d.get('schema_version') != 'product-producer-live-read-v1':
+              raise SystemExit('invalid schema_version')
+          pid=int(d.get('product_id') or 0)
+          if pid <= 0:
+              raise SystemExit('positive product_id required')
+          print(pid)
+          PY
+          )
+          name=$(basename "$file" .json)
+          echo "file=$file" >> "$GITHUB_OUTPUT"
+          echo "product_id=$product_id" >> "$GITHUB_OUTPUT"
+          echo "name=$name" >> "$GITHUB_OUTPUT"
+
+      - name: Read exact product and SEO through Bridge 3.3
+        shell: pwsh
+        env:
+          PRODUCT_ID: ${{ steps.req.outputs.product_id }}
+          REQUEST_NAME: ${{ steps.req.outputs.name }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $id = [int]$env:PRODUCT_ID
+          $name = $env:REQUEST_NAME
+          $productReq = Join-Path $env:RUNNER_TEMP "$name.product.request.json"
+          $seoReq = Join-Path $env:RUNNER_TEMP "$name.seo.request.json"
+          $productOut = Join-Path $env:RUNNER_TEMP "$name.product.result.json"
+          $seoOut = Join-Path $env:RUNNER_TEMP "$name.seo.result.json"
+
+          [ordered]@{
+            action='rest.proxy'
+            request_id="$name-product"
+            method='GET'
+            path="/wc/v3/products/$id"
+            query=[ordered]@{
+              _fields='id,name,status,type,slug,permalink,date_created_gmt,date_modified_gmt,sku,stock_status,short_description,description,categories,tags,attributes,images'
+            }
+          } | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath $productReq -Encoding utf8
+
+          [ordered]@{
+            action='seo.read'
+            request_id="$name-seo"
+            id=$id
+          } | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $seoReq -Encoding utf8
+
+          python ./k20_sanitizer.py --json $productReq --output "$productReq.clean"
+          python ./k20_sanitizer.py --check "$productReq.clean"
+          python ./k20_sanitizer.py --json $seoReq --output "$seoReq.clean"
+          python ./k20_sanitizer.py --check "$seoReq.clean"
+
+          & ./scripts/Invoke-K20BridgeV3.ps1 -RequestPath "$productReq.clean" -OutputPath $productOut
+          if ($LASTEXITCODE -ne 0) { throw "Bridge product read failed with exit $LASTEXITCODE" }
+          & ./scripts/Invoke-K20BridgeV3.ps1 -RequestPath "$seoReq.clean" -OutputPath $seoOut
+          if ($LASTEXITCODE -ne 0) { throw "Bridge SEO read failed with exit $LASTEXITCODE" }
+
+          $product = Get-Content -Raw -LiteralPath $productOut | ConvertFrom-Json -Depth 100
+          $seo = Get-Content -Raw -LiteralPath $seoOut | ConvertFrom-Json -Depth 100
+          $payload = [ordered]@{
+            schema_version='product-producer-live-read-result-v1'
+            mode='read-only'
+            product_id=$id
+            source='github_runner_bridge_3_3'
+            request_file='${{ steps.req.outputs.file }}'
+            request_commit='${{ github.sha }}'
+            read_at_utc=[DateTime]::UtcNow.ToString('o')
+            product=$product
+            seo=$seo
+          }
+          New-Item -ItemType Directory -Force 'product-engine/live-read-results' | Out-Null
+          $rawPath = "product-engine/live-read-results/$name.json"
+          $payload | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $rawPath -Encoding utf8
+          python ./k20_sanitizer.py --json $rawPath --output "$rawPath.clean"
+          python ./k20_sanitizer.py --check "$rawPath.clean"
+          Move-Item -Force "$rawPath.clean" $rawPath
+
+      - name: Commit immutable sanitized live-read result
+        shell: bash
+        env:
+          NAME: ${{ steps.req.outputs.name }}
+          PRODUCT_ID: ${{ steps.req.outputs.product_id }}
+        run: |
+          set -euo pipefail
+          result="product-engine/live-read-results/${NAME}.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$result"
+          git commit -m "product-engine: record live read for ${PRODUCT_ID}"
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt * 2))
+          done
+          exit 1
