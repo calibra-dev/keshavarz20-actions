@@ -25,13 +25,11 @@ Runtime state is stored in product-engine/state.json. Product-specific evidence 
 
 ## Connected producer live-read
 
-The Connected ChatGPT producer reads the exact current product through the existing Bridge 3.3 gateway before generating a queue:
+Connected ChatGPT no longer writes normal Product Engine reads into `bridge-v3-ops/`. It commits a minimal immutable request containing only `schema_version=product-producer-live-read-v1` and `product_id` under `product-engine/live-read-ops/`.
 
-`bridge-v3-ops/*-product-<ID>-live-read.json` -> `rest.proxy GET /wc/v3/products/<ID>` -> `bridge-v3-results/*.json`
+`.github/workflows/k20-product-producer-live-read.yml` performs the exact WooCommerce + SEO reads through Bridge 3.3 on the GitHub runner, sanitizes the evidence and commits `product-engine/live-read-results/*.json`. The result is accepted for producer freshness only when product and SEO IDs match, product status is `publish`, both Bridge reads are successful, and `product.result.data_date_modified_gmt` is present.
 
-and reads SEO separately with `seo.read`. The safe Bridge projection must expose WooCommerce `date_modified_gmt` as `result.data_date_modified_gmt`; this fresh value is the only valid source for queue `expected_date_modified_gmt`.
-
-This route intentionally reuses the proven Bridge gateway instead of introducing a second producer workflow or direct WordPress credential path.
+A fresh relay request/result is required immediately before every new immutable queue. Inventory timestamps, cached HTML and historical Bridge results are never valid freshness substitutes.
 
 ## Primary-route lock
 
