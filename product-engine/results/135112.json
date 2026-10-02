@@ -1,0 +1,67 @@
+{
+  "schema_version": "product-queue-result-v2",
+  "queue_file": "product-engine/queue/2026-10-03-product-135112.json",
+  "product_id": 135112,
+  "started_at": "2026-10-02T23:22:15.629683+00:00",
+  "status": "QA_BLOCKED",
+  "policy": {
+    "content_acceptance": 96,
+    "lighthouse_acceptance": {
+      "successful_runs": 3,
+      "performance": {
+        "median_min": 92,
+        "each_run_min": 91
+      },
+      "accessibility": {
+        "median_min": 92,
+        "each_run_min": 91
+      },
+      "best_practices": {
+        "median_min": 90,
+        "each_run_min": 90
+      },
+      "seo": {
+        "median_min": 96,
+        "each_run_min": 96
+      },
+      "lcp_median_max_ms": 2500,
+      "cls_each_run_max": 0.1,
+      "tbt_median_max_ms": 200
+    },
+    "media_optimization": {
+      "enabled": true,
+      "featured": true,
+      "gallery": true,
+      "output_mime": "image/webp",
+      "quality": 84,
+      "max_dimension": 1600,
+      "skip_existing_webp": true,
+      "require_smaller": true,
+      "minimum_saving_pct": 3,
+      "preserve_order": true,
+      "delete_source_after_acceptance": false,
+      "rollback_on_regression": true
+    }
+  },
+  "product_name": "فلنچ پلی‌اتیلن جوشی ۶ اینچ (۱۶۰ میلی‌متر) ۶ اتمسفر زلال‌رود",
+  "permalink": "https://keshavarz20.com/product/%d9%81%d9%84%d9%86%da%86-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%d8%ac%d9%88%d8%b4%db%8c-6-%d8%a7%db%8c%d9%86%da%86-160-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+  "before_media": [
+    {
+      "role": "featured",
+      "attachment_id": 144335,
+      "src": "https://keshavarz20.com/wp-content/uploads/2026/09/k20-p135112-a144230-webp.webp",
+      "alt": "تصویر محصول فلنچ پلی اتیلن جوشی 6 اینچ (160 میلیمتر) 6 اتمسفر"
+    }
+  ],
+  "content_quality_score": 65,
+  "content_score_detail": {
+    "blockers": [
+      "generic/non-commercial phrase: در ادامه"
+    ]
+  },
+  "validation_errors": [
+    "generic/non-commercial phrase: در ادامه"
+  ],
+  "blocker": "candidate did not clear product QA >=96",
+  "finished_at": "2026-10-02T23:22:21.184319+00:00"
+}
