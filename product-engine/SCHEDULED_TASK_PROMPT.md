@@ -26,14 +26,23 @@ Before queueing:
 
 ## Producer live-read route
 
-For normal Product Engine production, use the existing guarded Bridge 3.3 gateway directly through immutable read-only requests on current `main`:
+For normal Product Engine production, Connected ChatGPT MUST use the dedicated immutable producer relay, not write Bridge operation files directly.
 
-1. product state: commit exactly one `bridge-v3-ops/*-product-<PRODUCT_ID>-live-read.json` request with `{"action":"rest.proxy","method":"GET","path":"/wc/v3/products/<PRODUCT_ID>"}`;
-2. SEO state: commit exactly one `bridge-v3-ops/*-product-<PRODUCT_ID>-seo-read.json` request with `{"action":"seo.read","id":<PRODUCT_ID>}`;
-3. read the matching immutable `bridge-v3-results/*.json` files and require `ok=true`, exact product ID, published status, Bridge 3.3 readback, and a non-empty `result.data_date_modified_gmt` before queue creation;
-4. immediately before queue commit, repeat the product live-read with a new unique request filename and use that fresh `data_date_modified_gmt` as `expected_date_modified_gmt`.
+1. commit exactly one tiny immutable request on current `main` at `product-engine/live-read-ops/<UNIQUE>-product-<PRODUCT_ID>.json` with only:
+   `{"schema_version":"product-producer-live-read-v1","product_id":<PRODUCT_ID>}`;
+2. `.github/workflows/k20-product-producer-live-read.yml` owns the internal Bridge 3.3 product + SEO reads, sanitizer checks and sanitized immutable evidence;
+3. read the matching `product-engine/live-read-results/<UNIQUE>-product-<PRODUCT_ID>.json` and require both reads `ok=true`, exact product/SEO IDs, product status `publish`, and non-empty `product.result.data_date_modified_gmt`;
+4. immediately before queue delivery, create a NEW uniquely named relay request and use only that newest result's `product.result.data_date_modified_gmt` as `expected_date_modified_gmt`.
 
-Do not depend on a newly invented producer workflow or direct WordPress credentials. Do not reuse an old Bridge result as freshness evidence. If a read-only Bridge request is temporarily blocked by the connected GitHub environment, leave the recurring automation enabled and retry on the next run; do not disable or pause it.
+Connected ChatGPT MUST NOT create `bridge-v3-ops/*.json` for normal Product Engine producer reads. The relay is intentionally tiny so the connected GitHub write contains no REST path, Bridge action, SEO payload, credentials or site mutation instruction; the repository workflow owns those details.
+
+If a relay request/result is temporarily unavailable, do not fall back to inventory timestamps, cached HTML or an older live-read result. Leave the recurring automation enabled and retry the same product on the next run.
+
+### Queue-delivery reliability
+
+Before writing a queue, sanitize/verify the complete queue payload against `k20_sanitizer.py` hygiene requirements and keep it within the canonical queue schema. Queue delivery remains direct immutable commit to current `main`, with `automation/product-*` as the existing branch fallback.
+
+If the connected GitHub safety layer rejects a large queue write, do not weaken the queue contract, split the queue into unvalidated fragments, rewrite an existing queue, or switch to OPENAI/API generation. Preserve the candidate for the current run, report the exact delivery blocker, and retry the same product on the next run after a fresh relay read. The automation must remain enabled and the cursor must not advance.
 
 ## Product-page writing rules
 
