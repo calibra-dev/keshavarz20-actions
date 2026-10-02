@@ -74,6 +74,20 @@ if delivery.get("cursor_must_not_advance_on_transport_block") is not True:
     fail("transport block must not advance cursor")
 if delivery.get("automation_must_remain_enabled_on_transport_block") is not True:
     fail("transport block must not disable automation")
+if delivery.get("ingress_workflow") != ".github/workflows/k20-product-queue-ingress.yml":
+    fail("queue ingress workflow changed")
+if delivery.get("ingress_request_path") != "product-engine/queue-ingress-ops/*.json":
+    fail("queue ingress request path changed")
+if delivery.get("ingress_schema") != "product-queue-ingress-v1":
+    fail("queue ingress schema changed")
+if delivery.get("ingress_payload_source") != "immutable_git_blob_sha":
+    fail("queue ingress must use immutable Git blob payload")
+if delivery.get("ingress_requires_bound_fresh_live_read") is not True:
+    fail("queue ingress must bind exact fresh live-read evidence")
+if delivery.get("ingress_validates_queue_contract") is not True:
+    fail("queue ingress must validate canonical queue contract")
+if delivery.get("ingress_dispatches_publisher_explicitly") is not True:
+    fail("queue ingress must explicitly dispatch publisher")
 
 if config.get("primary_producer") != "connected_chatgpt_queue":
     fail("config primary_producer must be connected_chatgpt_queue")
