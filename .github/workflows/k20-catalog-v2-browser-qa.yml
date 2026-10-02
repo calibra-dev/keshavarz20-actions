@@ -1,0 +1,130 @@
+name: K20 Catalog V2 Browser QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/k20-catalog-v2-browser-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - shell: bash
+        run: |
+          set -euo pipefail
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$CHROME" ]; then echo "Chrome not found"; exit 2; fi
+          python3 -m pip install --quiet websocket-client
+          mkdir -p diagnostics
+          "$CHROME" --headless=new --no-sandbox --disable-gpu --hide-scrollbars             --remote-debugging-port=9222 --remote-allow-origins='*'             --user-data-dir=/tmp/k20-catalog-chrome --window-size=1536,1024             'https://keshavarz20.com/catalog/?k20qa=1' >/tmp/k20-catalog-chrome.log 2>&1 &
+          PID=$!
+          trap 'kill $PID >/dev/null 2>&1 || true' EXIT
+          python3 - <<'PY'
+          import json,time,urllib.request,websocket,pathlib,datetime
+          deadline=time.time()+35
+          targets=None
+          while time.time()<deadline:
+              try:
+                  targets=json.load(urllib.request.urlopen('http://127.0.0.1:9222/json',timeout=2))
+                  if targets: break
+              except Exception:
+                  pass
+              time.sleep(1)
+          if not targets: raise SystemExit('No CDP target')
+          target=next((t for t in targets if 'keshavarz20.com/catalog' in t.get('url','')),targets[0])
+          ws=websocket.create_connection(target['webSocketDebuggerUrl'],timeout=20)
+          def eval_js(expr, ident):
+              ws.send(json.dumps({'id':ident,'method':'Runtime.evaluate','params':{'expression':expr,'returnByValue':True,'awaitPromise':True}}))
+              while True:
+                  row=json.loads(ws.recv())
+                  if row.get('id')==ident:
+                      return row['result']['result'].get('value')
+          time.sleep(8)
+          desktop=eval_js(r'''(async()=>{
+            const root=document.querySelector('#k20CatalogV2');
+            const cards=[...document.querySelectorAll('#k20ProductSource ul.products li.product')];
+            const first=cards[0];
+            const before=cards.filter(x=>getComputedStyle(x).display!=='none').length;
+            let filtered=null;
+            let firstTitle=null;
+            if(first){
+              firstTitle=(first.querySelector('.woocommerce-loop-product__title')?.textContent||'').trim();
+              const term=(firstTitle.split(/\s+/).find(x=>x.length>2)||firstTitle).trim();
+              const inp=document.querySelector('#k20TopSearch');
+              inp.value=term;
+              inp.dispatchEvent(new Event('input',{bubbles:true}));
+              await new Promise(r=>setTimeout(r,350));
+              filtered=cards.filter(x=>getComputedStyle(x).display!=='none').length;
+            }
+            const bodyText=document.body.innerText||'';
+            return {
+              readyState:document.readyState,
+              rootExists:!!root,
+              productCount:cards.length,
+              visibleBefore:before,
+              visibleAfterSearch:filtered,
+              firstTitle,
+              scriptReady:window.__K20CatalogV2||null,
+              pageErrorsVisible:/دریافت محصولات با خطا/.test(bodyText),
+              shortcodeVisible:bodyText.includes('[products limit='),
+              horizontalOverflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
+              headerRect:root?document.querySelector('.k20-header')?.getBoundingClientRect().toJSON():null,
+              stageRect:root?document.querySelector('.k20-stage')?.getBoundingClientRect().toJSON():null,
+              bottomRect:root?document.querySelector('.k20-bottom-nav')?.getBoundingClientRect().toJSON():null
+            };
+          })()''',1)
+          eval_js("(()=>{const i=document.querySelector('#k20TopSearch');if(i){i.value='';i.dispatchEvent(new Event('input',{bubbles:true}));}return true;})()",2)
+          ws.send(json.dumps({'id':3,'method':'Emulation.setDeviceMetricsOverride','params':{'width':390,'height':844,'deviceScaleFactor':1,'mobile':True}}))
+          while True:
+              row=json.loads(ws.recv())
+              if row.get('id')==3: break
+          time.sleep(2)
+          mobile=eval_js(r'''(async()=>{
+            const btn=document.querySelector('#k20MobileFilter');
+            const panel=document.querySelector('#k20FilterPanel');
+            const root=document.querySelector('#k20CatalogV2');
+            if(btn){btn.click();await new Promise(r=>setTimeout(r,300));}
+            return {
+              width:innerWidth,
+              rootExists:!!root,
+              productCount:document.querySelectorAll('#k20ProductSource ul.products li.product').length,
+              filterButtonVisible:!!btn && getComputedStyle(btn).display!=='none',
+              filterPanelOpen:!!panel && panel.classList.contains('open'),
+              horizontalOverflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
+              appShellWidth:document.querySelector('#k20AppShell')?.getBoundingClientRect().width||0
+            };
+          })()''',4)
+          ws.close()
+          out={'checked_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'url':'https://keshavarz20.com/catalog/','desktop':desktop,'mobile':mobile}
+          out['pass']=bool(
+              desktop and desktop.get('rootExists') and desktop.get('productCount',0)>0 and
+              desktop.get('visibleBefore',0)>0 and desktop.get('visibleAfterSearch') is not None and
+              not desktop.get('shortcodeVisible') and not desktop.get('pageErrorsVisible') and
+              desktop.get('horizontalOverflow',999)<=4 and
+              mobile and mobile.get('filterButtonVisible') and mobile.get('filterPanelOpen') and
+              mobile.get('productCount',0)>0 and mobile.get('horizontalOverflow',999)<=4
+          )
+          pathlib.Path('diagnostics/k20-catalog-v2-browser-qa.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          if not out['pass']: raise SystemExit(3)
+          PY
+      - shell: bash
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add diagnostics/k20-catalog-v2-browser-qa.json 2>/dev/null || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'qa: record catalog v2 browser state'
+          git pull --rebase origin main
+          git push origin main
