@@ -12,6 +12,7 @@ README_PATH = ROOT / "product-engine" / "README.md"
 API_WF_PATH = ROOT / ".github" / "workflows" / "k20-product-autopilot.yml"
 QUEUE_WF_PATH = ROOT / ".github" / "workflows" / "k20-product-queue-publisher.yml"
 PROMOTER_WF_PATH = ROOT / ".github" / "workflows" / "k20-product-queue-promoter.yml"
+PUBLISHER_PATH = ROOT / "product-engine" / "publish_queue.py"
 
 
 def fail(message: str) -> None:
@@ -25,6 +26,7 @@ readme = README_PATH.read_text(encoding="utf-8")
 api_wf = API_WF_PATH.read_text(encoding="utf-8")
 queue_wf = QUEUE_WF_PATH.read_text(encoding="utf-8")
 promoter_wf = PROMOTER_WF_PATH.read_text(encoding="utf-8")
+publisher_py = PUBLISHER_PATH.read_text(encoding="utf-8")
 
 if lock.get("primary_producer") != "connected_chatgpt_queue":
     fail("route lock primary_producer changed")
@@ -70,6 +72,11 @@ if "k20-product-queue-publisher.yml/dispatches" not in promoter_wf:
 if "workflow_dispatch" not in queue_wf:
     fail("queue publisher must retain workflow_dispatch for promoter handoff")
 
+if "product-engine/recovery/*-stale-recovery.json" not in queue_wf:
+    fail("queue publisher stale-recovery trigger is missing")
+if "stale_recovery_evidence" not in publisher_py or "producer_timestamp_source_bug" not in publisher_py:
+    fail("publisher fail-closed stale recovery support is missing")
+
 required_prompt_markers = [
     "Connected ChatGPT",
     "product-engine/queue/*.json",
@@ -79,6 +86,10 @@ required_prompt_markers = [
 for marker in required_prompt_markers:
     if marker not in prompt:
         fail(f"canonical producer prompt missing marker: {marker}")
+
+for marker in ["### Freshness source rule", "expected_date_modified_gmt", "Never copy this field from `inventory.json`"]:
+    if marker not in prompt:
+        fail(f"canonical producer freshness rule missing marker: {marker}")
 
 required_readme_markers = [
     "Connected ChatGPT -> product-engine/queue/*.json",
