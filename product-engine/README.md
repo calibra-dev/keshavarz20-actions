@@ -31,6 +31,16 @@ Connected ChatGPT no longer writes normal Product Engine reads into `bridge-v3-o
 
 A fresh relay request/result is required immediately before every new immutable queue. Inventory timestamps, cached HTML and historical Bridge results are never valid freshness substitutes.
 
+## Resilient queue transport
+
+The queue payload and product contract never change just because one GitHub write surface is unavailable. Delivery uses a transport ladder:
+
+`Contents API -> Git Data atomic fast-forward on main -> automation/product-* Git Data branch -> promoter -> explicit publisher dispatch`.
+
+The Git Data fallback is allowed only as a transport for the exact already-validated immutable queue. It must use the latest main commit as the parent, must re-check main before moving the ref, and must never force-update main. A concurrent main change requires a new live-read freshness check before another delivery attempt.
+
+Transport failures do not advance the product cursor and do not disable the recurring automation.
+
 ## Primary-route lock
 
 The automatic Product Engine route is locked by `product-engine/PRIMARY_ROUTE_LOCK.json` and enforced by `scripts/check_product_engine_primary_route.py`.
