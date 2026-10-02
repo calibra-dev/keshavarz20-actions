@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261002-p15-cat-read-loole.sanitized.json",
+  "action": "rest.proxy",
+  "request_id": "p15-cat-read-loole-20261002",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-02T20:37:13.6948199Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.32",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "status": 200,
+    "method": "GET",
+    "path": "/wc/v3/products/categories",
+    "data_count": 1,
+    "data_items": [
+      {
+        "id": 722,
+        "slug": "irrigation-pipes",
+        "name": "لوله و نوار آبیاری"
+      }
+    ]
+  }
+}
