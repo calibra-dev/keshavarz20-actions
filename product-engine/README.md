@@ -23,6 +23,16 @@ Key guarantees:
 Runtime state is stored in product-engine/state.json. Product-specific evidence is stored under product-engine/results/.
 
 
+## Connected producer live-read
+
+The Connected ChatGPT producer reads the exact current product through the existing Bridge 3.3 gateway before generating a queue:
+
+`bridge-v3-ops/*-product-<ID>-live-read.json` -> `rest.proxy GET /wc/v3/products/<ID>` -> `bridge-v3-results/*.json`
+
+and reads SEO separately with `seo.read`. The safe Bridge projection must expose WooCommerce `date_modified_gmt` as `result.data_date_modified_gmt`; this fresh value is the only valid source for queue `expected_date_modified_gmt`.
+
+This route intentionally reuses the proven Bridge gateway instead of introducing a second producer workflow or direct WordPress credential path.
+
 ## Primary-route lock
 
 The automatic Product Engine route is locked by `product-engine/PRIMARY_ROUTE_LOCK.json` and enforced by `scripts/check_product_engine_primary_route.py`.
