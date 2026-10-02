@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: k20-product-producer-live-read
+  group: k20-product-producer-live-read-${{ github.sha }}
   cancel-in-progress: false
 
 jobs:
@@ -113,6 +113,16 @@ jobs:
 
           $product = Get-Content -Raw -LiteralPath $productOut | ConvertFrom-Json -Depth 100
           $seo = Get-Content -Raw -LiteralPath $seoOut | ConvertFrom-Json -Depth 100
+
+          if (-not $product.ok) { throw 'Bridge product read returned ok=false.' }
+          if (-not $seo.ok) { throw 'Bridge SEO read returned ok=false.' }
+          if ([int]$product.result.data_id -ne $id) { throw 'Bridge product ID mismatch.' }
+          if ([string]$product.result.data_status -ne 'publish') { throw 'Selected product is not published.' }
+          if ([string]::IsNullOrWhiteSpace([string]$product.result.data_date_modified_gmt)) {
+            throw 'Bridge product read is missing data_date_modified_gmt.'
+          }
+          if ([int]$seo.result.id -ne $id) { throw 'Bridge SEO ID mismatch.' }
+
           $payload = [ordered]@{
             schema_version='product-producer-live-read-result-v1'
             mode='read-only'
