@@ -32,20 +32,28 @@ if lock.get("primary_producer") != "connected_chatgpt_queue":
     fail("route lock primary_producer changed")
 
 live_read = lock.get("producer_live_read") or {}
-if live_read.get("gateway_workflow") != ".github/workflows/k20-bridge-v3-gateway.yml":
-    fail("producer live-read gateway must remain Bridge v3 gateway")
+if live_read.get("workflow") != ".github/workflows/k20-product-producer-live-read.yml":
+    fail("producer live-read must use dedicated safe relay workflow")
+if live_read.get("request_path") != "product-engine/live-read-ops/*.json":
+    fail("producer live-read request path changed")
+if live_read.get("request_schema") != "product-producer-live-read-v1":
+    fail("producer live-read request schema changed")
+if live_read.get("result_path") != "product-engine/live-read-results/*.json":
+    fail("producer live-read result path changed")
 if live_read.get("product_action") != "rest.proxy" or live_read.get("product_method") != "GET":
-    fail("producer live-read product route must remain read-only rest.proxy GET")
+    fail("internal producer live-read product route must remain read-only")
 if live_read.get("product_path_template") != "/wc/v3/products/<PRODUCT_ID>":
     fail("producer live-read product path template changed")
 if live_read.get("seo_action") != "seo.read":
     fail("producer live-read SEO action must remain seo.read")
-if live_read.get("required_freshness_field") != "result.data_date_modified_gmt":
-    fail("producer freshness field must remain Bridge live date_modified_gmt")
+if live_read.get("required_freshness_field") != "product.result.data_date_modified_gmt":
+    fail("producer freshness field must remain relay live date_modified_gmt")
+if live_read.get("require_exact_product_id") is not True or live_read.get("require_publish_status") is not True:
+    fail("producer relay identity/status guards must remain enabled")
 if live_read.get("direct_wordpress_credentials_forbidden") is not True:
-    fail("producer must not gain a direct WordPress credential path")
-if live_read.get("separate_producer_workflow_forbidden") is not True:
-    fail("producer live-read must reuse the guarded Bridge gateway")
+    fail("connected producer must not gain direct WordPress credentials")
+if live_read.get("connected_producer_must_not_write_bridge_v3_ops") is not True:
+    fail("connected producer must not write bridge-v3-ops for normal product reads")
 
 if config.get("primary_producer") != "connected_chatgpt_queue":
     fail("config primary_producer must be connected_chatgpt_queue")
@@ -103,7 +111,7 @@ for marker in required_prompt_markers:
     if marker not in prompt:
         fail(f"canonical producer prompt missing marker: {marker}")
 
-for marker in ["### Freshness source rule", "expected_date_modified_gmt", "Never copy this field from `inventory.json`", "## Producer live-read route", "result.data_date_modified_gmt"]:
+for marker in ["### Freshness source rule", "expected_date_modified_gmt", "Never copy this field from `inventory.json`", "## Producer live-read route", "product-engine/live-read-ops/", "product.result.data_date_modified_gmt"]:
     if marker not in prompt:
         fail(f"canonical producer freshness rule missing marker: {marker}")
 
