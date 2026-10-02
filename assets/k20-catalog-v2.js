@@ -120,7 +120,7 @@ function applyFilters(){
     var price=getPrice(li);
     var passPrice=!maxPrice||price===0||price<=max;
     var ok=passSearch&&passCat&&passStock&&passPrice;
-    li.style.display=ok?'':'none';
+    if(ok){li.style.removeProperty('display');}else{li.style.setProperty('display','none','important');}
     if(ok)visible++;
   });
   noResults.hidden=visible!==0;
