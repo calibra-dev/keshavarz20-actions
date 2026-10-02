@@ -19,6 +19,8 @@ var activeKeyword='';
 var products=[];
 var maxPrice=0;
 var initialOrder=[];
+var initialMarkup=source?source.innerHTML:'';
+var categoryRequest=0;
 
 function txt(node){return node?String(node.textContent||'').trim():'';}
 function normalize(value){
@@ -63,6 +65,78 @@ function notify(message){
   toast.textContent=message;
   toast.classList.add('show');
   setTimeout(function(){toast.classList.remove('show');},1600);
+}
+function apiPrice(product){
+  if(!product||!product.prices)return 'قیمت را در صفحه محصول ببینید';
+  var unit=Number(product.prices.currency_minor_unit||0);
+  var value=Number(product.prices.price||0)/Math.pow(10,unit);
+  if(!isFinite(value))return 'قیمت را در صفحه محصول ببینید';
+  return value.toLocaleString('fa-IR')+' '+(product.prices.currency_symbol||'تومان');
+}
+function buildApiCard(product){
+  var li=make('li','product');
+  li.dataset.productId=String(product.id||'');
+  if(product.is_in_stock===false)li.classList.add('outofstock');
+  var link=make('a','woocommerce-LoopProduct-link woocommerce-loop-product__link');
+  link.href=product.permalink||'/shop/';
+  var imageUrl=product.images&&product.images[0]?(product.images[0].src||product.images[0].thumbnail):'';
+  if(imageUrl){
+    var image=make('img');
+    image.src=imageUrl;
+    image.alt=(product.images[0].alt||product.name||'محصول کشاورزی');
+    image.loading='lazy';
+    image.decoding='async';
+    image.addEventListener('error',function(){
+      image.style.display='none';
+      var fallback=make('div','k20-product-image-fallback','بدون تصویر');
+      link.insertBefore(fallback,link.firstChild);
+    },{once:true});
+    link.appendChild(image);
+  }else{
+    link.appendChild(make('div','k20-product-image-fallback','بدون تصویر'));
+  }
+  link.appendChild(make('h2','woocommerce-loop-product__title',product.name||'محصول'));
+  var price=make('span','price');
+  price.textContent=apiPrice(product);
+  link.appendChild(price);
+  li.appendChild(link);
+  return li;
+}
+function renderApiProducts(items){
+  clear(source);
+  var ul=make('ul','products columns-4');
+  (items||[]).forEach(function(product){ul.appendChild(buildApiCard(product));});
+  source.appendChild(ul);
+  refreshProducts();
+}
+async function loadCategory(categoryId,button){
+  var requestId=++categoryRequest;
+  document.querySelectorAll('#k20CatalogV2 .k20-category-strip button').forEach(function(item){item.classList.remove('active');});
+  if(button)button.classList.add('active');
+  if(!categoryId){
+    source.innerHTML=initialMarkup;
+    refreshProducts();
+    return;
+  }
+  source.setAttribute('aria-busy','true');
+  noResults.hidden=true;
+  try{
+    var url='/wp-json/wc/store/v1/products?per_page=16&category='+encodeURIComponent(categoryId);
+    var response=await fetch(url,{credentials:'same-origin',headers:{'Accept':'application/json'}});
+    if(!response.ok)throw new Error('HTTP '+response.status);
+    var data=await response.json();
+    if(requestId!==categoryRequest)return;
+    renderApiProducts(Array.isArray(data)?data:[]);
+    noResults.hidden=Array.isArray(data)&&data.length>0;
+    if(!data.length){noResults.hidden=false;noResults.textContent='در این دسته محصولی برای نمایش پیدا نشد.';}
+  }catch(error){
+    if(requestId!==categoryRequest)return;
+    source.innerHTML=initialMarkup;
+    refreshProducts();
+    notify('دریافت محصولات این دسته با خطا روبه رو شد؛ محصولات اصلی نمایش داده شدند.');
+  }finally{
+    if(requestId===categoryRequest)source.removeAttribute('aria-busy');
+  }
 }
 function refreshProducts(){
   products=Array.prototype.slice.call(source.querySelectorAll('ul.products li.product'));
@@ -242,7 +316,18 @@ document.querySelectorAll('#k20CatalogV2 input[name=k20cat]').forEach(function(i
   input.addEventListener('change',function(){setCategory(this.value,null);});
 });
 document.querySelectorAll('#k20CatalogV2 .k20-category-strip button').forEach(function(button){
-  button.addEventListener('click',function(){setCategory(this.getAttribute('data-keyword')||'',this);});
+  var image=button.querySelector('img');
+  if(image){
+    image.addEventListener('error',function(){
+      var holder=image.parentNode;
+      if(holder){clear(holder);holder.appendChild(make('span','','◫'));}
+    },{once:true});
+  }
+  button.addEventListener('click',function(){
+    activeKeyword='';
+    syncSearch('');
+    loadCategory(this.getAttribute('data-category')||'',this);
+  });
 });
 document.getElementById('k20ClearFilters').addEventListener('click',function(){
   activeKeyword='';
@@ -253,6 +338,8 @@ document.getElementById('k20ClearFilters').addEventListener('click',function(){
   priceLabel.textContent=maxPrice?('تا '+maxPrice.toLocaleString('fa-IR')+' تومان'):'همه قیمت ها';
   document.querySelectorAll('#k20CatalogV2 input[name=k20cat]').forEach(function(input){input.checked=input.value==='';});
   document.querySelectorAll('#k20CatalogV2 .k20-category-strip button').forEach(function(button){button.classList.remove('active');});
+  source.innerHTML=initialMarkup;
+  refreshProducts();
   sortProducts();
 });
 document.getElementById('k20ResetView').addEventListener('click',function(){document.getElementById('k20ClearFilters').click();});
@@ -293,7 +380,7 @@ function initWhenReady(){
   var count=source.querySelectorAll('ul.products li.product').length;
   if(!count)return false;
   refreshProducts();
-  window.__K20CatalogV2={ready:true,productCount:products.length,applyFilters:applyFilters};
+  window.__K20CatalogV2={ready:true,productCount:products.length,applyFilters:applyFilters,loadCategory:loadCategory};
   root.dataset.runtimeReady='1';
   return true;
 }
