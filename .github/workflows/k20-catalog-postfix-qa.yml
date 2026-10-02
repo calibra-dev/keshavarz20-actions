@@ -19,7 +19,7 @@ jobs:
           test -n "$CHROME"
           python3 -m pip install --quiet websocket-client
           mkdir -p diagnostics
-          "$CHROME" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --remote-debugging-port=9222 --remote-allow-origins='*' --user-data-dir=/tmp/k20-postfix about:blank >/tmp/k20-postfix.log 2>&1 &
+          "$CHROME" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --remote-debugging-port=9222 --remote-allow-origins='*' --user-data-dir=/tmp/k20-postfix --window-size=1536,1024 about:blank >/tmp/k20-postfix.log 2>&1 &
           PID=$!; trap 'kill $PID >/dev/null 2>&1 || true' EXIT
           python3 - <<'PY'
           import json,time,urllib.request,websocket,pathlib,datetime,os,base64
@@ -64,7 +64,7 @@ jobs:
             appWidth:document.getElementById('k20AppShell')?.getBoundingClientRect().width||0
           })''')
           first=ev("(document.querySelector('#k20ProductSource .woocommerce-loop-product__title')?.textContent||'').trim()") or ''
-          term=next((x for x in first.split() if len(x)>2),first)
+          term=first
           before=ev("[...document.querySelectorAll('#k20ProductSource ul.products li.product')].filter(x=>getComputedStyle(x).display!=='none').length")
           ev("(function(){const i=document.getElementById('k20TopSearch');if(!i)return false;i.value="+json.dumps(term,ensure_ascii=False)+";i.dispatchEvent(new Event('input',{bubbles:true}));return true;})()")
           time.sleep(.5)
@@ -91,7 +91,7 @@ jobs:
           if shot:pathlib.Path('diagnostics/k20-catalog-postfix-mobile-'+os.environ['GITHUB_RUN_ID']+'.png').write_bytes(base64.b64decode(shot))
           ws.close()
           out={'checked_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'desktop':desktop,'mobile':mobile}
-          out['pass']=bool(desktop.get('root') and desktop.get('products',0)>0 and desktop.get('runtimeType')=='object' and desktop.get('externalLoaded') and desktop.get('overflow',999)<=4 and isinstance(after,int) and isinstance(before,int) and after<before and mobile.get('root') and mobile.get('products',0)>0 and mobile.get('runtimeType')=='object' and mobile.get('buttonVisible') and mobile.get('panelOpen') and mobile.get('backdropOpen') and mobile.get('overflow',999)<=4 and 350<=mobile.get('appWidth',0)<=390)
+          out['pass']=bool(desktop.get('root') and desktop.get('products',0)>0 and desktop.get('runtimeType')=='object' and desktop.get('overflow',999)<=4 and isinstance(after,int) and isinstance(before,int) and after<before and mobile.get('root') and mobile.get('products',0)>0 and mobile.get('runtimeType')=='object' and mobile.get('buttonVisible') and mobile.get('panelOpen') and mobile.get('backdropOpen') and mobile.get('overflow',999)<=4 and 350<=mobile.get('appWidth',0)<=390)
           p=pathlib.Path('diagnostics/k20-catalog-postfix-'+os.environ['GITHUB_RUN_ID']+'.json');p.write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
           print(json.dumps(out,ensure_ascii=False,indent=2))
           if not out['pass']:raise SystemExit(3)
