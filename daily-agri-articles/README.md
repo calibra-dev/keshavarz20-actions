@@ -115,6 +115,14 @@ Core fields:
 - post-write verification of draft status/type/featured image/category/SEO fields
 - sanitized artifact output only
 
+## Canonical queue ingress
+
+The daily/recovery writer has one production write path:
+
+`scheduled task -> GitHub Contents API -> new daily-agri-articles/queue/YYYY-MM-DD.json on current main -> push-triggered article publisher`
+
+Queue creation must not fall back to Bridge/`engine.run`, the legacy gateway, WPVibe, side branches/PRs, or low-level Git object writes. The Bridge article engine only accepts an already-existing allow-listed queue path. If the canonical Contents API write is unavailable, the recovery remains enabled and retries later instead of changing routes.
+
 ## Queue immutability and idempotency
 
 - Automatic push publishing processes only **newly added** `daily-agri-articles/queue/*.json` files.
