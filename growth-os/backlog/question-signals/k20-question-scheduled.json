@@ -1,12 +1,15 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-3daa963026c4ad48",
-  "product_id": 140221,
-  "family": "fertilizer",
-  "intent": "indoor_postuse",
-  "scenario_dimensions": {},
-  "potential_article_gap": false,
+  "canonical_intent_id": "question-intent-152d2f54624fb4a2",
+  "product_id": 135147,
+  "family": "fitting",
+  "intent": "total_cost",
+  "scenario_dimensions": {
+    "pressure": true,
+    "crop": "به"
+  },
+  "potential_article_gap": true,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
