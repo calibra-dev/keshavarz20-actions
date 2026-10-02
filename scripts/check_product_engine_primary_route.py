@@ -31,6 +31,22 @@ publisher_py = PUBLISHER_PATH.read_text(encoding="utf-8")
 if lock.get("primary_producer") != "connected_chatgpt_queue":
     fail("route lock primary_producer changed")
 
+live_read = lock.get("producer_live_read") or {}
+if live_read.get("gateway_workflow") != ".github/workflows/k20-bridge-v3-gateway.yml":
+    fail("producer live-read gateway must remain Bridge v3 gateway")
+if live_read.get("product_action") != "rest.proxy" or live_read.get("product_method") != "GET":
+    fail("producer live-read product route must remain read-only rest.proxy GET")
+if live_read.get("product_path_template") != "/wc/v3/products/<PRODUCT_ID>":
+    fail("producer live-read product path template changed")
+if live_read.get("seo_action") != "seo.read":
+    fail("producer live-read SEO action must remain seo.read")
+if live_read.get("required_freshness_field") != "result.data_date_modified_gmt":
+    fail("producer freshness field must remain Bridge live date_modified_gmt")
+if live_read.get("direct_wordpress_credentials_forbidden") is not True:
+    fail("producer must not gain a direct WordPress credential path")
+if live_read.get("separate_producer_workflow_forbidden") is not True:
+    fail("producer live-read must reuse the guarded Bridge gateway")
+
 if config.get("primary_producer") != "connected_chatgpt_queue":
     fail("config primary_producer must be connected_chatgpt_queue")
 
@@ -87,7 +103,7 @@ for marker in required_prompt_markers:
     if marker not in prompt:
         fail(f"canonical producer prompt missing marker: {marker}")
 
-for marker in ["### Freshness source rule", "expected_date_modified_gmt", "Never copy this field from `inventory.json`"]:
+for marker in ["### Freshness source rule", "expected_date_modified_gmt", "Never copy this field from `inventory.json`", "## Producer live-read route", "result.data_date_modified_gmt"]:
     if marker not in prompt:
         fail(f"canonical producer freshness rule missing marker: {marker}")
 
