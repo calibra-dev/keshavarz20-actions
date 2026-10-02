@@ -273,7 +273,7 @@ if($parsed -and $parsed.result){
       }
       if($safeRows.Count -gt 0){ $safe['data_items']=$safeRows }
     }
-    else{ foreach($name in @('id','status','slug','title','name','sku','stock_status','stock_quantity','modified_gmt','link','permalink','description','short_description','attributes','images','categories','tags','featured_media','source_url','media_type','mime_type','media_details')){ $p=$data.PSObject.Properties[$name]; if($p){ $safe["data_$name"]=$p.Value } } }
+    else{ foreach($name in @('id','status','slug','title','name','sku','stock_status','stock_quantity','modified_gmt','date_modified_gmt','link','permalink','description','short_description','attributes','images','categories','tags','featured_media','source_url','media_type','mime_type','media_details')){ $p=$data.PSObject.Properties[$name]; if($p){ $safe["data_$name"]=$p.Value } } }
   }
   $record['result']=$safe
 }
