@@ -81,7 +81,11 @@ jobs:
                 const expected=await fetch('/wp-json/wc/store/v1/products?per_page=16&category={cid}',{{credentials:'same-origin'}}).then(r=>r.json());
                 b.click();
                 for(let i=0;i<50;i++){{if(document.getElementById('k20ProductSource')?.getAttribute('aria-busy')!=='true')break;await new Promise(r=>setTimeout(r,150));}}
-                await new Promise(r=>setTimeout(r,250));
+                for(let w=0;w<25;w++){
+                  const ims=[...document.querySelectorAll('#k20ProductSource ul.products li.product img')];
+                  if(!ims.length||ims.some(x=>x.complete&&x.naturalWidth>0))break;
+                  await new Promise(r=>setTimeout(r,200));
+                }
                 const cards=[...document.querySelectorAll('#k20ProductSource ul.products li.product')];
                 const domIds=cards.map(x=>Number(x.dataset.productId||0)).filter(Boolean);
                 const expectedIds=(Array.isArray(expected)?expected:[]).map(x=>Number(x.id));
@@ -118,7 +122,7 @@ jobs:
           mobile_ok=bool(mobile and len(mobile.get('buttons',[]))==6 and all(x.get('visible') and x.get('imgLoaded') for x in mobile['buttons']) and mobile.get('overflow',999)<=4)
           out={'checked_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'base':base,'category_tests':tests,'mobile':mobile,'images_ok':image_ok,'categories_ok':categories_ok,'mobile_ok':mobile_ok}
           out['pass']=bool(base and base.get('runtimeReady') and base.get('overflow',999)<=4 and image_ok and categories_ok and mobile_ok)
-          p=pathlib.Path('diagnostics')/('k20-catalog-category-qa-'+os.environ.get('GITHUB_RUN_ID','run')+'.json')
+          p=pathlib.Path('diagnostics')/('k20-catalog-category-qa-'+os.environ.get('GITHUB_RUN_ID','run')+'-a'+os.environ.get('GITHUB_RUN_ATTEMPT','1')+'.json')
           p.write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
           print(json.dumps(out,ensure_ascii=False,indent=2))
           if not out['pass']: raise SystemExit(3)
@@ -132,5 +136,5 @@ jobs:
           git add diagnostics/k20-catalog-category-qa-*.json 2>/dev/null || true
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'qa: record catalog category checks'
-          git pull --rebase origin main || { git rebase --abort || true; git pull --rebase origin main; }
+          git pull --rebase origin main
           git push origin main
