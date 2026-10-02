@@ -106,6 +106,14 @@ Root structure:
 
 Queue files are immutable. Immediately before commit, re-fetch current main and verify the exact queue path does not exist.
 
+### Freshness source rule
+
+`expected_date_modified_gmt` MUST come from the immediately preceding live Bridge/WooCommerce product read for that exact product. Never copy this field from `inventory.json`, an older queue, cached HTML, or any historical snapshot. Treat inventory timestamps as discovery metadata only.
+
+Immediately before committing a new queue, re-read the exact live product. If `date_modified_gmt` changed since research began, discard the candidate, refresh the live product/SEO evidence, and rebuild before queueing.
+
+If an immutable queue is later rejected only because a producer timestamp-source bug made its expected timestamp stale, never rewrite that queue. Recovery requires a separate immutable `product-engine/recovery/*-stale-recovery.json` assertion that binds the exact queue, product ID, original expected timestamp, newly verified live timestamp, queue generated_at, live status/name/permalink and featured attachment ID. The publisher re-validates every bound field against a fresh live read before allowing the queue to continue; any mismatch remains fail-closed.
+
 ## Publisher responsibility
 
 The GitHub publisher, not the ChatGPT producer, owns:
