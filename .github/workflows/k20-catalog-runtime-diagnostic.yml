@@ -48,6 +48,7 @@ jobs:
           result['products']=ev("document.querySelectorAll('#k20ProductSource ul.products li.product').length")
           result['runtime_before']=ev("typeof window.__K20CatalogV2")
           result['script_meta']=ev("""(()=>{const s=[...document.scripts].find(x=>(x.textContent||'').includes('__K20CatalogV2'));return s?JSON.stringify({len:s.textContent.length,type:s.type,noDefer:s.getAttribute('data-no-defer'),head:s.textContent.slice(0,150)}):null})()""")
+          result['script_text']=ev("(()=>{const s=[...document.scripts].find(x=>(x.textContent||'').includes('__K20CatalogV2'));return s?s.textContent:null})()")
           result['manual_eval']=ev("""(()=>{const s=[...document.scripts].find(x=>(x.textContent||'').includes('__K20CatalogV2'));if(!s)return 'no-script';try{(0,eval)(s.textContent);return JSON.stringify({ok:true,runtime:window.__K20CatalogV2||null});}catch(e){return JSON.stringify({ok:false,name:e.name,message:e.message,stack:(e.stack||'').slice(0,1200)});}})()""")
           time.sleep(1)
           result['runtime_after']=ev("JSON.stringify(window.__K20CatalogV2||null)")
