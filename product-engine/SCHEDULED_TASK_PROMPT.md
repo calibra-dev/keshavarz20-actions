@@ -24,6 +24,17 @@ Before queueing:
 9. run the product QA contract and require >=96 with zero blockers;
 10. commit exactly one immutable queue JSON to current main.
 
+## Producer live-read route
+
+For normal Product Engine production, use the existing guarded Bridge 3.3 gateway directly through immutable read-only requests on current `main`:
+
+1. product state: commit exactly one `bridge-v3-ops/*-product-<PRODUCT_ID>-live-read.json` request with `{"action":"rest.proxy","method":"GET","path":"/wc/v3/products/<PRODUCT_ID>"}`;
+2. SEO state: commit exactly one `bridge-v3-ops/*-product-<PRODUCT_ID>-seo-read.json` request with `{"action":"seo.read","id":<PRODUCT_ID>}`;
+3. read the matching immutable `bridge-v3-results/*.json` files and require `ok=true`, exact product ID, published status, Bridge 3.3 readback, and a non-empty `result.data_date_modified_gmt` before queue creation;
+4. immediately before queue commit, repeat the product live-read with a new unique request filename and use that fresh `data_date_modified_gmt` as `expected_date_modified_gmt`.
+
+Do not depend on a newly invented producer workflow or direct WordPress credentials. Do not reuse an old Bridge result as freshness evidence. If a read-only Bridge request is temporarily blocked by the connected GitHub environment, leave the recurring automation enabled and retry on the next run; do not disable or pause it.
+
 ## Product-page writing rules
 
 This is a product page, not a blog post.
