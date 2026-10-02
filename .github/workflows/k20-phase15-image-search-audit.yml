@@ -1,0 +1,233 @@
+name: K20 Phase 15 Image Search Audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/phase15-image-search/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-phase15-image-search-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Audit target images in live HTML and sitemaps
+        shell: python
+        run: |
+          import datetime, html.parser, json, os, subprocess, urllib.parse, urllib.request, xml.etree.ElementTree as ET
+
+          changed=[x.strip() for x in subprocess.check_output(
+              ['git','diff','--name-only','HEAD^','HEAD','--','diagnostics/phase15-image-search/*.json'],
+              text=True
+          ).splitlines() if x.strip().endswith('.json')]
+          if len(changed) != 1:
+              raise SystemExit(f'Expected one request, got {len(changed)}')
+          req=json.load(open(changed[0],encoding='utf-8'))
+          base='https://keshavarz20.com'
+
+          def fetch(url, method='GET', timeout=45):
+              q=urllib.request.Request(url,method=method,headers={
+                  'User-Agent':'K20-Phase15-ImageSearch/1.0',
+                  'Accept':'*/*',
+                  'Cache-Control':'no-cache'
+              })
+              try:
+                  with urllib.request.urlopen(q,timeout=timeout) as r:
+                      raw=b'' if method=='HEAD' else r.read()
+                      return int(r.status), r.geturl(), raw, dict(r.headers)
+              except Exception as e:
+                  return int(getattr(e,'code',0) or 0), str(getattr(e,'url',url) or url), b'', dict(getattr(e,'headers',{}) or {})
+
+          def norm(url):
+              p=urllib.parse.urlsplit(str(url or ''))
+              path=urllib.parse.unquote(p.path or '/').rstrip('/') or '/'
+              if path != '/':
+                  path += '/'
+              return urllib.parse.urlunsplit((p.scheme.lower(),p.netloc.lower(),path,'',''))
+
+          def local(tag):
+              return str(tag).rsplit('}',1)[-1].lower()
+
+          class ImgParser(html.parser.HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.images=[]
+              def handle_starttag(self,tag,attrs):
+                  if tag.lower()=='img':
+                      self.images.append({str(k).lower():(v or '') for k,v in attrs})
+
+          def media_read(aid):
+              status,_,raw,_=fetch(f'{base}/wp-json/wp/v2/media/{aid}')
+              if not (200 <= status < 300) or not raw:
+                  return {'http':status}
+              obj=json.loads(raw.decode('utf-8','replace'))
+              details=obj.get('media_details') or {}
+              return {
+                  'http':status,
+                  'id':obj.get('id'),
+                  'alt_text':obj.get('alt_text') or '',
+                  'title':((obj.get('title') or {}).get('rendered') or ''),
+                  'source_url':obj.get('source_url') or '',
+                  'mime_type':obj.get('mime_type') or '',
+                  'width':details.get('width'),
+                  'height':details.get('height'),
+                  'file':details.get('file') or ''
+              }
+
+          roots=[base+'/sitemap_index.xml',base+'/wp-sitemap.xml']
+          queue=list(roots)
+          seen=set()
+          sitemap_rows=[]
+          sitemap_failures=[]
+          while queue and len(seen)<150:
+              url=queue.pop(0)
+              if url in seen:
+                  continue
+              seen.add(url)
+              status,_,raw,_=fetch(url)
+              if not (200 <= status < 300) or not raw:
+                  sitemap_failures.append({'url':url,'http':status})
+                  continue
+              try:
+                  root=ET.fromstring(raw)
+              except Exception:
+                  sitemap_failures.append({'url':url,'http':status,'parse_error':True})
+                  continue
+              kind=local(root.tag)
+              if kind=='sitemapindex':
+                  for sm in list(root):
+                      if local(sm.tag)!='sitemap':
+                          continue
+                      loc=''
+                      for c in list(sm):
+                          if local(c.tag)=='loc' and (c.text or '').strip():
+                              loc=(c.text or '').strip()
+                              break
+                      if loc.startswith(base) and loc not in seen and loc not in queue:
+                          queue.append(loc)
+              elif kind=='urlset':
+                  for u in list(root):
+                      if local(u.tag)!='url':
+                          continue
+                      loc=''
+                      images=[]
+                      for c in list(u):
+                          if local(c.tag)=='loc' and (c.text or '').strip():
+                              loc=(c.text or '').strip()
+                          elif local(c.tag)=='image':
+                              for ic in list(c):
+                                  if local(ic.tag)=='loc' and (ic.text or '').strip():
+                                      images.append((ic.text or '').strip())
+                      if loc:
+                          sitemap_rows.append({'sitemap':url,'url':loc,'images':images})
+
+          out_targets=[]
+          for target in req.get('targets') or []:
+              aid=int(target['attachment_id'])
+              page_url=str(target['page_url'])
+              expected_alt=str(target.get('expected_alt') or '')
+              media=media_read(aid)
+              src=media.get('source_url') or ''
+              basename=urllib.parse.unquote(urllib.parse.urlsplit(src).path).rsplit('/',1)[-1] if src else ''
+
+              status,final,raw,_=fetch(page_url)
+              page_html=raw.decode('utf-8','replace') if raw else ''
+              parser=ImgParser()
+              if page_html:
+                  try:
+                      parser.feed(page_html)
+                  except Exception:
+                      pass
+
+              matches=[]
+              for img in parser.images:
+                  blob=' '.join([img.get('src',''),img.get('srcset',''),img.get('class',''),img.get('alt','')])
+                  if (
+                      (basename and basename in urllib.parse.unquote(blob))
+                      or f'wp-image-{aid}' in blob
+                      or (expected_alt and img.get('alt','')==expected_alt)
+                  ):
+                      matches.append(img)
+
+              source_http=0
+              if src:
+                  source_http,_,_,_=fetch(src,method='HEAD')
+                  if source_http in (0,405):
+                      source_http,_,_,_=fetch(src)
+
+              page_entries=[x for x in sitemap_rows if norm(x['url'])==norm(page_url)]
+              all_image_locs=[im for x in page_entries for im in x['images']]
+              image_exact=bool(src and src in all_image_locs)
+              image_basename=bool(basename and any(basename in urllib.parse.unquote(x) for x in all_image_locs))
+              first=matches[0] if matches else {}
+
+              checks={
+                  'media_http_200': media.get('http')==200,
+                  'source_http_200': source_http==200,
+                  'alt_matches_expected': bool(expected_alt and media.get('alt_text')==expected_alt),
+                  'rendered_img_found': bool(matches),
+                  'rendered_alt_matches_expected': bool(expected_alt and any(x.get('alt','')==expected_alt for x in matches)),
+                  'rendered_dimensions_present': bool(first.get('width') and first.get('height')),
+                  'rendered_srcset_present': bool(first.get('srcset')),
+                  'page_in_sitemap': bool(page_entries),
+                  'page_has_image_sitemap_entries': bool(all_image_locs),
+                  'target_image_in_sitemap': bool(image_exact or image_basename),
+              }
+              out_targets.append({
+                  'attachment_id':aid,
+                  'page_url':page_url,
+                  'page_http':status,
+                  'page_final_url':final,
+                  'media':media,
+                  'source_http':source_http,
+                  'rendered_match_count':len(matches),
+                  'rendered_img_sample':matches[:3],
+                  'sitemap':{
+                      'page_entries':[{'sitemap':x['sitemap'],'image_count':len(x['images'])} for x in page_entries],
+                      'target_image_exact':image_exact,
+                      'target_image_filename_match':image_basename,
+                      'image_loc_sample':all_image_locs[:10]
+                  },
+                  'checks':checks
+              })
+
+          result={
+              'mode':'read-only',
+              'executed_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              'sitemaps_seen':len(seen),
+              'sitemap_failures':sitemap_failures,
+              'targets':out_targets,
+              'site_mutations':0
+          }
+          os.makedirs('phase15-image-results',exist_ok=True)
+          name=os.path.splitext(os.path.basename(changed[0]))[0]
+          out=f'phase15-image-results/{name}.json'
+          with open(out,'w',encoding='utf-8') as f:
+              json.dump(result,f,ensure_ascii=False,indent=2)
+          print(json.dumps(result,ensure_ascii=False))
+
+      - name: Commit audit result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase15-image-results/*.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase15: record image search audit"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
