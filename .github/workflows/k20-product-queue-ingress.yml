@@ -1,0 +1,231 @@
+name: K20 Product Queue Ingress
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'product-engine/queue-ingress-ops/*.json'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: k20-product-queue-ingress-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Resolve exactly one immutable ingress manifest
+        id: manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          before='${{ github.event.before }}'
+          current='${{ github.sha }}'
+          zero='0000000000000000000000000000000000000000'
+          if [ -n "$before" ] && [ "$before" != "$zero" ]; then
+            git diff --name-only --diff-filter=A "$before" "$current" -- 'product-engine/queue-ingress-ops/*.json' > /tmp/ingress-files.txt
+          else
+            git show --pretty='' --name-only --diff-filter=A "$current" -- 'product-engine/queue-ingress-ops/*.json' > /tmp/ingress-files.txt
+          fi
+          count=$(grep -c . /tmp/ingress-files.txt || true)
+          if [ "$count" -ne 1 ]; then
+            echo "::error::Expected exactly one newly added queue ingress manifest; found $count"
+            cat /tmp/ingress-files.txt || true
+            exit 2
+          fi
+          file=$(cat /tmp/ingress-files.txt)
+          python ./k20_sanitizer.py --check "$file"
+          python - "$file" <<'PY' > /tmp/manifest-meta.json
+          import json, re, sys
+          from pathlib import Path
+          p=Path(sys.argv[1])
+          d=json.loads(p.read_text(encoding='utf-8'))
+          required={'schema_version','product_id','blob_sha','queue_path','live_read_result'}
+          if set(d) != required:
+              raise SystemExit(f'manifest keys must be exactly {sorted(required)}')
+          if d['schema_version'] != 'product-queue-ingress-v1':
+              raise SystemExit('invalid schema_version')
+          pid=int(d['product_id'])
+          if pid <= 0:
+              raise SystemExit('product_id must be positive')
+          blob=str(d['blob_sha'])
+          if not re.fullmatch(r'[0-9a-f]{40}', blob):
+              raise SystemExit('blob_sha must be a 40-char lowercase git SHA')
+          queue=str(d['queue_path'])
+          if not re.fullmatch(r'product-engine/queue/[0-9]{4}-[0-9]{2}-[0-9]{2}-product-'+str(pid)+r'\.json', queue):
+              raise SystemExit('queue_path does not match product_id/date contract')
+          live=str(d['live_read_result'])
+          if not re.fullmatch(r'product-engine/live-read-results/[A-Za-z0-9._-]*product-'+str(pid)+r'\.json', live):
+              raise SystemExit('live_read_result path does not match product_id')
+          if not Path(live).is_file():
+              raise SystemExit('bound live_read_result does not exist on current main')
+          print(json.dumps({'file':str(p),'product_id':pid,'blob_sha':blob,'queue_path':queue,'live_read_result':live}))
+          PY
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          d=json.load(open('/tmp/manifest-meta.json',encoding='utf-8'))
+          for k in ('file','product_id','blob_sha','queue_path','live_read_result'):
+              print(f"{k}={d[k]}")
+          PY
+
+      - name: Fetch and validate immutable queue blob
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BLOB_SHA: ${{ steps.manifest.outputs.blob_sha }}
+          PRODUCT_ID: ${{ steps.manifest.outputs.product_id }}
+          QUEUE_FILE: ${{ steps.manifest.outputs.queue_path }}
+          LIVE_READ_RESULT: ${{ steps.manifest.outputs.live_read_result }}
+        run: |
+          set -euo pipefail
+          code=$(curl -sS -o /tmp/blob-response.json -w "%{http_code}" \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/git/blobs/${BLOB_SHA}")
+          if [ "$code" != "200" ]; then
+            echo "::error::Blob fetch failed with HTTP $code"
+            exit 3
+          fi
+          python - <<'PY'
+          import base64, json, os
+          from pathlib import Path
+          r=json.load(open('/tmp/blob-response.json',encoding='utf-8'))
+          if r.get('sha') != os.environ['BLOB_SHA']:
+              raise SystemExit('blob SHA readback mismatch')
+          if r.get('encoding') != 'base64':
+              raise SystemExit('unexpected blob encoding')
+          raw=base64.b64decode(r['content'])
+          Path('/tmp/product-queue.raw.json').write_bytes(raw)
+          PY
+
+          python ./k20_sanitizer.py --json /tmp/product-queue.raw.json --output /tmp/product-queue.json
+          python ./k20_sanitizer.py --check /tmp/product-queue.json
+
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          q=json.load(open('/tmp/product-queue.json',encoding='utf-8'))
+          live=json.loads(Path(os.environ['LIVE_READ_RESULT']).read_text(encoding='utf-8'))
+          pid=int(os.environ['PRODUCT_ID'])
+          if q.get('content_type') != 'product':
+              raise SystemExit('queue content_type must be product')
+          if q.get('schema_version') != 'product-queue-v1':
+              raise SystemExit('queue schema_version must be product-queue-v1')
+          if q.get('producer') != 'connected_chatgpt_deep_research':
+              raise SystemExit('queue producer mismatch')
+          if int(q.get('product_id') or 0) != pid:
+              raise SystemExit('queue product_id mismatch')
+          if q.get('strict_acceptance') is not True:
+              raise SystemExit('strict_acceptance must be true')
+          if live.get('schema_version') != 'product-producer-live-read-result-v1':
+              raise SystemExit('invalid bound live-read schema')
+          if int(live.get('product_id') or 0) != pid:
+              raise SystemExit('bound live-read product_id mismatch')
+          product=live.get('product') or {}
+          seo=live.get('seo') or {}
+          if product.get('ok') is not True or seo.get('ok') is not True:
+              raise SystemExit('bound live-read must contain successful product and SEO reads')
+          pr=product.get('result') or {}
+          sr=seo.get('result') or {}
+          if int(pr.get('data_id') or 0) != pid or int(sr.get('id') or 0) != pid:
+              raise SystemExit('bound live-read identity mismatch')
+          if pr.get('data_status') != 'publish':
+              raise SystemExit('bound product is not published')
+          modified=str(pr.get('data_date_modified_gmt') or '')
+          if not modified:
+              raise SystemExit('bound live-read missing data_date_modified_gmt')
+          if str(q.get('expected_date_modified_gmt') or '') != modified:
+              raise SystemExit('queue expected_date_modified_gmt does not match bound live-read')
+          candidate=q.get('candidate') or {}
+          required_candidate={'family','commercial_angle','short_description_html','description_html','seo_title','meta_description','focus_keyphrase','related_keyphrases','image_alt_suggestions','claims','source_urls','buyer_decision'}
+          missing=sorted(required_candidate-set(candidate))
+          if missing:
+              raise SystemExit('queue candidate missing fields: '+', '.join(missing))
+          claims=candidate.get('claims')
+          if not isinstance(claims,list) or not claims:
+              raise SystemExit('queue claims must be a non-empty list')
+          allowed={'FACT','MANUFACTURER_CLAIM','ESTIMATE','ENGINEERING_REQUIRED','EXPERT_INTERPRETATION'}
+          for i,claim in enumerate(claims):
+              if claim.get('class') not in allowed:
+                  raise SystemExit(f'claim {i} has invalid class')
+          PY
+
+      - name: Commit exact immutable queue onto latest main
+        shell: bash
+        env:
+          QUEUE_FILE: ${{ steps.manifest.outputs.queue_path }}
+          PRODUCT_ID: ${{ steps.manifest.outputs.product_id }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          if git cat-file -e "origin/main:${QUEUE_FILE}" 2>/dev/null; then
+            echo "::error::Immutable queue already exists on main: ${QUEUE_FILE}"
+            exit 5
+          fi
+          git checkout -B ingress-main origin/main
+          mkdir -p "$(dirname "${QUEUE_FILE}")"
+          cp /tmp/product-queue.json "${QUEUE_FILE}"
+          python scripts/check_product_engine_primary_route.py
+          git add "${QUEUE_FILE}"
+          git commit -m "product-engine: ingest immutable queue for ${PRODUCT_ID}"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt * 2))
+          done
+          echo "::error::Queue ingress could not fast-forward current main after 5 retries."
+          exit 6
+
+      - name: Dispatch product publisher explicitly
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          QUEUE_FILE: ${{ steps.manifest.outputs.queue_path }}
+          PRODUCT_ID: ${{ steps.manifest.outputs.product_id }}
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git cat-file -e "origin/main:${QUEUE_FILE}" || { echo "::error::Queue missing from main after ingress"; exit 7; }
+          result_path="product-engine/results/${PRODUCT_ID}.json"
+          if git cat-file -e "origin/main:${result_path}" 2>/dev/null; then
+            echo "Terminal result already exists; publisher dispatch skipped idempotently."
+            exit 0
+          fi
+          python - <<'PY' > /tmp/dispatch.json
+          import json, os
+          print(json.dumps({"ref":"main","inputs":{"queue_file":os.environ["QUEUE_FILE"],"validate_only":"false"}}))
+          PY
+          code=$(curl -sS -o /tmp/dispatch-response.txt -w "%{http_code}" \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/k20-product-queue-publisher.yml/dispatches" \
+            --data-binary @/tmp/dispatch.json)
+          if [ "$code" != "204" ]; then
+            echo "::error::Publisher dispatch failed with HTTP $code"
+            cat /tmp/dispatch-response.txt || true
+            exit 8
+          fi
+          echo "PRODUCT_QUEUE_INGRESS_OK product_id=${PRODUCT_ID} queue=${QUEUE_FILE}"
