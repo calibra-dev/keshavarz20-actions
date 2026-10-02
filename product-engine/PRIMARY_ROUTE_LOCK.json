@@ -39,5 +39,18 @@
     "promoter_handoff": "explicit_workflow_dispatch",
     "publisher_dispatch_endpoint": "actions/workflows/k20-product-queue-publisher.yml/dispatches",
     "never_rely_on_github_token_push_recursion": true
+  },
+  "producer_live_read": {
+    "gateway_workflow": ".github/workflows/k20-bridge-v3-gateway.yml",
+    "product_request_path": "bridge-v3-ops/*-product-<PRODUCT_ID>-live-read.json",
+    "product_action": "rest.proxy",
+    "product_method": "GET",
+    "product_path_template": "/wc/v3/products/<PRODUCT_ID>",
+    "seo_request_path": "bridge-v3-ops/*-product-<PRODUCT_ID>-seo-read.json",
+    "seo_action": "seo.read",
+    "result_path": "bridge-v3-results/*.json",
+    "required_freshness_field": "result.data_date_modified_gmt",
+    "direct_wordpress_credentials_forbidden": true,
+    "separate_producer_workflow_forbidden": true
   }
 }
