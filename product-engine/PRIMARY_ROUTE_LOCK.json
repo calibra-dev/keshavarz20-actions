@@ -41,16 +41,20 @@
     "never_rely_on_github_token_push_recursion": true
   },
   "producer_live_read": {
-    "gateway_workflow": ".github/workflows/k20-bridge-v3-gateway.yml",
-    "product_request_path": "bridge-v3-ops/*-product-<PRODUCT_ID>-live-read.json",
+    "workflow": ".github/workflows/k20-product-producer-live-read.yml",
+    "request_path": "product-engine/live-read-ops/*.json",
+    "request_schema": "product-producer-live-read-v1",
+    "result_path": "product-engine/live-read-results/*.json",
+    "result_schema": "product-producer-live-read-result-v1",
+    "bridge_transport": "K20 Bridge 3.3",
     "product_action": "rest.proxy",
     "product_method": "GET",
     "product_path_template": "/wc/v3/products/<PRODUCT_ID>",
-    "seo_request_path": "bridge-v3-ops/*-product-<PRODUCT_ID>-seo-read.json",
     "seo_action": "seo.read",
-    "result_path": "bridge-v3-results/*.json",
-    "required_freshness_field": "result.data_date_modified_gmt",
+    "required_freshness_field": "product.result.data_date_modified_gmt",
+    "require_exact_product_id": true,
+    "require_publish_status": true,
     "direct_wordpress_credentials_forbidden": true,
-    "separate_producer_workflow_forbidden": true
+    "connected_producer_must_not_write_bridge_v3_ops": true
   }
 }
