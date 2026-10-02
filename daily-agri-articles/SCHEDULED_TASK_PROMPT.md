@@ -203,6 +203,13 @@ If every gate passes, write exactly one queue JSON to:
 
 using the current **Asia/Tehran** date and commit it to `calibra-dev/keshavarz20-actions` on `main`.
 
+**Canonical queue ingress — hard rule:**
+- Queue creation has exactly one production ingress: the scheduled/recovery task creates the new dated JSON with the GitHub Contents API on the current `main` branch at `daily-agri-articles/queue/YYYY-MM-DD.json`.
+- Do **not** route queue creation through Bridge, `engine.run`, the legacy gateway, WPVibe, a side branch/PR, or low-level Git blob/tree/commit fallbacks.
+- Bridge `engine.run` for `article` is an ops dispatcher for an **already-existing allow-listed queue file**; it is not a queue-creation mechanism.
+- If the canonical GitHub Contents write is temporarily blocked or unavailable, leave the recurring automation enabled, make no alternate write, and report the exact blocker for the next retry.
+- After a successful new-file commit, let the push-triggered `k20-article-queue-publisher.yml` own validation and draft creation. Do not manually dispatch the same new queue unless an explicit ops retry is required.
+
 **Production queue commit discipline — hard rule:**
 - Re-fetch the current `main` branch immediately before the write.
 - Re-check the exact target path on `main` immediately before the write.
