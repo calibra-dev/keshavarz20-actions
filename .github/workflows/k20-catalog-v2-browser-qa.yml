@@ -25,7 +25,7 @@ jobs:
           if [ -z "$CHROME" ]; then echo "Chrome not found"; exit 2; fi
           python3 -m pip install --quiet websocket-client
           mkdir -p diagnostics
-          "$CHROME" --headless=new --no-sandbox --disable-gpu --hide-scrollbars             --remote-debugging-port=9222 --remote-allow-origins='*'             --user-data-dir=/tmp/k20-catalog-chrome --window-size=1536,1024             'https://keshavarz20.com/catalog/?k20qa=1' >/tmp/k20-catalog-chrome.log 2>&1 &
+          "$CHROME" --headless=new --no-sandbox --disable-gpu --hide-scrollbars             --remote-debugging-port=9222 --remote-allow-origins='*'             --user-data-dir=/tmp/k20-catalog-chrome --window-size=1536,1024             'https://keshavarz20.com/catalog/?k20qa=2' >/tmp/k20-catalog-chrome.log 2>&1 &
           PID=$!
           trap 'kill $PID >/dev/null 2>&1 || true' EXIT
           python3 - <<'PY'
@@ -42,76 +42,77 @@ jobs:
           if not targets: raise SystemExit('No CDP target')
           target=next((t for t in targets if 'keshavarz20.com/catalog' in t.get('url','')),targets[0])
           ws=websocket.create_connection(target['webSocketDebuggerUrl'],timeout=20)
-          def eval_js(expr, ident):
-              ws.send(json.dumps({'id':ident,'method':'Runtime.evaluate','params':{'expression':expr,'returnByValue':True,'awaitPromise':True}}))
+          def eval_raw(expr, ident):
+              ws.send(json.dumps({'id':ident,'method':'Runtime.evaluate','params':{'expression':expr,'returnByValue':True}}))
               while True:
                   row=json.loads(ws.recv())
                   if row.get('id')==ident:
-                      return row['result']['result'].get('value')
+                      res=row.get('result',{})
+                      if 'exceptionDetails' in res:
+                          return {'__exception__':res['exceptionDetails'].get('text'),'description':res.get('result',{}).get('description')}
+                      return res.get('result',{}).get('value')
+          def eval_json(expr, ident):
+              v=eval_raw("JSON.stringify("+expr+")",ident)
+              if isinstance(v,str):
+                  try:return json.loads(v)
+                  except Exception:return {'raw':v}
+              return v
           time.sleep(8)
-          desktop=eval_js(r'''(async()=>{
-            const root=document.querySelector('#k20CatalogV2');
-            const cards=[...document.querySelectorAll('#k20ProductSource ul.products li.product')];
-            const first=cards[0];
-            const before=cards.filter(x=>getComputedStyle(x).display!=='none').length;
-            let filtered=null;
-            let firstTitle=null;
-            if(first){
-              firstTitle=(first.querySelector('.woocommerce-loop-product__title')?.textContent||'').trim();
-              const term=(firstTitle.split(/\s+/).find(x=>x.length>2)||firstTitle).trim();
-              const inp=document.querySelector('#k20TopSearch');
-              inp.value=term;
-              inp.dispatchEvent(new Event('input',{bubbles:true}));
-              await new Promise(r=>setTimeout(r,350));
-              filtered=cards.filter(x=>getComputedStyle(x).display!=='none').length;
-            }
-            const bodyText=document.body.innerText||'';
-            return {
-              readyState:document.readyState,
-              rootExists:!!root,
-              productCount:cards.length,
-              visibleBefore:before,
-              visibleAfterSearch:filtered,
-              firstTitle,
-              scriptReady:window.__K20CatalogV2||null,
-              pageErrorsVisible:/دریافت محصولات با خطا/.test(bodyText),
-              shortcodeVisible:bodyText.includes('[products limit='),
-              horizontalOverflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
-              headerRect:root?document.querySelector('.k20-header')?.getBoundingClientRect().toJSON():null,
-              stageRect:root?document.querySelector('.k20-stage')?.getBoundingClientRect().toJSON():null,
-              bottomRect:root?document.querySelector('.k20-bottom-nav')?.getBoundingClientRect().toJSON():null
-            };
-          })()''',1)
-          eval_js("(()=>{const i=document.querySelector('#k20TopSearch');if(i){i.value='';i.dispatchEvent(new Event('input',{bubbles:true}));}return true;})()",2)
-          ws.send(json.dumps({'id':3,'method':'Emulation.setDeviceMetricsOverride','params':{'width':390,'height':844,'deviceScaleFactor':1,'mobile':True}}))
+          desktop=eval_json(r'''({
+            readyState:document.readyState,
+            rootExists:!!document.querySelector('#k20CatalogV2'),
+            productCount:document.querySelectorAll('#k20ProductSource ul.products li.product').length,
+            visibleCount:[...document.querySelectorAll('#k20ProductSource ul.products li.product')].filter(x=>getComputedStyle(x).display!=='none').length,
+            scriptReadyType:typeof window.__K20CatalogV2,
+            scriptReady:window.__K20CatalogV2||null,
+            scriptMarkerCount:[...document.scripts].filter(s=>(s.textContent||'').includes('__K20CatalogV2')).length,
+            shortcodeVisible:(document.body.innerText||'').includes('[products limit='),
+            pageErrorText:(document.body.innerText||'').includes('دریافت محصولات با خطا'),
+            horizontalOverflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
+            headerWidth:document.querySelector('.k20-header')?.getBoundingClientRect().width||0,
+            stageWidth:document.querySelector('.k20-stage')?.getBoundingClientRect().width||0,
+            appWidth:document.querySelector('#k20AppShell')?.getBoundingClientRect().width||0
+          })''',1)
+          first_title=eval_raw("(document.querySelector('#k20ProductSource .woocommerce-loop-product__title')?.textContent||'').trim()",2) or ''
+          term=next((x for x in first_title.split() if len(x)>2),first_title)
+          eval_raw("(function(){const i=document.querySelector('#k20TopSearch');if(!i)return false;i.value="+json.dumps(term,ensure_ascii=False)+";i.dispatchEvent(new Event('input',{bubbles:true}));return true;})()",3)
+          time.sleep(.6)
+          desktop['searchTerm']=term
+          desktop['visibleAfterSearch']=eval_raw("[...document.querySelectorAll('#k20ProductSource ul.products li.product')].filter(x=>getComputedStyle(x).display!=='none').length",4)
+          eval_raw("(function(){const i=document.querySelector('#k20TopSearch');if(i){i.value='';i.dispatchEvent(new Event('input',{bubbles:true}));}return true;})()",5)
+          ws.send(json.dumps({'id':6,'method':'Emulation.setDeviceMetricsOverride','params':{'width':390,'height':844,'deviceScaleFactor':1,'mobile':True}}))
           while True:
               row=json.loads(ws.recv())
-              if row.get('id')==3: break
-          time.sleep(2)
-          mobile=eval_js(r'''(async()=>{
-            const btn=document.querySelector('#k20MobileFilter');
-            const panel=document.querySelector('#k20FilterPanel');
-            const root=document.querySelector('#k20CatalogV2');
-            if(btn){btn.click();await new Promise(r=>setTimeout(r,300));}
-            return {
-              width:innerWidth,
-              rootExists:!!root,
-              productCount:document.querySelectorAll('#k20ProductSource ul.products li.product').length,
-              filterButtonVisible:!!btn && getComputedStyle(btn).display!=='none',
-              filterPanelOpen:!!panel && panel.classList.contains('open'),
-              horizontalOverflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
-              appShellWidth:document.querySelector('#k20AppShell')?.getBoundingClientRect().width||0
-            };
-          })()''',4)
+              if row.get('id')==6: break
+          time.sleep(1)
+          pre_mobile=eval_json(r'''({
+            width:innerWidth,
+            rootExists:!!document.querySelector('#k20CatalogV2'),
+            productCount:document.querySelectorAll('#k20ProductSource ul.products li.product').length,
+            filterButtonVisible:!!document.querySelector('#k20MobileFilter') && getComputedStyle(document.querySelector('#k20MobileFilter')).display!=='none',
+            panelClass:document.querySelector('#k20FilterPanel')?.className||'',
+            horizontalOverflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
+            appShellWidth:document.querySelector('#k20AppShell')?.getBoundingClientRect().width||0
+          })''',7)
+          click_result=eval_raw("(function(){const b=document.querySelector('#k20MobileFilter');if(!b)return 'missing';b.click();return 'clicked';})()",8)
+          time.sleep(.5)
+          post_mobile=eval_json(r'''({
+            filterPanelOpen:document.querySelector('#k20FilterPanel')?.classList.contains('open')||false,
+            backdropOpen:document.querySelector('#k20FilterBackdrop')?.classList.contains('open')||false,
+            horizontalOverflow:document.documentElement.scrollWidth-document.documentElement.clientWidth
+          })''',9)
+          mobile={**(pre_mobile or {}),**(post_mobile or {}),'clickCall':click_result}
           ws.close()
           out={'checked_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'url':'https://keshavarz20.com/catalog/','desktop':desktop,'mobile':mobile}
           out['pass']=bool(
-              desktop and desktop.get('rootExists') and desktop.get('productCount',0)>0 and
-              desktop.get('visibleBefore',0)>0 and desktop.get('visibleAfterSearch') is not None and
-              not desktop.get('shortcodeVisible') and not desktop.get('pageErrorsVisible') and
-              desktop.get('horizontalOverflow',999)<=4 and
-              mobile and mobile.get('filterButtonVisible') and mobile.get('filterPanelOpen') and
-              mobile.get('productCount',0)>0 and mobile.get('horizontalOverflow',999)<=4
+              isinstance(desktop,dict) and desktop.get('rootExists') and desktop.get('productCount',0)>0 and
+              desktop.get('visibleCount',0)>0 and desktop.get('scriptReadyType')=='object' and
+              desktop.get('scriptMarkerCount',0)>0 and not desktop.get('shortcodeVisible') and
+              not desktop.get('pageErrorText') and desktop.get('horizontalOverflow',999)<=4 and
+              desktop.get('visibleAfterSearch') is not None and
+              isinstance(mobile,dict) and mobile.get('filterButtonVisible') and mobile.get('filterPanelOpen') and
+              mobile.get('backdropOpen') and mobile.get('productCount',0)>0 and mobile.get('horizontalOverflow',999)<=4 and
+              350 <= mobile.get('appShellWidth',0) <= 390
           )
           pathlib.Path('diagnostics/k20-catalog-v2-browser-qa.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
           print(json.dumps(out,ensure_ascii=False,indent=2))
