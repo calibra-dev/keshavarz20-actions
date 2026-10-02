@@ -1,0 +1,136 @@
+name: K20 Catalog Category QA
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/k20-catalog-category-qa.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - shell: bash
+        run: |
+          set -euo pipefail
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          test -n "$CHROME"
+          python3 -m pip install --quiet websocket-client
+          mkdir -p diagnostics
+          "$CHROME" --headless=new --no-sandbox --disable-gpu --hide-scrollbars             --remote-debugging-port=9222 --remote-allow-origins='*'             --user-data-dir=/tmp/k20-catqa --window-size=1536,1024 about:blank >/tmp/k20-catqa.log 2>&1 &
+          PID=$!; trap 'kill $PID >/dev/null 2>&1 || true' EXIT
+          python3 - <<'PY'
+          import json,time,urllib.request,websocket,pathlib,datetime,os
+          for _ in range(30):
+              try:
+                  targets=json.load(urllib.request.urlopen('http://127.0.0.1:9222/json',timeout=2))
+                  if targets: break
+              except Exception: pass
+              time.sleep(1)
+          target=next(x for x in targets if x.get('type')=='page')
+          ws=websocket.create_connection(target['webSocketDebuggerUrl'],timeout=25)
+          seq=0
+          def cmd(method,params=None):
+              global seq; seq+=1
+              ws.send(json.dumps({'id':seq,'method':method,'params':params or {}}))
+              while True:
+                  r=json.loads(ws.recv())
+                  if r.get('id')==seq:return r
+          def ev(expr):
+              r=cmd('Runtime.evaluate',{'expression':expr,'returnByValue':True,'awaitPromise':True})
+              rr=r.get('result',{})
+              if 'exceptionDetails' in rr:
+                  return {'error':rr['exceptionDetails'].get('text'),'desc':rr.get('result',{}).get('description')}
+              return rr.get('result',{}).get('value')
+          def obj(expr):
+              v=ev("JSON.stringify("+expr+")")
+              if isinstance(v,str):
+                  try:return json.loads(v)
+                  except Exception:return {'raw':v}
+              return v
+          cmd('Page.enable');cmd('Runtime.enable')
+          cmd('Page.navigate',{'url':'https://keshavarz20.com/catalog/?catqa=1'})
+          time.sleep(12)
+          base=obj(r'''({
+            ready:document.readyState,
+            runtimeType:typeof window.__K20CatalogV2,
+            runtimeReady:window.__K20CatalogV2?.ready||false,
+            buttons:[...document.querySelectorAll('.k20-category-strip button')].map(b=>({
+              id:b.getAttribute('data-category'),
+              name:b.getAttribute('data-category-name'),
+              text:(b.textContent||'').trim(),
+              active:b.classList.contains('active'),
+              img:b.querySelector('img')?{
+                src:b.querySelector('img').currentSrc||b.querySelector('img').src,
+                complete:b.querySelector('img').complete,
+                naturalWidth:b.querySelector('img').naturalWidth,
+                naturalHeight:b.querySelector('img').naturalHeight
+              }:null
+            })),
+            overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth
+          })''')
+          ids=['756','826','722','790','802','848']
+          tests=[]
+          for cid in ids:
+              js=f"""(async()=>{{
+                const b=document.querySelector('.k20-category-strip button[data-category="{cid}"]');
+                if(!b)return JSON.stringify({{id:"{cid}",pass:false,reason:"button_missing"}});
+                const expected=await fetch('/wp-json/wc/store/v1/products?per_page=16&category={cid}',{{credentials:'same-origin'}}).then(r=>r.json());
+                b.click();
+                for(let i=0;i<50;i++){{if(document.getElementById('k20ProductSource')?.getAttribute('aria-busy')!=='true')break;await new Promise(r=>setTimeout(r,150));}}
+                await new Promise(r=>setTimeout(r,250));
+                const cards=[...document.querySelectorAll('#k20ProductSource ul.products li.product')];
+                const domIds=cards.map(x=>Number(x.dataset.productId||0)).filter(Boolean);
+                const expectedIds=(Array.isArray(expected)?expected:[]).map(x=>Number(x.id));
+                const matched=domIds.length>0 && domIds.every(x=>expectedIds.includes(x));
+                const imgs=[...document.querySelectorAll('#k20ProductSource ul.products li.product img')];
+                const loaded=imgs.filter(x=>x.complete&&x.naturalWidth>0).length;
+                return JSON.stringify({{
+                  id:"{cid}",name:b.getAttribute('data-category-name'),expectedCount:expectedIds.length,
+                  domCount:cards.length,domIds:domIds.slice(0,5),matched:matched,
+                  productImages:imgs.length,loadedProductImages:loaded,
+                  active:b.classList.contains('active'),
+                  pass:expectedIds.length>0&&cards.length>0&&matched&&b.classList.contains('active')&&(imgs.length===0||loaded>0)
+                }});
+              }})()"""
+              v=ev(js)
+              try: row=json.loads(v) if isinstance(v,str) else v
+              except Exception: row={'id':cid,'pass':False,'raw':v}
+              tests.append(row)
+          cmd('Emulation.setDeviceMetricsOverride',{'width':390,'height':844,'deviceScaleFactor':1,'mobile':True})
+          cmd('Page.navigate',{'url':'https://keshavarz20.com/catalog/?catqa=2'})
+          time.sleep(10)
+          mobile=obj(r'''({
+            width:innerWidth,
+            buttons:[...document.querySelectorAll('.k20-category-strip button')].map(b=>({
+              id:b.getAttribute('data-category'),
+              visible:getComputedStyle(b).display!=='none',
+              imgLoaded:!!b.querySelector('img')&&b.querySelector('img').complete&&b.querySelector('img').naturalWidth>0
+            })),
+            overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth
+          })''')
+          ws.close()
+          image_ok=bool(base and len(base.get('buttons',[]))==6 and all(x.get('img') and x['img'].get('complete') and x['img'].get('naturalWidth',0)>0 for x in base['buttons']))
+          categories_ok=all(isinstance(x,dict) and x.get('pass') for x in tests)
+          mobile_ok=bool(mobile and len(mobile.get('buttons',[]))==6 and all(x.get('visible') and x.get('imgLoaded') for x in mobile['buttons']) and mobile.get('overflow',999)<=4)
+          out={'checked_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'base':base,'category_tests':tests,'mobile':mobile,'images_ok':image_ok,'categories_ok':categories_ok,'mobile_ok':mobile_ok}
+          out['pass']=bool(base and base.get('runtimeReady') and base.get('overflow',999)<=4 and image_ok and categories_ok and mobile_ok)
+          p=pathlib.Path('diagnostics')/('k20-catalog-category-qa-'+os.environ.get('GITHUB_RUN_ID','run')+'.json')
+          p.write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          if not out['pass']: raise SystemExit(3)
+          PY
+      - shell: bash
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add diagnostics/k20-catalog-category-qa-*.json 2>/dev/null || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'qa: record catalog category checks'
+          git pull --rebase origin main || { git rebase --abort || true; git pull --rebase origin main; }
+          git push origin main
