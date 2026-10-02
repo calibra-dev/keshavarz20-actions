@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'product-engine/queue/*.json'
+      - 'product-engine/recovery/*-stale-recovery.json'
   pull_request:
     paths:
       - '.github/workflows/k20-product-queue-publisher.yml'
@@ -114,9 +115,32 @@ jobs:
             printf '%s\n' "$MANUAL_FILE" > /tmp/k20-product-queue-files.txt
           else
             git diff-tree --no-commit-id --name-only --diff-filter=A -r HEAD -- 'product-engine/queue/*.json' > /tmp/k20-product-queue-files.txt
+            if [ ! -s /tmp/k20-product-queue-files.txt ]; then
+              git diff-tree --no-commit-id --name-only --diff-filter=A -r HEAD -- 'product-engine/recovery/*-stale-recovery.json' > /tmp/k20-product-recovery-files.txt
+              count=$(grep -c . /tmp/k20-product-recovery-files.txt || true)
+              if [ "$count" -ne 1 ]; then
+                echo 'No newly added product queue or single stale-recovery assertion found.'
+                exit 0
+              fi
+              recovery_file=$(cat /tmp/k20-product-recovery-files.txt)
+              python - "$recovery_file" <<'PY' > /tmp/k20-product-queue-files.txt
+import json, sys
+from pathlib import Path
+p=Path(sys.argv[1])
+d=json.loads(p.read_text(encoding='utf-8'))
+if d.get('schema_version')!='product-stale-recovery-v1':
+    raise SystemExit('invalid stale recovery schema_version')
+queue_file=str(d.get('queue_file') or '')
+if not queue_file.startswith('product-engine/queue/') or not queue_file.endswith('.json'):
+    raise SystemExit('invalid stale recovery queue_file')
+if not Path(queue_file).is_file():
+    raise SystemExit('stale recovery queue_file does not exist')
+print(queue_file)
+PY
+            fi
           fi
           if [ ! -s /tmp/k20-product-queue-files.txt ]; then
-            echo 'No newly added product queue JSON file found.'
+            echo 'No product queue file resolved.'
             exit 0
           fi
           cat /tmp/k20-product-queue-files.txt
