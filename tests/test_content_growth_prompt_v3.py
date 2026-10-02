@@ -31,6 +31,19 @@ class ContentGrowthPromptV3Tests(unittest.TestCase):
         source = (ROOT / "daily-agri-articles" / "publish_queue_v6.py").read_text(encoding="utf-8")
         self.assertIn('load_master_prompt("article")', source)
 
+    def test_article_recovery_uses_canonical_queue_ingress(self):
+        scheduled = (ROOT / "daily-agri-articles" / "SCHEDULED_TASK_PROMPT.md").read_text(encoding="utf-8")
+        readme = (ROOT / "daily-agri-articles" / "README.md").read_text(encoding="utf-8")
+        for marker in (
+            "Canonical queue ingress",
+            "GitHub Contents API",
+            "Do **not** route queue creation through Bridge",
+            "already-existing allow-listed queue file",
+        ):
+            self.assertIn(marker, scheduled)
+        self.assertIn("scheduled task -> GitHub Contents API", readme)
+        self.assertIn("must not fall back to Bridge/`engine.run`", readme)
+
     def test_news_profile_is_mounted(self):
         prompt = content_growth_runtime.load_master_prompt("news")
         self.assertIn("NEWS PROFILE", prompt)
