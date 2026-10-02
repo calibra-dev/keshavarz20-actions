@@ -154,10 +154,12 @@ jobs:
           git add -f "$result"
           git commit -m "product-engine: record live read for ${PRODUCT_ID}"
           for attempt in 1 2 3 4 5; do
-            if git pull --rebase origin main && git push origin HEAD:main; then
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then
               exit 0
             fi
             git rebase --abort >/dev/null 2>&1 || true
             sleep $((attempt * 2))
           done
+          echo "::error::Could not persist immutable live-read evidence after 5 fast-forward retries."
           exit 1
