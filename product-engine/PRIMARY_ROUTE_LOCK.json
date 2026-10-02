@@ -33,12 +33,28 @@
   "canonical_config": "product-engine/config.json",
   "queue_delivery": {
     "primary": "direct_main_immutable_queue",
+    "primary_transport": "github_contents_api",
+    "atomic_fallback": "github_git_data_api",
+    "atomic_fallback_steps": [
+      "read_current_main",
+      "verify_queue_absent",
+      "create_blob",
+      "create_tree_from_current_main",
+      "create_commit_with_current_main_parent",
+      "recheck_main_head",
+      "update_main_ref_fast_forward_only"
+    ],
     "branch_fallback": "automation/product-*",
+    "branch_transport": "github_git_data_api",
     "promoter_workflow": ".github/workflows/k20-product-queue-promoter.yml",
     "publisher_workflow": ".github/workflows/k20-product-queue-publisher.yml",
     "promoter_handoff": "explicit_workflow_dispatch",
     "publisher_dispatch_endpoint": "actions/workflows/k20-product-queue-publisher.yml/dispatches",
-    "never_rely_on_github_token_push_recursion": true
+    "never_rely_on_github_token_push_recursion": true,
+    "never_rewrite_existing_queue": true,
+    "fresh_live_read_required_before_each_delivery_attempt": true,
+    "cursor_must_not_advance_on_transport_block": true,
+    "automation_must_remain_enabled_on_transport_block": true
   },
   "producer_live_read": {
     "workflow": ".github/workflows/k20-product-producer-live-read.yml",
