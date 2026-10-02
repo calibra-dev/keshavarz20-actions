@@ -43,6 +43,7 @@ If a relay request/result is temporarily unavailable, do not fall back to invent
 Before writing a queue, sanitize/verify the complete queue payload against `k20_sanitizer.py` hygiene requirements and keep it within the canonical queue schema.
 
 Delivery order is mandatory:
+0. keep the complete validated queue as one immutable payload. If a normal Contents API queue write is likely to be rejected because of payload size/content, create that exact payload as an immutable Git blob first, then commit only a tiny manifest to `product-engine/queue-ingress-ops/<UNIQUE>-product-<PRODUCT_ID>.json` with schema `product-queue-ingress-v1`, the product ID, blob SHA, canonical queue path, and the exact fresh `product-engine/live-read-results/*.json` path. `.github/workflows/k20-product-queue-ingress.yml` owns blob readback, sanitizer, queue-contract/freshness validation, immutable main commit and explicit publisher dispatch;
 1. re-fetch current `main` and verify the immutable queue path is absent;
 2. try the normal GitHub Contents API direct immutable create on current `main`;
 3. if and only if that transport is rejected by the connected GitHub layer, use the GitHub Git Data API as the canonical atomic fallback: create the queue blob, create a tree based on the current main tree, create a single commit whose parent is that exact current main SHA, re-read main HEAD, and update `main` only as a non-force fast-forward when the parent still matches;
