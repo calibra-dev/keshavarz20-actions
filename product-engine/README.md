@@ -39,3 +39,10 @@ CI workflow `.github/workflows/k20-product-route-guard.yml` fails if these routi
 ### Explicit promoter handoff
 
 Branch fallback promotion is completed only after the promoter explicitly dispatches `k20-product-queue-publisher.yml` with `workflow_dispatch`. Do not rely on workflow-generated pushes to recursively trigger another workflow. The route guard fails if this explicit handoff is removed.
+
+
+## Stale queue recovery
+
+`expected_date_modified_gmt` is live-state evidence, not inventory metadata. Producers must populate it only from an immediately preceding Bridge/WooCommerce read and re-check it immediately before committing a queue.
+
+Queue files remain immutable. A queue rejected solely because of a verified producer timestamp-source bug may be retried only through a separate immutable `product-engine/recovery/*-stale-recovery.json` assertion. The publisher binds that assertion to the exact queue and re-verifies the current product ID, live timestamp, status, name, permalink and featured attachment before any write. Missing or mismatched recovery evidence fails closed.
