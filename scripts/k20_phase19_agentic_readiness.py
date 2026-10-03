@@ -15,6 +15,7 @@ def main(result_path, projection_path):
     p12u=load("growthos-phase12-results/ucp-readiness-contract.json")
     p14=load("growthos-phase14-results/summary.json")
     p15=load("growthos-phase15-results/summary.json")
+    p3=load("growthos-phase3-results/html-schema-feed-parity.json")
     fresh=load("phase19-results/upstream-refresh-latest.json")
 
     candidates=int(p11f.get("candidate_feed_rows") or 0)
@@ -45,6 +46,16 @@ def main(result_path, projection_path):
     add("fresh_upstream_counts_match_persisted",int((fresh.get("phase11") or {}).get("candidate_rows") or 0)==candidates and int((fresh.get("phase11") or {}).get("ready_rows") or 0)==ready and int((fresh.get("phase15") or {}).get("external_single_brand_ready_products") or 0)==int(counts.get("brand") or 0))
     add("fresh_upstream_statuses_pass",all(str((fresh.get(k) or {}).get("status","")).startswith("PASS_") for k in ["phase11","phase12","phase14","phase15"]))
     add("phase11_guarded_pass",p11s.get("ok") is True and str(p11s.get("status","")).startswith("PASS_"))
+    p3s=p3.get("summary") or {}
+    p3a=p3.get("acceptance") or {}
+    try:
+        p3_dt=dt.datetime.fromisoformat(str(p3.get("generated_at_utc") or "").replace("Z","+00:00"))
+        p3_age_hours=max(0.0,(dt.datetime.now(dt.timezone.utc)-p3_dt).total_seconds()/3600.0)
+    except Exception:
+        p3_age_hours=999999.0
+    add("phase3_full_catalog_parity_fresh",p3.get("ok") is True and p3_age_hours<=24 and int(p3s.get("published_products") or 0)==candidates and int(p3s.get("audited_products") or 0)==candidates and int(p3s.get("pass") or 0)==candidates and int(p3s.get("fail") or 1)==0)
+    add("phase3_schema_offer_truth_parity",int(p3s.get("eligible_product_schema_missing") or 0)==0 and int(p3s.get("eligible_offer_schema_missing") or 0)==0 and int(p3s.get("eligible_sku_mismatch") or 0)==0 and int(p3s.get("eligible_brand_mismatch_when_truth_known") or 0)==0 and int(p3s.get("eligible_price_parity_fail") or 0)==0 and int(p3s.get("eligible_availability_parity_fail") or 0)==0)
+    add("phase3_nonpurchasable_schema_fail_closed",p3a.get("non_purchasable_offer_schema_not_fabricated") is True and p3a.get("all_hard_parity_checks_pass") is True)
     add("full_catalog_scope",candidates==int(p11f.get("published_parent_products") or 0) and candidates>=600)
     add("stable_item_ids_complete",int(counts.get("item_id") or 0)==candidates)
     add("stable_item_ids_unique",int(p11f.get("duplicate_item_id_count",99))==0)
@@ -179,6 +190,7 @@ def main(result_path, projection_path):
       },
       "acceptance":{
         "full_catalog_governed":all(x["pass"] for x in checks if x["name"] in ["full_catalog_scope","stable_item_ids_complete","stable_item_ids_unique","titles_complete","descriptions_complete","canonical_urls_complete","images_complete","availability_complete","seller_name_complete"]),
+        "page_schema_feed_parity_governed":all(x["pass"] for x in checks if x["name"].startswith("phase3_")),
         "openai_feed_architecture_ready_partial":p11s.get("ok") is True,
         "openai_external_rows_fail_closed":external_submission_ready_rows==0 and external_price_export_allowed is False,
         "google_compatible_feed_fail_closed":gg.get("enabled_for_submission") is False,
@@ -200,7 +212,8 @@ def main(result_path, projection_path):
         "growthos-phase12-results/summary.json":sha("growthos-phase12-results/summary.json"),
         "growthos-phase14-results/summary.json":sha("growthos-phase14-results/summary.json"),
         "growthos-phase15-results/summary.json":sha("growthos-phase15-results/summary.json"),
-        "phase19-results/upstream-refresh-latest.json":sha("phase19-results/upstream-refresh-latest.json")
+        "phase19-results/upstream-refresh-latest.json":sha("phase19-results/upstream-refresh-latest.json"),
+        "growthos-phase3-results/html-schema-feed-parity.json":sha("growthos-phase3-results/html-schema-feed-parity.json")
       },
       "external_submission":False,
       "site_mutations":0,
