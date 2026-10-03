@@ -1,0 +1,21 @@
+{
+  "action": "validate",
+  "scope": "phase18-v3-current-runtime-2026-10-03",
+  "evidence": {
+    "news_e2e_run": 37099671456,
+    "article_e2e_run": 37099789843,
+    "news_runtime_success_run": 37098795677,
+    "article_runtime_success_run": 36828910890,
+    "question_scheduler_run": 37088831452,
+    "question_control_run": 37082119580,
+    "question_heartbeat_run": 37088502002
+  },
+  "requirements": {
+    "current_news_publisher": "v3",
+    "current_article_publisher": "v6",
+    "current_question_engine": "v19",
+    "draft_only": true,
+    "human_review_required": true,
+    "cleanup_verified": true
+  }
+}
