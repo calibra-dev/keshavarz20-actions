@@ -5,6 +5,12 @@ on:
     branches: [main]
     paths:
       - 'product-engine/live-read-ops/*.json'
+  workflow_dispatch:
+    inputs:
+      request_file:
+        description: 'Exact immutable producer live-read request path already present on main'
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -35,19 +41,30 @@ jobs:
       - name: Resolve exactly one immutable live-read request
         id: req
         shell: bash
+        env:
+          MANUAL_FILE: ${{ inputs.request_file }}
         run: |
           set -euo pipefail
-          before='${{ github.event.before }}'
-          current='${{ github.sha }}'
-          zero='0000000000000000000000000000000000000000'
-          if [ -n "$before" ] && [ "$before" != "$zero" ]; then
-            git diff --name-only --diff-filter=A "$before" "$current" -- 'product-engine/live-read-ops/*.json' > /tmp/live-read-files.txt
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            case "$MANUAL_FILE" in
+              product-engine/live-read-ops/*.json) ;;
+              *) echo "::error::Producer live-read accepts only product-engine/live-read-ops/*.json"; exit 2 ;;
+            esac
+            [ -f "$MANUAL_FILE" ] || { echo "::error::Dispatched live-read request is missing from current main: $MANUAL_FILE"; exit 2; }
+            printf '%s\n' "$MANUAL_FILE" > /tmp/live-read-files.txt
           else
-            git show --pretty='' --name-only --diff-filter=A "$current" -- 'product-engine/live-read-ops/*.json' > /tmp/live-read-files.txt
+            before='${{ github.event.before }}'
+            current='${{ github.sha }}'
+            zero='0000000000000000000000000000000000000000'
+            if [ -n "$before" ] && [ "$before" != "$zero" ]; then
+              git diff --name-only --diff-filter=A "$before" "$current" -- 'product-engine/live-read-ops/*.json' > /tmp/live-read-files.txt
+            else
+              git show --pretty='' --name-only --diff-filter=A "$current" -- 'product-engine/live-read-ops/*.json' > /tmp/live-read-files.txt
+            fi
           fi
           count=$(grep -c . /tmp/live-read-files.txt || true)
           if [ "$count" -ne 1 ]; then
-            echo "::error::Expected exactly one newly added live-read request; found $count"
+            echo "::error::Expected exactly one live-read request; found $count"
             cat /tmp/live-read-files.txt || true
             exit 2
           fi
