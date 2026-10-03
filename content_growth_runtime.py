@@ -1,10 +1,13 @@
 from __future__ import annotations
 
+import html
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
+import unicodedata
 from pathlib import Path
 from typing import Any
 
@@ -16,6 +19,15 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 import k20_sanitizer
+
+
+def normalize_persian_section_label(value: str) -> str:
+    """Normalize harmless Persian spacing/character variants for validation-only matching."""
+    text = html.unescape(str(value or ""))
+    text = unicodedata.normalize("NFKC", text)
+    text = text.replace("ي", "ی").replace("ك", "ک")
+    text = re.sub(r"[\u00A0\u200C\u200D\u2060\s]+", " ", text)
+    return text.strip()
 
 
 def load_master_prompt(profile: str | None = None) -> str:
