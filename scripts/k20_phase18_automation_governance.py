@@ -117,7 +117,7 @@ def main(outpath):
       "phase":18,
       "version":"phase18-automation-governance-v3",
       "title":"Automation Governance - News / Article / Q&A",
-      "status":"PASS_V2" if passed else "FAIL_V2",
+      "status":"PASS_V3" if passed else "FAIL_V3",
       "checks":checks,
       "check_count":len(checks),
       "passed_checks":sum(1 for x in checks if x["pass"]),
@@ -153,7 +153,7 @@ def main(outpath):
     }
     out=ROOT/outpath; out.parent.mkdir(parents=True,exist_ok=True)
     out.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    print("PHASE18_V2",json.dumps({"status":result["status"],"checks":len(checks),"passed":result["passed_checks"],"failed":result["failed_checks"]},ensure_ascii=False))
+    print("PHASE18_V3",json.dumps({"status":result["status"],"checks":len(checks),"passed":result["passed_checks"],"failed":result["failed_checks"]},ensure_ascii=False))
     if not passed: raise SystemExit(2)
 
 if __name__=="__main__": main(sys.argv[1])
