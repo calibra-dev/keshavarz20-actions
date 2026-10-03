@@ -1,9 +1,9 @@
 {
   "phase": 20,
   "title": "UX/CRO/Accessibility/Agent Usability",
-  "generated_at_utc": "2026-10-03T06:11:04.025039+00:00",
-  "run_id": "37102063408",
-  "commit_sha": "04797499cee9f73ec330525e280e22423d2f5e11",
+  "generated_at_utc": "2026-10-03T06:13:59.524373+00:00",
+  "run_id": "37102268165",
+  "commit_sha": "e8e7620420a2d6b8a8bee9ee8a0836c23f41289b",
   "status": "PARTIAL",
   "target": "WCAG 2.2 AA + mobile RTL + agent-readable decision path",
   "acceptance": {
@@ -13,7 +13,7 @@
     "homepage_single_h1_and_main": true,
     "semantic_language_present": true,
     "server_rendered_decision_content": true,
-    "product_key_data_visible": false
+    "product_key_data_visible": true
   },
   "pages": [
     {
@@ -72,11 +72,11 @@
     },
     {
       "name": "product",
-      "url": "https://keshavarz20.com/product/",
-      "final_url": "https://keshavarz20.com/products-compare/",
+      "url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85/",
+      "final_url": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85/",
       "http_status": 200,
       "fetch_error": null,
-      "accessibility_score": 0.79,
+      "accessibility_score": 0.78,
       "audits": {
         "html-has-lang": {
           "score": 1,
@@ -87,12 +87,12 @@
           "title": "Document has a `<title>` element"
         },
         "image-alt": {
-          "score": 0,
-          "title": "Image elements do not have `[alt]` attributes"
+          "score": 1,
+          "title": "Image elements have `[alt]` attributes"
         },
         "button-name": {
-          "score": null,
-          "title": "Buttons have an accessible name"
+          "score": 0,
+          "title": "Buttons do not have an accessible name"
         },
         "link-name": {
           "score": 0,
@@ -120,13 +120,13 @@
         "main_landmarks": 1,
         "html_lang": "fa-IR",
         "html_dir": "rtl",
-        "raw_text_chars": 96919
+        "raw_text_chars": 205276
       },
       "product_key_data": {
         "price_text_present": true,
         "buy_cta_present": true,
-        "stock_text_present": false,
-        "sku_text_present": false
+        "stock_text_present": true,
+        "sku_text_present": true
       }
     },
     {
@@ -310,22 +310,11 @@
       "severity": "P1",
       "issue": "Automated accessibility score below 1.0",
       "evidence": {
-        "score": 0.79,
+        "score": 0.78,
         "failed_audits": [
-          "image-alt",
+          "button-name",
           "link-name"
         ]
-      }
-    },
-    {
-      "page": "product",
-      "severity": "P1",
-      "issue": "Key product decision data/CTA not all visible in server HTML",
-      "evidence": {
-        "price_text_present": true,
-        "buy_cta_present": true,
-        "stock_text_present": false,
-        "sku_text_present": false
       }
     },
     {
