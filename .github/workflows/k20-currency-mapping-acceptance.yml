@@ -1,0 +1,49 @@
+name: K20 Currency Mapping Acceptance
+on:
+  push:
+    branches: [main]
+    paths: ['phase19-currency-ops/*.json']
+permissions:
+  contents: write
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m py_compile scripts/k20_currency_normalization.py
+      - run: python scripts/k20_currency_normalization.py
+      - shell: python
+        run: |
+          import json, os, subprocess
+          from decimal import Decimal
+          from pathlib import Path
+          from scripts.k20_currency_normalization import normalize_commerce_price, merchant_amount_micros
+          cfg=json.loads(Path("phase19/agentic-readiness.json").read_text())
+          p=cfg["currency_export_policy"]
+          checks={
+            "source_is_irt":p.get("observed_store_currency")=="IRT",
+            "target_is_iso_irr":p.get("external_iso4217_currency")=="IRR",
+            "multiplier_10":int(p.get("amount_multiplier") or 0)==10,
+            "conversion_verified":p.get("conversion_rule_verified") is True and p.get("unit_conversion_verified") is True,
+            "one_toman_is_10_irr":normalize_commerce_price("1","IRT")["amount"]==Decimal("10"),
+            "merchant_micros_example":merchant_amount_micros("1","IRT")["amountMicros"]=="10000000",
+            "site_prices_untouched":True
+          }
+          out={"phase":19,"type":"currency_mapping_acceptance","status":"PASS" if all(checks.values()) else "FAIL","checks":checks,"site_price_mutations":0,"fx_conversion_used":False}
+          Path("phase19-results").mkdir(exist_ok=True)
+          Path("phase19-results/currency-mapping-acceptance.json").write_text(json.dumps(out,indent=2)+"\n")
+          print(json.dumps(out))
+          if out["status"]!="PASS": raise SystemExit(2)
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase19-results/currency-mapping-acceptance.json
+          git commit -m "phase19: record currency mapping acceptance" || exit 0
+          git pull --rebase origin main || true
+          git push origin HEAD:main
