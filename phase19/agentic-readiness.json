@@ -16,7 +16,8 @@
     "openai_api_overview": "https://developers.openai.com/commerce/specs/api/overview",
     "google_merchant_api_latest_updates": "https://developers.google.com/merchant/api/latest-updates",
     "google_merchant_country_restrictions": "https://support.google.com/merchants/answer/11915823?hl=en",
-    "google_ucp_current_scope": "https://support.google.com/merchants/answer/16837055?hl=en"
+    "google_ucp_current_scope": "https://support.google.com/merchants/answer/16837055?hl=en",
+    "iso4217_currency_codes": "https://www.iso.org/iso-4217-currency-codes.html"
   },
   "openai_stable_feed": {
     "required_fields": [
@@ -80,5 +81,13 @@
     "mutations_performed": 0
   },
   "external_submission": false,
-  "secret_values_persisted": false
+  "secret_values_persisted": false,
+  "currency_export_policy": {
+    "observed_store_currency": "IRT",
+    "external_iso4217_currency": null,
+    "conversion_rule_verified": false,
+    "unit_conversion_verified": false,
+    "external_price_export_allowed": false,
+    "rule": "Do not relabel or convert IRT prices for an external commerce feed until the store accounting unit and an ISO 4217 conversion rule are explicitly verified."
+  }
 }
