@@ -22,7 +22,7 @@ from core import (
     rollback, save_json, semantic_content_match, seo_read, utcnow, write_candidate
 )
 from media_perf import optimize_product_images, remap_alt_suggestions, restore_product_images
-from perf import acceptance as performance_acceptance, http_probe, lighthouse, regressions
+from perf import acceptance as performance_acceptance, acceptance_delta, http_probe, lighthouse, regressions
 from protected_fields import compare as compare_protected, snapshot as protected_snapshot
 from qa import score as quality_score, update_bank, validate as validate_candidate
 from visual_guard import compare as visual_compare
@@ -163,6 +163,7 @@ def update_state(state: dict[str,Any], pid: int, result: dict[str,Any], candidat
 
 def run(queue: dict[str,Any], queue_path: str, validate_only: bool=False) -> dict[str,Any]:
     config=load_config()
+    lighthouse_policy=config.get("lighthouse_acceptance") or {}
     pid=int(queue["product_id"])
     candidate=queue["candidate"]
     source_urls=candidate.get("source_urls") or []
@@ -172,7 +173,7 @@ def run(queue: dict[str,Any], queue_path: str, validate_only: bool=False) -> dic
         "product_id":pid,"started_at":utcnow(),"status":"STARTED",
         "policy":{
             "content_acceptance":int(config.get("content_acceptance") or 96),
-            "lighthouse_acceptance":config.get("lighthouse_acceptance") or {},
+            "lighthouse_acceptance":lighthouse_policy,
             "media_optimization":config.get("media_optimization") or {}
         }
     }
@@ -215,7 +216,7 @@ def run(queue: dict[str,Any], queue_path: str, validate_only: bool=False) -> dic
         baseline=lighthouse(url,3)
         result["baseline_performance"]=baseline
         result["baseline_accessibility"]=analyze_accessibility(baseline)
-        result["baseline_acceptance"]=performance_acceptance(baseline,config.get("lighthouse_acceptance") or {})
+        result["baseline_acceptance"]=performance_acceptance(baseline,lighthouse_policy)
         result.update(status="VALIDATED",finished_at=utcnow())
         return result
 
@@ -230,6 +231,7 @@ def run(queue: dict[str,Any], queue_path: str, validate_only: bool=False) -> dic
     baseline=lighthouse(url,3)
     result["baseline_performance"]=baseline
     result["baseline_accessibility"]=analyze_accessibility(baseline)
+    result["baseline_acceptance"]=performance_acceptance(baseline,lighthouse_policy)
 
     partial_resume=bool(recovery and recovery.get("reason")=="partial_publish_retry_after_transient_readback")
     if partial_resume:
@@ -300,8 +302,10 @@ def run(queue: dict[str,Any], queue_path: str, validate_only: bool=False) -> dic
     perf=lighthouse(url,3)
     result["after_performance"]=perf
     result["after_accessibility"]=analyze_accessibility(perf)
-    acceptance=performance_acceptance(perf,config.get("lighthouse_acceptance") or {})
+    acceptance=performance_acceptance(perf,lighthouse_policy)
     result["acceptance"]=acceptance
+    platform_debt=acceptance_delta(baseline,perf,lighthouse_policy)
+    result["platform_debt"]=platform_debt
     reg=regressions(baseline,perf)
     result["regressions"]=reg
 
@@ -314,7 +318,10 @@ def run(queue: dict[str,Any], queue_path: str, validate_only: bool=False) -> dic
         )
         return result
 
-    blockers=list(acceptance.get("reasons") or [])
+    blockers=list(platform_debt.get("new_reasons") or [])
+    platform_warnings=list(platform_debt.get("inherited_reasons") or [])
+    if platform_warnings:
+        result["platform_warnings"]=platform_warnings
     if not schema["product"] or not schema["offer"]:
         blockers.append("Product/Offer schema parity not fully observable")
     if schema["h1_count"]!=1:
@@ -325,7 +332,7 @@ def run(queue: dict[str,Any], queue_path: str, validate_only: bool=False) -> dic
     if blockers:
         result.update(status="PLATFORM_BLOCKED",blocker="; ".join(blockers))
     else:
-        result.update(status="ACCEPTED")
+        result.update(status="ACCEPTED",acceptance_mode="baseline_relative" if platform_warnings else "absolute")
     # `after` is the verified post-ALT product read. No product/media mutation
     # occurs after it, so avoid a redundant final Bridge GET that could turn a
     # completed publish into a false failure on a transient WordPress 5xx.
