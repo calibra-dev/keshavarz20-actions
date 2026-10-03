@@ -21,6 +21,7 @@ P3S=Path("growthos-phase3-results/html-schema-feed-parity-summary.json")
 P11=Path("growthos-phase11-results/openai-product-feed-readiness.json")
 P12=Path("growthos-phase12-results/merchant-field-map.json")
 PASSIGN=Path("brand-assignment-results/apply-all-158.json")
+PREMED=Path("brand-remediation-results/apply-verified-latest.json")
 
 def api(path,params=None):
     r=S.get(urljoin(BASE+"/",path.lstrip("/")),params=params,timeout=120)
@@ -110,7 +111,35 @@ def operator_assignment_map():
     if valid:
         for rec in data.get("results") or []:
             out[int(rec["product_id"])]=str(rec.get("requested_brand") or "").strip()
-    return out,{"valid":valid,"artifact_count":len(out)}
+    remediation_meta={"present":False,"valid":None,"verified_assignments":0,"pseudo_removed":0}
+    if PREMED.exists():
+        rem=json.loads(PREMED.read_text(encoding="utf-8"))
+        rem_valid=(
+            rem.get("ok") is True
+            and int(rem.get("scope") or 0)==87
+            and not (rem.get("failures") or [])
+            and all(x.get("ok") is True for x in (rem.get("results") or []))
+        )
+        remediation_meta={
+          "present":True,"valid":rem_valid,
+          "verified_assignments":int(rem.get("verified_assignments") or 0),
+          "pseudo_removed":int(rem.get("pseudo_removed") or 0),
+          "unresolved_multi":int(rem.get("unresolved_multi") or 0)
+        }
+        if not rem_valid:
+            valid=False
+        else:
+            for rec in rem.get("results") or []:
+                pid=int(rec.get("product_id") or 0)
+                action=str(rec.get("action") or "")
+                if action=="verified_assignment" and rec.get("brand"):
+                    out[pid]=str(rec["brand"]).strip()
+                elif action=="remove_pseudo":
+                    out.pop(pid,None)
+                elif action=="leave_unresolved_multi":
+                    # Keep no asserted single brand for an unresolved multi-brand product.
+                    out.pop(pid,None)
+    return out,{"valid":valid,"artifact_count":len(out),"remediation":remediation_meta}
 
 if not P14.exists(): raise SystemExit("Missing Phase 14 summary")
 p14=json.loads(P14.read_text(encoding="utf-8"))
@@ -219,9 +248,19 @@ for p in products:
         truth_mismatch.append({"product_id":pid,"truth_brand":tv,"woo_brands":observed})
 
 multi_brand_ids={int(x["product_id"]) for x in multi_brand}
-pseudo_brand_ids=set(operator_pseudo_brands)
-external_brand_gap_ids=multi_brand_ids | pseudo_brand_ids
-external_single_brand_ready_ids={pid for pid in truth_brands if pid not in external_brand_gap_ids}
+live_pseudo_brand_ids=set()
+for p in products:
+    pid=int(p["id"])
+    names={str(b.get("name") or "").strip() for b in (p.get("brands") or []) if isinstance(b,dict)}
+    if names & PSEUDO_BRANDS:
+        live_pseudo_brand_ids.add(pid)
+pseudo_brand_ids=live_pseudo_brand_ids
+external_brand_gap_ids=multi_brand_ids | pseudo_brand_ids | {int(x["product_id"]) for x in unbranded}
+external_single_brand_ready_ids={
+    int(p["id"]) for p in products
+    if int(p["id"]) not in external_brand_gap_ids
+    and len([b for b in (p.get("brands") or []) if isinstance(b,dict) and b.get("id")])==1
+}
 
 # Cross-phase seller naming contracts.
 phase11_seller=None
@@ -304,7 +343,7 @@ brand_registry={
   "products_with_any_woo_brand":len(products)-len(unbranded),
   "products_without_woo_brand":len(unbranded),
   "external_brand_truth_gap_products":len(external_brand_gap_ids),
-  "pseudo_brand_products":len(operator_pseudo_brands),
+  "pseudo_brand_products":len(live_pseudo_brand_ids),
   "multi_brand_ambiguous_products":len(multi_brand_ids),
   "unbranded_products":unbranded,
   "phase2_truth_brand_products":len(phase2_truth_brands),
