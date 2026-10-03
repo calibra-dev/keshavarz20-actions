@@ -106,10 +106,37 @@ jobs:
           python ./k20_sanitizer.py --json $seoReq --output "$seoReq.clean"
           python ./k20_sanitizer.py --check "$seoReq.clean"
 
-          & ./scripts/Invoke-K20BridgeV3.ps1 -RequestPath "$productReq.clean" -OutputPath $productOut
-          if ($LASTEXITCODE -ne 0) { throw "Bridge product read failed with exit $LASTEXITCODE" }
-          & ./scripts/Invoke-K20BridgeV3.ps1 -RequestPath "$seoReq.clean" -OutputPath $seoOut
-          if ($LASTEXITCODE -ne 0) { throw "Bridge SEO read failed with exit $LASTEXITCODE" }
+          function Invoke-BridgeReadWithRetry {
+            param(
+              [Parameter(Mandatory=$true)][string]$RequestPath,
+              [Parameter(Mandatory=$true)][string]$OutputPath,
+              [Parameter(Mandatory=$true)][string]$Label
+            )
+            $delays = @(2, 5, 10)
+            for ($attempt = 1; $attempt -le 4; $attempt++) {
+              try {
+                Remove-Item -Force -ErrorAction SilentlyContinue $OutputPath
+                & ./scripts/Invoke-K20BridgeV3.ps1 -RequestPath $RequestPath -OutputPath $OutputPath
+                if ($LASTEXITCODE -ne 0) { throw "Bridge $Label read failed with exit $LASTEXITCODE" }
+                if (-not (Test-Path -LiteralPath $OutputPath)) { throw "Bridge $Label read produced no output" }
+                return
+              } catch {
+                $message = [string]$_.Exception.Message
+                $retryable = (
+                  $message -match 'HTTP\s+(429|5\d\d)' -or
+                  $message -match '(?i)(timeout|timed out|connection reset|connection aborted|temporar(?:y|ily))'
+                )
+                if (-not $retryable -or $attempt -ge 4) { throw }
+                $delay = $delays[[Math]::Min($attempt - 1, $delays.Count - 1)]
+                Write-Warning "Transient Bridge $Label read failure on attempt $attempt/4; retrying in $($delay)s."
+                Start-Sleep -Seconds $delay
+              }
+            }
+            throw "Bridge $Label read retry loop exhausted"
+          }
+
+          Invoke-BridgeReadWithRetry -RequestPath "$productReq.clean" -OutputPath $productOut -Label "product"
+          Invoke-BridgeReadWithRetry -RequestPath "$seoReq.clean" -OutputPath $seoOut -Label "SEO"
 
           $product = Get-Content -Raw -LiteralPath $productOut | ConvertFrom-Json -Depth 100
           $seo = Get-Content -Raw -LiteralPath $seoOut | ConvertFrom-Json -Depth 100
