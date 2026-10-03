@@ -176,8 +176,13 @@ def main(result_path, projection_path):
       "failed_checks":[x["name"] for x in checks if not x["pass"]],
       "readiness":{
         "candidate_rows":candidates,
-        "fully_ready_rows":ready,
-        "ready_percent":round(ready*100/candidates,2) if candidates else 0,
+        "basic_field_complete_rows":ready,
+        "basic_field_complete_percent":round(ready*100/candidates,2) if candidates else 0,
+        "external_submission_ready_rows":external_submission_ready_rows,
+        "external_submission_ready_percent":round(external_submission_ready_rows*100/candidates,2) if candidates else 0,
+        "observed_store_currency":observed_currency,
+        "external_iso4217_currency":currency_policy.get("external_iso4217_currency"),
+        "currency_mapping_resolved":currency_mapping_resolved,
         "rows_missing_brand":missing_brand,
         "rows_missing_price":missing_price,
         "rows_missing_description":missing_description,
@@ -203,7 +208,7 @@ def main(result_path, projection_path):
         "payment_checkout_mutations":0
       },
       "checks":checks,
-      "source_summaries":{"phase11":p11s,"phase12":p12s,"phase14":p14,"phase15":p15},
+      "source_summaries":{"phase3":{"generated_at_utc":p3.get("generated_at_utc"),"age_hours":round(p3_age_hours,3),"summary":p3s,"acceptance":p3a},"phase11":p11s,"phase12":p12s,"phase14":p14,"phase15":p15},
       "fresh_upstream_refresh_evidence":fresh,
       "fresh_upstream_age_hours":round(fresh_age_hours,3),
       "input_sha256":{
@@ -226,7 +231,7 @@ def main(result_path, projection_path):
     rp.parent.mkdir(parents=True,exist_ok=True)
     pp.write_text(json.dumps(projection,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     rp.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    print("PHASE19_V3",json.dumps({"status":result["status"],"checks":len(checks),"passed":result["passed_checks"],"failed":result["failed_checks"],"candidate_rows":candidates,"ready_rows":ready},ensure_ascii=False))
+    print("PHASE19_V3",json.dumps({"status":result["status"],"checks":len(checks),"passed":result["passed_checks"],"failed":result["failed_checks"],"candidate_rows":candidates,"basic_field_complete_rows":ready,"external_submission_ready_rows":external_submission_ready_rows},ensure_ascii=False))
     if not passed: raise SystemExit(2)
 
 if __name__=="__main__": main(sys.argv[1],sys.argv[2])
