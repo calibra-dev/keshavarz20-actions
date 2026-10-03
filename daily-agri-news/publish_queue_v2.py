@@ -7,6 +7,8 @@ import re
 from pathlib import Path
 from urllib.parse import urlparse
 
+from content_growth_runtime import normalize_persian_section_label
+
 ROOT = Path(__file__).resolve().parent
 REPO_ROOT = ROOT.parent
 
@@ -47,8 +49,9 @@ def validate_payload_v2(p):
     text = base.strip_html(str(p["content_html"]))
     if len(text) < 900:
         raise base.QueuePublishError("News draft is too short; refusing to create a draft")
+    normalized_content = normalize_persian_section_label(str(p["content_html"]))
     for section in ("جمع‌بندی", "نظر کارشناسی کشاورز بیست", "منابع", "روش تهیه و بازبینی"):
-        if section not in str(p["content_html"]):
+        if normalize_persian_section_label(section) not in normalized_content:
             raise base.QueuePublishError(f"Required section missing: {section}")
 
     if "/editorial-policy/" not in str(p["content_html"]):
