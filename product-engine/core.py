@@ -72,18 +72,44 @@ def bridge(action: str, *, request_id: str | None = None, allow_approval: bool =
         f"code={data.get('code')} message={data.get('message')}"
     )
 
+READ_RETRY_ATTEMPTS = 4
+READ_RETRY_DELAYS_SECONDS = (2, 5, 10)
+
+def _retryable_read_error(exc: Exception) -> bool:
+    if isinstance(exc, requests.RequestException):
+        return True
+    match = re.search(r"\\bhttp(?:=|\\s)(\\d{3})\\b", str(exc), re.I)
+    if not match:
+        return False
+    status = int(match.group(1))
+    return status == 429 or 500 <= status <= 599
+
+def _read_with_retry(call):
+    for attempt in range(READ_RETRY_ATTEMPTS):
+        try:
+            return call()
+        except Exception as exc:
+            if attempt + 1 >= READ_RETRY_ATTEMPTS or not _retryable_read_error(exc):
+                raise
+            time.sleep(READ_RETRY_DELAYS_SECONDS[min(attempt, len(READ_RETRY_DELAYS_SECONDS) - 1)])
+    raise RuntimeError("unreachable Bridge read retry state")
+
 def rest(method: str, path: str, *, query: dict[str,Any] | None=None, payload: dict[str,Any] | None=None) -> Any:
-    req: dict[str,Any] = {"method":method,"path":path}
+    method_upper = str(method).upper()
+    req: dict[str,Any] = {"method":method_upper,"path":path}
     if query:
         req["query"] = query
     if payload is not None:
         req["payload"] = payload
-    out = bridge("rest.proxy", **req)
+    if method_upper == "GET":
+        out = _read_with_retry(lambda: bridge("rest.proxy", **req))
+    else:
+        out = bridge("rest.proxy", **req)
     result = out.get("result") or {}
     return result.get("data", result)
 
 def seo_read(product_id: int) -> dict[str,Any]:
-    return bridge("seo.read", id=product_id).get("result") or {}
+    return _read_with_retry(lambda: bridge("seo.read", id=product_id)).get("result") or {}
 
 def seo_write(product_id: int, candidate: dict[str,Any]) -> dict[str,Any]:
     payload = {

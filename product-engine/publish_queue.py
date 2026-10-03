@@ -74,11 +74,12 @@ def stale_recovery_evidence(queue: dict[str,Any], queue_path: str, before: dict[
         return None
     recovery=load_json(recovery_path,{})
     featured_id=int(((before.get("images") or [{}])[0]).get("id") or 0)
+    reason=str(recovery.get("reason") or "")
     checks={
         "schema_version":recovery.get("schema_version")=="product-stale-recovery-v1",
         "queue_file":str(recovery.get("queue_file") or "")==queue_path,
         "product_id":int(recovery.get("product_id") or 0)==int(queue.get("product_id") or 0),
-        "reason":str(recovery.get("reason") or "")=="producer_timestamp_source_bug",
+        "reason":reason in {"producer_timestamp_source_bug","partial_publish_retry_after_transient_readback"},
         "original_expected":str(recovery.get("original_expected_date_modified_gmt") or "")==expected_modified,
         "verified_actual":str(recovery.get("verified_actual_date_modified_gmt") or "")==actual_modified,
         "queue_generated_at":str(recovery.get("queue_generated_at") or "")==str(queue.get("generated_at") or ""),
@@ -87,10 +88,27 @@ def stale_recovery_evidence(queue: dict[str,Any], queue_path: str, before: dict[
         "live_permalink":str(recovery.get("live_permalink") or "")==str(before.get("permalink") or ""),
         "featured_image_id":int(recovery.get("featured_image_id") or 0)==featured_id,
     }
+    verification={}
+    if reason=="partial_publish_retry_after_transient_readback":
+        candidate=queue.get("candidate") or {}
+        desc_ok,desc_detail=semantic_content_match(str(candidate.get("description_html") or ""),str(before.get("description") or ""))
+        short_ok,short_detail=semantic_content_match(str(candidate.get("short_description_html") or ""),str(before.get("short_description") or ""))
+        seo_ok=seo_matches(seo_read(int(queue.get("product_id") or 0)),candidate)
+        checks["partial_description_matches_candidate"]=bool(desc_ok)
+        checks["partial_short_description_matches_candidate"]=bool(short_ok)
+        checks["partial_seo_matches_candidate"]=bool(seo_ok)
+        verification={"description":desc_detail,"short_description":short_detail,"seo_ok":bool(seo_ok)}
     failed=[name for name,ok in checks.items() if not ok]
     if failed:
         raise QueueError("invalid stale recovery assertion: "+", ".join(failed))
-    return {"assertion_file":str(recovery_path),"reason":recovery.get("reason"),"original_expected_date_modified_gmt":expected_modified,"verified_actual_date_modified_gmt":actual_modified,"verified_at":recovery.get("verified_at")}
+    return {
+        "assertion_file":str(recovery_path),
+        "reason":reason,
+        "original_expected_date_modified_gmt":expected_modified,
+        "verified_actual_date_modified_gmt":actual_modified,
+        "verified_at":recovery.get("verified_at"),
+        "verification":verification,
+    }
 
 def seo_matches(seo: dict[str,Any], c: dict[str,Any]) -> bool:
     return (
@@ -169,6 +187,7 @@ def run(queue: dict[str,Any], queue_path: str, validate_only: bool=False) -> dic
 
     expected_modified=str(queue.get("expected_date_modified_gmt") or "")
     actual_modified=str(before.get("date_modified_gmt") or "")
+    recovery=None
     if (not validate_only) and expected_modified and expected_modified!=actual_modified:
         recovery=stale_recovery_evidence(queue,queue_path,before,expected_modified,actual_modified)
         if not recovery:
@@ -212,9 +231,15 @@ def run(queue: dict[str,Any], queue_path: str, validate_only: bool=False) -> dic
     result["baseline_performance"]=baseline
     result["baseline_accessibility"]=analyze_accessibility(baseline)
 
-    write_candidate(before,candidate,write_media=False)
-    after_content=product_read(pid)
-    seo_after=seo_read(pid)
+    partial_resume=bool(recovery and recovery.get("reason")=="partial_publish_retry_after_transient_readback")
+    if partial_resume:
+        result["resume_mode"]="verified_partial_publish"
+        after_content=before
+        seo_after=seo_before
+    else:
+        write_candidate(before,candidate,write_media=False)
+        after_content=product_read(pid)
+        seo_after=seo_read(pid)
     desc_ok,desc_detail=semantic_content_match(str(candidate.get("description_html") or ""),str(after_content.get("description") or ""))
     short_ok,short_detail=semantic_content_match(str(candidate.get("short_description_html") or ""),str(after_content.get("short_description") or ""))
     content_ok=bool(desc_ok and short_ok)
@@ -301,7 +326,10 @@ def run(queue: dict[str,Any], queue_path: str, validate_only: bool=False) -> dic
         result.update(status="PLATFORM_BLOCKED",blocker="; ".join(blockers))
     else:
         result.update(status="ACCEPTED")
-    result["after_media"]=media_snapshot(product_read(pid))
+    # `after` is the verified post-ALT product read. No product/media mutation
+    # occurs after it, so avoid a redundant final Bridge GET that could turn a
+    # completed publish into a false failure on a transient WordPress 5xx.
+    result["after_media"]=media_snapshot(after)
     result["finished_at"]=utcnow()
     return result
 

@@ -41,6 +41,17 @@ The Git Data fallback is allowed only as a transport for the exact already-valid
 
 Transport failures do not advance the product cursor and do not disable the recurring automation.
 
+### Transient Bridge readback resilience
+
+Product Engine readbacks are intentionally more tolerant than mutations:
+
+- idempotent WooCommerce GET and SEO reads use bounded retry only for connection failures, HTTP 429 and HTTP 5xx responses;
+- PUT/POST mutations are never automatically replayed by this retry layer;
+- the terminal media snapshot reuses the already verified post-ALT product read instead of issuing a redundant final WooCommerce GET;
+- when an earlier publisher already applied the immutable candidate but a late transient readback failure prevented checkpointing, recovery may use reason `partial_publish_retry_after_transient_readback`. Resume is allowed only when the current product identity, timestamp, featured attachment, candidate full/short description and SEO fields all match the original immutable queue. Any mismatch remains fail-closed.
+
+This recovery path does not bypass stale-write protection after an unrelated human or system edit.
+
 
 The queue-ingress relay exists specifically to remove connected-tool payload/write blocking from the critical path. The producer uploads the already validated queue as an immutable Git blob and writes only a small manifest. The runner retrieves the blob by SHA, sanitizes and validates it against the exact bound fresh live-read result, commits the canonical queue path to current main with retry/rebase, and explicitly dispatches the publisher. It never changes the queue content to make transport easier.
 
