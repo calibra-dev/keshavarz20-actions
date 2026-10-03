@@ -53,7 +53,7 @@ def main(result_path, projection_path):
         p3_age_hours=max(0.0,(dt.datetime.now(dt.timezone.utc)-p3_dt).total_seconds()/3600.0)
     except Exception:
         p3_age_hours=999999.0
-    add("phase3_full_catalog_parity_fresh",p3.get("ok") is True and p3_age_hours<=24 and int(p3s.get("published_products") or 0)==candidates and int(p3s.get("audited_products") or 0)==candidates and int(p3s.get("pass") or 0)==candidates and int(p3s.get("fail") or 1)==0)
+    add("phase3_full_catalog_parity_fresh",p3.get("ok") is True and p3_age_hours<=24 and int(p3s.get("published_products") or 0)==candidates and int(p3s.get("audited_products") or 0)==candidates and int(p3s.get("pass") or 0)==candidates and int(p3s.get("fail") if p3s.get("fail") is not None else 1)==0)
     add("phase3_schema_offer_truth_parity",int(p3s.get("eligible_product_schema_missing") or 0)==0 and int(p3s.get("eligible_offer_schema_missing") or 0)==0 and int(p3s.get("eligible_sku_mismatch") or 0)==0 and int(p3s.get("eligible_brand_mismatch_when_truth_known") or 0)==0 and int(p3s.get("eligible_price_parity_fail") or 0)==0 and int(p3s.get("eligible_availability_parity_fail") or 0)==0)
     add("phase3_nonpurchasable_schema_fail_closed",p3a.get("non_purchasable_offer_schema_not_fabricated") is True and p3a.get("all_hard_parity_checks_pass") is True)
     add("full_catalog_scope",candidates==int(p11f.get("published_parent_products") or 0) and candidates>=600)
