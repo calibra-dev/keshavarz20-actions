@@ -1,17 +1,16 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-6c9eacb775a981f0",
-  "product_id": 141590,
-  "family": "fitting",
-  "intent": "installation",
+  "canonical_intent_id": "question-intent-4e5badd137541643",
+  "product_id": 142965,
+  "family": "fertilizer",
+  "intent": "diagnosis",
   "scenario_dimensions": {
-    "installation_state": true,
-    "failure_mode": true
+    "crop": "تربچه"
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": true,
+  "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
