@@ -1,0 +1,58 @@
+name: K20 Phase 20 REST Route Inventory
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/phase20-rest-routes/*.json'
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - name: Read and filter REST routes
+        shell: python
+        run: |
+          import json, os, re, urllib.request, base64
+          base=os.environ['WP_BASE_URL'].rstrip('/')
+          auth=base64.b64encode((os.environ['WP_USERNAME']+':'+os.environ['WP_APP_PASSWORD']).encode()).decode()
+          req=urllib.request.Request(base+'/wp-json/',headers={'Authorization':'Basic '+auth,'Accept':'application/json','User-Agent':'K20-Phase20-Route-Inventory/1.0'})
+          with urllib.request.urlopen(req,timeout=60) as r:
+              obj=json.loads(r.read().decode('utf-8','replace'))
+          routes=obj.get('routes') or {}
+          pat=re.compile(r'irankala|theme|option|setting|custom|css|header|elementor|wpvibe',re.I)
+          out=[]
+          for path,meta in routes.items():
+              if not pat.search(path): continue
+              methods=sorted({m for ep in (meta.get('endpoints') or []) for m in (ep.get('methods') or [])})
+              args=sorted({k for ep in (meta.get('endpoints') or []) for k in (ep.get('args') or {}).keys()})
+              out.append({'route':path,'methods':methods,'args':args[:80]})
+          os.makedirs('phase20-results',exist_ok=True)
+          result={'phase':20,'mode':'read-only','route_count':len(routes),'matched_routes':out,'site_mutations':0}
+          open('phase20-results/rest-route-inventory-latest.json','w',encoding='utf-8').write(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps({'route_count':len(routes),'matched':len(out)},ensure_ascii=False))
+      - name: Persist inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase20-results/rest-route-inventory-latest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase20: record REST route inventory"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
