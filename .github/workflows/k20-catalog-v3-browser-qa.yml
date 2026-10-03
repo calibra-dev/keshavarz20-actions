@@ -99,7 +99,7 @@ jobs:
           })()''')
           screenshot('diagnostics/k20-catalog-v3-desktop-top.png')
 
-          category_test=obj(r'''(async function(){
+          category_test=raw(r'''(async function(){
             const root=document.getElementById('k20CatalogV3');
             const b=document.querySelector('.k20-category-card[data-category-id="756"]');
             if(!b)return {pass:false,reason:'category_button_missing'};
@@ -197,7 +197,7 @@ jobs:
               productGridWidth:document.getElementById('k20ProductsGrid')?.getBoundingClientRect().width||0
             };
           })()''')
-          mobile_filter=obj(r'''(async function(){
+          mobile_filter=raw(r'''(async function(){
             const open=document.querySelector('[data-open-filters]');
             const panel=document.getElementById('k20Filters');
             const back=document.getElementById('k20FilterBackdrop');
