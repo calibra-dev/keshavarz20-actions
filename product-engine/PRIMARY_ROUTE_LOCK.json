@@ -79,6 +79,11 @@
     "require_exact_product_id": true,
     "require_publish_status": true,
     "direct_wordpress_credentials_forbidden": true,
-    "connected_producer_must_not_write_bridge_v3_ops": true
+    "connected_producer_must_not_write_bridge_v3_ops": true,
+    "branch_fallback": "automation/product-*",
+    "promoter_workflow": ".github/workflows/k20-product-live-read-promoter.yml",
+    "promoter_handoff": "explicit_workflow_dispatch",
+    "dispatch_endpoint": "actions/workflows/k20-product-producer-live-read.yml/dispatches",
+    "never_rely_on_github_token_push_recursion": true
   }
 }
