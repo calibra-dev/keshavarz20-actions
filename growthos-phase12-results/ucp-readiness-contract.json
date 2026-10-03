@@ -1,12 +1,22 @@
 {
   "version": "growthos-ucp-readiness-v1",
   "ucp_spec_version": "2026-04-08",
-  "generated_at_utc": "2026-09-27T12:21:13.913978+00:00",
+  "generated_at_utc": "2026-10-03T05:35:15.270259+00:00",
   "public_profile": {
     "http": 404,
     "content_type": "text/html; charset=UTF-8",
-    "bytes": 167265,
+    "bytes": 165028,
     "published_profile_detected": false
+  },
+  "current_google_scope": {
+    "eligible_product_markets": [
+      "US",
+      "CA",
+      "AU"
+    ],
+    "participating_merchants_and_partners_required": true,
+    "checkout_select_merchants_only": true,
+    "keshavarz20_eligibility_claimed": false
   },
   "publication_gate": {
     "publish_now": false,
@@ -28,17 +38,17 @@
     "products": {
       "http": 200,
       "ok": true,
-      "bytes": 29115
+      "bytes": 29204
     },
     "cart": {
       "http": 200,
       "ok": true,
-      "bytes": 1243
+      "bytes": 1286
     },
     "routes": {
       "http": 200,
       "ok": true,
-      "bytes": 2671719,
+      "bytes": 2683006,
       "has_checkout_route": true,
       "has_cart_route": true,
       "has_product_route": true
