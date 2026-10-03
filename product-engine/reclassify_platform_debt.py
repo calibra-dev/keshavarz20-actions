@@ -2,17 +2,65 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
+import html
+import json
+import re
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from core import STATE_PATH, load_json, save_json, utcnow
 from perf import acceptance_delta
-from qa import update_bank
 
 ROOT=Path(__file__).resolve().parents[1]
 ENGINE=ROOT / "product-engine"
 CONFIG=ENGINE / "config.json"
+STATE_PATH=ENGINE / "state.json"
 RESULTS=ENGINE / "results"
+
+
+def utcnow() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def load_json(path: Path, default: Any) -> Any:
+    if not path.exists():
+        return default
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def save_json(path: Path, value: Any) -> None:
+    path.parent.mkdir(parents=True,exist_ok=True)
+    path.write_text(json.dumps(value,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+
+
+def textify(raw: str) -> str:
+    text=re.sub(r"<[^>]+>"," ",raw or "")
+    text=html.unescape(text)
+    return re.sub(r"\s+"," ",text).strip()
+
+
+def sentence_fingerprints(raw: str) -> list[tuple[str,str]]:
+    text=textify(raw).lower()
+    chunks=re.split(r"[.!؟]\s+|\n+",text)
+    out=[]
+    for sentence in chunks:
+        norm=re.sub(r"[^\w\u0600-\u06ff]+"," ",sentence)
+        norm=re.sub(r"\s+"," ",norm).strip()
+        if len(norm.split())<12:
+            continue
+        out.append((hashlib.sha256(norm.encode("utf-8")).hexdigest()[:20],norm[:220]))
+    return out
+
+
+def update_bank(state: dict[str,Any], product_id: int, candidate: dict[str,Any]) -> None:
+    bank=state.setdefault("sentence_bank",{})
+    raw=str(candidate.get("short_description_html") or "")+" "+str(candidate.get("description_html") or "")
+    for digest,snippet in sentence_fingerprints(raw):
+        bank[digest]={"product_id":product_id,"snippet":snippet}
+    if len(bank)>3000:
+        for key in list(bank)[:len(bank)-3000]:
+            bank.pop(key,None)
 
 
 def fail(message: str) -> None:
