@@ -1,0 +1,86 @@
+name: K20 Phase 20 Elementor Search Context
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/phase20-elementor-search/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-phase20-elementor-search-context
+  cancel-in-progress: false
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - name: Query bounded Elementor contexts through Bridge
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $before='${{ github.event.before }}'; $current='${{ github.sha }}'; $zero='0000000000000000000000000000000000000000'
+          if($before -and $before -ne $zero){ $files=@(git diff --name-only $before $current -- 'diagnostics/phase20-elementor-search/*.json') }
+          else { $files=@(git show --pretty='' --name-only $current -- 'diagnostics/phase20-elementor-search/*.json') }
+          $reqPath=@($files | Where-Object { $_ -match '^diagnostics/phase20-elementor-search/.+\.json$' } | Sort-Object -Unique | Select-Object -First 1)
+          if(-not $reqPath){ throw 'No request file found.' }
+          $req=Get-Content -Raw -LiteralPath $reqPath | ConvertFrom-Json -Depth 30
+          $postId=[int]$req.post_id
+          if($postId -le 0){ throw 'post_id required' }
+          $patterns=@($req.patterns | ForEach-Object {[string]$_} | Where-Object { $_.Length -gt 0 -and $_.Length -le 200 })
+          if($patterns.Count -eq 0 -or $patterns.Count -gt 20){ throw '1..20 bounded patterns required' }
+          $base=$env:WP_BASE_URL.TrimEnd('/')
+          $auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"))
+          $headers=@{Authorization="Basic $auth";Accept='application/json';'Content-Type'='application/json'}
+          $rows=@()
+          foreach($pat in $patterns){
+            $body=[ordered]@{
+              action='elementor.search'
+              request_id=("phase20-elctx-"+[guid]::NewGuid().ToString('N').Substring(0,12))
+              id=$postId
+              payload=[ordered]@{pattern=$pat;context=300}
+            } | ConvertTo-Json -Depth 10 -Compress
+            $resp=Invoke-RestMethod -Uri "$base/wp-json/keshavarz20-ops/v3/execute" -Method POST -Headers $headers -Body ([Text.Encoding]::UTF8.GetBytes($body)) -TimeoutSec 120
+            if(-not $resp.ok){ throw "Bridge search failed for pattern: $pat" }
+            $r=$resp.result
+            $snips=@()
+            foreach($s in @($r.snippets)){
+              $txt=[string]$s.snippet
+              if($txt.Length -gt 900){$txt=$txt.Substring(0,900)}
+              $snips+=,[ordered]@{offset=[int]$s.offset;snippet=$txt}
+            }
+            $rows+=,[ordered]@{pattern=$pat;matches=[int]$r.matches;sha256=[string]$r.sha256;snippets=$snips}
+          }
+          New-Item -ItemType Directory -Force 'phase20-results'|Out-Null
+          [ordered]@{
+            phase=20
+            mode='read-only'
+            generated_at_utc=[DateTime]::UtcNow.ToString('o')
+            post_id=$postId
+            rows=$rows
+            site_mutations=0
+          }|ConvertTo-Json -Depth 30|Set-Content -LiteralPath 'phase20-results/elementor-search-context-latest.json' -Encoding utf8
+      - name: Persist bounded search context
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase20-results/elementor-search-context-latest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase20: record bounded Elementor search context"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
