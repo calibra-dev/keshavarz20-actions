@@ -7,6 +7,17 @@ on:
       - 'product-engine/**'
       - 'tests/test_product_engine_bridge_read_retry.py'
       - 'tests/test_product_engine_platform_debt.py'
+      - 'scripts/check_product_engine_primary_route.py'
+      - '.github/workflows/k20-product-autopilot.yml'
+      - '.github/workflows/k20-product-queue-publisher.yml'
+      - '.github/workflows/k20-product-queue-promoter.yml'
+      - '.github/workflows/k20-product-producer-live-read.yml'
+      - '.github/workflows/k20-product-live-read-promoter.yml'
+      - '.github/workflows/k20-product-route-guard.yml'
+  pull_request:
+    paths:
+      - 'product-engine/**'
+      - 'tests/test_product_engine_bridge_read_retry.py'
       - 'tests/test_product_engine_platform_debt.py'
       - 'scripts/check_product_engine_primary_route.py'
       - '.github/workflows/k20-product-autopilot.yml'
@@ -14,17 +25,6 @@ on:
       - '.github/workflows/k20-product-queue-promoter.yml'
       - '.github/workflows/k20-product-producer-live-read.yml'
       - '.github/workflows/k20-product-live-read-promoter.yml'
-      - '.github/workflows/k20-product-live-read-promoter.yml'
-      - '.github/workflows/k20-product-route-guard.yml'
-  pull_request:
-    paths:
-      - 'product-engine/**'
-      - 'tests/test_product_engine_bridge_read_retry.py'
-      - 'scripts/check_product_engine_primary_route.py'
-      - '.github/workflows/k20-product-autopilot.yml'
-      - '.github/workflows/k20-product-queue-publisher.yml'
-      - '.github/workflows/k20-product-queue-promoter.yml'
-      - '.github/workflows/k20-product-producer-live-read.yml'
       - '.github/workflows/k20-product-route-guard.yml'
   workflow_dispatch:
 
