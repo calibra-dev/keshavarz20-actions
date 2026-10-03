@@ -93,7 +93,7 @@ def main(result_path, projection_path):
     add("openai_required_field_contract_current",oa.get("required_fields")==["item_id","title","description","url","brand","seller_name","image_url","availability","price"])
     add("openai_snapshot_delivery_guarded",oa.get("delivery_model")=="full_snapshot" and oa.get("stable_filename_required") is True)
     add("openai_market_scope_fail_closed",oa.get("standard_openai_format_default_market")=="US" and oa.get("additional_markets_require_openai_confirmation") is True)
-    add("openai_currency_export_fail_closed",observed_currency==currency_policy.get("observed_store_currency") and currency_mapping_resolved is False and external_price_export_allowed is False and external_submission_ready_rows==0)
+    add("openai_currency_mapping_verified",observed_currency==currency_policy.get("observed_store_currency") and currency_mapping_resolved is True and external_price_export_allowed is True and currency_policy.get("external_iso4217_currency")=="IRR" and int(currency_policy.get("amount_multiplier") or 0)==10)
     add("openai_api_delivery_current",oa.get("api_delivery_supported") is True and oa.get("partner_onboarding_required") is True and oa.get("stable_schema_required") is True)
     add("openai_no_submission_claim",oa.get("merchant_acceptance_or_feed_submission_claimed") is False and cfg.get("external_submission") is False)
     add("openai_no_checkout_claim",oa.get("checkout_claimed") is False)
@@ -141,7 +141,7 @@ def main(result_path, projection_path):
           "legal/trade/merchant terms acceptance not claimed",
           f"{missing_brand} catalog rows lack source-backed brand",
           f"{missing_price} catalog rows lack current price",
-          "store currency IRT has no verified external ISO 4217 unit/conversion mapping in this integration"
+          "external submission still requires approved market/partner onboarding; currency normalization itself is resolved as IRT x10 -> IRR"
         ]
       },
       "google_compatible_feed":{
@@ -197,7 +197,7 @@ def main(result_path, projection_path):
         "full_catalog_governed":all(x["pass"] for x in checks if x["name"] in ["full_catalog_scope","stable_item_ids_complete","stable_item_ids_unique","titles_complete","descriptions_complete","canonical_urls_complete","images_complete","availability_complete","seller_name_complete"]),
         "page_schema_feed_parity_governed":all(x["pass"] for x in checks if x["name"].startswith("phase3_")),
         "openai_feed_architecture_ready_partial":p11s.get("ok") is True,
-        "openai_external_rows_fail_closed":external_submission_ready_rows==0 and external_price_export_allowed is False,
+        "openai_currency_export_mapping_ready":currency_mapping_resolved and external_price_export_allowed and currency_policy.get("external_iso4217_currency")=="IRR",
         "google_compatible_feed_fail_closed":gg.get("enabled_for_submission") is False,
         "ucp_fail_closed_until_authorized":gu.get("public_profile_publish_authorized") is False and gu.get("live_adapter_authorized") is False,
         "merchant_api_current":gu.get("merchant_api_current") is True and gu.get("content_api_for_shopping_used") is False,
