@@ -31,6 +31,8 @@ Connected ChatGPT no longer writes normal Product Engine reads into `bridge-v3-o
 
 A fresh relay request/result is required immediately before every new immutable queue. Inventory timestamps, cached HTML and historical Bridge results are never valid freshness substitutes.
 
+If a connected GitHub write cannot place the tiny live-read request directly on `main`, the request may be written as the sole new live-read file on an `automation/product-*` branch. `.github/workflows/k20-product-live-read-promoter.yml` promotes it onto current `main` with retry/rebase and explicitly dispatches `k20-product-producer-live-read.yml` with the exact request path. This avoids relying on workflow-generated push recursion and removes manual fast-forward from the producer path.
+
 ## Resilient queue transport
 
 The queue payload and product contract never change just because one GitHub write surface is unavailable. Delivery uses a transport ladder:
