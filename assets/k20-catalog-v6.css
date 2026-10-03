@@ -659,3 +659,14 @@
 #k20SlideRadio8:checked ~ .stage .showcase-slide[data-slide-index="7"]{opacity:0!important;pointer-events:none!important;transform:translate3d(0,20px,0) scale(.96)!important;z-index:0!important;}
 #k20SlideRadio8:checked ~ .stage .showcase-slide[data-slide-index="8"]{transform:none!important;opacity:1!important;pointer-events:auto!important;z-index:10!important;border:1px solid #d6e3da!important;}
 }
+
+/* strip arrows follow the currently selected page */
+#k20SlideRadio0:checked ~ .preview-strip .state-nav.nav-for-0{display:grid}
+#k20SlideRadio1:checked ~ .preview-strip .state-nav.nav-for-1{display:grid}
+#k20SlideRadio2:checked ~ .preview-strip .state-nav.nav-for-2{display:grid}
+#k20SlideRadio3:checked ~ .preview-strip .state-nav.nav-for-3{display:grid}
+#k20SlideRadio4:checked ~ .preview-strip .state-nav.nav-for-4{display:grid}
+#k20SlideRadio5:checked ~ .preview-strip .state-nav.nav-for-5{display:grid}
+#k20SlideRadio6:checked ~ .preview-strip .state-nav.nav-for-6{display:grid}
+#k20SlideRadio7:checked ~ .preview-strip .state-nav.nav-for-7{display:grid}
+#k20SlideRadio8:checked ~ .preview-strip .state-nav.nav-for-8{display:grid}
