@@ -34,6 +34,7 @@ def main(outpath):
     article_v3=text("daily-agri-articles/publish_queue_v3.py")
     article_v4=text("daily-agri-articles/publish_queue_v4.py")
     article_v5=text("daily-agri-articles/publish_queue_v5.py")
+    article_v6=text("daily-agri-articles/publish_queue_v6.py")
 
     checks=[]
     def add(name,v): checks.append({"name":name,"pass":bool(v)})
@@ -42,16 +43,17 @@ def main(outpath):
     ln=live["news"]; la=live["article"]; lq=live["question"]
     ps=policy["automation"]["schedules"]
 
-    add("manifest_v2",m.get("version")=="phase18-automation-governance-v2")
+    add("manifest_v3",m.get("version")=="phase18-automation-governance-v3")
     add("live_news_primary_enabled_0800",ln["primary"]["enabled"] and ln["primary"]["time"]=="08:00")
-    add("live_news_recovery_enabled_0815",ln["recovery"]["enabled"] and ln["recovery"]["time"]=="08:15")
+    add("live_news_recovery_enabled_0830",ln["recovery"]["enabled"] and ln["recovery"]["time"]=="08:30")
+    add("live_news_watchdog_enabled_1030",ln.get("watchdog",{}).get("enabled") is True and ln.get("watchdog",{}).get("time")=="10:30")
     add("live_article_primary_enabled_0900",la["primary"]["enabled"] and la["primary"]["time"]=="09:00")
     add("live_article_recovery_enabled_0920",la["recovery"]["enabled"] and la["recovery"]["time"]=="09:20")
     add("manifest_live_schedule_parity",
-        sr["news"]["enabled"] and sr["news"]["primary_local_time"]=="08:00" and sr["news"]["recovery_enabled"] and sr["news"]["recovery_local_time"]=="08:15"
+        sr["news"]["enabled"] and sr["news"]["primary_local_time"]=="08:00" and sr["news"]["recovery_enabled"] and sr["news"]["recovery_local_time"]=="08:30" and sr["news"].get("watchdog_enabled") is True and sr["news"].get("watchdog_local_time")=="10:30"
         and sr["article"]["enabled"] and sr["article"]["primary_local_time"]=="09:00" and sr["article"]["recovery_enabled"] and sr["article"]["recovery_local_time"]=="09:20")
     add("policy_schedule_parity",
-        ps["news"]["primary_time_tehran"]=="08:00" and ps["news"]["recovery_time_tehran"]=="08:15"
+        ps["news"]["primary_time_tehran"]=="08:00" and ps["news"]["recovery_time_tehran"]=="08:30" and ps["news"].get("watchdog_time_tehran")=="10:30"
         and ps["article"]["primary_time_tehran"]=="09:00" and ps["article"]["recovery_time_tehran"]=="09:20")
 
     add("news_api_generator_manual_fallback_only","workflow_dispatch:" in news_fallback and "\n  schedule:" not in news_fallback)
@@ -65,16 +67,17 @@ def main(outpath):
     add("article_queue_push_main_only","branches: [main]" in article_pub)
     add("article_pr_does_not_publish","if: github.event_name != 'pull_request'" in article_pub)
     add("article_global_concurrency_lock","group: k20-article-queue-publisher" in article_pub)
-    add("article_current_publisher_v5","publish_queue_v5.py" in article_pub)
-    add("article_v5_chain_preserved","publish_queue_v4.py" in article_v5 and "publish_queue_v3.py" in article_v4 and "publish_queue_v2.py" in article_v3)
+    add("article_current_publisher_v6","publish_queue_v6.py" in article_pub)
+    add("article_v6_chain_preserved","publish_queue_v5.py" in article_v6 and "publish_queue_v4.py" in article_v5 and "publish_queue_v3.py" in article_v4 and "publish_queue_v2.py" in article_v3)
+    add("article_v6_phase20_intent_gate","validate_phase20_metadata" in article_v6 and "phase20_schema_version" in article_v6)
     add("article_adaptive_faq","faq_items" in article_v2 and "FAQ is useful content, not a quota" in article_v2)
-    add("article_v5_deterministic_persian","ai_text_rendering" in article_v5 and "NotoSansArabic" in article_v4 and "fail_closed_on_copy_overflow" in article_v5)
+    add("article_v6_deterministic_persian","publish_queue_v5.py" in article_v6 and "NotoSansArabic" in article_v4 and "fail_closed_on_copy_overflow" in article_v5)
 
-    add("question_scheduler_v18","engine_v18.py --action scheduled" in scheduler)
-    add("question_heartbeat_status_v18","engine_v18.py --action status" in heartbeat)
+    add("question_scheduler_v19","engine_v19.py --action scheduled" in scheduler)
+    add("question_heartbeat_status_v19","engine_v19.py --action status" in heartbeat)
     add("question_watchdog_recovery","recovered-stale-chain" in control)
-    add("question_interval_truthful",q.get("enabled") is True and q.get("continuous_mode") is True and q.get("min_interval_seconds")==1080 and q.get("max_interval_seconds")==1559 and q.get("engine_version")=="v18")
-    add("question_live_runtime_evidence",lq.get("engine")=="v18" and lq.get("continuous") is True and int(lq.get("scheduler_run_id") or 0)>0 and int(lq.get("control_run_id") or 0)>0 and int(lq.get("heartbeat_run_id") or 0)>0)
+    add("question_interval_truthful",q.get("enabled") is True and q.get("continuous_mode") is True and q.get("min_interval_seconds")==1080 and q.get("max_interval_seconds")==1559 and q.get("engine_version")=="v19")
+    add("question_live_runtime_evidence",lq.get("engine")=="v19" and lq.get("continuous") is True and int(lq.get("scheduler_run_id") or 0)>0 and int(lq.get("control_run_id") or 0)>0 and int(lq.get("heartbeat_run_id") or 0)>0)
 
     add("news_skip_day_supported","skip that day" in news_readme.lower())
     add("article_skip_day_supported","skip the day" in article_prompt.lower())
@@ -91,7 +94,7 @@ def main(outpath):
 
     asteps={x.get("step"):x for x in article_e2e.get("steps",[])}
     aclean=article_e2e.get("cleanup_verified") or {}
-    add("article_v5_e2e_render",article_e2e.get("ok") is True and article_e2e.get("publisher_version")=="v5" and asteps.get("render_v5_cover",{}).get("ok") is True)
+    add("article_v6_e2e_render",article_e2e.get("ok") is True and article_e2e.get("publisher_version")=="v6" and asteps.get("render_v6_cover",{}).get("ok") is True)
     add("article_e2e_draft_readback",asteps.get("verify_readback",{}).get("ok") is True and asteps.get("verify_readback",{}).get("status")=="draft" and asteps.get("verify_readback",{}).get("type")=="post")
     add("article_e2e_cleanup",aclean.get("post") is True and aclean.get("media") is True and article_e2e.get("published") is False)
 
@@ -110,7 +113,7 @@ def main(outpath):
     passed=all(x["pass"] for x in checks)
     result={
       "phase":18,
-      "version":"phase18-automation-governance-v2",
+      "version":"phase18-automation-governance-v3",
       "title":"Automation Governance - News / Article / Q&A",
       "status":"PASS_V2" if passed else "FAIL_V2",
       "checks":checks,
@@ -120,8 +123,8 @@ def main(outpath):
       "acceptance":{
         "live_schedules_enabled_and_aligned":all(x["pass"] for x in checks if x["name"].startswith("live_") or x["name"] in ("manifest_live_schedule_parity","policy_schedule_parity")),
         "news_current_v3_governed":all(x["pass"] for x in checks if x["name"].startswith("news_")),
-        "article_current_v5_governed":all(x["pass"] for x in checks if x["name"].startswith("article_")),
-        "question_v18_runtime_governed":all(x["pass"] for x in checks if x["name"].startswith("question_")),
+        "article_current_v6_governed":all(x["pass"] for x in checks if x["name"].startswith("article_")),
+        "question_v19_runtime_governed":all(x["pass"] for x in checks if x["name"].startswith("question_")),
         "draft_only_human_review":all(x["pass"] for x in checks if x["name"] in ("news_draft_only","article_draft_only","human_review_required")),
         "duplicate_drafts_guarded":all(x["pass"] for x in checks if "duplicate" in x["name"]),
         "temporary_e2e_cleanup_verified":all(x["pass"] for x in checks if x["name"].endswith("_e2e_cleanup"))
