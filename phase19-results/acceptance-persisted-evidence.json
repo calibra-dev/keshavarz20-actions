@@ -1,108 +1,92 @@
 {
   "phase": 19,
-  "status": "PASS",
-  "generated_at_utc": "2026-09-19T05:06:10.739912+00:00",
-  "acceptance": {
-    "page_feed_schema_parity": {
-      "products": 30,
-      "parity_pass": 30,
-      "parity_fail": 0,
-      "schema_missing": 0,
-      "offer_missing": 0,
-      "sku_mismatch": 0,
-      "availability_mismatch": 0,
-      "price_mismatch": 0,
-      "store_currency": "IRT"
-    },
-    "feed_api_specs_and_region_gates_documented": true,
-    "external_eligibility_not_invented": true,
-    "payment_checkout_untouched": true
-  },
+  "version": "phase19-agentic-readiness-v3",
+  "status": "PASS_V3_FULL_CATALOG_GUARDED",
+  "generated_at_utc": "2026-10-03T06:04:26.828052+00:00",
+  "check_count": 50,
+  "passed_checks": 50,
+  "failed_checks": [],
   "readiness": {
-    "product_count": 30,
-    "openai_discovery_rows_fully_ready": 0,
-    "rows_missing_brand": 8,
-    "rows_with_unresolved_irt_to_iso4217_price_mapping": 30,
-    "description_layer_required_before_openai_submission": true,
-    "external_submission_blocked_until_required_fields_and_legal_program_gates_are_satisfied": true
+    "candidate_rows": 652,
+    "basic_field_complete_rows": 512,
+    "basic_field_complete_percent": 78.53,
+    "external_submission_ready_rows": 0,
+    "external_submission_ready_percent": 0.0,
+    "observed_store_currency": "IRT",
+    "external_iso4217_currency": null,
+    "currency_mapping_resolved": false,
+    "rows_missing_brand": 87,
+    "rows_missing_price": 90,
+    "rows_missing_description": 0,
+    "rows_missing_image": 0,
+    "source_verified_gtins": 0,
+    "products_without_woo_brand": 0,
+    "external_brand_truth_gap_products": 87,
+    "pseudo_brand_products": 75,
+    "multi_brand_ambiguous_products": 12
   },
-  "checks": [
-    {
-      "name": "internal_feed_nonempty",
-      "pass": true
+  "acceptance": {
+    "full_catalog_governed": true,
+    "page_schema_feed_parity_governed": true,
+    "openai_feed_architecture_ready_partial": true,
+    "openai_external_rows_fail_closed": true,
+    "google_compatible_feed_fail_closed": true,
+    "ucp_fail_closed_until_authorized": true,
+    "merchant_api_current": true,
+    "openai_file_and_api_contract_current": true,
+    "identifier_truth_preserved": true,
+    "entity_truth_preserved": true,
+    "external_submission": false,
+    "payment_checkout_mutations": 0
+  },
+  "fresh_upstream_refresh_evidence": {
+    "phase": 19,
+    "version": "phase19-v3-upstream-refresh-evidence",
+    "source_run_id": 37100888106,
+    "observed_from_successful_steps": true,
+    "observed_at_utc": "2026-10-03T05:57:52.239738+00:00",
+    "phase11": {
+      "status": "PASS_GUARDED_FEED_READY_PARTNER_APPROVAL_REQUIRED",
+      "candidate_rows": 652,
+      "ready_rows": 512,
+      "ready_percent": 78.53,
+      "direct_feed_submitted": false,
+      "direct_feed_partner_access_proven": false
     },
-    {
-      "name": "page_feed_schema_parity_all_pass",
-      "pass": true
+    "phase12": {
+      "status": "PASS_ARCHITECTURE_READY_POLICY_GUARD",
+      "candidate_rows": 652,
+      "ready_rows": 512,
+      "merchant_submission_attempted": false,
+      "fake_country_or_address_used": false,
+      "ucp_public_profile_published": false,
+      "ucp_live_adapter_claimed": false
     },
-    {
-      "name": "schema_offer_sku_availability_price_mismatches_zero",
-      "pass": true
+    "phase14": {
+      "status": "PASS_GUARDED_NO_VERIFIED_GS1_IDS",
+      "published_products": 652,
+      "source_verified_gtins": 0,
+      "gtins_fabricated": 0,
+      "skus_promoted_to_gtin": 0
     },
-    {
-      "name": "phase9_canonical_pim_pass",
-      "pass": true
-    },
-    {
-      "name": "stable_ids_complete",
-      "pass": true
-    },
-    {
-      "name": "canonical_urls_complete",
-      "pass": true
-    },
-    {
-      "name": "unknown_identifiers_not_fabricated",
-      "pass": true
-    },
-    {
-      "name": "openai_submission_not_claimed",
-      "pass": true
-    },
-    {
-      "name": "openai_checkout_not_claimed",
-      "pass": true
-    },
-    {
-      "name": "google_ucp_participation_not_invented",
-      "pass": true
-    },
-    {
-      "name": "google_ucp_checkout_not_claimed",
-      "pass": true
-    },
-    {
-      "name": "payment_checkout_untouched",
-      "pass": true
-    }
-  ],
-  "protocol_gates": {
-    "openai": {
-      "product_feed_required_fields": [
-        "item_id",
-        "title",
-        "description",
-        "url",
-        "brand",
-        "seller_name",
-        "image_url",
-        "availability",
-        "price"
-      ],
-      "unknown_optional_values_must_be_omitted_not_fabricated": true,
-      "current_price_and_availability_required": true,
-      "merchant_acceptance_or_feed_submission_claimed": false,
-      "checkout_claimed": false,
-      "legal_and_trade_compliance_review_required_before_submission": true
-    },
-    "google_ucp": {
-      "observed_scope": "UCP integration hub gradually rolling out in the United States; scope applies only to products sold within the United States",
-      "observed_checkout_gate": "checkout is early access for select participating merchants",
-      "merchant_center_participation_claimed": false,
-      "us_product_scope_claimed": false,
-      "checkout_claimed": false
+    "phase15": {
+      "status": "PASS_ENTITY_OS_WITH_SOURCE_GAPS",
+      "published_products": 652,
+      "source_verified_truth_brand_products": 652,
+      "products_without_woo_brand": 0,
+      "external_brand_truth_gap_products": 87,
+      "external_single_brand_ready_products": 565,
+      "pseudo_brand_products": 75,
+      "multi_brand_ambiguous_products": 12,
+      "brand_truth_mismatches": 0,
+      "identity_fields_fabricated": 0,
+      "sameAs_links_fabricated": 0,
+      "glns_fabricated": 0,
+      "seller_entity_found": true,
+      "seller_name_consistent": true
     }
   },
+  "projection_status": "FULL_CATALOG_INTERNAL_READINESS_ONLY_NOT_SUBMITTED_V3",
   "external_submission": false,
   "site_mutations": 0,
   "price_stock_mutations": 0,

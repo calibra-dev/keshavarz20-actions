@@ -3,14 +3,19 @@
   "version": "phase19-agentic-readiness-v3",
   "title": "Feeds, APIs & Agentic Readiness",
   "status": "PASS_V3_FULL_CATALOG_GUARDED",
-  "generated_at_utc": "2026-10-03T05:57:52.280912+00:00",
-  "check_count": 45,
-  "passed_checks": 45,
+  "generated_at_utc": "2026-10-03T06:04:26.828052+00:00",
+  "check_count": 50,
+  "passed_checks": 50,
   "failed_checks": [],
   "readiness": {
     "candidate_rows": 652,
-    "fully_ready_rows": 512,
-    "ready_percent": 78.53,
+    "basic_field_complete_rows": 512,
+    "basic_field_complete_percent": 78.53,
+    "external_submission_ready_rows": 0,
+    "external_submission_ready_percent": 0.0,
+    "observed_store_currency": "IRT",
+    "external_iso4217_currency": null,
+    "currency_mapping_resolved": false,
     "rows_missing_brand": 87,
     "rows_missing_price": 90,
     "rows_missing_description": 0,
@@ -23,7 +28,9 @@
   },
   "acceptance": {
     "full_catalog_governed": true,
+    "page_schema_feed_parity_governed": true,
     "openai_feed_architecture_ready_partial": true,
+    "openai_external_rows_fail_closed": true,
     "google_compatible_feed_fail_closed": true,
     "ucp_fail_closed_until_authorized": true,
     "merchant_api_current": true,
@@ -43,6 +50,10 @@
       "pass": true
     },
     {
+      "name": "fresh_upstream_within_24h",
+      "pass": true
+    },
+    {
       "name": "fresh_upstream_counts_match_persisted",
       "pass": true
     },
@@ -52,6 +63,18 @@
     },
     {
       "name": "phase11_guarded_pass",
+      "pass": true
+    },
+    {
+      "name": "phase3_full_catalog_parity_fresh",
+      "pass": true
+    },
+    {
+      "name": "phase3_schema_offer_truth_parity",
+      "pass": true
+    },
+    {
+      "name": "phase3_nonpurchasable_schema_fail_closed",
       "pass": true
     },
     {
@@ -171,6 +194,10 @@
       "pass": true
     },
     {
+      "name": "openai_currency_export_fail_closed",
+      "pass": true
+    },
+    {
       "name": "openai_api_delivery_current",
       "pass": true
     },
@@ -216,6 +243,39 @@
     }
   ],
   "source_summaries": {
+    "phase3": {
+      "generated_at_utc": "2026-10-03T05:52:53.105852+00:00",
+      "age_hours": 0.193,
+      "summary": {
+        "published_products": 652,
+        "audited_products": 652,
+        "eligible_for_offer_schema": 562,
+        "non_purchasable_or_price_empty": 90,
+        "pass": 652,
+        "fail": 0,
+        "eligible_product_schema_missing": 0,
+        "eligible_offer_schema_missing": 0,
+        "noneligible_product_schema_absent": 90,
+        "breadcrumb_missing": 0,
+        "organization_missing": 0,
+        "eligible_sku_mismatch": 0,
+        "eligible_brand_mismatch_when_truth_known": 0,
+        "eligible_price_parity_fail": 0,
+        "eligible_availability_parity_fail": 0,
+        "unbacked_aggregate_rating": 0,
+        "variable_grouping_fail": 0,
+        "yoast_version_from_bridge": "28.5"
+      },
+      "acceptance": {
+        "phase2_truth_registry_consumed": true,
+        "all_published_products_audited": true,
+        "no_price_values_exposed": true,
+        "no_stock_values_exposed": true,
+        "html_schema_api_truth_linked": true,
+        "all_hard_parity_checks_pass": true,
+        "non_purchasable_offer_schema_not_fabricated": true
+      }
+    },
     "phase11": {
       "ok": true,
       "phase": 11,
@@ -357,13 +417,15 @@
       "seller_name_consistent": true
     }
   },
+  "fresh_upstream_age_hours": 0.11,
   "input_sha256": {
-    "phase19/agentic-readiness.json": "a201c7a9441b527a3f83b1b26a258e8a216e09217f8485af5cc4ff4ad792ac1a",
+    "phase19/agentic-readiness.json": "7637a7959e6d818b5c4dee42f3975a3c7b95a139f63924dc39b6f0178d42c350",
     "growthos-phase11-results/openai-product-feed-readiness.json": "e56052701cd1dc4fc10c54bd32fbd19e653c0cdb50f81e751bb77d6eab6822ef",
     "growthos-phase12-results/summary.json": "ef1e3e6ba8ba0020c18661322a0d4a7f266ec5a765c93d4bc31c57f2d89be5e2",
     "growthos-phase14-results/summary.json": "68d0d84850938eb11a64773ee691f120b2385c1aa8d6dc5f4013a8d429028fbd",
     "growthos-phase15-results/summary.json": "023c76c7dcea9674b576c76fbd8cb8b105c92b49cb35a3b9a2d9026a20e530c3",
-    "phase19-results/upstream-refresh-latest.json": "a78e1eb1cee4109c51826cd62ef8c2db0e6465276f95bf8d4f608af4e43efff1"
+    "phase19-results/upstream-refresh-latest.json": "a78e1eb1cee4109c51826cd62ef8c2db0e6465276f95bf8d4f608af4e43efff1",
+    "growthos-phase3-results/html-schema-feed-parity.json": "4d3f624ad321dbcb53905e292fc2bb8891a8602755eedd03416a05b58f47c669"
   },
   "external_submission": false,
   "site_mutations": 0,

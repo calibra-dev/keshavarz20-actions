@@ -1,11 +1,16 @@
 {
   "version": "k20-agentic-readiness-projection-v3",
-  "generated_at_utc": "2026-10-03T05:57:52.280912+00:00",
+  "generated_at_utc": "2026-10-03T06:04:26.828052+00:00",
   "status": "FULL_CATALOG_INTERNAL_READINESS_ONLY_NOT_SUBMITTED_V3",
   "catalog": {
     "candidate_rows": 652,
-    "fully_ready_rows": 512,
-    "ready_percent": 78.53,
+    "basic_field_complete_rows": 512,
+    "basic_field_complete_percent": 78.53,
+    "external_submission_ready_rows": 0,
+    "external_submission_ready_percent": 0.0,
+    "observed_store_currency": "IRT",
+    "external_iso4217_currency": null,
+    "currency_mapping_resolved": false,
     "missing_brand_rows": 87,
     "missing_price_rows": 90,
     "missing_description_rows": 0,
@@ -24,13 +29,18 @@
       "availability",
       "price"
     ],
-    "fully_ready_rows": 512,
+    "basic_field_complete_rows": 512,
+    "external_submission_ready_rows": 0,
+    "observed_store_currency": "IRT",
+    "external_iso4217_currency": null,
+    "currency_mapping_resolved": false,
     "submission_allowed_now": false,
     "submission_blockers": [
       "approved OpenAI merchant/feed onboarding not proven",
       "legal/trade/merchant terms acceptance not claimed",
       "87 catalog rows lack source-backed brand",
-      "90 catalog rows lack current price"
+      "90 catalog rows lack current price",
+      "store currency IRT has no verified external ISO 4217 unit/conversion mapping in this integration"
     ]
   },
   "google_compatible_feed": {
