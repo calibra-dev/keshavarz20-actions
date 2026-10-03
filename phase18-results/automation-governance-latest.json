@@ -1,11 +1,11 @@
 {
   "phase": 18,
-  "version": "phase18-automation-governance-v2",
+  "version": "phase18-automation-governance-v3",
   "title": "Automation Governance - News / Article / Q&A",
   "status": "PASS_V2",
   "checks": [
     {
-      "name": "manifest_v2",
+      "name": "manifest_v3",
       "pass": true
     },
     {
@@ -13,7 +13,11 @@
       "pass": true
     },
     {
-      "name": "live_news_recovery_enabled_0815",
+      "name": "live_news_recovery_enabled_0830",
+      "pass": true
+    },
+    {
+      "name": "live_news_watchdog_enabled_1030",
       "pass": true
     },
     {
@@ -73,11 +77,15 @@
       "pass": true
     },
     {
-      "name": "article_current_publisher_v5",
+      "name": "article_current_publisher_v6",
       "pass": true
     },
     {
-      "name": "article_v5_chain_preserved",
+      "name": "article_v6_chain_preserved",
+      "pass": true
+    },
+    {
+      "name": "article_v6_phase20_intent_gate",
       "pass": true
     },
     {
@@ -85,19 +93,23 @@
       "pass": true
     },
     {
-      "name": "article_v5_deterministic_persian",
+      "name": "article_v6_deterministic_persian",
       "pass": true
     },
     {
-      "name": "question_scheduler_v18",
+      "name": "question_scheduler_v19",
       "pass": true
     },
     {
-      "name": "question_heartbeat_status_v18",
+      "name": "question_heartbeat_status_v19",
       "pass": true
     },
     {
       "name": "question_watchdog_recovery",
+      "pass": true
+    },
+    {
+      "name": "question_engine_router_v19",
       "pass": true
     },
     {
@@ -145,7 +157,7 @@
       "pass": true
     },
     {
-      "name": "article_v5_e2e_render",
+      "name": "article_v6_e2e_render",
       "pass": true
     },
     {
@@ -189,31 +201,38 @@
       "pass": true
     }
   ],
-  "check_count": 46,
-  "passed_checks": 46,
+  "check_count": 49,
+  "passed_checks": 49,
   "failed_checks": [],
   "acceptance": {
     "live_schedules_enabled_and_aligned": true,
     "news_current_v3_governed": true,
-    "article_current_v5_governed": true,
-    "question_v18_runtime_governed": true,
+    "article_current_v6_governed": true,
+    "question_v19_runtime_governed": true,
     "draft_only_human_review": true,
     "duplicate_drafts_guarded": true,
     "temporary_e2e_cleanup_verified": true
   },
   "live_schedule_readback": {
     "phase": 18,
-    "version": "v2",
-    "observed_at_utc": "2026-09-26T19:40:00Z",
+    "version": "v3",
+    "observed_at_utc": "2026-10-03T05:20:00Z",
     "timezone": "Asia/Tehran",
     "news": {
       "primary": {
         "enabled": true,
-        "time": "08:00"
+        "time": "08:00",
+        "last_run_observed_utc": "2026-10-03T04:32:24.777867Z"
       },
       "recovery": {
         "enabled": true,
-        "time": "08:15"
+        "time": "08:30",
+        "last_run_observed_utc": "2026-10-03T05:10:47.270720Z"
+      },
+      "watchdog": {
+        "enabled": true,
+        "time": "10:30",
+        "role": "late_same_day_verified_draft_recovery"
       }
     },
     "article": {
@@ -227,20 +246,28 @@
       }
     },
     "question": {
-      "engine": "v18",
+      "engine": "v19",
       "continuous": true,
-      "scheduler_run_id": 36265709695,
-      "control_run_id": 36265698336,
-      "heartbeat_run_id": 36255859092
+      "scheduler_run_id": 37088831452,
+      "control_run_id": 37082119580,
+      "heartbeat_run_id": 37088502002
     },
-    "note": "Read back from live automation configuration and current GitHub Actions runtime. No schedule was duplicated; previously disabled existing recovery/news tasks were re-enabled."
+    "runtime_evidence": {
+      "news_publisher_success_run_id": 37098795677,
+      "news_publisher_failed_then_recovered_run_id": 37098713195,
+      "article_last_verified_publisher_success_run_id": 36828910890
+    },
+    "note": "Read back from live ChatGPT automations and current GitHub Actions runtime on 2026-10-03. News recovery is 08:30 with an additional 10:30 watchdog; article remains 09:00/09:20; question engine is v19."
   },
   "runtime_evidence": {
-    "question_scheduler_success_run_id": 36265709695,
-    "question_control_success_run_id": 36265698336,
-    "question_heartbeat_success_run_id": 36255859092,
+    "question_scheduler_success_run_id": 37088831452,
+    "question_control_success_run_id": 37082119580,
+    "question_heartbeat_success_run_id": 37088502002,
+    "news_publisher_success_run_id": 37098795677,
+    "news_recovery_from_failed_run_id": 37098713195,
+    "article_last_verified_publisher_success_run_id": 36828910890,
     "news_writer_path": "WP REST media + guarded WPVibe WP-native CLI for custom news CPT",
-    "article_writer_path": "WordPress REST posts/media via publish_queue_v5 -> v4 -> v3",
+    "article_writer_path": "WordPress REST posts/media via publish_queue_v6 -> v5 -> v4 -> v3",
     "legacy_xmlrpc_status": "not_primary_for_current_news_or_article_publishers"
   },
   "news_read_probe": {
@@ -287,10 +314,8 @@
   },
   "news_publisher_e2e": {
     "ok": true,
-    "run_id": 36267402257,
-    "publisher_version": "v3",
-    "temporary_news_id": 146207,
-    "temporary_media_id": 146206,
+    "temporary_news_id": 146686,
+    "temporary_media_id": 146685,
     "steps": [
       {
         "step": "validate_payload_v3",
@@ -308,12 +333,12 @@
       {
         "step": "upload_media",
         "ok": true,
-        "media_id": 146206
+        "media_id": 146685
       },
       {
         "step": "create_draft",
         "ok": true,
-        "post_id": 146207
+        "post_id": 146686
       },
       {
         "step": "verify",
@@ -334,18 +359,17 @@
     "cleanup_verified": {
       "post": true,
       "media": true
-    },
-    "persisted_from_successful_run_log": true
+    }
   },
   "article_publisher_e2e": {
     "ok": true,
-    "temporary_post_id": 146203,
-    "temporary_media_id": 146200,
-    "publisher_version": "v5",
+    "temporary_post_id": 146690,
+    "temporary_media_id": 146689,
+    "publisher_version": "v6",
     "transport": "wordpress_rest",
     "steps": [
       {
-        "step": "validate_payload_v5_chain",
+        "step": "validate_payload_v6_chain",
         "ok": true
       },
       {
@@ -363,19 +387,19 @@
         "license": "Public domain"
       },
       {
-        "step": "render_v5_cover",
+        "step": "render_v6_cover",
         "ok": true,
         "renderer": "k20-cover-v5-cinematic-deterministic-persian"
       },
       {
         "step": "upload_media_rest",
         "ok": true,
-        "media_id": 146200
+        "media_id": 146689
       },
       {
         "step": "create_draft_rest",
         "ok": true,
-        "post_id": 146203
+        "post_id": 146690
       },
       {
         "step": "verify_readback",
@@ -399,12 +423,12 @@
     "commerce_mutations": 0
   },
   "input_sha256": {
-    "phase18/automation-governance.json": "2c1802007ab2dad97d1909391ec40a803a6832fae11f3a7fcf91f6394ef148b7",
-    "phase18/live-schedule-readback.json": "df529cd6a5ab4dabd1cb0ec396e9cab94a5ca0c85f629325d3fa30ca223ef219",
-    "automation-policy/seo-god-2026.json": "de7e78c0720c58717b6ade8e1de8d719c4494106513856cd3da53e61c300477c",
-    "question-engine/config.json": "45776d064f16df7e64c66988db8eeb907a28e0368a213ef0408a93fd618b80bf",
-    "phase18-results/news-publisher-e2e-latest.json": "77bb0ca57e10ec6b79c42eccf8eec7e636979e5055853fa70c7eb21b0a0d913c",
-    "phase18-results/article-publisher-e2e-latest.json": "be287c7eb373e7c454a72cf55f44a277b14c0ef81db29de6dd405fc0673d6474"
+    "phase18/automation-governance.json": "2f9c45fca2d5572dad8a13e22a8bcd57f88d900cf129c0d35dc4b84a667e2d4a",
+    "phase18/live-schedule-readback.json": "c49b351910dbf340d319b2ab5effbcaf095835765c747671856b247549887f56",
+    "automation-policy/seo-god-2026.json": "8b3bba67a5e7143278545dd589d457a882aca337e3db886b3af4834a066cb0be",
+    "question-engine/config.json": "c8e64aa1d39816a8086b3e41335ff264795b92e62922180186eff3fc1280d119",
+    "phase18-results/news-publisher-e2e-latest.json": "077aab99741dd6ccac7d3938a3e13ea8ba6880070abb1d42a79bb8aae05c3026",
+    "phase18-results/article-publisher-e2e-latest.json": "1ba705dd2b8cf5003f0c9323e35029def7b972eeb6bef8124c5ab4e332c328ba"
   },
   "site_mutations_by_acceptance_workflow": 0,
   "temporary_e2e_mutations_cleaned": true,
