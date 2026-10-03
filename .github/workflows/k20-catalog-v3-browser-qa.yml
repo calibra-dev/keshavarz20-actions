@@ -1,0 +1,265 @@
+name: K20 Catalog V3 Browser QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/k20-catalog-v3-browser-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - shell: bash
+        run: |
+          set -euo pipefail
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          test -n "$CHROME"
+          python3 -m pip install --quiet websocket-client
+          mkdir -p diagnostics
+          "$CHROME" --headless=new --no-sandbox --disable-gpu --hide-scrollbars             --remote-debugging-port=9222 --remote-allow-origins='*'             --user-data-dir=/tmp/k20-catalog-v3 --window-size=1536,960 about:blank >/tmp/k20-catalog-v3.log 2>&1 &
+          PID=$!
+          trap 'kill $PID >/dev/null 2>&1 || true' EXIT
+          python3 - <<'PY'
+          import json,time,urllib.request,websocket,pathlib,datetime,os,base64
+          for _ in range(30):
+              try:
+                  targets=json.load(urllib.request.urlopen('http://127.0.0.1:9222/json',timeout=2))
+                  if targets: break
+              except Exception:
+                  pass
+              time.sleep(1)
+          target=next(x for x in targets if x.get('type')=='page')
+          ws=websocket.create_connection(target['webSocketDebuggerUrl'],timeout=30)
+          seq=0
+          def cmd(method,params=None):
+              global seq
+              seq+=1
+              ws.send(json.dumps({'id':seq,'method':method,'params':params or {}}))
+              while True:
+                  row=json.loads(ws.recv())
+                  if row.get('id')==seq:
+                      return row
+          def raw(expr,await_promise=False):
+              params={'expression':expr,'returnByValue':True}
+              if await_promise: params['awaitPromise']=True
+              row=cmd('Runtime.evaluate',params)
+              rr=row.get('result',{})
+              if 'exceptionDetails' in rr:
+                  return {'__error__':rr['exceptionDetails'].get('text'),'description':rr.get('result',{}).get('description')}
+              return rr.get('result',{}).get('value')
+          def obj(expr,await_promise=False):
+              value=raw("JSON.stringify("+expr+")",await_promise)
+              if isinstance(value,str):
+                  try:return json.loads(value)
+                  except Exception:return {'raw':value}
+              return value
+          def navigate(url,wait=11):
+              cmd('Page.navigate',{'url':url})
+              time.sleep(wait)
+          def screenshot(path):
+              data=cmd('Page.captureScreenshot',{'format':'png','captureBeyondViewport':False}).get('result',{}).get('data')
+              if data:pathlib.Path(path).write_bytes(base64.b64decode(data))
+          cmd('Page.enable');cmd('Runtime.enable')
+          navigate('https://keshavarz20.com/catalog/?v3qa=desktop')
+          desktop=obj(r'''(function(){
+            const root=document.getElementById('k20CatalogV3');
+            const header=document.querySelector('.k20-header');
+            const hero=document.getElementById('k20-home');
+            const nav=document.querySelector('.k20-section-nav-wrap');
+            const cats=document.getElementById('k20-categories');
+            const cards=[...document.querySelectorAll('.k20-category-card')];
+            const productCards=[...document.querySelectorAll('.k20-product-card')];
+            const h=header?.getBoundingClientRect();
+            const he=hero?.getBoundingClientRect();
+            return {
+              href:location.href,
+              root:!!root,
+              runtimeType:typeof window.__K20CatalogV3,
+              runtimeState:window.__K20CatalogV3?.getState?.()||null,
+              horizontalOverflow:root?(root.scrollWidth-root.clientWidth):999,
+              headerRect:h?{top:h.top,bottom:h.bottom,height:h.height}:null,
+              heroRect:he?{top:he.top,bottom:he.bottom,height:he.height}:null,
+              navExists:!!nav,
+              categoryCount:cards.length,
+              categoryImages:cards.map(c=>{const i=c.querySelector('img');return {id:c.getAttribute('data-category-id'),loaded:!!i&&i.complete&&i.naturalWidth>0,w:i?.naturalWidth||0,h:i?.naturalHeight||0};}),
+              productCount:productCards.length,
+              productImagesLoaded:productCards.filter(c=>{const i=c.querySelector('.k20-product-media img');return i&&i.complete&&i.naturalWidth>0}).length,
+              categoriesTop:cats?.getBoundingClientRect().top||0,
+              rootScrollTop:root?.scrollTop||0
+            };
+          })()''')
+          screenshot('diagnostics/k20-catalog-v3-desktop-top.png')
+
+          category_test=obj(r'''(async function(){
+            const root=document.getElementById('k20CatalogV3');
+            const b=document.querySelector('.k20-category-card[data-category-id="756"]');
+            if(!b)return {pass:false,reason:'category_button_missing'};
+            const expected=await fetch('/wp-json/wc/store/v1/products?per_page=24&category=756',{credentials:'same-origin'}).then(r=>r.json());
+            b.click();
+            for(let i=0;i<60;i++){
+              const st=window.__K20CatalogV3?.getState?.();
+              if(st&&st.category==='756'&&st.products>0)break;
+              await new Promise(r=>setTimeout(r,150));
+            }
+            await new Promise(r=>setTimeout(r,500));
+            const cards=[...document.querySelectorAll('.k20-product-card')];
+            const ids=cards.map(c=>Number(c.dataset.productId||0)).filter(Boolean);
+            const expectedIds=(Array.isArray(expected)?expected:[]).map(x=>Number(x.id));
+            return {
+              pass:cards.length>0&&ids.every(x=>expectedIds.includes(x)),
+              active:b.classList.contains('active'),
+              cards:cards.length,
+              ids:ids.slice(0,8),
+              expected:expectedIds.slice(0,8),
+              scrollTop:root.scrollTop
+            };
+          })()''',True)
+
+          nav_test=obj(r'''(async function(){
+            const root=document.getElementById('k20CatalogV3');
+            const categoryNav=document.querySelector('.k20-section-nav [data-scroll="k20-categories"]');
+            const filterNav=document.querySelector('.k20-section-nav [data-action="filters"]');
+            const detailNav=document.querySelector('.k20-section-nav [data-action="detail"]');
+            const start=root.scrollTop;
+            categoryNav?.click();
+            await new Promise(r=>setTimeout(r,700));
+            const afterCategory=root.scrollTop;
+            filterNav?.click();
+            await new Promise(r=>setTimeout(r,700));
+            const afterFilter=root.scrollTop;
+            const firstView=document.querySelector('.k20-product-card .view');
+            firstView?.click();
+            await new Promise(r=>setTimeout(r,400));
+            const detailTitle=(document.getElementById('k20DetailTitle')?.textContent||'').trim();
+            detailNav?.click();
+            await new Promise(r=>setTimeout(r,700));
+            const afterDetail=root.scrollTop;
+            return {
+              start,afterCategory,afterFilter,afterDetail,
+              categoryMoved:afterCategory!==start,
+              filterMoved:afterFilter!==afterCategory,
+              detailMoved:afterDetail!==afterFilter,
+              detailTitle,
+              detailHasProduct:detailTitle&&detailTitle!=='یک محصول را انتخاب کنید'
+            };
+          })()''',True)
+
+          compare_test=obj(r'''(async function(){
+            const firstCompare=document.querySelector('.k20-product-card .k20-card-actions button:not(.view)');
+            firstCompare?.click();
+            await new Promise(r=>setTimeout(r,250));
+            const bar=document.getElementById('k20CompareBar');
+            const open=document.getElementById('k20CompareOpen');
+            open?.click();
+            await new Promise(r=>setTimeout(r,600));
+            return {
+              barVisible:bar?.classList.contains('show')||false,
+              compareState:window.__K20CatalogV3?.getState?.().compare||0,
+              compareCells:document.querySelectorAll('#k20CompareGrid .k20-compare-cell').length,
+              scrollTop:document.getElementById('k20CatalogV3')?.scrollTop||0
+            };
+          })()''',True)
+
+          raw("document.getElementById('k20CatalogV3').scrollTo({top:0,behavior:'auto'})")
+          time.sleep(.4)
+          screenshot('diagnostics/k20-catalog-v3-desktop-final.png')
+
+          cmd('Emulation.setDeviceMetricsOverride',{'width':390,'height':844,'deviceScaleFactor':1,'mobile':True})
+          navigate('https://keshavarz20.com/catalog/?v3qa=mobile',10)
+          mobile=obj(r'''(function(){
+            const root=document.getElementById('k20CatalogV3');
+            const header=document.querySelector('.k20-header');
+            const nav=document.querySelector('.k20-section-nav-wrap');
+            const hero=document.getElementById('k20-home');
+            const cards=[...document.querySelectorAll('.k20-category-card')];
+            const productCards=[...document.querySelectorAll('.k20-product-card')];
+            return {
+              width:innerWidth,
+              root:!!root,
+              runtimeType:typeof window.__K20CatalogV3,
+              runtimeState:window.__K20CatalogV3?.getState?.()||null,
+              horizontalOverflow:root?(root.scrollWidth-root.clientWidth):999,
+              headerHeight:header?.getBoundingClientRect().height||0,
+              navTop:nav?.getBoundingClientRect().top||0,
+              heroTop:hero?.getBoundingClientRect().top||0,
+              categoryCount:cards.length,
+              categoryColumns:cards.length>1?Math.round(cards[1].getBoundingClientRect().left-cards[0].getBoundingClientRect().left):0,
+              productCount:productCards.length,
+              productGridWidth:document.getElementById('k20ProductsGrid')?.getBoundingClientRect().width||0
+            };
+          })()''')
+          mobile_filter=obj(r'''(async function(){
+            const open=document.querySelector('[data-open-filters]');
+            const panel=document.getElementById('k20Filters');
+            const back=document.getElementById('k20FilterBackdrop');
+            open?.click();
+            await new Promise(r=>setTimeout(r,350));
+            const opened=panel?.classList.contains('open')&&back?.classList.contains('open');
+            document.getElementById('k20FilterClose')?.click();
+            await new Promise(r=>setTimeout(r,350));
+            const closed=!panel?.classList.contains('open')&&!back?.classList.contains('open');
+            return {opened,closed};
+          })()''',True)
+          mobile_category=obj(r'''(async function(){
+            const b=document.querySelector('.k20-category-card[data-category-id="826"]');
+            b?.click();
+            for(let i=0;i<60;i++){
+              const st=window.__K20CatalogV3?.getState?.();
+              if(st&&st.category==='826'&&st.products>0)break;
+              await new Promise(r=>setTimeout(r,150));
+            }
+            return {
+              active:b?.classList.contains('active')||false,
+              state:window.__K20CatalogV3?.getState?.()||null,
+              cards:document.querySelectorAll('.k20-product-card').length,
+              overflow:document.getElementById('k20CatalogV3')?.scrollWidth-document.getElementById('k20CatalogV3')?.clientWidth
+            };
+          })()''',True)
+          raw("document.getElementById('k20CatalogV3').scrollTo({top:0,behavior:'auto'})")
+          time.sleep(.3)
+          screenshot('diagnostics/k20-catalog-v3-mobile.png')
+          ws.close()
+
+          out={
+            'checked_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            'desktop':desktop,
+            'category_test':category_test,
+            'nav_test':nav_test,
+            'compare_test':compare_test,
+            'mobile':mobile,
+            'mobile_filter':mobile_filter,
+            'mobile_category':mobile_category
+          }
+          desktop_ok=bool(desktop and desktop.get('root') and desktop.get('runtimeType')=='object' and desktop.get('horizontalOverflow',999)<=4 and desktop.get('categoryCount')==6 and all(x.get('loaded') for x in desktop.get('categoryImages',[])) and desktop.get('productCount',0)>0 and desktop.get('productImagesLoaded',0)>0)
+          nav_ok=bool(nav_test and nav_test.get('categoryMoved') and nav_test.get('filterMoved') and nav_test.get('detailHasProduct'))
+          compare_ok=bool(compare_test and compare_test.get('barVisible') and compare_test.get('compareState',0)>0 and compare_test.get('compareCells',0)>0)
+          mobile_ok=bool(mobile and mobile.get('root') and mobile.get('runtimeType')=='object' and mobile.get('horizontalOverflow',999)<=4 and mobile.get('categoryCount')==6 and mobile.get('productCount',0)>0)
+          mobile_interactions=bool(mobile_filter and mobile_filter.get('opened') and mobile_filter.get('closed') and mobile_category and mobile_category.get('active') and mobile_category.get('cards',0)>0 and mobile_category.get('overflow',999)<=4)
+          out['checks']={'desktop_ok':desktop_ok,'category_ok':bool(category_test and category_test.get('pass') and category_test.get('active')),'nav_ok':nav_ok,'compare_ok':compare_ok,'mobile_ok':mobile_ok,'mobile_interactions':mobile_interactions}
+          out['pass']=all(out['checks'].values())
+          p=pathlib.Path('diagnostics')/('k20-catalog-v3-browser-qa-'+os.environ.get('GITHUB_RUN_ID','run')+'.json')
+          p.write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          if not out['pass']:
+              raise SystemExit(3)
+          PY
+      - shell: bash
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add diagnostics/k20-catalog-v3-browser-qa-*.json diagnostics/k20-catalog-v3-*.png 2>/dev/null || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'qa: record catalog v3 browser evidence'
+          git pull --rebase origin main
+          git push origin main
