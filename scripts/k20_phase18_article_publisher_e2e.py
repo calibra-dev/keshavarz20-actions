@@ -7,9 +7,9 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 ART=ROOT/"daily-agri-articles"
 
-spec=importlib.util.spec_from_file_location("article_v5",ART/"publish_queue_v5.py")
-v5=importlib.util.module_from_spec(spec); spec.loader.exec_module(v5)
-base=v5.base
+spec=importlib.util.spec_from_file_location("article_v6",ART/"publish_queue_v6.py")
+v6=importlib.util.module_from_spec(spec); spec.loader.exec_module(v6)
+base=v6.base
 
 out=Path(sys.argv[1]); out.parent.mkdir(parents=True,exist_ok=True)
 post_id=None; media_id=None
@@ -102,11 +102,42 @@ p={
  "cover_title":"آزمون فنی موتور مقاله",
  "cover_subtitle":"پیش‌نویس موقت و حذف خودکار",
  "alt_text":"تصویر کشاورزی با مجوز باز برای آزمون فنی موقت موتور مقاله",
- "faq_items":[]
+ "faq_items":[],
+ "phase20_schema_version":"1",
+ "canonical_intent_id":"ir-intent-phase18-e2e-technical-transport-test",
+ "parent_hub":"راهنمای آبیاری و تجهیزات",
+ "scenario_dimensions":{
+   "crop":"",
+   "province_or_climate":"",
+   "season":"",
+   "area":"",
+   "water":"",
+   "soil":"",
+   "irrigation_system":"",
+   "problem":"آزمون موقت فنی مسیر انتشار پیش‌نویس",
+   "decision":"اعتبارسنجی کنترل‌شده publisher بدون انتشار عمومی"
+ },
+ "source_strength":"FIRST_PARTY_TECHNICAL_E2E",
+ "question_engine_intents_covered":["آیا مسیر فنی پیش‌نویس مقاله سالم است؟"],
+ "compatibility_rules_referenced":["draft_only","readback_required","cleanup_required"],
+ "membership_cta_type":"none",
+ "update_triggers":["تغییر نسخه publisher یا قرارداد Phase 20"],
+ "topic_score":{
+   "farmer_decision_value":20,
+   "independent_intent":15,
+   "evidence_strength":15,
+   "demand_signal":15,
+   "seasonal_relevance":10,
+   "business_relevance":10,
+   "original_value_potential":10,
+   "cannibalization_safety":5,
+   "total":100,
+   "blockers":[]
+ }
 }
 
 try:
-    base.validate_payload(p); steps.append({"step":"validate_payload_v5_chain","ok":True})
+    base.validate_payload(p); steps.append({"step":"validate_payload_v6_chain","ok":True})
     base.ensure_not_duplicate(p); steps.append({"step":"duplicate_guard","ok":True})
     cid,cname=base.resolve_category(p)
     if cid!=category_id: raise RuntimeError("Category readback mismatch")
@@ -122,8 +153,8 @@ try:
         and manifest.get("fail_closed_on_missing_persian_stack") is True
         and manifest.get("fail_closed_on_copy_overflow") is True
     )
-    steps.append({"step":"render_v5_cover","ok":visual_ok,"renderer":manifest.get("renderer")})
-    if not visual_ok: raise RuntimeError("Article v5 visual gate did not pass")
+    steps.append({"step":"render_v6_cover","ok":visual_ok,"renderer":manifest.get("renderer")})
+    if not visual_ok: raise RuntimeError("Article v6 visual gate did not pass")
 
     media_id=base.upload_wp_image(None,image_path,p,source); steps.append({"step":"upload_media_rest","ok":True,"media_id":media_id})
     post_id=base.create_draft(None,p,media_id,cid,cname,source); steps.append({"step":"create_draft_rest","ok":True,"post_id":post_id})
@@ -139,7 +170,7 @@ try:
       "ok":all(cleanup.values()),
       "temporary_post_id":post_id,
       "temporary_media_id":media_id,
-      "publisher_version":"v5",
+      "publisher_version":"v6",
       "transport":"wordpress_rest",
       "steps":steps,
       "cleanup_verified":cleanup,
