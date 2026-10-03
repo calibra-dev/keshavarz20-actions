@@ -1,0 +1,85 @@
+name: K20 Phase 20 Theme Asset Readonly
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/phase20-theme-asset/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-phase20-theme-asset-readonly
+  cancel-in-progress: false
+
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - name: Read exact IranKala JS/CSS assets
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $before='${{ github.event.before }}'; $current='${{ github.sha }}'; $zero='0000000000000000000000000000000000000000'
+          if($before -and $before -ne $zero){ $files=@(git diff --name-only $before $current -- 'diagnostics/phase20-theme-asset/*.json') }
+          else { $files=@(git show --pretty='' --name-only $current -- 'diagnostics/phase20-theme-asset/*.json') }
+          $reqPath=@($files | Where-Object { $_ -match '^diagnostics/phase20-theme-asset/.+\.json$' } | Sort-Object -Unique | Select-Object -First 1)
+          if(-not $reqPath){ throw 'No request file found.' }
+          $req=Get-Content -Raw -LiteralPath $reqPath | ConvertFrom-Json -Depth 20
+          $base=$env:WP_BASE_URL.TrimEnd('/')
+          $auth=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("$($env:WP_USERNAME):$($env:WP_APP_PASSWORD)"))
+          $headers=@{Authorization="Basic $auth";Accept='application/json';'Content-Type'='application/json'}
+          $out=@()
+          foreach($path in @($req.paths)){
+            $p=[string]$path
+            if($p -notmatch '^themes/irankala/[A-Za-z0-9_./-]+\.(js|css)$' -or $p -match '\.\.'){ throw "Unsafe path: $p" }
+            $body=[ordered]@{scope='wp-content';path=$p}|ConvertTo-Json -Compress
+            try {
+              $r=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/file/read" -Headers $headers -Method POST -Body $body -TimeoutSec 120
+            } catch {
+              $status=$null; try{$status=[int]$_.Exception.Response.StatusCode}catch{}
+              $out+=,[pscustomobject]@{path=$p;read_error=$_.Exception.Message;http_status=$status}; continue
+            }
+            $content=$null
+            if($r.PSObject.Properties.Name -contains 'content'){ $content=[string]$r.content }
+            elseif(($r.PSObject.Properties.Name -contains 'data') -and $r.data -and ($r.data.PSObject.Properties.Name -contains 'content')){ $content=[string]$r.data.content }
+            if($null -eq $content){ $out+=,[pscustomobject]@{path=$p;read_error='No content field returned'}; continue }
+            $matches=@()
+            foreach($pattern in @($req.patterns)){
+              $pat=[string]$pattern
+              $idx=0
+              while(($idx=$content.IndexOf($pat,$idx,[System.StringComparison]::OrdinalIgnoreCase)) -ge 0){
+                $start=[Math]::Max(0,$idx-300); $len=[Math]::Min(900,$content.Length-$start)
+                $snippet=$content.Substring($start,$len)
+                $matches+=,[pscustomobject]@{pattern=$pat;offset=$idx;snippet=$snippet}
+                $idx=$idx+[Math]::Max(1,$pat.Length)
+                if((@($matches | Where-Object pattern -eq $pat)).Count -ge 12){break}
+              }
+            }
+            $out+=,[pscustomobject]@{path=$p;bytes=$content.Length;matches=$matches}
+          }
+          New-Item -ItemType Directory -Force 'phase20-results' | Out-Null
+          [ordered]@{phase=20;mode='read-only';generated_at_utc=[DateTime]::UtcNow.ToString('o');files=$out}|ConvertTo-Json -Depth 30|Set-Content -LiteralPath 'phase20-results/theme-asset-signatures-latest.json' -Encoding utf8
+      - name: Persist sanitized signatures
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase20-results/theme-asset-signatures-latest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase20: record IranKala public asset signatures"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
