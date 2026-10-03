@@ -20,13 +20,20 @@ def clean(s):
     return re.sub(r"\s+"," ",s).strip()
 
 rows=[]
-for i,pid in enumerate(ids,1):
+chunks=[ids[i:i+50] for i in range(0,len(ids),50)]
+products=[]
+for chunk in chunks:
     for attempt in range(5):
-        r=S.get(f"{BASE}/wp-json/wc/v3/products/{pid}",timeout=90)
+        r=S.get(BASE+"/wp-json/wc/v3/products",params={"include":",".join(str(x) for x in chunk),"per_page":100},timeout=120)
         if r.status_code in (429,500,502,503,504):
             time.sleep((attempt+1)*1.5); continue
         r.raise_for_status(); break
-    p=r.json()
+    products.extend(r.json())
+by_id={int(p["id"]):p for p in products}
+missing=[x for x in ids if x not in by_id]
+if missing: raise SystemExit(f"missing target products: {missing}")
+for pid in ids:
+    p=by_id[pid]
     rows.append({
       "product_id":pid,
       "name":p.get("name"),
