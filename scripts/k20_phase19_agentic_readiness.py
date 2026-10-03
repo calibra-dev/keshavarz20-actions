@@ -48,6 +48,7 @@ def main(result_path, projection_path):
     add("phase11_partner_access_not_invented",p11s.get("direct_feed_partner_access_proven") is False)
 
     add("phase12_policy_guard_pass",p12s.get("ok") is True and p12s.get("merchant_center_submission_attempted") is False)
+    add("phase12_iran_restriction_respected",p12s.get("merchant_center_iran_restriction_respected") is True and p12s.get("fake_country_or_address_used") is False)
     add("phase12_no_fake_country_address",p12s.get("fake_country_or_address_used") is False)
     add("phase12_ucp_profile_not_published",p12s.get("ucp_public_profile_published") is False and (p12u.get("publication_gate") or {}).get("publish_now") is False)
     add("phase12_ucp_adapter_not_claimed",p12s.get("ucp_live_adapter_claimed") is False)
@@ -68,6 +69,7 @@ def main(result_path, projection_path):
     oa=cfg["openai_stable_feed"]; gu=cfg["google_ucp"]; gg=cfg["google_compatible_feed"]; lg=cfg["legal_policy_gate"]
     add("openai_required_field_contract_current",oa.get("required_fields")==["item_id","title","description","url","brand","seller_name","image_url","availability","price"])
     add("openai_snapshot_delivery_guarded",oa.get("delivery_model")=="full_snapshot" and oa.get("stable_filename_required") is True)
+    add("openai_market_scope_fail_closed",oa.get("standard_openai_format_default_market")=="US" and oa.get("additional_markets_require_openai_confirmation") is True)
     add("openai_api_delivery_current",oa.get("api_delivery_supported") is True and oa.get("partner_onboarding_required") is True and oa.get("stable_schema_required") is True)
     add("openai_no_submission_claim",oa.get("merchant_acceptance_or_feed_submission_claimed") is False and cfg.get("external_submission") is False)
     add("openai_no_checkout_claim",oa.get("checkout_claimed") is False)
