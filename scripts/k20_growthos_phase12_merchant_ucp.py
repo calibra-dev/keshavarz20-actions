@@ -89,7 +89,10 @@ merchant_map={
    'merchant_center_available':False,
    'account_creation_attempted':False,
    'feed_submission_attempted':False,
-   'fake_country_or_address_used':False
+   'fake_country_or_address_used':False,
+   'merchant_api_current':True,
+   'content_api_for_shopping_sunset_date':'2026-08-18',
+   'content_api_for_shopping_used':False
  },
  'catalog':{
    'candidate_rows_from_phase11':feed.get('candidate_feed_rows'),
@@ -121,6 +124,12 @@ ucp={
  'ucp_spec_version':'2026-04-08',
  'generated_at_utc':datetime.now(timezone.utc).isoformat(),
  'public_profile':ucp_public,
+ 'current_google_scope':{
+   'eligible_product_markets':['US','CA','AU'],
+   'participating_merchants_and_partners_required':True,
+   'checkout_select_merchants_only':True,
+   'keshavarz20_eligibility_claimed':False
+ },
  'publication_gate':{
    'publish_now':False,
    'reason_codes':['MERCHANT_ELIGIBILITY_NOT_PROVEN','UCP_PROGRAM_ACCESS_NOT_PROVEN','NO_UCP_AUTHENTICATED_ADAPTER_ENDPOINT'],
@@ -155,6 +164,10 @@ summary={
  'status':'PASS_ARCHITECTURE_READY_POLICY_GUARD' if ok else 'PARTIAL',
  'merchant_center_iran_restriction_respected':True,
  'merchant_center_submission_attempted':False,
+ 'merchant_api_current':True,
+ 'content_api_for_shopping_used':False,
+ 'ucp_current_eligible_markets':['US','CA','AU'],
+ 'ucp_keshavarz20_eligibility_claimed':False,
  'fake_country_or_address_used':False,
  'ucp_spec_version':'2026-04-08',
  'ucp_public_profile_published':ucp_public['published_profile_detected'],
