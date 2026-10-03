@@ -1,12 +1,12 @@
 {
   "ok": true,
-  "temporary_post_id": 146203,
-  "temporary_media_id": 146200,
-  "publisher_version": "v5",
+  "temporary_post_id": 146690,
+  "temporary_media_id": 146689,
+  "publisher_version": "v6",
   "transport": "wordpress_rest",
   "steps": [
     {
-      "step": "validate_payload_v5_chain",
+      "step": "validate_payload_v6_chain",
       "ok": true
     },
     {
@@ -24,19 +24,19 @@
       "license": "Public domain"
     },
     {
-      "step": "render_v5_cover",
+      "step": "render_v6_cover",
       "ok": true,
       "renderer": "k20-cover-v5-cinematic-deterministic-persian"
     },
     {
       "step": "upload_media_rest",
       "ok": true,
-      "media_id": 146200
+      "media_id": 146689
     },
     {
       "step": "create_draft_rest",
       "ok": true,
-      "post_id": 146203
+      "post_id": 146690
     },
     {
       "step": "verify_readback",
