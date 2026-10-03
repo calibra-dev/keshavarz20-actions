@@ -57,6 +57,7 @@ jobs:
           python -m py_compile product-engine/engine.py
           python -m py_compile k20_sanitizer.py
           python scripts/check_product_engine_primary_route.py
+          python tests/test_product_engine_platform_debt.py
 
   publish-product:
     if: github.event_name != 'pull_request'
