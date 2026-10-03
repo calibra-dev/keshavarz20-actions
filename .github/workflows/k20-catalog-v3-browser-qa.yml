@@ -124,7 +124,7 @@ jobs:
             };
           })()''',True)
 
-          nav_test=obj(r'''(async function(){
+          nav_test=raw(r'''(async function(){
             const root=document.getElementById('k20CatalogV3');
             const categoryNav=document.querySelector('.k20-section-nav [data-scroll="k20-categories"]');
             const filterNav=document.querySelector('.k20-section-nav [data-action="filters"]');
@@ -153,7 +153,7 @@ jobs:
             };
           })()''',True)
 
-          compare_test=obj(r'''(async function(){
+          compare_test=raw(r'''(async function(){
             const firstCompare=document.querySelector('.k20-product-card .k20-card-actions button:not(.view)');
             firstCompare?.click();
             await new Promise(r=>setTimeout(r,250));
@@ -209,7 +209,7 @@ jobs:
             const closed=!panel?.classList.contains('open')&&!back?.classList.contains('open');
             return {opened,closed};
           })()''',True)
-          mobile_category=obj(r'''(async function(){
+          mobile_category=raw(r'''(async function(){
             const b=document.querySelector('.k20-category-card[data-category-id="826"]');
             b?.click();
             for(let i=0;i<60;i++){
