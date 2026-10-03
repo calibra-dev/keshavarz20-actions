@@ -209,6 +209,33 @@ def acceptance(result: dict[str,Any], policy: dict[str,Any]) -> dict[str,Any]:
     return {"ok":not reasons,"reasons":reasons,"summary":summary}
 
 
+def acceptance_delta(before: dict[str,Any], after: dict[str,Any], policy: dict[str,Any]) -> dict[str,Any]:
+    """Separate inherited platform Lighthouse debt from newly introduced blockers."""
+    before_acceptance=acceptance(before,policy)
+    after_acceptance=acceptance(after,policy)
+    inherit_existing=bool(policy.get("inherited_platform_debt_is_warning",False))
+    before_reasons=set(before_acceptance.get("reasons") or [])
+    inherited=[]
+    new_reasons=[]
+    for reason in after_acceptance.get("reasons") or []:
+        measurement_blocker=(
+            reason.startswith("successful Lighthouse runs <")
+            or reason.endswith("metrics unavailable")
+        )
+        if inherit_existing and reason in before_reasons and not measurement_blocker:
+            inherited.append(reason)
+        else:
+            new_reasons.append(reason)
+    return {
+        "ok":not new_reasons,
+        "mode":"baseline_relative" if inherit_existing else "absolute",
+        "before_reasons":before_acceptance.get("reasons") or [],
+        "after_reasons":after_acceptance.get("reasons") or [],
+        "inherited_reasons":inherited,
+        "new_reasons":new_reasons,
+    }
+
+
 def passes(result: dict[str,Any], policy: dict[str,Any] | None=None) -> bool:
     if policy is None:
         policy={
