@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-26T04:55:44.048Z",
+  "generated_at_utc": "2026-10-03T05:35:00Z",
   "phase": 12,
   "topic": "Google Merchant / UCP readiness",
   "official_sources": [
@@ -41,7 +41,15 @@
       "url": "https://developers.google.com/merchant/api/latest-updates",
       "facts": [
         "Content API for Shopping sunset on 2026-08-18; Merchant API is the current API path.",
-        "UCP account integration support was added with limited access."
+        "UCP account integration support exists in Merchant API with limited access."
+      ]
+    },
+    {
+      "source": "Google Merchant Center UCP scope",
+      "url": "https://support.google.com/merchants/answer/16837055?hl=en",
+      "facts": [
+        "Current Google help says UCP checkout guidance applies to eligible products in the United States, Canada, and Australia and to participating merchants and partners.",
+        "UCP checkout remains available to select merchants; eligibility and participation must not be inferred."
       ]
     }
   ],
@@ -50,5 +58,6 @@
     "Do not publish /.well-known/ucp until a real UCP service endpoint and permitted integration exist.",
     "Do not claim UCP checkout/cart/order support merely because WooCommerce has cart and checkout pages.",
     "Keep product IDs, variants, price, stock, shipping, returns, cart and order contracts ready for future authorized integration."
-  ]
+  ],
+  "verified_at_date": "2026-10-03"
 }
