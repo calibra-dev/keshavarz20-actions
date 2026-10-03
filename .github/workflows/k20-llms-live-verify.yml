@@ -1,0 +1,100 @@
+name: K20 llms.txt Live Verify
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'llms-verify-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-llms-live-verify-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Verify public llms.txt and site health
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t changed < <(git show --pretty='' --name-only HEAD -- 'llms-verify-ops/*.json' | sort -u)
+          if [ "${#changed[@]}" -ne 1 ]; then
+            echo "Expected exactly one verification request, got ${#changed[@]}"
+            exit 2
+          fi
+          name="$(basename "${changed[0]}" .json)"
+          mkdir -p llms-verify-results
+
+          llms_code="$(curl -L -sS -D /tmp/llms.headers -o /tmp/llms.body -w '%{http_code}' --max-time 45 'https://keshavarz20.com/llms.txt' || true)"
+          final_url="$(curl -L -sS -o /dev/null -w '%{url_effective}' --max-time 45 'https://keshavarz20.com/llms.txt' || true)"
+          root_code="$(curl -L -sS -o /tmp/root.body -w '%{http_code}' --max-time 45 'https://keshavarz20.com/' || true)"
+          rest_code="$(curl -L -sS -o /tmp/rest.body -w '%{http_code}' --max-time 45 'https://keshavarz20.com/wp-json/' || true)"
+
+          python3 - "$name" "$llms_code" "$root_code" "$rest_code" "$final_url" <<'PY'
+          import hashlib, json, pathlib, sys
+          name,llms_code,root_code,rest_code,final_url=sys.argv[1:]
+          body=pathlib.Path('/tmp/llms.body').read_bytes() if pathlib.Path('/tmp/llms.body').exists() else b''
+          headers=pathlib.Path('/tmp/llms.headers').read_text(errors='replace') if pathlib.Path('/tmp/llms.headers').exists() else ''
+          text=body.decode('utf-8','replace')
+          content_type=''
+          for line in headers.splitlines():
+              if line.lower().startswith('content-type:'):
+                  content_type=line.split(':',1)[1].strip()
+          checks={
+              'http_200': llms_code=='200',
+              'exact_url': final_url.rstrip('/')=='https://keshavarz20.com/llms.txt',
+              'text_plain': content_type.lower().startswith('text/plain'),
+              'brand_heading': text.startswith('# Keshavarz20 (کشاورز بیست)'),
+              'canonical_site': 'https://keshavarz20.com/' in text,
+              'sitemap': 'sitemap_index.xml' in text,
+              'citation_guidance': '## Citation guidance' in text,
+              'root_healthy': root_code=='200',
+              'rest_healthy': rest_code=='200',
+          }
+          ok=all(checks.values())
+          out={
+              'ok':ok,
+              'target':'https://keshavarz20.com/llms.txt',
+              'http_status':int(llms_code or 0),
+              'content_type':content_type,
+              'final_url':final_url,
+              'bytes':len(body),
+              'sha256':hashlib.sha256(body).hexdigest() if body else None,
+              'root_http':int(root_code or 0),
+              'rest_http':int(rest_code or 0),
+              'checks':checks,
+              'body_head':text[:700],
+          }
+          pathlib.Path(f'llms-verify-results/{name}.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          if not ok:
+              raise SystemExit(3)
+          PY
+
+      - name: Commit verification result
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -d llms-verify-results ]; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f llms-verify-results/
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "llms: record live verification"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt*2))
+          done
+          exit 1
