@@ -36,6 +36,12 @@ For normal Product Engine production, Connected ChatGPT MUST use the dedicated i
 
 Connected ChatGPT MUST NOT create `bridge-v3-ops/*.json` for normal Product Engine producer reads. The relay is intentionally tiny so the connected GitHub write contains no REST path, Bridge action, SEO payload, credentials or site mutation instruction; the repository workflow owns those details.
 
+### Live-read delivery reliability
+
+Primary live-read request delivery is a direct immutable create on current `main`. If the connected GitHub layer cannot place that tiny request directly on `main`, do not manually fast-forward a temporary commit and do not stop the product run. Create exactly one immutable `product-engine/live-read-ops/*.json` request on a branch named `automation/product-*`. `.github/workflows/k20-product-live-read-promoter.yml` validates and promotes that exact request to current `main`, then explicitly dispatches `k20-product-producer-live-read.yml` with the exact `request_file`. The promoter must not rely on a workflow-generated `GITHUB_TOKEN` push to recursively trigger the live-read workflow.
+
+Never rewrite or reuse an old live-read request. If promotion races with another main change, the promoter rebases/retries; the producer still requires a new uniquely named request immediately before queue delivery so freshness is preserved.
+
 If a relay request/result is temporarily unavailable, do not fall back to inventory timestamps, cached HTML or an older live-read result. Leave the recurring automation enabled and retry the same product on the next run.
 
 ### Queue-delivery reliability
