@@ -1,0 +1,484 @@
+{
+  "phase": 20,
+  "mode": "read-only",
+  "post_id": 143732,
+  "rows": [
+    {
+      "pattern": "/*",
+      "http_status": 200,
+      "response": {
+        "target": "post 143732 post_content",
+        "pattern": "/*",
+        "matches": [
+          {
+            "line": 1,
+            "content": "/* ============================================================",
+            "context_after": "   KESHAVARZ20"
+          },
+          {
+            "line": 8,
+            "content": "/* ============================================================",
+            "context_before": "",
+            "context_after": "   MOBILE ONLY"
+          },
+          {
+            "line": 15,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       01. BASE"
+          },
+          {
+            "line": 32,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       02. PRODUCT GRID"
+          },
+          {
+            "line": 68,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       03. PRODUCT CARD"
+          },
+          {
+            "line": 125,
+            "content": "    /* فیدبک لمس کارت */",
+            "context_before": "",
+            "context_after": ""
+          },
+          {
+            "line": 138,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       04. INNER WRAPPERS"
+          },
+          {
+            "line": 172,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       05. MAIN PRODUCT LINK"
+          },
+          {
+            "line": 204,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       06. PRODUCT IMAGE"
+          },
+          {
+            "line": 247,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       07. PRODUCT TITLE"
+          },
+          {
+            "line": 305,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       08. PRICE"
+          },
+          {
+            "line": 354,
+            "content": "    /* قیمت قبلی */",
+            "context_before": "",
+            "context_after": ""
+          },
+          {
+            "line": 372,
+            "content": "    /* قیمت تخفیفی */",
+            "context_before": "",
+            "context_after": ""
+          },
+          {
+            "line": 390,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       09. RATING"
+          },
+          {
+            "line": 413,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       10. SALE BADGE"
+          },
+          {
+            "line": 449,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       11. WHATSAPP"
+          },
+          {
+            "line": 486,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       12. MOBILE BOTTOM NAV"
+          },
+          {
+            "line": 500,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       13. PAGINATION CONTAINER"
+          },
+          {
+            "line": 532,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       14. PAGINATION"
+          },
+          {
+            "line": 583,
+            "content": "    /* آیتم Pagination */",
+            "context_before": "",
+            "context_after": ""
+          },
+          {
+            "line": 622,
+            "content": "    /* شماره‌ها */",
+            "context_before": "",
+            "context_after": ""
+          },
+          {
+            "line": 680,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       15. CURRENT PAGE"
+          },
+          {
+            "line": 712,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       16. PAGINATION DOTS"
+          },
+          {
+            "line": 737,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       17. PAGINATION ARROWS"
+          },
+          {
+            "line": 774,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       18. SHOP DESCRIPTION WRAPPER"
+          },
+          {
+            "line": 808,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       19. SHOP MAIN HEADING"
+          },
+          {
+            "line": 851,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       20. SHOP SECOND HEADING"
+          },
+          {
+            "line": 894,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       21. SHOP DESCRIPTION TEXT"
+          },
+          {
+            "line": 935,
+            "content": "    /* ========================================================",
+            "context_before": "",
+            "context_after": "       22. ACCESSIBILITY"
+          },
+          {
+            "line": 959,
+            "content": "/* ============================================================",
+            "context_before": "",
+            "context_after": "   REAL HOVER DEVICES ONLY"
+          },
+          {
+            "line": 982,
+            "content": "/* P-CWV-01: allow the WooCommerce primary product gallery to paint immediately.",
+            "context_before": "",
+            "context_after": "   The gallery already has explicit image dimensions and the LCP image is eager/high-priority;"
+          },
+          {
+            "line": 989,
+            "content": "/* P-CWV-02: paint the first homepage hero before Owl Carousel JS initializes.",
+            "context_before": "",
+            "context_after": "   Owl hides .owl-carousel until .owl-loaded; this exposes only the first slide during that short pre-init window. */"
+          }
+        ],
+        "total_matches": 32,
+        "total_lines": 1000,
+        "truncated": false
+      }
+    },
+    {
+      "pattern": "@media",
+      "http_status": 200,
+      "response": {
+        "target": "post 143732 post_content",
+        "pattern": "@media",
+        "matches": [
+          {
+            "line": 12,
+            "content": "@media screen and (max-width: 767px) {",
+            "context_before": "",
+            "context_after": ""
+          },
+          {
+            "line": 964,
+            "content": "@media screen and (max-width: 767px) and (hover: hover) {",
+            "context_before": "",
+            "context_after": ""
+          }
+        ],
+        "total_matches": 2,
+        "total_lines": 1000,
+        "truncated": false
+      }
+    },
+    {
+      "pattern": ".main-header",
+      "http_status": 200,
+      "response": {
+        "target": "post 143732 post_content",
+        "pattern": ".main-header",
+        "matches": [],
+        "total_matches": 0,
+        "total_lines": 1000,
+        "truncated": false
+      }
+    },
+    {
+      "pattern": ".owl-dots",
+      "http_status": 200,
+      "response": {
+        "target": "post 143732 post_content",
+        "pattern": ".owl-dots",
+        "matches": [],
+        "total_matches": 0,
+        "total_lines": 1000,
+        "truncated": false
+      }
+    },
+    {
+      "pattern": "}",
+      "http_status": 200,
+      "response": {
+        "target": "post 143732 post_content",
+        "pattern": "}",
+        "matches": [
+          {
+            "line": 22,
+            "content": "    }",
+            "context_before": "        overflow-x: hidden !important;",
+            "context_after": ""
+          },
+          {
+            "line": 28,
+            "content": "    }",
+            "context_before": "        padding-bottom: 82px !important;",
+            "context_after": ""
+          },
+          {
+            "line": 64,
+            "content": "    }",
+            "context_before": "        box-sizing: border-box !important;",
+            "context_after": ""
+          },
+          {
+            "line": 121,
+            "content": "    }",
+            "context_before": "            border-color .16s ease !important;",
+            "context_after": ""
+          },
+          {
+            "line": 134,
+            "content": "    }",
+            "context_before": "            0 1px 4px rgba(15, 35, 25, .06) !important;",
+            "context_after": ""
+          },
+          {
+            "line": 168,
+            "content": "    }",
+            "context_before": "        box-sizing: border-box !important;",
+            "context_after": ""
+          },
+          {
+            "line": 200,
+            "content": "    }",
+            "context_before": "        box-sizing: border-box !important;",
+            "context_after": ""
+          },
+          {
+            "line": 243,
+            "content": "    }",
+            "context_before": "        image-rendering: auto !important;",
+            "context_after": ""
+          },
+          {
+            "line": 301,
+            "content": "    }",
+            "context_before": "        color: #202523 !important;",
+            "context_after": ""
+          },
+          {
+            "line": 350,
+            "content": "    }",
+            "context_before": "        color: #121715 !important;",
+            "context_after": ""
+          },
+          {
+            "line": 368,
+            "content": "    }",
+            "context_before": "            2px !important;",
+            "context_after": ""
+          },
+          {
+            "line": 386,
+            "content": "    }",
+            "context_before": "        padding: 0 !important;",
+            "context_after": ""
+          },
+          {
+            "line": 409,
+            "content": "    }",
+            "context_before": "            auto !important;",
+            "context_after": ""
+          },
+          {
+            "line": 445,
+            "content": "    }",
+            "context_before": "        z-index: 5 !important;",
+            "context_after": ""
+          },
+          {
+            "line": 482,
+            "content": "    }",
+            "context_before": "        z-index: 9999 !important;",
+            "context_after": ""
+          },
+          {
+            "line": 496,
+            "content": "    }",
+            "context_before": "        z-index: 9990 !important;",
+            "context_after": ""
+          },
+          {
+            "line": 528,
+            "content": "    }",
+            "context_before": "        overflow: hidden !important;",
+            "context_after": ""
+          },
+          {
+            "line": 579,
+            "content": "    }",
+            "context_before": "        box-sizing: border-box !important;",
+            "context_after": ""
+          },
+          {
+            "line": 618,
+            "content": "    }",
+            "context_before": "        box-sizing: border-box !important;",
+            "context_after": ""
+          },
+          {
+            "line": 676,
+            "content": "    }",
+            "context_before": "        text-decoration: none !important;",
+            "context_after": ""
+          },
+          {
+            "line": 708,
+            "content": "    }",
+            "context_before": "        line-height: 22px !important;",
+            "context_after": ""
+          },
+          {
+            "line": 733,
+            "content": "    }",
+            "context_before": "        font-size: 9px !important;",
+            "context_after": ""
+          },
+          {
+            "line": 770,
+            "content": "    }",
+            "context_before": "        line-height: 20px !important;",
+            "context_after": ""
+          },
+          {
+            "line": 804,
+            "content": "    }",
+            "context_before": "        text-align: right !important;",
+            "context_after": ""
+          },
+          {
+            "line": 847,
+            "content": "    }",
+            "context_before": "        color: #222a26 !important;",
+            "context_after": ""
+          },
+          {
+            "line": 890,
+            "content": "    }",
+            "context_before": "        color: #39433e !important;",
+            "context_after": ""
+          },
+          {
+            "line": 931,
+            "content": "    }",
+            "context_before": "        color: #66706b !important;",
+            "context_after": ""
+          },
+          {
+            "line": 953,
+            "content": "    }",
+            "context_before": "            8px !important;",
+            "context_after": ""
+          },
+          {
+            "line": 955,
+            "content": "}",
+            "context_before": "",
+            "context_after": ""
+          },
+          {
+            "line": 978,
+            "content": "    }",
+            "context_before": "            rgba(15, 35, 25, .09) !important;",
+            "context_after": ""
+          },
+          {
+            "line": 980,
+            "content": "}",
+            "context_before": "",
+            "context_after": ""
+          },
+          {
+            "line": 987,
+            "content": "}",
+            "context_before": "    opacity: 1 !important;",
+            "context_after": ""
+          },
+          {
+            "line": 993,
+            "content": "}",
+            "context_before": "    display: block !important;",
+            "context_after": "body.home .fullwidth-slider .owl-carousel:not(.owl-loaded) > * {"
+          },
+          {
+            "line": 996,
+            "content": "}",
+            "context_before": "    display: none !important;",
+            "context_after": "body.home .fullwidth-slider .owl-carousel:not(.owl-loaded) > :first-child {"
+          },
+          {
+            "line": 999,
+            "content": "}",
+            "context_before": "    display: block !important;",
+            "context_after": ""
+          }
+        ],
+        "total_matches": 35,
+        "total_lines": 1000,
+        "truncated": false
+      }
+    }
+  ],
+  "site_mutations": 0
+}
