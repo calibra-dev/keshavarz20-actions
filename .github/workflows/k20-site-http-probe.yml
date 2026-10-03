@@ -26,8 +26,8 @@ jobs:
             'page_status':os.environ.get('PAGE_CODE',''),
             'rest_status':os.environ.get('REST_CODE',''),
             'root_status':os.environ.get('ROOT_CODE',''),
-            'page_head':pathlib.Path('/tmp/page.html').read_text(errors='replace')[:180] if pathlib.Path('/tmp/page.html').exists() else '',
-            'rest_head':pathlib.Path('/tmp/rest.txt').read_text(errors='replace')[:180] if pathlib.Path('/tmp/rest.txt').exists() else ''
+            'page_head':pathlib.Path('/tmp/page.html').read_text(errors='replace')[:1500] if pathlib.Path('/tmp/page.html').exists() else '',
+            'rest_head':pathlib.Path('/tmp/rest.txt').read_text(errors='replace')[:1500] if pathlib.Path('/tmp/rest.txt').exists() else ''
           }
           pathlib.Path('diagnostics/k20-site-http-probe.json').write_text(json.dumps(out,ensure_ascii=False,indent=2))
           print(json.dumps(out,ensure_ascii=False,indent=2))
@@ -46,8 +46,8 @@ jobs:
           python3 - "$PAGE_CODE" "$REST_CODE" "$ROOT_CODE" <<'PY'
           import json,pathlib,sys
           out={'page_status':sys.argv[1],'rest_status':sys.argv[2],'root_status':sys.argv[3],
-               'page_head':pathlib.Path('/tmp/page.html').read_text(errors='replace')[:180] if pathlib.Path('/tmp/page.html').exists() else '',
-               'rest_head':pathlib.Path('/tmp/rest.txt').read_text(errors='replace')[:180] if pathlib.Path('/tmp/rest.txt').exists() else ''}
+               'page_head':pathlib.Path('/tmp/page.html').read_text(errors='replace')[:1500] if pathlib.Path('/tmp/page.html').exists() else '',
+               'rest_head':pathlib.Path('/tmp/rest.txt').read_text(errors='replace')[:1500] if pathlib.Path('/tmp/rest.txt').exists() else ''}
           pathlib.Path('diagnostics/k20-site-http-probe.json').write_text(json.dumps(out,ensure_ascii=False,indent=2))
           print(json.dumps(out,ensure_ascii=False,indent=2))
           PY
