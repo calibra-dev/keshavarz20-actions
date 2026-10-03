@@ -21,7 +21,11 @@ jobs:
           import json, os, subprocess
           from decimal import Decimal
           from pathlib import Path
-          from scripts.k20_currency_normalization import normalize_commerce_price, merchant_amount_micros
+          import importlib.util
+          spec=importlib.util.spec_from_file_location("k20_currency_normalization","scripts/k20_currency_normalization.py")
+          mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
+          normalize_commerce_price=mod.normalize_commerce_price
+          merchant_amount_micros=mod.merchant_amount_micros
           cfg=json.loads(Path("phase19/agentic-readiness.json").read_text())
           p=cfg["currency_export_policy"]
           checks={
