@@ -23,7 +23,8 @@
     "max_products_per_run": 1,
     "immutable_queue": true,
     "protected_commerce_fields": true,
-    "fail_closed": true
+    "fail_closed": true,
+    "inherited_platform_debt_is_warning": true
   },
   "forbidden_primary_dependencies": [
     "OPENAI_API_KEY",
@@ -85,5 +86,12 @@
     "promoter_handoff": "explicit_workflow_dispatch",
     "dispatch_endpoint": "actions/workflows/k20-product-producer-live-read.yml/dispatches",
     "never_rely_on_github_token_push_recursion": true
+  },
+  "platform_debt_policy": {
+    "absolute_targets_remain_visible": true,
+    "inherited_baseline_failures_are_warnings": true,
+    "new_post_publish_failures_remain_blocking": true,
+    "measurement_unavailable_remains_blocking": true,
+    "regressions_still_rollback": true
   }
 }
