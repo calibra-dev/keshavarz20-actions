@@ -1,0 +1,2894 @@
+{
+  "phase": 20,
+  "mode": "read-only",
+  "route_count": 1179,
+  "matched_routes": [
+    {
+      "route": "/indexnow/v_1.0.4/apiSettings",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/k20-ai/v1/settings",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": []
+    },
+    {
+      "route": "/keshavarz20-indexability/v1/ethephon-css-fix",
+      "methods": [
+        "POST"
+      ],
+      "args": []
+    },
+    {
+      "route": "/redirection/v1/setting",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wpvibe/v1",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "context",
+        "namespace"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/connection-check-challenge",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor-mcp-composer/v1.0.18",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "context",
+        "namespace"
+      ]
+    },
+    {
+      "route": "/elementor-mcp-composer/v1.0.18/mcp-settings",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "args": [
+        "enabled"
+      ]
+    },
+    {
+      "route": "/elementor-mcp-composer/v1.0.18/mcp-credentials",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "client"
+      ]
+    },
+    {
+      "route": "/elementor-one/v1",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "context",
+        "namespace"
+      ]
+    },
+    {
+      "route": "/elementor-one/v1/connect/authorize",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "clearSession"
+      ]
+    },
+    {
+      "route": "/elementor-one/v1/connect/disconnect",
+      "methods": [
+        "POST"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor-one/v1/connect/switch-domain",
+      "methods": [
+        "POST"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor-one/v1/connect/deactivate",
+      "methods": [
+        "POST"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor-one/v1/top-bar/notifications",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "app_name",
+        "app_version"
+      ]
+    },
+    {
+      "route": "/elementor-one/v1/top-bar/feedback",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "countryCode",
+        "description",
+        "product",
+        "subject",
+        "title"
+      ]
+    },
+    {
+      "route": "/elementor-one/v1/themes",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "slug",
+        "status"
+      ]
+    },
+    {
+      "route": "/elementor-one/v1/themes/(?P<slug>[\\w\\-]+)/activate",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "slug"
+      ]
+    },
+    {
+      "route": "/elementor-one/v1/plugins",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "args": [
+        "context",
+        "search",
+        "slug",
+        "status"
+      ]
+    },
+    {
+      "route": "/elementor-one/v1/plugins/(?P<slug>[\\w\\-]+)/activate",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "slug"
+      ]
+    },
+    {
+      "route": "/elementor-one/v1/plugins/(?P<slug>[\\w\\-]+)/deactivate",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "slug"
+      ]
+    },
+    {
+      "route": "/elementor-one/v1/plugins/(?P<slug>[\\w\\-]+)/upgrade",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "slug",
+        "status"
+      ]
+    },
+    {
+      "route": "/elementor-one/v1/plugins/(?P<slug>[\\w\\-]+)/migration/run",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "force",
+        "slug"
+      ]
+    },
+    {
+      "route": "/elementor-one/v1/plugins/(?P<slug>[\\w\\-]+)/migration/rollback",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "slug"
+      ]
+    },
+    {
+      "route": "/elementor-one/v1/settings",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor-one/v1/manage-dashboard-widget/state",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor-one/v1/logs",
+      "methods": [
+        "DELETE",
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "context",
+        "namespace"
+      ]
+    },
+    {
+      "route": "/elementor/v1/site-editor",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/site-editor/templates",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/site-editor/templates/(?P<id>[\\w]+)",
+      "methods": [
+        "DELETE",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "id"
+      ]
+    },
+    {
+      "route": "/elementor/v1/site-editor/conditions-config",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/site-editor/templates-conditions/(?P<id>[\\w]+)",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "id"
+      ]
+    },
+    {
+      "route": "/elementor/v1/site-editor/templates-conditions-conflicts",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor-pro/v1",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "context",
+        "namespace"
+      ]
+    },
+    {
+      "route": "/elementor-pro/v1/license/tier-features",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor-pro/v1/license/get-license-status",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wpvibe/v1/self-update/health",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wpvibe/v1/self-update/run",
+      "methods": [
+        "POST"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wpvibe/v1/detached/run",
+      "methods": [
+        "POST"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wpvibe/v1/site-info",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wpvibe/v1/registered-meta",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "post_type"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/file/read",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "end_line",
+        "path",
+        "scope",
+        "start_line"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/file/list",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "directory",
+        "pattern",
+        "scope"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/file/search",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "case_sensitive",
+        "extensions",
+        "max_results",
+        "pattern"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/file/outline",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "path"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/file/edit",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "new_content",
+        "old_content",
+        "path"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/file/write",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "content",
+        "expected_source_hash",
+        "path"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/file/delete",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "path"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/content/edit",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "field",
+        "meta_key",
+        "new_content",
+        "old_content",
+        "option_name",
+        "post_id",
+        "replace_all",
+        "target_type",
+        "whole_word"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/content/search",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "case_sensitive",
+        "field",
+        "max_results",
+        "meta_key",
+        "option_name",
+        "pattern",
+        "post_id",
+        "target_type"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/classic-theme-safety",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "challenge"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/draft-theme/compile-sources",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wpvibe/v1/draft-theme",
+      "methods": [
+        "DELETE",
+        "POST"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wpvibe/v1/draft-theme/publish",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "expected_source_hash"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/draft-theme/preview",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wpvibe/v1/draft-theme/delete",
+      "methods": [
+        "POST"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wpvibe/v1/cli/run",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "command",
+        "confirm_write"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/audit-log",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "limit",
+        "offset"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/audit-log/record",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "command",
+        "dry_run",
+        "operation",
+        "params",
+        "result_summary"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/op-receipt/(?P<op_id>[a-z0-9_.:]+)",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "op_id"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/cli/run-approved",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "approved_state",
+        "command",
+        "confirm_write",
+        "detach"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/authorize",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "app_id",
+        "name"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/authorize/preflight",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wpvibe/v1/connection-status",
+      "methods": [
+        "POST"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wpvibe/v1/op-proof/check",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "challenge"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/code-snippet",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "action",
+        "code",
+        "code_type",
+        "id",
+        "insert_method",
+        "location",
+        "title"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/code-snippet/dormant",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "action",
+        "code",
+        "code_type",
+        "id",
+        "insert_method",
+        "location",
+        "title"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/cli/status",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wpvibe/v1/builder-login",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "page_id"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/rendered-html",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "path"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/create-classic-theme",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "description",
+        "theme_name"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/create-classic-theme-safe",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "description",
+        "theme_name"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/upload-media",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "alt_text",
+        "post_id",
+        "title",
+        "url"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/last-change",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "since"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/navigate",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "url"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/elementor/widgets",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wpvibe/v1/elementor/schema",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "names",
+        "prefix",
+        "slug"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/elementor/style-schema",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "names",
+        "prefix"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/elementor/save-page",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "data",
+        "id",
+        "page_template",
+        "post_type",
+        "status",
+        "template_type",
+        "title"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/elementor/save-template",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "conditions",
+        "data",
+        "id",
+        "status",
+        "title",
+        "type"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/beaver/save-page",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "data",
+        "id",
+        "post_type",
+        "status",
+        "theme_layout_locations",
+        "theme_layout_settings",
+        "theme_layout_type",
+        "title"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/beaver/modules",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wpvibe/v1/beaver/schema",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "slug"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/breakdance/save-page",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "id",
+        "post_type",
+        "status",
+        "template",
+        "title",
+        "tree",
+        "tree_json_string"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/breakdance/get-page",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "id"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/breakdance/elements",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wpvibe/v1/bricks/save-page",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "elements",
+        "id",
+        "post_type",
+        "status",
+        "title"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/bricks/get-page",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "id"
+      ]
+    },
+    {
+      "route": "/wpvibe/v1/bricks/elements",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wpvibe/v1/ping",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wpvibe/v1/health",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wc-admin/options",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wc-admin/themes",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "context",
+        "pluginzip"
+      ]
+    },
+    {
+      "route": "/wc-admin/onboarding/themes/install",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wc-admin/onboarding/themes/activate",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wc-analytics/customers",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "after",
+        "avg_order_value_between",
+        "avg_order_value_max",
+        "avg_order_value_min",
+        "before",
+        "context",
+        "country_excludes",
+        "country_includes",
+        "customers_exclude",
+        "email_excludes",
+        "email_includes",
+        "filter_empty",
+        "force_cache_refresh",
+        "include",
+        "last_active_after",
+        "last_active_before",
+        "last_active_between",
+        "last_order_after",
+        "last_order_before",
+        "location_excludes",
+        "location_includes",
+        "match",
+        "name_excludes",
+        "name_includes",
+        "order",
+        "orderby",
+        "orders_count_between",
+        "orders_count_max",
+        "orders_count_min",
+        "page",
+        "per_page",
+        "registered_after",
+        "registered_before",
+        "registered_between",
+        "search",
+        "searchby",
+        "total_spend_between",
+        "total_spend_max",
+        "total_spend_min",
+        "user_type",
+        "username_excludes",
+        "username_includes",
+        "users"
+      ]
+    },
+    {
+      "route": "/wc-analytics/customers/(?P<id>[\\d-]+)",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "after",
+        "avg_order_value_between",
+        "avg_order_value_max",
+        "avg_order_value_min",
+        "before",
+        "context",
+        "country_excludes",
+        "country_includes",
+        "customers_exclude",
+        "email_excludes",
+        "email_includes",
+        "filter_empty",
+        "force_cache_refresh",
+        "id",
+        "include",
+        "last_active_after",
+        "last_active_before",
+        "last_active_between",
+        "last_order_after",
+        "last_order_before",
+        "location_excludes",
+        "location_includes",
+        "match",
+        "name_excludes",
+        "name_includes",
+        "order",
+        "orderby",
+        "orders_count_between",
+        "orders_count_max",
+        "orders_count_min",
+        "page",
+        "per_page",
+        "registered_after",
+        "registered_before",
+        "registered_between",
+        "search",
+        "searchby",
+        "total_spend_between",
+        "total_spend_max",
+        "total_spend_min",
+        "user_type",
+        "username_excludes",
+        "username_includes",
+        "users"
+      ]
+    },
+    {
+      "route": "/wc-analytics/reports/customers",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "after",
+        "avg_order_value_between",
+        "avg_order_value_max",
+        "avg_order_value_min",
+        "before",
+        "context",
+        "country_excludes",
+        "country_includes",
+        "customers",
+        "customers_exclude",
+        "email_excludes",
+        "email_includes",
+        "filter_empty",
+        "force_cache_refresh",
+        "last_active_after",
+        "last_active_before",
+        "last_active_between",
+        "last_order_after",
+        "last_order_before",
+        "location_excludes",
+        "location_includes",
+        "match",
+        "name_excludes",
+        "name_includes",
+        "order",
+        "orderby",
+        "orders_count_between",
+        "orders_count_max",
+        "orders_count_min",
+        "page",
+        "per_page",
+        "registered_after",
+        "registered_before",
+        "registered_between",
+        "search",
+        "searchby",
+        "total_spend_between",
+        "total_spend_max",
+        "total_spend_min",
+        "user_type",
+        "username_excludes",
+        "username_includes",
+        "users"
+      ]
+    },
+    {
+      "route": "/wc-analytics/reports/customers/stats",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "avg_order_value_between",
+        "avg_order_value_max",
+        "avg_order_value_min",
+        "context",
+        "country_excludes",
+        "country_includes",
+        "customers",
+        "customers_exclude",
+        "email_excludes",
+        "email_includes",
+        "fields",
+        "force_cache_refresh",
+        "last_active_after",
+        "last_active_before",
+        "last_active_between",
+        "last_order_after",
+        "last_order_before",
+        "match",
+        "name_excludes",
+        "name_includes",
+        "orders_count_between",
+        "orders_count_max",
+        "orders_count_min",
+        "registered_after",
+        "registered_before",
+        "registered_between",
+        "search",
+        "searchby",
+        "total_spend_between",
+        "total_spend_max",
+        "total_spend_min",
+        "username_excludes",
+        "username_includes"
+      ]
+    },
+    {
+      "route": "/wc-analytics/settings/(?P<group_id>[\\w-]+)",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "group"
+      ]
+    },
+    {
+      "route": "/wc-analytics/settings/(?P<group_id>[\\w-]+)/batch",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "group",
+        "value"
+      ]
+    },
+    {
+      "route": "/wc-analytics/settings/(?P<group_id>[\\w-]+)/(?P<id>[\\w-]+)",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "group",
+        "id",
+        "value"
+      ]
+    },
+    {
+      "route": "/wc/store/cart/update-customer",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "billing_address",
+        "shipping_address"
+      ]
+    },
+    {
+      "route": "/wc/store/v1/cart/update-customer",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "billing_address",
+        "shipping_address"
+      ]
+    },
+    {
+      "route": "/yoast/v1/redirects/settings",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "disable_php_redirect",
+        "separate_file"
+      ]
+    },
+    {
+      "route": "/google-site-kit/v1/core/user/data/user-input-settings",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "args": [
+        "data"
+      ]
+    },
+    {
+      "route": "/google-site-kit/v1/core/user/data/audience-settings",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "data"
+      ]
+    },
+    {
+      "route": "/google-site-kit/v1/core/user/data/conversion-reporting-settings",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "data"
+      ]
+    },
+    {
+      "route": "/google-site-kit/v1/core/user/data/email-reporting-settings",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "data"
+      ]
+    },
+    {
+      "route": "/google-site-kit/v1/core/user/data/initial-setup-settings",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "data"
+      ]
+    },
+    {
+      "route": "/google-site-kit/v1/modules/(?P<slug>[a-z0-9\\-]+)/data/settings",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "data",
+        "slug"
+      ]
+    },
+    {
+      "route": "/google-site-kit/v1/core/modules/data/sharing-settings",
+      "methods": [
+        "DELETE",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "data"
+      ]
+    },
+    {
+      "route": "/google-site-kit/v1/core/site/data/admin-bar-settings",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "args": [
+        "data"
+      ]
+    },
+    {
+      "route": "/elementor/v1/documents",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "context",
+        "namespace"
+      ]
+    },
+    {
+      "route": "/elementor/v1/documents/(?P<id>\\d+)/media/import",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "id"
+      ]
+    },
+    {
+      "route": "/elementor/v1/cache",
+      "methods": [
+        "DELETE"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/globals",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/globals/colors",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/globals/colors/(?P<id>[\\w-]+)",
+      "methods": [
+        "DELETE",
+        "GET",
+        "POST"
+      ],
+      "args": [
+        "id"
+      ]
+    },
+    {
+      "route": "/elementor/v1/globals/typography",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/globals/typography/(?P<id>[\\w-]+)",
+      "methods": [
+        "DELETE",
+        "GET",
+        "POST"
+      ],
+      "args": [
+        "id"
+      ]
+    },
+    {
+      "route": "/elementor/v1/mcp-proxy",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "args": [
+        "input",
+        "tool",
+        "uri"
+      ]
+    },
+    {
+      "route": "/elementor/v1/settings/(?P<key>[\\w_-]+)",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/post",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "excluded_types",
+        "included_types",
+        "is_public",
+        "items_count",
+        "keys_conversion_map",
+        "meta_query",
+        "search_in_content",
+        "tax_query",
+        "term"
+      ]
+    },
+    {
+      "route": "/elementor/v1/term",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "excluded_types",
+        "hide_empty",
+        "included_types",
+        "items_count",
+        "keys_conversion_map",
+        "meta_query",
+        "term"
+      ]
+    },
+    {
+      "route": "/elementor/v1/user",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "items_count",
+        "keys_conversion_map",
+        "term"
+      ]
+    },
+    {
+      "route": "/elementor-ai/v1",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "context",
+        "namespace"
+      ]
+    },
+    {
+      "route": "/elementor-ai/v1/permissions",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/favorites",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "context",
+        "page",
+        "per_page",
+        "search"
+      ]
+    },
+    {
+      "route": "/elementor/v1/favorites/(?P<id>[\\w]+)",
+      "methods": [
+        "DELETE",
+        "POST"
+      ],
+      "args": [
+        "favorite",
+        "id"
+      ]
+    },
+    {
+      "route": "/elementor/v1/kit-elements-defaults",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/kit-elements-defaults/(?P<type>[\\w\\-\\_]+)",
+      "methods": [
+        "DELETE",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "settings",
+        "type"
+      ]
+    },
+    {
+      "route": "/elementor/v1/site-navigation/recent-posts",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "post__not_in",
+        "post_type",
+        "posts_per_page"
+      ]
+    },
+    {
+      "route": "/elementor/v1/site-navigation/add-new-post",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "post_type"
+      ]
+    },
+    {
+      "route": "/elementor/v1/design-system-sync/stylesheet",
+      "methods": [
+        "POST"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/operations/opt-in-v4",
+      "methods": [
+        "POST"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/feedback",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "context",
+        "namespace"
+      ]
+    },
+    {
+      "route": "/elementor/v1/feedback/submit",
+      "methods": [
+        "POST"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/angie/consent",
+      "methods": [
+        "POST"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/template-library/templates",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "args": [
+        "content",
+        "title",
+        "type"
+      ]
+    },
+    {
+      "route": "/elementor/v1/system-info",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/user-data/current-user",
+      "methods": [
+        "GET",
+        "PATCH"
+      ],
+      "args": [
+        "suppressedMessages"
+      ]
+    },
+    {
+      "route": "/elementor/v1/import-export-customization/export",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "customization",
+        "include",
+        "kitInfo",
+        "plugins",
+        "screenShotBlob",
+        "selectedCustomPostTypes"
+      ]
+    },
+    {
+      "route": "/elementor/v1/import-export-customization/import",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "customization",
+        "include",
+        "session"
+      ]
+    },
+    {
+      "route": "/elementor/v1/import-export-customization/import-runner",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "runner",
+        "session"
+      ]
+    },
+    {
+      "route": "/elementor/v1/import-export-customization/manager-url",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "panel"
+      ]
+    },
+    {
+      "route": "/elementor/v1/import-export-customization/process-media",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "media_urls"
+      ]
+    },
+    {
+      "route": "/elementor/v1/import-export-customization/revert",
+      "methods": [
+        "POST"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/import-export-customization/upload",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "file_url",
+        "kit_id",
+        "source"
+      ]
+    },
+    {
+      "route": "/elementor/v1/kits",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "force"
+      ]
+    },
+    {
+      "route": "/elementor/v1/kits/(?P<id>[\\w]+)",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "id"
+      ]
+    },
+    {
+      "route": "/elementor/v1/kits/download-link/(?P<id>[\\w]+)",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "id"
+      ]
+    },
+    {
+      "route": "/elementor/v1/kits/favorites/(?P<id>[\\w]+)",
+      "methods": [
+        "DELETE",
+        "POST"
+      ],
+      "args": [
+        "id"
+      ]
+    },
+    {
+      "route": "/elementor/v1/kit-taxonomies",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "force"
+      ]
+    },
+    {
+      "route": "/elementor/v1/cloud-kits",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "context",
+        "page",
+        "per_page",
+        "search"
+      ]
+    },
+    {
+      "route": "/elementor/v1/cloud-kits/(?P<id>[\\d]+)",
+      "methods": [
+        "DELETE"
+      ],
+      "args": [
+        "id"
+      ]
+    },
+    {
+      "route": "/elementor/v1/cloud-kits/eligibility",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/cloud-kits/quota",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/global-widget/templates",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor-pro/v1/posts-widget",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/elementor/v1/form-submissions",
+      "methods": [
+        "DELETE",
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "after",
+        "before",
+        "context",
+        "force",
+        "form",
+        "ids",
+        "is_read",
+        "order",
+        "order_by",
+        "page",
+        "per_page",
+        "referer",
+        "search",
+        "status"
+      ]
+    },
+    {
+      "route": "/elementor/v1/form-submissions/(?P<id>[\\d]+)",
+      "methods": [
+        "DELETE",
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "force",
+        "id",
+        "is_read",
+        "values"
+      ]
+    },
+    {
+      "route": "/elementor/v1/form-submissions/restore/(?P<id>[\\d]+)",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "id"
+      ]
+    },
+    {
+      "route": "/elementor/v1/form-submissions/restore",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "ids"
+      ]
+    },
+    {
+      "route": "/elementor/v1/form-submissions/export",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "after",
+        "before",
+        "context",
+        "form",
+        "format",
+        "ids",
+        "order",
+        "order_by",
+        "page",
+        "per_page",
+        "referer",
+        "search",
+        "status"
+      ]
+    },
+    {
+      "route": "/elementor/v1/form-submissions/referer",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "context",
+        "search",
+        "value"
+      ]
+    },
+    {
+      "route": "/elementor/v1/forms",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "context"
+      ]
+    },
+    {
+      "route": "/elementor-pro/v1/get-post-type-taxonomies",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "post_type"
+      ]
+    },
+    {
+      "route": "/elementor-pro/v1/refresh-loop",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "pagination_base_url",
+        "post_id",
+        "widget_filters",
+        "widget_id",
+        "widget_model"
+      ]
+    },
+    {
+      "route": "/elementor-pro/v1/refresh-search",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "breakpoint",
+        "post_id",
+        "widget_id",
+        "widget_model"
+      ]
+    },
+    {
+      "route": "/elementor/v1/notes",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "args": [
+        "content",
+        "element_id",
+        "is_public",
+        "is_resolved",
+        "mentioned_usernames",
+        "only_relevant",
+        "only_unread",
+        "order",
+        "order_by",
+        "parent_id",
+        "position",
+        "post_id",
+        "route_post_id",
+        "route_title",
+        "route_url",
+        "status"
+      ]
+    },
+    {
+      "route": "/elementor/v1/notes/read-status",
+      "methods": [
+        "DELETE",
+        "POST"
+      ],
+      "args": [
+        "ids"
+      ]
+    },
+    {
+      "route": "/elementor/v1/notes/summary",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "is_resolved",
+        "only_relevant",
+        "only_unread",
+        "order",
+        "order_by",
+        "parent_id",
+        "post_id",
+        "route_url",
+        "status"
+      ]
+    },
+    {
+      "route": "/elementor/v1/notes/users",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "limit",
+        "order",
+        "order_by",
+        "search"
+      ]
+    },
+    {
+      "route": "/elementor/v1/notes/(?P<id>[\\d]+)",
+      "methods": [
+        "DELETE",
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "content",
+        "force",
+        "id",
+        "is_public",
+        "is_resolved",
+        "mentioned_usernames",
+        "status"
+      ]
+    },
+    {
+      "route": "/persian-woocommerce/reports/customer/summary",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "from_date",
+        "interval",
+        "page",
+        "per_page",
+        "to_date"
+      ]
+    },
+    {
+      "route": "/persian-woocommerce/reports/customer/chart",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "from_date",
+        "interval",
+        "to_date"
+      ]
+    },
+    {
+      "route": "/persian-woocommerce/reports/customer/users",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "from_date",
+        "interval",
+        "order",
+        "orderby",
+        "page",
+        "per_page",
+        "to_date"
+      ]
+    },
+    {
+      "route": "/wc/v1/customers/(?P<customer_id>[\\d]+)/downloads",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "context",
+        "customer_id"
+      ]
+    },
+    {
+      "route": "/wc/v1/customers",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "args": [
+        "billing",
+        "context",
+        "email",
+        "exclude",
+        "first_name",
+        "include",
+        "last_name",
+        "offset",
+        "order",
+        "orderby",
+        "page",
+        "password",
+        "per_page",
+        "role",
+        "search",
+        "shipping",
+        "username"
+      ]
+    },
+    {
+      "route": "/wc/v1/customers/(?P<id>[\\d]+)",
+      "methods": [
+        "DELETE",
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "billing",
+        "context",
+        "email",
+        "first_name",
+        "force",
+        "id",
+        "last_name",
+        "password",
+        "reassign",
+        "shipping",
+        "username"
+      ]
+    },
+    {
+      "route": "/wc/v1/customers/batch",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "billing",
+        "email",
+        "first_name",
+        "last_name",
+        "password",
+        "shipping",
+        "username"
+      ]
+    },
+    {
+      "route": "/wc/v2/customers/(?P<customer_id>[\\d]+)/downloads",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "context",
+        "customer_id"
+      ]
+    },
+    {
+      "route": "/wc/v2/customers",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "args": [
+        "billing",
+        "context",
+        "email",
+        "exclude",
+        "first_name",
+        "include",
+        "last_name",
+        "meta_data",
+        "offset",
+        "order",
+        "orderby",
+        "page",
+        "password",
+        "per_page",
+        "role",
+        "search",
+        "shipping",
+        "username"
+      ]
+    },
+    {
+      "route": "/wc/v2/customers/(?P<id>[\\d]+)",
+      "methods": [
+        "DELETE",
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "billing",
+        "context",
+        "email",
+        "first_name",
+        "force",
+        "id",
+        "last_name",
+        "meta_data",
+        "password",
+        "reassign",
+        "shipping",
+        "username"
+      ]
+    },
+    {
+      "route": "/wc/v2/customers/batch",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "billing",
+        "email",
+        "first_name",
+        "last_name",
+        "meta_data",
+        "password",
+        "shipping",
+        "username"
+      ]
+    },
+    {
+      "route": "/wc/v2/settings",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wc/v2/settings/(?P<group_id>[\\w-]+)",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "group"
+      ]
+    },
+    {
+      "route": "/wc/v2/settings/(?P<group_id>[\\w-]+)/batch",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "group",
+        "value"
+      ]
+    },
+    {
+      "route": "/wc/v2/settings/(?P<group_id>[\\w-]+)/(?P<id>[\\w-]+)",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "group",
+        "id",
+        "value"
+      ]
+    },
+    {
+      "route": "/wc/v3/customers/(?P<customer_id>[\\d]+)/downloads",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "context",
+        "customer_id"
+      ]
+    },
+    {
+      "route": "/wc/v3/customers",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "args": [
+        "billing",
+        "context",
+        "email",
+        "exclude",
+        "first_name",
+        "include",
+        "last_name",
+        "meta_data",
+        "offset",
+        "order",
+        "orderby",
+        "page",
+        "password",
+        "per_page",
+        "role",
+        "search",
+        "shipping",
+        "username"
+      ]
+    },
+    {
+      "route": "/wc/v3/customers/(?P<id>[\\d]+)",
+      "methods": [
+        "DELETE",
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "billing",
+        "context",
+        "email",
+        "first_name",
+        "force",
+        "id",
+        "last_name",
+        "meta_data",
+        "password",
+        "reassign",
+        "shipping",
+        "username"
+      ]
+    },
+    {
+      "route": "/wc/v3/customers/batch",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "billing",
+        "email",
+        "first_name",
+        "last_name",
+        "meta_data",
+        "password",
+        "shipping",
+        "username"
+      ]
+    },
+    {
+      "route": "/wc/v3/products/custom-fields/names",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "context",
+        "order",
+        "page",
+        "per_page",
+        "search"
+      ]
+    },
+    {
+      "route": "/wc/v3/reports/customers/totals",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "context"
+      ]
+    },
+    {
+      "route": "/wc/v3/settings",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wc/v3/settings/batch",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wc/v3/settings/(?P<group_id>[\\w-]+)",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "group"
+      ]
+    },
+    {
+      "route": "/wc/v3/settings/(?P<group_id>[\\w-]+)/batch",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "group",
+        "value"
+      ]
+    },
+    {
+      "route": "/wc/v3/settings/(?P<group_id>[\\w-]+)/(?P<id>[\\w-]+)",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "group",
+        "id",
+        "value"
+      ]
+    },
+    {
+      "route": "/wc-admin/settings/payments/country",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "location"
+      ]
+    },
+    {
+      "route": "/wc-admin/settings/payments/providers",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "location"
+      ]
+    },
+    {
+      "route": "/wc-admin/settings/payments/providers/order",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "order_map"
+      ]
+    },
+    {
+      "route": "/wc-admin/settings/payments/suggestion/(?P<id>[\\w\\d\\-]+)/attach",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wc-admin/settings/payments/suggestion/(?P<id>[\\w\\d\\-]+)/hide",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wc-admin/settings/payments/suggestion/(?P<suggestion_id>[\\w\\d\\-]+)/incentive/(?P<incentive_id>[\\w\\d\\-]+)/dismiss",
+      "methods": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "context",
+        "do_not_track"
+      ]
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "location",
+        "source"
+      ]
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/(?P<step>[a-zA-Z0-9_-]+)/start",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "location",
+        "source"
+      ]
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/(?P<step>[a-zA-Z0-9_-]+)/save",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "location",
+        "source"
+      ]
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/(?P<step>[a-zA-Z0-9_-]+)/check",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "location"
+      ]
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/(?P<step>[a-zA-Z0-9_-]+)/finish",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "location",
+        "source"
+      ]
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/(?P<step>[a-zA-Z0-9_-]+)/clean",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "location"
+      ]
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/test_account/init",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "location",
+        "source"
+      ]
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/test_account/reset",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "location",
+        "source"
+      ]
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/business_verification/kyc_session",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "location",
+        "source"
+      ]
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/business_verification/kyc_session/finish",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "location",
+        "source"
+      ]
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/step/business_verification/test_account/disable",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "from",
+        "location",
+        "source"
+      ]
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/preload",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "location"
+      ]
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/reset",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "from",
+        "location",
+        "source"
+      ]
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/woopay-eligibility",
+      "methods": [
+        "POST"
+      ],
+      "args": []
+    },
+    {
+      "route": "/wc-admin/settings/payments/woopayments/onboarding/test_account/disable",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "from",
+        "location",
+        "source"
+      ]
+    },
+    {
+      "route": "/wc-admin-email/settings/email/send-preview",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "email",
+        "type"
+      ]
+    },
+    {
+      "route": "/wc-admin-email/settings/email/preview-subject",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "type"
+      ]
+    },
+    {
+      "route": "/wc-admin-email/settings/email/save-transient",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "key",
+        "value"
+      ]
+    },
+    {
+      "route": "/wc-admin-email/settings/email/listing/recreate-email-post",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "email_id"
+      ]
+    },
+    {
+      "route": "/code-snippets/v1/import/plugins/insert-headers-and-footers",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/code-snippets/v1/import/plugins/insert-headers-and-footers/import",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "auto_add_tags",
+        "ids",
+        "network",
+        "tag_value"
+      ]
+    },
+    {
+      "route": "/code-snippets/v1/import/plugins/header-footer-code-manager",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    },
+    {
+      "route": "/code-snippets/v1/import/plugins/header-footer-code-manager/import",
+      "methods": [
+        "POST"
+      ],
+      "args": [
+        "auto_add_tags",
+        "ids",
+        "network",
+        "tag_value"
+      ]
+    },
+    {
+      "route": "/elementor/v1/library/connect",
+      "methods": [
+        "DELETE",
+        "POST"
+      ],
+      "args": [
+        "token"
+      ]
+    },
+    {
+      "route": "/elementor/v1/send-event",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "args": [
+        "context",
+        "event_data",
+        "page",
+        "per_page",
+        "search"
+      ]
+    },
+    {
+      "route": "/wp/v2/global-styles/themes/(?P<stylesheet>[\\/\\s%\\w\\.\\(\\)\\[\\]\\@_\\-]+)/variations",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "stylesheet"
+      ]
+    },
+    {
+      "route": "/wp/v2/global-styles/themes/(?P<stylesheet>[^\\/:<>\\*\\?\"\\|]+(?:\\/[^\\/:<>\\*\\?\"\\|]+)?)",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "stylesheet"
+      ]
+    },
+    {
+      "route": "/wp/v2/elementor_library",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "args": [
+        "after",
+        "author",
+        "author_exclude",
+        "before",
+        "context",
+        "date",
+        "date_gmt",
+        "exclude",
+        "featured_media",
+        "include",
+        "meta",
+        "modified_after",
+        "modified_before",
+        "offset",
+        "order",
+        "orderby",
+        "page",
+        "password",
+        "per_page",
+        "search",
+        "search_columns",
+        "search_semantics",
+        "slug",
+        "status",
+        "template",
+        "title"
+      ]
+    },
+    {
+      "route": "/wp/v2/elementor_library/(?P<id>[\\d]+)",
+      "methods": [
+        "DELETE",
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "author",
+        "context",
+        "date",
+        "date_gmt",
+        "featured_media",
+        "force",
+        "id",
+        "meta",
+        "password",
+        "slug",
+        "status",
+        "template",
+        "title"
+      ]
+    },
+    {
+      "route": "/wp/v2/elementor_library/(?P<parent>[\\d]+)/revisions",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "context",
+        "exclude",
+        "include",
+        "offset",
+        "order",
+        "orderby",
+        "page",
+        "parent",
+        "per_page",
+        "search"
+      ]
+    },
+    {
+      "route": "/wp/v2/elementor_library/(?P<parent>[\\d]+)/revisions/(?P<id>[\\d]+)",
+      "methods": [
+        "DELETE",
+        "GET"
+      ],
+      "args": [
+        "context",
+        "force",
+        "id",
+        "parent"
+      ]
+    },
+    {
+      "route": "/wp/v2/elementor_snippet",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "args": [
+        "after",
+        "author",
+        "author_exclude",
+        "before",
+        "context",
+        "date",
+        "date_gmt",
+        "exclude",
+        "include",
+        "meta",
+        "modified_after",
+        "modified_before",
+        "offset",
+        "order",
+        "orderby",
+        "page",
+        "password",
+        "per_page",
+        "search",
+        "search_columns",
+        "search_semantics",
+        "slug",
+        "status",
+        "template",
+        "title"
+      ]
+    },
+    {
+      "route": "/wp/v2/elementor_snippet/(?P<id>[\\d]+)",
+      "methods": [
+        "DELETE",
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "author",
+        "context",
+        "date",
+        "date_gmt",
+        "force",
+        "id",
+        "meta",
+        "password",
+        "slug",
+        "status",
+        "template",
+        "title"
+      ]
+    },
+    {
+      "route": "/wp/v2/settings",
+      "methods": [
+        "GET",
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "args": [
+        "connectors_ai_openai_api_key",
+        "date_format",
+        "default_category",
+        "default_comment_status",
+        "default_ping_status",
+        "default_post_format",
+        "description",
+        "elementor_one_dismiss_connect_alert",
+        "elementor_one_dismiss_elementor_one_subscription_alert",
+        "elementor_one_welcome_screen_completed",
+        "email",
+        "image_optimizer_compression_level",
+        "image_optimizer_convert_to_format",
+        "image_optimizer_custom_sizes",
+        "image_optimizer_exif_metadata",
+        "image_optimizer_help_videos",
+        "image_optimizer_migration_popup_dismissed",
+        "image_optimizer_optimize_on_upload",
+        "image_optimizer_original_images",
+        "image_optimizer_resize_larger_images",
+        "image_optimizer_resize_larger_images_size",
+        "image_optimizer_review_data",
+        "language",
+        "page_for_posts",
+        "page_on_front",
+        "pickup_location_settings",
+        "pickup_locations",
+        "posts_per_page",
+        "show_on_front",
+        "site_icon",
+        "site_logo",
+        "start_of_week",
+        "time_format",
+        "timezone",
+        "title",
+        "url",
+        "use_smilies",
+        "woocommerce_checkout_address_2_field",
+        "woocommerce_checkout_company_field",
+        "woocommerce_checkout_phone_field",
+        "woocommerce_default_catalog_orderby"
+      ]
+    },
+    {
+      "route": "/wp/v2/themes",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "status"
+      ]
+    },
+    {
+      "route": "/wp/v2/themes/(?P<stylesheet>[^\\/:<>\\*\\?\"\\|]+(?:\\/[^\\/:<>\\*\\?\"\\|]+)?)",
+      "methods": [
+        "GET"
+      ],
+      "args": [
+        "stylesheet"
+      ]
+    },
+    {
+      "route": "/wp-site-health/v1/tests/authorization-header",
+      "methods": [
+        "GET"
+      ],
+      "args": []
+    }
+  ],
+  "site_mutations": 0
+}
