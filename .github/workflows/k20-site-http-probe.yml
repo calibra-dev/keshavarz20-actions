@@ -1,0 +1,60 @@
+name: K20 Site HTTP Probe
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/k20-site-http-probe.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p diagnostics
+          PAGE_CODE=$(curl -L -sS -o /tmp/page.html -w '%{http_code}' --max-time 20 'https://keshavarz20.com/catalog/?httpprobe=1' || true)
+          REST_CODE=$(curl -L -sS -o /tmp/rest.txt -w '%{http_code}' --max-time 20 'https://keshavarz20.com/wp-json/' || true)
+          ROOT_CODE=$(curl -L -sS -o /tmp/root.html -w '%{http_code}' --max-time 20 'https://keshavarz20.com/' || true)
+          python3 - <<'PY'
+          import json,pathlib,os
+          out={
+            'page_status':os.environ.get('PAGE_CODE',''),
+            'rest_status':os.environ.get('REST_CODE',''),
+            'root_status':os.environ.get('ROOT_CODE',''),
+            'page_head':pathlib.Path('/tmp/page.html').read_text(errors='replace')[:180] if pathlib.Path('/tmp/page.html').exists() else '',
+            'rest_head':pathlib.Path('/tmp/rest.txt').read_text(errors='replace')[:180] if pathlib.Path('/tmp/rest.txt').exists() else ''
+          }
+          pathlib.Path('diagnostics/k20-site-http-probe.json').write_text(json.dumps(out,ensure_ascii=False,indent=2))
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+        env:
+          PAGE_CODE: ${{ env.PAGE_CODE }}
+          REST_CODE: ${{ env.REST_CODE }}
+          ROOT_CODE: ${{ env.ROOT_CODE }}
+      - shell: bash
+        if: always()
+        run: |
+          # Re-run codes into a file directly because step-local vars do not cross shells.
+          PAGE_CODE=$(curl -L -sS -o /tmp/page.html -w '%{http_code}' --max-time 20 'https://keshavarz20.com/catalog/?httpprobe=2' || true)
+          REST_CODE=$(curl -L -sS -o /tmp/rest.txt -w '%{http_code}' --max-time 20 'https://keshavarz20.com/wp-json/' || true)
+          ROOT_CODE=$(curl -L -sS -o /tmp/root.html -w '%{http_code}' --max-time 20 'https://keshavarz20.com/' || true)
+          python3 - "$PAGE_CODE" "$REST_CODE" "$ROOT_CODE" <<'PY'
+          import json,pathlib,sys
+          out={'page_status':sys.argv[1],'rest_status':sys.argv[2],'root_status':sys.argv[3],
+               'page_head':pathlib.Path('/tmp/page.html').read_text(errors='replace')[:180] if pathlib.Path('/tmp/page.html').exists() else '',
+               'rest_head':pathlib.Path('/tmp/rest.txt').read_text(errors='replace')[:180] if pathlib.Path('/tmp/rest.txt').exists() else ''}
+          pathlib.Path('diagnostics/k20-site-http-probe.json').write_text(json.dumps(out,ensure_ascii=False,indent=2))
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add diagnostics/k20-site-http-probe.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'diag: record site HTTP status'
+          git pull --rebase origin main
+          git push origin main
