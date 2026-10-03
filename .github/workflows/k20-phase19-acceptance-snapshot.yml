@@ -27,13 +27,42 @@ jobs:
         run: |
           python -m py_compile scripts/k20_phase19_agentic_readiness.py
           python scripts/k20_phase19_agentic_readiness.py phase19-results/agentic-readiness-latest.json phase19-results/product-discovery-readiness-feed.json
+      - name: Refresh canonical persisted acceptance snapshot
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result=json.loads(Path("phase19-results/agentic-readiness-latest.json").read_text(encoding="utf-8"))
+          projection=json.loads(Path("phase19-results/product-discovery-readiness-feed.json").read_text(encoding="utf-8"))
+          out={
+            "phase":19,
+            "version":result.get("version"),
+            "status":result.get("status"),
+            "generated_at_utc":result.get("generated_at_utc"),
+            "check_count":result.get("check_count"),
+            "passed_checks":result.get("passed_checks"),
+            "failed_checks":result.get("failed_checks"),
+            "readiness":result.get("readiness"),
+            "acceptance":result.get("acceptance"),
+            "fresh_upstream_refresh_evidence":result.get("fresh_upstream_refresh_evidence"),
+            "projection_status":projection.get("status"),
+            "external_submission":False,
+            "site_mutations":0,
+            "price_stock_mutations":0,
+            "payment_checkout_mutations":0,
+            "secret_values_persisted":False
+          }
+          Path("phase19-results/acceptance-persisted-evidence.json").write_text(
+              json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"
+          )
+          PY
       - name: Persist final Phase 19 v3 acceptance
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f phase19-results/agentic-readiness-latest.json phase19-results/product-discovery-readiness-feed.json
+          git add -f phase19-results/agentic-readiness-latest.json phase19-results/product-discovery-readiness-feed.json phase19-results/acceptance-persisted-evidence.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "phase19 v3: record final full catalog acceptance"
           for attempt in 1 2 3 4 5; do
