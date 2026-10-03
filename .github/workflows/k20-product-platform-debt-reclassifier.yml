@@ -1,0 +1,102 @@
+name: K20 Product Platform Debt Reclassifier
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'product-engine/reclassification-ops/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-product-platform-debt-reclassifier
+  cancel-in-progress: false
+
+jobs:
+  reclassify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Resolve exactly one guarded reclassification request
+        id: request
+        shell: bash
+        run: |
+          set -euo pipefail
+          before='${{ github.event.before }}'
+          current='${{ github.sha }}'
+          zero='0000000000000000000000000000000000000000'
+          if [ -n "$before" ] && [ "$before" != "$zero" ]; then
+            git diff --name-only --diff-filter=A "$before" "$current" -- 'product-engine/reclassification-ops/*.json' > /tmp/reclass-files.txt
+          else
+            git show --pretty='' --name-only --diff-filter=A "$current" -- 'product-engine/reclassification-ops/*.json' > /tmp/reclass-files.txt
+          fi
+          count=$(grep -c . /tmp/reclass-files.txt || true)
+          if [ "$count" -ne 1 ]; then
+            echo "::error::Expected exactly one new reclassification request; found $count"
+            exit 2
+          fi
+          file=$(cat /tmp/reclass-files.txt)
+          python ./k20_sanitizer.py --check "$file"
+          product_id=$(python - "$file" <<'PY'
+          import json, sys
+          from pathlib import Path
+          d=json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
+          if set(d)!={'schema_version','product_id'}:
+              raise SystemExit('request keys must be exactly schema_version and product_id')
+          if d.get('schema_version')!='product-platform-debt-reclassify-v1':
+              raise SystemExit('invalid schema_version')
+          pid=int(d.get('product_id') or 0)
+          if pid<=0:
+              raise SystemExit('positive product_id required')
+          print(pid)
+          PY
+          )
+          echo "product_id=$product_id" >> "$GITHUB_OUTPUT"
+
+      - name: Verify engine policy and tests
+        run: |
+          python -m py_compile product-engine/perf.py
+          python -m py_compile product-engine/publish_queue.py
+          python -m py_compile product-engine/reclassify_platform_debt.py
+          python scripts/check_product_engine_primary_route.py
+          python tests/test_product_engine_platform_debt.py
+
+      - name: Reclassify verified inherited platform debt
+        run: python product-engine/reclassify_platform_debt.py "${{ steps.request.outputs.product_id }}"
+
+      - name: Sanitize and verify evidence files
+        shell: bash
+        run: |
+          set -euo pipefail
+          python ./k20_sanitizer.py --check product-engine/state.json
+          python ./k20_sanitizer.py --check "product-engine/results/${{ steps.request.outputs.product_id }}.json"
+
+      - name: Persist reclassification checkpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f product-engine/state.json "product-engine/results/${{ steps.request.outputs.product_id }}.json"
+          git commit -m "product-engine: reclassify inherited platform debt for ${{ steps.request.outputs.product_id }}"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt * 2))
+          done
+          echo "::error::Could not persist platform-debt reclassification after 5 retries."
+          exit 3
