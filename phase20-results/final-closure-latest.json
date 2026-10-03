@@ -1,0 +1,395 @@
+{
+  "phase": 20,
+  "title": "UX/CRO/Accessibility/Agent Usability",
+  "version": "phase20-final-closure-v3",
+  "generated_at_utc": "2026-10-03T08:14:05.654616+00:00",
+  "run_id": "37109007275",
+  "status": "PASS_GUARDED_VENDOR_RENDERER",
+  "full_wcag_automated_pass": false,
+  "check_count": 57,
+  "passed_checks": 57,
+  "failed_checks": [],
+  "checks": [
+    {
+      "name": "ux_evidence_current",
+      "pass": true,
+      "evidence": "2026-10-03T06:28:54.534360+00:00"
+    },
+    {
+      "name": "diag_evidence_current",
+      "pass": true,
+      "evidence": "2026-10-03T06:13:56.991144+00:00"
+    },
+    {
+      "name": "fast_semantic_current",
+      "pass": true,
+      "evidence": "2026-10-03T06:12:15.119625+00:00"
+    },
+    {
+      "name": "site_context_current",
+      "pass": true,
+      "evidence": "2026-10-03T06:08:40.101656+00:00"
+    },
+    {
+      "name": "theme_asset_evidence_current",
+      "pass": true,
+      "evidence": "2026-10-03T08:13:06.3062465Z"
+    },
+    {
+      "name": "ux_all_live_fetches_ok",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "ux_mobile_content_width_pass",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "ux_homepage_single_h1_and_main",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "ux_semantic_language_present",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "ux_server_rendered_decision_content",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "ux_product_key_data_visible",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "full_accessibility_not_falsely_claimed",
+      "pass": true,
+      "evidence": false
+    },
+    {
+      "name": "all_required_pages_audited",
+      "pass": true,
+      "evidence": [
+        "filter-selector",
+        "fittings-selector",
+        "home",
+        "pipe-guide",
+        "product"
+      ]
+    },
+    {
+      "name": "ux_expected_failures_home",
+      "pass": true,
+      "evidence": [
+        "button-name",
+        "link-name"
+      ]
+    },
+    {
+      "name": "ux_expected_failures_product",
+      "pass": true,
+      "evidence": [
+        "button-name",
+        "link-name"
+      ]
+    },
+    {
+      "name": "ux_expected_failures_pipe-guide",
+      "pass": true,
+      "evidence": [
+        "link-name"
+      ]
+    },
+    {
+      "name": "ux_expected_failures_filter-selector",
+      "pass": true,
+      "evidence": [
+        "link-name"
+      ]
+    },
+    {
+      "name": "ux_expected_failures_fittings-selector",
+      "pass": true,
+      "evidence": [
+        "link-name"
+      ]
+    },
+    {
+      "name": "all_required_exact_diagnostics",
+      "pass": true,
+      "evidence": [
+        "filter-selector",
+        "fittings-selector",
+        "home",
+        "pipe-guide",
+        "product"
+      ]
+    },
+    {
+      "name": "heading_order_pass_home",
+      "pass": true,
+      "evidence": 1
+    },
+    {
+      "name": "login_link_is_only_link_name_residual_home",
+      "pass": true,
+      "evidence": [
+        "div.col-6 > div.header-buttons > div.user-button > a.login-register"
+      ]
+    },
+    {
+      "name": "owl_dot_is_only_button_name_residual_home",
+      "pass": true,
+      "evidence": [
+        "div.fullwidth-slider > div.owl-carousel > div.owl-dots > button.owl-dot",
+        "div.fullwidth-slider > div.owl-carousel > div.owl-dots > button.owl-dot",
+        "div.fullwidth-slider > div.owl-carousel > div.owl-dots > button.owl-dot",
+        "div.fullwidth-slider > div.owl-carousel > div.owl-dots > button.owl-dot",
+        "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+        "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+        "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+        "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+        "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+        "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+      ]
+    },
+    {
+      "name": "heading_order_pass_product",
+      "pass": true,
+      "evidence": 1
+    },
+    {
+      "name": "login_link_is_only_link_name_residual_product",
+      "pass": true,
+      "evidence": [
+        "div.col-6 > div.header-buttons > div.user-button > a.login-register"
+      ]
+    },
+    {
+      "name": "owl_dot_is_only_button_name_residual_product",
+      "pass": true,
+      "evidence": [
+        "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+        "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+        "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+        "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+        "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot"
+      ]
+    },
+    {
+      "name": "heading_order_pass_pipe-guide",
+      "pass": true,
+      "evidence": 1
+    },
+    {
+      "name": "login_link_is_only_link_name_residual_pipe-guide",
+      "pass": true,
+      "evidence": [
+        "div.col-6 > div.header-buttons > div.user-button > a.login-register"
+      ]
+    },
+    {
+      "name": "no_button_name_residual_pipe-guide",
+      "pass": true,
+      "evidence": {
+        "score": null,
+        "selectors": []
+      }
+    },
+    {
+      "name": "heading_order_pass_filter-selector",
+      "pass": true,
+      "evidence": 1
+    },
+    {
+      "name": "login_link_is_only_link_name_residual_filter-selector",
+      "pass": true,
+      "evidence": [
+        "div.col-6 > div.header-buttons > div.user-button > a.login-register"
+      ]
+    },
+    {
+      "name": "no_button_name_residual_filter-selector",
+      "pass": true,
+      "evidence": {
+        "score": 1,
+        "selectors": []
+      }
+    },
+    {
+      "name": "heading_order_pass_fittings-selector",
+      "pass": true,
+      "evidence": 1
+    },
+    {
+      "name": "login_link_is_only_link_name_residual_fittings-selector",
+      "pass": true,
+      "evidence": [
+        "div.col-6 > div.header-buttons > div.user-button > a.login-register"
+      ]
+    },
+    {
+      "name": "no_button_name_residual_fittings-selector",
+      "pass": true,
+      "evidence": {
+        "score": 1,
+        "selectors": []
+      }
+    },
+    {
+      "name": "single_server_h1_home",
+      "pass": true,
+      "evidence": 1
+    },
+    {
+      "name": "no_server_empty_buttons_home",
+      "pass": true,
+      "evidence": 0
+    },
+    {
+      "name": "single_server_h1_product",
+      "pass": true,
+      "evidence": 1
+    },
+    {
+      "name": "no_server_empty_buttons_product",
+      "pass": true,
+      "evidence": 0
+    },
+    {
+      "name": "single_server_h1_pipe-guide",
+      "pass": true,
+      "evidence": 1
+    },
+    {
+      "name": "no_server_empty_buttons_pipe-guide",
+      "pass": true,
+      "evidence": 0
+    },
+    {
+      "name": "single_server_h1_filter-selector",
+      "pass": true,
+      "evidence": 1
+    },
+    {
+      "name": "no_server_empty_buttons_filter-selector",
+      "pass": true,
+      "evidence": 0
+    },
+    {
+      "name": "single_server_h1_fittings-selector",
+      "pass": true,
+      "evidence": 1
+    },
+    {
+      "name": "no_server_empty_buttons_fittings-selector",
+      "pass": true,
+      "evidence": 0
+    },
+    {
+      "name": "irankala_10_10_active",
+      "pass": true,
+      "evidence": {
+        "stylesheet": "irankala",
+        "template": "irankala",
+        "name": "ایران‌کالا",
+        "version": "10.10.0",
+        "status": "active"
+      }
+    },
+    {
+      "name": "protected_renderer_themes_irankala_elementor_header_header-logo.php",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "protected_renderer_themes_irankala_blocks_main-slider.php",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "protected_renderer_themes_irankala_blocks_products-slider.php",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "protected_renderer_themes_irankala_blocks_special-ads.php",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "login_mobile_css_rootcause_recorded",
+      "pass": true,
+      "evidence": "common.css mobile rule hides login-register span"
+    },
+    {
+      "name": "owl_unlabeled_renderer_recorded",
+      "pass": true,
+      "evidence": "IranKala/Owl public assets generate dot controls without label hook"
+    },
+    {
+      "name": "ux_site_mutations_zero",
+      "pass": true,
+      "evidence": 0
+    },
+    {
+      "name": "ux_theme_code_mutations_zero",
+      "pass": true,
+      "evidence": 0
+    },
+    {
+      "name": "ux_commerce_mutations_zero",
+      "pass": true,
+      "evidence": 0
+    },
+    {
+      "name": "diag_site_mutations_zero",
+      "pass": true,
+      "evidence": 0
+    },
+    {
+      "name": "fast_site_mutations_zero",
+      "pass": true,
+      "evidence": 0
+    },
+    {
+      "name": "context_site_mutations_zero",
+      "pass": true,
+      "evidence": 0
+    }
+  ],
+  "verified_good": [
+    "all five live targets fetch successfully",
+    "mobile content width gate passes",
+    "single H1 and heading order pass",
+    "Persian lang/RTL and server-rendered decision content pass",
+    "product price/CTA/stock/SKU decision data are visible",
+    "logo and promotional image alt text are present in live HTML"
+  ],
+  "guarded_residuals": [
+    {
+      "audit": "link-name",
+      "selector": "a.login-register",
+      "root_cause": "IranKala mobile CSS hides the only visible text span at max-width 992px."
+    },
+    {
+      "audit": "button-name",
+      "selector": "button.owl-dot",
+      "scope": [
+        "home",
+        "product"
+      ],
+      "root_cause": "IranKala/Owl renderer creates dot buttons without accessible names."
+    }
+  ],
+  "closure_reason": "All non-vendor Phase 20 gates pass. The only remaining automated accessibility failures are exactly whitelisted IranKala/Owl renderer residuals with no allow-listed live renderer-code write path.",
+  "remediation_condition": "Reopen only when IranKala exposes a supported accessibility hook/update or an explicitly approved update-safe live deployment path can add accessible names without modifying protected renderer code.",
+  "site_mutations_by_acceptance": 0,
+  "commerce_mutations": 0,
+  "price_stock_payment_user_mutations": 0,
+  "protected_theme_edits": 0
+}
