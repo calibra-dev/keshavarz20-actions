@@ -42,15 +42,22 @@ jobs:
             $p=[string]$path
             if($p -notmatch '^themes/irankala/[A-Za-z0-9_./-]+\.(js|css)$' -or $p -match '\.\.'){ throw "Unsafe path: $p" }
             $body=[ordered]@{scope='wp-content';path=$p}|ConvertTo-Json -Compress
+            $content=$null
             try {
               $r=Invoke-RestMethod -Uri "$base/wp-json/wpvibe/v1/file/read" -Headers $headers -Method POST -Body $body -TimeoutSec 120
+              if($r.PSObject.Properties.Name -contains 'content'){ $content=[string]$r.content }
+              elseif(($r.PSObject.Properties.Name -contains 'data') -and $r.data -and ($r.data.PSObject.Properties.Name -contains 'content')){ $content=[string]$r.data.content }
             } catch {
               $status=$null; try{$status=[int]$_.Exception.Response.StatusCode}catch{}
-              $out+=,[pscustomobject]@{path=$p;read_error=$_.Exception.Message;http_status=$status}; continue
+              if($status -eq 413){
+                $publicPath=$p -replace '^themes/','wp-content/themes/'
+                try {
+                  $resp=Invoke-WebRequest -Uri "$base/$publicPath" -Method GET -TimeoutSec 120 -Headers @{'User-Agent'='K20-Phase20-Asset-Readonly/1.0';'Cache-Control'='no-cache'}
+                  if([int]$resp.StatusCode -eq 200){ $content=[string]$resp.Content }
+                } catch {}
+              }
+              if($null -eq $content){ $out+=,[pscustomobject]@{path=$p;read_error=$_.Exception.Message;http_status=$status}; continue }
             }
-            $content=$null
-            if($r.PSObject.Properties.Name -contains 'content'){ $content=[string]$r.content }
-            elseif(($r.PSObject.Properties.Name -contains 'data') -and $r.data -and ($r.data.PSObject.Properties.Name -contains 'content')){ $content=[string]$r.data.content }
             if($null -eq $content){ $out+=,[pscustomobject]@{path=$p;read_error='No content field returned'}; continue }
             $matches=@()
             foreach($pattern in @($req.patterns)){
