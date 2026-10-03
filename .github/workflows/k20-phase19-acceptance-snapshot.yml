@@ -55,6 +55,9 @@ jobs:
           Path("phase19-results/acceptance-persisted-evidence.json").write_text(
               json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"
           )
+          Path("phase19-results/product-discovery-readiness-feed-persisted.json").write_text(
+              json.dumps(projection,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"
+          )
           PY
       - name: Persist final Phase 19 v3 acceptance
         shell: bash
@@ -63,6 +66,7 @@ jobs:
           files=(
             phase19-results/agentic-readiness-latest.json
             phase19-results/product-discovery-readiness-feed.json
+            phase19-results/product-discovery-readiness-feed-persisted.json
             phase19-results/acceptance-persisted-evidence.json
           )
           tmp="$(mktemp -d)"
