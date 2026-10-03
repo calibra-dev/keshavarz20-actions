@@ -1,0 +1,25 @@
+{
+  "phase": 21,
+  "generated_at_utc": "2026-10-03T11:21:17.815574+00:00",
+  "source": "question-engine-results/20260930T053023Z-status.json",
+  "engine_state": {
+    "enabled": true,
+    "questions_total": 157,
+    "products_touched": 157,
+    "pending_generated": 13,
+    "consecutive_failures": 0
+  },
+  "classification": "synthetic_editorial_question_generator_not_customer_evidence",
+  "counting_rules": {
+    "real_customer_questions": 0,
+    "verified_reviews": 0,
+    "testimonials": 0,
+    "editorial_intent_seeds": 157
+  },
+  "safeguards": [
+    "Do not label generated questions as customer questions.",
+    "Do not count generated questions as reviews or testimonials.",
+    "Do not infer demand volume from generated question count.",
+    "Use only as editorial coverage prompts unless independently corroborated."
+  ]
+}

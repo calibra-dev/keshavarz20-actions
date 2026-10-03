@@ -1,0 +1,350 @@
+{
+  "phase": 21,
+  "version": "phase21-iran-authority-network-v3",
+  "generated_at_utc": "2026-10-03T11:21:17.815574+00:00",
+  "status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+  "completion_basis": "Controllable first-party authority/citation assets, current full-catalog governance, editorial provenance, demand evidence, and anti-fabrication safeguards. Manufacturer replies, backlinks and paid placements are not acceptance gates.",
+  "evidence": {
+    "verified_grade_a_cards": 7,
+    "evidence_ids": [
+      "phase17-evidence-001",
+      "phase17-evidence-002",
+      "phase17-evidence-003",
+      "phase17-evidence-004",
+      "phase17-evidence-005",
+      "phase17-evidence-006",
+      "phase17-evidence-007"
+    ]
+  },
+  "product_truth": {
+    "pim_records": 30,
+    "stable_id_complete": 30,
+    "verified_compatibility_edges": 3,
+    "candidate_only_edges": 25,
+    "hard_fabrications": 0,
+    "schema_feed_parity_pass": 30,
+    "unsupported_compatibility_promoted": false
+  },
+  "full_catalog": {
+    "candidate_rows": 652,
+    "basic_field_complete_rows": 512,
+    "basic_field_complete_percent": 78.53,
+    "phase19_status": "PASS_V3_FULL_CATALOG_GUARDED",
+    "phase19_checks_passed": 50,
+    "phase19_checks_total": 50,
+    "phase19_failed_checks": [],
+    "full_catalog_governed": true,
+    "page_schema_feed_parity_governed": true,
+    "identifier_truth_preserved": true,
+    "entity_truth_preserved": true,
+    "external_submission": false
+  },
+  "identifier_truth": {
+    "published_products": 652,
+    "source_verified_gtins": 0,
+    "gtins_fabricated": 0,
+    "skus_promoted_to_gtin": 0,
+    "unbacked_schema_gtin_products": 0
+  },
+  "brand_truth": {
+    "phase15_status": "PASS_ENTITY_OS_WITH_SOURCE_GAPS",
+    "published_products": 652,
+    "identity_fields_fabricated": 0,
+    "sameAs_links_fabricated": 0,
+    "glns_fabricated": 0,
+    "current_remediation_diagnostic": {
+      "available": true,
+      "scope": 87,
+      "pseudo_brand_products": 67,
+      "multi_brand_products": 7,
+      "unbranded_products": 8
+    },
+    "policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
+  },
+  "currency_truth": {
+    "status": "PASS",
+    "source_currency": "IRT",
+    "target_currency": "IRR",
+    "multiplier": 10,
+    "all_checks_pass": true,
+    "site_price_mutations": 0,
+    "fx_conversion_used": false
+  },
+  "editorial_trust": {
+    "status": "PASS_EDITORIAL_TRUST_OS",
+    "published_normal_posts": 56,
+    "current_full_provenance_posts": 56,
+    "legacy_provenance_backlog": 0,
+    "fake_authors_created": 0,
+    "fake_reviewers_created": 0,
+    "named_human_experts_created": 0,
+    "editorial_policy_url": "https://keshavarz20.com/editorial-policy/"
+  },
+  "intent_graph": {
+    "canonical_intents": 9,
+    "active_intents": 9
+  },
+  "search_demand": {
+    "source": "persisted first-party Search Console snapshot",
+    "date_min": "2026-08-29",
+    "date_max": "2026-09-25",
+    "rows": 2685,
+    "visible_clicks": 240,
+    "visible_impressions": 6383,
+    "irrigation_rows": 954,
+    "irrigation_clicks": 41,
+    "irrigation_impressions": 1934,
+    "live_read_claimed": false
+  },
+  "question_engine": {
+    "source_ref": "question-engine-results/20260930T053023Z-status.json",
+    "enabled": true,
+    "classification": "synthetic_editorial_question_generator_not_customer_evidence",
+    "generated_questions_total": 157,
+    "products_touched": 157,
+    "pending_generated": 13,
+    "consecutive_failures": 0,
+    "may_count_as_customer_review": false,
+    "may_count_as_customer_question": false,
+    "may_count_as_testimonial": false
+  },
+  "agent_usable_surfaces": {
+    "phase20_status": "PASS_GUARDED_VENDOR_RENDERER",
+    "checks_passed": 57,
+    "checks_total": 57,
+    "failed_checks": [],
+    "full_wcag_automated_pass": false,
+    "guarded_residuals": [
+      {
+        "audit": "link-name",
+        "selector": "a.login-register",
+        "root_cause": "IranKala mobile CSS hides the only visible text span at max-width 992px."
+      },
+      {
+        "audit": "button-name",
+        "selector": "button.owl-dot",
+        "scope": [
+          "home",
+          "product"
+        ],
+        "root_cause": "IranKala/Owl renderer creates dot buttons without accessible names."
+      }
+    ],
+    "commerce_mutations": 0,
+    "protected_theme_edits": 0
+  },
+  "citation_assets": [
+    {
+      "asset_id": "authority-evidence-grade-a",
+      "type": "verified_first_party_evidence_registry",
+      "source_ref": "phase17/evidence-cards.json",
+      "citable": true,
+      "limitation": "Each evidence card is citable only within its stated scope and limits."
+    },
+    {
+      "asset_id": "authority-full-catalog-product-truth",
+      "type": "full_catalog_page_schema_feed_governance",
+      "source_ref": "phase19-results/agentic-readiness-latest.json",
+      "citable": true,
+      "limitation": "External submission remains separately governed by market, partner and identifier gates."
+    },
+    {
+      "asset_id": "authority-currency-normalization",
+      "type": "deterministic_currency_denomination_mapping",
+      "source_ref": "phase19-results/currency-mapping-acceptance.json",
+      "citable": true,
+      "limitation": "IRT x10 -> IRR is denomination normalization, not FX conversion."
+    },
+    {
+      "asset_id": "authority-editorial-trust",
+      "type": "editorial_provenance_and_correction_policy",
+      "source_ref": "growthos-phase16-results/summary.json",
+      "citable": true,
+      "limitation": "No named human Person identity is asserted without verified identity and role evidence."
+    },
+    {
+      "asset_id": "authority-search-demand",
+      "type": "persisted_first_party_search_console_snapshot",
+      "source_ref": "growthos-phase10-results/measurement-dashboard.json",
+      "citable": true,
+      "limitation": "Persisted snapshot is not a claim of live Search Console data on the Phase 21 run date."
+    },
+    {
+      "asset_id": "authority-agent-usable-surfaces",
+      "type": "ux_semantic_agent_usability_acceptance",
+      "source_ref": "phase20-results/final-closure-latest.json",
+      "citable": true,
+      "limitation": "Phase 20 explicitly does not claim a full automated WCAG pass; two guarded vendor-renderer residual classes remain."
+    }
+  ],
+  "campaign_policy": {
+    "status": "PASS_GUARDED_IRAN_FIRST",
+    "external_messages_sent": 0,
+    "paid_placements": 0,
+    "manufacturer_reply_required": false,
+    "forbidden": [
+      "PBN",
+      "spam comments",
+      "paid fake mentions",
+      "fake dealership/distributor claims",
+      "fabricated reviews/testimonials",
+      "fabricated field results",
+      "mass duplicate advertorials"
+    ]
+  },
+  "acceptance": {
+    "check_count": 37,
+    "passed_checks": 37,
+    "failed_checks": [],
+    "checks": [
+      {
+        "name": "verified_grade_a_evidence_present",
+        "pass": true
+      },
+      {
+        "name": "pim_stable_ids_complete",
+        "pass": true
+      },
+      {
+        "name": "pim_hard_fabrications_zero",
+        "pass": true
+      },
+      {
+        "name": "unsupported_compatibility_not_promoted",
+        "pass": true
+      },
+      {
+        "name": "pim_schema_feed_parity_complete",
+        "pass": true
+      },
+      {
+        "name": "full_catalog_scope_consistent",
+        "pass": true
+      },
+      {
+        "name": "phase19_passed_all_checks",
+        "pass": true
+      },
+      {
+        "name": "phase19_full_catalog_governed",
+        "pass": true
+      },
+      {
+        "name": "phase19_page_schema_feed_governed",
+        "pass": true
+      },
+      {
+        "name": "phase19_identifier_truth_preserved",
+        "pass": true
+      },
+      {
+        "name": "phase19_entity_truth_preserved",
+        "pass": true
+      },
+      {
+        "name": "no_external_submission_claim",
+        "pass": true
+      },
+      {
+        "name": "gtin_fabrication_zero",
+        "pass": true
+      },
+      {
+        "name": "sku_not_promoted_to_gtin",
+        "pass": true
+      },
+      {
+        "name": "unbacked_schema_gtin_zero",
+        "pass": true
+      },
+      {
+        "name": "brand_identity_fabrication_zero",
+        "pass": true
+      },
+      {
+        "name": "brand_sameas_fabrication_zero",
+        "pass": true
+      },
+      {
+        "name": "brand_gln_fabrication_zero",
+        "pass": true
+      },
+      {
+        "name": "currency_mapping_pass",
+        "pass": true
+      },
+      {
+        "name": "currency_mapping_exact_irt_to_irr",
+        "pass": true
+      },
+      {
+        "name": "currency_site_prices_untouched",
+        "pass": true
+      },
+      {
+        "name": "editorial_full_provenance",
+        "pass": true
+      },
+      {
+        "name": "fake_authors_zero",
+        "pass": true
+      },
+      {
+        "name": "fake_reviewers_zero",
+        "pass": true
+      },
+      {
+        "name": "active_intents_present",
+        "pass": true
+      },
+      {
+        "name": "persisted_search_demand_present",
+        "pass": true
+      },
+      {
+        "name": "no_false_live_gsc_claim",
+        "pass": true
+      },
+      {
+        "name": "question_engine_enabled",
+        "pass": true
+      },
+      {
+        "name": "question_engine_not_customer_evidence",
+        "pass": true
+      },
+      {
+        "name": "question_engine_no_consecutive_failures",
+        "pass": true
+      },
+      {
+        "name": "phase20_guarded_pass",
+        "pass": true
+      },
+      {
+        "name": "full_wcag_not_falsely_claimed",
+        "pass": true
+      },
+      {
+        "name": "phase20_commerce_mutations_zero",
+        "pass": true
+      },
+      {
+        "name": "phase20_protected_theme_edits_zero",
+        "pass": true
+      },
+      {
+        "name": "citation_assets_have_limits",
+        "pass": true
+      },
+      {
+        "name": "campaign_no_paid_fake_authority",
+        "pass": true
+      },
+      {
+        "name": "campaign_no_outreach_gate",
+        "pass": true
+      }
+    ]
+  }
+}
