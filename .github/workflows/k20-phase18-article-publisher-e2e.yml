@@ -38,7 +38,7 @@ jobs:
           pip install -r daily-agri-articles/requirements.txt
       - name: Compile current article publisher chain and E2E
         run: |
-          python -m py_compile daily-agri-articles/publish_queue.py daily-agri-articles/publish_queue_v2.py daily-agri-articles/publish_queue_v3.py daily-agri-articles/publish_queue_v4.py daily-agri-articles/publish_queue_v5.py
+          python -m py_compile daily-agri-articles/publish_queue.py daily-agri-articles/publish_queue_v2.py daily-agri-articles/publish_queue_v3.py daily-agri-articles/publish_queue_v4.py daily-agri-articles/publish_queue_v5.py daily-agri-articles/publish_queue_v6.py
           python -m py_compile scripts/k20_phase18_article_publisher_e2e.py
       - name: Run temporary draft readback cleanup E2E
         run: python scripts/k20_phase18_article_publisher_e2e.py phase18-results/article-publisher-e2e-latest.json
