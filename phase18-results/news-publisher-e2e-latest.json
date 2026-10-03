@@ -1,9 +1,7 @@
 {
   "ok": true,
-  "run_id": 36267402257,
-  "publisher_version": "v3",
-  "temporary_news_id": 146207,
-  "temporary_media_id": 146206,
+  "temporary_news_id": 146686,
+  "temporary_media_id": 146685,
   "steps": [
     {
       "step": "validate_payload_v3",
@@ -21,12 +19,12 @@
     {
       "step": "upload_media",
       "ok": true,
-      "media_id": 146206
+      "media_id": 146685
     },
     {
       "step": "create_draft",
       "ok": true,
-      "post_id": 146207
+      "post_id": 146686
     },
     {
       "step": "verify",
@@ -47,6 +45,5 @@
   "cleanup_verified": {
     "post": true,
     "media": true
-  },
-  "persisted_from_successful_run_log": true
+  }
 }
