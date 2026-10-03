@@ -34,7 +34,14 @@ def main(result_path, projection_path):
     def add(name,v): checks.append({"name":name,"pass":bool(v)})
 
     add("manifest_v3",cfg.get("version")=="phase19-agentic-readiness-v3" and cfg.get("verified_official_sources_date")=="2026-10-03")
+    fresh_stamp=str(fresh.get("observed_at_utc") or "")
+    try:
+        fresh_dt=dt.datetime.fromisoformat(fresh_stamp.replace("Z","+00:00"))
+        fresh_age_hours=max(0.0,(dt.datetime.now(dt.timezone.utc)-fresh_dt).total_seconds()/3600.0)
+    except Exception:
+        fresh_age_hours=999999.0
     add("fresh_upstream_run_recorded",int(fresh.get("source_run_id") or 0)>0 and fresh.get("observed_from_successful_steps") is True)
+    add("fresh_upstream_within_24h",fresh_age_hours<=24)
     add("fresh_upstream_counts_match_persisted",int((fresh.get("phase11") or {}).get("candidate_rows") or 0)==candidates and int((fresh.get("phase11") or {}).get("ready_rows") or 0)==ready and int((fresh.get("phase15") or {}).get("external_single_brand_ready_products") or 0)==int(counts.get("brand") or 0))
     add("fresh_upstream_statuses_pass",all(str((fresh.get(k) or {}).get("status","")).startswith("PASS_") for k in ["phase11","phase12","phase14","phase15"]))
     add("phase11_guarded_pass",p11s.get("ok") is True and str(p11s.get("status","")).startswith("PASS_"))
@@ -186,6 +193,7 @@ def main(result_path, projection_path):
       "checks":checks,
       "source_summaries":{"phase11":p11s,"phase12":p12s,"phase14":p14,"phase15":p15},
       "fresh_upstream_refresh_evidence":fresh,
+      "fresh_upstream_age_hours":round(fresh_age_hours,3),
       "input_sha256":{
         "phase19/agentic-readiness.json":sha("phase19/agentic-readiness.json"),
         "growthos-phase11-results/openai-product-feed-readiness.json":sha("growthos-phase11-results/openai-product-feed-readiness.json"),
