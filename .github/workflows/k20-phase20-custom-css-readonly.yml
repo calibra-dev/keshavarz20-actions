@@ -1,0 +1,73 @@
+name: K20 Phase 20 Custom CSS Readonly
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnostics/phase20-custom-css/*.json'
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - name: Search bounded Custom CSS post
+        shell: python
+        run: |
+          import base64,json,os,subprocess,urllib.request
+          files=subprocess.check_output(['git','diff','--name-only','HEAD^','HEAD','--','diagnostics/phase20-custom-css/*.json'],text=True).splitlines()
+          files=[x for x in files if x.endswith('.json')]
+          if len(files)!=1: raise SystemExit(f'Expected one request, got {files}')
+          req=json.load(open(files[0],encoding='utf-8'))
+          post_id=int(req.get('post_id') or 0)
+          if post_id!=143732: raise SystemExit('Unexpected Custom CSS post ID.')
+          patterns=[str(x) for x in (req.get('patterns') or []) if str(x)]
+          if not patterns or len(patterns)>12: raise SystemExit('1..12 patterns required')
+          base=os.environ['WP_BASE_URL'].rstrip('/')
+          token=base64.b64encode((os.environ['WP_USERNAME']+':'+os.environ['WP_APP_PASSWORD']).encode()).decode()
+          rows=[]
+          for pattern in patterns:
+            body=json.dumps({
+              'target_type':'post','post_id':post_id,'field':'post_content',
+              'pattern':pattern,'case_sensitive':False,'max_results':100
+            }).encode()
+            q=urllib.request.Request(base+'/wp-json/wpvibe/v1/content/search',data=body,method='POST',headers={
+              'Authorization':'Basic '+token,'Accept':'application/json','Content-Type':'application/json','User-Agent':'K20-Phase20-CustomCSS-Readonly/1.0'
+            })
+            try:
+              with urllib.request.urlopen(q,timeout=90) as r:
+                raw=r.read().decode('utf-8','replace'); status=r.status
+            except Exception as e:
+              raw=getattr(e,'read',lambda:b'')().decode('utf-8','replace') if hasattr(e,'read') else ''
+              status=int(getattr(e,'code',0) or 0)
+            try: data=json.loads(raw) if raw else {}
+            except Exception: data={'raw_preview':raw[:2000]}
+            rows.append({'pattern':pattern,'http_status':status,'response':data})
+          out={'phase':20,'mode':'read-only','post_id':post_id,'rows':rows,'site_mutations':0}
+          os.makedirs('phase20-results',exist_ok=True)
+          open('phase20-results/custom-css-readonly-latest.json','w',encoding='utf-8').write(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps({'patterns':patterns,'statuses':[x['http_status'] for x in rows]},ensure_ascii=False))
+      - name: Persist bounded read
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase20-results/custom-css-readonly-latest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase20: record Custom CSS read-only evidence"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
