@@ -88,6 +88,10 @@
     "conversion_rule_verified": false,
     "unit_conversion_verified": false,
     "external_price_export_allowed": false,
-    "rule": "Do not relabel or convert IRT prices for an external commerce feed until the store accounting unit and an ISO 4217 conversion rule are explicitly verified."
+    "rule": "Do not relabel or convert IRT prices for an external commerce feed until the store accounting unit and an ISO 4217 conversion rule are explicitly verified.",
+    "internal_schema_currency": "IRR",
+    "internal_schema_multiplier_observed": 10,
+    "internal_schema_parity_evidence": "growthos-phase3-results/html-schema-feed-parity.json",
+    "internal_rule_is_not_external_feed_authorization": true
   }
 }
