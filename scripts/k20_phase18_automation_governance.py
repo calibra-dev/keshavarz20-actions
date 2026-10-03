@@ -26,6 +26,7 @@ def main(outpath):
     news_readme=text("daily-agri-news/README.md")
     article_readme=text("daily-agri-articles/README.md")
     article_prompt=text("daily-agri-articles/SCHEDULED_TASK_PROMPT.md")
+    bridge_router=text("scripts/Invoke-K20BridgeV3.ps1")
     news_base=text("daily-agri-news/publish_queue.py")
     news_v2=text("daily-agri-news/publish_queue_v2.py")
     news_v3=text("daily-agri-news/publish_queue_v3.py")
@@ -76,6 +77,7 @@ def main(outpath):
     add("question_scheduler_v19","engine_v19.py --action scheduled" in scheduler)
     add("question_heartbeat_status_v19","engine_v19.py --action status" in heartbeat)
     add("question_watchdog_recovery","recovered-stale-chain" in control)
+    add("question_engine_router_v19","Customer Question Engine v19" in bridge_router and "k20-customer-question-engine.yml" in bridge_router)
     add("question_interval_truthful",q.get("enabled") is True and q.get("continuous_mode") is True and q.get("min_interval_seconds")==1080 and q.get("max_interval_seconds")==1559 and q.get("engine_version")=="v19")
     add("question_live_runtime_evidence",lq.get("engine")=="v19" and lq.get("continuous") is True and int(lq.get("scheduler_run_id") or 0)>0 and int(lq.get("control_run_id") or 0)>0 and int(lq.get("heartbeat_run_id") or 0)>0)
 
