@@ -1,9 +1,9 @@
 {
   "phase": 19,
-  "version": "phase19-agentic-readiness-v2",
+  "version": "phase19-agentic-readiness-v3",
   "title": "Feeds, APIs & Agentic Readiness",
   "mode": "full_catalog_readiness_only_no_external_submission",
-  "verified_official_sources_date": "2026-09-26",
+  "verified_official_sources_date": "2026-10-03",
   "sources": {
     "openai_file_upload_overview": "https://developers.openai.com/commerce/specs/file-upload/overview",
     "openai_product_feed_spec": "https://developers.openai.com/commerce/specs/file-upload/products",
@@ -11,7 +11,12 @@
     "openai_commerce_policies": "https://openai.com/policies/commerce-policies/",
     "google_ucp_overview": "https://developers.google.com/merchant/ucp/guides/overview",
     "google_ucp_merchant_center": "https://developers.google.com/merchant/ucp/guides/tools/merchant-center/overview",
-    "google_ucp_profile": "https://developers.google.com/merchant/ucp/guides/overview/ucp-profile"
+    "google_ucp_profile": "https://developers.google.com/merchant/ucp/guides/overview/ucp-profile",
+    "openai_get_started": "https://developers.openai.com/commerce/guides/get-started",
+    "openai_api_overview": "https://developers.openai.com/commerce/specs/api/overview",
+    "google_merchant_api_latest_updates": "https://developers.google.com/merchant/api/latest-updates",
+    "google_merchant_country_restrictions": "https://support.google.com/merchants/answer/11915823?hl=en",
+    "google_ucp_current_scope": "https://support.google.com/merchants/answer/16837055?hl=en"
   },
   "openai_stable_feed": {
     "required_fields": [
@@ -41,7 +46,11 @@
     "current_price_and_availability_required": true,
     "optional_unknowns_must_be_omitted_not_fabricated": true,
     "merchant_acceptance_or_feed_submission_claimed": false,
-    "checkout_claimed": false
+    "checkout_claimed": false,
+    "api_delivery_supported": true,
+    "api_role": "incremental product updates and promotions after approved onboarding",
+    "partner_onboarding_required": true,
+    "stable_schema_required": true
   },
   "google_compatible_feed": {
     "enabled_for_submission": false,
@@ -51,12 +60,15 @@
     "identifier_exists_false_requires_truth_evidence": true
   },
   "google_ucp": {
-    "current_scope": "UCP integration hub is rolling out in the United States and applies to products sold within the United States; checkout is early access/select merchants.",
+    "current_scope": "Google UCP/checkout help currently applies to eligible products in the United States, Canada, and Australia and only to participating merchants/partners; checkout remains select-merchant access.",
     "merchant_center_participation_claimed": false,
-    "us_product_scope_claimed": false,
     "checkout_claimed": false,
     "public_profile_publish_authorized": false,
-    "live_adapter_authorized": false
+    "live_adapter_authorized": false,
+    "eligible_market_scope_claimed": false,
+    "merchant_api_current": true,
+    "content_api_for_shopping_sunset_date": "2026-08-18",
+    "content_api_for_shopping_used": false
   },
   "legal_policy_gate": {
     "openai_merchant_terms_acceptance_claimed": false,
