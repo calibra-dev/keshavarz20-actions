@@ -79,6 +79,14 @@ class BridgeReadRetryTests(unittest.TestCase):
         self.assertEqual(core.rest("GET", "/wc/v3/products/135126"), {"id": 135126})
         self.assertEqual(len(calls), 2)
 
+    def test_producer_live_read_has_bounded_read_only_retry(self) -> None:
+        workflow = (ROOT / ".github" / "workflows" / "k20-product-producer-live-read.yml").read_text(encoding="utf-8")
+        self.assertIn("function Invoke-BridgeReadWithRetry", workflow)
+        self.assertIn("for ($attempt = 1; $attempt -le 4; $attempt++)", workflow)
+        self.assertIn("HTTP\\s+(429|5\\d\\d)", workflow)
+        self.assertIn('Invoke-BridgeReadWithRetry -RequestPath "$productReq.clean"', workflow)
+        self.assertIn('Invoke-BridgeReadWithRetry -RequestPath "$seoReq.clean"', workflow)
+
     def test_publisher_avoids_redundant_terminal_product_read(self) -> None:
         source = (ROOT / "product-engine" / "publish_queue.py").read_text(encoding="utf-8")
         self.assertIn('result["after_media"]=media_snapshot(after)', source)
