@@ -4,51 +4,13 @@
   "post_id": 143732,
   "rows": [
     {
-      "pattern": "body.home .fullwidth-slider .owl-carousel:not(.owl-loaded)",
+      "pattern": "body.home .fullwidth-slider .owl-carousel:not(.owl-loaded) > :first-child {\n    display: block !important;\n}",
       "http_status": 200,
       "response": {
         "target": "post 143732 post_content",
-        "pattern": "body.home .fullwidth-slider .owl-carousel:not(.owl-loaded)",
-        "matches": [
-          {
-            "line": 991,
-            "content": "body.home .fullwidth-slider .owl-carousel:not(.owl-loaded) {",
-            "context_before": "   Owl hides .owl-carousel until .owl-loaded; this exposes only the first slide during that short pre-init window. */",
-            "context_after": "    display: block !important;"
-          },
-          {
-            "line": 994,
-            "content": "body.home .fullwidth-slider .owl-carousel:not(.owl-loaded) > * {",
-            "context_before": "}",
-            "context_after": "    display: none !important;"
-          },
-          {
-            "line": 997,
-            "content": "body.home .fullwidth-slider .owl-carousel:not(.owl-loaded) > :first-child {",
-            "context_before": "}",
-            "context_after": "    display: block !important;"
-          }
-        ],
-        "total_matches": 3,
-        "total_lines": 1000,
-        "truncated": false
-      }
-    },
-    {
-      "pattern": "P-CWV-02",
-      "http_status": 200,
-      "response": {
-        "target": "post 143732 post_content",
-        "pattern": "P-CWV-02",
-        "matches": [
-          {
-            "line": 989,
-            "content": "/* P-CWV-02: paint the first homepage hero before Owl Carousel JS initializes.",
-            "context_before": "",
-            "context_after": "   Owl hides .owl-carousel until .owl-loaded; this exposes only the first slide during that short pre-init window. */"
-          }
-        ],
-        "total_matches": 1,
+        "pattern": "body.home .fullwidth-slider .owl-carousel:not(.owl-loaded) > :first-child {\n    display: block !important;\n}",
+        "matches": [],
+        "total_matches": 0,
         "total_lines": 1000,
         "truncated": false
       }
