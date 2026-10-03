@@ -201,6 +201,11 @@ The article engine must stay available even when an optional or transient depend
 - The optional OpenAI content-growth enhancer inside the publisher must remain non-blocking. Queue content must already satisfy the V3 contract before commit; deterministic validation and sanitization remain authoritative.
 - Every new Phase 20 queue must include 4–6 `image_search_fallbacks` in addition to the primary `image_search_query`. Order queries from exact to broader but still factually relevant so Wikimedia scarcity does not turn one narrow query into a hard stop.
 - A publisher failure after an immutable queue commit is an ops-recovery case: diagnose the exact failed step, repair only that runtime defect, and retry the existing queue through the approved workflow-dispatch recovery path. Never create a duplicate dated queue.
+- Queue existence is **not** completion. A Tehran day is complete only after the exact queue commit has a terminal publisher result and WordPress readback verifies a concrete item with `wp_type=post`, `wp_status=draft`, and a real post ID.
+- When inspecting a queue commit, look up the push-triggered Article Queue Publisher run for that exact `head_sha`; do not rely on a PR-only workflow-run view to decide that no publisher exists.
+- If the queue exists and its publisher is queued/running, follow that same run. If it failed, was cancelled, or is stale, recover only that immutable queue. Do not research a second topic and do not rewrite the dated JSON.
+- Prefer the article publisher's own deterministic post-write readback/result artifact as the completion proof. A generic Bridge `rest.proxy` post-list 403 is a readback-route limitation, not evidence that draft creation failed.
+- If duplicate protection fires during recovery, first determine whether the exact queue already produced the intended WordPress draft. Reuse and verify that draft when proven; never create a second copy. Genuine overlap with another asset remains fail-closed.
 - Transient external reads may be retried, but safety-critical gates remain fail-closed: evidence/intent/duplicate validation, WordPress draft-only routing, deterministic Persian font/shaping, sanitizer checks and post-write readback must never be bypassed.
 
 ## 8) Queue and WordPress safety
