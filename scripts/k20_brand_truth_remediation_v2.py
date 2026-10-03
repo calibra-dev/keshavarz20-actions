@@ -49,11 +49,27 @@ for name in sorted(set(VER.values())):
         term_ids[name]=int(rows[0]["id"]); continue
     r=S.post(BASE+"/wp-json/wp/v2/product_brand",json={"name":name},timeout=90)
     if r.ok:
-        tid=int(r.json()["id"])
+        tid=0
+        try:
+            obj=r.json()
+            tid=int(obj.get("id") or 0)
+        except Exception:
+            tid=0
+        if not tid:
+            fresh=terms()
+            exact=[x for x in fresh if norm(x.get("name"))==norm(name)]
+            if len(exact)!=1:
+                raise RuntimeError(f"term create succeeded but exact readback ambiguous for {name}: {[(x.get('id'),x.get('name')) for x in exact]}")
+            tid=int(exact[0]["id"])
     else:
-        e=r.json() if r.text else {}
+        try: e=r.json() if r.text else {}
+        except Exception: e={}
         if r.status_code!=400 or e.get("code")!="term_exists": raise RuntimeError(f"term create {name}: {r.status_code} {r.text[:300]}")
         tid=int((e.get("data") or {}).get("term_id") or 0)
+        if not tid:
+            fresh=terms()
+            exact=[x for x in fresh if norm(x.get("name"))==norm(name)]
+            if len(exact)==1: tid=int(exact[0]["id"])
     if not tid: raise RuntimeError(f"no term id for {name}")
     term_ids[name]=tid; created.append({"name":name,"id":tid})
 
