@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Keshavarz20 Bridge v3
  * Description: GitHub-first guarded execution bridge for Keshavarz20.
- * Version: 3.3.32
+ * Version: 3.3.33
  * Author: Keshavarz20
  */
 
 if (!defined('ABSPATH')) exit;
-if (!defined('K20_BRIDGE_RUNTIME_VERSION')) define('K20_BRIDGE_RUNTIME_VERSION','3.3.32');
+if (!defined('K20_BRIDGE_RUNTIME_VERSION')) define('K20_BRIDGE_RUNTIME_VERSION','3.3.33');
 
 require_once __DIR__.'/includes/class-k20-bridge-v31-content.php';
 require_once __DIR__.'/includes/class-k20-bridge-v31-media.php';
@@ -25,7 +25,7 @@ require_once __DIR__.'/includes/class-k20-bridge-v33-performance.php';
 require_once __DIR__.'/includes/class-k20-bridge-v33-recommendation-guard.php';
 
 final class K20_Bridge_V3 {
-    private const VERSION='3.3.32';
+    private const VERSION='3.3.33';
     private const CONTRACT='3.3';
     private const NS='keshavarz20-ops/v3';
     private const AUDIT_OPTION='k20_bridge_v3_audit';
@@ -44,6 +44,7 @@ final class K20_Bridge_V3 {
 
     public static function boot(): void {
         add_action('rest_api_init',[__CLASS__,'routes']);
+        add_action('template_redirect',[__CLASS__,'maybe_serve_llms_txt'],0);
         add_filter('woocommerce_default_catalog_orderby',[__CLASS__,'frontend_catalog_order_default'],999);
         add_action('woocommerce_product_query',[__CLASS__,'apply_technical_filters'],20);
         add_action('woocommerce_before_shop_loop',[__CLASS__,'render_technical_filters'],5);
@@ -140,6 +141,58 @@ final class K20_Bridge_V3 {
         echo '<div class="k20-tech-filters__actions"><button type="submit">اعمال فیلتر</button><a href="'.esc_url(remove_query_arg($own_params)).'">پاک کردن فیلتر فنی</a></div>';
         echo '</form></section>';
         echo '<style id="k20-tech-filters-css">.k20-tech-filters{margin:14px 0 22px;padding:16px;border:1px solid #e2e8df;border-radius:16px;background:#fff;direction:rtl}.k20-tech-filters__head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}.k20-tech-filters__head strong{font-size:16px}.k20-tech-filters__head span{font-size:12px;opacity:.72}.k20-tech-filters__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}.k20-tech-filters__field{display:flex;flex-direction:column;gap:5px;font-size:12px}.k20-tech-filters__field select{width:100%;min-height:42px;border:1px solid #d9e1d6;border-radius:10px;background:#fff;padding:6px 9px}.k20-tech-filters__actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px}.k20-tech-filters__actions button{min-height:40px;border:0;border-radius:10px;padding:8px 18px;cursor:pointer}.k20-tech-filters__actions a{font-size:12px;text-decoration:none}@media(max-width:767px){.k20-tech-filters{padding:12px;margin:10px 0 16px}.k20-tech-filters__grid{grid-template-columns:1fr 1fr}.k20-tech-filters__actions>*{flex:1;text-align:center}}@media(max-width:420px){.k20-tech-filters__grid{grid-template-columns:1fr}}</style>';
+    }
+
+    public static function maybe_serve_llms_txt(): void {
+        $uri=isset($_SERVER['REQUEST_URI'])?wp_unslash((string)$_SERVER['REQUEST_URI']):'';
+        $path=(string)wp_parse_url($uri,PHP_URL_PATH);
+        if (rtrim($path,'/')!=='/llms.txt') return;
+
+        $home=untrailingslashit(home_url('/'));
+        $content=[
+            '# Keshavarz20 (کشاورز بیست)',
+            '',
+            '> Keshavarz20 is a Persian-language agricultural ecommerce and knowledge resource focused on irrigation equipment, agricultural inputs, seedlings, technical guides, calculators, agricultural news, and practical Q&A.',
+            '',
+            '## Canonical website',
+            '- '.$home.'/',
+            '',
+            '## Main resources',
+            '- Shop: '.$home.'/shop/',
+            '- Agricultural news: '.$home.'/news/',
+            '- Practical Q&A: '.$home.'/question/',
+            '- Education and guides: '.$home.'/بخش-آموزش/',
+            '- About Keshavarz20: '.$home.'/درباره-ما/',
+            '- XML sitemap: '.$home.'/sitemap_index.xml',
+            '',
+            '## Core topics',
+            '- Drip and sprinkler irrigation systems',
+            '- Polyethylene pipes, drip tape, valves, filters and irrigation fittings',
+            '- Fertilizers, agricultural inputs and plant nutrition',
+            '- Seedlings and crop establishment',
+            '- Irrigation design, pressure, flow, filtration and troubleshooting',
+            '- Product compatibility, installation guidance and purchasing information',
+            '',
+            '## Language and audience',
+            '- Primary language: Persian (fa-IR)',
+            '- Primary audience: farmers, growers, irrigation installers, agricultural buyers and technical users',
+            '',
+            '## Citation guidance',
+            '- Prefer canonical Keshavarz20 URLs when citing this site.',
+            '- For product price, availability and specifications, use the current live product page because commercial data can change.',
+            '- For technical claims, prefer pages that provide calculations, assumptions, evidence, or cited sources.',
+            '',
+            '## Contact and identity',
+            '- Brand: Keshavarz20 / کشاورز بیست',
+            '- Domain: keshavarz20.com',
+            ''
+        ];
+
+        status_header(200);
+        header('Content-Type: text/plain; charset=UTF-8');
+        header('Cache-Control: public, max-age=3600');
+        echo implode("\n",$content);
+        exit;
     }
 
     public static function routes(): void {
