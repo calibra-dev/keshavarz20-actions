@@ -148,6 +148,7 @@ Prepare all queue fields required by the publisher, including:
 - `editorial_disclosure`: concise truthful disclosure of research/automation/review method; never a fake human byline
 - `review_status` = `human_review_required_before_publish`
 - precise English `image_search_query`
+- `image_search_fallbacks`: 4–6 factual English queries ordered from exact to broader-but-still-relevant; keep them text-free, non-documentary and topic-specific enough to avoid unrelated imagery
 - `image_title`
 - short `cover_title`: **2–8 words**, no manual line breaks, maximum two rendered lines
 - optional `cover_subtitle`: maximum **12 words**, maximum two rendered lines
@@ -190,6 +191,17 @@ Before queueing:
 - check title/topic/intent overlap
 - strengthen an existing article rather than create a parallel page when intent is materially the same
 - never generate a page solely for a spelling/keyword variant
+
+## 7.5) Runtime reliability — non-critical dependency policy
+
+The article engine must stay available even when an optional or transient dependency fails.
+
+- Never disable, pause, delete or self-modify the recurring primary/recovery automation because a run failed.
+- Search Console is enrichment, not a production dependency. If it is unavailable, continue without Search Console metrics and explicitly record that no query/CTR/position data was used.
+- The optional OpenAI content-growth enhancer inside the publisher must remain non-blocking. Queue content must already satisfy the V3 contract before commit; deterministic validation and sanitization remain authoritative.
+- Every new Phase 20 queue must include 4–6 `image_search_fallbacks` in addition to the primary `image_search_query`. Order queries from exact to broader but still factually relevant so Wikimedia scarcity does not turn one narrow query into a hard stop.
+- A publisher failure after an immutable queue commit is an ops-recovery case: diagnose the exact failed step, repair only that runtime defect, and retry the existing queue through the approved workflow-dispatch recovery path. Never create a duplicate dated queue.
+- Transient external reads may be retried, but safety-critical gates remain fail-closed: evidence/intent/duplicate validation, WordPress draft-only routing, deterministic Persian font/shaping, sanitizer checks and post-write readback must never be bypassed.
 
 ## 8) Queue and WordPress safety
 
