@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261003-1044-llms-cache-purge.sanitized.json",
+  "action": "cache.purge",
+  "request_id": "llms-cache-purge-20261003-1044",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-03T07:13:47.5871415Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.33",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "purged": true,
+    "actions": [
+      "litespeed_purge_all",
+      "wp_cache_flush"
+    ]
+  }
+}
