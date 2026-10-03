@@ -1,0 +1,149 @@
+name: K20 Catalog V6 CSS Carousel QA
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/k20-catalog-v6-css-carousel-qa.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - shell: bash
+        run: |
+          set -euo pipefail
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          python3 -m pip install --quiet websocket-client
+          mkdir -p diagnostics
+          "$CHROME" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --remote-debugging-port=9222 --remote-allow-origins='*' --user-data-dir=/tmp/k20v6 --window-size=1664,936 about:blank >/tmp/k20v6.log 2>&1 &
+          PID=$!; trap 'kill $PID >/dev/null 2>&1 || true' EXIT
+          python3 - <<'PY'
+          import json,time,urllib.request,websocket,pathlib,os,base64,datetime
+          for _ in range(30):
+              try:
+                  ts=json.load(urllib.request.urlopen('http://127.0.0.1:9222/json',timeout=2))
+                  if ts:break
+              except Exception:pass
+              time.sleep(1)
+          t=next(x for x in ts if x.get('type')=='page')
+          ws=websocket.create_connection(t['webSocketDebuggerUrl'],timeout=30)
+          seq=0
+          def cmd(m,p=None):
+              global seq;seq+=1;ws.send(json.dumps({'id':seq,'method':m,'params':p or {}}))
+              while True:
+                  r=json.loads(ws.recv())
+                  if r.get('id')==seq:return r
+          def ev(expr,awaitp=False):
+              p={'expression':expr,'returnByValue':True}
+              if awaitp:p['awaitPromise']=True
+              rr=cmd('Runtime.evaluate',p).get('result',{})
+              if 'exceptionDetails' in rr:return {'error':rr['exceptionDetails'].get('text'),'desc':rr.get('result',{}).get('description')}
+              return rr.get('result',{}).get('value')
+          def ob(expr):
+              v=ev("JSON.stringify("+expr+")")
+              if isinstance(v,str):
+                  try:return json.loads(v)
+                  except Exception:return {'raw':v}
+              return v
+          def shot(p):
+              d=cmd('Page.captureScreenshot',{'format':'png','captureBeyondViewport':False}).get('result',{}).get('data')
+              if d:pathlib.Path(p).write_bytes(base64.b64decode(d))
+          cmd('Page.enable');cmd('Runtime.enable')
+          cmd('Page.navigate',{'url':'https://keshavarz20.com/catalog/?v6qa=1'});time.sleep(12)
+          base=ob(r'''(function(){
+            const root=document.getElementById('k20CatalogV4');
+            const slides=[...document.querySelectorAll('.showcase-slide')];
+            const visible=slides.map((s,i)=>({i,opacity:getComputedStyle(s).opacity,pointer:getComputedStyle(s).pointerEvents,rect:(()=>{const r=s.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height}})()}));
+            return {
+              root:!!root,
+              radioCount:document.querySelectorAll('.carousel-radio').length,
+              slideCount:slides.length,
+              stripCount:document.querySelectorAll('.strip-item[for^="k20SlideRadio"]').length,
+              checked:[...document.querySelectorAll('.carousel-radio')].findIndex(x=>x.checked),
+              overflow:root?(root.scrollWidth-root.clientWidth):999,
+              visible,
+              serverProducts:document.querySelectorAll('#k20WorkspaceProducts li.product').length,
+              heroStaticProducts:document.querySelectorAll('#k20HeroProducts .main-product-card').length
+            };
+          })()''')
+          transition=ev(r'''(async function(){
+            function snap(){
+              const slides=[...document.querySelectorAll('.showcase-slide')];
+              const visible=slides.filter(s=>Number(getComputedStyle(s).opacity)>.5);
+              return {
+                checked:[...document.querySelectorAll('.carousel-radio')].findIndex(x=>x.checked),
+                visible:visible.map(s=>Number(s.getAttribute('data-slide-index'))),
+                active:slides.findIndex(s=>{const r=s.getBoundingClientRect();return r.width>500&&Number(getComputedStyle(s).opacity)>.9;})
+              };
+            }
+            const before=snap();
+            document.querySelector('.preview-strip .strip-item[for="k20SlideRadio4"]')?.click();
+            await new Promise(r=>setTimeout(r,700));
+            const afterStrip=snap();
+            document.querySelector('.showcase-slide[data-slide-index="5"] .side-activate')?.click();
+            await new Promise(r=>setTimeout(r,700));
+            const afterSide=snap();
+            document.querySelector('.stage .state-nav.nav-for-5.carousel-next')?.click();
+            await new Promise(r=>setTimeout(r,700));
+            const afterNext=snap();
+            return JSON.stringify({before,afterStrip,afterSide,afterNext});
+          })()''',True)
+          try:transition=json.loads(transition) if isinstance(transition,str) else transition
+          except Exception:transition={'raw':transition}
+          ev("document.getElementById('k20CatalogV4').scrollTo({top:0,behavior:'auto'})");time.sleep(.2)
+          shot('diagnostics/k20-catalog-v6-desktop.png')
+
+          cmd('Emulation.setDeviceMetricsOverride',{'width':390,'height':844,'deviceScaleFactor':1,'mobile':True})
+          cmd('Page.navigate',{'url':'https://keshavarz20.com/catalog/?v6qa=2'});time.sleep(9)
+          mobile=ob(r'''(function(){
+            const root=document.getElementById('k20CatalogV4');
+            return {
+              root:!!root,
+              overflow:root?(root.scrollWidth-root.clientWidth):999,
+              checked:[...document.querySelectorAll('.carousel-radio')].findIndex(x=>x.checked),
+              slideCount:document.querySelectorAll('.showcase-slide').length,
+              activeWidth:document.querySelector('.showcase-slide[data-slide-index="0"]')?.getBoundingClientRect().width||0,
+              visibleCount:[...document.querySelectorAll('.showcase-slide')].filter(s=>Number(getComputedStyle(s).opacity)>.5).length,
+              stripCount:document.querySelectorAll('.strip-item[for^="k20SlideRadio"]').length
+            };
+          })()''')
+          mobileTransition=ev(r'''(async function(){
+            document.querySelector('.strip-item[for="k20SlideRadio6"]')?.click();
+            await new Promise(r=>setTimeout(r,650));
+            return JSON.stringify({
+              checked:[...document.querySelectorAll('.carousel-radio')].findIndex(x=>x.checked),
+              compareOpacity:getComputedStyle(document.querySelector('.showcase-slide[data-slide-index="6"]')).opacity,
+              compareWidth:document.querySelector('.showcase-slide[data-slide-index="6"]').getBoundingClientRect().width
+            });
+          })()''',True)
+          try:mobileTransition=json.loads(mobileTransition) if isinstance(mobileTransition,str) else mobileTransition
+          except Exception:mobileTransition={'raw':mobileTransition}
+          shot('diagnostics/k20-catalog-v6-mobile.png')
+          ws.close()
+          checks={
+            'base':bool(base and base.get('root') and base.get('radioCount')==9 and base.get('slideCount')==9 and base.get('stripCount')==9 and base.get('checked')==0 and base.get('overflow',999)<=4 and base.get('heroStaticProducts')==4),
+            'strip_switch':bool(transition and transition.get('afterStrip',{}).get('checked')==4 and transition.get('afterStrip',{}).get('active')==4),
+            'side_switch':bool(transition and transition.get('afterSide',{}).get('checked')==5 and transition.get('afterSide',{}).get('active')==5),
+            'next_switch':bool(transition and transition.get('afterNext',{}).get('checked')==6 and transition.get('afterNext',{}).get('active')==6),
+            'desktop_side_pages':bool(transition and len(transition.get('before',{}).get('visible',[]))>=3),
+            'mobile':bool(mobile and mobile.get('root') and mobile.get('overflow',999)<=4 and mobile.get('slideCount')==9 and mobile.get('visibleCount')==1 and 350<=mobile.get('activeWidth',0)<=390 and mobileTransition and mobileTransition.get('checked')==6 and float(mobileTransition.get('compareOpacity',0))>.9)
+          }
+          out={'checked_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'base':base,'transition':transition,'mobile':mobile,'mobile_transition':mobileTransition,'checks':checks,'pass':all(checks.values())}
+          pathlib.Path('diagnostics/k20-catalog-v6-css-carousel-qa.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          if not out['pass']:raise SystemExit(3)
+          PY
+      - shell: bash
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add diagnostics/k20-catalog-v6-css-carousel-qa.json diagnostics/k20-catalog-v6-desktop.png diagnostics/k20-catalog-v6-mobile.png 2>/dev/null || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'qa: record catalog v6 carousel evidence'
+          git pull --rebase origin main
+          git push origin main
