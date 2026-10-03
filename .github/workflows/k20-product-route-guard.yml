@@ -10,6 +10,7 @@ on:
       - '.github/workflows/k20-product-autopilot.yml'
       - '.github/workflows/k20-product-queue-publisher.yml'
       - '.github/workflows/k20-product-queue-promoter.yml'
+      - '.github/workflows/k20-product-producer-live-read.yml'
       - '.github/workflows/k20-product-route-guard.yml'
   pull_request:
     paths:
@@ -19,6 +20,7 @@ on:
       - '.github/workflows/k20-product-autopilot.yml'
       - '.github/workflows/k20-product-queue-publisher.yml'
       - '.github/workflows/k20-product-queue-promoter.yml'
+      - '.github/workflows/k20-product-producer-live-read.yml'
       - '.github/workflows/k20-product-route-guard.yml'
   workflow_dispatch:
 
