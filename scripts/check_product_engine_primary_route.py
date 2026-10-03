@@ -127,6 +127,19 @@ if int(config.get("concurrency") or 0) != 1:
 if int(config.get("max_products_per_run") or 0) != 1:
     fail("max_products_per_run must remain 1")
 
+lh_policy=config.get("lighthouse_acceptance") or {}
+if lh_policy.get("inherited_platform_debt_is_warning") is not True:
+    fail("inherited platform Lighthouse debt must remain warning-only")
+if (lock.get("invariants") or {}).get("inherited_platform_debt_is_warning") is not True:
+    fail("route lock must preserve inherited platform debt warning policy")
+platform_debt=lock.get("platform_debt_policy") or {}
+if platform_debt.get("new_post_publish_failures_remain_blocking") is not True:
+    fail("new post-publish Lighthouse failures must remain blocking")
+if platform_debt.get("measurement_unavailable_remains_blocking") is not True:
+    fail("Lighthouse measurement failures must remain blocking")
+if platform_debt.get("regressions_still_rollback") is not True:
+    fail("measured regressions must continue to rollback")
+
 api_trigger_block = api_wf.split("\npermissions:", 1)[0]
 if "\n  schedule:" in api_trigger_block or "\n  push:" in api_trigger_block:
     fail("API fallback workflow gained an automatic trigger")
