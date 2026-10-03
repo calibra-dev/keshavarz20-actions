@@ -1,0 +1,209 @@
+name: K20 Catalog V5 Carousel QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/k20-catalog-v5-carousel-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - shell: bash
+        run: |
+          set -euo pipefail
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          test -n "$CHROME"
+          python3 -m pip install --quiet websocket-client
+          mkdir -p diagnostics
+          "$CHROME" --headless=new --no-sandbox --disable-gpu --hide-scrollbars             --remote-debugging-port=9222 --remote-allow-origins='*'             --user-data-dir=/tmp/k20-v5 --window-size=1664,936 about:blank >/tmp/k20-v5.log 2>&1 &
+          PID=$!
+          trap 'kill $PID >/dev/null 2>&1 || true' EXIT
+          python3 - <<'PY'
+          import json,time,urllib.request,websocket,pathlib,datetime,os,base64
+          for _ in range(30):
+              try:
+                  targets=json.load(urllib.request.urlopen('http://127.0.0.1:9222/json',timeout=2))
+                  if targets: break
+              except Exception: pass
+              time.sleep(1)
+          target=next(x for x in targets if x.get('type')=='page')
+          ws=websocket.create_connection(target['webSocketDebuggerUrl'],timeout=30)
+          seq=0
+          def cmd(method,params=None):
+              global seq;seq+=1
+              ws.send(json.dumps({'id':seq,'method':method,'params':params or {}}))
+              while True:
+                  r=json.loads(ws.recv())
+                  if r.get('id')==seq:return r
+          def raw(expr,await_promise=False):
+              p={'expression':expr,'returnByValue':True}
+              if await_promise:p['awaitPromise']=True
+              rr=cmd('Runtime.evaluate',p).get('result',{})
+              if 'exceptionDetails' in rr:return {'__error__':rr['exceptionDetails'].get('text'),'description':rr.get('result',{}).get('description')}
+              return rr.get('result',{}).get('value')
+          def obj(expr,await_promise=False):
+              v=raw("JSON.stringify("+expr+")",await_promise)
+              if isinstance(v,str):
+                  try:return json.loads(v)
+                  except Exception:return {'raw':v}
+              return v
+          def shot(path):
+              data=cmd('Page.captureScreenshot',{'format':'png','captureBeyondViewport':False}).get('result',{}).get('data')
+              if data:pathlib.Path(path).write_bytes(base64.b64decode(data))
+          cmd('Page.enable');cmd('Runtime.enable')
+          cmd('Page.navigate',{'url':'https://keshavarz20.com/catalog/?v5qa=1'})
+          time.sleep(12)
+
+          base=obj(r'''(function(){
+            const root=document.getElementById('k20CatalogV4');
+            const slides=[...document.querySelectorAll('.showcase-slide')];
+            const active=slides.findIndex(s=>s.classList.contains('pos-0'));
+            return {
+              root:!!root,
+              runtimeType:typeof window.__K20CatalogV4,
+              state:window.__K20CatalogV4?.getState?.()||null,
+              slideCount:slides.length,
+              active,
+              classes:slides.map(s=>s.className),
+              stripCount:document.querySelectorAll('.strip-item[data-slide-index]').length,
+              dotCount:document.querySelectorAll('.carousel-dot').length,
+              overflow:root?(root.scrollWidth-root.clientWidth):999,
+              stageWidth:document.getElementById('k20ShowcaseStage')?.getBoundingClientRect().width||0,
+              activeWidth:slides[active]?.getBoundingClientRect().width||0
+            };
+          })()''')
+
+          transition=raw(r'''(async function(){
+            const api=window.__K20CatalogV4;
+            if(!api)return JSON.stringify({pass:false,reason:'no_api'});
+            const root=document.getElementById('k20CatalogV4');
+            function snapshot(){
+              const slides=[...document.querySelectorAll('.showcase-slide')];
+              return {
+                active:slides.findIndex(s=>s.classList.contains('pos-0')),
+                n1:slides.findIndex(s=>s.classList.contains('pos-n1')),
+                p1:slides.findIndex(s=>s.classList.contains('pos-p1')),
+                n2:slides.findIndex(s=>s.classList.contains('pos-n2')),
+                p2:slides.findIndex(s=>s.classList.contains('pos-p2')),
+                strip:[...document.querySelectorAll('.strip-item[data-slide-index]')].findIndex(x=>x.getAttribute('aria-current')==='true')
+              };
+            }
+            const before=snapshot();
+            document.querySelector('[data-carousel-next]')?.click();
+            await new Promise(r=>setTimeout(r,750));
+            const afterNext=snapshot();
+            document.querySelector('.strip-item[data-slide-index="4"]')?.click();
+            await new Promise(r=>setTimeout(r,750));
+            const afterStrip=snapshot();
+            document.querySelector('.showcase-slide[data-slide-index="5"]')?.click();
+            await new Promise(r=>setTimeout(r,750));
+            const afterSide=snapshot();
+            return JSON.stringify({before,afterNext,afterStrip,afterSide,state:api.getState(),scrollTop:root.scrollTop});
+          })()''',True)
+          try: transition=json.loads(transition) if isinstance(transition,str) else transition
+          except Exception: transition={'raw':transition}
+
+          category=raw(r'''(async function(){
+            window.__K20CatalogV4?.setSlide?.(1);
+            await new Promise(r=>setTimeout(r,650));
+            const b=document.querySelector('.showcase-slide.pos-0 [data-category-id="756"]');
+            if(!b)return JSON.stringify({pass:false,reason:'category_missing'});
+            b.click();
+            for(let i=0;i<70;i++){
+              const s=window.__K20CatalogV4?.getState?.();
+              if(s&&s.category==='756'&&s.products>0)break;
+              await new Promise(r=>setTimeout(r,120));
+            }
+            const s=window.__K20CatalogV4?.getState?.()||{};
+            return JSON.stringify({category:s.category,products:s.products,visible:s.visible});
+          })()''',True)
+          try: category=json.loads(category) if isinstance(category,str) else category
+          except Exception: category={'raw':category}
+
+          product=raw(r'''(async function(){
+            window.__K20CatalogV4?.setSlide?.(0);
+            await new Promise(r=>setTimeout(r,500));
+            document.querySelector('#k20HeroProducts .main-product-card')?.click();
+            await new Promise(r=>setTimeout(r,250));
+            window.__K20CatalogV4?.setSlide?.(3);
+            await new Promise(r=>setTimeout(r,600));
+            return JSON.stringify({
+              slide:window.__K20CatalogV4?.getState?.().activeSlide,
+              selected:window.__K20CatalogV4?.getState?.().selected,
+              title:(document.getElementById('k20HeroDetailTitle')?.textContent||'').trim(),
+              image:document.querySelector('#k20HeroDetailMedia img')?.naturalWidth||0
+            });
+          })()''',True)
+          try: product=json.loads(product) if isinstance(product,str) else product
+          except Exception: product={'raw':product}
+
+          raw("document.getElementById('k20CatalogV4').scrollTo({top:0,behavior:'auto'})")
+          time.sleep(.3)
+          shot('diagnostics/k20-catalog-v5-desktop.png')
+
+          cmd('Emulation.setDeviceMetricsOverride',{'width':390,'height':844,'deviceScaleFactor':1,'mobile':True})
+          cmd('Page.navigate',{'url':'https://keshavarz20.com/catalog/?v5qa=2'})
+          time.sleep(10)
+          mobile=obj(r'''(function(){
+            const root=document.getElementById('k20CatalogV4');
+            const slides=[...document.querySelectorAll('.showcase-slide')];
+            return {
+              root:!!root,
+              runtimeType:typeof window.__K20CatalogV4,
+              state:window.__K20CatalogV4?.getState?.()||null,
+              overflow:root?(root.scrollWidth-root.clientWidth):999,
+              slideCount:slides.length,
+              activeVisible:slides.filter(s=>getComputedStyle(s).opacity!=='0'&&getComputedStyle(s).pointerEvents!=='none').length,
+              activeWidth:document.querySelector('.showcase-slide.pos-0')?.getBoundingClientRect().width||0,
+              stripCount:document.querySelectorAll('.strip-item[data-slide-index]').length
+            };
+          })()''')
+          mobileSlide=raw(r'''(async function(){
+            const api=window.__K20CatalogV4;
+            api?.setSlide?.(6);
+            await new Promise(r=>setTimeout(r,700));
+            const s=api?.getState?.()||{};
+            const slide=document.querySelector('.showcase-slide.pos-0');
+            return JSON.stringify({active:s.activeSlide,view:slide?.getAttribute('data-view'),width:slide?.getBoundingClientRect().width||0});
+          })()''',True)
+          try: mobileSlide=json.loads(mobileSlide) if isinstance(mobileSlide,str) else mobileSlide
+          except Exception: mobileSlide={'raw':mobileSlide}
+          shot('diagnostics/k20-catalog-v5-mobile.png')
+          ws.close()
+
+          checks={
+            'base': bool(base and base.get('root') and base.get('runtimeType')=='object' and base.get('slideCount')==9 and base.get('stripCount')==9 and base.get('dotCount')==9 and base.get('overflow',999)<=4 and base.get('state',{}).get('products',0)>0),
+            'arrow_transition': bool(transition and transition.get('before',{}).get('active')==0 and transition.get('afterNext',{}).get('active')==1),
+            'strip_transition': bool(transition and transition.get('afterStrip',{}).get('active')==4 and transition.get('afterStrip',{}).get('strip')==4),
+            'side_click_transition': bool(transition and transition.get('afterSide',{}).get('active')==5),
+            'side_positions_rotate': bool(transition and transition.get('afterNext',{}).get('n1')==0 and transition.get('afterNext',{}).get('p1')==2),
+            'category_live': bool(category and category.get('category')=='756' and category.get('products',0)>0),
+            'product_live': bool(product and product.get('slide')==3 and product.get('selected') and product.get('title') and product.get('image',0)>0),
+            'mobile': bool(mobile and mobile.get('root') and mobile.get('runtimeType')=='object' and mobile.get('overflow',999)<=4 and mobile.get('slideCount')==9 and 340<=mobile.get('activeWidth',0)<=390 and mobileSlide and mobileSlide.get('active')==6 and mobileSlide.get('view')=='compare')
+          }
+          out={'checked_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'base':base,'transition':transition,'category':category,'product':product,'mobile':mobile,'mobile_slide':mobileSlide,'checks':checks,'pass':all(checks.values())}
+          pathlib.Path('diagnostics/k20-catalog-v5-carousel-qa.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          if not out['pass']:raise SystemExit(3)
+          PY
+      - shell: bash
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add diagnostics/k20-catalog-v5-carousel-qa.json diagnostics/k20-catalog-v5-desktop.png diagnostics/k20-catalog-v5-mobile.png 2>/dev/null || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'qa: record catalog v5 carousel evidence'
+          git pull --rebase origin main
+          git push origin main
