@@ -6,6 +6,8 @@ on:
     paths:
       - 'product-engine/**'
       - 'tests/test_product_engine_bridge_read_retry.py'
+      - 'tests/test_product_engine_platform_debt.py'
+      - 'tests/test_product_engine_platform_debt.py'
       - 'scripts/check_product_engine_primary_route.py'
       - '.github/workflows/k20-product-autopilot.yml'
       - '.github/workflows/k20-product-queue-publisher.yml'
@@ -54,3 +56,6 @@ jobs:
 
       - name: Test fail-closed Bridge read retry
         run: python tests/test_product_engine_bridge_read_retry.py
+
+      - name: Test baseline-relative platform debt gate
+        run: python tests/test_product_engine_platform_debt.py
