@@ -12,6 +12,8 @@ README_PATH = ROOT / "product-engine" / "README.md"
 API_WF_PATH = ROOT / ".github" / "workflows" / "k20-product-autopilot.yml"
 QUEUE_WF_PATH = ROOT / ".github" / "workflows" / "k20-product-queue-publisher.yml"
 PROMOTER_WF_PATH = ROOT / ".github" / "workflows" / "k20-product-queue-promoter.yml"
+LIVE_READ_WF_PATH = ROOT / ".github" / "workflows" / "k20-product-producer-live-read.yml"
+LIVE_READ_PROMOTER_WF_PATH = ROOT / ".github" / "workflows" / "k20-product-live-read-promoter.yml"
 PUBLISHER_PATH = ROOT / "product-engine" / "publish_queue.py"
 
 
@@ -26,6 +28,8 @@ readme = README_PATH.read_text(encoding="utf-8")
 api_wf = API_WF_PATH.read_text(encoding="utf-8")
 queue_wf = QUEUE_WF_PATH.read_text(encoding="utf-8")
 promoter_wf = PROMOTER_WF_PATH.read_text(encoding="utf-8")
+live_read_wf = LIVE_READ_WF_PATH.read_text(encoding="utf-8")
+live_read_promoter_wf = LIVE_READ_PROMOTER_WF_PATH.read_text(encoding="utf-8")
 publisher_py = PUBLISHER_PATH.read_text(encoding="utf-8")
 
 if lock.get("primary_producer") != "connected_chatgpt_queue":
@@ -54,6 +58,28 @@ if live_read.get("direct_wordpress_credentials_forbidden") is not True:
     fail("connected producer must not gain direct WordPress credentials")
 if live_read.get("connected_producer_must_not_write_bridge_v3_ops") is not True:
     fail("connected producer must not write bridge-v3-ops for normal product reads")
+if live_read.get("branch_fallback") != "automation/product-*":
+    fail("producer live-read branch fallback changed")
+if live_read.get("promoter_workflow") != ".github/workflows/k20-product-live-read-promoter.yml":
+    fail("producer live-read promoter workflow changed")
+if live_read.get("promoter_handoff") != "explicit_workflow_dispatch":
+    fail("producer live-read promoter must use explicit workflow_dispatch")
+if live_read.get("dispatch_endpoint") != "actions/workflows/k20-product-producer-live-read.yml/dispatches":
+    fail("producer live-read dispatch endpoint changed")
+if live_read.get("never_rely_on_github_token_push_recursion") is not True:
+    fail("producer live-read must not rely on workflow-generated push recursion")
+if "workflow_dispatch:" not in live_read_wf or "request_file:" not in live_read_wf:
+    fail("producer live-read workflow must accept explicit request_file dispatch")
+if "automation/product-*" not in live_read_promoter_wf:
+    fail("producer live-read promoter must watch automation/product-* branches")
+if "product-engine/live-read-ops/*.json" not in live_read_promoter_wf:
+    fail("producer live-read promoter must be scoped to live-read requests")
+if "actions: write" not in live_read_promoter_wf:
+    fail("producer live-read promoter must have actions: write")
+if "k20-product-producer-live-read.yml/dispatches" not in live_read_promoter_wf:
+    fail("producer live-read promoter must explicitly dispatch producer live-read")
+if "OPENAI_API_KEY" in live_read_promoter_wf or "ai_runtime.py" in live_read_promoter_wf:
+    fail("producer live-read promoter must not use model/API generation path")
 
 delivery = lock.get("queue_delivery") or {}
 if delivery.get("primary") != "direct_main_immutable_queue":
