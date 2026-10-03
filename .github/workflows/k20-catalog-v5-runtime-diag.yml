@@ -1,0 +1,67 @@
+name: K20 Catalog V5 Runtime Diagnostic
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/k20-catalog-v5-runtime-diag.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - shell: bash
+        run: |
+          set -euo pipefail
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          python3 -m pip install --quiet websocket-client
+          "$CHROME" --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-allow-origins='*' --user-data-dir=/tmp/k20v5diag about:blank >/tmp/k20v5diag.log 2>&1 &
+          PID=$!; trap 'kill $PID >/dev/null 2>&1 || true' EXIT
+          python3 - <<'PY'
+          import json,time,urllib.request,websocket,pathlib,os
+          for _ in range(30):
+              try:
+                  ts=json.load(urllib.request.urlopen('http://127.0.0.1:9222/json',timeout=2))
+                  if ts:break
+              except Exception:pass
+              time.sleep(1)
+          t=next(x for x in ts if x.get('type')=='page')
+          ws=websocket.create_connection(t['webSocketDebuggerUrl'],timeout=30)
+          i=0
+          def cmd(m,p=None):
+              global i;i+=1;ws.send(json.dumps({'id':i,'method':m,'params':p or {}}))
+              while True:
+                  r=json.loads(ws.recv())
+                  if r.get('id')==i:return r
+          def ev(expr,awaitp=False):
+              p={'expression':expr,'returnByValue':True}
+              if awaitp:p['awaitPromise']=True
+              rr=cmd('Runtime.evaluate',p).get('result',{})
+              if 'exceptionDetails' in rr:return {'error':rr['exceptionDetails'].get('text'),'desc':rr.get('result',{}).get('description')}
+              return rr.get('result',{}).get('value')
+          cmd('Page.enable');cmd('Runtime.enable')
+          cmd('Page.navigate',{'url':'https://keshavarz20.com/catalog/?v5diag=1'});time.sleep(10)
+          out={}
+          out['runtime']=ev("typeof window.__K20CatalogV4")
+          out['script_meta']=ev("""(()=>{const s=[...document.scripts].find(x=>(x.src||'').includes('k20-catalog-v5.js'));return s?JSON.stringify({src:s.src,type:s.type,defer:s.defer,noDefer:s.getAttribute('data-no-defer')}):null})()""")
+          out['resources']=ev("""JSON.stringify(performance.getEntriesByType('resource').filter(x=>(x.name||'').includes('k20-catalog-v5')).map(x=>({name:x.name,transferSize:x.transferSize,decodedBodySize:x.decodedBodySize,duration:x.duration})))""")
+          out['fetch']=ev("""(async()=>{const s=[...document.scripts].find(x=>(x.src||'').includes('k20-catalog-v5.js'));if(!s)return JSON.stringify({ok:false,reason:'no_script'});try{const r=await fetch(s.src,{cache:'no-store'});const t=await r.text();let manual;try{new Function(t);manual={ok:true};}catch(e){manual={ok:false,name:e.name,message:e.message,stack:(e.stack||'').slice(0,500)};}return JSON.stringify({ok:r.ok,status:r.status,len:t.length,head:t.slice(0,100),manual});}catch(e){return JSON.stringify({ok:false,name:e.name,message:e.message});}})()""",True)
+          out['errors']=ev("""JSON.stringify(window.__k20DiagErrors||[])""")
+          pathlib.Path('diagnostics').mkdir(exist_ok=True)
+          pathlib.Path('diagnostics/k20-catalog-v5-runtime-diag.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          ws.close()
+          PY
+      - shell: bash
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add diagnostics/k20-catalog-v5-runtime-diag.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'diag: catalog v5 runtime'
+          git pull --rebase origin main
+          git push origin main
