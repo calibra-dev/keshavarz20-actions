@@ -30,6 +30,14 @@ def normalize_persian_section_label(value: str) -> str:
     return text.strip()
 
 
+def normalize_persian_section_label(value: str) -> str:
+    text = html.unescape(str(value or ""))
+    text = unicodedata.normalize("NFKC", text)
+    text = text.replace("ي", "ی").replace("ك", "ک")
+    text = re.sub(r"[\u00A0\u200C\u200D\u2060\s]+", " ", text)
+    return text.strip()
+
+
 def load_master_prompt(profile: str | None = None) -> str:
     master = MASTER_PROMPT_PATH.read_text(encoding="utf-8")
     if not profile:
