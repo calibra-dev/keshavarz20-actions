@@ -25,8 +25,11 @@ jobs:
         run: |
           import json,re,urllib.request,datetime,os,html
           from html.parser import HTMLParser
-          feed=json.load(open('phase19-results/product-discovery-readiness-feed-persisted.json',encoding='utf-8'))
-          product=next((p.get('canonical_url') for p in feed.get('products',[]) if p.get('canonical_url')), 'https://keshavarz20.com/product/')
+          parity=json.load(open('growthos-phase3-results/html-schema-feed-parity.json',encoding='utf-8'))
+          products=parity.get('products') or []
+          preferred=next((x for x in products if int(x.get('product_id') or 0)==135349 and x.get('pass') is True),None)
+          fallback=next((x for x in products if x.get('pass') is True and (x.get('classification') or {}).get('offer_schema_required') is True and x.get('url')),None)
+          product=(preferred or fallback or {}).get('url') or 'https://keshavarz20.com/product/'
           targets={'home':'https://keshavarz20.com/','product':product,'pipe-guide':'https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/','filter-selector':'https://keshavarz20.com/irrigation-filter-selector/','fittings-selector':'https://keshavarz20.com/irrigation-fittings-compatibility-selector/'}
           class Parser(HTMLParser):
             def __init__(self):
