@@ -1,0 +1,145 @@
+name: K20 Product Live Read Promoter
+
+on:
+  push:
+    branches:
+      - 'automation/product-*'
+    paths:
+      - 'product-engine/live-read-ops/*.json'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: k20-product-live-read-promoter-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout producer branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Resolve exactly one new immutable live-read request
+        id: request
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff-tree --no-commit-id --name-only --diff-filter=A -r "$GITHUB_SHA" -- 'product-engine/live-read-ops/*.json' > /tmp/product-live-read-requests.txt
+          count=$(grep -c . /tmp/product-live-read-requests.txt || true)
+          if [ "$count" -ne 1 ]; then
+            echo "::error::Expected exactly one newly added product live-read request; found $count"
+            cat /tmp/product-live-read-requests.txt || true
+            exit 2
+          fi
+          file=$(cat /tmp/product-live-read-requests.txt)
+          case "$file" in
+            product-engine/live-read-ops/*.json) ;;
+            *) echo "::error::Unexpected live-read path: $file"; exit 3 ;;
+          esac
+          python ./k20_sanitizer.py --check "$file"
+          product_id=$(python - "$file" <<'PY'
+          import json, sys
+          from pathlib import Path
+          p=Path(sys.argv[1])
+          d=json.loads(p.read_text(encoding='utf-8'))
+          if set(d) != {'schema_version','product_id'}:
+              raise SystemExit('live-read request keys must be exactly schema_version and product_id')
+          if d.get('schema_version') != 'product-producer-live-read-v1':
+              raise SystemExit('invalid schema_version')
+          pid=int(d.get('product_id') or 0)
+          if pid <= 0:
+              raise SystemExit('positive product_id required')
+          if str(pid) not in p.name:
+              raise SystemExit('live-read filename must contain product_id')
+          print(pid)
+          PY
+          )
+          cp "$file" /tmp/product-live-read-request.json
+          echo "file=$file" >> "$GITHUB_OUTPUT"
+          echo "product_id=$product_id" >> "$GITHUB_OUTPUT"
+
+      - name: Promote live-read request onto current main
+        shell: bash
+        env:
+          REQUEST_FILE: ${{ steps.request.outputs.file }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          if git cat-file -e "origin/main:${REQUEST_FILE}" 2>/dev/null; then
+            echo "Live-read request already exists on main; promotion is idempotently complete."
+            exit 0
+          fi
+          source_branch="$GITHUB_REF_NAME"
+          source_sha="$GITHUB_SHA"
+          git checkout -B main origin/main
+          mkdir -p "$(dirname "$REQUEST_FILE")"
+          cp /tmp/product-live-read-request.json "$REQUEST_FILE"
+          python scripts/check_product_engine_primary_route.py
+          git add "$REQUEST_FILE"
+          base_name=$(basename "$REQUEST_FILE")
+          git commit -m "product-engine: promote live read ${base_name} from ${source_branch} (${source_sha:0:12})"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep $((attempt * 2))
+          done
+          echo "::error::Live-read promotion could not fast-forward current main after 5 retries."
+          exit 4
+
+      - name: Dispatch producer live-read explicitly
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REQUEST_FILE: ${{ steps.request.outputs.file }}
+          PRODUCT_ID: ${{ steps.request.outputs.product_id }}
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git cat-file -e "origin/main:${REQUEST_FILE}" || { echo "::error::Promoted live-read request is missing from main"; exit 5; }
+
+          result_path="product-engine/live-read-results/$(basename "$REQUEST_FILE")"
+          if git cat-file -e "origin/main:${result_path}" 2>/dev/null; then
+            echo "Live-read result already exists on main for product ${PRODUCT_ID}; dispatch is idempotently skipped."
+            exit 0
+          fi
+
+          python - <<'PY' > /tmp/product-live-read-dispatch.json
+          import json, os
+          print(json.dumps({
+              "ref": "main",
+              "inputs": {
+                  "request_file": os.environ["REQUEST_FILE"]
+              }
+          }))
+          PY
+
+          code=$(curl -sS -o /tmp/product-live-read-dispatch-response.txt -w "%{http_code}" \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/k20-product-producer-live-read.yml/dispatches" \
+            --data-binary @/tmp/product-live-read-dispatch.json)
+
+          if [ "$code" != "204" ]; then
+            echo "::error::Producer live-read workflow_dispatch failed with HTTP $code"
+            cat /tmp/product-live-read-dispatch-response.txt || true
+            exit 6
+          fi
+          echo "PRODUCT_LIVE_READ_DISPATCHED request=${REQUEST_FILE} product_id=${PRODUCT_ID}"
