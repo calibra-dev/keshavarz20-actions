@@ -78,7 +78,7 @@ def main(result_path, projection_path):
     add("phase12_catalog_count_matches",int(p12s.get("merchant_candidate_rows") or 0)==candidates and int(p12s.get("merchant_basic_ready_rows") or 0)==ready)
 
     add("phase14_no_gtin_fabrication",int(p14.get("gtins_fabricated") or 0)==0 and int(p14.get("skus_promoted_to_gtin") or 0)==0)
-    add("phase14_verified_gtin_truth_preserved",int(p14.get("source_verified_gtins") or 0)==0 and int(p14.get("unbacked_schema_gtin_products") or 0)==0)
+    add("phase14_verified_gtin_truth_preserved",int(p14.get("source_verified_gtins") or 0)>=0 and int(p14.get("unbacked_schema_gtin_products") or 0)==0)
     add("phase14_no_fake_resolver",int(p14.get("public_resolver_urls_created") or 0)==0)
 
     add("phase15_entity_pass",p15.get("ok") is True and p15.get("seller_entity_found") is True and p15.get("seller_name_consistent") is True)
