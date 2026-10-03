@@ -1,0 +1,77 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "action": "engine.status",
+  "engine": "article",
+  "engine_label": "Daily Article Engine",
+  "workflow": "k20-article-queue-publisher.yml",
+  "state": "completed",
+  "runs": [
+    {
+      "run_id": 36828946673,
+      "state": "completed",
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "started_at": "2026-10-01T07:11:53Z",
+      "created_at": "2026-10-01T07:11:53Z",
+      "finished_at": "2026-10-01T07:14:16Z",
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    },
+    {
+      "run_id": 36828910890,
+      "state": "completed",
+      "conclusion": "success",
+      "event": "push",
+      "started_at": "2026-10-01T07:11:30Z",
+      "created_at": "2026-10-01T07:11:30Z",
+      "finished_at": "2026-10-01T07:12:22Z",
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    },
+    {
+      "run_id": 36828720453,
+      "state": "completed",
+      "conclusion": "failure",
+      "event": "workflow_dispatch",
+      "started_at": "2026-10-01T07:09:32Z",
+      "created_at": "2026-10-01T07:09:32Z",
+      "finished_at": "2026-10-01T07:10:37Z",
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    },
+    {
+      "run_id": 36822414535,
+      "state": "completed",
+      "conclusion": "failure",
+      "event": "push",
+      "started_at": "2026-10-01T05:59:05Z",
+      "created_at": "2026-10-01T05:59:05Z",
+      "finished_at": "2026-10-01T05:59:52Z",
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    },
+    {
+      "run_id": 36673694558,
+      "state": "completed",
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "started_at": "2026-09-30T05:30:10Z",
+      "created_at": "2026-09-30T05:30:10Z",
+      "finished_at": "2026-09-30T05:30:25Z",
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    }
+  ],
+  "executed_at_utc": "2026-10-03T05:28:27.7332222Z"
+}
