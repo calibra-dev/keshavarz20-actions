@@ -1,14 +1,16 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-152d2f54624fb4a2",
-  "product_id": 135337,
-  "family": "valve",
-  "intent": "total_cost",
+  "canonical_intent_id": "question-intent-145c6a52f37c2c7c",
+  "product_id": 143044,
+  "family": "fertilizer",
+  "intent": "variety",
   "scenario_dimensions": {
-    "pressure": true
+    "water": true,
+    "crop": "تره",
+    "province_or_climate": "قم"
   },
-  "potential_article_gap": true,
+  "potential_article_gap": false,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
