@@ -60,7 +60,7 @@ jobs:
           p15=load("growthos-phase15-results/summary.json")
           out={
             "phase":19,
-            "version":"phase19-v2-upstream-refresh-evidence",
+            "version":"phase19-v3-upstream-refresh-evidence",
             "source_run_id":int(os.environ["GITHUB_RUN_ID_VALUE"]),
             "observed_from_successful_steps":True,
             "observed_at_utc":datetime.now(timezone.utc).isoformat(),
@@ -108,7 +108,7 @@ jobs:
           Path("phase19-results/upstream-refresh-latest.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           print(json.dumps(out,ensure_ascii=False))
           PY
-      - name: Validate Phase 19 v2 full catalog readiness
+      - name: Validate Phase 19 v3 full catalog readiness
         run: |
           python scripts/k20_phase19_agentic_readiness.py phase19-results/agentic-readiness-latest.json phase19-results/product-discovery-readiness-feed.json
       - name: Persist sanitized read-only evidence
@@ -119,7 +119,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f             growthos-phase11-results/chatgpt-search-crawl-audit.json             growthos-phase11-results/openai-product-feed-readiness.json             growthos-phase11-results/summary.json             growthos-phase12-results/merchant-field-map.json             growthos-phase12-results/ucp-readiness-contract.json             growthos-phase12-results/summary.json             growthos-phase14-results/digital-link-contract.json             growthos-phase14-results/identifier-registry.json             growthos-phase14-results/summary.json             growthos-phase15-results/brand-entity-registry.json             growthos-phase15-results/entity-graph.json             growthos-phase15-results/entity-parity-audit.json             growthos-phase15-results/seller-entity-registry.json             growthos-phase15-results/summary.json             phase19-results/agentic-readiness-latest.json             phase19-results/product-discovery-readiness-feed.json             phase19-results/upstream-refresh-latest.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "phase19 v2: record full catalog agentic readiness"
+          git commit -m "phase19 v3: record full catalog agentic readiness"
           for attempt in 1 2 3 4 5; do
             git pull --rebase origin main || true
             if git push origin HEAD:main; then exit 0; fi
