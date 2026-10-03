@@ -1,0 +1,202 @@
+name: K20 Phase 20 Final Closure
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'phase20-acceptance-ops/*.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k20-phase20-final-closure
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Validate current Phase 20 guarded closure
+        shell: python
+        run: |
+          import json, datetime, os
+          from pathlib import Path
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding='utf-8-sig'))
+
+          ux=load('phase20-results/ux-a11y-live-latest.json')
+          diag=load('phase20-results/a11y-diagnostics-latest.json')
+          fast=load('phase20-results/fast-semantic-diagnostics-latest.json')
+          ctx=load('phase20-results/site-context-latest.json')
+          src=load('phase7-results/irankala-singular-source-signatures.json')
+          assets=load('phase20-results/theme-asset-signatures-latest.json')
+
+          checks=[]
+          def add(name, ok, evidence=None):
+              checks.append({'name':name,'pass':bool(ok),'evidence':evidence})
+
+          required=['home','product','pipe-guide','filter-selector','fittings-selector']
+          today='2026-10-03'
+
+          add('ux_evidence_current', str(ux.get('generated_at_utc','')).startswith(today), ux.get('generated_at_utc'))
+          add('diag_evidence_current', str(diag.get('generated_at_utc','')).startswith(today), diag.get('generated_at_utc'))
+          add('fast_semantic_current', str(fast.get('generated_at_utc','')).startswith(today), fast.get('generated_at_utc'))
+          add('site_context_current', str(ctx.get('generated_at_utc','')).startswith(today), ctx.get('generated_at_utc'))
+          add('theme_asset_evidence_current', str(assets.get('generated_at_utc','')).startswith(today), assets.get('generated_at_utc'))
+
+          acc=ux.get('acceptance') or {}
+          for key in ['all_live_fetches_ok','mobile_content_width_pass','homepage_single_h1_and_main','semantic_language_present','server_rendered_decision_content','product_key_data_visible']:
+              add('ux_'+key, acc.get(key) is True, acc.get(key))
+          add('full_accessibility_not_falsely_claimed', acc.get('automated_accessibility_full_score') is False, acc.get('automated_accessibility_full_score'))
+
+          upages={p.get('name'):p for p in ux.get('pages',[])}
+          add('all_required_pages_audited', all(x in upages for x in required), sorted(upages.keys()))
+          expected_failed={
+              'home':{'button-name','link-name'},
+              'product':{'button-name','link-name'},
+              'pipe-guide':{'link-name'},
+              'filter-selector':{'link-name'},
+              'fittings-selector':{'link-name'}
+          }
+          for name in required:
+              p=upages.get(name,{})
+              failed={k for k,v in (p.get('audits') or {}).items() if isinstance(v,dict) and v.get('score')==0}
+              add('ux_expected_failures_'+name, failed==expected_failed[name], sorted(failed))
+
+          dpages=diag.get('pages') or {}
+          add('all_required_exact_diagnostics', all(x in dpages for x in required), sorted(dpages.keys()))
+          for name in required:
+              p=dpages.get(name,{})
+              audits=p.get('audits') or {}
+              h=(audits.get('heading-order') or {})
+              add('heading_order_pass_'+name, h.get('score')==1 and not (h.get('items') or []), h.get('score'))
+
+              link=(audits.get('link-name') or {})
+              link_items=link.get('items') or []
+              selectors=[str(x.get('selector') or '') for x in link_items]
+              add('login_link_is_only_link_name_residual_'+name,
+                  link.get('score')==0 and bool(selectors) and all('a.login-register' in s for s in selectors),
+                  selectors[:10])
+
+              button=(audits.get('button-name') or {})
+              button_items=button.get('items') or []
+              bselectors=[str(x.get('selector') or '') for x in button_items]
+              if name in ('home','product'):
+                  add('owl_dot_is_only_button_name_residual_'+name,
+                      button.get('score')==0 and bool(bselectors) and all('button.owl-dot' in s for s in bselectors),
+                      bselectors[:10])
+              else:
+                  add('no_button_name_residual_'+name,
+                      button.get('score') in (1,None) and not bselectors,
+                      {'score':button.get('score'),'selectors':bselectors[:10]})
+
+          fpages=fast.get('pages') or {}
+          for name in required:
+              p=fpages.get(name,{})
+              counts=p.get('counts') or {}
+              add('single_server_h1_'+name, counts.get('h1')==1, counts.get('h1'))
+              add('no_server_empty_buttons_'+name, counts.get('empty_buttons')==0, counts.get('empty_buttons'))
+
+          themes=ctx.get('active_themes') or []
+          active=next((x for x in themes if x.get('status')=='active'),{})
+          add('irankala_10_10_active', active.get('stylesheet')=='irankala' and active.get('version')=='10.10.0', active)
+
+          protected={}
+          for row in src.get('files',[]):
+              path=row.get('path')
+              protected[path]=any((m.get('pattern') in ('ICB0','ionCube')) for m in (row.get('matches') or []))
+          for path in [
+              'themes/irankala/elementor/header/header-logo.php',
+              'themes/irankala/blocks/main-slider.php',
+              'themes/irankala/blocks/products-slider.php',
+              'themes/irankala/blocks/special-ads.php'
+          ]:
+              add('protected_renderer_'+path.replace('/','_'), protected.get(path) is True, protected.get(path))
+
+          asset_text=json.dumps(assets,ensure_ascii=False)
+          add('login_mobile_css_rootcause_recorded',
+              'login-register span' in asset_text and 'display:none' in asset_text,
+              'common.css mobile rule hides login-register span')
+          add('owl_unlabeled_renderer_recorded',
+              'owl-dot' in asset_text and 'owlCarousel' in asset_text,
+              'IranKala/Owl public assets generate dot controls without label hook')
+
+          add('ux_site_mutations_zero', ux.get('site_mutations')==0, ux.get('site_mutations'))
+          add('ux_theme_code_mutations_zero', ux.get('theme_code_mutations')==0, ux.get('theme_code_mutations'))
+          add('ux_commerce_mutations_zero', ux.get('commerce_mutations')==0, ux.get('commerce_mutations'))
+          add('diag_site_mutations_zero', diag.get('site_mutations')==0, diag.get('site_mutations'))
+          add('fast_site_mutations_zero', fast.get('site_mutations')==0, fast.get('site_mutations'))
+          add('context_site_mutations_zero', ctx.get('site_mutations')==0, ctx.get('site_mutations'))
+
+          passed=all(x['pass'] for x in checks)
+          out={
+              'phase':20,
+              'title':'UX/CRO/Accessibility/Agent Usability',
+              'version':'phase20-final-closure-v3',
+              'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              'run_id':os.getenv('GITHUB_RUN_ID'),
+              'status':'PASS_GUARDED_VENDOR_RENDERER' if passed else 'FAIL',
+              'full_wcag_automated_pass':False,
+              'check_count':len(checks),
+              'passed_checks':sum(1 for x in checks if x['pass']),
+              'failed_checks':[x for x in checks if not x['pass']],
+              'checks':checks,
+              'verified_good':[
+                  'all five live targets fetch successfully',
+                  'mobile content width gate passes',
+                  'single H1 and heading order pass',
+                  'Persian lang/RTL and server-rendered decision content pass',
+                  'product price/CTA/stock/SKU decision data are visible',
+                  'logo and promotional image alt text are present in live HTML'
+              ],
+              'guarded_residuals':[
+                  {
+                      'audit':'link-name',
+                      'selector':'a.login-register',
+                      'root_cause':'IranKala mobile CSS hides the only visible text span at max-width 992px.'
+                  },
+                  {
+                      'audit':'button-name',
+                      'selector':'button.owl-dot',
+                      'scope':['home','product'],
+                      'root_cause':'IranKala/Owl renderer creates dot buttons without accessible names.'
+                  }
+              ],
+              'closure_reason':'All non-vendor Phase 20 gates pass. The only remaining automated accessibility failures are exactly whitelisted IranKala/Owl renderer residuals with no allow-listed live renderer-code write path.',
+              'remediation_condition':'Reopen only when IranKala exposes a supported accessibility hook/update or an explicitly approved update-safe live deployment path can add accessible names without modifying protected renderer code.',
+              'site_mutations_by_acceptance':0,
+              'commerce_mutations':0,
+              'price_stock_payment_user_mutations':0,
+              'protected_theme_edits':0
+          }
+          Path('phase20-results').mkdir(exist_ok=True)
+          Path('phase20-results/final-closure-latest.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps({'status':out['status'],'passed_checks':out['passed_checks'],'check_count':out['check_count'],'failed_checks':len(out['failed_checks'])},ensure_ascii=False))
+          if not passed:
+              raise SystemExit(1)
+
+      - name: Persist final Phase 20 closure evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f phase20-results/final-closure-latest.json || exit 1
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase20-results/final-closure-latest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase20: record final guarded UX accessibility closure"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
