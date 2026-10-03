@@ -119,7 +119,7 @@ jobs:
               interaction={'raw':interaction}
           raw("document.getElementById('k20CatalogV4')?.scrollTo({top:0,behavior:'auto'})")
           time.sleep(.4)
-          shot('diagnostics/k20-catalog-v4-desktop.png')
+          shot('diagnostics/k20-catalog-v4-desktop-'+os.environ.get('GITHUB_RUN_ID','run')+'-a'+os.environ.get('GITHUB_RUN_ATTEMPT','1')+'.png')
 
           cmd('Emulation.setDeviceMetricsOverride',{'width':390,'height':844,'deviceScaleFactor':1,'mobile':True})
           nav('https://keshavarz20.com/catalog/?v4qa=mobile',10)
@@ -151,7 +151,7 @@ jobs:
           except Exception:
               mobileFilter={'raw':mobileFilter}
           raw("document.getElementById('k20CatalogV4')?.scrollTo({top:0,behavior:'auto'})")
-          shot('diagnostics/k20-catalog-v4-mobile.png')
+          shot('diagnostics/k20-catalog-v4-mobile-'+os.environ.get('GITHUB_RUN_ID','run')+'-a'+os.environ.get('GITHUB_RUN_ATTEMPT','1')+'.png')
           ws.close()
 
           panel_ok=bool(
@@ -173,7 +173,7 @@ jobs:
             }
           }
           out['pass']=all(out['checks'].values())
-          pathlib.Path('diagnostics/k20-catalog-v4-reference-qa.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          pathlib.Path('diagnostics/k20-catalog-v4-reference-qa-'+os.environ.get('GITHUB_RUN_ID','run')+'-a'+os.environ.get('GITHUB_RUN_ATTEMPT','1')+'.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
           print(json.dumps(out,ensure_ascii=False,indent=2))
           if not out['pass']:raise SystemExit(3)
           PY
@@ -183,7 +183,7 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add diagnostics/k20-catalog-v4-reference-qa.json diagnostics/k20-catalog-v4-desktop.png diagnostics/k20-catalog-v4-mobile.png 2>/dev/null || true
+          git add diagnostics/k20-catalog-v4-reference-qa-*.json diagnostics/k20-catalog-v4-desktop-*.png diagnostics/k20-catalog-v4-mobile-*.png 2>/dev/null || true
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'qa: record catalog v4 reference evidence'
           git pull --rebase origin main
