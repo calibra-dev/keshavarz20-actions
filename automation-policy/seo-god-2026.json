@@ -1,5 +1,5 @@
 {
-  "policy_version": "seo-god-2026.09.19-routing-fix",
+  "policy_version": "seo-god-2026.10.03-phase18-runtime-alignment",
   "brand": {
     "fa": "کشاورز بیست",
     "latin": "Keshavarz20",
@@ -95,7 +95,7 @@
     ],
     "production": {
       "enabled": true,
-      "engine_version": "v18",
+      "engine_version": "v19",
       "mode": "continuous",
       "persistent_until_explicitly_disabled": true,
       "scheduler": "heartbeat_plus_watchdog"
@@ -207,8 +207,10 @@
       },
       "news": {
         "primary_time_tehran": "08:00",
-        "recovery_time_tehran": "08:15",
-        "draft_only": true
+        "recovery_time_tehran": "08:30",
+        "draft_only": true,
+        "watchdog_time_tehran": "10:30",
+        "watchdog_role": "late_same_day_verified_draft_recovery"
       },
       "article": {
         "primary_time_tehran": "09:00",
