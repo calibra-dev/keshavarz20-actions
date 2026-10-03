@@ -1,8 +1,8 @@
 {
   "phase": 20,
   "type": "a11y_diagnostics",
-  "generated_at_utc": "2026-10-03T06:10:42.418718+00:00",
-  "run_id": "37102066468",
+  "generated_at_utc": "2026-10-03T06:13:56.991144+00:00",
+  "run_id": "37102270176",
   "pages": {
     "home": {
       "score": 0.77,
@@ -835,12 +835,48 @@
       ]
     },
     "product": {
-      "score": 0.79,
+      "score": 0.78,
       "audits": {
         "button-name": {
-          "score": null,
-          "title": "Buttons have an accessible name",
-          "items": []
+          "score": 0,
+          "title": "Buttons do not have an accessible name",
+          "items": [
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "nodeLabel": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot active\">",
+              "explanation": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\"",
+              "subItems": null
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "nodeLabel": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "explanation": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\"",
+              "subItems": null
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "nodeLabel": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "explanation": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\"",
+              "subItems": null
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "nodeLabel": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "explanation": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\"",
+              "subItems": null
+            },
+            {
+              "selector": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "nodeLabel": "div.widget-content > div.owl-carousel > div.owl-dots > button.owl-dot",
+              "snippet": "<button role=\"button\" class=\"owl-dot\">",
+              "explanation": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\"",
+              "subItems": null
+            }
+          ]
         },
         "link-name": {
           "score": 0,
@@ -862,7 +898,7 @@
         }
       },
       "server_h1_texts": [
-        "مقایسه محصولات"
+        "شیر توپی تک‌ضرب دسته فلزی ویسپار ۲ اینچ (۶۳ میلی‌متر)"
       ]
     },
     "pipe-guide": {
