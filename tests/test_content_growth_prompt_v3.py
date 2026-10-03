@@ -24,6 +24,15 @@ class ContentGrowthPromptV3Tests(unittest.TestCase):
         ):
             self.assertIn(marker, prompt)
 
+    def test_persian_section_label_normalization_is_spacing_tolerant(self):
+        canonical = content_growth_runtime.normalize_persian_section_label("جمع‌بندی")
+        self.assertEqual(canonical, content_growth_runtime.normalize_persian_section_label("جمع بندی"))
+        self.assertEqual(canonical, content_growth_runtime.normalize_persian_section_label("جمع&nbsp;بندی"))
+        self.assertEqual(canonical, content_growth_runtime.normalize_persian_section_label("جمع\u200dبندی"))
+        source = (ROOT / "daily-agri-news" / "publish_queue_v2.py").read_text(encoding="utf-8")
+        self.assertIn("normalize_persian_section_label", source)
+        self.assertIn("normalized_content", source)
+
     def test_article_profile_is_mounted(self):
         prompt = content_growth_runtime.load_master_prompt("article")
         self.assertIn("ARTICLE PROFILE", prompt)
