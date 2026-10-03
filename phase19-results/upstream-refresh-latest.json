@@ -1,16 +1,9 @@
 {
   "phase": 19,
-  "version": "phase19-v2-upstream-refresh-evidence",
-  "source_run_id": 36274759640,
-  "component_run_ids": {
-    "phase11": 36274759640,
-    "phase12": 36274855142,
-    "phase14": 36273800257,
-    "phase15": 36274771311,
-    "phase17": 36274903700
-  },
+  "version": "phase19-v3-upstream-refresh-evidence",
+  "source_run_id": 37100888106,
   "observed_from_successful_steps": true,
-  "observed_at_utc": "2026-09-26T22:01:43Z",
+  "observed_at_utc": "2026-10-03T05:57:52.239738+00:00",
   "phase11": {
     "status": "PASS_GUARDED_FEED_READY_PARTNER_APPROVAL_REQUIRED",
     "candidate_rows": 652,
@@ -38,10 +31,10 @@
   "phase15": {
     "status": "PASS_ENTITY_OS_WITH_SOURCE_GAPS",
     "published_products": 652,
-    "source_verified_truth_brand_products": 577,
-    "external_single_brand_ready_products": 565,
+    "source_verified_truth_brand_products": 652,
     "products_without_woo_brand": 0,
     "external_brand_truth_gap_products": 87,
+    "external_single_brand_ready_products": 565,
     "pseudo_brand_products": 75,
     "multi_brand_ambiguous_products": 12,
     "brand_truth_mismatches": 0,
@@ -50,6 +43,5 @@
     "glns_fabricated": 0,
     "seller_entity_found": true,
     "seller_name_consistent": true
-  },
-  "note": "Current refresh after 158 brand assignments and 12-product multi-brand fail-closed audit. Pseudo-brand «متفرقه» and ambiguous multi-brand products are excluded from external single-brand readiness."
+  }
 }
