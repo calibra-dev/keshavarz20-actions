@@ -78,7 +78,7 @@ READ_RETRY_DELAYS_SECONDS = (2, 5, 10)
 def _retryable_read_error(exc: Exception) -> bool:
     if isinstance(exc, requests.RequestException):
         return True
-    match = re.search(r"\\bhttp(?:=|\\s)(\\d{3})\\b", str(exc), re.I)
+    match = re.search(r"\bhttp(?:=|\s)(\d{3})\b", str(exc), re.I)
     if not match:
         return False
     status = int(match.group(1))
