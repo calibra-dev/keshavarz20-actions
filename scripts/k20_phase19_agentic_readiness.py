@@ -28,6 +28,7 @@ def main(result_path, projection_path):
     checks=[]
     def add(name,v): checks.append({"name":name,"pass":bool(v)})
 
+    add("manifest_v3",cfg.get("version")=="phase19-agentic-readiness-v3" and cfg.get("verified_official_sources_date")=="2026-10-03")
     add("fresh_upstream_run_recorded",int(fresh.get("source_run_id") or 0)>0 and fresh.get("observed_from_successful_steps") is True)
     add("fresh_upstream_counts_match_persisted",int((fresh.get("phase11") or {}).get("candidate_rows") or 0)==candidates and int((fresh.get("phase11") or {}).get("ready_rows") or 0)==ready and int((fresh.get("phase15") or {}).get("external_single_brand_ready_products") or 0)==int(counts.get("brand") or 0))
     add("fresh_upstream_statuses_pass",all(str((fresh.get(k) or {}).get("status","")).startswith("PASS_") for k in ["phase11","phase12","phase14","phase15"]))
@@ -67,10 +68,13 @@ def main(result_path, projection_path):
     oa=cfg["openai_stable_feed"]; gu=cfg["google_ucp"]; gg=cfg["google_compatible_feed"]; lg=cfg["legal_policy_gate"]
     add("openai_required_field_contract_current",oa.get("required_fields")==["item_id","title","description","url","brand","seller_name","image_url","availability","price"])
     add("openai_snapshot_delivery_guarded",oa.get("delivery_model")=="full_snapshot" and oa.get("stable_filename_required") is True)
+    add("openai_api_delivery_current",oa.get("api_delivery_supported") is True and oa.get("partner_onboarding_required") is True and oa.get("stable_schema_required") is True)
     add("openai_no_submission_claim",oa.get("merchant_acceptance_or_feed_submission_claimed") is False and cfg.get("external_submission") is False)
     add("openai_no_checkout_claim",oa.get("checkout_claimed") is False)
     add("google_feed_submission_guarded",gg.get("enabled_for_submission") is False and gg.get("gtin_must_be_source_verified") is True and gg.get("identifier_exists_false_requires_truth_evidence") is True)
-    add("google_ucp_access_not_invented",gu.get("merchant_center_participation_claimed") is False and gu.get("us_product_scope_claimed") is False and gu.get("public_profile_publish_authorized") is False and gu.get("live_adapter_authorized") is False)
+    add("google_merchant_api_current",gu.get("merchant_api_current") is True and gu.get("content_api_for_shopping_sunset_date")=="2026-08-18" and gu.get("content_api_for_shopping_used") is False and p12s.get("merchant_api_current") is True and p12s.get("content_api_for_shopping_used") is False)
+    add("google_ucp_scope_current",gu.get("eligible_market_scope_claimed") is False and p12s.get("ucp_current_eligible_markets")==["US","CA","AU"] and p12s.get("ucp_keshavarz20_eligibility_claimed") is False)
+    add("google_ucp_access_not_invented",gu.get("merchant_center_participation_claimed") is False and gu.get("eligible_market_scope_claimed") is False and gu.get("public_profile_publish_authorized") is False and gu.get("live_adapter_authorized") is False)
     add("google_ucp_checkout_not_claimed",gu.get("checkout_claimed") is False)
     add("legal_terms_not_falsely_accepted",lg.get("openai_merchant_terms_acceptance_claimed") is False and lg.get("commerce_policy_review_complete_claimed") is False and lg.get("legal_and_trade_compliance_complete_claimed") is False)
     add("payment_checkout_untouched",cfg["payment_checkout"]["authorized"] is False and int(cfg["payment_checkout"]["mutations_performed"] or 0)==0)
@@ -80,9 +84,9 @@ def main(result_path, projection_path):
     now=dt.datetime.now(dt.timezone.utc).isoformat()
 
     projection={
-      "version":"k20-agentic-readiness-projection-v2",
+      "version":"k20-agentic-readiness-projection-v3",
       "generated_at_utc":now,
-      "status":"FULL_CATALOG_INTERNAL_READINESS_ONLY_NOT_SUBMITTED",
+      "status":"FULL_CATALOG_INTERNAL_READINESS_ONLY_NOT_SUBMITTED_V3",
       "catalog":{
         "candidate_rows":candidates,
         "fully_ready_rows":ready,
@@ -110,6 +114,9 @@ def main(result_path, projection_path):
       },
       "google_ucp":{
         "publication_allowed_now":False,
+        "current_eligible_product_markets":["US","CA","AU"],
+        "merchant_api_current":True,
+        "content_api_for_shopping_used":False,
         "public_profile_published":bool(p12s.get("ucp_public_profile_published")),
         "live_adapter_claimed":bool(p12s.get("ucp_live_adapter_claimed")),
         "existing_woo_products_public":bool(p12s.get("woo_store_products_public")),
@@ -124,9 +131,9 @@ def main(result_path, projection_path):
 
     result={
       "phase":19,
-      "version":"phase19-agentic-readiness-v2",
+      "version":"phase19-agentic-readiness-v3",
       "title":"Feeds, APIs & Agentic Readiness",
-      "status":"PASS_V2_FULL_CATALOG_GUARDED" if passed else "FAIL_V2",
+      "status":"PASS_V3_FULL_CATALOG_GUARDED" if passed else "FAIL_V3",
       "generated_at_utc":now,
       "check_count":len(checks),
       "passed_checks":sum(1 for x in checks if x["pass"]),
@@ -150,6 +157,8 @@ def main(result_path, projection_path):
         "openai_feed_architecture_ready_partial":p11s.get("ok") is True,
         "google_compatible_feed_fail_closed":gg.get("enabled_for_submission") is False,
         "ucp_fail_closed_until_authorized":gu.get("public_profile_publish_authorized") is False and gu.get("live_adapter_authorized") is False,
+        "merchant_api_current":gu.get("merchant_api_current") is True and gu.get("content_api_for_shopping_used") is False,
+        "openai_file_and_api_contract_current":oa.get("api_delivery_supported") is True and oa.get("partner_onboarding_required") is True,
         "identifier_truth_preserved":int(p14.get("gtins_fabricated") or 0)==0 and int(p14.get("skus_promoted_to_gtin") or 0)==0,
         "entity_truth_preserved":int(p15.get("brand_truth_mismatches",99))==0,
         "external_submission":False,
@@ -177,7 +186,7 @@ def main(result_path, projection_path):
     rp.parent.mkdir(parents=True,exist_ok=True)
     pp.write_text(json.dumps(projection,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     rp.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    print("PHASE19_V2",json.dumps({"status":result["status"],"checks":len(checks),"passed":result["passed_checks"],"failed":result["failed_checks"],"candidate_rows":candidates,"ready_rows":ready},ensure_ascii=False))
+    print("PHASE19_V3",json.dumps({"status":result["status"],"checks":len(checks),"passed":result["passed_checks"],"failed":result["failed_checks"],"candidate_rows":candidates,"ready_rows":ready},ensure_ascii=False))
     if not passed: raise SystemExit(2)
 
 if __name__=="__main__": main(sys.argv[1],sys.argv[2])
