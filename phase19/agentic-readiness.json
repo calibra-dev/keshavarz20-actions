@@ -84,14 +84,20 @@
   "secret_values_persisted": false,
   "currency_export_policy": {
     "observed_store_currency": "IRT",
-    "external_iso4217_currency": null,
-    "conversion_rule_verified": false,
-    "unit_conversion_verified": false,
-    "external_price_export_allowed": false,
-    "rule": "Do not relabel or convert IRT prices for an external commerce feed until the store accounting unit and an ISO 4217 conversion rule are explicitly verified.",
+    "external_iso4217_currency": "IRR",
+    "conversion_rule_verified": true,
+    "unit_conversion_verified": true,
+    "external_price_export_allowed": true,
+    "rule": "Normalize Woo IRT (Iranian toman accounting/display unit) to ISO 4217 IRR for external machine feeds by multiplying the numeric amount by 10. This is a denomination conversion only, not an FX conversion. Never relabel IRT as IRR without multiplying by 10.",
+    "source_amount_unit": "IRT",
+    "target_amount_unit": "IRR",
+    "amount_multiplier": 10,
+    "rounding_rule": "exact_integer_denominational_conversion_before any feed-specific formatting",
     "internal_schema_currency": "IRR",
     "internal_schema_multiplier_observed": 10,
     "internal_schema_parity_evidence": "growthos-phase3-results/html-schema-feed-parity.json",
-    "internal_rule_is_not_external_feed_authorization": true
+    "google_iso4217_evidence": "https://developers.google.com/merchant/api/reference/rest/Shared.Types/Price",
+    "google_structured_data_evidence": "https://support.google.com/merchants/answer/6386198?hl=en-001",
+    "external_submission_still_requires_market_and_partner_authorization": true
   }
 }
