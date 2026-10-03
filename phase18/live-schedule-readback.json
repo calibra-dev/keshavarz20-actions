@@ -1,16 +1,23 @@
 {
   "phase": 18,
-  "version": "v2",
-  "observed_at_utc": "2026-09-26T19:40:00Z",
+  "version": "v3",
+  "observed_at_utc": "2026-10-03T05:20:00Z",
   "timezone": "Asia/Tehran",
   "news": {
     "primary": {
       "enabled": true,
-      "time": "08:00"
+      "time": "08:00",
+      "last_run_observed_utc": "2026-10-03T04:32:24.777867Z"
     },
     "recovery": {
       "enabled": true,
-      "time": "08:15"
+      "time": "08:30",
+      "last_run_observed_utc": "2026-10-03T05:10:47.270720Z"
+    },
+    "watchdog": {
+      "enabled": true,
+      "time": "10:30",
+      "role": "late_same_day_verified_draft_recovery"
     }
   },
   "article": {
@@ -24,11 +31,16 @@
     }
   },
   "question": {
-    "engine": "v18",
+    "engine": "v19",
     "continuous": true,
-    "scheduler_run_id": 36265709695,
-    "control_run_id": 36265698336,
-    "heartbeat_run_id": 36255859092
+    "scheduler_run_id": 37088831452,
+    "control_run_id": 37082119580,
+    "heartbeat_run_id": 37088502002
   },
-  "note": "Read back from live automation configuration and current GitHub Actions runtime. No schedule was duplicated; previously disabled existing recovery/news tasks were re-enabled."
+  "runtime_evidence": {
+    "news_publisher_success_run_id": 37098795677,
+    "news_publisher_failed_then_recovered_run_id": 37098713195,
+    "article_last_verified_publisher_success_run_id": 36828910890
+  },
+  "note": "Read back from live ChatGPT automations and current GitHub Actions runtime on 2026-10-03. News recovery is 08:30 with an additional 10:30 watchdog; article remains 09:00/09:20; question engine is v19."
 }
