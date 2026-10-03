@@ -100,7 +100,7 @@ The scheduled task supplies:
 
 ## Automatic schedule
 
-The connected ChatGPT primary task runs at **08:00 Asia/Tehran every day** and the recovery task checks at **08:15 Asia/Tehran**. Both first inspect whether today's queue already exists. The queue is written only when needed; GitHub Actions triggers automatically when that queue file is committed.
+The connected ChatGPT primary task runs at **08:00 Asia/Tehran every day**, the recovery task checks at **08:30 Asia/Tehran**, and a late same-day watchdog checks at **10:30 Asia/Tehran**. All three first verify the queue/publisher/site-side draft state and must not create duplicates. The queue is written only when needed; GitHub Actions triggers automatically when that queue file is committed.
 
 There is intentionally **no second daily GitHub cron** on the API-mode generator. `k20-daily-agri-news.yml` is manual fallback/testing only.
 
