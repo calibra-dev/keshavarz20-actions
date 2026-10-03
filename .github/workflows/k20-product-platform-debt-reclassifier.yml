@@ -82,8 +82,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          result="product-engine/results/${{ steps.request.outputs.product_id }}.json"
+          python ./k20_sanitizer.py --json product-engine/state.json --output /tmp/product-state.clean.json
+          mv /tmp/product-state.clean.json product-engine/state.json
+          python ./k20_sanitizer.py --json "$result" --output /tmp/product-result.clean.json
+          mv /tmp/product-result.clean.json "$result"
           python ./k20_sanitizer.py --check product-engine/state.json
-          python ./k20_sanitizer.py --check "product-engine/results/${{ steps.request.outputs.product_id }}.json"
+          python ./k20_sanitizer.py --check "$result"
 
       - name: Persist reclassification checkpoint
         shell: bash
