@@ -30,6 +30,13 @@ def _title_tokens(value: str) -> set[str]:
     return {t for t in tokens if t not in stop}
 
 
+def _normalize_required_section_text(value: str) -> str:
+    raw = base.strip_html(str(value or "")).replace("ي", "ی").replace("ك", "ک")
+    raw = raw.replace("\u200c", " ")
+    raw = re.sub(r"[\u200e\u200f\u202a-\u202e\u2066-\u2069]", "", raw)
+    return re.sub(r"\s+", " ", raw).strip()
+
+
 def validate_payload_v2(p):
     required = [
         "content_type", "title", "slug", "excerpt", "content_html", "focus_keyphrase",
@@ -47,9 +54,16 @@ def validate_payload_v2(p):
     text = base.strip_html(str(p["content_html"]))
     if len(text) < 900:
         raise base.QueuePublishError("News draft is too short; refusing to create a draft")
-    for section in ("جمع‌بندی", "نظر کارشناسی کشاورز بیست", "منابع", "روش تهیه و بازبینی"):
-        if section not in str(p["content_html"]):
-            raise base.QueuePublishError(f"Required section missing: {section}")
+    normalized_sections = _normalize_required_section_text(str(p["content_html"]))
+    required_sections = {
+        "جمع بندی": "جمع‌بندی",
+        "نظر کارشناسی کشاورز بیست": "نظر کارشناسی کشاورز بیست",
+        "منابع": "منابع",
+        "روش تهیه و بازبینی": "روش تهیه و بازبینی",
+    }
+    for normalized_section, display_section in required_sections.items():
+        if normalized_section not in normalized_sections:
+            raise base.QueuePublishError(f"Required section missing: {display_section}")
 
     if "/editorial-policy/" not in str(p["content_html"]):
         raise base.QueuePublishError("Phase 16 requires a visible link to the Keshavarz20 editorial policy")
