@@ -24,7 +24,7 @@
     "stock_state_does_not_change_content_freshness_date": true,
     "price_or_stock_change_requires_data_parity_review_not_fake_content_refresh": true,
     "review_due_is_not_evidence_of_content_error": true,
-    "deletion_requires_explicit_decision": false
+    "deletion_requires_explicit_decision": true
   },
   "transition_rules": {
     "outofstock": "For a published product keep the URL by default, verify visible availability and schema, and do not infer discontinuation.",
