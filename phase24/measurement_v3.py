@@ -325,7 +325,7 @@ def remaining_queue(bank: dict[str, Any], registry: dict[str, Any]) -> dict[str,
 def build_report(now: dt.datetime | None = None) -> tuple[dict[str, Any], dict[str, Any]]:
     now = now or dt.datetime.now(UTC)
     bank = load(ROOT / "phase24" / "prompt-bank-200-fa.json")
-    registry = load(ROOT / "phase24" / "direct-observations-v2.json")
+    registry = load(ROOT / "phase24" / "direct-observations-v3.json")
     telemetry = load(ROOT / "phase24-results" / "telemetry-2026-09-27.json")
 
     bank_check = validate_prompt_bank(bank)
