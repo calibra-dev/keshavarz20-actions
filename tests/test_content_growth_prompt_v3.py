@@ -51,6 +51,13 @@ class ContentGrowthPromptV3Tests(unittest.TestCase):
         source = (ROOT / "daily-agri-news" / "main.py").read_text(encoding="utf-8")
         self.assertIn('load_master_prompt("news")', source)
 
+    def test_news_section_gate_tolerates_persian_zwnj_variants(self):
+        source = (ROOT / "daily-agri-news" / "publish_queue_v2.py").read_text(encoding="utf-8")
+        self.assertIn("def _normalize_required_section_text", source)
+        self.assertIn('raw = raw.replace("\\u200c", " ")', source)
+        self.assertIn('"جمع بندی": "جمع‌بندی"', source)
+        self.assertIn("required_sections = {", source)
+
     def test_profile_rejects_unknown_engine(self):
         with self.assertRaises(ValueError):
             content_growth_runtime.load_master_prompt("invalid")
