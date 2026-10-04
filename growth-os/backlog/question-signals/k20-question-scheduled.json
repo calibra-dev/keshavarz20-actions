@@ -1,14 +1,19 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-7ffa9cf1a7becdd6",
-  "product_id": 141704,
+  "canonical_intent_id": "question-intent-d2c5fa9ce471922c",
+  "product_id": 135701,
   "family": "fitting",
-  "intent": "alternative",
-  "scenario_dimensions": {},
+  "intent": "logistics",
+  "scenario_dimensions": {
+    "pressure": true,
+    "logistics": true,
+    "crop": "به",
+    "province_or_climate": "بندرعباس"
+  },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": true,
+  "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
