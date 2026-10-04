@@ -127,6 +127,17 @@ The publisher uses authenticated WordPress REST for media and the allow-listed `
 
 Do not commit secret values.
 
+### Race-safe queue ingress
+
+The queue file on current `main` is the single source of truth for daily ingress.
+
+- Re-read today's queue path from current `main` immediately before create.
+- A create-time HTTP 422 / `sha wasn't supplied` is treated as a concurrency race: re-read the path and accept the concurrent queue if it now exists; never overwrite it.
+- Temporary recovery branches must start from the latest main head immediately before the write.
+- Re-check main before PR/merge. A dirty or stale recovery PR must never be force-merged; recreate it from the latest main or stop if another run already created the queue.
+- Queue existence is not success. Require publisher completion plus WordPress readback with `wp_type=news`, `wp_status=draft`, and a concrete post ID.
+- Required Persian editorial headings are validated semantically across harmless ZWNJ/space and Arabic/Persian character variants; genuinely missing sections still fail closed.
+
 ## Failure behavior
 
 The engine intentionally stops without creating a draft when evidence is insufficient, sources are not independent, the topic duplicates recent news, structure is incomplete, image acquisition fails, WordPress credentials are unavailable, or post-write verification fails. A skipped day is safer than a weak or misleading draft.
