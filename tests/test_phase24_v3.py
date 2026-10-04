@@ -19,7 +19,7 @@ class Phase24V3Tests(unittest.TestCase):
 
     def test_observation_integrity_and_surface_match(self):
         bank=json.loads((ROOT/"phase24"/"prompt-bank-200-fa.json").read_text(encoding="utf-8"))
-        reg=json.loads((ROOT/"phase24"/"direct-observations-v2.json").read_text(encoding="utf-8"))
+        reg=json.loads((ROOT/"phase24"/"direct-observations-v3.json").read_text(encoding="utf-8"))
         x=mod.validate_observations(bank,reg)
         self.assertEqual(x["count"],70)
         self.assertEqual(x["unique_observation_ids"],70)
@@ -28,7 +28,7 @@ class Phase24V3Tests(unittest.TestCase):
 
     def test_bad_surface_fails_closed(self):
         bank=json.loads((ROOT/"phase24"/"prompt-bank-200-fa.json").read_text(encoding="utf-8"))
-        reg=json.loads((ROOT/"phase24"/"direct-observations-v2.json").read_text(encoding="utf-8"))
+        reg=json.loads((ROOT/"phase24"/"direct-observations-v3.json").read_text(encoding="utf-8"))
         bad=json.loads(json.dumps(reg))
         bad["observations"][0]["surface"]="Perplexity"
         with self.assertRaises(mod.Phase24Error):
@@ -36,7 +36,7 @@ class Phase24V3Tests(unittest.TestCase):
 
     def test_false_positive_citation_without_domain_url_fails(self):
         bank=json.loads((ROOT/"phase24"/"prompt-bank-200-fa.json").read_text(encoding="utf-8"))
-        reg=json.loads((ROOT/"phase24"/"direct-observations-v2.json").read_text(encoding="utf-8"))
+        reg=json.loads((ROOT/"phase24"/"direct-observations-v3.json").read_text(encoding="utf-8"))
         bad=json.loads(json.dumps(reg))
         bad["observations"][0]["keshavarz20_cited"]=True
         bad["observations"][0]["citation_urls"]=[]
