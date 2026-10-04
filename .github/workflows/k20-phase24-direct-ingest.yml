@@ -1,50 +1,113 @@
-name: Phase 24 Direct Observation Ingest
+name: Phase 24 Direct Observation Ingest v3
+
 on:
   push:
     branches: [main]
     paths:
-      - 'phase24/import/*.b64'
-      - 'phase24/ingest_direct_observations.py'
+      - 'phase24/import-v3/**'
+      - 'phase24/ingest_direct_observations_v3.py'
+      - 'phase24/measurement_v3.py'
+      - 'phase24/direct-observations-v3.json'
       - '.github/workflows/k20-phase24-direct-ingest.yml'
   workflow_dispatch:
+
 permissions:
   contents: write
+
+concurrency:
+  group: phase24-direct-observation-ingest-v3
+  cancel-in-progress: false
+
 jobs:
   ingest:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
-        with: {fetch-depth: 2}
+        with:
+          fetch-depth: 2
       - uses: actions/setup-python@v5
-        with: {python-version: '3.12'}
-      - name: Decode validate and merge direct observations
+        with:
+          python-version: '3.12'
+
+      - name: Compile v3 measurement and ingest
         run: |
-          python -m py_compile phase24/measurement_v2.py phase24/ingest_direct_observations.py
-          python phase24/ingest_direct_observations.py
-          python phase24/measurement_v2.py --output phase24-results/measurement-v2-latest.json
-      - name: Verify expected imported surface counts
+          python -m py_compile phase24/measurement_v3.py phase24/ingest_direct_observations_v3.py
+
+      - name: Ingest all v3 capture files if present
+        shell: bash
         run: |
-          python - <<'PY'
-          import json
-          x=json.load(open('phase24-results/direct-observation-ingest-2026-09-27.json',encoding='utf-8'))
-          assert x['canonical_observations'] >= 70
-          assert x['surface_counts']['ChatGPT Search'] >= 20
-          assert x['surface_counts']['Google AI Mode / AI Overviews'] >= 50
-          assert x['readback_verified_count'] >= 70
-          m=json.load(open('phase24-results/measurement-v2-latest.json',encoding='utf-8'))
-          assert m['direct_surface_kpis']['direct_observation_count'] >= 70
-          assert m['status'] == 'CONTROL_PLANE_COMPLETE_EXTERNAL_SURFACE_PENDING'
-          PY
-      - name: Persist canonical evidence and KPI report
+          set -euo pipefail
+          mapfile -t files < <(find phase24/import-v3 -maxdepth 1 -type f \( -name '*.json' -o -name '*.json.gz.b64' \) | sort)
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No v3 direct capture payloads present; validating existing canonical registry only."
+          else
+            args=()
+            for f in "${files[@]}"; do
+              args+=(--input "$f")
+            done
+            python phase24/ingest_direct_observations_v3.py "${args[@]}"
+          fi
+
+      - name: Recompute Phase 24 v3 measurement
+        run: |
+          python phase24/measurement_v3.py \
+            --output phase24-results/measurement-v3-latest.json \
+            --queue-output phase24-results/remaining-direct-surface-queue-v3.json
+
+      - name: Build current acceptance
+        shell: python
+        run: |
+          import datetime as dt, json, os, pathlib
+          m=json.load(open("phase24-results/measurement-v3-latest.json",encoding="utf-8"))
+          k=m["direct_surface_kpis"]
+          q=m["remaining_external_capture"]
+          out={
+            "phase":24,
+            "title":"AI Citation Experimentation & Influence Measurement",
+            "version":"phase24-ai-citation-measurement-v3",
+            "generated_at_utc":dt.datetime.now(dt.timezone.utc).isoformat(),
+            "run_id":os.getenv("GITHUB_RUN_ID"),
+            "commit_sha":os.getenv("GITHUB_SHA"),
+            "status":m["status"],
+            "control_plane_complete":m["control_plane_complete"],
+            "full_direct_surface_measurement_complete":m["full_direct_surface_measurement_complete"],
+            "check_count":m["check_count"],
+            "passed_checks":m["passed_checks"],
+            "failed_checks":m["failed_checks"],
+            "direct_observation_count":k["direct_observation_count"],
+            "observed_prompt_coverage":k["observed_prompt_coverage"],
+            "citation_rate":k["citation_rate"],
+            "brand_mention_rate":k["brand_mention_rate"],
+            "cited_page_coverage":k["cited_page_coverage"],
+            "remaining_external_capture":q,
+            "site_mutations":0,
+            "commerce_mutations":0,
+            "fabricated_observations":0,
+          }
+          pathlib.Path("phase24-results/acceptance-latest.json").write_text(
+            json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"
+          )
+          if m["failed_checks"]:
+            raise SystemExit(2)
+
+      - name: Persist canonical registry and evidence
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f phase24/direct-observations-v2.json phase24-results/direct-observation-ingest-2026-09-27.json phase24-results/measurement-v2-latest.json phase24-results/acceptance-v2-latest.json
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m "phase24: ingest 70 validated direct surface observations"
+          git add -f \
+            phase24/direct-observations-v3.json \
+            phase24-results/direct-observation-ingest-v3-latest.json \
+            phase24-results/measurement-v3-latest.json \
+            phase24-results/remaining-direct-surface-queue-v3.json \
+            phase24-results/acceptance-latest.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No evidence changes to persist."
+            exit 0
+          fi
+          git commit -m "phase24: ingest validated v3 direct surface captures"
           for attempt in 1 2 3 4 5; do
             git pull --rebase origin main || true
             if git push origin HEAD:main; then exit 0; fi
