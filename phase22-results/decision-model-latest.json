@@ -1,230 +1,1801 @@
 {
   "phase": 22,
   "title": "Farmer Decision Personalization",
-  "generated_at_utc": "2026-09-19T09:04:42.515965+00:00",
-  "model_version": "k20-farmer-decision-v1",
-  "status": "PASS_MODEL_VALIDATION",
+  "model_version": "farmer-decision-v3",
+  "status": "PASS_MODEL_VALIDATION_V3",
+  "case_count": 18,
   "checks": {
-    "all_cases_return_guardrails": true,
-    "missing_inputs_stop_specific_recommendation": true,
-    "expert_escalation_present_when_needed": true,
-    "no_hydraulic_or_agronomic_certainty": true
+    "all_cases_validated": true,
+    "all_cases_guarded": true,
+    "all_cases_use_phase21_v3": true,
+    "no_specific_product_or_sku": true,
+    "no_price_stock_checkout_action": true,
+    "no_certified_design_claim": true,
+    "unknowns_preserved": true,
+    "privacy_identity_not_stored": true
   },
-  "cases": [
+  "results": [
     {
-      "case_id": "complete-low-risk",
-      "input": {
-        "case_id": "complete-low-risk",
-        "crop": "گوجه فرنگی",
-        "area_ha": 2.0,
-        "water_source": "well",
-        "water_quality": "clear",
-        "pressure_bar": 2.2,
-        "available_flow_m3h": 18,
-        "soil_texture": "لومی",
-        "region": "فارس",
-        "uneven_terrain": false,
-        "fertigation": false
-      },
+      "case_id": "tomato-fars-complete",
       "result": {
-        "decision_model_version": "k20-farmer-decision-v1",
-        "state": "ADVISORY_ONLY",
+        "decision_model_version": "farmer-decision-v3",
+        "context_id": "farmctx-30eede2df1ba3d8d",
+        "state": "ADVISORY_READY",
         "confidence": "medium_high",
-        "input_completeness": {
-          "required_fields": [
-            "crop",
-            "area_ha",
-            "water_source",
-            "pressure_bar",
-            "available_flow_m3h",
-            "soil_texture",
-            "region"
-          ],
-          "missing_fields": [],
-          "invalid_fields": [],
-          "complete": true
+        "input_quality": {
+          "missing_core": [],
+          "invalid": [],
+          "hydraulic_missing": [],
+          "unknowns_preserved": true
+        },
+        "risk_flags": [],
+        "decision_tracks": {
+          "hydraulic": {
+            "state": "READY_FOR_DECISION_TOOL",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "intent_id": "ir-intent-pressure-regulator-selection",
+            "specific_product_allowed": false
+          },
+          "filtration": {
+            "state": "READY_FOR_SELECTOR",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/irrigation-filter-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false
+          },
+          "compatibility": {
+            "state": "READY_FOR_SELECTOR",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false,
+            "evidence_verified": true
+          },
+          "agronomy": {
+            "state": "ADVISORY_ONLY",
+            "missing_inputs": [],
+            "intent_id": null,
+            "specific_product_allowed": false
+          }
+        },
+        "intent_routes": [
+          {
+            "canonical_intent_id": "ir-intent-pressure-regulator-selection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          }
+        ],
+        "authority_basis": {
+          "phase21_version": "phase21-iran-authority-network-v3",
+          "phase21_status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+          "phase21_checks_passed": 37,
+          "phase21_checks_total": 37,
+          "phase21_failed_checks": [],
+          "hard_fabrications": 0,
+          "gtins_fabricated": 0,
+          "skus_promoted_to_gtin": 0,
+          "brand_guard_policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
         },
         "scope": {
           "specific_product_recommendation": false,
-          "hydraulic_design_claimed": false,
-          "agronomic_prescription_claimed": false,
-          "price_or_commercial_decision": false
+          "sku_recommendation": false,
+          "certified_hydraulic_design": false,
+          "agronomic_prescription": false,
+          "price_or_stock_decision": false,
+          "merchant_or_checkout_action": false
         },
-        "explanations": [
-          {
-            "signal": "available_flow_per_hectare",
-            "value": "9.0 m3/h/ha",
-            "meaning": "این فقط نسبت ظرفیت آب در دسترس به سطح است و نیاز آبی گیاه یا دبی طراحی را جایگزین نمی‌کند."
-          },
-          {
-            "signal": "measured_pressure",
-            "value": "2.2 bar",
-            "meaning": "فشار ثبت‌شده باید در محل مصرف و زیر بار واقعی تأیید شود؛ از این مقدار به‌تنهایی برای سایزینگ استفاده نمی‌شود."
-          },
-          {
-            "signal": "soil_texture",
-            "value": "لومی",
-            "meaning": "خاک لومی معمولاً نقطه شروع متعادلی است، اما برنامه آبیاری همچنان به آزمون مزرعه و اقلیم وابسته است."
-          }
-        ],
-        "warnings": [],
-        "next_steps": [
-          {
-            "tool": "pipe_size_flow_pressure_guide",
-            "url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
-            "reason": "برای بررسی دبی، فشار، طول مسیر و افت فشار قبل از انتخاب سایز لوله."
-          },
-          {
-            "tool": "irrigation_filter_selector",
-            "url": "https://keshavarz20.com/irrigation-filter-selector/",
-            "reason": "برای تعیین کلاس فیلتراسیون بر اساس منبع آب و کیفیت واقعی آب."
-          },
-          {
-            "tool": "fittings_compatibility_selector",
-            "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
-            "reason": "برای تطبیق اتصال‌ها پس از نهایی‌شدن قطر و استاندارد اتصال."
-          }
-        ],
         "expert_escalation": false,
+        "privacy": {
+          "stores_identity": false,
+          "stores_contact_data": false,
+          "context_id_is_non_identity_hash": true,
+          "ignored_identity_keys": []
+        },
         "guardrails": [
-          "Unknown values remain unknown; no value is guessed.",
-          "Outcomes are advisory and explainable, not a certified irrigation design.",
-          "No SKU/product is recommended until compatibility and measured field constraints are verified."
+          "Unknown technical values remain unknown.",
+          "Candidate-only compatibility is never promoted to verified.",
+          "Pseudo-brand, unbranded and multi-brand gaps are never converted into an exact product recommendation.",
+          "No SKU or exact product is selected without verified compatibility and a separate commerce decision layer.",
+          "The output is decision support, not certified hydraulic or agronomic design.",
+          "No price, stock, checkout action, customer identity or private support data is used."
         ]
       }
     },
     {
-      "case_id": "missing-hydraulics",
-      "input": {
-        "case_id": "missing-hydraulics",
-        "crop": "خیار",
-        "area_ha": 1.2,
-        "water_source": "well",
-        "soil_texture": "شنی",
-        "region": "کرمان"
-      },
+      "case_id": "corn-khuzestan-saline",
       "result": {
-        "decision_model_version": "k20-farmer-decision-v1",
-        "state": "NEEDS_MORE_INPUT",
-        "confidence": "low",
-        "input_completeness": {
-          "required_fields": [
-            "crop",
-            "area_ha",
-            "water_source",
-            "pressure_bar",
-            "available_flow_m3h",
-            "soil_texture",
-            "region"
+        "decision_model_version": "farmer-decision-v3",
+        "context_id": "farmctx-b23edc469bfe9c4a",
+        "state": "PARTIAL_DECISION_SUPPORT",
+        "confidence": "medium",
+        "input_quality": {
+          "missing_core": [],
+          "invalid": [],
+          "hydraulic_missing": [],
+          "unknowns_preserved": true
+        },
+        "risk_flags": [
+          "compatibility_unverified",
+          "salinity_risk"
+        ],
+        "decision_tracks": {
+          "hydraulic": {
+            "state": "READY_FOR_DECISION_TOOL",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "intent_id": "ir-intent-pressure-regulator-selection",
+            "specific_product_allowed": false
+          },
+          "filtration": {
+            "state": "READY_FOR_SELECTOR",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/irrigation-filter-selector/",
+            "intent_id": "ir-intent-water-quality-lab-reading",
+            "specific_product_allowed": false
+          },
+          "compatibility": {
+            "state": "BLOCKED_UNVERIFIED_COMPATIBILITY",
+            "missing_inputs": [
+              "connection_type",
+              "nominal_size",
+              "verified_evidence"
+            ],
+            "tool_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false,
+            "evidence_verified": false
+          },
+          "agronomy": {
+            "state": "EXPERT_REVIEW",
+            "missing_inputs": [],
+            "intent_id": "ir-intent-water-quality-lab-reading",
+            "specific_product_allowed": false
+          }
+        },
+        "intent_routes": [
+          {
+            "canonical_intent_id": "ir-intent-pressure-regulator-selection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          },
+          {
+            "canonical_intent_id": "ir-intent-water-quality-lab-reading",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/irrigation-water-test-ec-sar-salinity-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          }
+        ],
+        "authority_basis": {
+          "phase21_version": "phase21-iran-authority-network-v3",
+          "phase21_status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+          "phase21_checks_passed": 37,
+          "phase21_checks_total": 37,
+          "phase21_failed_checks": [],
+          "hard_fabrications": 0,
+          "gtins_fabricated": 0,
+          "skus_promoted_to_gtin": 0,
+          "brand_guard_policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
+        },
+        "scope": {
+          "specific_product_recommendation": false,
+          "sku_recommendation": false,
+          "certified_hydraulic_design": false,
+          "agronomic_prescription": false,
+          "price_or_stock_decision": false,
+          "merchant_or_checkout_action": false
+        },
+        "expert_escalation": true,
+        "privacy": {
+          "stores_identity": false,
+          "stores_contact_data": false,
+          "context_id_is_non_identity_hash": true,
+          "ignored_identity_keys": []
+        },
+        "guardrails": [
+          "Unknown technical values remain unknown.",
+          "Candidate-only compatibility is never promoted to verified.",
+          "Pseudo-brand, unbranded and multi-brand gaps are never converted into an exact product recommendation.",
+          "No SKU or exact product is selected without verified compatibility and a separate commerce decision layer.",
+          "The output is decision support, not certified hydraulic or agronomic design.",
+          "No price, stock, checkout action, customer identity or private support data is used."
+        ]
+      }
+    },
+    {
+      "case_id": "cucumber-greenhouse-clogging",
+      "result": {
+        "decision_model_version": "farmer-decision-v3",
+        "context_id": "farmctx-28fb327ff52026a5",
+        "state": "PARTIAL_DECISION_SUPPORT",
+        "confidence": "medium",
+        "input_quality": {
+          "missing_core": [],
+          "invalid": [],
+          "hydraulic_missing": [],
+          "unknowns_preserved": true
+        },
+        "risk_flags": [
+          "clogging_risk",
+          "compatibility_unverified",
+          "fertigation"
+        ],
+        "decision_tracks": {
+          "hydraulic": {
+            "state": "READY_FOR_DECISION_TOOL",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "intent_id": "ir-intent-pressure-regulator-selection",
+            "specific_product_allowed": false
+          },
+          "filtration": {
+            "state": "EXPERT_REVIEW",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/irrigation-filter-selector/",
+            "intent_id": "ir-intent-well-sand-drip-filtration",
+            "specific_product_allowed": false
+          },
+          "compatibility": {
+            "state": "BLOCKED_UNVERIFIED_COMPATIBILITY",
+            "missing_inputs": [
+              "connection_type",
+              "nominal_size",
+              "verified_evidence"
+            ],
+            "tool_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false,
+            "evidence_verified": false
+          },
+          "agronomy": {
+            "state": "EXPERT_REVIEW",
+            "missing_inputs": [],
+            "intent_id": "ir-intent-fertigation-injection",
+            "specific_product_allowed": false
+          }
+        },
+        "intent_routes": [
+          {
+            "canonical_intent_id": "ir-intent-pressure-regulator-selection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          },
+          {
+            "canonical_intent_id": "ir-intent-well-sand-drip-filtration",
+            "status": "draft-covered",
+            "canonical_url": null,
+            "wordpress_post_id": 146227,
+            "publicly_routable": false
+          },
+          {
+            "canonical_intent_id": "ir-intent-fertigation-injection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-fertigation-injection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          }
+        ],
+        "authority_basis": {
+          "phase21_version": "phase21-iran-authority-network-v3",
+          "phase21_status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+          "phase21_checks_passed": 37,
+          "phase21_checks_total": 37,
+          "phase21_failed_checks": [],
+          "hard_fabrications": 0,
+          "gtins_fabricated": 0,
+          "skus_promoted_to_gtin": 0,
+          "brand_guard_policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
+        },
+        "scope": {
+          "specific_product_recommendation": false,
+          "sku_recommendation": false,
+          "certified_hydraulic_design": false,
+          "agronomic_prescription": false,
+          "price_or_stock_decision": false,
+          "merchant_or_checkout_action": false
+        },
+        "expert_escalation": true,
+        "privacy": {
+          "stores_identity": false,
+          "stores_contact_data": false,
+          "context_id_is_non_identity_hash": true,
+          "ignored_identity_keys": []
+        },
+        "guardrails": [
+          "Unknown technical values remain unknown.",
+          "Candidate-only compatibility is never promoted to verified.",
+          "Pseudo-brand, unbranded and multi-brand gaps are never converted into an exact product recommendation.",
+          "No SKU or exact product is selected without verified compatibility and a separate commerce decision layer.",
+          "The output is decision support, not certified hydraulic or agronomic design.",
+          "No price, stock, checkout action, customer identity or private support data is used."
+        ]
+      }
+    },
+    {
+      "case_id": "surface-water",
+      "result": {
+        "decision_model_version": "farmer-decision-v3",
+        "context_id": "farmctx-6f769a3278c2c200",
+        "state": "PARTIAL_DECISION_SUPPORT",
+        "confidence": "medium",
+        "input_quality": {
+          "missing_core": [],
+          "invalid": [],
+          "hydraulic_missing": [],
+          "unknowns_preserved": true
+        },
+        "risk_flags": [
+          "clogging_risk",
+          "compatibility_unverified"
+        ],
+        "decision_tracks": {
+          "hydraulic": {
+            "state": "READY_FOR_DECISION_TOOL",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "intent_id": "ir-intent-pressure-regulator-selection",
+            "specific_product_allowed": false
+          },
+          "filtration": {
+            "state": "EXPERT_REVIEW",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/irrigation-filter-selector/",
+            "intent_id": "ir-intent-well-sand-drip-filtration",
+            "specific_product_allowed": false
+          },
+          "compatibility": {
+            "state": "BLOCKED_UNVERIFIED_COMPATIBILITY",
+            "missing_inputs": [
+              "connection_type",
+              "nominal_size",
+              "verified_evidence"
+            ],
+            "tool_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false,
+            "evidence_verified": false
+          },
+          "agronomy": {
+            "state": "ADVISORY_ONLY",
+            "missing_inputs": [],
+            "intent_id": null,
+            "specific_product_allowed": false
+          }
+        },
+        "intent_routes": [
+          {
+            "canonical_intent_id": "ir-intent-pressure-regulator-selection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          },
+          {
+            "canonical_intent_id": "ir-intent-well-sand-drip-filtration",
+            "status": "draft-covered",
+            "canonical_url": null,
+            "wordpress_post_id": 146227,
+            "publicly_routable": false
+          }
+        ],
+        "authority_basis": {
+          "phase21_version": "phase21-iran-authority-network-v3",
+          "phase21_status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+          "phase21_checks_passed": 37,
+          "phase21_checks_total": 37,
+          "phase21_failed_checks": [],
+          "hard_fabrications": 0,
+          "gtins_fabricated": 0,
+          "skus_promoted_to_gtin": 0,
+          "brand_guard_policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
+        },
+        "scope": {
+          "specific_product_recommendation": false,
+          "sku_recommendation": false,
+          "certified_hydraulic_design": false,
+          "agronomic_prescription": false,
+          "price_or_stock_decision": false,
+          "merchant_or_checkout_action": false
+        },
+        "expert_escalation": true,
+        "privacy": {
+          "stores_identity": false,
+          "stores_contact_data": false,
+          "context_id_is_non_identity_hash": true,
+          "ignored_identity_keys": []
+        },
+        "guardrails": [
+          "Unknown technical values remain unknown.",
+          "Candidate-only compatibility is never promoted to verified.",
+          "Pseudo-brand, unbranded and multi-brand gaps are never converted into an exact product recommendation.",
+          "No SKU or exact product is selected without verified compatibility and a separate commerce decision layer.",
+          "The output is decision support, not certified hydraulic or agronomic design.",
+          "No price, stock, checkout action, customer identity or private support data is used."
+        ]
+      }
+    },
+    {
+      "case_id": "missing-pressure",
+      "result": {
+        "decision_model_version": "farmer-decision-v3",
+        "context_id": "farmctx-5b90a8903ea5568f",
+        "state": "PARTIAL_DECISION_SUPPORT",
+        "confidence": "medium",
+        "input_quality": {
+          "missing_core": [],
+          "invalid": [],
+          "hydraulic_missing": [
+            "pressure_bar"
           ],
-          "missing_fields": [
-            "pressure_bar",
+          "unknowns_preserved": true
+        },
+        "risk_flags": [
+          "compatibility_unverified",
+          "hydraulic_measurements_missing"
+        ],
+        "decision_tracks": {
+          "hydraulic": {
+            "state": "BLOCKED_MISSING_MEASUREMENT",
+            "missing_inputs": [
+              "pressure_bar"
+            ],
+            "tool_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "intent_id": "ir-intent-pressure-regulator-selection",
+            "specific_product_allowed": false
+          },
+          "filtration": {
+            "state": "READY_FOR_SELECTOR",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/irrigation-filter-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false
+          },
+          "compatibility": {
+            "state": "BLOCKED_UNVERIFIED_COMPATIBILITY",
+            "missing_inputs": [
+              "connection_type",
+              "nominal_size",
+              "verified_evidence"
+            ],
+            "tool_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false,
+            "evidence_verified": false
+          },
+          "agronomy": {
+            "state": "ADVISORY_ONLY",
+            "missing_inputs": [],
+            "intent_id": null,
+            "specific_product_allowed": false
+          }
+        },
+        "intent_routes": [
+          {
+            "canonical_intent_id": "ir-intent-pressure-regulator-selection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          }
+        ],
+        "authority_basis": {
+          "phase21_version": "phase21-iran-authority-network-v3",
+          "phase21_status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+          "phase21_checks_passed": 37,
+          "phase21_checks_total": 37,
+          "phase21_failed_checks": [],
+          "hard_fabrications": 0,
+          "gtins_fabricated": 0,
+          "skus_promoted_to_gtin": 0,
+          "brand_guard_policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
+        },
+        "scope": {
+          "specific_product_recommendation": false,
+          "sku_recommendation": false,
+          "certified_hydraulic_design": false,
+          "agronomic_prescription": false,
+          "price_or_stock_decision": false,
+          "merchant_or_checkout_action": false
+        },
+        "expert_escalation": false,
+        "privacy": {
+          "stores_identity": false,
+          "stores_contact_data": false,
+          "context_id_is_non_identity_hash": true,
+          "ignored_identity_keys": []
+        },
+        "guardrails": [
+          "Unknown technical values remain unknown.",
+          "Candidate-only compatibility is never promoted to verified.",
+          "Pseudo-brand, unbranded and multi-brand gaps are never converted into an exact product recommendation.",
+          "No SKU or exact product is selected without verified compatibility and a separate commerce decision layer.",
+          "The output is decision support, not certified hydraulic or agronomic design.",
+          "No price, stock, checkout action, customer identity or private support data is used."
+        ]
+      }
+    },
+    {
+      "case_id": "missing-flow",
+      "result": {
+        "decision_model_version": "farmer-decision-v3",
+        "context_id": "farmctx-70fe9d6d58b62707",
+        "state": "PARTIAL_DECISION_SUPPORT",
+        "confidence": "medium",
+        "input_quality": {
+          "missing_core": [],
+          "invalid": [],
+          "hydraulic_missing": [
             "available_flow_m3h"
           ],
-          "invalid_fields": [],
-          "complete": false
+          "unknowns_preserved": true
+        },
+        "risk_flags": [
+          "compatibility_unverified",
+          "hydraulic_measurements_missing"
+        ],
+        "decision_tracks": {
+          "hydraulic": {
+            "state": "BLOCKED_MISSING_MEASUREMENT",
+            "missing_inputs": [
+              "available_flow_m3h"
+            ],
+            "tool_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "intent_id": "ir-intent-pressure-regulator-selection",
+            "specific_product_allowed": false
+          },
+          "filtration": {
+            "state": "READY_FOR_SELECTOR",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/irrigation-filter-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false
+          },
+          "compatibility": {
+            "state": "BLOCKED_UNVERIFIED_COMPATIBILITY",
+            "missing_inputs": [
+              "connection_type",
+              "nominal_size",
+              "verified_evidence"
+            ],
+            "tool_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false,
+            "evidence_verified": false
+          },
+          "agronomy": {
+            "state": "ADVISORY_ONLY",
+            "missing_inputs": [],
+            "intent_id": null,
+            "specific_product_allowed": false
+          }
+        },
+        "intent_routes": [
+          {
+            "canonical_intent_id": "ir-intent-pressure-regulator-selection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          }
+        ],
+        "authority_basis": {
+          "phase21_version": "phase21-iran-authority-network-v3",
+          "phase21_status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+          "phase21_checks_passed": 37,
+          "phase21_checks_total": 37,
+          "phase21_failed_checks": [],
+          "hard_fabrications": 0,
+          "gtins_fabricated": 0,
+          "skus_promoted_to_gtin": 0,
+          "brand_guard_policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
         },
         "scope": {
           "specific_product_recommendation": false,
-          "hydraulic_design_claimed": false,
-          "agronomic_prescription_claimed": false,
-          "price_or_commercial_decision": false
+          "sku_recommendation": false,
+          "certified_hydraulic_design": false,
+          "agronomic_prescription": false,
+          "price_or_stock_decision": false,
+          "merchant_or_checkout_action": false
         },
-        "explanations": [],
-        "warnings": [
-          "ورودی‌های فنی برای توصیه ایمن کامل نیستند؛ انتخاب تجهیز یا سایز نهایی متوقف می‌شود.",
-          "برای طراحی نهایی هیدرولیکی/زراعی، تأیید کارشناس یا نصاب واجد تجربه لازم است."
-        ],
-        "next_steps": [],
-        "expert_escalation": true,
+        "expert_escalation": false,
+        "privacy": {
+          "stores_identity": false,
+          "stores_contact_data": false,
+          "context_id_is_non_identity_hash": true,
+          "ignored_identity_keys": []
+        },
         "guardrails": [
-          "Unknown values remain unknown; no value is guessed.",
-          "Outcomes are advisory and explainable, not a certified irrigation design.",
-          "No SKU/product is recommended until compatibility and measured field constraints are verified."
+          "Unknown technical values remain unknown.",
+          "Candidate-only compatibility is never promoted to verified.",
+          "Pseudo-brand, unbranded and multi-brand gaps are never converted into an exact product recommendation.",
+          "No SKU or exact product is selected without verified compatibility and a separate commerce decision layer.",
+          "The output is decision support, not certified hydraulic or agronomic design.",
+          "No price, stock, checkout action, customer identity or private support data is used."
         ]
       }
     },
     {
-      "case_id": "surface-water-escalation",
-      "input": {
-        "case_id": "surface-water-escalation",
-        "crop": "ذرت",
-        "area_ha": 4.0,
-        "water_source": "canal",
-        "water_quality": "turbid with suspended sediment",
-        "pressure_bar": 1.8,
-        "available_flow_m3h": 30,
-        "soil_texture": "رسی",
-        "region": "خوزستان",
-        "fertigation": true
-      },
+      "case_id": "missing-water-quality",
       "result": {
-        "decision_model_version": "k20-farmer-decision-v1",
-        "state": "ADVISORY_ONLY",
+        "decision_model_version": "farmer-decision-v3",
+        "context_id": "farmctx-ebb7b754ba7bd582",
+        "state": "PARTIAL_DECISION_SUPPORT",
         "confidence": "medium",
-        "input_completeness": {
-          "required_fields": [
-            "crop",
-            "area_ha",
-            "water_source",
-            "pressure_bar",
-            "available_flow_m3h",
-            "soil_texture",
-            "region"
-          ],
-          "missing_fields": [],
-          "invalid_fields": [],
-          "complete": true
+        "input_quality": {
+          "missing_core": [],
+          "invalid": [],
+          "hydraulic_missing": [],
+          "unknowns_preserved": true
+        },
+        "risk_flags": [
+          "compatibility_unverified"
+        ],
+        "decision_tracks": {
+          "hydraulic": {
+            "state": "READY_FOR_DECISION_TOOL",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "intent_id": "ir-intent-pressure-regulator-selection",
+            "specific_product_allowed": false
+          },
+          "filtration": {
+            "state": "NEEDS_WATER_QUALITY",
+            "missing_inputs": [
+              "water_quality"
+            ],
+            "tool_url": "https://keshavarz20.com/irrigation-filter-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false
+          },
+          "compatibility": {
+            "state": "BLOCKED_UNVERIFIED_COMPATIBILITY",
+            "missing_inputs": [
+              "connection_type",
+              "nominal_size",
+              "verified_evidence"
+            ],
+            "tool_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false,
+            "evidence_verified": false
+          },
+          "agronomy": {
+            "state": "ADVISORY_ONLY",
+            "missing_inputs": [],
+            "intent_id": null,
+            "specific_product_allowed": false
+          }
+        },
+        "intent_routes": [
+          {
+            "canonical_intent_id": "ir-intent-pressure-regulator-selection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          }
+        ],
+        "authority_basis": {
+          "phase21_version": "phase21-iran-authority-network-v3",
+          "phase21_status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+          "phase21_checks_passed": 37,
+          "phase21_checks_total": 37,
+          "phase21_failed_checks": [],
+          "hard_fabrications": 0,
+          "gtins_fabricated": 0,
+          "skus_promoted_to_gtin": 0,
+          "brand_guard_policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
         },
         "scope": {
           "specific_product_recommendation": false,
-          "hydraulic_design_claimed": false,
-          "agronomic_prescription_claimed": false,
-          "price_or_commercial_decision": false
+          "sku_recommendation": false,
+          "certified_hydraulic_design": false,
+          "agronomic_prescription": false,
+          "price_or_stock_decision": false,
+          "merchant_or_checkout_action": false
         },
-        "explanations": [
-          {
-            "signal": "available_flow_per_hectare",
-            "value": "7.5 m3/h/ha",
-            "meaning": "این فقط نسبت ظرفیت آب در دسترس به سطح است و نیاز آبی گیاه یا دبی طراحی را جایگزین نمی‌کند."
-          },
-          {
-            "signal": "measured_pressure",
-            "value": "1.8 bar",
-            "meaning": "فشار ثبت‌شده باید در محل مصرف و زیر بار واقعی تأیید شود؛ از این مقدار به‌تنهایی برای سایزینگ استفاده نمی‌شود."
-          },
-          {
-            "signal": "soil_texture",
-            "value": "رسی",
-            "meaning": "ریسک ماندابی‌شدن و نفوذ آهسته‌تر را بررسی کنید؛ از قطعیت در زمان‌بندی آبیاری بدون آزمون خاک پرهیز شود."
-          }
-        ],
-        "warnings": [
-          "منبع/کیفیت آب می‌تواند ریسک گرفتگی را بالا ببرد؛ آزمایش آب و طراحی فیلتراسیون قبل از خرید توصیه می‌شود.",
-          "برای طراحی نهایی هیدرولیکی/زراعی، تأیید کارشناس یا نصاب واجد تجربه لازم است."
-        ],
-        "next_steps": [
-          {
-            "tool": "pipe_size_flow_pressure_guide",
-            "url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
-            "reason": "برای بررسی دبی، فشار، طول مسیر و افت فشار قبل از انتخاب سایز لوله."
-          },
-          {
-            "tool": "irrigation_filter_selector",
-            "url": "https://keshavarz20.com/irrigation-filter-selector/",
-            "reason": "برای تعیین کلاس فیلتراسیون بر اساس منبع آب و کیفیت واقعی آب."
-          },
-          {
-            "tool": "fittings_compatibility_selector",
-            "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
-            "reason": "برای تطبیق اتصال‌ها پس از نهایی‌شدن قطر و استاندارد اتصال."
-          }
-        ],
-        "expert_escalation": true,
+        "expert_escalation": false,
+        "privacy": {
+          "stores_identity": false,
+          "stores_contact_data": false,
+          "context_id_is_non_identity_hash": true,
+          "ignored_identity_keys": []
+        },
         "guardrails": [
-          "Unknown values remain unknown; no value is guessed.",
-          "Outcomes are advisory and explainable, not a certified irrigation design.",
-          "No SKU/product is recommended until compatibility and measured field constraints are verified."
+          "Unknown technical values remain unknown.",
+          "Candidate-only compatibility is never promoted to verified.",
+          "Pseudo-brand, unbranded and multi-brand gaps are never converted into an exact product recommendation.",
+          "No SKU or exact product is selected without verified compatibility and a separate commerce decision layer.",
+          "The output is decision support, not certified hydraulic or agronomic design.",
+          "No price, stock, checkout action, customer identity or private support data is used."
+        ]
+      }
+    },
+    {
+      "case_id": "missing-soil",
+      "result": {
+        "decision_model_version": "farmer-decision-v3",
+        "context_id": "farmctx-99cda58c3968df15",
+        "state": "PARTIAL_DECISION_SUPPORT",
+        "confidence": "medium",
+        "input_quality": {
+          "missing_core": [],
+          "invalid": [],
+          "hydraulic_missing": [],
+          "unknowns_preserved": true
+        },
+        "risk_flags": [
+          "compatibility_unverified"
+        ],
+        "decision_tracks": {
+          "hydraulic": {
+            "state": "READY_FOR_DECISION_TOOL",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "intent_id": "ir-intent-pressure-regulator-selection",
+            "specific_product_allowed": false
+          },
+          "filtration": {
+            "state": "READY_FOR_SELECTOR",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/irrigation-filter-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false
+          },
+          "compatibility": {
+            "state": "BLOCKED_UNVERIFIED_COMPATIBILITY",
+            "missing_inputs": [
+              "connection_type",
+              "nominal_size",
+              "verified_evidence"
+            ],
+            "tool_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false,
+            "evidence_verified": false
+          },
+          "agronomy": {
+            "state": "EXPERT_REVIEW",
+            "missing_inputs": [
+              "soil_texture"
+            ],
+            "intent_id": null,
+            "specific_product_allowed": false
+          }
+        },
+        "intent_routes": [
+          {
+            "canonical_intent_id": "ir-intent-pressure-regulator-selection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          }
+        ],
+        "authority_basis": {
+          "phase21_version": "phase21-iran-authority-network-v3",
+          "phase21_status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+          "phase21_checks_passed": 37,
+          "phase21_checks_total": 37,
+          "phase21_failed_checks": [],
+          "hard_fabrications": 0,
+          "gtins_fabricated": 0,
+          "skus_promoted_to_gtin": 0,
+          "brand_guard_policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
+        },
+        "scope": {
+          "specific_product_recommendation": false,
+          "sku_recommendation": false,
+          "certified_hydraulic_design": false,
+          "agronomic_prescription": false,
+          "price_or_stock_decision": false,
+          "merchant_or_checkout_action": false
+        },
+        "expert_escalation": false,
+        "privacy": {
+          "stores_identity": false,
+          "stores_contact_data": false,
+          "context_id_is_non_identity_hash": true,
+          "ignored_identity_keys": []
+        },
+        "guardrails": [
+          "Unknown technical values remain unknown.",
+          "Candidate-only compatibility is never promoted to verified.",
+          "Pseudo-brand, unbranded and multi-brand gaps are never converted into an exact product recommendation.",
+          "No SKU or exact product is selected without verified compatibility and a separate commerce decision layer.",
+          "The output is decision support, not certified hydraulic or agronomic design.",
+          "No price, stock, checkout action, customer identity or private support data is used."
+        ]
+      }
+    },
+    {
+      "case_id": "uneven-terrain",
+      "result": {
+        "decision_model_version": "farmer-decision-v3",
+        "context_id": "farmctx-363eb22f1dd75c0d",
+        "state": "PARTIAL_DECISION_SUPPORT",
+        "confidence": "medium",
+        "input_quality": {
+          "missing_core": [],
+          "invalid": [],
+          "hydraulic_missing": [],
+          "unknowns_preserved": true
+        },
+        "risk_flags": [
+          "compatibility_unverified",
+          "terrain_pressure_variation"
+        ],
+        "decision_tracks": {
+          "hydraulic": {
+            "state": "READY_FOR_DECISION_TOOL",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "intent_id": "ir-intent-pressure-regulator-selection",
+            "specific_product_allowed": false
+          },
+          "filtration": {
+            "state": "READY_FOR_SELECTOR",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/irrigation-filter-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false
+          },
+          "compatibility": {
+            "state": "BLOCKED_UNVERIFIED_COMPATIBILITY",
+            "missing_inputs": [
+              "connection_type",
+              "nominal_size",
+              "verified_evidence"
+            ],
+            "tool_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false,
+            "evidence_verified": false
+          },
+          "agronomy": {
+            "state": "ADVISORY_ONLY",
+            "missing_inputs": [],
+            "intent_id": null,
+            "specific_product_allowed": false
+          }
+        },
+        "intent_routes": [
+          {
+            "canonical_intent_id": "ir-intent-pressure-regulator-selection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          }
+        ],
+        "authority_basis": {
+          "phase21_version": "phase21-iran-authority-network-v3",
+          "phase21_status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+          "phase21_checks_passed": 37,
+          "phase21_checks_total": 37,
+          "phase21_failed_checks": [],
+          "hard_fabrications": 0,
+          "gtins_fabricated": 0,
+          "skus_promoted_to_gtin": 0,
+          "brand_guard_policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
+        },
+        "scope": {
+          "specific_product_recommendation": false,
+          "sku_recommendation": false,
+          "certified_hydraulic_design": false,
+          "agronomic_prescription": false,
+          "price_or_stock_decision": false,
+          "merchant_or_checkout_action": false
+        },
+        "expert_escalation": true,
+        "privacy": {
+          "stores_identity": false,
+          "stores_contact_data": false,
+          "context_id_is_non_identity_hash": true,
+          "ignored_identity_keys": []
+        },
+        "guardrails": [
+          "Unknown technical values remain unknown.",
+          "Candidate-only compatibility is never promoted to verified.",
+          "Pseudo-brand, unbranded and multi-brand gaps are never converted into an exact product recommendation.",
+          "No SKU or exact product is selected without verified compatibility and a separate commerce decision layer.",
+          "The output is decision support, not certified hydraulic or agronomic design.",
+          "No price, stock, checkout action, customer identity or private support data is used."
+        ]
+      }
+    },
+    {
+      "case_id": "fertigation",
+      "result": {
+        "decision_model_version": "farmer-decision-v3",
+        "context_id": "farmctx-a740efddae0fc200",
+        "state": "PARTIAL_DECISION_SUPPORT",
+        "confidence": "medium",
+        "input_quality": {
+          "missing_core": [],
+          "invalid": [],
+          "hydraulic_missing": [],
+          "unknowns_preserved": true
+        },
+        "risk_flags": [
+          "compatibility_unverified",
+          "fertigation"
+        ],
+        "decision_tracks": {
+          "hydraulic": {
+            "state": "READY_FOR_DECISION_TOOL",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "intent_id": "ir-intent-pressure-regulator-selection",
+            "specific_product_allowed": false
+          },
+          "filtration": {
+            "state": "READY_FOR_SELECTOR",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/irrigation-filter-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false
+          },
+          "compatibility": {
+            "state": "BLOCKED_UNVERIFIED_COMPATIBILITY",
+            "missing_inputs": [
+              "connection_type",
+              "nominal_size",
+              "verified_evidence"
+            ],
+            "tool_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false,
+            "evidence_verified": false
+          },
+          "agronomy": {
+            "state": "EXPERT_REVIEW",
+            "missing_inputs": [],
+            "intent_id": "ir-intent-fertigation-injection",
+            "specific_product_allowed": false
+          }
+        },
+        "intent_routes": [
+          {
+            "canonical_intent_id": "ir-intent-pressure-regulator-selection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          },
+          {
+            "canonical_intent_id": "ir-intent-fertigation-injection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-fertigation-injection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          }
+        ],
+        "authority_basis": {
+          "phase21_version": "phase21-iran-authority-network-v3",
+          "phase21_status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+          "phase21_checks_passed": 37,
+          "phase21_checks_total": 37,
+          "phase21_failed_checks": [],
+          "hard_fabrications": 0,
+          "gtins_fabricated": 0,
+          "skus_promoted_to_gtin": 0,
+          "brand_guard_policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
+        },
+        "scope": {
+          "specific_product_recommendation": false,
+          "sku_recommendation": false,
+          "certified_hydraulic_design": false,
+          "agronomic_prescription": false,
+          "price_or_stock_decision": false,
+          "merchant_or_checkout_action": false
+        },
+        "expert_escalation": true,
+        "privacy": {
+          "stores_identity": false,
+          "stores_contact_data": false,
+          "context_id_is_non_identity_hash": true,
+          "ignored_identity_keys": []
+        },
+        "guardrails": [
+          "Unknown technical values remain unknown.",
+          "Candidate-only compatibility is never promoted to verified.",
+          "Pseudo-brand, unbranded and multi-brand gaps are never converted into an exact product recommendation.",
+          "No SKU or exact product is selected without verified compatibility and a separate commerce decision layer.",
+          "The output is decision support, not certified hydraulic or agronomic design.",
+          "No price, stock, checkout action, customer identity or private support data is used."
+        ]
+      }
+    },
+    {
+      "case_id": "invalid-area",
+      "result": {
+        "decision_model_version": "farmer-decision-v3",
+        "context_id": "farmctx-30493d44e94744db",
+        "state": "NEEDS_MORE_INPUT",
+        "confidence": "low",
+        "input_quality": {
+          "missing_core": [],
+          "invalid": [
+            "area_ha"
+          ],
+          "hydraulic_missing": [],
+          "unknowns_preserved": true
+        },
+        "risk_flags": [
+          "compatibility_unverified"
+        ],
+        "decision_tracks": {
+          "hydraulic": {
+            "state": "BLOCKED_MISSING_MEASUREMENT",
+            "missing_inputs": [
+              "area_ha"
+            ],
+            "tool_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "intent_id": "ir-intent-pressure-regulator-selection",
+            "specific_product_allowed": false
+          },
+          "filtration": {
+            "state": "READY_FOR_SELECTOR",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/irrigation-filter-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false
+          },
+          "compatibility": {
+            "state": "BLOCKED_UNVERIFIED_COMPATIBILITY",
+            "missing_inputs": [
+              "connection_type",
+              "nominal_size",
+              "verified_evidence"
+            ],
+            "tool_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false,
+            "evidence_verified": false
+          },
+          "agronomy": {
+            "state": "ADVISORY_ONLY",
+            "missing_inputs": [],
+            "intent_id": null,
+            "specific_product_allowed": false
+          }
+        },
+        "intent_routes": [
+          {
+            "canonical_intent_id": "ir-intent-pressure-regulator-selection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          }
+        ],
+        "authority_basis": {
+          "phase21_version": "phase21-iran-authority-network-v3",
+          "phase21_status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+          "phase21_checks_passed": 37,
+          "phase21_checks_total": 37,
+          "phase21_failed_checks": [],
+          "hard_fabrications": 0,
+          "gtins_fabricated": 0,
+          "skus_promoted_to_gtin": 0,
+          "brand_guard_policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
+        },
+        "scope": {
+          "specific_product_recommendation": false,
+          "sku_recommendation": false,
+          "certified_hydraulic_design": false,
+          "agronomic_prescription": false,
+          "price_or_stock_decision": false,
+          "merchant_or_checkout_action": false
+        },
+        "expert_escalation": true,
+        "privacy": {
+          "stores_identity": false,
+          "stores_contact_data": false,
+          "context_id_is_non_identity_hash": true,
+          "ignored_identity_keys": []
+        },
+        "guardrails": [
+          "Unknown technical values remain unknown.",
+          "Candidate-only compatibility is never promoted to verified.",
+          "Pseudo-brand, unbranded and multi-brand gaps are never converted into an exact product recommendation.",
+          "No SKU or exact product is selected without verified compatibility and a separate commerce decision layer.",
+          "The output is decision support, not certified hydraulic or agronomic design.",
+          "No price, stock, checkout action, customer identity or private support data is used."
+        ]
+      }
+    },
+    {
+      "case_id": "invalid-pressure",
+      "result": {
+        "decision_model_version": "farmer-decision-v3",
+        "context_id": "farmctx-6c43d3cd7fb7e291",
+        "state": "NEEDS_MORE_INPUT",
+        "confidence": "low",
+        "input_quality": {
+          "missing_core": [],
+          "invalid": [
+            "pressure_bar"
+          ],
+          "hydraulic_missing": [],
+          "unknowns_preserved": true
+        },
+        "risk_flags": [
+          "compatibility_unverified"
+        ],
+        "decision_tracks": {
+          "hydraulic": {
+            "state": "BLOCKED_MISSING_MEASUREMENT",
+            "missing_inputs": [
+              "pressure_bar"
+            ],
+            "tool_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "intent_id": "ir-intent-pressure-regulator-selection",
+            "specific_product_allowed": false
+          },
+          "filtration": {
+            "state": "READY_FOR_SELECTOR",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/irrigation-filter-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false
+          },
+          "compatibility": {
+            "state": "BLOCKED_UNVERIFIED_COMPATIBILITY",
+            "missing_inputs": [
+              "connection_type",
+              "nominal_size",
+              "verified_evidence"
+            ],
+            "tool_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false,
+            "evidence_verified": false
+          },
+          "agronomy": {
+            "state": "ADVISORY_ONLY",
+            "missing_inputs": [],
+            "intent_id": null,
+            "specific_product_allowed": false
+          }
+        },
+        "intent_routes": [
+          {
+            "canonical_intent_id": "ir-intent-pressure-regulator-selection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          }
+        ],
+        "authority_basis": {
+          "phase21_version": "phase21-iran-authority-network-v3",
+          "phase21_status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+          "phase21_checks_passed": 37,
+          "phase21_checks_total": 37,
+          "phase21_failed_checks": [],
+          "hard_fabrications": 0,
+          "gtins_fabricated": 0,
+          "skus_promoted_to_gtin": 0,
+          "brand_guard_policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
+        },
+        "scope": {
+          "specific_product_recommendation": false,
+          "sku_recommendation": false,
+          "certified_hydraulic_design": false,
+          "agronomic_prescription": false,
+          "price_or_stock_decision": false,
+          "merchant_or_checkout_action": false
+        },
+        "expert_escalation": true,
+        "privacy": {
+          "stores_identity": false,
+          "stores_contact_data": false,
+          "context_id_is_non_identity_hash": true,
+          "ignored_identity_keys": []
+        },
+        "guardrails": [
+          "Unknown technical values remain unknown.",
+          "Candidate-only compatibility is never promoted to verified.",
+          "Pseudo-brand, unbranded and multi-brand gaps are never converted into an exact product recommendation.",
+          "No SKU or exact product is selected without verified compatibility and a separate commerce decision layer.",
+          "The output is decision support, not certified hydraulic or agronomic design.",
+          "No price, stock, checkout action, customer identity or private support data is used."
+        ]
+      }
+    },
+    {
+      "case_id": "invalid-flow",
+      "result": {
+        "decision_model_version": "farmer-decision-v3",
+        "context_id": "farmctx-6748bf842e7048b9",
+        "state": "NEEDS_MORE_INPUT",
+        "confidence": "low",
+        "input_quality": {
+          "missing_core": [],
+          "invalid": [
+            "available_flow_m3h"
+          ],
+          "hydraulic_missing": [],
+          "unknowns_preserved": true
+        },
+        "risk_flags": [
+          "compatibility_unverified"
+        ],
+        "decision_tracks": {
+          "hydraulic": {
+            "state": "BLOCKED_MISSING_MEASUREMENT",
+            "missing_inputs": [
+              "available_flow_m3h"
+            ],
+            "tool_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "intent_id": "ir-intent-pressure-regulator-selection",
+            "specific_product_allowed": false
+          },
+          "filtration": {
+            "state": "READY_FOR_SELECTOR",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/irrigation-filter-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false
+          },
+          "compatibility": {
+            "state": "BLOCKED_UNVERIFIED_COMPATIBILITY",
+            "missing_inputs": [
+              "connection_type",
+              "nominal_size",
+              "verified_evidence"
+            ],
+            "tool_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false,
+            "evidence_verified": false
+          },
+          "agronomy": {
+            "state": "ADVISORY_ONLY",
+            "missing_inputs": [],
+            "intent_id": null,
+            "specific_product_allowed": false
+          }
+        },
+        "intent_routes": [
+          {
+            "canonical_intent_id": "ir-intent-pressure-regulator-selection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          }
+        ],
+        "authority_basis": {
+          "phase21_version": "phase21-iran-authority-network-v3",
+          "phase21_status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+          "phase21_checks_passed": 37,
+          "phase21_checks_total": 37,
+          "phase21_failed_checks": [],
+          "hard_fabrications": 0,
+          "gtins_fabricated": 0,
+          "skus_promoted_to_gtin": 0,
+          "brand_guard_policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
+        },
+        "scope": {
+          "specific_product_recommendation": false,
+          "sku_recommendation": false,
+          "certified_hydraulic_design": false,
+          "agronomic_prescription": false,
+          "price_or_stock_decision": false,
+          "merchant_or_checkout_action": false
+        },
+        "expert_escalation": true,
+        "privacy": {
+          "stores_identity": false,
+          "stores_contact_data": false,
+          "context_id_is_non_identity_hash": true,
+          "ignored_identity_keys": []
+        },
+        "guardrails": [
+          "Unknown technical values remain unknown.",
+          "Candidate-only compatibility is never promoted to verified.",
+          "Pseudo-brand, unbranded and multi-brand gaps are never converted into an exact product recommendation.",
+          "No SKU or exact product is selected without verified compatibility and a separate commerce decision layer.",
+          "The output is decision support, not certified hydraulic or agronomic design.",
+          "No price, stock, checkout action, customer identity or private support data is used."
+        ]
+      }
+    },
+    {
+      "case_id": "missing-core-crop",
+      "result": {
+        "decision_model_version": "farmer-decision-v3",
+        "context_id": "farmctx-2324abbdd6ab0dc4",
+        "state": "NEEDS_MORE_INPUT",
+        "confidence": "low",
+        "input_quality": {
+          "missing_core": [
+            "crop"
+          ],
+          "invalid": [],
+          "hydraulic_missing": [],
+          "unknowns_preserved": true
+        },
+        "risk_flags": [
+          "compatibility_unverified"
+        ],
+        "decision_tracks": {
+          "hydraulic": {
+            "state": "BLOCKED_MISSING_MEASUREMENT",
+            "missing_inputs": [
+              "crop"
+            ],
+            "tool_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "intent_id": "ir-intent-pressure-regulator-selection",
+            "specific_product_allowed": false
+          },
+          "filtration": {
+            "state": "READY_FOR_SELECTOR",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/irrigation-filter-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false
+          },
+          "compatibility": {
+            "state": "BLOCKED_UNVERIFIED_COMPATIBILITY",
+            "missing_inputs": [
+              "connection_type",
+              "nominal_size",
+              "verified_evidence"
+            ],
+            "tool_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false,
+            "evidence_verified": false
+          },
+          "agronomy": {
+            "state": "ADVISORY_ONLY",
+            "missing_inputs": [],
+            "intent_id": null,
+            "specific_product_allowed": false
+          }
+        },
+        "intent_routes": [
+          {
+            "canonical_intent_id": "ir-intent-pressure-regulator-selection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          }
+        ],
+        "authority_basis": {
+          "phase21_version": "phase21-iran-authority-network-v3",
+          "phase21_status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+          "phase21_checks_passed": 37,
+          "phase21_checks_total": 37,
+          "phase21_failed_checks": [],
+          "hard_fabrications": 0,
+          "gtins_fabricated": 0,
+          "skus_promoted_to_gtin": 0,
+          "brand_guard_policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
+        },
+        "scope": {
+          "specific_product_recommendation": false,
+          "sku_recommendation": false,
+          "certified_hydraulic_design": false,
+          "agronomic_prescription": false,
+          "price_or_stock_decision": false,
+          "merchant_or_checkout_action": false
+        },
+        "expert_escalation": true,
+        "privacy": {
+          "stores_identity": false,
+          "stores_contact_data": false,
+          "context_id_is_non_identity_hash": true,
+          "ignored_identity_keys": []
+        },
+        "guardrails": [
+          "Unknown technical values remain unknown.",
+          "Candidate-only compatibility is never promoted to verified.",
+          "Pseudo-brand, unbranded and multi-brand gaps are never converted into an exact product recommendation.",
+          "No SKU or exact product is selected without verified compatibility and a separate commerce decision layer.",
+          "The output is decision support, not certified hydraulic or agronomic design.",
+          "No price, stock, checkout action, customer identity or private support data is used."
+        ]
+      }
+    },
+    {
+      "case_id": "compatibility-unverified",
+      "result": {
+        "decision_model_version": "farmer-decision-v3",
+        "context_id": "farmctx-3106541f2f27c6cd",
+        "state": "PARTIAL_DECISION_SUPPORT",
+        "confidence": "medium",
+        "input_quality": {
+          "missing_core": [],
+          "invalid": [],
+          "hydraulic_missing": [],
+          "unknowns_preserved": true
+        },
+        "risk_flags": [
+          "compatibility_unverified"
+        ],
+        "decision_tracks": {
+          "hydraulic": {
+            "state": "READY_FOR_DECISION_TOOL",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "intent_id": "ir-intent-pressure-regulator-selection",
+            "specific_product_allowed": false
+          },
+          "filtration": {
+            "state": "READY_FOR_SELECTOR",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/irrigation-filter-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false
+          },
+          "compatibility": {
+            "state": "BLOCKED_UNVERIFIED_COMPATIBILITY",
+            "missing_inputs": [
+              "verified_evidence"
+            ],
+            "tool_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false,
+            "evidence_verified": false
+          },
+          "agronomy": {
+            "state": "ADVISORY_ONLY",
+            "missing_inputs": [],
+            "intent_id": null,
+            "specific_product_allowed": false
+          }
+        },
+        "intent_routes": [
+          {
+            "canonical_intent_id": "ir-intent-pressure-regulator-selection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          }
+        ],
+        "authority_basis": {
+          "phase21_version": "phase21-iran-authority-network-v3",
+          "phase21_status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+          "phase21_checks_passed": 37,
+          "phase21_checks_total": 37,
+          "phase21_failed_checks": [],
+          "hard_fabrications": 0,
+          "gtins_fabricated": 0,
+          "skus_promoted_to_gtin": 0,
+          "brand_guard_policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
+        },
+        "scope": {
+          "specific_product_recommendation": false,
+          "sku_recommendation": false,
+          "certified_hydraulic_design": false,
+          "agronomic_prescription": false,
+          "price_or_stock_decision": false,
+          "merchant_or_checkout_action": false
+        },
+        "expert_escalation": false,
+        "privacy": {
+          "stores_identity": false,
+          "stores_contact_data": false,
+          "context_id_is_non_identity_hash": true,
+          "ignored_identity_keys": []
+        },
+        "guardrails": [
+          "Unknown technical values remain unknown.",
+          "Candidate-only compatibility is never promoted to verified.",
+          "Pseudo-brand, unbranded and multi-brand gaps are never converted into an exact product recommendation.",
+          "No SKU or exact product is selected without verified compatibility and a separate commerce decision layer.",
+          "The output is decision support, not certified hydraulic or agronomic design.",
+          "No price, stock, checkout action, customer identity or private support data is used."
+        ]
+      }
+    },
+    {
+      "case_id": "compatibility-missing-connection",
+      "result": {
+        "decision_model_version": "farmer-decision-v3",
+        "context_id": "farmctx-ea0c3880a3fa4c65",
+        "state": "PARTIAL_DECISION_SUPPORT",
+        "confidence": "medium",
+        "input_quality": {
+          "missing_core": [],
+          "invalid": [],
+          "hydraulic_missing": [],
+          "unknowns_preserved": true
+        },
+        "risk_flags": [
+          "compatibility_unverified"
+        ],
+        "decision_tracks": {
+          "hydraulic": {
+            "state": "READY_FOR_DECISION_TOOL",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "intent_id": "ir-intent-pressure-regulator-selection",
+            "specific_product_allowed": false
+          },
+          "filtration": {
+            "state": "READY_FOR_SELECTOR",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/irrigation-filter-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false
+          },
+          "compatibility": {
+            "state": "BLOCKED_UNVERIFIED_COMPATIBILITY",
+            "missing_inputs": [
+              "connection_type"
+            ],
+            "tool_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false,
+            "evidence_verified": true
+          },
+          "agronomy": {
+            "state": "ADVISORY_ONLY",
+            "missing_inputs": [],
+            "intent_id": null,
+            "specific_product_allowed": false
+          }
+        },
+        "intent_routes": [
+          {
+            "canonical_intent_id": "ir-intent-pressure-regulator-selection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          }
+        ],
+        "authority_basis": {
+          "phase21_version": "phase21-iran-authority-network-v3",
+          "phase21_status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+          "phase21_checks_passed": 37,
+          "phase21_checks_total": 37,
+          "phase21_failed_checks": [],
+          "hard_fabrications": 0,
+          "gtins_fabricated": 0,
+          "skus_promoted_to_gtin": 0,
+          "brand_guard_policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
+        },
+        "scope": {
+          "specific_product_recommendation": false,
+          "sku_recommendation": false,
+          "certified_hydraulic_design": false,
+          "agronomic_prescription": false,
+          "price_or_stock_decision": false,
+          "merchant_or_checkout_action": false
+        },
+        "expert_escalation": false,
+        "privacy": {
+          "stores_identity": false,
+          "stores_contact_data": false,
+          "context_id_is_non_identity_hash": true,
+          "ignored_identity_keys": []
+        },
+        "guardrails": [
+          "Unknown technical values remain unknown.",
+          "Candidate-only compatibility is never promoted to verified.",
+          "Pseudo-brand, unbranded and multi-brand gaps are never converted into an exact product recommendation.",
+          "No SKU or exact product is selected without verified compatibility and a separate commerce decision layer.",
+          "The output is decision support, not certified hydraulic or agronomic design.",
+          "No price, stock, checkout action, customer identity or private support data is used."
+        ]
+      }
+    },
+    {
+      "case_id": "dirty-well-sand",
+      "result": {
+        "decision_model_version": "farmer-decision-v3",
+        "context_id": "farmctx-9a1fa6e0b269b7c9",
+        "state": "PARTIAL_DECISION_SUPPORT",
+        "confidence": "medium",
+        "input_quality": {
+          "missing_core": [],
+          "invalid": [],
+          "hydraulic_missing": [],
+          "unknowns_preserved": true
+        },
+        "risk_flags": [
+          "clogging_risk",
+          "compatibility_unverified"
+        ],
+        "decision_tracks": {
+          "hydraulic": {
+            "state": "READY_FOR_DECISION_TOOL",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "intent_id": "ir-intent-pressure-regulator-selection",
+            "specific_product_allowed": false
+          },
+          "filtration": {
+            "state": "EXPERT_REVIEW",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/irrigation-filter-selector/",
+            "intent_id": "ir-intent-well-sand-drip-filtration",
+            "specific_product_allowed": false
+          },
+          "compatibility": {
+            "state": "BLOCKED_UNVERIFIED_COMPATIBILITY",
+            "missing_inputs": [
+              "connection_type",
+              "nominal_size",
+              "verified_evidence"
+            ],
+            "tool_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false,
+            "evidence_verified": false
+          },
+          "agronomy": {
+            "state": "ADVISORY_ONLY",
+            "missing_inputs": [],
+            "intent_id": null,
+            "specific_product_allowed": false
+          }
+        },
+        "intent_routes": [
+          {
+            "canonical_intent_id": "ir-intent-pressure-regulator-selection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          },
+          {
+            "canonical_intent_id": "ir-intent-well-sand-drip-filtration",
+            "status": "draft-covered",
+            "canonical_url": null,
+            "wordpress_post_id": 146227,
+            "publicly_routable": false
+          }
+        ],
+        "authority_basis": {
+          "phase21_version": "phase21-iran-authority-network-v3",
+          "phase21_status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+          "phase21_checks_passed": 37,
+          "phase21_checks_total": 37,
+          "phase21_failed_checks": [],
+          "hard_fabrications": 0,
+          "gtins_fabricated": 0,
+          "skus_promoted_to_gtin": 0,
+          "brand_guard_policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
+        },
+        "scope": {
+          "specific_product_recommendation": false,
+          "sku_recommendation": false,
+          "certified_hydraulic_design": false,
+          "agronomic_prescription": false,
+          "price_or_stock_decision": false,
+          "merchant_or_checkout_action": false
+        },
+        "expert_escalation": true,
+        "privacy": {
+          "stores_identity": false,
+          "stores_contact_data": false,
+          "context_id_is_non_identity_hash": true,
+          "ignored_identity_keys": []
+        },
+        "guardrails": [
+          "Unknown technical values remain unknown.",
+          "Candidate-only compatibility is never promoted to verified.",
+          "Pseudo-brand, unbranded and multi-brand gaps are never converted into an exact product recommendation.",
+          "No SKU or exact product is selected without verified compatibility and a separate commerce decision layer.",
+          "The output is decision support, not certified hydraulic or agronomic design.",
+          "No price, stock, checkout action, customer identity or private support data is used."
+        ]
+      }
+    },
+    {
+      "case_id": "pii-ignored",
+      "result": {
+        "decision_model_version": "farmer-decision-v3",
+        "context_id": "farmctx-052f2410bd4d8bcb",
+        "state": "PARTIAL_DECISION_SUPPORT",
+        "confidence": "medium",
+        "input_quality": {
+          "missing_core": [],
+          "invalid": [],
+          "hydraulic_missing": [],
+          "unknowns_preserved": true
+        },
+        "risk_flags": [
+          "compatibility_unverified"
+        ],
+        "decision_tracks": {
+          "hydraulic": {
+            "state": "READY_FOR_DECISION_TOOL",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "intent_id": "ir-intent-pressure-regulator-selection",
+            "specific_product_allowed": false
+          },
+          "filtration": {
+            "state": "READY_FOR_SELECTOR",
+            "missing_inputs": [],
+            "tool_url": "https://keshavarz20.com/irrigation-filter-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false
+          },
+          "compatibility": {
+            "state": "BLOCKED_UNVERIFIED_COMPATIBILITY",
+            "missing_inputs": [
+              "connection_type",
+              "nominal_size",
+              "verified_evidence"
+            ],
+            "tool_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+            "intent_id": null,
+            "specific_product_allowed": false,
+            "evidence_verified": false
+          },
+          "agronomy": {
+            "state": "ADVISORY_ONLY",
+            "missing_inputs": [],
+            "intent_id": null,
+            "specific_product_allowed": false
+          }
+        },
+        "intent_routes": [
+          {
+            "canonical_intent_id": "ir-intent-pressure-regulator-selection",
+            "status": "article-covered",
+            "canonical_url": "https://keshavarz20.com/drip-irrigation-pressure-regulator-selection-guide/",
+            "wordpress_post_id": null,
+            "publicly_routable": true
+          }
+        ],
+        "authority_basis": {
+          "phase21_version": "phase21-iran-authority-network-v3",
+          "phase21_status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+          "phase21_checks_passed": 37,
+          "phase21_checks_total": 37,
+          "phase21_failed_checks": [],
+          "hard_fabrications": 0,
+          "gtins_fabricated": 0,
+          "skus_promoted_to_gtin": 0,
+          "brand_guard_policy": "Pseudo-brand, unbranded and multi-brand ambiguity remain guarded gaps; they must not be converted into a single external brand without source evidence."
+        },
+        "scope": {
+          "specific_product_recommendation": false,
+          "sku_recommendation": false,
+          "certified_hydraulic_design": false,
+          "agronomic_prescription": false,
+          "price_or_stock_decision": false,
+          "merchant_or_checkout_action": false
+        },
+        "expert_escalation": false,
+        "privacy": {
+          "stores_identity": false,
+          "stores_contact_data": false,
+          "context_id_is_non_identity_hash": true,
+          "ignored_identity_keys": [
+            "address",
+            "email",
+            "name",
+            "phone"
+          ]
+        },
+        "guardrails": [
+          "Unknown technical values remain unknown.",
+          "Candidate-only compatibility is never promoted to verified.",
+          "Pseudo-brand, unbranded and multi-brand gaps are never converted into an exact product recommendation.",
+          "No SKU or exact product is selected without verified compatibility and a separate commerce decision layer.",
+          "The output is decision support, not certified hydraulic or agronomic design.",
+          "No price, stock, checkout action, customer identity or private support data is used."
         ]
       }
     }

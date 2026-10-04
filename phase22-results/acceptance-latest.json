@@ -1,20 +1,175 @@
 {
   "phase": 22,
   "title": "Farmer Decision Personalization",
-  "generated_at_utc": "2026-09-19T09:05:24.022728+00:00",
-  "run_id": "35433703151",
-  "commit_sha": "90b9459dd59c819a7e2635d7ef8cabeeb55a84a6",
-  "status": "READY_BLOCKED_BY_PHASE20",
-  "functional_validation": "PASS_MODEL_VALIDATION",
-  "dependency_gate": {
-    "phase20": "PARTIAL",
-    "required_for_final_pass": true
+  "version": "phase22-farmer-decision-v3",
+  "generated_at_utc": "2026-10-04T20:33:27.810323+00:00",
+  "run_id": "37232538846",
+  "commit_sha": "dbef9bdc9cc3ade5a0ee53e4f682bcfe31e47875",
+  "status": "PASS_PHASE22_FARMER_DECISION_V3_GUARDED",
+  "check_count": 21,
+  "passed_checks": 21,
+  "failed_checks": [],
+  "checks": {
+    "phase21_v3_dependency": {
+      "pass": true,
+      "evidence": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED"
+    },
+    "phase21_all_checks_pass": {
+      "pass": true,
+      "evidence": "37/37"
+    },
+    "phase21_no_hard_fabrication": {
+      "pass": true,
+      "evidence": 0
+    },
+    "phase21_no_gtin_fabrication": {
+      "pass": true,
+      "evidence": 0
+    },
+    "phase20_guarded_dependency": {
+      "pass": true,
+      "evidence": "PASS_GUARDED_VENDOR_RENDERER"
+    },
+    "phase20_all_checks_pass": {
+      "pass": true,
+      "evidence": "57/57"
+    },
+    "phase20_full_wcag_not_falsely_claimed": {
+      "pass": true,
+      "evidence": false
+    },
+    "model_v3_pass": {
+      "pass": true,
+      "evidence": "PASS_MODEL_VALIDATION_V3"
+    },
+    "validation_case_count": {
+      "pass": true,
+      "evidence": 18
+    },
+    "model_internal_checks_all_pass": {
+      "pass": true,
+      "evidence": {
+        "all_cases_validated": true,
+        "all_cases_guarded": true,
+        "all_cases_use_phase21_v3": true,
+        "no_specific_product_or_sku": true,
+        "no_price_stock_checkout_action": true,
+        "no_certified_design_claim": true,
+        "unknowns_preserved": true,
+        "privacy_identity_not_stored": true
+      }
+    },
+    "live_tool_probe_pass": {
+      "pass": true,
+      "evidence": [
+        {
+          "key": "hydraulic",
+          "url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+          "final_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+          "http_status": 200,
+          "ok": true,
+          "content_type": "text/html; charset=UTF-8",
+          "body_chars": 286225
+        },
+        {
+          "key": "filtration",
+          "url": "https://keshavarz20.com/irrigation-filter-selector/",
+          "final_url": "https://keshavarz20.com/irrigation-filter-selector/",
+          "http_status": 200,
+          "ok": true,
+          "content_type": "text/html; charset=UTF-8",
+          "body_chars": 204629
+        },
+        {
+          "key": "compatibility",
+          "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+          "final_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+          "http_status": 200,
+          "ok": true,
+          "content_type": "text/html; charset=UTF-8",
+          "body_chars": 228560
+        }
+      ]
+    },
+    "no_specific_product_or_sku": {
+      "pass": true,
+      "evidence": true
+    },
+    "no_price_stock_checkout_action": {
+      "pass": true,
+      "evidence": true
+    },
+    "no_certified_design_or_prescription": {
+      "pass": true,
+      "evidence": true
+    },
+    "unknowns_preserved": {
+      "pass": true,
+      "evidence": true
+    },
+    "privacy_no_identity_storage": {
+      "pass": true,
+      "evidence": true
+    },
+    "pii_case_explicitly_ignored": {
+      "pass": true,
+      "evidence": [
+        "address",
+        "email",
+        "name",
+        "phone"
+      ]
+    },
+    "draft_intents_not_public": {
+      "pass": true,
+      "evidence": [
+        {
+          "canonical_intent_id": "ir-intent-well-sand-drip-filtration",
+          "status": "draft-covered",
+          "canonical_url": null,
+          "wordpress_post_id": 146227,
+          "publicly_routable": false
+        },
+        {
+          "canonical_intent_id": "ir-intent-well-sand-drip-filtration",
+          "status": "draft-covered",
+          "canonical_url": null,
+          "wordpress_post_id": 146227,
+          "publicly_routable": false
+        },
+        {
+          "canonical_intent_id": "ir-intent-well-sand-drip-filtration",
+          "status": "draft-covered",
+          "canonical_url": null,
+          "wordpress_post_id": 146227,
+          "publicly_routable": false
+        }
+      ]
+    },
+    "brand_gaps_guarded_not_promoted": {
+      "pass": true,
+      "evidence": {
+        "available": true,
+        "scope": 87,
+        "pseudo_brand_products": 67,
+        "multi_brand_products": 7,
+        "unbranded_products": 8
+      }
+    },
+    "site_mutations_zero": {
+      "pass": true,
+      "evidence": 0
+    },
+    "commerce_mutations_zero": {
+      "pass": true,
+      "evidence": 0
+    }
   },
-  "acceptance": {
-    "no_agronomic_hydraulic_certainty_beyond_data": true,
-    "missing_inputs_stop_or_soften_answer": true,
-    "expert_escalation": true
-  },
+  "model_status": "PASS_MODEL_VALIDATION_V3",
+  "validation_cases": 18,
+  "live_tool_targets": 3,
   "site_mutations": 0,
-  "commerce_mutations": 0
+  "commerce_mutations": 0,
+  "price_stock_payment_user_mutations": 0,
+  "completion_basis": "Explainable farmer decision support with current Phase 21 authority, live decision tools, PII-safe context hashing, fail-closed compatibility, and no exact product/SKU or certified design claims."
 }
