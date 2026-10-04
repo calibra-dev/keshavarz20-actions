@@ -47,6 +47,21 @@ The publisher owns typography. Never ask an image model to typeset Persian. Neve
 
 If today's queue exists, do not rewrite or duplicate it. Check recent queue/public history before selection; the publisher performs the final authenticated duplicate check against the real `news` CPT.
 
+## Queue ingress reliability
+
+Use GitHub Contents API on the current `main` branch as the canonical queue ingress.
+
+Before every queue write:
+1. re-read `daily-agri-news/queue/YYYY-MM-DD.json` from current `main`;
+2. if it exists, stop queue creation and continue with publisher/site-side verification only;
+3. if it is absent, create exactly that one queue file on current `main`.
+
+Treat GitHub Contents API HTTP 422 / `sha wasn't supplied` during a create as a concurrency signal, not as permission to overwrite or create a duplicate. Immediately re-read the target path from current `main`. If the queue now exists, accept the concurrent winner and continue with its publisher/readback. If it is still absent, retry only from a freshly read current-main state.
+
+Do not leave a daily queue stranded on a stale recovery branch. If a temporary branch is ever required because direct main ingress is unavailable, create it from the latest current-main head immediately before writing. Re-check current `main` before opening or merging a PR; if main advanced and the PR becomes dirty/stale, do not force-merge. Recreate the recovery branch from the new main head or stop if the queue has appeared concurrently.
+
+A queue file is not completion. The day is complete only after the publisher produces a verified WordPress item with `wp_type=news`, `wp_status=draft`, and a concrete post ID/readback.
+
 ## Safety
 
 Draft only. Human review is mandatory.
