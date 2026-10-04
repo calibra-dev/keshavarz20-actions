@@ -1,0 +1,433 @@
+{
+  "phase": 24,
+  "version": "phase24-direct-surface-execution-v3",
+  "surface": "Microsoft Copilot / Bing",
+  "count": 50,
+  "evidence_type": "DIRECT_SURFACE_CAPTURE",
+  "required_fields": [
+    "observation_id",
+    "prompt_id",
+    "surface",
+    "observed_at_utc",
+    "evidence_type",
+    "answer_present",
+    "keshavarz20_cited",
+    "brand_mentioned",
+    "citation_urls",
+    "cited_url",
+    "recommendation_context",
+    "competitor_source_set",
+    "answer_url",
+    "session_context",
+    "readback_verified"
+  ],
+  "rules": {
+    "exact_prompt_required": true,
+    "exact_surface_required": true,
+    "readback_verified_required": true,
+    "ordinary_web_search_forbidden": true,
+    "fabricated_observations_allowed": 0
+  },
+  "queue": [
+    {
+      "prompt_id": "K20-AI-003",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "definitions_education",
+      "prompt": "فیلتر دیسکی آبیاری چگونه کار می‌کند؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-007",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "definitions_education",
+      "prompt": "فشار کاری لوله پلی‌اتیلن یعنی چه؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-011",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "definitions_education",
+      "prompt": "میکرون فیلتر آبیاری یعنی چه؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-015",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "definitions_education",
+      "prompt": "کود کلات آهن چیست؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-019",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "definitions_education",
+      "prompt": "فشار اسمی PN در اتصالات آبیاری یعنی چه؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-023",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "product_selection",
+      "prompt": "برای آب کانال کشاورزی چه سیستم فیلتراسیونی انتخاب کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-027",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "product_selection",
+      "prompt": "برای زمین شیب‌دار نوار تیپ چه نکاتی در انتخاب محصول مهم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-031",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "product_selection",
+      "prompt": "برای اتصال لی‌فلت به لوله پلی‌اتیلن چه قطعاتی معمولاً نیاز می‌شود؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-035",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "product_selection",
+      "prompt": "برای آبیاری باغ چه نوع فیلتر دیسکی باید بررسی کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-039",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "product_selection",
+      "prompt": "برای انتخاب کود آهن چه تفاوت‌هایی بین فرم‌های کلاته مهم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-043",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "comparison",
+      "prompt": "نوار تیپ پلاک‌دار و بغل‌دوخت را از نظر انتخاب کاربردی مقایسه کن.",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-047",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "comparison",
+      "prompt": "فیلتر ۲ اینچ و ۳ اینچ را از نظر ظرفیت و محدودیت انتخاب مقایسه کن.",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-051",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "comparison",
+      "prompt": "کمربند انشعاب و سه‌راهی را برای گرفتن انشعاب مقایسه کن.",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-055",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "comparison",
+      "prompt": "نوار تیپ ضخیم‌تر و نازک‌تر را از نظر دوام و کاربرد مقایسه کن.",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-059",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "comparison",
+      "prompt": "خرید تجهیزات آبیاری به‌صورت قطعه‌ای و سبد پروژه‌ای را مقایسه کن.",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-063",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "compatibility",
+      "prompt": "آیا هر فیلتر ۳ اینچ با هر خط ۹۰ میلی‌متر سازگار است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-067",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "compatibility",
+      "prompt": "برای تبدیل لوله ۱۱۰ به ۹۰ چه نوع اتصال‌هایی را باید بررسی کرد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-071",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "compatibility",
+      "prompt": "برای فیلتر و پمپ، دبی اسمی چگونه باید با هم تطبیق داده شود؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-075",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "compatibility",
+      "prompt": "برای استفاده از نوار تیپ روی زمین شیب‌دار چه محدودیت سازگاری هیدرولیکی وجود دارد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-079",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "compatibility",
+      "prompt": "آیا هر کود محلول در آب برای تزریق از سیستم قطره‌ای مناسب است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-083",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "calculation_sizing",
+      "prompt": "برای انتخاب سایز لوله با دبی ۱۸ مترمکعب بر ساعت و فشار ۲.۲ بار چه داده‌های دیگری لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-087",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "calculation_sizing",
+      "prompt": "اگر ۱۰۰ ردیف ۱۰۰ متری داشته باشم طول کل نوار تیپ چقدر است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-091",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "calculation_sizing",
+      "prompt": "چطور سرعت جریان در لوله را از دبی و قطر داخلی محاسبه کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-095",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "calculation_sizing",
+      "prompt": "برای محاسبه سطح آبیاری هر زون چه اطلاعاتی لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-099",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "calculation_sizing",
+      "prompt": "برای محاسبه زمان آبیاری از حجم آب و دبی چه فرمولی استفاده می‌شود؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-103",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "troubleshooting",
+      "prompt": "چرا فیلتر دیسکی زود به زود می‌گیرد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-107",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "troubleshooting",
+      "prompt": "چرا اتصال رزوه‌ای نشتی دارد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-111",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "troubleshooting",
+      "prompt": "چرا پمپ روشن است ولی فشار شبکه کم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-115",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "troubleshooting",
+      "prompt": "چرا تانک کود تزریق انجام نمی‌دهد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-119",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "troubleshooting",
+      "prompt": "چرا بعد از تعویض فیلتر فشار سیستم تغییر کرده است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-123",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "buying_price_shipping",
+      "prompt": "برای خرید فیلتر آبیاری آنلاین چه مشخصاتی را بررسی کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-127",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "buying_price_shipping",
+      "prompt": "قیمت پایین‌تر اتصال پلی‌اتیلن چه ریسک‌هایی ممکن است داشته باشد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-131",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "buying_price_shipping",
+      "prompt": "برای خرید شیر ۲ اینچ چگونه سایز واقعی اتصال را تأیید کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-135",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "buying_price_shipping",
+      "prompt": "آیا قیمت محصول در پاسخ هوش مصنوعی برای تصمیم خرید کافی است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-139",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "buying_price_shipping",
+      "prompt": "قبل از خرید محصول ناموجود چه گزینه‌های جایگزینی را باید بررسی کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-143",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "crop_area_water",
+      "prompt": "برای ذرت با آب کانال کدر چه فیلتراسیونی باید بررسی شود؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-147",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "crop_area_water",
+      "prompt": "برای خاک رسی چگونه ریسک ماندابی‌شدن را در طراحی آبیاری لحاظ کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-151",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "crop_area_water",
+      "prompt": "برای باغ پسته چه اطلاعاتی از دبی و فشار قبل از انتخاب لوله لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-155",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "crop_area_water",
+      "prompt": "برای آب دارای جلبک چه نوع تصفیه‌ای باید بررسی شود؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-159",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "crop_area_water",
+      "prompt": "برای منطقه گرم و خشک چه داده اقلیمی در برنامه آبیاری مهم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-163",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "brand_store_trust",
+      "prompt": "برای ارزیابی اعتبار یک فروشگاه تجهیزات کشاورزی چه نشانه‌هایی را بررسی کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-167",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "brand_store_trust",
+      "prompt": "آیا کشاورز بیست راهنمای سازگاری اتصالات دارد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-171",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "brand_store_trust",
+      "prompt": "آیا کشاورز بیست درباره روش تولید محتوا و منابع توضیح داده است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-175",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "brand_store_trust",
+      "prompt": "آیا کشاورز بیست محتوای اختلاط کود آهن دارد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-179",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "brand_store_trust",
+      "prompt": "برای سنجش شفافیت تجاری کشاورز بیست چه صفحات اعتماد را بررسی کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-183",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "full_system_basket",
+      "prompt": "برای ۴ هکتار ذرت با آب کانال کدر چه زنجیره تصمیمی از آب تا مزرعه لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-187",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "full_system_basket",
+      "prompt": "چطور بین ابزار محاسبه، راهنمای فنی و صفحه محصول برای ساخت سبد خرید حرکت کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-191",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "full_system_basket",
+      "prompt": "برای سیستم قطره‌ای چگونه ظرفیت پمپ، فیلتر و لوله را به هم مرتبط کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-195",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "full_system_basket",
+      "prompt": "برای پروژه‌ای با اطلاعات ناقص، سیستم توصیه‌گر باید کجا متوقف شود؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-199",
+      "surface": "Microsoft Copilot / Bing",
+      "intent_bucket": "full_system_basket",
+      "prompt": "برای پروژه‌ای که بخشی از کالا ناموجود است چگونه جایگزین مناسب را بدون حدس پیدا کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    }
+  ]
+}
