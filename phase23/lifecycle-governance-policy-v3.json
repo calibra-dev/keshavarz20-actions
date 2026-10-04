@@ -1,0 +1,40 @@
+{
+  "policy_version": "k20-lifecycle-governance-v3",
+  "review_days": {
+    "posts": 180,
+    "pages": 365,
+    "products": 180
+  },
+  "governance_review_days": {
+    "phase20": 90,
+    "phase21": 90,
+    "phase22": 90
+  },
+  "rules": {
+    "stale_review_does_not_touch_dateModified": true,
+    "dateModified_requires_substantive_content_change": true,
+    "outofstock_is_not_discontinued": true,
+    "backorder_is_not_instock": true,
+    "discontinued_requires_explicit_evidence": true,
+    "nonpublic_items_do_not_get_public_url_actions": true,
+    "merge_requires_manual_canonical_redirect_plan": true,
+    "redirect_requires_explicit_target_and_readback": true,
+    "canonical_change_requires_explicit_ownership_decision": true,
+    "automatic_bulk_rewrite_for_freshness": false,
+    "stock_state_does_not_change_content_freshness_date": true,
+    "price_or_stock_change_requires_data_parity_review_not_fake_content_refresh": true,
+    "review_due_is_not_evidence_of_content_error": true,
+    "deletion_requires_explicit_decision": false
+  },
+  "transition_rules": {
+    "outofstock": "For a published product keep the URL by default, verify visible availability and schema, and do not infer discontinuation.",
+    "onbackorder": "For a published product keep the URL and represent backorder accurately; never claim immediate stock.",
+    "nonpublic_product": "Treat draft/pending/private products as internal lifecycle records; do not issue public keep-URL, redirect, or canonical actions.",
+    "discontinued_explicit": "Require explicit evidence and a separate keep/replace/redirect/410 decision with readback.",
+    "stale_content": "Queue substantive review only; do not write dateModified until the visible content materially changes.",
+    "status_transition": "Review publication/indexing implications before any redirect, canonical, or deletion decision.",
+    "stock_transition": "Recheck visible availability and structured-data parity; do not rewrite content merely to refresh the date.",
+    "duplicate_or_superseded": "Require a canonical/redirect plan and post-write readback before deprecation.",
+    "governance_asset": "Re-review when upstream evidence, routing, compatibility rules, or source validity materially changes."
+  }
+}
