@@ -1,0 +1,77 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "action": "engine.status",
+  "engine": "news",
+  "engine_label": "Daily Agriculture News Engine",
+  "workflow": "k20-news-queue-publisher.yml",
+  "state": "completed",
+  "runs": [
+    {
+      "run_id": 37098795677,
+      "state": "completed",
+      "conclusion": "success",
+      "event": "push",
+      "started_at": "2026-10-03T05:07:23Z",
+      "created_at": "2026-10-03T05:07:23Z",
+      "finished_at": "2026-10-03T05:10:50Z",
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    },
+    {
+      "run_id": 37098713195,
+      "state": "completed",
+      "conclusion": "failure",
+      "event": "push",
+      "started_at": "2026-10-03T05:05:51Z",
+      "created_at": "2026-10-03T05:05:51Z",
+      "finished_at": "2026-10-03T05:06:38Z",
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    },
+    {
+      "run_id": 36965754909,
+      "state": "completed",
+      "conclusion": "success",
+      "event": "push",
+      "started_at": "2026-10-02T04:42:56Z",
+      "created_at": "2026-10-02T04:42:56Z",
+      "finished_at": "2026-10-02T04:46:04Z",
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    },
+    {
+      "run_id": 36827019753,
+      "state": "completed",
+      "conclusion": "success",
+      "event": "push",
+      "started_at": "2026-10-01T06:51:17Z",
+      "created_at": "2026-10-01T06:51:17Z",
+      "finished_at": "2026-10-01T06:54:32Z",
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    },
+    {
+      "run_id": 36676064650,
+      "state": "completed",
+      "conclusion": "success",
+      "event": "push",
+      "started_at": "2026-09-30T06:00:33Z",
+      "created_at": "2026-09-30T06:00:33Z",
+      "finished_at": "2026-09-30T06:03:53Z",
+      "changed_ids": [],
+      "errors": [],
+      "artifact": null,
+      "next_action": null
+    }
+  ],
+  "executed_at_utc": "2026-10-04T06:31:24.0179962Z"
+}
