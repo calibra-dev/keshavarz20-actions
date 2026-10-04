@@ -1,21 +1,15 @@
-name: Phase 23 Lifecycle Freshness v2
+name: Phase 23 Lifecycle Freshness v3
 
 on:
-  pull_request:
-    paths:
-      - 'phase23/**'
-      - 'phase23-results/**'
-      - 'growth-os/phase20-acceptance-2026-09-27.json'
-      - 'phase21-results/authority-network-2026-09-27.json'
-      - 'phase22-results/acceptance-v2-2026-09-27.json'
-      - 'tests/test_phase23_v2.py'
-      - '.github/workflows/k20-phase23-v2.yml'
   push:
     branches: [main]
     paths:
       - 'phase23/**'
-      - 'phase23-results/acceptance-v2-2026-09-27.json'
-      - 'tests/test_phase23_v2.py'
+      - 'phase23-ops/**'
+      - 'phase20-results/final-closure-latest.json'
+      - 'phase21-results/authority-network-latest.json'
+      - 'phase22-results/acceptance-latest.json'
+      - 'tests/test_phase23_v3.py'
       - '.github/workflows/k20-phase23-v2.yml'
   workflow_dispatch:
 
@@ -23,13 +17,13 @@ permissions:
   contents: write
 
 concurrency:
-  group: k20-phase23-v2
-  cancel-in-progress: false
+  group: phase23-lifecycle-freshness-v3
+  cancel-in-progress: true
 
 jobs:
   static-verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -37,14 +31,13 @@ jobs:
           python-version: '3.12'
       - name: Compile and test
         run: |
-          python -m py_compile phase23/lifecycle_governance_v2.py
-          python -m unittest tests.test_phase23_v2 -v
+          python -m py_compile phase23/lifecycle_governance_v3.py
+          python -m unittest tests.test_phase23_v3 -v
 
   live-audit:
-    if: github.event_name != 'pull_request'
     needs: static-verify
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     env:
       WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
       WP_USERNAME: ${{ secrets.WP_USERNAME }}
@@ -58,19 +51,66 @@ jobs:
           python-version: '3.12'
       - name: Run live read-only lifecycle audit
         run: |
-          python phase23/lifecycle_governance_v2.py             --policy phase23/lifecycle-governance-policy-v2.json             --output phase23-results/lifecycle-freshness-v2-latest.json
-      - name: Persist sanitized live evidence
+          python phase23/lifecycle_governance_v3.py \
+            --policy phase23/lifecycle-governance-policy-v3.json \
+            --output phase23-results/lifecycle-freshness-v3-latest.json \
+            --state-output phase23-results/lifecycle-state-latest.json \
+            --previous-state phase23-results/lifecycle-state-latest.json
+      - name: Build Phase 23 final acceptance
+        shell: python
+        run: |
+          import datetime as dt, json, os, pathlib
+          r=json.load(open("phase23-results/lifecycle-freshness-v3-latest.json",encoding="utf-8"))
+          checks=r.get("checks") or {}
+          failed=[k for k,v in checks.items() if not v]
+          out={
+            "phase":23,
+            "title":"Lifecycle & Freshness Governance",
+            "version":"phase23-lifecycle-freshness-v3",
+            "generated_at_utc":dt.datetime.now(dt.timezone.utc).isoformat(),
+            "run_id":os.getenv("GITHUB_RUN_ID"),
+            "commit_sha":os.getenv("GITHUB_SHA"),
+            "status":"PASS_PHASE23_LIFECYCLE_FRESHNESS_V3_GUARDED" if not failed else "FAIL",
+            "check_count":len(checks),
+            "passed_checks":len(checks)-len(failed),
+            "failed_checks":failed,
+            "inventory":r.get("inventory"),
+            "review_queue_count":r.get("review_queue_count"),
+            "priority_counts":r.get("priority_counts"),
+            "stock_transition_watch":r.get("stock_transition_watch"),
+            "transition_monitor":{
+              "baseline_mode":(r.get("transition_monitor") or {}).get("baseline_mode"),
+              "previous_state_available":(r.get("transition_monitor") or {}).get("previous_state_available"),
+              "transition_count":(r.get("transition_monitor") or {}).get("transition_count")
+            },
+            "governance_assets":r.get("governance_assets"),
+            "site_mutations":0,
+            "commerce_mutations":0,
+            "price_stock_payment_user_mutations":0,
+            "dateModified_mutations":0,
+            "redirect_mutations":0,
+            "canonical_mutations":0,
+            "delete_mutations":0,
+            "completion_basis":r.get("completion_basis")
+          }
+          pathlib.Path("phase23-results/acceptance-latest.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(out,ensure_ascii=False))
+          if failed: raise SystemExit(2)
+      - name: Persist Phase 23 v3 evidence
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f phase23-results/lifecycle-freshness-v2-latest.json
+          git add -f \
+            phase23-results/lifecycle-freshness-v3-latest.json \
+            phase23-results/lifecycle-state-latest.json \
+            phase23-results/acceptance-latest.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "phase23: persist live lifecycle freshness v2 evidence"
-          for attempt in 1 2 3 4; do
-            git pull --rebase origin main
-            if git push origin main; then exit 0; fi
-            sleep $((attempt * 2))
+          git commit -m "phase23: record v3 lifecycle freshness acceptance"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt*2))
           done
           exit 1
