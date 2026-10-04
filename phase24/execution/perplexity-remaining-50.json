@@ -1,0 +1,433 @@
+{
+  "phase": 24,
+  "version": "phase24-direct-surface-execution-v3",
+  "surface": "Perplexity",
+  "count": 50,
+  "evidence_type": "DIRECT_SURFACE_CAPTURE",
+  "required_fields": [
+    "observation_id",
+    "prompt_id",
+    "surface",
+    "observed_at_utc",
+    "evidence_type",
+    "answer_present",
+    "keshavarz20_cited",
+    "brand_mentioned",
+    "citation_urls",
+    "cited_url",
+    "recommendation_context",
+    "competitor_source_set",
+    "answer_url",
+    "session_context",
+    "readback_verified"
+  ],
+  "rules": {
+    "exact_prompt_required": true,
+    "exact_surface_required": true,
+    "readback_verified_required": true,
+    "ordinary_web_search_forbidden": true,
+    "fabricated_observations_allowed": 0
+  },
+  "queue": [
+    {
+      "prompt_id": "K20-AI-004",
+      "surface": "Perplexity",
+      "intent_bucket": "definitions_education",
+      "prompt": "فیلتر توری آبیاری چه کاربردی دارد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-008",
+      "surface": "Perplexity",
+      "intent_bucket": "definitions_education",
+      "prompt": "کمربند انشعاب پلی‌اتیلن چیست؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-012",
+      "surface": "Perplexity",
+      "intent_bucket": "definitions_education",
+      "prompt": "مش فیلتر آبیاری چیست و با میکرون چه ارتباطی دارد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-016",
+      "surface": "Perplexity",
+      "intent_bucket": "definitions_education",
+      "prompt": "گرفتگی قطره‌چکان چرا اتفاق می‌افتد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-020",
+      "surface": "Perplexity",
+      "intent_bucket": "definitions_education",
+      "prompt": "چرا کیفیت آب برای انتخاب فیلتر آبیاری مهم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-024",
+      "surface": "Perplexity",
+      "intent_bucket": "product_selection",
+      "prompt": "برای خط اصلی آبیاری با دبی متوسط چه نوع لوله پلی‌اتیلنی بررسی کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-028",
+      "surface": "Perplexity",
+      "intent_bucket": "product_selection",
+      "prompt": "برای کوددهی از طریق آبیاری چه نوع تانک کود یا تجهیز تزریقی مناسب است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-032",
+      "surface": "Perplexity",
+      "intent_bucket": "product_selection",
+      "prompt": "برای شیر قطع و وصل خط ۹۰ میلی‌متر چه گزینه‌هایی وجود دارد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-036",
+      "surface": "Perplexity",
+      "intent_bucket": "product_selection",
+      "prompt": "برای خرید لوله پلی‌اتیلن کشاورزی چه مشخصاتی را باید از فروشنده بپرسم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-040",
+      "surface": "Perplexity",
+      "intent_bucket": "product_selection",
+      "prompt": "برای ساخت سبد خرید آبیاری یک هکتار از کجا شروع کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-044",
+      "surface": "Perplexity",
+      "intent_bucket": "comparison",
+      "prompt": "لوله PE80 و PE100 را برای آبیاری مقایسه کن.",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-048",
+      "surface": "Perplexity",
+      "intent_bucket": "comparison",
+      "prompt": "لوله ۶۳ و ۹۰ میلی‌متر را بدون حدس دبی، از نظر معیارهای انتخاب مقایسه کن.",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-052",
+      "surface": "Perplexity",
+      "intent_bucket": "comparison",
+      "prompt": "فیلتر پایه‌بلند و فیلتر معمولی را از نظر سرویس و نصب مقایسه کن.",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-056",
+      "surface": "Perplexity",
+      "intent_bucket": "comparison",
+      "prompt": "اتصال فلنج‌دار و اتصال رزوه‌ای را برای تجهیزات آبیاری مقایسه کن.",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-060",
+      "surface": "Perplexity",
+      "intent_bucket": "comparison",
+      "prompt": "راهنمای فنی فروشگاه و توصیه صرفاً تبلیغاتی را از نظر تصمیم خرید مقایسه کن.",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-064",
+      "surface": "Perplexity",
+      "intent_bucket": "compatibility",
+      "prompt": "برای اتصال لی‌فلت به خروجی پمپ چه اطلاعاتی لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-068",
+      "surface": "Perplexity",
+      "intent_bucket": "compatibility",
+      "prompt": "آیا رزوه BSP و NPT را می‌توان مستقیم به هم بست؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-072",
+      "surface": "Perplexity",
+      "intent_bucket": "compatibility",
+      "prompt": "آیا فیلتر ۱۲۰ مش برای همه نوار تیپ‌ها مناسب است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-076",
+      "surface": "Perplexity",
+      "intent_bucket": "compatibility",
+      "prompt": "آیا می‌توان اتصال جوشی PE100 را روی هر لوله پلی‌اتیلن نصب کرد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-080",
+      "surface": "Perplexity",
+      "intent_bucket": "compatibility",
+      "prompt": "برای استفاده همزمان فیلتر دیسکی و توری چه ترتیب و سازگاری باید بررسی شود؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-084",
+      "surface": "Perplexity",
+      "intent_bucket": "calculation_sizing",
+      "prompt": "چطور افت فشار خط پلی‌اتیلن را محاسبه کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-088",
+      "surface": "Perplexity",
+      "intent_bucket": "calculation_sizing",
+      "prompt": "برای محاسبه تعداد شیرهای زون چه ورودی‌هایی لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-092",
+      "surface": "Perplexity",
+      "intent_bucket": "calculation_sizing",
+      "prompt": "برای تعیین ظرفیت تانک کود از چه داده‌هایی استفاده می‌شود؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-096",
+      "surface": "Perplexity",
+      "intent_bucket": "calculation_sizing",
+      "prompt": "چطور تعداد اتصالات لازم برای ۱۰۰ ردیف نوار تیپ را تخمین بزنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-100",
+      "surface": "Perplexity",
+      "intent_bucket": "calculation_sizing",
+      "prompt": "برای سایزینگ دقیق لوله چرا فقط مساحت مزرعه کافی نیست؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-104",
+      "surface": "Perplexity",
+      "intent_bucket": "troubleshooting",
+      "prompt": "چرا بعضی قطره‌چکان‌ها گرفته‌اند؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-108",
+      "surface": "Perplexity",
+      "intent_bucket": "troubleshooting",
+      "prompt": "چرا لی‌فلت در محل اتصال نشت می‌کند؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-112",
+      "surface": "Perplexity",
+      "intent_bucket": "troubleshooting",
+      "prompt": "چرا بعد از تزریق کود گرفتگی بیشتر شده است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-116",
+      "surface": "Perplexity",
+      "intent_bucket": "troubleshooting",
+      "prompt": "چرا شیر یکطرفه برگشت آب دارد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-120",
+      "surface": "Perplexity",
+      "intent_bucket": "troubleshooting",
+      "prompt": "برای پیدا کردن علت آبیاری نامتوازن از چه ترتیب عیب‌یابی استفاده کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-124",
+      "surface": "Perplexity",
+      "intent_bucket": "buying_price_shipping",
+      "prompt": "هزینه ارسال لوله و تجهیزات حجیم معمولاً به چه عوامل وابسته است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-128",
+      "surface": "Perplexity",
+      "intent_bucket": "buying_price_shipping",
+      "prompt": "برای مقایسه دو فروشگاه تجهیزات آبیاری چه معیارهای اعتماد مهم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-132",
+      "surface": "Perplexity",
+      "intent_bucket": "buying_price_shipping",
+      "prompt": "برای سفارش عمده نوار تیپ چه اطلاعات پروژه‌ای لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-136",
+      "surface": "Perplexity",
+      "intent_bucket": "buying_price_shipping",
+      "prompt": "برای سفارش تجهیزات سنگین چه نوع هماهنگی حمل لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-140",
+      "surface": "Perplexity",
+      "intent_bucket": "buying_price_shipping",
+      "prompt": "برای تصمیم خرید، موجودی و قیمت را از چه منبع تازه‌ای باید تأیید کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-144",
+      "surface": "Perplexity",
+      "intent_bucket": "crop_area_water",
+      "prompt": "برای باغ با آب دارای رسوب معلق چه مراحل پیش‌تصفیه‌ای لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-148",
+      "surface": "Perplexity",
+      "intent_bucket": "crop_area_water",
+      "prompt": "برای آب شور چه اطلاعات آزمایشگاهی قبل از انتخاب تجهیزات و برنامه کوددهی لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-152",
+      "surface": "Perplexity",
+      "intent_bucket": "crop_area_water",
+      "prompt": "برای گلخانه کوچک چه داده‌هایی برای انتخاب فیلتر و تزریق کود لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-156",
+      "surface": "Perplexity",
+      "intent_bucket": "crop_area_water",
+      "prompt": "برای کوددهی در آب با سختی بالا چه احتیاط‌هایی لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-160",
+      "surface": "Perplexity",
+      "intent_bucket": "crop_area_water",
+      "prompt": "برای مزرعه بدون اندازه‌گیری فشار آیا می‌توان محصول دقیق پیشنهاد داد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-164",
+      "surface": "Perplexity",
+      "intent_bucket": "brand_store_trust",
+      "prompt": "آیا کشاورز بیست راهنمای انتخاب سایز لوله دارد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-168",
+      "surface": "Perplexity",
+      "intent_bucket": "brand_store_trust",
+      "prompt": "سیاست مرجوعی و ارسال فروشگاه کشاورز بیست را از کجا باید بررسی کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-172",
+      "surface": "Perplexity",
+      "intent_bucket": "brand_store_trust",
+      "prompt": "آیا کشاورز بیست مشخصات نامعلوم محصول را حدس می‌زند یا اعلام‌نشده نگه می‌دارد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-176",
+      "surface": "Perplexity",
+      "intent_bucket": "brand_store_trust",
+      "prompt": "کشاورز بیست چه ابزارهایی برای تصمیم‌گیری آبیاری دارد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-180",
+      "surface": "Perplexity",
+      "intent_bucket": "brand_store_trust",
+      "prompt": "چه تفاوتی بین محتوای آموزشی و توصیه خرید در کشاورز بیست وجود دارد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-184",
+      "surface": "Perplexity",
+      "intent_bucket": "full_system_basket",
+      "prompt": "برای ساخت BOM آبیاری چه داده‌هایی از نقشه، پمپ، آب و محصول لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-188",
+      "surface": "Perplexity",
+      "intent_bucket": "full_system_basket",
+      "prompt": "برای پروژه زمین شیب‌دار چه مواردی باید به کارشناس ارجاع شود؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-192",
+      "surface": "Perplexity",
+      "intent_bucket": "full_system_basket",
+      "prompt": "برای کاهش خطای خرید چگونه از یک گراف سازگاری قطعات استفاده کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-196",
+      "surface": "Perplexity",
+      "intent_bucket": "full_system_basket",
+      "prompt": "برای تبدیل نیاز مزرعه به SKU محصول چه مراحل تأییدی لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-200",
+      "surface": "Perplexity",
+      "intent_bucket": "full_system_basket",
+      "prompt": "یک فرایند کامل تصمیم‌گیری از مسئله مزرعه تا خرید و نصب ایمن چگونه است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    }
+  ]
+}
