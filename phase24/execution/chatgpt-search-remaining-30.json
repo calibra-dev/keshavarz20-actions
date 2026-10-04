@@ -1,0 +1,273 @@
+{
+  "phase": 24,
+  "version": "phase24-direct-surface-execution-v3",
+  "surface": "ChatGPT Search",
+  "count": 30,
+  "evidence_type": "DIRECT_SURFACE_CAPTURE",
+  "required_fields": [
+    "observation_id",
+    "prompt_id",
+    "surface",
+    "observed_at_utc",
+    "evidence_type",
+    "answer_present",
+    "keshavarz20_cited",
+    "brand_mentioned",
+    "citation_urls",
+    "cited_url",
+    "recommendation_context",
+    "competitor_source_set",
+    "answer_url",
+    "session_context",
+    "readback_verified"
+  ],
+  "rules": {
+    "exact_prompt_required": true,
+    "exact_surface_required": true,
+    "readback_verified_required": true,
+    "ordinary_web_search_forbidden": true,
+    "fabricated_observations_allowed": 0
+  },
+  "queue": [
+    {
+      "prompt_id": "K20-AI-021",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "product_selection",
+      "prompt": "برای آبیاری قطره‌ای یک مزرعه ۱ هکتاری چه نوع نوار تیپی انتخاب کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-029",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "product_selection",
+      "prompt": "برای قطره‌چکان‌ها چه درجه فیلتراسیونی باید بررسی شود؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-061",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "compatibility",
+      "prompt": "آیا شیر ۲ اینچ با لوله پلی‌اتیلن ۶۳ میلی‌متر مستقیماً سازگار است؟ چه چیزهایی باید تأیید شود؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-065",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "compatibility",
+      "prompt": "برای اتصال نوار تیپ به لوله اصلی چه نوع رابط‌هایی وجود دارد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-069",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "compatibility",
+      "prompt": "برای اتصال فلنج پلی‌اتیلن به شیر فلنجی چه مواردی باید تطبیق داده شود؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-073",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "compatibility",
+      "prompt": "برای تزریق کود آیا هر تانک کود با هر فشار سیستم سازگار است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-085",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "calculation_sizing",
+      "prompt": "برای انتخاب فیلتر بر اساس دبی چه حاشیه ظرفیتی منطقی است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-089",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "calculation_sizing",
+      "prompt": "برای تبدیل لیتر بر ثانیه به مترمکعب بر ساعت چه فرمولی است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-093",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "calculation_sizing",
+      "prompt": "برای محاسبه تعداد فیلتر موازی چه ورودی‌هایی لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-097",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "calculation_sizing",
+      "prompt": "برای برآورد طول لوله اصلی و فرعی چه نقشه‌ای لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-101",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "troubleshooting",
+      "prompt": "چرا انتهای نوار تیپ آب کمتری می‌دهد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-105",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "troubleshooting",
+      "prompt": "چرا لوله پلی‌اتیلن در یک نقطه می‌ترکد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-109",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "troubleshooting",
+      "prompt": "چرا نوار تیپ هنگام پانچ نخ‌کش یا پاره می‌شود؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-113",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "troubleshooting",
+      "prompt": "چرا فیلتر توری با وجود شستشو افت فشار دارد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-117",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "troubleshooting",
+      "prompt": "چرا واشر فلنجی نشتی می‌دهد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-121",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "buying_price_shipping",
+      "prompt": "برای خرید نوار تیپ چه فاکتورهایی را قبل از مقایسه قیمت بررسی کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-125",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "buying_price_shipping",
+      "prompt": "چطور موجودی واقعی یک محصول آبیاری را قبل از سفارش بررسی کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-129",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "buying_price_shipping",
+      "prompt": "قبل از پرداخت برای کالای کشاورزی چه سیاست‌های مرجوعی را بررسی کنم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-133",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "buying_price_shipping",
+      "prompt": "برای خرید کود آنلاین چه اطلاعات برچسب و اصالت مهم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-137",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "buying_price_shipping",
+      "prompt": "چه زمانی بهتر است به‌جای خرید مستقیم درخواست پیش‌فاکتور بدهم؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-141",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "crop_area_water",
+      "prompt": "برای گوجه‌فرنگی در ۲ هکتار با آب چاه چه اطلاعاتی برای طراحی آبیاری لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-145",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "crop_area_water",
+      "prompt": "برای مزرعه کوچک با فشار ۱.۸ بار چه اطلاعاتی قبل از انتخاب تجهیزات لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-149",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "crop_area_water",
+      "prompt": "برای آب چاه با شن چه نوع سیکلون یا پیش‌فیلتر باید بررسی شود؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-153",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "crop_area_water",
+      "prompt": "برای مزرعه شیب‌دار با نوار تیپ چه داده توپوگرافی لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-157",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "crop_area_water",
+      "prompt": "برای گوجه در خاک لومی چه اطلاعاتی برای تعیین زمان آبیاری لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-169",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "brand_store_trust",
+      "prompt": "آیا اطلاعات محصول کشاورز بیست با داده ساختاریافته همخوان است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-177",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "brand_store_trust",
+      "prompt": "چگونه بفهمم یک ادعای فنی در کشاورز بیست منبع دارد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-189",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "full_system_basket",
+      "prompt": "برای سیستم دارای کوددهی چه تجهیزات و کنترل‌های ایمنی باید در BOM لحاظ شود؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-193",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "full_system_basket",
+      "prompt": "برای پروژه یک هکتار کدام محاسبات را می‌توان تخمینی و کدام را باید مهندسی کرد؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    },
+    {
+      "prompt_id": "K20-AI-197",
+      "surface": "ChatGPT Search",
+      "intent_bucket": "full_system_basket",
+      "prompt": "برای تحویل یک سبد خرید قابل اجرا چه شواهدی از موجودی و مشخصات لازم است؟",
+      "required_evidence_type": "DIRECT_SURFACE_CAPTURE",
+      "status": "PENDING_EXTERNAL_SURFACE_CAPTURE"
+    }
+  ]
+}
