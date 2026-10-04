@@ -2,7 +2,7 @@
   "phase": 23,
   "title": "Lifecycle & Freshness Governance v2",
   "model_version": "k20-lifecycle-governance-v2",
-  "generated_at_utc": "2026-09-27T12:01:29.396890+00:00",
+  "generated_at_utc": "2026-10-04T20:52:11.268168+00:00",
   "status": "PASS_LIFECYCLE_GOVERNANCE_V2",
   "dependencies": {
     "phase20_intent_graph": "PASS_CANARY_DRAFT",
@@ -19,19 +19,19 @@
     "live_inventory_nonempty": true
   },
   "inventory": {
-    "posts": 52,
-    "pages": 47,
+    "posts": 57,
+    "pages": 48,
     "products": 709
   },
-  "review_queue_count": 206,
+  "review_queue_count": 225,
   "priority_counts": {
     "P0": 0,
     "P1": 0,
-    "P2": 206,
+    "P2": 225,
     "P3": 0
   },
   "stock_transition_watch": {
-    "outofstock": 206,
+    "outofstock": 225,
     "onbackorder": 0,
     "unknown": 0
   },
@@ -42,7 +42,7 @@
       "last_verified": "2026-09-27",
       "review_days": 90,
       "trigger": "intent conflict, duplicate URL attempt, material routing change",
-      "age_days": 0,
+      "age_days": 7,
       "review_due": false,
       "dateModified_mutation_allowed": false
     },
@@ -52,7 +52,7 @@
       "last_verified": "2026-09-27T04:05:00Z",
       "review_days": 90,
       "trigger": "source invalidation, manufacturer evidence change, new first-party evidence",
-      "age_days": 0,
+      "age_days": 7,
       "review_due": false,
       "dateModified_mutation_allowed": false
     },
@@ -62,7 +62,7 @@
       "last_verified": "2026-09-27",
       "review_days": 90,
       "trigger": "decision rule change, compatibility schema change, tool-route change",
-      "age_days": 0,
+      "age_days": 7,
       "review_due": false,
       "dateModified_mutation_allowed": false
     }
@@ -73,8 +73,148 @@
       "kind": "products",
       "slug": "%d8%b4%db%8c%d8%b1-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d9%85%d8%af%d9%84-%d9%81%d9%84%da%a9%d9%87-%da%86%d8%af%d9%86%db%8c-4-2",
       "status": "pending",
-      "modified_gmt": "2026-09-09T08:45:45",
-      "age_days": 18,
+      "modified_gmt": "2026-10-03T08:41:16",
+      "age_days": 1,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 144249,
+      "kind": "products",
+      "slug": "moj-rain-misting-hose-2-inch-100m",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:43:51",
+      "age_days": 1,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 144248,
+      "kind": "products",
+      "slug": "loole-nakhdar-moj-4-5-inch",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:44:01",
+      "age_days": 1,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 144247,
+      "kind": "products",
+      "slug": "loole-nakhdar-moj-4-inch",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:44:12",
+      "age_days": 1,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 144246,
+      "kind": "products",
+      "slug": "loole-nakhdar-moj-3-5-inch",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:44:21",
+      "age_days": 1,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 144245,
+      "kind": "products",
+      "slug": "loole-nakhdar-moj-3-inch",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:44:31",
+      "age_days": 1,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 144244,
+      "kind": "products",
+      "slug": "loole-nakhdar-moj-2-5-inch",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:44:42",
+      "age_days": 1,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 143188,
+      "kind": "products",
+      "slug": "%d8%af%d8%b1%d8%a7%db%8c%d9%88%d8%b1-%d8%a8%d8%b1%d8%af%db%8c-%d9%85%d9%88%d8%aa%d9%88%d8%b1-dc-%da%a9%d9%86%d8%aa%d8%b1%d9%84-%d8%b3%d8%b1%d8%b9%d8%aa-%d9%88-%d8%ac%d9%87%d8%aa-60-%d8%a2%d9%85%d9%be",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:41:30",
+      "age_days": 1,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -93,8 +233,8 @@
       "kind": "products",
       "slug": "%da%a9%d9%88%d8%af-%d8%a7%d9%88%d8%b1%d9%87-%d9%81%d8%b3%d9%81%d8%a7%d8%aa-0-44-17-%d8%a8%d9%84%d9%88%d9%86%d8%a7-bellona-17-44-0",
       "status": "publish",
-      "modified_gmt": "2026-09-03T08:29:30",
-      "age_days": 24,
+      "modified_gmt": "2026-10-03T08:41:42",
+      "age_days": 1,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -113,8 +253,8 @@
       "kind": "products",
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%ac%db%8c%d8%b4%d9%86-magicin-%d9%85%d8%a7%db%8c%d8%b9-%d8%a8%db%8c%d8%af%d8%a7%d8%b1-%d8%b1%d8%b4%d8%af-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
       "status": "publish",
-      "modified_gmt": "2026-09-16T07:56:10",
-      "age_days": 11,
+      "modified_gmt": "2026-10-03T08:41:53",
+      "age_days": 1,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -133,8 +273,8 @@
       "kind": "products",
       "slug": "%da%a9%d9%88%d8%af-%da%a9%d8%a7-%db%b5%db%b0-k50-%d9%85%d8%a7%db%8c%d8%b9-%d8%a8%db%8c%d8%af%d8%a7%d8%b1-%d8%b1%d8%b4%d8%af-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
       "status": "publish",
-      "modified_gmt": "2026-09-16T07:55:27",
-      "age_days": 11,
+      "modified_gmt": "2026-10-03T08:42:04",
+      "age_days": 1,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -153,8 +293,8 @@
       "kind": "products",
       "slug": "%da%a9%d9%88%d8%af-%d9%81%d9%88%d8%b3%da%a9%d8%a7-phos-k-%d9%85%d8%a7%db%8c%d8%b9-%d8%a8%db%8c%d8%af%d8%a7%d8%b1-%d8%b1%d8%b4%d8%af-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
       "status": "publish",
-      "modified_gmt": "2026-09-19T08:55:41",
-      "age_days": 8,
+      "modified_gmt": "2026-10-03T08:42:15",
+      "age_days": 1,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -173,8 +313,8 @@
       "kind": "products",
       "slug": "%da%a9%d9%88%d8%af-%da%a9%d9%84%d8%a7%d8%aa-%d8%b1%d9%88%db%8c-zinc-%d9%85%d8%a7%db%8c%d8%b9-7-%d8%a8%db%8c%d8%af%d8%a7%d8%b1-%d8%b1%d8%b4%d8%af-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
       "status": "publish",
-      "modified_gmt": "2026-09-17T05:10:59",
-      "age_days": 10,
+      "modified_gmt": "2026-10-03T08:42:32",
+      "age_days": 1,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -194,7 +334,7 @@
       "slug": "%da%a9%d9%88%d8%af-%db%8c%d9%88%d9%86%db%8c-%da%86%d9%85-%d8%a7%d9%85%d8%a7%d8%b1%d8%a7%d8%aa-50-0-0-uni-chem",
       "status": "publish",
       "modified_gmt": "2026-09-16T07:35:23",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -214,7 +354,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%85%d9%88%d9%84%d8%aa%db%8c-%d9%be%d9%88%d8%b1%d9%be%d9%84%da%a9%d8%b3-%da%af%d8%b1%d9%88%d9%85%d9%88%d8%b1-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-multi-p",
       "status": "publish",
       "modified_gmt": "2026-09-16T07:39:23",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -234,7 +374,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%81%d9%88%da%af%d9%88%d8%a8%db%8c%d8%b3-%da%af%d8%b1%d9%88%d9%85%d9%88%d8%b1-grow-more",
       "status": "publish",
       "modified_gmt": "2026-09-26T06:52:39",
-      "age_days": 1,
+      "age_days": 8,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -254,7 +394,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d8%ac%d9%84%d8%a8%da%a9-%d8%af%d8%b1%db%8c%d8%a7%db%8c%db%8c-%d8%b4%d9%86%da%98%d9%86-shenzhen-algae-plus",
       "status": "publish",
       "modified_gmt": "2026-09-16T07:32:46",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -274,7 +414,7 @@
       "slug": "%d9%85%d8%a7%d9%86%da%a9%d9%88%d8%b2%d8%a8-80-%d9%87%d9%86%d8%af%db%8c-mancozeb",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:24:03",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -294,7 +434,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%81%d8%b1%d9%88%d8%aa-%d8%b3%d8%aa-%d8%a7%d8%b3%db%8c%d8%af%d8%a2%d9%85%db%8c%d9%86%d9%87-%da%af%d8%b1%d9%88%d9%85%d9%88%d8%b1-grow-more",
       "status": "publish",
       "modified_gmt": "2026-09-16T07:31:15",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -314,7 +454,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d8%a2%d9%87%d9%86-%d8%a7%d9%88%d8%b1%d8%aa%d9%88%d9%81%d8%b1-%d8%a7%d8%b3%d9%be%d8%a7%d9%86%db%8c%d8%a7",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:24:00",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -334,7 +474,7 @@
       "slug": "%da%a9%d9%84%d8%a7%d8%aa-%d8%a2%d9%87%d9%86-cequesteerian-%d9%be%d9%88%d8%af%d8%b1-6",
       "status": "publish",
       "modified_gmt": "2026-09-16T07:24:09",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -354,7 +494,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d8%a2%d9%87%d9%86-%da%af%d8%b1%db%8c%d9%86%d8%b3%db%8c%d8%aa-%d8%a7%d8%b1%d8%aa%d9%88-%d8%a7%d8%b1%d8%aa%d9%88-%db%b4-%db%b8",
       "status": "publish",
       "modified_gmt": "2026-09-16T07:20:43",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -374,7 +514,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%a8%d8%a7%d9%84%d8%a7%d9%86%d8%b3-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-balance-lord",
       "status": "draft",
       "modified_gmt": "2026-09-13T10:44:36",
-      "age_days": 14,
+      "age_days": 21,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -394,7 +534,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%81%d8%b1%d9%85%d9%88%d9%84%d8%a7-1-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-formula-1-lord",
       "status": "draft",
       "modified_gmt": "2026-09-13T10:44:36",
-      "age_days": 14,
+      "age_days": 21,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -414,7 +554,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%a8%d9%88%d8%b1%d9%86-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-boron-lord",
       "status": "draft",
       "modified_gmt": "2026-09-13T10:44:36",
-      "age_days": 14,
+      "age_days": 21,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -434,7 +574,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%81%d8%b1%d9%88%d8%aa-%d8%b3%d8%aa-%d8%aa%db%8c-%d8%aa%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-tt-fruit",
       "status": "draft",
       "modified_gmt": "2026-09-13T10:44:36",
-      "age_days": 14,
+      "age_days": 21,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -454,7 +594,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%87%db%8c%d9%88%d9%85%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-humi-lord",
       "status": "draft",
       "modified_gmt": "2026-09-13T10:44:36",
-      "age_days": 14,
+      "age_days": 21,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -474,7 +614,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%87%db%8c%d9%88%d9%85%db%8c-1-%da%a9%db%8c%d9%84%d9%88%db%8c%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-humi-lord",
       "status": "draft",
       "modified_gmt": "2026-09-13T10:44:36",
-      "age_days": 14,
+      "age_days": 21,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -494,7 +634,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%da%a9%d9%84%d8%b3%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-calsi-lord",
       "status": "draft",
       "modified_gmt": "2026-09-13T10:44:36",
-      "age_days": 14,
+      "age_days": 21,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -514,7 +654,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%da%a9%db%8c%d9%be%d8%b1-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-keeper-lord",
       "status": "draft",
       "modified_gmt": "2026-09-13T10:44:36",
-      "age_days": 14,
+      "age_days": 21,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -534,7 +674,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%aa%d9%88%d8%b1%d8%a8%d9%88-%d9%81%d9%88%d8%b3-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-turbo-lord",
       "status": "draft",
       "modified_gmt": "2026-09-13T10:44:37",
-      "age_days": 14,
+      "age_days": 21,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -554,7 +694,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%84%d9%88%da%a9%d8%a7%d8%b3-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-lucas-lord",
       "status": "draft",
       "modified_gmt": "2026-09-13T10:44:39",
-      "age_days": 14,
+      "age_days": 21,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -574,7 +714,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%da%a9%d9%84%d8%b3%db%8c%d9%85-%d9%86%db%8c%d8%aa%d8%b1%d8%a7%d8%aa-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-nit",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:53",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -594,7 +734,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%b3%d9%88%d9%84%d9%81%d9%88%d8%b1%d8%af-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2-%da%af%d9%84-sulford-lord",
       "status": "draft",
       "modified_gmt": "2026-09-13T10:44:40",
-      "age_days": 14,
+      "age_days": 21,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -614,7 +754,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%aa%d9%88%d8%aa%d8%a7%d9%84-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-total-lord",
       "status": "draft",
       "modified_gmt": "2026-09-13T10:44:41",
-      "age_days": 14,
+      "age_days": 21,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -634,7 +774,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%88%db%8c%d8%aa%d8%a7%d9%85%db%8c%d9%86-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-vitamine-lord",
       "status": "draft",
       "modified_gmt": "2026-09-13T10:44:42",
-      "age_days": 14,
+      "age_days": 21,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -654,7 +794,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d8%b1%da%a9%d9%88%d8%b1%d8%af-%d9%84%d8%b1%d8%af-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d8%b3%d8%a8%d8%b2%da%af%d9%84-record-lord",
       "status": "draft",
       "modified_gmt": "2026-09-13T10:44:43",
-      "age_days": 14,
+      "age_days": 21,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -674,7 +814,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%84%d8%b1%d8%af-250-%d8%b3%db%8c-%d8%b3%db%8c-%d8%b3%d8%a8%d8%b2-%da%af%d9%84-seven-lord",
       "status": "draft",
       "modified_gmt": "2026-09-13T10:44:44",
-      "age_days": 14,
+      "age_days": 21,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -694,7 +834,7 @@
       "slug": "%d9%be%d9%85%d9%be-%d8%a2%d8%a8-1-%d8%a7%d8%b3%d8%a8-%d8%a8%d8%b4%d9%82%d8%a7%d8%a8%db%8c-%d9%81%d9%84%d8%a7%db%8c-%da%98%d9%86-flygen-cpm158",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:47",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -714,7 +854,7 @@
       "slug": "%d9%be%d9%85%d9%be-%d8%a2%d8%a8-1-%d8%a7%d8%b3%d8%a8-%d8%a8%d8%b4%d9%82%d8%a7%d8%a8%db%8c-%d9%81%d9%84%d8%a7%db%8c-%da%98%d9%86-flygen-cm100",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:45",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -734,7 +874,7 @@
       "slug": "%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-16-%d9%85%d8%aa%d8%b1%db%8c-2-%d8%a7%db%8c%d9%86%da%86-%d9%81%d9%84%d9%88%d8%aa%d8%b1%d8%af%d8%a7%d8%b1-%da%a9%d9%85%d9%84-camel",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:37",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -754,7 +894,7 @@
       "slug": "%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-16-%d9%85%d8%aa%d8%b1%db%8c-%d8%b3%d8%a7%d8%af%d9%87-2-%d8%a7%db%8c%d9%86%da%86-%da%a9%d9%85%d9%84-camel",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:37",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -774,7 +914,7 @@
       "slug": "%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-17-%d9%85%d8%aa%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-%da%a9%d9%85%d9%84-camel",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:34",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -794,7 +934,7 @@
       "slug": "%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-17-%d9%85%d8%aa%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-%d9%81%d9%84%d9%88%d8%aa%d8%b1%d8%af%d8%a7%d8%b1-%da%a9%d9%85%d9%84-camel",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:33",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -814,7 +954,7 @@
       "slug": "%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-32-%d9%85%d8%aa%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-%d9%81%d9%84%d9%88%d8%aa%d8%b1%d8%af%d8%a7%d8%b1-%da%a9%d9%85%d9%84-camel",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:31",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -834,7 +974,7 @@
       "slug": "%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-25-%d9%85%d8%aa%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-%d9%81%d9%84%d9%88%d8%aa%d8%b1%d8%af%d8%a7%d8%b1-%da%a9%d9%85%d9%84-camel",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:29",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -854,7 +994,7 @@
       "slug": "%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-12-%d9%85%d8%aa%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-%d9%81%d9%84%d9%88%d8%aa%d8%b1%d8%af%d8%a7%d8%b1-%da%a9%d9%85%d9%84-camel",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:21",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -874,7 +1014,7 @@
       "slug": "%d8%b3%d8%aa-%da%a9%d9%86%d8%aa%d8%b1%d9%84-%d8%a7%d8%aa%d9%88%d9%85%d8%a7%d8%aa%db%8c%da%a9-%d9%be%d9%85%d9%be-%d8%a2%d8%a8-%d9%81%d9%84%d8%a7%db%8c%da%98%d9%86-flygen",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:20",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -894,7 +1034,7 @@
       "slug": "%d8%b3%d9%85-%d8%ad%d8%b4%d8%b1%d9%87-%da%a9%d8%b4-%da%a9%d9%86%d8%b3%d8%a7%d9%84%d8%aa-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:18",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -914,7 +1054,7 @@
       "slug": "%d8%b9%d9%84%d9%81-%da%a9%d8%b4-%d8%aa%d8%b1%db%8c-%d9%81%d9%84%d9%88%d8%b1%d8%a7%db%8c%d9%86-%d8%aa%d8%b1%d9%81%d9%84%d8%a7%d9%86-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-1",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:17",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -934,7 +1074,7 @@
       "slug": "%d8%a8%d8%b3%d8%aa-%d9%88-%d9%82%d9%84%d8%a7%d8%a8-%d8%a7%d9%87%d8%b1%d9%85%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-1-%d8%a7%db%8c%d9%86%da%86-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:15",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -954,7 +1094,7 @@
       "slug": "%d8%a8%d8%b3%d8%aa-%d9%88-%d9%82%d9%84%d8%a7%d8%a8-%d8%a7%d9%87%d8%b1%d9%85%db%8c-%d8%a2%d9%84%d9%85%db%8c%d9%86%db%8c%d9%88%d9%85%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-1-1-2-%d8%a7%db%8c%d9%86%da%86-50",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:13",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -974,7 +1114,7 @@
       "slug": "%d8%b5%d8%a7%d8%a8%d9%88%d9%86-%d9%85%d8%ad%d9%84%d9%88%d9%84-%d9%be%d8%a7%d8%b4%db%8c-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:04",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -994,7 +1134,7 @@
       "slug": "%d8%a8%d8%b3%d8%aa-%d9%88-%d9%82%d9%84%d8%a7%d8%a8-%d8%a7%d9%87%d8%b1%d9%85%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-%db%b2-%d8%a7%db%8c%d9%86%da%86",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:04",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1014,7 +1154,7 @@
       "slug": "%d8%b3%d9%85-%d8%b9%d9%84%d9%81%da%a9%d8%b4-%d9%be%d8%b1%d8%aa%db%8c%d9%84%d8%a7%da%a9%d9%84%d8%b1-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-500-%d8%b3%db%8c-%d8%b3%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:02",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1034,7 +1174,7 @@
       "slug": "%d8%b3%d9%85-%d8%b9%d9%84%d9%81-%da%a9%d8%b4-%da%af%d9%84%d8%a7%db%8c%d9%81%d9%88%d8%b2%db%8c%d8%aa-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:23:02",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1054,7 +1194,7 @@
       "slug": "%d8%b3%d9%85-%da%a9%d9%86%d9%87-%da%a9%d8%b4-%d9%81%d9%86-%d9%be%db%8c%d8%b1%d9%88%da%a9%d8%b3%db%8c-%d9%85%db%8c%d8%aa-%d8%a7%d8%b1%d8%aa%d9%88%d8%b3-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:22:59",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1074,7 +1214,7 @@
       "slug": "%d8%b3%d9%85-%d8%ad%d8%b4%d8%b1%d9%87-%da%a9%d8%b4-%d8%af%d9%88%d8%b1%d8%b3%d8%a8%d8%a7%d9%86-%da%a9%d9%84%d8%b1%d9%88%d9%be%db%8c%d8%b1%db%8c%d9%81%d9%88%d8%b3-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:22:57",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1094,7 +1234,7 @@
       "slug": "%d8%b3%d9%85-%d8%b9%d9%84%d9%81%da%a9%d8%b4-%da%a9%d9%84%d9%88%d8%af%db%8c%d9%86%d8%a7%d9%81%d9%88%d9%be-%d9%be%d8%b1%d9%88%d9%be%d8%a7%d8%b1%da%98%db%8c%d9%84-%d8%aa%d8%a7%d9%be%db%8c%da%a9-%d8%b3",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:22:48",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1114,7 +1254,7 @@
       "slug": "%d8%b3%d9%85-%da%a9%d9%86%d9%87-%da%a9%d8%b4-%d8%a8%d8%b1%d9%88%d9%85%d9%88%d9%be%d8%b1%d9%88%d9%be%db%8c%d9%84%d8%a7%d8%aa-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-%d9%86%d8%a6",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:22:48",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1134,7 +1274,7 @@
       "slug": "%d8%b3%d9%85-%d8%ad%d8%b4%d8%b1%d9%87-%da%a9%d8%b4-%d8%a2%d8%a8%d8%a7%d9%85%da%a9%d8%aa%db%8c%d9%86-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-500-%d8%b3%db%8c-%d8%b3%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:22:47",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1154,7 +1294,7 @@
       "slug": "%d8%b3%d9%85-%d8%b9%d9%84%d9%81%da%a9%d8%b4-%d8%aa%d9%88%d9%81%d9%88%d8%b1%d8%af%db%8c-%d8%a7%d9%85-%d8%b3%db%8c-%d9%be%db%8c-%d8%a2-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d8%b1%d8%a7%d9%86-%d8%b4%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:22:46",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1174,7 +1314,7 @@
       "slug": "%d8%b3%d9%85-%d9%82%d8%a7%d8%b1%da%86-%da%a9%d8%b4-%d8%a8%d8%b1%d8%af%d9%88%d9%81%db%8c%da%a9%d8%b3-%d8%a8%d8%a7%d8%ba%d8%a8%d8%a7%d9%86-%d8%aa%d8%a7%da%a9-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:22:41",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1194,7 +1334,7 @@
       "slug": "%d8%b3%d9%85-%d9%82%d8%a7%d8%b1%da%86-%da%a9%d8%b4-%d8%a8%d8%b1%d8%af%d9%88%d9%81%db%8c%da%a9%d8%b3-%d8%a8%d8%a7%d8%ba%d8%a8%d8%a7%d9%86-%d8%aa%d8%a7%da%a9-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:22:44",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1214,7 +1354,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%a2%d9%84%d9%81%d8%b1%d8%af-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-alfered-xgreen-%d9%85%d8%ac%d9%85%d9%88",
       "status": "draft",
       "modified_gmt": "2026-09-09T08:45:15",
-      "age_days": 18,
+      "age_days": 25,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1234,7 +1374,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%a7%d9%86%d8%b1%da%98%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-ener",
       "status": "draft",
       "modified_gmt": "2026-09-09T08:45:15",
-      "age_days": 18,
+      "age_days": 25,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1254,7 +1394,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%81%d9%88%d8%b3%d8%aa%d8%b1-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c-fost",
       "status": "draft",
       "modified_gmt": "2026-09-09T08:45:15",
-      "age_days": 18,
+      "age_days": 25,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1274,7 +1414,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%81%db%8c%d8%aa-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-250-%d8%b3%db%8c-%d8%b3%db%8c-fit-xgreen-%d9%85",
       "status": "draft",
       "modified_gmt": "2026-09-09T08:45:15",
-      "age_days": 18,
+      "age_days": 25,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1294,7 +1434,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%85%db%8c%da%a9%d8%b1%d9%88%d8%aa%d8%a7%d9%be-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%d9%84%db%8c%d8%aa",
       "status": "draft",
       "modified_gmt": "2026-09-09T08:45:15",
-      "age_days": 18,
+      "age_days": 25,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1314,7 +1454,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%a2%d9%85%db%8c%d9%86%d9%88-%d8%b1%d9%88%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%d9%84%db%8c",
       "status": "draft",
       "modified_gmt": "2026-09-09T08:45:14",
-      "age_days": 18,
+      "age_days": 25,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1334,7 +1474,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%87%d8%a7%d8%b1%d9%88%d8%b3%d8%aa-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
       "status": "draft",
       "modified_gmt": "2026-09-09T08:45:14",
-      "age_days": 18,
+      "age_days": 25,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1354,7 +1494,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%be%d9%8f%d9%84%db%8c-%d8%a7%d9%90%d8%b3-%d9%be%d9%84%db%8c%d8%b3-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9",
       "status": "draft",
       "modified_gmt": "2026-09-09T08:45:14",
-      "age_days": 18,
+      "age_days": 25,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1374,7 +1514,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%ac%d8%aa-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-jet-xgreen-%d9%85",
       "status": "draft",
       "modified_gmt": "2026-09-09T08:45:14",
-      "age_days": 18,
+      "age_days": 25,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1394,7 +1534,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%81%d8%b1%d9%88%d8%aa-%d8%b3%d8%aa-%d8%a2%d9%85%db%8c%d9%86%d9%88-%d8%a8%d9%88%d8%b1%d9%88%d9%86-%d8%b2%db%8c%d9%86%da%a9-%d8%a7%db%8c%da%a9%d8%b3",
       "status": "draft",
       "modified_gmt": "2026-09-09T08:45:14",
-      "age_days": 18,
+      "age_days": 25,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1414,7 +1554,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%a2%d9%85%db%8c%d9%86%d9%88-%da%a9%d9%84%d8%a8%d8%b1-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%d9%84",
       "status": "draft",
       "modified_gmt": "2026-09-09T08:45:14",
-      "age_days": 18,
+      "age_days": 25,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1434,7 +1574,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%da%a9%d8%a7-%db%b6%db%b0-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%da%a9%db%8c%d9%84%d9%88%db%8c",
       "status": "draft",
       "modified_gmt": "2026-09-09T08:45:14",
-      "age_days": 18,
+      "age_days": 25,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1454,7 +1594,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%da%a9%d8%a7-%db%b4%db%b0-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-k40-xgree",
       "status": "draft",
       "modified_gmt": "2026-05-06T06:04:46",
-      "age_days": 144,
+      "age_days": 151,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1474,7 +1614,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%87%d8%a7%db%8c%d9%be%d8%b1-%db%b1-%db%b0-%db%b4%db%b0-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-hype",
       "status": "draft",
       "modified_gmt": "2026-05-06T06:04:46",
-      "age_days": 144,
+      "age_days": 151,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1494,7 +1634,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%87%d8%a7%db%8c%d9%be%d8%b1-%db%b3%db%b0-%db%b5-%db%b1%db%b5-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7",
       "status": "draft",
       "modified_gmt": "2026-05-06T06:04:46",
-      "age_days": 144,
+      "age_days": 151,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1514,7 +1654,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%87%d8%a7%db%8c%d9%be%d8%b1-%db%b4%db%b0-%db%b8-%db%b8-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-10",
       "status": "draft",
       "modified_gmt": "2026-05-06T06:04:46",
-      "age_days": 144,
+      "age_days": 151,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1534,7 +1674,7 @@
       "slug": "%d9%81%db%8c%da%a9%d8%b3-%db%b1%db%b5-%da%a9%d8%a7%d8%b1%d9%87-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c-fix-15-xgreen",
       "status": "draft",
       "modified_gmt": "2026-05-06T06:04:46",
-      "age_days": 144,
+      "age_days": 151,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1554,7 +1694,7 @@
       "slug": "%da%a9%d9%88%d8%af-%da%a9%db%8c%d9%86%da%af-%d9%85%d8%a7%db%8c%d8%b9-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-king-xgre-2",
       "status": "draft",
       "modified_gmt": "2026-05-06T06:04:46",
-      "age_days": 144,
+      "age_days": 151,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1574,7 +1714,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%87%da%a9%d8%aa%d9%88%d8%b1-%d9%be%d9%88%d8%af%d8%b1%db%8c-1-%da%a9%db%8c%d9%84%d9%88%db%8c%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a7%db%8c%d8%aa%d8%a7%d9%84",
       "status": "draft",
       "modified_gmt": "2026-05-06T06:04:46",
-      "age_days": 144,
+      "age_days": 151,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1594,7 +1734,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%85%d8%a7%db%8c%d8%b9-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85-2",
       "status": "draft",
       "modified_gmt": "2026-09-09T09:37:58",
-      "age_days": 18,
+      "age_days": 25,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1614,7 +1754,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%85%d8%a7%db%8c%d8%b9-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1",
       "status": "draft",
       "modified_gmt": "2026-05-06T06:04:56",
-      "age_days": 144,
+      "age_days": 151,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1634,7 +1774,7 @@
       "slug": "%d9%87%db%8c%d9%88%d9%85%db%8c%da%a9-%d8%a7%d8%b3%db%8c%d8%af-%d9%85%d8%ac%db%8c%da%a9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-5-%d9%84%db%8c%d8%aa-2",
       "status": "draft",
       "modified_gmt": "2026-05-06T06:04:56",
-      "age_days": 144,
+      "age_days": 151,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1654,7 +1794,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-2",
       "status": "draft",
       "modified_gmt": "2026-05-06T06:04:57",
-      "age_days": 144,
+      "age_days": 151,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1674,7 +1814,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%da%a9%d9%88%d8%a6%db%8c%d9%86-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-quee",
       "status": "draft",
       "modified_gmt": "2026-05-06T06:04:57",
-      "age_days": 144,
+      "age_days": 151,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1694,7 +1834,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%b3%d9%88%d9%84%d9%81%d9%88%da%a9%d8%b1%d8%a7%d9%be-%d9%85%d8%ac%db%8c%da%a9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c",
       "status": "draft",
       "modified_gmt": "2026-05-06T06:04:57",
-      "age_days": 144,
+      "age_days": 151,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1714,7 +1854,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%b3%d9%88%d9%84%d8%ac%d8%b1-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c-sol-2",
       "status": "draft",
       "modified_gmt": "2026-05-06T06:04:57",
-      "age_days": 144,
+      "age_days": 151,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1734,7 +1874,7 @@
       "slug": "%d9%87%db%8c%d9%88%d9%85%db%8c%da%a9-%d8%a7%d8%b3%db%8c%d8%af-%d9%85%d8%ac%db%8c%da%a9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-5-%da%a9%db%8c%d9%84-2",
       "status": "draft",
       "modified_gmt": "2026-05-06T06:04:57",
-      "age_days": 144,
+      "age_days": 151,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1754,7 +1894,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%85%d8%a7%db%8c%d8%b9-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85-2",
       "status": "draft",
       "modified_gmt": "2026-05-06T06:04:57",
-      "age_days": 144,
+      "age_days": 151,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1774,7 +1914,7 @@
       "slug": "%d9%87%db%8c%d9%88%d9%85%db%8c%da%a9-%d8%a7%d8%b3%db%8c%d8%af-%d9%85%d8%ac%db%8c%da%a9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-20-%d9%84%db%8c%d8%aa-2",
       "status": "draft",
       "modified_gmt": "2026-05-06T06:04:57",
-      "age_days": 144,
+      "age_days": 151,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1794,7 +1934,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%85%d8%a7%db%8c%d8%b9-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85",
       "status": "publish",
       "modified_gmt": "2026-09-16T06:47:14",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1814,7 +1954,7 @@
       "slug": "%d9%87%db%8c%d9%88%d9%85%db%8c%da%a9-%d8%a7%d8%b3%db%8c%d8%af-%d9%85%d8%ac%db%8c%da%a9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-5-%d9%84%db%8c%d8%aa%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-16T06:45:11",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1834,7 +1974,7 @@
       "slug": "%d9%87%db%8c%d9%88%d9%85%db%8c%da%a9-%d8%a7%d8%b3%db%8c%d8%af-%d9%85%d8%ac%db%8c%da%a9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-5-%da%a9%db%8c%d9%84%d9%88",
       "status": "publish",
       "modified_gmt": "2026-09-16T06:45:52",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1853,8 +1993,8 @@
       "kind": "products",
       "slug": "%d9%86%d9%88%d8%a7%d8%b1-%d8%aa%db%8c%d9%be-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d9%82%d8%b7%d8%b1%d9%87-%d8%a7%db%8c-10-%d8%b3%d8%a7%d9%86%d8%aa%db%8c-%d9%85%d8%aa%d8%b1%db%8c-%da%a9%db%8c%d8%a7",
       "status": "publish",
-      "modified_gmt": "2026-09-26T21:21:56",
-      "age_days": 0,
+      "modified_gmt": "2026-10-03T11:10:40",
+      "age_days": 1,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1873,8 +2013,8 @@
       "kind": "products",
       "slug": "%d9%86%d9%88%d8%a7%d8%b1-%d8%aa%db%8c%d9%be-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d9%82%d8%b7%d8%b1%d9%87-%d8%a7%db%8c-20-%d8%b3%d8%a7%d9%86%d8%aa%db%8c-%d9%85%d8%aa%d8%b1%db%8c-tbk",
       "status": "publish",
-      "modified_gmt": "2026-09-26T21:21:52",
-      "age_days": 0,
+      "modified_gmt": "2026-10-03T11:10:15",
+      "age_days": 1,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1894,7 +2034,47 @@
       "slug": "141659",
       "status": "publish",
       "modified_gmt": "2026-09-16T06:30:38",
-      "age_days": 11,
+      "age_days": 18,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 141597,
+      "kind": "products",
+      "slug": "%d9%84%d9%88%d9%84%d9%87-%d9%86%d8%ae%d8%af%d8%a7%d8%b1-5-%d9%84%d8%a7%db%8c%d9%87-200",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:44:52",
+      "age_days": 1,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 141585,
+      "kind": "products",
+      "slug": "%d9%84%d9%88%d9%84%d9%87-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-5-%d9%84%d8%a7%db%8c%d9%87-%d9%86%d8%ae-%d8%af-2",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:45:03",
+      "age_days": 1,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1914,7 +2094,7 @@
       "slug": "%d8%a8%d8%b3%d8%aa-%d8%af%d9%88-%da%a9%d9%be%d9%87-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:28:09",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1934,7 +2114,7 @@
       "slug": "%d8%a8%d8%b3%d8%aa-%d8%af%d9%88-%da%a9%d9%be%d9%87-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:28:44",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1954,7 +2134,7 @@
       "slug": "%d8%a8%d8%b3%d8%aa-%d8%af%d9%88-%da%a9%d9%be%d9%87-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:29:15",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1974,7 +2154,7 @@
       "slug": "%d8%a8%d8%b3%d8%aa-%d8%af%d9%88-%da%a9%d9%be%d9%87-2-1-2-%d8%a7%db%8c%d9%86%da%86-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:29:48",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -1994,7 +2174,7 @@
       "slug": "%d8%a8%d8%b3%d8%aa-%d8%af%d9%88-%da%a9%d9%be%d9%87-6-%d8%a7%db%8c%d9%86%da%86-160-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:30:21",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2014,7 +2194,7 @@
       "slug": "%d8%a8%d8%b3%d8%aa-%d9%87%d9%86%d8%af%d9%84%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-5-5-%d8%a7%db%8c%d9%86%da%86-150-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:27:36",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2033,8 +2213,8 @@
       "kind": "products",
       "slug": "%da%a9%d9%88%da%a9%d9%88%d9%be%db%8c%d8%aa-%d8%a2%d8%aa%d9%84%d8%a7%d9%86%d8%aa%db%8c%d8%b3-%d8%a8%d8%b3%d8%aa%d9%87-3-%d8%b9%d8%af%d8%af%db%8c-15-%da%a9%db%8c%d9%84%d9%88%da%af%d8%b1%d9%85",
       "status": "publish",
-      "modified_gmt": "2026-09-26T21:21:29",
-      "age_days": 0,
+      "modified_gmt": "2026-10-03T11:08:00",
+      "age_days": 1,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2054,7 +2234,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%85%d8%a7%db%8c%d8%b9-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-hyper-hum",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:17:51",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2074,7 +2254,7 @@
       "slug": "%d9%87%d8%a7%db%8c%d9%be%d8%b1-%d9%85%db%8c%da%a9%d8%b1%d9%88-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%db%b1%db%b0-%da%a9%db%8c%d9%84%d9%88%db%8c%db%8c-hyper-micro-xgreen",
       "status": "draft",
       "modified_gmt": "2026-09-08T13:49:34",
-      "age_days": 18,
+      "age_days": 26,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2094,7 +2274,7 @@
       "slug": "%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%85%d8%a7%db%8c%d8%b9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-hyper-hum-xgreen",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:15:53",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2114,7 +2294,7 @@
       "slug": "%d8%a2%d9%85%db%8c%d9%86%d9%88%d8%aa%d8%a7%d9%be-%d9%85%d8%a7%db%8c%d8%b9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-aminotop-xgreen",
       "status": "publish",
       "modified_gmt": "2026-09-26T06:45:24",
-      "age_days": 1,
+      "age_days": 8,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2134,7 +2314,7 @@
       "slug": "%d8%b3%d8%b1-%d8%b4%d9%84%d9%86%da%af%db%8c-%d9%81%d9%84%d8%b2%db%8c-%d8%a2%d9%87%d9%86%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-6-%d8%a7%db%8c%d9%86%da%86-160-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-26T06:56:15",
-      "age_days": 1,
+      "age_days": 8,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2154,7 +2334,7 @@
       "slug": "%d8%b4%db%8c%d8%b1-%d9%88%db%8c%d9%81%d8%b1%db%8c-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%b3%d8%a7%db%8c%d8%b2-2-%d8%a7%db%8c%d9%86%da%86-63",
       "status": "draft",
       "modified_gmt": "2026-09-08T13:50:10",
-      "age_days": 18,
+      "age_days": 26,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2174,7 +2354,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d8%b3%d8%a7%d9%88%d8%a7%d9%86%d8%a7-0-0-32-room",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:22:13",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2194,7 +2374,7 @@
       "slug": "%da%a9%d9%88%d8%af10-52-10-room",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:07:48",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2214,7 +2394,7 @@
       "slug": "%da%a9%d9%88%d8%af-36-12-12-room",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:07:14",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2234,7 +2414,7 @@
       "slug": "%da%a9%d9%88%d8%af-30-05-15-room",
       "status": "publish",
       "modified_gmt": "2026-09-16T08:59:42",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2254,7 +2434,7 @@
       "slug": "%da%a9%d9%88%d8%af-20-20-20-room",
       "status": "publish",
       "modified_gmt": "2026-09-19T06:25:55",
-      "age_days": 8,
+      "age_days": 15,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2274,7 +2454,7 @@
       "slug": "%d8%a7%d9%88%d9%84%d8%aa%d8%b1%d8%a7%d9%81%d9%88%d8%b3-80-room",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:03:38",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2294,7 +2474,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%be%d8%aa%d8%a7%d8%b3%db%8c%d9%85-%d9%85%d8%a7%db%8c%d8%b9-room",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:04:11",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2314,7 +2494,7 @@
       "slug": "%da%a9%d9%84%d8%b3%db%8c%d9%85-%d8%a8%d9%88%d8%b1-%da%a9%d9%84%d8%a7%d8%aa-%d8%b4%d8%af%d9%87-room",
       "status": "publish",
       "modified_gmt": "2026-09-26T07:10:13",
-      "age_days": 1,
+      "age_days": 8,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2334,7 +2514,7 @@
       "slug": "%d9%85%db%8c%da%a9%d8%b1%d9%88-%da%a9%d8%a7%d9%85%d9%84-%d8%b3%d9%88%d9%84%d9%81%d8%a7%d8%aa%d9%87-room",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:05:27",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2354,7 +2534,7 @@
       "slug": "%da%a9%d9%84%d8%a7%d8%aa-%d8%a2%d9%87%d9%86-%d9%be%d9%88%d8%af%d8%b1%db%8c-room",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:11:28",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2374,7 +2554,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%85%db%8c%da%a9%d8%b1%d9%88-%d9%85%db%8c%da%a9%d8%b3-room",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:01:52",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2394,7 +2574,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d8%b3%d9%87-%da%af%d8%a7%d9%86%d9%87-%d8%aa%d8%b1%db%8c%d8%a7%d9%86%da%af%d9%84-room",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:02:29",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2414,7 +2594,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%81%d8%b1%d9%88%d8%aa-%d8%b3%d8%aa-room",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:03:04",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2434,7 +2614,7 @@
       "slug": "%da%a9%d9%88%d8%af-%da%a9%d9%84%d8%a7%d8%aa-%d8%a2%d9%87%d9%86-8-room",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:56:15",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2454,7 +2634,7 @@
       "slug": "%da%a9%d9%88%d8%af-%da%a9%d9%84%d8%a7%d8%aa-%d9%85%d9%86%da%af%d9%86%d8%b2-8-%d9%85%db%8c%d9%86%db%8c-room",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:56:48",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2474,7 +2654,7 @@
       "slug": "%da%a9%d9%88%d8%af-%da%a9%d9%84%d8%a7%d8%aa-%d8%b1%d9%88%db%8c-11-room",
       "status": "publish",
       "modified_gmt": "2026-09-19T06:30:23",
-      "age_days": 8,
+      "age_days": 15,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2494,7 +2674,7 @@
       "slug": "%da%a9%d9%88%d8%af-%da%a9%d9%84%d8%a7%d8%aa-%d8%a8%d9%88%d8%b1-14-room-%d9%82%d9%88%d8%b7%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-26T07:06:34",
-      "age_days": 1,
+      "age_days": 8,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2514,7 +2694,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d8%a7%d8%b3%db%8c%d8%af-%d8%a2%d9%85%db%8c%d9%86%d9%87-%d8%b1%d9%88%d9%85%db%8c%d9%86%d9%88-room-%d9%82%d9%88%d8%b7%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-16T03:01:18",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2534,7 +2714,7 @@
       "slug": "%d8%b3%db%8c%d9%84%db%8c%da%af%d8%a7%d8%b1%d8%af-room-%d9%82%d9%88%d8%b7%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:52:17",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2554,7 +2734,7 @@
       "slug": "%d8%b5%d8%a7%d8%a8%d9%88%d9%86-%d9%be%d8%aa%d8%a7%d8%b3%db%8c%d9%85-room-%d9%82%d9%88%d8%b7%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:52:50",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2574,7 +2754,7 @@
       "slug": "%d8%a7%d9%86%d9%81%d9%88%d8%b1%db%8c%da%a9-%d8%a7%d8%b3%db%8c%d8%af-%d8%a7%d9%88%d8%b1%d8%a2%d8%b2-room-%d8%b3%d8%b7%d9%84-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:53:25",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2594,7 +2774,7 @@
       "slug": "%da%a9%d9%88%d8%af-%d9%81%d8%b3%d9%81%db%8c%d8%aa-%d9%be%d8%aa%d8%a7%d8%b3%db%8c%d9%85-room-%d9%82%d9%88%d8%b7%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:54:02",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2614,7 +2794,7 @@
       "slug": "%da%af%d9%88%da%af%d8%b1%d8%af-%d8%b3%d9%88%d8%b3%d9%be%d8%a7%d9%86%d8%b3%db%8c%d9%88%d9%86-80-room-%da%af%d8%a7%d9%84%d9%86-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:54:35",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2634,7 +2814,7 @@
       "slug": "%da%af%d9%88%da%af%d8%b1%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%88-%da%af%d9%88%da%af%d8%b1%d8%af-%d8%a8%d9%86%d8%aa%d9%88%d9%86%db%8c%d8%aa-%d8%af%d8%a7%d8%b1-room-%da%a9%db%8c%d8%b3%d9%87-25",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:55:08",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2654,7 +2834,7 @@
       "slug": "%d8%b5%d8%a7%d8%a8%d9%88%d9%86-%d9%85%d8%ad%d9%84%d9%88%d9%84-%d9%be%d8%a7%d8%b4%db%8c-%d8%b5%d8%a7%d8%a8%d9%88%d9%86-%d9%85%d8%ad%d9%84%d9%88%d9%84-%d9%be%d8%a7%d8%b4%db%8c-%db%8c%d9%88%d8%b3%d8%a7",
       "status": "publish",
       "modified_gmt": "2026-09-26T06:34:29",
-      "age_days": 1,
+      "age_days": 8,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2674,7 +2854,7 @@
       "slug": "sop-0-0-52-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-26T06:44:33",
-      "age_days": 1,
+      "age_days": 8,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2694,7 +2874,7 @@
       "slug": "%d9%87%d8%a7%db%8c%d9%be%d8%b1-%db%b3%db%b6-%db%b1%db%b2-%db%b1%db%b2",
       "status": "publish",
       "modified_gmt": "2026-09-08T13:44:10",
-      "age_days": 18,
+      "age_days": 26,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2714,7 +2894,7 @@
       "slug": "%d9%87%d8%a7%db%8c%d9%be%d8%b1-%db%b1%db%b0-%db%b1%db%b0-%db%b3%db%b0-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-08T13:44:10",
-      "age_days": 18,
+      "age_days": 26,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2734,7 +2914,7 @@
       "slug": "%d9%86%db%8c%d8%aa%d8%b1%d8%a7%d8%aa-%da%a9%d9%84%d8%b3%db%8c%d9%85-%d9%85%d8%a7%db%8c%d8%b9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-08T13:44:10",
-      "age_days": 18,
+      "age_days": 26,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2754,7 +2934,7 @@
       "slug": "%d9%85%d8%b9%d8%ac%d8%b2%d9%87-%da%af%d8%b1-%d8%a7%d8%b1%da%af%d8%a7%d9%86%db%8c%da%a9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-11T20:02:22",
-      "age_days": 15,
+      "age_days": 23,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2774,7 +2954,7 @@
       "slug": "%d9%85%d9%8e%da%af%d9%86%d9%88%d8%b3-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:42:36",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2794,7 +2974,7 @@
       "slug": "%d9%81%d8%b3%d9%81%db%8c%da%a9%d8%a7-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-03T08:23:43",
-      "age_days": 24,
+      "age_days": 31,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2814,7 +2994,7 @@
       "slug": "%da%af%d8%b1%d8%a7%d9%86%d9%88%d9%84-%db%b1%db%b0-%db%b1%db%b0-%db%b1%db%b0-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-05T09:05:01",
-      "age_days": 22,
+      "age_days": 29,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2834,7 +3014,7 @@
       "slug": "%d9%87%db%8c%d9%88%d9%85%db%8c%da%a9-%da%af%d8%b1%d8%a7%d9%86%d9%88%d9%84-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-16T20:56:16",
-      "age_days": 10,
+      "age_days": 17,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2854,7 +3034,7 @@
       "slug": "%d9%81%db%8c%da%a9%d8%b3-%db%b8-%da%a9%d8%a7%d8%b1%d9%87",
       "status": "publish",
       "modified_gmt": "2026-09-26T07:12:11",
-      "age_days": 1,
+      "age_days": 8,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2874,7 +3054,7 @@
       "slug": "%d9%85%d9%88%d9%86%d9%88%d8%a2%d9%85%d9%88%d9%86%db%8c%d9%88%d9%85-%d9%81%d8%b3%d9%81%d8%a7%d8%aa-%db%b0-%db%b6%db%b1-%db%b1%db%b2",
       "status": "publish",
       "modified_gmt": "2026-09-04T03:28:33",
-      "age_days": 23,
+      "age_days": 30,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2894,7 +3074,7 @@
       "slug": "%da%af%d8%b1%d8%a7%d9%86%d9%88%d9%84-%db%b5-%db%b5-%db%b5-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-03T09:04:09",
-      "age_days": 24,
+      "age_days": 31,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2914,7 +3094,7 @@
       "slug": "%da%af%d9%8f%d9%84%d8%b1-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-11T19:53:55",
-      "age_days": 15,
+      "age_days": 23,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2934,7 +3114,7 @@
       "slug": "%d9%be%d8%b1%d9%86%d8%b3-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-03T08:27:15",
-      "age_days": 24,
+      "age_days": 31,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2954,7 +3134,7 @@
       "slug": "mkp-0-52-34-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:34:13",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2974,7 +3154,7 @@
       "slug": "%d9%81%d9%88%d9%84-%da%af%d9%84%d8%af-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:33:25",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -2994,7 +3174,7 @@
       "slug": "%d8%a2%d9%85%db%8c%d9%86%d9%88%d8%aa%d8%a7%d9%be-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:31:17",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3014,7 +3194,7 @@
       "slug": "%d8%b4%d8%a7%d9%84%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:30:12",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3034,7 +3214,7 @@
       "slug": "%d8%b1%d8%a7%d8%a8%d8%b7-%d8%aa%db%8c%d9%be-%d8%a8%d9%87-%d9%84%db%8c-%d9%81%d9%84%d8%aa-%d8%a8%d8%af%d9%88%d9%86-%d9%88%d8%a7%d8%b4%d8%b1-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-19T06:35:44",
-      "age_days": 8,
+      "age_days": 15,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3053,8 +3233,8 @@
       "kind": "products",
       "slug": "%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-1-1-4-%d8%a7%db%8c%d9%86%da%86-40",
       "status": "publish",
-      "modified_gmt": "2026-09-26T05:43:52",
-      "age_days": 1,
+      "modified_gmt": "2026-09-27T12:13:30",
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3074,7 +3254,7 @@
       "slug": "%d9%85%d8%ba%d8%b2%db%8c-u-pvc-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-1-4-%d8%a7%db%8c%d9%86%da%86-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-%d9%be%d8%a7%db%8c%d8%a7",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:16:08",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3094,7 +3274,7 @@
       "slug": "%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-2-%d8%a7%db%8c%d9%86%da%86",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:13:51",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3114,7 +3294,7 @@
       "slug": "%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-1-2-%d8%a7%db%8c%d9%86%da%86",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:13:16",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3134,7 +3314,7 @@
       "slug": "%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:12:42",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3154,7 +3334,7 @@
       "slug": "%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-4-%d8%a7%db%8c%d9%86%da%86",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:21:27",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3174,7 +3354,7 @@
       "slug": "%d9%85%d8%aa%d9%87-%d8%af%d8%b3%d8%aa%db%8c-%d9%82%d8%b7%d8%b1-18-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:21:26",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3194,7 +3374,7 @@
       "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-290mm-2",
       "status": "publish",
       "modified_gmt": "2026-09-16T06:32:08",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3214,7 +3394,7 @@
       "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-2160mm",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:07:05",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3234,7 +3414,7 @@
       "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-2125mm",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:06:33",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3254,7 +3434,7 @@
       "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-1-240mm",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:03:57",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3274,7 +3454,7 @@
       "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-50-x-125-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87",
       "status": "publish",
       "modified_gmt": "2026-09-26T07:07:54",
-      "age_days": 1,
+      "age_days": 8,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3294,7 +3474,7 @@
       "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-1160mm",
       "status": "publish",
       "modified_gmt": "2026-09-16T02:01:53",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3314,7 +3494,7 @@
       "slug": "%d9%81%d9%84%d9%86%da%86-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%d8%ac%d9%88%d8%b4%db%8c-8-%d8%a7%db%8c%d9%86%da%86-200-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-6-%d8%a7%d8%aa%d9%85",
       "status": "publish",
       "modified_gmt": "2026-09-16T01:55:41",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3334,7 +3514,7 @@
       "slug": "%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%86%d8%b1-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%b2%d9%84%d8%a7%d9%84-%d8%b1%d9%88%d8%af-2-%d8%a7%db%8c%d9%86%da%86",
       "status": "publish",
       "modified_gmt": "2026-09-26T06:31:03",
-      "age_days": 1,
+      "age_days": 8,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3354,7 +3534,7 @@
       "slug": "%d8%b2%d8%a7%d9%86%d9%88-%d8%af%d9%88-%d8%b3%d8%b1-%d9%86%d8%b1-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%b1%d8%b2%d9%88%d9%87-%d8%a7%db%8c-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85%db%8c%d9%84%db%8c%d9%85",
       "status": "publish",
       "modified_gmt": "2026-09-16T01:47:56",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3374,7 +3554,7 @@
       "slug": "%d8%b2%d8%a7%d9%86%d9%88-%d9%85%d8%a7%d8%af%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%b1%d8%b2%d9%88%d9%87-%d8%a7%db%8c-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-16T01:34:59",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3394,7 +3574,7 @@
       "slug": "%d8%b1%d8%a7%d8%a8%d8%b7-%d8%aa%db%8c%d9%be-%d8%a8%d9%87-%d9%84%db%8c-%d9%81%d9%84%d8%aa-%d9%88%d8%a7%d8%b4%d8%b1-%d8%af%d8%a7%d8%b1-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%d9%8a%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-16T01:32:42",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3414,7 +3594,7 @@
       "slug": "%d8%b1%d8%a7%d8%a8%d8%b7-%d8%aa%db%8c%d9%be-%d8%a8%d9%87-%d8%aa%db%8c%d9%be-%d9%83%d8%b4%d9%88%d9%8a%d9%8a-%d8%b2%d9%84%d8%a7%d9%84-%d8%b1%d9%88%d8%af",
       "status": "publish",
       "modified_gmt": "2026-09-16T01:32:12",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3434,7 +3614,7 @@
       "slug": "%d8%b1%d8%a7%d8%a8%d8%b7-%d8%aa%d9%8a%d9%be-%d8%a8%d9%87-16-%d9%83%d8%b4%d9%88%d9%8a%db%8c-%d8%b2%d9%84%d8%a7%d9%84-%d8%b1%d9%88%d8%af",
       "status": "publish",
       "modified_gmt": "2026-09-16T01:30:41",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3454,7 +3634,7 @@
       "slug": "%d8%a8%d8%a7%d8%a8%d9%84%d8%b1-%d9%82%d8%a7%d8%b1%da%86%db%8c-%d8%a8%d8%b2%d8%b1%da%af-%d8%b2%d9%84%d8%a7%d9%84-%d8%b1%d9%88%d8%af",
       "status": "publish",
       "modified_gmt": "2026-09-16T01:24:52",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3474,7 +3654,7 @@
       "slug": "%d8%a8%d8%a7%d8%a8%d9%84%d8%b1-%d8%aa%d9%86%d8%b8%d9%8a%d9%85%db%8c-%d8%b2%d9%84%d8%a7%d9%84-%d8%b1%d9%88%d8%af",
       "status": "publish",
       "modified_gmt": "2026-09-17T05:15:31",
-      "age_days": 10,
+      "age_days": 17,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3493,8 +3673,8 @@
       "kind": "products",
       "slug": "%d8%af%d8%b1%d9%be%d9%88%d8%b4-%d8%b1%d8%b2%d9%88%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-3-%d8%a7%db%8c%d9%86%da%86-%da%a9%d9%be%db%8c",
       "status": "publish",
-      "modified_gmt": "2026-09-26T20:58:12",
-      "age_days": 0,
+      "modified_gmt": "2026-10-01T09:44:20",
+      "age_days": 3,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3514,7 +3694,7 @@
       "slug": "%d8%aa%d8%a8%d8%af%db%8c%d9%84-%d8%af%d9%86%d8%af%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-3-4-1-1-2-%d8%a7%db%8c%d9%86%da%86",
       "status": "publish",
       "modified_gmt": "2026-09-16T01:18:49",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3534,7 +3714,7 @@
       "slug": "%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-1-2-x-32",
       "status": "publish",
       "modified_gmt": "2026-09-16T01:04:05",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3554,7 +3734,7 @@
       "slug": "%d8%b4%db%8c%d8%b1-%d9%88%db%8c%d9%81%d8%b1%db%8c-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%b3%d8%a7%db%8c%d8%b2-%db%b6-%d8%a7%db%8c%d9%86%da%86",
       "status": "draft",
       "modified_gmt": "2026-09-09T08:51:58",
-      "age_days": 18,
+      "age_days": 25,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3574,7 +3754,7 @@
       "slug": "%d8%b4%db%8c%d8%b1-%d9%88%db%8c%d9%81%d8%b1%db%8c-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%b3%d8%a7%db%8c%d8%b2-%db%b5-%d8%a7%db%8c%d9%86%da%86",
       "status": "draft",
       "modified_gmt": "2026-09-09T08:52:13",
-      "age_days": 18,
+      "age_days": 25,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3594,7 +3774,7 @@
       "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a8%d8%a7-%d8%b1%db%8c%d9%86%da%af-%d9%81%d9%84%d8%b2%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-90110-%d9%85%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-26T06:33:22",
-      "age_days": 1,
+      "age_days": 8,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3614,7 +3794,7 @@
       "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a8%d8%a7-%d8%b1%db%8c%d9%86%da%af-%d9%81%d9%84%d8%b2%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-110125-%d9%85%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-26T06:35:25",
-      "age_days": 1,
+      "age_days": 8,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3634,7 +3814,7 @@
       "slug": "%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a8%d8%a7-%d8%b1%db%8c%d9%86%da%af-%d9%81%d9%84%d8%b2%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-90125-%d9%85%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-16T01:02:29",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3653,8 +3833,8 @@
       "kind": "products",
       "slug": "%d8%b4%db%8c%d8%b1-%d9%88%db%8c%d9%81%d8%b1%db%8c-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%b3%d8%a7%db%8c%d8%b2-%db%b4-%d8%a7%db%8c%d9%86%da%86",
       "status": "publish",
-      "modified_gmt": "2026-09-16T00:59:38",
-      "age_days": 11,
+      "modified_gmt": "2026-10-01T09:25:55",
+      "age_days": 3,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3674,7 +3854,27 @@
       "slug": "%d8%b4%db%8c%d8%b1-%d9%88%db%8c%d9%81%d8%b1%db%8c-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%b3%d8%a7%db%8c%d8%b2-%db%b3-%d8%a7%db%8c%d9%86%da%86",
       "status": "publish",
       "modified_gmt": "2026-09-16T00:59:04",
-      "age_days": 11,
+      "age_days": 18,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 140014,
+      "kind": "products",
+      "slug": "%d9%84%d9%88%d9%84%d9%87-%d8%a8%d8%a7%d8%b1%d8%a7%d9%86%db%8c-%d9%85%d9%87-%d9%be%d8%a7%d8%b4-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%db%b1%db%b0%db%b0",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:45:15",
+      "age_days": 1,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3694,7 +3894,7 @@
       "slug": "%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-250-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:15:45",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3714,7 +3914,7 @@
       "slug": "%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-160-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-26T21:15:12",
-      "age_days": 0,
+      "age_days": 7,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3734,7 +3934,7 @@
       "slug": "%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-2-1-2-%d8%a7%db%8c%d9%86%da%86-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-26T06:43:33",
-      "age_days": 1,
+      "age_days": 8,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3754,7 +3954,7 @@
       "slug": "%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%85%d8%a7%d8%af%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-u-pvc-%d8%b3%d8%a7%db%8c%d8%b2-3-4-%d8%a7%db%8c%d9%86%da%86",
       "status": "publish",
       "modified_gmt": "2026-09-16T00:28:08",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3774,7 +3974,47 @@
       "slug": "%da%a9%d9%be%d8%b3%d9%88%d9%84-%d8%b2%db%8c%d8%b1-%d8%b3%d8%b7%d8%ad%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-16T00:27:37",
-      "age_days": 11,
+      "age_days": 18,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 135487,
+      "kind": "products",
+      "slug": "%d9%84%d9%88%d9%84%d9%87-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%d9%85%d8%af%d9%84-%d9%86%d8%ae-%d8%af%d8%a7%d8%b1-9",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:45:26",
+      "age_days": 1,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 135485,
+      "kind": "products",
+      "slug": "%d9%84%d9%88%d9%84%d9%87-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%d9%85%d8%af%d9%84-%d9%86%d8%ae-%d8%af%d8%a7%d8%b1-5",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:45:38",
+      "age_days": 1,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3794,7 +4034,7 @@
       "slug": "%d9%84%d9%88%d8%a7%d8%b2%d9%85-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d9%85%d8%af%d9%84-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-4-2",
       "status": "publish",
       "modified_gmt": "2026-09-15T22:54:21",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3814,7 +4054,7 @@
       "slug": "%d8%b4%db%8c%d8%b1-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-20-%d8%a8%d9%87-%d8%aa%db%8c%d9%be-%d9%be%db%8c%da%86%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-26T06:34:16",
-      "age_days": 1,
+      "age_days": 8,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3833,8 +4073,8 @@
       "kind": "products",
       "slug": "%d8%af%d8%b1%d9%be%d9%88%d8%b4-%d8%b1%d8%b2%d9%88%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-2-%d8%a7%db%8c%d9%86%da%86",
       "status": "publish",
-      "modified_gmt": "2026-09-15T21:32:35",
-      "age_days": 11,
+      "modified_gmt": "2026-10-02T12:36:59",
+      "age_days": 2,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3853,8 +4093,8 @@
       "kind": "products",
       "slug": "%d8%af%d8%b1%d9%be%d9%88%d8%b4-%d8%b1%d8%b2%d9%88%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86",
       "status": "publish",
-      "modified_gmt": "2026-09-15T21:31:12",
-      "age_days": 11,
+      "modified_gmt": "2026-10-02T09:49:45",
+      "age_days": 2,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3874,7 +4114,7 @@
       "slug": "%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-1-2-%d8%a7%db%8c%d9%86%da%86-2-3",
       "status": "publish",
       "modified_gmt": "2026-09-15T23:57:16",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3894,7 +4134,7 @@
       "slug": "%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-2-2",
       "status": "publish",
       "modified_gmt": "2026-09-15T23:28:03",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3914,7 +4154,7 @@
       "slug": "%d8%b4%db%8c%d8%b1-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d8%b1%d8%b2%d9%88%d9%87-1-2-%d8%a8%d9%87-%d9%86%d9%88%d8%a7%d8%b1-%d8%aa%db%8c%d9%be-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-15T23:12:08",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3934,7 +4174,147 @@
       "slug": "%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-1-1-4-%d8%a7%db%8c%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-15T22:59:42",
-      "age_days": 11,
+      "age_days": 18,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 135317,
+      "kind": "products",
+      "slug": "%d9%84%d9%88%d9%84%d9%87-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%d9%85%d8%af%d9%84-%d9%86%d8%ae-%d8%af%d8%a7%d8%b1-6",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:45:49",
+      "age_days": 1,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 135321,
+      "kind": "products",
+      "slug": "%d9%84%d9%88%d9%84%d9%87-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%d9%85%d8%af%d9%84-%d9%86%d8%ae-%d8%af%d8%a7-10",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:45:59",
+      "age_days": 1,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 135319,
+      "kind": "products",
+      "slug": "%d9%84%d9%88%d9%84%d9%87-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%d9%85%d8%af%d9%84-%d9%86%d8%ae-%d8%af%d8%a7%d8%b1-8",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:46:10",
+      "age_days": 1,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 135315,
+      "kind": "products",
+      "slug": "%d9%84%d9%88%d9%84%d9%87-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%d9%85%d8%af%d9%84-%d9%86%d8%ae-%d8%af%d8%a7%d8%b1-7",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:46:22",
+      "age_days": 1,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 135313,
+      "kind": "products",
+      "slug": "%d9%84%d9%88%d9%84%d9%87-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%d9%85%d8%af%d9%84-%d9%86%d8%ae-%d8%af%d8%a7%d8%b1-4",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:46:33",
+      "age_days": 1,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 135311,
+      "kind": "products",
+      "slug": "%d9%84%d9%88%d9%84%d9%87-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%d9%85%d8%af%d9%84-%d9%86%d8%ae-%d8%af%d8%a7%d8%b1-3",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:46:44",
+      "age_days": 1,
+      "stock_status": "outofstock",
+      "priority": "P2",
+      "actions": [
+        "verify_supply_state_keep_url"
+      ],
+      "reasons": [
+        "out-of-stock is not evidence of discontinuation"
+      ],
+      "dateModified_mutation_allowed": false,
+      "discontinued_inferred": false,
+      "redirect_inferred": false,
+      "canonical_change_allowed": false
+    },
+    {
+      "id": 135309,
+      "kind": "products",
+      "slug": "%d9%84%d9%88%d9%84%d9%87-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d8%a2%d8%b3%d8%a7%db%8c%d8%b4-%d8%a2%d8%b0%d8%b1%d8%a8%d8%a7%db%8c%d8%ac%d8%a7%d9%86-%d9%85%d8%af%d9%84-%d9%86%d8%ae-%d8%af%d8%a7%d8%b1-2",
+      "status": "publish",
+      "modified_gmt": "2026-10-03T08:46:56",
+      "age_days": 1,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3954,7 +4334,7 @@
       "slug": "%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%81%d9%84%d9%86%da%86%d8%af%d8%a7%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-2-x-63-%d9%85%db%8c%d9%84%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-16T20:48:14",
-      "age_days": 10,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3974,7 +4354,7 @@
       "slug": "%d8%b4%db%8c%d8%b1-%d8%aa%d9%88%d9%be%db%8c-%db%8c%da%a9%d8%b3%d8%b1-%d9%86%d8%b1-%db%8c%da%a9%d8%b3%d8%b1-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-2-%d8%a7%db%8c%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-16T21:00:40",
-      "age_days": 10,
+      "age_days": 17,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -3993,7 +4373,7 @@
       "kind": "products",
       "slug": "%d8%b4%db%8c%d8%b1-%d8%aa%d9%88%d9%be%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85%db%8c%d9%84",
       "status": "publish",
-      "modified_gmt": "2026-09-23T11:23:12",
+      "modified_gmt": "2026-09-30T07:51:46",
       "age_days": 4,
       "stock_status": "outofstock",
       "priority": "P2",
@@ -4013,8 +4393,8 @@
       "kind": "products",
       "slug": "%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%db%8c%da%a9%d8%b3%d8%b1-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-40-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84",
       "status": "publish",
-      "modified_gmt": "2026-09-15T21:18:43",
-      "age_days": 11,
+      "modified_gmt": "2026-10-01T20:29:44",
+      "age_days": 3,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -4034,7 +4414,7 @@
       "slug": "%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%db%8c%da%a9%d8%b3%d8%b1-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c",
       "status": "publish",
       "modified_gmt": "2026-09-17T05:14:03",
-      "age_days": 10,
+      "age_days": 17,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -4054,7 +4434,7 @@
       "slug": "%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-125-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86",
       "status": "publish",
       "modified_gmt": "2026-09-15T23:46:22",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -4074,7 +4454,7 @@
       "slug": "%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-250-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-6-%d8%a8%d8%a7%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-19T06:29:39",
-      "age_days": 8,
+      "age_days": 15,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -4094,7 +4474,7 @@
       "slug": "%d8%b2%d8%a7%d9%86%d9%88-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%db%8c%da%a9%d8%b3%d8%b1-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-40-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-15T23:40:15",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -4114,7 +4494,7 @@
       "slug": "%d8%b2%d8%a7%d9%86%d9%88-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%db%8c%da%a9%d8%b3%d8%b1-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-15T23:39:43",
-      "age_days": 11,
+      "age_days": 18,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -4134,7 +4514,7 @@
       "slug": "%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-125-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
       "status": "publish",
       "modified_gmt": "2026-09-19T08:20:45",
-      "age_days": 8,
+      "age_days": 15,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -4153,8 +4533,8 @@
       "kind": "products",
       "slug": "%d8%b1%d8%a7%d8%a8%d8%b7-%d8%aa%d8%a8%d8%af%db%8c%d9%84-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-40-63",
       "status": "publish",
-      "modified_gmt": "2026-09-15T21:20:20",
-      "age_days": 11,
+      "modified_gmt": "2026-10-01T14:29:54",
+      "age_days": 3,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
@@ -4173,8 +4553,8 @@
       "kind": "products",
       "slug": "%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-502-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1",
       "status": "publish",
-      "modified_gmt": "2026-09-15T20:07:12",
-      "age_days": 11,
+      "modified_gmt": "2026-10-01T10:30:08",
+      "age_days": 3,
       "stock_status": "outofstock",
       "priority": "P2",
       "actions": [
