@@ -1,0 +1,76 @@
+{
+  "phase": 23,
+  "title": "Lifecycle & Freshness Governance",
+  "version": "phase23-lifecycle-freshness-v3",
+  "generated_at_utc": "2026-10-04T20:53:10.420790+00:00",
+  "run_id": "37233784414",
+  "commit_sha": "059d0a123dcce68b09c3d1253b9ed4a027116896",
+  "status": "PASS_PHASE23_LIFECYCLE_FRESHNESS_V3_GUARDED",
+  "check_count": 16,
+  "passed_checks": 16,
+  "failed_checks": [],
+  "inventory": {
+    "posts_total": 57,
+    "pages_total": 48,
+    "products_total": 709,
+    "products_published": 652,
+    "products_nonpublic": 57
+  },
+  "review_queue_count": 233,
+  "priority_counts": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 176,
+    "P3": 57
+  },
+  "stock_transition_watch": {
+    "published_outofstock": 176,
+    "published_onbackorder": 0,
+    "published_unknown": 0
+  },
+  "transition_monitor": {
+    "baseline_mode": "INITIAL_V3_BASELINE",
+    "previous_state_available": false,
+    "transition_count": 0
+  },
+  "governance_assets": [
+    {
+      "asset_id": "phase20-final-closure",
+      "kind": "governance_asset",
+      "last_verified": "2026-10-03T08:14:05.654616+00:00",
+      "review_days": 90,
+      "age_days": 1,
+      "review_due": false,
+      "trigger": "UX/CRO/accessibility/agent-usability evidence or renderer state changes",
+      "dateModified_mutation_allowed": false
+    },
+    {
+      "asset_id": "phase21-authority-network",
+      "kind": "governance_asset",
+      "last_verified": "2026-10-03T11:21:17.815574+00:00",
+      "review_days": 90,
+      "age_days": 1,
+      "review_due": false,
+      "trigger": "authority sources, brand/identifier truth, or citation evidence materially changes",
+      "dateModified_mutation_allowed": false
+    },
+    {
+      "asset_id": "phase22-farmer-decision",
+      "kind": "governance_asset",
+      "last_verified": "2026-10-04T20:33:27.810323+00:00",
+      "review_days": 90,
+      "age_days": 0,
+      "review_due": false,
+      "trigger": "decision rules, compatibility evidence, or tool routes materially change",
+      "dateModified_mutation_allowed": false
+    }
+  ],
+  "site_mutations": 0,
+  "commerce_mutations": 0,
+  "price_stock_payment_user_mutations": 0,
+  "dateModified_mutations": 0,
+  "redirect_mutations": 0,
+  "canonical_mutations": 0,
+  "delete_mutations": 0,
+  "completion_basis": "Live read-only WordPress/WooCommerce lifecycle audit with current Phase 20/21/22 dependencies, public/non-public separation, no fake dateModified freshness, no discontinuation inference from stock, and a minimal state baseline for future transition detection."
+}
