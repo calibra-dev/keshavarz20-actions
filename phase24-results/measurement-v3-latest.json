@@ -1,0 +1,207 @@
+{
+  "phase": 24,
+  "title": "AI Citation Experimentation & Influence Measurement",
+  "version": "phase24-ai-citation-measurement-v3",
+  "generated_at_utc": "2026-10-04T21:19:43.526558+00:00",
+  "status": "PASS_PHASE24_CONTROL_PLANE_V3_GUARDED_EXTERNAL_CAPTURE_BACKLOG",
+  "control_plane_complete": true,
+  "full_direct_surface_measurement_complete": false,
+  "check_count": 14,
+  "passed_checks": 14,
+  "failed_checks": [],
+  "checks": {
+    "dependency_stack_20_23_current": true,
+    "prompt_bank_exact_200": true,
+    "platform_distribution_50_each": true,
+    "intent_bucket_distribution_20_each": true,
+    "direct_observations_valid": true,
+    "direct_observation_ids_unique": true,
+    "direct_prompt_ids_unique": true,
+    "all_direct_captures_readback_verified": true,
+    "citation_requires_direct_surface_capture": true,
+    "referral_not_counted_as_citation": true,
+    "web_search_proxy_not_counted_as_ai_citation": true,
+    "null_unobserved_not_zero": true,
+    "remaining_queue_math": true,
+    "no_fabricated_completion": true
+  },
+  "dependencies": {
+    "phase20": {
+      "status": "PASS_GUARDED_VENDOR_RENDERER",
+      "passed_checks": 57,
+      "check_count": 57,
+      "failed_checks": []
+    },
+    "phase21": {
+      "version": "phase21-iran-authority-network-v3",
+      "status": "PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",
+      "passed_checks": 37,
+      "check_count": 37,
+      "failed_checks": []
+    },
+    "phase22": {
+      "version": "phase22-farmer-decision-v3",
+      "status": "PASS_PHASE22_FARMER_DECISION_V3_GUARDED",
+      "passed_checks": 21,
+      "check_count": 21,
+      "failed_checks": []
+    },
+    "phase23": {
+      "version": "phase23-lifecycle-freshness-v3",
+      "status": "PASS_PHASE23_LIFECYCLE_FRESHNESS_V3_GUARDED",
+      "passed_checks": 16,
+      "check_count": 16,
+      "failed_checks": []
+    }
+  },
+  "prompt_bank": {
+    "count": 200,
+    "by_platform": {
+      "ChatGPT Search": 50,
+      "Google AI Mode / AI Overviews": 50,
+      "Microsoft Copilot / Bing": 50,
+      "Perplexity": 50
+    },
+    "by_bucket": {
+      "definitions_education": 20,
+      "product_selection": 20,
+      "comparison": 20,
+      "compatibility": 20,
+      "calculation_sizing": 20,
+      "troubleshooting": 20,
+      "buying_price_shipping": 20,
+      "crop_area_water": 20,
+      "brand_store_trust": 20,
+      "full_system_basket": 20
+    },
+    "pending_in_bank": 200
+  },
+  "observation_integrity": {
+    "count": 70,
+    "unique_observation_ids": 70,
+    "unique_prompt_ids": 70,
+    "oldest_observation_utc": "2026-09-27T07:41:00.848000+00:00",
+    "newest_observation_utc": "2026-09-27T09:05:42.223000+00:00",
+    "readback_verified_count": 70
+  },
+  "direct_surface_kpis": {
+    "direct_observation_count": 70,
+    "citation_rate": 0.11428571428571428,
+    "brand_mention_rate": 0.14285714285714285,
+    "recommendation_context_rate": 0.14285714285714285,
+    "cited_page_coverage": 8,
+    "observed_prompt_coverage": 0.35,
+    "remaining_prompt_count": 130,
+    "by_surface": {
+      "ChatGPT Search": {
+        "observations": 20,
+        "coverage": 0.4,
+        "citation_rate": 0.15,
+        "brand_mention_rate": 0.25
+      },
+      "Google AI Mode / AI Overviews": {
+        "observations": 50,
+        "coverage": 1.0,
+        "citation_rate": 0.1,
+        "brand_mention_rate": 0.1
+      },
+      "Microsoft Copilot / Bing": {
+        "observations": 0,
+        "coverage": 0.0,
+        "citation_rate": null,
+        "brand_mention_rate": null
+      },
+      "Perplexity": {
+        "observations": 0,
+        "coverage": 0.0,
+        "citation_rate": null,
+        "brand_mention_rate": null
+      }
+    }
+  },
+  "remaining_external_capture": {
+    "remaining_count": 130,
+    "by_surface": {
+      "ChatGPT Search": 30,
+      "Google AI Mode / AI Overviews": 0,
+      "Microsoft Copilot / Bing": 50,
+      "Perplexity": 50
+    },
+    "blocker": "Direct capture on the remaining AI answer surfaces is required. Ordinary web search, referral telemetry, or inferred citations are not acceptable substitutes."
+  },
+  "telemetry": {
+    "source_file": "phase24-results/telemetry-2026-09-27.json",
+    "generated_at_utc": "2026-09-27T06:40:00Z",
+    "age_days_at_run": 7,
+    "historical_baseline_only": true,
+    "data": {
+      "phase": 24,
+      "generated_at_utc": "2026-09-27T06:40:00Z",
+      "source_status": {
+        "ga4": "LIVE_READ_SUCCESS",
+        "google_search_console": "LIVE_READ_SUCCESS",
+        "bing_webmaster": "CONNECTED_PROVIDER_THROTTLED",
+        "public_web_search_proxy": "EXECUTED_NOT_DIRECT_SURFACE"
+      },
+      "ga4": {
+        "account_id": "456208539",
+        "property_name": "keshavarz20.com",
+        "window": "last_30d",
+        "chatgpt_referral": {
+          "source_medium": "chatgpt.com / ai-assistant",
+          "sessions": 3,
+          "engaged_sessions": 2,
+          "active_users": 3,
+          "ecommerce_purchases": 0,
+          "transactions": 0
+        },
+        "interpretation": "Referral evidence only; it does not prove a citation, brand mention, or recommendation in a specific ChatGPT answer."
+      },
+      "google_search_console": {
+        "property": "sc-domain:keshavarz20.com",
+        "requested_window": "last_28d",
+        "settled_rows_returned": 26,
+        "settled_start": "2026-08-30",
+        "settled_end": "2026-09-24",
+        "clicks": 981,
+        "impressions": 14549,
+        "ctr": 0.06742731459206819,
+        "impression_weighted_average_position": 9.330820613100558,
+        "interpretation": "Search performance telemetry; not a direct Google AI Overview/AI Mode citation counter."
+      },
+      "bing_webmaster": {
+        "property": "https://keshavarz20.com",
+        "connected": true,
+        "live_read_status": "ERROR_THROTTLE_IP",
+        "error": "ERROR!!! ThrottleIP",
+        "interpretation": "Connected provider currently throttled; no zero-value metric is inferred."
+      },
+      "public_web_search_proxy": {
+        "sample_queries": 4,
+        "domain_restricted_results_observed": 0,
+        "queries": [
+          "نوار تیپ آبیاری چیست",
+          "فیلتر دیسکی آبیاری چگونه کار می‌کند",
+          "افت فشار در سیستم آبیاری",
+          "کمربند انشعاب پلی اتیلن"
+        ],
+        "interpretation": "This is an ordinary web-search discoverability proxy only and is excluded from AI citation KPIs."
+      },
+      "delta_from_2026_09_20_snapshot": {
+        "chatgpt_referral_sessions_previous": 2,
+        "chatgpt_referral_sessions_current": 3,
+        "absolute_change": 1
+      }
+    }
+  },
+  "measurement_rules": {
+    "referral_is_not_citation": true,
+    "web_search_proxy_is_not_ai_surface_citation": true,
+    "null_means_unobserved_not_zero": true,
+    "citation_requires_direct_surface_capture": true,
+    "brand_mention_requires_direct_surface_capture": true,
+    "recommendation_is_not_inferred_from_citation": true,
+    "historical_direct_capture_is_not_relabelled_as_current": true,
+    "full_phase_measurement_requires_200_of_200_direct_captures": true
+  }
+}

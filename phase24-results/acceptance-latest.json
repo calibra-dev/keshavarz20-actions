@@ -1,0 +1,33 @@
+{
+  "phase": 24,
+  "title": "AI Citation Experimentation & Influence Measurement",
+  "version": "phase24-ai-citation-measurement-v3",
+  "generated_at_utc": "2026-10-04T21:19:43.560273+00:00",
+  "run_id": "37235631260",
+  "commit_sha": "6dbebcfc0cd99541eaa1130d7976e705c5f11658",
+  "status": "PASS_PHASE24_CONTROL_PLANE_V3_GUARDED_EXTERNAL_CAPTURE_BACKLOG",
+  "control_plane_complete": true,
+  "full_direct_surface_measurement_complete": false,
+  "check_count": 14,
+  "passed_checks": 14,
+  "failed_checks": [],
+  "direct_observation_count": 70,
+  "observed_prompt_coverage": 0.35,
+  "citation_rate": 0.11428571428571428,
+  "brand_mention_rate": 0.14285714285714285,
+  "cited_page_coverage": 8,
+  "remaining_external_capture": {
+    "remaining_count": 130,
+    "by_surface": {
+      "ChatGPT Search": 30,
+      "Google AI Mode / AI Overviews": 0,
+      "Microsoft Copilot / Bing": 50,
+      "Perplexity": 50
+    },
+    "blocker": "Direct capture on the remaining AI answer surfaces is required. Ordinary web search, referral telemetry, or inferred citations are not acceptable substitutes."
+  },
+  "site_mutations": 0,
+  "commerce_mutations": 0,
+  "fabricated_observations": 0,
+  "completion_basis": "Current dependency stack and a validated 200-prompt measurement control plane are complete. Full direct-surface measurement remains incomplete until all 200 prompts have DIRECT_SURFACE_CAPTURE evidence; missing captures are preserved as backlog rather than inferred or fabricated."
+}
