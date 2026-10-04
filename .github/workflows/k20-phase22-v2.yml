@@ -1,48 +1,157 @@
-name: Phase 22 Farmer Decision v2
+name: Phase 22 Farmer Decision v3
 
 on:
-  pull_request:
-    paths:
-      - 'phase22/**'
-      - 'phase22-results/**'
-      - 'phase21-results/authority-network-2026-09-27.json'
-      - 'growth-os/intent-registry.json'
-      - 'tests/test_phase22_v2.py'
-      - '.github/workflows/k20-phase22-v2.yml'
   push:
     branches: [main]
     paths:
       - 'phase22/**'
       - 'phase22-results/**'
-      - 'tests/test_phase22_v2.py'
+      - 'phase22-ops/**'
+      - 'phase21-results/authority-network-latest.json'
+      - 'phase20-results/final-closure-latest.json'
+      - 'growth-os/intent-registry.json'
+      - 'tests/test_phase22_v3.py'
       - '.github/workflows/k20-phase22-v2.yml'
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: phase22-farmer-decision-v3
+  cancel-in-progress: true
 
 jobs:
-  validate-farmer-decision-v2:
+  validate-farmer-decision-v3:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Compile and test
+      - run: python -m pip install requests
+      - name: Compile and unit test
         run: |
-          python -m py_compile phase22/decision_engine_v2.py
-          python -m unittest tests.test_phase22_v2 -v
-      - name: Run 12-case acceptance pack
+          python -m py_compile phase22/decision_engine_v3.py
+          python -m unittest tests.test_phase22_v3 -v
+      - name: Live probe decision tools
+        shell: python
         run: |
-          python phase22/decision_engine_v2.py --cases phase22/validation-cases-v2.json --output /tmp/phase22-v2-report.json
-          python - <<'PY'
-          import json
-          p=json.load(open('/tmp/phase22-v2-report.json',encoding='utf-8'))
-          assert p['status']=='PASS_MODEL_VALIDATION_V2'
-          assert p['case_count']>=12
-          assert p['site_mutations']==0
-          assert p['commerce_mutations']==0
-          print(json.dumps({'status':p['status'],'cases':p['case_count']},ensure_ascii=False))
-          PY
+          import datetime as dt, json, pathlib, time
+          import requests
+          urls={
+            "hydraulic":"https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
+            "filtration":"https://keshavarz20.com/irrigation-filter-selector/",
+            "compatibility":"https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+          }
+          rows=[]
+          s=requests.Session()
+          s.headers.update({"User-Agent":"keshavarz20-phase22-live-probe/3.0","Cache-Control":"no-cache"})
+          for key,url in urls.items():
+            last=None
+            for attempt in range(4):
+              try:
+                r=s.get(url,timeout=60,allow_redirects=True)
+                last={"key":key,"url":url,"final_url":r.url,"http_status":r.status_code,"ok":r.status_code==200,"content_type":r.headers.get("content-type"),"body_chars":len(r.text)}
+                if r.status_code==200: break
+              except Exception as e:
+                last={"key":key,"url":url,"final_url":None,"http_status":None,"ok":False,"error":type(e).__name__}
+              time.sleep(attempt+1)
+            rows.append(last)
+          out={
+            "phase":22,
+            "version":"phase22-tool-live-probe-v3",
+            "generated_at_utc":dt.datetime.now(dt.timezone.utc).isoformat(),
+            "status":"PASS" if all(x["ok"] for x in rows) else "FAIL",
+            "targets":rows,
+            "site_mutations":0,
+            "commerce_mutations":0
+          }
+          pathlib.Path("phase22-results").mkdir(exist_ok=True)
+          pathlib.Path("phase22-results/tool-live-probe-latest.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(out,ensure_ascii=False))
+          if out["status"]!="PASS": raise SystemExit(2)
+      - name: Run 18-case acceptance pack
+        run: |
+          python phase22/decision_engine_v3.py \
+            --cases phase22/validation-cases-v3.json \
+            --output phase22-results/decision-model-latest.json
+      - name: Build Phase 22 final acceptance
+        shell: python
+        run: |
+          import datetime as dt, json, os, pathlib
+          p21=json.load(open("phase21-results/authority-network-latest.json",encoding="utf-8"))
+          p20=json.load(open("phase20-results/final-closure-latest.json",encoding="utf-8"))
+          model=json.load(open("phase22-results/decision-model-latest.json",encoding="utf-8"))
+          probe=json.load(open("phase22-results/tool-live-probe-latest.json",encoding="utf-8"))
+          results=model.get("results") or []
+          checks={}
+          def add(name, passed, evidence=None):
+            checks[name]={"pass":bool(passed),"evidence":evidence}
+          p21a=p21.get("acceptance") or {}
+          add("phase21_v3_dependency",p21.get("version")=="phase21-iran-authority-network-v3" and p21.get("status")=="PASS_IRAN_FIRST_AUTHORITY_V3_GUARDED",p21.get("status"))
+          add("phase21_all_checks_pass",int(p21a.get("passed_checks") or 0)==int(p21a.get("check_count") or -1) and not (p21a.get("failed_checks") or []),f"{p21a.get('passed_checks')}/{p21a.get('check_count')}")
+          add("phase21_no_hard_fabrication",int((p21.get("product_truth") or {}).get("hard_fabrications") or 0)==0,0)
+          add("phase21_no_gtin_fabrication",int((p21.get("identifier_truth") or {}).get("gtins_fabricated") or 0)==0 and int((p21.get("identifier_truth") or {}).get("skus_promoted_to_gtin") or 0)==0,0)
+          add("phase20_guarded_dependency",str(p20.get("status") or "").startswith("PASS"),p20.get("status"))
+          add("phase20_all_checks_pass",int(p20.get("passed_checks") or 0)==int(p20.get("check_count") or -1) and not (p20.get("failed_checks") or []),f"{p20.get('passed_checks')}/{p20.get('check_count')}")
+          add("phase20_full_wcag_not_falsely_claimed",p20.get("full_wcag_automated_pass") is False,p20.get("full_wcag_automated_pass"))
+          add("model_v3_pass",model.get("status")=="PASS_MODEL_VALIDATION_V3",model.get("status"))
+          add("validation_case_count",int(model.get("case_count") or 0)>=16,model.get("case_count"))
+          add("model_internal_checks_all_pass",all((model.get("checks") or {}).values()),model.get("checks"))
+          add("live_tool_probe_pass",probe.get("status")=="PASS" and len(probe.get("targets") or [])==3 and all(x.get("http_status")==200 for x in (probe.get("targets") or [])),probe.get("targets"))
+          add("no_specific_product_or_sku",all(not x["result"]["scope"]["specific_product_recommendation"] and not x["result"]["scope"]["sku_recommendation"] for x in results),True)
+          add("no_price_stock_checkout_action",all(not x["result"]["scope"]["price_or_stock_decision"] and not x["result"]["scope"]["merchant_or_checkout_action"] for x in results),True)
+          add("no_certified_design_or_prescription",all(not x["result"]["scope"]["certified_hydraulic_design"] and not x["result"]["scope"]["agronomic_prescription"] for x in results),True)
+          add("unknowns_preserved",all(x["result"]["input_quality"]["unknowns_preserved"] for x in results),True)
+          add("privacy_no_identity_storage",all(not x["result"]["privacy"]["stores_identity"] and not x["result"]["privacy"]["stores_contact_data"] for x in results),True)
+          pii=[x for x in results if x.get("case_id")=="pii-ignored"]
+          add("pii_case_explicitly_ignored",len(pii)==1 and set(pii[0]["result"]["privacy"]["ignored_identity_keys"])=={"address","email","name","phone"},pii[0]["result"]["privacy"]["ignored_identity_keys"] if pii else None)
+          draft_routes=[route for x in results for route in x["result"]["intent_routes"] if route.get("status")=="draft-covered"]
+          add("draft_intents_not_public",all(not x.get("publicly_routable") and not x.get("canonical_url") for x in draft_routes),draft_routes)
+          bdiag=(p21.get("brand_truth") or {}).get("current_remediation_diagnostic") or {}
+          add("brand_gaps_guarded_not_promoted",bool((p21.get("brand_truth") or {}).get("policy")) and all(not x["result"]["scope"]["specific_product_recommendation"] for x in results),bdiag)
+          add("site_mutations_zero",int(model.get("site_mutations") or 0)==0 and int(probe.get("site_mutations") or 0)==0,0)
+          add("commerce_mutations_zero",int(model.get("commerce_mutations") or 0)==0 and int(probe.get("commerce_mutations") or 0)==0,0)
+          failed=[k for k,v in checks.items() if not v["pass"]]
+          out={
+            "phase":22,
+            "title":"Farmer Decision Personalization",
+            "version":"phase22-farmer-decision-v3",
+            "generated_at_utc":dt.datetime.now(dt.timezone.utc).isoformat(),
+            "run_id":os.getenv("GITHUB_RUN_ID"),
+            "commit_sha":os.getenv("GITHUB_SHA"),
+            "status":"PASS_PHASE22_FARMER_DECISION_V3_GUARDED" if not failed else "FAIL",
+            "check_count":len(checks),
+            "passed_checks":len(checks)-len(failed),
+            "failed_checks":failed,
+            "checks":checks,
+            "model_status":model.get("status"),
+            "validation_cases":model.get("case_count"),
+            "live_tool_targets":len(probe.get("targets") or []),
+            "site_mutations":0,
+            "commerce_mutations":0,
+            "price_stock_payment_user_mutations":0,
+            "completion_basis":"Explainable farmer decision support with current Phase 21 authority, live decision tools, PII-safe context hashing, fail-closed compatibility, and no exact product/SKU or certified design claims."
+          }
+          pathlib.Path("phase22-results/acceptance-latest.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(out,ensure_ascii=False))
+          if failed: raise SystemExit(2)
+      - name: Persist Phase 22 v3 evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f phase22-results/decision-model-latest.json phase22-results/tool-live-probe-latest.json phase22-results/acceptance-latest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "phase22: record v3 farmer decision acceptance"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt*2))
+          done
+          exit 1
