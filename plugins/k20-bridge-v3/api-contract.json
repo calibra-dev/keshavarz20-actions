@@ -1,6 +1,6 @@
 {
   "schema_version": "3.3",
-  "plugin_version": "3.3.35",
+  "plugin_version": "3.3.36",
   "namespace": "keshavarz20-ops/v3",
   "compatibility": {
     "request_min": "3.1",
@@ -19,6 +19,7 @@
     "content and bridge updates are reversible through bounded snapshots/backups",
     "K20 Factor runtime health/smoke/assets inspection is read-only and sanitized; customer/order rows, payment configuration and credentials are not exposed",
     "guarded code reading/search includes exact K20-owned plugin roots while arbitrary filesystem access remains denied",
-    "installed plugin metadata, active state, update state, file hashes, and plugin-owned REST route metadata are inspectable through guarded Bridge actions"
+    "installed plugin metadata, active state, update state, file hashes, and plugin-owned REST route metadata are inspectable through guarded Bridge actions",
+    "registered GET routes owned by installed plugins are available for private read-only QA through Bridge with response redaction and sensitive-route/query guards"
   ]
 }
