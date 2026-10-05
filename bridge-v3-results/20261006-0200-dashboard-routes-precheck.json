@@ -1,0 +1,48 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261006-0200-dashboard-routes-precheck.sanitized.json",
+  "action": "plugin.rest.routes",
+  "request_id": "bridge336-dashboard-routes-precheck",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-05T22:37:30.3903658Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.35",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "count": 3,
+    "plugin": "k20-dashboard/k20-dashboard.php",
+    "routes": [
+      {
+        "path": "/k20-dashboard/v1/snapshot",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/detail/(?P<type>order|product)/(?P<id>\\d+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/diagnostics",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      }
+    ],
+    "truncated": false
+  }
+}
