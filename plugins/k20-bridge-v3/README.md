@@ -1,6 +1,16 @@
-# Keshavarz20 Bridge v3.3
+# Keshavarz20 Bridge v3.3.34
 
 GitHub-first guarded execution layer for keshavarz20.com. Version 3.3 keeps the existing `/keshavarz20-ops/v3` namespace and remains backward-compatible with the v3.1/v3.2 action surface.
+
+
+## Added in 3.3.34
+
+### K20 Factor runtime inspection
+- `k20factor.health`: read-only technical health for the installed K20 Factor runtime, including version parity, safe diagnostics, provider readiness booleans and REST reachability.
+- `k20factor.smoke`: non-mutating endpoint smoke tests that return only HTTP/shape metadata; document/customer/payment/credential values are intentionally not returned.
+- `k20factor.assets`: hashes and sizes for the known K20 Factor main/admin/public CSS/JS files so live deployments can be compared byte-for-byte with a release package.
+- Guarded `code.read` / `code.search` roots now include exact K20-owned plugin directories (`k20-factor`, `k20-dashboard`, `k20-ai-press`, `keshavarz20-content-ops`, `keshavarz20-seo-ops`) while secret/config/vendor/upload paths and arbitrary filesystem access remain denied.
+- No customer/order export, payment-setting mutation, credential access, user/role administration, arbitrary PHP/SQL/shell/WP-CLI, or live arbitrary filesystem write was added.
 
 ## Added in 3.3
 
