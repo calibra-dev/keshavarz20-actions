@@ -1,0 +1,47 @@
+{
+  "phase": 24,
+  "recorded_at_utc": "2026-10-05T00:00:00Z",
+  "status": "EXTERNAL_DIRECT_SURFACE_AUTOMATION_BLOCKED",
+  "canonical_observation_count": 70,
+  "canonical_remaining_count": 130,
+  "fabricated_observations": 0,
+  "non_ingested_attempts": [
+    {
+      "surface": "Microsoft Copilot / Bing",
+      "prompt_id": "K20-AI-003",
+      "tinyfish_profile_id": "prof_9c082410fb17479f",
+      "tinyfish_run_id": "8443a683-7a1a-489f-a7d6-c749283cfcb0",
+      "run_url": "https://agent.tinyfish.ai/runs/8443a683-7a1a-489f-a7d6-c749283cfcb0",
+      "terminal_status": "completed",
+      "answer_present": false,
+      "readback_verified": false,
+      "answer_url": "https://copilot.com/chat",
+      "blocker": "verification loop prevented submission/readback of the direct answer surface",
+      "ingested": false
+    },
+    {
+      "surface": "Perplexity",
+      "prompt_id": "K20-AI-004",
+      "tinyfish_profile_id": "prof_8a09e329c45245f9",
+      "tinyfish_run_id": "756f1cb7-98ad-4f85-9d06-73412acf22ef",
+      "run_url": "https://agent.tinyfish.ai/runs/756f1cb7-98ad-4f85-9d06-73412acf22ef",
+      "terminal_status": "completed",
+      "answer_present": false,
+      "readback_verified": false,
+      "answer_url": null,
+      "blocker": "Cloudflare challenge prevented access to the direct Perplexity answer surface",
+      "ingested": false
+    }
+  ],
+  "guardrails": {
+    "count_failed_or_blocked_attempt_as_zero": false,
+    "ordinary_web_search_substitution": false,
+    "inferred_citation": false,
+    "accept_only_direct_surface_capture_with_readback_verified_true": true
+  },
+  "next_valid_paths": [
+    "authenticated human browser / ChatGPT Work Cloud Browser direct capture on exact named surface",
+    "provider session that exposes final answer and citations without automation challenge",
+    "ingest only after readback_verified=true"
+  ]
+}
