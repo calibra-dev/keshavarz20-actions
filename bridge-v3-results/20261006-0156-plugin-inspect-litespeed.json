@@ -1,0 +1,105 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261006-0156-plugin-inspect-litespeed.sanitized.json",
+  "action": "plugin.inspect",
+  "request_id": "bridge335-plugin-inspect-litespeed-20261006-0156",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-05T22:29:11.3294416Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.35",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "slug": "litespeed-cache",
+    "name": "LiteSpeed Cache",
+    "version": "7.9.1",
+    "update_available": false,
+    "active": true,
+    "network_active": false,
+    "new_version": null,
+    "plugin": "litespeed-cache/litespeed-cache.php",
+    "requires_wp": "",
+    "requires_php": "",
+    "text_domain": "litespeed-cache",
+    "main_file": "litespeed-cache/litespeed-cache.php",
+    "main_bytes": 8942,
+    "main_sha256": "b7391adc545a650e354826a9e5a3be1d2fea86be6249188d301b412065020943",
+    "file_count": 293,
+    "total_bytes": 3589650,
+    "rest_route_count": 9,
+    "rest_routes": [
+      {
+        "path": "/litespeed/v1/toggle_crawler_state",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/litespeed/v1/tool/check_ip",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/litespeed/v1/guest/sync",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/litespeed/v3/ip_validate",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/litespeed/v3/wp_rest_echo",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/litespeed/v3/ping",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/litespeed/v3/cdn_status",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/litespeed/v1/notify_img",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/litespeed/v3/err_domains",
+        "methods": [
+          "POST"
+        ]
+      }
+    ],
+    "extensions": {
+      "css": 5,
+      "data": 5,
+      "dist": 1,
+      "htaccess": 1,
+      "js": 21,
+      "json": 5,
+      "lock": 1,
+      "md": 1,
+      "png": 3,
+      "pot": 1,
+      "svg": 36,
+      "toml": 1,
+      "txt": 20,
+      "xml": 1
+    }
+  }
+}
