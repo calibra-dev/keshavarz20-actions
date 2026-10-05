@@ -1,0 +1,31 @@
+{
+  "action": "batch",
+  "request_id": "k20d111-bridge-live-batch",
+  "payload": {
+    "items": [
+      {
+        "action": "api.contract"
+      },
+      {
+        "action": "system.info"
+      },
+      {
+        "action": "commerce.shop.diagnose"
+      },
+      {
+        "action": "cache.status"
+      },
+      {
+        "action": "observability.status"
+      },
+      {
+        "action": "selftest.run"
+      },
+      {
+        "action": "rest.proxy",
+        "method": "GET",
+        "path": "/wc/v3/products/135321"
+      }
+    ]
+  }
+}
