@@ -1,4 +1,4 @@
-name: Keshavarz20 Bridge v3.3.33 Test and Package
+name: Keshavarz20 Bridge v3.3.34 Test and Package
 
 on:
   push:
@@ -52,9 +52,9 @@ jobs:
           c=json.load(open('plugins/k20-bridge-v3/api-contract.json'))
           m=json.load(open('plugins/k20-bridge-v3/update-manifest.json'))
           assert c['schema_version']=='3.3'
-          assert c['plugin_version']=='3.3.33'
-          assert m['version']=='3.3.33'
-          assert m['package_url'].startswith('https://github.com/calibra-dev/keshavarz20-actions/releases/download/v3.3.33/')
+          assert c['plugin_version']=='3.3.34'
+          assert m['version']=='3.3.34'
+          assert m['package_url'].startswith('https://github.com/calibra-dev/keshavarz20-actions/releases/download/v3.3.34/')
           PY
 
       - name: Security policy guard
@@ -75,10 +75,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for token in             content.block.patch elementor.structure media.optimize media.focal_crop media.watermark             asset.featured.set asset.gallery.append asset.gallery.replace asset.content.insert             snippet.list snippet.read snippet.validate snippet.create_draft snippet.update_draft snippet.deactivate             code.read code.search             job.retry_failed snapshot.rollback approval.execute observability.status selftest.run             update.check update.stage update.apply update.rollback; do
+          for token in             content.block.patch elementor.structure media.optimize media.focal_crop media.watermark             asset.featured.set asset.gallery.append asset.gallery.replace asset.content.insert             snippet.list snippet.read snippet.validate snippet.create_draft snippet.update_draft snippet.deactivate             code.read code.search k20factor.health k20factor.smoke k20factor.assets             job.retry_failed snapshot.rollback approval.execute observability.status selftest.run             update.check update.stage update.apply update.rollback; do
             grep -q "'$token'" plugins/k20-bridge-v3/k20-bridge-v3.php
           done
-          for file in             class-k20-bridge-v32-snapshots.php             class-k20-bridge-v32-approval.php             class-k20-bridge-v32-content.php             class-k20-bridge-v32-media.php             class-k20-bridge-v32-jobs.php             class-k20-bridge-v32-updater.php             class-k20-bridge-v32-observability.php             class-k20-bridge-v33-assets.php             class-k20-bridge-v33-snippets.php             class-k20-bridge-v33-code.php             class-k20-bridge-v33-performance.php             class-k20-bridge-v33-recommendation-guard.php; do
+          for file in             class-k20-bridge-v32-snapshots.php             class-k20-bridge-v32-approval.php             class-k20-bridge-v32-content.php             class-k20-bridge-v32-media.php             class-k20-bridge-v32-jobs.php             class-k20-bridge-v32-updater.php             class-k20-bridge-v32-observability.php             class-k20-bridge-v33-assets.php             class-k20-bridge-v33-snippets.php             class-k20-bridge-v33-code.php             class-k20-bridge-v33-performance.php             class-k20-bridge-v33-recommendation-guard.php             class-k20-bridge-v334-k20factor.php; do
             test -f "plugins/k20-bridge-v3/includes/$file"
           done
           grep -q "woocommerce_related_products" plugins/k20-bridge-v3/includes/class-k20-bridge-v33-recommendation-guard.php
@@ -104,15 +104,15 @@ jobs:
           mkdir -p dist/k20-bridge-v3
           cp -R plugins/k20-bridge-v3/. dist/k20-bridge-v3/
           cd dist
-          zip -qr k20-bridge-v3.3.33.zip k20-bridge-v3
-          sha256sum k20-bridge-v3.3.33.zip > k20-bridge-v3.3.33.sha256
+          zip -qr k20-bridge-v3.3.34.zip k20-bridge-v3
+          sha256sum k20-bridge-v3.3.34.zip > k20-bridge-v3.3.34.sha256
 
       - name: Upload package
         uses: actions/upload-artifact@v4
         with:
-          name: k20-bridge-v3.3.33
+          name: k20-bridge-v3.3.34
           path: |
-            dist/k20-bridge-v3.3.33.zip
-            dist/k20-bridge-v3.3.33.sha256
+            dist/k20-bridge-v3.3.34.zip
+            dist/k20-bridge-v3.3.34.sha256
           if-no-files-found: error
           retention-days: 30
