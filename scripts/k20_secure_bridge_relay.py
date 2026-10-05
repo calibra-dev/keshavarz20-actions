@@ -20,6 +20,7 @@ ALLOWED_ACTIONS = {
     "snippet.deactivate",
     "code.read",
     "code.search",
+    "plugin.rest.get",
     "approval.status",
     "approval.execute",
     "recovery.deactivate_failing_plugin",
