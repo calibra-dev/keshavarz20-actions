@@ -1,0 +1,24 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261005-phase26-audit30-job-run.sanitized.json",
+  "action": "job.run",
+  "request_id": "phase26-audit30-job-run-20261005",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-05T18:34:49.4388241Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.33",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "status": "running",
+    "job_id": "job_47090be9482299a7bf08",
+    "cursor": 26,
+    "total": 30,
+    "success": 25,
+    "failed": 1,
+    "retrying": 2,
+    "dead_letter": 1
+  }
+}
