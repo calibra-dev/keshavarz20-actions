@@ -245,8 +245,8 @@ final class K20_Bridge_V3 {
             'supports_chat_asset_relay'=>true,'supports_secure_payload_relay'=>true,
             'supports_snippet_draft_write'=>true,'supports_guarded_code_read'=>true,
             'supports_k20factor_runtime_inspection'=>true,'supports_k20_plugin_code_read'=>true,
-            'supports_all_plugin_inventory'=>true,'supports_all_plugin_inspection'=>true,'supports_guarded_all_plugin_source_read'=>true,
-            'supports_guarded_plugin_rest_get'=>true,'asset_route'=>'/asset',
+            'supports_all_plugin_inventory'=>true,'supports_all_plugin_inspection'=>true,
+            'supports_plugin_asset_hashes'=>true,'supports_plugin_rest_route_inventory'=>true,'asset_route'=>'/asset',
             'batch_max'=>self::BATCH_MAX,'background_job_item_max'=>500,'audit_limit'=>self::AUDIT_LIMIT,
             'hard_denies'=>self::$blocked_keys,
             'github_side_actions'=>['engine.status','engine.run','gitops.profile']
@@ -264,7 +264,7 @@ final class K20_Bridge_V3 {
             'snippet.list','snippet.read','snippet.validate','snippet.create_draft','snippet.update_draft','snippet.deactivate',
             'code.read','code.search',
             'k20factor.health','k20factor.smoke','k20factor.assets',
-            'plugin.inventory','plugin.inspect','plugin.rest.routes','plugin.assets','plugin.rest.get','plugin.source.read','plugin.source.search',
+            'plugin.inventory','plugin.inspect','plugin.rest.routes','plugin.assets',
             'cache.status','cache.purge','audit.tail','batch',
             'job.create','job.status','job.run','job.retry_failed',
             'snapshot.list','snapshot.rollback',
@@ -380,9 +380,6 @@ final class K20_Bridge_V3 {
             case 'plugin.inspect': return K20_Bridge_V335_Plugins::inspect($body);
             case 'plugin.rest.routes': return K20_Bridge_V335_Plugins::rest_routes($body);
             case 'plugin.assets': return K20_Bridge_V335_Plugins::assets($body);
-            case 'plugin.rest.get': return K20_Bridge_V335_Plugins::rest_get($body);
-            case 'plugin.source.read': return K20_Bridge_V335_Plugins::source_read($body);
-            case 'plugin.source.search': return K20_Bridge_V335_Plugins::source_search($body);
 
             case 'cache.status': return self::cache_status();
             case 'cache.purge': return self::cache_purge($dry);
@@ -424,8 +421,8 @@ final class K20_Bridge_V3 {
                 'K20 Factor runtime inspection is read-only, sanitized, and excludes customer/payment/credential data',
                 'guarded code inspection includes exact K20-owned plugin roots without arbitrary filesystem access',
                 'all installed plugins can be inventoried and inspected without WPVibe',
-                'all installed plugin source can be read/searched only through the private secure relay with path/secret guards',
-                'plugin-owned REST GET inspection is private, read-only, route-verified, redacted, and blocks sensitive route families'
+                'all installed plugins expose guarded metadata, update state, file hashes and REST-route metadata without WPVibe',
+                'arbitrary third-party plugin source reads, REST response bodies, settings mutation and filesystem writes remain denied'
             ]
         ];
     }
