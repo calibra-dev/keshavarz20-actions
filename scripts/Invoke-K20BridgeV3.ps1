@@ -13,6 +13,7 @@ $siteActions=@(
   'elementor.inspect','elementor.search','elementor.edit','elementor.structure',
   'media.import','media.transform','media.metadata','media.hash','media.duplicates','media.optimize','media.focal_crop','media.watermark',
   'asset.featured.set','asset.gallery.append','asset.gallery.replace','asset.content.insert',
+  'plugin.inventory','plugin.inspect','plugin.rest.routes','plugin.assets',
   'cache.status','cache.purge','audit.tail','batch',
   'job.create','job.status','job.run','job.retry_failed',
   'snapshot.list','snapshot.rollback',
@@ -235,7 +236,7 @@ if($parsed -and $parsed.result){
     'matches','changed','before_sha256','after_sha256','source_attachment_id','new_attachment_id','approval_id','fingerprint','rolled_back',
     'current_version','available_version','update_available','staged','applied','installed_file_version','schema_version',
     'description','focus_keyword','canonical','noindex','attachment_id','attachment_ids','featured_attachment_id','gallery_image_ids','before_gallery_image_ids','target_id','product_id','snapshot_id','sha256','mime','bytes','width','height','previous_attachment_id',
-    'setting','value','allowed_values','before','after','shop_url','http_status','body_sha256','option_value','filtered_value','selected_orderby','callback_count','callbacks','first_product_ids','first_product_titles','contains_price_desc','contains_popularity','technical_filters_present','technical_filter_controls'
+    'setting','value','allowed_values','before','after','shop_url','http_status','body_sha256','option_value','filtered_value','selected_orderby','callback_count','callbacks','first_product_ids','first_product_titles','contains_price_desc','contains_popularity','technical_filters_present','technical_filter_controls','installed','active','network_active','update_available','new_version','main_file','main_sha256','file_count','total_bytes','rest_route_count','rest_routes','plugins','files','extensions','truncated'
   )){
     $p=$result.PSObject.Properties[$name]; if($p){ $safe[$name]=$p.Value }
   }
