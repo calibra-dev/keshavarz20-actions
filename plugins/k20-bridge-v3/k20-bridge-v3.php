@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Keshavarz20 Bridge v3
  * Description: GitHub-first guarded execution bridge for Keshavarz20.
- * Version: 3.3.33
+ * Version: 3.3.34
  * Author: Keshavarz20
  */
 
 if (!defined('ABSPATH')) exit;
-if (!defined('K20_BRIDGE_RUNTIME_VERSION')) define('K20_BRIDGE_RUNTIME_VERSION','3.3.33');
+if (!defined('K20_BRIDGE_RUNTIME_VERSION')) define('K20_BRIDGE_RUNTIME_VERSION','3.3.34');
 
 require_once __DIR__.'/includes/class-k20-bridge-v31-content.php';
 require_once __DIR__.'/includes/class-k20-bridge-v31-media.php';
@@ -23,9 +23,10 @@ require_once __DIR__.'/includes/class-k20-bridge-v33-snippets.php';
 require_once __DIR__.'/includes/class-k20-bridge-v33-code.php';
 require_once __DIR__.'/includes/class-k20-bridge-v33-performance.php';
 require_once __DIR__.'/includes/class-k20-bridge-v33-recommendation-guard.php';
+require_once __DIR__.'/includes/class-k20-bridge-v334-k20factor.php';
 
 final class K20_Bridge_V3 {
-    private const VERSION='3.3.33';
+    private const VERSION='3.3.34';
     private const CONTRACT='3.3';
     private const NS='keshavarz20-ops/v3';
     private const AUDIT_OPTION='k20_bridge_v3_audit';
@@ -241,7 +242,8 @@ final class K20_Bridge_V3 {
             'supports_snapshots'=>true,'supports_rollback'=>true,'supports_two_phase_approval'=>true,
             'supports_dead_letter'=>true,'supports_self_update'=>true,'supports_observability'=>true,
             'supports_chat_asset_relay'=>true,'supports_secure_payload_relay'=>true,
-            'supports_snippet_draft_write'=>true,'supports_guarded_code_read'=>true,'asset_route'=>'/asset',
+            'supports_snippet_draft_write'=>true,'supports_guarded_code_read'=>true,
+            'supports_k20factor_runtime_inspection'=>true,'supports_k20_plugin_code_read'=>true,'asset_route'=>'/asset',
             'batch_max'=>self::BATCH_MAX,'background_job_item_max'=>500,'audit_limit'=>self::AUDIT_LIMIT,
             'hard_denies'=>self::$blocked_keys,
             'github_side_actions'=>['engine.status','engine.run','gitops.profile']
@@ -258,6 +260,7 @@ final class K20_Bridge_V3 {
             'asset.featured.set','asset.gallery.append','asset.gallery.replace','asset.content.insert',
             'snippet.list','snippet.read','snippet.validate','snippet.create_draft','snippet.update_draft','snippet.deactivate',
             'code.read','code.search',
+            'k20factor.health','k20factor.smoke','k20factor.assets',
             'cache.status','cache.purge','audit.tail','batch',
             'job.create','job.status','job.run','job.retry_failed',
             'snapshot.list','snapshot.rollback',
@@ -365,6 +368,10 @@ final class K20_Bridge_V3 {
             case 'code.read': return K20_Bridge_V33_Code::read($body);
             case 'code.search': return K20_Bridge_V33_Code::search($body);
 
+            case 'k20factor.health': return K20_Bridge_V334_K20Factor::health();
+            case 'k20factor.smoke': return K20_Bridge_V334_K20Factor::smoke();
+            case 'k20factor.assets': return K20_Bridge_V334_K20Factor::assets();
+
             case 'cache.status': return self::cache_status();
             case 'cache.purge': return self::cache_purge($dry);
             case 'audit.tail': return self::audit_tail((array)($body['payload']??[]));
@@ -401,7 +408,9 @@ final class K20_Bridge_V3 {
                 'v3.1 action names remain valid','writes are allow-listed','high-impact actions use two-phase approval',
                 'content and bridge updates have bounded rollback paths',
                 'chat-generated images can be relayed without public media URLs',
-                'snippet code writes are draft-only and sensitive code reads use the secure GitHub relay'
+                'snippet code writes are draft-only and sensitive code reads use the secure GitHub relay',
+                'K20 Factor runtime inspection is read-only, sanitized, and excludes customer/payment/credential data',
+                'guarded code inspection includes exact K20-owned plugin roots without arbitrary filesystem access'
             ]
         ];
     }
