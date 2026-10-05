@@ -124,6 +124,44 @@ final class K20_Bridge_V335_Plugins {
         ];
     }
 
+    public static function rest_get(array $body) {
+        $p=self::payload($body);
+        $requested='/'.ltrim((string)($p['path']??''),'/');
+        if ($requested==='/' || strlen($requested)>300) {
+            return new WP_Error('plugin_rest_path_invalid','payload.path must be a registered plugin GET route.',['status'=>400]);
+        }
+        if (self::blocked_rest_path($requested)) {
+            return new WP_Error('plugin_rest_path_blocked','This REST path is excluded from read-only QA.',['status'=>403]);
+        }
+
+        $query=is_array($p['query']??null)?self::safe_query($p['query']):[];
+        $owner_filter=null;
+        if (!empty($p['plugin'])) {
+            $resolved=self::resolve($body);
+            if (is_wp_error($resolved)) return $resolved;
+            $owner_filter=['plugin'=>$resolved[0],'root'=>$resolved[3],'main'=>$resolved[2]];
+        }
+
+        $matched=self::match_registered_get($requested,$owner_filter);
+        if (is_wp_error($matched)) return $matched;
+
+        $req=new WP_REST_Request('GET',$requested);
+        if ($query) $req->set_query_params($query);
+        $res=rest_do_request($req);
+        if (is_wp_error($res)) return $res;
+        $status=(int)$res->get_status();
+        if ($status<200 || $status>=300) {
+            return new WP_Error('plugin_rest_get_failed','Plugin GET route returned a non-success response.',['status'=>$status]);
+        }
+
+        return [
+            'path'=>$requested,
+            'registered_pattern'=>$matched['pattern'],
+            'status'=>$status,
+            'plugins'=>$matched['plugins'],
+            'data'=>self::sanitize_qa_value($res->get_data(),0),
+        ];
+    }
     private static function resolve(array $body) {
         self::ensure_api();
         $p=self::payload($body);
@@ -267,6 +305,84 @@ final class K20_Bridge_V335_Plugins {
             if (!$f) continue;
             if ($rr && is_dir($rr) && str_starts_with($f,$rr.DIRECTORY_SEPARATOR)) return true;
             if ($mr && $f===$mr) return true;
+        }
+        return false;
+    }
+
+    private static function match_registered_get(string $requested,?array $filter) {
+        foreach (rest_get_server()->get_routes() as $pattern=>$endpoints) {
+            $regex='#^'.str_replace('#','\\#',(string)$pattern).'$#u';
+            $matched=@preg_match($regex,$requested);
+            if ($matched!==1 && (string)$pattern!==$requested) continue;
+
+            $get_endpoints=[];
+            foreach ((array)$endpoints as $ep) {
+                if (!empty(($ep['methods']??[])['GET'])) $get_endpoints[]=$ep;
+            }
+            if (!$get_endpoints) continue;
+
+            $owners=self::route_owners($get_endpoints);
+            if (!$owners) continue;
+            if ($filter && !self::matches($owners,$filter['root'],$filter['main'])) continue;
+
+            return [
+                'pattern'=>(string)$pattern,
+                'plugins'=>array_values(array_unique(array_map(fn($o)=>$o['plugin'],$owners))),
+            ];
+        }
+        return new WP_Error('plugin_rest_get_not_allowlisted','No installed-plugin GET route matched this path.',['status'=>403]);
+    }
+
+    private static function blocked_rest_path(string $path): bool {
+        $lower=strtolower($path);
+        foreach (['/auth','/oauth','/login','/session','/token','/secret','/credential','/password','/api-key','/apikey','/webhook','/settings'] as $part) {
+            if (str_contains($lower,$part)) return true;
+        }
+        return false;
+    }
+
+    private static function safe_query(array $query): array {
+        $deny=['password','application_password','token','secret','api_key','apikey','consumer_key','consumer_secret','authorization','cookie','nonce','email','phone','mobile','customer_id','user_id','order_id','billing','shipping'];
+        $out=[];
+        foreach ($query as $key=>$value) {
+            $k=sanitize_key((string)$key);
+            if ($k==='' || in_array($k,$deny,true)) continue;
+            if (is_array($value)) {
+                $vals=[];
+                foreach (array_slice($value,0,50) as $v) if (is_scalar($v)) $vals[]=sanitize_text_field((string)$v);
+                $out[$k]=$vals;
+            } elseif (is_scalar($value)) {
+                $out[$k]=sanitize_text_field((string)$value);
+            }
+        }
+        return $out;
+    }
+
+    private static function sanitize_qa_value($value,int $depth) {
+        if ($depth>10) return '[truncated-depth]';
+        if (is_array($value)) {
+            $out=[];$count=0;
+            foreach ($value as $key=>$item) {
+                if (++$count>150) { $out['_truncated']=true; break; }
+                $k=(string)$key;
+                if (self::sensitive_runtime_key($k)) {
+                    $out[$k]='***';
+                    continue;
+                }
+                $out[$k]=self::sanitize_qa_value($item,$depth+1);
+            }
+            return $out;
+        }
+        if (is_object($value)) return self::sanitize_qa_value((array)$value,$depth+1);
+        if (is_string($value)) return mb_substr(wp_strip_all_tags($value),0,12000);
+        if (is_bool($value) || is_int($value) || is_float($value) || $value===null) return $value;
+        return sanitize_text_field((string)$value);
+    }
+
+    private static function sensitive_runtime_key(string $key): bool {
+        $k=strtolower($key);
+        foreach (['password','passwd','secret','token','api_key','apikey','consumer_key','consumer_secret','authorization','cookie','nonce','email','phone','mobile','billing','shipping','address','customer_id','user_id','order_id','payment_method','card','iban'] as $needle) {
+            if (str_contains($k,$needle)) return true;
         }
         return false;
     }
