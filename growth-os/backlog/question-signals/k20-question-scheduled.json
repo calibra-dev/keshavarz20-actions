@@ -1,16 +1,19 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-c6cae0e66825387b",
-  "product_id": 140494,
+  "canonical_intent_id": "question-intent-e39ce1c54f54335a",
+  "product_id": 135479,
   "family": "fitting",
-  "intent": "wholesale",
+  "intent": "installation",
   "scenario_dimensions": {
-    "logistics": true
+    "pressure": true,
+    "installation_state": true,
+    "failure_mode": true,
+    "crop": "به"
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": false,
+  "compatibility_gap": true,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
