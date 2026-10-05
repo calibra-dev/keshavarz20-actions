@@ -84,6 +84,12 @@ final class K20_Bridge_V33_Code {
         $theme=get_stylesheet_directory();
         if (is_string($theme) && $theme!=='') $roots['theme']=$theme;
         if (defined('WPMU_PLUGIN_DIR') && is_dir(WPMU_PLUGIN_DIR)) $roots['mu']=WPMU_PLUGIN_DIR;
+        if (defined('WP_PLUGIN_DIR')) {
+            foreach (['k20-factor','k20-dashboard','k20-ai-press','keshavarz20-content-ops','keshavarz20-seo-ops'] as $slug) {
+                $dir=trailingslashit(WP_PLUGIN_DIR).$slug;
+                if (is_dir($dir)) $roots[$slug]=$dir;
+            }
+        }
         return $roots;
     }
 
