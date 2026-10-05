@@ -1,0 +1,410 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261006-k20-ai-press-321-plugin-inspect.sanitized.json",
+  "action": "plugin.inspect",
+  "request_id": "k20-ai-press-321-plugin-inspect-20261006",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-05T22:35:07.6114110Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.35",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "slug": "k20-ai-press",
+    "name": "K20 AI Press",
+    "version": "3.2.1",
+    "update_available": false,
+    "active": true,
+    "network_active": false,
+    "new_version": null,
+    "plugin": "k20-ai-press/k20-ai-press.php",
+    "requires_wp": "7.1",
+    "requires_php": "8.3",
+    "text_domain": "k20-ai-press",
+    "main_file": "k20-ai-press/k20-ai-press.php",
+    "main_bytes": 5028,
+    "main_sha256": "ac00d2860b51271cb57c7f7309273774178c3eb7c896e57da09179137ce5b980",
+    "file_count": 50,
+    "total_bytes": 1721130,
+    "rest_route_count": 58,
+    "rest_routes": [
+      {
+        "path": "/k20-ai/v1/dashboard",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/audit",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/settings",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/abilities",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/abilities/(?P<ability>[A-Za-z0-9_.-]+)",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/openapi",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/health",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/feeds/acp",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/ucp",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/ucp/catalog/search",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/ucp/catalog/lookup",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/ucp/catalog/product",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/citation-pack",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/rag/search",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/observability",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/mcp/status",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/dashboard",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/workspace/(?P<mode>[a-z0-9-]+)",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/scans",
+        "methods": [
+          "GET",
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/scans/(?P<id>\\d+)",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/scans/(?P<id>\\d+)/tick",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/scans/(?P<id>\\d+)/cancel",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/scans/(?P<id>\\d+)/resume",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/crawl/url",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/entity/(?P<kind>[a-z0-9_-]+)/(?P<id>\\d+)",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/entity/(?P<kind>[a-z0-9_-]+)/(?P<id>\\d+)/preview",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/entity/(?P<kind>[a-z0-9_-]+)/(?P<id>\\d+)/safe-fix",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/actions/(?P<id>\\d+)/review",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/actions/(?P<id>\\d+)/apply",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/actions/(?P<id>\\d+)/rollback",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/serp/research",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/serp/live",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/calendar/schedule",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/keywords/import",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/competitors",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/radar/refresh",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/settings",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/connections",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/connections/(?P<provider>[a-z0-9_-]+)",
+        "methods": [
+          "DELETE",
+          "PATCH",
+          "POST",
+          "PUT"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/connections/(?P<provider>[a-z0-9_-]+)/test",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/connections/(?P<provider>[a-z0-9_-]+)/sync",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/connections/github/dispatch",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/entity/(?P<kind>[a-z0-9_-]+)/(?P<id>\\d+)/ai-complete",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/ai/apply",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/content-engines",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/content-engines/settings",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/content-engines/(?P<engine>news|article)/run",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/content-engines/receipt",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bridge/contract",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bridge/execute",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bridge/asset",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/ui-preferences",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bot-control",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bot-control/policy",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bot-control/apply",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bot-control/rollback",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/report/export",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/health",
+        "methods": [
+          "GET"
+        ]
+      }
+    ],
+    "extensions": {
+      "css": 1,
+      "js": 2,
+      "md": 1,
+      "png": 2,
+      "pot": 1,
+      "txt": 3
+    }
+  }
+}
