@@ -1,0 +1,99 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261005-2316-k20-factor-104-audit-tail.sanitized.json",
+  "action": "audit.tail",
+  "request_id": "k20-factor-104-live-audit-tail-20261005-2316",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-05T20:36:00.6848498Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.33",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "count": 20,
+    "items": [
+      {
+        "action": "rest.proxy",
+        "ok": true
+      },
+      {
+        "action": "content.patch",
+        "ok": true
+      },
+      {
+        "action": "rest.proxy",
+        "ok": true
+      },
+      {
+        "action": "content.search",
+        "ok": true
+      },
+      {
+        "action": "seo.read",
+        "ok": true
+      },
+      {
+        "action": "rest.proxy",
+        "ok": true
+      },
+      {
+        "action": "system.info",
+        "ok": true
+      },
+      {
+        "action": "seo.update",
+        "ok": true
+      },
+      {
+        "action": "job.run",
+        "ok": true
+      },
+      {
+        "action": "seo.read",
+        "ok": true
+      },
+      {
+        "action": "job.retry_failed",
+        "ok": true
+      },
+      {
+        "action": "job.run",
+        "ok": true
+      },
+      {
+        "action": "job.status",
+        "ok": true
+      },
+      {
+        "action": "job.run",
+        "ok": true
+      },
+      {
+        "action": "job.create",
+        "ok": true
+      },
+      {
+        "action": "job.run",
+        "ok": true
+      },
+      {
+        "action": "job.create",
+        "ok": true
+      },
+      {
+        "action": "system.info",
+        "ok": true
+      },
+      {
+        "action": "audit.tail",
+        "ok": true
+      },
+      {
+        "action": "rest.proxy",
+        "ok": false
+      }
+    ]
+  }
+}
