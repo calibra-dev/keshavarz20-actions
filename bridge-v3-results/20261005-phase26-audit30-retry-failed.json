@@ -1,0 +1,24 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261005-phase26-audit30-retry-failed.sanitized.json",
+  "action": "job.retry_failed",
+  "request_id": "phase26-audit30-retry-failed-20261005",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-05T18:36:45.7942934Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.33",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "status": "queued",
+    "job_id": "job_4319eca81f482d48f9d5",
+    "cursor": 0,
+    "total": 4,
+    "success": 0,
+    "failed": 0,
+    "retrying": 0,
+    "dead_letter": 0
+  }
+}
