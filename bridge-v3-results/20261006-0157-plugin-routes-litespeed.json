@@ -1,0 +1,102 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261006-0157-plugin-routes-litespeed.sanitized.json",
+  "action": "plugin.rest.routes",
+  "request_id": "bridge335-plugin-routes-litespeed-20261006-0157",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-05T22:29:11.6146763Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.35",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "count": 9,
+    "plugin": "litespeed-cache/litespeed-cache.php",
+    "routes": [
+      {
+        "path": "/litespeed/v1/toggle_crawler_state",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "litespeed-cache/litespeed-cache.php"
+        ]
+      },
+      {
+        "path": "/litespeed/v1/tool/check_ip",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "litespeed-cache/litespeed-cache.php"
+        ]
+      },
+      {
+        "path": "/litespeed/v1/guest/sync",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "litespeed-cache/litespeed-cache.php"
+        ]
+      },
+      {
+        "path": "/litespeed/v3/ip_validate",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "litespeed-cache/litespeed-cache.php"
+        ]
+      },
+      {
+        "path": "/litespeed/v3/wp_rest_echo",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "litespeed-cache/litespeed-cache.php"
+        ]
+      },
+      {
+        "path": "/litespeed/v3/ping",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "litespeed-cache/litespeed-cache.php"
+        ]
+      },
+      {
+        "path": "/litespeed/v3/cdn_status",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "litespeed-cache/litespeed-cache.php"
+        ]
+      },
+      {
+        "path": "/litespeed/v1/notify_img",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "litespeed-cache/litespeed-cache.php"
+        ]
+      },
+      {
+        "path": "/litespeed/v3/err_domains",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "litespeed-cache/litespeed-cache.php"
+        ]
+      }
+    ],
+    "truncated": false
+  }
+}
