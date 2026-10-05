@@ -1,0 +1,562 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261006-k20-ai-press-321-plugin-routes.sanitized.json",
+  "action": "plugin.rest.routes",
+  "request_id": "k20-ai-press-321-plugin-routes-20261006",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-05T22:36:30.1516763Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.35",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "count": 58,
+    "plugin": "k20-ai-press/k20-ai-press.php",
+    "routes": [
+      {
+        "path": "/k20-ai/v1/dashboard",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/audit",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/settings",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/abilities",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/abilities/(?P<ability>[A-Za-z0-9_.-]+)",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/openapi",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/health",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/feeds/acp",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/ucp",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/ucp/catalog/search",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/ucp/catalog/lookup",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/ucp/catalog/product",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/citation-pack",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/rag/search",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/observability",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/mcp/status",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/dashboard",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/workspace/(?P<mode>[a-z0-9-]+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/scans",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/scans/(?P<id>\\d+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/scans/(?P<id>\\d+)/tick",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/scans/(?P<id>\\d+)/cancel",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/scans/(?P<id>\\d+)/resume",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/crawl/url",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/entity/(?P<kind>[a-z0-9_-]+)/(?P<id>\\d+)",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/entity/(?P<kind>[a-z0-9_-]+)/(?P<id>\\d+)/preview",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/entity/(?P<kind>[a-z0-9_-]+)/(?P<id>\\d+)/safe-fix",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/actions/(?P<id>\\d+)/review",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/actions/(?P<id>\\d+)/apply",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/actions/(?P<id>\\d+)/rollback",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/serp/research",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/serp/live",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/calendar/schedule",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/keywords/import",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/competitors",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/radar/refresh",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/settings",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/connections",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/connections/(?P<provider>[a-z0-9_-]+)",
+        "methods": [
+          "DELETE",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/connections/(?P<provider>[a-z0-9_-]+)/test",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/connections/(?P<provider>[a-z0-9_-]+)/sync",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/connections/github/dispatch",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/entity/(?P<kind>[a-z0-9_-]+)/(?P<id>\\d+)/ai-complete",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/ai/apply",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/content-engines",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/content-engines/settings",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/content-engines/(?P<engine>news|article)/run",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/content-engines/receipt",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bridge/contract",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bridge/execute",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bridge/asset",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/ui-preferences",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bot-control",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bot-control/policy",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bot-control/apply",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bot-control/rollback",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/report/export",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/health",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      }
+    ],
+    "truncated": false
+  }
+}
