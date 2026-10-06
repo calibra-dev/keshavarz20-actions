@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Keshavarz20 Bridge v3
  * Description: GitHub-first guarded execution bridge for Keshavarz20.
- * Version: 3.3.36
+ * Version: 3.3.37
  * Author: Keshavarz20
  */
 
 if (!defined('ABSPATH')) exit;
-if (!defined('K20_BRIDGE_RUNTIME_VERSION')) define('K20_BRIDGE_RUNTIME_VERSION','3.3.36');
+if (!defined('K20_BRIDGE_RUNTIME_VERSION')) define('K20_BRIDGE_RUNTIME_VERSION','3.3.37');
 
 require_once __DIR__.'/includes/class-k20-bridge-v31-content.php';
 require_once __DIR__.'/includes/class-k20-bridge-v31-media.php';
@@ -27,7 +27,7 @@ require_once __DIR__.'/includes/class-k20-bridge-v334-k20factor.php';
 require_once __DIR__.'/includes/class-k20-bridge-v335-plugins.php';
 
 final class K20_Bridge_V3 {
-    private const VERSION='3.3.36';
+    private const VERSION='3.3.37';
     private const CONTRACT='3.3';
     private const NS='keshavarz20-ops/v3';
     private const AUDIT_OPTION='k20_bridge_v3_audit';
@@ -98,12 +98,32 @@ final class K20_Bridge_V3 {
         $query->set('tax_query',$tax_query);
     }
 
-    public static function render_technical_filters(): void {
-        if (is_admin() || !(is_shop() || is_product_taxonomy())) return;
-        $facets=self::technical_filter_facets();
-        $visible=[];
-        foreach ($facets as $taxonomy=>$cfg) {
-            if (!taxonomy_exists($taxonomy)) continue;
+    private static function technical_filter_scope_object_ids(): ?array {
+        if (!is_product_taxonomy()) return null;
+        $term=get_queried_object();
+        if (!($term instanceof WP_Term) || !taxonomy_exists($term->taxonomy)) return null;
+
+        $query=new WP_Query([
+            'post_type'=>'product',
+            'post_status'=>'publish',
+            'fields'=>'ids',
+            'posts_per_page'=>-1,
+            'no_found_rows'=>true,
+            'update_post_meta_cache'=>false,
+            'update_post_term_cache'=>false,
+            'tax_query'=>[[
+                'taxonomy'=>$term->taxonomy,
+                'field'=>'term_id',
+                'terms'=>[(int)$term->term_id],
+                'include_children'=>is_taxonomy_hierarchical($term->taxonomy),
+                'operator'=>'IN',
+            ]],
+        ]);
+        return array_values(array_unique(array_map('intval',(array)$query->posts)));
+    }
+
+    private static function technical_filter_terms(string $taxonomy,?array $scope_ids): array {
+        if ($scope_ids===null) {
             $terms=get_terms([
                 'taxonomy'=>$taxonomy,
                 'hide_empty'=>true,
@@ -111,7 +131,41 @@ final class K20_Bridge_V3 {
                 'orderby'=>'name',
                 'order'=>'ASC',
             ]);
-            if (is_wp_error($terms) || count($terms)<2) continue;
+            return is_wp_error($terms)?[]:$terms;
+        }
+        if (!$scope_ids) return [];
+
+        $rows=wp_get_object_terms($scope_ids,$taxonomy,[
+            'fields'=>'all_with_object_id',
+            'orderby'=>'none',
+        ]);
+        if (is_wp_error($rows) || !$rows) return [];
+
+        $terms=[];
+        foreach ($rows as $row) {
+            $id=(int)$row->term_id;
+            if (!isset($terms[$id])) {
+                $term=clone $row;
+                $term->count=0;
+                $terms[$id]=$term;
+            }
+            $terms[$id]->count++;
+        }
+        $terms=array_values($terms);
+        usort($terms,static fn($a,$b)=>strcmp((string)$a->name,(string)$b->name));
+        return array_slice($terms,0,100);
+    }
+
+    public static function render_technical_filters(): void {
+        if (is_admin() || !(is_shop() || is_product_taxonomy())) return;
+        $facets=self::technical_filter_facets();
+        $scope_ids=self::technical_filter_scope_object_ids();
+        if (is_array($scope_ids) && !$scope_ids) return;
+        $visible=[];
+        foreach ($facets as $taxonomy=>$cfg) {
+            if (!taxonomy_exists($taxonomy)) continue;
+            $terms=self::technical_filter_terms($taxonomy,$scope_ids);
+            if (count($terms)<2) continue;
             $visible[$taxonomy]=['cfg'=>$cfg,'terms'=>$terms];
         }
         if (!$visible) return;
