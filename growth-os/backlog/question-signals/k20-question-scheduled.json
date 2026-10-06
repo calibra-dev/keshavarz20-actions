@@ -1,18 +1,16 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-2ef218c76c3984d6",
-  "product_id": 140551,
-  "family": "pipe",
-  "intent": "experience_request",
+  "canonical_intent_id": "question-intent-7d7b0a66b2c58ed3",
+  "product_id": 140673,
+  "family": "fitting",
+  "intent": "compatibility",
   "scenario_dimensions": {
-    "pressure": true,
-    "failure_mode": true,
-    "crop": "سیر"
+    "crop": "به"
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": false,
+  "compatibility_gap": true,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
