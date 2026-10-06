@@ -2,7 +2,7 @@
   "phase": 27,
   "name": "Money Category Decision Pages",
   "executed_date": "2026-10-06",
-  "bridge_version": "3.3.36",
+  "bridge_version": "3.3.37",
   "categories": [
     {
       "id": 755,
@@ -27,7 +27,7 @@
     {
       "id": 790,
       "name": "اتصالات پلی اتیلن",
-      "status": "PASS_DECISION_PAGE_UPGRADED_MEDIA_ALT_FIXED"
+      "status": "PASS_DECISION_PAGE_UPGRADED_MEDIA_ALT_FIXED_FILTER_SCOPED"
     }
   ],
   "checks": {
@@ -39,7 +39,32 @@
     "selected_money_product_category_graph": "30/30 PASS",
     "category_image_alt": "5/5 non-empty after fixes",
     "polyethylene_desktop_visual_qa": "PASS",
-    "mobile_tablet_visual_qa": "UNVERIFIED_TOOLING_LIMIT"
+    "mobile_tablet_visual_qa": "UNVERIFIED_TOOLING_LIMIT",
+    "technical_filter_engine": "PASS_BRIDGE_3.3.37_TAXONOMY_SCOPED",
+    "polyethylene_filter_regression": {
+      "status": "PASS",
+      "removed_sitewide_noise": [
+        "ظرفیت 100/200 لیتر",
+        "تانک کود",
+        "نوار تیپ",
+        "لوله نخدار"
+      ],
+      "remaining_facets": {
+        "سایز / قطر": 12,
+        "فشار کاری": 3,
+        "جنس": 3,
+        "نوع اتصال": 8,
+        "نوع محصول": 9
+      },
+      "note": "uPVC remains because it is assigned as current body-material data on products in category 790; exact product 135667 readback confirms pa_body-material=uPVC."
+    },
+    "money_category_filter_visibility": {
+      "755 نوار تیپ": "hidden because no scoped facet has at least 2 useful values",
+      "768 لوله نخدار": "visible; 4 scoped facets",
+      "761 انشعابات و بست ها": "hidden because no scoped facet has at least 2 useful values",
+      "825 فیلتر و فیلتراسیون": "hidden because no scoped facet has at least 2 useful values",
+      "790 اتصالات پلی اتیلن": "visible; 5 scoped facets"
+    }
   },
   "changes": {
     "polyethylene_category_apply_commit": "094df433c8247ecff8fa988962f8c1a44bb30e88",
@@ -48,7 +73,18 @@
       "7e913f7c824dda25e8cb6a86a4f5afe607fc59e1",
       "fea9d94a612284683a0b1252f5b6bb1a408e0194",
       "9894be7a07fb6cfe18a08f8c399a65156253f951"
-    ]
+    ],
+    "bridge337": {
+      "pr": 50,
+      "merge_sha": "518037809b0d11cdf9a8c819a095d9ddf816bfe5",
+      "package_run": 37427054833,
+      "release_run": 37427054912,
+      "update_stage_sha256": "71d549313e8bbd3181ee7eea868decdba79f7e912c88cf31afe77452d43ec089",
+      "approval_id": "ap_c35b2dd272dae42ac9",
+      "approval_execute_commit": "137c657d28d7f880b4fc5b588d5ff7960821e30f",
+      "runtime_readback_commit": "cbb63ea4dc0ad18b2d30c00fecfed4b924ca267d",
+      "cache_purge_commit": "ca2ef5e0209c20620886f318353490d16ce54f2a"
+    }
   },
   "sanitizer": {
     "category_html_clean": true,
