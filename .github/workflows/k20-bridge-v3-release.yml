@@ -1,4 +1,4 @@
-name: Keshavarz20 Bridge v3.3.36 Release
+name: Keshavarz20 Bridge v3.3.37 Release
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: k20-bridge-v3.3.36-release
+  group: k20-bridge-v3.3.37-release
   cancel-in-progress: false
 
 jobs:
@@ -26,11 +26,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          grep -q 'Version: 3.3.36' plugins/k20-bridge-v3/k20-bridge-v3.php
+          grep -q 'Version: 3.3.37' plugins/k20-bridge-v3/k20-bridge-v3.php
           python - <<'PY'
           import json
           m=json.load(open('plugins/k20-bridge-v3/update-manifest.json'))
-          assert m['version']=='3.3.36'
+          assert m['version']=='3.3.37'
           PY
 
       - name: PHP syntax validation
@@ -47,8 +47,8 @@ jobs:
           mkdir -p dist/k20-bridge-v3
           cp -R plugins/k20-bridge-v3/. dist/k20-bridge-v3/
           cd dist
-          zip -qr k20-bridge-v3.3.36.zip k20-bridge-v3
-          sha256sum k20-bridge-v3.3.36.zip > k20-bridge-v3.3.36.sha256
+          zip -qr k20-bridge-v3.3.37.zip k20-bridge-v3
+          sha256sum k20-bridge-v3.3.37.zip > k20-bridge-v3.3.37.sha256
 
       - name: Publish or refresh release assets
         shell: bash
@@ -56,8 +56,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          if gh release view v3.3.36 >/dev/null 2>&1; then
-            gh release upload v3.3.36 dist/k20-bridge-v3.3.36.zip dist/k20-bridge-v3.3.36.sha256 --clobber
+          if gh release view v3.3.37 >/dev/null 2>&1; then
+            gh release upload v3.3.37 dist/k20-bridge-v3.3.37.zip dist/k20-bridge-v3.3.37.sha256 --clobber
           else
-            gh release create v3.3.36               dist/k20-bridge-v3.3.36.zip               dist/k20-bridge-v3.3.36.sha256               --title 'Keshavarz20 Bridge v3.3.36'               --notes 'Guarded K20 Bridge v3.3.36: adds sanitized K20 Factor runtime health/smoke/assets inspection and guarded K20-owned plugin code roots while preserving all existing hard-deny, approval, rollback, asset, snippet, observability and self-update protections.'
+            gh release create v3.3.37               dist/k20-bridge-v3.3.37.zip               dist/k20-bridge-v3.3.37.sha256               --title 'Keshavarz20 Bridge v3.3.37'               --notes 'Guarded K20 Bridge v3.3.37: scopes technical product-filter facets and counts to products in the current taxonomy archive, preventing site-wide attribute values from leaking into money-category filters while preserving existing hard-deny, approval, rollback, asset, snippet, observability and self-update protections.'
           fi
