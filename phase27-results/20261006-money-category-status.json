@@ -1,0 +1,64 @@
+{
+  "phase": 27,
+  "name": "Money Category Decision Pages",
+  "executed_date": "2026-10-06",
+  "bridge_version": "3.3.36",
+  "categories": [
+    {
+      "id": 755,
+      "name": "نوار تیپ",
+      "status": "PASS_EXISTING_STRONG"
+    },
+    {
+      "id": 768,
+      "name": "لوله نخدار",
+      "status": "PASS_EXISTING_STRONG"
+    },
+    {
+      "id": 761,
+      "name": "انشعابات و بست ها",
+      "status": "PASS_EXISTING_STRONG_MEDIA_ALT_FIXED"
+    },
+    {
+      "id": 825,
+      "name": "فیلتر و فیلتراسیون",
+      "status": "PASS_EXISTING_STRONG_MEDIA_ALT_FIXED"
+    },
+    {
+      "id": 790,
+      "name": "اتصالات پلی اتیلن",
+      "status": "PASS_DECISION_PAGE_UPGRADED_MEDIA_ALT_FIXED"
+    }
+  ],
+  "checks": {
+    "category_http_canonical_index_follow": "5/5 PASS",
+    "custom_yoast_title_meta": "5/5 PASS",
+    "decision_content": "5/5 PASS",
+    "faq": "5/5 PASS",
+    "quote_cta": "5/5 PASS",
+    "selected_money_product_category_graph": "30/30 PASS",
+    "category_image_alt": "5/5 non-empty after fixes",
+    "polyethylene_desktop_visual_qa": "PASS",
+    "mobile_tablet_visual_qa": "UNVERIFIED_TOOLING_LIMIT"
+  },
+  "changes": {
+    "polyethylene_category_apply_commit": "094df433c8247ecff8fa988962f8c1a44bb30e88",
+    "polyethylene_bridge_readback_commit": "b97ed278242e795267b47479a067444bcfbf94b8",
+    "media_alt_request_commits": [
+      "7e913f7c824dda25e8cb6a86a4f5afe607fc59e1",
+      "fea9d94a612284683a0b1252f5b6bb1a408e0194",
+      "9894be7a07fb6cfe18a08f8c399a65156253f951"
+    ]
+  },
+  "sanitizer": {
+    "category_html_clean": true,
+    "category_html_zero_width_found": 0,
+    "category_alt_json_clean": true,
+    "deterministic_hidden_artifacts_remaining": 0
+  },
+  "residuals": [
+    "Yoast Open Graph titles/descriptions are still generic even though Google-facing SEO titles/meta are category-specific.",
+    "Request-quotation CTA exists but was not prominent near the top in desktop visual QA.",
+    "Mobile and tablet viewport visual QA could not be completed because the available browser could not resize and the container has no external DNS."
+  ]
+}
