@@ -1,4 +1,4 @@
-name: Keshavarz20 Bridge v3.3.36 Test and Package
+name: Keshavarz20 Bridge v3.3.37 Test and Package
 
 on:
   push:
@@ -52,9 +52,9 @@ jobs:
           c=json.load(open('plugins/k20-bridge-v3/api-contract.json'))
           m=json.load(open('plugins/k20-bridge-v3/update-manifest.json'))
           assert c['schema_version']=='3.3'
-          assert c['plugin_version']=='3.3.36'
-          assert m['version']=='3.3.36'
-          assert m['package_url'].startswith('https://github.com/calibra-dev/keshavarz20-actions/releases/download/v3.3.36/')
+          assert c['plugin_version']=='3.3.37'
+          assert m['version']=='3.3.37'
+          assert m['package_url'].startswith('https://github.com/calibra-dev/keshavarz20-actions/releases/download/v3.3.37/')
           PY
 
       - name: Security policy guard
@@ -67,6 +67,8 @@ jobs:
           fi
           grep -q "'price'" plugins/k20-bridge-v3/k20-bridge-v3.php
           grep -q "'password'" plugins/k20-bridge-v3/k20-bridge-v3.php
+          grep -q "technical_filter_scope_object_ids" plugins/k20-bridge-v3/k20-bridge-v3.php
+          grep -q "all_with_object_id" plugins/k20-bridge-v3/k20-bridge-v3.php
           grep -q "REPO_RELEASE_PREFIX='https://github.com/calibra-dev/keshavarz20-actions/releases/download/'" plugins/k20-bridge-v3/includes/class-k20-bridge-v32-updater.php
           grep -q "checksum_mismatch" plugins/k20-bridge-v3/includes/class-k20-bridge-v32-updater.php
           grep -q "approval_required" plugins/k20-bridge-v3/includes/class-k20-bridge-v32-approval.php
@@ -105,15 +107,15 @@ jobs:
           mkdir -p dist/k20-bridge-v3
           cp -R plugins/k20-bridge-v3/. dist/k20-bridge-v3/
           cd dist
-          zip -qr k20-bridge-v3.3.36.zip k20-bridge-v3
-          sha256sum k20-bridge-v3.3.36.zip > k20-bridge-v3.3.36.sha256
+          zip -qr k20-bridge-v3.3.37.zip k20-bridge-v3
+          sha256sum k20-bridge-v3.3.37.zip > k20-bridge-v3.3.37.sha256
 
       - name: Upload package
         uses: actions/upload-artifact@v4
         with:
-          name: k20-bridge-v3.3.36
+          name: k20-bridge-v3.3.37
           path: |
-            dist/k20-bridge-v3.3.36.zip
-            dist/k20-bridge-v3.3.36.sha256
+            dist/k20-bridge-v3.3.37.zip
+            dist/k20-bridge-v3.3.37.sha256
           if-no-files-found: error
           retention-days: 30
