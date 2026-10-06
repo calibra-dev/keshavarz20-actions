@@ -1,0 +1,99 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261006-phase27-upvc-products-read.sanitized.json",
+  "action": "batch",
+  "request_id": "phase27-upvc-products-read-20261006",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-06T07:10:04.8603860Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.37",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "count": 10,
+    "items": [
+      {
+        "index": 0,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "GET",
+        "result_path": "/wc/v3/products/135667",
+        "result_status": 200
+      },
+      {
+        "index": 1,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "GET",
+        "result_path": "/wc/v3/products/135323",
+        "result_status": 200
+      },
+      {
+        "index": 2,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "GET",
+        "result_path": "/wc/v3/products/135339",
+        "result_status": 200
+      },
+      {
+        "index": 3,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "GET",
+        "result_path": "/wc/v3/products/135255",
+        "result_status": 200
+      },
+      {
+        "index": 4,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "GET",
+        "result_path": "/wc/v3/products/140661",
+        "result_status": 200
+      },
+      {
+        "index": 5,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "GET",
+        "result_path": "/wc/v3/products/140657",
+        "result_status": 200
+      },
+      {
+        "index": 6,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "GET",
+        "result_path": "/wc/v3/products/140656",
+        "result_status": 200
+      },
+      {
+        "index": 7,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "GET",
+        "result_path": "/wc/v3/products/135349",
+        "result_status": 200
+      },
+      {
+        "index": 8,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "GET",
+        "result_path": "/wc/v3/products/135341",
+        "result_status": 200
+      },
+      {
+        "index": 9,
+        "action": "rest.proxy",
+        "ok": true,
+        "result_method": "GET",
+        "result_path": "/wc/v3/products/135331",
+        "result_status": 200
+      }
+    ]
+  }
+}
