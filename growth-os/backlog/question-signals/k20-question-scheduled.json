@@ -1,16 +1,15 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-3cc57c4de1c598f4",
-  "product_id": 135215,
-  "family": "pipe",
-  "intent": "simple_help",
+  "canonical_intent_id": "question-intent-6f17190d10bc18ae",
+  "product_id": 140877,
+  "family": "fertilizer",
+  "intent": "suitability",
   "scenario_dimensions": {
-    "flow": true,
-    "elevation": true,
-    "crop": "سیر"
+    "area": true,
+    "crop": "اسفناج"
   },
-  "potential_article_gap": false,
+  "potential_article_gap": true,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
