@@ -1,17 +1,16 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-b37a0e845cd21e2b",
-  "product_id": 135499,
-  "family": "fitting",
-  "intent": "post_purchase",
+  "canonical_intent_id": "question-intent-affc024ceb7ba5dd",
+  "product_id": 135329,
+  "family": "valve",
+  "intent": "compatibility",
   "scenario_dimensions": {
-    "installation_state": true,
-    "failure_mode": true
+    "pressure": true
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": false,
+  "compatibility_gap": true,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
