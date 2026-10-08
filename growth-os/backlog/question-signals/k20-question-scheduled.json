@@ -1,16 +1,17 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-37123a6d7a7c168d",
-  "product_id": 140495,
+  "canonical_intent_id": "question-intent-c6cae0e66825387b",
+  "product_id": 140403,
   "family": "fitting",
-  "intent": "compatibility",
+  "intent": "wholesale",
   "scenario_dimensions": {
-    "installation_state": true
+    "water": true,
+    "logistics": true
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": true,
+  "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
