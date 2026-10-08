@@ -1,16 +1,15 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-b4015e0acec4434e",
-  "product_id": 142194,
-  "family": "pump",
-  "intent": "selection",
+  "canonical_intent_id": "question-intent-93f7a7fc546dad3e",
+  "product_id": 140300,
+  "family": "fertilizer",
+  "intent": "orchard",
   "scenario_dimensions": {
-    "flow": true,
-    "elevation": true,
-    "crop": "سیر"
+    "pressure": true,
+    "crop": "گلابی"
   },
-  "potential_article_gap": true,
+  "potential_article_gap": false,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
