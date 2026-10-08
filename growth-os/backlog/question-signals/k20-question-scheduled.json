@@ -1,12 +1,16 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-b378f34b01de1b3c",
-  "product_id": 142045,
-  "family": "pesticide",
-  "intent": "post_purchase",
-  "scenario_dimensions": {},
-  "potential_article_gap": false,
+  "canonical_intent_id": "question-intent-b4015e0acec4434e",
+  "product_id": 142194,
+  "family": "pump",
+  "intent": "selection",
+  "scenario_dimensions": {
+    "flow": true,
+    "elevation": true,
+    "crop": "سیر"
+  },
+  "potential_article_gap": true,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
