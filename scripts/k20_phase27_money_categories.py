@@ -68,7 +68,7 @@ def signature(fragment):
     p=SemanticHTML()
     p.feed(fragment)
     return {
-        "text":" ".join(p.text),
+        "text":re.sub(r"\\s+", "", "".join(p.text)),
         "links":sorted({normalize_link(url) for url in p.links}),
     }
 
