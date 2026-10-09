@@ -6,6 +6,7 @@ import re
 import time
 from datetime import datetime, timezone
 from html import unescape
+from urllib.parse import unquote, urlsplit, urlunsplit
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -58,10 +59,18 @@ class SemanticHTML(HTMLParser):
             if href:
                 self.links.append(href.strip())
 
+def normalize_link(url):
+    parts = urlsplit(unquote(url.strip()))
+    path = parts.path.rstrip("/") or "/"
+    return urlunsplit((parts.scheme.lower(), parts.netloc.lower(), path, parts.query, ""))
+
 def signature(fragment):
     p=SemanticHTML()
     p.feed(fragment)
-    return {"text":" ".join(p.text),"links":sorted(set(p.links))}
+    return {
+        "text":" ".join(p.text),
+        "links":sorted({normalize_link(url) for url in p.links}),
+    }
 
 def get_category(session,cid):
     r=session.get(f"{BASE}/wp-json/wp/v2/product_cat/{cid}",params={"context":"edit"},timeout=60)
