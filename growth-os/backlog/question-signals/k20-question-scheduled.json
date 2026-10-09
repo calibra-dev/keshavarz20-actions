@@ -1,17 +1,19 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-2f56abf50dac6c4e",
-  "product_id": 140571,
-  "family": "fitting",
-  "intent": "compatibility",
+  "canonical_intent_id": "question-intent-c4cf8fc27b22893d",
+  "product_id": 141516,
+  "family": "sprinkler",
+  "intent": "field_context",
   "scenario_dimensions": {
-    "installation_state": true,
+    "area": true,
+    "pressure": true,
+    "flow": true,
     "crop": "جو"
   },
-  "potential_article_gap": false,
+  "potential_article_gap": true,
   "potential_hub_gap": false,
-  "compatibility_gap": true,
+  "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
