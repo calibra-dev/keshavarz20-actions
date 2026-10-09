@@ -144,7 +144,16 @@ def main():
             a=final.index(START)
             b=final.index(END,a)+len(END)
             final_module=final[a:b]
-            if signature(final_module)!=signature(module):
+            expected_sig = signature(module)
+            actual_sig = signature(final_module)
+            if actual_sig != expected_sig:
+                print(json.dumps({
+                    "phase27_readback_mismatch": cid,
+                    "expected_text": expected_sig["text"],
+                    "actual_text": actual_sig["text"],
+                    "expected_links": expected_sig["links"],
+                    "actual_links": actual_sig["links"],
+                }, ensure_ascii=False))
                 raise RuntimeError(f"semantic readback mismatch for {cid}")
             if hidden_artifacts(final_module):
                 raise RuntimeError(f"readback sanitizer failure for {cid}")
