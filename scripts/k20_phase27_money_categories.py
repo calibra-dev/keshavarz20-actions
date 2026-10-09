@@ -160,8 +160,10 @@ def main():
 
             link=rb.get("link") or obj.get("link")
             pub=public_get(link)
-            if pub.status_code!=200 or "k20-phase27-money-category:start" not in pub.text:
-                raise RuntimeError(f"public verify failed for {cid} http={pub.status_code}")
+            heading_match = re.search(r"<h2>(.*?)</h2>", module, flags=re.IGNORECASE | re.DOTALL)
+            public_heading = re.sub(r"<[^>]+>", "", unescape(heading_match.group(1))).strip() if heading_match else ""
+            if pub.status_code!=200 or not public_heading or public_heading not in unescape(pub.text):
+                raise RuntimeError(f"public verify failed for {cid} http={pub.status_code} heading={public_heading!r}")
 
             links=sorted(set(re.findall(r'href="(https://keshavarz20\.com/[^"]+)"',final_module)))
             product_links=[u for u in links if "/product/" in u]
