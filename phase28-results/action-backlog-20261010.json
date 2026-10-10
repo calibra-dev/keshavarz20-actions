@@ -1,0 +1,126 @@
+{
+  "schema_version": "k20-phase28-action-backlog-v1",
+  "phase": 28,
+  "generated_at": "2026-10-10",
+  "baseline": {
+    "published_products": 652,
+    "in_stock": 494,
+    "out_of_stock": 158,
+    "purchasable": 562,
+    "non_purchasable": 90,
+    "price_positive": 562,
+    "price_zero": 90,
+    "zero_price_in_stock": 73,
+    "zero_price_out_of_stock": 17,
+    "out_of_stock_positive_price": 141,
+    "in_stock_positive_price_non_purchasable": 0
+  },
+  "conclusions": {
+    "technical_purchasability_bug": false,
+    "all_non_purchasable_explained_by_zero_price": true,
+    "zero_price_inquiry_ui_verified": true,
+    "blind_price_fill_forbidden": true,
+    "blind_stock_change_forbidden": true,
+    "keep_useful_oos_pages_published": true
+  },
+  "queues": {
+    "P0_verified_price_source_in_stock": [
+      {
+        "id": 143032,
+        "name": "موتور جوش فلایژن (FLYGEN) مدل FG 160A"
+      },
+      {
+        "id": 143029,
+        "name": "کود ان پی کا 36-12-12 بیوفارم (beau farm)"
+      },
+      {
+        "id": 143020,
+        "name": "کود ان پی کا 10-50-10 بیوفارم (beau farm)"
+      },
+      {
+        "id": 142985,
+        "name": "کود مایع مرغی بیوفارم (beau farm) 20 لیتری"
+      },
+      {
+        "id": 142980,
+        "name": "کود هیومیک اسید پودری بیوفارم (beau farm) 3 کیلوگرمی"
+      },
+      {
+        "id": 142919,
+        "name": "موتور برق 3 کیلو وات فلایژن FLYGEN مدل 3500 FG"
+      },
+      {
+        "id": 142913,
+        "name": "موتور برق 3 کیلو وات اینورتری فلایژن FLYGEN مدل FG 3000i-k"
+      }
+    ],
+    "P0_restock_popularity": [
+      {
+        "rank": 1,
+        "id": 139205,
+        "name": "کپسول زیرسطحی آبیاری"
+      },
+      {
+        "rank": 2,
+        "id": 140480,
+        "name": "رابط تیپ به لی فلت واشر دار آبافرین سر تخت"
+      },
+      {
+        "rank": 3,
+        "id": 135415,
+        "name": "مغزی پلیمری 1 اینچ"
+      },
+      {
+        "rank": 4,
+        "id": 140478,
+        "name": "رابط تیپ به تیپ کشویی زلال رود"
+      },
+      {
+        "rank": 5,
+        "id": 140443,
+        "name": "بابلر تنظیمی زلال رود"
+      },
+      {
+        "rank": 6,
+        "id": 140759,
+        "name": "کود گرانوله هیومیک مخصوص پیش‌کشت و چالکود ۲۵ کیلویی XGreen"
+      },
+      {
+        "rank": 7,
+        "id": 141367,
+        "name": "کوکوپیت آتلانتیس کیفیت فاین بسته 3 عددی 15 کیلوگرم"
+      },
+      {
+        "rank": 8,
+        "id": 141659,
+        "name": "کود مایع سولفوکراپ مجیک ایکس گرین آمریکا 5 لیتری"
+      },
+      {
+        "rank": 9,
+        "id": 135355,
+        "name": "شیر انشعاب رزوه 1/2 به نوار تیپ فرات"
+      },
+      {
+        "rank": 10,
+        "id": 135801,
+        "name": "مغزی پلیمری 2 اینچ"
+      }
+    ],
+    "P1_zero_price_out_of_stock": "17 products: verify supply first, then verified price.",
+    "P1_oos_positive_remaining": "131 additional positive-price OOS products after top-10 popularity queue."
+  },
+  "execution_policy": {
+    "price_write": "Only with verified supplier/manufacturer/current internal source; no guessed or copied price.",
+    "stock_write": "Only with verified inventory truth; no automatic restock.",
+    "zero_price_page": "Keep published and retain price-inquiry UI.",
+    "out_of_stock_page": "Keep valuable SEO page published; prefer supply/alternative/quote pathway instead of deletion.",
+    "discontinued_product": "Only archive/noindex/redirect after explicit discontinuation evidence and replacement mapping."
+  },
+  "evidence": {
+    "phase28_audit_run": 38026046062,
+    "phase28_trigger_commit": "e4868e9615b4a0ffc7fc318629c03a8ada3cd017",
+    "bridge_zero_price_read_commit": "ed13cd0a1e36ae95a99e0cb6bc3a35fb38c4a9c3",
+    "bridge_oos_read_commit": "185fdea8e473b051658fbc71eea3e8244cb7a82a",
+    "bridge_version": "3.3.37"
+  }
+}
