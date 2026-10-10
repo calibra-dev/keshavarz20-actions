@@ -1,0 +1,3790 @@
+{
+  "schema_version": "k20-phase28-pricing-availability-audit-v1",
+  "phase": 28,
+  "generated_at_utc": "2026-10-10T05:02:57.983172+00:00",
+  "status": "PASS",
+  "page_counts": [
+    {
+      "page": 1,
+      "count": 100
+    },
+    {
+      "page": 2,
+      "count": 100
+    },
+    {
+      "page": 3,
+      "count": 100
+    },
+    {
+      "page": 4,
+      "count": 100
+    },
+    {
+      "page": 5,
+      "count": 100
+    },
+    {
+      "page": 6,
+      "count": 100
+    },
+    {
+      "page": 7,
+      "count": 52
+    }
+  ],
+  "summary": {
+    "published_products": 652,
+    "in_stock": 494,
+    "out_of_stock": 158,
+    "purchasable": 562,
+    "non_purchasable": 90,
+    "price_positive": 562,
+    "price_zero": 90,
+    "price_missing": 0,
+    "price_invalid": 0,
+    "zero_price_in_stock": 73,
+    "zero_price_out_of_stock": 17,
+    "out_of_stock_positive_price": 141,
+    "in_stock_positive_price_non_purchasable": 0
+  },
+  "invariants": {
+    "all_non_purchasable_are_zero_or_missing_price": true,
+    "no_positive_price_in_stock_purchasability_bug": true,
+    "no_missing_price_records": true,
+    "no_invalid_price_records": true
+  },
+  "zero_price_category_breakdown": [
+    {
+      "name": "نهاده های کشاورزی",
+      "count": 71
+    },
+    {
+      "name": "كودهای کشاورزی",
+      "count": 49
+    },
+    {
+      "name": "محصولات کشاورزی",
+      "count": 19
+    },
+    {
+      "name": "ایکس گرین (XGreen)",
+      "count": 13
+    },
+    {
+      "name": "نشاء",
+      "count": 13
+    },
+    {
+      "name": "بیوفارم (beau farm)",
+      "count": 4
+    },
+    {
+      "name": "ابزارآلات و تجهیزات صنعتی",
+      "count": 3
+    },
+    {
+      "name": "موتور برق و پمپ بنزینی",
+      "count": 3
+    },
+    {
+      "name": "روم",
+      "count": 3
+    },
+    {
+      "name": "سم های کشاورزی",
+      "count": 1
+    }
+  ],
+  "out_of_stock_category_breakdown": [
+    {
+      "name": "كودهای کشاورزی",
+      "count": 65
+    },
+    {
+      "name": "تجهیزات و لوازم کشاورزی",
+      "count": 64
+    },
+    {
+      "name": "نهاده های کشاورزی",
+      "count": 64
+    },
+    {
+      "name": "محصولات کشاورزی",
+      "count": 42
+    },
+    {
+      "name": "اتصالات پلی اتیلن",
+      "count": 29
+    },
+    {
+      "name": "ایکس گرین (XGreen)",
+      "count": 26
+    },
+    {
+      "name": "پلی اتیلن پیچی",
+      "count": 26
+    },
+    {
+      "name": "روم",
+      "count": 25
+    },
+    {
+      "name": "لوازم جانبی",
+      "count": 17
+    },
+    {
+      "name": "اتصالات u-pvc",
+      "count": 15
+    },
+    {
+      "name": "سم های کشاورزی",
+      "count": 13
+    },
+    {
+      "name": "ابزارآلات و تجهیزات صنعتی",
+      "count": 11
+    },
+    {
+      "name": "اتصالات چدنی و آهنی",
+      "count": 10
+    },
+    {
+      "name": "آبیاری قطره‌ای",
+      "count": 9
+    },
+    {
+      "name": "لوازم آبیاری",
+      "count": 9
+    },
+    {
+      "name": "کمربند انشعاب پلی اتیلن",
+      "count": 9
+    },
+    {
+      "name": "متفرقه",
+      "count": 8
+    },
+    {
+      "name": "کف کش و لجن کش",
+      "count": 7
+    },
+    {
+      "name": "شیرآلات پلی اتیلن",
+      "count": 7
+    },
+    {
+      "name": "انشعابات و بست ها",
+      "count": 5
+    },
+    {
+      "name": "شیر توپی پلیمری",
+      "count": 5
+    },
+    {
+      "name": "اتصالات پلی اتیلن جوشی",
+      "count": 5
+    },
+    {
+      "name": "بیدار رشد",
+      "count": 4
+    },
+    {
+      "name": "پمپ و ست کنترل",
+      "count": 3
+    },
+    {
+      "name": "سایر اتصالات پلی اتیلن پیچی",
+      "count": 3
+    },
+    {
+      "name": "سه راه انشعاب پلی اتیلن",
+      "count": 3
+    },
+    {
+      "name": "لوله و نوار آبیاری",
+      "count": 2
+    },
+    {
+      "name": "نوار تیپ",
+      "count": 2
+    },
+    {
+      "name": "شیر پروانه‌ای پلیمری",
+      "count": 2
+    },
+    {
+      "name": "سه راه نر پلی اتیلن",
+      "count": 2
+    },
+    {
+      "name": "زانو پلی اتیلن پیچی",
+      "count": 2
+    },
+    {
+      "name": "رابط پلی اتیلن پیچی",
+      "count": 2
+    },
+    {
+      "name": "بلونا (BELLONA)",
+      "count": 1
+    },
+    {
+      "name": "شنژن (shenzhen)",
+      "count": 1
+    },
+    {
+      "name": "بستر كشت",
+      "count": 1
+    },
+    {
+      "name": "اتصال یکسر ماده پلی اتیلن",
+      "count": 1
+    },
+    {
+      "name": "قطره چکان (دریپر)",
+      "count": 1
+    },
+    {
+      "name": "اتصالات فلنچدار",
+      "count": 1
+    },
+    {
+      "name": "سه راه پیچی پلی اتیلن",
+      "count": 1
+    },
+    {
+      "name": "رابط مساوی پلی اتیلن",
+      "count": 1
+    },
+    {
+      "name": "رابط تبدیل پلی اتیلن",
+      "count": 1
+    },
+    {
+      "name": "اتصال یکسر نر پلی اتیلن",
+      "count": 1
+    }
+  ],
+  "zero_price_products": [
+    {
+      "id": 143032,
+      "name": "موتور جوش فلایژن (FLYGEN) مدل ‎FG 160A",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d9%88%d8%aa%d9%88%d8%b1-%d8%ac%d9%88%d8%b4-%d9%81%d9%84%d8%a7%db%8c%da%98%d9%86-flygen-%d9%85%d8%af%d9%84-fg-160a/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ابزارآلات و تجهیزات صنعتی",
+        "موتور برق و پمپ بنزینی"
+      ]
+    },
+    {
+      "id": 143029,
+      "name": "کود ان پی کا 36-12-12 بیوفارم (beau farm)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d8%a7%d9%86-%d9%be%db%8c-%da%a9%d8%a7-36-12-12-%d8%a8%db%8c%d9%88%d9%81%d8%a7%d8%b1%d9%85-beau-farm/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "بیوفارم (beau farm)",
+        "كودهای کشاورزی",
+        "محصولات کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 143020,
+      "name": "کود ان پی کا 10-50-10 بیوفارم (beau farm)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d8%a7%d9%86-%d9%be%db%8c-%da%a9%d8%a7-10-50-10-%d8%a8%db%8c%d9%88%d9%81%d8%a7%d8%b1%d9%85-beau-farm/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "بیوفارم (beau farm)",
+        "كودهای کشاورزی",
+        "محصولات کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 142985,
+      "name": "کود مایع مرغی بیوفارم (beau farm) 20 لیتری",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%85%d8%b1%d8%ba%db%8c-%d8%a8%db%8c%d9%88%d9%81%d8%a7%d8%b1%d9%85-beau-farm-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "بیوفارم (beau farm)",
+        "كودهای کشاورزی",
+        "محصولات کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 142980,
+      "name": "کود هیومیک اسید پودری بیوفارم (beau farm) 3کیلوگرمی",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%87%db%8c%d9%88%d9%85%db%8c%da%a9-%d8%a7%d8%b3%db%8c%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d8%a8%db%8c%d9%88%d9%81%d8%a7%d8%b1%d9%85-beau-farm/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "بیوفارم (beau farm)",
+        "كودهای کشاورزی",
+        "محصولات کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 142919,
+      "name": "موتور برق 3 کیلو وات فلایژن FLYGEN مدل  3500 FG",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d9%88%d8%aa%d9%88%d8%b1-%d8%a8%d8%b1%d9%82-3-%da%a9%db%8c%d9%84%d9%88-%d9%88%d8%a7%d8%aa-%d9%81%d9%84%d8%a7%db%8c%da%98%d9%86-flygen-%d9%85%d8%af%d9%84-3500-fg/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ابزارآلات و تجهیزات صنعتی",
+        "موتور برق و پمپ بنزینی"
+      ]
+    },
+    {
+      "id": 142913,
+      "name": "موتور برق 3 کیلو وات اینورتری فلایژن FLYGEN (مدل  FG 3000i-k )",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d9%88%d8%aa%d9%88%d8%b1-%d8%a8%d8%b1%d9%82-3-%da%a9%db%8c%d9%84%d9%88-%d9%88%d8%a7%d8%aa-%d8%a7%db%8c%d9%86%d9%88%d8%b1%d8%aa%d8%b1%db%8c-%d9%81%d9%84%d8%a7%db%8c%da%98%d9%86-flygen-%d9%85/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ابزارآلات و تجهیزات صنعتی",
+        "موتور برق و پمپ بنزینی"
+      ]
+    },
+    {
+      "id": 142075,
+      "name": "علف کش تری فلوراین (ترفلان) سازگان شیمی 1 لیتری",
+      "permalink": "https://keshavarz20.com/product/%d8%b9%d9%84%d9%81-%da%a9%d8%b4-%d8%aa%d8%b1%db%8c-%d9%81%d9%84%d9%88%d8%b1%d8%a7%db%8c%d9%86-%d8%aa%d8%b1%d9%81%d9%84%d8%a7%d9%86-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-1/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "سم های کشاورزی"
+      ]
+    },
+    {
+      "id": 141726,
+      "name": "کود هایپرهیوم مایع 20 لیتری ایکس گرین آمریکا (Hyper Hum XGreen)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%85%d8%a7%db%8c%d8%b9-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 141220,
+      "name": "کود هایپرهیوم مایع 1 لیتری ایکس گرین آمریکا (Hyper Hum XGreen)",
+      "permalink": "https://keshavarz20.com/product/%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%85%d8%a7%db%8c%d8%b9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-hyper-hum-xgreen/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 141217,
+      "name": "کود آمینوتاپ مایع 1 لیتری ایکس گرین آمریکا (AminoTop XGreen)",
+      "permalink": "https://keshavarz20.com/product/%d8%a2%d9%85%db%8c%d9%86%d9%88%d8%aa%d8%a7%d9%be-%d9%85%d8%a7%db%8c%d8%b9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-aminotop-xgreen/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140938,
+      "name": "گوگرد پودری و گوگرد بنتونیت دار Room کیسه 25 کیلو گرمی",
+      "permalink": "https://keshavarz20.com/product/%da%af%d9%88%da%af%d8%b1%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%88-%da%af%d9%88%da%af%d8%b1%d8%af-%d8%a8%d9%86%d8%aa%d9%88%d9%86%db%8c%d8%aa-%d8%af%d8%a7%d8%b1-room-%da%a9%db%8c%d8%b3%d9%87-25/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140937,
+      "name": "گوگرد سوسپانسیون 80 Room گالن 5 لیتری",
+      "permalink": "https://keshavarz20.com/product/%da%af%d9%88%da%af%d8%b1%d8%af-%d8%b3%d9%88%d8%b3%d9%be%d8%a7%d9%86%d8%b3%db%8c%d9%88%d9%86-80-room-%da%af%d8%a7%d9%84%d9%86-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140934,
+      "name": "کود مایع صابون پتاسیم روم هلند 1 لیتری (SoaPhotash Room)",
+      "permalink": "https://keshavarz20.com/product/%d8%b5%d8%a7%d8%a8%d9%88%d9%86-%d9%be%d8%aa%d8%a7%d8%b3%db%8c%d9%85-room-%d9%82%d9%88%d8%b7%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140892,
+      "name": "کود پودری SOP 0-0-52 ایکس گرین آمریکا (Sop 0-0-52 XGreen)",
+      "permalink": "https://keshavarz20.com/product/sop-0-0-52-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140878,
+      "name": "کود پودری هایپر ۱۰-۱۰-۳۰ ایکس گرین آمریکا 10 کیلویی (Hyper 30-10-10 XGreen)",
+      "permalink": "https://keshavarz20.com/product/%d9%87%d8%a7%db%8c%d9%be%d8%b1-%db%b1%db%b0-%db%b1%db%b0-%db%b3%db%b0-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140860,
+      "name": "کود مایع نیترات کلسیم مایع ایکس گرین آمریکا 5 لیتری (Calcium Nitrate XGreen)",
+      "permalink": "https://keshavarz20.com/product/%d9%86%db%8c%d8%aa%d8%b1%d8%a7%d8%aa-%da%a9%d9%84%d8%b3%db%8c%d9%85-%d9%85%d8%a7%db%8c%d8%b9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140854,
+      "name": "کود پودری معجزه گر ارگانیک ایکس گرین آمریکا 10 کیلویی (Organic Marvel)",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d8%b9%d8%ac%d8%b2%d9%87-%da%af%d8%b1-%d8%a7%d8%b1%da%af%d8%a7%d9%86%db%8c%da%a9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140820,
+      "name": "کود مایع منیزیم مگنوس ایکس گرین ۱ لیتری؛ رفع زردی و تقویت کلروفیل (Magnus XGreen)",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d9%8e%da%af%d9%86%d9%88%d8%b3-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140773,
+      "name": "کود مایع هایپر هیوم ایکس گرین آمریکا 5 لیتری (Hyper Hum XGreen)",
+      "permalink": "https://keshavarz20.com/product/mkp-0-52-34-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140767,
+      "name": "فول گلد ایکس گرین",
+      "permalink": "https://keshavarz20.com/product/%d9%81%d9%88%d9%84-%da%af%d9%84%d8%af-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140751,
+      "name": "مونوآمونیوم فسفات   ۰-۶۱-۱۲   25kg",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d9%88%d9%86%d9%88%d8%a2%d9%85%d9%88%d9%86%db%8c%d9%88%d9%85-%d9%81%d8%b3%d9%81%d8%a7%d8%aa-%db%b0-%db%b6%db%b1-%db%b1%db%b2/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140750,
+      "name": "آمینوتاپ پودری ایکس گرین",
+      "permalink": "https://keshavarz20.com/product/%d8%a2%d9%85%db%8c%d9%86%d9%88%d8%aa%d8%a7%d9%be-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140742,
+      "name": "شالی ایکس گرین -1-لیتری",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%d8%a7%d9%84%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140321,
+      "name": "کود مایع فسفر و روی لیکوفوس",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%81%d8%b3%d9%81%d8%b1-%d9%88-%d8%b1%d9%88%db%8c-%d9%84%db%8c%da%a9%d9%88%d9%81%d9%88%d8%b3/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140320,
+      "name": "کود مایع ترینوکس کلسیم و نیتروژن",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%aa%d8%b1%db%8c%d9%86%d9%88%da%a9%d8%b3-%da%a9%d9%84%d8%b3%db%8c%d9%85-%d9%88-%d9%86%db%8c%d8%aa%d8%b1%d9%88%da%98%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140316,
+      "name": "هیومیک اسید مگاهومات بن پودری (هیومات پتاسیم)",
+      "permalink": "https://keshavarz20.com/product/%d9%87%db%8c%d9%88%d9%85%db%8c%da%a9-%d8%a7%d8%b3%db%8c%d8%af-%d9%85%da%af%d8%a7%d9%87%d9%88%d9%85%d8%a7%d8%aa-%d8%a8%d9%86-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%87%db%8c%d9%88%d9%85%d8%a7%d8%aa-%d9%be/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140315,
+      "name": "اسید هیومیک مایع مگاهومات بن",
+      "permalink": "https://keshavarz20.com/product/%d8%a7%d8%b3%db%8c%d8%af-%d9%87%db%8c%d9%88%d9%85%db%8c%da%a9-%d9%85%d8%a7%db%8c%d8%b9-%d9%85%da%af%d8%a7%d9%87%d9%88%d9%85%d8%a7%d8%aa-%d8%a8%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140306,
+      "name": "کود مایع کالبونوکس (کلسیم+بور)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%da%a9%d8%a7%d9%84%d8%a8%d9%88%d9%86%d9%88%da%a9%d8%b3-%da%a9%d9%84%d8%b3%db%8c%d9%85%d8%a8%d9%88%d8%b1/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140305,
+      "name": "کود پودری فرتینوکس 36-12-12",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%81%d8%b1%d8%aa%db%8c%d9%86%d9%88%da%a9%d8%b3-36-12-12/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140302,
+      "name": "کود پودری فرتینوکس51-0-0 (سولفات پتاسیم)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%81%d8%b1%d8%aa%db%8c%d9%86%d9%88%da%a9%d8%b351-0-0-%d8%b3%d9%88%d9%84%d9%81%d8%a7%d8%aa-%d9%be%d8%aa%d8%a7%d8%b3%db%8c%d9%85/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140301,
+      "name": "فرتینوکس جلبک پودری SEAWEED",
+      "permalink": "https://keshavarz20.com/product/%d9%81%d8%b1%d8%aa%db%8c%d9%86%d9%88%da%a9%d8%b3-%d8%ac%d9%84%d8%a8%da%a9-%d9%be%d9%88%d8%af%d8%b1%db%8c-seaweed/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140300,
+      "name": "کود مایع میکرونوا",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%85%db%8c%da%a9%d8%b1%d9%88%d9%86%d9%88%d8%a7/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140294,
+      "name": "کود پودری فرتینوکس آمینو اسید",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%81%d8%b1%d8%aa%db%8c%d9%86%d9%88%da%a9%d8%b3-%d8%a2%d9%85%db%8c%d9%86%d9%88-%d8%a7%d8%b3%db%8c%d8%af/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140293,
+      "name": "کود فرتینوکس 40-5-5 پلاس",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%81%d8%b1%d8%aa%db%8c%d9%86%d9%88%da%a9%d8%b3-40-5-5-%d9%be%d9%84%d8%a7%d8%b3/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140290,
+      "name": "کود پودری فرتینوکس 13-40-13 پلاس",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%81%d8%b1%d8%aa%db%8c%d9%86%d9%88%da%a9%d8%b3-13-40-13-%d9%be%d9%84%d8%a7%d8%b3/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140289,
+      "name": "کود پودری فرتینوکس 44-04-10 پلاس",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%81%d8%b1%d8%aa%db%8c%d9%86%d9%88%da%a9%d8%b3-44-04-10-%d9%be%d9%84%d8%a7%d8%b3/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140230,
+      "name": "کود مایع پتاسیم پتانوا (K45) بنیز",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%be%d8%aa%d8%a7%d8%b3%db%8c%d9%85-%d9%be%d8%aa%d8%a7%d9%86%d9%88%d8%a7-k45-%d8%a8%d9%86%db%8c%d8%b2/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 140229,
+      "name": "کود مایع بور ( ترینوکس بور ) بنیز",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%a8%d9%88%d8%b1-%d8%aa%d8%b1%db%8c%d9%86%d9%88%da%a9%d8%b3-%d8%a8%d9%88%d8%b1-%d8%a8%d9%86%db%8c%d8%b2/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 140228,
+      "name": "کود مایع نیتروژن و گوگرد ( ترینوکس اوره سولفات ) بنیز",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%86%db%8c%d8%aa%d8%b1%d9%88%da%98%d9%86-%d9%88-%da%af%d9%88%da%af%d8%b1%d8%af-%d8%aa%d8%b1%db%8c%d9%86%d9%88%da%a9%d8%b3-%d8%a7%d9%88%d8%b1%d9%87/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140227,
+      "name": "کود مایع آهن ترینوکس بنیز",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%a2%d9%87%d9%86-%d8%aa%d8%b1%db%8c%d9%86%d9%88%da%a9%d8%b3-%d8%a8%d9%86%db%8c%d8%b2/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140226,
+      "name": "کود مایع آلی پتاسیم ( ترینوکس آلی ) بنیز",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%a2%d9%84%db%8c-%d9%be%d8%aa%d8%a7%d8%b3%db%8c%d9%85-%d8%aa%d8%b1%db%8c%d9%86%d9%88%da%a9%d8%b3-%d8%a2%d9%84%db%8c-%d8%a8%d9%86%db%8c%d8%b2/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140225,
+      "name": "کود مایع منگنز ( ترینوکس منگنز ) بنیز",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%85%d9%86%da%af%d9%86%d8%b2-%d8%aa%d8%b1%db%8c%d9%86%d9%88%da%a9%d8%b3-%d9%85%d9%86%da%af%d9%86%d8%b2-%d8%a8%d9%86%db%8c%d8%b2/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140224,
+      "name": "کود مایع مس ( ترینوکس مس ) بنیز",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%85%d8%b3-%d8%aa%d8%b1%db%8c%d9%86%d9%88%da%a9%d8%b3-%d9%85%d8%b3-%d8%a8%d9%86%db%8c%d8%b2/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140223,
+      "name": "کود مایع گوگرد ( ترینوکس گوگرد ) بنیز",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%da%af%d9%88%da%af%d8%b1%d8%af-%d8%aa%d8%b1%db%8c%d9%86%d9%88%da%a9%d8%b3-%da%af%d9%88%da%af%d8%b1%d8%af-%d8%a8%d9%86%db%8c%d8%b2/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140222,
+      "name": "کود مایع روی ( ترینوکس روی ) بنیز",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%b1%d9%88%db%8c-%d8%aa%d8%b1%db%8c%d9%86%d9%88%da%a9%d8%b3-%d8%b1%d9%88%db%8c-%d8%a8%d9%86%db%8c%d8%b2/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140221,
+      "name": "کود پودری فرتینوکس 10-50-10 پلاس (فسفر بالا) بنیز",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%81%d8%b1%d8%aa%db%8c%d9%86%d9%88%da%a9%d8%b3-10-50-10-%d9%be%d9%84%d8%a7%d8%b3-%d9%81%d8%b3%d9%81%d8%b1-%d8%a8%d8%a7%d9%84%d8%a7-%d8%a8%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140220,
+      "name": "صابون محلول پاشی یونی  (حاوی مرطوب کننده ها) بنیز",
+      "permalink": "https://keshavarz20.com/product/%d8%b5%d8%a7%d8%a8%d9%88%d9%86-%d9%85%d8%ad%d9%84%d9%88%d9%84-%d9%be%d8%a7%d8%b4%db%8c-%db%8c%d9%88%d9%86%db%8c-%d8%ad%d8%a7%d9%88%db%8c-%d9%85%d8%b1%d8%b7%d9%88%d8%a8-%da%a9%d9%86%d9%86%d8%af%d9%87/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140219,
+      "name": "کود مایع سیلیسیم و پتاسیم ( سیلینوکس ) بنیز",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%b3%db%8c%d9%84%db%8c%d8%b3%db%8c%d9%85-%d9%88-%d9%be%d8%aa%d8%a7%d8%b3%db%8c%d9%85-%d8%b3%db%8c%d9%84%db%8c%d9%86%d9%88%da%a9%d8%b3-%d8%a8%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140218,
+      "name": "کود مایع روى و بور ( زیبونوکس ) بنیز",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d8%b1%d9%88%d9%89-%d9%88-%d8%a8%d9%88%d8%b1-%d8%b2%db%8c%d8%a8%d9%88%d9%86%d9%88%da%a9%d8%b3-%d8%a8%d9%86%db%8c%d8%b2/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140217,
+      "name": "کود پودری فرتینوکس 30-08-18 پلاس (پتاس بالا) بنیز",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%81%d8%b1%d8%aa%db%8c%d9%86%d9%88%da%a9%d8%b3-30-08-18-%d9%be%d9%84%d8%a7%d8%b3-%d9%be%d8%aa%d8%a7%d8%b3-%d8%a8%d8%a7%d9%84%d8%a7-%d8%a8%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140216,
+      "name": "کود پودری فرتینوکس 30-05-15 (پتاس بالا) بنیز",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%81%d8%b1%d8%aa%db%8c%d9%86%d9%88%da%a9%d8%b3-30-05-15-%d9%be%d8%aa%d8%a7%d8%b3-%d8%a8%d8%a7%d9%84%d8%a7-%d8%a8%d9%86%db%8c%d8%b2/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140215,
+      "name": "کود پودری فرتینوکس 20-20-20 پلاس بنیز",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%81%d8%b1%d8%aa%db%8c%d9%86%d9%88%da%a9%d8%b3-20-20-20-%d9%be%d9%84%d8%a7%d8%b3-%d8%a8%d9%86%db%8c%d8%b2/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136346,
+      "name": "بذر گوجه اليسا تايلند",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%a7%d9%84%d9%8a%d8%b3%d8%a7-%d8%aa%d8%a7%d9%8a%d9%84%d9%86%d8%af/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136343,
+      "name": "بذر گوجه دورتا",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%af%d9%88%d8%b1%d8%aa%d8%a7/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136304,
+      "name": "بذر گوجه نرو",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d9%86%d8%b1%d9%88/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136292,
+      "name": "بذر گوجه فلات واي",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d9%81%d9%84%d8%a7%d8%aa-%d9%88%d8%a7%d9%8a/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136278,
+      "name": "بذر گوجه سهند",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%b3%d9%87%d9%86%d8%af/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136270,
+      "name": "بذر گوجه متين تايلند",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d9%85%d8%aa%d9%8a%d9%86-%d8%aa%d8%a7%d9%8a%d9%84%d9%86%d8%af/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136258,
+      "name": "بذر گوجه سرين سينجينتا",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%b3%d8%b1%d9%8a%d9%86-%d8%b3%d9%8a%d9%86%d8%ac%d9%8a%d9%86%d8%aa%d8%a7/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136236,
+      "name": "بذر گوجه سما",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%b3%d9%85%d8%a7/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136234,
+      "name": "بذر گوجه سرين دنفلد",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%b3%d8%b1%d9%8a%d9%86-%d8%af%d9%86%d9%81%d9%84%d8%af/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136230,
+      "name": "بذر گوجه سيمينس 8320 قوطي هند",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%b3%d9%8a%d9%85%d9%8a%d9%86%d8%b3-8320-%d9%82%d9%88%d8%b7%d9%8a-%d9%87%d9%86%d8%af/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136227,
+      "name": "بذر گوجه سيمينس 8320 پاكت هند",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%b3%d9%8a%d9%85%d9%8a%d9%86%d8%b3-8320-%d9%be%d8%a7%d9%83%d8%aa-%d9%87%d9%86%d8%af/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136225,
+      "name": "بذر گوجه تيوا",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%aa%d9%8a%d9%88%d8%a7/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136220,
+      "name": "بذر گوجه سيمينس بريويو تايلند",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%b3%d9%8a%d9%85%d9%8a%d9%86%d8%b3-%d8%a8%d8%b1%d9%8a%d9%88%d9%8a%d9%88-%d8%aa%d8%a7%d9%8a%d9%84%d9%86%d8%af/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136218,
+      "name": "بذر گوجه سيمينس بريويو هند",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%b3%d9%8a%d9%85%d9%8a%d9%86%d8%b3-%d8%a8%d8%b1%d9%8a%d9%88%d9%8a%d9%88-%d9%87%d9%86%d8%af/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136215,
+      "name": "بذر گوجه سيمينس بدرو تايلند",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%b3%d9%8a%d9%85%d9%8a%d9%86%d8%b3-%d8%a8%d8%af%d8%b1%d9%88-%d8%aa%d8%a7%d9%8a%d9%84%d9%86%d8%af/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136212,
+      "name": "بذر گوجه سيمينس بدرو هند",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%b3%d9%8a%d9%85%d9%8a%d9%86%d8%b3-%d8%a8%d8%af%d8%b1%d9%88-%d9%87%d9%86%d8%af/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136209,
+      "name": "بذر گوجه سيمينس باسيمو تايلند",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%b3%d9%8a%d9%85%d9%8a%d9%86%d8%b3-%d8%a8%d8%a7%d8%b3%d9%8a%d9%85%d9%88-%d8%aa%d8%a7%d9%8a%d9%84%d9%86%d8%af/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136206,
+      "name": "بذر گوجه سيمينس باسيمو هند",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%b3%d9%8a%d9%85%d9%8a%d9%86%d8%b3-%d8%a8%d8%a7%d8%b3%d9%8a%d9%85%d9%88-%d9%87%d9%86%d8%af/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136187,
+      "name": "بذر گوجه سيمينس برنتا تايلند",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%b3%d9%8a%d9%85%d9%8a%d9%86%d8%b3-%d8%a8%d8%b1%d9%86%d8%aa%d8%a7-%d8%aa%d8%a7%d9%8a%d9%84%d9%86%d8%af/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136185,
+      "name": "بذر گوجه سانسيد 6189",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%b3%d8%a7%d9%86%d8%b3%d9%8a%d8%af-6189/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136182,
+      "name": "بذر گوجه افرا پرو",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%a7%d9%81%d8%b1%d8%a7-%d9%be%d8%b1%d9%88/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136179,
+      "name": "بذر گوجه افرا تايلند",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%a7%d9%81%d8%b1%d8%a7-%d8%aa%d8%a7%d9%8a%d9%84%d9%86%d8%af/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136176,
+      "name": "بذر گوجه افرا هند",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%a7%d9%81%d8%b1%d8%a7-%d9%87%d9%86%d8%af/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136172,
+      "name": "بذر گوجه تي دي",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b0%d8%b1-%da%af%d9%88%d8%ac%d9%87-%d8%aa%d9%8a-%d8%af%d9%8a/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 136092,
+      "name": "کلم سر",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%84%d9%85-%d8%b3%d8%b1/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "محصولات کشاورزی",
+        "نشاء"
+      ]
+    },
+    {
+      "id": 136090,
+      "name": "کدو",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d8%af%d9%88/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "محصولات کشاورزی",
+        "نشاء"
+      ]
+    },
+    {
+      "id": 136088,
+      "name": "ریحان معطر",
+      "permalink": "https://keshavarz20.com/product/%d8%b1%db%8c%d8%ad%d8%a7%d9%86-%d9%85%d8%b9%d8%b7%d8%b1/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "محصولات کشاورزی",
+        "نشاء"
+      ]
+    },
+    {
+      "id": 136086,
+      "name": "چای ترش",
+      "permalink": "https://keshavarz20.com/product/%da%86%d8%a7%db%8c-%d8%aa%d8%b1%d8%b4/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "محصولات کشاورزی",
+        "نشاء"
+      ]
+    },
+    {
+      "id": 136084,
+      "name": "بابونه",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%a7%d8%a8%d9%88%d9%86%d9%87/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "محصولات کشاورزی",
+        "نشاء"
+      ]
+    },
+    {
+      "id": 136081,
+      "name": "کاهو فرانسوی",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d8%a7%d9%87%d9%88-%d9%81%d8%b1%d8%a7%d9%86%d8%b3%d9%88%db%8c/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "محصولات کشاورزی",
+        "نشاء"
+      ]
+    },
+    {
+      "id": 136079,
+      "name": "لوبیا",
+      "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d8%a8%db%8c%d8%a7/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "محصولات کشاورزی",
+        "نشاء"
+      ]
+    },
+    {
+      "id": 136077,
+      "name": "لبو",
+      "permalink": "https://keshavarz20.com/product/%d9%84%d8%a8%d9%88/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "محصولات کشاورزی",
+        "نشاء"
+      ]
+    },
+    {
+      "id": 136075,
+      "name": "فیسالیس",
+      "permalink": "https://keshavarz20.com/product/%d9%81%db%8c%d8%b3%d8%a7%d9%84%db%8c%d8%b3/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "محصولات کشاورزی",
+        "نشاء"
+      ]
+    },
+    {
+      "id": 136073,
+      "name": "کلم پیچ",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%84%d9%85-%d9%be%db%8c%da%86/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "محصولات کشاورزی",
+        "نشاء"
+      ]
+    },
+    {
+      "id": 136071,
+      "name": "کلم بروکسل",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%84%d9%85-%d8%a8%d8%b1%d9%88%da%a9%d8%b3%d9%84/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "محصولات کشاورزی",
+        "نشاء"
+      ]
+    },
+    {
+      "id": 136069,
+      "name": "کلم بروکلی",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%84%d9%85-%d8%a8%d8%b1%d9%88%da%a9%d9%84%db%8c/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "محصولات کشاورزی",
+        "نشاء"
+      ]
+    },
+    {
+      "id": 136067,
+      "name": "کلم گل",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%84%d9%85-%da%af%d9%84/",
+      "is_purchasable": false,
+      "is_in_stock": true,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "محصولات کشاورزی",
+        "نشاء"
+      ]
+    }
+  ],
+  "out_of_stock_products": [
+    {
+      "id": 143188,
+      "name": "درایور بردی موتور DC کنترل سرعت و جهت 60 آمپر با نمایشگر دیجیتال",
+      "permalink": "https://keshavarz20.com/product/%d8%af%d8%b1%d8%a7%db%8c%d9%88%d8%b1-%d8%a8%d8%b1%d8%af%db%8c-%d9%85%d9%88%d8%aa%d9%88%d8%b1-dc-%da%a9%d9%86%d8%aa%d8%b1%d9%84-%d8%b3%d8%b1%d8%b9%d8%aa-%d9%88-%d8%ac%d9%87%d8%aa-60-%d8%a2%d9%85%d9%be/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "4500000",
+      "price_state": "positive",
+      "categories": [
+        "ابزارآلات و تجهیزات صنعتی",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم جانبی",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 143119,
+      "name": "کود اوره فسفات 0-44-17 بلونا (Bellona 17-44-0)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d8%a7%d9%88%d8%b1%d9%87-%d9%81%d8%b3%d9%81%d8%a7%d8%aa-0-44-17-%d8%a8%d9%84%d9%88%d9%86%d8%a7-bellona-17-44-0/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "3367403",
+      "price_state": "positive",
+      "categories": [
+        "بلونا (BELLONA)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 143044,
+      "name": "کود مجیشن (MAGICIN) مایع بیدار رشد 1 لیتری",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%ac%db%8c%d8%b4%d9%86-magicin-%d9%85%d8%a7%db%8c%d8%b9-%d8%a8%db%8c%d8%af%d8%a7%d8%b1-%d8%b1%d8%b4%d8%af-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "249375",
+      "price_state": "positive",
+      "categories": [
+        "بیدار رشد",
+        "كودهای کشاورزی",
+        "محصولات کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 143041,
+      "name": "کود کا ۵۰ (K50) مایع بیدار رشد 1 لیتری",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%da%a9%d8%a7-%db%b5%db%b0-k50-%d9%85%d8%a7%db%8c%d8%b9-%d8%a8%db%8c%d8%af%d8%a7%d8%b1-%d8%b1%d8%b4%d8%af-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "478800",
+      "price_state": "positive",
+      "categories": [
+        "بیدار رشد",
+        "كودهای کشاورزی",
+        "محصولات کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 143039,
+      "name": "کود فوسکا (PHOS K) مایع بیدار رشد 1 لیتری",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%81%d9%88%d8%b3%da%a9%d8%a7-phos-k-%d9%85%d8%a7%db%8c%d8%b9-%d8%a8%db%8c%d8%af%d8%a7%d8%b1-%d8%b1%d8%b4%d8%af-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "478800",
+      "price_state": "positive",
+      "categories": [
+        "بیدار رشد",
+        "كودهای کشاورزی",
+        "محصولات کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 143037,
+      "name": "کود کلات روی (ZINC) مایع 7% بیدار رشد 1 لیتری",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%da%a9%d9%84%d8%a7%d8%aa-%d8%b1%d9%88%db%8c-zinc-%d9%85%d8%a7%db%8c%d8%b9-7-%d8%a8%db%8c%d8%af%d8%a7%d8%b1-%d8%b1%d8%b4%d8%af-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "389025",
+      "price_state": "positive",
+      "categories": [
+        "بیدار رشد",
+        "كودهای کشاورزی",
+        "محصولات کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 142851,
+      "name": "کود سولوپتاس یونی چم 25 کیلو ای امارات 50-0-0 (Uni Chem)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%db%8c%d9%88%d9%86%db%8c-%da%86%d9%85-%d8%a7%d9%85%d8%a7%d8%b1%d8%a7%d8%aa-50-0-0-uni-chem/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "3600000",
+      "price_state": "positive",
+      "categories": [
+        "كودهای کشاورزی",
+        "متفرقه",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 142844,
+      "name": "کود مایع مولتی پورپلکس گرومور آمریکا 1 لیتری (Multi Purplex)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%85%d9%88%d9%84%d8%aa%db%8c-%d9%be%d9%88%d8%b1%d9%be%d9%84%da%a9%d8%b3-%da%af%d8%b1%d9%88%d9%85%d9%88%d8%b1-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-multi-p/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1210000",
+      "price_state": "positive",
+      "categories": [
+        "كودهای کشاورزی",
+        "متفرقه",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 142817,
+      "name": "کود مایع فوگوبیس گرومور 1 لیتری (GROW-MORE)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%d9%81%d9%88%da%af%d9%88%d8%a8%db%8c%d8%b3-%da%af%d8%b1%d9%88%d9%85%d9%88%d8%b1-grow-more/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1320000",
+      "price_state": "positive",
+      "categories": [
+        "كودهای کشاورزی",
+        "متفرقه",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 142809,
+      "name": "کود جلبک دریایی شنژن 500 گرمی (Shenzhen Algae Plus )",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d8%ac%d9%84%d8%a8%da%a9-%d8%af%d8%b1%db%8c%d8%a7%db%8c%db%8c-%d8%b4%d9%86%da%98%d9%86-shenzhen-algae-plus/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1005847",
+      "price_state": "positive",
+      "categories": [
+        "شنژن (shenzhen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 142801,
+      "name": "مانکوزب 80% هندی  (Mancozeb)",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d8%a7%d9%86%da%a9%d9%88%d8%b2%d8%a8-80-%d9%87%d9%86%d8%af%db%8c-mancozeb/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "781000",
+      "price_state": "positive",
+      "categories": [
+        "كودهای کشاورزی",
+        "متفرقه",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 142790,
+      "name": "کود فروت ست اسیدآمینه گرومور (GROW-MORE)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%81%d8%b1%d9%88%d8%aa-%d8%b3%d8%aa-%d8%a7%d8%b3%db%8c%d8%af%d8%a2%d9%85%db%8c%d9%86%d9%87-%da%af%d8%b1%d9%88%d9%85%d9%88%d8%b1-grow-more/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1760000",
+      "price_state": "positive",
+      "categories": [
+        "كودهای کشاورزی",
+        "متفرقه",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 142787,
+      "name": "کود آهن 6% اورتوفر اسپانیا 1 کیلویی (Ortofer)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d8%a2%d9%87%d9%86-%d8%a7%d9%88%d8%b1%d8%aa%d9%88%d9%81%d8%b1-%d8%a7%d8%b3%d9%be%d8%a7%d9%86%db%8c%d8%a7/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1640000",
+      "price_state": "positive",
+      "categories": [
+        "كودهای کشاورزی",
+        "متفرقه",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 142781,
+      "name": "پودر کلات آهن 6% سکسترین 1 کیلو گرم (Cequesteerian Iron)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%84%d8%a7%d8%aa-%d8%a2%d9%87%d9%86-cequesteerian-%d9%be%d9%88%d8%af%d8%b1-6/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "750000",
+      "price_state": "positive",
+      "categories": [
+        "كودهای کشاورزی",
+        "متفرقه",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 142767,
+      "name": "کود آهن 6% گرینسیت  1 کیلو گرم (ارتو – ارتو ۴/۸) (Grincit)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d8%a2%d9%87%d9%86-%da%af%d8%b1%db%8c%d9%86%d8%b3%db%8c%d8%aa-%d8%a7%d8%b1%d8%aa%d9%88-%d8%a7%d8%b1%d8%aa%d9%88-%db%b4-%db%b8/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "4500000",
+      "price_state": "positive",
+      "categories": [
+        "كودهای کشاورزی",
+        "متفرقه"
+      ]
+    },
+    {
+      "id": 142442,
+      "name": "کود مایع کلسیم نیترات 20 لیتری ایکس گرین سبزگل (NitroCal XGreen)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%d8%a7%db%8c%d8%b9-%da%a9%d9%84%d8%b3%db%8c%d9%85-%d9%86%db%8c%d8%aa%d8%b1%d8%a7%d8%aa-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d9%84%d8%b1%d8%af-%d8%b3%d8%a8%d8%b2%da%af%d9%84-nit/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "4000000",
+      "price_state": "positive",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 142204,
+      "name": "پمپ آب 1 اسب بشقابی فلای ژن (FLYGEN CPM158)",
+      "permalink": "https://keshavarz20.com/product/%d9%be%d9%85%d9%be-%d8%a2%d8%a8-1-%d8%a7%d8%b3%d8%a8-%d8%a8%d8%b4%d9%82%d8%a7%d8%a8%db%8c-%d9%81%d9%84%d8%a7%db%8c-%da%98%d9%86-flygen-cpm158/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "7000000",
+      "price_state": "positive",
+      "categories": [
+        "ابزارآلات و تجهیزات صنعتی",
+        "پمپ و ست کنترل"
+      ]
+    },
+    {
+      "id": 142203,
+      "name": "پمپ آب 1 اسب بشقابی فلای ژن (FLYGEN CM100)2",
+      "permalink": "https://keshavarz20.com/product/%d9%be%d9%85%d9%be-%d8%a2%d8%a8-1-%d8%a7%d8%b3%d8%a8-%d8%a8%d8%b4%d9%82%d8%a7%d8%a8%db%8c-%d9%81%d9%84%d8%a7%db%8c-%da%98%d9%86-flygen-cm100/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "7800000",
+      "price_state": "positive",
+      "categories": [
+        "ابزارآلات و تجهیزات صنعتی",
+        "پمپ و ست کنترل"
+      ]
+    },
+    {
+      "id": 142199,
+      "name": "پمپ کف کش 16 متری 2 اینچ فلوتردار کمل Camel",
+      "permalink": "https://keshavarz20.com/product/%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-16-%d9%85%d8%aa%d8%b1%db%8c-2-%d8%a7%db%8c%d9%86%da%86-%d9%81%d9%84%d9%88%d8%aa%d8%b1%d8%af%d8%a7%d8%b1-%da%a9%d9%85%d9%84-camel/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "7301580",
+      "price_state": "positive",
+      "categories": [
+        "ابزارآلات و تجهیزات صنعتی",
+        "کف کش و لجن کش"
+      ]
+    },
+    {
+      "id": 142195,
+      "name": "پمپ کف کش 16 متری ساده 2 اینچ کمل Camel",
+      "permalink": "https://keshavarz20.com/product/%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-16-%d9%85%d8%aa%d8%b1%db%8c-%d8%b3%d8%a7%d8%af%d9%87-2-%d8%a7%db%8c%d9%86%da%86-%da%a9%d9%85%d9%84-camel/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "7301580",
+      "price_state": "positive",
+      "categories": [
+        "ابزارآلات و تجهیزات صنعتی",
+        "کف کش و لجن کش"
+      ]
+    },
+    {
+      "id": 142194,
+      "name": "پمپ کف کش 17 متری ساده 1 اینچ کمل Camel",
+      "permalink": "https://keshavarz20.com/product/%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-17-%d9%85%d8%aa%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-%da%a9%d9%85%d9%84-camel/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "4440150",
+      "price_state": "positive",
+      "categories": [
+        "ابزارآلات و تجهیزات صنعتی",
+        "کف کش و لجن کش"
+      ]
+    },
+    {
+      "id": 142192,
+      "name": "پمپ کف کش 17 متری 1 اینچ فلوتردار کمل Camel",
+      "permalink": "https://keshavarz20.com/product/%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-17-%d9%85%d8%aa%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-%d9%81%d9%84%d9%88%d8%aa%d8%b1%d8%af%d8%a7%d8%b1-%da%a9%d9%85%d9%84-camel/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "4538820",
+      "price_state": "positive",
+      "categories": [
+        "ابزارآلات و تجهیزات صنعتی",
+        "کف کش و لجن کش"
+      ]
+    },
+    {
+      "id": 142185,
+      "name": "پمپ کف کش 32 متری 1 اینچ فلوتردار کمل Camel",
+      "permalink": "https://keshavarz20.com/product/%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-32-%d9%85%d8%aa%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-%d9%81%d9%84%d9%88%d8%aa%d8%b1%d8%af%d8%a7%d8%b1-%da%a9%d9%85%d9%84-camel/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "7301580",
+      "price_state": "positive",
+      "categories": [
+        "ابزارآلات و تجهیزات صنعتی",
+        "کف کش و لجن کش"
+      ]
+    },
+    {
+      "id": 142184,
+      "name": "پمپ کف کش 25 متری 1 اینچ فلوتردار کمل Camel",
+      "permalink": "https://keshavarz20.com/product/%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-25-%d9%85%d8%aa%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-%d9%81%d9%84%d9%88%d8%aa%d8%b1%d8%af%d8%a7%d8%b1-%da%a9%d9%85%d9%84-camel/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "6709560",
+      "price_state": "positive",
+      "categories": [
+        "ابزارآلات و تجهیزات صنعتی",
+        "کف کش و لجن کش"
+      ]
+    },
+    {
+      "id": 142183,
+      "name": "پمپ کف کش 12 متری 1 اینچ فلوتردار کمل Camel",
+      "permalink": "https://keshavarz20.com/product/%d9%be%d9%85%d9%be-%da%a9%d9%81-%da%a9%d8%b4-12-%d9%85%d8%aa%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-%d9%81%d9%84%d9%88%d8%aa%d8%b1%d8%af%d8%a7%d8%b1-%da%a9%d9%85%d9%84-camel/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "4045470",
+      "price_state": "positive",
+      "categories": [
+        "ابزارآلات و تجهیزات صنعتی",
+        "کف کش و لجن کش"
+      ]
+    },
+    {
+      "id": 142182,
+      "name": "ست کنترل اتوماتیک پمپ آب فلایژن FLYGEN",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d8%aa-%da%a9%d9%86%d8%aa%d8%b1%d9%84-%d8%a7%d8%aa%d9%88%d9%85%d8%a7%d8%aa%db%8c%da%a9-%d9%be%d9%85%d9%be-%d8%a2%d8%a8-%d9%81%d9%84%d8%a7%db%8c%da%98%d9%86-flygen/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1620000",
+      "price_state": "positive",
+      "categories": [
+        "ابزارآلات و تجهیزات صنعتی",
+        "پمپ و ست کنترل"
+      ]
+    },
+    {
+      "id": 142076,
+      "name": "سم حشره کش کنسالت سازگان شیمی 1 لیتری",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%85-%d8%ad%d8%b4%d8%b1%d9%87-%da%a9%d8%b4-%da%a9%d9%86%d8%b3%d8%a7%d9%84%d8%aa-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1200000",
+      "price_state": "positive",
+      "categories": [
+        "سم های کشاورزی"
+      ]
+    },
+    {
+      "id": 142075,
+      "name": "علف کش تری فلوراین (ترفلان) سازگان شیمی 1 لیتری",
+      "permalink": "https://keshavarz20.com/product/%d8%b9%d9%84%d9%81-%da%a9%d8%b4-%d8%aa%d8%b1%db%8c-%d9%81%d9%84%d9%88%d8%b1%d8%a7%db%8c%d9%86-%d8%aa%d8%b1%d9%81%d9%84%d8%a7%d9%86-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-1/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "سم های کشاورزی"
+      ]
+    },
+    {
+      "id": 142056,
+      "name": "بست و قلاب اهرمی سایز 1 اینچ (32 میلیمتر)",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b3%d8%aa-%d9%88-%d9%82%d9%84%d8%a7%d8%a8-%d8%a7%d9%87%d8%b1%d9%85%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-1-%d8%a7%db%8c%d9%86%da%86-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "600000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات چدنی و آهنی"
+      ]
+    },
+    {
+      "id": 142055,
+      "name": "بست و قلاب اهرمی آلمینیومی سایز 1.1/2 اینچ (50 میلیمتر)",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b3%d8%aa-%d9%88-%d9%82%d9%84%d8%a7%d8%a8-%d8%a7%d9%87%d8%b1%d9%85%db%8c-%d8%a2%d9%84%d9%85%db%8c%d9%86%db%8c%d9%88%d9%85%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-1-1-2-%d8%a7%db%8c%d9%86%da%86-50/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "750000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات چدنی و آهنی"
+      ]
+    },
+    {
+      "id": 142049,
+      "name": "بست و قلاب اهرمی آلمینیومی سایز ۲ اینچ (63 میلیمتر)",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b3%d8%aa-%d9%88-%d9%82%d9%84%d8%a7%d8%a8-%d8%a7%d9%87%d8%b1%d9%85%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-%db%b2-%d8%a7%db%8c%d9%86%da%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "820000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات چدنی و آهنی"
+      ]
+    },
+    {
+      "id": 142047,
+      "name": "صابون محلول پاشی سازگان شیمی 5 لیتری",
+      "permalink": "https://keshavarz20.com/product/%d8%b5%d8%a7%d8%a8%d9%88%d9%86-%d9%85%d8%ad%d9%84%d9%88%d9%84-%d9%be%d8%a7%d8%b4%db%8c-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "396000",
+      "price_state": "positive",
+      "categories": [
+        "سم های کشاورزی"
+      ]
+    },
+    {
+      "id": 142045,
+      "name": "سم علفکش پرتیلاکلر سازگان شیمی 500 سی سی",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%85-%d8%b9%d9%84%d9%81%da%a9%d8%b4-%d9%be%d8%b1%d8%aa%db%8c%d9%84%d8%a7%da%a9%d9%84%d8%b1-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-500-%d8%b3%db%8c-%d8%b3%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "488400",
+      "price_state": "positive",
+      "categories": [
+        "سم های کشاورزی"
+      ]
+    },
+    {
+      "id": 142043,
+      "name": "سم علف کش گلایفوزیت سازگان شیمی 1 لیتری",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%85-%d8%b9%d9%84%d9%81-%da%a9%d8%b4-%da%af%d9%84%d8%a7%db%8c%d9%81%d9%88%d8%b2%db%8c%d8%aa-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "382800",
+      "price_state": "positive",
+      "categories": [
+        "سم های کشاورزی"
+      ]
+    },
+    {
+      "id": 142041,
+      "name": "سم کنه کش فن پیروکسی میت (ارتوس) سازگان شیمی 500 سی سی",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%85-%da%a9%d9%86%d9%87-%da%a9%d8%b4-%d9%81%d9%86-%d9%be%db%8c%d8%b1%d9%88%da%a9%d8%b3%db%8c-%d9%85%db%8c%d8%aa-%d8%a7%d8%b1%d8%aa%d9%88%d8%b3-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "369600",
+      "price_state": "positive",
+      "categories": [
+        "سم های کشاورزی"
+      ]
+    },
+    {
+      "id": 142039,
+      "name": "سم حشره کش دورسبان (کلروپیریفوس) سازگان شیمی 1 لیتری",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%85-%d8%ad%d8%b4%d8%b1%d9%87-%da%a9%d8%b4-%d8%af%d9%88%d8%b1%d8%b3%d8%a8%d8%a7%d9%86-%da%a9%d9%84%d8%b1%d9%88%d9%be%db%8c%d8%b1%db%8c%d9%81%d9%88%d8%b3-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "528000",
+      "price_state": "positive",
+      "categories": [
+        "سم های کشاورزی"
+      ]
+    },
+    {
+      "id": 142037,
+      "name": "سم علفکش کلودینافوپ پروپارژیل (تاپیک) سازگان شیمی 1 لیتری",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%85-%d8%b9%d9%84%d9%81%da%a9%d8%b4-%da%a9%d9%84%d9%88%d8%af%db%8c%d9%86%d8%a7%d9%81%d9%88%d9%be-%d9%be%d8%b1%d9%88%d9%be%d8%a7%d8%b1%da%98%db%8c%d9%84-%d8%aa%d8%a7%d9%be%db%8c%da%a9-%d8%b3/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "580800",
+      "price_state": "positive",
+      "categories": [
+        "سم های کشاورزی"
+      ]
+    },
+    {
+      "id": 142032,
+      "name": "سم کنه کش بروموپروپیلات سازگان شیمی (نئورون) 1 لیتری",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%85-%da%a9%d9%86%d9%87-%da%a9%d8%b4-%d8%a8%d8%b1%d9%88%d9%85%d9%88%d9%be%d8%b1%d9%88%d9%be%db%8c%d9%84%d8%a7%d8%aa-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-%d9%86%d8%a6/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1254000",
+      "price_state": "positive",
+      "categories": [
+        "سم های کشاورزی"
+      ]
+    },
+    {
+      "id": 142031,
+      "name": "سم حشره کش آبامکتین سازگان شیمی 500 سی سی",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%85-%d8%ad%d8%b4%d8%b1%d9%87-%da%a9%d8%b4-%d8%a2%d8%a8%d8%a7%d9%85%da%a9%d8%aa%db%8c%d9%86-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d9%86-%d8%b4%db%8c%d9%85%db%8c-500-%d8%b3%db%8c-%d8%b3%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "382800",
+      "price_state": "positive",
+      "categories": [
+        "سم های کشاورزی"
+      ]
+    },
+    {
+      "id": 142030,
+      "name": "سم علفکش توفوردی + ام سی پی آ سازگان شیمی 1 لیتری",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%85-%d8%b9%d9%84%d9%81%da%a9%d8%b4-%d8%aa%d9%88%d9%81%d9%88%d8%b1%d8%af%db%8c-%d8%a7%d9%85-%d8%b3%db%8c-%d9%be%db%8c-%d8%a2-%d8%b3%d8%a7%d8%b2%da%af%d8%a7%d8%b1%d8%a7%d9%86-%d8%b4%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "448800",
+      "price_state": "positive",
+      "categories": [
+        "سم های کشاورزی"
+      ]
+    },
+    {
+      "id": 142001,
+      "name": "سم قارچ کش بردوفیکس باغبان تاک 20 لیتری",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%85-%d9%82%d8%a7%d8%b1%da%86-%da%a9%d8%b4-%d8%a8%d8%b1%d8%af%d9%88%d9%81%db%8c%da%a9%d8%b3-%d8%a8%d8%a7%d8%ba%d8%a8%d8%a7%d9%86-%d8%aa%d8%a7%da%a9-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "4100000",
+      "price_state": "positive",
+      "categories": [
+        "سم های کشاورزی"
+      ]
+    },
+    {
+      "id": 142000,
+      "name": "سم قارچ کش بردوفیکس باغبان تاک 5 لیتری",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%85-%d9%82%d8%a7%d8%b1%da%86-%da%a9%d8%b4-%d8%a8%d8%b1%d8%af%d9%88%d9%81%db%8c%da%a9%d8%b3-%d8%a8%d8%a7%d8%ba%d8%a8%d8%a7%d9%86-%d8%aa%d8%a7%da%a9-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1400000",
+      "price_state": "positive",
+      "categories": [
+        "سم های کشاورزی"
+      ]
+    },
+    {
+      "id": 141726,
+      "name": "کود هایپرهیوم مایع 20 لیتری ایکس گرین آمریکا (Hyper Hum XGreen)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%85%d8%a7%db%8c%d8%b9-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 141720,
+      "name": "هیومیک اسید مجیک ایکس گرین آمریکا 5 کیلوگرم (Magic Humic XGreen)",
+      "permalink": "https://keshavarz20.com/product/%d9%87%db%8c%d9%88%d9%85%db%8c%da%a9-%d8%a7%d8%b3%db%8c%d8%af-%d9%85%d8%ac%db%8c%da%a9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-5-%da%a9%db%8c%d9%84%d9%88/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "3117187",
+      "price_state": "positive",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 141719,
+      "name": "هیومیک اسید مجیک ایکس گرین آمریکا 5 لیتری (Magic Humic XGreen)",
+      "permalink": "https://keshavarz20.com/product/%d9%87%db%8c%d9%88%d9%85%db%8c%da%a9-%d8%a7%d8%b3%db%8c%d8%af-%d9%85%d8%ac%db%8c%da%a9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-%d8%a2%d9%85%d8%b1%db%8c%da%a9%d8%a7-5-%d9%84%db%8c%d8%aa%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "893594",
+      "price_state": "positive",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 141677,
+      "name": "نوار تیپ آبیاری قطره‌ای ۱۰ سانتی‌متری مناسب زیر پلاستیک",
+      "permalink": "https://keshavarz20.com/product/%d9%86%d9%88%d8%a7%d8%b1-%d8%aa%db%8c%d9%be-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d9%82%d8%b7%d8%b1%d9%87-%d8%a7%db%8c-10-%d8%b3%d8%a7%d9%86%d8%aa%db%8c-%d9%85%d8%aa%d8%b1%db%8c-%da%a9%db%8c%d8%a7/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "2600000",
+      "price_state": "positive",
+      "categories": [
+        "لوله و نوار آبیاری",
+        "محصولات کشاورزی",
+        "نوار تیپ"
+      ]
+    },
+    {
+      "id": 141676,
+      "name": "نوار تیپ پلاک‌دار ۲۰ سانتی‌متری ۲۰۰۰ متری مناسب گلخانه",
+      "permalink": "https://keshavarz20.com/product/%d9%86%d9%88%d8%a7%d8%b1-%d8%aa%db%8c%d9%be-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d9%82%d8%b7%d8%b1%d9%87-%d8%a7%db%8c-20-%d8%b3%d8%a7%d9%86%d8%aa%db%8c-%d9%85%d8%aa%d8%b1%db%8c-tbk/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "6500000",
+      "price_state": "positive",
+      "categories": [
+        "لوله و نوار آبیاری",
+        "محصولات کشاورزی",
+        "نوار تیپ"
+      ]
+    },
+    {
+      "id": 141659,
+      "name": "کود مایع سولفوکراپ مجیک ایکس گرین آمریکا 5 لیتری (SulfuCrop XGreen)",
+      "permalink": "https://keshavarz20.com/product/141659/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "446797",
+      "price_state": "positive",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 141483,
+      "name": "بست دو کپه 6 اینچ (160 میلیمتر)",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b3%d8%aa-%d8%af%d9%88-%da%a9%d9%be%d9%87-6-%d8%a7%db%8c%d9%86%da%86-160-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "571114",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات چدنی و آهنی",
+        "تجهیزات و لوازم کشاورزی"
+      ]
+    },
+    {
+      "id": 141482,
+      "name": "بست دو کپه 2.1/2 اینچ (75 میلیمتر)",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b3%d8%aa-%d8%af%d9%88-%da%a9%d9%be%d9%87-2-1-2-%d8%a7%db%8c%d9%86%da%86-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "390763",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات چدنی و آهنی",
+        "تجهیزات و لوازم کشاورزی"
+      ]
+    },
+    {
+      "id": 141481,
+      "name": "بست دو کپه 4 اینچ (110 میلیمتر)",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b3%d8%aa-%d8%af%d9%88-%da%a9%d9%be%d9%87-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "571114",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات چدنی و آهنی",
+        "تجهیزات و لوازم کشاورزی"
+      ]
+    },
+    {
+      "id": 141480,
+      "name": "بست دو کپه 3 اینچ (90 میلیمتر)",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b3%d8%aa-%d8%af%d9%88-%da%a9%d9%be%d9%87-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "510998",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات چدنی و آهنی",
+        "تجهیزات و لوازم کشاورزی"
+      ]
+    },
+    {
+      "id": 141479,
+      "name": "بست دو کپه 2 اینچ (63 میلیمتر)",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b3%d8%aa-%d8%af%d9%88-%da%a9%d9%be%d9%87-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "330646",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات چدنی و آهنی",
+        "تجهیزات و لوازم کشاورزی"
+      ]
+    },
+    {
+      "id": 141471,
+      "name": "بست هندلی سایز 5.5 اینچ (150 میلیمتر)",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%b3%d8%aa-%d9%87%d9%86%d8%af%d9%84%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-5-5-%d8%a7%db%8c%d9%86%da%86-150-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "750000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات چدنی و آهنی",
+        "تجهیزات و لوازم کشاورزی"
+      ]
+    },
+    {
+      "id": 141367,
+      "name": "کوکوپیت آتلانتیس کیفیت فاین بسته 3 عددی 15 کیلوگرم (CoCoPeat Atlantis)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%da%a9%d9%88%d9%be%db%8c%d8%aa-%d8%a2%d8%aa%d9%84%d8%a7%d9%86%d8%aa%db%8c%d8%b3-%d8%a8%d8%b3%d8%aa%d9%87-3-%d8%b9%d8%af%d8%af%db%8c-15-%da%a9%db%8c%d9%84%d9%88%da%af%d8%b1%d9%85/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "4500000",
+      "price_state": "positive",
+      "categories": [
+        "بستر كشت",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 141363,
+      "name": "کود هایپرهیوم مایع 5 لیتری ایکس گرین آمریکا (Hyper Hum XGreen)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%85%d8%a7%db%8c%d8%b9-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-hyper-hum/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1454687",
+      "price_state": "positive",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 141220,
+      "name": "کود هایپرهیوم مایع 1 لیتری ایکس گرین آمریکا (Hyper Hum XGreen)",
+      "permalink": "https://keshavarz20.com/product/%d9%87%d8%a7%db%8c%d9%be%d8%b1%d9%87%db%8c%d9%88%d9%85-%d9%85%d8%a7%db%8c%d8%b9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-hyper-hum-xgreen/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 141217,
+      "name": "کود آمینوتاپ مایع 1 لیتری ایکس گرین آمریکا (AminoTop XGreen)",
+      "permalink": "https://keshavarz20.com/product/%d8%a2%d9%85%db%8c%d9%86%d9%88%d8%aa%d8%a7%d9%be-%d9%85%d8%a7%db%8c%d8%b9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86-aminotop-xgreen/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 141202,
+      "name": "سر شلنگی فلزی سایز 6 اینچ (160 میلیمتر)",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d8%b1-%d8%b4%d9%84%d9%86%da%af%db%8c-%d9%81%d9%84%d8%b2%db%8c-%d8%a2%d9%87%d9%86%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-6-%d8%a7%db%8c%d9%86%da%86-160-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1800000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات چدنی و آهنی",
+        "تجهیزات و لوازم کشاورزی"
+      ]
+    },
+    {
+      "id": 141042,
+      "name": "کود پودری ساوانا 0-0-32 روم هلند 10 کیلویی (Savana Room)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d8%b3%d8%a7%d9%88%d8%a7%d9%86%d8%a7-0-0-32-room/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1390620",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 141030,
+      "name": "کود پودری ماکرو 10-52-10 روم هلند 10 کیلویی (macro Room 10-52-10+TE)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af10-52-10-room/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "4472160",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 141029,
+      "name": "کود پودری ماکرو 36-12-12 روم هلند 10 کیلویی (Macro Room 12-12-36+TE)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-36-12-12-room/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "2975280",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 141028,
+      "name": "کود پودری ماکرو 30-05-15 روم هلند 10 کیلویی (Macro Room 15-05-30+TE)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-30-05-15-room/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "2162160",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 141027,
+      "name": "کود پودری ماکرو 20-20-20 روم هلند 10 کیلویی (Macro Room 20-20-20+TE)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-20-20-20-room/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "2808960",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 141011,
+      "name": "کود پودری میکرو کامل سولفاته مینی میکس 10 کیلویی روم هلند (Minimix Room)",
+      "permalink": "https://keshavarz20.com/product/%d9%85%db%8c%da%a9%d8%b1%d9%88-%da%a9%d8%a7%d9%85%d9%84-%d8%b3%d9%88%d9%84%d9%81%d8%a7%d8%aa%d9%87-room/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1441440",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 141010,
+      "name": "کود پودری کلات آهن فروفرس 1 کیلویی روم هلند (Ferroforce Room)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%84%d8%a7%d8%aa-%d8%a2%d9%87%d9%86-%d9%be%d9%88%d8%af%d8%b1%db%8c-room/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "656040",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 141004,
+      "name": "کود مایع کلسیم بور کلات شده کب پلاس 1 لیتری روم هلند (CAB Plus Room)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%84%d8%b3%db%8c%d9%85-%d8%a8%d9%88%d8%b1-%da%a9%d9%84%d8%a7%d8%aa-%d8%b4%d8%af%d9%87-room/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "552552",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 141003,
+      "name": "کود مایع پتاسیم 1 لیتری اولترا کا 60 روم هلند (Ultra K60 Room)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%be%d8%aa%d8%a7%d8%b3%db%8c%d9%85-%d9%85%d8%a7%db%8c%d8%b9-room/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "600600",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 141002,
+      "name": "کود مایع اولترافوس 80 روم هلند 5 لیتری (Ultraphos 80% Room)",
+      "permalink": "https://keshavarz20.com/product/%d8%a7%d9%88%d9%84%d8%aa%d8%b1%d8%a7%d9%81%d9%88%d8%b3-80-room/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1894200",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140979,
+      "name": "کود مایع فروت ست روم هلند 1 لیتری (Bloom Set Room)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%81%d8%b1%d9%88%d8%aa-%d8%b3%d8%aa-room/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "367752",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140978,
+      "name": "کود مایع سه گانه تریانگل 1 لیتری روم هلند (Triangle Room)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d8%b3%d9%87-%da%af%d8%a7%d9%86%d9%87-%d8%aa%d8%b1%db%8c%d8%a7%d9%86%da%af%d9%84-room/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "443520",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140977,
+      "name": "کود مایع میکرو کلات کامل میکرو میکس 1 لیتری روم هلند (Micromix Room)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%85%db%8c%da%a9%d8%b1%d9%88-%d9%85%db%8c%da%a9%d8%b3-room/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "445060",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140944,
+      "name": "کود مایع اسید آمینه رومینو روم هلند 1 لیتری (Romino Room)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d8%a7%d8%b3%db%8c%d8%af-%d8%a2%d9%85%db%8c%d9%86%d9%87-%d8%b1%d9%88%d9%85%db%8c%d9%86%d9%88-room-%d9%82%d9%88%d8%b7%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "471240",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140943,
+      "name": "کود مایع کلات بور 14 روم هلند 1 لیتری (B14 Room)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%da%a9%d9%84%d8%a7%d8%aa-%d8%a8%d9%88%d8%b1-14-room-%d9%82%d9%88%d8%b7%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "628320",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140942,
+      "name": "کود مایع کلات روی 11 روم هلند (Zn11 Room)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%da%a9%d9%84%d8%a7%d8%aa-%d8%b1%d9%88%db%8c-11-room/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "425040",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140941,
+      "name": "کود مایع کلات منگنز 8 روم هلند 1 لیتری (Mn8 Room)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%da%a9%d9%84%d8%a7%d8%aa-%d9%85%d9%86%da%af%d9%86%d8%b2-8-%d9%85%db%8c%d9%86%db%8c-room/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "434280",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140940,
+      "name": "کود مایع کلات آهن اف ای 8 روم هلند 1 لیتری (Fe8 Room)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%da%a9%d9%84%d8%a7%d8%aa-%d8%a2%d9%87%d9%86-8-room/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "316932",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140939,
+      "name": "صابون محلول پاشی یوساپ روم هلند 5 لیتری (Yousoap Room)",
+      "permalink": "https://keshavarz20.com/product/%d8%b5%d8%a7%d8%a8%d9%88%d9%86-%d9%85%d8%ad%d9%84%d9%88%d9%84-%d9%be%d8%a7%d8%b4%db%8c-%d8%b5%d8%a7%d8%a8%d9%88%d9%86-%d9%85%d8%ad%d9%84%d9%88%d9%84-%d9%be%d8%a7%d8%b4%db%8c-%db%8c%d9%88%d8%b3%d8%a7/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "970200",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140938,
+      "name": "گوگرد پودری و گوگرد بنتونیت دار Room کیسه 25 کیلو گرمی",
+      "permalink": "https://keshavarz20.com/product/%da%af%d9%88%da%af%d8%b1%d8%af-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d9%88-%da%af%d9%88%da%af%d8%b1%d8%af-%d8%a8%d9%86%d8%aa%d9%88%d9%86%db%8c%d8%aa-%d8%af%d8%a7%d8%b1-room-%da%a9%db%8c%d8%b3%d9%87-25/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140937,
+      "name": "گوگرد سوسپانسیون 80 Room گالن 5 لیتری",
+      "permalink": "https://keshavarz20.com/product/%da%af%d9%88%da%af%d8%b1%d8%af-%d8%b3%d9%88%d8%b3%d9%be%d8%a7%d9%86%d8%b3%db%8c%d9%88%d9%86-80-room-%da%af%d8%a7%d9%84%d9%86-5-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140936,
+      "name": "کود مایع فسفیت پتاسیم روم هلند 1 لیتری (Fos-K Room)",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%88%d8%af-%d9%81%d8%b3%d9%81%db%8c%d8%aa-%d9%be%d8%aa%d8%a7%d8%b3%db%8c%d9%85-room-%d9%82%d9%88%d8%b7%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "776160",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140935,
+      "name": "کود مایع انفوریک اسید اورآز روم سطل 20 لیتری (Ureas Room)",
+      "permalink": "https://keshavarz20.com/product/%d8%a7%d9%86%d9%81%d9%88%d8%b1%db%8c%da%a9-%d8%a7%d8%b3%db%8c%d8%af-%d8%a7%d9%88%d8%b1%d8%a2%d8%b2-room-%d8%b3%d8%b7%d9%84-20-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1441440",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140934,
+      "name": "کود مایع صابون پتاسیم روم هلند 1 لیتری (SoaPhotash Room)",
+      "permalink": "https://keshavarz20.com/product/%d8%b5%d8%a7%d8%a8%d9%88%d9%86-%d9%be%d8%aa%d8%a7%d8%b3%db%8c%d9%85-room-%d9%82%d9%88%d8%b7%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140933,
+      "name": "کود مایع سیلیگارد روم هلند 1 لیتری (SiliGuard Room)",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%db%8c%d9%84%db%8c%da%af%d8%a7%d8%b1%d8%af-room-%d9%82%d9%88%d8%b7%db%8c-1-%d9%84%db%8c%d8%aa%d8%b1%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "541464",
+      "price_state": "positive",
+      "categories": [
+        "روم",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140892,
+      "name": "کود پودری SOP 0-0-52 ایکس گرین آمریکا (Sop 0-0-52 XGreen)",
+      "permalink": "https://keshavarz20.com/product/sop-0-0-52-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140878,
+      "name": "کود پودری هایپر ۱۰-۱۰-۳۰ ایکس گرین آمریکا 10 کیلویی (Hyper 30-10-10 XGreen)",
+      "permalink": "https://keshavarz20.com/product/%d9%87%d8%a7%db%8c%d9%be%d8%b1-%db%b1%db%b0-%db%b1%db%b0-%db%b3%db%b0-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140875,
+      "name": "کود پودری هایپر ۳۶-۱۲-۱۲ ایکس گرین آمریکا 10 کیلویی (Hyper 12-12-36 XGreen)",
+      "permalink": "https://keshavarz20.com/product/%d9%87%d8%a7%db%8c%d9%be%d8%b1-%db%b3%db%b6-%db%b1%db%b2-%db%b1%db%b2/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "7792969",
+      "price_state": "positive",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140860,
+      "name": "کود مایع نیترات کلسیم مایع ایکس گرین آمریکا 5 لیتری (Calcium Nitrate XGreen)",
+      "permalink": "https://keshavarz20.com/product/%d9%86%db%8c%d8%aa%d8%b1%d8%a7%d8%aa-%da%a9%d9%84%d8%b3%db%8c%d9%85-%d9%85%d8%a7%db%8c%d8%b9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140854,
+      "name": "کود پودری معجزه گر ارگانیک ایکس گرین آمریکا 10 کیلویی (Organic Marvel)",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d8%b9%d8%ac%d8%b2%d9%87-%da%af%d8%b1-%d8%a7%d8%b1%da%af%d8%a7%d9%86%db%8c%da%a9-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140820,
+      "name": "کود مایع منیزیم مگنوس ایکس گرین ۱ لیتری؛ رفع زردی و تقویت کلروفیل (Magnus XGreen)",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d9%8e%da%af%d9%86%d9%88%d8%b3-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140789,
+      "name": "کود مایع فسفیت پتاسیم فسفی‌کا ایکس گرین ۱ لیتری با فسفیت و پتاسیم محلول (Phosphi-K XGreen)",
+      "permalink": "https://keshavarz20.com/product/%d9%81%d8%b3%d9%81%db%8c%da%a9%d8%a7-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "3471984",
+      "price_state": "positive",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140773,
+      "name": "کود مایع هایپر هیوم ایکس گرین آمریکا 5 لیتری (Hyper Hum XGreen)",
+      "permalink": "https://keshavarz20.com/product/mkp-0-52-34-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140768,
+      "name": "کود گرانول ۱۰-۱۰-۱۰ ایکس گرین آمریکا 25 کیلویی (Granular 10-10-10 XGreen)",
+      "permalink": "https://keshavarz20.com/product/%da%af%d8%b1%d8%a7%d9%86%d9%88%d9%84-%db%b1%db%b0-%db%b1%db%b0-%db%b1%db%b0-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "8679960",
+      "price_state": "positive",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140767,
+      "name": "فول گلد ایکس گرین",
+      "permalink": "https://keshavarz20.com/product/%d9%81%d9%88%d9%84-%da%af%d9%84%d8%af-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140759,
+      "name": "کود گرانوله هیومیک مخصوص پیش‌کشت و چالکود ۲۵ کیلویی (Humic Granular XGreen)",
+      "permalink": "https://keshavarz20.com/product/%d9%87%db%8c%d9%88%d9%85%db%8c%da%a9-%da%af%d8%b1%d8%a7%d9%86%d9%88%d9%84-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1010000",
+      "price_state": "positive",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140758,
+      "name": "فیکس ۸ کاره &#8211; 20 لیتری",
+      "permalink": "https://keshavarz20.com/product/%d9%81%db%8c%da%a9%d8%b3-%db%b8-%da%a9%d8%a7%d8%b1%d9%87/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "3878280",
+      "price_state": "positive",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140751,
+      "name": "مونوآمونیوم فسفات   ۰-۶۱-۱۲   25kg",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d9%88%d9%86%d9%88%d8%a2%d9%85%d9%88%d9%86%db%8c%d9%88%d9%85-%d9%81%d8%b3%d9%81%d8%a7%d8%aa-%db%b0-%db%b6%db%b1-%db%b1%db%b2/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140750,
+      "name": "آمینوتاپ پودری ایکس گرین",
+      "permalink": "https://keshavarz20.com/product/%d8%a2%d9%85%db%8c%d9%86%d9%88%d8%aa%d8%a7%d9%be-%d9%be%d9%88%d8%af%d8%b1%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140742,
+      "name": "شالی ایکس گرین -1-لیتری",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%d8%a7%d9%84%db%8c-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": false,
+      "is_in_stock": false,
+      "price": "0",
+      "price_state": "zero",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140735,
+      "name": "گرانول ۵-۵-۵ ایکس گرین",
+      "permalink": "https://keshavarz20.com/product/%da%af%d8%b1%d8%a7%d9%86%d9%88%d9%84-%db%b5-%db%b5-%db%b5-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "5725080",
+      "price_state": "positive",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140734,
+      "name": "کود پودری گُلر ایکس گرین آمریکا 500 گرم (Goler XGreen)",
+      "permalink": "https://keshavarz20.com/product/%da%af%d9%8f%d9%84%d8%b1-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "2585520",
+      "price_state": "positive",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140720,
+      "name": "کود مایع پرنس ایکس گرین آمریکا 1 لیتری (Prince XGreen)",
+      "permalink": "https://keshavarz20.com/product/%d9%be%d8%b1%d9%86%d8%b3-%d8%a7%db%8c%da%a9%d8%b3-%da%af%d8%b1%db%8c%d9%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1778112",
+      "price_state": "positive",
+      "categories": [
+        "ایکس گرین (XGreen)",
+        "كودهای کشاورزی",
+        "نهاده های کشاورزی"
+      ]
+    },
+    {
+      "id": 140671,
+      "name": "رابط تیپ به لی فلت بدون واشر آبافرین",
+      "permalink": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d8%aa%db%8c%d9%be-%d8%a8%d9%87-%d9%84%db%8c-%d9%81%d9%84%d8%aa-%d8%a8%d8%af%d9%88%d9%86-%d9%88%d8%a7%d8%b4%d8%b1-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "15500",
+      "price_state": "positive",
+      "categories": [
+        "آبیاری قطره‌ای",
+        "انشعابات و بست ها",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم آبیاری"
+      ]
+    },
+    {
+      "id": 140655,
+      "name": "شیر توپی تک‌ضرب دسته فلزی ویسپار ۱ و ۱/۴ اینچ (۴۰ میلی‌متر)",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%81%d9%84%d8%b2%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-1-1-4-%d8%a7%db%8c%d9%86%da%86-40/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "770000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "شیر توپی پلیمری",
+        "شیرآلات پلی اتیلن",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 140637,
+      "name": "مغزی u-pvc پلیمری 1.1/4 اینچ ویسپار (پایا)",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d8%ba%d8%b2%db%8c-u-pvc-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-1-4-%d8%a7%db%8c%d9%86%da%86-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-%d9%be%d8%a7%db%8c%d8%a7/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "60000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات u-pvc",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم جانبی"
+      ]
+    },
+    {
+      "id": 140631,
+      "name": "مغزی پلیمری 2 اینچ آبافرین",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-2-%d8%a7%db%8c%d9%86%da%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "75000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات u-pvc",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم جانبی"
+      ]
+    },
+    {
+      "id": 140630,
+      "name": "مغزی پلیمری 1.1/2 اینچ آبافرین",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-1-2-%d8%a7%db%8c%d9%86%da%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "53000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات u-pvc",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم جانبی"
+      ]
+    },
+    {
+      "id": 140628,
+      "name": "مغزی پلیمری 1 اینچ آبافرین",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "26500",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات u-pvc",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم جانبی"
+      ]
+    },
+    {
+      "id": 140626,
+      "name": "مغزی پلیمری 4 اینچ",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-4-%d8%a7%db%8c%d9%86%da%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "410000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات u-pvc",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم جانبی",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 140625,
+      "name": "مته دستی قطر 18 میلیمتر",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d8%aa%d9%87-%d8%af%d8%b3%d8%aa%db%8c-%d9%82%d8%b7%d8%b1-18-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "365000",
+      "price_state": "positive",
+      "categories": [
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم جانبی",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 140613,
+      "name": "کمربند پلیمری آبافرین &#8220;2*90mm",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-290mm-2/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "547000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "کمربند انشعاب پلی اتیلن",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 140607,
+      "name": "کمربند پلیمری 160 × 2 اینچ",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-2160mm/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1390000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "کمربند انشعاب پلی اتیلن",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 140605,
+      "name": "کمربند پلیمری 125 × 2 اینچ",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-2125mm/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "754000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "کمربند انشعاب پلی اتیلن",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 140589,
+      "name": "کمربند پلیمری پلی رود &#8220;1/2*40mm",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-1-240mm/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "180000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "کمربند انشعاب پلی اتیلن",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 140586,
+      "name": "کمربند پلی‌اتیلن ۱۲۵ × ۵۰ میلی‌متر | انشعاب لوله ۵۰ میلی‌متر",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-50-x-125-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "754000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "کمربند انشعاب پلی اتیلن",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 140579,
+      "name": "کمربند پلی‌اتیلن ۱۶۰ × ۱ اینچ | انشعاب لوله ۳۲ میلی‌متر",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-1160mm/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1390000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "کمربند انشعاب پلی اتیلن",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 140567,
+      "name": "فلنچ پلی اتیلن جوشی 8 اینچ (200 میلیمتر) 6 اتمسفر",
+      "permalink": "https://keshavarz20.com/product/%d9%81%d9%84%d9%86%da%86-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%d8%ac%d9%88%d8%b4%db%8c-8-%d8%a7%db%8c%d9%86%da%86-200-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-6-%d8%a7%d8%aa%d9%85/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "820000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن جوشی",
+        "تجهیزات و لوازم کشاورزی",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 140540,
+      "name": "سه راه نر پلیمری زلال رود 2 اینچ",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%86%d8%b1-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%b2%d9%84%d8%a7%d9%84-%d8%b1%d9%88%d8%af-2-%d8%a7%db%8c%d9%86%da%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "222656",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات u-pvc",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم جانبی",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 140490,
+      "name": "زانو ماده پلیمری رزوه ای 2 اینچ (63 میلیمتر) زلال رود",
+      "permalink": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-%d9%85%d8%a7%d8%af%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%b1%d8%b2%d9%88%d9%87-%d8%a7%db%8c-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "106875",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات u-pvc",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم جانبی"
+      ]
+    },
+    {
+      "id": 140489,
+      "name": "زانو دو سر نر پلیمری رزوه ای 2 اینچ (63 میلیمتر) زلال رود",
+      "permalink": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-%d8%af%d9%88-%d8%b3%d8%b1-%d9%86%d8%b1-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%b1%d8%b2%d9%88%d9%87-%d8%a7%db%8c-2-%d8%a7%db%8c%d9%86%da%86-63-%d9%85%db%8c%d9%84%db%8c%d9%85/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "106875",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات u-pvc",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم جانبی"
+      ]
+    },
+    {
+      "id": 140480,
+      "name": "رابط تیپ به لی فلت واشر دار آبافرین سر تخت",
+      "permalink": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d8%aa%db%8c%d9%be-%d8%a8%d9%87-%d9%84%db%8c-%d9%81%d9%84%d8%aa-%d9%88%d8%a7%d8%b4%d8%b1-%d8%af%d8%a7%d8%b1-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%d9%8a%d9%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "20500",
+      "price_state": "positive",
+      "categories": [
+        "آبیاری قطره‌ای",
+        "انشعابات و بست ها",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم آبیاری"
+      ]
+    },
+    {
+      "id": 140478,
+      "name": "رابط تیپ به تیپ کشویی زلال رود",
+      "permalink": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d8%aa%db%8c%d9%be-%d8%a8%d9%87-%d8%aa%db%8c%d9%be-%d9%83%d8%b4%d9%88%d9%8a%d9%8a-%d8%b2%d9%84%d8%a7%d9%84-%d8%b1%d9%88%d8%af/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "8500",
+      "price_state": "positive",
+      "categories": [
+        "آبیاری قطره‌ای",
+        "انشعابات و بست ها",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم آبیاری"
+      ]
+    },
+    {
+      "id": 140470,
+      "name": "رابط تیپ به 16 کشویی زلال رود",
+      "permalink": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d8%aa%d9%8a%d9%be-%d8%a8%d9%87-16-%d9%83%d8%b4%d9%88%d9%8a%db%8c-%d8%b2%d9%84%d8%a7%d9%84-%d8%b1%d9%88%d8%af/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "7100",
+      "price_state": "positive",
+      "categories": [
+        "آبیاری قطره‌ای",
+        "انشعابات و بست ها",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم آبیاری"
+      ]
+    },
+    {
+      "id": 140448,
+      "name": "بابلر قارچی بزرگ زلال رود",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%a7%d8%a8%d9%84%d8%b1-%d9%82%d8%a7%d8%b1%da%86%db%8c-%d8%a8%d8%b2%d8%b1%da%af-%d8%b2%d9%84%d8%a7%d9%84-%d8%b1%d9%88%d8%af/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "30000",
+      "price_state": "positive",
+      "categories": [
+        "آبیاری قطره‌ای",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم آبیاری"
+      ]
+    },
+    {
+      "id": 140443,
+      "name": "بابلر تنظیمی زلال رود",
+      "permalink": "https://keshavarz20.com/product/%d8%a8%d8%a7%d8%a8%d9%84%d8%b1-%d8%aa%d9%86%d8%b8%d9%8a%d9%85%db%8c-%d8%b2%d9%84%d8%a7%d9%84-%d8%b1%d9%88%d8%af/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "38000",
+      "price_state": "positive",
+      "categories": [
+        "آبیاری قطره‌ای",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم آبیاری"
+      ]
+    },
+    {
+      "id": 140429,
+      "name": "درپوش رزوه ای پلیمری 3 اینچ",
+      "permalink": "https://keshavarz20.com/product/%d8%af%d8%b1%d9%be%d9%88%d8%b4-%d8%b1%d8%b2%d9%88%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-3-%d8%a7%db%8c%d9%86%da%86-%da%a9%d9%be%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "147844",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات u-pvc",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم جانبی",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 140420,
+      "name": "تبدیل دنده ای پلیمری 3/4 * 1.1/2 اینچ (25*50 میلیمتر)",
+      "permalink": "https://keshavarz20.com/product/%d8%aa%d8%a8%d8%af%db%8c%d9%84-%d8%af%d9%86%d8%af%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-3-4-1-1-2-%d8%a7%db%8c%d9%86%da%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "64000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات u-pvc",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم جانبی",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 140371,
+      "name": "اتصال ماده پلی رود 1/2 × 32",
+      "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%85%d8%a7%d8%af%d9%87-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-1-2-x-32/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "44223",
+      "price_state": "positive",
+      "categories": [
+        "اتصال یکسر ماده پلی اتیلن",
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "سایر اتصالات پلی اتیلن پیچی",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 140343,
+      "name": "کمربند پلی‌اتیلن رینگ‌فلزی ۱۱۰ × ۹۰ میلی‌متر | انشعاب لوله ۹۰ میلی‌متر",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a8%d8%a7-%d8%b1%db%8c%d9%86%da%af-%d9%81%d9%84%d8%b2%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-90110-%d9%85%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "890000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "کمربند انشعاب پلی اتیلن"
+      ]
+    },
+    {
+      "id": 140342,
+      "name": "کمربند پلی‌اتیلن رینگ‌فلزی ۱۲۵ × ۱۱۰ میلی‌متر | انشعاب لوله ۱۱۰ میلی‌متر",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a8%d8%a7-%d8%b1%db%8c%d9%86%da%af-%d9%81%d9%84%d8%b2%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-110125-%d9%85%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1100000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "کمربند انشعاب پلی اتیلن"
+      ]
+    },
+    {
+      "id": 140341,
+      "name": "کمربند پلی‌اتیلن رینگ‌فلزی ۱۲۵ × ۹۰ میلی‌متر | انشعاب لوله ۹۰ میلی‌متر",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a8%d8%a7-%d8%b1%db%8c%d9%86%da%af-%d9%81%d9%84%d8%b2%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-90125-%d9%85%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1100000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "کمربند انشعاب پلی اتیلن"
+      ]
+    },
+    {
+      "id": 140338,
+      "name": "شیر ویفری پروانه‌ای آبافرین ۴ اینچ (110 میلی‌متر)",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d9%88%db%8c%d9%81%d8%b1%db%8c-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%b3%d8%a7%db%8c%d8%b2-%db%b4-%d8%a7%db%8c%d9%86%da%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "2475878",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "شیر پروانه‌ای پلیمری",
+        "شیرآلات پلی اتیلن"
+      ]
+    },
+    {
+      "id": 140337,
+      "name": "شیر ویفری پروانه‌ای آبافرین ۳ اینچ (90 میلی‌متر)",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d9%88%db%8c%d9%81%d8%b1%db%8c-%d9%be%d8%b1%d9%88%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%b3%d8%a7%db%8c%d8%b2-%db%b3-%d8%a7%db%8c%d9%86%da%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1672890",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "شیر پروانه‌ای پلیمری",
+        "شیرآلات پلی اتیلن"
+      ]
+    },
+    {
+      "id": 139241,
+      "name": "زانو 90 درجه جوشی سایز 250 میلیمتر &#8211; 6بار",
+      "permalink": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-250-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "3660000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "اتصالات پلی اتیلن جوشی",
+        "تجهیزات و لوازم کشاورزی"
+      ]
+    },
+    {
+      "id": 139234,
+      "name": "زانو 90 درجه جوشی سایز 160 میلیمتر &#8211; 6بار",
+      "permalink": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-160-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1250000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "اتصالات پلی اتیلن جوشی",
+        "تجهیزات و لوازم کشاورزی"
+      ]
+    },
+    {
+      "id": 139228,
+      "name": "زانو 90 درجه جوشی سایز 2.1/2 اینچ (75 میلیمتر) &#8211; 6بار",
+      "permalink": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-90-%d8%af%d8%b1%d8%ac%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d8%b3%d8%a7%db%8c%d8%b2-2-1-2-%d8%a7%db%8c%d9%86%da%86-75-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "169219",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "اتصالات پلی اتیلن جوشی",
+        "تجهیزات و لوازم کشاورزی"
+      ]
+    },
+    {
+      "id": 139221,
+      "name": "سه راه ماده پلیمری u-pvc سایز 3/4 اینچ",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%85%d8%a7%d8%af%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-u-pvc-%d8%b3%d8%a7%db%8c%d8%b2-3-4-%d8%a7%db%8c%d9%86%da%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "90000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات u-pvc",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم جانبی"
+      ]
+    },
+    {
+      "id": 139205,
+      "name": "کپسول زیرسطحی آبیاری",
+      "permalink": "https://keshavarz20.com/product/%da%a9%d9%be%d8%b3%d9%88%d9%84-%d8%b2%db%8c%d8%b1-%d8%b3%d8%b7%d8%ad%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "40000",
+      "price_state": "positive",
+      "categories": [
+        "آبیاری قطره‌ای",
+        "تجهیزات و لوازم کشاورزی",
+        "قطره چکان (دریپر)",
+        "لوازم آبیاری"
+      ]
+    },
+    {
+      "id": 135801,
+      "name": "مغزی پلیمری 2 اینچ",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-1-2-%d8%a7%db%8c%d9%86%da%86-2-3/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "33166",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات u-pvc",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم جانبی",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 135699,
+      "name": "اتصال فلنچدار پلی اتیلن آبلوله 2 × 63 میلیمتر",
+      "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%81%d9%84%d9%86%da%86%d8%af%d8%a7%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-2-x-63-%d9%85%db%8c%d9%84%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "2850000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "اتصالات فلنچدار",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "سایر اتصالات پلی اتیلن پیچی",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 135629,
+      "name": "سه راه یکسر نر پلی رود 110 میلیمتر پلی اتیلن",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%db%8c%da%a9%d8%b3%d8%b1-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "4893000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "سه راه انشعاب پلی اتیلن",
+        "سه راه نر پلی اتیلن",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 135595,
+      "name": "سه راه مساوی 125 میلیمتر پلی اتیلن (5 اینچ)",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-125-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "9370000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "سه راه انشعاب پلی اتیلن",
+        "سه راه پیچی پلی اتیلن",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 135577,
+      "name": "سه راه جوشی 250 میلیمتر 6 بار",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d8%ac%d9%88%d8%b4%db%8c-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-250-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-6-%d8%a8%d8%a7%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "4500000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن جوشی",
+        "تجهیزات و لوازم کشاورزی",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 135559,
+      "name": "زانو پلی اتیلن یکسر نر پلی رود 40 میلیمتر",
+      "permalink": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%db%8c%da%a9%d8%b3%d8%b1-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-40-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "286800",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "زانو پلی اتیلن پیچی",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 135551,
+      "name": "زانو پلی اتیلن یکسر نر 110 میلیمتر",
+      "permalink": "https://keshavarz20.com/product/%d8%b2%d8%a7%d9%86%d9%88-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%db%8c%da%a9%d8%b3%d8%b1-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1110900",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "زانو پلی اتیلن پیچی",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 135415,
+      "name": "مغزی پلیمری 1 اینچ",
+      "permalink": "https://keshavarz20.com/product/%d9%85%d8%ba%d8%b2%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86-2-2/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "11055",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات u-pvc",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم جانبی",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 135355,
+      "name": "شیر انشعاب رزوه 1/2 به نوار تیپ فرات",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-%d8%b1%d8%b2%d9%88%d9%87-1-2-%d8%a8%d9%87-%d9%86%d9%88%d8%a7%d8%b1-%d8%aa%db%8c%d9%be-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "24000",
+      "price_state": "positive",
+      "categories": [
+        "آبیاری قطره‌ای",
+        "انشعابات و بست ها",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم آبیاری",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 135325,
+      "name": "شیر توپی تک‌ضرب دسته پلیمری ویسپار ۱ و ۱/۴ اینچ (۴۰ میلی‌متر)",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1%d8%aa%d9%88%d9%be%db%8c-%d8%aa%da%a9-%d8%b6%d8%b1%d8%a8-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d9%88%db%8c%d8%b3%d9%be%d8%a7%d8%b1-1-1-4-%d8%a7%db%8c%d9%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "435120",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "شیر توپی پلیمری",
+        "شیرآلات پلی اتیلن",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 135261,
+      "name": "شیر توپی یکسر نر یکسر ماده آبافرین دسته پلیمری ۲ اینچ (۶۳ میلی‌متر)",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d8%aa%d9%88%d9%be%db%8c-%db%8c%da%a9%d8%b3%d8%b1-%d9%86%d8%b1-%db%8c%da%a9%d8%b3%d8%b1-%d9%85%d8%a7%d8%af%d9%87-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-2-%d8%a7%db%8c%d9%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "401494",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "شیر توپی پلیمری",
+        "شیرآلات پلی اتیلن",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 135255,
+      "name": "شیر توپی دو سر ماده آبافرین دسته پلیمری ۳ اینچ (۹۰ میلی‌متر)",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d8%aa%d9%88%d9%be%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-3-%d8%a7%db%8c%d9%86%da%86-90-%d9%85%db%8c%d9%84/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "1785000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "شیر توپی پلیمری",
+        "شیرآلات پلی اتیلن",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 135249,
+      "name": "شیر توپی دو سر نر آبافرین 2 اینچ (63 میلیمتر)",
+      "permalink": "https://keshavarz20.com/product/%d9%84%d9%88%d8%a7%d8%b2%d9%85-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d8%a2%d8%a8%d8%a7%d9%81%d8%b1%db%8c%d9%86-%d9%85%d8%af%d9%84-%d8%af%d8%b3%d8%aa%d9%87-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-4-2/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "542837",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "شیر توپی پلیمری",
+        "شیرآلات پلی اتیلن",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 135173,
+      "name": "رابط مساوی 5 اینچ (125 میلیمتر)",
+      "permalink": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-125-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "5530000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "رابط پلی اتیلن پیچی",
+        "رابط مساوی پلی اتیلن",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 135134,
+      "name": "شیر انشعاب 20 به نوار تیپ پیچی",
+      "permalink": "https://keshavarz20.com/product/%d8%b4%db%8c%d8%b1-%d8%a7%d9%86%d8%b4%d8%b9%d8%a7%d8%a8-20-%d8%a8%d9%87-%d8%aa%db%8c%d9%be-%d9%be%db%8c%da%86%db%8c/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "27000",
+      "price_state": "positive",
+      "categories": [
+        "آبیاری قطره‌ای",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم آبیاری",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 135098,
+      "name": "درپوش رزوه ای پلیمری 2 اینچ",
+      "permalink": "https://keshavarz20.com/product/%d8%af%d8%b1%d9%be%d9%88%d8%b4-%d8%b1%d8%b2%d9%88%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-2-%d8%a7%db%8c%d9%86%da%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "25603",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات u-pvc",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم جانبی",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 135092,
+      "name": "درپوش رزوه ای پلیمری 1 اینچ",
+      "permalink": "https://keshavarz20.com/product/%d8%af%d8%b1%d9%be%d9%88%d8%b4-%d8%b1%d8%b2%d9%88%d9%87-%d8%a7%db%8c-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-1-%d8%a7%db%8c%d9%86%da%86/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "10474",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات u-pvc",
+        "تجهیزات و لوازم کشاورزی",
+        "لوازم جانبی",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 135010,
+      "name": "سه راه یکسر نر پلی رود 40 میلیمتر پلی اتیلن",
+      "permalink": "https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%db%8c%da%a9%d8%b3%d8%b1-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-40-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "455000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "سه راه انشعاب پلی اتیلن",
+        "سه راه نر پلی اتیلن",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 134996,
+      "name": "رابط تبدیل آبلوله 40 × 63 میلیمتر",
+      "permalink": "https://keshavarz20.com/product/%d8%b1%d8%a7%d8%a8%d8%b7-%d8%aa%d8%a8%d8%af%db%8c%d9%84-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-40-63/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "731000",
+      "price_state": "positive",
+      "categories": [
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "رابط پلی اتیلن پیچی",
+        "رابط تبدیل پلی اتیلن",
+        "محصولات کشاورزی"
+      ]
+    },
+    {
+      "id": 134984,
+      "name": "اتصال نر پلی رود 2*50 میلیمتر",
+      "permalink": "https://keshavarz20.com/product/%d8%a7%d8%aa%d8%b5%d8%a7%d9%84-%d9%86%d8%b1-%d9%be%d9%84%db%8c-%d8%b1%d9%88%d8%af-502-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "is_purchasable": true,
+      "is_in_stock": false,
+      "price": "372000",
+      "price_state": "positive",
+      "categories": [
+        "اتصال یکسر نر پلی اتیلن",
+        "اتصالات پلی اتیلن",
+        "پلی اتیلن پیچی",
+        "تجهیزات و لوازم کشاورزی",
+        "سایر اتصالات پلی اتیلن پیچی",
+        "محصولات کشاورزی"
+      ]
+    }
+  ],
+  "technical_anomalies": [],
+  "ui_sample_checks": [
+    {
+      "id": 143032,
+      "kind": "zero_price_in_stock",
+      "http": 200,
+      "final_url": "https://keshavarz20.com/product/%D9%85%D9%88%D8%AA%D9%88%D8%B1-%D8%AC%D9%88%D8%B4-%D9%81%D9%84%D8%A7%DB%8C%DA%98%D9%86-flygen-%D9%85%D8%AF%D9%84-fg-160a/?k20_phase28_verify=1",
+      "inquiry_heading": true,
+      "inquiry_action": true,
+      "ok": true
+    },
+    {
+      "id": 143029,
+      "kind": "zero_price_in_stock",
+      "http": 200,
+      "final_url": "https://keshavarz20.com/product/%DA%A9%D9%88%D8%AF-%D8%A7%D9%86-%D9%BE%DB%8C-%DA%A9%D8%A7-36-12-12-%D8%A8%DB%8C%D9%88%D9%81%D8%A7%D8%B1%D9%85-beau-farm/?k20_phase28_verify=1",
+      "inquiry_heading": true,
+      "inquiry_action": true,
+      "ok": true
+    },
+    {
+      "id": 143020,
+      "kind": "zero_price_in_stock",
+      "http": 200,
+      "final_url": "https://keshavarz20.com/product/%DA%A9%D9%88%D8%AF-%D8%A7%D9%86-%D9%BE%DB%8C-%DA%A9%D8%A7-10-50-10-%D8%A8%DB%8C%D9%88%D9%81%D8%A7%D8%B1%D9%85-beau-farm/?k20_phase28_verify=1",
+      "inquiry_heading": true,
+      "inquiry_action": true,
+      "ok": true
+    },
+    {
+      "id": 142985,
+      "kind": "zero_price_in_stock",
+      "http": 200,
+      "final_url": "https://keshavarz20.com/product/%DA%A9%D9%88%D8%AF-%D9%85%D8%A7%DB%8C%D8%B9-%D9%85%D8%B1%D8%BA%DB%8C-%D8%A8%DB%8C%D9%88%D9%81%D8%A7%D8%B1%D9%85-beau-farm-20-%D9%84%DB%8C%D8%AA%D8%B1%DB%8C/?k20_phase28_verify=1",
+      "inquiry_heading": true,
+      "inquiry_action": true,
+      "ok": true
+    },
+    {
+      "id": 142980,
+      "kind": "zero_price_in_stock",
+      "http": 200,
+      "final_url": "https://keshavarz20.com/product/%DA%A9%D9%88%D8%AF-%D9%87%DB%8C%D9%88%D9%85%DB%8C%DA%A9-%D8%A7%D8%B3%DB%8C%D8%AF-%D9%BE%D9%88%D8%AF%D8%B1%DB%8C-%D8%A8%DB%8C%D9%88%D9%81%D8%A7%D8%B1%D9%85-beau-farm/?k20_phase28_verify=1",
+      "inquiry_heading": true,
+      "inquiry_action": true,
+      "ok": true
+    },
+    {
+      "id": 143188,
+      "kind": "out_of_stock_positive_price",
+      "http": 200,
+      "final_url": "https://keshavarz20.com/product/%D8%AF%D8%B1%D8%A7%DB%8C%D9%88%D8%B1-%D8%A8%D8%B1%D8%AF%DB%8C-%D9%85%D9%88%D8%AA%D9%88%D8%B1-dc-%DA%A9%D9%86%D8%AA%D8%B1%D9%84-%D8%B3%D8%B1%D8%B9%D8%AA-%D9%88-%D8%AC%D9%87%D8%AA-60-%D8%A2%D9%85%D9%BE/?k20_phase28_verify=1",
+      "out_of_stock_marker": true,
+      "has_quote_or_supply_path": true,
+      "ok": true
+    },
+    {
+      "id": 143119,
+      "kind": "out_of_stock_positive_price",
+      "http": 200,
+      "final_url": "https://keshavarz20.com/product/%DA%A9%D9%88%D8%AF-%D8%A7%D9%88%D8%B1%D9%87-%D9%81%D8%B3%D9%81%D8%A7%D8%AA-0-44-17-%D8%A8%D9%84%D9%88%D9%86%D8%A7-bellona-17-44-0/?k20_phase28_verify=1",
+      "out_of_stock_marker": true,
+      "has_quote_or_supply_path": true,
+      "ok": true
+    },
+    {
+      "id": 143044,
+      "kind": "out_of_stock_positive_price",
+      "http": 200,
+      "final_url": "https://keshavarz20.com/product/%DA%A9%D9%88%D8%AF-%D9%85%D8%AC%DB%8C%D8%B4%D9%86-magicin-%D9%85%D8%A7%DB%8C%D8%B9-%D8%A8%DB%8C%D8%AF%D8%A7%D8%B1-%D8%B1%D8%B4%D8%AF-1-%D9%84%DB%8C%D8%AA%D8%B1%DB%8C/?k20_phase28_verify=1",
+      "out_of_stock_marker": true,
+      "has_quote_or_supply_path": true,
+      "ok": true
+    },
+    {
+      "id": 143041,
+      "kind": "out_of_stock_positive_price",
+      "http": 200,
+      "final_url": "https://keshavarz20.com/product/%DA%A9%D9%88%D8%AF-%DA%A9%D8%A7-%DB%B5%DB%B0-k50-%D9%85%D8%A7%DB%8C%D8%B9-%D8%A8%DB%8C%D8%AF%D8%A7%D8%B1-%D8%B1%D8%B4%D8%AF-1-%D9%84%DB%8C%D8%AA%D8%B1%DB%8C/?k20_phase28_verify=1",
+      "out_of_stock_marker": true,
+      "has_quote_or_supply_path": true,
+      "ok": true
+    },
+    {
+      "id": 143039,
+      "kind": "out_of_stock_positive_price",
+      "http": 200,
+      "final_url": "https://keshavarz20.com/product/%DA%A9%D9%88%D8%AF-%D9%81%D9%88%D8%B3%DA%A9%D8%A7-phos-k-%D9%85%D8%A7%DB%8C%D8%B9-%D8%A8%DB%8C%D8%AF%D8%A7%D8%B1-%D8%B1%D8%B4%D8%AF-1-%D9%84%DB%8C%D8%AA%D8%B1%DB%8C/?k20_phase28_verify=1",
+      "out_of_stock_marker": true,
+      "has_quote_or_supply_path": true,
+      "ok": true
+    }
+  ],
+  "guardrails": {
+    "price_writes": 0,
+    "stock_writes": 0,
+    "product_status_writes": 0,
+    "catalog_visibility_writes": 0,
+    "customer_or_order_data_read": false
+  },
+  "interpretation": {
+    "zero_price": "Requires verified price-source remediation; do not invent or auto-fill price.",
+    "out_of_stock": "Preserve useful SEO pages unless discontinuation is verified; prioritize supply/alternative CTA rather than blind deletion."
+  }
+}
