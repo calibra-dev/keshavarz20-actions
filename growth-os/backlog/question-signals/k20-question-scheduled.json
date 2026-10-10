@@ -1,11 +1,14 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-e43b969ff2add088",
-  "product_id": 140302,
+  "canonical_intent_id": "question-intent-db4599f83b8a2205",
+  "product_id": 140226,
   "family": "fertilizer",
-  "intent": "soil",
-  "scenario_dimensions": {},
+  "intent": "mix",
+  "scenario_dimensions": {
+    "water": true,
+    "crop": "نیشکر"
+  },
   "potential_article_gap": false,
   "potential_hub_gap": false,
   "compatibility_gap": false,
