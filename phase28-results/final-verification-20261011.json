@@ -1,0 +1,90 @@
+{
+  "schema_version": "k20-phase28-final-verification-v1",
+  "phase": 28,
+  "verified_date": "2026-10-11",
+  "status": "PASS_WITH_BUSINESS_DATA_RESIDUALS",
+  "baseline_evidence": {
+    "workflow_run": 38026046062,
+    "trigger_commit": "e4868e9615b4a0ffc7fc318629c03a8ada3cd017",
+    "workflow_conclusion": "success",
+    "published_products": 652,
+    "in_stock": 494,
+    "out_of_stock": 158,
+    "purchasable": 562,
+    "non_purchasable": 90,
+    "price_positive": 562,
+    "price_zero": 90,
+    "price_missing": 0,
+    "price_invalid": 0,
+    "zero_price_in_stock": 73,
+    "zero_price_out_of_stock": 17,
+    "out_of_stock_positive_price": 141
+  },
+  "invariants": {
+    "positive_price_in_stock_non_purchasable": 0,
+    "all_non_purchasable_explained_by_zero_price": true,
+    "technical_purchasability_bug": false
+  },
+  "live_p0_verification_20261011": {
+    "zero_price_in_stock_priority_count": 7,
+    "zero_price_in_stock_verified": "7/7",
+    "zero_price_in_stock_state": "is_in_stock=true, price=0, is_purchasable=false",
+    "zero_price_ui": {
+      "price_inquiry": "7/7",
+      "request_quotation": "7/7",
+      "whatsapp": "7/7"
+    },
+    "popular_oos_priority_count": 10,
+    "popular_oos_verified": "10/10",
+    "popular_oos_state": "is_in_stock=false with positive stored price",
+    "popular_oos_ui": {
+      "request_quotation": "10/10",
+      "whatsapp": "10/10",
+      "related_product_links_present": "10/10",
+      "note": "Related links are discovery options only and are not asserted to be exact substitutes."
+    },
+    "buybox_stock_message_sample": {
+      "sampled_ids": [
+        139205,
+        140480,
+        135415
+      ],
+      "visible_out_of_stock_message": "3/3",
+      "exact_text": "ناموجود"
+    }
+  },
+  "execution_decision": {
+    "price_write": false,
+    "stock_write": false,
+    "content_write": false,
+    "reason": [
+      "No verified supplier/manufacturer/current internal price source is available for the zero-price products.",
+      "No verified inventory source is available to restock out-of-stock products.",
+      "Existing zero-price and out-of-stock UX already exposes quote/WhatsApp pathways; redundant content writes would not fix the underlying business-data gap."
+    ]
+  },
+  "residual_queues": {
+    "verified_price_required_for_in_stock_zero_price": 73,
+    "supply_then_price_required_for_zero_price_oos": 17,
+    "inventory_truth_required_for_oos": 158,
+    "positive_price_oos": 141,
+    "top_restock_priority_ids": [
+      139205,
+      140480,
+      135415,
+      140478,
+      140443,
+      140759,
+      141367,
+      141659,
+      135355,
+      135801
+    ]
+  },
+  "policy": {
+    "guessed_price_forbidden": true,
+    "blind_stock_change_forbidden": true,
+    "keep_useful_oos_pages_published": true,
+    "preserve_seo_pages": true
+  }
+}
