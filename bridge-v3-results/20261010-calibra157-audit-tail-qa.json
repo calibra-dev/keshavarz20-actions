@@ -1,0 +1,139 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261010-calibra157-audit-tail-qa.sanitized.json",
+  "action": "audit.tail",
+  "request_id": "calibra157-readonly-audit-tail-20261010",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-10T07:13:58.9616679Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.37",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "count": 30,
+    "items": [
+      {
+        "action": "rest.proxy",
+        "ok": false
+      },
+      {
+        "action": "plugin.rest.routes",
+        "ok": true
+      },
+      {
+        "action": "plugin.inspect",
+        "ok": true
+      },
+      {
+        "action": "plugin.inspect",
+        "ok": false
+      },
+      {
+        "action": "plugin.inventory",
+        "ok": true
+      },
+      {
+        "action": "api.contract",
+        "ok": true
+      },
+      {
+        "action": "rest.proxy",
+        "ok": true
+      },
+      {
+        "action": "rest.proxy",
+        "ok": true
+      },
+      {
+        "action": "seo.read",
+        "ok": false
+      },
+      {
+        "action": "rest.proxy",
+        "ok": false
+      },
+      {
+        "action": "api.contract",
+        "ok": true
+      },
+      {
+        "action": "code.search",
+        "ok": true
+      },
+      {
+        "action": "code.search",
+        "ok": true
+      },
+      {
+        "action": "batch",
+        "ok": true
+      },
+      {
+        "action": "cache.purge",
+        "ok": true
+      },
+      {
+        "action": "api.contract",
+        "ok": true
+      },
+      {
+        "action": "approval.execute",
+        "ok": true
+      },
+      {
+        "action": "update.stage",
+        "ok": true
+      },
+      {
+        "action": "update.check",
+        "ok": true
+      },
+      {
+        "action": "plugin.inspect",
+        "ok": true
+      },
+      {
+        "action": "plugin.inspect",
+        "ok": true
+      },
+      {
+        "action": "plugin.inspect",
+        "ok": false
+      },
+      {
+        "action": "plugin.inspect",
+        "ok": false
+      },
+      {
+        "action": "snippet.read",
+        "ok": true
+      },
+      {
+        "action": "snippet.read",
+        "ok": true
+      },
+      {
+        "action": "snippet.read",
+        "ok": true
+      },
+      {
+        "action": "code.search",
+        "ok": true
+      },
+      {
+        "action": "code.search",
+        "ok": true
+      },
+      {
+        "action": "code.search",
+        "ok": true
+      },
+      {
+        "action": "code.search",
+        "ok": true
+      }
+    ]
+  }
+}
