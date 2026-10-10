@@ -1,0 +1,102 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261010-calibra157-routes-live.sanitized.json",
+  "action": "plugin.rest.routes",
+  "request_id": "calibra157-routes-live",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-10T07:13:02.9617027Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.37",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "count": 9,
+    "plugin": "k20-dashboard/k20-dashboard.php",
+    "routes": [
+      {
+        "path": "/k20-dashboard/v1/snapshot",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/detail/(?P<type>order|product)/(?P<id>\\d+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/analytics",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/server",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/server-renewal",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/domain-renewal",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/drilldown",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/report",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/diagnostics",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      }
+    ],
+    "truncated": false
+  }
+}
