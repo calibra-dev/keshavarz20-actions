@@ -27,6 +27,7 @@ REPO_ROOT = ROOT.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 import k20_sanitizer
+import k20_rtl_pro as rtlpro
 import content_growth_runtime
 OUT = ROOT / "output"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -678,6 +679,7 @@ def main() -> None:
 
     article = author_article(selected, verification)
     k20_sanitizer.sanitize_payload_inplace(article)
+    rtlpro.audit_payload_text(article)
     save_json("article.json", article)
 
     image = generate_featured_image(article)
