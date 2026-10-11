@@ -13,6 +13,7 @@ REPO_ROOT = ROOT.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 import k20_sanitizer
+import k20_rtl_pro as rtlpro
 import content_growth_runtime
 spec = importlib.util.spec_from_file_location("article_v5", ROOT / "publish_queue_v5.py")
 v5 = importlib.util.module_from_spec(spec)
@@ -161,6 +162,7 @@ def _is_phase20_payload(p: dict) -> bool:
 def validate_payload_v6(p):
     k20_sanitizer.sanitize_payload_inplace(p)
     previous_validate(p)
+    rtlpro.audit_payload_text(p)
     if not _is_phase20_payload(p):
         return
     registry_path = REPO_ROOT / "growth-os" / "intent-registry.json"
