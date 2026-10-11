@@ -1,16 +1,18 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-2f56abf50dac6c4e",
-  "product_id": 140374,
-  "family": "fitting",
-  "intent": "compatibility",
+  "canonical_intent_id": "question-intent-cccf7ebac914d832",
+  "product_id": 144245,
+  "family": "pipe",
+  "intent": "longrun",
   "scenario_dimensions": {
-    "installation_state": true
+    "pressure": true,
+    "failure_mode": true,
+    "crop": "تره"
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": true,
+  "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
