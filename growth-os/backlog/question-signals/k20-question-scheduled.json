@@ -1,14 +1,16 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-f48cefd6785a7d4c",
-  "product_id": 135854,
-  "family": "pipe",
-  "intent": "total_cost",
+  "canonical_intent_id": "question-intent-712897c5be47bdac",
+  "product_id": 136218,
+  "family": "seed",
+  "intent": "logistics",
   "scenario_dimensions": {
-    "crop": "تره"
+    "pressure": true,
+    "logistics": true,
+    "province_or_climate": "زاهدان"
   },
-  "potential_article_gap": true,
+  "potential_article_gap": false,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
