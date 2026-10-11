@@ -4,6 +4,11 @@ import importlib.util
 import json
 import os
 import re
+import sys
+
+if os.path.dirname(os.path.dirname(os.path.abspath(__file__))) not in sys.path:
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import k20_rtl_pro as rtlpro
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(ROOT)
@@ -196,6 +201,10 @@ def _guard_v19(p, candidate, question):
     ok, reason = orig_guard(p, candidate, question)
     if not ok:
         return ok, reason
+    try:
+        rtlpro.assert_public_text(question, field="question", require_persian=True)
+    except rtlpro.RTLQualityError:
+        return False, "rtl text integrity gate"
     text = _norm(question)
     if any(_norm(x) in text for x in BLOCKED_EXPERIENCE_PHRASES):
         return False, "fabricated customer-purchase experience"
