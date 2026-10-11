@@ -1,0 +1,96 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261011-calibra1512-live-health-1421.sanitized.json",
+  "action": "plugin.inspect",
+  "request_id": "calibra1512-live-health-20261011-1421",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-11T11:33:35.3612688Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.37",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "slug": "k20-dashboard",
+    "name": "Calibra Dashboard",
+    "version": "1.5.12",
+    "update_available": false,
+    "active": true,
+    "network_active": false,
+    "new_version": null,
+    "plugin": "k20-dashboard/k20-dashboard.php",
+    "requires_wp": "6.5",
+    "requires_php": "8.1",
+    "text_domain": "k20-dashboard",
+    "main_file": "k20-dashboard/k20-dashboard.php",
+    "main_bytes": 7233,
+    "main_sha256": "cc57cc083a883eaeb8d9dc4091bb1bdb93c909f943c947aa70a88f1490ea83c0",
+    "file_count": 21,
+    "total_bytes": 4973017,
+    "rest_route_count": 9,
+    "rest_routes": [
+      {
+        "path": "/k20-dashboard/v1/snapshot",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/detail/(?P<type>order|product)/(?P<id>\\d+)",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/analytics",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/server",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/server-renewal",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/domain-renewal",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/drilldown",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/report",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/diagnostics",
+        "methods": [
+          "GET"
+        ]
+      }
+    ],
+    "extensions": {
+      "css": 1,
+      "js": 6,
+      "sha256": 1,
+      "txt": 4,
+      "webp": 2
+    }
+  }
+}
