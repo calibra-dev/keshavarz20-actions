@@ -50,6 +50,7 @@ jobs:
           python -m py_compile daily-agri-news/publish_queue_v3.py
           python -m py_compile content_growth_runtime.py
           python -m unittest tests.test_content_growth_prompt_v3 -v
+          python -m unittest tests.test_k20_rtl_pro -v
 
   publish-draft:
     if: github.event_name != 'pull_request' && (github.event_name != 'workflow_dispatch' || inputs.validate_only != true)

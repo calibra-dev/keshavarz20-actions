@@ -8,6 +8,12 @@ from pathlib import Path
 from typing import Any
 
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter
+import sys
+
+REPO = Path(__file__).resolve().parent.parent
+if str(REPO) not in sys.path:
+    sys.path.insert(0, str(REPO))
+import k20_rtl_pro as rtlpro
 
 ROOT = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("article_v4", ROOT / "publish_queue_v4.py")
@@ -55,7 +61,7 @@ def _wrap_all(draw: ImageDraw.ImageDraw, text: str, font, max_width: int, max_li
     current = ""
     for word in words:
         candidate = (current + " " + word).strip()
-        if not current or v4._text_width(draw, candidate, font) <= max_width:
+        if not current or rtlpro.text_width(draw, candidate, font) <= max_width:
             current = candidate
             continue
         lines.append(current)
@@ -64,14 +70,14 @@ def _wrap_all(draw: ImageDraw.ImageDraw, text: str, font, max_width: int, max_li
         lines.append(current)
     if not lines or len(lines) > max_lines:
         return None
-    if any(v4._text_width(draw, line, font) > max_width for line in lines):
+    if any(rtlpro.text_width(draw, line, font) > max_width for line in lines):
         return None
     return lines
 
 
 def _fit(draw: ImageDraw.ImageDraw, text: str, start: int, minimum: int, max_lines: int):
     for size in range(start, minimum - 1, -2):
-        font, path = v4._font(size)
+        font, path = rtlpro.load_font(size, v4.FONT_CANDIDATES)
         lines = _wrap_all(draw, text, font, MAX_TEXT_WIDTH, max_lines)
         if lines:
             return font, path, lines
@@ -126,14 +132,14 @@ def make_editorial_cover_v5(source: dict[str, Any], p: dict[str, Any]) -> Path:
 
         draw.rounded_rectangle((38, 402, 1242, 684), radius=32, fill=(7, 28, 19, 214))
         draw.rounded_rectangle((62, 426, 296, 492), radius=23, fill=(246, 248, 240, 246))
-        brand_font, brand_font_path = v4._font(27)
-        draw.text((179, 459), v4._rtl("کشاورز بیست"), font=brand_font, fill=(17, 71, 43, 255), anchor="mm")
+        brand_font, brand_font_path = rtlpro.load_font(27, v4.FONT_CANDIDATES)
+        rtlpro.draw_text(draw, (179, 459), "کشاورز بیست", font=brand_font, fill=(17, 71, 43, 255), anchor="mm")
         draw.rounded_rectangle((315, 439, 1197, 445), radius=3, fill=(114, 196, 139, 220))
 
         title_font, title_font_path, title_lines = _fit(draw, title, 54, 42, TITLE_MAX_LINES)
         y = 520
         for line in title_lines:
-            draw.text((1195, y), v4._rtl(line), font=title_font, fill=(255, 255, 255, 255), anchor="ra")
+            rtlpro.draw_text(draw, (1195, y), line, font=title_font, fill=(255, 255, 255, 255), anchor="ra")
             y += title_font.size + 10
 
         subtitle_lines: list[str] = []
@@ -144,7 +150,7 @@ def make_editorial_cover_v5(source: dict[str, Any], p: dict[str, Any]) -> Path:
             for line in subtitle_lines:
                 if y > 660:
                     raise base.QueuePublishError("cover_subtitle exceeds safe vertical space")
-                draw.text((1195, y), v4._rtl(line), font=subtitle_font, fill=(226, 238, 230, 255), anchor="ra")
+                rtlpro.draw_text(draw, (1195, y), line, font=subtitle_font, fill=(226, 238, 230, 255), anchor="ra")
                 y += subtitle_font.size + 7
 
         final = Image.alpha_composite(im, overlay).convert("RGB")
@@ -168,11 +174,12 @@ def make_editorial_cover_v5(source: dict[str, Any], p: dict[str, Any]) -> Path:
         "title_font": title_font_path,
         "subtitle_font": subtitle_font_path,
         "source_url": source.get("original_url") or source.get("url") or "",
-        "text_rendering": "deterministic-pillow-arabic-reshaper-python-bidi",
+        "text_rendering": "pillow-libraqm-direction-rtl-language-fa",
         "ai_text_rendering": False,
         "fail_closed_on_missing_persian_stack": True,
         "fail_closed_on_copy_overflow": True,
         "qa_passed": True,
+        "visual_proofread": "not_tested",
     }
     (base.OUT / "cover-render-manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",

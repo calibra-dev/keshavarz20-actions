@@ -18,6 +18,7 @@ REPO_ROOT = ROOT.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 import k20_sanitizer
+import k20_rtl_pro as rtlpro
 spec = importlib.util.spec_from_file_location("news_v2", ROOT / "publish_queue_v2.py")
 v2 = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(v2)
@@ -50,7 +51,7 @@ def _wc(value: str) -> int:
 def _font(size: int):
     for path in FONT_CANDIDATES:
         if Path(path).exists():
-            return ImageFont.truetype(path, size=size), path
+            return rtlpro.load_font(size, FONT_CANDIDATES)
     raise base.QueuePublishError("News Persian cover renderer unavailable: approved Noto Arabic font not found")
 
 
@@ -58,12 +59,11 @@ def _rtl(value: str) -> str:
     value = _normalize(value)
     if not value:
         return ""
-    return get_display(arabic_reshaper.reshape(value))
+    return value
 
 
 def _width(draw, value: str, font) -> int:
-    box = draw.textbbox((0, 0), _rtl(value), font=font)
-    return max(0, box[2] - box[0])
+    return rtlpro.text_width(draw, _rtl(value), font)
 
 
 def _wrap_all(draw, text: str, font, max_lines: int):
@@ -119,6 +119,7 @@ def _select_copy(p: dict[str, Any]) -> tuple[str, str, str]:
 def validate_payload_v3(p):
     k20_sanitizer.sanitize_payload_inplace(p)
     v2.validate_payload_v2(p)
+    rtlpro.audit_payload_text(p)
     title, subtitle, _ = _select_copy(p)
     p["cover_title"] = title
     if subtitle:
@@ -173,13 +174,13 @@ def make_editorial_image_v3(source: dict[str, Any]) -> Path:
         draw.rounded_rectangle((42, 414, 1238, 682), radius=30, fill=(8, 27, 19, 210))
         draw.rounded_rectangle((62, 436, 282, 500), radius=22, fill=(245, 248, 240, 246))
         brand_font, brand_font_path = _font(27)
-        draw.text((172, 468), _rtl("کشاورز بیست"), font=brand_font, fill=(18, 69, 43, 255), anchor="mm")
+        rtlpro.draw_text(draw, (172, 468), _rtl("کشاورز بیست"), font=brand_font, fill=(18, 69, 43, 255), anchor="mm")
         draw.rounded_rectangle((304, 449, 1195, 455), radius=3, fill=(104, 190, 132, 220))
 
         title_font, title_font_path, title_lines = _fit(draw, title, 52, 40, 2)
         y = 526
         for line in title_lines:
-            draw.text((1195, y), _rtl(line), font=title_font, fill=(255, 255, 255, 255), anchor="ra")
+            rtlpro.draw_text(draw, (1195, y), _rtl(line), font=title_font, fill=(255, 255, 255, 255), anchor="ra")
             y += title_font.size + 10
 
         subtitle_lines: list[str] = []
@@ -190,7 +191,7 @@ def make_editorial_image_v3(source: dict[str, Any]) -> Path:
             for line in subtitle_lines:
                 if y > 661:
                     raise base.QueuePublishError("News cover_subtitle exceeds safe vertical space")
-                draw.text((1195, y), _rtl(line), font=subtitle_font, fill=(226, 238, 230, 255), anchor="ra")
+                rtlpro.draw_text(draw, (1195, y), _rtl(line), font=subtitle_font, fill=(226, 238, 230, 255), anchor="ra")
                 y += subtitle_font.size + 7
 
         final = Image.alpha_composite(rgba, overlay).convert("RGB")
@@ -216,12 +217,13 @@ def make_editorial_image_v3(source: dict[str, Any]) -> Path:
         "subtitle_font": subtitle_font_path,
         "source_url": source.get("original_url") or source.get("url") or "",
         "source_license": source.get("license") or "",
-        "text_rendering": "deterministic-pillow-arabic-reshaper-python-bidi",
+        "text_rendering": "pillow-libraqm-direction-rtl-language-fa",
         "ai_text_rendering": False,
         "fake_documentary_generation": False,
         "fail_closed_on_missing_persian_stack": True,
         "fail_closed_on_copy_overflow": True,
         "qa_passed": True,
+        "visual_proofread": "not_tested",
     }
     (base.OUT / "cover-render-manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
