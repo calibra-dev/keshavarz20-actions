@@ -89,6 +89,7 @@ jobs:
           python question-engine/test_engine_v16.py
           python question-engine/test_engine_v17.py
           python question-engine/test_engine_v18.py
+          python -m unittest tests.test_k20_rtl_pro -v
           python question-engine/test_engine_v19.py
 
       - name: Commit manual-run result
