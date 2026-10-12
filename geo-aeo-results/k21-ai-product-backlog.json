@@ -1,21 +1,21 @@
 {
-  "generated_at_utc": "2026-10-05T09:09:00.270669+00:00",
+  "generated_at_utc": "2026-10-12T09:17:02.051716+00:00",
   "program": "K21 GEO/AEO AI Product Readiness",
   "summary": {
     "products": 30,
-    "overall_average": 72.1,
+    "overall_average": 71.7,
     "ai_ready_85_plus": 0,
     "below_85": 30,
-    "non_video_overall_average": 73.1,
+    "non_video_overall_average": 72.6,
     "non_video_ready_85_plus": 0,
     "non_video_below_85": 30,
     "averages": {
       "ai_product_completeness": 69.2,
-      "answer_readiness": 98.7,
+      "answer_readiness": 97.7,
       "citation_readiness": 74.7,
-      "merchant_discovery_readiness": 100.0,
+      "merchant_discovery_readiness": 99.3,
       "compatibility_readiness": 40.5,
-      "evidence_readiness": 49.5
+      "evidence_readiness": 48.7
     },
     "external_product_feed_submitted": false,
     "direct_ai_citation_measurement_complete": false
@@ -23,15 +23,24 @@
   "backlog": [
     {
       "priority": "P1",
+      "blocker": "verified_brand_missing",
+      "affected_products": 1,
+      "product_ids": [
+        135235
+      ],
+      "acceptance": "Resolve only from verified first-party/manufacturer/catalog evidence; preserve unknown values otherwise."
+    },
+    {
+      "priority": "P1",
       "blocker": "compatibility_fields_incomplete",
       "affected_products": 30,
       "product_ids": [
+        135064,
+        135235,
+        135102,
         141527,
         141528,
         141536,
-        135102,
-        135064,
-        135235,
         135323,
         140657,
         135667,
@@ -64,12 +73,12 @@
       "blocker": "real_media_set_incomplete",
       "affected_products": 29,
       "product_ids": [
+        135064,
+        135235,
+        135102,
         141527,
         141528,
         141536,
-        135102,
-        135064,
-        135235,
         135323,
         140657,
         135667,
@@ -98,15 +107,24 @@
     },
     {
       "priority": "P2",
+      "blocker": "verified_review_qa_missing",
+      "affected_products": 1,
+      "product_ids": [
+        135064
+      ],
+      "acceptance": "Resolve only from verified first-party/manufacturer/catalog evidence; preserve unknown values otherwise."
+    },
+    {
+      "priority": "P2",
       "blocker": "real_video_missing",
       "affected_products": 30,
       "product_ids": [
+        135064,
+        135235,
+        135102,
         141527,
         141528,
         141536,
-        135102,
-        135064,
-        135235,
         135323,
         140657,
         135667,
@@ -139,12 +157,12 @@
       "blocker": "gtin_mpn_unknown_do_not_invent",
       "affected_products": 30,
       "product_ids": [
+        135064,
+        135235,
+        135102,
         141527,
         141528,
         141536,
-        135102,
-        135064,
-        135235,
         135323,
         140657,
         135667,

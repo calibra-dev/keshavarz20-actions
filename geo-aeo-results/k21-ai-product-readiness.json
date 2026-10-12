@@ -2,7 +2,7 @@
   "ok": true,
   "program": "K21 GEO/AEO AI Product Readiness",
   "version": "k21-ai-readiness-v4",
-  "generated_at_utc": "2026-10-05T09:09:00.270669+00:00",
+  "generated_at_utc": "2026-10-12T09:17:02.051716+00:00",
   "mode": "read-only-scoring",
   "source_files": [
     "phase3-results/top30-pim.json",
@@ -13,19 +13,19 @@
   ],
   "summary": {
     "products": 30,
-    "overall_average": 72.1,
+    "overall_average": 71.7,
     "ai_ready_85_plus": 0,
     "below_85": 30,
-    "non_video_overall_average": 73.1,
+    "non_video_overall_average": 72.6,
     "non_video_ready_85_plus": 0,
     "non_video_below_85": 30,
     "averages": {
       "ai_product_completeness": 69.2,
-      "answer_readiness": 98.7,
+      "answer_readiness": 97.7,
       "citation_readiness": 74.7,
-      "merchant_discovery_readiness": 100.0,
+      "merchant_discovery_readiness": 99.3,
       "compatibility_readiness": 40.5,
-      "evidence_readiness": 49.5
+      "evidence_readiness": 48.7
     },
     "external_product_feed_submitted": false,
     "direct_ai_citation_measurement_complete": false
@@ -34,9 +34,112 @@
     "compatibility_fields_incomplete": 30,
     "gtin_mpn_unknown_do_not_invent": 30,
     "real_video_missing": 30,
-    "real_media_set_incomplete": 29
+    "real_media_set_incomplete": 29,
+    "verified_brand_missing": 1,
+    "verified_review_qa_missing": 1
   },
   "products": [
+    {
+      "rank": 20,
+      "product_id": 135064,
+      "name": "کمربند پلی‌اتیلن ۹۰ × ۱ اینچ | انشعاب لوله ۳۲ میلی‌متر",
+      "url": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-190mm/",
+      "scores": {
+        "ai_product_completeness": 70,
+        "answer_readiness": 60,
+        "citation_readiness": 65,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 50,
+        "evidence_readiness": 25
+      },
+      "overall": 61.7,
+      "ai_ready_85_plus": false,
+      "non_video_scores": {
+        "ai_product_completeness": 70,
+        "answer_readiness": 60,
+        "citation_readiness": 65,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 50,
+        "evidence_readiness": 28
+      },
+      "overall_non_video": 62.2,
+      "non_video_ready_85_plus": false,
+      "blockers": [
+        "compatibility_fields_incomplete",
+        "real_media_set_incomplete",
+        "verified_review_qa_missing",
+        "real_video_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
+      "rank": 30,
+      "product_id": 135235,
+      "name": "نوار تیپ آبیاری قطره‌ای ۲۰ سانتی‌متری مناسب کشت زیر پلاستیک",
+      "url": "https://keshavarz20.com/product/%d9%86%d9%88%d8%a7%d8%b1-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d9%82%d8%b7%d8%b1%d9%87-%d8%a7%db%8c-20-%d8%b3%d8%a7%d9%86%d8%aa%db%8c-%d9%85%d8%aa%d8%b1%db%8c-2/",
+      "scores": {
+        "ai_product_completeness": 50,
+        "answer_readiness": 100,
+        "citation_readiness": 75,
+        "merchant_discovery_readiness": 80,
+        "compatibility_readiness": 50,
+        "evidence_readiness": 35
+      },
+      "overall": 65.0,
+      "ai_ready_85_plus": false,
+      "non_video_scores": {
+        "ai_product_completeness": 50,
+        "answer_readiness": 100,
+        "citation_readiness": 75,
+        "merchant_discovery_readiness": 80,
+        "compatibility_readiness": 50,
+        "evidence_readiness": 39
+      },
+      "overall_non_video": 65.7,
+      "non_video_ready_85_plus": false,
+      "blockers": [
+        "verified_brand_missing",
+        "compatibility_fields_incomplete",
+        "real_media_set_incomplete",
+        "real_video_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
+    {
+      "rank": 28,
+      "product_id": 135102,
+      "name": "فلنچ پلی‌اتیلن جوشی ۴ اینچ (۱۱۰ میلی‌متر) ۶ اتمسفر آبلوله",
+      "url": "https://keshavarz20.com/product/%d9%81%d9%84%d9%86%da%86-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%d8%ac%d9%88%d8%b4%db%8c-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
+      "scores": {
+        "ai_product_completeness": 70,
+        "answer_readiness": 70,
+        "citation_readiness": 65,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 50,
+        "evidence_readiness": 35
+      },
+      "overall": 65.0,
+      "ai_ready_85_plus": false,
+      "non_video_scores": {
+        "ai_product_completeness": 70,
+        "answer_readiness": 70,
+        "citation_readiness": 65,
+        "merchant_discovery_readiness": 100,
+        "compatibility_readiness": 50,
+        "evidence_readiness": 39
+      },
+      "overall_non_video": 65.7,
+      "non_video_ready_85_plus": false,
+      "blockers": [
+        "compatibility_fields_incomplete",
+        "real_media_set_incomplete",
+        "real_video_missing",
+        "gtin_mpn_unknown_do_not_invent"
+      ],
+      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
+    },
     {
       "rank": 18,
       "product_id": 141527,
@@ -127,105 +230,6 @@
         "evidence_readiness": 56
       },
       "overall_non_video": 66.0,
-      "non_video_ready_85_plus": false,
-      "blockers": [
-        "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
-        "real_video_missing",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 28,
-      "product_id": 135102,
-      "name": "فلنچ پلی‌اتیلن جوشی ۴ اینچ (۱۱۰ میلی‌متر) ۶ اتمسفر آبلوله",
-      "url": "https://keshavarz20.com/product/%d9%81%d9%84%d9%86%da%86-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86-%d8%ac%d9%88%d8%b4%db%8c-4-%d8%a7%db%8c%d9%86%da%86-110-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1/",
-      "scores": {
-        "ai_product_completeness": 70,
-        "answer_readiness": 80,
-        "citation_readiness": 65,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 50,
-        "evidence_readiness": 35
-      },
-      "overall": 66.7,
-      "ai_ready_85_plus": false,
-      "non_video_scores": {
-        "ai_product_completeness": 70,
-        "answer_readiness": 80,
-        "citation_readiness": 65,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 50,
-        "evidence_readiness": 39
-      },
-      "overall_non_video": 67.3,
-      "non_video_ready_85_plus": false,
-      "blockers": [
-        "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
-        "real_video_missing",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 20,
-      "product_id": 135064,
-      "name": "کمربند پلی‌اتیلن ۹۰ × ۱ اینچ | انشعاب لوله ۳۲ میلی‌متر",
-      "url": "https://keshavarz20.com/product/%da%a9%d9%85%d8%b1%d8%a8%d9%86%d8%af-%d9%be%d9%84%db%8c%d9%85%d8%b1%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-190mm/",
-      "scores": {
-        "ai_product_completeness": 70,
-        "answer_readiness": 80,
-        "citation_readiness": 65,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 50,
-        "evidence_readiness": 35
-      },
-      "overall": 66.7,
-      "ai_ready_85_plus": false,
-      "non_video_scores": {
-        "ai_product_completeness": 70,
-        "answer_readiness": 80,
-        "citation_readiness": 65,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 50,
-        "evidence_readiness": 39
-      },
-      "overall_non_video": 67.3,
-      "non_video_ready_85_plus": false,
-      "blockers": [
-        "compatibility_fields_incomplete",
-        "real_media_set_incomplete",
-        "real_video_missing",
-        "gtin_mpn_unknown_do_not_invent"
-      ],
-      "policy": "Unknown product identifiers/specifications remain unknown until an authoritative source is available."
-    },
-    {
-      "rank": 30,
-      "product_id": 135235,
-      "name": "نوار تیپ آبیاری قطره‌ای ۲۰ سانتی‌متری مناسب کشت زیر پلاستیک",
-      "url": "https://keshavarz20.com/product/%d9%86%d9%88%d8%a7%d8%b1-%d8%a2%d8%a8%db%8c%d8%a7%d8%b1%db%8c-%d9%82%d8%b7%d8%b1%d9%87-%d8%a7%db%8c-20-%d8%b3%d8%a7%d9%86%d8%aa%db%8c-%d9%85%d8%aa%d8%b1%db%8c-2/",
-      "scores": {
-        "ai_product_completeness": 50,
-        "answer_readiness": 100,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 50,
-        "evidence_readiness": 50
-      },
-      "overall": 70.8,
-      "ai_ready_85_plus": false,
-      "non_video_scores": {
-        "ai_product_completeness": 50,
-        "answer_readiness": 100,
-        "citation_readiness": 75,
-        "merchant_discovery_readiness": 100,
-        "compatibility_readiness": 50,
-        "evidence_readiness": 56
-      },
-      "overall_non_video": 71.8,
       "non_video_ready_85_plus": false,
       "blockers": [
         "compatibility_fields_incomplete",
