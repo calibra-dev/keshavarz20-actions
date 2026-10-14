@@ -1,18 +1,16 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-3d9cb75e6d60d61f",
-  "product_id": 135571,
+  "canonical_intent_id": "question-intent-de64aca9b4eef28e",
+  "product_id": 141481,
   "family": "fitting",
-  "intent": "experience_request",
+  "intent": "installation",
   "scenario_dimensions": {
-    "pressure": true,
-    "failure_mode": true,
-    "crop": "جو"
+    "installation_state": true
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": false,
+  "compatibility_gap": true,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
