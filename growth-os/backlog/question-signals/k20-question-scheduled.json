@@ -1,14 +1,15 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-9e35a7867d4d72da",
-  "product_id": 141218,
+  "canonical_intent_id": "question-intent-530cb761d461398c",
+  "product_id": 140860,
   "family": "fertilizer",
-  "intent": "method",
+  "intent": "calculation_inputs",
   "scenario_dimensions": {
-    "crop": "شبدر"
+    "area": true,
+    "crop": "ذرت دانه‌ای"
   },
-  "potential_article_gap": false,
+  "potential_article_gap": true,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
