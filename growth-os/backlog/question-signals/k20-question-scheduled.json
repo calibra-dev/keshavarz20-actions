@@ -1,16 +1,17 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-4eed35a70b7ec920",
-  "product_id": 140532,
-  "family": "fitting",
-  "intent": "compatibility",
+  "canonical_intent_id": "question-intent-06bddfbcc972f4c4",
+  "product_id": 135132,
+  "family": "drip_tape",
+  "intent": "slope",
   "scenario_dimensions": {
-    "installation_state": true
+    "elevation": true,
+    "crop": "جو"
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": true,
+  "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
