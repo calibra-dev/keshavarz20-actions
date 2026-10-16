@@ -1,14 +1,16 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-ef840fbd8d4dda6e",
-  "product_id": 135511,
-  "family": "fitting",
-  "intent": "compatibility",
-  "scenario_dimensions": {},
-  "potential_article_gap": false,
+  "canonical_intent_id": "question-intent-f1a41a70c4920847",
+  "product_id": 140718,
+  "family": "fertilizer",
+  "intent": "safety/risk",
+  "scenario_dimensions": {
+    "water": true
+  },
+  "potential_article_gap": true,
   "potential_hub_gap": false,
-  "compatibility_gap": true,
+  "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
