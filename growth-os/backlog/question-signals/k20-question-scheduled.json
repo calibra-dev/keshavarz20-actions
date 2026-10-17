@@ -1,14 +1,16 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-a2916c3d89bc341d",
-  "product_id": 140515,
+  "canonical_intent_id": "question-intent-d29f4eca8889fb78",
+  "product_id": 135559,
   "family": "fitting",
-  "intent": "selection",
+  "intent": "logistics",
   "scenario_dimensions": {
-    "installation_state": true
+    "pressure": true,
+    "logistics": true,
+    "province_or_climate": "گرگان"
   },
-  "potential_article_gap": true,
+  "potential_article_gap": false,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
