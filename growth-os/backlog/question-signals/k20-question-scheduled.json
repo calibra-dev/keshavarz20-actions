@@ -1,14 +1,18 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-7ffa9cf1a7becdd6",
-  "product_id": 141517,
-  "family": "sprinkler",
-  "intent": "alternative",
-  "scenario_dimensions": {},
+  "canonical_intent_id": "question-intent-6f0f1440f2866178",
+  "product_id": 140294,
+  "family": "fertilizer",
+  "intent": "logistics",
+  "scenario_dimensions": {
+    "pressure": true,
+    "logistics": true,
+    "province_or_climate": "کرج"
+  },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": true,
+  "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
