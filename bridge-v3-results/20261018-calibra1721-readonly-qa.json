@@ -1,0 +1,44 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261018-calibra1721-readonly-qa.sanitized.json",
+  "action": "batch",
+  "request_id": "calibra1721-readonly-qa-20261018",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-18T11:15:07.6285687Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.37",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "count": 5,
+    "items": [
+      {
+        "index": 0,
+        "action": "plugin.inspect",
+        "ok": true
+      },
+      {
+        "index": 1,
+        "action": "plugin.rest.routes",
+        "ok": true
+      },
+      {
+        "index": 2,
+        "action": "plugin.assets",
+        "ok": true
+      },
+      {
+        "index": 3,
+        "action": "cache.status",
+        "ok": true
+      },
+      {
+        "index": 4,
+        "action": "selftest.run",
+        "ok": true
+      }
+    ]
+  }
+}
