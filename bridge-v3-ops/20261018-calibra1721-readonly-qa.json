@@ -1,0 +1,34 @@
+{
+  "action": "batch",
+  "request_id": "calibra1721-readonly-qa-20261018",
+  "dry_run": false,
+  "payload": {
+    "items": [
+      {
+        "action": "plugin.inspect",
+        "payload": {
+          "plugin": "k20-dashboard"
+        }
+      },
+      {
+        "action": "plugin.rest.routes",
+        "payload": {
+          "plugin": "k20-dashboard"
+        }
+      },
+      {
+        "action": "plugin.assets",
+        "payload": {
+          "plugin": "k20-dashboard"
+        }
+      },
+      {
+        "action": "cache.status"
+      },
+      {
+        "action": "selftest.run",
+        "dry_run": true
+      }
+    ]
+  }
+}
