@@ -1,0 +1,121 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261018-calibra1721-inspect-detail.sanitized.json",
+  "action": "plugin.inspect",
+  "request_id": "calibra1721-inspect-detail-20261018",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-18T11:15:51.9459085Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.37",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "slug": "k20-dashboard",
+    "name": "Calibra Dashboard",
+    "version": "1.7.21",
+    "update_available": false,
+    "active": true,
+    "network_active": false,
+    "new_version": null,
+    "plugin": "k20-dashboard/k20-dashboard.php",
+    "requires_wp": "6.5",
+    "requires_php": "8.1",
+    "text_domain": "k20-dashboard",
+    "main_file": "k20-dashboard/k20-dashboard.php",
+    "main_bytes": 8545,
+    "main_sha256": "7f050a62ab751ee8cde5cb9c542fbf796bf0c5a2d03ae163ed1a36fb04c34e0f",
+    "file_count": 35,
+    "total_bytes": 5770163,
+    "rest_route_count": 13,
+    "rest_routes": [
+      {
+        "path": "/k20-dashboard/v1/track",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/order-notifier/poll",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/order-notifier/ack",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/order-notifier/preview",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/snapshot",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/detail/(?P<type>order|product)/(?P<id>\\d+)",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/analytics",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/server",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/server-renewal",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/domain-renewal",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/drilldown",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/report",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/diagnostics",
+        "methods": [
+          "GET"
+        ]
+      }
+    ],
+    "extensions": {
+      "css": 2,
+      "js": 10,
+      "md": 2,
+      "sha256": 1,
+      "txt": 4,
+      "webp": 7
+    }
+  }
+}
