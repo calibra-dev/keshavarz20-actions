@@ -1,18 +1,16 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-b4015e0acec4434e",
-  "product_id": 142192,
-  "family": "pump",
-  "intent": "selection",
+  "canonical_intent_id": "question-intent-37123a6d7a7c168d",
+  "product_id": 140414,
+  "family": "fitting",
+  "intent": "compatibility",
   "scenario_dimensions": {
-    "flow": true,
-    "elevation": true,
-    "crop": "سیر"
+    "installation_state": true
   },
-  "potential_article_gap": true,
+  "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": false,
+  "compatibility_gap": true,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
