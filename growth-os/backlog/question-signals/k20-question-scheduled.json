@@ -1,15 +1,14 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-13f69c207ac824af",
-  "product_id": 142184,
-  "family": "pump",
-  "intent": "simple_help",
+  "canonical_intent_id": "question-intent-2abf77327cd57f6c",
+  "product_id": 140555,
+  "family": "automatic_valve",
+  "intent": "selection",
   "scenario_dimensions": {
-    "flow": true,
-    "crop": "سیر"
+    "pressure": true
   },
-  "potential_article_gap": false,
+  "potential_article_gap": true,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
