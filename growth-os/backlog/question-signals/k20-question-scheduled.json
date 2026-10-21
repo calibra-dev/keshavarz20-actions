@@ -1,15 +1,16 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-2f3fe61790849d37",
-  "product_id": 140750,
-  "family": "fertilizer",
-  "intent": "variety",
+  "canonical_intent_id": "question-intent-700a249832f1293c",
+  "product_id": 136073,
+  "family": "seedling",
+  "intent": "safety/risk",
   "scenario_dimensions": {
-    "crop": "برنج",
-    "province_or_climate": "قم"
+    "pressure": true,
+    "maintenance": true,
+    "crop": "کلم"
   },
-  "potential_article_gap": false,
+  "potential_article_gap": true,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
