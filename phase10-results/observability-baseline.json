@@ -1,8 +1,8 @@
 {
   "phase": 10,
   "title": "Measurement & Observability",
-  "status": "PARTIAL_BLOCKED_EXTERNAL_INTEGRATIONS",
-  "generated_at_utc": "2026-10-21T07:58:33.527948+00:00",
+  "status": "PASS_GUARDED_EXTERNAL_REPORT_GAPS",
+  "generated_at_utc": "2026-10-22T07:55:05.994729+00:00",
   "baseline_input": "phase10-ops/baseline-20261001.json",
   "source_status": {
     "gsc_search": "connected",
@@ -21,7 +21,7 @@
       "url": "https://keshavarz20.com/",
       "status": 200,
       "final_url": "https://keshavarz20.com/",
-      "elapsed_ms": 1655.7,
+      "elapsed_ms": 1250.1,
       "cache": "hit",
       "cache_control": null
     },
@@ -29,7 +29,7 @@
       "url": "https://keshavarz20.com/robots.txt",
       "status": 200,
       "final_url": "https://keshavarz20.com/robots.txt",
-      "elapsed_ms": 1229.7,
+      "elapsed_ms": 865.4,
       "cache": null,
       "cache_control": null
     },
@@ -37,7 +37,7 @@
       "url": "https://keshavarz20.com/irrigation-filter-selector/",
       "status": 200,
       "final_url": "https://keshavarz20.com/irrigation-filter-selector/",
-      "elapsed_ms": 5321.0,
+      "elapsed_ms": 5134.6,
       "cache": "miss",
       "cache_control": null
     },
@@ -45,14 +45,17 @@
       "url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
       "status": 200,
       "final_url": "https://keshavarz20.com/polyethylene-pipe-size-flow-pressure-guide/",
-      "elapsed_ms": 5435.8,
+      "elapsed_ms": 5530.7,
       "cache": "miss",
       "cache_control": null
     },
     {
       "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
-      "error": "ConnectionError",
-      "message": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+      "status": 200,
+      "final_url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
+      "elapsed_ms": 5231.7,
+      "cache": "miss",
+      "cache_control": null
     }
   ],
   "blocking_sources": [
@@ -69,13 +72,7 @@
       "guarded_external": true
     }
   ],
-  "public_failures": [
-    {
-      "url": "https://keshavarz20.com/irrigation-fittings-compatibility-selector/",
-      "error": "ConnectionError",
-      "message": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
-    }
-  ],
+  "public_failures": [],
   "cadence": {
     "public_live_checks": "daily via GitHub Actions",
     "gsc_search_baseline": "weekly connected export/read",
