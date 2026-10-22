@@ -1,20 +1,18 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-7dd83f3e12f2b8ec",
-  "product_id": 141506,
-  "family": "filter",
-  "intent": "troubleshooting",
+  "canonical_intent_id": "question-intent-e39ce1c54f54335a",
+  "product_id": 140636,
+  "family": "fitting",
+  "intent": "installation",
   "scenario_dimensions": {
     "pressure": true,
-    "flow": true,
     "installation_state": true,
-    "maintenance": true,
     "failure_mode": true
   },
-  "potential_article_gap": true,
+  "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": false,
+  "compatibility_gap": true,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
