@@ -1,16 +1,17 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-7873451e6b97c27e",
-  "product_id": 140661,
-  "family": "valve",
-  "intent": "compatibility",
+  "canonical_intent_id": "question-intent-d94bca35325cec9b",
+  "product_id": 136234,
+  "family": "seed",
+  "intent": "compare",
   "scenario_dimensions": {
-    "installation_state": true
+    "crop": "به",
+    "province_or_climate": "قم"
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": true,
+  "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
