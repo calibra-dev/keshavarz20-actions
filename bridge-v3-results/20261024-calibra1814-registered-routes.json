@@ -1,0 +1,4682 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261024-calibra1814-registered-routes.sanitized.json",
+  "action": "plugin.rest.routes",
+  "request_id": "calibra1814-routes-20261024",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-24T10:51:55.6922443Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.37",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "count": 500,
+    "plugin": null,
+    "routes": [
+      {
+        "path": "/indexnow/v_1.0.4/apiKey",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "indexnow/indexnow-url-submission.php"
+        ]
+      },
+      {
+        "path": "/indexnow/v_1.0.4/apiSettings",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "indexnow/indexnow-url-submission.php"
+        ]
+      },
+      {
+        "path": "/indexnow/v_1.0.4/automaticSubmission",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "indexnow/indexnow-url-submission.php"
+        ]
+      },
+      {
+        "path": "/indexnow/v_1.0.4/submitUrl",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "indexnow/indexnow-url-submission.php"
+        ]
+      },
+      {
+        "path": "/indexnow/v_1.0.4/getStats",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "indexnow/indexnow-url-submission.php"
+        ]
+      },
+      {
+        "path": "/indexnow/v_1.0.4/allSubmissions",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "indexnow/indexnow-url-submission.php"
+        ]
+      },
+      {
+        "path": "/indexnow/v_1.0.4/getIndexNowInsightsUrl",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "indexnow/indexnow-url-submission.php"
+        ]
+      },
+      {
+        "path": "/indexnow/v_1.0.4/deleteSubmissions",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "indexnow/indexnow-url-submission.php"
+        ]
+      },
+      {
+        "path": "/indexnow/v_1.0.4/excludedPaths",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "indexnow/indexnow-url-submission.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/dashboard",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/audit",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/settings",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/abilities",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/abilities/(?P<ability>[A-Za-z0-9_.-]+)",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/openapi",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/health",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/feeds/acp",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/ucp",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/ucp/catalog/search",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/ucp/catalog/lookup",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/ucp/catalog/product",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/citation-pack",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/rag/search",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/observability",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v1/mcp/status",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/dashboard",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/workspace/(?P<mode>[a-z0-9-]+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/scans",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/scans/(?P<id>\\d+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/scans/(?P<id>\\d+)/tick",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/scans/(?P<id>\\d+)/cancel",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/scans/(?P<id>\\d+)/resume",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/crawl/url",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/entity/(?P<kind>[a-z0-9_-]+)/(?P<id>\\d+)",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/entity/(?P<kind>[a-z0-9_-]+)/(?P<id>\\d+)/preview",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/entity/(?P<kind>[a-z0-9_-]+)/(?P<id>\\d+)/safe-fix",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/actions/(?P<id>\\d+)/review",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/actions/(?P<id>\\d+)/apply",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/actions/(?P<id>\\d+)/rollback",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/serp/research",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/serp/live",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/calendar/schedule",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/keywords/import",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/competitors",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/radar/refresh",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/settings",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/connections",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/connections/(?P<provider>[a-z0-9_-]+)",
+        "methods": [
+          "DELETE",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/connections/(?P<provider>[a-z0-9_-]+)/test",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/connections/(?P<provider>[a-z0-9_-]+)/sync",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/connections/github/dispatch",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/entity/(?P<kind>[a-z0-9_-]+)/(?P<id>\\d+)/ai-complete",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/ai/apply",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/content-engines",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/content-engines/settings",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/content-engines/(?P<engine>news|article)/run",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/content-engines/receipt",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bridge/contract",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bridge/execute",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bridge/asset",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/ui-preferences",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bot-control",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bot-control/policy",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bot-control/apply",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/bot-control/rollback",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/report/export",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/k20-ai/v3/health",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-ai-press/k20-ai-press.php"
+        ]
+      },
+      {
+        "path": "/keshavarz20-ops/v3/",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-bridge-v3/k20-bridge-v3.php"
+        ]
+      },
+      {
+        "path": "/keshavarz20-ops/v3/health",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-bridge-v3/k20-bridge-v3.php"
+        ]
+      },
+      {
+        "path": "/keshavarz20-ops/v3/capabilities",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-bridge-v3/k20-bridge-v3.php"
+        ]
+      },
+      {
+        "path": "/keshavarz20-ops/v3/execute",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-bridge-v3/k20-bridge-v3.php"
+        ]
+      },
+      {
+        "path": "/keshavarz20-ops/v3/asset",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-bridge-v3/k20-bridge-v3.php"
+        ]
+      },
+      {
+        "path": "/keshavarz20-ops/v2/health",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "keshavarz20-content-ops/keshavarz20-content-ops.php"
+        ]
+      },
+      {
+        "path": "/keshavarz20-ops/v2/execute",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "keshavarz20-content-ops/keshavarz20-content-ops.php"
+        ]
+      },
+      {
+        "path": "/keshavarz20-indexability/v1/health",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "keshavarz20-indexability-repair/keshavarz20-indexability-repair.php"
+        ]
+      },
+      {
+        "path": "/keshavarz20-indexability/v1/repair",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "keshavarz20-indexability-repair/keshavarz20-indexability-repair.php"
+        ]
+      },
+      {
+        "path": "/keshavarz20-indexability/v1/ethephon-repair",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "keshavarz20-indexability-repair/keshavarz20-indexability-repair.php"
+        ]
+      },
+      {
+        "path": "/keshavarz20-indexability/v1/ethephon-css-fix",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "keshavarz20-indexability-repair/keshavarz20-indexability-repair.php"
+        ]
+      },
+      {
+        "path": "/keshavarz20-indexability/v1/ethephon-sync",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "keshavarz20-indexability-repair/keshavarz20-indexability-repair.php"
+        ]
+      },
+      {
+        "path": "/keshavarz20-ops/v1/health",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "keshavarz20-seo-ops/keshavarz20-seo-ops.php"
+        ]
+      },
+      {
+        "path": "/keshavarz20-ops/v1/execute",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "keshavarz20-seo-ops/keshavarz20-seo-ops.php"
+        ]
+      },
+      {
+        "path": "/litespeed/v1/toggle_crawler_state",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "litespeed-cache/litespeed-cache.php"
+        ]
+      },
+      {
+        "path": "/litespeed/v1/tool/check_ip",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "litespeed-cache/litespeed-cache.php"
+        ]
+      },
+      {
+        "path": "/litespeed/v1/guest/sync",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "litespeed-cache/litespeed-cache.php"
+        ]
+      },
+      {
+        "path": "/litespeed/v3/ip_validate",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "litespeed-cache/litespeed-cache.php"
+        ]
+      },
+      {
+        "path": "/litespeed/v3/wp_rest_echo",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "litespeed-cache/litespeed-cache.php"
+        ]
+      },
+      {
+        "path": "/litespeed/v3/ping",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "litespeed-cache/litespeed-cache.php"
+        ]
+      },
+      {
+        "path": "/litespeed/v3/cdn_status",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "litespeed-cache/litespeed-cache.php"
+        ]
+      },
+      {
+        "path": "/litespeed/v1/notify_img",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "litespeed-cache/litespeed-cache.php"
+        ]
+      },
+      {
+        "path": "/litespeed/v3/err_domains",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "litespeed-cache/litespeed-cache.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/mcp",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/health",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/register",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/token",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/contact",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/deactivation-feedback",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/stats",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/nhi",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/nhi/(?P<uuid>[0-9a-f\\-]{36})",
+        "methods": [
+          "DELETE",
+          "PATCH"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/me/access",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/nhi/(?P<uuid>[0-9a-f\\-]{36})/members",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/roles",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/rest-routes",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/nhi/ability-owners",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/audit",
+        "methods": [
+          "DELETE",
+          "GET"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/audit/summary",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/debug-logs",
+        "methods": [
+          "DELETE",
+          "GET"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/debug-logs/channels",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/debug-logs/status",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/connectivity-test",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/connectivity-guide",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/mosmcp/v1/rest-bridge-settings",
+        "methods": [
+          "GET",
+          "PATCH"
+        ],
+        "plugins": [
+          "miniorange-secure-mcp-server/miniorange-secure-mcp-server.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/onboarder/enable",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/oauth/protected-resource",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/oauth/authorization-server",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/oauth/register",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/oauth/token",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/oauth/revoke",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/cli/info",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/visual/poll",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/visual/result",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/visual/state",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/visual/session",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/upload",
+        "methods": [
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/integrations/toggle",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/integrations/bulk",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/connection-selftest",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/jobs/create",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/jobs/run",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/jobs/intent",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/jobs/approve",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/jobs/toggle",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/jobs/schedule",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/jobs/run/(?P<id>\\d+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/jobs/activity",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/jobs/delete",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/jobs/run/delete",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/nibwp/v1/jobs/run/pause",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "nibwp/nibwp.php"
+        ]
+      },
+      {
+        "path": "/pwsms/content/group-message/(?P<product_id>\\d+)/(?P<group>[a-zA-Z0-9_-]+)",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "plugins": [
+          "persian-woocommerce-sms/WoocommerceIR_SMS.php"
+        ]
+      },
+      {
+        "path": "/pwsms/sms/send",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "plugins": [
+          "persian-woocommerce-sms/WoocommerceIR_SMS.php"
+        ]
+      },
+      {
+        "path": "/pwsms/notification/subscribe",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "persian-woocommerce-sms/WoocommerceIR_SMS.php"
+        ]
+      },
+      {
+        "path": "/pwsms/notification/groups",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "persian-woocommerce-sms/WoocommerceIR_SMS.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/redirect",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/redirect/(?P<id>[\\d]+)",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/redirect/post",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/bulk/redirect/(?P<bulk>delete|enable|disable|reset)",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/group",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/group/dropdown",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/group/(?P<id>[\\d]+)",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/bulk/group/(?P<bulk>delete|enable|disable)",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/log",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/bulk/log/(?P<bulk>delete)",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/404",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/bulk/404/(?P<bulk>delete)",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/setting",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/plugin",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/plugin/delete",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/plugin/test",
+        "methods": [
+          "DELETE",
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/plugin/data",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/plugin/finish",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/plugin/fix",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/import/file/(?P<group_id>\\d+)",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/import/plugin",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/import/plugin/(?P<plugin>[a-z0-9-]+)/preview",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/export/(?P<module>1|2|3|all)/(?P<format>csv|apache|nginx|json|redirects-file)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/export/redirect/preview",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/export/redirect",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/export/log/preview",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/export/group/(?P<format>csv|json)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/export/log/(?P<format>csv|json)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/export/404/preview",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/export/404/(?P<format>csv|json)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/export/bundle",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/redirection/v1/export/bundle/preview",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "redirection/redirection.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/connection-check-challenge",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wc/v1/wallet/(?P<user_id>[\\d]+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wallet-for-woocommerce/wallet-for-woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/v1/wallet/(?P<user_id>[\\d]+)/credit",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wallet-for-woocommerce/wallet-for-woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/v1/wallet/(?P<user_id>[\\d]+)/debit",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wallet-for-woocommerce/wallet-for-woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/v3/marketplace/featured",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/v1/marketplace/product-preview",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/v3/marketplace/refresh",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/v3/marketplace/subscriptions",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/v3/marketplace/subscriptions/connect",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/v3/marketplace/subscriptions/activate-plugin",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/v3/marketplace/subscriptions/disconnect",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/v3/marketplace/subscriptions/activate",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/v3/marketplace/subscriptions/auto-update",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/v3/marketplace/subscriptions/install-url",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/v3/marketplace/create-order",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/pos/v1/catalog/create",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/file_size",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/statistics",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/ai_generator/callback",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/ai_generator/refresh_callback",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/ai_generator/consent",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/ai_content_planner/banner_permanent_dismissal",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/ai_content_planner/get_outline",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/ai_content_planner/get_suggestions",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/ai/free_sparks",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/ai_generator/bust_subscription_cache",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/ai_generator/get_suggestions",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/ai_generator/get_usage",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/bulk_editor/posts_content",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/bulk_editor/posts",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/bulk_editor/update_scores",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/bulk_editor/update_search",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/bulk_editor/update_social",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/new-content-type-visibility/dismiss-post-type",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/new-content-type-visibility/dismiss-taxonomy",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/site_kit_configuration_permanent_dismissal",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/site_kit_manage_consent",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/readability_scores",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/seo_scores",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/time_based_seo_metrics",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/setup_steps_tracking",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/seen-opt-in-notification",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/introductions/(?P<introduction_id>[\\w-]+)/seen",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/wistia_embed_permission",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/available_posts",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/alerts/dismiss",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/configuration/site_representation",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/configuration/social_profiles",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/configuration/check_capability",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/configuration/enable_tracking",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/configuration/save_configuration_state",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/configuration/get_configuration_state",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/import/(?P<plugin>[\\w-]+)/(?P<type>[\\w-]+)",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/get_head",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/indexing/posts",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/indexing/terms",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/indexing/post-type-archives",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/indexing/general",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/indexing/prepare",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/indexing/indexables-complete",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/indexing/complete",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/link-indexing/posts",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/link-indexing/terms",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/integrations/set_active",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/meta/search",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/semrush/authenticate",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/semrush/country_code",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/semrush/related_keyphrases",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/wincher/authorization-url",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/wincher/authenticate",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/wincher/keyphrases/track",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/wincher/keyphrases",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/wincher/keyphrases/untrack",
+        "methods": [
+          "DELETE"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/wincher/account/limit",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/wincher/account/upgrade-campaign",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/workouts",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/complete_task",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/get_tasks",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/action_tracking",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo/wp-seo.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/ai/bulk_suggestions",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo-premium/wp-seo-premium.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/ai/optimize",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo-premium/wp-seo-premium.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/ai/summarize",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo-premium/wp-seo-premium.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/link_suggestions",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo-premium/wp-seo-premium.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/prominent_words/get_content",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo-premium/wp-seo-premium.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/prominent_words/complete",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo-premium/wp-seo-premium.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/prominent_words/save",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo-premium/wp-seo-premium.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/workouts/noindex",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo-premium/wp-seo-premium.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/workouts/remove_redirect",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo-premium/wp-seo-premium.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/workouts/link_suggestions",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo-premium/wp-seo-premium.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/workouts/last_updated",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo-premium/wp-seo-premium.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/workouts/cornerstone_data",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "wordpress-seo-premium/wp-seo-premium.php"
+        ]
+      },
+      {
+        "path": "/yoast/v1/workouts/enable_cornerstone",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "wordpress-seo-premium/wp-seo-premium.php"
+        ]
+      },
+      {
+        "path": "/elementor-mcp-composer/v1.0.19/mcp-settings",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-mcp-composer/v1.0.19/mcp-credentials",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-one/v1/connect/authorize",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-one/v1/connect/disconnect",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-one/v1/connect/switch-domain",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-one/v1/connect/deactivate",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-one/v1/top-bar/notifications",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-one/v1/top-bar/feedback",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-one/v1/themes",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-one/v1/themes/(?P<slug>[\\w\\-]+)/activate",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-one/v1/plugins",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-one/v1/plugins/(?P<slug>[\\w\\-]+)/activate",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-one/v1/plugins/(?P<slug>[\\w\\-]+)/deactivate",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-one/v1/plugins/(?P<slug>[\\w\\-]+)/upgrade",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-one/v1/plugins/(?P<slug>[\\w\\-]+)/migration/run",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-one/v1/plugins/(?P<slug>[\\w\\-]+)/migration/rollback",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-one/v1/settings",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-one/v1/manage-dashboard-widget/state",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-one/v1/logs",
+        "methods": [
+          "DELETE",
+          "GET"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/image-optimizer/v1/connect/authorize",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/image-optimizer/v1/connect/disconnect",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/image-optimizer/v1/connect/switch-domain",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/image-optimizer/v1/connect/deactivate",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/image-optimizer/v1/stats",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "image-optimization/image-optimization.php"
+        ]
+      },
+      {
+        "path": "/image-optimizer/v1/stats/optimization-details",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "image-optimization/image-optimization.php"
+        ]
+      },
+      {
+        "path": "/image-optimizer/v1/optimize/image",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "image-optimization/image-optimization.php"
+        ]
+      },
+      {
+        "path": "/image-optimizer/v1/optimize/bulk",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "image-optimization/image-optimization.php"
+        ]
+      },
+      {
+        "path": "/image-optimizer/v1/optimize/bulk/images",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "image-optimization/image-optimization.php"
+        ]
+      },
+      {
+        "path": "/image-optimizer/v1/optimize/status",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "image-optimization/image-optimization.php"
+        ]
+      },
+      {
+        "path": "/image-optimizer/v1/optimize/bulk/cancel",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "image-optimization/image-optimization.php"
+        ]
+      },
+      {
+        "path": "/image-optimizer/v1/backups",
+        "methods": [
+          "DELETE"
+        ],
+        "plugins": [
+          "image-optimization/image-optimization.php"
+        ]
+      },
+      {
+        "path": "/image-optimizer/v1/backups/restore/(?P<image_id>\\d+)",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "image-optimization/image-optimization.php"
+        ]
+      },
+      {
+        "path": "/image-optimizer/v1/backups/restore",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "image-optimization/image-optimization.php"
+        ]
+      },
+      {
+        "path": "/image-optimizer/v1/reviews/review",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "image-optimization/image-optimization.php"
+        ]
+      },
+      {
+        "path": "/jetpack/v4/verify_xmlrpc_error",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/jetpack/v4/heartbeat/data",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/elementor/v1/site-editor",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor/v1/site-editor/templates",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor/v1/site-editor/templates/(?P<id>[\\w]+)",
+        "methods": [
+          "DELETE",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor/v1/site-editor/conditions-config",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor/v1/site-editor/templates-conditions/(?P<id>[\\w]+)",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor/v1/site-editor/templates-conditions-conflicts",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "elementor/elementor.php"
+        ]
+      },
+      {
+        "path": "/elementor-pro/v1/license/tier-features",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "elementor-pro/elementor-pro.php"
+        ]
+      },
+      {
+        "path": "/elementor-pro/v1/license/get-license-status",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "elementor-pro/elementor-pro.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/track",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/order-notifier/poll",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/order-notifier/ack",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/order-notifier/preview",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/snapshot",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/detail/(?P<type>order|product)/(?P<id>\\d+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/analytics",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/server",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/server-renewal",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/domain-renewal",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/drilldown",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/report",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20-dashboard/v1/diagnostics",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "k20-dashboard/k20-dashboard.php"
+        ]
+      },
+      {
+        "path": "/k20iga/v1/webhook",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "plugins": [
+          "keshavarz20-instagram-automation/keshavarz20-instagram-automation.php"
+        ]
+      },
+      {
+        "path": "/neuralpress/v1/llm-data",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "neuralpress-demo/neuralpress.php"
+        ]
+      },
+      {
+        "path": "/neuralpress/v1/llm-data/(?P<id>\\d+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "neuralpress-demo/neuralpress.php"
+        ]
+      },
+      {
+        "path": "/neuralpress/v1/search",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "neuralpress-demo/neuralpress.php"
+        ]
+      },
+      {
+        "path": "/neuralpress/v1/sitemap",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "neuralpress-demo/neuralpress.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/self-update/health",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/self-update/run",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/detached/run",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/site-info",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/registered-meta",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/file/read",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/file/list",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/file/search",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/file/outline",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/file/edit",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/file/write",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/file/delete",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/content/edit",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/content/search",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/classic-theme-safety",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/draft-theme/compile-sources",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/draft-theme",
+        "methods": [
+          "DELETE",
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/draft-theme/publish",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/draft-theme/preview",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/draft-theme/delete",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/cli/run",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/audit-log",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/audit-log/record",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/op-receipt/(?P<op_id>[a-z0-9_.:]+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/cli/run-approved",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/authorize",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/authorize/preflight",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/connection-status",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/op-proof/check",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/code-snippet",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/code-snippet/dormant",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/cli/status",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/builder-login",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/rendered-html",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/create-classic-theme",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/create-classic-theme-safe",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/upload-media",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/last-change",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/navigate",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/elementor/widgets",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/elementor/schema",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/elementor/style-schema",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/elementor/save-page",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/elementor/save-template",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/beaver/save-page",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/beaver/modules",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/beaver/schema",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/breakdance/save-page",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/breakdance/get-page",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/breakdance/elements",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/bricks/save-page",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/bricks/get-page",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/bricks/elements",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/ping",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wpvibe/v1/health",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "vibe-ai/vibe-ai.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/tax/recommendations/dismiss",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/notice/dismiss",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/features",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/experiments/assignment",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/marketing/recommended",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/marketing/knowledge-base",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/marketing/misc-recommendations",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/marketing/overview/activate-plugin",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/marketing/overview/installed-plugins",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/marketing/recommendations",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/marketing/channels",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/marketing/campaigns",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/marketing/campaign-types",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/options",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/payment-gateway-suggestions",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/payment-gateway-suggestions/dismiss",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/themes",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/plugins/install",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/plugins/install/status",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/plugins/install/status/(?P<job_id>[a-z0-9_\\-]+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/plugins/active",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/plugins/installed",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/plugins/activate",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/plugins/activate/status",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/plugins/activate/status/(?P<job_id>[a-z0-9_\\-]+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/plugins/connect-jetpack",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/plugins/request-wccom-connect",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/plugins/finish-wccom-connect",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/plugins/connect-wcpay",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/plugins/connect-square",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/free-extensions",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/product-types",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/profile",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/profile/experimental_get_email_prefill",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/profile/progress",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/profile/progress/core-profiler/complete",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/profile/update-store-currency-and-measurement-units",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/tasks/import_sample_products",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/tasks/create_homepage",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/tasks/create_product_from_template",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/tasks",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/tasks/(?P<id>[a-z0-9_\\-]+)/hide",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/tasks/(?P<id>[a-z0-9_\\-]+)/unhide",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/tasks/(?P<id>[a-z0-9_\\-]+)/dismiss",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/tasks/(?P<id>[a-z0-9_\\-]+)/undo_dismiss",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/tasks/(?P<id>[a-z0-9_-]+)/snooze",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/tasks/(?P<id>[a-z0-9_\\-]+)/action",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/tasks/(?P<id>[a-z0-9_\\-]+)/undo_snooze",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/themes/install",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/themes/activate",
+        "methods": [
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/plugins/install-and-activate-async",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/plugins/install-and-activate",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/plugins/scheduled-installs/(?P<job_id>\\w+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/plugins/jetpack-authorization-url",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/onboarding/products",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/mobile-app/send-magic-link",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/mobile-app",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/mobile-app/qr-login-token",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/mobile-app/qr-login-exchange",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/mobile-app/qr-login-status",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/mobile-app/qr-login-revoke",
+        "methods": [
+          "DELETE"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/mobile-app/qr-login-scan",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/mobile-app/qr-login-approve",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/mobile-app/qr-login-session-status",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/mobile-app/qr-login-availability",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/shipping-partner-suggestions",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/launch-your-store/initialize-coming-soon",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/launch-your-store/update-survey-status",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/launch-your-store/survey-completed",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/launch-your-store/woopayments/test-orders/count",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc-admin/launch-your-store/woopayments/test-orders",
+        "methods": [
+          "DELETE"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/batch",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/cart",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/cart/add-item",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/cart/apply-coupon",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/cart/coupons",
+        "methods": [
+          "DELETE",
+          "GET",
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/cart/coupons/(?P<code>[\\w-]+)",
+        "methods": [
+          "DELETE",
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/cart/extensions",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/cart/items",
+        "methods": [
+          "DELETE",
+          "GET",
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/cart/items/(?P<key>[\\w-]{32})",
+        "methods": [
+          "DELETE",
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/cart/remove-coupon",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/cart/remove-item",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/cart/select-shipping-rate",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/cart/update-item",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/cart/update-customer",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/checkout",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/checkout/(?P<id>[\\d]+)",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/order/(?P<id>[\\d]+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/products/attributes",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/products/attributes/(?P<id>[\\d]+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/products/attributes/(?P<attribute_id>[\\d]+)/terms",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/products/categories",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/products/categories/(?P<id>[\\d]+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/products/brands",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/products/brands/(?P<identifier>[\\w-]+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/products/collection-data",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/products/reviews",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/products/tags",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/products",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/products/(?P<id>[\\d]+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/products/(?P<slug>[\\S]+)",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/v1/batch",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/v1/cart",
+        "methods": [
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/v1/cart/add-item",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/v1/cart/apply-coupon",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/v1/cart/coupons",
+        "methods": [
+          "DELETE",
+          "GET",
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/v1/cart/coupons/(?P<code>[\\w-]+)",
+        "methods": [
+          "DELETE",
+          "GET"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/v1/cart/extensions",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/v1/cart/items",
+        "methods": [
+          "DELETE",
+          "GET",
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/v1/cart/items/(?P<key>[\\w-]{32})",
+        "methods": [
+          "DELETE",
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/v1/cart/remove-coupon",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/v1/cart/remove-item",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/v1/cart/select-shipping-rate",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/v1/cart/update-item",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/v1/cart/update-customer",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/v1/checkout",
+        "methods": [
+          "GET",
+          "PATCH",
+          "POST",
+          "PUT"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      },
+      {
+        "path": "/wc/store/v1/checkout/(?P<id>[\\d]+)",
+        "methods": [
+          "POST"
+        ],
+        "plugins": [
+          "woocommerce/woocommerce.php"
+        ]
+      }
+    ],
+    "truncated": true
+  }
+}
