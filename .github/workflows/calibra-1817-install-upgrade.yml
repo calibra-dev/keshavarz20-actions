@@ -13,15 +13,41 @@ permissions:
 jobs:
   qa:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 40
     env:
       WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
       WP_USERNAME: ${{ secrets.WP_USERNAME }}
       WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
-      - name: Verify installed plugin file inventory via allowlisted Bridge read
+      - name: Verify and reconstruct exact installed files using Bridge and SHA-256
         shell: bash
         run: |
           set -euo pipefail
           python3 .github/qa/calibra-1817-qa-source.py build
+
+      - name: Prepare version-only upgrade fixture and isolated order test
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp .github/qa/calibra-1817-qa-smoke.php /tmp/calibra1817qa/calibra-1817-qa-smoke.php
+          python3 .github/qa/calibra-1817-qa-fixture.py
+      - name: Verify Docker service
+        run: |
+          set -euo pipefail
+          docker version --format '{{.Server.Version}}'
+          docker compose version
+          echo HOSTED_DOCKER_ENGINE_READY
+      - name: Fresh install and upgrade in WooCommerce Legacy mode
+        shell: bash
+        run: bash .github/qa/calibra-1817-qa-docker.sh legacy
+      - name: Fresh install and upgrade in WooCommerce HPOS mode
+        shell: bash
+        run: bash .github/qa/calibra-1817-qa-docker.sh hpos
+      - name: Record isolated QA scope
+        if: always()
+        shell: bash
+        run: |
+          echo 'Tests use ephemeral database volumes and disposable WooCommerce orders.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Upgrade fixture changes only plugin version header/constant in 1.8.17 code; it is NOT historical 1.8.16.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'No code or ZIP bytes are persisted to GitHub artifacts.' >> "$GITHUB_STEP_SUMMARY"
