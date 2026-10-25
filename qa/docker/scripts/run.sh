@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+: "${GITHUB_RUN_ID:=}"
+: "${QA_KEEP_VOLUMES:=0}"
+: "${QA_ENABLE_BROWSER:=1}"
+
 mode="$1"
 case "$mode" in
   legacy|hpos) ;;
@@ -33,9 +37,6 @@ cleanup() {
   exit "$status"
 }
 
-: "${GITHUB_RUN_ID:=}"
-: "${QA_KEEP_VOLUMES:=0}"
-: "${QA_ENABLE_BROWSER:=1}"
 trap cleanup EXIT
 
 mkdir -p "$qa_dir/fixtures" "$qa_dir/artifacts"
