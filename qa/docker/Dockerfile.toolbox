@@ -1,0 +1,27 @@
+# Long-lived, versioned QA toolbox image.
+# Browser binaries are bundled with the matching Playwright image.
+FROM mcr.microsoft.com/playwright:v1.56.1-noble
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    CI=1 \
+    NODE_PATH=/usr/local/lib/node_modules
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+       php8.3-cli php8.3-mbstring php8.3-xml php8.3-curl php8.3-mysql \
+       php8.3-zip php8.3-intl php8.3-gd \
+       git curl jq python3 python3-pip unzip zip shellcheck ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
+
+RUN npm install --global --no-audit --no-fund playwright@1.56.1 \
+    && php -v \
+    && node --version \
+    && python3 --version \
+    && composer --version \
+    && shellcheck --version \
+    && node -e 'require("playwright").chromium.executablePath()'
+
+WORKDIR /qa
+CMD ["bash", "-lc", "php -v && node -v && python3 --version && composer --version"]
