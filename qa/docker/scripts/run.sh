@@ -12,7 +12,7 @@ case "$mode" in
 esac
 
 qa_dir="$(cd "$(dirname "$0")/.." && pwd)"
-run_label="$(printf '%s' "$mode" | tr -cd 'a-z')"
+run_label="$mode"
 project="k20qa-$run_label"
 if [ -n "$GITHUB_RUN_ID" ]; then
   project="$project-$GITHUB_RUN_ID"
@@ -46,7 +46,7 @@ if [ -s "$qa_dir/fixtures/previous-plugin.zip" ] && [ ! -s "$qa_dir/fixtures/plu
 fi
 
 compose up -d database wordpress
-for attempt in $(seq 1 90); do
+for _ in $(seq 1 90); do
   if compose exec -T wordpress test -f /var/www/html/wp-config.php >/dev/null 2>&1; then
     break
   fi
