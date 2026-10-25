@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/playwright:v1.56.1-noble
 
 ENV DEBIAN_FRONTEND=noninteractive \
     CI=1 \
-    NODE_PATH=/usr/local/lib/node_modules
+    NODE_PATH=/qa/node_modules
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -15,7 +15,7 @@ RUN apt-get update \
 
 COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
 
-RUN npm install --global --no-audit --no-fund playwright@1.56.1 \
+RUN npm install --prefix /qa --no-save --no-audit --no-fund playwright@1.56.1 \
     && php -v \
     && node --version \
     && python3 --version \
