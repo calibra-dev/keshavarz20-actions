@@ -1,0 +1,282 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261026-calibra-current-assets-payload-fix.sanitized.json",
+  "action": "plugin.assets",
+  "request_id": "calibra-current-assets-payload-fix-20261026",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-25T20:46:33.8057892Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.37",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "version": "1.8.17",
+    "plugin": "k20-dashboard/k20-dashboard.php",
+    "file_count": 52,
+    "files": [
+      {
+        "path": "uninstall.php",
+        "bytes": 4300,
+        "sha256": "cf95e08e125ca36f44fde39c33347e5e130041ed4f74aeef09ef40e1e9245af4"
+      },
+      {
+        "path": "REBRANDING-AND-UPGRADE-1.8.0.md",
+        "bytes": 1145,
+        "sha256": "496567b61b614a478174864748ea44bf59db241e22455ef19d99c56ef683adc9"
+      },
+      {
+        "path": "QA-RELEASE-1.8.7-FA.txt",
+        "bytes": 5616,
+        "sha256": "3a2357210ce3ada17135631920c278b0f1a76423516159af3d705711ff970dec"
+      },
+      {
+        "path": "QA-RELEASE-1.8.2-FA.txt",
+        "bytes": 5351,
+        "sha256": "3dbc47047a77435e55d096f6161726ae154b2edd89f69489a2f5f9dc02966b9c"
+      },
+      {
+        "path": "ZHAKET-INSTALL-FA.md",
+        "bytes": 4037,
+        "sha256": "92c5eb91f2aa7ad3446bb4f8b73cb8c7aeb6e6502129a9522775ff4222e58f36"
+      },
+      {
+        "path": "QA-RELEASE-1.8.10-FA.txt",
+        "bytes": 2529,
+        "sha256": "792e69ced53ea692a7326d63b65cfe1561fea667a99748579cc1327af9ba0a2a"
+      },
+      {
+        "path": "COMMERCIAL-PROTECTION-README.md",
+        "bytes": 4100,
+        "sha256": "71f988c947d8efbca434e529cae6d2777141ae6b88fdfe596a4a0212d604360a"
+      },
+      {
+        "path": "QA-RELEASE-1.8.4-FA.txt",
+        "bytes": 3950,
+        "sha256": "32520f543af2373787f8b380e205a62e827e775e1747b77347023c5e320e2bd7"
+      },
+      {
+        "path": "QA-RELEASE-1.8.3-FA.txt",
+        "bytes": 5005,
+        "sha256": "5e372c59f98c856fc0226b96b6a24fb9959aa083ba9ef386bc435fd28266b85f"
+      },
+      {
+        "path": "assets/css/order-notifier.css",
+        "bytes": 4465,
+        "sha256": "294374759fb269b1206b1805463b58191d9f5f2e90101d3206fd169ef6e98e8f"
+      },
+      {
+        "path": "assets/css/admin.css",
+        "bytes": 357572,
+        "sha256": "4e2b995f51e178d422eea854d6852eebcf51a83c13eaa8749c365a64ac05b662"
+      },
+      {
+        "path": "assets/images/iran-cinematic-3d-night-neutral.webp",
+        "bytes": 701414,
+        "sha256": "a345d5c0655592f278fe8b10d2edadbb8ef3a22f9afd596544da5bb69d116648"
+      },
+      {
+        "path": "assets/images/iran-cinematic-3d.webp",
+        "bytes": 919394,
+        "sha256": "a6d67bf49385b992a236e0ccc14f34c6df5d81dba32c399159ae7dc23ff26186"
+      },
+      {
+        "path": "assets/images/iran-cinematic-3d-night.webp",
+        "bytes": 729732,
+        "sha256": "156fadd9e8e8fcb3b331fe8ef2aaf59f78b30c7dc8915154c7f0d9333cdc7476"
+      },
+      {
+        "path": "assets/images/order-host.webp",
+        "bytes": 64574,
+        "sha256": "27baac63b105b11ef28ca83bba2fc96892074b6470ff7546f5e0f41d65fd5695"
+      },
+      {
+        "path": "assets/images/iran-cinematic-3d-premium.webp",
+        "bytes": 969378,
+        "sha256": "8df7fbeca3c34fe86bce18e71f0ac8621d384309b6ed6809921b004ad4adf5d6"
+      },
+      {
+        "path": "assets/images/order-host-lite.webp",
+        "bytes": 23612,
+        "sha256": "6c278f2ff7ff183e55132147932c3c65f2e5b790d7b23033d9eac3d56fc4d745"
+      },
+      {
+        "path": "assets/images/iran-cinematic-3d-premium-night.webp",
+        "bytes": 818352,
+        "sha256": "16c1bd1aad9f6b49c0661ef53edc3e9f7f0cdb3d846a5161f610b96e0bc0fae9"
+      },
+      {
+        "path": "assets/js/cinematic-hit-map.js",
+        "bytes": 37387,
+        "sha256": "93c4893dd9adc732fbb24f97d29271e147058fa8e62e84bd16bf8073ca4a3709"
+      },
+      {
+        "path": "assets/js/admin.js",
+        "bytes": 259550,
+        "sha256": "ebbf60a0b7fa0dba37d42d8438d272510d94502dc3674d3052a6074b57fbef1b"
+      },
+      {
+        "path": "assets/js/order-notifier.js",
+        "bytes": 6874,
+        "sha256": "1c1bc1479d7ac924a96bdf086edaf15dd293cf07dcd6c6c2906032a4bb086b5b"
+      },
+      {
+        "path": "assets/js/iran-cities.js",
+        "bytes": 23305,
+        "sha256": "f3a0785722c858f28e6f0d3789cbf53fedb634ff786d1782a116e6f31d3841bf"
+      },
+      {
+        "path": "assets/js/admin-notices.js",
+        "bytes": 7711,
+        "sha256": "216ace41f97e68f39dc92b4a6285a3ecd1f42a445d44839571ee2ec6af191e8f"
+      },
+      {
+        "path": "assets/js/adaptive-geo.js",
+        "bytes": 5399,
+        "sha256": "9b6dc09812c80ed43ff27886273d7637e0fd1938348a17322017e97471c25fdc"
+      },
+      {
+        "path": "assets/js/country-water.js",
+        "bytes": 4576,
+        "sha256": "a71eba22692a485ed6efb1f360f3cfcbc4df7a5c2bfcfbad6adf48f18bd74e35"
+      },
+      {
+        "path": "assets/js/beacon.js",
+        "bytes": 3151,
+        "sha256": "f1a063e73fa6f8400f6cae04db4ce39fdce54d3d54d97df17265579cc4cfa02f"
+      },
+      {
+        "path": "assets/js/iran-map.js",
+        "bytes": 28967,
+        "sha256": "f228918868f6b40b436c2f12ff7c573b8229562b4b65879dbf95d7e718e8dbbd"
+      },
+      {
+        "path": "assets/js/province-geometry.js",
+        "bytes": 418332,
+        "sha256": "3096bfb24f8e9994b6e44b6193f540631ef1830d098167cbb9fa47f646be1776"
+      },
+      {
+        "path": "THIRD-PARTY-NOTICES.txt",
+        "bytes": 6075,
+        "sha256": "ef3342f9c2e451631b13e32107fffd291f8bad712aca256a889ca3c282648aa9"
+      },
+      {
+        "path": "SERVER-TELEMETRY-1.7.18.txt",
+        "bytes": 4093,
+        "sha256": "7fd0424d5669e42210e01e04056f853baaa4c0a3ca31612e7d6725a791ca062b"
+      },
+      {
+        "path": "includes/class-k20-dashboard.php",
+        "bytes": 25448,
+        "sha256": "65cc13f894f0eabf771f098b30f4bede9dfa42dffbeb59252f1c835d60639bba"
+      },
+      {
+        "path": "includes/class-k20-dashboard-rest.php",
+        "bytes": 25872,
+        "sha256": "2286cc182f86fd47697fdca08bbf17034fc69a59a1e66d6ad60f8dfe641165c0"
+      },
+      {
+        "path": "includes/class-k20-dashboard-signed-entitlement.php",
+        "bytes": 5256,
+        "sha256": "99cf89c8246b0f3b0a3ddb6dd4357c1e761e88b3a86ce90b3c2a4a070e23f4d6"
+      },
+      {
+        "path": "includes/class-k20-dashboard-server.php",
+        "bytes": 31552,
+        "sha256": "42b42f6f40044b8e2f831735df982088b660c999a97f5676a680afe33c709ccf"
+      },
+      {
+        "path": "includes/class-k20-dashboard-data.php",
+        "bytes": 190937,
+        "sha256": "e6cb262ab79aa8ef5989e3d102d5803d196205fc99d784edaf2287552c1cd0e1"
+      },
+      {
+        "path": "includes/class-k20-dashboard-zhaket-guard.php",
+        "bytes": 12726,
+        "sha256": "8a1fc2f9f032ca91c8c3b8786f232b10e2a6886c5db8865b1444c0c3aad19c87"
+      },
+      {
+        "path": "includes/class-k20-dashboard-order-notifier.php",
+        "bytes": 24633,
+        "sha256": "684e9d712e2b1524faaee801c619a01857e93e4c5bd041e147499aab52e90659"
+      },
+      {
+        "path": "includes/class-k20-dashboard-commercial-protection.php",
+        "bytes": 5758,
+        "sha256": "f1f7c29971aabd9732c4b5882784c6210df96c1e9bcb11b8820329f2a838405a"
+      },
+      {
+        "path": "includes/class-k20-dashboard-advanced.php",
+        "bytes": 78170,
+        "sha256": "6a496256eeadd092f249286258395933be2b2e2e7284eb0d997997f41d0b4cce"
+      },
+      {
+        "path": "QA-RELEASE-1.8.1-FA.txt",
+        "bytes": 5260,
+        "sha256": "0bf207f3ab20e223ec9ffd2c9d1cfdeec8745daf1680d5701924aa9b18c454aa"
+      },
+      {
+        "path": "QA-RELEASE-1.8.13-FA.txt",
+        "bytes": 2235,
+        "sha256": "c007f4cab5035b06e1f5a201acfa1722cb6f63e627eb8c7362173b10b798352b"
+      },
+      {
+        "path": "QA-RELEASE-1.8.8-FA.txt",
+        "bytes": 5231,
+        "sha256": "36f6abc4ff340b0bed06956223f716754c588264e1cebe1a0b7f7eb02e4dcb75"
+      },
+      {
+        "path": "QA-RELEASE-1.8.9-FA.txt",
+        "bytes": 1456,
+        "sha256": "8d387037f7a42b9222f1c78db0dfb1184ec49bc03da4ea22f062887bab0bbdc9"
+      },
+      {
+        "path": "LICENSE.txt",
+        "bytes": 35149,
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+      },
+      {
+        "path": "QA-RELEASE-1.8.5-FA.txt",
+        "bytes": 8817,
+        "sha256": "d602d6db336d4f4c1d4a91c26431619112f8890d8995b80b49201e462f8d3e81"
+      },
+      {
+        "path": "QA-RELEASE-1.8.6-FA.txt",
+        "bytes": 827,
+        "sha256": "83189fae0e9402965d692c04006a4df8a92fcf3254edb8cf47582269965cc4eb"
+      },
+      {
+        "path": "QA-HARDENING-1.8.14-FA.md",
+        "bytes": 2301,
+        "sha256": "9a07e395df527efbffd4dfbbc0a55a48f61d9f937a3a83b10ec1e2ec825ef1d2"
+      },
+      {
+        "path": "LICENSE-GATE.md",
+        "bytes": 4186,
+        "sha256": "4ca974442b6cf93104ca42b5d998630029d66c9091369d052943399c25c84bd8"
+      },
+      {
+        "path": "readme.txt",
+        "bytes": 19381,
+        "sha256": "0792bc5bad6f79c89d98f67424fac44def641c7b9f2d33feb32a7e7992c328ff"
+      },
+      {
+        "path": "MANIFEST.sha256",
+        "bytes": 4882,
+        "sha256": "633fc7c01f33c488e53634231016cbbe7d85cbba587716c910b1cebd38eba2ff"
+      },
+      {
+        "path": "QA-RELEASE-1.8.11-FA.txt",
+        "bytes": 685,
+        "sha256": "879b2d5444ad633b922e0c05dca58052af1063ccaacce4d213cf342b1ee65e41"
+      },
+      {
+        "path": "k20-dashboard.php",
+        "bytes": 14287,
+        "sha256": "7a3102515fee8b76715a8a0850c245533822c2860ed0bd2eefc63c43c3108838"
+      }
+    ],
+    "truncated": false
+  }
+}
