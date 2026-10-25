@@ -1,0 +1,67 @@
+name: Calibra 1.8.15 Docker Runtime Baseline
+on:
+  push:
+    branches:
+      - qa/calibra-1815-docker-20261025
+    paths:
+      - .github/workflows/calibra-1815-docker-baseline.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  wordpress-woocommerce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check Docker engine
+        run: |
+          set -euo pipefail
+          docker version
+          docker compose version
+          docker run --rm hello-world
+          echo DOCKER_ENGINE_OK
+      - name: Start disposable database and WordPress
+        run: |
+          set -euo pipefail
+          docker network create calibra-qa-net
+          docker volume create calibra-qa-wp
+          docker run -d --name calibra-qa-db --network calibra-qa-net \
+            -e MARIADB_ROOT_PASSWORD=testonly -e MARIADB_DATABASE=wordpress \
+            -e MARIADB_USER=wordpress -e MARIADB_PASSWORD=wordpress \
+            mariadb:10.11
+          docker run -d --name calibra-qa-wp --network calibra-qa-net \
+            -v calibra-qa-wp:/var/www/html \
+            -e WORDPRESS_DB_HOST=calibra-qa-db:3306 \
+            -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_PASSWORD=wordpress \
+            -e WORDPRESS_DB_NAME=wordpress wordpress:php8.3-apache
+          for i in $(seq 1 60); do
+            if docker exec calibra-qa-db mariadb-admin ping -u root -ptestonly --silent 2>/dev/null; then break; fi
+            sleep 2
+          done
+          for i in $(seq 1 60); do
+            if docker exec calibra-qa-wp test -f /var/www/html/wp-config.php; then break; fi
+            sleep 2
+          done
+          docker exec calibra-qa-wp php -v
+          docker exec calibra-qa-wp php -l /var/www/html/wp-config.php
+          echo WORDPRESS_CONTAINER_OK
+      - name: Install WordPress and WooCommerce
+        run: |
+          set -euo pipefail
+          WPC="docker run --rm --network calibra-qa-net -v calibra-qa-wp:/var/www/html --user 33:33 -e WORDPRESS_DB_HOST=calibra-qa-db:3306 -e WORDPRESS_DB_NAME=wordpress -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_PASSWORD=wordpress wordpress:cli-php8.3"
+          $WPC core install --url=http://calibra-qa-wp --title="Disposable QA" --admin_user=qaadmin --admin_password=TemporaryOnly123 --admin_email=qa@example.test --skip-email
+          $WPC plugin install woocommerce --activate
+          $WPC plugin is-active woocommerce
+          $WPC eval 'if (!class_exists("WooCommerce")) { exit(1); } echo "WOOCOMMERCE_BOOT_OK".PHP_EOL;'
+          echo WORDPRESS_WOOCOMMERCE_BASELINE_OK
+      - name: Container logs on failure
+        if: failure()
+        run: |
+          docker logs --tail 120 calibra-qa-wp || true
+          docker logs --tail 120 calibra-qa-db || true
+      - name: Tear down test containers
+        if: always()
+        run: |
+          docker rm -f calibra-qa-wp calibra-qa-db || true
+          docker volume rm calibra-qa-wp || true
+          docker network rm calibra-qa-net || true
