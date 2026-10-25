@@ -48,7 +48,7 @@ jobs:
       - name: Install WordPress and WooCommerce
         run: |
           set -euo pipefail
-          WPC="docker run --rm --network calibra-qa-net -v calibra-qa-wp:/var/www/html --user 33:33 -e WORDPRESS_DB_HOST=calibra-qa-db:3306 -e WORDPRESS_DB_NAME=wordpress -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_PASSWORD=wordpress wordpress:cli-php8.3"
+          WPC="docker run --rm --network calibra-qa-net -v calibra-qa-wp:/var/www/html --user 33:33 -e WORDPRESS_DB_HOST=calibra-qa-db:3306 -e WORDPRESS_DB_NAME=wordpress -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_PASSWORD=wordpress wordpress:cli-php8.3 wp"
           $WPC core install --url=http://calibra-qa-wp --title="Disposable QA" --admin_user=qaadmin --admin_password=TemporaryOnly123 --admin_email=qa@example.test --skip-email
           $WPC plugin install woocommerce --activate
           $WPC plugin is-active woocommerce
