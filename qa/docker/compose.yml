@@ -1,0 +1,86 @@
+name: k20-qa-lab
+
+services:
+  database:
+    image: mariadb:10.11
+    environment:
+      MARIADB_ROOT_PASSWORD: qa-local-root-only
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wpqa
+      MARIADB_PASSWORD: qa-local-user-only
+    volumes:
+      - qa_db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mariadb-admin ping -h 127.0.0.1 -u root -pqa-local-root-only --silent"]
+      interval: 3s
+      timeout: 5s
+      retries: 30
+    networks:
+      - qa_internal
+
+  wordpress:
+    image: wordpress:php${QA_PHP_VERSION:-8.3}-apache
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      WORDPRESS_DB_HOST: database:3306
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wpqa
+      WORDPRESS_DB_PASSWORD: qa-local-user-only
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_DEBUG_LOG', true);
+        define('WP_DEBUG_DISPLAY', false);
+    volumes:
+      - qa_wp:/var/www/html
+    ports:
+      - "127.0.0.1:${QA_WEB_PORT:-18080}:80"
+    networks:
+      - qa_internal
+
+  wpcli:
+    user: "33:33"
+    image: wordpress:cli-php${QA_PHP_VERSION:-8.3}
+    depends_on:
+      wordpress:
+        condition: service_started
+    environment:
+      WORDPRESS_DB_HOST: database:3306
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wpqa
+      WORDPRESS_DB_PASSWORD: qa-local-user-only
+    volumes:
+      - qa_wp:/var/www/html
+      - ./scripts:/qa/scripts:ro
+      - ./fixtures:/qa/fixtures:ro
+    networks:
+      - qa_internal
+    profiles:
+      - cli
+
+  toolbox:
+    image: ghcr.io/calibra-dev/k20-qa-toolbox:stable
+    build:
+      context: .
+      dockerfile: Dockerfile.toolbox
+    environment:
+      CI: "1"
+      NODE_PATH: /qa/node_modules
+      QA_URL: http://wordpress
+    volumes:
+      - ./scripts:/qa/scripts:ro
+      - ./fixtures:/qa/fixtures:ro
+      - ./artifacts:/qa/artifacts
+    shm_size: 1gb
+    networks:
+      - qa_internal
+    profiles:
+      - browser
+
+volumes:
+  qa_db:
+  qa_wp:
+
+networks:
+  qa_internal:
+    internal: false
