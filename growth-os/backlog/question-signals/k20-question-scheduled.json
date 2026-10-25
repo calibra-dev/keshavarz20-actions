@@ -1,14 +1,17 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-c48613cfb542811b",
-  "product_id": 140337,
+  "canonical_intent_id": "question-intent-4a2f5238588342d4",
+  "product_id": 135852,
   "family": "pipe",
-  "intent": "compare",
+  "intent": "selection",
   "scenario_dimensions": {
-    "crop": "تره"
+    "pressure": true,
+    "flow": true,
+    "elevation": true,
+    "crop": "سیر"
   },
-  "potential_article_gap": false,
+  "potential_article_gap": true,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
