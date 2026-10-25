@@ -29,7 +29,6 @@ services:
       WORDPRESS_DB_USER: wpqa
       WORDPRESS_DB_PASSWORD: qa-local-user-only
       WORDPRESS_CONFIG_EXTRA: |
-        define('WP_DEBUG', true);
         define('WP_DEBUG_LOG', true);
         define('WP_DEBUG_DISPLAY', false);
     volumes:
@@ -40,6 +39,7 @@ services:
       - qa_internal
 
   wpcli:
+    user: "33:33"
     image: wordpress:cli-php${QA_PHP_VERSION:-8.3}
     depends_on:
       wordpress:
