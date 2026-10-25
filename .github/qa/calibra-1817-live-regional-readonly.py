@@ -17,7 +17,7 @@ if not all((base, user, password)):
 
 token = base64.b64encode(f"{user}:{password}".encode()).decode()
 request = urllib.request.Request(
-    base + "/wp-json/k20-dashboard/v1/snapshot?section=regional&range=30&force=0",
+    base + "/wp-json/k20-dashboard/v1/snapshot?section=regional&range=365&force=0",
     headers={"Authorization": "Basic " + token, "Accept": "application/json", "User-Agent": "Calibra-1817-ReadOnly-QA"},
 )
 try:
@@ -73,4 +73,4 @@ print("LIVE_31_PROVINCES_OK")
 print("LIVE_ORDER_BALANCE_OK")
 print("LIVE_REVENUE_BALANCE_OK")
 print("LIVE_SALES_ONLY_CITY_ROWS_OK")
-print("REGIONAL_PROBE_METADATA=" + json.dumps({"city_rows_with_sales": active_cities, "source": payload.get("source"), "cache_hit": payload.get("cache_hit")}, ensure_ascii=False))
+print("REGIONAL_PROBE_METADATA=" + json.dumps({"city_rows_with_sales": active_cities, "total_orders": total_orders, "unmatched_orders": int(unmatched.get("count", 0)), "external_orders": int(external.get("count", 0)), "source": payload.get("source"), "cache_hit": payload.get("cache_hit")}, ensure_ascii=False))
