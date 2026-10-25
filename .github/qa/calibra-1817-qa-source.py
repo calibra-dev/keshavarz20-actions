@@ -91,7 +91,7 @@ for i, row in enumerate(entries):
     ext = rel.rsplit(".", 1)[-1].lower()
     if rel == "k20-dashboard.php":
         data = main
-    elif ext in text_extensions:
+    elif ext == "php":
         data = read_code(rel, str(i))
     else:
         url = SITE + "/wp-content/plugins/k20-dashboard/" + "/".join(
@@ -101,21 +101,13 @@ for i, row in enumerate(entries):
             with urllib.request.urlopen(request, timeout=60) as response:
                 data = response.read(12000000)
         except urllib.error.HTTPError as exc:
-            raise SystemExit("ASSET_DOWNLOAD_HTTP_" + str(exc.code) + ":" + rel)
-    if sha256(data) != row["sha256"] and ext != "php":
-        # Bridge sanitizes documentation/code examples. Retrieve the public static
-        # installed file instead, and only trust it when its byte hash agrees.
-        url = SITE + "/wp-content/plugins/k20-dashboard/" + "/".join(
-            urllib.parse.quote(part) for part in rel.split("/"))
-        try:
-            with urllib.request.urlopen(urllib.request.Request(
-                    url, headers={"User-Agent": "K20-Calibra-QA"}), timeout=60) as response:
-                candidate = response.read(12000000)
-            if sha256(candidate) == row["sha256"]:
-                data = candidate
-                print("STATIC_SOURCE_RECOVERED_AND_HASH_VERIFIED:" + rel)
-        except urllib.error.HTTPError:
-            pass
+            data = b""
+        if sha256(data) != row["sha256"] and ext in text_extensions:
+            # Bridge will mask PHP-style examples; the raw public asset takes precedence.
+            try:
+                data = read_code(rel, str(i))
+            except SystemExit:
+                pass
     if sha256(data) != row["sha256"]:
         raise SystemExit("SOURCE_HASH_MISMATCH:" + rel)
     dest = stage / rel
