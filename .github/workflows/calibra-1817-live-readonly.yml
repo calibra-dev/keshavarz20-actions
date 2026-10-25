@@ -1,0 +1,94 @@
+name: Calibra 1.8.17 Live Readonly and Docker JavaScript Probe
+on:
+  push:
+    branches: [qa/calibra-1817-live-readonly-20261025]
+    paths: [.github/workflows/calibra-1817-live-readonly.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  live-readonly:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - name: Docker version and isolated container smoke
+        run: |
+          set -euo pipefail
+          docker version --format '{{.Server.Version}}'
+          docker run --rm node:22-alpine node -v
+          echo CALIBRA_DOCKER_OK
+      - name: Check installed WordPress plugin version via read-only REST
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os, json, urllib.request, urllib.error, base64
+          base=os.environ.get('WP_BASE_URL','').rstrip('/')
+          username=os.environ.get('WP_USERNAME','')
+          password=os.environ.get('WP_APP_PASSWORD','')
+          if not all((base,username,password)):
+              raise SystemExit("NO_SITE_CREDENTIALS: cannot verify installed Calibra release")
+          auth=base64.b64encode(f"{username}:{password}".encode()).decode()
+          url=base+'/wp-json/wp/v2/plugins?status=active&per_page=100&_fields=plugin,status,name,version'
+          req=urllib.request.Request(url,headers={'Authorization':'Basic '+auth,'Accept':'application/json','User-Agent':'Calibra-1817-QA'})
+          try:
+              with urllib.request.urlopen(req,timeout=75) as response:
+                  rows=json.load(response)
+          except urllib.error.HTTPError as err:
+              raise SystemExit(f"WP_PLUGIN_REST_FAILED HTTP {err.code}")
+          found=[{'plugin':x.get('plugin'),'version':x.get('version'),'status':x.get('status')}
+                 for x in rows if 'k20-dashboard' in str(x.get('plugin','')).lower() or
+                 'calibra' in str(x.get('name','')).lower()]
+          print('PLUGIN_MATCHES='+json.dumps(found,ensure_ascii=False))
+          if not found: raise SystemExit('TARGET_PLUGIN_NOT_IN_ACTIVE_LIST')
+          if not any(str(x['version'])=='1.8.17' for x in found):
+              raise SystemExit('ACTIVE_PLUGIN_NOT_1_8_17')
+          print('CALIBRA_ACTIVE_1817_OK')
+          PY
+      - name: Download live JS assets without modifying site
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/calibra1817
+          base="${WP_BASE_URL%/}"
+          curl --retry 2 -fsSL --max-time 40 "$base/wp-content/plugins/k20-dashboard/assets/js/admin.js" -o /tmp/calibra1817/admin.js
+          curl --retry 2 -fsSL --max-time 40 "$base/wp-content/plugins/k20-dashboard/assets/js/iran-cities.js" -o /tmp/calibra1817/iran-cities.js
+          test "$(wc -c < /tmp/calibra1817/admin.js)" -gt 10000
+          test "$(wc -c < /tmp/calibra1817/iran-cities.js)" -gt 1000
+          sha256sum /tmp/calibra1817/*.js
+          echo LIVE_JAVASCRIPT_RETRIEVED
+      - name: Syntax and city catalog tests inside Docker Node container
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker run --rm -v /tmp/calibra1817:/qa:ro node:22-alpine sh -euc '
+            node --check /qa/admin.js
+            node --check /qa/iran-cities.js
+            node - <<\'JS\'
+          const fs=require("fs"),vm=require("vm");
+          const js=fs.readFileSync("/qa/iran-cities.js","utf8");
+          const ctx={window:{}};
+          vm.runInNewContext(js,ctx,{timeout:3000});
+          const catalog=ctx.window.K20IranCities;
+          if (!catalog || Object.keys(catalog).length!==31) throw new Error("province count mismatch");
+          const total=Object.values(catalog).reduce((n,a)=>n+a.length,0);
+          if(total!==1494) throw new Error("city catalog count mismatch "+total);
+          for(const [province,items] of Object.entries(catalog)) {
+             if(!/^IR-[0-9]{2}$/.test(province)||!Array.isArray(items)||!items.length) throw new Error("invalid province "+province);
+          }
+          console.log("CITY_CATALOG_31_PROVINCES_1494_ROWS_OK");
+          JS
+          '
+          echo LIVE_JS_DOCKER_CHECK_OK
+      - name: Upload read-only source evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: calibra-1817-js-readonly
+          path: /tmp/calibra1817/*.js
+          if-no-files-found: ignore
+          retention-days: 3
