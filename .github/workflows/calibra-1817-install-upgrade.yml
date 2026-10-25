@@ -1,0 +1,27 @@
+name: Calibra 1.8.17 Install and Upgrade Docker QA
+on:
+  push:
+    branches:
+      - qa/calibra-1817-install-upgrade-20261026
+    paths:
+      - '.github/workflows/calibra-1817-install-upgrade.yml'
+      - '.github/qa/calibra-1817-qa-*.py'
+      - '.github/qa/calibra-1817-qa-*.sh'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify installed plugin file inventory via allowlisted Bridge read
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 .github/qa/calibra-1817-qa-source.py probe
