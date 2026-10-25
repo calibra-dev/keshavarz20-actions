@@ -24,4 +24,4 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 .github/qa/calibra-1817-qa-source.py probe
+          python3 .github/qa/calibra-1817-qa-source.py build
