@@ -69,6 +69,11 @@ jobs:
           docker run --rm -v /tmp/calibra1817:/qa:ro -v "$PWD/.github/qa:/checks:ro" node:22-alpine \
             sh -euc "node --check /qa/admin.js && node --check /qa/iran-cities.js && node /checks/calibra-1817-live-js-smoke.js"
           echo LIVE_JS_DOCKER_CHECK_OK
+      - name: Validate regional revenue and order balances on live WooCommerce (read-only)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 .github/qa/calibra-1817-live-regional-readonly.py
       - name: Upload read-only source evidence
         if: always()
         uses: actions/upload-artifact@v4
