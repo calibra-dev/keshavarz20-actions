@@ -2,7 +2,7 @@ name: Calibra 1.8.17 Live Readonly and Docker JavaScript Probe
 on:
   push:
     branches: [qa/calibra-1817-live-readonly-20261025]
-    paths: [.github/workflows/calibra-1817-live-readonly.yml]
+    paths: [.github/workflows/calibra-1817-live-readonly.yml, .github/qa/calibra-1817-live-js-smoke.js]
   workflow_dispatch:
 permissions:
   contents: read
