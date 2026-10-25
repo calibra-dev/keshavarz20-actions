@@ -1,0 +1,26 @@
+--- a/k20-dashboard/assets/js/admin.js
++++ b/k20-dashboard/assets/js/admin.js
+@@ -2997,6 +2997,7 @@
+   // In particular, province totals and city rankings still include unmatched cities.
+   function exactAreaKey(value) {
+     return String(value == null ? '' : value)
++      .replace(/\u0640/g, '')
+       .replace(/[يى]/g, 'ی').replace(/ك/g, 'ک').replace(/[ۀة]/g, 'ه')
+       .replace(/[\u200c\u200d\s\-–—_\/\()（）\[\]{}،,:؛.]+/g, '')
+       .toLocaleLowerCase('fa-IR');
+@@ -3012,12 +3013,13 @@
+     var mapped = {};
+     (areas || []).forEach(function (area) { mapped[area.name] = { name: area.name, orders: 0, customers: 0, revenue: 0, matchedCities: [] }; });
+     live.forEach(function (city) {
+-      var best = null, bestScore = 0;
++      var best = null, bestScore = 0, ambiguous = false;
+       (areas || []).forEach(function (area) {
+         var score = areaMatchScore(city.name, area.name);
++        if (score > 0 && best && best.name !== area.name) ambiguous = true;
+         if (score > bestScore) { bestScore = score; best = area; }
+       });
+-      if (!best || bestScore <= 0) return;
++      if (!best || bestScore <= 0 || ambiguous) return;
+       var target = mapped[best.name];
+       target.orders += Number(city.orders || 0);
+       target.customers += Number(city.customers || 0);

@@ -45,7 +45,7 @@ jobs:
                  'calibra' in str(x.get('name','')).lower()]
           print('PLUGIN_MATCHES='+json.dumps(found,ensure_ascii=False))
           if not found: raise SystemExit('TARGET_PLUGIN_NOT_IN_ACTIVE_LIST')
-          if not any(str(x['version'])=='1.8.17' for x in found):
+          if not any(x['plugin']=='k20-dashboard/k20-dashboard' and x['status']=='active' and str(x['version'])=='1.8.17' for x in found):
               raise SystemExit('ACTIVE_PLUGIN_NOT_1_8_17')
           print('CALIBRA_ACTIVE_1817_OK')
           PY
@@ -57,12 +57,14 @@ jobs:
           base="${WP_BASE_URL%/}"
           curl --retry 2 -fsSL --max-time 40 "$base/wp-content/plugins/k20-dashboard/assets/js/admin.js" -o /tmp/calibra1817/admin.js
           curl --retry 2 -fsSL --max-time 40 "$base/wp-content/plugins/k20-dashboard/assets/js/iran-cities.js" -o /tmp/calibra1817/iran-cities.js
+          curl --retry 2 -fsSL --max-time 40 "$base/wp-content/plugins/k20-dashboard/assets/js/province-geometry.js" -o /tmp/calibra1817/province-geometry.js
+          curl --retry 2 -fsSL --max-time 40 "$base/wp-content/plugins/k20-dashboard/assets/js/adaptive-geo.js" -o /tmp/calibra1817/adaptive-geo.js
           test "$(wc -c < /tmp/calibra1817/admin.js)" -gt 10000
           test "$(wc -c < /tmp/calibra1817/iran-cities.js)" -gt 1000
           sha256sum /tmp/calibra1817/*.js
           echo LIVE_JAVASCRIPT_RETRIEVED
       - uses: actions/checkout@v4
-      - name: Syntax and exact-match regression inside Docker Node container
+      - name: Live baseline and patched exact-match regression inside Docker Node container
         shell: bash
         run: |
           set -euo pipefail
@@ -73,12 +75,5 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          python3 .github/qa/calibra-1817-test-regional-validator.py
           python3 .github/qa/calibra-1817-live-regional-readonly.py
-      - name: Upload read-only source evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: calibra-1817-js-readonly
-          path: /tmp/calibra1817/*.js
-          if-no-files-found: ignore
-          retention-days: 3
