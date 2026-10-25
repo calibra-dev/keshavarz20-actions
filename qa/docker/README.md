@@ -36,8 +36,14 @@ provide that infrastructure.
 ## Quick start in GitHub
 
 Open **Actions → K20 Reusable Docker QA Lab → Run workflow** (default branch).
-Choose the PHP version and whether to include Chromium. Without a plugin ZIP,
-this verifies the lab itself on both Legacy and HPOS WooCommerce storage modes.
+Choose PHP and Chromium. The default **Reuse published toolbox** option pulls
+the retained GHCR image instead of rebuilding Playwright/PHP/Node; if the
+registry pull fails, the workflow safely falls back to building from the pinned
+Dockerfile. Repository push validations always build the candidate source and
+publish updated stable + immutable SHA tags only after QA passes.
+
+Without a plugin ZIP, this verifies the lab itself on both Legacy and HPOS
+WooCommerce storage modes.
 
 For a specific plugin install/upgrade, supply the Action **artifact ID**
 containing exactly one installable ZIP and the ZIP's original SHA-256; optional
