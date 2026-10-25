@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - main
-      - feat/reusable-docker-qa-lab-20261026
-      - feat/reuse-published-ghcr-qa-20261026
+      - 'feat/**'
     paths:
       - 'qa/docker/**'
       - '.github/workflows/k20-reusable-docker-qa.yml'
