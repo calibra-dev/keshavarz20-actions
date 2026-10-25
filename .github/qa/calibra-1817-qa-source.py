@@ -8,6 +8,7 @@ import re
 import sys
 import urllib.error
 import urllib.request
+import urllib.parse
 
 SITE=os.environ.get("WP_BASE_URL","").rstrip("/")
 USER=os.environ.get("WP_USERNAME","")
@@ -49,5 +50,56 @@ source_sha=sha256(raw)
 expected=entry_by_path["k20-dashboard.php"]["sha256"]
 print("SOURCE_MAIN_READ_OK bytes="+str(len(raw))+" sha_match="+str(source_sha==expected))
 if source_sha!=expected:
-    print("MAIN_SOURCE_REDACTED_OR_MUTATED; full-file reconstruction needs verified local corrective logic")
+    print("MAIN_SOURCE_REDACTED_OR_MUTATED; full-file reconstruction needs verified local
+if len(sys.argv)>1 and sys.argv[1]=="build":
+    import pathlib
+    import zipfile
+    root=pathlib.Path(os.environ.get("CALIBRA_QA_DIR","/tmp/calibra1817qa"))
+    root.mkdir(parents=True,exist_ok=True)
+    stage=root/"k20-dashboard"
+    stage.mkdir(parents=True,exist_ok=True)
+    text_ext={"php","js","css","json","html","htm","txt","md","yml","yaml"}
+    repaired=0
+    for idx,item in enumerate(entries):
+        rel=item["path"]
+        if not rel or rel.startswith("/") or ".." in rel.split("/") or "\\\\" in rel:
+            raise SystemExit("UNSAFE_PLUGIN_PATH")
+        expected=item["sha256"]
+        ext=rel.rsplit(".",1)[-1].lower()
+        if ext in text_ext:
+            result=bridge("code.read",{"root":"k20-dashboard","path":rel},"source-"+str(idx))
+            data=result.get("source_text","").encode("utf-8")
+            if sha256(data)!=expected and rel=="k20-dashboard.php":
+                source=data.decode("utf-8")
+                pattern=r"(define\\s*\\(\\s*['\\\"]K20D_ZHAKET_PRODUCT_TOKEN['\\\"]\\s*,\\s*)['\\\"]\\*\\*\\*['\\\"]"
+                for quote in ("'","\\\""):
+                    changed,count=re.subn(pattern,lambda m:m.group(1)+quote+quote,source)
+                    if count==1 and sha256(changed.encode())==expected:
+                        data=changed.encode()
+                        repaired+=1
+                        break
+            if sha256(data)!=expected:
+                raise SystemExit("SOURCE_HASH_MISMATCH:"+rel)
+        else:
+            url=SITE+"/wp-content/plugins/k20-dashboard/"+"/".join(urllib.parse.quote(part) for part in rel.split("/"))
+            req=urllib.request.Request(url,headers={"User-Agent":"K20-Calibra-QA-Readonly"})
+            try:
+                with urllib.request.urlopen(req,timeout=60) as res: data=res.read(12000000)
+            except urllib.error.HTTPError as e:
+                raise SystemExit("ASSET_FETCH_HTTP_"+str(e.code)+":"+rel)
+            if sha256(data)!=expected:
+                raise SystemExit("ASSET_HASH_MISMATCH:"+rel)
+        dest=stage/rel
+        dest.parent.mkdir(parents=True,exist_ok=True)
+        dest.write_bytes(data)
+    target=root/"Calibra-Dashboard-1.8.17-VERIFIED-LIVE.zip"
+    with zipfile.ZipFile(target,"w",compression=zipfile.ZIP_DEFLATED,compresslevel=6) as zipout:
+        for file in sorted(stage.rglob("*")):
+            if file.is_file(): zipout.write(file,file.relative_to(root).as_posix())
+    with zipfile.ZipFile(target) as check:
+        assert len(check.namelist())==len(entries),"FILE_COUNT_MISMATCH"
+        assert check.testzip() is None,"ZIP_CRC_FAILURE"
+    print("CALIBRA_1817_RECONSTRUCTED_FROM_LIVE_ALL_FILES_HASH_VALID count="+str(len(entries))+" repaired_redacted_constants="+str(repaired))
+    print("CALIBRA_1817_QA_ZIP_READY bytes="+str(target.stat().st_size))
+ corrective logic")
 print("CALIBRA_1817_SOURCE_PREFLIGHT_COMPLETE")
