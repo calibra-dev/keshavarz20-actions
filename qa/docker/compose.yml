@@ -65,7 +65,7 @@ services:
       dockerfile: Dockerfile.toolbox
     environment:
       CI: "1"
-      NODE_PATH: /usr/local/lib/node_modules
+      NODE_PATH: /qa/node_modules
       QA_URL: http://wordpress
     volumes:
       - ./scripts:/qa/scripts:ro
