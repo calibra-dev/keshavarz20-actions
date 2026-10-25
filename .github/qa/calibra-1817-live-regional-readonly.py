@@ -1,0 +1,76 @@
+#!/usr/bin/env python3
+"""Read-only validation of the installed Calibra 1.8.17 regional REST response.
+No raw order, customer, or city records are printed.
+"""
+import base64
+import json
+import math
+import os
+import urllib.error
+import urllib.request
+
+base = os.environ.get("WP_BASE_URL", "").rstrip("/")
+user = os.environ.get("WP_USERNAME", "")
+password = os.environ.get("WP_APP_PASSWORD", "")
+if not all((base, user, password)):
+    raise SystemExit("NO_SITE_CREDENTIALS")
+
+token = base64.b64encode(f"{user}:{password}".encode()).decode()
+request = urllib.request.Request(
+    base + "/wp-json/k20-dashboard/v1/snapshot?section=regional&range=30&force=0",
+    headers={"Authorization": "Basic " + token, "Accept": "application/json", "User-Agent": "Calibra-1817-ReadOnly-QA"},
+)
+try:
+    with urllib.request.urlopen(request, timeout=120) as response:
+        payload = json.load(response)
+except urllib.error.HTTPError as err:
+    raise SystemExit(f"REGIONAL_REST_HTTP_{err.code}")
+if not isinstance(payload, dict) or payload.get("section") != "regional":
+    raise SystemExit("REGIONAL_WRONG_RESPONSE")
+if payload.get("ok") is not True:
+    raise SystemExit("REGIONAL_RESPONSE_ERROR")
+data = payload.get("data")
+if not isinstance(data, dict) or data.get("available") is not True:
+    raise SystemExit("REGIONAL_DATA_UNAVAILABLE")
+provinces = data.get("provinces")
+if not isinstance(provinces, list) or len(provinces) != 31:
+    raise SystemExit("REGIONAL_PROVINCES_NOT_31")
+codes = [p.get("code") for p in provinces]
+if len(set(codes)) != 31:
+    raise SystemExit("REGIONAL_PROVINCE_CODES_DUPLICATED")
+province_orders = 0
+province_revenue = 0.0
+active_cities = 0
+for p in provinces:
+    items = p.get("cities")
+    if not isinstance(items, list) or len(items) != p.get("city_count"):
+        raise SystemExit("REGIONAL_CITY_COUNT_MISMATCH")
+    orders = p.get("orders")
+    if not isinstance(orders, int) or orders < 0:
+        raise SystemExit("REGIONAL_BAD_PROVINCE_ORDERS")
+    province_orders += orders
+    province_revenue += float(p.get("revenue", 0))
+    city_orders = 0
+    for city in items:
+        quantity = city.get("orders")
+        if not isinstance(quantity, int) or quantity <= 0:
+            raise SystemExit("REGIONAL_CITY_WITH_NO_ORDERS")
+        city_orders += quantity
+    if city_orders > orders:
+        raise SystemExit("REGIONAL_CITY_ORDERS_GREATER_THAN_PROVINCE")
+    active_cities += len(items)
+unmatched = data.get("unmatched") or {}
+external = data.get("external") or {}
+total_orders = data.get("total_orders")
+if province_orders + int(unmatched.get("count", 0)) + int(external.get("count", 0)) != total_orders:
+    raise SystemExit("REGIONAL_NATIONAL_ORDER_BALANCE_MISMATCH")
+mapped_revenue = float(data.get("mapped_revenue", 0))
+tolerance = 0.01 + abs(mapped_revenue) * 0.000001
+if not math.isclose(province_revenue, mapped_revenue, abs_tol=tolerance):
+    raise SystemExit("REGIONAL_MAPPED_REVENUE_MISMATCH")
+print("LIVE_REGIONAL_REST_OK")
+print("LIVE_31_PROVINCES_OK")
+print("LIVE_ORDER_BALANCE_OK")
+print("LIVE_REVENUE_BALANCE_OK")
+print("LIVE_SALES_ONLY_CITY_ROWS_OK")
+print("REGIONAL_PROBE_METADATA=" + json.dumps({"city_rows_with_sales": active_cities, "source": payload.get("source"), "cache_hit": payload.get("cache_hit")}, ensure_ascii=False))
