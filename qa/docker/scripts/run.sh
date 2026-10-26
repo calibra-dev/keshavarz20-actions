@@ -94,6 +94,12 @@ fi
 if [ "$QA_ENABLE_BROWSER" = "1" ]; then
   compose --profile browser run --rm -T -e "QA_STORAGE_MODE=$mode" toolbox \
     node /qa/scripts/browser-smoke.cjs
+  if [ -s "$qa_dir/fixtures/plugin-under-test.zip" ]; then
+    compose --profile browser run --rm -T -e "QA_STORAGE_MODE=$mode" toolbox node /qa/scripts/calibra-map-visual.cjs
+    echo "QA_CALIBRA_MAP_VISUAL_PASS mode=$mode"
+  else
+    echo "QA_CALIBRA_MAP_VISUAL_NOT_RUN_NO_PLUGIN mode=$mode"
+  fi
   echo "QA_BROWSER_PASS mode=$mode"
 fi
 
