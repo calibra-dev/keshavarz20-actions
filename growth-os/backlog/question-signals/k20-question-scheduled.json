@@ -1,12 +1,15 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-4c47b135f37842d7",
-  "product_id": 142075,
-  "family": "pesticide",
-  "intent": "safety/risk",
-  "scenario_dimensions": {},
-  "potential_article_gap": true,
+  "canonical_intent_id": "question-intent-f461498968cd32ce",
+  "product_id": 140301,
+  "family": "fertilizer",
+  "intent": "mix",
+  "scenario_dimensions": {
+    "water": true,
+    "crop": "تره"
+  },
+  "potential_article_gap": false,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
