@@ -1,0 +1,50 @@
+name: K20 GSC 5xx read-only public HTTP diagnosis
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/k20-gsc5xx-readonly-probe.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: k20-gsc5xx-public-http
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check public URLs from GitHub network without site credentials
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import datetime,json,pathlib,re,socket,subprocess,tempfile,time
+          urls=["https://keshavarz20.com/robots.txt","https://keshavarz20.com/sitemap_index.xml","https://keshavarz20.com/%d8%a2%d8%a8-%d9%84%d9%88%d9%84%d9%87-%d8%a8%d8%b3%d9%be%d8%a7%d8%b1/","https://keshavarz20.com/","https://keshavarz20.com/shop/","https://keshavarz20.com/product/%d8%b3%d9%87-%d8%b1%d8%a7%d9%87-%d9%85%d8%b3%d8%a7%d9%88%db%8c-%d8%a2%d8%a8%d9%84%d9%88%d9%84%d9%87-32-%d9%85%db%8c%d9%84%db%8c%d9%85%d8%aa%d8%b1-%d9%be%d9%84%db%8c-%d8%a7%d8%aa%db%8c%d9%84%d9%86/","https://keshavarz20.com/product/%d8%b1%d8%a7%db%8c%d8%b2%d8%b1-%d8%a2%d9%84%d9%85%db%8c%d9%86%db%8c%d9%88%d9%85%db%8c-1-%d9%85%d8%aa%d8%b1%db%8c-1-1-2-%d8%a7%db%8c%d9%86%da%86/","https://keshavarz20.com/news/","https://keshavarz20.com/category/knowledge-center/agricultural-suppliers/","https://keshavarz20.com/product-category/industrial-tools-and-equipment/","https://keshavarz20.com/product_brand/cequesteerian/"]
+          rows=[]
+          print("DNS_AAAA_A",json.dumps(sorted(set(v[4][0] for v in socket.getaddrinfo("keshavarz20.com",443))),ensure_ascii=False),flush=True)
+          for phase,ua in [("normal","Mozilla/5.0 (compatible; K20-ReadOnly-Diagnostic/1.0)"),("googlebot_ua","Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)")]:
+              for url in urls:
+                  at=datetime.datetime.now(datetime.timezone.utc).isoformat()
+                  with tempfile.TemporaryDirectory() as td:
+                      hp=pathlib.Path(td)/"h";bp=pathlib.Path(td)/"b"
+                      p=subprocess.run(["curl","-sS","-L","--max-redirs","4","--max-time","25","--connect-timeout","10","--compressed","-A",ua,"-D",str(hp),"-o",str(bp),"-w","%{json}",url],capture_output=True,text=True)
+                      try:m=json.loads(p.stdout)
+                      except Exception:m={}
+                      raw=hp.read_text(errors="replace") if hp.exists() else ""
+                      body=bp.read_text(errors="replace") if bp.exists() else ""
+                      blocks=[v for v in re.split(r"\r?\n\r?\n",raw) if v.startswith("HTTP/")]
+                      h={}
+                      for line in (blocks[-1].splitlines()[1:] if blocks else []):
+                          if ":" in line:
+                              k,v=line.split(":",1)
+                              if k.lower() in ["server","date","content-type","cache-control","x-cache","x-litespeed-cache","x-litespeed-cache-control","x-robots-tag","cf-ray","cf-cache-status","retry-after","via","location","x-powered-by"]:h[k.lower()]=v.strip()
+                      r={"at_utc":at,"url":url,"ua":phase,"curl_exit":p.returncode,"error":p.stderr.strip(),"status":m.get("http_code"),"redirects":m.get("num_redirects"),"effective_url":m.get("url_effective"),"ttfb":m.get("time_starttransfer"),"seconds":m.get("time_total"),"ssl_verify_result":m.get("ssl_verify_result"),"remote_ip":m.get("remote_ip"),"headers":h,"status_lines":[v.splitlines()[0] for v in blocks]}
+                      if r["status"] and r["status"]>=400:r["error_excerpt"]=re.sub(r"<[^>]+>"," ",body)[:500]
+                      rows.append(r)
+                      print("K20_HTTP_RESULT "+json.dumps(r,ensure_ascii=False),flush=True)
+                  time.sleep(1)
+          pathlib.Path("gsc5xx-public-http-results.json").write_text(json.dumps(rows,ensure_ascii=False,indent=2))
+          summary={"requests":len(rows),"status_counts":{str(s):sum(r["status"]==s for r in rows) for s in sorted(set(r["status"] for r in rows),key=str)},"note":"UA emulation is not a verified Googlebot IP or a Google live test"}
+          print("K20_HTTP_SUMMARY "+json.dumps(summary),flush=True)
+          
+          PY
