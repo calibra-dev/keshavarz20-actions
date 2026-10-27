@@ -1,0 +1,39 @@
+{
+  "ok": true,
+  "schema_version": "3.3",
+  "http_code": 200,
+  "request": "20261027-gsc5xx-readonly-health.sanitized.json",
+  "action": "batch",
+  "request_id": "gsc5xx-readonly-health-20261027",
+  "dry_run": false,
+  "executed_at_utc": "2026-10-27T19:36:05.8026454Z",
+  "bridge": "Keshavarz20 Bridge v3",
+  "bridge_version": "3.3.37",
+  "error_code": null,
+  "message": null,
+  "result": {
+    "count": 4,
+    "items": [
+      {
+        "index": 0,
+        "action": "system.info",
+        "ok": true
+      },
+      {
+        "index": 1,
+        "action": "observability.status",
+        "ok": true
+      },
+      {
+        "index": 2,
+        "action": "cache.status",
+        "ok": true
+      },
+      {
+        "index": 3,
+        "action": "api.contract",
+        "ok": true
+      }
+    ]
+  }
+}
