@@ -1,0 +1,20 @@
+{
+  "action": "batch",
+  "request_id": "gsc5xx-readonly-health-20261027",
+  "payload": {
+    "items": [
+      {
+        "action": "system.info"
+      },
+      {
+        "action": "observability.status"
+      },
+      {
+        "action": "cache.status"
+      },
+      {
+        "action": "api.contract"
+      }
+    ]
+  }
+}
