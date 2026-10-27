@@ -1,18 +1,16 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-edde1873df55ac71",
-  "product_id": 135403,
-  "family": "air_valve",
-  "intent": "placement",
+  "canonical_intent_id": "question-intent-2f56abf50dac6c4e",
+  "product_id": 141480,
+  "family": "fitting",
+  "intent": "compatibility",
   "scenario_dimensions": {
-    "elevation": true,
-    "installation_state": true,
-    "crop": "سیر"
+    "installation_state": true
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": false,
+  "compatibility_gap": true,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
