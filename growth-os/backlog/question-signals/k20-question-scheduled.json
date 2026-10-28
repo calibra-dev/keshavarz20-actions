@@ -1,16 +1,17 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-3c4518601323586d",
-  "product_id": 140891,
-  "family": "fertilizer",
-  "intent": "symptom",
+  "canonical_intent_id": "question-intent-9fa33c27753a6e76",
+  "product_id": 140689,
+  "family": "valve",
+  "intent": "installation",
   "scenario_dimensions": {
-    "failure_mode": true
+    "water": true,
+    "installation_state": true
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": false,
+  "compatibility_gap": true,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
