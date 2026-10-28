@@ -1,17 +1,18 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-9fa33c27753a6e76",
-  "product_id": 140689,
-  "family": "valve",
-  "intent": "installation",
+  "canonical_intent_id": "question-intent-f14613077806eda2",
+  "product_id": 142737,
+  "family": "fertilizer",
+  "intent": "logistics",
   "scenario_dimensions": {
-    "water": true,
-    "installation_state": true
+    "pressure": true,
+    "logistics": true,
+    "province_or_climate": "کرمان"
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": true,
+  "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
