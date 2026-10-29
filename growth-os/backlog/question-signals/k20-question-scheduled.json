@@ -1,11 +1,14 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-1a3bdbaf809e08d0",
-  "product_id": 140805,
+  "canonical_intent_id": "question-intent-ab23fb72b0dc5314",
+  "product_id": 141719,
   "family": "fertilizer",
-  "intent": "season",
-  "scenario_dimensions": {},
+  "intent": "orchard_diagnosis",
+  "scenario_dimensions": {
+    "pressure": true,
+    "crop": "به"
+  },
   "potential_article_gap": false,
   "potential_hub_gap": false,
   "compatibility_gap": false,
