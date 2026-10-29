@@ -1,6 +1,6 @@
 # Calibra Factor 1.1.5 release QA (2026-10-29)
 
-Target archive SHA-256: eed3d188fcfb3f3d0800ca77b75107543da15540f30f77086ef996a09c803aca
+Target archive SHA-256: 23b1959f8dca22dabf476f307bfa6dcd81eaeaa90a0c6d02b0a5c42971345ad4
 Version: 1.1.5; only public branding and gettext domain changes from 1.1.4.
 
 This commit intentionally invokes ONLY the containerized WordPress/WooCommerce infrastructure baseline (HPOS, legacy, Chromium). The commercial plugin ZIP has NOT been provided as a GitHub Actions artifact, and must not be described as installed/tested.
