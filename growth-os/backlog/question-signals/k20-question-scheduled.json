@@ -1,16 +1,17 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-1300b177d4fff49f",
-  "product_id": 142037,
-  "family": "pesticide",
-  "intent": "diagnosis",
+  "canonical_intent_id": "question-intent-034723ee46edef00",
+  "product_id": 140579,
+  "family": "fitting",
+  "intent": "installation",
   "scenario_dimensions": {
-    "crop": "جو"
+    "installation_state": true,
+    "crop": "سیب"
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": false,
+  "compatibility_gap": true,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
