@@ -1,14 +1,15 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-42564bed83d3e800",
-  "product_id": 135315,
+  "canonical_intent_id": "question-intent-0f7699ddf93564d5",
+  "product_id": 135850,
   "family": "pipe",
-  "intent": "maintenance",
+  "intent": "experience_request",
   "scenario_dimensions": {
-    "crop": "تره"
+    "maintenance": true,
+    "crop": "به"
   },
-  "potential_article_gap": true,
+  "potential_article_gap": false,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
