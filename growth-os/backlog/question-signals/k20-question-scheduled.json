@@ -1,15 +1,15 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-b3e26532b67ac371",
-  "product_id": 136278,
-  "family": "seed",
-  "intent": "safety/risk",
+  "canonical_intent_id": "question-intent-d60a2f54b04ba9f2",
+  "product_id": 142000,
+  "family": "pesticide",
+  "intent": "post_purchase",
   "scenario_dimensions": {
-    "pressure": true,
-    "maintenance": true
+    "crop": "گندم",
+    "province_or_climate": "رشت"
   },
-  "potential_article_gap": true,
+  "potential_article_gap": false,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
