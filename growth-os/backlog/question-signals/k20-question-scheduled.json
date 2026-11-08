@@ -1,17 +1,17 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-b8df9d575cfd5b5d",
-  "product_id": 140943,
-  "family": "fertilizer",
-  "intent": "orchard_diagnosis",
+  "canonical_intent_id": "question-intent-2f56abf50dac6c4e",
+  "product_id": 140673,
+  "family": "fitting",
+  "intent": "compatibility",
   "scenario_dimensions": {
-    "pressure": true,
-    "crop": "جو"
+    "installation_state": true,
+    "crop": "به"
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": false,
+  "compatibility_gap": true,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
