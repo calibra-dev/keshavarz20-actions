@@ -1,12 +1,15 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-152d2f54624fb4a2",
-  "product_id": 141719,
-  "family": "fertilizer",
+  "canonical_intent_id": "question-intent-e2ee837d0f0adb09",
+  "product_id": 135215,
+  "family": "pipe",
   "intent": "total_cost",
   "scenario_dimensions": {
-    "pressure": true
+    "pressure": true,
+    "installation_state": true,
+    "maintenance": true,
+    "failure_mode": true
   },
   "potential_article_gap": true,
   "potential_hub_gap": false,
