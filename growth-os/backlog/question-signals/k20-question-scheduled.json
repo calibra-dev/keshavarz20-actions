@@ -1,11 +1,15 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-f36465eedc228e0f",
-  "product_id": 140979,
-  "family": "fertilizer",
-  "intent": "indoor_media",
-  "scenario_dimensions": {},
+  "canonical_intent_id": "question-intent-bfe37c6e4f9eb3e2",
+  "product_id": 140467,
+  "family": "fitting",
+  "intent": "post_purchase",
+  "scenario_dimensions": {
+    "installation_state": true,
+    "failure_mode": true,
+    "crop": "به"
+  },
   "potential_article_gap": false,
   "potential_hub_gap": false,
   "compatibility_gap": false,
