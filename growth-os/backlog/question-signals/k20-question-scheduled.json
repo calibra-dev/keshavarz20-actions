@@ -1,15 +1,16 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-700a249832f1293c",
-  "product_id": 136075,
-  "family": "seedling",
-  "intent": "safety/risk",
+  "canonical_intent_id": "question-intent-3d9cb75e6d60d61f",
+  "product_id": 139228,
+  "family": "fitting",
+  "intent": "experience_request",
   "scenario_dimensions": {
     "pressure": true,
-    "maintenance": true
+    "failure_mode": true,
+    "crop": "جو"
   },
-  "potential_article_gap": true,
+  "potential_article_gap": false,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
