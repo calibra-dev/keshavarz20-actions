@@ -1,12 +1,15 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-7a7432855443ac5c",
-  "product_id": 136292,
-  "family": "seed",
-  "intent": "nursery_setup",
-  "scenario_dimensions": {},
-  "potential_article_gap": false,
+  "canonical_intent_id": "question-intent-700a249832f1293c",
+  "product_id": 136075,
+  "family": "seedling",
+  "intent": "safety/risk",
+  "scenario_dimensions": {
+    "pressure": true,
+    "maintenance": true
+  },
+  "potential_article_gap": true,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
