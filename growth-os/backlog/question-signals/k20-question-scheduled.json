@@ -1,15 +1,17 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-7785b8fa6e388905",
-  "product_id": 135683,
-  "family": "riser",
-  "intent": "post_purchase",
+  "canonical_intent_id": "question-intent-e2ee837d0f0adb09",
+  "product_id": 135209,
+  "family": "pipe",
+  "intent": "total_cost",
   "scenario_dimensions": {
     "pressure": true,
-    "installation_state": true
+    "installation_state": true,
+    "maintenance": true,
+    "failure_mode": true
   },
-  "potential_article_gap": false,
+  "potential_article_gap": true,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
