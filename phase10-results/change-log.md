@@ -515,3 +515,11 @@
   - google_generative_ai: external_report_required
   - bing_ai_performance: external_report_required
 
+## 2026-11-13T09:55:47.503370+00:00
+- Status: PASS_GUARDED_EXTERNAL_REPORT_GAPS
+- Baseline: phase10-ops/baseline-20261001.json
+- Public checks: 5/5 HTTP 200
+- External measurement blockers: 2
+  - google_generative_ai: external_report_required
+  - bing_ai_performance: external_report_required
+
