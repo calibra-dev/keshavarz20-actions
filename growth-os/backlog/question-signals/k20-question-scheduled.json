@@ -1,11 +1,14 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-afb2c21446d64a78",
-  "product_id": 140813,
+  "canonical_intent_id": "question-intent-db4599f83b8a2205",
+  "product_id": 142442,
   "family": "fertilizer",
-  "intent": "climate",
-  "scenario_dimensions": {},
+  "intent": "mix",
+  "scenario_dimensions": {
+    "water": true,
+    "crop": "خیار"
+  },
   "potential_article_gap": false,
   "potential_hub_gap": false,
   "compatibility_gap": false,
