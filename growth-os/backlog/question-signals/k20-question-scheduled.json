@@ -1,14 +1,16 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-d17066ff72ed227a",
-  "product_id": 141028,
-  "family": "fertilizer",
-  "intent": "safety/risk",
+  "canonical_intent_id": "question-intent-712897c5be47bdac",
+  "product_id": 140007,
+  "family": "fitting",
+  "intent": "logistics",
   "scenario_dimensions": {
-    "pressure": true
+    "pressure": true,
+    "logistics": true,
+    "province_or_climate": "زاهدان"
   },
-  "potential_article_gap": true,
+  "potential_article_gap": false,
   "potential_hub_gap": false,
   "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
