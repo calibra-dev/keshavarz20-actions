@@ -1,11 +1,14 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-6a56a04ab9e4b358",
-  "product_id": 141220,
+  "canonical_intent_id": "question-intent-810256b8c486d7e3",
+  "product_id": 140759,
   "family": "fertilizer",
-  "intent": "soil_water",
-  "scenario_dimensions": {},
+  "intent": "mix",
+  "scenario_dimensions": {
+    "water": true,
+    "crop": "تره"
+  },
   "potential_article_gap": false,
   "potential_hub_gap": false,
   "compatibility_gap": false,
