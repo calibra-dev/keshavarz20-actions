@@ -1,17 +1,16 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-06206ac24169d047",
-  "product_id": 140790,
-  "family": "fertilizer",
-  "intent": "mix",
+  "canonical_intent_id": "question-intent-2f56abf50dac6c4e",
+  "product_id": 142485,
+  "family": "fitting",
+  "intent": "compatibility",
   "scenario_dimensions": {
-    "water": true,
-    "crop": "تره"
+    "installation_state": true
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": false,
+  "compatibility_gap": true,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
