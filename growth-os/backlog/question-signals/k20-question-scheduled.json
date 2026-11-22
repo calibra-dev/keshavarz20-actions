@@ -1,16 +1,17 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-c803042965c01aa0",
-  "product_id": 135691,
-  "family": "riser",
-  "intent": "compatibility",
+  "canonical_intent_id": "question-intent-0f7699ddf93564d5",
+  "product_id": 135854,
+  "family": "pipe",
+  "intent": "experience_request",
   "scenario_dimensions": {
+    "maintenance": true,
     "crop": "به"
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": true,
+  "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
