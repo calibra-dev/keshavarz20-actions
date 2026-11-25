@@ -1,14 +1,17 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-9060f8b789e317a6",
-  "product_id": 139225,
-  "family": "fitting",
-  "intent": "compatibility",
-  "scenario_dimensions": {},
+  "canonical_intent_id": "question-intent-55048d4da5ca83aa",
+  "product_id": 140217,
+  "family": "fertilizer",
+  "intent": "mix",
+  "scenario_dimensions": {
+    "water": true,
+    "crop": "سویا"
+  },
   "potential_article_gap": false,
   "potential_hub_gap": false,
-  "compatibility_gap": true,
+  "compatibility_gap": false,
   "evidence_classification": "synthetic_editorial_question_generator_not_customer_evidence",
   "contains_personal_data": false,
   "source_result": "k20-question-scheduled.json"
