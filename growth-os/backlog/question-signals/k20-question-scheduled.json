@@ -1,12 +1,15 @@
 {
   "schema_version": "1",
   "engine_version": 19,
-  "canonical_intent_id": "question-intent-ec8d6e262d1e272f",
-  "product_id": 142874,
-  "family": "fertilizer",
-  "intent": "orchard_method",
+  "canonical_intent_id": "question-intent-d3372f1cec3b97c9",
+  "product_id": 140451,
+  "family": "dripper",
+  "intent": "post_purchase",
   "scenario_dimensions": {
-    "crop": "تره"
+    "water": true,
+    "pressure": true,
+    "flow": true,
+    "failure_mode": true
   },
   "potential_article_gap": false,
   "potential_hub_gap": false,
